@@ -36,3 +36,11 @@ Checkin is an app that allow a team master to checkin attendees.
 - Firebase Storage for static files
 - Firebase Cloud Firestore for DB
 
+## Security notes
+
+This app requires to have [git-secret](https://git-secret.io/installation) installed:
+
+1. Open an issue asking to be added as trusted user.
+1. Paste your public GPG Key into the issue and wait for confirmation.
+1. run `git secret reveal`
+

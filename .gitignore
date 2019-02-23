@@ -27,6 +27,10 @@
 .pub/
 /build/
 
+#Secrets (Firebase)
+**/android/app/google-services.json
+**/ios/Runner/GoogleService-Info.plist
+
 # Android related
 **/android/**/gradle-wrapper.jar
 **/android/.gradle
@@ -35,6 +39,7 @@
 **/android/gradlew.bat
 **/android/local.properties
 **/android/**/GeneratedPluginRegistrant.java
+
 
 # iOS/XCode related
 **/ios/**/*.mode1v3
@@ -68,3 +73,4 @@
 !**/ios/**/default.pbxuser
 !**/ios/**/default.perspectivev3
 !/packages/flutter_tools/test/data/dart_dependencies_test/**/.packages
+.gitsecret/keys/random_seed
