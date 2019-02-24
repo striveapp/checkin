@@ -1,5 +1,7 @@
 #!/bin/sh
 
+set -x
+
 android_template="$(pwd)/android/app/google-services.json.template"
 result_file="$(pwd)/android/app/google-services.json"
 
