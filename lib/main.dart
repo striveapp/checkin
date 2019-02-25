@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:firebase_auth/firebase_auth.dart';
 import 'package:google_sign_in/google_sign_in.dart';
+import 'package:cloud_firestore/cloud_firestore.dart';
 
 void main() => runApp(App());
 
@@ -100,14 +101,7 @@ class _TeamListState extends State<Teams> {
       appBar: AppBar(
         title: Text("Teams"),
       ),
-      body: ListView(
-        children: teams
-            .map((team) => ListTile(
-                  leading: Icon(Icons.accessible_forward),
-                  title: Text(team),
-                ))
-            .toList(),
-      ),
+      body: _buildBody(context),
       floatingActionButton: FloatingActionButton(
 //        onPressed: () {
 //          _navigateAndDisplayForm(context);
@@ -116,6 +110,30 @@ class _TeamListState extends State<Teams> {
         child: Icon(Icons.add),
       ), // This trailing comma makes auto-formatting nicer for build methods.
     );
+  }
+
+  Widget _buildBody(BuildContext context) {
+    return StreamBuilder<QuerySnapshot>(
+      stream: Firestore.instance.collection('teams').snapshots(),
+      builder: (context, snapshot) {
+        if (!snapshot.hasData) return LinearProgressIndicator();
+
+        return ListView(
+            children: snapshot.data.documents
+                .map((team) => ListTile(
+                      leading: Icon(Icons.accessible_forward),
+                      title: Text(team.data['name']),
+                    ))
+                .toList());
+      },
+    );
+//    return ListView(
+//        children: teams
+//            .map((team) => ListTile(
+//                  leading: Icon(Icons.accessible_forward),
+//                  title: Text(team),
+//                ))
+//            .toList());
   }
 
   _showDialogForm() async {
@@ -151,6 +169,9 @@ class _TeamListState extends State<Teams> {
                 onPressed: () {
                   if (_teamName.currentState.validate()) {
 //                     If the form is valid, we want to show a Snackbar
+                    Firestore.instance
+                        .collection('teams')
+                        .add({'name': textController.text});
                     Navigator.pop(context, textController.text);
                   }
                 },
@@ -159,9 +180,9 @@ class _TeamListState extends State<Teams> {
         ));
 
     if (result != null) {
-      setState(() {
-        teams.add("$result");
-      });
+//      setState(() {
+//        teams.add("$result");
+//      });
 
       return showDialog(
         context: context,
