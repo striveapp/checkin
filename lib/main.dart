@@ -109,17 +109,86 @@ class _TeamListState extends State<Teams> {
             .toList(),
       ),
       floatingActionButton: FloatingActionButton(
-        onPressed: () {
-          _navigateAndDisplaySelection(context);
-        },
+//        onPressed: () {
+//          _navigateAndDisplayForm(context);
+//        },
+        onPressed: _showDialogForm,
         child: Icon(Icons.add),
       ), // This trailing comma makes auto-formatting nicer for build methods.
     );
   }
 
+  _showDialogForm() async {
+    final textController = TextEditingController();
+    final _teamName = GlobalKey<FormState>();
+
+    final result = await showDialog<String>(
+        context: context,
+        child: AlertDialog(
+          contentPadding: const EdgeInsets.all(16.0),
+          content: SingleChildScrollView(
+            child: Form(
+                key: _teamName,
+                child: TextFormField(
+                  controller: textController,
+                  validator: (value) {
+                    if (value.isEmpty) {
+                      return 'Please enter Team name';
+                    }
+                  },
+                  autofocus: true,
+                  decoration:
+                      InputDecoration(labelText: 'Please enter Team name'),
+                )),
+          ),
+          actions: <Widget>[
+            FlatButton(
+                onPressed: () {
+                  Navigator.pop(context);
+                },
+                child: const Text('Cancel')),
+            FlatButton(
+                onPressed: () {
+                  if (_teamName.currentState.validate()) {
+//                     If the form is valid, we want to show a Snackbar
+                    Navigator.pop(context, textController.text);
+                  }
+                },
+                child: const Text('Save')),
+          ],
+        ));
+
+    if (result != null) {
+      setState(() {
+        teams.add("$result");
+      });
+
+      return showDialog(
+        context: context,
+        builder: (context) {
+          return AlertDialog(
+            // Retrieve the text the user has typed in using our
+            // TextEditingController
+            content: Text.rich(
+              TextSpan(
+                text: 'Team ', // default text style
+                children: <TextSpan>[
+                  TextSpan(
+                      text: '$result',
+                      style: TextStyle(fontWeight: FontWeight.bold)),
+                  TextSpan(text: ' created')
+                ],
+              ),
+            ),
+          );
+        },
+      );
+    }
+  }
+
   // A method that launches the SelectionScreen and awaits the result from
   // Navigator.pop!
-  _navigateAndDisplaySelection(BuildContext context) async {
+  _navigateAndDisplayForm(BuildContext context) async {
     // Navigator.push returns a Future that will complete after we call
     // Navigator.pop on the Team Creation Screen!
     final result = await Navigator.push(
@@ -201,7 +270,7 @@ class _CreateTeamFormState extends State<CreateTeam> {
                 autofocus: true,
                 validator: (value) {
                   if (value.isEmpty) {
-                    return 'Please enter a team name';
+                    return 'Please enter Team name';
                   }
                 },
               ),
@@ -216,7 +285,7 @@ class _CreateTeamFormState extends State<CreateTeam> {
                       Navigator.pop(context, textController.text);
                     }
                   },
-                  child: Text('Submit'),
+                  child: Text('Save'),
                 ),
               ),
             ],
