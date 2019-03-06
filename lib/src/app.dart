@@ -2,7 +2,7 @@ import 'package:flutter/material.dart';
 import 'package:firebase_auth/firebase_auth.dart';
 import 'package:google_sign_in/google_sign_in.dart';
 import 'package:cloud_firestore/cloud_firestore.dart';
-import 'resources/team_provider.dart';
+import 'resources/team_repository.dart';
 
 void main() => runApp(App());
 
@@ -94,7 +94,7 @@ class Teams extends StatefulWidget {
 
 class _TeamListState extends State<Teams> {
   List<String> teams = ['Test team'];
-  final _teamProvider = TeamProvider();
+  final _teamRepository = TeamRepository();
 
   @override
   Widget build(BuildContext context) {
@@ -115,7 +115,7 @@ class _TeamListState extends State<Teams> {
 
   Widget _buildBody(BuildContext context) {
     return StreamBuilder<QuerySnapshot>(
-      stream: _teamProvider.getTeamList(),
+      stream: _teamRepository.getTeamList(),
       builder: (context, snapshot) {
         if (!snapshot.hasData) return LinearProgressIndicator();
 
@@ -171,7 +171,7 @@ class _TeamListState extends State<Teams> {
                   if (_teamName.currentState.validate()) {
                     var teamName = textController.text;
 
-                    _teamProvider.addTeam(teamName);
+                    _teamRepository.addTeam(teamName);
                     Navigator.pop(context, teamName);
                   }
                 },
