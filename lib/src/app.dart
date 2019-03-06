@@ -2,6 +2,7 @@ import 'package:flutter/material.dart';
 import 'package:firebase_auth/firebase_auth.dart';
 import 'package:google_sign_in/google_sign_in.dart';
 import 'package:cloud_firestore/cloud_firestore.dart';
+import 'resources/team_provider.dart';
 
 void main() => runApp(App());
 
@@ -93,6 +94,7 @@ class Teams extends StatefulWidget {
 
 class _TeamListState extends State<Teams> {
   List<String> teams = ['Test team'];
+  final _teamProvider = TeamProvider();
 
   @override
   Widget build(BuildContext context) {
@@ -113,7 +115,7 @@ class _TeamListState extends State<Teams> {
 
   Widget _buildBody(BuildContext context) {
     return StreamBuilder<QuerySnapshot>(
-      stream: Firestore.instance.collection('teams').snapshots(),
+      stream: _teamProvider.getTeamList(),
       builder: (context, snapshot) {
         if (!snapshot.hasData) return LinearProgressIndicator();
 
@@ -167,11 +169,10 @@ class _TeamListState extends State<Teams> {
             FlatButton(
                 onPressed: () {
                   if (_teamName.currentState.validate()) {
-//                     If the form is valid, we want to show a Snackbar
-                    Firestore.instance
-                        .collection('teams')
-                        .add({'name': textController.text});
-                    Navigator.pop(context, textController.text);
+                    var teamName = textController.text;
+
+                    _teamProvider.addTeam(teamName);
+                    Navigator.pop(context, teamName);
                   }
                 },
                 child: const Text('Save')),
