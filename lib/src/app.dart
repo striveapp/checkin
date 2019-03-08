@@ -1,7 +1,10 @@
-import 'package:flutter/material.dart';
+import 'package:checkin/src/blocs/bloc.dart';
+import 'package:checkin/src/models/team.dart';
 import 'package:firebase_auth/firebase_auth.dart';
+import 'package:flutter/material.dart';
+import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:google_sign_in/google_sign_in.dart';
-import 'package:cloud_firestore/cloud_firestore.dart';
+
 import 'resources/team_repository.dart';
 
 void main() => runApp(App());
@@ -94,47 +97,65 @@ class Teams extends StatefulWidget {
 
 class _TeamListState extends State<Teams> {
   List<String> teams = ['Test team'];
-  final _teamRepository = TeamRepository();
+  TeamRepository _teamRepository;
+  TeamBloc _teamBloc;
+
+  _TeamListState() {
+    _teamRepository = TeamRepository();
+    _teamBloc = TeamBloc(teamRepository: _teamRepository);
+    _teamBloc.dispatch(Fetch());
+  }
 
   @override
   Widget build(BuildContext context) {
-    return Scaffold(
-      appBar: AppBar(
-        title: Text("Teams"),
-      ),
-      body: _buildBody(context),
-      floatingActionButton: FloatingActionButton(
-//        onPressed: () {
-//          _navigateAndDisplayForm(context);
-//        },
-        onPressed: _showDialogForm,
-        child: Icon(Icons.add),
-      ), // This trailing comma makes auto-formatting nicer for build methods.
+    return BlocBuilder(
+      bloc: _teamBloc,
+      builder: (BuildContext context, TeamState state) {
+        if (state is TeamUninitialized) {
+          return Center(
+            child: CircularProgressIndicator(),
+          );
+        }
+        if (state is TeamError) {
+          return Center(
+            child: Text('failed to fetch teams'),
+          );
+        }
+        if (state is TeamLoaded) {
+          if (state.teams.isEmpty) {
+            return Center(
+              child: Text('no teams'),
+            );
+          }
+          return Scaffold(
+              appBar: AppBar(
+                title: Text("Teams"),
+              ),
+              body: ListView.builder(
+                itemBuilder: (BuildContext context, int index) {
+                  return index >= state.teams.length
+//                  todo capire chemminchia è sta roba qui
+                      ? null
+                      : TeamWidget(team: state.teams[index]);
+                },
+                itemCount: state.hasReachedMax
+                    ? state.teams.length
+                    : state.teams.length + 1,
+              ),
+            floatingActionButton: FloatingActionButton(
+              onPressed: _showDialogForm,
+              child: Icon(Icons.add),
+            ),
+          );
+        }
+      },
     );
   }
 
-  Widget _buildBody(BuildContext context) {
-    return StreamBuilder<QuerySnapshot>(
-      stream: _teamRepository.getTeamList(),
-      builder: (context, snapshot) {
-        if (!snapshot.hasData) return LinearProgressIndicator();
-
-        return ListView(
-            children: snapshot.data.documents
-                .map((team) => ListTile(
-              leading: Icon(Icons.accessible_forward),
-              title: Text(team.data['name']),
-            ))
-                .toList());
-      },
-    );
-//    return ListView(
-//        children: teams
-//            .map((team) => ListTile(
-//                  leading: Icon(Icons.accessible_forward),
-//                  title: Text(team),
-//                ))
-//            .toList());
+  @override
+  void dispose() {
+    _teamBloc.dispose();
+    super.dispose();
   }
 
   _showDialogForm() async {
@@ -180,10 +201,7 @@ class _TeamListState extends State<Teams> {
         ));
 
     if (result != null) {
-//      setState(() {
-//        teams.add("$result");
-//      });
-
+      _teamBloc.dispatch(Fetch());
       return showDialog(
         context: context,
         builder: (context) {
@@ -206,43 +224,19 @@ class _TeamListState extends State<Teams> {
       );
     }
   }
+}
 
-  // A method that launches the SelectionScreen and awaits the result from
-  // Navigator.pop!
-  _navigateAndDisplayForm(BuildContext context) async {
-    // Navigator.push returns a Future that will complete after we call
-    // Navigator.pop on the Team Creation Screen!
-    final result = await Navigator.push(
-      context,
-      MaterialPageRoute(builder: (context) => CreateTeam()),
-    );
+class TeamWidget extends StatelessWidget {
+  final Team team;
 
-    if (result != null) {
-      setState(() {
-        teams.add("$result");
-      });
+  const TeamWidget({Key key, @required this.team}) : super(key: key);
 
-      return showDialog(
-        context: context,
-        builder: (context) {
-          return AlertDialog(
-            // Retrieve the text the user has typed in using our
-            // TextEditingController
-            content: Text.rich(
-              TextSpan(
-                text: 'Team ', // default text style
-                children: <TextSpan>[
-                  TextSpan(
-                      text: '$result',
-                      style: TextStyle(fontWeight: FontWeight.bold)),
-                  TextSpan(text: ' created')
-                ],
-              ),
-            ),
-          );
-        },
+  @override
+  Widget build(BuildContext context) {
+    return ListTile(
+      leading: Icon(Icons.accessible_forward),
+      title: Text(team.name),
       );
-    }
   }
 }
 

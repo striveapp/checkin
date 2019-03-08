@@ -1,3 +1,4 @@
+import 'package:checkin/src/models/team.dart';
 import 'package:cloud_firestore/cloud_firestore.dart';
 
 class TeamProvider {
@@ -9,7 +10,8 @@ class TeamProvider {
         .add({'name': teamName });
   }
 
-  Stream<QuerySnapshot> getTeamList() {
-    return _firestore.collection('teams').snapshots();
+  Stream<List<Team>> getTeamList() {
+    return _firestore.collection('teams').snapshots()
+        .map((snapshot) => snapshot.documents.map((document) => Team(document.data['name'])).toList());
   }
 }
