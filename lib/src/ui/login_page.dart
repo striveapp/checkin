@@ -1,5 +1,6 @@
 import 'package:checkin/src/blocs/auth/bloc.dart';
 import 'package:firebase_auth/firebase_auth.dart';
+import 'package:flutter/material.dart';
 import 'package:flutter/widgets.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:google_sign_in/google_sign_in.dart';
@@ -15,31 +16,64 @@ class Login extends StatefulWidget {
   }
 }
 
-class _LoginState extends State<Null> {
-
-  GoogleSignIn _googleSignIn;
-  FirebaseAuth _auth;
-  AuthBloc _loginBloc;
+class _LoginState extends State<Login> {
+  AuthBloc _authBloc;
 
   _LoginState() {
-    GoogleSignIn _googleSignIn = GoogleSignIn();
-    FirebaseAuth _auth = FirebaseAuth.instance;
-    AuthBloc _loginBloc = AuthBloc();
+    _authBloc = AuthBloc(
+        googleSignIn: GoogleSignIn(),
+        auth: FirebaseAuth.instance
+    );
   }
 
   @override
   Widget build(BuildContext context) {
     return BlocBuilder(
-      bloc: _loginBloc,
+      bloc: _authBloc,
       builder: (BuildContext context, AuthState state) {
-        return Text('test');
+        if (state is AuthUninitialized) {
+          return Scaffold(
+            appBar: AppBar(
+              title: Text("Login Page"),
+            ),
+            body: Center(
+              child: RaisedButton(
+                  child: Text('Sign in with Big G'),
+                  onPressed: () {
+                    _authBloc.dispatch(SignIn());
+                  }),
+            ),
+          );
+        }
+
+        if (state is AuthSuccess) {
+          return Scaffold(
+            appBar: AppBar(
+              title: Text("Login Page"),
+            ),
+            body: Center(
+                child: Text('Welcome ' + state.user.email)
+            ),
+          );
+        }
+
+        if (state is AuthError) {
+          return Scaffold(
+            appBar: AppBar(
+              title: Text("Login Page"),
+            ),
+            body: Center(
+                child: Text('Bad Things, such as: ' + state.error.toString())
+            ),
+          );
+        }
       },
     );
   }
 
   @override
   void dispose() {
-    _loginBloc.dispose();
+    _authBloc.dispose();
     super.dispose();
   }
 }

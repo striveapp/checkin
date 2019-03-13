@@ -1,3 +1,4 @@
+import 'package:checkin/src/ui/login_page.dart';
 import 'package:checkin/src/ui/teams_page.dart';
 import 'package:firebase_auth/firebase_auth.dart';
 import 'package:flutter/material.dart';
@@ -31,23 +32,6 @@ class HomePage extends StatefulWidget   {
 }
 
 class _HomePageState extends State<HomePage> {
-  GoogleSignIn _googleSignIn = GoogleSignIn();
-  FirebaseAuth _auth = FirebaseAuth.instance;
-
-  Future<FirebaseUser> _handleSignIn() async {
-    final GoogleSignInAccount googleUser = await _googleSignIn.signIn();
-    final GoogleSignInAuthentication googleAuth =
-    await googleUser.authentication;
-
-    final AuthCredential credential = GoogleAuthProvider.getCredential(
-      accessToken: googleAuth.accessToken,
-      idToken: googleAuth.idToken,
-    );
-
-    final FirebaseUser user = await _auth.signInWithCredential(credential);
-    return user;
-  }
-
   @override
   Widget build(BuildContext context) {
     return Scaffold(
@@ -61,9 +45,10 @@ class _HomePageState extends State<HomePage> {
             RaisedButton(
                 child: Text('Login'),
                 onPressed: () {
-                  _handleSignIn()
-                      .then((FirebaseUser user) => print(user))
-                      .catchError((e) => print(e));
+                  Navigator.push(
+                    context,
+                    MaterialPageRoute(builder: (context) => Login()),
+                  );
                 }),
             RaisedButton(
                 child: Text('Teams'),
