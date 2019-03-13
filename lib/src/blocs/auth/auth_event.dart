@@ -1,8 +1,8 @@
 import 'package:equatable/equatable.dart';
 
-abstract class LoginEvent extends Equatable {}
+abstract class AuthEvent extends Equatable {}
 
-class Login extends LoginEvent {
+class Login extends AuthEvent {
   @override
   String toString() => 'Login';
 }

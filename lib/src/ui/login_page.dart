@@ -1,4 +1,4 @@
-import 'package:checkin/src/blocs/login/bloc.dart';
+import 'package:checkin/src/blocs/auth/bloc.dart';
 import 'package:firebase_auth/firebase_auth.dart';
 import 'package:flutter/widgets.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
@@ -19,19 +19,19 @@ class _LoginState extends State<Null> {
 
   GoogleSignIn _googleSignIn;
   FirebaseAuth _auth;
-  LoginBloc _loginBloc;
+  AuthBloc _loginBloc;
 
   _LoginState() {
     GoogleSignIn _googleSignIn = GoogleSignIn();
     FirebaseAuth _auth = FirebaseAuth.instance;
-    LoginBloc _loginBloc = LoginBloc();
+    AuthBloc _loginBloc = AuthBloc();
   }
 
   @override
   Widget build(BuildContext context) {
     return BlocBuilder(
       bloc: _loginBloc,
-      builder: (BuildContext context, LoginState state) {
+      builder: (BuildContext context, AuthState state) {
         return Text('test');
       },
     );
