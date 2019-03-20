@@ -1,79 +1,61 @@
 import 'package:checkin/src/blocs/auth/bloc.dart';
+import 'package:checkin/src/blocs/login/bloc.dart';
+import 'package:checkin/src/ui/login_form.dart';
 import 'package:firebase_auth/firebase_auth.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter/widgets.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:google_sign_in/google_sign_in.dart';
 
-class Login extends StatefulWidget {
-  Login({Key key, this.title}) : super(key: key);
+class LoginPage extends StatefulWidget {
+  LoginPage({Key key, this.title}) : super(key: key);
 
   final String title;
 
   @override
-  _LoginState createState() {
-    return _LoginState();
+  _LoginPageState createState() {
+    return _LoginPageState();
   }
 }
 
-class _LoginState extends State<Login> {
+class _LoginPageState extends State<LoginPage> {
+  LoginBloc _loginBloc;
   AuthBloc _authBloc;
+  FirebaseAuth auth = FirebaseAuth.instance;
 
-  _LoginState() {
+  _LoginPageState() {
     _authBloc = AuthBloc(
-        googleSignIn: GoogleSignIn(),
-        auth: FirebaseAuth.instance
+        auth: auth
     );
   }
 
   @override
+  void initState() {
+    _authBloc = BlocProvider.of<AuthBloc>(context);
+    _loginBloc = LoginBloc(
+      authenticationBloc: _authBloc,
+      auth: auth,
+      googleSignIn: GoogleSignIn(),
+    );
+    super.initState();
+  }
+
+  @override
   Widget build(BuildContext context) {
-    return BlocBuilder(
-      bloc: _authBloc,
-      builder: (BuildContext context, AuthState state) {
-        if (state is AuthUninitialized) {
-          return Scaffold(
-            appBar: AppBar(
-              title: Text("Login Page"),
-            ),
-            body: Center(
-              child: RaisedButton(
-                  child: Text('Sign in with Big G'),
-                  onPressed: () {
-                    _authBloc.dispatch(SignIn());
-                  }),
-            ),
-          );
-        }
-
-        if (state is AuthSuccess) {
-          return Scaffold(
-            appBar: AppBar(
-              title: Text("Login Page"),
-            ),
-            body: Center(
-                child: Text('Welcome ' + state.user.email)
-            ),
-          );
-        }
-
-        if (state is AuthError) {
-          return Scaffold(
-            appBar: AppBar(
-              title: Text("Login Page"),
-            ),
-            body: Center(
-                child: Text('Bad Things, such as: ' + state.error.toString())
-            ),
-          );
-        }
-      },
+    return Scaffold(
+      appBar: AppBar(
+        title: Text("Login"),
+      ),
+      body: LoginForm(
+        authBloc: _authBloc,
+        loginBloc: _loginBloc,
+      ),
     );
   }
 
   @override
   void dispose() {
-    _authBloc.dispose();
+    _loginBloc.dispose();
     super.dispose();
   }
 }

@@ -1,64 +1,52 @@
+import 'package:checkin/src/blocs/auth/bloc.dart';
+import 'package:checkin/src/ui/home_page.dart';
 import 'package:checkin/src/ui/login_page.dart';
-import 'package:checkin/src/ui/teams_page.dart';
+import 'package:checkin/src/ui/splash_page.dart';
 import 'package:firebase_auth/firebase_auth.dart';
 import 'package:flutter/material.dart';
-import 'package:google_sign_in/google_sign_in.dart';
+import 'package:flutter_bloc/flutter_bloc.dart';
 
-void main() => runApp(App());
+class App extends StatefulWidget {
 
-class App extends StatelessWidget {
+  App({Key key}) : super(key: key);
+
   @override
-  Widget build(BuildContext context) {
-    return MaterialApp(
-      title: 'Checkin',
-      theme: ThemeData(
-        primarySwatch: Colors.blue,
-      ),
-      home: HomePage(title: 'Flutter Demo Home Page'),
-    );
+  State<App> createState() => _AppState();
+}
+
+class _AppState extends State<App> {
+  AuthBloc authBloc;
+  @override
+  void initState() {
+    authBloc = AuthBloc(auth: FirebaseAuth.instance);
+    authBloc.dispatch(AppStarted());
+    super.initState();
   }
-}
-
-class HomePage extends StatefulWidget   {
-  HomePage({Key key, this.title, this.googleSignIn, this.auth})
-      : super(key: key);
-
-  final String title;
-  final GoogleSignIn googleSignIn;
-  final FirebaseAuth auth;
 
   @override
-  _HomePageState createState() => _HomePageState();
-}
+  void dispose() {
+    authBloc.dispose();
+    super.dispose();
+  }
 
-class _HomePageState extends State<HomePage> {
   @override
   Widget build(BuildContext context) {
-    return Scaffold(
-      appBar: AppBar(
-        title: Text(widget.title),
-      ),
-      body: Center(
-        child: Column(
-          mainAxisAlignment: MainAxisAlignment.center,
-          children: <Widget>[
-            RaisedButton(
-                child: Text('Login'),
-                onPressed: () {
-                  Navigator.push(
-                    context,
-                    MaterialPageRoute(builder: (context) => Login()),
-                  );
-                }),
-            RaisedButton(
-                child: Text('Teams'),
-                onPressed: () {
-                  Navigator.push(
-                    context,
-                    MaterialPageRoute(builder: (context) => Teams()),
-                  );
-                }),
-          ],
+    return BlocProvider<AuthBloc>(
+      bloc: authBloc,
+      child: MaterialApp(
+        home: BlocBuilder<AuthEvent, AuthState>(
+          bloc: authBloc,
+          builder: (BuildContext context, AuthState state) {
+            if (state is AuthUninitialized) {
+              return SplashPage();
+            }
+            if (state is AuthAuthenticated) {
+              return HomePage();
+            }
+            if (state is AuthUnauthenticated) {
+              return LoginPage();
+            }
+          },
         ),
       ),
     );

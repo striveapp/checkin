@@ -5,8 +5,8 @@ import 'package:flutter/material.dart';
 import 'package:flutter/widgets.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 
-class Teams extends StatefulWidget {
-  Teams({Key key, this.title}) : super(key: key);
+class TeamsPage extends StatefulWidget {
+  TeamsPage({Key key, this.title}) : super(key: key);
 
   final String title;
 
@@ -16,13 +16,14 @@ class Teams extends StatefulWidget {
   }
 }
 
-class _TeamListState extends State<Teams> {
+class _TeamListState extends State<TeamsPage> {
   List<String> teams = ['Test team'];
-  TeamRepository _teamRepository;
+  final TeamRepository _teamRepository = TeamRepository();
   TeamBloc _teamBloc;
 
-  _TeamListState() {
-    _teamRepository = TeamRepository();
+  @override
+  void initState() {
+    super.initState();
     _teamBloc = TeamBloc(teamRepository: _teamRepository);
     _teamBloc.dispatch(Fetch());
   }
@@ -55,7 +56,7 @@ class _TeamListState extends State<Teams> {
             body: ListView.builder(
               itemBuilder: (BuildContext context, int index) {
                 return index >= state.teams.length
-//                  todo capire chemminchia è sta roba qui
+//                  @TODO: WTF is this for?
                     ? null
                     : TeamWidget(team: state.teams[index]);
               },

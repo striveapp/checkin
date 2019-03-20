@@ -6,30 +6,29 @@ abstract class AuthState extends Equatable {
   AuthState([List props = const []]) : super(props);
 }
 
-// Anonymous ?
 class AuthUninitialized extends AuthState {
   @override
   String toString() => 'AuthUninitialized';
 }
 
-class AuthError extends AuthState {
-  Error error;
-
-  AuthError({
-    this.error,
-  }) : super([error]);
-
-  @override
-  String toString() => 'AuthError';
-}
-
-class AuthSuccess extends AuthState {
+class AuthAuthenticated extends AuthState {
   FirebaseUser user;
 
-  AuthSuccess({
+  AuthAuthenticated({
     this.user,
   }) : super([user]);
 
   @override
-  String toString() => 'AuthSuccess';
+  String toString() => 'AuthAuthenticated';
+}
+
+class AuthUnauthenticated extends AuthState {
+  Error error;
+
+  AuthUnauthenticated({
+    this.error,
+  }) : super([error]);
+
+  @override
+  String toString() => 'AuthUnauthenticated';
 }
