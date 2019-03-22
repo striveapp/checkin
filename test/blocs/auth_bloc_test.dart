@@ -86,10 +86,6 @@ void main() {
         authBloc.dispatch(LoggedOut());
       });
 
-      //@TODO: not a good solution
-      tearDown(() {
-        verify(firebaseAuth.signOut()).called(1);
-      });
       test("the final state should be AuthAuthenticated and pass the current user", () {
         final expectedState = [
           AuthUninitialized(),
@@ -99,7 +95,9 @@ void main() {
         expectLater(
           authBloc.state,
           emitsInOrder(expectedState),
-        );
+        ).then((_) {
+          verify(firebaseAuth.signOut());
+        });
       });
     });
   });
