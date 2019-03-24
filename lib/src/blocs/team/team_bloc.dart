@@ -1,10 +1,9 @@
 import 'package:bloc/bloc.dart';
+import 'package:checkin/src/blocs/team/bloc.dart';
+import 'package:checkin/src/models/team.dart';
 import 'package:checkin/src/resources/team_repository.dart';
 import 'package:meta/meta.dart';
 import 'package:rxdart/rxdart.dart';
-
-import 'package:checkin/src/blocs/team/bloc.dart';
-import 'package:checkin/src/models/team.dart';
 
 class TeamBloc extends Bloc<TeamEvent, TeamState> {
   final TeamRepository teamRepository;

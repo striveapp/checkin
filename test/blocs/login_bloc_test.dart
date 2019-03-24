@@ -31,7 +31,7 @@ void main() {
                 googleSignIn: mockGoogleSignIn
             );
         });
-        test('initial state is AuthUninitialized', () {
+        test('initial state is LoginUninitialized', () {
             expect(loginBloc.initialState, LoginInitial());
         });
 
@@ -75,25 +75,22 @@ void main() {
                 verify(mockAuthBloc.dispatch(LoggedIn()));
             });
 
-//@TODO: I dunno how can i mock signInWithCredential to return an error, the Type-system hates me. :sad_panda:
-//            test("when LoginFailure authBloc should not dispatch the LoggedIn action", () async {
-//                final expectedState = [
-//                    LoginInitial(),
-//                    LoginLoading(),
-//                    LoginInitial(),
-//                ];
-//
-//                when(mockFirebaseAuth.signInWithCredential(any)).thenReturn((_) {
-//                    return Future.errohjjjjjr(fakeUser);
-//                });
-//
-//                await expectLater(
-//                    loginBloc.state,
-//                    emitsInOrder(expectedState),
-//                );
-//
-//                verifyNever(mockAuthBloc.dispatch(LoggedIn()));
-//            });
+            test("when LoginFailure authBloc should not dispatch the LoggedIn action", () async {
+                final expectedState = [
+                    LoginInitial(),
+                    LoginLoading(),
+                ];
+
+                when(mockFirebaseAuth.signInWithCredential(any)).thenThrow(Exception("that proves the rule"));
+
+                await expectLater(
+                    loginBloc.state,
+                    emitsInOrder(expectedState),
+                );
+
+                verifyNever(mockAuthBloc.dispatch(LoggedIn()));
+
+            });
         });
     });
 }
