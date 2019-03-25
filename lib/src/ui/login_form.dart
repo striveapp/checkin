@@ -1,5 +1,6 @@
 import 'package:checkin/src/blocs/login/bloc.dart';
 import 'package:checkin/src/blocs/auth/bloc.dart';
+import 'package:checkin/src/ui/google_sign_in_button.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 
@@ -43,9 +44,19 @@ class _LoginFormState extends State<LoginForm> {
           mainAxisAlignment: MainAxisAlignment.center,
           crossAxisAlignment: CrossAxisAlignment.center,
           children: [
-            RaisedButton(
-              onPressed: state is! LoginLoading ? _onLoginWithGoogleButtonPressed : null,
-              child: Text('Login with Google'),
+            Container(
+              margin: new EdgeInsets.fromLTRB(5.0, 0.0, 5.0, 40.0),
+              child: Image.asset(
+                "assets/images/logo.png",
+                width: 250.0,
+              ),
+            ),
+            GoogleSignInButton(
+              onPressed: state is! LoginLoading
+                  ? _onLoginWithGoogleButtonPressed
+                  : null,
+              darkMode: true,
+              borderRadius: 50.0,
             ),
             Container(
               child: state is LoginLoading ? CircularProgressIndicator() : null,

@@ -24,9 +24,7 @@ class _LoginPageState extends State<LoginPage> {
   FirebaseAuth auth = FirebaseAuth.instance;
 
   _LoginPageState() {
-    _authBloc = AuthBloc(
-        auth: auth
-    );
+    _authBloc = AuthBloc(auth: auth);
   }
 
   @override
@@ -43,14 +41,17 @@ class _LoginPageState extends State<LoginPage> {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      appBar: AppBar(
-        title: Text("Login"),
-      ),
-      body: LoginForm(
+        body: new Container(
+      decoration: new BoxDecoration(
+          image: new DecorationImage(
+        image: new AssetImage("assets/images/trianglify.png"),
+        fit: BoxFit.cover,
+      )),
+      child: new LoginForm(
         authBloc: _authBloc,
         loginBloc: _loginBloc,
       ),
-    );
+    ));
   }
 
   @override
