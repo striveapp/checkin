@@ -60,6 +60,7 @@ void main() {
                 final expectedState = [
                     LoginInitial(),
                     LoginLoading(),
+                    LoginSuccess(user: fakeUser),
                     LoginInitial()
                 ];
 
@@ -79,6 +80,8 @@ void main() {
                 final expectedState = [
                     LoginInitial(),
                     LoginLoading(),
+                    LoginFailure(),
+                    LoginInitial()
                 ];
 
                 when(mockFirebaseAuth.signInWithCredential(any)).thenThrow(Exception("that proves the rule"));

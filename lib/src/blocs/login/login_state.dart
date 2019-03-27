@@ -27,7 +27,7 @@ class LoginSuccess extends LoginState {
 }
 
 class LoginFailure extends LoginState {
-  Error error;
+  Exception error;
 
   LoginFailure({
     this.error,

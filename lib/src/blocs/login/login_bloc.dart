@@ -26,15 +26,26 @@ class LoginBloc extends Bloc<LoginEvent, LoginState> {
 
     if (event is LoginWithGoogle) {
       yield LoginLoading();
-      stateResult = await _googleSignIn()
-          .then((FirebaseUser user) => LoginSuccess(user: user))
-          .catchError((e) => LoginFailure(error: e));
+      try {
+        stateResult = await _googleSignIn()
+            .then((FirebaseUser user) => LoginSuccess(user: user) as LoginState)
+            .catchError((e) {
+              print('error during googleSignIn: ' + e.toString());
+              return LoginFailure();
+        });
+      } catch (e) {
+        print('unexpected error during googleSignIn: ' + e.toString());
+      }
+      yield stateResult;
     }
 
     if (stateResult is LoginSuccess) {
+      print('success');
       authenticationBloc.dispatch(LoggedIn());
-      yield LoginInitial();
+
     }
+    yield LoginInitial();
+
   }
 
   Future<FirebaseUser> _googleSignIn() async {
