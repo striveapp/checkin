@@ -1,5 +1,6 @@
 import 'package:checkin/src/blocs/auth/bloc.dart';
 import 'package:checkin/src/blocs/login/bloc.dart';
+import 'package:checkin/src/resources/user_repository.dart';
 import 'package:checkin/src/ui/login_form.dart';
 import 'package:firebase_auth/firebase_auth.dart';
 import 'package:flutter/material.dart';
@@ -21,6 +22,7 @@ class LoginPage extends StatefulWidget {
 class _LoginPageState extends State<LoginPage> {
   LoginBloc _loginBloc;
   AuthBloc _authBloc;
+  UserRepository _userRepository;
   FirebaseAuth auth = FirebaseAuth.instance;
 
   _LoginPageState() {
@@ -30,10 +32,12 @@ class _LoginPageState extends State<LoginPage> {
   @override
   void initState() {
     _authBloc = BlocProvider.of<AuthBloc>(context);
+    _userRepository = UserRepository();
     _loginBloc = LoginBloc(
       authenticationBloc: _authBloc,
       auth: auth,
       googleSignIn: GoogleSignIn(),
+      userRepository: _userRepository,
     );
     super.initState();
   }

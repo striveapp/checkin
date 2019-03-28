@@ -2,6 +2,7 @@ import 'package:bloc/bloc.dart';
 import 'package:checkin/src/blocs/auth/bloc.dart';
 import 'package:checkin/src/blocs/login/login_event.dart';
 import 'package:checkin/src/blocs/login/login_state.dart';
+import 'package:checkin/src/resources/user_repository.dart';
 import 'package:firebase_auth/firebase_auth.dart';
 import 'package:google_sign_in/google_sign_in.dart';
 import 'package:meta/meta.dart';
@@ -10,12 +11,13 @@ class LoginBloc extends Bloc<LoginEvent, LoginState> {
   final GoogleSignIn googleSignIn;
   final FirebaseAuth auth;
   final AuthBloc authenticationBloc;
+  final UserRepository userRepository;
 
-  LoginBloc({
-    @required this.googleSignIn,
-    @required this.auth,
-    @required this.authenticationBloc
-  });
+  LoginBloc(
+      {@required this.googleSignIn,
+      @required this.auth,
+      @required this.authenticationBloc,
+      @required this.userRepository});
 
   @override
   LoginState get initialState => LoginInitial();
@@ -27,11 +29,18 @@ class LoginBloc extends Bloc<LoginEvent, LoginState> {
     if (event is LoginWithGoogle) {
       yield LoginLoading();
       try {
-        stateResult = await _googleSignIn()
-            .then((FirebaseUser user) => LoginSuccess(user: user) as LoginState)
-            .catchError((e) {
-              print('error during googleSignIn: ' + e.toString());
-              return LoginFailure();
+        stateResult = await _googleSignIn().then((FirebaseUser user) async {
+          final isNewUser = await this.userRepository.isNewUser(user.email).first;
+
+          if (isNewUser) {
+            userRepository.createUser(user.displayName, user.email, "white", false);
+          }
+          //@TODO: this can be removed
+          return LoginSuccess(user: user) as LoginState;
+        }).catchError((e) {
+          print('error during googleSignIn: ' + e.toString());
+          //@TODO: this can be removed
+          return LoginFailure();
         });
       } catch (e) {
         print('unexpected error during googleSignIn: ' + e.toString());
@@ -40,12 +49,9 @@ class LoginBloc extends Bloc<LoginEvent, LoginState> {
     }
 
     if (stateResult is LoginSuccess) {
-      print('success');
       authenticationBloc.dispatch(LoggedIn());
-
     }
     yield LoginInitial();
-
   }
 
   Future<FirebaseUser> _googleSignIn() async {
