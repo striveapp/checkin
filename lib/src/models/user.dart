@@ -4,17 +4,17 @@ class User extends Equatable {
   final String name;
   final String email;
   final String rank;
-  final bool canCreateTeams;
+  final bool isOwner;
 
   User(
     this.name,
     this.email,
     this.rank,
-    this.canCreateTeams,
-  ) : super([name, email, rank, canCreateTeams]);
+    this.isOwner,
+  ) : super([name, email, rank, isOwner]);
 
   @override
   String toString() {
-    return 'User{name: $name, email: $email, rank: $rank, canCreateTeams: $canCreateTeams}';
+    return 'User{name: $name, email: $email, rank: $rank, isOwner: $isOwner}';
   }
 }

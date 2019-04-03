@@ -5,8 +5,8 @@ class UserRepository {
   final _userProvider = UserProvider();
 
   Future<User> createUser(
-          String displayName, String email, String rank, bool canCreateTeams) =>
-      _userProvider.createUser(displayName, email, rank, canCreateTeams);
+          String displayName, String email, String rank, bool isOwner) =>
+      _userProvider.createUser(displayName, email, rank, isOwner);
 
   Stream<bool> isNewUser(String email) => _userProvider.isNewUser(email);
 }

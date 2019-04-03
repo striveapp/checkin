@@ -5,12 +5,12 @@ class UserProvider {
   //@TODO: this should be instanciated only ones?
   Firestore _firestore = Firestore.instance;
 
-  Future<User> createUser(String name, String email, String rank, bool canCreateUser) async {
+  Future<User> createUser(String name, String email, String rank, bool isOwner) async {
     return _firestore.collection('users').add({
       'name': name,
       'email': email,
       'rank': rank,
-      'canCreateUser': canCreateUser
+      'isOwner': isOwner
     }).then((val) {
       print(val);
       return User("test", "test@test","white", false);
