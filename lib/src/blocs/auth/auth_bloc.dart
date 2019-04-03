@@ -37,7 +37,7 @@ class AuthBloc extends Bloc<AuthEvent, AuthState> {
       }
     }
 
-    if (event is LoggedOut) {
+    if (event is LogOut) {
       this.auth.signOut();
       yield AuthUnauthenticated();
     }

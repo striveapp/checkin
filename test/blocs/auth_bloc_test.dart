@@ -99,7 +99,7 @@ void main() {
 
     group('dispatch LoggedOut', () {
       setUp(() {
-        authBloc.dispatch(LoggedOut());
+        authBloc.dispatch(LogOut());
       });
 
       test("the final state should be AuthAuthenticated and pass the current user", () {
