@@ -8,5 +8,8 @@ class UserRepository {
           String displayName, String email, String rank, bool isOwner) =>
       _userProvider.createUser(displayName, email, rank, isOwner);
 
-  Stream<bool> isNewUser(String email) => _userProvider.isNewUser(email);
+  Future<User> getUserByEmail(String email) => _userProvider.getUserByEmail(email);
+
+  Future<bool> isNewUser(String email) => _userProvider.isNewUser(email);
+
 }

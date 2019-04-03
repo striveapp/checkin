@@ -1,3 +1,5 @@
+import 'package:checkin/src/models/user.dart';
+import 'package:checkin/src/resources/user_repository.dart';
 import 'package:firebase_auth/firebase_auth.dart';
 import 'package:mockito/mockito.dart';
 import 'package:checkin/src/blocs/auth/bloc.dart';
@@ -5,16 +7,20 @@ import 'package:test/test.dart';
 
 class MockFirebaseAuth extends Mock implements FirebaseAuth {}
 class MockFirebaseUser extends Mock implements FirebaseUser {}
+class MockUserRepository extends Mock implements UserRepository {}
+class MockUser extends Mock implements User {}
 
 
 void main() {
   group('AuthBloc', () {
     AuthBloc authBloc;
     MockFirebaseAuth firebaseAuth;
+    MockUserRepository userRepository;
 
     setUp(() {
       firebaseAuth = MockFirebaseAuth();
-      authBloc = AuthBloc(auth: firebaseAuth);
+      userRepository = MockUserRepository();
+      authBloc = AuthBloc(auth: firebaseAuth, userRepository: userRepository);
     });
 
     test('initial state is AuthUninitialized', () {
@@ -40,14 +46,19 @@ void main() {
       });
 
       test('if there\'s already a current users than final state is AuthAuthenticated', () {
-        var fakeUser = MockFirebaseUser();
+        var fakeFirebaseUser = MockFirebaseUser();
+        var fakeUser = MockUser();
         final expectedState = [
           AuthUninitialized(),
           AuthAuthenticated(user: fakeUser),
         ];
 
         when(firebaseAuth.currentUser()).thenAnswer((_) {
-          return Future<MockFirebaseUser>.value(fakeUser);
+          return Future<MockFirebaseUser>.value(fakeFirebaseUser);
+        });
+
+        when(userRepository.getUserByEmail(any)).thenAnswer((_) {
+          return Future<MockUser>.value(fakeUser);
         });
 
         expectLater(
@@ -64,14 +75,19 @@ void main() {
       });
 
       test("the final state should be AuthAuthenticated and pass the current user", () {
-        var fakeUser = MockFirebaseUser();
+        var fakeFirebaseUser = MockFirebaseUser();
+        var fakeUser = MockUser();
         final expectedState = [
           AuthUninitialized(),
           AuthAuthenticated(user: fakeUser),
         ];
 
         when(firebaseAuth.currentUser()).thenAnswer((_) {
-          return Future<MockFirebaseUser>.value(fakeUser);
+          return Future<MockFirebaseUser>.value(fakeFirebaseUser);
+        });
+
+        when(userRepository.getUserByEmail(any)).thenAnswer((_) {
+          return Future<MockUser>.value(fakeUser);
         });
 
         expectLater(

@@ -1,4 +1,5 @@
 import 'package:checkin/src/blocs/auth/bloc.dart';
+import 'package:checkin/src/resources/user_repository.dart';
 import 'package:checkin/src/ui/registry_page.dart';
 import 'package:checkin/src/ui/login_page.dart';
 import 'package:checkin/src/ui/splash_page.dart';
@@ -17,9 +18,11 @@ class App extends StatefulWidget {
 
 class _AppState extends State<App> {
   AuthBloc authBloc;
+  UserRepository _userRepository;
   @override
   void initState() {
-    authBloc = AuthBloc(auth: FirebaseAuth.instance);
+    _userRepository = new UserRepository();
+    authBloc = AuthBloc(auth: FirebaseAuth.instance, userRepository: _userRepository);
     authBloc.dispatch(AppStarted());
     super.initState();
   }

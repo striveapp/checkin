@@ -10,6 +10,7 @@ class TeamProvider {
         .add({'name': teamName });
   }
 
+  //@TODO: fix this method to handle deletions properly
   Stream<List<Team>> getTeamList() {
     return _firestore.collection('teams').snapshots()
         .map((snapshot) => snapshot.documents.map((document) => Team(document.data['name'])).toList());

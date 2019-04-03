@@ -26,7 +26,8 @@ class _LoginPageState extends State<LoginPage> {
   FirebaseAuth auth = FirebaseAuth.instance;
 
   _LoginPageState() {
-    _authBloc = AuthBloc(auth: auth);
+    _userRepository = UserRepository();
+    _authBloc = AuthBloc(auth: auth, userRepository: _userRepository);
   }
 
   @override

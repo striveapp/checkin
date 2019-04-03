@@ -75,9 +75,7 @@ void main() {
                 });
 
                 when(mockUserRepository.isNewUser(any))
-                    .thenAnswer((_) =>
-                Stream<bool>.fromFuture(Future<bool>.value(true))
-                );
+                    .thenAnswer((_) => Future<bool>.value(true));
 
                 await expectLater(
                     loginBloc.state,
@@ -104,9 +102,7 @@ void main() {
                 });
 
                 when(mockUserRepository.isNewUser(email))
-                    .thenAnswer((_) =>
-                        Stream<bool>.fromFuture(Future<bool>.value(true))
-                );
+                    .thenAnswer((_) => Future<bool>.value(true));
 
                 await expectLater(
                     loginBloc.state,
@@ -133,9 +129,7 @@ void main() {
                     return Future<MockFirebaseUser>.value(fakeUser);
                 });
                 when(mockUserRepository.isNewUser(email))
-                    .thenAnswer((_) =>
-                        Stream<bool>.fromFuture(Future<bool>.value(false))
-                );
+                    .thenAnswer((_) => Future<bool>.value(false));
 
                 await expectLater(
                     loginBloc.state,

@@ -3,14 +3,14 @@ import 'package:checkin/src/ui/teams_page.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 
-class StatusPage extends StatelessWidget {
+class RegistryPage extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     final AuthBloc authenticationBloc = BlocProvider.of<AuthBloc>(context);
 
     return Scaffold(
         appBar: AppBar(
-          title: Text('Status'),
+          title: Text('Registry'),
         ),
         body: Center(
         child:Container(

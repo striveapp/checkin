@@ -30,10 +30,9 @@ class LoginBloc extends Bloc<LoginEvent, LoginState> {
       yield LoginLoading();
       try {
         stateResult = await _googleSignIn().then((FirebaseUser user) async {
-          final isNewUser = await this.userRepository.isNewUser(user.email).first;
-
+          final isNewUser = await this.userRepository.isNewUser(user.email);
           if (isNewUser) {
-            userRepository.createUser(user.displayName, user.email, "white", false);
+            await userRepository.createUser(user.displayName, user.email, "white", false);
           }
           //@TODO: this can be removed
           return LoginSuccess(user: user) as LoginState;
