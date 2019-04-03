@@ -1,7 +1,8 @@
 import 'package:checkin/src/blocs/auth/bloc.dart';
-import 'package:checkin/src/ui/home_page.dart';
+import 'package:checkin/src/ui/registry_page.dart';
 import 'package:checkin/src/ui/login_page.dart';
 import 'package:checkin/src/ui/splash_page.dart';
+import 'package:checkin/src/ui/status_page.dart';
 import 'package:firebase_auth/firebase_auth.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
@@ -41,7 +42,10 @@ class _AppState extends State<App> {
               return SplashPage();
             }
             if (state is AuthAuthenticated) {
-              return HomePage();
+              if(state.user.isOwner)
+                return RegistryPage();
+              else
+                return StatusPage();
             }
             if (state is AuthUnauthenticated) {
               return LoginPage();

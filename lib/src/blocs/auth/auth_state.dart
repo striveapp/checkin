@@ -1,4 +1,5 @@
 
+import 'package:checkin/src/models/user.dart';
 import 'package:equatable/equatable.dart';
 import 'package:firebase_auth/firebase_auth.dart';
 
@@ -12,7 +13,7 @@ class AuthUninitialized extends AuthState {
 }
 
 class AuthAuthenticated extends AuthState {
-  FirebaseUser user;
+  User user;
 
   AuthAuthenticated({
     this.user,
