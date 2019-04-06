@@ -102,7 +102,7 @@ void main() {
         authBloc.dispatch(LogOut());
       });
 
-      test("the final state should be AuthAuthenticated and pass the current user", () {
+      test("the final state should be AuthUnauthenticated and pass the current user", () {
         final expectedState = [
           AuthUninitialized(),
           AuthUnauthenticated(),

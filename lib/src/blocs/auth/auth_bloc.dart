@@ -1,9 +1,9 @@
 import 'package:bloc/bloc.dart';
 import 'package:checkin/src/blocs/auth/auth_event.dart';
 import 'package:checkin/src/blocs/auth/auth_state.dart';
-import 'package:checkin/src/models/user.dart';
 import 'package:checkin/src/resources/user_repository.dart';
 import 'package:firebase_auth/firebase_auth.dart';
+import 'package:flutter/foundation.dart';
 import 'package:meta/meta.dart';
 
 class AuthBloc extends Bloc<AuthEvent, AuthState> {
@@ -21,18 +21,22 @@ class AuthBloc extends Bloc<AuthEvent, AuthState> {
   @override
   Stream<AuthState> mapEventToState(AuthState currentState, AuthEvent event) async* {
     var currentUser;
+    debugPrint('processing event [$event]');
 
     if (event is AppStarted || event is LoggedIn) {
       currentUser = await this.auth.currentUser();
+      debugPrint('Current user is [$currentUser]');
       if (currentUser != null) {
         try {
+          debugPrint('User is authenticated');
           var user = await this.userRepository.getUserByEmail(currentUser.email);
+          debugPrint('retrieved user infos [$user]');
           yield AuthAuthenticated(user: user);
         } catch(e) {
           print(e);
         }
-        print(event);
       } else {
+        debugPrint('Current user is not authenticated');
         yield AuthUnauthenticated();
       }
     }

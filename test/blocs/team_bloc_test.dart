@@ -32,7 +32,7 @@ void main() {
 
         group("TeamUninitialized", () {
           test("when state is should retrieve teams and the final state is TeamLoaded", () {
-            final extectedState = {
+            final expectedState = {
                 TeamUninitialized(),
                 TeamLoaded(teams: teams, hasReachedMax: false)
               };
@@ -43,14 +43,14 @@ void main() {
 
               expectLater(
                 teamBloc.state,
-                emitsInOrder(extectedState),
+                emitsInOrder(expectedState),
               );
           });
         });
 
         group("TeamLoaded", () {
             test("should retrieve teams again when Fetch is dispatched again", () {
-              final extectedState = {
+              final expectedState = {
                 TeamUninitialized(),
                 TeamLoaded(teams: teams, hasReachedMax: false),
                 TeamLoaded(teams: teams, hasReachedMax: false),
@@ -62,7 +62,7 @@ void main() {
 
               expectLater(
                 teamBloc.state,
-                emitsInOrder(extectedState),
+                emitsInOrder(expectedState),
               );
 
               teamBloc.dispatch(Fetch());
@@ -70,7 +70,7 @@ void main() {
 
             test("should not dispatch TeamLoaded if teams are empty", () {
               final emptyTeams = <Team>[];
-              final extectedState = {
+              final expectedState = {
                 TeamUninitialized(),
                 TeamLoaded(teams: emptyTeams, hasReachedMax: false)
               };
@@ -81,7 +81,7 @@ void main() {
 
               expectLater(
                 teamBloc.state,
-                emitsInOrder(extectedState),
+                emitsInOrder(expectedState),
               ).then((_) {
               });
 
