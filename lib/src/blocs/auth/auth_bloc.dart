@@ -21,7 +21,7 @@ class AuthBloc extends Bloc<AuthEvent, AuthState> {
   @override
   Stream<AuthState> mapEventToState(AuthState currentState, AuthEvent event) async* {
     var currentUser;
-    debugPrint('processing event [$event]');
+    debugPrint('Processing event [$event]');
 
     if (event is AppStarted || event is LoggedIn) {
       currentUser = await this.auth.currentUser();
@@ -30,7 +30,7 @@ class AuthBloc extends Bloc<AuthEvent, AuthState> {
         try {
           debugPrint('User is authenticated');
           var user = await this.userRepository.getUserByEmail(currentUser.email);
-          debugPrint('retrieved user infos [$user]');
+          debugPrint('Retrieved user infos [$user]');
           yield AuthAuthenticated(user: user);
         } catch(e) {
           print(e);

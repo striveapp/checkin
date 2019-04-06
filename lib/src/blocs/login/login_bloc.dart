@@ -6,6 +6,7 @@ import 'package:checkin/src/resources/user_repository.dart';
 import 'package:firebase_auth/firebase_auth.dart';
 import 'package:google_sign_in/google_sign_in.dart';
 import 'package:meta/meta.dart';
+import 'package:flutter/foundation.dart';
 
 class LoginBloc extends Bloc<LoginEvent, LoginState> {
   final GoogleSignIn googleSignIn;
@@ -25,19 +26,24 @@ class LoginBloc extends Bloc<LoginEvent, LoginState> {
   @override
   Stream<LoginState> mapEventToState(LoginState currentState, LoginEvent event) async* {
     LoginState stateResult;
+    debugPrint('Processing event [$event]');
 
     if (event is LoginWithGoogle) {
+      debugPrint('Display loading spinner');
       yield LoginLoading();
       try {
         stateResult = await _googleSignIn().then((FirebaseUser user) async {
           final isNewUser = await this.userRepository.isNewUser(user.email);
           if (isNewUser) {
+            debugPrint('Creating new user [$user]');
             await userRepository.createUser(user.displayName, user.email, "white", false);
           }
+          debugPrint('User successfully logged in as [$user]');
+
           //@TODO: this can be removed
           return LoginSuccess(user: user) as LoginState;
         }).catchError((e) {
-          print('error during googleSignIn: ' + e.toString());
+          print('Error during googleSignIn: ' + e.toString());
           //@TODO: this can be removed
           return LoginFailure();
         });
@@ -50,6 +56,8 @@ class LoginBloc extends Bloc<LoginEvent, LoginState> {
     if (stateResult is LoginSuccess) {
       authenticationBloc.dispatch(LoggedIn());
     }
+    debugPrint('Finally resetting login state to LoginInitial');
+
     yield LoginInitial();
   }
 

@@ -85,7 +85,7 @@ void main() {
                 verify(mockAuthBloc.dispatch(LoggedIn()));
             });
 
-            test("when LoginSuccess, if user is new that create it", () async {
+            test("when LoginSuccess, if user is new than create it", () async {
                 final expectedState = [
                     LoginInitial(),
                     LoginLoading(),
@@ -112,7 +112,7 @@ void main() {
                 verify(mockUserRepository.createUser(displayName, email, any, false));
             });
 
-            test("when LoginSuccess, if user is not new that not create it", () async {
+            test("when LoginSuccess, if user is not new than do not create it", () async {
                 final expectedState = [
                     LoginInitial(),
                     LoginLoading(),
