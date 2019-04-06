@@ -31,14 +31,14 @@ class _StatusState extends State<StatusPage> {
 
   @override
   Widget build(BuildContext context) {
-    return BlocBuilder(
-      bloc: _classBloc,
-      builder: (BuildContext context, ClassState state) {
-        return Scaffold(
-            appBar: AppBar(
-              title: Text("Status"),
-            ),
-            body: Center(
+    return Scaffold(
+        appBar: AppBar(
+          title: Text("Status"),
+        ),
+        body: BlocBuilder(
+          bloc: _classBloc,
+          builder: (BuildContext context, ClassState state) {
+            return Center(
                 child: Container(
                     child: Column(
                         mainAxisAlignment: MainAxisAlignment.center,
@@ -47,6 +47,7 @@ class _StatusState extends State<StatusPage> {
                   RaisedButton(
                     child: Text('Attend'),
                     onPressed: () {
+                      //@TODO: this should come from the state
                       _classBloc.dispatch(Attend(name: "pepe"));
                     },
                   ),
@@ -56,9 +57,9 @@ class _StatusState extends State<StatusPage> {
                       _authBloc.dispatch(LogOut());
                     },
                   ),
-                ]))));
-      },
-    );
+                ])));
+          },
+        ));
   }
 
   @override

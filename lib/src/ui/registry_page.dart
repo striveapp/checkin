@@ -32,50 +32,48 @@ class _RegistryState extends State<RegistryPage> {
 
   @override
   Widget build(BuildContext context) {
-    return BlocBuilder(
-      bloc: _classBloc,
-      builder: (BuildContext context, ClassState state) {
-        if (state is ClassUninitialized) {
-          return Center(
-            child: CircularProgressIndicator(),
-          );
-        }
-        if (state is ClassLoaded) {
-          if (state.attendees.isEmpty) {
+    return Scaffold(
+      appBar: AppBar(
+        title: Text("Registry"),
+      ),
+      body: BlocBuilder(
+        bloc: _classBloc,
+        builder: (BuildContext context, ClassState state) {
+          if (state is ClassUninitialized) {
             return Center(
-              child: Text('no attendees'),
+              child: CircularProgressIndicator(),
             );
           }
-          return Scaffold(
-              appBar: AppBar(
-                title: Text("Registry"),
-              ),
-              body: Center(
-                  child: Container(
-                      child: Column(
-                          mainAxisAlignment: MainAxisAlignment.center,
-                          crossAxisAlignment: CrossAxisAlignment.center,
-                          children: [
-                            //@TODO: needs a component to render a list here
-                            AttendeeWidget(attendee: state.attendees[0]),
-                            RaisedButton(
-                              child: Text('Accept all'),
-                              onPressed: () {
-                                _classBloc.dispatch(Clear());
-                              },
-                            ),
-                            RaisedButton(
-                              child: Text('logout'),
-                              onPressed: () {
-                                _authBloc.dispatch(LogOut());
-                              },
-                            )
-                  ])
-                  )
-              )
-          );
-        }
-      },
+          if (state is ClassLoaded) {
+            if (state.attendees.isEmpty) {
+              return Center(
+                child: Text('no attendees'),
+              );
+            }
+            return Center(
+                    child: Container(
+                        child: Column(
+                            mainAxisAlignment: MainAxisAlignment.center,
+                            crossAxisAlignment: CrossAxisAlignment.center,
+                            children: [
+                      //@TODO: needs a component to render a list here
+                      AttendeeWidget(attendee: state.attendees[0]),
+                      RaisedButton(
+                        child: Text('Accept all'),
+                        onPressed: () {
+                          _classBloc.dispatch(Clear());
+                        },
+                      ),
+                      RaisedButton(
+                        child: Text('logout'),
+                        onPressed: () {
+                          _authBloc.dispatch(LogOut());
+                        },
+                      )
+                    ])));
+          }
+        },
+      ),
     );
   }
 
