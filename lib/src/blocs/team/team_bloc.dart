@@ -2,6 +2,7 @@ import 'package:bloc/bloc.dart';
 import 'package:checkin/src/blocs/team/bloc.dart';
 import 'package:checkin/src/models/team.dart';
 import 'package:checkin/src/resources/team_repository.dart';
+import 'package:flutter/foundation.dart';
 import 'package:meta/meta.dart';
 import 'package:rxdart/rxdart.dart';
 
@@ -21,9 +22,13 @@ class TeamBloc extends Bloc<TeamEvent, TeamState> {
 
   @override
   Stream<TeamState> mapEventToState(currentState, event) async* {
+    debugPrint('Processing event [$event], currentState [$currentState]');
+
     if (event is Fetch && !_hasReachedMax(currentState)) {
       try {
         if (currentState is TeamUninitialized) {
+          debugPrint('Fetching 20 teams');
+
           final teams = await _fetchTeams(0, 20);
           yield TeamLoaded(teams: teams, hasReachedMax: false);
         }

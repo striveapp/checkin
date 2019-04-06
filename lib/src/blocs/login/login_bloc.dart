@@ -26,7 +26,7 @@ class LoginBloc extends Bloc<LoginEvent, LoginState> {
   @override
   Stream<LoginState> mapEventToState(LoginState currentState, LoginEvent event) async* {
     LoginState stateResult;
-    debugPrint('Processing event [$event]');
+    debugPrint('Processing event [$event], currentState [$currentState]');
 
     if (event is LoginWithGoogle) {
       debugPrint('Display loading spinner');

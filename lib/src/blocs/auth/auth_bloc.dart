@@ -21,7 +21,7 @@ class AuthBloc extends Bloc<AuthEvent, AuthState> {
   @override
   Stream<AuthState> mapEventToState(AuthState currentState, AuthEvent event) async* {
     var currentUser;
-    debugPrint('Processing event [$event]');
+    debugPrint('Processing event [$event], currentState [$currentState]');
 
     if (event is AppStarted || event is LoggedIn) {
       currentUser = await this.auth.currentUser();
