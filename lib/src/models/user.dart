@@ -1,17 +1,19 @@
 import 'package:equatable/equatable.dart';
+import 'package:meta/meta.dart';
 
 class User extends Equatable {
+  static final List<String> ranks = ['White', 'Blue', 'Purple', 'Brown', 'Black'];
   final String name;
   final String email;
   final String rank;
   final bool isOwner;
 
-  User(
-    this.name,
-    this.email,
-    this.rank,
-    this.isOwner,
-  ) : super([name, email, rank, isOwner]);
+  User({
+    @required this.name,
+    @required this.email,
+    this.rank = "white",
+    this.isOwner = false,
+  }) : super([name, email, rank, isOwner]);
 
   @override
   String toString() {

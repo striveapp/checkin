@@ -1,7 +1,5 @@
-
 import 'package:checkin/src/models/user.dart';
 import 'package:equatable/equatable.dart';
-import 'package:firebase_auth/firebase_auth.dart';
 
 abstract class AuthState extends Equatable {
   AuthState([List props = const []]) : super(props);
@@ -14,10 +12,12 @@ class AuthUninitialized extends AuthState {
 
 class AuthAuthenticated extends AuthState {
   User user;
+  bool isFirstLogin;
 
   AuthAuthenticated({
     this.user,
-  }) : super([user]);
+    this.isFirstLogin
+  }) : super([user, isFirstLogin]);
 
   @override
   String toString() => 'AuthAuthenticated';

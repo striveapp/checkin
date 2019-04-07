@@ -1,5 +1,6 @@
 import 'package:checkin/src/blocs/auth/bloc.dart';
 import 'package:checkin/src/resources/user_repository.dart';
+import 'package:checkin/src/ui/grade_page.dart';
 import 'package:checkin/src/ui/registry_page.dart';
 import 'package:checkin/src/ui/login_page.dart';
 import 'package:checkin/src/ui/splash_page.dart';
@@ -45,10 +46,13 @@ class _AppState extends State<App> {
               return SplashPage();
             }
             if (state is AuthAuthenticated) {
-              if(state.user.isOwner)
+              if(state.isFirstLogin) {
+                return GradePage();
+              } else if(state.user.isOwner) {
                 return RegistryPage();
-              else
+              } else {
                 return StatusPage();
+              }
             }
             if (state is AuthUnauthenticated) {
               return LoginPage();

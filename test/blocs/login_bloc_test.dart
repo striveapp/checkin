@@ -1,17 +1,19 @@
 import 'package:checkin/src/blocs/auth/auth_bloc.dart';
 import 'package:checkin/src/blocs/auth/auth_event.dart';
 import 'package:checkin/src/blocs/login/bloc.dart';
+import 'package:checkin/src/blocs/user/bloc.dart';
 import 'package:checkin/src/models/user.dart';
 import 'package:checkin/src/resources/user_repository.dart';
 import 'package:firebase_auth/firebase_auth.dart';
 import 'package:google_sign_in/google_sign_in.dart';
-import 'package:test/test.dart';
 import 'package:mockito/mockito.dart';
+import 'package:test/test.dart';
 
 class MockFirebaseAuth extends Mock implements FirebaseAuth {}
 class MockFirebaseUser extends Mock implements FirebaseUser {}
 class MockGoogleSignIn extends Mock implements GoogleSignIn {}
-class MockAuthBlock extends Mock implements AuthBloc {}
+class MockAuthBloc extends Mock implements AuthBloc {}
+class MockUserBloc extends Mock implements UserBloc {}
 class MockGoogleSignInAccount extends Mock implements GoogleSignInAccount {}
 class MockGoogleSignInAuthentication extends Mock implements GoogleSignInAuthentication {}
 class MockUserRepository extends Mock implements UserRepository {}
@@ -21,20 +23,23 @@ void main() {
         LoginBloc loginBloc;
 
         AuthBloc mockAuthBloc;
+        UserBloc mockUserBloc;
         FirebaseAuth mockFirebaseAuth;
         GoogleSignIn mockGoogleSignIn;
         UserRepository mockUserRepository;
 
         setUp(() {
             mockFirebaseAuth = MockFirebaseAuth();
-            mockAuthBloc = MockAuthBlock();
+            mockAuthBloc = MockAuthBloc();
             mockGoogleSignIn  = MockGoogleSignIn();
             mockUserRepository = MockUserRepository();
+            mockUserBloc = MockUserBloc();
             loginBloc = LoginBloc(
-                authenticationBloc: mockAuthBloc,
+                authBloc: mockAuthBloc,
                 auth: mockFirebaseAuth,
                 googleSignIn: mockGoogleSignIn,
                 userRepository: mockUserRepository,
+                userBloc: mockUserBloc
             );
         });
         test('initial state is LoginUninitialized', () {
@@ -42,8 +47,11 @@ void main() {
         });
 
         group("dispatch LoginWithGoogle", () {
-            final MockFirebaseUser fakeUser = MockFirebaseUser();
-            
+            final MockFirebaseUser fakeFirebaseUser = MockFirebaseUser();
+            var displayName = "Batman";
+            var email = "not@work.com";
+            var fakeUser = User(name: displayName, email: email);
+
             setUp(() {
                 loginBloc.dispatch(LoginWithGoogle());
                 var fakeGoogleAccount = MockGoogleSignInAccount();
@@ -61,89 +69,65 @@ void main() {
                 });
 
             });
+            
+            group("when isFirstLogin is true", () {
+                test("should create new User and dispatch the LoggedIn action", () async {
+                    final expectedState = [
+                        LoginInitial(),
+                        LoginLoading(),
+                        LoginInitial()
+                    ];
 
-            test("when LoginSuccess authBloc should dispatch the LoggedIn action", () async {
-                final expectedState = [
-                    LoginInitial(),
-                    LoginLoading(),
-                    LoginSuccess(user: fakeUser),
-                    LoginInitial()
-                ];
+                    when(fakeFirebaseUser.displayName).thenReturn(displayName);
+                    when(fakeFirebaseUser.email).thenReturn(email);
+                    when(mockFirebaseAuth.signInWithCredential(any)).thenAnswer((_) {
+                        return Future<MockFirebaseUser>.value(fakeFirebaseUser);
+                    });
+                    when(mockUserRepository.isNewUser(email))
+                        .thenAnswer((_) => Future<bool>.value(true));
 
-                when(mockFirebaseAuth.signInWithCredential(any)).thenAnswer((_) {
-                    return Future<MockFirebaseUser>.value(fakeUser);
+                    await expectLater(
+                        loginBloc.state,
+                        emitsInOrder(expectedState),
+                    );
+
+                    verify(mockAuthBloc.dispatch(LoggedIn(isFirstLogin: true)));
+                    verify(mockUserBloc.dispatch(Create(user: fakeUser)));
                 });
-
-                when(mockUserRepository.isNewUser(any))
-                    .thenAnswer((_) => Future<bool>.value(true));
-
-                await expectLater(
-                    loginBloc.state,
-                    emitsInOrder(expectedState),
-                );
-
-                verify(mockAuthBloc.dispatch(LoggedIn()));
             });
 
-            test("when LoginSuccess, if user is new than create it", () async {
-                final expectedState = [
-                    LoginInitial(),
-                    LoginLoading(),
-                    LoginSuccess(user: fakeUser),
-                    LoginInitial()
-                ];
+            group("when isFirstLogin is false", () {
+                test("should not create new User but dispatch the LoggedIn action", () async {
+                    final expectedState = [
+                        LoginInitial(),
+                        LoginLoading(),
+                        LoginInitial()
+                    ];
 
-                var displayName = "Batman";
-                when(fakeUser.displayName).thenReturn(displayName);
-                var email = "not@work.com";
-                when(fakeUser.email).thenReturn(email);
-                when(mockFirebaseAuth.signInWithCredential(any)).thenAnswer((_) {
-                    return Future<MockFirebaseUser>.value(fakeUser);
+                    when(fakeFirebaseUser.displayName).thenReturn(displayName);
+                    when(fakeFirebaseUser.email).thenReturn(email);
+
+
+                    when(mockFirebaseAuth.signInWithCredential(any)).thenAnswer((_) {
+                        return Future<MockFirebaseUser>.value(fakeFirebaseUser);
+                    });
+                    when(mockUserRepository.isNewUser(email))
+                        .thenAnswer((_) => Future<bool>.value(false));
+
+                    await expectLater(
+                        loginBloc.state,
+                        emitsInOrder(expectedState),
+                    );
+
+                    verifyNever(mockUserBloc.dispatch(Create(user: fakeUser)));
+                    verify(mockAuthBloc.dispatch(LoggedIn(isFirstLogin: false)));
                 });
-
-                when(mockUserRepository.isNewUser(email))
-                    .thenAnswer((_) => Future<bool>.value(true));
-
-                await expectLater(
-                    loginBloc.state,
-                    emitsInOrder(expectedState),
-                );
-
-                verify(mockUserRepository.createUser(displayName, email, any, false));
             });
 
-            test("when LoginSuccess, if user is not new than do not create it", () async {
+            test("when fail authBloc should not dispatch the LoggedIn action", () async {
                 final expectedState = [
                     LoginInitial(),
                     LoginLoading(),
-                    LoginSuccess(user: fakeUser),
-                    LoginInitial()
-                ];
-
-                var displayName = "Batman";
-                var email = "not@work.com";
-
-                when(fakeUser.displayName).thenReturn(displayName);
-                when(fakeUser.email).thenReturn(email);
-                when(mockFirebaseAuth.signInWithCredential(any)).thenAnswer((_) {
-                    return Future<MockFirebaseUser>.value(fakeUser);
-                });
-                when(mockUserRepository.isNewUser(email))
-                    .thenAnswer((_) => Future<bool>.value(false));
-
-                await expectLater(
-                    loginBloc.state,
-                    emitsInOrder(expectedState),
-                );
-
-                verifyNever(mockUserRepository.createUser(displayName, email, "white", false));
-            });
-
-            test("when LoginFailure authBloc should not dispatch the LoggedIn action", () async {
-                final expectedState = [
-                    LoginInitial(),
-                    LoginLoading(),
-                    LoginFailure(),
                     LoginInitial()
                 ];
 
@@ -155,7 +139,6 @@ void main() {
                 );
 
                 verifyNever(mockAuthBloc.dispatch(LoggedIn()));
-
             });
         });
     });

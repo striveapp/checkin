@@ -12,7 +12,12 @@ class UserProvider {
       'isOwner': isOwner
     }).then((val) {
       print(val);
-      return User("test", "test@test","white", false);
+      return User(
+          name: "test",
+          email: "test@test",
+          rank: "white",
+          isOwner: false
+      );
     });
   }
 
@@ -22,10 +27,10 @@ class UserProvider {
         .getDocuments();
 
     return User(
-      documents.documents.first.data['name'],
-      documents.documents.first.data['email'],
-      documents.documents.first.data['rank'],
-      documents.documents.first.data['isOwner'],
+      name: documents.documents.first.data['name'],
+      email: documents.documents.first.data['email'],
+      rank: documents.documents.first.data['rank'],
+      isOwner: documents.documents.first.data['isOwner'],
     );
 
   }

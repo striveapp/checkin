@@ -50,7 +50,7 @@ void main() {
         var fakeUser = MockUser();
         final expectedState = [
           AuthUninitialized(),
-          AuthAuthenticated(user: fakeUser),
+          AuthAuthenticated(user: fakeUser, isFirstLogin: false),
         ];
 
         when(firebaseAuth.currentUser()).thenAnswer((_) {
@@ -70,31 +70,61 @@ void main() {
 
     });
     group('dispatch LoggedIn', () {
-      setUp(() {
-        authBloc.dispatch(LoggedIn());
-      });
-
-      test("the final state should be AuthAuthenticated and pass the current user", () {
-        var fakeFirebaseUser = MockFirebaseUser();
-        var fakeUser = MockUser();
-        final expectedState = [
-          AuthUninitialized(),
-          AuthAuthenticated(user: fakeUser),
-        ];
-
-        when(firebaseAuth.currentUser()).thenAnswer((_) {
-          return Future<MockFirebaseUser>.value(fakeFirebaseUser);
+      group("not is first login", () {
+        setUp(() {
+          authBloc.dispatch(LoggedIn(isFirstLogin: false));
         });
 
-        when(userRepository.getUserByEmail(any)).thenAnswer((_) {
-          return Future<MockUser>.value(fakeUser);
-        });
+        test("the final state should be AuthAuthenticated and pass the current user", () {
+          var fakeFirebaseUser = MockFirebaseUser();
+          var fakeUser = MockUser();
+          final expectedState = [
+            AuthUninitialized(),
+            AuthAuthenticated(user: fakeUser, isFirstLogin: false),
+          ];
 
-        expectLater(
-          authBloc.state,
-          emitsInOrder(expectedState),
-        );
+          when(firebaseAuth.currentUser()).thenAnswer((_) {
+            return Future<MockFirebaseUser>.value(fakeFirebaseUser);
+          });
+
+          when(userRepository.getUserByEmail(any)).thenAnswer((_) {
+            return Future<MockUser>.value(fakeUser);
+          });
+
+          expectLater(
+            authBloc.state,
+            emitsInOrder(expectedState),
+          );
+        });
       });
+
+      group("is first login", () {
+        setUp(() {
+          authBloc.dispatch(LoggedIn(isFirstLogin: true));
+        });
+        test("the final state should be AuthAuthenticated and pass the current user and isFirstLogin as true", () {
+          var fakeFirebaseUser = MockFirebaseUser();
+          var fakeUser = MockUser();
+          final expectedState = [
+            AuthUninitialized(),
+            AuthAuthenticated(user: fakeUser, isFirstLogin: true),
+          ];
+
+          when(firebaseAuth.currentUser()).thenAnswer((_) {
+            return Future<MockFirebaseUser>.value(fakeFirebaseUser);
+          });
+
+          when(userRepository.getUserByEmail(any)).thenAnswer((_) {
+            return Future<MockUser>.value(fakeUser);
+          });
+
+          expectLater(
+            authBloc.state,
+            emitsInOrder(expectedState),
+          );
+        });
+      });
+
     });
 
     group('dispatch LoggedOut', () {

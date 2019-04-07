@@ -31,7 +31,11 @@ class AuthBloc extends Bloc<AuthEvent, AuthState> {
           debugPrint('User is authenticated');
           var user = await this.userRepository.getUserByEmail(currentUser.email);
           debugPrint('Retrieved user infos [$user]');
-          yield AuthAuthenticated(user: user);
+
+          yield AuthAuthenticated(
+              user: user,
+              isFirstLogin: event is LoggedIn ? event.isFirstLogin : false
+          );
         } catch(e) {
           print(e);
         }

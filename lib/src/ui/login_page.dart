@@ -1,5 +1,6 @@
 import 'package:checkin/src/blocs/auth/bloc.dart';
 import 'package:checkin/src/blocs/login/bloc.dart';
+import 'package:checkin/src/blocs/user/bloc.dart';
 import 'package:checkin/src/resources/user_repository.dart';
 import 'package:checkin/src/ui/login_form.dart';
 import 'package:firebase_auth/firebase_auth.dart';
@@ -22,6 +23,7 @@ class LoginPage extends StatefulWidget {
 class _LoginPageState extends State<LoginPage> {
   LoginBloc _loginBloc;
   AuthBloc _authBloc;
+  UserBloc _userBloc;
   UserRepository _userRepository;
   FirebaseAuth auth = FirebaseAuth.instance;
 
@@ -34,10 +36,13 @@ class _LoginPageState extends State<LoginPage> {
   void initState() {
     _authBloc = BlocProvider.of<AuthBloc>(context);
     _userRepository = UserRepository();
+    _userBloc = UserBloc(userRepository: _userRepository);
     _loginBloc = LoginBloc(
-      authenticationBloc: _authBloc,
+      authBloc: _authBloc,
+      userBloc: _userBloc,
       auth: auth,
       googleSignIn: GoogleSignIn(),
+
       userRepository: _userRepository,
     );
     super.initState();

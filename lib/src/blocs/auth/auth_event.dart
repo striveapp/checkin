@@ -10,6 +10,12 @@ class AppStarted extends AuthEvent {
 }
 
 class LoggedIn extends AuthEvent {
+  final bool isFirstLogin;
+
+  LoggedIn({
+    this.isFirstLogin,
+  }) : super([isFirstLogin]);
+
   @override
   String toString() => 'LoggedIn';
 }
