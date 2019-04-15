@@ -18,7 +18,7 @@ void main() {
     });
 
     test('initial state is UserUninitialized', () {
-      expect(userBloc.initialState, UserUninitialized());
+      expect(userBloc.initialState, UserLoading());
     });
 
     group("dispatch Create", () {
@@ -27,14 +27,14 @@ void main() {
       });
 
       group("when UserSuccess", () {
-        test("should bla", () async {
+        test("should create a user", () async {
           final expectedState = [
-            UserUninitialized(),
-            UserSuccess(),
+            UserLoading(),
+            UserSuccess(currentUser: testUser),
           ];
 
           when(mockUserRepository.createUser(testUser.name, testUser.email,
-              testUser.rank, testUser.isOwner))
+                  testUser.rank, testUser.isOwner))
               .thenAnswer((_) => Future<User>.value(testUser));
 
           await expectLater(
@@ -45,14 +45,14 @@ void main() {
       });
 
       group("when UserError", () {
-        test("should bla", () async {
+        test("should not create a user", () async {
           final expectedState = [
-            UserUninitialized(),
+            UserLoading(),
             UserError(),
           ];
 
           when(mockUserRepository.createUser(testUser.name, testUser.email,
-              testUser.rank, testUser.isOwner))
+                  testUser.rank, testUser.isOwner))
               .thenThrow(Exception("i don't wanna live in this world anymore"));
 
           await expectLater(
@@ -61,7 +61,28 @@ void main() {
           );
         });
       });
+    });
 
+    group("dispatch Load", () {
+      String fakeMail = "porco@mail.com";
+      setUp(() {
+        userBloc.dispatch(Load(email: fakeMail));
+      });
+
+      test("should get a user", () async {
+        final expectedState = [
+          UserLoading(),
+          UserSuccess(currentUser: testUser),
+        ];
+
+        when(mockUserRepository.getUserByEmail(fakeMail))
+            .thenAnswer((_) => Future<User>.value(testUser));
+
+        await expectLater(
+          userBloc.state,
+          emitsInOrder(expectedState),
+        );
+      });
     });
   });
 }

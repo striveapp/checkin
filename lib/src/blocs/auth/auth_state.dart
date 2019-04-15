@@ -1,4 +1,3 @@
-import 'package:checkin/src/models/user.dart';
 import 'package:equatable/equatable.dart';
 
 abstract class AuthState extends Equatable {
@@ -11,13 +10,13 @@ class AuthUninitialized extends AuthState {
 }
 
 class AuthAuthenticated extends AuthState {
-  User user;
   bool isFirstLogin;
+  String currentUserEmail;
 
   AuthAuthenticated({
-    this.user,
+    this.currentUserEmail,
     this.isFirstLogin
-  }) : super([user, isFirstLogin]);
+  }) : super([currentUserEmail, isFirstLogin]);
 
   @override
   String toString() => 'AuthAuthenticated';

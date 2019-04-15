@@ -1,15 +1,19 @@
 import 'package:checkin/src/blocs/auth/auth_bloc.dart';
 import 'package:checkin/src/blocs/auth/auth_event.dart';
+import 'package:checkin/src/blocs/auth/bloc.dart';
 import 'package:checkin/src/blocs/class/bloc.dart';
+import 'package:checkin/src/blocs/user/bloc.dart';
 import 'package:checkin/src/resources/class_repository.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter/widgets.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 
 class StatusPage extends StatefulWidget {
-  StatusPage({Key key, this.title}) : super(key: key);
+  final UserBloc userBloc;
 
-  final String title;
+  StatusPage({Key key,
+    @required this.userBloc,
+  }) : super(key: key);
 
   @override
   _StatusState createState() {
@@ -18,6 +22,8 @@ class StatusPage extends StatefulWidget {
 }
 
 class _StatusState extends State<StatusPage> {
+  UserBloc get _userBloc => widget.userBloc;
+
   final ClassRepository _classRepository = ClassRepository();
   ClassBloc _classBloc;
   AuthBloc _authBloc;
@@ -47,8 +53,7 @@ class _StatusState extends State<StatusPage> {
                   RaisedButton(
                     child: Text('Attend'),
                     onPressed: () {
-                      //@TODO: this should come from the state
-                      _classBloc.dispatch(Attend(name: "pepe"));
+                      _classBloc.dispatch(Attend(name: (_userBloc.currentState as UserSuccess).currentUser.name ));
                     },
                   ),
                   RaisedButton(

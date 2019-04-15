@@ -11,10 +11,12 @@ class AppStarted extends AuthEvent {
 
 class LoggedIn extends AuthEvent {
   final bool isFirstLogin;
+  final String currentUserEmail;
 
   LoggedIn({
+    this.currentUserEmail,
     this.isFirstLogin,
-  }) : super([isFirstLogin]);
+  }) : super([currentUserEmail, isFirstLogin]);
 
   @override
   String toString() => 'LoggedIn';

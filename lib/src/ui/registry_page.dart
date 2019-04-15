@@ -51,26 +51,25 @@ class _RegistryState extends State<RegistryPage> {
               );
             }
             return Center(
-                    child: Container(
-                        child: Column(
-                            mainAxisAlignment: MainAxisAlignment.center,
-                            crossAxisAlignment: CrossAxisAlignment.center,
-                            children: [
-                      //@TODO: needs a component to render a list here
-                      AttendeesList(attendeeList: state.attendees),
-                      RaisedButton(
-                        child: Text('Accept all'),
-                        onPressed: () {
-                          _classBloc.dispatch(Clear());
-                        },
-                      ),
-                      RaisedButton(
-                        child: Text('logout'),
-                        onPressed: () {
-                          _authBloc.dispatch(LogOut());
-                        },
-                      )
-                    ])));
+                child: Container(
+                    child: Column(
+                        mainAxisAlignment: MainAxisAlignment.center,
+                        crossAxisAlignment: CrossAxisAlignment.center,
+                        children: [
+                  AttendeesList(attendeeList: state.attendees),
+                  RaisedButton(
+                    child: Text('Accept all'),
+                    onPressed: () {
+                      _classBloc.dispatch(Clear());
+                    },
+                  ),
+                  RaisedButton(
+                    child: Text('logout'),
+                    onPressed: () {
+                      _authBloc.dispatch(LogOut());
+                    },
+                  )
+                ])));
           }
         },
       ),

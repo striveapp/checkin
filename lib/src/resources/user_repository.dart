@@ -12,4 +12,6 @@ class UserRepository {
 
   Future<bool> isNewUser(String email) => _userProvider.isNewUser(email);
 
+  Future<User> update(String grade) => _userProvider.update(grade);
+
 }

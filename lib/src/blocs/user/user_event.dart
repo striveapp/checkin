@@ -5,6 +5,17 @@ abstract class UserEvent extends Equatable {
   UserEvent([List props = const []]) : super(props);
 }
 
+class Load extends UserEvent {
+  String email;
+
+  Load({
+    this.email
+  }) : super ([email]);
+
+  @override
+  String toString() => 'Load';
+}
+
 class Create extends UserEvent {
   User user;
 
@@ -17,6 +28,12 @@ class Create extends UserEvent {
 }
 
 class Update extends UserEvent {
+  String grade;
+
+  Update({
+    this.grade
+  }) : super([grade]);
+
   @override
   String toString() => 'Update';
 }

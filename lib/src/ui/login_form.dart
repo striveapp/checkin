@@ -1,6 +1,7 @@
 import 'package:checkin/src/blocs/login/bloc.dart';
 import 'package:checkin/src/blocs/auth/bloc.dart';
 import 'package:checkin/src/ui/google_sign_in_button.dart';
+import 'package:checkin/src/ui/loading_indicator.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 
@@ -33,36 +34,40 @@ class _LoginFormState extends State<LoginForm> {
           _onWidgetDidBuild(() {
             Scaffold.of(context).showSnackBar(
               SnackBar(
-                content: Text('${state.error}'),
+                content: Text('${state.errorMessage}'),
                 backgroundColor: Colors.red,
               ),
             );
           });
         }
 
-        return Column(
-          mainAxisAlignment: MainAxisAlignment.center,
-          crossAxisAlignment: CrossAxisAlignment.center,
-          children: [
-            Container(
-              margin: new EdgeInsets.fromLTRB(5.0, 0.0, 5.0, 40.0),
-              child: Image.asset(
-                "assets/images/logo.png",
-                width: 250.0,
+        if (state is LoginLoading) {
+          return LoadingIndicator();
+        }
+
+        if( state is LoginInitial) {
+          return Column(
+            mainAxisAlignment: MainAxisAlignment.center,
+            crossAxisAlignment: CrossAxisAlignment.center,
+            children: [
+              Container(
+                margin: new EdgeInsets.fromLTRB(5.0, 0.0, 5.0, 40.0),
+                child: Image.asset(
+                  "assets/images/logo.png",
+                  width: 250.0,
+                ),
               ),
-            ),
-            GoogleSignInButton(
-              onPressed: state is! LoginLoading
-                  ? _onLoginWithGoogleButtonPressed
-                  : null,
-              darkMode: true,
-              borderRadius: 50.0,
-            ),
-            Container(
-              child: state is LoginLoading ? CircularProgressIndicator() : null,
-            ),
-          ],
-        );
+              GoogleSignInButton(
+                onPressed: state is! LoginLoading
+                    ? _onLoginWithGoogleButtonPressed
+                    : null,
+                darkMode: true,
+                borderRadius: 50.0,
+              )
+            ],
+          );
+        }
+
       },
     );
   }

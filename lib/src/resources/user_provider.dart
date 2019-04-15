@@ -32,14 +32,18 @@ class UserProvider {
       rank: documents.documents.first.data['rank'],
       isOwner: documents.documents.first.data['isOwner'],
     );
-
   }
 
+  //@TODO: this might be trashable
   Future<bool> isNewUser(String email) async {
     var documents = await _firestore.collection('users')
         .where("email", isEqualTo: email)
        .getDocuments();
 
     return documents.documents.isEmpty;
+  }
+
+  Future<User> update(String grade) async {
+    return null;
   }
 }

@@ -29,7 +29,7 @@ class _LoginPageState extends State<LoginPage> {
 
   _LoginPageState() {
     _userRepository = UserRepository();
-    _authBloc = AuthBloc(auth: auth, userRepository: _userRepository);
+    _authBloc = AuthBloc(auth: auth);
   }
 
   @override
@@ -52,6 +52,7 @@ class _LoginPageState extends State<LoginPage> {
   Widget build(BuildContext context) {
     return Scaffold(
         body: new Container(
+          alignment: Alignment.center,
       decoration: new BoxDecoration(
           image: new DecorationImage(
         image: new AssetImage("assets/images/trianglify.png"),

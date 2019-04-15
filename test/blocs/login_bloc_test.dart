@@ -91,7 +91,7 @@ void main() {
                         emitsInOrder(expectedState),
                     );
 
-                    verify(mockAuthBloc.dispatch(LoggedIn(isFirstLogin: true)));
+                    verify(mockAuthBloc.dispatch(LoggedIn(currentUserEmail: email, isFirstLogin: true)));
                     verify(mockUserBloc.dispatch(Create(user: fakeUser)));
                 });
             });
@@ -120,7 +120,7 @@ void main() {
                     );
 
                     verifyNever(mockUserBloc.dispatch(Create(user: fakeUser)));
-                    verify(mockAuthBloc.dispatch(LoggedIn(isFirstLogin: false)));
+                    verify(mockAuthBloc.dispatch(LoggedIn(currentUserEmail: email, isFirstLogin: false)));
                 });
             });
 

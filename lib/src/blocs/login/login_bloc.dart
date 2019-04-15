@@ -37,6 +37,7 @@ class LoginBloc extends Bloc<LoginEvent, LoginState> {
       debugPrint('Display loading spinner');
       yield LoginLoading();
       try {
+        //@TODO: this should be refactored
         await _googleSignIn().then((user) async {
           isNewUser = await this.userRepository.isNewUser(user.email);
           if (isNewUser) {
@@ -45,12 +46,13 @@ class LoginBloc extends Bloc<LoginEvent, LoginState> {
           }
           debugPrint('User successfully logged in as [$user]');
           debugPrint('isFirstLogin: $isNewUser');
-          this.authBloc.dispatch(LoggedIn(isFirstLogin: isNewUser));
+          this.authBloc.dispatch(LoggedIn(currentUserEmail: user.email, isFirstLogin: isNewUser));
         }).catchError((e) {
           print('Error during googleSignIn: ' + e.toString());
         });
       } catch (e) {
         print('unexpected error during googleSignIn: ' + e.toString());
+        yield LoginFailure(errorMessage: "Login Failed. Please try again");
       }
     }
     debugPrint('Finally resetting login state to LoginInitial');

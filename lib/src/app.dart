@@ -1,10 +1,8 @@
 import 'package:checkin/src/blocs/auth/bloc.dart';
-import 'package:checkin/src/resources/user_repository.dart';
 import 'package:checkin/src/ui/grade_page.dart';
-import 'package:checkin/src/ui/registry_page.dart';
+import 'package:checkin/src/ui/home_page.dart';
 import 'package:checkin/src/ui/login_page.dart';
 import 'package:checkin/src/ui/splash_page.dart';
-import 'package:checkin/src/ui/status_page.dart';
 import 'package:firebase_auth/firebase_auth.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
@@ -19,11 +17,9 @@ class App extends StatefulWidget {
 
 class _AppState extends State<App> {
   AuthBloc authBloc;
-  UserRepository _userRepository;
   @override
   void initState() {
-    _userRepository = new UserRepository();
-    authBloc = AuthBloc(auth: FirebaseAuth.instance, userRepository: _userRepository);
+    authBloc = AuthBloc(auth: FirebaseAuth.instance);
     authBloc.dispatch(AppStarted());
     super.initState();
   }
@@ -48,10 +44,8 @@ class _AppState extends State<App> {
             if (state is AuthAuthenticated) {
               if(state.isFirstLogin) {
                 return GradePage();
-              } else if(state.user.isOwner) {
-                return RegistryPage();
               } else {
-                return StatusPage();
+                return HomePage();
               }
             }
             if (state is AuthUnauthenticated) {

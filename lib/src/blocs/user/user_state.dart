@@ -1,13 +1,8 @@
+import 'package:checkin/src/models/user.dart';
 import 'package:equatable/equatable.dart';
-import 'package:firebase_auth/firebase_auth.dart';
 
 abstract class UserState extends Equatable {
   UserState([List props = const []]) : super(props);
-}
-
-class UserUninitialized extends UserState {
-  @override
-  String toString() => 'UserUninitialized';
 }
 
 class UserLoading extends UserState {
@@ -16,6 +11,11 @@ class UserLoading extends UserState {
 }
 
 class UserSuccess extends UserState {
+  User currentUser;
+
+  UserSuccess({
+    this.currentUser
+  }) : super([currentUser]);
   @override
   String toString() => 'UserSuccess';
 }

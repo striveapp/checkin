@@ -1,26 +1,19 @@
-import 'package:checkin/src/models/user.dart';
-import 'package:checkin/src/resources/user_repository.dart';
+import 'package:checkin/src/blocs/auth/bloc.dart';
 import 'package:firebase_auth/firebase_auth.dart';
 import 'package:mockito/mockito.dart';
-import 'package:checkin/src/blocs/auth/bloc.dart';
 import 'package:test/test.dart';
 
 class MockFirebaseAuth extends Mock implements FirebaseAuth {}
 class MockFirebaseUser extends Mock implements FirebaseUser {}
-class MockUserRepository extends Mock implements UserRepository {}
-class MockUser extends Mock implements User {}
-
 
 void main() {
   group('AuthBloc', () {
     AuthBloc authBloc;
     MockFirebaseAuth firebaseAuth;
-    MockUserRepository userRepository;
 
     setUp(() {
       firebaseAuth = MockFirebaseAuth();
-      userRepository = MockUserRepository();
-      authBloc = AuthBloc(auth: firebaseAuth, userRepository: userRepository);
+      authBloc = AuthBloc(auth: firebaseAuth);
     });
 
     test('initial state is AuthUninitialized', () {
@@ -47,48 +40,43 @@ void main() {
 
       test('if there\'s already a current users than final state is AuthAuthenticated', () {
         var fakeFirebaseUser = MockFirebaseUser();
-        var fakeUser = MockUser();
+        var fakeEmail = "porco@mail.com";
+
         final expectedState = [
           AuthUninitialized(),
-          AuthAuthenticated(user: fakeUser, isFirstLogin: false),
+          AuthAuthenticated(currentUserEmail: fakeEmail, isFirstLogin: false),
         ];
 
         when(firebaseAuth.currentUser()).thenAnswer((_) {
           return Future<MockFirebaseUser>.value(fakeFirebaseUser);
         });
 
-        when(userRepository.getUserByEmail(any)).thenAnswer((_) {
-          return Future<MockUser>.value(fakeUser);
-        });
+        when(fakeFirebaseUser.email).thenReturn(fakeEmail);
 
         expectLater(
           authBloc.state,
           emitsInOrder(expectedState),
         );
       });
-
-
     });
+
     group('dispatch LoggedIn', () {
+      var fakeEmail = "porco@mail.com";
       group("not is first login", () {
         setUp(() {
-          authBloc.dispatch(LoggedIn(isFirstLogin: false));
+          authBloc.dispatch(LoggedIn(currentUserEmail: fakeEmail,
+              isFirstLogin: false));
         });
 
-        test("the final state should be AuthAuthenticated and pass the current user", () {
+        test("the final state should be AuthAuthenticated and pass the current user email", () {
           var fakeFirebaseUser = MockFirebaseUser();
-          var fakeUser = MockUser();
           final expectedState = [
             AuthUninitialized(),
-            AuthAuthenticated(user: fakeUser, isFirstLogin: false),
+            AuthAuthenticated(currentUserEmail: fakeEmail, isFirstLogin: false),
           ];
 
           when(firebaseAuth.currentUser()).thenAnswer((_) {
             return Future<MockFirebaseUser>.value(fakeFirebaseUser);
-          });
-
-          when(userRepository.getUserByEmail(any)).thenAnswer((_) {
-            return Future<MockUser>.value(fakeUser);
           });
 
           expectLater(
@@ -100,22 +88,17 @@ void main() {
 
       group("is first login", () {
         setUp(() {
-          authBloc.dispatch(LoggedIn(isFirstLogin: true));
+          authBloc.dispatch(LoggedIn(currentUserEmail: fakeEmail, isFirstLogin: true));
         });
         test("the final state should be AuthAuthenticated and pass the current user and isFirstLogin as true", () {
           var fakeFirebaseUser = MockFirebaseUser();
-          var fakeUser = MockUser();
           final expectedState = [
             AuthUninitialized(),
-            AuthAuthenticated(user: fakeUser, isFirstLogin: true),
+            AuthAuthenticated(currentUserEmail: fakeEmail, isFirstLogin: true),
           ];
 
           when(firebaseAuth.currentUser()).thenAnswer((_) {
             return Future<MockFirebaseUser>.value(fakeFirebaseUser);
-          });
-
-          when(userRepository.getUserByEmail(any)).thenAnswer((_) {
-            return Future<MockUser>.value(fakeUser);
           });
 
           expectLater(
