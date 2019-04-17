@@ -1,4 +1,5 @@
 import 'package:bloc/bloc.dart';
+import 'package:checkin/src/blocs/auth/bloc.dart';
 import 'package:checkin/src/blocs/user/user_event.dart';
 import 'package:checkin/src/blocs/user/user_state.dart';
 import 'package:checkin/src/models/user.dart';
@@ -8,10 +9,19 @@ import 'package:meta/meta.dart';
 
 class UserBloc extends Bloc<UserEvent, UserState> {
   final UserRepository userRepository;
+  final AuthBloc authBloc;
 
   UserBloc({
-    @required this.userRepository
-  });
+    @required this.userRepository,
+    @required this.authBloc
+  }) {
+    if(this.authBloc.currentState is AuthAuthenticated) {
+      var userEmail = (this.authBloc.currentState as AuthAuthenticated).currentUserEmail;
+      this.userRepository.getUserByEmail(userEmail).listen((user) {
+        dispatch(UserUpdated(user: user));
+      });
+    }
+  }
 
   @override
   UserState get initialState => UserLoading();
@@ -19,8 +29,8 @@ class UserBloc extends Bloc<UserEvent, UserState> {
   @override
   Stream<UserState> mapEventToState(UserState currentState,
       UserEvent event) async* {
-    if(event is Load) {
-      yield* _mapLoadToState(currentState, event);
+    if(event is UserUpdated) {
+      yield UserSuccess(currentUser: event.user);
     } else if (event is Create) {
       yield* _mapCreateToState(currentState, event);
     } else if (event is Update) {
@@ -51,17 +61,6 @@ class UserBloc extends Bloc<UserEvent, UserState> {
   Stream<UserState> _mapDeleteTodoToState(UserState currentState,
       Delete event) async* {
       //@TODO: Implement me!
-  }
-
-  Stream<UserState> _mapLoadToState(UserState currentState, Load event) async* {
-    try {
-      debugPrint('Load user [' + event.email + ']');
-      User currentUser = await this.userRepository.getUserByEmail(event.email);
-      yield UserSuccess(currentUser: currentUser);
-    } catch (e) {
-      print('Error during user loading: ' + e.toString());
-      yield UserError();
-    }
   }
 
 }

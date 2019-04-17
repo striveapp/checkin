@@ -27,6 +27,18 @@ class Create extends UserEvent {
   String toString() => 'Create';
 }
 
+
+class UserUpdated extends UserEvent {
+  User user;
+
+  UserUpdated({
+    this.user
+  }) : super([user]);
+
+  @override
+  String toString() => 'UserUpdated';
+}
+
 class Update extends UserEvent {
   String grade;
 
