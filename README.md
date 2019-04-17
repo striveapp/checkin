@@ -44,3 +44,15 @@ This app requires to have [git-secret](https://git-secret.io/installation) insta
 1. Paste your public GPG Key into the issue and wait for confirmation.
 1. run `git secret reveal`
 
+## Emulator Alternative
+Android screen mirroring command:
+```bash
+# find device id
+$ flutter devices
+2 connected devices:
+
+SM G960F     • 2c7af66d1d017ece    • android-arm64 • Android 9 (API 28)
+Google Pixel • 192.168.57.101:5555 • android-x86   • Android 9 (API 28)
+
+$ adb -s 2c7af66d1d017ece shell screenrecord --output-format=h264 - | ffplay -
+```
