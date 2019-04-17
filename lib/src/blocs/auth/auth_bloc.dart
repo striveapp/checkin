@@ -1,3 +1,5 @@
+import 'dart:async';
+
 import 'package:bloc/bloc.dart';
 import 'package:checkin/src/blocs/auth/auth_event.dart';
 import 'package:checkin/src/blocs/auth/auth_state.dart';
@@ -7,10 +9,15 @@ import 'package:meta/meta.dart';
 
 class AuthBloc extends Bloc<AuthEvent, AuthState> {
   final FirebaseAuth auth;
-
+  StreamSubscription authSub;
+  
   AuthBloc({
     @required this.auth,
-  });
+  }) {
+    authSub = this.auth.onAuthStateChanged.listen((currentUser){
+      dispatch(AuthUpdated(currentUserEmail: currentUser?.email));
+    });
+  }
 
   @override
   AuthState get initialState => AuthUninitialized();
@@ -18,18 +25,12 @@ class AuthBloc extends Bloc<AuthEvent, AuthState> {
   @override
   Stream<AuthState> mapEventToState(AuthState currentState,
       AuthEvent event) async* {
-    if (event is AppStarted) {
-      try {
-        //@TODO: we should take a look at this.auth.onAuthStateChanged
-        FirebaseUser currentUser = await this.auth.currentUser();
-        yield currentUser != null
-            ? AuthAuthenticated(
-            currentUserEmail: currentUser.email,
-            isFirstLogin: false)
-            : AuthUnauthenticated();
-      } catch(e) {
-        debugPrint('Error ocurred trying to retrieve the currentUser:' + e.toString());
-      }
+
+    if(event is AuthUpdated) {
+      debugPrint('dispatched AuthUpdated with user: ${event.currentUserEmail ?? "Unauthenticated"}');
+      yield event.currentUserEmail != null
+          ? AuthAuthenticated(currentUserEmail: event.currentUserEmail, isFirstLogin: false)
+          : AuthUnauthenticated();
     }
 
     if (event is LoggedIn) {
@@ -47,5 +48,11 @@ class AuthBloc extends Bloc<AuthEvent, AuthState> {
         debugPrint('Error ocurred trying to signOut:' + e.toString());
       }
     }
+  }
+
+  @override
+  void dispose() {
+    authSub.cancel();
+    super.dispose();
   }
 }

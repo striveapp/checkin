@@ -74,8 +74,7 @@ void main() {
                 test("should create new User and dispatch the LoggedIn action", () async {
                     final expectedState = [
                         LoginInitial(),
-                        LoginLoading(),
-                        LoginInitial()
+                        LoginLoading()
                     ];
 
                     when(fakeFirebaseUser.displayName).thenReturn(displayName);
@@ -100,8 +99,7 @@ void main() {
                 test("should not create new User but dispatch the LoggedIn action", () async {
                     final expectedState = [
                         LoginInitial(),
-                        LoginLoading(),
-                        LoginInitial()
+                        LoginLoading()
                     ];
 
                     when(fakeFirebaseUser.displayName).thenReturn(displayName);
@@ -128,7 +126,6 @@ void main() {
                 final expectedState = [
                     LoginInitial(),
                     LoginLoading(),
-                    LoginInitial()
                 ];
 
                 when(mockFirebaseAuth.signInWithCredential(any)).thenThrow(Exception("that proves the rule"));

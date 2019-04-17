@@ -13,6 +13,9 @@ void main() {
 
     setUp(() {
       firebaseAuth = MockFirebaseAuth();
+      when(firebaseAuth.onAuthStateChanged).thenAnswer((_) {
+        return Stream<MockFirebaseUser>.empty();
+      });
       authBloc = AuthBloc(auth: firebaseAuth);
     });
 
@@ -20,44 +23,53 @@ void main() {
       expect(authBloc.initialState, AuthUninitialized());
     });
 
-    group('dispatch AppStarted', () {
-      setUp(() {
-        authBloc.dispatch(AppStarted());
-      });
-
-      test('if there\'s no current users than final state is AuthUnauthenticated', () {
-        final expectedState = [
-          AuthUninitialized(),
-          AuthUnauthenticated(),
-        ];
-
-        expectLater(
-          authBloc.state,
-          emitsInOrder(expectedState),
-        );
-
-      });
-
-      test('if there\'s already a current users than final state is AuthAuthenticated', () {
-        var fakeFirebaseUser = MockFirebaseUser();
+    group("dispatch AuthUpdated", () {
+      group("when is returned the correct user", () {
         var fakeEmail = "porco@mail.com";
-
-        final expectedState = [
-          AuthUninitialized(),
-          AuthAuthenticated(currentUserEmail: fakeEmail, isFirstLogin: false),
-        ];
-
-        when(firebaseAuth.currentUser()).thenAnswer((_) {
-          return Future<MockFirebaseUser>.value(fakeFirebaseUser);
+        setUp(() {
+          authBloc.dispatch(AuthUpdated(currentUserEmail: fakeEmail));
         });
+        test("the final state should be AuthAuthenticated", () {
+          var fakeFirebaseUser = MockFirebaseUser();
+          final expectedState = [
+            AuthUninitialized(),
+            AuthAuthenticated(currentUserEmail: fakeEmail, isFirstLogin: false),
+          ];
 
-        when(fakeFirebaseUser.email).thenReturn(fakeEmail);
+          when(firebaseAuth.currentUser()).thenAnswer((_) {
+            return Future<MockFirebaseUser>.value(fakeFirebaseUser);
+          });
 
-        expectLater(
-          authBloc.state,
-          emitsInOrder(expectedState),
-        );
+          expectLater(
+            authBloc.state,
+            emitsInOrder(expectedState),
+          );
+        });
       });
+
+      group("when user null is returned", () {
+        var fakeEmail = "porco@mail.com";
+        setUp(() {
+          authBloc.dispatch(AuthUpdated(currentUserEmail: null));
+        });
+        test("the final state should be AuthAuthenticated", () {
+          var fakeFirebaseUser = MockFirebaseUser();
+          final expectedState = [
+            AuthUninitialized(),
+            AuthUnauthenticated(),
+          ];
+
+          when(firebaseAuth.currentUser()).thenAnswer((_) {
+            return Future<MockFirebaseUser>.value(fakeFirebaseUser);
+          });
+
+          expectLater(
+            authBloc.state,
+            emitsInOrder(expectedState),
+          );
+        });
+      });
+
     });
 
     group('dispatch LoggedIn', () {

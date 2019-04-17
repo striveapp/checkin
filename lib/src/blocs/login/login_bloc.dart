@@ -55,8 +55,6 @@ class LoginBloc extends Bloc<LoginEvent, LoginState> {
         yield LoginFailure(errorMessage: "Login Failed. Please try again");
       }
     }
-    debugPrint('Finally resetting login state to LoginInitial');
-    yield LoginInitial();
   }
 
   Future<User> _googleSignIn() async {

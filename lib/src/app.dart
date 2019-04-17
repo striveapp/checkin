@@ -20,12 +20,12 @@ class _AppState extends State<App> {
   @override
   void initState() {
     authBloc = AuthBloc(auth: FirebaseAuth.instance);
-    authBloc.dispatch(AppStarted());
     super.initState();
   }
 
   @override
   void dispose() {
+    debugPrint('dispose auth');
     authBloc.dispose();
     super.dispose();
   }

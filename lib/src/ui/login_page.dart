@@ -29,7 +29,6 @@ class _LoginPageState extends State<LoginPage> {
 
   _LoginPageState() {
     _userRepository = UserRepository();
-    _authBloc = AuthBloc(auth: auth);
   }
 
   @override

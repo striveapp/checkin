@@ -4,9 +4,15 @@ abstract class AuthEvent extends Equatable {
   AuthEvent([List props = const []]) : super(props);
 }
 
-class AppStarted extends AuthEvent {
+class AuthUpdated extends AuthEvent {
+  final String currentUserEmail;
+
+  AuthUpdated({
+    this.currentUserEmail,
+  }) : super([currentUserEmail]);
+
   @override
-  String toString() => 'AppStarted';
+  String toString() => 'AuthUpdated';
 }
 
 class LoggedIn extends AuthEvent {
