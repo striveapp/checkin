@@ -29,7 +29,6 @@ class _RegistryState extends State<RegistryPage> {
     super.initState();
     _authBloc = BlocProvider.of<AuthBloc>(context);
     _classBloc = ClassBloc(classRepository: _classRepository);
-    _classBloc.dispatch(Fetch());
   }
 
   @override

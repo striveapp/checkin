@@ -25,7 +25,14 @@ class Remove extends ClassEvent {
   String toString() => 'Remove';
 }
 
-class Fetch extends ClassEvent {
+class AttendeesUpdated extends ClassEvent {
+  
+  final List<String> attendees;
+
+  AttendeesUpdated({
+    this.attendees,
+  }) : super([attendees]);
+  
   @override
   String toString() => 'Fetch';
 }
