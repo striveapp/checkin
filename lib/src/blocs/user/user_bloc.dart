@@ -1,3 +1,5 @@
+import 'dart:async';
+
 import 'package:bloc/bloc.dart';
 import 'package:checkin/src/blocs/auth/bloc.dart';
 import 'package:checkin/src/blocs/user/user_event.dart';
@@ -10,6 +12,7 @@ import 'package:meta/meta.dart';
 class UserBloc extends Bloc<UserEvent, UserState> {
   final UserRepository userRepository;
   final AuthBloc authBloc;
+  StreamSubscription userSub;
 
   UserBloc({
     @required this.userRepository,
@@ -17,7 +20,7 @@ class UserBloc extends Bloc<UserEvent, UserState> {
   }) {
     if(this.authBloc.currentState is AuthAuthenticated) {
       var userEmail = (this.authBloc.currentState as AuthAuthenticated).currentUserEmail;
-      this.userRepository.getUserByEmail(userEmail).listen((user) {
+      userSub = this.userRepository.getUserByEmail(userEmail).listen((user) {
         dispatch(UserUpdated(user: user));
       });
     }
@@ -61,6 +64,12 @@ class UserBloc extends Bloc<UserEvent, UserState> {
   Stream<UserState> _mapDeleteTodoToState(UserState currentState,
       Delete event) async* {
       //@TODO: Implement me!
+  }
+
+  @override
+  void dispose() {
+    userSub.cancel();
+    super.dispose();
   }
 
 }
