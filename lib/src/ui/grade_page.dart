@@ -1,3 +1,4 @@
+import 'package:checkin/src/blocs/auth/auth_bloc.dart';
 import 'package:checkin/src/blocs/user/bloc.dart';
 import 'package:checkin/src/resources/user_repository.dart';
 import 'package:checkin/src/ui/grade_buttons.dart';
@@ -18,13 +19,15 @@ class GradePage extends StatefulWidget {
 
 class _GradePageState extends State<GradePage> {
   UserBloc _userBloc;
+  AuthBloc _authBloc;
   UserRepository _userRepository;
 
   @override
   void initState() {
     super.initState();
     _userRepository = UserRepository();
-    _userBloc = UserBloc(userRepository: _userRepository);
+    _authBloc = BlocProvider.of<AuthBloc>(context);
+    _userBloc = UserBloc(authBloc: _authBloc, userRepository: _userRepository);
   }
 
   @override

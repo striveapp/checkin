@@ -52,5 +52,6 @@ class _GradeButtonsState extends State<GradeButtons> {
   _onGradeButtonPressed(String grade) {
     debugPrint('Grade selected: $grade');
     _userBloc.dispatch(Update(grade: grade));
+    Navigator.pushReplacementNamed(context, '/home');
   }
 }

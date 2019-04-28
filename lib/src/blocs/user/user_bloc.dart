@@ -47,18 +47,19 @@ class UserBloc extends Bloc<UserEvent, UserState> {
       Create event) async* {
     try {
       debugPrint('Create user [' + event.user.toString() + ']');
-      User currentUser = await this.userRepository.createUser(event.user.name, event.user.email, event.user.rank, event.user.isOwner);
-      yield UserSuccess(currentUser: currentUser);
+      this.userRepository.createUser(event.user.name, event.user.email, event.user.rank, event.user.isOwner);
     } catch(e) {
       print('Error during user creation: ' + e.toString());
       yield UserError();
     }
-
   }
 
   Stream<UserState> _mapUpdateToState(UserState currentState,
       Update event) async* {
-      //@TODO: Implement me!
+    debugPrint('Update user [${currentState is UserSuccess ? currentState.currentUser : "none" }]');
+    if (currentState is UserSuccess) {
+      this.userRepository.updateUserGrade(currentState.currentUser, event.grade);
+    }
   }
 
   Stream<UserState> _mapDeleteTodoToState(UserState currentState,

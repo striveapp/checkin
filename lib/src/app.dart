@@ -35,6 +35,9 @@ class _AppState extends State<App> {
     return BlocProvider<AuthBloc>(
       bloc: authBloc,
       child: MaterialApp(
+        routes: {
+          '/home': (context) => HomePage()
+        },
         home: BlocBuilder<AuthEvent, AuthState>(
           bloc: authBloc,
           builder: (BuildContext context, AuthState state) {
