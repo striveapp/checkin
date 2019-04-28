@@ -10,8 +10,6 @@ class UserRepository {
 
   Stream<User> getUserByEmail(String email) => _userProvider.getUserByEmail(email);
 
-  Future<bool> isNewUser(String email) => _userProvider.isNewUser(email);
-
   updateUserGrade(User currentUser, String grade) => _userProvider.updateUserGrade(currentUser, grade);
 
 }
