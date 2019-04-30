@@ -4,7 +4,6 @@ import 'package:bloc/bloc.dart';
 import 'package:checkin/src/blocs/auth/bloc.dart';
 import 'package:checkin/src/blocs/user/user_event.dart';
 import 'package:checkin/src/blocs/user/user_state.dart';
-import 'package:checkin/src/models/user.dart';
 import 'package:checkin/src/resources/user_repository.dart';
 import 'package:flutter/foundation.dart';
 import 'package:meta/meta.dart';
@@ -46,8 +45,9 @@ class UserBloc extends Bloc<UserEvent, UserState> {
   Stream<UserState> _mapCreateToState(UserState currentState,
       Create event) async* {
     try {
-      debugPrint('Create user [' + event.user.toString() + ']');
+      debugPrint('Creating user [' + event.user.toString() + ']');
       this.userRepository.createUser(event.user.name, event.user.email, event.user.rank, event.user.isOwner);
+      debugPrint('Created!');
     } catch(e) {
       print('Error during user creation: ' + e.toString());
       yield UserError();
@@ -56,9 +56,14 @@ class UserBloc extends Bloc<UserEvent, UserState> {
 
   Stream<UserState> _mapUpdateToState(UserState currentState,
       Update event) async* {
-    debugPrint('Update user [${currentState is UserSuccess ? currentState.currentUser : "none" }]');
-    if (currentState is UserSuccess) {
-      this.userRepository.updateUserGrade(currentState.currentUser, event.grade);
+    try {
+      final currentUser = currentState is UserSuccess ? currentState.currentUser : null;
+      debugPrint('Update user [${ currentState ?? "NO" }]');
+      currentUser != null ? this.userRepository.updateUserGrade(currentUser, event.grade) : UserError();
+      debugPrint('Updated!');
+    } catch(e) {
+      print('Error during user update: ' + e.toString());
+      yield UserError();
     }
   }
 

@@ -32,6 +32,7 @@ class _AppState extends State<App> {
 
   @override
   Widget build(BuildContext context) {
+    //@TODO: Manage incosistent situation when no user is present but is still logged in
     return BlocProvider<AuthBloc>(
       bloc: authBloc,
       child: MaterialApp(
