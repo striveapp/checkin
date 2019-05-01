@@ -10,7 +10,7 @@ import * as fs from "fs";
 const projectId = "firestore-emulator-example";
 const coverageUrl = `http://localhost:8080/emulator/v1/projects/${projectId}:ruleCoverage.html`;
 
-const rules = fs.readFileSync("firestore.rules", "utf8");
+const rules = fs.readFileSync("rules/firestore.rules", "utf8");
 
 /**
  * Creates a new app with authentication data matching the input.
