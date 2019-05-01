@@ -51,6 +51,7 @@ class _StatusState extends State<StatusPage> {
                         crossAxisAlignment: CrossAxisAlignment.center,
                         children: [
                   RaisedButton(
+                    //@TODO: should disable the button if already attending class
                     child: Text('Attend'),
                     onPressed: () {
                       _classBloc.dispatch(Attend(name: (_userBloc.currentState as UserSuccess).currentUser.name ));

@@ -48,7 +48,6 @@ void main() {
       });
 
       group("when user null is returned", () {
-        var fakeEmail = "porco@mail.com";
         setUp(() {
           authBloc.dispatch(AuthUpdated(currentUserEmail: null));
         });

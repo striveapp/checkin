@@ -19,6 +19,9 @@ void main() {
       mockUserRepository = MockUserRepository();
       mockAuthBloc = MockAuthBloc();
       testUser = User(name: "Tobuto Nellano", email: "tobuto@nelano.com");
+      when(mockAuthBloc.currentState).thenReturn(AuthAuthenticated(currentUserEmail: testUser.email, isFirstLogin: false));
+      when(mockUserRepository.getUserByEmail(any))
+          .thenAnswer((_) => Stream<User>.fromFuture(Future<User>.value(testUser)));
       userBloc = UserBloc(authBloc: mockAuthBloc, userRepository: mockUserRepository);
     });
 
@@ -31,7 +34,7 @@ void main() {
         userBloc.dispatch(Create(user: testUser));
       });
 
-      group("when UserSuccess", () {
+      group("when success", () {
         test("should create a user", () async {
           final expectedState = [
             UserLoading(),
@@ -40,7 +43,7 @@ void main() {
 
           when(mockUserRepository.createUser(testUser.name, testUser.email,
                   testUser.rank, testUser.isOwner))
-              .thenAnswer((_) => Future<User>.value(testUser));
+              .thenAnswer((_) => Future<User>.value(null));
 
           await expectLater(
             userBloc.state,
@@ -49,15 +52,58 @@ void main() {
         });
       });
 
-      group("when UserError", () {
+      group("when error", () {
         test("should not create a user", () async {
           final expectedState = [
             UserLoading(),
+            UserSuccess(currentUser: testUser),
             UserError(),
           ];
 
           when(mockUserRepository.createUser(testUser.name, testUser.email,
                   testUser.rank, testUser.isOwner))
+              .thenThrow(Exception("i don't wanna live in this world anymore"));
+
+          await expectLater(
+            userBloc.state,
+            emitsInOrder(expectedState),
+          );
+        });
+      });
+    });
+
+    group("dispatch Update", () {
+      var testGrade = "God";
+      setUp(() {
+        userBloc.dispatch(Update(grade: testGrade));
+      });
+
+      group("when success", () {
+        test("should update a user", () async {
+          final expectedState = [
+            UserLoading(),
+            UserSuccess(currentUser: testUser),
+          ];
+
+          when(mockUserRepository.updateUserGrade(testUser, testGrade))
+              .thenAnswer((_) => Future<User>.value(null));
+
+          await expectLater(
+            userBloc.state,
+            emitsInOrder(expectedState),
+          );
+        });
+      });
+
+      group("when error", () {
+        test("should not create a user", () async {
+          final expectedState = [
+            UserLoading(),
+            UserSuccess(currentUser: testUser),
+            UserError(),
+          ];
+
+          when(mockUserRepository.updateUserGrade(testUser, testGrade))
               .thenThrow(Exception("i don't wanna live in this world anymore"));
 
           await expectLater(

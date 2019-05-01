@@ -35,7 +35,7 @@ class _LoginPageState extends State<LoginPage> {
   void initState() {
     _authBloc = BlocProvider.of<AuthBloc>(context);
     _userRepository = UserRepository();
-    _userBloc = UserBloc(userRepository: _userRepository);
+    _userBloc = UserBloc(authBloc: _authBloc, userRepository: _userRepository);
     _loginBloc = LoginBloc(
       authBloc: _authBloc,
       userBloc: _userBloc,

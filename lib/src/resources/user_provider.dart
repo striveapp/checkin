@@ -2,21 +2,20 @@ import 'package:checkin/src/models/user.dart';
 import 'package:cloud_firestore/cloud_firestore.dart';
 
 class UserProvider {
+  //@TODO: Rename rank in grade
   Firestore _firestore = Firestore.instance;
   static const String path = 'users';
 
-  Future<User> createUser(
-      String name, String email, String rank, bool isOwner) async {
-    return await _firestore.collection(path).add({
-      'name': name,
-      'email': email,
-      'rank': rank,
-      'isOwner': isOwner
-    }).then((val) {
-      print(val);
-      return User(
-          name: "test", email: "test@test", rank: "white", isOwner: false);
-    });
+  createUser(String name, String email, String rank, bool isOwner) async {
+    _firestore.collection(path).document(email).setData(
+        {'name': name, 'email': email, 'rank': rank, 'isOwner': isOwner});
+  }
+
+  updateUserGrade(User currentUser, String grade) async {
+    _firestore
+        .collection(path)
+        .document(currentUser.email)
+        .updateData({"rank": grade});
   }
 
   Stream<User> getUserByEmail(String email) {
@@ -25,6 +24,7 @@ class UserProvider {
         .where("email", isEqualTo: email)
         .snapshots()
         .map((snapshot) {
+
       var doc = snapshot.documents.first;
       return User(
         name: doc.data['name'],
@@ -43,9 +43,5 @@ class UserProvider {
         .getDocuments();
 
     return documents.documents.isEmpty;
-  }
-
-  Future<User> update(String grade) async {
-    return null;
   }
 }

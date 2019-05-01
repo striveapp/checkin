@@ -1,8 +1,9 @@
+import 'dart:async';
+
 import 'package:bloc/bloc.dart';
 import 'package:checkin/src/blocs/auth/bloc.dart';
 import 'package:checkin/src/blocs/user/user_event.dart';
 import 'package:checkin/src/blocs/user/user_state.dart';
-import 'package:checkin/src/models/user.dart';
 import 'package:checkin/src/resources/user_repository.dart';
 import 'package:flutter/foundation.dart';
 import 'package:meta/meta.dart';
@@ -10,6 +11,7 @@ import 'package:meta/meta.dart';
 class UserBloc extends Bloc<UserEvent, UserState> {
   final UserRepository userRepository;
   final AuthBloc authBloc;
+  StreamSubscription userSub;
 
   UserBloc({
     @required this.userRepository,
@@ -17,7 +19,7 @@ class UserBloc extends Bloc<UserEvent, UserState> {
   }) {
     if(this.authBloc.currentState is AuthAuthenticated) {
       var userEmail = (this.authBloc.currentState as AuthAuthenticated).currentUserEmail;
-      this.userRepository.getUserByEmail(userEmail).listen((user) {
+      userSub = this.userRepository.getUserByEmail(userEmail).listen((user) {
         dispatch(UserUpdated(user: user));
       });
     }
@@ -43,24 +45,37 @@ class UserBloc extends Bloc<UserEvent, UserState> {
   Stream<UserState> _mapCreateToState(UserState currentState,
       Create event) async* {
     try {
-      debugPrint('Create user [' + event.user.toString() + ']');
-      User currentUser = await this.userRepository.createUser(event.user.name, event.user.email, event.user.rank, event.user.isOwner);
-      yield UserSuccess(currentUser: currentUser);
+      debugPrint('Creating user [' + event.user.toString() + ']');
+      this.userRepository.createUser(event.user.name, event.user.email, event.user.rank, event.user.isOwner);
+      debugPrint('Created!');
     } catch(e) {
       print('Error during user creation: ' + e.toString());
       yield UserError();
     }
-
   }
 
   Stream<UserState> _mapUpdateToState(UserState currentState,
       Update event) async* {
-      //@TODO: Implement me!
+    try {
+      final currentUser = currentState is UserSuccess ? currentState.currentUser : null;
+      debugPrint('Update user [${ currentState ?? "NO" }]');
+      currentUser != null ? this.userRepository.updateUserGrade(currentUser, event.grade) : UserError();
+      debugPrint('Updated!');
+    } catch(e) {
+      print('Error during user update: ' + e.toString());
+      yield UserError();
+    }
   }
 
   Stream<UserState> _mapDeleteTodoToState(UserState currentState,
       Delete event) async* {
       //@TODO: Implement me!
+  }
+
+  @override
+  void dispose() {
+    userSub.cancel();
+    super.dispose();
   }
 
 }

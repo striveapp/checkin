@@ -4,7 +4,7 @@ import 'user_provider.dart';
 class UserRepository {
   final _userProvider = UserProvider();
 
-  Future<User> createUser(
+  createUser(
           String displayName, String email, String rank, bool isOwner) =>
       _userProvider.createUser(displayName, email, rank, isOwner);
 
@@ -12,6 +12,6 @@ class UserRepository {
 
   Future<bool> isNewUser(String email) => _userProvider.isNewUser(email);
 
-  Future<User> update(String grade) => _userProvider.update(grade);
+  updateUserGrade(User currentUser, String grade) => _userProvider.updateUserGrade(currentUser, grade);
 
 }
