@@ -41,3 +41,8 @@ which runs all the tests in the `tests/` directory.
 
   7 passing (607ms)
 ```
+
+## Deploy
+```
+npm run deploy
+```

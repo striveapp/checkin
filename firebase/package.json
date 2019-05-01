@@ -5,7 +5,8 @@
   "scripts": {
     "format": "prettier --write **/*.ts",
     "pretest": "tsc",
-    "test": "mocha"
+    "test": "mocha",
+    "deploy": "firebase deploy"
   },
   "devDependencies": {
     "@firebase/testing": "0.7.9",
