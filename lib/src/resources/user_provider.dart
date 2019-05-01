@@ -29,6 +29,7 @@ class UserProvider {
       return User(
         name: doc.data['name'],
         email: doc.data['email'],
+        counter: doc.data['counter'],
         rank: doc.data['rank'],
         isOwner: doc.data['isOwner'],
       );
@@ -43,5 +44,12 @@ class UserProvider {
         .getDocuments();
 
     return documents.documents.isEmpty;
+  }
+
+  incrementUserCounter(User currentUser) {
+    _firestore
+        .collection(path)
+        .document(currentUser.email)
+        .updateData({"counter": currentUser.counter + 1});
   }
 }

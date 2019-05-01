@@ -14,4 +14,6 @@ class UserRepository {
 
   updateUserGrade(User currentUser, String grade) => _userProvider.updateUserGrade(currentUser, grade);
 
+  incrementUserCounter(User currentUser) => _userProvider.incrementUserCounter(currentUser);
+
 }

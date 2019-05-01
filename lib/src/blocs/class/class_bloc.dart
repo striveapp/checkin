@@ -2,16 +2,20 @@ import 'dart:async';
 
 import 'package:bloc/bloc.dart';
 import 'package:checkin/src/blocs/class/bloc.dart';
+import 'package:checkin/src/models/user.dart';
 import 'package:checkin/src/resources/class_repository.dart';
+import 'package:checkin/src/resources/user_repository.dart';
 import 'package:meta/meta.dart';
 
 class ClassBloc extends Bloc<ClassEvent, ClassState> {
 
   final ClassRepository classRepository;
-  StreamSubscription<List<String>> attendeesSub;
+  final UserRepository userRepository;
+  StreamSubscription<List<User>> attendeesSub;
 
   ClassBloc({
     @required this.classRepository,
+    @required this.userRepository,
   }) {
     attendeesSub = this.classRepository.getClassAttendees().listen((attendees) {
       dispatch(AttendeesUpdated(attendees: attendees));
@@ -31,8 +35,11 @@ class ClassBloc extends Bloc<ClassEvent, ClassState> {
       }
     }
 
-    if (event is Clear) {
+    if (event is Confirm) {
       try {
+        event.attendees.forEach((attendee) {
+         this.userRepository.incrementUserCounter(attendee);
+        });
         await this.classRepository.clearClass();
       } catch(e) {
         print(e);
@@ -41,7 +48,7 @@ class ClassBloc extends Bloc<ClassEvent, ClassState> {
 
     if (event is Attend) {
       try {
-        await this.classRepository.attendClass(event.name);
+        await this.classRepository.attendClass(event.attendee);
       } catch(e) {
         print(e);
       }

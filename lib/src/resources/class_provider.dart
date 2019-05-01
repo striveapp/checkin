@@ -1,3 +1,4 @@
+import 'package:checkin/src/models/user.dart';
 import 'package:cloud_firestore/cloud_firestore.dart';
 
 class ClassProvider {
@@ -6,21 +7,36 @@ class ClassProvider {
   //@TODO: use only a single instance of firestore
   Firestore _firestore = Firestore.instance;
 
-  Stream<List<String>> getClassAttendees() {
-    return _firestore.collection(path).snapshots()
-        .map((snapshot) => snapshot.documents
-        .map((doc) => doc.data['name'] as String)
-        .toList());
+  Stream<List<User>> getClassAttendees() {
+    return _firestore
+        .collection(path)
+        .snapshots()
+        .map((snapshot) => snapshot.documents.map((doc) {
+          return User(
+                name: doc.data['name'],
+                email: doc.data['email'],
+                counter: doc.data['counter'],
+                rank: doc.data['rank'],
+                isOwner: doc.data['isOwner'],
+              );
+        }).toList());
   }
 
-  Future<void> attendClass(String name) async {
-    await _firestore.collection(path).add({'name': name });
+  Future<void> attendClass(User attendee) async {
+    await _firestore
+        .collection(path)
+        .add({
+          'name': attendee.name,
+          'grade': attendee.rank,
+          'email': attendee.email,
+          'counter': attendee.counter
+        });
   }
 
   Future<void> clearClass() async {
     var res = await _firestore.collection(path).getDocuments();
 
-    for (DocumentSnapshot ds in res.documents){
+    for (DocumentSnapshot ds in res.documents) {
       ds.reference.delete();
     }
   }

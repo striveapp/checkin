@@ -4,6 +4,7 @@ import 'package:checkin/src/blocs/auth/bloc.dart';
 import 'package:checkin/src/blocs/class/bloc.dart';
 import 'package:checkin/src/blocs/user/bloc.dart';
 import 'package:checkin/src/resources/class_repository.dart';
+import 'package:checkin/src/resources/user_repository.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter/widgets.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
@@ -25,6 +26,8 @@ class _StatusState extends State<StatusPage> {
   UserBloc get _userBloc => widget.userBloc;
 
   final ClassRepository _classRepository = ClassRepository();
+  final UserRepository _userRepository = UserRepository();
+
   ClassBloc _classBloc;
   AuthBloc _authBloc;
 
@@ -32,7 +35,7 @@ class _StatusState extends State<StatusPage> {
   void initState() {
     super.initState();
     _authBloc = BlocProvider.of<AuthBloc>(context);
-    _classBloc = ClassBloc(classRepository: _classRepository);
+    _classBloc = ClassBloc(classRepository: _classRepository, userRepository: _userRepository);
   }
 
   @override
@@ -54,7 +57,7 @@ class _StatusState extends State<StatusPage> {
                     //@TODO: should disable the button if already attending class
                     child: Text('Attend'),
                     onPressed: () {
-                      _classBloc.dispatch(Attend(name: (_userBloc.currentState as UserSuccess).currentUser.name ));
+                      _classBloc.dispatch(Attend(attendee: (_userBloc.currentState as UserSuccess).currentUser ));
                     },
                   ),
                   RaisedButton(

@@ -2,6 +2,7 @@ import 'package:checkin/src/blocs/auth/auth_bloc.dart';
 import 'package:checkin/src/blocs/auth/bloc.dart';
 import 'package:checkin/src/blocs/class/bloc.dart';
 import 'package:checkin/src/resources/class_repository.dart';
+import 'package:checkin/src/resources/user_repository.dart';
 import 'package:checkin/src/ui/attendees_list.dart';
 import 'package:checkin/src/ui/loading_indicator.dart';
 import 'package:flutter/material.dart';
@@ -21,6 +22,7 @@ class RegistryPage extends StatefulWidget {
 
 class _RegistryState extends State<RegistryPage> {
   final ClassRepository _classRepository = ClassRepository();
+  final UserRepository _userRepository = UserRepository();
   ClassBloc _classBloc;
   AuthBloc _authBloc;
 
@@ -28,7 +30,7 @@ class _RegistryState extends State<RegistryPage> {
   void initState() {
     super.initState();
     _authBloc = BlocProvider.of<AuthBloc>(context);
-    _classBloc = ClassBloc(classRepository: _classRepository);
+    _classBloc = ClassBloc(classRepository: _classRepository, userRepository: _userRepository);
   }
 
   @override
@@ -59,7 +61,7 @@ class _RegistryState extends State<RegistryPage> {
                   RaisedButton(
                     child: Text('Accept all'),
                     onPressed: () {
-                      _classBloc.dispatch(Clear());
+                      _classBloc.dispatch(Confirm(attendees: state.attendees));
                     },
                   ),
                   RaisedButton(

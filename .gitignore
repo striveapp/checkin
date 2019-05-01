@@ -77,4 +77,4 @@
 
 # Security
 *.keystore
-
+api-credentials.json

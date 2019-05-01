@@ -1,7 +1,8 @@
+import 'package:checkin/src/models/user.dart';
 import 'package:flutter/material.dart';
 
 class AttendeesList extends StatelessWidget {
-  final List<String> attendeeList;
+  final List<User> attendeeList;
 
   const AttendeesList({Key key, @required this.attendeeList}) : super(key: key);
 
@@ -22,7 +23,7 @@ class AttendeesList extends StatelessWidget {
           itemCount: 10,
           itemBuilder: (BuildContext context, int index) {
             if (index < this.attendeeList.length) {
-              return AttendeeTile(attendee: this.attendeeList[index]);
+              return AttendeeTile(attendee: this.attendeeList[index].name);
             }
           }
       ),
