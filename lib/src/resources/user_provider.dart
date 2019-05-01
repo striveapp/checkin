@@ -21,13 +21,27 @@ class UserProvider {
   Stream<User> getUserByEmail(String email) {
     return _firestore
         .collection(path)
-        .document(email)
+        .where("email", isEqualTo: email)
         .snapshots()
-        .map((snapshot) => User(
-              name: snapshot.data['name'],
-              email: snapshot.data['email'],
-              rank: snapshot.data['rank'],
-              isOwner: snapshot.data['isOwner'],
-            ));
+        .map((snapshot) {
+
+      var doc = snapshot.documents.first;
+      return User(
+        name: doc.data['name'],
+        email: doc.data['email'],
+        rank: doc.data['rank'],
+        isOwner: doc.data['isOwner'],
+      );
+    });
+  }
+
+  //@TODO: this might be trashable
+  Future<bool> isNewUser(String email) async {
+    var documents = await _firestore
+        .collection(path)
+        .where("email", isEqualTo: email)
+        .getDocuments();
+
+    return documents.documents.isEmpty;
   }
 }
