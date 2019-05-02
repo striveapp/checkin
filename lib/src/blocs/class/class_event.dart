@@ -1,3 +1,4 @@
+import 'package:checkin/src/models/user.dart';
 import 'package:equatable/equatable.dart';
 
 abstract class ClassEvent extends Equatable {
@@ -5,19 +6,24 @@ abstract class ClassEvent extends Equatable {
 }
 
 class Attend extends ClassEvent {
-  String name;
+  User attendee;
 
   Attend({
-    this.name,
-  }) : super([name]);
+    this.attendee,
+  }) : super([attendee]);
 
   @override
   String toString() => 'Attend';
 }
 
-class Clear extends ClassEvent {
+class Confirm extends ClassEvent {
+  List<User> attendees;
+
+  Confirm({
+    this.attendees,
+  }) : super([attendees]);
   @override
-  String toString() => 'Clear';
+  String toString() => 'Confirm';
 }
 
 class Remove extends ClassEvent {
@@ -26,13 +32,13 @@ class Remove extends ClassEvent {
 }
 
 class AttendeesUpdated extends ClassEvent {
-  
-  final List<String> attendees;
+
+  final List<User> attendees;
 
   AttendeesUpdated({
     this.attendees,
   }) : super([attendees]);
-  
+
   @override
   String toString() => 'Fetch';
 }

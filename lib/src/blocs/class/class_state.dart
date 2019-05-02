@@ -1,3 +1,4 @@
+import 'package:checkin/src/models/user.dart';
 import 'package:equatable/equatable.dart';
 
 abstract class ClassState extends Equatable {
@@ -16,7 +17,7 @@ class ClassError extends ClassState {
 
 class ClassLoaded extends ClassState {
 
-  final List<String> attendees;
+  final List<User> attendees;
 
   ClassLoaded({
     this.attendees,
