@@ -8,24 +8,30 @@ class AttendeesList extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    return Container(
-      alignment: Alignment(0.0, 0.0),
-      margin: EdgeInsets.all(15.0),
-      constraints: BoxConstraints(
-          maxHeight: 300.0,
-      ),
-      decoration: new BoxDecoration(
-          border: new Border.all(color: Colors.blueAccent)
-      ),
-      child: ListView.builder(
-          scrollDirection: Axis.vertical,
-          shrinkWrap: true,
-          itemCount: 10,
-          itemBuilder: (BuildContext context, int index) {
-            if (index < this.attendeeList.length) {
-              return AttendeeTile(attendee: this.attendeeList[index].name);
-            }
-          }
+    if (this.attendeeList.length == 0) {
+      return Card(
+          child: Container(
+        constraints: BoxConstraints.expand(width: 350.0, height: 150.0),
+        alignment: Alignment(0, 0),
+        child: Text(
+          'Empty class',
+          style: TextStyle(fontWeight: FontWeight.w400, fontSize: 18),
+        ),
+      ));
+    }
+
+    return Card(
+      child: Container(
+        constraints: BoxConstraints.expand(width: 350.0, height: 150.0),
+        child: ListView.builder(
+            scrollDirection: Axis.vertical,
+            shrinkWrap: true,
+            itemCount: 10,
+            itemBuilder: (BuildContext context, int index) {
+              if (index < this.attendeeList.length) {
+                return AttendeeTile(attendee: this.attendeeList[index].name);
+              }
+            }),
       ),
     );
   }
@@ -38,8 +44,17 @@ class AttendeeTile extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    return ListTile(
-      title: Text(attendee),
+    return Column(
+      children: <Widget>[
+        ListTile(
+          leading: const Icon(Icons.account_circle, size: 40,),
+          title: Padding(
+            padding: const EdgeInsets.symmetric(horizontal: 45),
+            child: Text(attendee, style: TextStyle(fontWeight: FontWeight.w400, fontSize: 18),),
+          ),
+        ),
+        Divider()
+      ],
     );
   }
 }

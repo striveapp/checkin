@@ -9,10 +9,13 @@ import 'package:flutter/material.dart';
 import 'package:flutter/widgets.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 
+import 'class_counter.dart';
+
 class StatusPage extends StatefulWidget {
   final UserBloc userBloc;
 
-  StatusPage({Key key,
+  StatusPage({
+    Key key,
     @required this.userBloc,
   }) : super(key: key);
 
@@ -35,14 +38,21 @@ class _StatusState extends State<StatusPage> {
   void initState() {
     super.initState();
     _authBloc = BlocProvider.of<AuthBloc>(context);
-    _classBloc = ClassBloc(classRepository: _classRepository, userRepository: _userRepository);
+    _classBloc = ClassBloc(
+        classRepository: _classRepository, userRepository: _userRepository);
   }
 
   @override
   Widget build(BuildContext context) {
     return Scaffold(
         appBar: AppBar(
-          title: Text("Status"),
+          title: Text("Status", style: TextStyle(
+              fontSize: 24,
+              letterSpacing: 0.8,
+              fontFamily: "Roboto",
+              color: Colors.white,
+              fontWeight: FontWeight.w600)),
+          centerTitle: true,
         ),
         body: BlocBuilder(
           bloc: _classBloc,
@@ -53,15 +63,38 @@ class _StatusState extends State<StatusPage> {
                         mainAxisAlignment: MainAxisAlignment.center,
                         crossAxisAlignment: CrossAxisAlignment.center,
                         children: [
-                  RaisedButton(
-                    //@TODO: should disable the button if already attending class
-                    child: Text('Attend'),
-                    onPressed: () {
-                      _classBloc.dispatch(Attend(attendee: (_userBloc.currentState as UserSuccess).currentUser ));
-                    },
+                  Padding(
+                    padding: const EdgeInsets.symmetric(vertical: 50),
+                    child: ClassCounter(
+                        counter: (_userBloc.currentState as UserSuccess)
+                            .currentUser
+                            .counter),
+                  ),
+                  Padding(
+                    padding: const EdgeInsets.symmetric(vertical: 10),
+                    child: RaisedButton(
+                      color: Colors.indigo,
+                      //@TODO: should disable the button if already attending class
+                      child: Text('Attend class',
+                          style: TextStyle(
+                              fontSize: 18,
+                              fontFamily: "Roboto",
+                              color: Colors.white,
+                              fontWeight: FontWeight.w600)),
+                      onPressed: () {
+                        _classBloc.dispatch(Attend(
+                            attendee: (_userBloc.currentState as UserSuccess)
+                                .currentUser));
+                      },
+                    ),
                   ),
                   RaisedButton(
-                    child: Text('logout'),
+                    color: Colors.red,
+                    child: Text('Logout',
+                        style: TextStyle(
+                        fontSize: 18,
+                        color: Colors.white,
+                        fontWeight: FontWeight.w600)),
                     onPressed: () {
                       _authBloc.dispatch(LogOut());
                     },

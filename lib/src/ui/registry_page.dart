@@ -30,14 +30,22 @@ class _RegistryState extends State<RegistryPage> {
   void initState() {
     super.initState();
     _authBloc = BlocProvider.of<AuthBloc>(context);
-    _classBloc = ClassBloc(classRepository: _classRepository, userRepository: _userRepository);
+    _classBloc = ClassBloc(
+        classRepository: _classRepository, userRepository: _userRepository);
   }
 
   @override
   Widget build(BuildContext context) {
     return Scaffold(
       appBar: AppBar(
-        title: Text("Registry"),
+        title: Text("Registry",
+            style: TextStyle(
+                fontSize: 24,
+                letterSpacing: 0.8,
+                fontFamily: "Roboto",
+                color: Colors.white,
+                fontWeight: FontWeight.w600)),
+        centerTitle: true,
       ),
       body: BlocBuilder(
         bloc: _classBloc,
@@ -46,26 +54,40 @@ class _RegistryState extends State<RegistryPage> {
             return LoadingIndicator();
           }
           if (state is ClassLoaded) {
-            if (state.attendees.isEmpty) {
-              return Center(
-                child: Text('no attendees'),
-              );
-            }
             return Center(
                 child: Container(
                     child: Column(
                         mainAxisAlignment: MainAxisAlignment.center,
                         crossAxisAlignment: CrossAxisAlignment.center,
                         children: [
-                  AttendeesList(attendeeList: state.attendees),
-                  RaisedButton(
-                    child: Text('Accept all'),
-                    onPressed: () {
-                      _classBloc.dispatch(Confirm(attendees: state.attendees));
-                    },
+                  Padding(
+                    padding: const EdgeInsets.symmetric(vertical: 50),
+                    child: AttendeesList(attendeeList: state.attendees),
+                  ),
+                  Padding(
+                    padding: const EdgeInsets.symmetric(vertical: 10),
+                    child: RaisedButton(
+                      color: Colors.indigo,
+                      child: Text('Accept all',
+                          style: TextStyle(
+                              fontSize: 18,
+                              fontFamily: "Roboto",
+                              color: Colors.white,
+                              fontWeight: FontWeight.w600)),
+                      onPressed: () {
+                        _classBloc
+                            .dispatch(Confirm(attendees: state.attendees));
+                      },
+                    ),
                   ),
                   RaisedButton(
-                    child: Text('logout'),
+                    color: Colors.red,
+                    child: Text('Logout',
+                        style: TextStyle(
+                            fontSize: 18,
+                            fontFamily: "Roboto",
+                            color: Colors.white,
+                            fontWeight: FontWeight.w600)),
                     onPressed: () {
                       _authBloc.dispatch(LogOut());
                     },
