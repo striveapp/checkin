@@ -50,7 +50,8 @@ void main() {
             final MockFirebaseUser fakeFirebaseUser = MockFirebaseUser();
             var displayName = "Batman";
             var email = "not@work.com";
-            var fakeUser = User(name: displayName, email: email);
+            var imageUrl = "http://image.url";
+            var fakeUser = User(name: displayName, email: email, imageUrl: imageUrl);
 
             setUp(() {
                 loginBloc.dispatch(LoginWithGoogle());
@@ -69,7 +70,7 @@ void main() {
                 });
 
             });
-            
+
             group("when isFirstLogin is true", () {
                 test("should create new User and dispatch the LoggedIn action", () async {
                     final expectedState = [
@@ -79,6 +80,7 @@ void main() {
 
                     when(fakeFirebaseUser.displayName).thenReturn(displayName);
                     when(fakeFirebaseUser.email).thenReturn(email);
+                    when(fakeFirebaseUser.photoUrl).thenReturn(imageUrl);
                     when(mockFirebaseAuth.signInWithCredential(any)).thenAnswer((_) {
                         return Future<MockFirebaseUser>.value(fakeFirebaseUser);
                     });
@@ -104,7 +106,7 @@ void main() {
 
                     when(fakeFirebaseUser.displayName).thenReturn(displayName);
                     when(fakeFirebaseUser.email).thenReturn(email);
-
+                    when(fakeFirebaseUser.photoUrl).thenReturn(imageUrl);
 
                     when(mockFirebaseAuth.signInWithCredential(any)).thenAnswer((_) {
                         return Future<MockFirebaseUser>.value(fakeFirebaseUser);

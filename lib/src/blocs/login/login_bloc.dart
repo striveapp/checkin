@@ -29,7 +29,7 @@ class LoginBloc extends Bloc<LoginEvent, LoginState> {
   LoginState get initialState => LoginInitial();
 
   @override
-  Stream<LoginState> mapEventToState(LoginState currentState, LoginEvent event) async* {
+  Stream<LoginState> mapEventToState(LoginEvent event) async* {
     debugPrint('Processing event [$event], currentState [$currentState]');
     bool isNewUser;
 
@@ -46,7 +46,8 @@ class LoginBloc extends Bloc<LoginEvent, LoginState> {
           }
           debugPrint('User successfully logged in as [$user]');
           debugPrint('isFirstLogin: $isNewUser');
-          this.authBloc.dispatch(LoggedIn(currentUserEmail: user.email, isFirstLogin: isNewUser));
+          this.authBloc.dispatch(
+              LoggedIn(currentUserEmail: user.email, isFirstLogin: isNewUser));
         }).catchError((e) {
           print('Error during googleSignIn: ' + e.toString());
         });
@@ -59,7 +60,8 @@ class LoginBloc extends Bloc<LoginEvent, LoginState> {
 
   Future<User> _googleSignIn() async {
     final GoogleSignInAccount googleUser = await this.googleSignIn.signIn();
-    final GoogleSignInAuthentication googleAuth = await googleUser.authentication;
+    final GoogleSignInAuthentication googleAuth = await googleUser
+        .authentication;
     final AuthCredential credential = GoogleAuthProvider.getCredential(
       accessToken: googleAuth.accessToken,
       idToken: googleAuth.idToken,
@@ -68,10 +70,11 @@ class LoginBloc extends Bloc<LoginEvent, LoginState> {
     final firebaseUser = await this.auth.signInWithCredential(credential);
 
     return firebaseUser != null ?
-      Future.value(User(
+    Future.value(User(
         name: firebaseUser.displayName,
-        email: firebaseUser.email
-      )) :
-      Future.error("User is null");
+        email: firebaseUser.email,
+        imageUrl: firebaseUser.photoUrl
+    )) :
+    Future.error("User is null");
   }
 }

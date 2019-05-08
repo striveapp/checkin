@@ -52,6 +52,7 @@ class _GradeButtonsState extends State<GradeButtons> {
   _onGradeButtonPressed(String grade) {
     debugPrint('Grade selected: $grade');
     _userBloc.dispatch(Update(grade: grade));
+    //@TODO: this is causing a bug that prevent the user from logging out. Checks: https://github.com/felangel/bloc/issues/119
     Navigator.pushReplacementNamed(context, '/home');
   }
 }

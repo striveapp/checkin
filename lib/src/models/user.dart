@@ -8,17 +8,19 @@ class User extends Equatable {
   final int counter;
   final String rank;
   final bool isOwner;
+  final String imageUrl;
 
   User({
     @required this.name,
     @required this.email,
+    @required this.imageUrl,
     this.counter= 0,
     this.rank= "White",
     this.isOwner= false,
-  }) : super([name, email, counter, rank, isOwner]);
+  }) : super([name, email, imageUrl, counter, rank, isOwner]);
 
   @override
   String toString() {
-    return 'User{name: $name, email: $email, counter: $counter, rank: $rank, isOwner: $isOwner}';
+    return 'User{name: $name, email: $email, imageUrl: $imageUrl, counter: $counter, rank: $rank, isOwner: $isOwner}';
   }
 }

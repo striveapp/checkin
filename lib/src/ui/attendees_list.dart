@@ -29,7 +29,7 @@ class AttendeesList extends StatelessWidget {
             itemCount: 10,
             itemBuilder: (BuildContext context, int index) {
               if (index < this.attendeeList.length) {
-                return AttendeeTile(attendee: this.attendeeList[index].name);
+                return AttendeeTile(attendee: this.attendeeList[index]);
               }
             }),
       ),
@@ -38,7 +38,7 @@ class AttendeesList extends StatelessWidget {
 }
 
 class AttendeeTile extends StatelessWidget {
-  final String attendee;
+  final User attendee;
 
   const AttendeeTile({Key key, @required this.attendee}) : super(key: key);
 
@@ -46,11 +46,16 @@ class AttendeeTile extends StatelessWidget {
   Widget build(BuildContext context) {
     return Column(
       children: <Widget>[
-        ListTile(
-          leading: const Icon(Icons.account_circle, size: 40,),
-          title: Padding(
-            padding: const EdgeInsets.symmetric(horizontal: 45),
-            child: Text(attendee, style: TextStyle(fontWeight: FontWeight.w400, fontSize: 18),),
+        Padding(
+          padding: const EdgeInsets.only(top: 8.0),
+          child: ListTile(
+            leading: ClipRRect(
+                borderRadius: BorderRadius.circular(50.0),
+                child: Image.network(attendee.imageUrl, width: 50, height: 50)),
+            title: Padding(
+              padding: EdgeInsets.symmetric(horizontal: 45),
+              child: Text(attendee.name, style: TextStyle(fontWeight: FontWeight.w400, fontSize: 18),),
+            ),
           ),
         ),
         Divider()

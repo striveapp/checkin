@@ -26,7 +26,7 @@ class ClassBloc extends Bloc<ClassEvent, ClassState> {
   ClassState get initialState => ClassUninitialized();
 
   @override
-  Stream<ClassState> mapEventToState(ClassState currentState, ClassEvent event) async* {
+  Stream<ClassState> mapEventToState(ClassEvent event) async* {
     if (event is AttendeesUpdated) {
       try {
         yield ClassLoaded(attendees: event.attendees);

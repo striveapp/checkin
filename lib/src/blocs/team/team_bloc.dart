@@ -4,24 +4,24 @@ import 'package:checkin/src/models/team.dart';
 import 'package:checkin/src/resources/team_repository.dart';
 import 'package:flutter/foundation.dart';
 import 'package:meta/meta.dart';
-import 'package:rxdart/rxdart.dart';
 
+//@TODO: we should remove this code
 class TeamBloc extends Bloc<TeamEvent, TeamState> {
   final TeamRepository teamRepository;
 
   TeamBloc({@required this.teamRepository});
 
-  @override
+/*  @override
   Stream<TeamEvent> transform(Stream<TeamEvent> events) {
     return (events as Observable<TeamEvent>)
         .debounce(Duration(milliseconds: 500));
-  }
+  }*/
 
   @override
   TeamState get initialState => TeamUninitialized();
 
   @override
-  Stream<TeamState> mapEventToState(currentState, event) async* {
+  Stream<TeamState> mapEventToState(event) async* {
     debugPrint('Processing event [$event], currentState [$currentState]');
 
     if (event is Fetch && !_hasReachedMax(currentState)) {
@@ -33,12 +33,7 @@ class TeamBloc extends Bloc<TeamEvent, TeamState> {
           yield TeamLoaded(teams: teams, hasReachedMax: false);
         }
         if (currentState is TeamLoaded) {
-          final teams = await _fetchTeams(currentState.teams.length, 20);
-          yield teams.isEmpty
-              ? currentState.copyWith(hasReachedMax: true)
-              : TeamLoaded(
-//              teams: currentState.teams + teams, hasReachedMax: false);
-              teams: teams, hasReachedMax: false);
+          yield TeamLoaded(teams: null, hasReachedMax: false);
         }
       } catch (e) {
         yield TeamError();

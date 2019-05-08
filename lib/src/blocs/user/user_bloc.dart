@@ -29,8 +29,7 @@ class UserBloc extends Bloc<UserEvent, UserState> {
   UserState get initialState => UserLoading();
 
   @override
-  Stream<UserState> mapEventToState(UserState currentState,
-      UserEvent event) async* {
+  Stream<UserState> mapEventToState(UserEvent event) async* {
     if(event is UserUpdated) {
       yield UserSuccess(currentUser: event.user);
     } else if (event is Create) {
@@ -46,7 +45,7 @@ class UserBloc extends Bloc<UserEvent, UserState> {
       Create event) async* {
     try {
       debugPrint('Creating user [' + event.user.toString() + ']');
-      this.userRepository.createUser(event.user.name, event.user.email, event.user.rank, event.user.isOwner);
+      this.userRepository.createUser(event.user.name, event.user.email, event.user.imageUrl, event.user.counter, event.user.rank, event.user.isOwner);
       debugPrint('Created!');
     } catch(e) {
       print('Error during user creation: ' + e.toString());

@@ -6,9 +6,16 @@ class UserProvider {
   Firestore _firestore = Firestore.instance;
   static const String path = 'users';
 
-  createUser(String name, String email, String rank, bool isOwner) async {
-    _firestore.collection(path).document(email).setData(
-        {'name': name, 'email': email, 'rank': rank, 'isOwner': isOwner});
+  createUser(
+      String name, String email, String imageUrl, int counter, String rank, bool isOwner) async {
+    _firestore.collection(path).document(email).setData({
+      'name': name,
+      'email': email,
+      'imageUrl': imageUrl,
+      'counter': counter,
+      'rank': rank,
+      'isOwner': isOwner
+    });
   }
 
   updateUserGrade(User currentUser, String grade) async {
@@ -18,21 +25,23 @@ class UserProvider {
         .updateData({"rank": grade});
   }
 
-  Stream<User> getUserByEmail(String email) {
+  Stream<User>  getUserByEmail(String email) {
     return _firestore
         .collection(path)
         .where("email", isEqualTo: email)
         .snapshots()
         .map((snapshot) {
-
-      var doc = snapshot.documents.first;
-      return User(
-        name: doc.data['name'],
-        email: doc.data['email'],
-        counter: doc.data['counter'],
-        rank: doc.data['rank'],
-        isOwner: doc.data['isOwner'],
-      );
+      if (snapshot.documents.isNotEmpty) {
+        var doc = snapshot.documents.first;
+        return User(
+          name: doc.data['name'],
+          email: doc.data['email'],
+          imageUrl: doc.data['imageUrl'],
+          counter: doc.data['counter'],
+          rank: doc.data['rank'],
+          isOwner: doc.data['isOwner'],
+        );
+      }
     });
   }
 

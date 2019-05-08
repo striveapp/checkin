@@ -18,7 +18,7 @@ void main() {
     setUp(() {
       mockUserRepository = MockUserRepository();
       mockAuthBloc = MockAuthBloc();
-      testUser = User(name: "Tobuto Nellano", email: "tobuto@nelano.com");
+      testUser = User(name: "Tobuto Nellano", email: "tobuto@nelano.com", imageUrl: "http://image.url");
       when(mockAuthBloc.currentState).thenReturn(AuthAuthenticated(currentUserEmail: testUser.email, isFirstLogin: false));
       when(mockUserRepository.getUserByEmail(any))
           .thenAnswer((_) => Stream<User>.fromFuture(Future<User>.value(testUser)));
@@ -41,7 +41,7 @@ void main() {
             UserSuccess(currentUser: testUser),
           ];
 
-          when(mockUserRepository.createUser(testUser.name, testUser.email,
+          when(mockUserRepository.createUser(testUser.name, testUser.email, testUser.imageUrl, testUser.counter,
                   testUser.rank, testUser.isOwner))
               .thenAnswer((_) => Future<User>.value(null));
 
@@ -60,7 +60,7 @@ void main() {
             UserError(),
           ];
 
-          when(mockUserRepository.createUser(testUser.name, testUser.email,
+          when(mockUserRepository.createUser(testUser.name, testUser.email, testUser.imageUrl, testUser.counter,
                   testUser.rank, testUser.isOwner))
               .thenThrow(Exception("i don't wanna live in this world anymore"));
 

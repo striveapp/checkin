@@ -5,8 +5,8 @@ class UserRepository {
   final _userProvider = UserProvider();
 
   createUser(
-          String displayName, String email, String rank, bool isOwner) =>
-      _userProvider.createUser(displayName, email, rank, isOwner);
+          String displayName, String email, String imageUrl, int counter, String rank, bool isOwner) =>
+      _userProvider.createUser(displayName, email, imageUrl, counter, rank, isOwner);
 
   Stream<User> getUserByEmail(String email) => _userProvider.getUserByEmail(email);
 
