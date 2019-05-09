@@ -51,10 +51,10 @@ class _LoginFormState extends State<LoginForm> {
             crossAxisAlignment: CrossAxisAlignment.center,
             children: [
               Container(
-                margin: new EdgeInsets.fromLTRB(5.0, 0.0, 5.0, 40.0),
+                margin: new EdgeInsets.symmetric(vertical: 50),
                 child: Image.asset(
                   "assets/images/logo.png",
-                  width: 250.0,
+                  width: 150.0,
                 ),
               ),
               GoogleSignInButton(
