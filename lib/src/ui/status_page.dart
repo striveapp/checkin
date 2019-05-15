@@ -57,6 +57,19 @@ class _StatusState extends State<StatusPage> {
         body: BlocBuilder(
           bloc: _classBloc,
           builder: (BuildContext context, ClassState state) {
+            var _onPressed;
+            var _currentUserEmail = (_authBloc.currentState as AuthAuthenticated).currentUserEmail;
+
+            if(state is ClassLoaded) {
+              var _isUserInClass = (currentUserEmail) =>
+                state.attendees.firstWhere((attendee) =>
+                  attendee.email == currentUserEmail) == null;
+
+              if (state.attendees.length == 0 || _isUserInClass(_currentUserEmail)) {
+                _onPressed = () => _classBloc.dispatch(Attend(attendee: (_userBloc.currentState as UserSuccess).currentUser));
+              }
+            }
+
             return Center(
                 child: Container(
                     child: Column(
@@ -81,11 +94,7 @@ class _StatusState extends State<StatusPage> {
                               fontFamily: "Roboto",
                               color: Colors.white,
                               fontWeight: FontWeight.w600)),
-                      onPressed: () {
-                        _classBloc.dispatch(Attend(
-                            attendee: (_userBloc.currentState as UserSuccess)
-                                .currentUser));
-                      },
+                      onPressed: _onPressed,
                     ),
                   ),
                   RaisedButton(
