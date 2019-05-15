@@ -38,6 +38,7 @@ class _RegistryState extends State<RegistryPage> {
   Widget build(BuildContext context) {
     return Scaffold(
       appBar: AppBar(
+        backgroundColor: Colors.black87,
         title: Text("Registry",
             style: TextStyle(
                 fontSize: 24,

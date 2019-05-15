@@ -25,6 +25,21 @@ class StatusPage extends StatefulWidget {
   }
 }
 
+_getColor(String grade) {
+  switch(grade) {
+    case 'White':
+      return Colors.white;
+    case 'Blue':
+      return Colors.blueAccent;
+    case 'Purple':
+      return Colors.purple;
+    case 'Brown':
+      return Colors.brown;
+    case 'Black':
+      return Colors.black87;
+  }
+}
+
 class _StatusState extends State<StatusPage> {
   UserBloc get _userBloc => widget.userBloc;
 
@@ -46,11 +61,12 @@ class _StatusState extends State<StatusPage> {
   Widget build(BuildContext context) {
     return Scaffold(
         appBar: AppBar(
+          backgroundColor: _getColor((_userBloc.currentState as UserSuccess).currentUser.rank),
           title: Text("Status", style: TextStyle(
               fontSize: 24,
               letterSpacing: 0.8,
               fontFamily: "Roboto",
-              color: Colors.white,
+              color: ((_userBloc.currentState as UserSuccess).currentUser.rank == 'White') ? Colors.black : Colors.white,
               fontWeight: FontWeight.w600)),
           centerTitle: true,
         ),

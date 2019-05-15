@@ -32,21 +32,38 @@ class _GradeButtonsState extends State<GradeButtons> {
                         child: ButtonTheme(
                             height: 50.0,
                             minWidth: 240.0,
-                            buttonColor: Colors.white,
+                            buttonColor: _getColor(grade),
                             padding: const EdgeInsets.all(0.0),
                             child: RaisedButton(
                                 child: Text(
                                   grade,
                                   style: TextStyle(
+                                      color: (grade == 'White') ? Colors.black : Colors.white,
                                       fontStyle: FontStyle.normal,
                                       fontFamily: 'Roboto',
-                                      fontSize: 22.0),
+                                      fontSize: 22.0
+                                  ),
                                 ),
                                 onPressed: () =>
                                     _onGradeButtonPressed(grade)))))
                     .toList()));
       },
     );
+  }
+
+  _getColor(String grade) {
+    switch(grade) {
+      case 'White':
+        return Colors.white;
+      case 'Blue':
+        return Colors.blueAccent;
+      case 'Purple':
+        return Colors.purple;
+      case 'Brown':
+        return Colors.brown;
+      case 'Black':
+        return Colors.black87;
+    }
   }
 
   _onGradeButtonPressed(String grade) {
