@@ -50,10 +50,14 @@ class _RegistryState extends State<RegistryPage> {
       body: BlocBuilder(
         bloc: _classBloc,
         builder: (BuildContext context, ClassState state) {
+          var _onPressed;
           if (state is ClassUninitialized) {
             return LoadingIndicator();
           }
           if (state is ClassLoaded) {
+
+            _onPressed = state.attendees.isNotEmpty ? () => _classBloc.dispatch(Confirm(attendees: state.attendees)) : null;
+
             return Center(
                 child: Container(
                     child: Column(
@@ -74,10 +78,7 @@ class _RegistryState extends State<RegistryPage> {
                               fontFamily: "Roboto",
                               color: Colors.white,
                               fontWeight: FontWeight.w600)),
-                      onPressed: () {
-                        _classBloc
-                            .dispatch(Confirm(attendees: state.attendees));
-                      },
+                      onPressed: _onPressed,
                     ),
                   ),
                   RaisedButton(
