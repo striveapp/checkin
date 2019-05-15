@@ -25,7 +25,7 @@ class UserProvider {
         .updateData({"rank": grade});
   }
 
-  Stream<User>  getUserByEmail(String email) {
+  Stream<User> getUserByEmail(String email) {
     return _firestore
         .collection(path)
         .where("email", isEqualTo: email)
@@ -40,6 +40,7 @@ class UserProvider {
           counter: doc.data['counter'],
           rank: doc.data['rank'],
           isOwner: doc.data['isOwner'],
+          isDev: doc.data['isDev']
         );
       }
     });

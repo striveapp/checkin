@@ -48,7 +48,7 @@ class _HomePageState extends State<HomePage> {
           }
 
           if(state is UserSuccess) {
-            return state.currentUser.isOwner ? RegistryPage() : StatusPage(userBloc: _userBloc,);
+            return state.currentUser.isOwner ? RegistryPage(userBloc: _userBloc) : StatusPage(userBloc: _userBloc,);
           }
         })
     );

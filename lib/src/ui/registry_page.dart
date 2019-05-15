@@ -1,6 +1,7 @@
 import 'package:checkin/src/blocs/auth/auth_bloc.dart';
 import 'package:checkin/src/blocs/auth/bloc.dart';
 import 'package:checkin/src/blocs/class/bloc.dart';
+import 'package:checkin/src/blocs/user/bloc.dart';
 import 'package:checkin/src/resources/class_repository.dart';
 import 'package:checkin/src/resources/user_repository.dart';
 import 'package:checkin/src/ui/attendees_list.dart';
@@ -10,7 +11,13 @@ import 'package:flutter/widgets.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 
 class RegistryPage extends StatefulWidget {
-  RegistryPage({Key key, this.title}) : super(key: key);
+  final UserBloc userBloc;
+
+  RegistryPage({
+    Key key,
+    this.title,
+    @required this.userBloc,
+  }) : super(key: key);
 
   final String title;
 
@@ -21,6 +28,8 @@ class RegistryPage extends StatefulWidget {
 }
 
 class _RegistryState extends State<RegistryPage> {
+  UserBloc get _userBloc => widget.userBloc;
+
   final ClassRepository _classRepository = ClassRepository();
   final UserRepository _userRepository = UserRepository();
   ClassBloc _classBloc;
@@ -56,8 +65,9 @@ class _RegistryState extends State<RegistryPage> {
             return LoadingIndicator();
           }
           if (state is ClassLoaded) {
-
-            _onPressed = state.attendees.isNotEmpty ? () => _classBloc.dispatch(Confirm(attendees: state.attendees)) : null;
+            _onPressed = state.attendees.isNotEmpty
+                ? () => _classBloc.dispatch(Confirm(attendees: state.attendees))
+                : null;
 
             return Center(
                 child: Container(
@@ -82,18 +92,18 @@ class _RegistryState extends State<RegistryPage> {
                       onPressed: _onPressed,
                     ),
                   ),
-                  RaisedButton(
-                    color: Colors.red,
-                    child: Text('Logout',
-                        style: TextStyle(
-                            fontSize: 18,
-                            fontFamily: "Roboto",
-                            color: Colors.white,
-                            fontWeight: FontWeight.w600)),
-                    onPressed: () {
-                      _authBloc.dispatch(LogOut());
-                    },
-                  )
+                  if ((_userBloc.currentState as UserSuccess).currentUser.isDev)
+                    RaisedButton(
+                      color: Colors.red,
+                      child: Text('Logout',
+                          style: TextStyle(
+                              fontSize: 18,
+                              color: Colors.white,
+                              fontWeight: FontWeight.w600)),
+                      onPressed: () {
+                        _authBloc.dispatch(LogOut());
+                      },
+                    )
                 ])));
           }
         },

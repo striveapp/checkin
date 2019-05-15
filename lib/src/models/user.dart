@@ -8,6 +8,7 @@ class User extends Equatable {
   final int counter;
   final String rank;
   final bool isOwner;
+  final bool isDev;
   final String imageUrl;
 
   User({
@@ -17,7 +18,8 @@ class User extends Equatable {
     this.counter= 0,
     this.rank= "White",
     this.isOwner= false,
-  }) : super([name, email, imageUrl, counter, rank, isOwner]);
+    this.isDev = false,
+  }) : super([name, email, imageUrl, counter, rank, isOwner, isDev]);
 
   @override
   String toString() {

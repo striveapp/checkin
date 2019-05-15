@@ -113,7 +113,8 @@ class _StatusState extends State<StatusPage> {
                       onPressed: _onPressed,
                     ),
                   ),
-                  RaisedButton(
+                  if ((_userBloc.currentState as UserSuccess).currentUser.isDev)
+                    RaisedButton(
                     color: Colors.red,
                     child: Text('Logout',
                         style: TextStyle(
