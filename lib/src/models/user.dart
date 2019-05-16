@@ -18,11 +18,11 @@ class User extends Equatable {
     this.counter= 0,
     this.rank= "White",
     this.isOwner= false,
-    this.isDev = false,
+    this.isDev= false,
   }) : super([name, email, imageUrl, counter, rank, isOwner, isDev]);
 
   @override
   String toString() {
-    return 'User{name: $name, email: $email, imageUrl: $imageUrl, counter: $counter, rank: $rank, isOwner: $isOwner}';
+    return 'User{name: $name, email: $email, imageUrl: $imageUrl, counter: $counter, rank: $rank, isOwner: $isOwner, isDev: $isDev}';
   }
 }

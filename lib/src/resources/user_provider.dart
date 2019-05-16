@@ -40,7 +40,7 @@ class UserProvider {
           counter: doc.data['counter'],
           rank: doc.data['rank'],
           isOwner: doc.data['isOwner'],
-          isDev: doc.data['isDev']
+          isDev: doc.data['isDev'] ?? false,
         );
       }
     });
