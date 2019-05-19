@@ -10,6 +10,9 @@ Run `npm install` from this directory, and make sure that you have a recent
 version of the [Firebase CLI tool](https://github.com/firebase/firebase-tools)
 installed (you'll need `firebase --version` to be at least `6.3.0`).
 
+```
+npm install -g firebase-tools
+```
 ### Running the emulator
 
 Setup the Firestore emulator

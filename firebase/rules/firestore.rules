@@ -9,6 +9,8 @@ function loggedUserIsGuildMaster(email, database) {
 service cloud.firestore {
   match /databases/{database}/documents {
 
+    // Start here. Keep your database locked down by default, then add rules to grant access to certain read or writes.
+    // If you flip that value to true and your entire database will be open to the public.
     match /{document=**} {
       allow read, write: if false;
     }
@@ -16,6 +18,10 @@ service cloud.firestore {
     match /users/{email} {
       allow read: if isLoggedUser(email);
       allow create: if isLoggedUser(email) && request.resource.data.isOwner == false;
+    }
+
+    match /class/{document=**} {
+      allow read: if isLoggedUser(request.auth.token.email);
     }
 
     match /class/{id} {

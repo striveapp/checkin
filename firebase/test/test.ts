@@ -13,6 +13,16 @@ const coverageUrl = `http://localhost:8080/emulator/v1/projects/${projectId}:rul
 const rules = fs.readFileSync("rules/firestore.rules", "utf8");
 
 /**
+ * Creates a new app with no authentication.
+ *
+ * @return {object} the app.
+ */
+function nonAuthedApp() {
+    return firebase.initializeTestApp({projectId})
+        .firestore();
+}
+
+/**
  * Creates a new app with authentication data matching the input.
  *
  * @param {object} auth the object to use for authentication (typically {uid: some-uid})
@@ -25,9 +35,8 @@ function authedApp(auth) {
 }
 
 /**
- * Creates a new admin app with authentication data matching the input.
+ * Creates a new admin app.
  *
- * @param {object} auth the object to use for authentication (typically {uid: some-uid})
  * @return {object} the app.
  */
 function adminApp() {
@@ -143,6 +152,25 @@ class MyApp {
     }
 
     // test collection class
+
+    @test
+    async "should only let registered users read class collection"() {
+        const loggedUser = authedApp({uid: "loggedUser", email: "loggedUser@test.com"});
+
+        await firebase.assertSucceeds(
+            loggedUser
+                .collection("class")
+                .get()
+        );
+
+        const nonLoggedUser = nonAuthedApp();
+
+        await firebase.assertFails(
+            nonLoggedUser
+                .collection("class")
+                .get()
+        );
+    }
 
     /**
      * we modify user.isOwner manually, therefore no-one should be able to set that property to true
