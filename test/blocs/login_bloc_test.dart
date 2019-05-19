@@ -98,7 +98,7 @@ void main() {
             });
 
             group("when isFirstLogin is false", () {
-                test("should not create new User but dispatch the LoggedIn action", () async {
+                test("should update user and dispatch the LoggedIn action", () async {
                     final expectedState = [
                         LoginInitial(),
                         LoginLoading()
@@ -119,7 +119,7 @@ void main() {
                         emitsInOrder(expectedState),
                     );
 
-                    verifyNever(mockUserBloc.dispatch(Create(user: fakeUser)));
+                    verify(mockUserBloc.dispatch(Create(user: fakeUser)));
                     verify(mockAuthBloc.dispatch(LoggedIn(currentUserEmail: email, isFirstLogin: false)));
                 });
             });

@@ -1,21 +1,19 @@
 import 'package:checkin/src/models/user.dart';
 import 'package:cloud_firestore/cloud_firestore.dart';
+import 'package:flutter/foundation.dart';
 
 class UserProvider {
   //@TODO: Rename rank in grade
   Firestore _firestore = Firestore.instance;
   static const String path = 'users';
 
-  createUser(
-      String name, String email, String imageUrl, int counter, String rank, bool isOwner) async {
+  createUser(String name, String email, String imageUrl, int counter,
+      String rank, bool isOwner) async {
     _firestore.collection(path).document(email).setData({
       'name': name,
       'email': email,
       'imageUrl': imageUrl,
-      'counter': counter,
-      'rank': rank,
-      'isOwner': isOwner
-    });
+    }, merge: true );
   }
 
   updateUserGrade(User currentUser, String grade) async {
@@ -28,32 +26,35 @@ class UserProvider {
   Stream<User> getUserByEmail(String email) {
     return _firestore
         .collection(path)
-        .where("email", isEqualTo: email)
+        .document(email)
         .snapshots()
-        .map((snapshot) {
-      if (snapshot.documents.isNotEmpty) {
-        var doc = snapshot.documents.first;
-        return User(
-          name: doc.data['name'],
-          email: doc.data['email'],
-          imageUrl: doc.data['imageUrl'],
-          counter: doc.data['counter'],
-          rank: doc.data['rank'],
-          isOwner: doc.data['isOwner'],
-          isDev: doc.data['isDev'] ?? false,
-        );
-      }
-    });
+        .map((user) => User(
+              name: user.data['name'],
+              email: user.data['email'],
+              imageUrl: user.data['imageUrl'],
+              counter: user.data['counter'] ?? 0,
+              rank: user.data['rank'],
+              isOwner: user.data['isOwner'] ?? false,
+              isDev: user.data['isDev'] ?? false,
+            ));
   }
 
   //@TODO: this might be trashable
   Future<bool> isNewUser(String email) async {
-    var documents = await _firestore
-        .collection(path)
-        .where("email", isEqualTo: email)
-        .getDocuments();
+    debugPrint("isNewUser started");
 
-    return documents.documents.isEmpty;
+    var user = await _firestore
+        .collection(path)
+        .document(email)
+        .get();
+
+    debugPrint('isNewUser [$user]');
+
+    if( ! user.exists ) {
+      return true;
+    }
+
+    return user.data['rank'] == null;
   }
 
   incrementUserCounter(User currentUser) {

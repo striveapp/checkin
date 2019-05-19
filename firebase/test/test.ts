@@ -1,6 +1,7 @@
 /// <reference path='../node_modules/mocha-typescript/globals.d.ts' />
 import * as firebase from "@firebase/testing";
 import * as fs from "fs";
+import doc = Mocha.reporters.doc;
 
 /*
  * ============
@@ -78,24 +79,32 @@ class MyApp {
     }
 
     @test
-    async "should only let users create their own profile"() {
+    async "should only let users create or update their own profile"() {
         const db = authedApp({uid: "loggedUser", email: "loggedUser@test.com"});
         await firebase.assertSucceeds(
             db
                 .collection("users")
                 .doc("loggedUser@test.com")
                 .set({
-                    isOwner: false,
                     birthday: "January 1",
                     createdAt: firebase.firestore.FieldValue.serverTimestamp()
                 })
         );
+
+        await firebase.assertSucceeds(
+            db
+                .collection("users")
+                .doc("loggedUser@test.com")
+                .update({
+                    updatedAt: firebase.firestore.FieldValue.serverTimestamp()
+                })
+        );
+
         await firebase.assertFails(
             db
                 .collection("users")
                 .doc("otherUser@test.com")
-                .set({
-                    isOwner: false,
+                .update({
                     birthday: "January 1",
                     createdAt: firebase.firestore.FieldValue.serverTimestamp()
                 })
@@ -122,8 +131,9 @@ class MyApp {
 
 
     @test
-    async "should block any user creating/upgrading himself as master"() {
+    async "should block any user creating/upgrading himself as master or dev unless they already are"() {
         const db = authedApp({uid: "loggedUser", email: "loggedUser@test.com"});
+        const admin = adminApp()
         await firebase.assertFails(
             db
                 .collection("users")
@@ -133,12 +143,23 @@ class MyApp {
                 })
         );
 
-        await firebase.assertSucceeds(
+        await firebase.assertFails(
             db
                 .collection("users")
                 .doc("loggedUser@test.com")
                 .set({
-                    isOwner: false
+                    isDev: true
+                })
+        );
+
+
+        await firebase.assertSucceeds(
+            admin
+                .collection("users")
+                .doc("loggedUser@test.com")
+                .set({
+                    isOwner: false,
+                    isDev: false
                 })
         );
         await firebase.assertFails(
@@ -149,6 +170,43 @@ class MyApp {
                     isOwner: true
                 })
         );
+
+       await firebase.assertSucceeds(
+            admin
+                .collection("users")
+                .doc("loggedUser@test.com")
+                .set({
+                    isOwner: true,
+                    isDev: false
+                })
+        );
+        await firebase.assertSucceeds(
+            db
+                .collection("users")
+                .doc("loggedUser@test.com")
+                .update({
+                    isOwner: true
+                })
+        );
+
+        await firebase.assertSucceeds(
+            admin
+                .collection("users")
+                .doc("loggedUser@test.com")
+                .set({
+                    isOwner: false,
+                    isDev: true
+                })
+        );
+        await firebase.assertSucceeds(
+            db
+                .collection("users")
+                .doc("loggedUser@test.com")
+                .update({
+                    isOwner: true
+                })
+        );
+
     }
 
     // test collection class
@@ -177,7 +235,7 @@ class MyApp {
      * */
     @test
     async "should only let guild master delete class members"() {
-        const user = authedApp({uid: "loggedUser", email: "loggedUser@test.com", displayName: "user"});
+        const user = authedApp({uid: "loggedUser", email: "loggedUser@test.com", name: "user"});
         const master = authedApp({uid: "masterUser", email: "masterUser@test.com"});
         const admin = adminApp();
 
@@ -188,7 +246,6 @@ class MyApp {
                 .doc("masterUser@test.com")
                 .set({
                     name: "master",
-                    isOwner: false,
                 })
         );
 
@@ -209,7 +266,6 @@ class MyApp {
                 .doc("loggedUser@test.com")
                 .set({
                     name: "user",
-                    isOwner: false,
                 })
         );
 
@@ -242,8 +298,7 @@ class MyApp {
 
     @test
     async "user can only register himself to class"() {
-        // todo
-        const user = authedApp({uid: "loggedUser", email: "loggedUser@test.com", displayName: "user"});
+        const user = authedApp({uid: "loggedUser", email: "loggedUser@test.com", name: "user"});
 
         // an user registers normally
         await firebase.assertSucceeds(
@@ -252,7 +307,6 @@ class MyApp {
                 .doc("loggedUser@test.com")
                 .set({
                     name: "user",
-                    isOwner: false,
                 })
         );
 

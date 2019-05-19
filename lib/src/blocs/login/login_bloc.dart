@@ -40,10 +40,10 @@ class LoginBloc extends Bloc<LoginEvent, LoginState> {
         //@TODO: this should be refactored
         await _googleSignIn().then((user) async {
           isNewUser = await this.userRepository.isNewUser(user.email);
-          if (isNewUser) {
-            debugPrint('Dispatch Create user [$user]');
-            this.userBloc.dispatch(Create(user: user));
-          }
+
+          debugPrint('Dispatch Create user [$user]');
+          this.userBloc.dispatch(Create(user: user));
+
           debugPrint('User successfully logged in as [$user]');
           debugPrint('isFirstLogin: $isNewUser');
           this.authBloc.dispatch(

@@ -1,5 +1,6 @@
 import 'package:checkin/src/models/user.dart';
 import 'package:cloud_firestore/cloud_firestore.dart';
+import 'package:flutter/foundation.dart';
 
 class ClassProvider {
   static const String path = 'class';
@@ -24,6 +25,7 @@ class ClassProvider {
   }
 
   Future<void> attendClass(User attendee) async {
+    debugPrint("attendClass [$attendee]");
     await _firestore.collection(path).add({
       'name': attendee.name,
       'imageUrl': attendee.imageUrl,
