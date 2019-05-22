@@ -1,5 +1,6 @@
 import 'package:checkin/src/blocs/auth/bloc.dart';
 import 'package:checkin/src/blocs/user/bloc.dart';
+import 'package:checkin/src/models/user.dart';
 import 'package:checkin/src/resources/user_repository.dart';
 import 'package:checkin/src/ui/loading_indicator.dart';
 import 'package:checkin/src/ui/registry_page.dart';

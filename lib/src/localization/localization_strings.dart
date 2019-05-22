@@ -1,0 +1,60 @@
+const String
+AppTitle = 'app_title', RegisterTitle = 'register_title', RegisterButton = 'register_button',
+EmptyClass = 'empty_class',
+TotalClasses = 'total_classes',
+GoogleSignin = 'google_signin',
+BeltSelection = 'belt_selection',
+Registry = 'registry',
+AcceptAll = 'accept_all',
+Logout = 'logout',
+AttendClass = 'attend_class',
+Status = 'status',
+LoginFailed = 'login_failed',
+WhiteGrade = 'white_grade',
+BlueGrade = 'blue_grade',
+PurpleGrade = 'purple_grade',
+BrownGrade = 'brown_grade',
+BlackGrade = 'black_grade'
+;
+
+final es = {
+  AppTitle: 'Mi increible App',
+  RegisterTitle: 'Registracion',
+  RegisterButton: 'Registrar',
+  EmptyClass: 'Empty class in spagnolo',
+  TotalClasses: 'Total classes in spagnolo',
+  GoogleSignin: 'Sign in with Google in spagnolo',
+  BeltSelection: 'What\'s your belt? in spagnolo',
+  Registry: 'Registry in spagnolo',
+  AcceptAll: 'Accept all in spagnolo',
+  Logout: 'Logout in spagnolo',
+  AttendClass: 'Attend class in spagnolo',
+  Status: 'Status in spagnolo',
+  LoginFailed: 'Login Failed. Please try again in spagnolo',
+  WhiteGrade: 'White in spagnolo',
+  BlueGrade: 'Blue in spagnolo',
+  PurpleGrade: 'Purple in spagnolo',
+  BrownGrade: 'Brown in spagnolo',
+  BlackGrade: 'Black in spagnolo'
+};
+
+final en = {
+  AppTitle: 'My Awesome App',
+  RegisterTitle: 'Sign Up',
+  RegisterButton: 'Register',
+  EmptyClass: 'Empty class',
+  TotalClasses: 'Total classes',
+  GoogleSignin: 'Sign in with Google',
+  BeltSelection: 'What\'s your belt?',
+  Registry: 'Registry',
+  AcceptAll: 'Accept all',
+  Logout: 'Logout',
+  AttendClass: 'Attend class',
+  Status: 'Status',
+  LoginFailed: 'Login Failed. Please try again',
+  WhiteGrade: 'White',
+  BlueGrade: 'Blue',
+  PurpleGrade: 'Purple',
+  BrownGrade: 'Brown',
+  BlackGrade: 'Black'
+};

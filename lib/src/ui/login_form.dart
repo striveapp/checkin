@@ -1,5 +1,6 @@
 import 'package:checkin/src/blocs/login/bloc.dart';
 import 'package:checkin/src/blocs/auth/bloc.dart';
+import 'package:checkin/src/localization/localization.dart';
 import 'package:checkin/src/ui/google_sign_in_button.dart';
 import 'package:checkin/src/ui/loading_indicator.dart';
 import 'package:flutter/material.dart';
@@ -34,7 +35,7 @@ class _LoginFormState extends State<LoginForm> {
           _onWidgetDidBuild(() {
             Scaffold.of(context).showSnackBar(
               SnackBar(
-                content: Text('${state.errorMessage}'),
+                content: Text(Localization.of(context).getValue(state.errorMessage)),
                 backgroundColor: Colors.red,
               ),
             );

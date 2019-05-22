@@ -2,6 +2,7 @@ import 'package:checkin/src/blocs/auth/auth_bloc.dart';
 import 'package:checkin/src/blocs/auth/bloc.dart';
 import 'package:checkin/src/blocs/class/bloc.dart';
 import 'package:checkin/src/blocs/user/bloc.dart';
+import 'package:checkin/src/localization/localization.dart';
 import 'package:checkin/src/resources/class_repository.dart';
 import 'package:checkin/src/resources/user_repository.dart';
 import 'package:checkin/src/ui/attendees_list.dart';
@@ -48,7 +49,7 @@ class _RegistryState extends State<RegistryPage> {
     return Scaffold(
       appBar: AppBar(
         backgroundColor: Colors.black87,
-        title: Text("Registry",
+        title: Text(Localization.of(context).registry,
             style: TextStyle(
                 fontSize: 24,
                 letterSpacing: 0.8,
@@ -83,7 +84,7 @@ class _RegistryState extends State<RegistryPage> {
                     padding: const EdgeInsets.symmetric(vertical: 10),
                     child: RaisedButton(
                       color: Colors.indigo,
-                      child: Text('Accept all',
+                      child: Text(Localization.of(context).acceptAll,
                           style: TextStyle(
                               fontSize: 18,
                               fontFamily: "Roboto",
@@ -95,7 +96,7 @@ class _RegistryState extends State<RegistryPage> {
                   if ((_userBloc.currentState as UserSuccess).currentUser.isDev)
                     RaisedButton(
                       color: Colors.red,
-                      child: Text('Logout',
+                      child: Text(Localization.of(context).logout,
                           style: TextStyle(
                               fontSize: 18,
                               color: Colors.white,

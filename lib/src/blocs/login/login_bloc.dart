@@ -3,6 +3,7 @@ import 'package:checkin/src/blocs/auth/bloc.dart';
 import 'package:checkin/src/blocs/login/login_event.dart';
 import 'package:checkin/src/blocs/login/login_state.dart';
 import 'package:checkin/src/blocs/user/bloc.dart';
+import 'package:checkin/src/localization/localization_strings.dart';
 import 'package:checkin/src/models/user.dart';
 import 'package:checkin/src/resources/user_repository.dart';
 import 'package:firebase_auth/firebase_auth.dart';
@@ -53,7 +54,7 @@ class LoginBloc extends Bloc<LoginEvent, LoginState> {
         });
       } catch (e) {
         print('unexpected error during googleSignIn: ' + e.toString());
-        yield LoginFailure(errorMessage: "Login Failed. Please try again");
+        yield LoginFailure(errorMessage: LoginFailed);
       }
     }
   }

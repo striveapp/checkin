@@ -1,3 +1,4 @@
+import 'package:checkin/src/localization/localization.dart';
 import 'package:checkin/src/models/user.dart';
 import 'package:flutter/material.dart';
 
@@ -14,7 +15,7 @@ class AttendeesList extends StatelessWidget {
         constraints: BoxConstraints.expand(width: 350.0, height: 150.0),
         alignment: Alignment(0, 0),
         child: Text(
-          'Empty class',
+          Localization.of(context).emptyClass,
           style: TextStyle(fontWeight: FontWeight.w400, fontSize: 18),
         ),
       ));

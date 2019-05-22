@@ -1,4 +1,5 @@
 import 'package:checkin/src/blocs/user/bloc.dart';
+import 'package:checkin/src/localization/localization.dart';
 import 'package:checkin/src/models/user.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
@@ -36,7 +37,7 @@ class _GradeButtonsState extends State<GradeButtons> {
                             padding: const EdgeInsets.all(0.0),
                             child: RaisedButton(
                                 child: Text(
-                                  grade,
+                                  Localization.of(context).getValue(grade.toLowerCase() + '_grade'),
                                   style: TextStyle(
                                       color: (grade == 'White') ? Colors.black : Colors.white,
                                       fontStyle: FontStyle.normal,

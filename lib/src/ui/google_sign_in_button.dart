@@ -1,18 +1,17 @@
+import 'package:checkin/src/localization/localization.dart';
 import 'package:flutter/material.dart';
 
 class GoogleSignInButton extends StatelessWidget {
-  final String text;
   final bool darkMode;
   final double borderRadius;
   final VoidCallback onPressed;
 
   GoogleSignInButton(
       {@required this.onPressed,
-        this.text = 'Sign in with Google',
         this.darkMode = false,
         this.borderRadius = 3.0,
         Key key})
-      : assert(text != null),
+      :
         super(key: key);
 
   @override
@@ -65,7 +64,7 @@ class GoogleSignInButton extends StatelessWidget {
             Padding(
               padding: const EdgeInsets.fromLTRB(0.0, 8.0, 14.0, 8.0),
               child: Text(
-                text,
+                Localization.of(context).googleSignin,
                 style: TextStyle(
                   fontSize: 18.0,
                   fontFamily: "Roboto",

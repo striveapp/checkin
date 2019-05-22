@@ -6,6 +6,9 @@ import 'package:checkin/src/ui/splash_page.dart';
 import 'package:firebase_auth/firebase_auth.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
+import 'package:flutter_localizations/flutter_localizations.dart';
+
+import 'localization/localization.dart';
 
 class App extends StatefulWidget {
 
@@ -36,6 +39,15 @@ class _AppState extends State<App> {
     return BlocProvider<AuthBloc>(
       bloc: authBloc,
       child: MaterialApp(
+        localizationsDelegates: [
+          const LocalizationDelegate(),
+          GlobalMaterialLocalizations.delegate,
+          GlobalWidgetsLocalizations.delegate,
+        ],
+        supportedLocales: [
+          const Locale('en', ''),
+          const Locale('es', ''),
+        ],
         routes: {
           '/home': (context) => HomePage()
         },

@@ -1,3 +1,4 @@
+import 'package:checkin/src/localization/localization.dart';
 import 'package:flutter/material.dart';
 
 class ClassCounter extends StatelessWidget {
@@ -16,7 +17,7 @@ class ClassCounter extends StatelessWidget {
             mainAxisAlignment: MainAxisAlignment.spaceEvenly,
             children: <Widget>[
               Text(
-                "Total classes",
+                Localization.of(context).totalClasses,
                 textAlign: TextAlign.center,
                 style: TextStyle(fontSize: 22, fontWeight: FontWeight.w400),
               ),

@@ -3,6 +3,7 @@ import 'package:checkin/src/blocs/auth/auth_event.dart';
 import 'package:checkin/src/blocs/auth/bloc.dart';
 import 'package:checkin/src/blocs/class/bloc.dart';
 import 'package:checkin/src/blocs/user/bloc.dart';
+import 'package:checkin/src/localization/localization.dart';
 import 'package:checkin/src/resources/class_repository.dart';
 import 'package:checkin/src/resources/user_repository.dart';
 import 'package:flutter/material.dart';
@@ -62,7 +63,7 @@ class _StatusState extends State<StatusPage> {
     return Scaffold(
         appBar: AppBar(
           backgroundColor: _getColor((_userBloc.currentState as UserSuccess).currentUser.rank),
-          title: Text("Status", style: TextStyle(
+          title: Text(Localization.of(context).status, style: TextStyle(
               fontSize: 24,
               letterSpacing: 0.8,
               fontFamily: "Roboto",
@@ -104,7 +105,7 @@ class _StatusState extends State<StatusPage> {
                     child: RaisedButton(
                       color: Colors.indigo,
                       //@TODO: should disable the button if already attending class
-                      child: Text('Attend class',
+                      child: Text(Localization.of(context).attendClass,
                           style: TextStyle(
                               fontSize: 18,
                               fontFamily: "Roboto",
@@ -116,7 +117,7 @@ class _StatusState extends State<StatusPage> {
                   if ((_userBloc.currentState as UserSuccess).currentUser.isDev)
                     RaisedButton(
                     color: Colors.red,
-                    child: Text('Logout',
+                    child: Text(Localization.of(context).logout,
                         style: TextStyle(
                         fontSize: 18,
                         color: Colors.white,

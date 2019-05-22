@@ -1,5 +1,6 @@
 import 'package:checkin/src/blocs/auth/auth_bloc.dart';
 import 'package:checkin/src/blocs/user/bloc.dart';
+import 'package:checkin/src/localization/localization.dart';
 import 'package:checkin/src/resources/user_repository.dart';
 import 'package:checkin/src/ui/grade_buttons.dart';
 import 'package:flutter/material.dart';
@@ -43,7 +44,7 @@ class _GradePageState extends State<GradePage> {
                   Container(
                     alignment: Alignment.center,
                     child: Text(
-                      'What\'s your belt?',
+                      Localization.of(context).beltSelection,
                       style: TextStyle(
                           fontStyle: FontStyle.normal,
                           fontWeight: FontWeight.bold,
