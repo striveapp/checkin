@@ -1,5 +1,4 @@
 const String
-AppTitle = 'app_title', RegisterTitle = 'register_title', RegisterButton = 'register_button',
 EmptyClass = 'empty_class',
 TotalClasses = 'total_classes',
 GoogleSignin = 'google_signin',
@@ -18,32 +17,26 @@ BlackGrade = 'black_grade'
 ;
 
 final es = {
-  AppTitle: 'Mi increible App',
-  RegisterTitle: 'Registracion',
-  RegisterButton: 'Registrar',
-  EmptyClass: 'Empty class in spagnolo',
-  TotalClasses: 'Total classes in spagnolo',
-  GoogleSignin: 'Sign in with Google in spagnolo',
-  BeltSelection: 'What\'s your belt? in spagnolo',
-  Registry: 'Registry in spagnolo',
-  AcceptAll: 'Accept all in spagnolo',
-  Logout: 'Logout in spagnolo',
-  AttendClass: 'Attend class in spagnolo',
-  Status: 'Status in spagnolo',
-  LoginFailed: 'Login Failed. Please try again in spagnolo',
-  WhiteGrade: 'White in spagnolo',
-  BlueGrade: 'Blue in spagnolo',
-  PurpleGrade: 'Purple in spagnolo',
-  BrownGrade: 'Brown in spagnolo',
-  BlackGrade: 'Black in spagnolo'
+  EmptyClass: 'Clase vacía',
+  TotalClasses: 'Clases atendidas',
+  GoogleSignin: 'Acceso con Google',
+  BeltSelection: 'Cuál es tu cinturón?',
+  Registry: 'Registro',
+  AcceptAll: 'Aceptar todos',
+  Logout: 'Desconectar',
+  AttendClass: 'Atender clase',
+  Status: 'Status',
+  LoginFailed: 'No se pudo conectar. Inténtelo de nuevo porfavor.',
+  WhiteGrade: 'Blanco',
+  BlueGrade: 'Azúl',
+  PurpleGrade: 'Morado',
+  BrownGrade: 'Marron',
+  BlackGrade: 'Negro'
 };
 
 final en = {
-  AppTitle: 'My Awesome App',
-  RegisterTitle: 'Sign Up',
-  RegisterButton: 'Register',
   EmptyClass: 'Empty class',
-  TotalClasses: 'Total classes',
+  TotalClasses: 'Attended classes',
   GoogleSignin: 'Sign in with Google',
   BeltSelection: 'What\'s your belt?',
   Registry: 'Registry',

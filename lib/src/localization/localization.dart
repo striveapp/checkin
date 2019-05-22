@@ -22,12 +22,6 @@ class Localization {
 
   getValue(String key) => _localizedValues[locale.languageCode][key];
 
-  // remove
-  String get appTitle => getValue(AppTitle);
-  String get registerTitle => getValue(RegisterTitle);
-  String get registerButton => getValue(RegisterButton);
-
-  // nostre
   String get emptyClass => getValue(EmptyClass);
   String get totalClasses => getValue(TotalClasses);
   String get googleSignin => getValue(GoogleSignin);
