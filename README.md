@@ -5,23 +5,14 @@ Checkin is an app that allow a team master to checkin attendees.
 
 ## Basic requirements
 
-- [ ] *App* should have a *Login*
-- [ ] *Master* can add *User* of his *Team* to the list
-- [ ] *User* can see a counter of how many class he attends
-- [ ] *Master* can see all users of his *Team* counters
-- [ ] *Master* should have a *Team*
-- [ ] *User* should have a *Team*
-- [ ] *Master* can approve people on the *Team*
-- [ ] *User* can ask to join a *Team*
-- [ ] *Team* can have a *Class* schedule
-- [ ] *Class* can have multiple *User*
-- [ ] *Master* can confirm *User* of the *Class*
-- [ ] *User* can claim his participation to a *Class*
-- [ ] *User* have *Ranks*
-- [ ] *Master* can assign *Ranks*
-- [ ] *Team* can have *Ranks*
-- [ ] *User* can propose his rank to *Master*
-- [ ] *Master* can approve proposed *Rank*
+- [x] *App* should have a *Login*
+- [x] *User* can see a counter of how many class he attends
+- [ ] *Master* can see all users counters
+- [x] *Class* can have multiple *User*
+- [x] *Master* can confirm *User* of the *Class*
+- [x] *User* can claim his participation to a *Class*
+- [x] *User* have *Ranks*
+- [ ] *Master* can promote *User*
 
 ## ER model
 
@@ -34,7 +25,7 @@ Checkin is an app that allow a team master to checkin attendees.
 - Firebase Auth for auth and roles/permission managements
 - Firebase Functions for ServerLess backend
 - Firebase Storage for static files
-- Firebase Cloud Firestore for DB
+- Firebase Real for DB
 
 ## Security notes
 
@@ -43,6 +34,8 @@ This app requires to have [git-secret](https://git-secret.io/installation) insta
 1. Open an issue asking to be added as trusted user.
 1. Paste your public GPG Key into the issue and wait for confirmation.
 1. run `git secret reveal`
+
+You need to have as file `key.properties` into your android directory. Ask admin to have one.
 
 ## Emulator Alternative
 Android screen mirroring command:
