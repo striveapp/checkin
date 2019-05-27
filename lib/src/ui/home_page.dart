@@ -1,6 +1,5 @@
 import 'package:checkin/src/blocs/auth/bloc.dart';
 import 'package:checkin/src/blocs/user/bloc.dart';
-import 'package:checkin/src/models/user.dart';
 import 'package:checkin/src/resources/user_repository.dart';
 import 'package:checkin/src/ui/loading_indicator.dart';
 import 'package:checkin/src/ui/registry_page.dart';
@@ -8,6 +7,8 @@ import 'package:checkin/src/ui/status_page.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter/widgets.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
+
+import 'lessons_page.dart';
 
 class HomePage extends StatefulWidget {
   HomePage({Key key, this.title}) : super(key: key);
@@ -49,7 +50,15 @@ class _HomePageState extends State<HomePage> {
           }
 
           if(state is UserSuccess) {
-            return state.currentUser.isOwner ? RegistryPage(userBloc: _userBloc) : StatusPage(userBloc: _userBloc,);
+            if(state.currentUser.isOwner) {
+              return RegistryPage(userBloc: _userBloc);
+            }
+
+            if( state.currentUser.isDev ) {
+              return LessonsPage(userBloc: _userBloc,);
+            }
+
+            return StatusPage(userBloc: _userBloc,);
           }
         })
     );

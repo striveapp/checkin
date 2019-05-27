@@ -37,6 +37,7 @@ class Localization {
   String get purpleGrade => getValue(PurpleGrade);
   String get brownGrade => getValue(BrownGrade);
   String get blackGrade => getValue(BlackGrade);
+  String get todaysClasses => getValue(TodaysClasses);
 
 }
 
