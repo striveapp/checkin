@@ -33,6 +33,7 @@ class _GradePageState extends State<GradePage> {
 
   @override
   Widget build(BuildContext context) {
+    // todo lo user bloc non serve a un cazzo
     return Scaffold(
         body: BlocBuilder(
             bloc: _userBloc,

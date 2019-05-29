@@ -19,6 +19,7 @@ class GradeButtons extends StatefulWidget {
 class _GradeButtonsState extends State<GradeButtons> {
   UserBloc get _userBloc => widget.userBloc;
 
+  // todo qui lo user bloc serve solo per il dispatch, duh
   @override
   Widget build(BuildContext context) {
     return BlocBuilder<UserEvent, UserState>(

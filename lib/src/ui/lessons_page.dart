@@ -1,3 +1,4 @@
+import 'package:checkin/src/blocs/auth/auth_bloc.dart';
 import 'package:checkin/src/blocs/lessons/bloc.dart';
 import 'package:checkin/src/blocs/user/bloc.dart';
 import 'package:checkin/src/localization/localization.dart';
@@ -19,9 +20,7 @@ class LessonsPage extends StatefulWidget {
   }) : super(key: key);
 
   @override
-  _LessonsState createState() {
-    return _LessonsState();
-  }
+  _LessonsState createState() => _LessonsState();
 }
 
 _getColor(String grade) {
@@ -96,7 +95,7 @@ class _LessonsState extends State<LessonsPage> {
                             fontSize: 32.0),
                       ),
                     ),
-                    LessonsButtons(lessons: state.lessons)
+                    LessonsButtons(lessons: state.lessons, userBloc: _userBloc)
                   ],
                 );
               }

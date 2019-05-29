@@ -104,7 +104,6 @@ class _StatusState extends State<StatusPage> {
                     padding: const EdgeInsets.symmetric(vertical: 10),
                     child: RaisedButton(
                       color: Colors.indigo,
-                      //@TODO: should disable the button if already attending class
                       child: Text(Localization.of(context).attendClass,
                           style: TextStyle(
                               fontSize: 18,

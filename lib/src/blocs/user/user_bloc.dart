@@ -36,8 +36,6 @@ class UserBloc extends Bloc<UserEvent, UserState> {
       yield* _mapCreateToState(currentState, event);
     } else if (event is Update) {
       yield* _mapUpdateToState(currentState, event);
-    } else if (event is Delete) {
-      yield* _mapDeleteTodoToState(currentState, event);
     }
   }
 
@@ -64,11 +62,6 @@ class UserBloc extends Bloc<UserEvent, UserState> {
       print('Error during user update: ' + e.toString());
       yield UserError();
     }
-  }
-
-  Stream<UserState> _mapDeleteTodoToState(UserState currentState,
-      Delete event) async* {
-      //@TODO: Implement me!
   }
 
   @override
