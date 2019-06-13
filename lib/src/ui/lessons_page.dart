@@ -1,4 +1,5 @@
 import 'package:checkin/src/blocs/auth/auth_bloc.dart';
+import 'package:checkin/src/blocs/auth/auth_event.dart';
 import 'package:checkin/src/blocs/lessons/bloc.dart';
 import 'package:checkin/src/blocs/user/bloc.dart';
 import 'package:checkin/src/localization/localization.dart';
@@ -8,6 +9,7 @@ import 'package:flutter/material.dart';
 import 'package:flutter/widgets.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 
+import 'class_counter.dart';
 import 'lesson_buttons.dart';
 import 'loading_indicator.dart';
 
@@ -45,10 +47,12 @@ class _LessonsState extends State<LessonsPage> {
   final UserRepository _userRepository = UserRepository();
 
   LessonsBloc _lessonsBloc;
+  AuthBloc _authBloc;
 
   @override
   void initState() {
     super.initState();
+    _authBloc = BlocProvider.of<AuthBloc>(context);
     _lessonsBloc = LessonsBloc(
         lessonRepository: _lessonRepository, userRepository: _userRepository);
   }
@@ -84,10 +88,18 @@ class _LessonsState extends State<LessonsPage> {
                   mainAxisAlignment: MainAxisAlignment.center,
                   crossAxisAlignment: CrossAxisAlignment.center,
                   children: <Widget>[
+                    Padding(
+                      padding: const EdgeInsets.symmetric(vertical: 20),
+                      child: ClassCounter(
+                          counter: (_userBloc.currentState as UserSuccess)
+                              .currentUser
+                              .counter),
+                    ),
                     Container(
                       alignment: Alignment.center,
                       child: Text(
                         Localization.of(context).todaysClasses,
+                        key: Key('todaysClassesText'),
                         style: TextStyle(
                             fontStyle: FontStyle.normal,
                             fontWeight: FontWeight.bold,
@@ -95,7 +107,19 @@ class _LessonsState extends State<LessonsPage> {
                             fontSize: 32.0),
                       ),
                     ),
-                    LessonsButtons(lessons: state.lessons, userBloc: _userBloc)
+                    LessonsButtons(lessons: state.lessons, userBloc: _userBloc),
+                    RaisedButton(
+                      key: Key('logoutButton'),
+                      color: Colors.red,
+                      child: Text(Localization.of(context).logout,
+                          style: TextStyle(
+                              fontSize: 18,
+                              color: Colors.white,
+                              fontWeight: FontWeight.w600)),
+                      onPressed: () {
+                        _authBloc.dispatch(LogOut());
+                      },
+                    ),
                   ],
                 );
               }

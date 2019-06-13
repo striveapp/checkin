@@ -8,3 +8,13 @@ class LoginWithGoogle extends LoginEvent {
   @override
   String toString() => 'LoginWithGoogle';
 }
+
+class LoginWithTestUser extends LoginEvent {
+  @override
+  String toString() => 'LoginWithTestUser';
+}
+
+class LoginWithTestUserOwner extends LoginEvent {
+  @override
+  String toString() => 'LoginWithTestUserOwner';
+}

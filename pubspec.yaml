@@ -31,8 +31,11 @@ dependencies:
 dev_dependencies:
   test: ">=1.3.0 <2.0.0"
   mockito: ^4.0.0
+  firebase: ^5.0.0
   flutter_launcher_icons: "^0.7.0"
   flutter_test:
+    sdk: flutter
+  flutter_driver:
     sdk: flutter
 
 flutter_icons:

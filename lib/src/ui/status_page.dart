@@ -27,7 +27,7 @@ class StatusPage extends StatefulWidget {
 }
 
 _getColor(String grade) {
-  switch(grade) {
+  switch (grade) {
     case 'White':
       return Colors.white;
     case 'Blue':
@@ -75,15 +75,20 @@ class _StatusState extends State<StatusPage> {
           bloc: _classBloc,
           builder: (BuildContext context, ClassState state) {
             var _onPressed;
-            var _currentUserEmail = (_authBloc.currentState as AuthAuthenticated).currentUserEmail;
+            var _currentUserEmail =
+                (_authBloc.currentState as AuthAuthenticated).currentUserEmail;
 
-            if(state is ClassLoaded) {
+            if (state is ClassLoaded) {
               var _isUserInClass = (currentUserEmail) =>
-                state.attendees.firstWhere((attendee) =>
-                  attendee.email == currentUserEmail) == null;
+                  state.attendees.firstWhere(
+                      (attendee) => attendee.email == currentUserEmail) ==
+                  null;
 
-              if (state.attendees.length == 0 || _isUserInClass(_currentUserEmail)) {
-                _onPressed = () => _classBloc.dispatch(Attend(attendee: (_userBloc.currentState as UserSuccess).currentUser));
+              if (state.attendees.length == 0 ||
+                  _isUserInClass(_currentUserEmail)) {
+                _onPressed = () => _classBloc.dispatch(Attend(
+                    attendee:
+                        (_userBloc.currentState as UserSuccess).currentUser));
               }
             }
 
@@ -115,16 +120,17 @@ class _StatusState extends State<StatusPage> {
                   ),
                   if ((_userBloc.currentState as UserSuccess).currentUser.isDev)
                     RaisedButton(
-                    color: Colors.red,
-                    child: Text(Localization.of(context).logout,
-                        style: TextStyle(
-                        fontSize: 18,
-                        color: Colors.white,
-                        fontWeight: FontWeight.w600)),
-                    onPressed: () {
-                      _authBloc.dispatch(LogOut());
-                    },
-                  ),
+                      key: Key('logoutButton'),
+                      color: Colors.red,
+                      child: Text(Localization.of(context).logout,
+                          style: TextStyle(
+                              fontSize: 18,
+                              color: Colors.white,
+                              fontWeight: FontWeight.w600)),
+                      onPressed: () {
+                        _authBloc.dispatch(LogOut());
+                      },
+                    ),
                 ])));
           },
         ));

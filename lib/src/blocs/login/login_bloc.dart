@@ -57,12 +57,31 @@ class LoginBloc extends Bloc<LoginEvent, LoginState> {
         yield LoginFailure(errorMessage: LoginFailed);
       }
     }
+
+    //TODO: We put this because we have no way to test google auth for now.
+    if (event is LoginWithTestUser) {
+      yield LoginLoading();
+      final firebaseTestUser = await this.auth.signInWithEmailAndPassword(
+          email: "test@test.com", password: "test123");
+      debugPrint('Logged with test user [$firebaseTestUser]');
+      this.authBloc.dispatch(
+          LoggedIn(currentUserEmail: firebaseTestUser.email, isFirstLogin: false));
+    }
+
+    if (event is LoginWithTestUserOwner) {
+      yield LoginLoading();
+      final firebaseTestUser = await this.auth.signInWithEmailAndPassword(
+          email: "test-owner@test.com", password: "test123");
+      debugPrint('Logged with test user owner [$firebaseTestUser]');
+      this.authBloc.dispatch(
+          LoggedIn(currentUserEmail: firebaseTestUser.email, isFirstLogin: false));
+    }
   }
 
   Future<User> _googleSignIn() async {
     final GoogleSignInAccount googleUser = await this.googleSignIn.signIn();
-    final GoogleSignInAuthentication googleAuth = await googleUser
-        .authentication;
+    final GoogleSignInAuthentication googleAuth =
+        await googleUser.authentication;
     final AuthCredential credential = GoogleAuthProvider.getCredential(
       accessToken: googleAuth.accessToken,
       idToken: googleAuth.idToken,
@@ -70,12 +89,11 @@ class LoginBloc extends Bloc<LoginEvent, LoginState> {
 
     final firebaseUser = await this.auth.signInWithCredential(credential);
 
-    return firebaseUser != null ?
-    Future.value(User(
-        name: firebaseUser.displayName,
-        email: firebaseUser.email,
-        imageUrl: firebaseUser.photoUrl
-    )) :
-    Future.error("User is null");
+    return firebaseUser != null
+        ? Future.value(User(
+            name: firebaseUser.displayName,
+            email: firebaseUser.email,
+            imageUrl: firebaseUser.photoUrl))
+        : Future.error("User is null");
   }
 }

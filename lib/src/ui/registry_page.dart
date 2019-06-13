@@ -85,6 +85,7 @@ class _RegistryState extends State<RegistryPage> {
                     child: RaisedButton(
                       color: Colors.indigo,
                       child: Text(Localization.of(context).acceptAll,
+                          key: Key('acceptAll'),
                           style: TextStyle(
                               fontSize: 18,
                               fontFamily: "Roboto",
@@ -95,6 +96,7 @@ class _RegistryState extends State<RegistryPage> {
                   ),
                   if ((_userBloc.currentState as UserSuccess).currentUser.isDev)
                     RaisedButton(
+                      key: Key('logoutButton'),
                       color: Colors.red,
                       child: Text(Localization.of(context).logout,
                           style: TextStyle(

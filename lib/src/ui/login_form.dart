@@ -59,12 +59,15 @@ class _LoginFormState extends State<LoginForm> {
                 ),
               ),
               GoogleSignInButton(
+                key: Key('loginButton'),
                 onPressed: state is! LoginLoading
                     ? _onLoginWithGoogleButtonPressed
                     : null,
                 darkMode: true,
                 borderRadius: 50.0,
-              )
+              ),
+              Opacity(opacity: 0.0, child: Container(width: 1, height: 1,child: RaisedButton(key: Key('backdoorButton'),onPressed: _onLoginWithTestUser, child: Text(''),))),
+              Opacity(opacity: 0.0, child: Container(width: 1, height: 1,child: RaisedButton(key: Key('backdoorAdminButton'),onPressed: _onLoginWithTestUserOwner, child: Text(''),))),
             ],
           );
         }
@@ -81,5 +84,13 @@ class _LoginFormState extends State<LoginForm> {
 
   _onLoginWithGoogleButtonPressed() {
     _loginBloc.dispatch(LoginWithGoogle());
+  }
+
+  _onLoginWithTestUser() {
+    _loginBloc.dispatch(LoginWithTestUser());
+  }
+
+  _onLoginWithTestUserOwner() {
+    _loginBloc.dispatch(LoginWithTestUserOwner());
   }
 }

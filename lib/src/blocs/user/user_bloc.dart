@@ -43,7 +43,7 @@ class UserBloc extends Bloc<UserEvent, UserState> {
       Create event) async* {
     try {
       debugPrint('Creating user [' + event.user.toString() + ']');
-      this.userRepository.createUser(event.user.name, event.user.email, event.user.imageUrl, event.user.counter, event.user.rank, event.user.isOwner);
+      await this.userRepository.createUser(event.user.name, event.user.email, event.user.imageUrl, event.user.counter, event.user.rank, event.user.isOwner);
       debugPrint('Created!');
     } catch(e) {
       print('Error during user creation: ' + e.toString());

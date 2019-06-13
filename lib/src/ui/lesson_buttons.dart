@@ -74,6 +74,7 @@ class _LessonsButtonsState extends State<LessonsButtons> {
                               child: RaisedButton(
                                   child: Text(
                                     "${lesson.timeStart} - ${lesson.timeEnd}",
+                                    key: Key('${lesson.name}'),
                                     style: TextStyle(
                                         color: Colors.white,
                                         fontStyle: FontStyle.normal,

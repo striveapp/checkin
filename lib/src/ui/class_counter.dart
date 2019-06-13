@@ -23,6 +23,7 @@ class ClassCounter extends StatelessWidget {
               ),
               Text(
                 this.counter.toString(),
+                key: Key('classCounter'),
                 textAlign: TextAlign.center,
                 style: TextStyle(fontSize: 18, fontWeight: FontWeight.normal),
               ),
