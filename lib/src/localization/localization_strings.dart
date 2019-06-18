@@ -14,7 +14,8 @@ BlueGrade = 'blue_grade',
 PurpleGrade = 'purple_grade',
 BrownGrade = 'brown_grade',
 BlackGrade = 'black_grade',
-TodaysClasses = 'todays_classes'
+TodaysClasses = 'todays_classes',
+Profile = 'profile'
 ;
 
 final es = {
@@ -33,7 +34,8 @@ final es = {
   PurpleGrade: 'Morado',
   BrownGrade: 'Marron',
   BlackGrade: 'Negro',
-  TodaysClasses: 'Clases de hoy'
+  TodaysClasses: 'Clases de hoy',
+  Profile: 'Perfil'
 };
 
 final en = {
@@ -52,5 +54,6 @@ final en = {
   PurpleGrade: 'Purple',
   BrownGrade: 'Brown',
   BlackGrade: 'Black',
-  TodaysClasses: "Today's classes"
+  TodaysClasses: "Today's classes",
+  Profile: 'Profile'
 };

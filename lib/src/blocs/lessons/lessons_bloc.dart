@@ -18,7 +18,7 @@ class LessonsBloc extends Bloc<LessonsEvent, LessonsState> {
     @required this.lessonRepository,
     @required this.userRepository,
   }) {
-    lessonsSub = this.lessonRepository.getLessons().listen((lessons) {
+    lessonsSub = this.lessonRepository.getLessonsForToday().listen((lessons) {
       dispatch(LessonsUpdated(lessons: lessons));
     });
   }

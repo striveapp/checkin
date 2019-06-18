@@ -13,16 +13,23 @@ class UserBloc extends Bloc<UserEvent, UserState> {
   final AuthBloc authBloc;
   StreamSubscription userSub;
 
-  UserBloc({
-    @required this.userRepository,
-    @required this.authBloc
-  }) {
-    if(this.authBloc.currentState is AuthAuthenticated) {
-      var userEmail = (this.authBloc.currentState as AuthAuthenticated).currentUserEmail;
-      userSub = this.userRepository.getUserByEmail(userEmail).listen((user) {
-        dispatch(UserUpdated(user: user));
-      });
-    }
+  UserBloc({@required this.userRepository, @required this.authBloc}) {
+    this.authBloc.state.listen((authState) {
+      if (authState is AuthAuthenticated) {
+        var userEmail = authState.currentUserEmail;
+        userSub = this.userRepository.getUserByEmail(userEmail).listen((user) {
+          dispatch(UserUpdated(user: user));
+        });
+      }
+
+      if( authState is AuthUnauthenticated ) {
+//        todo why is this not needed?
+//        if( userSub != null ) {
+//          userSub.cancel();
+//        }
+        dispatch(UserUpdated(user: null));
+      }
+    });
   }
 
   @override
@@ -30,8 +37,12 @@ class UserBloc extends Bloc<UserEvent, UserState> {
 
   @override
   Stream<UserState> mapEventToState(UserEvent event) async* {
-    if(event is UserUpdated) {
-      yield UserSuccess(currentUser: event.user);
+    if (event is UserUpdated) {
+      if( event.user == null ) {
+        yield UserLoading();
+      } else {
+        yield UserSuccess(currentUser: event.user);
+      }
     } else if (event is Create) {
       yield* _mapCreateToState(currentState, event);
     } else if (event is Update) {
@@ -39,28 +50,40 @@ class UserBloc extends Bloc<UserEvent, UserState> {
     }
   }
 
-  Stream<UserState> _mapCreateToState(UserState currentState,
-      Create event) async* {
+  Stream<UserState> _mapCreateToState(
+      UserState currentState, Create event) async* {
     try {
       debugPrint('Creating user [' + event.user.toString() + ']');
-      await this.userRepository.createUser(event.user.name, event.user.email, event.user.imageUrl, event.user.counter, event.user.rank, event.user.isOwner);
+      await this.userRepository.createUser(
+          event.user.name,
+          event.user.email,
+          event.user.imageUrl,
+          event.user.counter,
+          event.user.rank,
+          event.user.isOwner);
       debugPrint('Created!');
-    } catch(e) {
+    } catch (e) {
       print('Error during user creation: ' + e.toString());
       yield UserError();
     }
   }
 
-  Stream<UserState> _mapUpdateToState(UserState currentState,
-      Update event) async* {
-    try {
-      final currentUser = currentState is UserSuccess ? currentState.currentUser : null;
-      debugPrint('Update user [${ currentState ?? "NO" }]');
-      currentUser != null ? this.userRepository.updateUserGrade(currentUser, event.grade) : UserError();
-      debugPrint('Updated!');
-    } catch(e) {
-      print('Error during user update: ' + e.toString());
-      yield UserError();
+  Stream<UserState> _mapUpdateToState(
+      UserState currentState, Update event) async* {
+    if (currentState is UserSuccess) {
+      try {
+        debugPrint('Update user [${currentState ?? "NO"}]');
+        if (currentState.currentUser != null) {
+          this.userRepository.updateUserGrade(currentState.currentUser, event.grade);
+          debugPrint('Updated!');
+        } else {
+          print('Error during user update, user was null');
+          yield UserError();
+        }
+      } catch (e) {
+        print('Error during user update: ' + e.toString());
+        yield UserError();
+      }
     }
   }
 
@@ -69,5 +92,4 @@ class UserBloc extends Bloc<UserEvent, UserState> {
     userSub.cancel();
     super.dispose();
   }
-
 }

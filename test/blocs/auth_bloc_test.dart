@@ -1,5 +1,7 @@
 import 'package:checkin/src/blocs/auth/bloc.dart';
 import 'package:firebase_auth/firebase_auth.dart';
+import 'package:flutter/foundation.dart';
+import 'package:intl/intl.dart';
 import 'package:mockito/mockito.dart';
 import 'package:test/test.dart';
 
@@ -18,6 +20,12 @@ void main() {
       });
       authBloc = AuthBloc(auth: firebaseAuth);
     });
+
+    test('my weekday test', () {
+      var day = DateFormat('EEEE', 'en_US').format(DateTime.now());
+      debugPrint('current day: ' + day);
+    });
+
 
     test('initial state is AuthUninitialized', () {
       expect(authBloc.initialState, AuthUninitialized());

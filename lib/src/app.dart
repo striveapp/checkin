@@ -1,17 +1,19 @@
 import 'package:checkin/src/blocs/auth/bloc.dart';
+import 'package:checkin/src/resources/user_repository.dart';
 import 'package:checkin/src/ui/grade_page.dart';
 import 'package:checkin/src/ui/home_page.dart';
 import 'package:checkin/src/ui/login_page.dart';
 import 'package:checkin/src/ui/splash_page.dart';
+import 'package:checkin/src/ui/profile_page.dart';
 import 'package:firebase_auth/firebase_auth.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:flutter_localizations/flutter_localizations.dart';
 
+import 'blocs/user/bloc.dart';
 import 'localization/localization.dart';
 
 class App extends StatefulWidget {
-
   App({Key key}) : super(key: key);
 
   @override
@@ -19,25 +21,33 @@ class App extends StatefulWidget {
 }
 
 class _AppState extends State<App> {
-  AuthBloc authBloc;
+  AuthBloc _authBloc;
+  UserBloc _userBloc;
+
   @override
   void initState() {
-    authBloc = AuthBloc(auth: FirebaseAuth.instance);
+    _authBloc = AuthBloc(auth: FirebaseAuth.instance);
+    _userBloc = UserBloc(authBloc: _authBloc, userRepository: UserRepository());
     super.initState();
   }
 
   @override
   void dispose() {
-    authBloc.dispose();
+    _authBloc.dispose();
+    _userBloc.dispose();
     super.dispose();
   }
 
   @override
   Widget build(BuildContext context) {
     //@TODO: Manage incosistent situation when no user is present but is still logged in
-    return BlocProvider<AuthBloc>(
-      bloc: authBloc,
+    return BlocProviderTree(
+      blocProviders: [
+        BlocProvider<AuthBloc>(bloc: _authBloc),
+        BlocProvider<UserBloc>(bloc: _userBloc)
+      ],
       child: MaterialApp(
+        debugShowCheckedModeBanner: false,
         localizationsDelegates: [
           const LocalizationDelegate(),
           GlobalMaterialLocalizations.delegate,
@@ -48,16 +58,17 @@ class _AppState extends State<App> {
           const Locale('es', ''),
         ],
         routes: {
-          '/home': (context) => HomePage()
+          '/home': (context) => HomePage(),
+          '/profile': (context) => ProfilePage(),
         },
         home: BlocBuilder<AuthEvent, AuthState>(
-          bloc: authBloc,
+          bloc: _authBloc,
           builder: (BuildContext context, AuthState state) {
             if (state is AuthUninitialized) {
               return SplashPage();
             }
             if (state is AuthAuthenticated) {
-              if(state.isFirstLogin) {
+              if (state.isFirstLogin) {
                 return GradePage();
               } else {
                 return HomePage();

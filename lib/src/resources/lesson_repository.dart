@@ -7,4 +7,6 @@ class LessonRepository {
 
   Stream<List<Lesson>> getLessons() => _lessonProvider.getLessons();
 
+  Stream<List<Lesson>> getLessonsForToday() => _lessonProvider.getLessonsForToday();
+
 }

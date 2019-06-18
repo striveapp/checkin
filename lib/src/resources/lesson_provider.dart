@@ -1,5 +1,6 @@
 import 'package:checkin/src/models/lesson.dart';
 import 'package:cloud_firestore/cloud_firestore.dart';
+import 'package:intl/intl.dart';
 
 class LessonProvider {
   static const String path = 'lessons';
@@ -17,6 +18,24 @@ class LessonProvider {
           timeStart: doc.data['timeStart'], 
           timeEnd: doc.data['timeEnd'], 
           weekDay: doc.data['weekDay'], 
+          excludedGrades: doc.data['excludedGrades']
+      );
+    }).toList());
+  }
+
+  Stream<List<Lesson>> getLessonsForToday() {
+    var today = DateFormat('EEEE', 'en_US').format(DateTime.now());
+
+    return _firestore
+        .collection(path)
+        .where('weekDay', isEqualTo: today )
+        .snapshots()
+        .map((snapshot) => snapshot.documents.map((doc) {
+      return Lesson(
+          name: doc.data['name'],
+          timeStart: doc.data['timeStart'],
+          timeEnd: doc.data['timeEnd'],
+          weekDay: doc.data['weekDay'],
           excludedGrades: doc.data['excludedGrades']
       );
     }).toList());

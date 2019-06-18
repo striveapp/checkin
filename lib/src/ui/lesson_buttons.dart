@@ -44,6 +44,12 @@ class _LessonsButtonsState extends State<LessonsButtons> {
   }
 
   @override
+  void dispose() {
+    _classBloc.dispose();
+    super.dispose();
+  }
+
+  @override
   Widget build(BuildContext context) {
     return BlocBuilder(
       bloc: _classBloc,

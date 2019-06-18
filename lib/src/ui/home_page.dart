@@ -1,9 +1,7 @@
-import 'package:checkin/src/blocs/auth/bloc.dart';
 import 'package:checkin/src/blocs/user/bloc.dart';
-import 'package:checkin/src/resources/user_repository.dart';
 import 'package:checkin/src/ui/loading_indicator.dart';
 import 'package:checkin/src/ui/registry_page.dart';
-import 'package:checkin/src/ui/status_page.dart';
+import 'package:checkin/src/ui/profile_page.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter/widgets.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
@@ -23,19 +21,14 @@ class HomePage extends StatefulWidget {
 }
 
 class _HomePageState extends State<HomePage> {
-  AuthBloc _authBloc;
   UserBloc _userBloc;
-  UserRepository _userRepository;
 
   _HomePageState() {
-    _userRepository = UserRepository();
   }
 
   @override
   void initState() {
-    _authBloc = BlocProvider.of<AuthBloc>(context);
-    _userRepository = UserRepository();
-    _userBloc = UserBloc(authBloc: _authBloc, userRepository: _userRepository);
+    _userBloc = BlocProvider.of<UserBloc>(context);
     super.initState();
   }
 
@@ -50,15 +43,13 @@ class _HomePageState extends State<HomePage> {
           }
 
           if(state is UserSuccess) {
+            debugPrint('Home page loaded with user ' + state.currentUser.toString());
+
             if(state.currentUser.isOwner) {
               return RegistryPage(userBloc: _userBloc);
             }
 
-            if( state.currentUser.isDev ) {
-              return LessonsPage(userBloc: _userBloc,);
-            }
-
-            return StatusPage(userBloc: _userBloc,);
+            return LessonsPage(userBloc: _userBloc,);
           }
         })
     );
@@ -66,7 +57,6 @@ class _HomePageState extends State<HomePage> {
 
   @override
   void dispose() {
-    _userBloc.dispose();
     super.dispose();
   }
 }

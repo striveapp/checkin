@@ -39,7 +39,9 @@ void main() {
         loginAsOwner(false);
         await driver.waitFor(find.byValueKey('todaysClassesText'));
         await driver.tap(find.byValueKey('testClass1'));
+        await driver.tap(find.byValueKey('profilePageButton'));
         var classCounter = await driver.getText(find.byValueKey("classCounter"));
+        driver.tap(find.byTooltip('Back'));
         logout();
 
         //Then login as owner and accept all
@@ -51,6 +53,7 @@ void main() {
         //Then login as user again and check that counter has increase
         loginAsOwner(false);
         await driver.waitFor(find.byValueKey('todaysClassesText'));
+        await driver.tap(find.byValueKey('profilePageButton'));
         var newClassCounter = await driver.getText(find.byValueKey("classCounter"));
         var expectedClassCounter = (int.parse(classCounter) + 1).toString();
 

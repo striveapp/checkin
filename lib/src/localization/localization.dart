@@ -38,7 +38,7 @@ class Localization {
   String get brownGrade => getValue(BrownGrade);
   String get blackGrade => getValue(BlackGrade);
   String get todaysClasses => getValue(TodaysClasses);
-
+  String get profile => getValue(Profile);
 }
 
 class LocalizationDelegate extends LocalizationsDelegate<Localization> {
