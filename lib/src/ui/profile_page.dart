@@ -1,11 +1,5 @@
-import 'package:checkin/src/blocs/auth/auth_bloc.dart';
-import 'package:checkin/src/blocs/auth/auth_event.dart';
-import 'package:checkin/src/blocs/auth/bloc.dart';
-import 'package:checkin/src/blocs/class/bloc.dart';
 import 'package:checkin/src/blocs/user/bloc.dart';
 import 'package:checkin/src/localization/localization.dart';
-import 'package:checkin/src/resources/class_repository.dart';
-import 'package:checkin/src/resources/user_repository.dart';
 import 'package:checkin/src/ui/user_image.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter/widgets.dart';
@@ -53,6 +47,14 @@ class _ProfileState extends State<ProfilePage> {
 
     return Scaffold(
         appBar: AppBar(
+          iconTheme: IconThemeData(
+            color: ((_userBloc.currentState as UserSuccess)
+                .currentUser
+                .rank ==
+                'White')
+                ? Colors.black
+                : Colors.white,
+          ),
           backgroundColor: _getColor(
               (_userBloc.currentState as UserSuccess).currentUser.rank),
           title: Text(Localization

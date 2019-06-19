@@ -1,7 +1,6 @@
 import 'package:checkin/src/blocs/user/bloc.dart';
 import 'package:checkin/src/ui/loading_indicator.dart';
 import 'package:checkin/src/ui/registry_page.dart';
-import 'package:checkin/src/ui/profile_page.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter/widgets.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
@@ -22,9 +21,6 @@ class HomePage extends StatefulWidget {
 
 class _HomePageState extends State<HomePage> {
   UserBloc _userBloc;
-
-  _HomePageState() {
-  }
 
   @override
   void initState() {

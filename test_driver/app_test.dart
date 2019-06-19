@@ -1,11 +1,8 @@
-import 'dart:io';
-
 import 'package:flutter_driver/flutter_driver.dart';
 import 'package:test/test.dart';
-import 'package:firebase/firebase_io.dart';
 
 void main() {
-  group('Flutter Driver demo', () {
+  group('Happy paths', () {
     FlutterDriver driver;
 
     loginAsOwner(bool isOwner) async {
@@ -41,7 +38,9 @@ void main() {
         await driver.tap(find.byValueKey('testClass1'));
         await driver.tap(find.byValueKey('profilePageButton'));
         var classCounter = await driver.getText(find.byValueKey("classCounter"));
-        driver.tap(find.byTooltip('Back'));
+        //TODO: this is not working if emulator runs on different locale
+        // maybe we should propose a fix directly on flutter itself
+        await driver.tap(find.byTooltip('Back'));
         logout();
 
         //Then login as owner and accept all
