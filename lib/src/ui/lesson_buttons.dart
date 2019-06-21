@@ -96,6 +96,8 @@ class _LessonsButtonsState extends State<LessonsButtons> {
         if( state is ClassUninitialized ) {
           return LoadingIndicator();
         }
+
+        return ErrorWidget('Unknown State received in: lesson_buttons');
       },
     );
   }

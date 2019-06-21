@@ -109,6 +109,7 @@ class _RegistryState extends State<RegistryPage> {
                     )
                 ])));
           }
+          return ErrorWidget('Unknown State received in: registry_page');
         },
       ),
     );

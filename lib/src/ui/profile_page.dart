@@ -105,6 +105,7 @@ class _ProfileState extends State<ProfilePage> {
                             )
                           ])));
             }
+            return ErrorWidget('Unknown State received in: profile_page');
           },
         ));
   }

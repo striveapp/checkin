@@ -77,6 +77,8 @@ class _AppState extends State<App> {
             if (state is AuthUnauthenticated) {
               return LoginPage();
             }
+
+            return ErrorWidget('Unknown State received in: app');
           },
         ),
       ),

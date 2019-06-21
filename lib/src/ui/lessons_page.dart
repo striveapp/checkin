@@ -78,18 +78,19 @@ class _LessonsState extends State<LessonsPage> {
           actions: <Widget>[
             Padding(
               padding: const EdgeInsets.only(right: 10.0),
-              child: IconButton( key: Key('profilePageButton'),
+              child: IconButton(
+                  key: Key('profilePageButton'),
                   onPressed: () {
                     Navigator.of(context).pushNamed('/profile');
                   },
                   icon: ClipRRect(
                       borderRadius: BorderRadius.circular(50.0),
                       child: Image.network(
-                      (_userBloc.currentState as UserSuccess)
-                          .currentUser
-                          .imageUrl,
-                      width: 30,
-                      height: 30))),
+                          (_userBloc.currentState as UserSuccess)
+                              .currentUser
+                              .imageUrl,
+                          width: 30,
+                          height: 30))),
             ),
           ],
         ),
@@ -117,23 +118,28 @@ class _LessonsState extends State<LessonsPage> {
                               fontSize: 32.0),
                         ),
                       ),
-                      LessonsButtons(lessons: state.lessons, userBloc: _userBloc),
-                      RaisedButton(
-                        key: Key('logoutButton'),
-                        color: Colors.red,
-                        child: Text(Localization.of(context).logout,
-                            style: TextStyle(
-                                fontSize: 18,
-                                color: Colors.white,
-                                fontWeight: FontWeight.w600)),
-                        onPressed: () {
-                          _authBloc.dispatch(LogOut());
-                        },
-                      ),
+                      LessonsButtons(
+                          lessons: state.lessons, userBloc: _userBloc),
+                      if ((_userBloc.currentState as UserSuccess)
+                          .currentUser
+                          .isDev)
+                        RaisedButton(
+                          key: Key('logoutButton'),
+                          color: Colors.red,
+                          child: Text(Localization.of(context).logout,
+                              style: TextStyle(
+                                  fontSize: 18,
+                                  color: Colors.white,
+                                  fontWeight: FontWeight.w600)),
+                          onPressed: () {
+                            _authBloc.dispatch(LogOut());
+                          },
+                        ),
                     ],
                   ),
                 );
               }
+              return ErrorWidget('Unknown State received in: lesson_page');
             }));
   }
 

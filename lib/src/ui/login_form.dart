@@ -72,6 +72,8 @@ class _LoginFormState extends State<LoginForm> {
           );
         }
 
+        return ErrorWidget('Unknown State received in: login_form');
+
       },
     );
   }

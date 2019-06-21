@@ -32,6 +32,7 @@ class AttendeesList extends StatelessWidget {
               if (index < this.attendeeList.length) {
                 return AttendeeTile(attendee: this.attendeeList[index]);
               }
+              return null;
             }),
       ),
     );

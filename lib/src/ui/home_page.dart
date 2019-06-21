@@ -47,6 +47,8 @@ class _HomePageState extends State<HomePage> {
 
             return LessonsPage(userBloc: _userBloc,);
           }
+
+          return ErrorWidget('Unknown State received in: home_page');
         })
     );
   }
