@@ -5,11 +5,11 @@ import 'package:checkin/src/models/lesson.dart';
 import 'package:checkin/src/resources/lesson_repository.dart';
 import 'package:checkin/src/resources/user_repository.dart';
 import 'package:meta/meta.dart';
+import 'package:intl/intl.dart';
 
 import 'bloc.dart';
 
 class LessonsBloc extends Bloc<LessonsEvent, LessonsState> {
-
   final LessonRepository lessonRepository;
   final UserRepository userRepository;
   StreamSubscription<List<Lesson>> lessonsSub;
@@ -30,8 +30,8 @@ class LessonsBloc extends Bloc<LessonsEvent, LessonsState> {
   Stream<LessonsState> mapEventToState(LessonsEvent event) async* {
     if (event is LessonsUpdated) {
       try {
-        yield LessonsLoaded(lessons: event.lessons);
-      } catch(e) {
+        yield LessonsLoaded(lessons: _sortLessonsByTime(event.lessons));
+      } catch (e) {
         print(e);
       }
     }
@@ -54,6 +54,16 @@ class LessonsBloc extends Bloc<LessonsEvent, LessonsState> {
 //        print(e);
 //      }
 //    }
+  }
+  
+  _sortLessonsByTime(List<Lesson> lessons) =>
+      lessons..sort(((a, b) => _getDate(a.timeStart).compareTo(_getDate(b.timeStart))));
+
+  _getDate(String time) {
+    DateTime now = DateTime.now();
+    var todayDate = DateFormat('yyyy-MM-dd').format(now);
+
+    return DateTime.parse('$todayDate $time:00');
   }
 
   @override
