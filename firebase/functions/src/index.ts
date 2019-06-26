@@ -6,9 +6,9 @@ import { validateFirebaseIdToken } from "./middlewares/validations";
 
 admin.initializeApp()
 
-const app = express();
-app.use(validateFirebaseIdToken);
-app.get('/restoreBackup', async (req, res) => {
+const expressApp = express();
+expressApp.use(validateFirebaseIdToken);
+expressApp.get('/restoreBackup', async (req, res) => {
     try {
         await restoreBackup();
         res.status(200).send("Gotcha!");
@@ -25,4 +25,4 @@ export const automatedBackups = functions.pubsub
     .schedule('0 3 * * *')
     .onRun(generateBackup);
 
-export const restoreYesterdayBackup = functions.https.onRequest(app);
+export const app = functions.https.onRequest(expressApp);

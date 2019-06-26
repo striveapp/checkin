@@ -35,6 +35,10 @@ service cloud.firestore {
       allow update: if isLoggedUser(email) && ! requestData().keys().hasAny(['isOwner', 'isDev']);
     }
 
+    match /lessons/{document=**} {
+      allow read: if isLoggedUser(request.auth.token.email);
+    }
+
     match /class/{document=**} {
       allow read: if isLoggedUser(request.auth.token.email);
     }

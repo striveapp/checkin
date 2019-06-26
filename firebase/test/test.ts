@@ -209,6 +209,42 @@ class MyApp {
 
     }
 
+    // test collection lessons
+
+    @test
+    async "should only let registered users read lessons collection"() {
+        const loggedUser = authedApp({uid: "loggedUser", email: "loggedUser@test.com"});
+
+        await firebase.assertSucceeds(
+            loggedUser
+                .collection("lessons")
+                .get()
+        );
+
+        const nonLoggedUser = nonAuthedApp();
+
+        await firebase.assertFails(
+            nonLoggedUser
+                .collection("lessons")
+                .get()
+        );
+    }
+
+    @test
+    async "nobody should write new lessons"() {
+        const user = authedApp({uid: "loggedUser", email: "loggedUser@test.com", name: "user"});
+
+        // an user registers normally
+        await firebase.assertFails(
+            user
+                .collection("lessons")
+                .doc("anotherRandomId")
+                .set({
+                    name: "testLesson"
+                })
+        );
+    }
+
     // test collection class
 
     @test
