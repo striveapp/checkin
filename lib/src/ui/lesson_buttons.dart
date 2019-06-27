@@ -49,6 +49,17 @@ class _LessonsButtonsState extends State<LessonsButtons> {
     super.dispose();
   }
 
+  bool isUserInClass(String currentUserEmail, List attendees) {
+    var found = null;
+    for(var i = 0;i<attendees.length;i++){
+      if( attendees[i].email == currentUserEmail ) {
+        found = attendees[i];
+        break;
+      }
+    }
+    return found == null;
+  }
+
   @override
   Widget build(BuildContext context) {
     return BlocBuilder(
@@ -58,39 +69,44 @@ class _LessonsButtonsState extends State<LessonsButtons> {
         var _currentUserEmail = (_authBloc.currentState as AuthAuthenticated).currentUserEmail;
 
         if(state is ClassLoaded) {
-          var _isUserInClass = (currentUserEmail) =>
-          state.attendees.firstWhere((attendee) =>
-          attendee.email == currentUserEmail) == null;
+          try {
+            if (state.attendees.length == 0 ||
+               isUserInClass(_currentUserEmail, state.attendees) ) {
 
-          if (state.attendees.length == 0 || _isUserInClass(_currentUserEmail)) {
-            _onPressed = () => _classBloc.dispatch(Attend(attendee: (_userBloc.currentState as UserSuccess).currentUser));
-          }
+              _onPressed = () =>
+                  _classBloc.dispatch(Attend(
+                      attendee: (_userBloc.currentState as UserSuccess)
+                          .currentUser));
+            }
 
           return Container(
-              margin: EdgeInsets.only(top: 40.0),
-              child: Column(
-                  children: _lessons.map((lesson) =>
-                      Container(
-                          padding: EdgeInsets.only(top: 20.0),
-                          child: ButtonTheme(
-                              height: 50.0,
-                              minWidth: 240.0,
-                              buttonColor: Colors.indigo,
-                              padding: const EdgeInsets.all(0.0),
-                              child: RaisedButton(
-                                  child: Text(
-                                    "${lesson.timeStart} - ${lesson.timeEnd}",
-                                    key: Key('${lesson.name}'),
-                                    style: TextStyle(
-                                        color: Colors.white,
-                                        fontStyle: FontStyle.normal,
-                                        fontFamily: 'Roboto',
-                                        fontSize: 22.0
+                margin: EdgeInsets.only(top: 40.0),
+                child: Column(
+                    children: _lessons.map((lesson) =>
+                        Container(
+                            padding: EdgeInsets.only(top: 20.0),
+                            child: ButtonTheme(
+                                height: 50.0,
+                                minWidth: 240.0,
+                                buttonColor: Colors.indigo,
+                                padding: const EdgeInsets.all(0.0),
+                                child: RaisedButton(
+                                    child: Text(
+                                      "${lesson.timeStart} - ${lesson.timeEnd}",
+                                      key: Key('${lesson.name}'),
+                                      style: TextStyle(
+                                          color: Colors.white,
+                                          fontStyle: FontStyle.normal,
+                                          fontFamily: 'Roboto',
+                                          fontSize: 22.0
+                                      ),
                                     ),
-                                  ),
-                                  onPressed: _onPressed))))
-                      .toList()));
-
+                                    onPressed: _onPressed))))
+                        .toList()));
+          } catch ( e ){
+            debugPrint(e);
+            return ErrorWidget('Unknown State received in: lesson_buttons');
+          }
         }
 
         if( state is ClassUninitialized ) {
