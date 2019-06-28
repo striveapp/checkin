@@ -50,7 +50,7 @@ class _LessonsButtonsState extends State<LessonsButtons> {
   }
 
   bool isUserInClass(String currentUserEmail, List attendees) {
-    var found = null;
+    var found;
     for(var i = 0;i<attendees.length;i++){
       if( attendees[i].email == currentUserEmail ) {
         found = attendees[i];
