@@ -3,6 +3,7 @@ import 'package:checkin/src/resources/user_repository.dart';
 import 'package:checkin/src/ui/grade_page.dart';
 import 'package:checkin/src/ui/home_page.dart';
 import 'package:checkin/src/ui/login_page.dart';
+import 'package:checkin/src/ui/registry_page.dart';
 import 'package:checkin/src/ui/splash_page.dart';
 import 'package:checkin/src/ui/profile_page.dart';
 import 'package:firebase_auth/firebase_auth.dart';
@@ -60,6 +61,7 @@ class _AppState extends State<App> {
         routes: {
           '/home': (context) => HomePage(),
           '/profile': (context) => ProfilePage(),
+          '/registry': (context) => RegistryPage(userBloc: _userBloc,),
         },
         home: BlocBuilder<AuthEvent, AuthState>(
           bloc: _authBloc,

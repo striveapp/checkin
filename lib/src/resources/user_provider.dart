@@ -57,10 +57,10 @@ class UserProvider {
     return user.data['rank'] == null;
   }
 
-  incrementUserCounter(User currentUser) {
+  incrementUserCounter(String email) {
     _firestore
         .collection(path)
-        .document(currentUser.email)
-        .updateData({"counter": currentUser.counter + 1});
+        .document(email)
+        .updateData({"counter": FieldValue.increment(1)});
   }
 }

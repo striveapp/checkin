@@ -4,6 +4,7 @@ import 'package:bloc/bloc.dart';
 import 'package:checkin/src/models/lesson.dart';
 import 'package:checkin/src/resources/lesson_repository.dart';
 import 'package:checkin/src/resources/user_repository.dart';
+import 'package:flutter/foundation.dart';
 import 'package:meta/meta.dart';
 import 'package:intl/intl.dart';
 
@@ -36,16 +37,16 @@ class LessonsBloc extends Bloc<LessonsEvent, LessonsState> {
       }
     }
 
-//    if (event is Confirm) {
-//      try {
-//        event.attendees.forEach((attendee) {
-//         this.userRepository.incrementUserCounter(attendee);
-//        });
-//        await this.lessonRepository.clearLesson();
-//      } catch(e) {
-//        print(e);
-//      }
-//    }
+    if (event is ConfirmAttendees) {
+      try {
+        event.attendees.forEach((attendee) {
+         this.userRepository.incrementUserCounter(attendee.email);
+        });
+        await this.lessonRepository.clearLesson(event.lessonId);
+      } catch(e) {
+        print(e);
+      }
+    }
 
     if (event is AttendLesson) {
       try {

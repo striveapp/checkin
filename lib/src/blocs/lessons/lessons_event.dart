@@ -19,6 +19,18 @@ class AttendLesson extends LessonsEvent {
   String toString() => 'Attend';
 }
 
+class ConfirmAttendees extends LessonsEvent {
+  String lessonId;
+  List<Attendee> attendees;
+
+  ConfirmAttendees({
+    this.lessonId,
+    this.attendees,
+  }) : super([lessonId, attendees]);
+  @override
+  String toString() => 'ConfirmAttendees';
+}
+
 class LessonsUpdated extends LessonsEvent {
 
   final List<Lesson> lessons;

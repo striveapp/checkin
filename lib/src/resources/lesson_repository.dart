@@ -12,4 +12,5 @@ class LessonRepository {
 
   Stream<List<Lesson>> getLessonsForToday() => _lessonProvider.getLessonsForToday();
 
+  Future<void> clearLesson(String lessonId) => _lessonProvider.clearLesson(lessonId);
 }

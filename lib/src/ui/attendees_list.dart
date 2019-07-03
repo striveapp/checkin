@@ -1,9 +1,9 @@
 import 'package:checkin/src/localization/localization.dart';
-import 'package:checkin/src/models/user.dart';
+import 'package:checkin/src/models/attendee.dart';
 import 'package:flutter/material.dart';
 
 class AttendeesList extends StatelessWidget {
-  final List<User> attendeeList;
+  final List<Attendee> attendeeList;
 
   const AttendeesList({Key key, @required this.attendeeList}) : super(key: key);
 
@@ -40,7 +40,7 @@ class AttendeesList extends StatelessWidget {
 }
 
 class AttendeeTile extends StatelessWidget {
-  final User attendee;
+  final Attendee attendee;
 
   const AttendeeTile({Key key, @required this.attendee}) : super(key: key);
 

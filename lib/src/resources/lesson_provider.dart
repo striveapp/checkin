@@ -31,19 +31,22 @@ class LessonProvider {
         .collection(path)
         .where('weekDay', isEqualTo: today)
         .snapshots()
-        .map((snapshot) => snapshot.documents.map((doc) {
-              debugPrint("aaaaaa attendees [${doc.data}]");
-              return Lesson(
-                  id: doc.documentID,
-                  name: doc.data['name'],
-                  timeStart: doc.data['timeStart'],
-                  timeEnd: doc.data['timeEnd'],
-                  weekDay: doc.data['weekDay'],
-                  excludedGrades: doc.data['excludedGrades'],
-                  attendees: ( doc.data['attendees'] as List )
-                      ?.map((attendee) => Attendee(name: attendee['name'], rank: attendee["rank"], imageUrl: attendee["imageUrl"]))
-                      ?.toList() );
-            }).toList());
+        .map((snapshot) => snapshot.documents
+            .map((doc) => Lesson(
+                id: doc.documentID,
+                name: doc.data['name'],
+                timeStart: doc.data['timeStart'],
+                timeEnd: doc.data['timeEnd'],
+                weekDay: doc.data['weekDay'],
+                excludedGrades: doc.data['excludedGrades'],
+                attendees: (doc.data['attendees'] as List)
+                    ?.map((attendee) => Attendee(
+                        name: attendee['name'],
+                        rank: attendee["rank"],
+                        imageUrl: attendee["imageUrl"],
+                        email: attendee["email"]))
+                    ?.toList()))
+            .toList());
   }
 
   Future<void> attendLesson(String lessonId, Attendee attendee) async {
@@ -53,28 +56,17 @@ class LessonProvider {
         {
           'name': attendee.name,
           'imageUrl': attendee.imageUrl,
-          'grade': attendee.rank
+          'grade': attendee.rank,
+          'email': attendee.email
         }
       ])
     });
   }
 
-//  Future<void> attendClass(User attendee) async {
-//    debugPrint("attendClass [$attendee]");
-//    await _firestore.collection(path).add({
-//      'name': attendee.name,
-//      'imageUrl': attendee.imageUrl,
-//      'grade': attendee.rank,
-//      'email': attendee.email,
-//      'counter': attendee.counter
-//    });
-//  }
-//
-//  Future<void> clearClass() async {
-//    var res = await _firestore.collection(path).getDocuments();
-//
-//    for (DocumentSnapshot ds in res.documents) {
-//      ds.reference.delete();
-//    }
-//  }
+  Future<void> clearLesson(String lessonId) async {
+    await _firestore
+        .collection(path)
+        .document(lessonId)
+        .updateData({"attendees": FieldValue.delete()});
+  }
 }

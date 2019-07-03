@@ -1,5 +1,3 @@
-import 'package:checkin/src/blocs/auth/auth_bloc.dart';
-import 'package:checkin/src/blocs/class/bloc.dart';
 import 'package:checkin/src/blocs/lessons/bloc.dart';
 import 'package:checkin/src/blocs/user/bloc.dart';
 import 'package:checkin/src/models/attendee.dart';
@@ -62,8 +60,14 @@ class _LessonsButtonsState extends State<LessonsButtons> {
             User currentUser =
                 (_userBloc.currentState as UserSuccess).currentUser;
 
-            _onPressed = (lessonId) => _lessonBloc.dispatch(AttendLesson(
-                lessonId: lessonId, attendee: Attendee.fromUser(currentUser)));
+            _onPressed = (lessonId) {
+              if(currentUser.isOwner) {
+                Navigator.of(context).pushNamed('/registry', arguments: lessonId);
+              } else {
+                _lessonBloc.dispatch(AttendLesson(
+                    lessonId: lessonId, attendee: Attendee.fromUser(currentUser)));
+              }
+            };
 
             return Container(
                 margin: EdgeInsets.only(top: 40.0),
@@ -87,7 +91,7 @@ class _LessonsButtonsState extends State<LessonsButtons> {
                                           fontSize: 22.0),
                                     ),
                                     onPressed:
-                                        lesson.containsUser(currentUser.name)
+                                        lesson.containsUser(currentUser.email)
                                             ? null
                                             : () => _onPressed(lesson.id)))))
                         .toList()));

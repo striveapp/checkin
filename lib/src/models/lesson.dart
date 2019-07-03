@@ -19,12 +19,12 @@ class Lesson extends Equatable {
     return 'Lesson{id: $id, name: $name, timeStart: $timeStart, timeEnd: $timeEnd, weekDay: $weekDay, excludedGrades: $excludedGrades, attendees: $attendees}';
   }
 
-  bool containsUser(String user) {
-    // todo the check on name is not accurate, we should use some kind of id
+  bool containsUser(String email) {
+    // todo: we should use some kind of id to perform this check not the email
     if( attendees == null  ) {
       return false;
     }
 
-    return attendees.any( (attendee) => attendee.name == user );
+    return attendees.any( (attendee) => attendee.email == email );
   }
 }

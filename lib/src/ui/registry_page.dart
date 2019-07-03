@@ -1,9 +1,9 @@
 import 'package:checkin/src/blocs/auth/auth_bloc.dart';
 import 'package:checkin/src/blocs/auth/bloc.dart';
-import 'package:checkin/src/blocs/class/bloc.dart';
+import 'package:checkin/src/blocs/lessons/bloc.dart';
 import 'package:checkin/src/blocs/user/bloc.dart';
 import 'package:checkin/src/localization/localization.dart';
-import 'package:checkin/src/resources/class_repository.dart';
+import 'package:checkin/src/resources/lesson_repository.dart';
 import 'package:checkin/src/resources/user_repository.dart';
 import 'package:checkin/src/ui/attendees_list.dart';
 import 'package:checkin/src/ui/loading_indicator.dart';
@@ -16,11 +16,8 @@ class RegistryPage extends StatefulWidget {
 
   RegistryPage({
     Key key,
-    this.title,
     @required this.userBloc,
   }) : super(key: key);
-
-  final String title;
 
   @override
   _RegistryState createState() {
@@ -31,21 +28,23 @@ class RegistryPage extends StatefulWidget {
 class _RegistryState extends State<RegistryPage> {
   UserBloc get _userBloc => widget.userBloc;
 
-  final ClassRepository _classRepository = ClassRepository();
+  final LessonRepository _lessonsRepository = LessonRepository();
   final UserRepository _userRepository = UserRepository();
-  ClassBloc _classBloc;
+  LessonsBloc _lessonsBloc;
   AuthBloc _authBloc;
 
   @override
   void initState() {
     super.initState();
     _authBloc = BlocProvider.of<AuthBloc>(context);
-    _classBloc = ClassBloc(
-        classRepository: _classRepository, userRepository: _userRepository);
+    _lessonsBloc = LessonsBloc(
+        lessonRepository: _lessonsRepository, userRepository: _userRepository);
   }
 
   @override
   Widget build(BuildContext context) {
+    final lessonId = ModalRoute.of(context).settings.arguments;
+
     return Scaffold(
       appBar: AppBar(
         backgroundColor: Colors.black87,
@@ -59,16 +58,24 @@ class _RegistryState extends State<RegistryPage> {
         centerTitle: true,
       ),
       body: BlocBuilder(
-        bloc: _classBloc,
-        builder: (BuildContext context, ClassState state) {
+        bloc: _lessonsBloc,
+        builder: (BuildContext context, LessonsState state) {
           var _onPressed;
-          if (state is ClassUninitialized) {
+          var currentLesson;
+          if (state is LessonsUninitialized) {
             return LoadingIndicator();
           }
-          if (state is ClassLoaded) {
-            _onPressed = state.attendees.isNotEmpty
-                ? () => _classBloc.dispatch(Confirm(attendees: state.attendees))
-                : null;
+          if (state is LessonsLoaded) {
+            state.lessons.forEach((lesson) => {
+                  if (lesson.id == lessonId) {currentLesson = lesson}
+                });
+
+            if (currentLesson.attendees != null) {
+              _onPressed = currentLesson.attendees.isNotEmpty
+                  ? () => _lessonsBloc.dispatch(ConfirmAttendees(
+                      lessonId: lessonId, attendees: currentLesson.attendees))
+                  : null;
+            }
 
             return Center(
                 child: Container(
@@ -78,7 +85,8 @@ class _RegistryState extends State<RegistryPage> {
                         children: [
                   Padding(
                     padding: const EdgeInsets.symmetric(vertical: 50),
-                    child: AttendeesList(attendeeList: state.attendees),
+                    child: AttendeesList(
+                        attendeeList: currentLesson.attendees ?? []),
                   ),
                   Padding(
                     padding: const EdgeInsets.symmetric(vertical: 10),
@@ -117,7 +125,7 @@ class _RegistryState extends State<RegistryPage> {
 
   @override
   void dispose() {
-    _classBloc.dispose();
+    _lessonsBloc.dispose();
     super.dispose();
   }
 }

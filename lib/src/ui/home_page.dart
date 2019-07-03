@@ -1,6 +1,5 @@
 import 'package:checkin/src/blocs/user/bloc.dart';
 import 'package:checkin/src/ui/loading_indicator.dart';
-import 'package:checkin/src/ui/registry_page.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter/widgets.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
@@ -40,11 +39,6 @@ class _HomePageState extends State<HomePage> {
 
           if(state is UserSuccess) {
             debugPrint('Home page loaded with user ' + state.currentUser.toString());
-
-            if(state.currentUser.isOwner) {
-              return RegistryPage(userBloc: _userBloc);
-            }
-
             return LessonsPage(userBloc: _userBloc,);
           }
 

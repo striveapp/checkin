@@ -1,4 +1,5 @@
 import 'package:checkin/src/models/user.dart';
+
 import 'user_provider.dart';
 
 class UserRepository {
@@ -14,6 +15,6 @@ class UserRepository {
 
   updateUserGrade(User currentUser, String grade) => _userProvider.updateUserGrade(currentUser, grade);
 
-  incrementUserCounter(User currentUser) => _userProvider.incrementUserCounter(currentUser);
+  incrementUserCounter(String email) => _userProvider.incrementUserCounter(email);
 
 }
