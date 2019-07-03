@@ -1,5 +1,7 @@
+import 'package:checkin/src/models/attendee.dart';
 import 'package:checkin/src/models/lesson.dart';
 import 'package:cloud_firestore/cloud_firestore.dart';
+import 'package:flutter/foundation.dart';
 import 'package:intl/intl.dart';
 
 class LessonProvider {
@@ -13,14 +15,13 @@ class LessonProvider {
         .collection(path)
         .snapshots()
         .map((snapshot) => snapshot.documents.map((doc) {
-      return Lesson(
-          name: doc.data['name'],
-          timeStart: doc.data['timeStart'], 
-          timeEnd: doc.data['timeEnd'], 
-          weekDay: doc.data['weekDay'], 
-          excludedGrades: doc.data['excludedGrades']
-      );
-    }).toList());
+              return Lesson(
+                  name: doc.data['name'],
+                  timeStart: doc.data['timeStart'],
+                  timeEnd: doc.data['timeEnd'],
+                  weekDay: doc.data['weekDay'],
+                  excludedGrades: doc.data['excludedGrades']);
+            }).toList());
   }
 
   Stream<List<Lesson>> getLessonsForToday() {
@@ -28,17 +29,34 @@ class LessonProvider {
 
     return _firestore
         .collection(path)
-        .where('weekDay', isEqualTo: today )
+        .where('weekDay', isEqualTo: today)
         .snapshots()
         .map((snapshot) => snapshot.documents.map((doc) {
-      return Lesson(
-          name: doc.data['name'],
-          timeStart: doc.data['timeStart'],
-          timeEnd: doc.data['timeEnd'],
-          weekDay: doc.data['weekDay'],
-          excludedGrades: doc.data['excludedGrades']
-      );
-    }).toList());
+              debugPrint("aaaaaa attendees [${doc.data}]");
+              return Lesson(
+                  id: doc.documentID,
+                  name: doc.data['name'],
+                  timeStart: doc.data['timeStart'],
+                  timeEnd: doc.data['timeEnd'],
+                  weekDay: doc.data['weekDay'],
+                  excludedGrades: doc.data['excludedGrades'],
+                  attendees: ( doc.data['attendees'] as List )
+                      ?.map((attendee) => Attendee(name: attendee['name'], rank: attendee["rank"], imageUrl: attendee["imageUrl"]))
+                      ?.toList() );
+            }).toList());
+  }
+
+  Future<void> attendLesson(String lessonId, Attendee attendee) async {
+    debugPrint("User [$attendee] attends lesson with id [$lessonId]");
+    await _firestore.collection(path).document(lessonId).updateData({
+      'attendees': FieldValue.arrayUnion([
+        {
+          'name': attendee.name,
+          'imageUrl': attendee.imageUrl,
+          'grade': attendee.rank
+        }
+      ])
+    });
   }
 
 //  Future<void> attendClass(User attendee) async {

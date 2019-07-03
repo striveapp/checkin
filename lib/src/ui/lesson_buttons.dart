@@ -1,9 +1,11 @@
 import 'package:checkin/src/blocs/auth/auth_bloc.dart';
-import 'package:checkin/src/blocs/auth/auth_state.dart';
 import 'package:checkin/src/blocs/class/bloc.dart';
+import 'package:checkin/src/blocs/lessons/bloc.dart';
 import 'package:checkin/src/blocs/user/bloc.dart';
+import 'package:checkin/src/models/attendee.dart';
 import 'package:checkin/src/models/lesson.dart';
-import 'package:checkin/src/resources/class_repository.dart';
+import 'package:checkin/src/models/user.dart';
+import 'package:checkin/src/resources/lesson_repository.dart';
 import 'package:checkin/src/resources/user_repository.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
@@ -26,64 +28,48 @@ class LessonsButtons extends StatefulWidget {
 
 class _LessonsButtonsState extends State<LessonsButtons> {
   List<Lesson> get _lessons => widget.lessons;
+
   UserBloc get _userBloc => widget.userBloc;
 
-  final ClassRepository _classRepository = ClassRepository();
   final UserRepository _userRepository = UserRepository();
-  AuthBloc _authBloc;
-  ClassBloc _classBloc;
+  final LessonRepository _lessonRepository = LessonRepository();
+
+  LessonsBloc _lessonBloc;
 
   @override
   void initState() {
     super.initState();
 
-    _authBloc = BlocProvider.of<AuthBloc>(context);
-
-    _classBloc = ClassBloc(
-        classRepository: _classRepository, userRepository: _userRepository);
+    _lessonBloc = LessonsBloc(
+        lessonRepository: _lessonRepository, userRepository: _userRepository);
   }
 
   @override
   void dispose() {
-    _classBloc.dispose();
+    _lessonBloc.dispose();
     super.dispose();
-  }
-
-  bool isUserInClass(String currentUserEmail, List attendees) {
-    var found;
-    for(var i = 0;i<attendees.length;i++){
-      if( attendees[i].email == currentUserEmail ) {
-        found = attendees[i];
-        break;
-      }
-    }
-    return found == null;
   }
 
   @override
   Widget build(BuildContext context) {
     return BlocBuilder(
-      bloc: _classBloc,
-      builder: (BuildContext context, ClassState state) {
+      bloc: _lessonBloc,
+      builder: (BuildContext context, LessonsState state) {
         var _onPressed;
-        var _currentUserEmail = (_authBloc.currentState as AuthAuthenticated).currentUserEmail;
 
-        if(state is ClassLoaded) {
+        if (state is LessonsLoaded) {
           try {
-            if (state.attendees.length == 0 ||
-               isUserInClass(_currentUserEmail, state.attendees) ) {
+            User currentUser =
+                (_userBloc.currentState as UserSuccess).currentUser;
 
-              _onPressed = () =>
-                  _classBloc.dispatch(Attend(
-                      attendee: (_userBloc.currentState as UserSuccess)
-                          .currentUser));
-            }
+            _onPressed = (lessonId) => _lessonBloc.dispatch(AttendLesson(
+                lessonId: lessonId, attendee: Attendee.fromUser(currentUser)));
 
-          return Container(
+            return Container(
                 margin: EdgeInsets.only(top: 40.0),
                 child: Column(
-                    children: _lessons.map((lesson) =>
-                        Container(
+                    children: _lessons
+                        .map((lesson) => Container(
                             padding: EdgeInsets.only(top: 20.0),
                             child: ButtonTheme(
                                 height: 50.0,
@@ -98,18 +84,20 @@ class _LessonsButtonsState extends State<LessonsButtons> {
                                           color: Colors.white,
                                           fontStyle: FontStyle.normal,
                                           fontFamily: 'Roboto',
-                                          fontSize: 22.0
-                                      ),
+                                          fontSize: 22.0),
                                     ),
-                                    onPressed: _onPressed))))
+                                    onPressed:
+                                        lesson.containsUser(currentUser.name)
+                                            ? null
+                                            : () => _onPressed(lesson.id)))))
                         .toList()));
-          } catch ( e ){
+          } catch (e) {
             debugPrint(e);
             return ErrorWidget('Unknown State received in: lesson_buttons');
           }
         }
 
-        if( state is ClassUninitialized ) {
+        if (state is LessonsUninitialized) {
           return LoadingIndicator();
         }
 

@@ -5,17 +5,6 @@ abstract class ClassEvent extends Equatable {
   ClassEvent([List props = const []]) : super(props);
 }
 
-class Attend extends ClassEvent {
-  User attendee;
-
-  Attend({
-    this.attendee,
-  }) : super([attendee]);
-
-  @override
-  String toString() => 'Attend';
-}
-
 class Confirm extends ClassEvent {
   List<User> attendees;
 

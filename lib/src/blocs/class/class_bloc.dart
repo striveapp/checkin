@@ -45,14 +45,6 @@ class ClassBloc extends Bloc<ClassEvent, ClassState> {
         print(e);
       }
     }
-
-    if (event is Attend) {
-      try {
-        await this.classRepository.attendClass(event.attendee);
-      } catch(e) {
-        print(e);
-      }
-    }
   }
 
   @override

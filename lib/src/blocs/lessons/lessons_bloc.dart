@@ -47,13 +47,13 @@ class LessonsBloc extends Bloc<LessonsEvent, LessonsState> {
 //      }
 //    }
 
-//    if (event is Attend) {
-//      try {
-//        await this.lessonRepository.attendLesson(event.attendee);
-//      } catch(e) {
-//        print(e);
-//      }
-//    }
+    if (event is AttendLesson) {
+      try {
+        await this.lessonRepository.attendLesson(event.lessonId, event.attendee);
+      } catch(e) {
+        print(e);
+      }
+    }
   }
   
   _sortLessonsByTime(List<Lesson> lessons) =>
