@@ -51,7 +51,7 @@
               "client_id": "1079767834354-2jli4tfv49bevdsarfc21g58ibi1q74s.apps.googleusercontent.com",
               "client_type": 2,
               "ios_info": {
-                "bundle_id": "com.example.checkin"
+                "bundle_id": "com.arya.checkin"
               }
             }
           ]
@@ -62,7 +62,7 @@
       "client_info": {
         "mobilesdk_app_id": "1:1079767834354:android:546868399b12982a",
         "android_client_info": {
-          "package_name": "com.example.checkin"
+          "package_name": "com.arya.checkin"
         }
       },
       "oauth_client": [
@@ -70,7 +70,7 @@
           "client_id": "1079767834354-1qmk9aslvk0b38s446vner2pu601plo3.apps.googleusercontent.com",
           "client_type": 1,
           "android_info": {
-            "package_name": "com.example.checkin",
+            "package_name": "com.arya.checkin",
             "certificate_hash": "302b81e3af7dd4ece74a5abcf2c56c68ac935fb3"
           }
         },
@@ -78,7 +78,7 @@
           "client_id": "1079767834354-c9b13d7a0u1dle5uqid4d0fk16fuh274.apps.googleusercontent.com",
           "client_type": 1,
           "android_info": {
-            "package_name": "com.example.checkin",
+            "package_name": "com.arya.checkin",
             "certificate_hash": "48367fd9098452c4eb44bfb6ddb5eb8335d582f9"
           }
         },
@@ -103,7 +103,7 @@
               "client_id": "1079767834354-2jli4tfv49bevdsarfc21g58ibi1q74s.apps.googleusercontent.com",
               "client_type": 2,
               "ios_info": {
-                "bundle_id": "com.example.checkin"
+                "bundle_id": "com.arya.checkin"
               }
             }
           ]
