@@ -1,0 +1,6 @@
+#!/bin/sh
+
+git diff --diff-filter=d --cached --name-only | grep -q -E '\.dart$'
+if [ $? -eq 0 ]; then
+    exec flutter analyze --no-pub --no-congratulate
+fi
