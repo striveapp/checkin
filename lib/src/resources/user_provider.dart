@@ -48,8 +48,6 @@ class UserProvider {
         .document(email)
         .get();
 
-    debugPrint('isNewUser [$user]');
-
     if( ! user.exists ) {
       return true;
     }

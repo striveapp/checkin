@@ -27,6 +27,7 @@ dependencies:
   bloc: ^0.12.0
   equatable: ^0.2.2
   flutter_bloc: ^0.11.0
+  firebase_crashlytics: ^0.0.4+8
 
 dev_dependencies:
   test: ">=1.3.0 <2.0.0"

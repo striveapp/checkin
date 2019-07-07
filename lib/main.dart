@@ -1,6 +1,7 @@
 import 'package:bloc/bloc.dart';
 import 'package:flutter/material.dart';
 import 'src/app.dart';
+import 'package:firebase_crashlytics/firebase_crashlytics.dart';
 
 class SimpleBlocDelegate extends BlocDelegate {
   @override
@@ -17,6 +18,10 @@ class SimpleBlocDelegate extends BlocDelegate {
 }
 
 void main(){
+  FlutterError.onError = (FlutterErrorDetails details) {
+    Crashlytics.instance.onError(details);
+  };
+
   BlocSupervisor().delegate = SimpleBlocDelegate();
   runApp(App());
 }

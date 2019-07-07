@@ -75,4 +75,5 @@ dependencies {
     implementation 'com.google.firebase:firebase-core:16.0.8'
 }
 
+apply plugin: 'io.fabric'
 apply plugin: 'com.google.gms.google-services'

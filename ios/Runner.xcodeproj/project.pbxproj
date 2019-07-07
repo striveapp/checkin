@@ -167,6 +167,7 @@
 				3B06AD1E1E4923F5004D2608 /* Thin Binary */,
 				542B243AA0772A6241E7C74E /* [CP] Embed Pods Frameworks */,
 				C5CF6876D278AE15D62F6150 /* [CP] Copy Pods Resources */,
+				2AB18A2222D25DDC001FC5B0 /* ShellScript */,
 			);
 			buildRules = (
 			);
@@ -226,6 +227,24 @@
 /* End PBXResourcesBuildPhase section */
 
 /* Begin PBXShellScriptBuildPhase section */
+		2AB18A2222D25DDC001FC5B0 /* ShellScript */ = {
+			isa = PBXShellScriptBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			inputFileListPaths = (
+			);
+			inputPaths = (
+				"$(BUILT_PRODUCTS_DIR)/$(INFOPLIST_PATH)",
+			);
+			outputFileListPaths = (
+			);
+			outputPaths = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+			shellPath = /bin/sh;
+			shellScript = "${PODS_ROOT}/Fabric/run\n";
+		};
 		3B06AD1E1E4923F5004D2608 /* Thin Binary */ = {
 			isa = PBXShellScriptBuildPhase;
 			buildActionMask = 2147483647;
@@ -274,7 +293,7 @@
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 			shellPath = /bin/sh;
-			shellScript = "/bin/sh \"$FLUTTER_ROOT/packages/flutter_tools/bin/xcode_backend.sh\" build";
+			shellScript = "/bin/sh \"$FLUTTER_ROOT/packages/flutter_tools/bin/xcode_backend.sh\" build\n";
 		};
 		C5CF6876D278AE15D62F6150 /* [CP] Copy Pods Resources */ = {
 			isa = PBXShellScriptBuildPhase;
