@@ -19,8 +19,7 @@ const rules = fs.readFileSync("rules/firestore.rules", "utf8");
  * @return {object} the app.
  */
 function nonAuthedApp() {
-    return firebase.initializeTestApp({projectId})
-        .firestore();
+  return firebase.initializeTestApp({ projectId }).firestore();
 }
 
 /**
@@ -30,9 +29,7 @@ function nonAuthedApp() {
  * @return {object} the app.
  */
 function authedApp(auth) {
-    return firebase
-        .initializeTestApp({projectId, auth})
-        .firestore();
+  return firebase.initializeTestApp({ projectId, auth }).firestore();
 }
 
 /**
@@ -41,12 +38,8 @@ function authedApp(auth) {
  * @return {object} the app.
  */
 function adminApp() {
-    return firebase
-        .initializeAdminApp({projectId})
-        .firestore();
+  return firebase.initializeAdminApp({ projectId }).firestore();
 }
-
-
 
 /*
  * ============
@@ -54,319 +47,300 @@ function adminApp() {
  * ============
  */
 before(async () => {
-    await firebase.loadFirestoreRules({projectId, rules});
+  await firebase.loadFirestoreRules({ projectId, rules });
 });
 
 beforeEach(async () => {
-    // Clear the database between tests
-    await firebase.clearFirestoreData({projectId});
+  // Clear the database between tests
+  await firebase.clearFirestoreData({ projectId });
 });
 
 after(async () => {
-    await Promise.all(firebase.apps().map(app => app.delete()));
-    console.log(`View rule coverage information at ${coverageUrl}\n`);
+  await Promise.all(firebase.apps().map(app => app.delete()));
+  console.log(`View rule coverage information at ${coverageUrl}\n`);
 });
 
 @suite
 class MyApp {
-    // test collection: users
+  // test collection: users
 
-    @test
-    async "require users to log in before creating a profile"() {
-        const db = authedApp(null);
-        const profile = db.collection("users").doc("alice");
-        await firebase.assertFails(profile.set({birthday: "January 1"}));
-    }
+  @test
+  async "require users to log in before creating a profile"() {
+    const db = authedApp(null);
+    const profile = db.collection("users").doc("alice");
+    await firebase.assertFails(profile.set({ birthday: "January 1" }));
+  }
 
-    @test
-    async "should only let users create or update their own profile"() {
-        const db = authedApp({uid: "loggedUser", email: "loggedUser@test.com"});
-        await firebase.assertSucceeds(
-            db
-                .collection("users")
-                .doc("loggedUser@test.com")
-                .set({
-                    birthday: "January 1",
-                    createdAt: firebase.firestore.FieldValue.serverTimestamp()
-                })
-        );
+  @test
+  async "should only let users create or update their own profile"() {
+    const db = authedApp({ uid: "loggedUser", email: "loggedUser@test.com" });
+    await firebase.assertSucceeds(
+      db
+        .collection("users")
+        .doc("loggedUser@test.com")
+        .set({
+          birthday: "January 1",
+          createdAt: firebase.firestore.FieldValue.serverTimestamp()
+        })
+    );
 
-        await firebase.assertSucceeds(
-            db
-                .collection("users")
-                .doc("loggedUser@test.com")
-                .update({
-                    updatedAt: firebase.firestore.FieldValue.serverTimestamp()
-                })
-        );
+    await firebase.assertSucceeds(
+      db
+        .collection("users")
+        .doc("loggedUser@test.com")
+        .update({
+          updatedAt: firebase.firestore.FieldValue.serverTimestamp()
+        })
+    );
 
-        await firebase.assertFails(
-            db
-                .collection("users")
-                .doc("otherUser@test.com")
-                .update({
-                    birthday: "January 1",
-                    createdAt: firebase.firestore.FieldValue.serverTimestamp()
-                })
-        );
-    }
+    await firebase.assertFails(
+      db
+        .collection("users")
+        .doc("otherUser@test.com")
+        .update({
+          birthday: "January 1",
+          createdAt: firebase.firestore.FieldValue.serverTimestamp()
+        })
+    );
+  }
 
+  @test
+  async "should only let users read their own profile"() {
+    const db = authedApp({ uid: "loggedUser", email: "loggedUser@test.com" });
+    await firebase.assertSucceeds(
+      db
+        .collection("users")
+        .doc("loggedUser@test.com")
+        .get()
+    );
+    await firebase.assertFails(
+      db
+        .collection("users")
+        .doc("otherUser@test.com")
+        .get()
+    );
+  }
 
-    @test
-    async "should only let users read their own profile"() {
-        const db = authedApp({uid: "loggedUser", email: "loggedUser@test.com"});
-        await firebase.assertSucceeds(
-            db
-                .collection("users")
-                .doc("loggedUser@test.com")
-                .get()
-        );
-        await firebase.assertFails(
-            db
-                .collection("users")
-                .doc("otherUser@test.com")
-                .get()
-        );
-    }
+  @test
+  async "should block any user creating/upgrading himself as master or dev unless they already are"() {
+    const db = authedApp({ uid: "loggedUser", email: "loggedUser@test.com" });
+    const admin = adminApp();
+    await firebase.assertFails(
+      db
+        .collection("users")
+        .doc("loggedUser@test.com")
+        .set({
+          isOwner: true
+        })
+    );
 
+    await firebase.assertFails(
+      db
+        .collection("users")
+        .doc("loggedUser@test.com")
+        .set({
+          isDev: true
+        })
+    );
 
-    @test
-    async "should block any user creating/upgrading himself as master or dev unless they already are"() {
-        const db = authedApp({uid: "loggedUser", email: "loggedUser@test.com"});
-        const admin = adminApp()
-        await firebase.assertFails(
-            db
-                .collection("users")
-                .doc("loggedUser@test.com")
-                .set({
-                    isOwner: true
-                })
-        );
+    await firebase.assertSucceeds(
+      admin
+        .collection("users")
+        .doc("loggedUser@test.com")
+        .set({
+          isOwner: false,
+          isDev: false
+        })
+    );
+    await firebase.assertFails(
+      db
+        .collection("users")
+        .doc("loggedUser@test.com")
+        .update({
+          isOwner: true
+        })
+    );
 
-        await firebase.assertFails(
-            db
-                .collection("users")
-                .doc("loggedUser@test.com")
-                .set({
-                    isDev: true
-                })
-        );
+    await firebase.assertSucceeds(
+      admin
+        .collection("users")
+        .doc("loggedUser@test.com")
+        .set({
+          isOwner: true,
+          isDev: false
+        })
+    );
+    await firebase.assertSucceeds(
+      db
+        .collection("users")
+        .doc("loggedUser@test.com")
+        .update({
+          isOwner: true
+        })
+    );
 
+    await firebase.assertSucceeds(
+      admin
+        .collection("users")
+        .doc("loggedUser@test.com")
+        .set({
+          isOwner: false,
+          isDev: true
+        })
+    );
+    await firebase.assertSucceeds(
+      db
+        .collection("users")
+        .doc("loggedUser@test.com")
+        .update({
+          isOwner: true
+        })
+    );
+  }
 
-        await firebase.assertSucceeds(
-            admin
-                .collection("users")
-                .doc("loggedUser@test.com")
-                .set({
-                    isOwner: false,
-                    isDev: false
-                })
-        );
-        await firebase.assertFails(
-            db
-                .collection("users")
-                .doc("loggedUser@test.com")
-                .update({
-                    isOwner: true
-                })
-        );
+  // test collection lessons
 
-       await firebase.assertSucceeds(
-            admin
-                .collection("users")
-                .doc("loggedUser@test.com")
-                .set({
-                    isOwner: true,
-                    isDev: false
-                })
-        );
-        await firebase.assertSucceeds(
-            db
-                .collection("users")
-                .doc("loggedUser@test.com")
-                .update({
-                    isOwner: true
-                })
-        );
+  @test
+  async "should only let registered users read lessons collection"() {
+    const loggedUser = authedApp({
+      uid: "loggedUser",
+      email: "loggedUser@test.com"
+    });
 
-        await firebase.assertSucceeds(
-            admin
-                .collection("users")
-                .doc("loggedUser@test.com")
-                .set({
-                    isOwner: false,
-                    isDev: true
-                })
-        );
-        await firebase.assertSucceeds(
-            db
-                .collection("users")
-                .doc("loggedUser@test.com")
-                .update({
-                    isOwner: true
-                })
-        );
+    await firebase.assertSucceeds(loggedUser.collection("lessons").get());
 
-    }
+    const nonLoggedUser = nonAuthedApp();
 
-    // test collection lessons
+    await firebase.assertFails(nonLoggedUser.collection("lessons").get());
+  }
 
-    @test
-    async "should only let registered users read lessons collection"() {
-        const loggedUser = authedApp({uid: "loggedUser", email: "loggedUser@test.com"});
+  // test collection class
 
-        await firebase.assertSucceeds(
-            loggedUser
-                .collection("lessons")
-                .get()
-        );
+  @test
+  async "should only let registered users read class collection"() {
+    const loggedUser = authedApp({
+      uid: "loggedUser",
+      email: "loggedUser@test.com"
+    });
 
-        const nonLoggedUser = nonAuthedApp();
+    await firebase.assertSucceeds(loggedUser.collection("class").get());
 
-        await firebase.assertFails(
-            nonLoggedUser
-                .collection("lessons")
-                .get()
-        );
-    }
+    const nonLoggedUser = nonAuthedApp();
 
-    @test
-    async "nobody should write new lessons"() {
-        const user = authedApp({uid: "loggedUser", email: "loggedUser@test.com", name: "user"});
+    await firebase.assertFails(nonLoggedUser.collection("class").get());
+  }
 
-        // an user registers normally
-        await firebase.assertFails(
-            user
-                .collection("lessons")
-                .doc("anotherRandomId")
-                .set({
-                    name: "testLesson"
-                })
-        );
-    }
+  /**
+   * we modify user.isOwner manually, therefore no-one should be able to set that property to true
+   * */
+  @test
+  async "should only let guild master delete class members"() {
+    const user = authedApp({
+      uid: "loggedUser",
+      email: "loggedUser@test.com",
+      name: "user"
+    });
+    const master = authedApp({
+      uid: "masterUser",
+      email: "masterUser@test.com"
+    });
+    const admin = adminApp();
 
-    // test collection class
+    // master user registers normally
+    await firebase.assertSucceeds(
+      master
+        .collection("users")
+        .doc("masterUser@test.com")
+        .set({
+          name: "master"
+        })
+    );
 
-    @test
-    async "should only let registered users read class collection"() {
-        const loggedUser = authedApp({uid: "loggedUser", email: "loggedUser@test.com"});
+    // an admin upgrades to master role
+    await firebase.assertSucceeds(
+      admin
+        .collection("users")
+        .doc("masterUser@test.com")
+        .update({
+          isOwner: true
+        })
+    );
 
-        await firebase.assertSucceeds(
-            loggedUser
-                .collection("class")
-                .get()
-        );
+    // an user registers normally
+    await firebase.assertSucceeds(
+      user
+        .collection("users")
+        .doc("loggedUser@test.com")
+        .set({
+          name: "user"
+        })
+    );
 
-        const nonLoggedUser = nonAuthedApp();
+    // the user registers to class
+    await firebase.assertSucceeds(
+      user
+        .collection("class")
+        .doc("randomId")
+        .set({
+          name: "user"
+        })
+    );
 
-        await firebase.assertFails(
-            nonLoggedUser
-                .collection("class")
-                .get()
-        );
-    }
+    // user cannot remove himself from class
+    await firebase.assertFails(
+      user
+        .collection("class")
+        .doc("randomId")
+        .delete()
+    );
 
-    /**
-     * we modify user.isOwner manually, therefore no-one should be able to set that property to true
-     * */
-    @test
-    async "should only let guild master delete class members"() {
-        const user = authedApp({uid: "loggedUser", email: "loggedUser@test.com", name: "user"});
-        const master = authedApp({uid: "masterUser", email: "masterUser@test.com"});
-        const admin = adminApp();
+    // only masters can remove members from class
+    await firebase.assertSucceeds(
+      master
+        .collection("class")
+        .doc("randomId")
+        .delete()
+    );
+  }
 
-        // master user registers normally
-        await firebase.assertSucceeds(
-            master
-                .collection("users")
-                .doc("masterUser@test.com")
-                .set({
-                    name: "master",
-                })
-        );
+  @test
+  async "user can only register himself to class"() {
+    const user = authedApp({
+      uid: "loggedUser",
+      email: "loggedUser@test.com",
+      name: "user"
+    });
 
-        // an admin upgrades to master role
-        await firebase.assertSucceeds(
-            admin
-                .collection("users")
-                .doc("masterUser@test.com")
-                .update({
-                    isOwner: true,
-                })
-        );
+    // an user registers normally
+    await firebase.assertSucceeds(
+      user
+        .collection("users")
+        .doc("loggedUser@test.com")
+        .set({
+          name: "user"
+        })
+    );
 
-        // an user registers normally
-        await firebase.assertSucceeds(
-            user
-                .collection("users")
-                .doc("loggedUser@test.com")
-                .set({
-                    name: "user",
-                })
-        );
+    // the user registers to class
+    await firebase.assertSucceeds(
+      user
+        .collection("class")
+        .doc("randomId")
+        .set({
+          name: "user"
+        })
+    );
 
-        // the user registers to class
-        await firebase.assertSucceeds(
-            user
-                .collection("class")
-                .doc("randomId")
-                .set({
-                    name: "user"
-                })
-        );
+    // user cannot register somebody else to class
+    await firebase.assertFails(
+      user
+        .collection("class")
+        .doc("anotherRandomId")
+        .set({
+          name: "anotherUser"
+        })
+    );
+  }
 
-        // user cannot remove himself from class
-        await firebase.assertFails(
-            user
-                .collection("class")
-                .doc("randomId")
-                .delete()
-        );
-
-        // only masters can remove members from class
-        await firebase.assertSucceeds(
-            master
-                .collection("class")
-                .doc("randomId")
-                .delete()
-        );
-    }
-
-    @test
-    async "user can only register himself to class"() {
-        const user = authedApp({uid: "loggedUser", email: "loggedUser@test.com", name: "user"});
-
-        // an user registers normally
-        await firebase.assertSucceeds(
-            user
-                .collection("users")
-                .doc("loggedUser@test.com")
-                .set({
-                    name: "user",
-                })
-        );
-
-        // the user registers to class
-        await firebase.assertSucceeds(
-            user
-                .collection("class")
-                .doc("randomId")
-                .set({
-                    name: "user"
-                })
-        );
-
-        // user cannot register somebody else to class
-        await firebase.assertFails(
-            user
-                .collection("class")
-                .doc("anotherRandomId")
-                .set({
-                    name: "anotherUser"
-                })
-        );
-
-    }
-
-    // todo: user cannot register multiple times, we get this for free if we use user email as id instead of a randomId
+  // todo: user cannot register multiple times, we get this for free if we use user email as id instead of a randomId
 }
