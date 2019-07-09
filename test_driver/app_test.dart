@@ -46,12 +46,11 @@ void main() {
         await driver.waitFor(find.byValueKey('todaysClassesText'));
         await driver.tap(_findOneLessonButton());
         await driver.tap(find.byValueKey('profilePageButton'));
-        var classCounter =
-            await driver.getText(find.byValueKey("classCounter"));
+        var classCounter = await driver.getText(find.byValueKey("classCounter"));
         //TODO: this is not working if emulator runs on different locale
         // maybe we should propose a fix directly on flutter itself
-        await driver.tap(find.byTooltip('Atrás'));
-        logout();
+        await driver.tap(find.byTooltip('Back'));
+        await logout();
 
         //Then login as owner and accept all
         loginAsOwner(true, '@@@@@@@@@@ OWNER');
@@ -60,7 +59,7 @@ void main() {
         await driver.tap(_findOneLessonButton());
         await driver.waitFor(find.byValueKey('acceptAll'));
         await driver.tap(find.byValueKey('acceptAll'));
-        logout();
+        await logout();
 
         //Then login as user again and check that counter has increase
         loginAsOwner(false, '@@@@@@@@@@ USER');
@@ -69,8 +68,11 @@ void main() {
         var newClassCounter =
             await driver.getText(find.byValueKey("classCounter"));
         var expectedClassCounter = (int.parse(classCounter) + 1).toString();
-        logout();
 
+        await driver.tap(find.byTooltip('Back'));
+        await logout();
+        
+        print("expected [$expectedClassCounter] actual [$newClassCounter] " );
         expect(newClassCounter, expectedClassCounter);
       });
     });

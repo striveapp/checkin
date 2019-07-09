@@ -112,6 +112,9 @@ class _RegistryState extends State<RegistryPage> {
                               color: Colors.white,
                               fontWeight: FontWeight.w600)),
                       onPressed: () {
+                        // todo why does this work?
+                        Navigator.pushNamedAndRemoveUntil(context, "/", (route) => false);
+
                         _authBloc.dispatch(LogOut());
                       },
                     )
