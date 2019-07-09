@@ -67,6 +67,7 @@ class _LoginFormState extends State<LoginForm> {
                 borderRadius: 50.0,
               ),
               Opacity(opacity: 0.0, child: Container(width: 1, height: 1,child: RaisedButton(key: Key('backdoorButton'),onPressed: _onLoginWithTestUser, child: Text(''),))),
+              Opacity(opacity: 0.0, child: Container(width: 1, height: 1,child: RaisedButton(key: Key('backdoorButtonTwo'),onPressed: _onLoginWithTestUserTwo, child: Text(''),))),
               Opacity(opacity: 0.0, child: Container(width: 1, height: 1,child: RaisedButton(key: Key('backdoorAdminButton'),onPressed: _onLoginWithTestUserOwner, child: Text(''),))),
             ],
           );
@@ -90,6 +91,10 @@ class _LoginFormState extends State<LoginForm> {
 
   _onLoginWithTestUser() {
     _loginBloc.dispatch(LoginWithTestUser());
+  }
+
+  _onLoginWithTestUserTwo() {
+    _loginBloc.dispatch(LoginWithTestUserTwo());
   }
 
   _onLoginWithTestUserOwner() {

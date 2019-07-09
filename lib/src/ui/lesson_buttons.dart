@@ -3,8 +3,6 @@ import 'package:checkin/src/blocs/user/bloc.dart';
 import 'package:checkin/src/models/attendee.dart';
 import 'package:checkin/src/models/lesson.dart';
 import 'package:checkin/src/models/user.dart';
-import 'package:checkin/src/resources/lesson_repository.dart';
-import 'package:checkin/src/resources/user_repository.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 
@@ -13,11 +11,13 @@ import 'loading_indicator.dart';
 class LessonsButtons extends StatefulWidget {
   final List<Lesson> lessons;
   final UserBloc userBloc;
+  final LessonsBloc lessonsBloc;
 
   LessonsButtons({
     Key key,
     @required this.lessons,
     @required this.userBloc,
+    @required this.lessonsBloc,
   }) : super(key: key);
 
   @override
@@ -26,27 +26,8 @@ class LessonsButtons extends StatefulWidget {
 
 class _LessonsButtonsState extends State<LessonsButtons> {
   List<Lesson> get _lessons => widget.lessons;
-
   UserBloc get _userBloc => widget.userBloc;
-
-  final UserRepository _userRepository = UserRepository();
-  final LessonRepository _lessonRepository = LessonRepository();
-
-  LessonsBloc _lessonBloc;
-
-  @override
-  void initState() {
-    super.initState();
-
-    _lessonBloc = LessonsBloc(
-        lessonRepository: _lessonRepository, userRepository: _userRepository);
-  }
-
-  @override
-  void dispose() {
-    _lessonBloc.dispose();
-    super.dispose();
-  }
+  LessonsBloc get _lessonBloc => widget.lessonsBloc;
 
   @override
   Widget build(BuildContext context) {

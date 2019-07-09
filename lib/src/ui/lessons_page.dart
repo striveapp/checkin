@@ -119,7 +119,7 @@ class _LessonsState extends State<LessonsPage> {
                         ),
                       ),
                       LessonsButtons(
-                          lessons: state.lessons, userBloc: _userBloc),
+                          lessons: state.lessons, userBloc: _userBloc, lessonsBloc: _lessonsBloc,),
                       if ((_userBloc.currentState as UserSuccess)
                           .currentUser
                           .isDev)

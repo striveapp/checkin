@@ -14,6 +14,11 @@ class LoginWithTestUser extends LoginEvent {
   String toString() => 'LoginWithTestUser';
 }
 
+class LoginWithTestUserTwo extends LoginEvent {
+  @override
+  String toString() => 'LoginWithTestUserTwo';
+}
+
 class LoginWithTestUserOwner extends LoginEvent {
   @override
   String toString() => 'LoginWithTestUserOwner';

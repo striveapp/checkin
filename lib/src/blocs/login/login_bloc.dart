@@ -68,6 +68,15 @@ class LoginBloc extends Bloc<LoginEvent, LoginState> {
           LoggedIn(currentUserEmail: firebaseTestUser.email, isFirstLogin: false));
     }
 
+    if (event is LoginWithTestUserTwo) {
+      yield LoginLoading();
+      final firebaseTestUser = await this.auth.signInWithEmailAndPassword(
+          email: "test-two@test.com", password: "test123");
+      debugPrint('Logged with test user [$firebaseTestUser]');
+      this.authBloc.dispatch(
+          LoggedIn(currentUserEmail: firebaseTestUser.email, isFirstLogin: false));
+    }
+
     if (event is LoginWithTestUserOwner) {
       yield LoginLoading();
       final firebaseTestUser = await this.auth.signInWithEmailAndPassword(
