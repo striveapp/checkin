@@ -5,11 +5,11 @@ import 'package:checkin/src/blocs/user/bloc.dart';
 import 'package:checkin/src/localization/localization.dart';
 import 'package:checkin/src/resources/lesson_repository.dart';
 import 'package:checkin/src/resources/user_repository.dart';
+import 'package:checkin/src/ui/lesson_card.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter/widgets.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 
-import 'lesson_buttons.dart';
 import 'loading_indicator.dart';
 
 class LessonsPage extends StatefulWidget {
@@ -118,8 +118,9 @@ class _LessonsState extends State<LessonsPage> {
                               fontSize: 32.0),
                         ),
                       ),
-                      LessonsButtons(
-                          lessons: state.lessons, userBloc: _userBloc, lessonsBloc: _lessonsBloc,),
+                      ...state.lessons.map((_lesson) => LessonCard(
+                            lesson: _lesson,
+                          )),
                       if ((_userBloc.currentState as UserSuccess)
                           .currentUser
                           .isDev)

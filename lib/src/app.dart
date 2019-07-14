@@ -61,7 +61,7 @@ class _AppState extends State<App> {
         routes: {
           '/home': (context) => HomePage(),
           '/profile': (context) => ProfilePage(),
-          '/registry': (context) => RegistryPage(userBloc: _userBloc,),
+          '/registry': (context) => RegistryPage(),
         },
         home: BlocBuilder<AuthEvent, AuthState>(
           bloc: _authBloc,

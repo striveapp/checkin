@@ -3,6 +3,8 @@ import 'package:checkin/src/blocs/auth/bloc.dart';
 import 'package:checkin/src/blocs/lessons/bloc.dart';
 import 'package:checkin/src/blocs/user/bloc.dart';
 import 'package:checkin/src/localization/localization.dart';
+import 'package:checkin/src/models/attendee.dart';
+import 'package:checkin/src/models/user.dart';
 import 'package:checkin/src/resources/lesson_repository.dart';
 import 'package:checkin/src/resources/user_repository.dart';
 import 'package:checkin/src/ui/attendees_list.dart';
@@ -12,11 +14,8 @@ import 'package:flutter/widgets.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 
 class RegistryPage extends StatefulWidget {
-  final UserBloc userBloc;
-
   RegistryPage({
     Key key,
-    @required this.userBloc,
   }) : super(key: key);
 
   @override
@@ -26,8 +25,6 @@ class RegistryPage extends StatefulWidget {
 }
 
 class _RegistryState extends State<RegistryPage> {
-  UserBloc get _userBloc => widget.userBloc;
-
   final LessonRepository _lessonsRepository = LessonRepository();
   final UserRepository _userRepository = UserRepository();
   LessonsBloc _lessonsBloc;
@@ -44,6 +41,8 @@ class _RegistryState extends State<RegistryPage> {
   @override
   Widget build(BuildContext context) {
     final lessonId = ModalRoute.of(context).settings.arguments;
+    UserBloc _userBloc = BlocProvider.of<UserBloc>(context);
+    User currentUser = (_userBloc.currentState as UserSuccess).currentUser;
 
     return Scaffold(
       appBar: AppBar(
@@ -60,22 +59,30 @@ class _RegistryState extends State<RegistryPage> {
       body: BlocBuilder(
         bloc: _lessonsBloc,
         builder: (BuildContext context, LessonsState state) {
-          var _onPressed;
+          var _onPressedAcceptAll;
+          var _onPressAttendClass;
           var currentLesson;
           if (state is LessonsUninitialized) {
             return LoadingIndicator();
           }
           if (state is LessonsLoaded) {
-            state.lessons.forEach((lesson) => {
-                  if (lesson.id == lessonId) {currentLesson = lesson}
-                });
+            state.lessons.forEach((lesson) {
+                if (lesson.id == lessonId) {
+                  currentLesson = lesson;
+                  _onPressAttendClass = !currentLesson.containsUser(currentUser.email)
+                        ? () => _lessonsBloc.dispatch(AttendLesson(
+                        lessonId: lessonId, attendee: Attendee.fromUser(currentUser)))
+                        : null;
+                }
+            });
 
             if (currentLesson.attendees != null) {
-              _onPressed = currentLesson.attendees.isNotEmpty
+              _onPressedAcceptAll = currentLesson.attendees.isNotEmpty
                   ? () => _lessonsBloc.dispatch(ConfirmAttendees(
                       lessonId: lessonId, attendees: currentLesson.attendees))
                   : null;
             }
+
 
             return Center(
                 child: Container(
@@ -88,20 +95,36 @@ class _RegistryState extends State<RegistryPage> {
                     child: AttendeesList(
                         attendeeList: currentLesson.attendees ?? []),
                   ),
+                  if (!(_userBloc.currentState as UserSuccess).currentUser.isOwner)
                   Padding(
                     padding: const EdgeInsets.symmetric(vertical: 10),
                     child: RaisedButton(
                       color: Colors.indigo,
-                      child: Text(Localization.of(context).acceptAll,
-                          key: Key('acceptAll'),
+                      child: Text(Localization.of(context).attendClass,
+                          key: Key('attendClass'),
                           style: TextStyle(
                               fontSize: 18,
                               fontFamily: "Roboto",
                               color: Colors.white,
                               fontWeight: FontWeight.w600)),
-                      onPressed: _onPressed,
+                      onPressed: _onPressAttendClass,
                     ),
                   ),
+                  if ((_userBloc.currentState as UserSuccess).currentUser.isOwner)
+                    Padding(
+                      padding: const EdgeInsets.symmetric(vertical: 10),
+                      child: RaisedButton(
+                        color: Colors.indigo,
+                        child: Text(Localization.of(context).acceptAll,
+                            key: Key('acceptAll'),
+                            style: TextStyle(
+                                fontSize: 18,
+                                fontFamily: "Roboto",
+                                color: Colors.white,
+                                fontWeight: FontWeight.w600)),
+                        onPressed: _onPressedAcceptAll,
+                      ),
+                    ),
                   if ((_userBloc.currentState as UserSuccess).currentUser.isDev)
                     RaisedButton(
                       key: Key('logoutButton'),
