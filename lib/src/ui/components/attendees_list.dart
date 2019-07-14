@@ -2,10 +2,15 @@ import 'package:checkin/src/localization/localization.dart';
 import 'package:checkin/src/models/attendee.dart';
 import 'package:flutter/material.dart';
 
+import 'attendee_tile.dart';
+
 class AttendeesList extends StatelessWidget {
   final List<Attendee> attendeeList;
 
-  const AttendeesList({Key key, @required this.attendeeList}) : super(key: key);
+  const AttendeesList({
+    Key key,
+    @required this.attendeeList
+  }) : super(key: key);
 
   @override
   Widget build(BuildContext context) {
@@ -35,33 +40,6 @@ class AttendeesList extends StatelessWidget {
               return null;
             }),
       ),
-    );
-  }
-}
-
-class AttendeeTile extends StatelessWidget {
-  final Attendee attendee;
-
-  const AttendeeTile({Key key, @required this.attendee}) : super(key: key);
-
-  @override
-  Widget build(BuildContext context) {
-    return Column(
-      children: <Widget>[
-        Padding(
-          padding: const EdgeInsets.only(top: 8.0),
-          child: ListTile(
-            leading: ClipRRect(
-                borderRadius: BorderRadius.circular(50.0),
-                child: Image.network(attendee.imageUrl, width: 50, height: 50)),
-            title: Padding(
-              padding: EdgeInsets.symmetric(horizontal: 45),
-              child: Text(attendee.name, style: TextStyle(fontWeight: FontWeight.w400, fontSize: 18),),
-            ),
-          ),
-        ),
-        Divider()
-      ],
     );
   }
 }

@@ -53,7 +53,7 @@ class _GradePageState extends State<GradePage> {
                           fontSize: 32.0),
                     ),
                   ),
-                  GradeButtons(userBloc: _userBloc)
+                  GradeButtons(),
                 ],
               );
             }));

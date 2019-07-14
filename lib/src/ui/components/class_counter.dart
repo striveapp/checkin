@@ -4,7 +4,10 @@ import 'package:flutter/material.dart';
 class ClassCounter extends StatelessWidget {
   final int counter;
 
-  const ClassCounter({Key key, this.counter}) : super(key: key);
+  ClassCounter({
+    Key key,
+    this.counter
+  }) : super(key: key);
 
   @override
   Widget build(BuildContext context) {
