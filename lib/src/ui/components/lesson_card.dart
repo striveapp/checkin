@@ -11,32 +11,64 @@ class LessonCard extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    var _onPressed;
-    _onPressed = (lessonId) {
+    var _onPressed = (lessonId) {
       Navigator.of(context).pushNamed('/registry', arguments: lessonId);
     };
 
     return Container(
-        padding: EdgeInsets.only(top: 20.0),
-        child: Column(
-          children: <Widget>[
-            ButtonTheme(
-                height: 50.0,
-                minWidth: 240.0,
-                buttonColor: Colors.indigo,
-                padding: const EdgeInsets.all(0.0),
-                child: RaisedButton(
-                    child: Text(
-                      "${lesson.timeStart} - ${lesson.timeEnd}",
-                      key: Key('${lesson.name}'),
-                      style: TextStyle(
-                          color: Colors.white,
-                          fontStyle: FontStyle.normal,
-                          fontFamily: 'Roboto',
-                          fontSize: 22.0),
-                    ),
-                    onPressed: () => _onPressed(lesson.id))),
-          ],
-        ));
+      padding: EdgeInsets.only(top: 20.0),
+      child: Card(
+        color: Colors.indigoAccent,
+        margin: EdgeInsets.symmetric(horizontal: 20),
+        child: Padding(
+          padding: const EdgeInsets.symmetric(vertical: 20),
+          child: Row(
+              mainAxisAlignment: MainAxisAlignment.spaceAround,
+              crossAxisAlignment: CrossAxisAlignment.center,
+              children: <Widget>[
+          Padding(
+          padding: const EdgeInsets.only(left: 110.0),
+          child: Column(
+            mainAxisAlignment: MainAxisAlignment.center,
+            children: <Widget>[
+              Padding(
+                padding: const EdgeInsets.only(bottom: 5),
+                child: Text(capitalize(lesson.name),
+                    style: TextStyle(
+                      color: Colors.white,
+                      fontWeight: FontWeight.bold,
+                      fontStyle: FontStyle.normal,
+                      fontFamily: 'Roboto',
+                      fontSize: 22.0,
+                    )
+                ),
+              ),
+              Text("${lesson.timeStart} - ${lesson.timeEnd}",
+                  style: TextStyle(
+                    color: Colors.white,
+                    fontStyle: FontStyle.normal,
+                    fontFamily: 'Roboto',
+                    fontSize: 18.0,
+                  )
+              ),
+            ],
+          ),
+        ),
+        Padding(
+          padding: const EdgeInsets.only(left: 50),
+          child: IconButton(
+              key: Key(lesson.name),
+              color: Colors.white,
+              onPressed: () => _onPressed(lesson.id),
+              icon: Icon(Icons.arrow_forward_ios),
+        ),
+      )
+      ],
+    ),)
+    ,
+    )
+    );
   }
 }
+
+String capitalize(String s) => s[0].toUpperCase() + s.substring(1);

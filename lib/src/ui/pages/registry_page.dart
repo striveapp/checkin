@@ -97,31 +97,37 @@ class _RegistryState extends State<RegistryPage> {
                   ),
                   if (!(_userBloc.currentState as UserSuccess).currentUser.isOwner)
                   Padding(
-                    padding: const EdgeInsets.symmetric(vertical: 10),
+                    padding: const EdgeInsets.symmetric(vertical: 5),
                     child: RaisedButton(
-                      color: Colors.indigo,
-                      child: Text(Localization.of(context).attendClass,
-                          key: Key('attendClass'),
-                          style: TextStyle(
-                              fontSize: 18,
-                              fontFamily: "Roboto",
-                              color: Colors.white,
-                              fontWeight: FontWeight.w600)),
-                      onPressed: _onPressAttendClass,
-                    ),
-                  ),
-                  if ((_userBloc.currentState as UserSuccess).currentUser.isOwner)
-                    Padding(
-                      padding: const EdgeInsets.symmetric(vertical: 10),
-                      child: RaisedButton(
-                        color: Colors.indigo,
-                        child: Text(Localization.of(context).acceptAll,
-                            key: Key('acceptAll'),
+                      color: Colors.green,
+                      child: Padding(
+                        padding: const EdgeInsets.symmetric(vertical: 15),
+                        child: Text(Localization.of(context).attendClass,
+                            key: Key('attendClass'),
                             style: TextStyle(
                                 fontSize: 18,
                                 fontFamily: "Roboto",
                                 color: Colors.white,
                                 fontWeight: FontWeight.w600)),
+                      ),
+                      onPressed: _onPressAttendClass,
+                    ),
+                  ),
+                  if ((_userBloc.currentState as UserSuccess).currentUser.isOwner)
+                    Padding(
+                      padding: const EdgeInsets.symmetric(vertical: 5),
+                      child: RaisedButton(
+                        color: Colors.green,
+                        child: Padding(
+                          padding: const EdgeInsets.symmetric(vertical: 15),
+                          child: Text(Localization.of(context).acceptAll,
+                              key: Key('acceptAll'),
+                              style: TextStyle(
+                                  fontSize: 18,
+                                  fontFamily: "Roboto",
+                                  color: Colors.white,
+                                  fontWeight: FontWeight.w600)),
+                        ),
                         onPressed: _onPressedAcceptAll,
                       ),
                     ),

@@ -17,7 +17,7 @@ class AttendeesList extends StatelessWidget {
     if (this.attendeeList.length == 0) {
       return Card(
           child: Container(
-        constraints: BoxConstraints.expand(width: 350.0, height: 150.0),
+        constraints: BoxConstraints.expand(width: 350.0, height: 250.0),
         alignment: Alignment(0, 0),
         child: Text(
           Localization.of(context).emptyClass,
@@ -28,7 +28,7 @@ class AttendeesList extends StatelessWidget {
 
     return Card(
       child: Container(
-        constraints: BoxConstraints.expand(width: 350.0, height: 150.0),
+        constraints: BoxConstraints.expand(width: 350.0, height: 250.0),
         child: ListView.builder(
             scrollDirection: Axis.vertical,
             shrinkWrap: true,

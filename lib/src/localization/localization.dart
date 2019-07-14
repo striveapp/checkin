@@ -31,6 +31,7 @@ class Localization {
   String get logout => getValue(Logout);
   String get attendClass => getValue(AttendClass);
   String get status => getValue(Status);
+  String get lessons => getValue(Lessons);
   String get loginFailed => getValue(LoginFailed);
   String get whiteGrade => getValue(WhiteGrade);
   String get blueGrade => getValue(BlueGrade);

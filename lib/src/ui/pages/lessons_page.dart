@@ -61,7 +61,7 @@ class _LessonsState extends State<LessonsPage> {
         appBar: AppBar(
           backgroundColor: _getColor(
               (_userBloc.currentState as UserSuccess).currentUser.rank),
-          title: Text(Localization.of(context).status,
+          title: Text(Localization.of(context).lessons,
               style: TextStyle(
                   fontSize: 24,
                   letterSpacing: 0.8,
@@ -101,7 +101,7 @@ class _LessonsState extends State<LessonsPage> {
               }
               if (state is LessonsLoaded) {
                 return Padding(
-                  padding: const EdgeInsets.only(top: 50.0),
+                  padding: const EdgeInsets.only(top: 40.0),
                   child: Column(
                     crossAxisAlignment: CrossAxisAlignment.center,
                     children: <Widget>[
@@ -120,9 +120,7 @@ class _LessonsState extends State<LessonsPage> {
                       ...state.lessons.map((_lesson) => LessonCard(
                             lesson: _lesson,
                           )),
-                      if ((_userBloc.currentState as UserSuccess)
-                          .currentUser
-                          .isDev)
+                      if ((_userBloc.currentState as UserSuccess).currentUser.isDev)
                         RaisedButton(
                           key: Key('logoutButton'),
                           color: Colors.red,
