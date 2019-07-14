@@ -2,7 +2,7 @@ import 'package:checkin/src/blocs/auth/bloc.dart';
 import 'package:checkin/src/blocs/login/bloc.dart';
 import 'package:checkin/src/blocs/user/bloc.dart';
 import 'package:checkin/src/resources/user_repository.dart';
-import 'package:checkin/src/ui/login_form.dart';
+import 'package:checkin/src/ui/components/login_form.dart';
 import 'package:firebase_auth/firebase_auth.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter/widgets.dart';

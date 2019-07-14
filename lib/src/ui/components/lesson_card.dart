@@ -1,21 +1,13 @@
 import 'package:checkin/src/models/lesson.dart';
 import 'package:flutter/material.dart';
 
-class LessonCard extends StatefulWidget {
+class LessonCard extends StatelessWidget {
   final Lesson lesson;
-
 
   LessonCard({
     Key key,
     @required this.lesson,
   }) : super(key: key);
-
-  @override
-  State<LessonCard> createState() => _LessonCardState();
-}
-
-class _LessonCardState extends State<LessonCard> {
-  Lesson get _lesson => widget.lesson;
 
   @override
   Widget build(BuildContext context) {
@@ -35,15 +27,15 @@ class _LessonCardState extends State<LessonCard> {
                 padding: const EdgeInsets.all(0.0),
                 child: RaisedButton(
                     child: Text(
-                      "${_lesson.timeStart} - ${_lesson.timeEnd}",
-                      key: Key('${_lesson.name}'),
+                      "${lesson.timeStart} - ${lesson.timeEnd}",
+                      key: Key('${lesson.name}'),
                       style: TextStyle(
                           color: Colors.white,
                           fontStyle: FontStyle.normal,
                           fontFamily: 'Roboto',
                           fontSize: 22.0),
                     ),
-                    onPressed: () => _onPressed(_lesson.id))),
+                    onPressed: () => _onPressed(lesson.id))),
           ],
         ));
   }

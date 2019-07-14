@@ -1,5 +1,5 @@
 import 'package:checkin/src/blocs/user/bloc.dart';
-import 'package:checkin/src/ui/loading_indicator.dart';
+import 'package:checkin/src/ui/components/loading_indicator.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter/widgets.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';

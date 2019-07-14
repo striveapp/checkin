@@ -1,6 +1,5 @@
+import 'package:checkin/src/ui/components/loading_indicator.dart';
 import 'package:flutter/material.dart';
-
-import 'loading_indicator.dart';
 
 class SplashPage extends StatelessWidget {
   @override

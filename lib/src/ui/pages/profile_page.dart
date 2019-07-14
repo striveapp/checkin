@@ -1,12 +1,11 @@
 import 'package:checkin/src/blocs/user/bloc.dart';
 import 'package:checkin/src/localization/localization.dart';
-import 'package:checkin/src/ui/user_image.dart';
+import 'package:checkin/src/ui/components/class_counter.dart';
+import 'package:checkin/src/ui/components/loading_indicator.dart';
+import 'package:checkin/src/ui/components/user_image.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter/widgets.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
-
-import 'class_counter.dart';
-import 'loading_indicator.dart';
 
 class ProfilePage extends StatefulWidget {
   ProfilePage({

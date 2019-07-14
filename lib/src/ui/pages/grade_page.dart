@@ -2,7 +2,7 @@ import 'package:checkin/src/blocs/auth/auth_bloc.dart';
 import 'package:checkin/src/blocs/user/bloc.dart';
 import 'package:checkin/src/localization/localization.dart';
 import 'package:checkin/src/resources/user_repository.dart';
-import 'package:checkin/src/ui/grade_buttons.dart';
+import 'package:checkin/src/ui/components/grade_buttons.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter/widgets.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
