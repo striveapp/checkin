@@ -21,50 +21,50 @@ class LessonCard extends StatelessWidget {
         color: Colors.indigoAccent,
         margin: EdgeInsets.symmetric(horizontal: 20),
         child: Padding(
-          padding: const EdgeInsets.symmetric(vertical: 20),
+          padding: const EdgeInsets.symmetric(vertical: 10),
           child: Row(
               mainAxisAlignment: MainAxisAlignment.spaceAround,
               crossAxisAlignment: CrossAxisAlignment.center,
               children: <Widget>[
-          Padding(
-          padding: const EdgeInsets.only(left: 110.0),
-          child: Column(
-            mainAxisAlignment: MainAxisAlignment.center,
-            children: <Widget>[
-              Padding(
-                padding: const EdgeInsets.only(bottom: 5),
-                child: Text(capitalize(lesson.name),
-                    style: TextStyle(
-                      color: Colors.white,
-                      fontWeight: FontWeight.bold,
-                      fontStyle: FontStyle.normal,
-                      fontFamily: 'Roboto',
-                      fontSize: 22.0,
-                    )
-                ),
+          Expanded(
+            child: Padding(
+              padding: const EdgeInsets.only(left: 65.0),
+              child: Column(
+                mainAxisAlignment: MainAxisAlignment.center,
+                children: <Widget>[
+                  Text(capitalize(lesson.name),
+                      style: TextStyle(
+                        color: Colors.white,
+                        fontWeight: FontWeight.bold,
+                        fontStyle: FontStyle.normal,
+                        fontFamily: 'Roboto',
+                        fontSize: 22.0,
+                      )
+                  ),
+                  Text("${lesson.timeStart} - ${lesson.timeEnd}",
+                      style: TextStyle(
+                        color: Colors.white,
+                        fontStyle: FontStyle.normal,
+                        fontFamily: 'Roboto',
+                        fontSize: 18.0,
+                      )
+                  ),
+                ],
               ),
-              Text("${lesson.timeStart} - ${lesson.timeEnd}",
-                  style: TextStyle(
-                    color: Colors.white,
-                    fontStyle: FontStyle.normal,
-                    fontFamily: 'Roboto',
-                    fontSize: 18.0,
-                  )
-              ),
-            ],
+            ),
           ),
-        ),
-        Padding(
-          padding: const EdgeInsets.only(left: 50),
-          child: IconButton(
+          Padding(
+            padding: const EdgeInsets.only(right: 12.0),
+            child: IconButton(
               key: Key(lesson.name),
               color: Colors.white,
               onPressed: () => _onPressed(lesson.id),
               icon: Icon(Icons.arrow_forward_ios),
-        ),
-      )
+            ),
+          )
       ],
-    ),)
+    ),
+        )
     ,
     )
     );
