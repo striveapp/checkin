@@ -1,3 +1,6 @@
+import 'dart:async';
+import 'dart:io';
+
 import 'package:checkin/src/blocs/auth/bloc.dart';
 import 'package:checkin/src/resources/user_repository.dart';
 import 'package:checkin/src/ui/pages/grade_page.dart';
@@ -7,6 +10,7 @@ import 'package:checkin/src/ui/pages/registry_page.dart';
 import 'package:checkin/src/ui/pages/splash_page.dart';
 import 'package:checkin/src/ui/pages/profile_page.dart';
 import 'package:firebase_auth/firebase_auth.dart';
+import 'package:firebase_messaging/firebase_messaging.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:flutter_localizations/flutter_localizations.dart';
@@ -24,18 +28,23 @@ class App extends StatefulWidget {
 class _AppState extends State<App> {
   AuthBloc _authBloc;
   UserBloc _userBloc;
+  FirebaseMessaging _fcm;
+
+  StreamSubscription iosSubscription;
 
   @override
   void initState() {
+    super.initState();
     _authBloc = AuthBloc(auth: FirebaseAuth.instance);
     _userBloc = UserBloc(authBloc: _authBloc, userRepository: UserRepository());
-    super.initState();
+    _fcm= FirebaseMessaging();
   }
 
   @override
   void dispose() {
     _authBloc.dispose();
     _userBloc.dispose();
+    iosSubscription.cancel();
     super.dispose();
   }
 
@@ -70,6 +79,45 @@ class _AppState extends State<App> {
               return SplashPage();
             }
             if (state is AuthAuthenticated) {
+              if (Platform.isIOS) {
+                iosSubscription = _fcm.onIosSettingsRegistered.listen((data) {
+                  _saveDeviceToken();
+                });
+
+                _fcm.requestNotificationPermissions(IosNotificationSettings());
+              } else {
+                _saveDeviceToken();
+              }
+
+              _fcm.configure(
+                onMessage: (Map<String, dynamic> message) async {
+                  print("onMessage: $message");
+                  showDialog(
+                    context: context,
+                    builder: (context) => AlertDialog(
+                      content: ListTile(
+                        title: Text(message['notification']['title']),
+                        subtitle: Text(message['notification']['body']),
+                      ),
+                      actions: <Widget>[
+                        FlatButton(
+                          child: Text('Ok'),
+                          onPressed: () => Navigator.of(context).pop(),
+                        ),
+                      ],
+                    ),
+                  );
+                },
+                onLaunch: (Map<String, dynamic> message) async {
+                  print("onLaunch: $message");
+                  // TODO optional
+                },
+                onResume: (Map<String, dynamic> message) async {
+                  print("onResume: $message");
+                  // TODO optional
+                },
+              );
+
               if (state.isFirstLogin) {
                 return GradePage();
               } else {
@@ -85,5 +133,15 @@ class _AppState extends State<App> {
         ),
       ),
     );
+  }
+
+  /// Get the token, save it to the database for current user
+  void _saveDeviceToken() async {
+    // Get the current user
+
+    // Get the token for this device
+    String fcmToken = await _fcm.getToken();
+
+    _userBloc.dispatch(UpdateFcmToken(token: fcmToken));
   }
 }

@@ -1,3 +1,5 @@
+import 'dart:io';
+
 import 'package:checkin/src/models/user.dart';
 import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:flutter/foundation.dart';
@@ -21,6 +23,21 @@ class UserProvider {
         .collection(path)
         .document(currentUser.email)
         .updateData({"rank": grade});
+  }
+
+  updateUserFcmToken(User currentUser, String fcmToken) async {
+    var tokens = _firestore
+        .collection(path)
+        .document(currentUser.email)
+        .collection("tokens")
+        .document(fcmToken);
+
+    await tokens.setData({
+      'token': fcmToken,
+      'createdAt': FieldValue.serverTimestamp(), // optional
+      'platform': Platform.operatingSystem // optional
+    });
+
   }
 
   Stream<User> getUserByEmail(String email) {

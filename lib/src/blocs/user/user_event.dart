@@ -38,3 +38,14 @@ class Update extends UserEvent {
   @override
   String toString() => 'Update';
 }
+
+class UpdateFcmToken extends UserEvent {
+  String token;
+
+  UpdateFcmToken({
+    this.token
+  }) : super([token]);
+
+  @override
+  String toString() => 'UpdateFcmToken';
+}

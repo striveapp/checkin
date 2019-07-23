@@ -47,6 +47,8 @@ class UserBloc extends Bloc<UserEvent, UserState> {
       yield* _mapCreateToState(currentState, event);
     } else if (event is Update) {
       yield* _mapUpdateToState(currentState, event);
+    } else if (event is UpdateFcmToken) {
+      yield* _mapUpdateFcmTokenToState(currentState, event);
     }
   }
 
@@ -75,6 +77,25 @@ class UserBloc extends Bloc<UserEvent, UserState> {
         debugPrint('Update user [${currentState ?? "NO"}]');
         if (currentState.currentUser != null) {
           this.userRepository.updateUserGrade(currentState.currentUser, event.grade);
+          debugPrint('Updated!');
+        } else {
+          print('Error during user update, user was null');
+          yield UserError();
+        }
+      } catch (e) {
+        print('Error during user update: ' + e.toString());
+        yield UserError();
+      }
+    }
+  }
+
+  Stream<UserState> _mapUpdateFcmTokenToState(
+      UserState currentState, UpdateFcmToken event) async* {
+    if (currentState is UserSuccess) {
+      try {
+        debugPrint('Update user [${currentState ?? "NO"}]');
+        if (currentState.currentUser != null) {
+          this.userRepository.updateUserFcmToken(currentState.currentUser, event.token);
           debugPrint('Updated!');
         } else {
           print('Error during user update, user was null');
