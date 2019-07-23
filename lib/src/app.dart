@@ -37,7 +37,37 @@ class _AppState extends State<App> {
     super.initState();
     _authBloc = AuthBloc(auth: FirebaseAuth.instance);
     _userBloc = UserBloc(authBloc: _authBloc, userRepository: UserRepository());
-    _fcm= FirebaseMessaging();
+    _fcm = FirebaseMessaging();
+
+    _fcm.configure(
+      onMessage: (Map<String, dynamic> message) async {
+        print("onMessage: $message");
+        // todo capire perchè ogni tanto non mostra il dialog, non da errori ma il log qua sopra lo stampa
+        showDialog(
+          context: context,
+          builder: (context) => AlertDialog(
+            content: ListTile(
+              title: Text(message['notification']['title']),
+              subtitle: Text(message['notification']['body']),
+            ),
+            actions: <Widget>[
+              FlatButton(
+                child: Text('Ok'),
+                onPressed: () => Navigator.of(context).pop(),
+              ),
+            ],
+          ),
+        );
+      },
+      onLaunch: (Map<String, dynamic> message) async {
+        print("onLaunch: $message");
+        // TODO optional
+      },
+      onResume: (Map<String, dynamic> message) async {
+        print("onResume: $message");
+        // TODO optional
+      },
+    );
   }
 
   @override
@@ -79,45 +109,7 @@ class _AppState extends State<App> {
               return SplashPage();
             }
             if (state is AuthAuthenticated) {
-              if (Platform.isIOS) {
-                iosSubscription = _fcm.onIosSettingsRegistered.listen((data) {
-                  _saveDeviceToken();
-                });
-
-                _fcm.requestNotificationPermissions(IosNotificationSettings());
-              } else {
-                _saveDeviceToken();
-              }
-
-              _fcm.configure(
-                onMessage: (Map<String, dynamic> message) async {
-                  print("onMessage: $message");
-                  showDialog(
-                    context: context,
-                    builder: (context) => AlertDialog(
-                      content: ListTile(
-                        title: Text(message['notification']['title']),
-                        subtitle: Text(message['notification']['body']),
-                      ),
-                      actions: <Widget>[
-                        FlatButton(
-                          child: Text('Ok'),
-                          onPressed: () => Navigator.of(context).pop(),
-                        ),
-                      ],
-                    ),
-                  );
-                },
-                onLaunch: (Map<String, dynamic> message) async {
-                  print("onLaunch: $message");
-                  // TODO optional
-                },
-                onResume: (Map<String, dynamic> message) async {
-                  print("onResume: $message");
-                  // TODO optional
-                },
-              );
-
+              _setupNotifications();
               if (state.isFirstLogin) {
                 return GradePage();
               } else {
@@ -135,6 +127,8 @@ class _AppState extends State<App> {
     );
   }
 
+
+
   /// Get the token, save it to the database for current user
   void _saveDeviceToken() async {
     // Get the current user
@@ -143,5 +137,17 @@ class _AppState extends State<App> {
     String fcmToken = await _fcm.getToken();
 
     _userBloc.dispatch(UpdateFcmToken(token: fcmToken));
+  }
+
+  void _setupNotifications() {
+    if (Platform.isIOS) {
+      iosSubscription = _fcm.onIosSettingsRegistered.listen((data) {
+        _saveDeviceToken();
+      });
+
+      _fcm.requestNotificationPermissions(IosNotificationSettings());
+    } else {
+      _saveDeviceToken();
+    }
   }
 }
