@@ -15,6 +15,7 @@ import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:flutter_localizations/flutter_localizations.dart';
 
+import 'blocs/notifications/bloc.dart';
 import 'blocs/user/bloc.dart';
 import 'localization/localization.dart';
 
@@ -28,6 +29,8 @@ class App extends StatefulWidget {
 class _AppState extends State<App> {
   AuthBloc _authBloc;
   UserBloc _userBloc;
+  NotificationBloc _notificationsBloc;
+
   FirebaseMessaging _fcm;
 
   StreamSubscription iosSubscription;
@@ -37,27 +40,14 @@ class _AppState extends State<App> {
     super.initState();
     _authBloc = AuthBloc(auth: FirebaseAuth.instance);
     _userBloc = UserBloc(authBloc: _authBloc, userRepository: UserRepository());
+    _notificationsBloc = NotificationBloc();
+
     _fcm = FirebaseMessaging();
 
     _fcm.configure(
       onMessage: (Map<String, dynamic> message) async {
         print("onMessage: $message");
-        // todo capire perchè ogni tanto non mostra il dialog, non da errori ma il log qua sopra lo stampa
-        showDialog(
-          context: context,
-          builder: (context) => AlertDialog(
-            content: ListTile(
-              title: Text(message['notification']['title']),
-              subtitle: Text(message['notification']['body']),
-            ),
-            actions: <Widget>[
-              FlatButton(
-                child: Text('Ok'),
-                onPressed: () => Navigator.of(context).pop(),
-              ),
-            ],
-          ),
-        );
+        _notificationsBloc.dispatch(ShowDialog(message: message));
       },
       onLaunch: (Map<String, dynamic> message) async {
         print("onLaunch: $message");
@@ -102,37 +92,55 @@ class _AppState extends State<App> {
           '/profile': (context) => ProfilePage(),
           '/registry': (context) => RegistryPage(),
         },
-        home: BlocBuilder<AuthEvent, AuthState>(
-          bloc: _authBloc,
-          builder: (BuildContext context, AuthState state) {
-            if (state is AuthUninitialized) {
-              return SplashPage();
-            }
-            if (state is AuthAuthenticated) {
-              _setupNotifications();
-              if (state.isFirstLogin) {
-                return GradePage();
-              } else {
-                return HomePage();
+        home: BlocListener(
+            bloc: _notificationsBloc,
+            listener: (BuildContext context, NotificationState state) {
+              if (state is NotificationMessage) {
+                print("showDialog!");
+                showDialog(
+                  context: context,
+                  builder: (context) => AlertDialog(
+                    content: ListTile(
+                      title: Text(state.message['notification']['title']),
+                      subtitle: Text(state.message['notification']['body']),
+                    ),
+                    actions: <Widget>[
+                      FlatButton(
+                        child: Text('Ok'),
+                        onPressed: () => Navigator.of(context).pop(),
+                      ),
+                    ],
+                  ),
+                );
               }
-            }
-            if (state is AuthUnauthenticated) {
-              return LoginPage();
-            }
+            },
+            child: BlocBuilder<AuthEvent, AuthState>(
+              bloc: _authBloc,
+              builder: (BuildContext context, AuthState state) {
+                if (state is AuthUninitialized) {
+                  return SplashPage();
+                }
+                if (state is AuthAuthenticated) {
+                  _setupNotifications();
+                  if (state.isFirstLogin) {
+                    return GradePage();
+                  } else {
+                    return HomePage();
+                  }
+                }
+                if (state is AuthUnauthenticated) {
+                  return LoginPage();
+                }
 
-            return ErrorWidget('Unknown State received in: app');
-          },
-        ),
+                return ErrorWidget('Unknown State received in: app');
+              },
+            )),
       ),
     );
   }
 
-
-
   /// Get the token, save it to the database for current user
   void _saveDeviceToken() async {
-    // Get the current user
-
     // Get the token for this device
     String fcmToken = await _fcm.getToken();
 
