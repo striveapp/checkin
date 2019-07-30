@@ -1,4 +1,4 @@
-#!/bin/sh
+#!/bin/bash
 
 set -e
 trap 'echo "\"${BASH_COMMAND}\" command filed with exit code $?."' ERR

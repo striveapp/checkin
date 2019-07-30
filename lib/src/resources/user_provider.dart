@@ -55,6 +55,7 @@ class UserProvider {
     return user.data['rank'] == null;
   }
 
+  // todo a volte rompe i test perchè non fa in tempo ad aggiornarsi
   incrementUserCounter(String email) {
     _firestore
         .collection(path)

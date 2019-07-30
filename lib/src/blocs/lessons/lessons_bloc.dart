@@ -40,7 +40,7 @@ class LessonsBloc extends Bloc<LessonsEvent, LessonsState> {
     if (event is ConfirmAttendees) {
       try {
         event.attendees.forEach((attendee) {
-         this.userRepository.incrementUserCounter(attendee.email);
+          this.userRepository.incrementUserCounter(attendee.email);
         });
         await this.lessonRepository.clearLesson(event.lessonId);
       } catch(e) {

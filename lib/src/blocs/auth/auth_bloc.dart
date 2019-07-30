@@ -41,7 +41,7 @@ class AuthBloc extends Bloc<AuthEvent, AuthState> {
 
     if (event is LogOut) {
       try {
-        this.auth.signOut();
+        await this.auth.signOut();
         yield AuthUnauthenticated();
       } catch(e) {
         debugPrint('Error ocurred trying to signOut:' + e.toString());
