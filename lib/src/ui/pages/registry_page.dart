@@ -157,7 +157,9 @@ class _RegistryState extends State<RegistryPage> {
 
   @override
   void dispose() {
-    _lessonsBloc.dispose();
+    // todo capire meglio il problema Unhandled Exception: Bad state: Cannot add new events after calling close
+    // è risuccesso da indagare!
     super.dispose();
+    _lessonsBloc.dispose();
   }
 }

@@ -1,5 +1,6 @@
 import 'package:checkin/src/models/attendee.dart';
 import 'package:checkin/src/models/lesson.dart';
+import 'package:checkin/src/util.dart';
 import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:flutter/foundation.dart';
 import 'package:intl/intl.dart';
@@ -25,7 +26,8 @@ class LessonProvider {
   }
 
   Stream<List<Lesson>> getLessonsForToday() {
-    var today = DateFormat('EEEE', 'en_US').format(DateTime.now());
+    var today = isInDebugMode ? 'Monday'
+    : DateFormat('EEEE', 'en_US').format(DateTime.now());
 
     return _firestore
         .collection(path)

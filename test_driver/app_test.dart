@@ -1,5 +1,3 @@
-import 'dart:io';
-
 import 'package:flutter_driver/flutter_driver.dart';
 import 'package:test/test.dart';
 
@@ -21,7 +19,6 @@ void main() {
 
     loginAsOwner() async {
       print("Logged as OWNER");
-      sleep(Duration(milliseconds: 1000));
       await driver.waitFor(find.byValueKey('backdoorAdminButton'));
       await driver.tap(find.byValueKey('backdoorAdminButton'));
     }
@@ -39,7 +36,6 @@ void main() {
 
     logout() async {
       print("Loggin out");
-      sleep(Duration(milliseconds: 1000));
       await driver.tap(find.byValueKey('logoutButton'));
     }
 

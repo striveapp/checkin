@@ -23,10 +23,11 @@ class UserBloc extends Bloc<UserEvent, UserState> {
       }
 
       if( authState is AuthUnauthenticated ) {
-//        todo why is this not needed?
-//        if( userSub != null ) {
-//          userSub.cancel();
-//        }
+
+        if( userSub != null ) {
+          userSub.cancel();
+        }
+
         dispatch(UserUpdated(user: null));
       }
     });

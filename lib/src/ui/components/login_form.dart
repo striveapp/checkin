@@ -3,6 +3,7 @@ import 'package:checkin/src/blocs/auth/bloc.dart';
 import 'package:checkin/src/localization/localization.dart';
 import 'package:checkin/src/ui/components/google_sign_in_button.dart';
 import 'package:checkin/src/ui/components/loading_indicator.dart';
+import 'package:checkin/src/util.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 
@@ -35,7 +36,8 @@ class _LoginFormState extends State<LoginForm> {
           _onWidgetDidBuild(() {
             Scaffold.of(context).showSnackBar(
               SnackBar(
-                content: Text(Localization.of(context).getValue(state.errorMessage)),
+                content:
+                    Text(Localization.of(context).getValue(state.errorMessage)),
                 backgroundColor: Colors.red,
               ),
             );
@@ -46,7 +48,7 @@ class _LoginFormState extends State<LoginForm> {
           return LoadingIndicator();
         }
 
-        if( state is LoginInitial) {
+        if (state is LoginInitial) {
           return Column(
             mainAxisAlignment: MainAxisAlignment.center,
             crossAxisAlignment: CrossAxisAlignment.center,
@@ -66,15 +68,31 @@ class _LoginFormState extends State<LoginForm> {
                 darkMode: true,
                 borderRadius: 50.0,
               ),
-              Opacity(opacity: 0.0, child: Container(width: 1, height: 1,child: RaisedButton(key: Key('backdoorButton'),onPressed: _onLoginWithTestUser, child: Text(''),))),
-              Opacity(opacity: 0.0, child: Container(width: 1, height: 1,child: RaisedButton(key: Key('backdoorButtonTwo'),onPressed: _onLoginWithTestUserTwo, child: Text(''),))),
-              Opacity(opacity: 0.0, child: Container(width: 1, height: 1,child: RaisedButton(key: Key('backdoorAdminButton'),onPressed: _onLoginWithTestUserOwner, child: Text(''),))),
+              if (isInDebugMode)
+                Column(
+                  children: <Widget>[
+                    RaisedButton(
+                      key: Key('backdoorButton'),
+                      onPressed: _onLoginWithTestUser,
+                      child: Text('Test'),
+                    ),
+                    RaisedButton(
+                      key: Key('backdoorButtonTwo'),
+                      onPressed: _onLoginWithTestUserTwo,
+                      child: Text('Test 2'),
+                    ),
+                    RaisedButton(
+                      key: Key('backdoorAdminButton'),
+                      onPressed: _onLoginWithTestUserOwner,
+                      child: Text('Test Owner'),
+                    ),
+                  ],
+                )
             ],
           );
         }
 
         return ErrorWidget('Unknown State received in: login_form');
-
       },
     );
   }
