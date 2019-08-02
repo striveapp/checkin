@@ -1,6 +1,3 @@
-import 'dart:async';
-import 'dart:io';
-
 import 'package:checkin/src/blocs/auth/bloc.dart';
 import 'package:checkin/src/resources/user_repository.dart';
 import 'package:checkin/src/ui/pages/grade_page.dart';
@@ -29,42 +26,21 @@ class App extends StatefulWidget {
 class _AppState extends State<App> {
   AuthBloc _authBloc;
   UserBloc _userBloc;
-  NotificationBloc _notificationsBloc;
-
-  FirebaseMessaging _fcm;
-
-  StreamSubscription iosSubscription;
+  NotificationsBloc _notificationsBloc;
 
   @override
   void initState() {
     super.initState();
     _authBloc = AuthBloc(auth: FirebaseAuth.instance);
     _userBloc = UserBloc(authBloc: _authBloc, userRepository: UserRepository());
-    _notificationsBloc = NotificationBloc();
-
-    _fcm = FirebaseMessaging();
-
-    _fcm.configure(
-      onMessage: (Map<String, dynamic> message) async {
-        print("onMessage: $message");
-        _notificationsBloc.dispatch(ShowDialog(message: message));
-      },
-      onLaunch: (Map<String, dynamic> message) async {
-        print("onLaunch: $message");
-        // TODO optional
-      },
-      onResume: (Map<String, dynamic> message) async {
-        print("onResume: $message");
-        // TODO optional
-      },
-    );
+    _notificationsBloc = NotificationsBloc(notificationProvider: FirebaseMessaging(), userBloc: _userBloc);
   }
 
   @override
   void dispose() {
     _authBloc.dispose();
     _userBloc.dispose();
-    iosSubscription.cancel();
+    _notificationsBloc.dispose();
     super.dispose();
   }
 
@@ -74,7 +50,8 @@ class _AppState extends State<App> {
     return BlocProviderTree(
       blocProviders: [
         BlocProvider<AuthBloc>(bloc: _authBloc),
-        BlocProvider<UserBloc>(bloc: _userBloc)
+        BlocProvider<UserBloc>(bloc: _userBloc),
+        BlocProvider<NotificationsBloc>(bloc: _notificationsBloc),
       ],
       child: MaterialApp(
         debugShowCheckedModeBanner: false,
@@ -94,8 +71,8 @@ class _AppState extends State<App> {
         },
         home: BlocListener(
             bloc: _notificationsBloc,
-            listener: (BuildContext context, NotificationState state) {
-              if (state is NotificationMessage) {
+            listener: (BuildContext context, NotificationsState state) {
+              if (state is NotificationsMessage) {
                 print("showDialog!");
                 showDialog(
                   context: context,
@@ -121,7 +98,7 @@ class _AppState extends State<App> {
                   return SplashPage();
                 }
                 if (state is AuthAuthenticated) {
-                  _setupNotifications();
+                  _notificationsBloc.dispatch(Setup());
                   if (state.isFirstLogin) {
                     return GradePage();
                   } else {
@@ -137,25 +114,5 @@ class _AppState extends State<App> {
             )),
       ),
     );
-  }
-
-  /// Get the token, save it to the database for current user
-  void _saveDeviceToken() async {
-    // Get the token for this device
-    String fcmToken = await _fcm.getToken();
-
-    _userBloc.dispatch(UpdateFcmToken(token: fcmToken));
-  }
-
-  void _setupNotifications() {
-    if (Platform.isIOS) {
-      iosSubscription = _fcm.onIosSettingsRegistered.listen((data) {
-        _saveDeviceToken();
-      });
-
-      _fcm.requestNotificationPermissions(IosNotificationSettings());
-    } else {
-      _saveDeviceToken();
-    }
   }
 }

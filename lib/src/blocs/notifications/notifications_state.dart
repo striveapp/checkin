@@ -1,21 +1,26 @@
 import 'package:equatable/equatable.dart';
 
-abstract class NotificationState extends Equatable {
-  NotificationState([List props = const []]) : super(props);
+abstract class NotificationsState extends Equatable {
+  NotificationsState([List props = const []]) : super(props);
 }
 
-class NotificationUninitialized extends NotificationState {
+class NotificationsUninitialized extends NotificationsState {
   @override
-  String toString() => 'NotificationUninitialized';
+  String toString() => 'NotificationsUninitialized';
 }
 
-class NotificationMessage extends NotificationState {
+class NotificationsInitialized extends NotificationsState {
+  @override
+  String toString() => 'NotificationsInitialized';
+}
+
+class NotificationsMessage extends NotificationsState {
   Map<String, dynamic> message;
 
-  NotificationMessage({
+  NotificationsMessage({
     this.message,
   }) : super([message]);
 
   @override
-  String toString() => 'NotificationMessage';
+  String toString() => 'NotificationsMessage';
 }

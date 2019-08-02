@@ -1,10 +1,15 @@
 import 'package:equatable/equatable.dart';
 
-abstract class NotificationEvent extends Equatable {
-  NotificationEvent([List props = const []]) : super(props);
+abstract class NotificationsEvent extends Equatable {
+  NotificationsEvent([List props = const []]) : super(props);
 }
 
-class ShowDialog extends NotificationEvent {
+class Setup extends NotificationsEvent {
+  @override
+  String toString() => 'Setup';
+}
+
+class ShowDialog extends NotificationsEvent {
   Map<String, dynamic> message;
 
   ShowDialog({
