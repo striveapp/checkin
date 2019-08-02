@@ -33,7 +33,8 @@ class _AppState extends State<App> {
     super.initState();
     _authBloc = AuthBloc(auth: FirebaseAuth.instance);
     _userBloc = UserBloc(authBloc: _authBloc, userRepository: UserRepository());
-    _notificationsBloc = NotificationsBloc(notificationProvider: FirebaseMessaging(), userBloc: _userBloc);
+    _notificationsBloc = NotificationsBloc(
+        notificationProvider: FirebaseMessaging(), userBloc: _userBloc);
   }
 
   @override
@@ -69,49 +70,51 @@ class _AppState extends State<App> {
           '/profile': (context) => ProfilePage(),
           '/registry': (context) => RegistryPage(),
         },
-        home: BlocListener(
-            bloc: _notificationsBloc,
-            listener: (BuildContext context, NotificationsState state) {
-              if (state is NotificationsMessage) {
-                print("showDialog!");
-                showDialog(
-                  context: context,
-                  builder: (context) => AlertDialog(
+        home: Scaffold(
+          body: BlocListener(
+              bloc: _notificationsBloc,
+              listener: (BuildContext context, NotificationsState state) {
+                if (state is NotificationsMessage) {
+                  //TODO: this should be evenutally moved out into his own Widget,
+                  // i've tried that, but it's pretty damn complicated, maybe we should use https://pub.dev/packages/flushbar ?
+                  final snackBar = SnackBar(
                     content: ListTile(
                       title: Text(state.message['notification']['title']),
                       subtitle: Text(state.message['notification']['body']),
                     ),
-                    actions: <Widget>[
-                      FlatButton(
-                        child: Text('Ok'),
-                        onPressed: () => Navigator.of(context).pop(),
-                      ),
-                    ],
-                  ),
-                );
-              }
-            },
-            child: BlocBuilder<AuthEvent, AuthState>(
-              bloc: _authBloc,
-              builder: (BuildContext context, AuthState state) {
-                if (state is AuthUninitialized) {
-                  return SplashPage();
+                    action: SnackBarAction(
+                      label: 'Close',
+                      onPressed: () {
+                        debugPrint("close");
+                      },
+                    ),
+                  );
+                  print('Show SnackBar');
+                  Scaffold.of(context).showSnackBar(snackBar);
                 }
-                if (state is AuthAuthenticated) {
-                  _notificationsBloc.dispatch(Setup());
-                  if (state.isFirstLogin) {
-                    return GradePage();
-                  } else {
-                    return HomePage();
-                  }
-                }
-                if (state is AuthUnauthenticated) {
-                  return LoginPage();
-                }
-
-                return ErrorWidget('Unknown State received in: app');
               },
-            )),
+              child: BlocBuilder<AuthEvent, AuthState>(
+                bloc: _authBloc,
+                builder: (BuildContext context, AuthState state) {
+                  if (state is AuthUninitialized) {
+                    return SplashPage();
+                  }
+                  if (state is AuthAuthenticated) {
+                    _notificationsBloc.dispatch(Setup());
+                    if (state.isFirstLogin) {
+                      return GradePage();
+                    } else {
+                      return HomePage();
+                    }
+                  }
+                  if (state is AuthUnauthenticated) {
+                    return LoginPage();
+                  }
+
+                  return ErrorWidget('Unknown State received in: app');
+                },
+              )),
+        ),
       ),
     );
   }
