@@ -29,11 +29,13 @@ class _RegistryState extends State<RegistryPage> {
   final UserRepository _userRepository = UserRepository();
   LessonsBloc _lessonsBloc;
   AuthBloc _authBloc;
+  UserBloc _userBloc;
 
   @override
   void initState() {
     super.initState();
     _authBloc = BlocProvider.of<AuthBloc>(context);
+    _userBloc = BlocProvider.of<UserBloc>(context);
     _lessonsBloc = LessonsBloc(
         lessonRepository: _lessonsRepository, userRepository: _userRepository);
   }
@@ -41,7 +43,6 @@ class _RegistryState extends State<RegistryPage> {
   @override
   Widget build(BuildContext context) {
     final lessonId = ModalRoute.of(context).settings.arguments;
-    UserBloc _userBloc = BlocProvider.of<UserBloc>(context);
     User currentUser = (_userBloc.currentState as UserSuccess).currentUser;
 
     return Scaffold(
@@ -60,8 +61,10 @@ class _RegistryState extends State<RegistryPage> {
         bloc: _lessonsBloc,
         builder: (BuildContext context, LessonsState state) {
           var _onPressedAcceptAll;
-          var _onPressAttendClass;
+          var _onPressRegisterClass;
+          var _onPressUnregisterClass;
           var currentLesson;
+
           if (state is LessonsUninitialized) {
             return LoadingIndicator();
           }
@@ -69,10 +72,17 @@ class _RegistryState extends State<RegistryPage> {
             state.lessons.forEach((lesson) {
                 if (lesson.id == lessonId) {
                   currentLesson = lesson;
-                  _onPressAttendClass = !currentLesson.containsUser(currentUser.email)
-                        ? () => _lessonsBloc.dispatch(AttendLesson(
-                        lessonId: lessonId, attendee: Attendee.fromUser(currentUser)))
-                        : null;
+                  if(!currentLesson.containsUser(currentUser.email)) {
+                    _onPressRegisterClass = () {
+                      _lessonsBloc.dispatch(Register(
+                        lessonId: lessonId, attendee: Attendee.fromUser(currentUser)));
+                    };
+                  } else {
+                    _onPressUnregisterClass = () {
+                      _lessonsBloc.dispatch(Unregister(
+                          lessonId: lessonId, attendee: Attendee.fromUser(currentUser)));
+                    };
+                  }
                 }
             });
 
@@ -82,7 +92,6 @@ class _RegistryState extends State<RegistryPage> {
                       lessonId: lessonId, attendees: currentLesson.attendees))
                   : null;
             }
-
 
             return Center(
                 child: Container(
@@ -95,25 +104,43 @@ class _RegistryState extends State<RegistryPage> {
                     child: AttendeesList(
                         attendeeList: currentLesson.attendees ?? []),
                   ),
-                  if (!(_userBloc.currentState as UserSuccess).currentUser.isOwner)
-                  Padding(
-                    padding: const EdgeInsets.symmetric(vertical: 5),
-                    child: RaisedButton(
-                      color: Colors.green,
-                      child: Padding(
-                        padding: const EdgeInsets.symmetric(vertical: 15),
-                        child: Text(Localization.of(context).attendClass,
-                            key: Key('attendClass'),
-                            style: TextStyle(
-                                fontSize: 18,
-                                fontFamily: "Roboto",
-                                color: Colors.white,
-                                fontWeight: FontWeight.w600)),
+                  if (!_isOwnerUser() && !currentLesson.containsUser(currentUser.email))
+                    Padding(
+                      padding: const EdgeInsets.symmetric(vertical: 5),
+                      child: RaisedButton(
+                        color: Colors.green,
+                        child: Padding(
+                          padding: const EdgeInsets.symmetric(vertical: 15),
+                          child: Text(Localization.of(context).registerClass,
+                              key: Key('attendClass'),
+                              style: TextStyle(
+                                  fontSize: 18,
+                                  fontFamily: "Roboto",
+                                  color: Colors.white,
+                                  fontWeight: FontWeight.w600)),
+                        ),
+                        onPressed: _onPressRegisterClass,
                       ),
-                      onPressed: _onPressAttendClass,
                     ),
-                  ),
-                  if ((_userBloc.currentState as UserSuccess).currentUser.isOwner)
+                  if (!_isOwnerUser() && currentLesson.containsUser(currentUser.email))
+                    Padding(
+                      padding: const EdgeInsets.symmetric(vertical: 5),
+                      child: RaisedButton(
+                        color: Colors.red,
+                        child: Padding(
+                          padding: const EdgeInsets.symmetric(vertical: 15),
+                          child: Text(Localization.of(context).unregisterClass,
+                              key: Key('unattendClass'),
+                              style: TextStyle(
+                                  fontSize: 18,
+                                  fontFamily: "Roboto",
+                                  color: Colors.white,
+                                  fontWeight: FontWeight.w600)),
+                        ),
+                        onPressed: _onPressUnregisterClass,
+                      ),
+                    ),
+                  if (_isOwnerUser())
                     Padding(
                       padding: const EdgeInsets.symmetric(vertical: 5),
                       child: RaisedButton(
@@ -131,7 +158,7 @@ class _RegistryState extends State<RegistryPage> {
                         onPressed: _onPressedAcceptAll,
                       ),
                     ),
-                  if ((_userBloc.currentState as UserSuccess).currentUser.isDev)
+                  if (_isDevUser())
                     RaisedButton(
                       key: Key('logoutButton'),
                       color: Colors.red,
@@ -141,8 +168,9 @@ class _RegistryState extends State<RegistryPage> {
                               color: Colors.white,
                               fontWeight: FontWeight.w600)),
                       onPressed: () {
-                        // todo why does this work?
-                        Navigator.pushNamedAndRemoveUntil(context, "/", (route) => false);
+                        //TODO: check if a best solution can be applied here: https://github.com/felangel/bloc/issues/400
+                        Navigator.pushNamedAndRemoveUntil(
+                            context, "/", (route) => false);
 
                         _authBloc.dispatch(LogOut());
                       },
@@ -153,6 +181,14 @@ class _RegistryState extends State<RegistryPage> {
         },
       ),
     );
+  }
+
+  bool _isDevUser() {
+    return (_userBloc.currentState as UserSuccess).currentUser.isDev;
+  }
+
+  bool _isOwnerUser() {
+    return (_userBloc.currentState as UserSuccess).currentUser.isOwner;
   }
 
   @override

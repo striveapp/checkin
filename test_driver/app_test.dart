@@ -54,6 +54,12 @@ void main() {
       await driver.tap(find.byValueKey('attendClass'));
     }
 
+    unattendClass(classKey) async {
+      await goToRegistryOf(classKey);
+      await driver.waitFor(find.byValueKey('unattendClass'));
+      await driver.tap(find.byValueKey('unattendClass'));
+    }
+
     acceptAll(classKey) async {
       await goToRegistryOf(classKey);
       await driver.waitFor(find.byValueKey('acceptAll'));
@@ -204,6 +210,16 @@ void main() {
         expect(newClassCounter, expectedClassCounter);
         expect(newClassCounterTwo, expectedClassCounterTwo);
 
+      });
+
+      test("user should be able to remove himself from class", () async {
+        prettyPrint("Login as user and attend class");
+        await loginAsUser();
+        await attendClass('basic');
+        await driver.waitFor(find.text("Test"));
+        await goBack();
+        await unattendClass('basic');
+        await driver.waitForAbsent(find.text("Test"));
       });
     });
   });

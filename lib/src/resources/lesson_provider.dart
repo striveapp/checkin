@@ -51,7 +51,7 @@ class LessonProvider {
             .toList());
   }
 
-  Future<void> attendLesson(String lessonId, Attendee attendee) async {
+  Future<void> register(String lessonId, Attendee attendee) async {
     debugPrint("User [$attendee] attends lesson with id [$lessonId]");
     await _firestore.collection(path).document(lessonId).updateData({
       'attendees': FieldValue.arrayUnion([
@@ -65,10 +65,24 @@ class LessonProvider {
     });
   }
 
+  Future<void> unregister(String lessonId, Attendee attendee) async {
+    debugPrint("User [$attendee] removed from lesson with id [$lessonId]");
+    await _firestore.collection(path).document(lessonId).updateData({
+      'attendees': FieldValue.arrayRemove([
+        {
+          'name': attendee.name,
+          'imageUrl': attendee.imageUrl,
+          'grade': attendee.rank,
+          'email': attendee.email
+        }
+      ])
+    });
+  }
   Future<void> clearLesson(String lessonId) async {
     await _firestore
         .collection(path)
         .document(lessonId)
         .updateData({"attendees": FieldValue.delete()});
   }
+
 }

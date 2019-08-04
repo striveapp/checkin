@@ -8,9 +8,11 @@ class LessonRepository {
 
   Stream<List<Lesson>> getLessons() => _lessonProvider.getLessons();
 
-  Future<void> attendLesson(String lessonId, Attendee attendee) => _lessonProvider.attendLesson(lessonId, attendee);
+  Future<void> register(String lessonId, Attendee attendee) => _lessonProvider.register(lessonId, attendee);
 
   Stream<List<Lesson>> getLessonsForToday() => _lessonProvider.getLessonsForToday();
 
   Future<void> clearLesson(String lessonId) => _lessonProvider.clearLesson(lessonId);
+
+  Future<void> unregister(String lessonId, Attendee attendee) => _lessonProvider.unregister(lessonId, attendee);
 }

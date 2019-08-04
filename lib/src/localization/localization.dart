@@ -29,7 +29,8 @@ class Localization {
   String get registry => getValue(Registry);
   String get acceptAll => getValue(AcceptAll);
   String get logout => getValue(Logout);
-  String get attendClass => getValue(AttendClass);
+  String get registerClass => getValue(RegisterClass);
+  String get unregisterClass => getValue(UnregisterClass);
   String get status => getValue(Status);
   String get lessons => getValue(Lessons);
   String get loginFailed => getValue(LoginFailed);

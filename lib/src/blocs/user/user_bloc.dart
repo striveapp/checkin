@@ -23,11 +23,9 @@ class UserBloc extends Bloc<UserEvent, UserState> {
       }
 
       if( authState is AuthUnauthenticated ) {
-
         if( userSub != null ) {
           userSub.cancel();
         }
-
         dispatch(UserUpdated(user: null));
       }
     });

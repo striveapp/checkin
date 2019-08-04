@@ -48,9 +48,17 @@ class LessonsBloc extends Bloc<LessonsEvent, LessonsState> {
       }
     }
 
-    if (event is AttendLesson) {
+    if (event is Register) {
       try {
-        await this.lessonRepository.attendLesson(event.lessonId, event.attendee);
+        await this.lessonRepository.register(event.lessonId, event.attendee);
+      } catch(e) {
+        print(e);
+      }
+    }
+
+    if (event is Unregister) {
+      try {
+        await this.lessonRepository.unregister(event.lessonId, event.attendee);
       } catch(e) {
         print(e);
       }

@@ -6,18 +6,33 @@ abstract class LessonsEvent extends Equatable {
   LessonsEvent([List props = const []]) : super(props);
 }
 
-class AttendLesson extends LessonsEvent {
+class Register extends LessonsEvent {
   String lessonId;
   Attendee attendee;
 
-  AttendLesson({
+  Register({
     this.lessonId,
     this.attendee,
   }) : super([lessonId, attendee]);
 
   @override
-  String toString() => 'Attend';
+  String toString() => 'Register';
 }
+
+class Unregister extends LessonsEvent {
+  String lessonId;
+  Attendee attendee;
+
+  Unregister({
+    this.lessonId,
+    this.attendee,
+  }) : super([lessonId, attendee]);
+
+  @override
+  String toString() => 'Unregister';
+}
+
+
 
 class ConfirmAttendees extends LessonsEvent {
   String lessonId;
