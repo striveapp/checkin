@@ -1,3 +1,5 @@
+import 'dart:io';
+
 import 'package:flutter_driver/flutter_driver.dart';
 import 'package:test/test.dart';
 
@@ -69,6 +71,15 @@ void main() {
     goToProfilePage() async {
       await driver.waitFor(find.byValueKey('todaysClassesText'));
       await driver.tap(find.byValueKey('profilePageButton'));
+    }
+
+    swipeToRemoveUser(userKey) async {
+      final SerializableFinder testUser = find.byValueKey(userKey);
+      await driver.waitFor(testUser);
+      await driver.scroll(testUser, -400, 0, Duration(milliseconds: 300));
+      //TODO: for some reason the flutter driver seems to loose the track
+      // of the element if we dont wait here
+      sleep(Duration(milliseconds: 1000));
     }
 
     test('check flutter driver health', () async {
@@ -220,6 +231,33 @@ void main() {
         await goBack();
         await unattendClass('basic');
         await driver.waitForAbsent(find.text("Test"));
+        await logout();
+      });
+
+      test("owner should be able to remove users from class", () async {
+        final classKey = 'basic';
+
+        prettyPrint("Login as user and attend class");
+        await loginAsUser();
+        await attendClass(classKey);
+        await goBack();
+        await logout();
+
+        prettyPrint("Then login as TestTwo and attend class");
+        await loginAsUser(user: 'TestTwo');
+        await attendClass(classKey);
+        await goBack();
+        await logout();
+
+        prettyPrint("Then login as owner, and remove Test user from class");
+        await loginAsOwner();
+        await goToRegistryOf(classKey);
+
+        await swipeToRemoveUser("test@test.com");
+        await driver.waitForAbsent(find.text("Test"));
+        await swipeToRemoveUser("test-two@test.com");
+        await driver.waitForAbsent(find.text("TestTwo"));
+        await logout();
       });
     });
   });

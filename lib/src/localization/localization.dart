@@ -41,6 +41,7 @@ class Localization {
   String get blackGrade => getValue(BlackGrade);
   String get todaysClasses => getValue(TodaysClasses);
   String get profile => getValue(Profile);
+  String get swipeToRemove => getValue(SwipeToRemove);
 }
 
 class LocalizationDelegate extends LocalizationsDelegate<Localization> {

@@ -17,7 +17,8 @@ PurpleGrade = 'purple_grade',
 BrownGrade = 'brown_grade',
 BlackGrade = 'black_grade',
 TodaysClasses = 'todays_classes',
-Profile = 'profile'
+Profile = 'profile',
+SwipeToRemove = 'swipe_to_remove'
 ;
 
 final es = {
@@ -39,7 +40,8 @@ final es = {
   BrownGrade: 'Marron',
   BlackGrade: 'Negro',
   TodaysClasses: 'Clases de hoy',
-  Profile: 'Perfil'
+  Profile: 'Perfil',
+  SwipeToRemove: 'Desliza hacia la izquierda para cancelar',
 };
 
 final en = {
@@ -61,5 +63,6 @@ final en = {
   BrownGrade: 'Brown',
   BlackGrade: 'Black',
   TodaysClasses: "Today's classes",
-  Profile: 'Profile'
+  Profile: 'Profile',
+  SwipeToRemove: 'Swipe left to remove user from class',
 };

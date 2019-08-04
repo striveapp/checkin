@@ -44,7 +44,7 @@ class LessonProvider {
                 attendees: (doc.data['attendees'] as List)
                     ?.map((attendee) => Attendee(
                         name: attendee['name'],
-                        rank: attendee["rank"],
+                        rank: attendee["grade"],
                         imageUrl: attendee["imageUrl"],
                         email: attendee["email"]))
                     ?.toList()))

@@ -70,20 +70,22 @@ class _RegistryState extends State<RegistryPage> {
           }
           if (state is LessonsLoaded) {
             state.lessons.forEach((lesson) {
-                if (lesson.id == lessonId) {
-                  currentLesson = lesson;
-                  if(!currentLesson.containsUser(currentUser.email)) {
-                    _onPressRegisterClass = () {
-                      _lessonsBloc.dispatch(Register(
-                        lessonId: lessonId, attendee: Attendee.fromUser(currentUser)));
-                    };
-                  } else {
-                    _onPressUnregisterClass = () {
-                      _lessonsBloc.dispatch(Unregister(
-                          lessonId: lessonId, attendee: Attendee.fromUser(currentUser)));
-                    };
-                  }
+              if (lesson.id == lessonId) {
+                currentLesson = lesson;
+                if (!currentLesson.containsUser(currentUser.email)) {
+                  _onPressRegisterClass = () {
+                    _lessonsBloc.dispatch(Register(
+                        lessonId: lessonId,
+                        attendee: Attendee.fromUser(currentUser)));
+                  };
+                } else {
+                  _onPressUnregisterClass = () {
+                    _lessonsBloc.dispatch(Unregister(
+                        lessonId: lessonId,
+                        attendee: Attendee.fromUser(currentUser)));
+                  };
                 }
+              }
             });
 
             if (currentLesson.attendees != null) {
@@ -99,14 +101,16 @@ class _RegistryState extends State<RegistryPage> {
                         mainAxisAlignment: MainAxisAlignment.center,
                         crossAxisAlignment: CrossAxisAlignment.center,
                         children: [
-                  Padding(
-                    padding: const EdgeInsets.symmetric(vertical: 50),
-                    child: AttendeesList(
-                        attendeeList: currentLesson.attendees ?? []),
+                  AttendeesList(
+                    attendeeList: currentLesson.attendees ?? [],
+                    isOwner: _isOwnerUser(),
+                    lessonId: lessonId,
+                    lessonsBloc: _lessonsBloc,
                   ),
-                  if (!_isOwnerUser() && !currentLesson.containsUser(currentUser.email))
+                  if (!_isOwnerUser() &&
+                      !currentLesson.containsUser(currentUser.email))
                     Padding(
-                      padding: const EdgeInsets.symmetric(vertical: 5),
+                      padding: EdgeInsets.only(top: 30),
                       child: RaisedButton(
                         color: Colors.green,
                         child: Padding(
@@ -122,9 +126,10 @@ class _RegistryState extends State<RegistryPage> {
                         onPressed: _onPressRegisterClass,
                       ),
                     ),
-                  if (!_isOwnerUser() && currentLesson.containsUser(currentUser.email))
+                  if (!_isOwnerUser() &&
+                      currentLesson.containsUser(currentUser.email))
                     Padding(
-                      padding: const EdgeInsets.symmetric(vertical: 5),
+                      padding: EdgeInsets.only(top: 30),
                       child: RaisedButton(
                         color: Colors.red,
                         child: Padding(
@@ -142,7 +147,19 @@ class _RegistryState extends State<RegistryPage> {
                     ),
                   if (_isOwnerUser())
                     Padding(
-                      padding: const EdgeInsets.symmetric(vertical: 5),
+                      padding: EdgeInsets.only(top: 5),
+                      child: Text(
+                    Localization.of(context).swipeToRemove,
+                        style: TextStyle(
+                          fontSize: 14,
+                          fontFamily: "Roboto",
+                          color: Colors.black54,
+                        ),
+                      ),
+                    ),
+                  if (_isOwnerUser())
+                    Padding(
+                      padding: EdgeInsets.only(top: 30),
                       child: RaisedButton(
                         color: Colors.green,
                         child: Padding(
@@ -174,7 +191,7 @@ class _RegistryState extends State<RegistryPage> {
 
                         _authBloc.dispatch(LogOut());
                       },
-                    )
+                    ),
                 ])));
           }
           return ErrorWidget('Unknown State received in: registry_page');
