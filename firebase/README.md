@@ -49,3 +49,13 @@ which runs all the tests in the `tests/` directory.
 ```
 npm run deploy
 ```
+
+## Switch to env dev
+```
+firebase use dev
+```
+
+## Switch to env
+```
+firebase use prod
+```

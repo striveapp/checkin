@@ -1,8 +1,9 @@
 import * as admin from 'firebase-admin'
 import * as functions from 'firebase-functions';
 import * as express from 'express';
-import {generateBackup, restoreBackup} from './backups/index';
-import { validateFirebaseIdToken } from "./middlewares/validations";
+import {generateBackup, restoreBackup} from './backups';
+import {validateFirebaseIdToken} from "./middlewares/validations";
+import {userNotification as notification}  from "./notifications";
 
 admin.initializeApp()
 
@@ -18,11 +19,10 @@ expressApp.get('/restoreBackup', async (req, res) => {
     }
 });
 
-/**
- * Automated Backups
- */
 export const automatedBackups = functions.pubsub
     .schedule('0 3 * * *')
     .onRun(generateBackup);
 
 export const app = functions.https.onRequest(expressApp);
+
+export const userNotification = notification;
