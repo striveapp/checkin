@@ -1,5 +1,6 @@
 import 'package:checkin/src/blocs/auth/bloc.dart';
 import 'package:checkin/src/resources/user_repository.dart';
+import 'package:checkin/src/ui/components/notification_snackbar.dart';
 import 'package:checkin/src/ui/pages/grade_page.dart';
 import 'package:checkin/src/ui/pages/home_page.dart';
 import 'package:checkin/src/ui/pages/login_page.dart';
@@ -74,22 +75,14 @@ class _AppState extends State<App> {
           body: BlocListener(
               bloc: _notificationsBloc,
               listener: (BuildContext context, NotificationsState state) {
-                if (state is NotificationsMessage) {
-                  //TODO: this should be evenutally moved out into his own Widget,
-                  // i've tried that, but it's pretty damn complicated, maybe we should use https://pub.dev/packages/flushbar ?
-                  final snackBar = SnackBar(
-                    content: ListTile(
-                      title: Text(state.message['notification']['title']),
-                      subtitle: Text(state.message['notification']['body']),
-                    ),
-                    action: SnackBarAction(
-                      label: 'Close',
-                      onPressed: () {
-                        debugPrint("close");
-                      },
-                    ),
+                if (state is NotificationsLoaded) {
+                  final snackBar = NotificationSnackBar(
+                    title: state.notification.title,
+                    body: state.notification.body,
+                    onClose: () {
+                      debugPrint('Close');
+                    },
                   );
-                  print('Show SnackBar');
                   Scaffold.of(context).showSnackBar(snackBar);
                 }
               },

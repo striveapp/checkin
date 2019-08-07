@@ -3,6 +3,7 @@ import 'dart:io';
 
 import 'package:bloc/bloc.dart';
 import 'package:checkin/src/blocs/user/bloc.dart';
+import 'package:checkin/src/models/notification.dart';
 import 'package:firebase_messaging/firebase_messaging.dart';
 import 'package:flutter/foundation.dart';
 import 'package:meta/meta.dart';
@@ -30,7 +31,7 @@ class NotificationsBloc extends Bloc<NotificationsEvent, NotificationsState> {
       yield NotificationsInitialized();
     }
     if (event is ShowDialog) {
-      yield NotificationsMessage(message: event.message);
+      yield NotificationsLoaded(notification: event.notification);
     }
   }
 
@@ -57,8 +58,15 @@ class NotificationsBloc extends Bloc<NotificationsEvent, NotificationsState> {
     }
   }
 
-  Future _onMessage(Map<String, dynamic> message) async {
-    debugPrint("Push notification received with message: $message");
-    dispatch(ShowDialog(message: message));
+  Future _onMessage(Map<String, dynamic> msg) async {
+    Notification notification = _mapMsgToNotification(msg);
+    debugPrint("Push notification received with message: $notification");
+    dispatch(ShowDialog(notification: notification));
   }
+
+  Notification _mapMsgToNotification(Map<String, dynamic> msg) =>
+      Notification(
+          msg['notification']['title'],
+          msg['notification']['body']
+      );
 }

@@ -1,3 +1,4 @@
+import 'package:checkin/src/models/notification.dart';
 import 'package:equatable/equatable.dart';
 
 abstract class NotificationsEvent extends Equatable {
@@ -10,11 +11,11 @@ class Setup extends NotificationsEvent {
 }
 
 class ShowDialog extends NotificationsEvent {
-  Map<String, dynamic> message;
+  Notification notification;
 
   ShowDialog({
-    this.message
-  }) : super([message]);
+    this.notification
+  }) : super([notification]);
 
   @override
   String toString() => 'ShowDialog';

@@ -1,3 +1,4 @@
+import 'package:checkin/src/models/notification.dart';
 import 'package:equatable/equatable.dart';
 
 abstract class NotificationsState extends Equatable {
@@ -14,13 +15,13 @@ class NotificationsInitialized extends NotificationsState {
   String toString() => 'NotificationsInitialized';
 }
 
-class NotificationsMessage extends NotificationsState {
-  Map<String, dynamic> message;
+class NotificationsLoaded extends NotificationsState {
+  Notification notification;
 
-  NotificationsMessage({
-    this.message,
-  }) : super([message]);
+  NotificationsLoaded({
+    this.notification,
+  }) : super([notification]);
 
   @override
-  String toString() => 'NotificationsMessage';
+  String toString() => 'NotificationsLoaded';
 }
