@@ -1,6 +1,6 @@
 import 'package:checkin/src/blocs/auth/bloc.dart';
 import 'package:checkin/src/resources/user_repository.dart';
-import 'package:checkin/src/ui/components/notification_snackbar.dart';
+import 'package:checkin/src/ui/components/notification_toast.dart';
 import 'package:checkin/src/ui/pages/grade_page.dart';
 import 'package:checkin/src/ui/pages/home_page.dart';
 import 'package:checkin/src/ui/pages/login_page.dart';
@@ -76,14 +76,8 @@ class _AppState extends State<App> {
               bloc: _notificationsBloc,
               listener: (BuildContext context, NotificationsState state) {
                 if (state is NotificationsLoaded) {
-                  final snackBar = NotificationSnackBar(
-                    title: state.notification.title,
-                    body: state.notification.body,
-                    onClose: () {
-                      debugPrint('Close');
-                    },
-                  );
-                  Scaffold.of(context).showSnackBar(snackBar);
+                  NotificationToast.show(context, state.notification.title,
+                      state.notification.body);
                 }
               },
               child: BlocBuilder<AuthEvent, AuthState>(
