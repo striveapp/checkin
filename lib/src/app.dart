@@ -66,10 +66,11 @@ class _AppState extends State<App> {
           const Locale('en', ''),
           const Locale('es', ''),
         ],
+        initialRoute: '/',
         routes: {
-          '/home': (context) => HomePage(),
-          '/profile': (context) => ProfilePage(),
-          '/registry': (context) => RegistryPage(),
+          'home': (context) => HomePage(),
+          'profile': (context) => ProfilePage(),
+          'registry': (context) => RegistryPage(),
         },
         home: Scaffold(
           body: BlocListener(

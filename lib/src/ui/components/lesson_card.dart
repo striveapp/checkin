@@ -12,7 +12,7 @@ class LessonCard extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     var _onPressed = (lessonId) {
-      Navigator.of(context).pushNamed('/registry', arguments: lessonId);
+      Navigator.of(context).pushNamed('registry', arguments: lessonId);
     };
 
     return Container(

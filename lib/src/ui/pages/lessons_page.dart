@@ -80,7 +80,7 @@ class _LessonsState extends State<LessonsPage> {
               child: IconButton(
                   key: Key('profilePageButton'),
                   onPressed: () {
-                    Navigator.of(context).pushNamed('/profile');
+                    Navigator.of(context).pushNamed('profile');
                   },
                   icon: ClipRRect(
                       borderRadius: BorderRadius.circular(50.0),
