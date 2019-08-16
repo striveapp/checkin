@@ -86,7 +86,7 @@ void main() {
           when(mockUserRepository.updateUserGrade(testUser, testGrade))
               .thenAnswer((_) => Future<User>.value(null));
 
-          userBloc.dispatch(Update(grade: testGrade));
+          userBloc.dispatch(UpdateGrade(grade: testGrade));
 
           await expectLater(
             userBloc.state,
@@ -107,7 +107,7 @@ void main() {
               .thenThrow(Exception("i don't wanna live in this planet anymore"));
 
 
-          userBloc.dispatch(Update(grade: testGrade));
+          userBloc.dispatch(UpdateGrade(grade: testGrade));
 
           await expectLater(
             userBloc.state,

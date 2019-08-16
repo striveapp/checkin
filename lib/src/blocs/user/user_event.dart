@@ -28,12 +28,23 @@ class UserUpdated extends UserEvent {
   String toString() => 'UserUpdated';
 }
 
-class Update extends UserEvent {
+class UpdateGrade extends UserEvent {
   String grade;
 
-  Update({
+  UpdateGrade({
     this.grade
   }) : super([grade]);
+
+  @override
+  String toString() => 'Update';
+}
+
+class UpdateName extends UserEvent {
+  String name;
+
+  UpdateName({
+    this.name
+  }) : super([name]);
 
   @override
   String toString() => 'Update';

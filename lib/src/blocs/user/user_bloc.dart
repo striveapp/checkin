@@ -44,10 +44,8 @@ class UserBloc extends Bloc<UserEvent, UserState> {
       }
     } else if (event is Create) {
       yield* _mapCreateToState(currentState, event);
-    } else if (event is Update) {
+    } else {
       yield* _mapUpdateToState(currentState, event);
-    } else if (event is UpdateFcmToken) {
-      yield* _mapUpdateFcmTokenToState(currentState, event);
     }
   }
 
@@ -70,31 +68,22 @@ class UserBloc extends Bloc<UserEvent, UserState> {
   }
 
   Stream<UserState> _mapUpdateToState(
-      UserState currentState, Update event) async* {
+      UserState currentState, UserEvent event) async* {
     if (currentState is UserSuccess) {
       try {
+        //TODO: when the user can be null?
         debugPrint('Update user [${currentState ?? "NO"}]');
         if (currentState.currentUser != null) {
-          this.userRepository.updateUserGrade(currentState.currentUser, event.grade);
-          debugPrint('Updated!');
-        } else {
-          print('Error during user update, user was null');
-          yield UserError();
-        }
-      } catch (e) {
-        print('Error during user update: ' + e.toString());
-        yield UserError();
-      }
-    }
-  }
-
-  Stream<UserState> _mapUpdateFcmTokenToState(
-      UserState currentState, UpdateFcmToken event) async* {
-    if (currentState is UserSuccess) {
-      try {
-        debugPrint('Update user [${currentState ?? "NO"}]');
-        if (currentState.currentUser != null) {
-          this.userRepository.updateUserFcmToken(currentState.currentUser, event.token);
+          if(event is UpdateGrade) {
+            debugPrint('Updating grade...');
+            this.userRepository.updateUserGrade(currentState.currentUser, event.grade);
+          } else if(event is UpdateName) {
+            debugPrint('Updating name...');
+            this.userRepository.updateUserName(currentState.currentUser, event.name);
+          } else if(event is UpdateFcmToken) {
+            debugPrint('Updating token...');
+            this.userRepository.updateUserFcmToken(currentState.currentUser, event.token);
+          }
           debugPrint('Updated!');
         } else {
           print('Error during user update, user was null');

@@ -25,6 +25,13 @@ class UserProvider {
         .updateData({"rank": grade});
   }
 
+  updateUserName(User currentUser, String name) async {
+    _firestore
+        .collection(path)
+        .document(currentUser.email)
+        .updateData({"name": name});
+  }
+
   updateUserFcmToken(User currentUser, String fcmToken) async {
     var tokens = _firestore
         .collection(path)
