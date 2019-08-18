@@ -18,7 +18,8 @@ BrownGrade = 'brown_grade',
 BlackGrade = 'black_grade',
 TodaysClasses = 'todays_classes',
 Profile = 'profile',
-SwipeToRemove = 'swipe_to_remove'
+SwipeToRemove = 'swipe_to_remove',
+NameHint = "name_hint"
 ;
 
 final es = {
@@ -42,6 +43,7 @@ final es = {
   TodaysClasses: 'Clases de hoy',
   Profile: 'Perfil',
   SwipeToRemove: 'Desliza hacia la izquierda para cancelar',
+  NameHint: 'Intorduzca su nombre',
 };
 
 final en = {
@@ -65,4 +67,5 @@ final en = {
   TodaysClasses: "Today's classes",
   Profile: 'Profile',
   SwipeToRemove: 'Swipe left to remove user from class',
+  NameHint: 'Enter your name',
 };

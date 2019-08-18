@@ -42,6 +42,7 @@ class Localization {
   String get todaysClasses => getValue(TodaysClasses);
   String get profile => getValue(Profile);
   String get swipeToRemove => getValue(SwipeToRemove);
+  String get nameHint => getValue(NameHint);
 }
 
 class LocalizationDelegate extends LocalizationsDelegate<Localization> {

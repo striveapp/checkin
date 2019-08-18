@@ -73,6 +73,11 @@ void main() {
       await driver.tap(find.byValueKey('profilePageButton'));
     }
 
+    editProfile() async {
+      await driver.waitFor(find.byValueKey('classCounter'));
+      await driver.tap(find.byValueKey('editProfileButton'));
+    }
+
     swipeToRemoveUser(userKey) async {
       final SerializableFinder testUser = find.byValueKey(userKey);
       await driver.waitFor(testUser);
@@ -257,6 +262,31 @@ void main() {
         await driver.waitForAbsent(find.text("Test"));
         await swipeToRemoveUser("test-two@test.com");
         await driver.waitForAbsent(find.text("TestTwo"));
+        await logout();
+      });
+    });
+
+    group("User profile journey", () {
+      //TODO: this tests are not actually testing this feature e2e since we are not able to submit the TextField
+      // More details about the issue here: https://github.com/flutter/flutter/issues/29450
+      test("user should be able to change name", () async {
+        prettyPrint("Login as user go to profile page and edit");
+        await loginAsUser();
+        await goToProfilePage();
+        await editProfile();
+
+        prettyPrint("Change the name");
+        var newName = 'Felice Mastronzo';
+        var oldName = 'Test';
+
+        await driver.enterText(newName);
+        await driver.waitForAbsent(find.text(oldName));
+        await driver.waitFor(find.text(newName));
+
+        prettyPrint("Reset the name go back and logout");
+        await driver.enterText(oldName);
+        await driver.waitFor(find.text(oldName));
+        await goBack();
         await logout();
       });
     });

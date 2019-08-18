@@ -15,7 +15,7 @@ class UserRepository {
 
   updateUserGrade(User currentUser, String grade) => _userProvider.updateUserGrade(currentUser, grade);
 
-  updateUserName(User currentUser, String name) => _userProvider.updateUserGrade(currentUser, name);
+  updateUserName(User currentUser, String name) => _userProvider.updateUserName(currentUser, name);
 
   updateUserFcmToken(User currentUser, String token) => _userProvider.updateUserFcmToken(currentUser, token);
 

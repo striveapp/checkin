@@ -79,6 +79,7 @@ class _RegistryState extends State<RegistryPage> {
                         attendee: Attendee.fromUser(currentUser)));
                   };
                 } else {
+                  //TODO: this will not work if the user changes his infos first and then attempt to unregister
                   _onPressUnregisterClass = () {
                     _lessonsBloc.dispatch(Unregister(
                         lessonId: lessonId,
