@@ -6,8 +6,6 @@ import 'lesson_provider.dart';
 class LessonRepository {
   final _lessonProvider = LessonProvider();
 
-  Stream<List<Lesson>> getLessons() => _lessonProvider.getLessons();
-
   Future<void> register(String lessonId, Attendee attendee) => _lessonProvider.register(lessonId, attendee);
 
   Stream<List<Lesson>> getLessonsForToday() => _lessonProvider.getLessonsForToday();

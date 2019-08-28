@@ -4,6 +4,7 @@ import 'package:checkin/src/blocs/lessons/bloc.dart';
 import 'package:checkin/src/blocs/user/bloc.dart';
 import 'package:checkin/src/localization/localization.dart';
 import 'package:checkin/src/models/attendee.dart';
+import 'package:checkin/src/models/lesson.dart';
 import 'package:checkin/src/models/user.dart';
 import 'package:checkin/src/resources/lesson_repository.dart';
 import 'package:checkin/src/resources/user_repository.dart';
@@ -63,7 +64,7 @@ class _RegistryState extends State<RegistryPage> {
           var _onPressedAcceptAll;
           var _onPressRegisterClass;
           var _onPressUnregisterClass;
-          var currentLesson;
+          Lesson currentLesson;
 
           if (state is LessonsUninitialized) {
             return LoadingIndicator();
@@ -150,7 +151,7 @@ class _RegistryState extends State<RegistryPage> {
                     Padding(
                       padding: EdgeInsets.only(top: 5),
                       child: Text(
-                    Localization.of(context).swipeToRemove,
+                        Localization.of(context).swipeToRemove,
                         style: TextStyle(
                           fontSize: 14,
                           fontFamily: "Roboto",
