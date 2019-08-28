@@ -28,7 +28,7 @@ packages:
       name: async
       url: "https://pub.dartlang.org"
     source: hosted
-    version: "2.2.0"
+    version: "2.3.0"
   bloc:
     dependency: "direct main"
     description:
@@ -42,7 +42,7 @@ packages:
       name: boolean_selector
       url: "https://pub.dartlang.org"
     source: hosted
-    version: "1.0.4"
+    version: "1.0.5"
   charcode:
     dependency: transitive
     description:
@@ -56,7 +56,7 @@ packages:
       name: cloud_firestore
       url: "https://pub.dartlang.org"
     source: hosted
-    version: "0.12.9"
+    version: "0.12.9+1"
   collection:
     dependency: transitive
     description:
@@ -105,7 +105,7 @@ packages:
       name: file
       url: "https://pub.dartlang.org"
     source: hosted
-    version: "5.0.8"
+    version: "5.0.8+1"
   firebase:
     dependency: "direct dev"
     description:
@@ -126,7 +126,7 @@ packages:
       name: firebase_core
       url: "https://pub.dartlang.org"
     source: hosted
-    version: "0.4.0+8"
+    version: "0.4.0+9"
   firebase_crashlytics:
     dependency: "direct main"
     description:
@@ -140,7 +140,7 @@ packages:
       name: firebase_messaging
       url: "https://pub.dartlang.org"
     source: hosted
-    version: "5.1.2"
+    version: "5.1.4"
   flutter:
     dependency: "direct main"
     description: flutter
@@ -200,7 +200,7 @@ packages:
       name: google_sign_in
       url: "https://pub.dartlang.org"
     source: hosted
-    version: "4.0.4"
+    version: "4.0.7"
   html:
     dependency: transitive
     description:
@@ -284,7 +284,7 @@ packages:
       name: meta
       url: "https://pub.dartlang.org"
     source: hosted
-    version: "1.1.6"
+    version: "1.1.7"
   mime:
     dependency: transitive
     description:
@@ -319,7 +319,7 @@ packages:
       name: package_config
       url: "https://pub.dartlang.org"
     source: hosted
-    version: "1.0.5"
+    version: "1.1.0"
   package_resolver:
     dependency: transitive
     description:
@@ -340,7 +340,7 @@ packages:
       name: pedantic
       url: "https://pub.dartlang.org"
     source: hosted
-    version: "1.7.0"
+    version: "1.8.0+1"
   petitparser:
     dependency: transitive
     description:
@@ -527,7 +527,7 @@ packages:
       name: web_socket_channel
       url: "https://pub.dartlang.org"
     source: hosted
-    version: "1.0.13"
+    version: "1.0.14"
   xml:
     dependency: transitive
     description:

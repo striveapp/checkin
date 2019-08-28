@@ -66,7 +66,7 @@ class MyApp {
 
   @test
   async "require users to log in before creating a profile"() {
-    const db = authedApp(null);
+    const db = nonAuthedApp();
     const profile = db.collection("users").doc("alice");
     await firebase.assertFails(profile.set({ birthday: "January 1" }));
   }
@@ -104,6 +104,28 @@ class MyApp {
     );
   }
 
+  @test
+  async "should let users update their own profile with tokens"() {
+    const db = authedApp({ uid: "loggedUser", email: "loggedUser@test.com" });
+    await firebase.assertSucceeds(
+      db
+        .collection("users")
+        .doc("loggedUser@test.com")
+        .set({
+          birthday: "January 1",
+          createdAt: firebase.firestore.FieldValue.serverTimestamp()
+        })
+    );
+
+    await firebase.assertSucceeds(
+      db
+        .collection("users")
+        .doc("loggedUser@test.com")
+        .collection("tokens")
+        .add({"token": "testToken"})
+    );
+  }
+  
   @test
   async "should only let users read their own profile"() {
     const db = authedApp({ uid: "loggedUser", email: "loggedUser@test.com" });
@@ -214,7 +236,16 @@ class MyApp {
     await firebase.assertFails(nonLoggedUser.collection("lessons").get());
   }
 
-  // test collection class
+    @test
+    async "should only let registered users write lessons collection"() {
+        const nonLoggedUser = nonAuthedApp();
+
+        await firebase.assertFails(nonLoggedUser.collection("lessons")
+            .doc("1")
+            .set({"test": "test"}));
+    }
+  // todo convert to lessons tests
+/*
 
   @test
   async "should only let registered users read class collection"() {
@@ -230,9 +261,9 @@ class MyApp {
     await firebase.assertFails(nonLoggedUser.collection("class").get());
   }
 
-  /**
+  /!**
    * we modify user.isOwner manually, therefore no-one should be able to set that property to true
-   * */
+   * *!/
   @test
   async "should only let guild master delete class members"() {
     const user = authedApp({
@@ -341,6 +372,7 @@ class MyApp {
         })
     );
   }
+*/
 
   // todo: user cannot register multiple times, we get this for free if we use user email as id instead of a randomId
 }

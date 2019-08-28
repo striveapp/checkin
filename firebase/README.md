@@ -50,6 +50,11 @@ which runs all the tests in the `tests/` directory.
 npm run deploy
 ```
 
+### Only rules
+```
+firebase deploy --only firestore:rules
+```
+
 ## Switch to env dev
 ```
 firebase use dev

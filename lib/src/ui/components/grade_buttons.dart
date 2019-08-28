@@ -12,7 +12,7 @@ class GradeButtons extends StatelessWidget {
     _onPressed(String grade) {
       _userBloc.dispatch(UpdateGrade(grade: grade));
       //@TODO: this is causing a bug that prevent the user from logging out. Checks: https://github.com/felangel/bloc/issues/119
-      Navigator.pushReplacementNamed(context, '/home');
+      Navigator.pushReplacementNamed(context, 'home');
     }
 
     return BlocBuilder<UserEvent, UserState>(

@@ -1,3 +1,6 @@
+// Developer provided data is surfaced in request.resource.data,
+// which is a map containing the fields and values.
+// Fields not provided in the request which exist in the resource are added to request.resource.data
 function requestData() {
   return request.resource.data;
 }
@@ -8,11 +11,15 @@ function isLoggedUser(email) {
 }
 
 function loggedUserIsGuildMaster(database) {
-  return get(/databases/$(database)/documents/users/$(request.auth.token.email)).data.isOwner
+  return "isOwner" in getUserData(database) && getUserData(database).isOwner
 }
 
 function loggedUserIsDev(database) {
-  return get(/databases/$(database)/documents/users/$(request.auth.token.email)).data.isDev
+  return "isDev" in getUserData(database) && getUserData(database).isDev
+}
+
+function getUserData(database) {
+  return get(/databases/$(database)/documents/users/$(request.auth.token.email)).data
 }
 
 
@@ -31,27 +38,20 @@ service cloud.firestore {
 
     match /users/{email} {
       allow read: if isLoggedUser(email);
+      // if user has those properties set to false this rule will fail, they need to be null
       allow create: if isLoggedUser(email) && ! requestData().keys().hasAny(['isOwner', 'isDev']);
       allow update: if isLoggedUser(email) && ! requestData().keys().hasAny(['isOwner', 'isDev']);
+    }
+
+    match /users/{email}/tokens/{id} {
+      allow read, write: if isLoggedUser(email);
     }
 
     match /lessons/{document=**} {
       allow read, write: if isLoggedUser(request.auth.token.email);
     }
 
-    match /class/{document=**} {
-      allow read: if isLoggedUser(request.auth.token.email);
-    }
-
-    match /class/{id} {
-      // https://stackoverflow.com/a/41922261/4349619
-      // To allow adding new nodes, but prevent deleting or overwriting any node
-      // todo if we allow users to change their names this wont work anymore
-      allow write: if isLoggedUser(request.auth.token.email) && requestData() != null && requestData().name == request.auth.token.name;
-    }
-
-    match /class/{id} {
-      allow write: if loggedUserIsGuildMaster(database);
-    }
+    // https://stackoverflow.com/a/41922261/4349619
+    // To allow adding new nodes, but prevent deleting or overwriting any node
   }
 }
