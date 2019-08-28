@@ -33,6 +33,7 @@ class _LoginFormState extends State<LoginForm> {
         LoginState state,
       ) {
         if (state is LoginFailure) {
+          //TODO: This should be eventually move in his own StatelessWidget
           _onWidgetDidBuild(() {
             Scaffold.of(context).showSnackBar(
               SnackBar(
@@ -48,51 +49,47 @@ class _LoginFormState extends State<LoginForm> {
           return LoadingIndicator();
         }
 
-        if (state is LoginInitial) {
-          return Column(
-            mainAxisAlignment: MainAxisAlignment.center,
-            crossAxisAlignment: CrossAxisAlignment.center,
-            children: [
-              Container(
-                margin: new EdgeInsets.symmetric(vertical: 50),
-                child: Image.asset(
-                  "assets/images/logo.png",
-                  width: 150.0,
-                ),
+        return Column(
+          mainAxisAlignment: MainAxisAlignment.center,
+          crossAxisAlignment: CrossAxisAlignment.center,
+          children: [
+            Container(
+              margin: new EdgeInsets.symmetric(vertical: 50),
+              child: Image.asset(
+                "assets/images/logo.png",
+                width: 150.0,
               ),
-              GoogleSignInButton(
-                key: Key('loginButton'),
-                onPressed: state is! LoginLoading
-                    ? _onLoginWithGoogleButtonPressed
-                    : null,
-                darkMode: true,
-                borderRadius: 50.0,
-              ),
-              if (isInDebugMode)
-                Column(
-                  children: <Widget>[
-                    RaisedButton(
-                      key: Key('backdoorButton'),
-                      onPressed: _onLoginWithTestUser,
-                      child: Text('Test'),
-                    ),
-                    RaisedButton(
-                      key: Key('backdoorButtonTwo'),
-                      onPressed: _onLoginWithTestUserTwo,
-                      child: Text('Test 2'),
-                    ),
-                    RaisedButton(
-                      key: Key('backdoorAdminButton'),
-                      onPressed: _onLoginWithTestUserOwner,
-                      child: Text('Test Owner'),
-                    ),
-                  ],
-                )
-            ],
-          );
-        }
-
-        return ErrorWidget('Unknown State received in: login_form');
+            ),
+            GoogleSignInButton(
+              key: Key('loginButton'),
+              onPressed: state is! LoginLoading
+                  ? _onLoginWithGoogleButtonPressed
+                  : null,
+              darkMode: true,
+              borderRadius: 50.0,
+            ),
+            if (isInDebugMode)
+              Column(
+                children: <Widget>[
+                  RaisedButton(
+                    key: Key('backdoorButton'),
+                    onPressed: _onLoginWithTestUser,
+                    child: Text('Test'),
+                  ),
+                  RaisedButton(
+                    key: Key('backdoorButtonTwo'),
+                    onPressed: _onLoginWithTestUserTwo,
+                    child: Text('Test 2'),
+                  ),
+                  RaisedButton(
+                    key: Key('backdoorAdminButton'),
+                    onPressed: _onLoginWithTestUserOwner,
+                    child: Text('Test Owner'),
+                  ),
+                ],
+              )
+          ],
+        );
       },
     );
   }

@@ -49,3 +49,20 @@ Google Pixel • 192.168.57.101:5555 • android-x86   • Android 9 (API 28)
 
 $ adb -s 2c7af66d1d017ece shell screenrecord --output-format=h264 - | ffplay -
 ```
+
+
+## Run integration tests
+
+```bash
+make integration-test
+``` 
+
+
+## While developing
+
+You should setup you dev environment in the following way:
+
+```bash
+ENV=dev ./scripts/set_env.sh
+```
+
