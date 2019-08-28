@@ -39,6 +39,7 @@ class LoginBloc extends Bloc<LoginEvent, LoginState> {
       yield LoginLoading();
       try {
         //@TODO: this should be refactored
+        var error;
         await _googleSignIn().then((user) async {
           isNewUser = await this.userRepository.isNewUser(user.email);
 
@@ -49,9 +50,14 @@ class LoginBloc extends Bloc<LoginEvent, LoginState> {
           debugPrint('isFirstLogin: $isNewUser');
           this.authBloc.dispatch(
               LoggedIn(currentUserEmail: user.email, isFirstLogin: isNewUser));
-        }).catchError((e) {
-          print('Error during googleSignIn: ' + e.toString());
+        }).catchError((err) {
+          print('Error during googleSignIn: ' + err.toString());
+          error = err;
         });
+
+        if(error != null) {
+          yield LoginFailure(errorMessage: LoginFailed);
+        }
       } catch (e) {
         print('unexpected error during googleSignIn: ' + e.toString());
         yield LoginFailure(errorMessage: LoginFailed);
@@ -64,8 +70,8 @@ class LoginBloc extends Bloc<LoginEvent, LoginState> {
       final firebaseTestUser = await this.auth.signInWithEmailAndPassword(
           email: "test@test.com", password: "test123");
       debugPrint('Logged with test user [$firebaseTestUser]');
-      this.authBloc.dispatch(
-          LoggedIn(currentUserEmail: firebaseTestUser.email, isFirstLogin: false));
+      this.authBloc.dispatch(LoggedIn(
+          currentUserEmail: firebaseTestUser.email, isFirstLogin: false));
     }
 
     if (event is LoginWithTestUserTwo) {
@@ -73,8 +79,8 @@ class LoginBloc extends Bloc<LoginEvent, LoginState> {
       final firebaseTestUser = await this.auth.signInWithEmailAndPassword(
           email: "test-two@test.com", password: "test123");
       debugPrint('Logged with test user [$firebaseTestUser]');
-      this.authBloc.dispatch(
-          LoggedIn(currentUserEmail: firebaseTestUser.email, isFirstLogin: false));
+      this.authBloc.dispatch(LoggedIn(
+          currentUserEmail: firebaseTestUser.email, isFirstLogin: false));
     }
 
     if (event is LoginWithTestUserOwner) {
@@ -82,21 +88,28 @@ class LoginBloc extends Bloc<LoginEvent, LoginState> {
       final firebaseTestUser = await this.auth.signInWithEmailAndPassword(
           email: "test-owner@test.com", password: "test123");
       debugPrint('Logged with test user owner [$firebaseTestUser]');
-      this.authBloc.dispatch(
-          LoggedIn(currentUserEmail: firebaseTestUser.email, isFirstLogin: false));
+      this.authBloc.dispatch(LoggedIn(
+          currentUserEmail: firebaseTestUser.email, isFirstLogin: false));
     }
   }
 
   Future<User> _googleSignIn() async {
-    final GoogleSignInAccount googleUser = await this.googleSignIn.signIn();
-    final GoogleSignInAuthentication googleAuth =
-        await googleUser.authentication;
-    final AuthCredential credential = GoogleAuthProvider.getCredential(
-      accessToken: googleAuth.accessToken,
-      idToken: googleAuth.idToken,
-    );
+    FirebaseUser firebaseUser;
+    try {
+      debugPrint("attempt to login");
+      final GoogleSignInAccount googleUser = await this.googleSignIn.signIn();
+      final GoogleSignInAuthentication googleAuth =
+          await googleUser.authentication;
+      final AuthCredential credential = GoogleAuthProvider.getCredential(
+        accessToken: googleAuth.accessToken,
+        idToken: googleAuth.idToken,
+      );
 
-    final firebaseUser = await this.auth.signInWithCredential(credential);
+      firebaseUser = await this.auth.signInWithCredential(credential);
+    } catch (err) {
+      debugPrint("${err.toString()}");
+      firebaseUser = null;
+    }
 
     return firebaseUser != null
         ? Future.value(User(
