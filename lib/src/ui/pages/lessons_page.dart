@@ -11,6 +11,8 @@ import 'package:flutter/material.dart';
 import 'package:flutter/widgets.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 
+import '../profile_arguments.dart';
+
 class LessonsPage extends StatefulWidget {
   final UserBloc userBloc;
 
@@ -80,7 +82,7 @@ class _LessonsState extends State<LessonsPage> {
               child: IconButton(
                   key: Key('profilePageButton'),
                   onPressed: () {
-                    Navigator.of(context).pushNamed('profile');
+                    Navigator.of(context).pushNamed('profile', arguments: ProfileArguments( profileEmail: (_userBloc.currentState as UserSuccess).currentUser.email ));
                   },
                   icon: ClipRRect(
                       borderRadius: BorderRadius.circular(50.0),
