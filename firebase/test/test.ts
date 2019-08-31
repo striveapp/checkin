@@ -127,7 +127,7 @@ class MyApp {
   }
   
   @test
-  async "should only let users read their own profile"() {
+  async "should let users read all profiles"() {
     const db = authedApp({ uid: "loggedUser", email: "loggedUser@test.com" });
     await firebase.assertSucceeds(
       db
@@ -135,7 +135,7 @@ class MyApp {
         .doc("loggedUser@test.com")
         .get()
     );
-    await firebase.assertFails(
+    await firebase.assertSucceeds(
       db
         .collection("users")
         .doc("otherUser@test.com")

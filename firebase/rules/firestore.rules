@@ -37,7 +37,7 @@ service cloud.firestore {
     }
 
     match /users/{email} {
-      allow read: if isLoggedUser(email);
+      allow read: if isLoggedUser(request.auth.token.email);
       // if user has those properties set to false this rule will fail, they need to be null
       allow create: if isLoggedUser(email) && ! requestData().keys().hasAny(['isOwner', 'isDev']);
       allow update: if isLoggedUser(email) && ! requestData().keys().hasAny(['isOwner', 'isDev']);
