@@ -33,7 +33,7 @@ void main() {
 MaterialApp buildTestApplication(Widget testWidget) {
   return MaterialApp(
       routes: {
-        'profile/testMail': (context) {
+        'profile': (context) {
           return Scaffold(
             body: Text("Navigated!"),
           );
