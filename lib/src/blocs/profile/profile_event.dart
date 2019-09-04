@@ -15,12 +15,3 @@ class ProfileUpdated extends ProfileEvent {
   @override
   String toString() => 'ProfileUpdated';
 }
-
-class LoadProfile extends ProfileEvent {
-  String profileEmail;
-
-  LoadProfile({this.profileEmail}): super([profileEmail]);
-
-  @override
-  String toString() => 'LoadProfile';
-}

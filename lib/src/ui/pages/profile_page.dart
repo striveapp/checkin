@@ -10,11 +10,12 @@ import 'package:flutter/material.dart';
 import 'package:flutter/widgets.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 
-import '../profile_arguments.dart';
-
 class ProfilePage extends StatefulWidget {
+  final String email;
+
   ProfilePage({
     Key key,
+    @required this.email,
   }) : super(key: key);
 
   @override
@@ -45,16 +46,14 @@ class _ProfileState extends State<ProfilePage> {
   @override
   void initState() {
     _isEditing = false;
-    _profileBloc = ProfileBloc(userRepository: UserRepository());
+    _profileBloc = ProfileBloc(userRepository: UserRepository(), profileEmail: widget.email);
     super.initState();
   }
 
   @override
   Widget build(BuildContext context) {
-    final ProfileArguments args = ModalRoute.of(context).settings.arguments;
     // todo initializing userBloc in initState() breaks appbar
     var _userBloc = BlocProvider.of<UserBloc>(context);
-    _profileBloc.dispatch(LoadProfile(profileEmail: args.profileEmail));
 
     return BlocBuilder(
         bloc: _profileBloc,
