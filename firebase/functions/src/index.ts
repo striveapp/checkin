@@ -3,7 +3,7 @@ import * as functions from 'firebase-functions';
 import * as express from 'express';
 import {generateBackup, restoreBackup} from './backups';
 import {validateFirebaseIdToken} from "./middlewares/validations";
-import {userNotification as notification}  from "./notifications";
+import { classCounterIncrementNotification, reminderOfNonAcceptedUsersForMaster }  from "./notifications";
 
 admin.initializeApp()
 
@@ -25,4 +25,8 @@ export const automatedBackups = functions.pubsub
 
 export const app = functions.https.onRequest(expressApp);
 
-export const userNotification = notification;
+export const userNotification = classCounterIncrementNotification;
+
+export const masterNotification = functions.pubsub
+  .schedule('0 23 * * 1-6')
+  .onRun(reminderOfNonAcceptedUsersForMaster);

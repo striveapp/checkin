@@ -15,9 +15,8 @@
 <head>
     <meta charset="utf-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
-    <meta name="description" content="Demonstrates how to send a welcome email using Firebase Functions.">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Welcome email demo</title>
+    <title>Checking Firebase functions Command Cabin</title>
 
     <!-- Material Design Lite -->
     <link rel="stylesheet" href="https://fonts.googleapis.com/icon?family=Material+Icons">
@@ -27,30 +26,51 @@
     <link rel="stylesheet" href="main.css">
 </head>
 <body>
-<div class="demo-layout mdl-layout mdl-js-layout mdl-layout--fixed-header">
+<div class="layout mdl-layout mdl-js-layout mdl-layout--fixed-header">
     <main class="mdl-layout__content mdl-color--grey-100">
         <div class="mdl-cell--12-col mdl-cell--12-col-tablet mdl-grid">
 
-            <!-- Card containing the sign-in UI -->
-            <div id="demo-signed-out-card" class="mdl-card mdl-shadow--2dp mdl-cell">
+            <!-- LOGIN CARD -->
+            <div id="login-card" class="mdl-card mdl-shadow--2dp mdl-cell">
                 <div class="mdl-card__supporting-text mdl-color-text--grey-600">
-                    <h3>
-                        Restore Backup
-                    </h3>
-                    <button id="demo-sign-in-button"
+                    <button id="login-button"
                             class="mdl-color-text--grey-700 mdl-button--raised mdl-button mdl-js-button mdl-js-ripple-effect">
                         <i class="material-icons">account_circle</i> Sign in with Google
                     </button>
                 </div>
             </div>
 
-            <!-- Card containing the signed-in UI -->
-            <div id="demo-signed-in-card" class="mdl-card mdl-shadow--2dp mdl-cell">
+            <!-- ALL THE FUNCTIONS -->
+            <div id="functions-buttons">
+                <!-- Restore Backup -->
+                <div id="restore-backup-card" class="mdl-card mdl-shadow--2dp mdl-cell">
+                    <div class="mdl-card__supporting-text mdl-color-text--grey-600">
+                        <h3>Restore Backup</h3>
+                        <button id="restore-backup-button"
+                                class="mdl-color-text--grey-700 mdl-button--raised mdl-button mdl-js-button mdl-js-ripple-effect">
+                            Trigger
+                        </button>
+                    </div>
+                </div>
+                <!-- Notify Master -->
+                <div id="notify-master-card" class="mdl-card mdl-shadow--2dp mdl-cell">
+                    <div class="mdl-card__supporting-text mdl-color-text--grey-600">
+                        <h3>Notifiy Master</h3>
+                        <button id="notify-master-button"
+                                class="mdl-color-text--grey-700 mdl-button--raised mdl-button mdl-js-button mdl-js-ripple-effect">
+                            Trigger
+                        </button>
+                    </div>
+                </div>
+            </div>
+
+            <!-- STATUS OF THE REQUEST -->
+            <div id="status-card" class="mdl-card mdl-shadow--2dp mdl-cell">
                 <div class="mdl-card__supporting-text mdl-color-text--grey-600">
                     <p>
                         Sending XHR with "Authorization" header to:<br>
-                        <span id="demo-url"></span><br><br>
-                        Response: <span id="demo-response">...</span>
+                        <span id="url"></span><br><br>
+                        Response: <span id="response">...</span>
                     </p>
                 </div>
             </div>
@@ -61,8 +81,8 @@
 <!-- Import and configure the Firebase SDK -->
 <!-- These scripts are made available when the app is served or deployed on Firebase Hosting -->
 <!-- If you do not serve/host your project using Firebase Hosting see https://firebase.google.com/docs/web/setup -->
-<script src="/__/firebase/6.2.3/firebase-app.js"></script>
-<script src="/__/firebase/6.2.3/firebase-auth.js"></script>
+<script src="/__/firebase/7.0.0/firebase-app.js"></script>
+<script src="/__/firebase/7.0.0/firebase-auth.js"></script>
 <script src="/__/firebase/init.js"></script>
 
 <script src="main.js"></script>

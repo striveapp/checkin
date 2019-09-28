@@ -1,7 +1,7 @@
 import * as admin from "firebase-admin";
 import * as functions from 'firebase-functions';
 
-export const userNotification = functions.firestore.document("users/{userEmail}").onUpdate((change, context) => {
+export const classCounterIncrementNotification = functions.firestore.document("users/{userEmail}").onUpdate((change, context) => {
     const docBefore = change.before.data() || {};
     const docAfter = change.after.data() || {};
     console.info("write context ", context);
@@ -37,3 +37,15 @@ export const userNotification = functions.firestore.document("users/{userEmail}"
     console.info("User counter did not increase");
     return Promise.resolve();
 });
+
+export const reminderOfNonAcceptedUsersForMaster = async () => {
+    const current = new Date();
+    const today = current.toLocaleDateString('en-US',{weekday: 'long'});
+
+    return admin.firestore().collection(`/lessons`).where('weekDay', '==', today).get().then(snapshot => {
+        snapshot.forEach(doc => {
+            console.log(doc.id, '=>', doc.data());
+        });
+    });
+
+}
