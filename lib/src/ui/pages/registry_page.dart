@@ -188,9 +188,9 @@ class _RegistryState extends State<RegistryPage> {
                               fontWeight: FontWeight.w600)),
                       onPressed: () {
                         //TODO: check if a best solution can be applied here: https://github.com/felangel/bloc/issues/400
-                        Navigator.pushNamedAndRemoveUntil(
-                            context, "/", (route) => false);
-
+                        //TODO: we checked and is not enough
+                        debugPrint("Logging out from registry!");
+                        Navigator.pushNamedAndRemoveUntil(context, "/", (route) => false);
                         _authBloc.dispatch(LogOut());
                       },
                     ),

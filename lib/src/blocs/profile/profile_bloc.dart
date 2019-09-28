@@ -12,7 +12,12 @@ class ProfileBloc extends Bloc<ProfileEvent, ProfileState> {
   String profileEmail;
   StreamSubscription userSub;
 
-  ProfileBloc({@required this.userRepository});
+  ProfileBloc({@required this.userRepository, @required this.profileEmail}) {
+    userSub = this.userRepository.getUserByEmail(this.profileEmail)
+        .listen((user) => dispatch(ProfileUpdated(user: user)));
+
+    userSub.onError((error) => debugPrint("Error loading profile with mail [$profileEmail]: $error", ));
+  }
 
   @override
   ProfileState get initialState => ProfileLoading();
@@ -25,16 +30,6 @@ class ProfileBloc extends Bloc<ProfileEvent, ProfileState> {
       } else {
         yield ProfileSuccess(profileUser: event.user);
       }
-    }
-
-    if( event is LoadProfile ) {
-      this.profileEmail = event.profileEmail;
-      if( userSub != null ) {
-        userSub.cancel();
-      }
-      userSub = this.userRepository.getUserByEmail(this.profileEmail).listen((user) {
-        dispatch(ProfileUpdated(user: user));
-      });
     }
   }
 

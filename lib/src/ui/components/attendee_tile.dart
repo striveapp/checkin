@@ -1,8 +1,6 @@
 import 'package:checkin/src/models/attendee.dart';
 import 'package:flutter/material.dart';
 
-import '../profile_arguments.dart';
-
 class AttendeeTile extends StatelessWidget {
   final Attendee attendee;
 
@@ -25,7 +23,7 @@ class AttendeeTile extends StatelessWidget {
             ),
             onTap: () async {
               debugPrint("User tapped on ${attendee.name}");
-              Navigator.of(context).pushNamed('profile', arguments: ProfileArguments( profileEmail: attendee.email));
+              Navigator.of(context).pushNamed('profile/${attendee.email}');
             },
           ),
         ),

@@ -26,7 +26,7 @@ void main() {
     }
 
     loginAsUser({user = 'Test'}) async {
-      print("Logged as USER: $user");
+      print("loginAsUser as USER: $user");
       if (user != 'Test') {
         await driver.waitFor(find.byValueKey('backdoorButtonTwo'));
         await driver.tap(find.byValueKey('backdoorButtonTwo'));
@@ -34,11 +34,13 @@ void main() {
         await driver.waitFor(find.byValueKey('backdoorButton'));
         await driver.tap(find.byValueKey('backdoorButton'));
       }
+      print("logged as USER: $user");
     }
 
     logout() async {
       print("Loggin out");
       await driver.tap(find.byValueKey('logoutButton'));
+      await driver.waitFor(find.byValueKey('loginButton'));
     }
 
     goBack() async {
@@ -66,6 +68,7 @@ void main() {
       await goToRegistryOf(classKey);
       await driver.waitFor(find.byValueKey('acceptAll'));
       await driver.tap(find.byValueKey('acceptAll'));
+      await driver.waitFor(find.byValueKey('emptyClassCard'));
     }
 
     goToProfilePage() async {
@@ -148,7 +151,7 @@ void main() {
         prettyPrint("Then check if user is still in the other class");
         await goBack();
         await goToRegistryOf('intermediate');
-        await driver.waitFor(find.text("Test"));
+        await driver.waitFor(find.byValueKey("tile-test@test.com"));
 
         prettyPrint("Then approves all");
         await driver.waitFor(find.byValueKey('acceptAll'));
@@ -157,7 +160,7 @@ void main() {
         prettyPrint("Then check if user is not in the initial class and logout");
         await goBack();
         await goToRegistryOf('basic');
-        await driver.waitForAbsent(find.text("Test"));
+        await driver.waitForAbsent(find.byValueKey("tile-test@test.com"));
         await logout();
 
         prettyPrint("Then login as user and check that counter has increase");
@@ -232,10 +235,10 @@ void main() {
         prettyPrint("Login as user and attend class");
         await loginAsUser();
         await attendClass('basic');
-        await driver.waitFor(find.text("Test"));
+        await driver.waitFor(find.byValueKey("tile-test@test.com"));
         await goBack();
         await unattendClass('basic');
-        await driver.waitForAbsent(find.text("Test"));
+        await driver.waitForAbsent(find.byValueKey("tile-test@test.com"));
         await logout();
       });
 
@@ -259,7 +262,7 @@ void main() {
         await goToRegistryOf(classKey);
 
         await swipeToRemoveUser("test@test.com");
-        await driver.waitForAbsent(find.text("Test"));
+        await driver.waitForAbsent(find.byValueKey("tile-test@test.com"));
         await swipeToRemoveUser("test-two@test.com");
         await driver.waitForAbsent(find.text("TestTwo"));
         await logout();
@@ -287,6 +290,28 @@ void main() {
         await driver.enterText(oldName);
         await driver.waitFor(find.text(oldName));
         await goBack();
+        await logout();
+      });
+    });
+
+    group("User browsing profiles journey", () {
+      test("user should be able to see other user's profile", () async {
+        final classKey = 'basic';
+
+        prettyPrint("Login as user and attend class");
+        await loginAsUser();
+        await attendClass(classKey);
+        await goBack();
+        await logout();
+
+        prettyPrint("Then login as owner, browse user profile, accept all and logout");
+        await loginAsOwner();
+        await goToRegistryOf('basic');
+        await driver.tap(find.byValueKey('tile-test@test.com'));
+        await driver.waitFor(find.byValueKey('classCounter'));
+        await goBack();
+        await goBack();
+        await acceptAll('basic');
         await logout();
       });
     });

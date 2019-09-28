@@ -1,12 +1,12 @@
 import 'package:checkin/src/blocs/auth/bloc.dart';
 import 'package:checkin/src/resources/user_repository.dart';
+import 'package:checkin/src/routes/application.dart';
+import 'package:checkin/src/routes/routes.dart';
 import 'package:checkin/src/ui/components/notification_toast.dart';
 import 'package:checkin/src/ui/pages/grade_page.dart';
 import 'package:checkin/src/ui/pages/home_page.dart';
 import 'package:checkin/src/ui/pages/login_page.dart';
-import 'package:checkin/src/ui/pages/registry_page.dart';
 import 'package:checkin/src/ui/pages/splash_page.dart';
-import 'package:checkin/src/ui/pages/profile_page.dart';
 import 'package:firebase_auth/firebase_auth.dart';
 import 'package:firebase_messaging/firebase_messaging.dart';
 import 'package:flutter/material.dart';
@@ -32,6 +32,7 @@ class _AppState extends State<App> {
   @override
   void initState() {
     super.initState();
+    Routes.configureRoutes(Application.router);
     _authBloc = AuthBloc(auth: FirebaseAuth.instance);
     _userBloc = UserBloc(authBloc: _authBloc, userRepository: UserRepository());
     _notificationsBloc = NotificationsBloc(
@@ -66,12 +67,8 @@ class _AppState extends State<App> {
           const Locale('en', ''),
           const Locale('es', ''),
         ],
+        onGenerateRoute: Application.router.generator,
         initialRoute: '/',
-        routes: {
-          'home': (context) => HomePage(),
-          'profile': (context) => ProfilePage(),
-          'registry': (context) => RegistryPage(),
-        },
         home: Scaffold(
           body: BlocListener(
               bloc: _notificationsBloc,

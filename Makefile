@@ -14,4 +14,9 @@ unit-test:
 
 .PHONY: integration-test
 integration-test:
-	flutter drive --target=test_driver/app.dart
+	flutter drive --keep-app-running --target=test_driver/app.dart
+#	flutter drive --keep-app-running --no-build --target=test_driver/app.dart
+
+#.PHONY: integration-test-ci
+#integration-test:
+#	flutter drive --target=test_driver/app.dart

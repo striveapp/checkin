@@ -9,7 +9,6 @@ import 'lessons_page.dart';
 // todo la home page dovrebbe avere l'appbar adesso è copypastata in giro
 class HomePage extends StatefulWidget {
   HomePage({Key key, this.title}) : super(key: key);
-
   final String title;
 
   @override
