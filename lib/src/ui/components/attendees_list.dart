@@ -44,6 +44,7 @@ class _AttendeesListState extends State<AttendeesList> {
         if (state is LessonsLoaded) {
           if (_attendeeList.length == 0) {
             return Card(
+                key: Key('emptyClassCard'),
                 child: Container(
               constraints: BoxConstraints.expand(height: 250.0),
               alignment: Alignment(0, 0),
