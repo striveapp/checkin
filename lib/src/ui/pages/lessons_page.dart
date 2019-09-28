@@ -119,10 +119,17 @@ class _LessonsState extends State<LessonsPage> {
                               fontSize: 32.0),
                         ),
                       ),
-                      ...state.lessons.map((_lesson) => LessonCard(
-                            lesson: _lesson,
-                          )),
-                      if ((_userBloc.currentState as UserSuccess).currentUser.isDev)
+                      Container(
+                        child: Expanded(
+                          child: ListView(
+                              children: state.lessons
+                                  .map((lesson) => LessonCard(lesson: lesson))
+                                  .toList()),
+                        ),
+                      ),
+                      if ((_userBloc.currentState as UserSuccess)
+                          .currentUser
+                          .isDev)
                         RaisedButton(
                           key: Key('logoutButton'),
                           color: Colors.red,
