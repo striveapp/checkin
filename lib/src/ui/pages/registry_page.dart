@@ -10,6 +10,7 @@ import 'package:checkin/src/resources/lesson_repository.dart';
 import 'package:checkin/src/resources/user_repository.dart';
 import 'package:checkin/src/ui/components/attendees_list.dart';
 import 'package:checkin/src/ui/components/loading_indicator.dart';
+import 'package:checkin/src/ui/components/masters_list.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter/widgets.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
@@ -97,12 +98,17 @@ class _RegistryState extends State<RegistryPage> {
                   : null;
             }
 
-            return Center(
-                child: Container(
-                    child: Column(
-                        mainAxisAlignment: MainAxisAlignment.center,
-                        crossAxisAlignment: CrossAxisAlignment.center,
-                        children: [
+            return Container(
+                child: Column(
+                    mainAxisAlignment: MainAxisAlignment.center,
+                    children: [
+                  if (currentLesson.masters != null && currentLesson.masters.length > 0)
+                    Padding(
+                      padding: EdgeInsets.only(bottom: 20),
+                      child: MastersList(
+                        masters: currentLesson.masters,
+                      ),
+                    ),
                   AttendeesList(
                     attendeeList: currentLesson.attendees ?? [],
                     isOwner: _isOwnerUser(),
@@ -190,11 +196,12 @@ class _RegistryState extends State<RegistryPage> {
                         //TODO: check if a best solution can be applied here: https://github.com/felangel/bloc/issues/400
                         //TODO: we checked and is not enough
                         debugPrint("Logging out from registry!");
-                        Navigator.pushNamedAndRemoveUntil(context, "/", (route) => false);
+                        Navigator.pushNamedAndRemoveUntil(
+                            context, "/", (route) => false);
                         _authBloc.dispatch(LogOut());
                       },
                     ),
-                ])));
+                ]));
           }
           return ErrorWidget('Unknown State received in: registry_page');
         },

@@ -19,7 +19,8 @@ BlackGrade = 'black_grade',
 TodaysClasses = 'todays_classes',
 Profile = 'profile',
 SwipeToRemove = 'swipe_to_remove',
-NameHint = "name_hint"
+NameHint = "name_hint",
+Teacher = "teacher"
 ;
 
 final es = {
@@ -44,6 +45,7 @@ final es = {
   Profile: 'Perfil',
   SwipeToRemove: 'Desliza hacia la izquierda para cancelar',
   NameHint: 'Intorduzca su nombre',
+  Teacher: 'Profesores',
 };
 
 final en = {
@@ -68,4 +70,5 @@ final en = {
   Profile: 'Profile',
   SwipeToRemove: 'Swipe left to remove user from class',
   NameHint: 'Enter your name',
+  Teacher: 'Teachers',
 };

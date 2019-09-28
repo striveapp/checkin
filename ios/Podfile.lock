@@ -223,14 +223,14 @@ EXTERNAL SOURCES:
 
 SPEC CHECKSUMS:
   BoringSSL-GRPC: db8764df3204ccea016e1c8dd15d9a9ad63ff318
-  cloud_firestore: 41f84086d2e1a5c216a6af07ef050758de825ff0
+  cloud_firestore: 0ac494d23db743f104b95d3291946afec187b74c
   Crashlytics: 2dfd686bcb918dc10ee0e76f7f853fe42c7bd552
   Fabric: 706c8b8098fff96c33c0db69cbf81f9c551d0d74
   Firebase: a2b5951f30ff38fd3b3bdae9c7d340f940fd3c51
   firebase_auth: 00d6e1ab6d890cd6d3c624df61702e3a7072d1e3
-  firebase_core: b3b02d0b5e9d01aab5e50ba7cbcf84c73cb6883c
+  firebase_core: ae55ea92448ec8675d325da4db22cf3b4d58a54d
   firebase_crashlytics: 90224b1e8534bb61de9db7d786892ba582e49a9a
-  firebase_messaging: 049d2d722cb4c48d62be7f7a8020fc4d7b2b9e0a
+  firebase_messaging: 0d5c04cc40f58bd4bf7f2992c91050f9bc01bec3
   FirebaseAnalytics: 48414ae5cbf6976d8a2f7177e0466540e5ab33ce
   FirebaseAnalyticsInterop: 0f250d71e8741352407a8db351e6de78c5c56d35
   FirebaseAuth: 2be1924ddbc741fe2a02cb6963ca747e09a2e05c
@@ -241,7 +241,7 @@ SPEC CHECKSUMS:
   FirebaseFirestore: d65bd28e77a8cdc045be6353c6e1e146efdf92dc
   FirebaseInstanceID: 8b42755db950682e7de0d167bc6fb26a57b244af
   FirebaseMessaging: ddd74d13644ef24cc4e2d95cabd1cf408e99b7b0
-  Flutter: 58dd7d1b27887414a370fcccb9e645c08ffd7a6a
+  Flutter: 0e3d915762c693b495b44d77113d4970485de6ec
   google_sign_in: 27e70a98b529f0b076d4b19f231b81da28b1750b
   GoogleAppMeasurement: 47285fa897e5a125df56b9ef8750a1d81e4598a8
   GoogleDataTransport: ffbadce4ab93c88fb9dd8e6366c47bfcb4a32193
