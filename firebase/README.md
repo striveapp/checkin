@@ -30,6 +30,12 @@ To run the tests, execute
 ```
 npm test
 ```
+
+To run tests from root, execute
+```
+npm test --prefix firebase
+```
+
 which runs all the tests in the `tests/` directory.
 
 ```

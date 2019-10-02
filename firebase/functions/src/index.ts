@@ -18,9 +18,19 @@ expressApp.get('/restoreBackup', async (req, res) => {
         res.status(400).send("Bad things");
     }
 });
+expressApp.get('/notifyMaster', async (req, res) => {
+    try {
+        await reminderOfNonAcceptedUsersForMaster();
+        res.status(200).send("Gotcha!");
+    } catch (e) {
+        console.error(`Something bad happen with the notification: ${e.message}`)
+        res.status(400).send("Bad things");
+    }
+});
 
 export const automatedBackups = functions.pubsub
     .schedule('0 3 * * *')
+    .timeZone('Europe/Madrid')
     .onRun(generateBackup);
 
 export const app = functions.https.onRequest(expressApp);
@@ -29,4 +39,5 @@ export const userNotification = classCounterIncrementNotification;
 
 export const masterNotification = functions.pubsub
   .schedule('0 23 * * 1-6')
+  .timeZone('Europe/Madrid')
   .onRun(reminderOfNonAcceptedUsersForMaster);

@@ -15,6 +15,8 @@ import 'package:flutter/material.dart';
 import 'package:flutter/widgets.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 
+import '../../util.dart';
+
 class RegistryPage extends StatefulWidget {
   RegistryPage({
     Key key,
@@ -45,7 +47,6 @@ class _RegistryState extends State<RegistryPage> {
   @override
   Widget build(BuildContext context) {
     final lessonId = ModalRoute.of(context).settings.arguments;
-    User currentUser = (_userBloc.currentState as UserSuccess).currentUser;
 
     return Scaffold(
       appBar: AppBar(
@@ -71,6 +72,9 @@ class _RegistryState extends State<RegistryPage> {
             return LoadingIndicator();
           }
           if (state is LessonsLoaded) {
+            // todo should refactor to never use _userBloc.currentState, are we reactive yet?
+            User currentUser = (_userBloc.currentState as UserSuccess).currentUser;
+
             state.lessons.forEach((lesson) {
               if (lesson.id == lessonId) {
                 currentLesson = lesson;
@@ -99,27 +103,37 @@ class _RegistryState extends State<RegistryPage> {
             }
 
             return Container(
-                child: Column(
-                    mainAxisAlignment: MainAxisAlignment.center,
-                    children: [
-                  if (currentLesson.masters != null && currentLesson.masters.length > 0)
-                    Padding(
-                      padding: EdgeInsets.only(bottom: 20),
-                      child: MastersList(
+                child: Padding(
+                  padding: const EdgeInsets.symmetric(horizontal: 15.0, vertical: 30),
+                  child: Column(
+                      mainAxisAlignment: MainAxisAlignment.spaceAround,
+                      children: [
+                    if (currentLesson.masters != null && currentLesson.masters.length > 0)
+                      MastersList(
                         masters: currentLesson.masters,
                       ),
+                    Column(
+                      children: <Widget>[
+                        AttendeesList(
+                          attendeeList: currentLesson.attendees ?? [],
+                          isOwner: _isOwnerUser(),
+                          lessonId: lessonId,
+                          lessonsBloc: _lessonsBloc,
+                        ),
+                        if (_isOwnerUser())
+                          Text(
+                            Localization.of(context).swipeToRemove,
+                            style: TextStyle(
+                              fontSize: 14,
+                              fontFamily: "Roboto",
+                              color: Colors.black54,
+                            ),
+                          ),
+                      ],
                     ),
-                  AttendeesList(
-                    attendeeList: currentLesson.attendees ?? [],
-                    isOwner: _isOwnerUser(),
-                    lessonId: lessonId,
-                    lessonsBloc: _lessonsBloc,
-                  ),
-                  if (!_isOwnerUser() &&
-                      !currentLesson.containsUser(currentUser.email))
-                    Padding(
-                      padding: EdgeInsets.only(top: 30),
-                      child: RaisedButton(
+                    if (!_isOwnerUser() &&
+                        !currentLesson.containsUser(currentUser.email))
+                      RaisedButton(
                         color: Colors.green,
                         child: Padding(
                           padding: const EdgeInsets.symmetric(vertical: 15),
@@ -133,42 +147,24 @@ class _RegistryState extends State<RegistryPage> {
                         ),
                         onPressed: _onPressRegisterClass,
                       ),
-                    ),
-                  if (!_isOwnerUser() &&
-                      currentLesson.containsUser(currentUser.email))
-                    Padding(
-                      padding: EdgeInsets.only(top: 30),
-                      child: RaisedButton(
-                        color: Colors.red,
-                        child: Padding(
-                          padding: const EdgeInsets.symmetric(vertical: 15),
-                          child: Text(Localization.of(context).unregisterClass,
-                              key: Key('unattendClass'),
-                              style: TextStyle(
-                                  fontSize: 18,
-                                  fontFamily: "Roboto",
-                                  color: Colors.white,
-                                  fontWeight: FontWeight.w600)),
-                        ),
-                        onPressed: _onPressUnregisterClass,
-                      ),
-                    ),
-                  if (_isOwnerUser())
-                    Padding(
-                      padding: EdgeInsets.only(top: 5),
-                      child: Text(
-                        Localization.of(context).swipeToRemove,
-                        style: TextStyle(
-                          fontSize: 14,
-                          fontFamily: "Roboto",
-                          color: Colors.black54,
-                        ),
-                      ),
-                    ),
-                  if (_isOwnerUser())
-                    Padding(
-                      padding: EdgeInsets.only(top: 30),
-                      child: RaisedButton(
+                        if (!_isOwnerUser() &&
+                            currentLesson.containsUser(currentUser.email))
+                          RaisedButton(
+                            color: Colors.red,
+                            child: Padding(
+                              padding: const EdgeInsets.symmetric(vertical: 15),
+                              child: Text(Localization.of(context).unregisterClass,
+                                  key: Key('unattendClass'),
+                                  style: TextStyle(
+                                      fontSize: 18,
+                                      fontFamily: "Roboto",
+                                      color: Colors.white,
+                                      fontWeight: FontWeight.w600)),
+                            ),
+                            onPressed: _onPressUnregisterClass,
+                          ),
+                    if (_isOwnerUser())
+                      RaisedButton(
                         color: Colors.green,
                         child: Padding(
                           padding: const EdgeInsets.symmetric(vertical: 15),
@@ -182,35 +178,31 @@ class _RegistryState extends State<RegistryPage> {
                         ),
                         onPressed: _onPressedAcceptAll,
                       ),
-                    ),
-                  if (_isDevUser())
-                    RaisedButton(
-                      key: Key('logoutButton'),
-                      color: Colors.red,
-                      child: Text(Localization.of(context).logout,
-                          style: TextStyle(
-                              fontSize: 18,
-                              color: Colors.white,
-                              fontWeight: FontWeight.w600)),
-                      onPressed: () {
-                        //TODO: check if a best solution can be applied here: https://github.com/felangel/bloc/issues/400
-                        //TODO: we checked and is not enough
-                        debugPrint("Logging out from registry!");
-                        Navigator.pushNamedAndRemoveUntil(
-                            context, "/", (route) => false);
-                        _authBloc.dispatch(LogOut());
-                      },
-                    ),
-                ]));
+                    if (isInDebugMode)
+                      RaisedButton(
+                        key: Key('logoutButton'),
+                        color: Colors.red,
+                        child: Text(Localization.of(context).logout,
+                            style: TextStyle(
+                                fontSize: 18,
+                                color: Colors.white,
+                                fontWeight: FontWeight.w600)),
+                        onPressed: () {
+                          //TODO: check if a best solution can be applied here: https://github.com/felangel/bloc/issues/400
+                          //TODO: we checked and is not enough
+                          debugPrint("Logging out from registry!");
+                          Navigator.pushNamedAndRemoveUntil(
+                              context, "/", (route) => false);
+                          _authBloc.dispatch(LogOut());
+                        },
+                      ),
+                  ]),
+                ));
           }
           return ErrorWidget('Unknown State received in: registry_page');
         },
       ),
     );
-  }
-
-  bool _isDevUser() {
-    return (_userBloc.currentState as UserSuccess).currentUser.isDev;
   }
 
   bool _isOwnerUser() {

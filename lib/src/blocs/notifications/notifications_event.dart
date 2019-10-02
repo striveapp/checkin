@@ -11,7 +11,7 @@ class Setup extends NotificationsEvent {
 }
 
 class ShowDialog extends NotificationsEvent {
-  Notification notification;
+  GeneralNotification notification;
 
   ShowDialog({
     this.notification
@@ -19,4 +19,15 @@ class ShowDialog extends NotificationsEvent {
 
   @override
   String toString() => 'ShowDialog';
+}
+
+class GoToLesson extends NotificationsEvent {
+  String lessonId;
+
+  GoToLesson({
+    this.lessonId
+  }) : super([lessonId]);
+
+  @override
+  String toString() => 'GoToLesson';
 }

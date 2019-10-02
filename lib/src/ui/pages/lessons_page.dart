@@ -12,6 +12,8 @@ import 'package:flutter/material.dart';
 import 'package:flutter/widgets.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 
+import '../../util.dart';
+
 class LessonsPage extends StatefulWidget {
   final UserBloc userBloc;
 
@@ -121,9 +123,7 @@ class _LessonsState extends State<LessonsPage> {
                                   .toList()),
                         ),
                       ),
-                      if ((_userBloc.currentState as UserSuccess)
-                          .currentUser
-                          .isDev)
+                      if (isInDebugMode)
                         RaisedButton(
                           key: Key('logoutButton'),
                           color: Colors.red,

@@ -144,7 +144,7 @@ class MyApp {
   }
 
   @test
-  async "should block any user creating/upgrading himself as master or dev unless they already are"() {
+  async "should block any user creating/upgrading himself as master unless they already are"() {
     const db = authedApp({ uid: "loggedUser", email: "loggedUser@test.com" });
     const admin = adminApp();
     await firebase.assertFails(
@@ -156,24 +156,15 @@ class MyApp {
         })
     );
 
-    await firebase.assertFails(
-      db
-        .collection("users")
-        .doc("loggedUser@test.com")
-        .set({
-          isDev: true
-        })
-    );
-
     await firebase.assertSucceeds(
       admin
         .collection("users")
         .doc("loggedUser@test.com")
         .set({
-          isOwner: false,
-          isDev: false
+          isOwner: false
         })
     );
+
     await firebase.assertFails(
       db
         .collection("users")
@@ -188,28 +179,10 @@ class MyApp {
         .collection("users")
         .doc("loggedUser@test.com")
         .set({
-          isOwner: true,
-          isDev: false
-        })
-    );
-    await firebase.assertSucceeds(
-      db
-        .collection("users")
-        .doc("loggedUser@test.com")
-        .update({
           isOwner: true
         })
     );
 
-    await firebase.assertSucceeds(
-      admin
-        .collection("users")
-        .doc("loggedUser@test.com")
-        .set({
-          isOwner: false,
-          isDev: true
-        })
-    );
     await firebase.assertSucceeds(
       db
         .collection("users")

@@ -14,10 +14,6 @@ function loggedUserIsGuildMaster(database) {
   return "isOwner" in getUserData(database) && getUserData(database).isOwner
 }
 
-function loggedUserIsDev(database) {
-  return "isDev" in getUserData(database) && getUserData(database).isDev
-}
-
 function getUserData(database) {
   return get(/databases/$(database)/documents/users/$(request.auth.token.email)).data
 }
@@ -33,7 +29,7 @@ service cloud.firestore {
     }
     
     match /{document=**} {
-      allow read, write: if loggedUserIsGuildMaster(database) || loggedUserIsDev(database)
+      allow read, write: if loggedUserIsGuildMaster(database)
     }
 
     match /users/{email} {

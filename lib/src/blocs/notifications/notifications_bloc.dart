@@ -14,11 +14,10 @@ class NotificationsBloc extends Bloc<NotificationsEvent, NotificationsState> {
   final FirebaseMessaging notificationProvider;
   StreamSubscription _iosSubscription;
 
-  NotificationsBloc({
-    @required this.notificationProvider,
-    @required this.userBloc
-  }) {
-    notificationProvider.configure(onMessage: _onMessage);
+  NotificationsBloc(
+      {@required this.notificationProvider, @required this.userBloc}) {
+    notificationProvider.configure(
+        onMessage: _onMessage, onResume: _onResume, onLaunch: _onLaunch);
   }
 
   @override
@@ -26,12 +25,16 @@ class NotificationsBloc extends Bloc<NotificationsEvent, NotificationsState> {
 
   @override
   Stream<NotificationsState> mapEventToState(NotificationsEvent event) async* {
-    if (event is Setup)  {
+    if (event is Setup) {
       await _setupNotifications();
       yield NotificationsInitialized();
     }
     if (event is ShowDialog) {
       yield NotificationsLoaded(notification: event.notification);
+    }
+
+    if (event is GoToLesson) {
+      yield MasterNotificationsLoaded(lessonId: event.lessonId);
     }
   }
 
@@ -48,25 +51,52 @@ class NotificationsBloc extends Bloc<NotificationsEvent, NotificationsState> {
 
   Future<void> _setupNotifications() async {
     if (Platform.isIOS) {
-      _iosSubscription = notificationProvider.onIosSettingsRegistered.listen((data) async {
+      _iosSubscription =
+          notificationProvider.onIosSettingsRegistered.listen((data) async {
         await _saveDeviceToken();
       });
 
-      notificationProvider.requestNotificationPermissions(IosNotificationSettings());
+      notificationProvider
+          .requestNotificationPermissions(IosNotificationSettings());
     } else {
       await _saveDeviceToken();
     }
   }
 
   Future _onMessage(Map<String, dynamic> msg) async {
-    Notification notification = _mapMsgToNotification(msg);
-    debugPrint("Push notification received with message: $notification");
+    GeneralNotification notification = _mapMsgToGeneralNotification(msg);
+    debugPrint("OnMessage Push notification received with message: $notification");
     dispatch(ShowDialog(notification: notification));
   }
 
-  Notification _mapMsgToNotification(Map<String, dynamic> msg) =>
-      Notification(
-          msg['notification']['title'],
-          msg['notification']['body']
-      );
+  void _onLaunchOrOnResume(Map<String, dynamic> msg) {
+    MasterNotification notification = _mapMsgToMasterNotification(msg);
+    if( notification.type == "master_reminder") {
+      dispatch(GoToLesson(lessonId: notification.lessonId));
+    }
+  }
+
+  Future _onResume(Map<String, dynamic> msg) async {
+    debugPrint("OnResume Push notification with message");
+    _onLaunchOrOnResume(msg);
+  }
+
+  Future _onLaunch(Map<String, dynamic> msg) async {
+    debugPrint("OnLaunch Push notification with message");
+    _onLaunchOrOnResume(msg);
+  }
+
+  GeneralNotification _mapMsgToGeneralNotification(Map<String, dynamic> msg) {
+    return GeneralNotification(
+      msg['notification']['title'],
+      msg['notification']['body'],
+    );
+  }
+
+  MasterNotification _mapMsgToMasterNotification(Map<String, dynamic> msg) {
+    return MasterNotification(
+      msg['data']['type'],
+      msg['data']['lessonId'],
+    );
+  }
 }

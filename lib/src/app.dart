@@ -77,6 +77,9 @@ class _AppState extends State<App> {
                   NotificationToast.show(context, state.notification.title,
                       state.notification.body);
                 }
+                if(state is MasterNotificationsLoaded) {
+                  Navigator.of(context).pushNamed('registry', arguments: state.lessonId);
+                }
               },
               child: BlocBuilder<AuthEvent, AuthState>(
                 bloc: _authBloc,

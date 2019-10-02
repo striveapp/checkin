@@ -59,7 +59,6 @@ class UserProvider {
               counter: user.data['counter'] ?? 0,
               rank: user.data['rank'],
               isOwner: user.data['isOwner'] ?? false,
-              isDev: user.data['isDev'] ?? false,
             ));
   }
 
