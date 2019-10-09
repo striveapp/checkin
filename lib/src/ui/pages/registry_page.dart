@@ -1,6 +1,6 @@
 import 'package:checkin/src/blocs/auth/auth_bloc.dart';
 import 'package:checkin/src/blocs/auth/bloc.dart';
-import 'package:checkin/src/blocs/lessons/bloc.dart';
+import 'package:checkin/src/blocs/registry/bloc.dart';
 import 'package:checkin/src/blocs/user/bloc.dart';
 import 'package:checkin/src/localization/localization.dart';
 import 'package:checkin/src/models/attendee.dart';
@@ -31,7 +31,7 @@ class RegistryPage extends StatefulWidget {
 class _RegistryState extends State<RegistryPage> {
   final LessonRepository _lessonsRepository = LessonRepository();
   final UserRepository _userRepository = UserRepository();
-  LessonsBloc _lessonsBloc;
+  RegistryBloc _registryBloc;
   AuthBloc _authBloc;
   UserBloc _userBloc;
 
@@ -40,14 +40,16 @@ class _RegistryState extends State<RegistryPage> {
     super.initState();
     _authBloc = BlocProvider.of<AuthBloc>(context);
     _userBloc = BlocProvider.of<UserBloc>(context);
-    _lessonsBloc = LessonsBloc(
+    _registryBloc = RegistryBloc(
         lessonRepository: _lessonsRepository, userRepository: _userRepository);
   }
 
   @override
   Widget build(BuildContext context) {
     final lessonId = ModalRoute.of(context).settings.arguments;
-
+    _registryBloc.dispatch(LoadLesson(lessonId: lessonId));
+    
+    
     return Scaffold(
       appBar: AppBar(
         backgroundColor: Colors.black87,
@@ -61,44 +63,40 @@ class _RegistryState extends State<RegistryPage> {
         centerTitle: true,
       ),
       body: BlocBuilder(
-        bloc: _lessonsBloc,
-        builder: (BuildContext context, LessonsState state) {
+        bloc: _registryBloc,
+        builder: (BuildContext context, RegistryState state) {
           var _onPressedAcceptAll;
           var _onPressRegisterClass;
           var _onPressUnregisterClass;
-          Lesson currentLesson;
 
-          if (state is LessonsUninitialized) {
+          if (state is RegistryUninitialized) {
             return LoadingIndicator();
           }
-          if (state is LessonsLoaded) {
-            // todo should refactor to never use _userBloc.currentState, are we reactive yet?
-            User currentUser = (_userBloc.currentState as UserSuccess).currentUser;
 
-            state.lessons.forEach((lesson) {
-              if (lesson.id == lessonId) {
-                currentLesson = lesson;
-                if (!currentLesson.containsUser(currentUser.email)) {
-                  _onPressRegisterClass = () {
-                    _lessonsBloc.dispatch(Register(
-                        lessonId: lessonId,
-                        attendee: Attendee.fromUser(currentUser)));
-                  };
-                } else {
-                  //TODO: this will not work if the user changes his infos first and then attempt to unregister
-                  _onPressUnregisterClass = () {
-                    _lessonsBloc.dispatch(Unregister(
-                        lessonId: lessonId,
-                        attendee: Attendee.fromUser(currentUser)));
-                  };
-                }
-              }
-            });
+          if (state is RegistryLoaded) {
+            // todo should refactor to never use _userBloc.currentState, are we reactive yet?
+            User currentUser = (_userBloc.currentState as UserSuccess)
+                .currentUser;
+
+            Lesson currentLesson = state.lesson;
+
+            if (!currentLesson.containsUser(currentUser.email)) {
+              _onPressRegisterClass = () {
+                _registryBloc.dispatch(Register(
+                    lessonId: lessonId,
+                    attendee: Attendee.fromUser(currentUser)));
+              };
+            } else {
+              //TODO: this will not work if the user changes his infos first and then attempt to unregister
+              _onPressUnregisterClass = () {
+                  _removeAttendee(lessonId, Attendee.fromUser(currentUser));
+              };
+            }
 
             if (currentLesson.attendees != null) {
               _onPressedAcceptAll = currentLesson.attendees.isNotEmpty
-                  ? () => _lessonsBloc.dispatch(ConfirmAttendees(
-                      lessonId: lessonId, attendees: currentLesson.attendees))
+                  ? () => _registryBloc.dispatch(ConfirmAttendees(
+                  lessonId: lessonId, attendees: currentLesson.attendees))
                   : null;
             }
 
@@ -118,7 +116,9 @@ class _RegistryState extends State<RegistryPage> {
                           attendeeList: currentLesson.attendees ?? [],
                           isOwner: _isOwnerUser(),
                           lessonId: lessonId,
-                          lessonsBloc: _lessonsBloc,
+                          removeAttendee: (Attendee attendee) {
+                            _removeAttendee(lessonId, attendee);
+                          },
                         ),
                         if (_isOwnerUser())
                           Text(
@@ -205,6 +205,12 @@ class _RegistryState extends State<RegistryPage> {
     );
   }
 
+  void _removeAttendee(lessonId, Attendee attendee) {
+    _registryBloc.dispatch(Unregister(
+        lessonId: lessonId,
+        attendee: attendee));
+  }
+
   bool _isOwnerUser() {
     return (_userBloc.currentState as UserSuccess).currentUser.isOwner;
   }
@@ -214,6 +220,6 @@ class _RegistryState extends State<RegistryPage> {
     // todo capire meglio il problema Unhandled Exception: Bad state: Cannot add new events after calling close
     // è risuccesso da indagare!
     super.dispose();
-    _lessonsBloc.dispose();
+    _registryBloc.dispose();
   }
 }

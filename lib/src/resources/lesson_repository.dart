@@ -1,3 +1,5 @@
+import 'dart:async';
+
 import 'package:checkin/src/models/attendee.dart';
 import 'package:checkin/src/models/lesson.dart';
 
@@ -13,4 +15,6 @@ class LessonRepository {
   Future<void> clearLesson(String lessonId) => _lessonProvider.clearLesson(lessonId);
 
   Future<void> unregister(String lessonId, Attendee attendee) => _lessonProvider.unregister(lessonId, attendee);
+
+  Stream<Lesson> getLesson(String lessonId) => _lessonProvider.getLesson(lessonId);
 }

@@ -36,33 +36,6 @@ class LessonsBloc extends Bloc<LessonsEvent, LessonsState> {
         print(e);
       }
     }
-
-    if (event is ConfirmAttendees) {
-      try {
-        event.attendees.forEach((attendee) {
-          this.userRepository.incrementUserCounter(attendee.email);
-        });
-        await this.lessonRepository.clearLesson(event.lessonId);
-      } catch(e) {
-        print(e);
-      }
-    }
-
-    if (event is Register) {
-      try {
-        await this.lessonRepository.register(event.lessonId, event.attendee);
-      } catch(e) {
-        print(e);
-      }
-    }
-
-    if (event is Unregister) {
-      try {
-        await this.lessonRepository.unregister(event.lessonId, event.attendee);
-      } catch(e) {
-        print(e);
-      }
-    }
   }
   
   _sortLessonsByTime(List<Lesson> lessons) =>

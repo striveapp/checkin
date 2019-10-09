@@ -29,11 +29,13 @@ class LessonProvider {
                 timeEnd: doc.data['timeEnd'],
                 weekDay: doc.data['weekDay'],
                 excludedGrades: doc.data['excludedGrades'],
-                masters: (doc.data['masters'] as List)?.map((master) => Master(
-                      name: master['name'],
-                      email: master['email'],
-                      imageUrl: master['imageUrl'],
-                    ))?.toList(),
+                masters: (doc.data['masters'] as List)
+                    ?.map((master) => Master(
+                          name: master['name'],
+                          email: master['email'],
+                          imageUrl: master['imageUrl'],
+                        ))
+                    ?.toList(),
                 attendees: (doc.data['attendees'] as List)
                     ?.map((attendee) => Attendee(
                         name: attendee['name'],
@@ -77,5 +79,33 @@ class LessonProvider {
         .collection(path)
         .document(lessonId)
         .updateData({"attendees": FieldValue.delete()});
+  }
+
+  Stream<Lesson> getLesson(String lessonId) {
+    return _firestore
+        .collection(path)
+        .document(lessonId)
+        .snapshots()
+        .map( (doc) => Lesson(
+            id: doc.documentID,
+            name: doc.data['name'],
+            timeStart: doc.data['timeStart'],
+            timeEnd: doc.data['timeEnd'],
+            weekDay: doc.data['weekDay'],
+            excludedGrades: doc.data['excludedGrades'],
+            masters: (doc.data['masters'] as List)
+                ?.map((master) => Master(
+                      name: master['name'],
+                      email: master['email'],
+                      imageUrl: master['imageUrl'],
+                    ))
+                ?.toList(),
+            attendees: (doc.data['attendees'] as List)
+                ?.map((attendee) => Attendee(
+                    name: attendee['name'],
+                    rank: attendee["grade"],
+                    imageUrl: attendee["imageUrl"],
+                    email: attendee["email"]))
+                ?.toList()));
   }
 }
