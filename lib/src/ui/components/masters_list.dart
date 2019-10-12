@@ -19,7 +19,6 @@ class MastersList extends StatelessWidget {
             Padding(
                 padding: const EdgeInsets.symmetric(vertical: 10),
                 child: Text(Localization.of(context).teacher,
-                    key: Key('attendClass'),
                     style: TextStyle(
                         fontSize: 18,
                         fontFamily: "Roboto",

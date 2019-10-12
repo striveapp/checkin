@@ -2,11 +2,13 @@
 set-dev-env: export ENV = dev
 set-dev-env:
 	@sh scripts/set_env.sh
+	@flutter clean
 
 .PHONY: set-prod-env
 set-prod-env: export ENV = prod
 set-prod-env:
 	@sh scripts/set_env.sh
+	@flutter clean
 
 .PHONY: unit-test
 unit-test:
