@@ -1,4 +1,5 @@
 #!/bin/sh
+echo "[pre-commit hook]"
 
 git diff --diff-filter=d --cached --name-only | grep -q -E '\.dart$'
 if [ $? -eq 0 ]; then
