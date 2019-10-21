@@ -46,10 +46,14 @@ class RegistryBloc extends Bloc<RegistryEvent, RegistryState> {
       }
     }
 
+
+    //TODO We should probably change the state when
+    // ConfirmAttendees, Register and Unregister got dispatched
+    // and remove logic from the UI
     if (event is ConfirmAttendees) {
       try {
-        event.attendees.forEach((attendee) {
-          this.userRepository.incrementUserCounter(attendee.email);
+        event.attendees.forEach((attendee) async {
+          await this.userRepository.incrementUserCounter(attendee.email);
         });
         await this.lessonRepository.clearLesson(event.lessonId);
       } catch(e) {

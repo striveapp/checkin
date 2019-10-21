@@ -67,8 +67,9 @@ class LoginBloc extends Bloc<LoginEvent, LoginState> {
     //TODO: We put this because we have no way to test google auth for now.
     if (event is LoginWithTestUser) {
       yield LoginLoading();
-      final firebaseTestUser = await this.auth.signInWithEmailAndPassword(
+      final result = await this.auth.signInWithEmailAndPassword(
           email: "test@test.com", password: "test123");
+      final firebaseTestUser = result.user;
       debugPrint('Logged with test user [$firebaseTestUser]');
       this.authBloc.dispatch(LoggedIn(
           currentUserEmail: firebaseTestUser.email, isFirstLogin: false));
@@ -76,8 +77,9 @@ class LoginBloc extends Bloc<LoginEvent, LoginState> {
 
     if (event is LoginWithTestUserTwo) {
       yield LoginLoading();
-      final firebaseTestUser = await this.auth.signInWithEmailAndPassword(
+      final result = await this.auth.signInWithEmailAndPassword(
           email: "test-two@test.com", password: "test123");
+      final firebaseTestUser = result.user;
       debugPrint('Logged with test user [$firebaseTestUser]');
       this.authBloc.dispatch(LoggedIn(
           currentUserEmail: firebaseTestUser.email, isFirstLogin: false));
@@ -85,8 +87,9 @@ class LoginBloc extends Bloc<LoginEvent, LoginState> {
 
     if (event is LoginWithTestUserOwner) {
       yield LoginLoading();
-      final firebaseTestUser = await this.auth.signInWithEmailAndPassword(
+      final result = await this.auth.signInWithEmailAndPassword(
           email: "test-owner@test.com", password: "test123");
+      final firebaseTestUser = result.user;
       debugPrint('Logged with test user owner [$firebaseTestUser]');
       this.authBloc.dispatch(LoggedIn(
           currentUserEmail: firebaseTestUser.email, isFirstLogin: false));
@@ -94,6 +97,7 @@ class LoginBloc extends Bloc<LoginEvent, LoginState> {
   }
 
   Future<User> _googleSignIn() async {
+    AuthResult result;
     FirebaseUser firebaseUser;
     try {
       debugPrint("attempt to login");
@@ -105,7 +109,8 @@ class LoginBloc extends Bloc<LoginEvent, LoginState> {
         idToken: googleAuth.idToken,
       );
 
-      firebaseUser = await this.auth.signInWithCredential(credential);
+      result = await this.auth.signInWithCredential(credential);
+      firebaseUser = result.user;
     } catch (err) {
       debugPrint("${err.toString()}");
       firebaseUser = null;

@@ -12,6 +12,7 @@ import 'package:firebase_messaging/firebase_messaging.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:flutter_localizations/flutter_localizations.dart';
+import 'package:platform/platform.dart';
 
 import 'blocs/notifications/bloc.dart';
 import 'blocs/user/bloc.dart';
@@ -36,7 +37,7 @@ class _AppState extends State<App> {
     _authBloc = AuthBloc(auth: FirebaseAuth.instance);
     _userBloc = UserBloc(authBloc: _authBloc, userRepository: UserRepository());
     _notificationsBloc = NotificationsBloc(
-        notificationProvider: FirebaseMessaging(), userBloc: _userBloc);
+        notificationProvider: FirebaseMessaging(), userBloc: _userBloc, platform: LocalPlatform());
   }
 
   @override
@@ -73,11 +74,11 @@ class _AppState extends State<App> {
           body: BlocListener(
               bloc: _notificationsBloc,
               listener: (BuildContext context, NotificationsState state) {
-                if (state is NotificationsLoaded) {
+                if (state is BasicNotificationsLoaded) {
                   NotificationToast.show(context, state.notification.title,
                       state.notification.body);
                 }
-                if(state is MasterNotificationsLoaded) {
+                if(state is ActionNotificationsLoaded) {
                   Navigator.of(context).pushNamed('registry', arguments: state.lessonId);
                 }
               },

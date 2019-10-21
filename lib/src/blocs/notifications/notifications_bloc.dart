@@ -1,5 +1,5 @@
 import 'dart:async';
-import 'dart:io';
+import 'package:platform/platform.dart';
 
 import 'package:bloc/bloc.dart';
 import 'package:checkin/src/blocs/user/bloc.dart';
@@ -12,10 +12,11 @@ import 'bloc.dart';
 class NotificationsBloc extends Bloc<NotificationsEvent, NotificationsState> {
   final UserBloc userBloc;
   final FirebaseMessaging notificationProvider;
+  final LocalPlatform platform;
   StreamSubscription _iosSubscription;
 
   NotificationsBloc(
-      {@required this.notificationProvider, @required this.userBloc}) {
+      {@required this.notificationProvider, @required this.userBloc, @required this.platform}) {
     notificationProvider.configure(
         onMessage: _onMessage, onResume: _onResume, onLaunch: _onLaunch);
   }
@@ -30,11 +31,11 @@ class NotificationsBloc extends Bloc<NotificationsEvent, NotificationsState> {
       yield NotificationsInitialized();
     }
     if (event is ShowDialog) {
-      yield NotificationsLoaded(notification: event.notification);
+      yield BasicNotificationsLoaded(notification: event.notification);
     }
 
     if (event is GoToLesson) {
-      yield MasterNotificationsLoaded(lessonId: event.lessonId);
+      yield ActionNotificationsLoaded(lessonId: event.lessonId);
     }
   }
 
@@ -46,11 +47,13 @@ class NotificationsBloc extends Bloc<NotificationsEvent, NotificationsState> {
 
   Future<void> _saveDeviceToken() async {
     String token = await notificationProvider.getToken();
+    // TODO here we should use the userRepository instead,
+    // but we will have problem retrieving the current user
     userBloc.dispatch(UpdateFcmToken(token: token));
   }
 
   Future<void> _setupNotifications() async {
-    if (Platform.isIOS) {
+    if (platform.isIOS) {
       _iosSubscription =
           notificationProvider.onIosSettingsRegistered.listen((data) async {
         await _saveDeviceToken();
@@ -64,37 +67,46 @@ class NotificationsBloc extends Bloc<NotificationsEvent, NotificationsState> {
   }
 
   Future _onMessage(Map<String, dynamic> msg) async {
-    GeneralNotification notification = _mapMsgToGeneralNotification(msg);
-    debugPrint("OnMessage Push notification received with message: $notification");
+    debugPrint("OnMessage");
+    BasicNotification notification = _mapMsgToGeneralNotification(msg);
     dispatch(ShowDialog(notification: notification));
   }
 
   void _onLaunchOrOnResume(Map<String, dynamic> msg) {
-    MasterNotification notification = _mapMsgToMasterNotification(msg);
+    ActionNotification notification = _mapMsgToMasterNotification(msg);
+    // TODO this logic should be moved inside mapEventToState
+    // in order to to be tested properly
+
+    // My proposed refactoring would be dispatch a DoAction event
+    // where we pass the type and a Map<String, dynamic> of custom arguments
+    // and then in the top method we should manage every type of action notification
+    // we may receive and implement is custom behaviour dispatching different states
+    // based on the type of the event
+
     if( notification.type == "master_reminder") {
       dispatch(GoToLesson(lessonId: notification.lessonId));
     }
   }
 
   Future _onResume(Map<String, dynamic> msg) async {
-    debugPrint("OnResume Push notification with message");
+    debugPrint("OnResume");
     _onLaunchOrOnResume(msg);
   }
 
   Future _onLaunch(Map<String, dynamic> msg) async {
-    debugPrint("OnLaunch Push notification with message");
+    debugPrint("OnLaunch");
     _onLaunchOrOnResume(msg);
   }
 
-  GeneralNotification _mapMsgToGeneralNotification(Map<String, dynamic> msg) {
-    return GeneralNotification(
+  BasicNotification _mapMsgToGeneralNotification(Map<String, dynamic> msg) {
+    return BasicNotification(
       msg['notification']['title'],
       msg['notification']['body'],
     );
   }
 
-  MasterNotification _mapMsgToMasterNotification(Map<String, dynamic> msg) {
-    return MasterNotification(
+  ActionNotification _mapMsgToMasterNotification(Map<String, dynamic> msg) {
+    return ActionNotification(
       msg['data']['type'],
       msg['data']['lessonId'],
     );

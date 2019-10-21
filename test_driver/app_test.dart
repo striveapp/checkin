@@ -282,6 +282,7 @@ void main() {
         var newName = 'Felice Mastronzo';
         var oldName = 'Test';
 
+        await driver.setTextEntryEmulation(enabled: true);
         await driver.enterText(newName);
         await driver.waitForAbsent(find.text(oldName));
         await driver.waitFor(find.text(newName));

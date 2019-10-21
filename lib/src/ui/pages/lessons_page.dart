@@ -4,7 +4,6 @@ import 'package:checkin/src/blocs/lessons/bloc.dart';
 import 'package:checkin/src/blocs/user/bloc.dart';
 import 'package:checkin/src/localization/localization.dart';
 import 'package:checkin/src/resources/lesson_repository.dart';
-import 'package:checkin/src/resources/user_repository.dart';
 import 'package:checkin/src/ui/components/lesson_card.dart';
 import 'package:checkin/src/ui/components/loading_indicator.dart';
 import 'package:checkin/src/ui/components/user_image.dart';
@@ -45,7 +44,6 @@ class _LessonsState extends State<LessonsPage> {
   UserBloc get _userBloc => widget.userBloc;
 
   final LessonRepository _lessonRepository = LessonRepository();
-  final UserRepository _userRepository = UserRepository();
 
   LessonsBloc _lessonsBloc;
   AuthBloc _authBloc;
@@ -55,7 +53,7 @@ class _LessonsState extends State<LessonsPage> {
     super.initState();
     _authBloc = BlocProvider.of<AuthBloc>(context);
     _lessonsBloc = LessonsBloc(
-        lessonRepository: _lessonRepository, userRepository: _userRepository);
+        lessonRepository: _lessonRepository);
   }
 
   @override

@@ -3,7 +3,6 @@ import 'dart:async';
 import 'package:bloc/bloc.dart';
 import 'package:checkin/src/models/lesson.dart';
 import 'package:checkin/src/resources/lesson_repository.dart';
-import 'package:checkin/src/resources/user_repository.dart';
 import 'package:flutter/foundation.dart';
 import 'package:meta/meta.dart';
 import 'package:intl/intl.dart';
@@ -12,12 +11,10 @@ import 'bloc.dart';
 
 class LessonsBloc extends Bloc<LessonsEvent, LessonsState> {
   final LessonRepository lessonRepository;
-  final UserRepository userRepository;
   StreamSubscription<List<Lesson>> lessonsSub;
 
   LessonsBloc({
     @required this.lessonRepository,
-    @required this.userRepository,
   }) {
     lessonsSub = this.lessonRepository.getLessonsForToday().listen((lessons) {
       dispatch(LessonsUpdated(lessons: lessons));
@@ -37,9 +34,9 @@ class LessonsBloc extends Bloc<LessonsEvent, LessonsState> {
       }
     }
   }
-  
-  _sortLessonsByTime(List<Lesson> lessons) =>
-      lessons..sort(((a, b) => _getDate(a.timeStart).compareTo(_getDate(b.timeStart))));
+
+  _sortLessonsByTime(List<Lesson> lessons) => lessons
+    ..sort(((a, b) => _getDate(a.timeStart).compareTo(_getDate(b.timeStart))));
 
   _getDate(String time) {
     DateTime now = DateTime.now();

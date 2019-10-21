@@ -11,7 +11,7 @@ class Setup extends NotificationsEvent {
 }
 
 class ShowDialog extends NotificationsEvent {
-  GeneralNotification notification;
+  BasicNotification notification;
 
   ShowDialog({
     this.notification

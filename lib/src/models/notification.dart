@@ -1,26 +1,25 @@
 import 'package:equatable/equatable.dart';
 
-class GeneralNotification extends Equatable {
+class BasicNotification extends Equatable {
   final String title;
   final String body;
 
-  GeneralNotification(this.title, this.body) : super([title, body]);
+  BasicNotification(this.title, this.body) : super([title, body]);
 
   @override
   String toString() {
-    return 'Notification{title: $title, body: $body}';
+    return 'BasicNotification{title: $title, body: $body}';
   }
 }
 
-class MasterNotification extends Equatable {
-
+class ActionNotification extends Equatable {
   final String type;
   final String lessonId;
 
-  MasterNotification(this.type, this.lessonId) : super([type, lessonId]);
+  ActionNotification(this.type, this.lessonId) : super([type, lessonId]);
 
   @override
   String toString() {
-    return 'Notification{type: $type, lessonId: $lessonId}';
+    return 'ActionNotification{type: $type, lessonId: $lessonId}';
   }
 }

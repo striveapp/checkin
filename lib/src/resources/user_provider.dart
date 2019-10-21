@@ -79,8 +79,8 @@ class UserProvider {
   }
 
   // todo a volte rompe i test perchè non fa in tempo ad aggiornarsi
-  incrementUserCounter(String email) {
-    _firestore
+  Future<void> incrementUserCounter(String email) async {
+    await _firestore
         .collection(path)
         .document(email)
         .updateData({"counter": FieldValue.increment(1)});

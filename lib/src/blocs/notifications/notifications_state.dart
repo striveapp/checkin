@@ -15,24 +15,24 @@ class NotificationsInitialized extends NotificationsState {
   String toString() => 'NotificationsInitialized';
 }
 
-class NotificationsLoaded extends NotificationsState {
-  GeneralNotification notification;
+class BasicNotificationsLoaded extends NotificationsState {
+  BasicNotification notification;
 
-  NotificationsLoaded({
+  BasicNotificationsLoaded({
     this.notification,
   }) : super([notification]);
 
   @override
-  String toString() => 'NotificationsLoaded';
+  String toString() => 'BasicNotificationsLoaded';
 }
 
-class MasterNotificationsLoaded extends NotificationsState {
+class ActionNotificationsLoaded extends NotificationsState {
   String lessonId;
 
-  MasterNotificationsLoaded({
+  ActionNotificationsLoaded({
     this.lessonId,
   }) : super([lessonId]);
 
   @override
-  String toString() => 'MasterNotificationsLoaded';
+  String toString() => 'ActionNotificationsLoaded';
 }
