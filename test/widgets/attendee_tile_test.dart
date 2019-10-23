@@ -10,7 +10,6 @@ void main() {
   testWidgets("AttendeeTile should navigate to attendee's profile when tapped",
       (WidgetTester tester) async {
     provideMockedNetworkImages(() async {
-      /// Now we can pump NetworkImages without crashing our tests. Yay!
       await tester.pumpWidget(buildTestApplication(AttendeeTile(
         attendee: Attendee(
             name: "testAttendee",
