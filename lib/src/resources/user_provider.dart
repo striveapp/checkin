@@ -78,7 +78,6 @@ class UserProvider {
     return user.data['rank'] == null;
   }
 
-  // todo a volte rompe i test perchè non fa in tempo ad aggiornarsi
   Future<void> incrementUserCounter(String email) async {
     await _firestore
         .collection(path)

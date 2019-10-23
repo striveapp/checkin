@@ -1,7 +1,11 @@
 import 'package:checkin/src/models/user.dart';
 import 'package:equatable/equatable.dart';
+import 'package:json_annotation/json_annotation.dart';
 import 'package:meta/meta.dart';
 
+part 'attendee.g.dart';
+
+@JsonSerializable()
 class Attendee extends Equatable {
   final String name;
   final String rank;
@@ -25,5 +29,7 @@ class Attendee extends Equatable {
     return 'Attendee{name: $name, rank: $rank, imageUrl: $imageUrl, email: $email}';
   }
 
+  factory Attendee.fromMappedJson(Map<String, dynamic> json) => _$AttendeeFromJson(json);
+  Map<String, dynamic> toJson() => _$AttendeeToJson(this);
 
 }

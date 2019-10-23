@@ -3,7 +3,6 @@ import 'package:checkin/src/models/lesson.dart';
 import 'package:checkin/src/models/master.dart';
 import 'package:checkin/src/util.dart';
 import 'package:cloud_firestore/cloud_firestore.dart';
-import 'package:flutter/foundation.dart';
 import 'package:intl/intl.dart';
 
 class LessonProvider {
@@ -43,41 +42,6 @@ class LessonProvider {
                         email: attendee["email"]))
                     ?.toList()))
             .toList());
-  }
-
-  Future<void> register(String lessonId, Attendee attendee) async {
-    debugPrint("User [$attendee] attends lesson with id [$lessonId]");
-    await _firestore.collection(path).document(lessonId).updateData({
-      'attendees': FieldValue.arrayUnion([
-        {
-          'name': attendee.name,
-          'imageUrl': attendee.imageUrl,
-          'grade': attendee.rank,
-          'email': attendee.email
-        }
-      ])
-    });
-  }
-
-  Future<void> unregister(String lessonId, Attendee attendee) async {
-    debugPrint("User [$attendee] removed from lesson with id [$lessonId]");
-    await _firestore.collection(path).document(lessonId).updateData({
-      'attendees': FieldValue.arrayRemove([
-        {
-          'name': attendee.name,
-          'imageUrl': attendee.imageUrl,
-          'grade': attendee.rank,
-          'email': attendee.email
-        }
-      ])
-    });
-  }
-
-  Future<void> clearLesson(String lessonId) async {
-    await _firestore
-        .collection(path)
-        .document(lessonId)
-        .updateData({"attendees": FieldValue.delete()});
   }
 
   Stream<Lesson> getLesson(String lessonId) {

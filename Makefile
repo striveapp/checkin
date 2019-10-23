@@ -22,3 +22,7 @@ integration-test:
 #.PHONY: integration-test-ci
 #integration-test:
 #	flutter drive --target=test_driver/app.dart
+
+.PHONY: codegen-runner
+codegen-runner:
+	flutter pub run build_runner watch
