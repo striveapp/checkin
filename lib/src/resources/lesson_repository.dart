@@ -1,8 +1,8 @@
 import 'dart:async';
 
+import 'package:checkin/src/api/api.dart';
 import 'package:checkin/src/models/attendee.dart';
 import 'package:checkin/src/models/lesson.dart';
-import 'package:checkin/src/resources/lesson_api.dart';
 
 import 'lesson_provider.dart';
 
