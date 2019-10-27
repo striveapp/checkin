@@ -51,10 +51,17 @@ which runs all the tests in the `tests/` directory.
   7 passing (607ms)
 ```
 
-## Deploy
+## Deploy all firebase (Not advised)
 ```
-npm run deploy
+npm run deploy:all
 ```
+
+## Deploy specific APIs
+```
+# Lesson API
+npm run deploy:lessons-api
+```
+
 
 ### Only rules
 ```

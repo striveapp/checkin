@@ -6,7 +6,8 @@
     "format": "prettier --write **/*.ts",
     "pretest": "tsc",
     "test": "mocha",
-    "deploy": "firebase deploy"
+    "deploy:all": "firebase deploy",
+    "deploy:lessons-api": "firebase deploy --only functions:register,functions:unregister,functions:clear"
   },
   "devDependencies": {
     "@firebase/testing": "^0.11.4",
