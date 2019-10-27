@@ -138,6 +138,20 @@ class _LessonsState extends State<LessonsPage> {
                   ),
                 );
               }
+              if (state is LessonsLoadedEmpty) {
+                return Container(
+                  alignment: Alignment.center,
+                  child: Text(
+                    Localization.of(context).noClasses,
+                    key: Key('noClassesText'),
+                    style: TextStyle(
+                        fontStyle: FontStyle.normal,
+                        fontWeight: FontWeight.bold,
+                        fontFamily: 'Roboto',
+                        fontSize: 28.0),
+                  ),
+                );
+              }
               return ErrorWidget('Unknown State received in: lesson_page');
             }));
   }

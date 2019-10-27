@@ -26,3 +26,8 @@ class LessonsLoaded extends LessonsState {
   @override
   String toString() => 'LessonsLoaded';
 }
+
+class LessonsLoadedEmpty extends LessonsState {
+  @override
+  String toString() => 'LessonsLoadedEmpty';
+}

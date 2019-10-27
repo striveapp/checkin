@@ -24,13 +24,33 @@ void main() {
 
     group("when LessonsUpdated is dispatched", () {
       group("when final status is LessonsLoaded", () {
+        group("when no lessons", () {
+          test("the final state should be LessonsLoadedEmpty", () {
+            lessonsBloc.dispatch(LessonsUpdated(lessons: []));
+
+            final expectedState = [
+              LessonsUninitialized(),
+              LessonsLoadedEmpty(),
+            ];
+
+            expectLater(
+              lessonsBloc.state,
+              emitsInOrder(expectedState),
+            );
+          });
+        });
         test("should load lessons", () {
+          Lesson lesson = Lesson(timeStart: "19:00", timeEnd: "20:00");
+          lessonsBloc.dispatch(LessonsUpdated(lessons: [
+            lesson,
+          ]));
+
           final expectedState = [
             LessonsUninitialized(),
-            LessonsLoaded(lessons: []),
+            LessonsLoaded(lessons: [
+              lesson,
+            ]),
           ];
-
-          lessonsBloc.dispatch(LessonsUpdated(lessons: []));
 
           expectLater(
             lessonsBloc.state,

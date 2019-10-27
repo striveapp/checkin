@@ -28,7 +28,11 @@ class LessonsBloc extends Bloc<LessonsEvent, LessonsState> {
   Stream<LessonsState> mapEventToState(LessonsEvent event) async* {
     if (event is LessonsUpdated) {
       try {
-        yield LessonsLoaded(lessons: _sortLessonsByTime(event.lessons));
+        if (event.lessons.length > 0) {
+          yield LessonsLoaded(lessons: _sortLessonsByTime(event.lessons));
+        } else {
+          yield LessonsLoadedEmpty();
+        }
       } catch (e) {
         print(e);
       }
