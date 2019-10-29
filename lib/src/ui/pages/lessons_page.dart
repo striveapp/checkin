@@ -4,9 +4,9 @@ import 'package:checkin/src/blocs/lessons/bloc.dart';
 import 'package:checkin/src/blocs/user/bloc.dart';
 import 'package:checkin/src/localization/localization.dart';
 import 'package:checkin/src/resources/lesson_repository.dart';
+import 'package:checkin/src/ui/components/base_app_bar.dart';
 import 'package:checkin/src/ui/components/lesson_card.dart';
 import 'package:checkin/src/ui/components/loading_indicator.dart';
-import 'package:checkin/src/ui/components/user_image.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter/widgets.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
@@ -25,21 +25,6 @@ class LessonsPage extends StatefulWidget {
   _LessonsState createState() => _LessonsState();
 }
 
-_getColor(String grade) {
-  switch (grade) {
-    case 'White':
-      return Colors.white;
-    case 'Blue':
-      return Colors.blueAccent;
-    case 'Purple':
-      return Colors.purple;
-    case 'Brown':
-      return Colors.brown;
-    case 'Black':
-      return Colors.black87;
-  }
-}
-
 class _LessonsState extends State<LessonsPage> {
   UserBloc get _userBloc => widget.userBloc;
 
@@ -52,42 +37,15 @@ class _LessonsState extends State<LessonsPage> {
   void initState() {
     super.initState();
     _authBloc = BlocProvider.of<AuthBloc>(context);
-    _lessonsBloc = LessonsBloc(
-        lessonRepository: _lessonRepository);
+    _lessonsBloc = LessonsBloc(lessonRepository: _lessonRepository);
   }
 
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-        appBar: AppBar(
-          backgroundColor: _getColor(
-              (_userBloc.currentState as UserSuccess).currentUser.rank),
-          title: Text(Localization.of(context).lessons,
-              style: TextStyle(
-                  fontSize: 24,
-                  letterSpacing: 0.8,
-                  fontFamily: "Roboto",
-                  color: ((_userBloc.currentState as UserSuccess)
-                              .currentUser
-                              .rank ==
-                          'White')
-                      ? Colors.black
-                      : Colors.white,
-                  fontWeight: FontWeight.w600)),
-          centerTitle: true,
-          actions: <Widget>[
-            Padding(
-              padding: const EdgeInsets.only(right: 10.0),
-              child: IconButton(
-                  key: Key('profilePageButton'),
-                  onPressed: () {
-                    String email = (_userBloc.currentState as UserSuccess).currentUser.email;
-                    Navigator.of(context).pushNamed('profile/$email');
-                  },
-                  icon: UserImage(userImage: (_userBloc.currentState as UserSuccess).currentUser.imageUrl, width: 30, height: 30,)
-    ),
-            ),
-          ],
+        appBar: BaseAppBar(
+          title: Localization.of(context).lessons,
+          currentUser: (_userBloc.currentState as UserSuccess).currentUser,
         ),
         body: BlocBuilder(
             bloc: _lessonsBloc,

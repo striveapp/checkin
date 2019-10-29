@@ -8,6 +8,7 @@ import 'package:checkin/src/models/lesson.dart';
 import 'package:checkin/src/models/user.dart';
 import 'package:checkin/src/resources/lesson_repository.dart';
 import 'package:checkin/src/resources/user_repository.dart';
+import 'package:checkin/src/ui/components/base_app_bar.dart';
 import 'package:checkin/src/ui/components/attendees_list.dart';
 import 'package:checkin/src/ui/components/loading_indicator.dart';
 import 'package:checkin/src/ui/components/masters_list.dart';
@@ -49,18 +50,11 @@ class _RegistryState extends State<RegistryPage> {
     final lessonId = ModalRoute.of(context).settings.arguments;
     _registryBloc.dispatch(LoadLesson(lessonId: lessonId));
     
-    
+    //TODO: this needs a big refactoring, a lot of logic slip through here.
     return Scaffold(
-      appBar: AppBar(
-        backgroundColor: Colors.black87,
-        title: Text(Localization.of(context).registry,
-            style: TextStyle(
-                fontSize: 24,
-                letterSpacing: 0.8,
-                fontFamily: "Roboto",
-                color: Colors.white,
-                fontWeight: FontWeight.w600)),
-        centerTitle: true,
+      appBar: BaseAppBar(
+        //TODO: we should pass the name of the class here instead of registry
+        title: Localization.of(context).registry,
       ),
       body: BlocBuilder(
         bloc: _registryBloc,

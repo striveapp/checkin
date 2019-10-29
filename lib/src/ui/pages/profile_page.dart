@@ -3,6 +3,7 @@ import 'package:checkin/src/blocs/user/bloc.dart';
 import 'package:checkin/src/localization/localization.dart';
 import 'package:checkin/src/models/user.dart';
 import 'package:checkin/src/resources/user_repository.dart';
+import 'package:checkin/src/ui/components/base_app_bar.dart';
 import 'package:checkin/src/ui/components/class_counter.dart';
 import 'package:checkin/src/ui/components/loading_indicator.dart';
 import 'package:checkin/src/ui/components/user_image.dart';
@@ -24,7 +25,7 @@ class ProfilePage extends StatefulWidget {
   }
 }
 
-_getColor(String grade) {
+_getAppBarColor(String grade) {
   switch (grade) {
     case 'White':
       return Colors.white;
@@ -70,10 +71,10 @@ class _ProfileState extends State<ProfilePage> {
 
           if (state is ProfileSuccess) {
             final User profileUser = state.profileUser;
-            var editAction = <Widget>[];
+            var appBarActions = <Widget>[];
 
-            if( profileUser.email == (_userBloc.currentState as UserSuccess).currentUser.email ) {
-              editAction.add(Padding(
+            if( _isCurrentUser(profileUser, _userBloc) ) {
+              appBarActions.add(Padding(
                 padding: const EdgeInsets.only(right: 10.0),
                 child: IconButton(
                   key: Key('editProfileButton'),
@@ -90,24 +91,10 @@ class _ProfileState extends State<ProfilePage> {
 
             return Scaffold(
                 resizeToAvoidBottomPadding: false,
-                appBar: AppBar(
-                  iconTheme: IconThemeData(
-                    color: profileUser.rank == 'White'
-                        ? Colors.black
-                        : Colors.white,
-                  ),
-                  backgroundColor: _getColor(profileUser.rank),
-                  title: Text(Localization.of(context).profile,
-                      style: TextStyle(
-                          fontSize: 24,
-                          letterSpacing: 0.8,
-                          fontFamily: "Roboto",
-                          color: profileUser.rank == 'White'
-                              ? Colors.black
-                              : Colors.white,
-                          fontWeight: FontWeight.w600)),
-                  centerTitle: true,
-                  actions: editAction,
+                appBar: BaseAppBar(
+                  title: Localization.of(context).profile,
+                  backgroundColor: _getAppBarColor(profileUser.rank),
+                  actions: appBarActions,
                 ),
                 body: Center(
                     child: Container(
@@ -172,6 +159,8 @@ class _ProfileState extends State<ProfilePage> {
           return ErrorWidget('Unknown State received in: profile_page');
         });
   }
+
+  bool _isCurrentUser(User profileUser, UserBloc _userBloc) => profileUser.email == (_userBloc.currentState as UserSuccess).currentUser.email;
 
   @override
   void dispose() {

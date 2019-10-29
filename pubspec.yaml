@@ -72,3 +72,11 @@ flutter:
         - asset: fonts/RobotoMono-Regular.ttf
         - asset: fonts/RobotoMono-Bold.ttf
           weight: 700
+    - family: Raleway
+      fonts:
+        - asset: fonts/Raleway-Regular.ttf
+          style: normal
+        - asset: fonts/Raleway-LightItalic.ttf
+          style: italic
+        - asset: fonts/Raleway-SemiBold.ttf
+          weight: 700

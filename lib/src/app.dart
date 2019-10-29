@@ -37,7 +37,9 @@ class _AppState extends State<App> {
     _authBloc = AuthBloc(auth: FirebaseAuth.instance);
     _userBloc = UserBloc(authBloc: _authBloc, userRepository: UserRepository());
     _notificationsBloc = NotificationsBloc(
-        notificationProvider: FirebaseMessaging(), userBloc: _userBloc, platform: LocalPlatform());
+        notificationProvider: FirebaseMessaging(),
+        userBloc: _userBloc,
+        platform: LocalPlatform());
   }
 
   @override
@@ -70,6 +72,17 @@ class _AppState extends State<App> {
         ],
         onGenerateRoute: Application.router.generator,
         initialRoute: '/',
+        theme: ThemeData(
+          fontFamily: 'Raleway',
+          textTheme: TextTheme(
+            headline: TextStyle(
+              fontSize: 22.0,
+              fontWeight: FontWeight.w700,
+              color: Colors.white,
+              letterSpacing: 0.25,
+            ),
+          ),
+        ),
         home: Scaffold(
           body: BlocListener(
               bloc: _notificationsBloc,
@@ -78,8 +91,9 @@ class _AppState extends State<App> {
                   NotificationToast.show(context, state.notification.title,
                       state.notification.body);
                 }
-                if(state is ActionNotificationsLoaded) {
-                  Navigator.of(context).pushNamed('registry', arguments: state.lessonId);
+                if (state is ActionNotificationsLoaded) {
+                  Navigator.of(context)
+                      .pushNamed('registry', arguments: state.lessonId);
                 }
               },
               child: BlocBuilder<AuthEvent, AuthState>(
