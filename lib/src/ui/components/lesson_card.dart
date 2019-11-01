@@ -62,8 +62,8 @@ class LessonCard extends StatelessWidget {
                                       padding: const EdgeInsets.only(right: 10),
                                       child: UserImage(
                                         userImage: attendee.imageUrl,
-                                        width: 26,
-                                        height: 26,
+                                        width: MediaQuery.of(context).size.width * 0.06,
+                                        height: MediaQuery.of(context).size.width * 0.06,
                                       ),
                                     ))
                                 ?.toList(),
@@ -97,5 +97,6 @@ class LessonCard extends StatelessWidget {
 
 String _capitalize(String s) => s[0].toUpperCase() + s.substring(1);
 
+//TODO this should be configurable
 double _getFullPercentage(int numberOfAttendees) =>
     (numberOfAttendees * 100 / 30) / 100;
