@@ -74,12 +74,38 @@ class _AppState extends State<App> {
         initialRoute: '/',
         theme: ThemeData(
           fontFamily: 'Raleway',
+          primaryColor: Color(0xFF242966),
+          accentColor: Color(0xFF1B3FE3),
           textTheme: TextTheme(
             headline: TextStyle(
-              fontSize: 22.0,
+              fontSize: 24.0,
               fontWeight: FontWeight.w700,
               color: Colors.white,
               letterSpacing: 0.25,
+            ),
+            title: TextStyle(
+              fontSize: 20.0,
+              fontWeight: FontWeight.w600,
+              color: Colors.black87,
+              letterSpacing: 0.25,
+            ),
+            subtitle: TextStyle(
+              fontSize: 18.0,
+              fontWeight: FontWeight.w500,
+              color: Colors.black87,
+              letterSpacing: 0.25,
+            ),
+            body1: TextStyle(
+              fontSize: 16.0,
+              fontWeight: FontWeight.w400,
+              color: Colors.black87,
+              letterSpacing: 0.25,
+            ),
+            display1: TextStyle(
+              fontSize: 14.0,
+              fontWeight: FontWeight.w400,
+              color: Color(0xFF2F54FC),
+              letterSpacing: 0.4,
             ),
           ),
         ),

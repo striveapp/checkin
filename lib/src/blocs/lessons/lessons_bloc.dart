@@ -29,7 +29,7 @@ class LessonsBloc extends Bloc<LessonsEvent, LessonsState> {
     if (event is LessonsUpdated) {
       try {
         if (event.lessons.length > 0) {
-          yield LessonsLoaded(lessons: _sortLessonsByTime(event.lessons));
+          yield LessonsLoaded(lessons: _sortLessonsByTime(event.lessons), day: _getToday());
         } else {
           yield LessonsLoadedEmpty();
         }
@@ -47,6 +47,11 @@ class LessonsBloc extends Bloc<LessonsEvent, LessonsState> {
     var todayDate = DateFormat('yyyy-MM-dd').format(now);
 
     return DateTime.parse('$todayDate $time:00');
+  }
+
+  _getToday() {
+    DateTime now = DateTime.now();
+    return DateFormat('dd MMM').format(now);
   }
 
   @override

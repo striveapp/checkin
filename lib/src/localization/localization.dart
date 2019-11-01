@@ -39,12 +39,13 @@ class Localization {
   String get purpleGrade => getValue(PurpleGrade);
   String get brownGrade => getValue(BrownGrade);
   String get blackGrade => getValue(BlackGrade);
-  String get todaysClasses => getValue(TodaysClasses);
+  String get today => getValue(Today);
   String get noClasses => getValue(NoClasses);
   String get profile => getValue(Profile);
   String get swipeToRemove => getValue(SwipeToRemove);
   String get nameHint => getValue(NameHint);
   String get teacher => getValue(Teacher);
+  String get andOthers => getValue(AndOthers);
 }
 
 class LocalizationDelegate extends LocalizationsDelegate<Localization> {
