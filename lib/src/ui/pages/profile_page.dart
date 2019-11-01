@@ -1,3 +1,5 @@
+import 'package:checkin/src/blocs/auth/auth_bloc.dart';
+import 'package:checkin/src/blocs/auth/bloc.dart';
 import 'package:checkin/src/blocs/profile/bloc.dart';
 import 'package:checkin/src/blocs/user/bloc.dart';
 import 'package:checkin/src/localization/localization.dart';
@@ -10,6 +12,8 @@ import 'package:checkin/src/ui/components/user_image.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter/widgets.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
+
+import '../../util.dart';
 
 class ProfilePage extends StatefulWidget {
   final String email;
@@ -43,19 +47,21 @@ _getAppBarColor(String grade) {
 class _ProfileState extends State<ProfilePage> {
   bool _isEditing;
   ProfileBloc _profileBloc;
+  UserBloc _userBloc;
+  AuthBloc _authBloc;
 
   @override
   void initState() {
     _isEditing = false;
-    _profileBloc = ProfileBloc(userRepository: UserRepository(), profileEmail: widget.email);
+    _authBloc = BlocProvider.of<AuthBloc>(context);
+    _userBloc = BlocProvider.of<UserBloc>(context);
+    _profileBloc = ProfileBloc(
+        userRepository: UserRepository(), profileEmail: widget.email);
     super.initState();
   }
 
   @override
   Widget build(BuildContext context) {
-    // todo initializing userBloc in initState() breaks appbar
-    var _userBloc = BlocProvider.of<UserBloc>(context);
-
     return BlocBuilder(
         bloc: _profileBloc,
         builder: (BuildContext context, ProfileState state) {
@@ -73,7 +79,7 @@ class _ProfileState extends State<ProfilePage> {
             final User profileUser = state.profileUser;
             var appBarActions = <Widget>[];
 
-            if( _isCurrentUser(profileUser, _userBloc) ) {
+            if (_isCurrentUser(profileUser)) {
               appBarActions.add(Padding(
                 padding: const EdgeInsets.only(right: 10.0),
                 child: IconButton(
@@ -153,14 +159,29 @@ class _ProfileState extends State<ProfilePage> {
                       Padding(
                         padding: const EdgeInsets.symmetric(vertical: 50),
                         child: ClassCounter(counter: profileUser.counter),
-                      )
+                      ),
+                      if (isInDebugMode && _isCurrentUser(profileUser))
+                        RaisedButton(
+                          key: Key('logoutButton'),
+                          color: Colors.red,
+                          child: Text(Localization.of(context).logout,
+                              style: TextStyle(
+                                  fontSize: 18,
+                                  color: Colors.white,
+                                  fontWeight: FontWeight.w600)),
+                          onPressed: () {
+                            Navigator.popUntil(context, ModalRoute.withName(Navigator.defaultRouteName));
+                            _authBloc.dispatch(LogOut());
+                          },
+                        ),
                     ]))));
           }
           return ErrorWidget('Unknown State received in: profile_page');
         });
   }
 
-  bool _isCurrentUser(User profileUser, UserBloc _userBloc) => profileUser.email == (_userBloc.currentState as UserSuccess).currentUser.email;
+  bool _isCurrentUser(User profileUser) =>
+      profileUser.email == (this._userBloc.currentState as UserSuccess).currentUser.email;
 
   @override
   void dispose() {

@@ -32,19 +32,23 @@ class Localization {
   String get registerClass => getValue(RegisterClass);
   String get unregisterClass => getValue(UnregisterClass);
   String get status => getValue(Status);
-  String get lessons => getValue(Classes);
+  String get classes => getValue(Classes);
   String get loginFailed => getValue(LoginFailed);
   String get whiteGrade => getValue(WhiteGrade);
   String get blueGrade => getValue(BlueGrade);
   String get purpleGrade => getValue(PurpleGrade);
   String get brownGrade => getValue(BrownGrade);
   String get blackGrade => getValue(BlackGrade);
-  String get todaysClasses => getValue(TodaysClasses);
+  String get today => getValue(Today);
   String get noClasses => getValue(NoClasses);
   String get profile => getValue(Profile);
   String get swipeToRemove => getValue(SwipeToRemove);
   String get nameHint => getValue(NameHint);
   String get teacher => getValue(Teacher);
+  String get andOthers => getValue(AndOthers);
+  String get and => getValue(And);
+  String get by => getValue(By);
+  String get you => getValue(You);
 }
 
 class LocalizationDelegate extends LocalizationsDelegate<Localization> {

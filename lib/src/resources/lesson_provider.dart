@@ -34,14 +34,14 @@ class LessonProvider {
                           email: master['email'],
                           imageUrl: master['imageUrl'],
                         ))
-                    ?.toList(),
+                    ?.toList() ?? [],
                 attendees: (doc.data['attendees'] as List)
                     ?.map((attendee) => Attendee(
                         name: attendee['name'],
                         rank: attendee["grade"],
                         imageUrl: attendee["imageUrl"],
                         email: attendee["email"]))
-                    ?.toList()))
+                    ?.toList() ?? []))
             .toList());
   }
 
@@ -59,14 +59,14 @@ class LessonProvider {
                       email: master['email'],
                       imageUrl: master['imageUrl'],
                     ))
-                ?.toList(),
+                ?.toList() ?? [],
             attendees: (doc.data['attendees'] as List)
                 ?.map((attendee) => Attendee(
                     name: attendee['name'],
                     rank: attendee["grade"],
                     imageUrl: attendee["imageUrl"],
                     email: attendee["email"]))
-                ?.toList()));
+                ?.toList() ?? []));
   }
 
   Stream<List<Lesson>> getLessonsOfMaster(Master currentMaster) {
@@ -87,14 +87,14 @@ class LessonProvider {
                           email: master['email'],
                           imageUrl: master['imageUrl'],
                         ))
-                    ?.toList(),
+                    ?.toList() ?? [],
                 attendees: (doc.data['attendees'] as List)
                     ?.map((attendee) => Attendee(
                         name: attendee['name'],
                         rank: attendee["grade"],
                         imageUrl: attendee["imageUrl"],
                         email: attendee["email"]))
-                    ?.toList()))
+                    ?.toList() ?? []))
             .toList());
   }
 

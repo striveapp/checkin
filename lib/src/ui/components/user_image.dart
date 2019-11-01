@@ -23,6 +23,7 @@ class UserImage extends StatelessWidget {
         imageUrl: userImage,
         width: width,
         height: height,
+        fit: BoxFit.fill,
         errorWidget: (context, url, error) => Icon(Icons.error),
       ),
     );

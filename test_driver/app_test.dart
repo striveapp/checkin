@@ -54,14 +54,14 @@ void main() {
 
     attendClass(classKey) async {
       await goToRegistryOf(classKey);
-      await driver.waitFor(find.byValueKey('attendClass'));
-      await driver.tap(find.byValueKey('attendClass'));
+      await driver.waitFor(find.byValueKey('registerClass'));
+      await driver.tap(find.byValueKey('registerClass'));
     }
 
     unattendClass(classKey) async {
       await goToRegistryOf(classKey);
-      await driver.waitFor(find.byValueKey('unattendClass'));
-      await driver.tap(find.byValueKey('unattendClass'));
+      await driver.waitFor(find.byValueKey('unregisterClass'));
+      await driver.tap(find.byValueKey('unregisterClass'));
     }
 
     acceptAll(classKey) async {
@@ -106,12 +106,13 @@ void main() {
 
         prettyPrint("Then get the amount of classes attended and logout");
         var classCounter = await driver.getText(find.byValueKey("classCounter"));
-        await goBack();
         await logout();
 
-        prettyPrint("Then login as owner and accept all and logout");
+        prettyPrint("Then login as owner and accept all go to profile and logout");
         await loginAsOwner();
         await acceptAll('basic');
+        await goBack();
+        await goToProfilePage();
         await logout();
 
         prettyPrint("Then login as user again and check that counter has increase");
@@ -119,9 +120,7 @@ void main() {
         await goToProfilePage();
         var newClassCounter = await driver.getText(find.byValueKey("classCounter"));
 
-
         prettyPrint("Then logout");
-        await goBack();
         await logout();
 
         var expectedClassCounter = (int.parse(classCounter) + 1).toString();
@@ -141,7 +140,6 @@ void main() {
 
         prettyPrint("Then get the amount of classes attended and logout");
         var classCounter = await driver.getText(find.byValueKey("classCounter"));
-        await goBack();
         await logout();
 
         prettyPrint("Then login as owner and accept all for 1 of the classes");
@@ -161,6 +159,8 @@ void main() {
         await goBack();
         await goToRegistryOf('basic');
         await driver.waitForAbsent(find.byValueKey("tile-test@test.com"));
+        await goBack();
+        await goToProfilePage();
         await logout();
 
         prettyPrint("Then login as user and check that counter has increase");
@@ -169,7 +169,6 @@ void main() {
         var newClassCounter = await driver.getText(find.byValueKey("classCounter"));
 
         prettyPrint("Then logout");
-        await goBack();
         await logout();
 
         var expectedClassCounter = (int.parse(classCounter) + 2).toString();
@@ -186,7 +185,6 @@ void main() {
 
         prettyPrint("Then get the amount of classes attended and logout");
         var classCounterTest= await driver.getText(find.byValueKey("classCounter"));
-        await goBack();
         await logout();
 
         prettyPrint("Then login as TestTwo and attend class");
@@ -197,12 +195,13 @@ void main() {
 
         prettyPrint("Then get the amount of classes attended and logout");
         var classCounterTestTwo = await driver.getText(find.byValueKey("classCounter"));
-        await goBack();
         await logout();
 
         prettyPrint("Then login as owner, accept all and logout");
         await loginAsOwner();
         await acceptAll('basic');
+        await goBack();
+        await goToProfilePage();
         await logout();
 
         prettyPrint("Then login as Test and check that counter has increase");
@@ -211,7 +210,6 @@ void main() {
         var newClassCounter = await driver.getText(find.byValueKey("classCounter"));
 
         prettyPrint("Then logout");
-        await goBack();
         await logout();
 
         prettyPrint("Then login as TestTwo and check that counter has increase");
@@ -220,7 +218,6 @@ void main() {
         var newClassCounterTwo = await driver.getText(find.byValueKey("classCounter"));
 
         prettyPrint("Then logout");
-        await goBack();
         await logout();
 
         var expectedClassCounter = (int.parse(classCounterTest) + 1).toString();
@@ -228,7 +225,6 @@ void main() {
 
         expect(newClassCounter, expectedClassCounter);
         expect(newClassCounterTwo, expectedClassCounterTwo);
-
       });
 
       test("user should be able to remove himself from class", () async {
@@ -237,8 +233,13 @@ void main() {
         await attendClass('basic');
         await driver.waitFor(find.byValueKey("tile-test@test.com"));
         await goBack();
+        prettyPrint("Then unregister himself from class");
         await unattendClass('basic');
         await driver.waitForAbsent(find.byValueKey("tile-test@test.com"));
+
+        prettyPrint("Then logout");
+        await goBack();
+        await goToProfilePage();
         await logout();
       });
 
@@ -249,12 +250,14 @@ void main() {
         await loginAsUser();
         await attendClass(classKey);
         await goBack();
+        await goToProfilePage();
         await logout();
 
         prettyPrint("Then login as TestTwo and attend class");
         await loginAsUser(user: 'TestTwo');
         await attendClass(classKey);
         await goBack();
+        await goToProfilePage();
         await logout();
 
         prettyPrint("Then login as owner, and remove Test user from class");
@@ -265,6 +268,10 @@ void main() {
         await driver.waitForAbsent(find.byValueKey("tile-test@test.com"));
         await swipeToRemoveUser("test-two@test.com");
         await driver.waitForAbsent(find.text("TestTwo"));
+
+        prettyPrint("Then logout");
+        await goBack();
+        await goToProfilePage();
         await logout();
       });
     });
@@ -287,10 +294,9 @@ void main() {
         await driver.waitForAbsent(find.text(oldName));
         await driver.waitFor(find.text(newName));
 
-        prettyPrint("Reset the name go back and logout");
+        prettyPrint("Reset the name and logout");
         await driver.enterText(oldName);
         await driver.waitFor(find.text(oldName));
-        await goBack();
         await logout();
       });
     });
@@ -303,9 +309,10 @@ void main() {
         await loginAsUser();
         await attendClass(classKey);
         await goBack();
+        await goToProfilePage();
         await logout();
 
-        prettyPrint("Then login as owner, browse user profile, accept all and logout");
+        prettyPrint("Then login as owner, browse user profile, accept all");
         await loginAsOwner();
         await goToRegistryOf('basic');
         await driver.tap(find.byValueKey('tile-test@test.com'));
@@ -313,6 +320,10 @@ void main() {
         await goBack();
         await goBack();
         await acceptAll('basic');
+
+        prettyPrint("Then logout");
+        await goBack();
+        await goToProfilePage();
         await logout();
       });
     });

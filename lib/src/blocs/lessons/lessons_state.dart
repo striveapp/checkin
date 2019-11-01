@@ -18,10 +18,12 @@ class LessonsError extends LessonsState {
 class LessonsLoaded extends LessonsState {
 
   final List<Lesson> lessons;
+  final String day;
 
   LessonsLoaded({
     this.lessons,
-  }) : super([lessons]);
+    this.day
+  }) : super([lessons, day]);
 
   @override
   String toString() => 'LessonsLoaded';
