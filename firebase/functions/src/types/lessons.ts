@@ -5,16 +5,7 @@ type Attendee = {
   email: string
 }
 
-export type RegisterPayload = {
+export type AcceptAllPayload = {
   lessonId: string,
-  attendee: Attendee
-}
-
-export type ClearPayload = {
-  lessonId: string,
-}
-
-export type UnregisterPayload = {
-  lessonId: string,
-  attendee: Attendee
+  attendees: Attendee[],
 }

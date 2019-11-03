@@ -98,15 +98,7 @@ void main() {
           emitsInOrder(expectedState),
         );
 
-        verifyInOrder([
-          mockUserRepository
-              .incrementUserCounter(fakeLesson.attendees[0].email),
-          mockUserRepository
-              .incrementUserCounter(fakeLesson.attendees[1].email),
-          mockUserRepository
-              .incrementUserCounter(fakeLesson.attendees[2].email),
-          mockLessonRepository.clearLesson(fakeLessonId),
-        ]);
+        verify(mockLessonRepository.acceptAll(fakeLessonId, fakeLesson.attendees));
       });
     });
 

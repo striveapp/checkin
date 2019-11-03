@@ -17,11 +17,11 @@ class LessonRepository {
       _lessonProvider.getLesson(lessonId);
 
   Future<void> register(String lessonId, Attendee attendee) =>
-      _lessonApi.register(lessonId, attendee);
+      _lessonProvider.register(lessonId, attendee);
 
   Future<void> unregister(String lessonId, Attendee attendee) =>
-      _lessonApi.unregister(lessonId, attendee);
+      _lessonProvider.unregister(lessonId, attendee);
 
-  Future<void> clearLesson(String lessonId) =>
-      _lessonApi.clearLesson(lessonId);
+  Future<void> acceptAll(String lessonId, List<Attendee> attendees) =>
+      _lessonApi.acceptAll(lessonId, attendees);
 }

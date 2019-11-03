@@ -52,10 +52,7 @@ class RegistryBloc extends Bloc<RegistryEvent, RegistryState> {
     // and remove logic from the UI
     if (event is ConfirmAttendees) {
       try {
-        event.attendees.forEach((attendee) async {
-          await this.userRepository.incrementUserCounter(attendee.email);
-        });
-        await this.lessonRepository.clearLesson(event.lessonId);
+        await this.lessonRepository.acceptAll(event.lessonId, event.attendees);
       } catch(e) {
         print(e);
       }

@@ -31,5 +31,4 @@ class Attendee extends Equatable {
 
   factory Attendee.fromMappedJson(Map<String, dynamic> json) => _$AttendeeFromJson(json);
   Map<String, dynamic> toJson() => _$AttendeeToJson(this);
-
 }

@@ -4,38 +4,16 @@ import 'package:flutter/material.dart';
 import 'api.dart';
 
 class LessonApi {
-  Future<void> register(String lessonId, Attendee attendee) async {
+  Future<void> acceptAll(String lessonId, List<Attendee> attendees) async {
+    final attendeesPayload = attendees.map((attendee) => attendee.toJson()).toList();
     var parameters = {
       'lessonId': lessonId,
-      'attendee': attendee.toJson()
+      'attendees': attendeesPayload
     };
 
-    await Api.call(functionName: "register", parameters: parameters)
+    await Api.call(functionName: "acceptAll", parameters: parameters)
         .then((_) => {
-          debugPrint("User [$attendee] registered from lesson with id [$lessonId]")
-        });
-  }
-
-  Future<void> unregister(String lessonId, Attendee attendee) async {
-    var parameters = {
-      'lessonId': lessonId,
-      'attendee': attendee.toJson()
-    };
-
-    await Api.call(functionName: "unregister", parameters: parameters)
-        .then((_) => {
-          debugPrint("User [$attendee] unregistered from lesson with id [$lessonId]")
-        });
-  }
-
-  Future<void> clearLesson(String lessonId) async {
-    var parameters = {
-      'lessonId': lessonId,
-    };
-
-    await Api.call(functionName: "clear", parameters: parameters)
-        .then((_) => {
-      debugPrint("Lesson with id [$lessonId], cleared")
+      debugPrint("User accepted from lesson with id [$lessonId]")
     });
   }
 }
