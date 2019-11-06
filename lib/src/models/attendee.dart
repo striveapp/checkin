@@ -29,6 +29,6 @@ class Attendee extends Equatable {
     return 'Attendee{name: $name, rank: $rank, imageUrl: $imageUrl, email: $email}';
   }
 
-  factory Attendee.fromMappedJson(Map<String, dynamic> json) => _$AttendeeFromJson(json);
+  factory Attendee.fromJson(Map<String, dynamic> json) => _$AttendeeFromJson(json);
   Map<String, dynamic> toJson() => _$AttendeeToJson(this);
 }

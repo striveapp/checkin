@@ -1,19 +1,17 @@
-import 'package:checkin/src/models/attendee.dart';
+import 'package:checkin/src/models/lesson.dart';
 import 'package:flutter/material.dart';
 
 import 'api.dart';
 
 class LessonApi {
-  Future<void> acceptAll(String lessonId, List<Attendee> attendees) async {
-    final attendeesPayload = attendees.map((attendee) => attendee.toJson()).toList();
+  Future<void> acceptAll(Lesson lesson) async {
     var parameters = {
-      'lessonId': lessonId,
-      'attendees': attendeesPayload
+      'lesson': lesson.toJson(),
     };
 
     await Api.call(functionName: "acceptAll", parameters: parameters)
         .then((_) => {
-      debugPrint("User accepted from lesson with id [$lessonId]")
+      debugPrint("User accepted from lesson with id [${lesson.id}]")
     });
   }
 }

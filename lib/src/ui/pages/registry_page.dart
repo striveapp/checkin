@@ -69,7 +69,7 @@ class _RegistryState extends State<RegistryPage> {
           var _onPressRegisterClass;
           var _onPressUnregisterClass;
 
-          if (state is RegistryUninitialized) {
+          if (state is RegistryUninitialized || state is RegistryLoading ) {
             return LoadingIndicator();
           }
 
@@ -96,7 +96,7 @@ class _RegistryState extends State<RegistryPage> {
             if (currentLesson.attendees != null) {
               _onPressedAcceptAll = currentLesson.attendees.isNotEmpty
                   ? () => _registryBloc.dispatch(ConfirmAttendees(
-                  lessonId: lessonId, attendees: currentLesson.attendees))
+                  lesson: currentLesson))
                   : null;
             }
 

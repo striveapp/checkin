@@ -52,7 +52,8 @@ class RegistryBloc extends Bloc<RegistryEvent, RegistryState> {
     // and remove logic from the UI
     if (event is ConfirmAttendees) {
       try {
-        await this.lessonRepository.acceptAll(event.lessonId, event.attendees);
+        yield RegistryLoading();
+        await this.lessonRepository.acceptAll(event.lesson);
       } catch(e) {
         print(e);
       }

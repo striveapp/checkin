@@ -88,17 +88,18 @@ void main() {
           "and clear the lesson", () async {
         final expectedState = [
           RegistryUninitialized(),
+          RegistryLoading()
         ];
 
         registryBloc.dispatch(ConfirmAttendees(
-            lessonId: fakeLessonId, attendees: fakeLesson.attendees));
+            lesson: fakeLesson));
 
         await expectLater(
           registryBloc.state,
           emitsInOrder(expectedState),
         );
 
-        verify(mockLessonRepository.acceptAll(fakeLessonId, fakeLesson.attendees));
+        verify(mockLessonRepository.acceptAll(fakeLesson));
       });
     });
 

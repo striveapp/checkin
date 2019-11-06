@@ -10,6 +10,11 @@ class RegistryUninitialized extends RegistryState {
   String toString() => 'RegistryUninitialized';
 }
 
+class RegistryLoading extends RegistryState {
+  @override
+  String toString() => 'RegistryLoading';
+}
+
 class RegistryError extends RegistryState {
   @override
   String toString() => 'RegistryError';

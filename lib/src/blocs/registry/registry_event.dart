@@ -59,13 +59,11 @@ class Unregister extends RegistryEvent {
 
 
 class ConfirmAttendees extends RegistryEvent {
-  String lessonId;
-  List<Attendee> attendees;
+  Lesson lesson;
 
   ConfirmAttendees({
-    this.lessonId,
-    this.attendees,
-  }) : super([lessonId, attendees]);
+    this.lesson,
+  }) : super([lesson]);
   @override
   String toString() => 'ConfirmAttendees';
 }

@@ -1,8 +1,12 @@
 import 'package:equatable/equatable.dart';
+import 'package:json_annotation/json_annotation.dart';
 
 import 'attendee.dart';
 import 'master.dart';
 
+part 'lesson.g.dart';
+
+@JsonSerializable(explicitToJson: true)
 class Lesson extends Equatable {
   final String id;
   final String name;
@@ -27,4 +31,7 @@ class Lesson extends Equatable {
 
     return attendees.any( (attendee) => attendee.email == email );
   }
+
+  factory Lesson.fromMappedJson(Map<String, dynamic> json) => _$LessonFromJson(json);
+  Map<String, dynamic> toJson() => _$LessonToJson(this);
 }

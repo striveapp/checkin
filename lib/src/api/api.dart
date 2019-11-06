@@ -11,9 +11,11 @@ class Api {
           .call(parameters)
           .then((result) {
         debugPrint("Sucesfully invoke Function ($functionName)");
-      }).catchError(( error) {
+      }).catchError((error) {
         debugPrint("Function ($functionName) got an error");
-        debugPrint("Message: ${error.message}, Stacktrace:\n }");
+        debugPrint("Message: ${error?.message}");
+//        debugPrint("Message: ${error.stackTrace}, Stacktrace:\n }");
         throw error;
+
       });
 }

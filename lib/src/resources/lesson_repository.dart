@@ -22,6 +22,6 @@ class LessonRepository {
   Future<void> unregister(String lessonId, Attendee attendee) =>
       _lessonProvider.unregister(lessonId, attendee);
 
-  Future<void> acceptAll(String lessonId, List<Attendee> attendees) =>
-      _lessonApi.acceptAll(lessonId, attendees);
+  Future<void> acceptAll(Lesson lesson) =>
+      _lessonApi.acceptAll(lesson);
 }

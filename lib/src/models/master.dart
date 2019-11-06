@@ -1,7 +1,11 @@
 import 'package:checkin/src/models/user.dart';
 import 'package:equatable/equatable.dart';
+import 'package:json_annotation/json_annotation.dart';
 import 'package:meta/meta.dart';
 
+part 'master.g.dart';
+
+@JsonSerializable()
 class Master extends Equatable {
   final String name;
   final String imageUrl;
@@ -23,5 +27,7 @@ class Master extends Equatable {
     return 'Master{name: $name, imageUrl: $imageUrl, email: $email}';
   }
 
+  factory Master.fromJson(Map<String, dynamic> json) => _$MasterFromJson(json);
+  Map<String, dynamic> toJson() => _$MasterToJson(this);
 
 }
