@@ -1,4 +1,5 @@
 import 'package:checkin/src/models/attendee.dart';
+import 'package:checkin/src/ui/components/class_counter.dart';
 import 'package:checkin/src/ui/components/user_image.dart';
 import 'package:flutter/material.dart';
 
@@ -10,21 +11,20 @@ class AttendeeTile extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return Column(
+      crossAxisAlignment: CrossAxisAlignment.center,
       children: <Widget>[
         Padding(
-          padding: const EdgeInsets.only(top: 8.0),
+          padding: const EdgeInsets.symmetric(vertical: 8.0),
           child: ListTile(
             key: Key("tile-${attendee.email}"),
             leading: UserImage(
               userImage: attendee.imageUrl,
-              width: 50,
-              height: 50,
             ),
             title: Padding(
-              padding: EdgeInsets.symmetric(horizontal: 45),
+              padding: const EdgeInsets.only(left: 6),
               child: Text(
                 attendee.name,
-                style: TextStyle(fontWeight: FontWeight.w400, fontSize: 18),
+                style: Theme.of(context).textTheme.subtitle,
               ),
             ),
             onTap: () async {
@@ -33,7 +33,6 @@ class AttendeeTile extends StatelessWidget {
             },
           ),
         ),
-        Divider()
       ],
     );
   }

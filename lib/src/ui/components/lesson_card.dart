@@ -99,4 +99,4 @@ String _capitalize(String s) => s[0].toUpperCase() + s.substring(1);
 
 //TODO this should be configurable
 double _getFullPercentage(int numberOfAttendees) =>
-    (numberOfAttendees * 100 / 30) / 100;
+    (numberOfAttendees * 100 / 20) / 100;
