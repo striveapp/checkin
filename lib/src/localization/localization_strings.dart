@@ -21,7 +21,11 @@ const String EmptyClass = 'empty_class',
     SwipeToRemove = 'swipe_to_remove',
     NameHint = "name_hint",
     Teacher = "teacher",
-    AndOthers = "and_others";
+    AndOthers = "and_others",
+    And = "and",
+    By = "by",
+    You = "you"
+;
 
 final es = {
   EmptyClass: 'Nadie en clase todavía',
@@ -31,8 +35,8 @@ final es = {
   Registry: 'Registro',
   AcceptAll: 'Aceptar todos',
   Logout: 'Desconectar',
-  RegisterClass: 'Apuntarse',
-  UnregisterClass: 'Despuntarse',
+  RegisterClass: 'Apuntarse a clase',
+  UnregisterClass: 'Despuntarse de clase',
   Status: 'Status',
   Classes: 'Clases',
   LoginFailed: 'No se pudo conectar. Inténtelo de nuevo porfavor.',
@@ -48,6 +52,9 @@ final es = {
   NameHint: 'Intorduzca su nombre',
   Teacher: 'Profesores',
   AndOthers: 'y otros',
+  And: 'y',
+  By: 'Por',
+  You: 'Tú',
 };
 
 final en = {
@@ -58,8 +65,8 @@ final en = {
   Registry: 'Registry',
   AcceptAll: 'Accept all',
   Logout: 'Logout',
-  RegisterClass: 'Register',
-  UnregisterClass: 'Unregister',
+  RegisterClass: 'Register to class',
+  UnregisterClass: 'Unregister to class',
   Status: 'Status',
   Classes: 'Classes',
   LoginFailed: 'Login Failed. Please try again',
@@ -75,4 +82,7 @@ final en = {
   NameHint: 'Enter your name',
   Teacher: 'Teachers',
   AndOthers: 'and others',
+  And: 'and',
+  By: 'By',
+  You: 'You',
 };

@@ -3,6 +3,7 @@ import 'package:checkin/src/blocs/user/bloc.dart';
 import 'package:checkin/src/localization/localization.dart';
 import 'package:checkin/src/models/attendee.dart';
 import 'package:checkin/src/models/lesson.dart';
+import 'package:checkin/src/models/user.dart';
 import 'package:checkin/src/resources/lesson_repository.dart';
 import 'package:checkin/src/resources/user_repository.dart';
 import 'package:checkin/src/ui/components/attendees_list.dart';
@@ -10,10 +11,10 @@ import 'package:checkin/src/ui/components/base_app_bar.dart';
 import 'package:checkin/src/ui/components/loading_indicator.dart';
 import 'package:checkin/src/ui/components/lesson_infos.dart';
 import 'package:checkin/src/ui/components/attendees_counter.dart';
+import 'package:checkin/src/ui/components/registry_controls.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter/widgets.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
-
 
 class RegistryPage extends StatefulWidget {
   RegistryPage({
@@ -58,38 +59,71 @@ class _RegistryState extends State<RegistryPage> {
           }
 
           if (state is RegistryLoaded) {
+            //TODO: should refactor to never use _userBloc.currentState, are we reactive yet?
+            User currentUser =
+                (_userBloc.currentState as UserSuccess).currentUser;
             Lesson currentLesson = state.lesson;
 
             return Container(
                 child: Padding(
-                  padding: EdgeInsets.only(top: 30, left: 15, right: 15),
-                  child: Column(
-                      children: [
-                    Padding(
-                      padding: EdgeInsets.only(bottom: 25),
-                      child: LessonInfos(lesson: currentLesson,),
+              padding: EdgeInsets.symmetric(horizontal: 10),
+              child: Column(
+                  mainAxisAlignment: MainAxisAlignment.spaceAround,
+                  children: [
+                    LessonInfos(
+                      lesson: currentLesson,
                     ),
                     Column(
+                      mainAxisAlignment: MainAxisAlignment.spaceAround,
                       children: <Widget>[
                         Padding(
-                          padding: EdgeInsets.symmetric(horizontal: 10),
-                          child: AttendeesCounter(attendees: currentLesson.attendees),
+                          padding: EdgeInsets.symmetric(horizontal: 5),
+                          child: AttendeesCounter(
+                              attendees: currentLesson.attendees),
                         ),
-                        Padding(
-                          padding: EdgeInsets.symmetric(vertical: 10),
-                          child: AttendeesList(
-                            attendeeList: currentLesson.attendees ?? [],
-                            isOwner: _isOwnerUser(),
-                            lessonId: lessonId,
-                            removeAttendee: (Attendee attendee) {
-                              _removeAttendee(lessonId, attendee);
-                            },
-                          ),
+                        SizedBox(
+                          height: 10,
                         ),
+                        AttendeesList(
+                          isOwner: currentUser.isOwner,
+                          isClassEmpty: _isClassEmpty(currentLesson),
+                          isUserInClass:
+                              _isUserInClass(currentLesson, currentUser),
+                          attendeesList: currentLesson.attendees
+                              .where((attendee) =>
+                                  attendee.email != currentUser.email)
+                              .toList(),
+                          lessonId: lessonId,
+                          currentUser: currentUser,
+                          removeAttendee: (Attendee attendee) {
+                            _removeAttendee(lessonId, attendee);
+                          },
+                        ),
+                        SizedBox(
+                          height: 20,
+                        ),
+                        RegistryControls(
+                          isOwner: currentUser.isOwner,
+                          isUserInClass:
+                              _isUserInClass(currentLesson, currentUser),
+                          onPressRegisterClass: () {
+                            _addAttendee(
+                                lessonId, Attendee.fromUser(currentUser));
+                          },
+                          onPressUnregisterClass: () {
+                            _removeAttendee(
+                                lessonId, Attendee.fromUser(currentUser));
+                          },
+                          onPressedAcceptAll: !_isClassEmpty(currentLesson)
+                              ? () {
+                                  _acceptAll(currentLesson);
+                                }
+                              : null,
+                        )
                       ],
                     ),
                   ]),
-                ));
+            ));
           }
           return ErrorWidget('Unknown State received in: registry_page');
         },
@@ -97,20 +131,29 @@ class _RegistryState extends State<RegistryPage> {
     );
   }
 
-  void _removeAttendee(lessonId, Attendee attendee) {
-    _registryBloc.dispatch(Unregister(
-        lessonId: lessonId,
-        attendee: attendee));
+  //TODO: this will not work if the user changes his infos first and then attempt to unregister
+  void _removeAttendee(String lessonId, Attendee attendee) {
+    _registryBloc.dispatch(Unregister(lessonId: lessonId, attendee: attendee));
   }
 
-  bool _isOwnerUser() {
-    return (_userBloc.currentState as UserSuccess).currentUser.isOwner;
+  void _addAttendee(String lessonId, Attendee attendee) {
+    _registryBloc.dispatch(Register(lessonId: lessonId, attendee: attendee));
+  }
+
+  void _acceptAll(Lesson lesson) {
+    _registryBloc.dispatch(ConfirmAttendees(lesson: lesson));
+  }
+
+  bool _isUserInClass(Lesson currentLesson, User currentUser) {
+    return currentLesson.containsUser(currentUser.email);
+  }
+
+  bool _isClassEmpty(Lesson currentLesson) {
+    return currentLesson.attendees.length == 0;
   }
 
   @override
   void dispose() {
-    // todo capire meglio il problema Unhandled Exception: Bad state: Cannot add new events after calling close
-    // è risuccesso da indagare!
     super.dispose();
     _registryBloc.dispose();
   }

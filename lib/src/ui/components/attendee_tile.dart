@@ -1,12 +1,17 @@
+import 'package:checkin/src/localization/localization.dart';
 import 'package:checkin/src/models/attendee.dart';
-import 'package:checkin/src/ui/components/class_counter.dart';
 import 'package:checkin/src/ui/components/user_image.dart';
 import 'package:flutter/material.dart';
 
 class AttendeeTile extends StatelessWidget {
   final Attendee attendee;
+  final bool isCurrent;
 
-  const AttendeeTile({Key key, @required this.attendee}) : super(key: key);
+  const AttendeeTile({
+    Key key,
+    @required this.attendee,
+    this.isCurrent=false,
+  }) : super(key: key);
 
   @override
   Widget build(BuildContext context) {
@@ -23,8 +28,10 @@ class AttendeeTile extends StatelessWidget {
             title: Padding(
               padding: const EdgeInsets.only(left: 6),
               child: Text(
-                attendee.name,
-                style: Theme.of(context).textTheme.subtitle,
+                "${attendee.name}${this.isCurrent ? " (${Localization.of(context).you})": ""}",
+                style: this.isCurrent ?
+                  Theme.of(context).textTheme.subtitle.apply(color: Theme.of(context).accentColor) :
+                  Theme.of(context).textTheme.subtitle
               ),
             ),
             onTap: () async {

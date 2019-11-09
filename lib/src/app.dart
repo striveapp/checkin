@@ -76,6 +76,12 @@ class _AppState extends State<App> {
           fontFamily: 'Raleway',
           primaryColor: Color(0xFF242966),
           accentColor: Color(0xFF1B3FE3),
+          buttonTheme: ButtonThemeData(
+            buttonColor: Color(0xFF5770FF),
+            disabledColor: Color(0xFFBBBBBB),
+            height: 48,
+            shape: RoundedRectangleBorder(borderRadius: new BorderRadius.circular(4.0))
+          ),
           textTheme: TextTheme(
             headline: TextStyle(
               fontSize: 24.0,
@@ -106,6 +112,12 @@ class _AppState extends State<App> {
               fontWeight: FontWeight.w400,
               color: Color(0xFF2F54FC),
               letterSpacing: 0.4,
+            ),
+            button: TextStyle(
+              fontSize: 15.0,
+              fontWeight: FontWeight.w600,
+              color: Colors.white,
+              letterSpacing: 1.25,
             ),
           ),
         ),

@@ -1,3 +1,4 @@
+import 'package:checkin/src/localization/localization.dart';
 import 'package:checkin/src/models/lesson.dart';
 import 'package:checkin/src/models/master.dart';
 import 'package:checkin/src/ui/components/user_image.dart';
@@ -29,11 +30,11 @@ class LessonInfos extends StatelessWidget {
                   .apply(color: Colors.black87),
             ),
             Text(
-              "By ${lesson.masters[0].name}",
+              "${Localization.of(context).by} ${lesson.masters[0].name}",
               style: Theme.of(context).textTheme.subtitle,
             ),
             if (lesson.masters.length > 1)
-              Text("and ${getOtherMasterNames(lesson.masters)}",
+              Text("${Localization.of(context).and} ${getOtherMasterNames(lesson.masters)}",
                   style: Theme.of(context).textTheme.subtitle),
           ],
         )

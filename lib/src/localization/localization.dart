@@ -46,6 +46,9 @@ class Localization {
   String get nameHint => getValue(NameHint);
   String get teacher => getValue(Teacher);
   String get andOthers => getValue(AndOthers);
+  String get and => getValue(And);
+  String get by => getValue(By);
+  String get you => getValue(You);
 }
 
 class LocalizationDelegate extends LocalizationsDelegate<Localization> {
