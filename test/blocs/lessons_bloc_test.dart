@@ -1,21 +1,27 @@
 import 'package:checkin/src/blocs/lessons/bloc.dart';
 import 'package:checkin/src/models/lesson.dart';
 import 'package:checkin/src/resources/lesson_repository.dart';
+import 'package:checkin/src/util.dart';
 import 'package:mockito/mockito.dart';
 import 'package:test/test.dart';
 
 class MockLessonRepository extends Mock implements LessonRepository {}
+class MockDateUtil extends Mock implements DateUtil {}
 
 void main() {
   group("LessonsBloc", () {
     LessonsBloc lessonsBloc;
     MockLessonRepository mockLessonRepository;
+    MockDateUtil mockDateUtil;
+    String today = "10 Nov";
     setUp(() {
       mockLessonRepository = MockLessonRepository();
+      mockDateUtil = MockDateUtil();
       when(mockLessonRepository.getLessonsForToday()).thenAnswer((_) {
         return Stream<List<Lesson>>.empty();
       });
-      lessonsBloc = LessonsBloc(lessonRepository: mockLessonRepository);
+      when(mockDateUtil.getToday()).thenReturn(today);
+      lessonsBloc = LessonsBloc(lessonRepository: mockLessonRepository, dateUtil: mockDateUtil);
     });
 
     test("initial state is ProfileUninitialized", () {
@@ -49,7 +55,7 @@ void main() {
             LessonsUninitialized(),
             LessonsLoaded(lessons: [
               lesson,
-            ]),
+            ], day: today),
           ];
 
           expectLater(
@@ -75,7 +81,7 @@ void main() {
 
           final expectedState = [
             LessonsUninitialized(),
-            LessonsLoaded(lessons: orderdLessons),
+            LessonsLoaded(lessons: orderdLessons, day: today),
           ];
 
           expectLater(

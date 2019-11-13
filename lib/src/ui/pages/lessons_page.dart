@@ -6,6 +6,7 @@ import 'package:checkin/src/ui/components/base_app_bar.dart';
 import 'package:checkin/src/ui/components/days_picker.dart';
 import 'package:checkin/src/ui/components/lesson_card.dart';
 import 'package:checkin/src/ui/components/loading_indicator.dart';
+import 'package:checkin/src/util.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter/widgets.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
@@ -26,12 +27,12 @@ class _LessonsState extends State<LessonsPage> {
   UserBloc get _userBloc => widget.userBloc;
 
   final LessonRepository _lessonRepository = LessonRepository();
-
+  final DateUtil _dateUtil = DateUtil();
   LessonsBloc _lessonsBloc;
   @override
   void initState() {
     super.initState();
-    _lessonsBloc = LessonsBloc(lessonRepository: _lessonRepository);
+    _lessonsBloc = LessonsBloc(lessonRepository: _lessonRepository, dateUtil: _dateUtil);
   }
 
   @override

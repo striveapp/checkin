@@ -3,6 +3,7 @@ import 'dart:async';
 import 'package:bloc/bloc.dart';
 import 'package:checkin/src/models/lesson.dart';
 import 'package:checkin/src/resources/lesson_repository.dart';
+import 'package:checkin/src/util.dart';
 import 'package:flutter/foundation.dart';
 import 'package:meta/meta.dart';
 import 'package:intl/intl.dart';
@@ -11,10 +12,12 @@ import 'bloc.dart';
 
 class LessonsBloc extends Bloc<LessonsEvent, LessonsState> {
   final LessonRepository lessonRepository;
+  final DateUtil dateUtil;
   StreamSubscription<List<Lesson>> lessonsSub;
 
   LessonsBloc({
     @required this.lessonRepository,
+    this.dateUtil,
   }) {
     lessonsSub = this.lessonRepository.getLessonsForToday().listen((lessons) {
       dispatch(LessonsUpdated(lessons: lessons));
@@ -29,7 +32,7 @@ class LessonsBloc extends Bloc<LessonsEvent, LessonsState> {
     if (event is LessonsUpdated) {
       try {
         if (event.lessons.length > 0) {
-          yield LessonsLoaded(lessons: _sortLessonsByTime(event.lessons), day: _getToday());
+          yield LessonsLoaded(lessons: _sortLessonsByTime(event.lessons), day: dateUtil.getToday());
         } else {
           yield LessonsLoadedEmpty();
         }
@@ -48,12 +51,6 @@ class LessonsBloc extends Bloc<LessonsEvent, LessonsState> {
 
     return DateTime.parse('$todayDate $time:00');
   }
-
-  _getToday() {
-    DateTime now = DateTime.now();
-    return DateFormat('dd MMM').format(now);
-  }
-
   @override
   void dispose() {
     lessonsSub.cancel();
