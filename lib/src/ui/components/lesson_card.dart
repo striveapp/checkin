@@ -1,6 +1,7 @@
 import 'package:checkin/src/config.dart' as config;
 import 'package:checkin/src/localization/localization.dart';
 import 'package:checkin/src/models/lesson.dart';
+import 'package:checkin/src/ui/components/attendees_preview.dart';
 import 'package:checkin/src/ui/components/user_image.dart';
 import 'package:flutter/material.dart';
 
@@ -55,24 +56,9 @@ class LessonCard extends StatelessWidget {
                     if (lesson.attendees.length > 0)
                       Padding(
                         padding: const EdgeInsets.only(top: 14),
-                        child: Row(
-                          children: <Widget>[
-                            ...lesson.attendees
-                                .take(5)
-                                .map((attendee) => Padding(
-                                      padding: const EdgeInsets.only(right: 10),
-                                      child: UserImage(
-                                        userImage: attendee.imageUrl,
-                                        width: MediaQuery.of(context).size.width * 0.06,
-                                        height: MediaQuery.of(context).size.width * 0.06,
-                                      ),
-                                    ))
-                                ?.toList(),
-                            if (lesson.attendees.length > 5)
-                              Text(
-                                  "${Localization.of(context).andOthers} ${lesson.attendees.length - 5}",
-                                  style: Theme.of(context).textTheme.display1)
-                          ],
+                        child: AttendeesPreview(
+                          lesson: lesson,
+                          maxAttendeesToDisplay: 5,
                         ),
                       ),
                     if (lesson.attendees.length == 0)
