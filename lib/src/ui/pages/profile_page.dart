@@ -32,7 +32,7 @@ class ProfilePage extends StatefulWidget {
 _getAppBarColor(String grade) {
   switch (grade) {
     case 'White':
-      return Colors.white;
+      return Colors.white10;
     case 'Blue':
       return Colors.blueAccent;
     case 'Purple':

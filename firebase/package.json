@@ -7,7 +7,8 @@
     "pretest": "tsc",
     "test": "mocha",
     "deploy:all": "firebase deploy",
-    "deploy:lessons-api": "firebase deploy --only functions:acceptAll"
+    "deploy:lessons-api": "firebase deploy --only functions:acceptAll",
+    "deploy:rules": "firebase deploy --only firestore:rules"
   },
   "devDependencies": {
     "@firebase/testing": "^0.11.4",

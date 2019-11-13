@@ -65,7 +65,7 @@ npm run deploy:lessons-api
 
 ### Only rules
 ```
-firebase deploy --only firestore:rules
+npm run deploy:rules
 ```
 
 ## Switch to env dev
