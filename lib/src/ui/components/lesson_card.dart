@@ -20,6 +20,7 @@ class LessonCard extends StatelessWidget {
           height: 180,
           padding: EdgeInsets.only(top: 15.0),
           child: Card(
+              key: Key(lesson.name),
               color: Colors.white,
               margin: EdgeInsets.symmetric(horizontal: 20),
               child: Padding(

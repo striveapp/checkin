@@ -19,6 +19,7 @@ class DaysPicker extends StatelessWidget {
         children: <Widget>[
           Text(
             Localization.of(context).today,
+            key: Key('todaysClassesText'),
             style: Theme.of(context).textTheme.title,
           ),
           Text(

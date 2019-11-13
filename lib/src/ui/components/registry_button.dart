@@ -17,7 +17,6 @@ class RegistryButton extends StatelessWidget {
     return SizedBox(
       width: double.infinity,
       child: RaisedButton(
-        key: this.key,
         color: this.color,
         child: Text(
           this.text.toUpperCase(),

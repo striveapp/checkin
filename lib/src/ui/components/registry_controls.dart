@@ -29,11 +29,13 @@ class RegistryControls extends StatelessWidget {
         : (
         this.isUserInClass ?
           RegistryButton(
+            key: Key('unregisterClass'),
             text: Localization.of(context).unregisterClass,
             color: Color(0xFFEF5350),
             onPressed: this.onPressUnregisterClass,
           ) :
           RegistryButton(
+            key: Key('registerClass'),
             text: Localization.of(context).registerClass,
             onPressed: this.onPressRegisterClass,
           )
