@@ -27,6 +27,10 @@ class AttendeesList extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
+    var attendeeListWithoutUser = attendeesList
+        .where((attendee) => attendee.email != currentUser.email)
+        .toList();
+
     return Card(
       key: this.isClassEmpty ? Key('emptyClassCard') : Key('attendeeList'),
       margin: EdgeInsets.zero,
@@ -53,10 +57,10 @@ class AttendeesList extends StatelessWidget {
           ListView.builder(
               scrollDirection: Axis.vertical,
               shrinkWrap: true,
-              itemCount: attendeesList.length,
+              itemCount: attendeeListWithoutUser.length,
               itemBuilder: (BuildContext context, int index) {
-                if (index < attendeesList.length) {
-                  final attendee = attendeesList[index];
+                if (index < attendeeListWithoutUser.length) {
+                  final attendee = attendeeListWithoutUser[index];
                   return isOwner
                       ? Dismissible(
                     //TODO: this should be changed with ID instead

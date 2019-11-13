@@ -89,10 +89,7 @@ class _RegistryState extends State<RegistryPage> {
                           isClassEmpty: _isClassEmpty(currentLesson),
                           isUserInClass:
                               _isUserInClass(currentLesson, currentUser),
-                          attendeesList: currentLesson.attendees
-                              .where((attendee) =>
-                                  attendee.email != currentUser.email)
-                              .toList(),
+                          attendeesList: currentLesson.attendees,
                           lessonId: lessonId,
                           currentUser: currentUser,
                           removeAttendee: (Attendee attendee) {
