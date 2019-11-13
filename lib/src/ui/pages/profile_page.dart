@@ -1,3 +1,5 @@
+import 'package:checkin/src/blocs/auth/auth_bloc.dart';
+import 'package:checkin/src/blocs/auth/bloc.dart';
 import 'package:checkin/src/blocs/profile/bloc.dart';
 import 'package:checkin/src/blocs/user/bloc.dart';
 import 'package:checkin/src/localization/localization.dart';
@@ -10,6 +12,8 @@ import 'package:checkin/src/ui/components/user_image.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter/widgets.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
+
+import '../../util.dart';
 
 class ProfilePage extends StatefulWidget {
   final String email;
@@ -44,10 +48,12 @@ class _ProfileState extends State<ProfilePage> {
   bool _isEditing;
   ProfileBloc _profileBloc;
   UserBloc _userBloc;
+  AuthBloc _authBloc;
 
   @override
   void initState() {
     _isEditing = false;
+    _authBloc = BlocProvider.of<AuthBloc>(context);
     _userBloc = BlocProvider.of<UserBloc>(context);
     _profileBloc = ProfileBloc(
         userRepository: UserRepository(), profileEmail: widget.email);
@@ -153,7 +159,21 @@ class _ProfileState extends State<ProfilePage> {
                       Padding(
                         padding: const EdgeInsets.symmetric(vertical: 50),
                         child: ClassCounter(counter: profileUser.counter),
-                      )
+                      ),
+                      if (isInDebugMode && _isCurrentUser(profileUser))
+                        RaisedButton(
+                          key: Key('logoutButton'),
+                          color: Colors.red,
+                          child: Text(Localization.of(context).logout,
+                              style: TextStyle(
+                                  fontSize: 18,
+                                  color: Colors.white,
+                                  fontWeight: FontWeight.w600)),
+                          onPressed: () {
+                            Navigator.popUntil(context, ModalRoute.withName(Navigator.defaultRouteName));
+                            _authBloc.dispatch(LogOut());
+                          },
+                        ),
                     ]))));
           }
           return ErrorWidget('Unknown State received in: profile_page');
