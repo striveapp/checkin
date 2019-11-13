@@ -1,3 +1,4 @@
+import 'package:checkin/src/config.dart' as config;
 import 'package:checkin/src/localization/localization.dart';
 import 'package:checkin/src/models/lesson.dart';
 import 'package:checkin/src/ui/components/user_image.dart';
@@ -99,4 +100,4 @@ String _capitalize(String s) => s[0].toUpperCase() + s.substring(1);
 
 //TODO this should be configurable
 double _getFullPercentage(int numberOfAttendees) =>
-    (numberOfAttendees * 100 / 20) / 100;
+    (numberOfAttendees * 100 / config.CLASS_CAPACITY) / 100;

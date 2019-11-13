@@ -1,3 +1,4 @@
+import 'package:checkin/src/config.dart' as config;
 import 'package:checkin/src/models/attendee.dart';
 import 'package:flutter/material.dart';
 
@@ -25,5 +26,5 @@ class AttendeesCounter extends StatelessWidget {
 
   //TODO this should be configurable
   String _getFullPercentage(int numberOfAttendees) =>
-      (numberOfAttendees * 100 / 20).toStringAsFixed(0) + "%";
+      (numberOfAttendees * 100 / config.CLASS_CAPACITY).toStringAsFixed(0) + "%";
 }
