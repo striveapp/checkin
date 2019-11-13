@@ -32,7 +32,7 @@ class Localization {
   String get registerClass => getValue(RegisterClass);
   String get unregisterClass => getValue(UnregisterClass);
   String get status => getValue(Status);
-  String get lessons => getValue(Classes);
+  String get classes => getValue(Classes);
   String get loginFailed => getValue(LoginFailed);
   String get whiteGrade => getValue(WhiteGrade);
   String get blueGrade => getValue(BlueGrade);

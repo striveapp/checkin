@@ -45,7 +45,7 @@ class _LessonsState extends State<LessonsPage> {
   Widget build(BuildContext context) {
     return Scaffold(
         appBar: BaseAppBar(
-          title: Localization.of(context).lessons,
+          title: Localization.of(context).classes,
           currentUser: (_userBloc.currentState as UserSuccess).currentUser,
         ),
         body: BlocBuilder(
