@@ -1,4 +1,5 @@
 import 'package:checkin/src/config.dart' as config;
+import 'package:checkin/src/localization/localization.dart';
 import 'package:checkin/src/models/attendee.dart';
 import 'package:flutter/material.dart';
 
@@ -17,7 +18,7 @@ class AttendeesCounter extends StatelessWidget {
           "Attendees (${attendees.length})",
           style: Theme.of(context).textTheme.title,
         ),
-        Text("${_getFullPercentage(attendees.length)} full",
+        Text("${_getFullPercentage(attendees.length)} ${Localization.of(context).full}",
             style:
                 Theme.of(context).textTheme.display1.apply(fontWeightDelta: 3))
       ],

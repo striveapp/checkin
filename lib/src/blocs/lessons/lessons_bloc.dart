@@ -34,7 +34,7 @@ class LessonsBloc extends Bloc<LessonsEvent, LessonsState> {
         if (event.lessons.length > 0) {
           yield LessonsLoaded(lessons: _sortLessonsByTime(event.lessons), day: dateUtil.getToday());
         } else {
-          yield LessonsLoadedEmpty();
+          yield LessonsLoadedEmpty(day: dateUtil.getToday());
         }
       } catch (e) {
         print(e);

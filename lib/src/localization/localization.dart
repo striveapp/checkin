@@ -49,6 +49,7 @@ class Localization {
   String get and => getValue(And);
   String get by => getValue(By);
   String get you => getValue(You);
+  String get full => getValue(Full);
 }
 
 class LocalizationDelegate extends LocalizationsDelegate<Localization> {

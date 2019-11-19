@@ -30,6 +30,12 @@ class LessonsLoaded extends LessonsState {
 }
 
 class LessonsLoadedEmpty extends LessonsState {
+  final String day;
+
+  LessonsLoadedEmpty({
+    this.day
+  }) : super([day]);
+
   @override
   String toString() => 'LessonsLoadedEmpty';
 }

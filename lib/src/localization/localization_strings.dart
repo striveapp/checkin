@@ -24,7 +24,8 @@ const String EmptyClass = 'empty_class',
     AndOthers = "and_others",
     And = "and",
     By = "by",
-    You = "you"
+    You = "you",
+    Full = "full"
 ;
 
 final es = {
@@ -55,6 +56,7 @@ final es = {
   And: 'y',
   By: 'Por',
   You: 'Tú',
+  Full: 'lleno',
 };
 
 final en = {
@@ -85,4 +87,5 @@ final en = {
   And: 'and',
   By: 'By',
   You: 'You',
+  Full: 'full',
 };

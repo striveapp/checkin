@@ -6,6 +6,7 @@ import 'package:checkin/src/ui/components/base_app_bar.dart';
 import 'package:checkin/src/ui/components/days_picker.dart';
 import 'package:checkin/src/ui/components/lesson_card.dart';
 import 'package:checkin/src/ui/components/loading_indicator.dart';
+import 'package:checkin/src/ui/components/no_lessons_banner.dart';
 import 'package:checkin/src/util.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter/widgets.dart';
@@ -77,20 +78,17 @@ class _LessonsState extends State<LessonsPage> {
                 );
               }
               if (state is LessonsLoadedEmpty) {
-                return Container(
-                  alignment: Alignment.center,
-                  decoration: BoxDecoration(
-                      borderRadius: BorderRadius.only(
-                          topLeft: Radius.circular(10.0),
-                          topRight: Radius.circular(10.0))),
-                  child: Text(
-                    Localization.of(context).noClasses,
-                    key: Key('noClassesText'),
-                    style: TextStyle(
-                        fontStyle: FontStyle.normal,
-                        fontWeight: FontWeight.bold,
-                        fontFamily: 'Roboto',
-                        fontSize: 28.0),
+                return Padding(
+                  padding: const EdgeInsets.only(top: 40),
+                  child: Container(
+                    height: MediaQuery.of(context).size.height * 0.4,
+                    child: Column(
+                      mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                      children: <Widget>[
+                        DaysPicker(day: state.day),
+                        NoLessonsBanner(),
+                      ],
+                    ),
                   ),
                 );
               }
