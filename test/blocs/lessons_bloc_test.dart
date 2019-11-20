@@ -36,7 +36,7 @@ void main() {
 
             final expectedState = [
               LessonsUninitialized(),
-              LessonsLoadedEmpty(),
+              LessonsLoadedEmpty(day: today),
             ];
 
             expectLater(

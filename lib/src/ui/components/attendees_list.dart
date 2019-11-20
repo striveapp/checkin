@@ -36,7 +36,7 @@ class AttendeesList extends StatelessWidget {
       margin: EdgeInsets.zero,
       child: Container(
         constraints: BoxConstraints(
-            minHeight: MediaQuery.of(context).size.height * 0.53),
+            maxHeight: MediaQuery.of(context).size.height * 0.53),
         child: this.isClassEmpty
             ? Container(
                 alignment: Alignment(0, 0),
@@ -54,29 +54,31 @@ class AttendeesList extends StatelessWidget {
                 Divider()
               ],
             ),
-          ListView.builder(
-              scrollDirection: Axis.vertical,
-              shrinkWrap: true,
-              itemCount: attendeeListWithoutUser.length,
-              itemBuilder: (BuildContext context, int index) {
-                if (index < attendeeListWithoutUser.length) {
-                  final attendee = attendeeListWithoutUser[index];
-                  return isOwner
-                      ? Dismissible(
-                    //TODO: this should be changed with ID instead
-                      key: Key(attendee.email),
-                      direction: DismissDirection.endToStart,
-                      background: Container(
-                        color: Colors.red,
-                      ),
-                      onDismissed: (direction) {
-                        removeAttendee(attendee);
-                      },
-                      child: AttendeeTile(attendee: attendee))
-                      : AttendeeTile(attendee: attendee);
-                }
-                return null;
-              }),
+          Expanded(
+            child: ListView.builder(
+                scrollDirection: Axis.vertical,
+                shrinkWrap: true,
+                itemCount: attendeeListWithoutUser.length,
+                itemBuilder: (BuildContext context, int index) {
+                  if (index < attendeeListWithoutUser.length) {
+                    final attendee = attendeeListWithoutUser[index];
+                    return isOwner
+                        ? Dismissible(
+                      //TODO: this should be changed with ID instead
+                        key: Key(attendee.email),
+                        direction: DismissDirection.endToStart,
+                        background: Container(
+                          color: Colors.red,
+                        ),
+                        onDismissed: (direction) {
+                          removeAttendee(attendee);
+                        },
+                        child: AttendeeTile(attendee: attendee))
+                        : AttendeeTile(attendee: attendee);
+                  }
+                  return null;
+                }),
+          ),
         ],)
       ),
     );
