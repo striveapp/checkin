@@ -106,9 +106,10 @@ class NotificationsBloc extends Bloc<NotificationsEvent, NotificationsState> {
   }
 
   ActionNotification _mapMsgToMasterNotification(Map<String, dynamic> msg) {
+    var data = msg['data'] ?? msg;
     return ActionNotification(
-      msg['data']['type'],
-      msg['data']['lessonId'],
+      data['type'],
+      data['lessonId'],
     );
   }
 }
