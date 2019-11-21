@@ -22,10 +22,10 @@ dependencies:
   firebase_core: ^0.4.1+5
   firebase_auth: ^0.14.0+9
   firebase_crashlytics: ^0.0.4+8
-  firebase_messaging: ^5.1.2
+  firebase_messaging: ^5.1.8
   cloud_firestore: ^0.12.7+1
   cloud_functions: ^0.4.1+1
-  google_sign_in: ^4.0.1+1
+  google_sign_in: ^4.0.14
   rxdart: ^0.21.0
   bloc: ^0.12.0
   equatable: ^0.2.2
@@ -36,7 +36,7 @@ dependencies:
   json_annotation: ^3.0.0
 
 dev_dependencies:
-  test: ">=1.3.0 <2.0.0"
+  test: ">=1.6.3 <2.0.0"
   mockito: ^3.0.0
   firebase: ^5.0.0
   flutter_launcher_icons: "^0.7.0"
