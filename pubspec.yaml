@@ -33,7 +33,7 @@ dependencies:
   cached_network_image: ^1.1.1
   fluro: ^1.5.1
   platform: ^2.2.1
-  json_annotation: ^2.0.0
+  json_annotation: ^3.0.0
 
 dev_dependencies:
   test: ">=1.3.0 <2.0.0"
@@ -45,8 +45,10 @@ dev_dependencies:
   flutter_driver:
     sdk: flutter
   image_test_utils: ^1.0.0
-  build_runner: ^1.0.0
-  json_serializable: ^2.0.0
+  # build_runner is blocked at this version because requires a newer Dart SDK
+  build_runner: ^1.7.1
+  # build_runner is blocked at this version because requires a newer flutter_driver version
+  json_serializable: ^3.2.2
 flutter_icons:
   android: true
   ios: true

@@ -8,13 +8,14 @@ part of 'master.dart';
 
 Master _$MasterFromJson(Map<String, dynamic> json) {
   return Master(
-      name: json['name'] as String,
-      imageUrl: json['imageUrl'] as String,
-      email: json['email'] as String);
+    name: json['name'] as String,
+    imageUrl: json['imageUrl'] as String,
+    email: json['email'] as String,
+  );
 }
 
 Map<String, dynamic> _$MasterToJson(Master instance) => <String, dynamic>{
       'name': instance.name,
       'imageUrl': instance.imageUrl,
-      'email': instance.email
+      'email': instance.email,
     };

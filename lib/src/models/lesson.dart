@@ -32,6 +32,6 @@ class Lesson extends Equatable {
     return attendees.any( (attendee) => attendee.email == email );
   }
 
-  factory Lesson.fromMappedJson(Map<String, dynamic> json) => _$LessonFromJson(json);
+  factory Lesson.fromJson(Map<String, dynamic> json) => _$LessonFromJson(json);
   Map<String, dynamic> toJson() => _$LessonToJson(this);
 }
