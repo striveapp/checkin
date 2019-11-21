@@ -22,6 +22,7 @@ class LessonProvider {
         .where('weekDay', isEqualTo: today)
         .snapshots()
         .map((snapshot) => snapshot.documents
+            .where((doc) => doc.data['masters'] != null)
             .map((doc) => Lesson(
                 id: doc.documentID,
                 name: doc.data['name'],
@@ -34,7 +35,7 @@ class LessonProvider {
                           email: master['email'],
                           imageUrl: master['imageUrl'],
                         ))
-                    ?.toList() ?? [],
+                    ?.toList(),
                 attendees: (doc.data['attendees'] as List)
                     ?.map((attendee) => Attendee(
                         name: attendee['name'],
@@ -46,7 +47,9 @@ class LessonProvider {
   }
 
   Stream<Lesson> getLesson(String lessonId) {
-    return _firestore.collection(path).document(lessonId).snapshots().map(
+    return _firestore.collection(path).document(lessonId).snapshots()
+        .where((doc) => doc.data['masters'] != null)
+        .map(
         (doc) => Lesson(
             id: doc.documentID,
             name: doc.data['name'],
@@ -54,50 +57,22 @@ class LessonProvider {
             timeEnd: doc.data['timeEnd'],
             weekDay: doc.data['weekDay'],
             masters: (doc.data['masters'] as List)
-                ?.map((master) => Master(
-                      name: master['name'],
-                      email: master['email'],
-                      imageUrl: master['imageUrl'],
-                    ))
-                ?.toList() ?? [],
-            attendees: (doc.data['attendees'] as List)
-                ?.map((attendee) => Attendee(
-                    name: attendee['name'],
-                    rank: attendee["grade"],
-                    imageUrl: attendee["imageUrl"],
-                    email: attendee["email"]))
-                ?.toList() ?? []));
-  }
-
-  Stream<List<Lesson>> getLessonsOfMaster(Master currentMaster) {
-    return _firestore
-        .collection(path)
-        .where('masters', arrayContains: currentMaster)
-        .snapshots()
-        .map((snapshot) => snapshot.documents
-            .map((doc) => Lesson(
-                id: doc.documentID,
-                name: doc.data['name'],
-                timeStart: doc.data['timeStart'],
-                timeEnd: doc.data['timeEnd'],
-                weekDay: doc.data['weekDay'],
-                masters: (doc.data['masters'] as List)
                     ?.map((master) => Master(
                           name: master['name'],
                           email: master['email'],
                           imageUrl: master['imageUrl'],
                         ))
-                    ?.toList() ?? [],
-                attendees: (doc.data['attendees'] as List)
+                    ?.toList(),
+            attendees: (doc.data['attendees'] as List)
                     ?.map((attendee) => Attendee(
                         name: attendee['name'],
                         rank: attendee["grade"],
                         imageUrl: attendee["imageUrl"],
                         email: attendee["email"]))
-                    ?.toList() ?? []))
-            .toList());
+                    ?.toList() ??
+                []));
   }
-
+  
   Future<void> register(String lessonId, Attendee attendee) async {
     debugPrint("User [$attendee] attends lesson with id [$lessonId]");
     await _firestore.collection(path).document(lessonId).updateData({

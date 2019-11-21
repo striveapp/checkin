@@ -16,7 +16,7 @@ class LessonInfos extends StatelessWidget {
         Padding(
           padding: const EdgeInsets.only(right: 16),
           child: UserImage(
-            userImage: lesson.masters[0].imageUrl,
+            userImage: lesson.masters.first.imageUrl,
           ),
         ),
         Column(
@@ -30,7 +30,7 @@ class LessonInfos extends StatelessWidget {
                   .apply(color: Colors.black87),
             ),
             Text(
-              "${Localization.of(context).by} ${lesson.masters[0].name}",
+              "${Localization.of(context).by} ${lesson.masters.first.name}",
               style: Theme.of(context).textTheme.subtitle,
             ),
             if (lesson.masters.length > 1)

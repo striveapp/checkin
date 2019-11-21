@@ -33,7 +33,7 @@ class LessonCard extends StatelessWidget {
                       crossAxisAlignment: CrossAxisAlignment.start,
                       children: <Widget>[
                         UserImage(
-                          userImage: lesson.masters[0].imageUrl,
+                          userImage: lesson.masters.first.imageUrl,
                         ),
                         Padding(
                           padding: const EdgeInsets.only(left: 16.0),
