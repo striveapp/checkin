@@ -1,3 +1,5 @@
+import 'dart:async';
+
 import 'package:bloc/bloc.dart';
 import 'package:flutter/material.dart';
 import 'src/app.dart';
@@ -18,10 +20,10 @@ class SimpleBlocDelegate extends BlocDelegate {
 }
 
 void main(){
-  FlutterError.onError = (FlutterErrorDetails details) {
-    Crashlytics.instance.onError(details);
-  };
-
   BlocSupervisor().delegate = SimpleBlocDelegate();
-  runApp(App());
+
+  FlutterError.onError = Crashlytics.instance.recordFlutterError;
+  runZoned<Future<void>>(() async {
+    runApp(App());
+  }, onError: Crashlytics.instance.recordError);
 }

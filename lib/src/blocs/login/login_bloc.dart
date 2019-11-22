@@ -51,7 +51,6 @@ class LoginBloc extends Bloc<LoginEvent, LoginState> {
           this.authBloc.dispatch(
               LoggedIn(currentUserEmail: user.email, isFirstLogin: isNewUser));
         }).catchError((err) {
-          print('Error during googleSignIn: ' + err.toString());
           error = err;
         });
 
@@ -59,7 +58,7 @@ class LoginBloc extends Bloc<LoginEvent, LoginState> {
           yield LoginFailure(errorMessage: LoginFailed);
         }
       } catch (e) {
-        print('unexpected error during googleSignIn: ' + e.toString());
+        debugPrint('unexpected error during googleSignIn: ' + e.toString());
         yield LoginFailure(errorMessage: LoginFailed);
       }
     }
@@ -112,7 +111,7 @@ class LoginBloc extends Bloc<LoginEvent, LoginState> {
       result = await this.auth.signInWithCredential(credential);
       firebaseUser = result.user;
     } catch (err) {
-      debugPrint("${err.toString()}");
+      debugPrint('Error during googleSignIn: ' + err.toString());
       firebaseUser = null;
     }
 
@@ -121,6 +120,6 @@ class LoginBloc extends Bloc<LoginEvent, LoginState> {
             name: firebaseUser.displayName,
             email: firebaseUser.email,
             imageUrl: firebaseUser.photoUrl))
-        : Future.error("User is null");
+        : Future.error("Error during login");
   }
 }
