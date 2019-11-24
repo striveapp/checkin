@@ -2,16 +2,21 @@ import 'package:checkin/src/models/lesson.dart';
 import 'package:equatable/equatable.dart';
 
 abstract class LessonsEvent extends Equatable {
-  LessonsEvent([List props = const []]) : super(props);
+  const LessonsEvent();
+
+  @override
+  List<Object> get props => [];
 }
 
 class LessonsUpdated extends LessonsEvent {
-
   final List<Lesson> lessons;
 
-  LessonsUpdated({
+  const LessonsUpdated({
     this.lessons,
-  }) : super([lessons]);
+  });
+
+  @override
+  List<Object> get props => [lessons];
 
   @override
   String toString() => 'LessonsUpdated';

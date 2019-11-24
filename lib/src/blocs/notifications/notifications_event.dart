@@ -2,7 +2,10 @@ import 'package:checkin/src/models/notification.dart';
 import 'package:equatable/equatable.dart';
 
 abstract class NotificationsEvent extends Equatable {
-  NotificationsEvent([List props = const []]) : super(props);
+  const NotificationsEvent();
+
+  @override
+  List<Object> get props => [];
 }
 
 class Setup extends NotificationsEvent {
@@ -11,22 +14,24 @@ class Setup extends NotificationsEvent {
 }
 
 class ShowDialog extends NotificationsEvent {
-  BasicNotification notification;
+  final BasicNotification notification;
 
-  ShowDialog({
-    this.notification
-  }) : super([notification]);
+  const ShowDialog({this.notification});
+
+  @override
+  List<Object> get props => [notification];
 
   @override
   String toString() => 'ShowDialog';
 }
 
 class GoToLesson extends NotificationsEvent {
-  String lessonId;
+  final String lessonId;
 
-  GoToLesson({
-    this.lessonId
-  }) : super([lessonId]);
+  const GoToLesson({this.lessonId});
+
+  @override
+  List<Object> get props => [lessonId];
 
   @override
   String toString() => 'GoToLesson';

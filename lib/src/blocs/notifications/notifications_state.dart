@@ -2,7 +2,10 @@ import 'package:checkin/src/models/notification.dart';
 import 'package:equatable/equatable.dart';
 
 abstract class NotificationsState extends Equatable {
-  NotificationsState([List props = const []]) : super(props);
+  const NotificationsState();
+
+  @override
+  List<Object> get props => [];
 }
 
 class NotificationsUninitialized extends NotificationsState {
@@ -16,22 +19,28 @@ class NotificationsInitialized extends NotificationsState {
 }
 
 class BasicNotificationsLoaded extends NotificationsState {
-  BasicNotification notification;
+  final BasicNotification notification;
 
-  BasicNotificationsLoaded({
+  const BasicNotificationsLoaded({
     this.notification,
-  }) : super([notification]);
+  });
+
+  @override
+  List<Object> get props => [notification];
 
   @override
   String toString() => 'BasicNotificationsLoaded';
 }
 
 class ActionNotificationsLoaded extends NotificationsState {
-  String lessonId;
+  final String lessonId;
 
-  ActionNotificationsLoaded({
+  const ActionNotificationsLoaded({
     this.lessonId,
-  }) : super([lessonId]);
+  });
+
+  @override
+  List<Object> get props => [lessonId];
 
   @override
   String toString() => 'ActionNotificationsLoaded';

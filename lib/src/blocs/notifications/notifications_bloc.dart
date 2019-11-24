@@ -11,13 +11,18 @@ import 'bloc.dart';
 
 class NotificationsBloc extends Bloc<NotificationsEvent, NotificationsState> {
   final UserBloc userBloc;
-  final FirebaseMessaging notificationProvider;
   final LocalPlatform platform;
+
+  FirebaseMessaging _notificationProvider;
   StreamSubscription _iosSubscription;
 
-  NotificationsBloc(
-      {@required this.notificationProvider, @required this.userBloc, @required this.platform}) {
-    notificationProvider.configure(
+  NotificationsBloc({
+    @required this.userBloc,
+    @required this.platform
+  }) {
+    //TODO: this should have his own repository
+    _notificationProvider = FirebaseMessaging();
+    _notificationProvider.configure(
         onMessage: _onMessage, onResume: _onResume, onLaunch: _onLaunch);
   }
 
@@ -40,26 +45,28 @@ class NotificationsBloc extends Bloc<NotificationsEvent, NotificationsState> {
   }
 
   @override
-  void dispose() {
+  Future<void> close() {
     _iosSubscription.cancel();
-    super.dispose();
+    return super.close();
   }
 
   Future<void> _saveDeviceToken() async {
-    String token = await notificationProvider.getToken();
-    // TODO here we should use the userRepository instead,
-    // but we will have problem retrieving the current user
-    userBloc.dispatch(UpdateFcmToken(token: token));
+    String token = await _notificationProvider.getToken();
+    userBloc.listen((userState) {
+      if(userState is UserSuccess) {
+        userBloc.add(UpdateFcmToken(currentUser: userState.currentUser, newToken: token));
+      }
+    });
   }
 
   Future<void> _setupNotifications() async {
     if (platform.isIOS) {
       _iosSubscription =
-          notificationProvider.onIosSettingsRegistered.listen((data) async {
+          _notificationProvider.onIosSettingsRegistered.listen((data) async {
         await _saveDeviceToken();
       });
 
-      notificationProvider
+      _notificationProvider
           .requestNotificationPermissions(IosNotificationSettings());
     } else {
       await _saveDeviceToken();
@@ -69,7 +76,7 @@ class NotificationsBloc extends Bloc<NotificationsEvent, NotificationsState> {
   Future _onMessage(Map<String, dynamic> msg) async {
     debugPrint("OnMessage");
     BasicNotification notification = _mapMsgToGeneralNotification(msg);
-    dispatch(ShowDialog(notification: notification));
+    add(ShowDialog(notification: notification));
   }
 
   void _onLaunchOrOnResume(Map<String, dynamic> msg) {
@@ -77,14 +84,14 @@ class NotificationsBloc extends Bloc<NotificationsEvent, NotificationsState> {
     // TODO this logic should be moved inside mapEventToState
     // in order to to be tested properly
 
-    // My proposed refactoring would be dispatch a DoAction event
+    // My proposed refactoring would be add a DoAction event
     // where we pass the type and a Map<String, dynamic> of custom arguments
     // and then in the top method we should manage every type of action notification
-    // we may receive and implement is custom behaviour dispatching different states
+    // we may receive and implement is custom behaviour adding different states
     // based on the type of the event
 
     if( notification.type == "master_reminder") {
-      dispatch(GoToLesson(lessonId: notification.lessonId));
+      add(GoToLesson(lessonId: notification.lessonId));
     }
   }
 

@@ -16,7 +16,18 @@ class Lesson extends Equatable {
   final List<Attendee> attendees;
   final List<Master> masters;
 
-  Lesson({this.id, this.name, this.timeStart, this.timeEnd, this.weekDay, this.attendees, this.masters}) : super([id, name, timeStart, timeEnd, weekDay, attendees, masters]);
+  Lesson(
+      {this.id,
+      this.name,
+      this.timeStart,
+      this.timeEnd,
+      this.weekDay,
+      this.attendees,
+      this.masters});
+
+  @override
+  List<Object> get props =>
+      [id, name, timeStart, timeEnd, weekDay, attendees, masters];
 
   @override
   String toString() {
@@ -25,13 +36,14 @@ class Lesson extends Equatable {
 
   bool containsUser(String email) {
     // todo: we should use some kind of id to perform this check not the email
-    if( attendees == null  ) {
+    if (attendees == null) {
       return false;
     }
 
-    return attendees.any( (attendee) => attendee.email == email );
+    return attendees.any((attendee) => attendee.email == email);
   }
 
   factory Lesson.fromJson(Map<String, dynamic> json) => _$LessonFromJson(json);
+
   Map<String, dynamic> toJson() => _$LessonToJson(this);
 }

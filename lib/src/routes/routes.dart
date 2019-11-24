@@ -1,9 +1,10 @@
 import 'package:checkin/src/handlers/handlers.dart';
+import 'package:checkin/src/handlers/registerable_handler.dart';
 import 'package:fluro/fluro.dart';
 
 
 class Routes {
-  static List<SimpleHandler> routeHandlers = [
+  static List<RegisterableHandler> routeHandlers = [
     HomeHandler(),
     RegistryHandler(),
     ProfileHandler(),

@@ -4,7 +4,10 @@ class BasicNotification extends Equatable {
   final String title;
   final String body;
 
-  BasicNotification(this.title, this.body) : super([title, body]);
+  BasicNotification(this.title, this.body);
+
+  @override
+  List<Object> get props => [title, body];
 
   @override
   String toString() {
@@ -16,7 +19,10 @@ class ActionNotification extends Equatable {
   final String type;
   final String lessonId;
 
-  ActionNotification(this.type, this.lessonId) : super([type, lessonId]);
+  ActionNotification(this.type, this.lessonId);
+
+  @override
+  List<Object> get props => [type, lessonId];
 
   @override
   String toString() {

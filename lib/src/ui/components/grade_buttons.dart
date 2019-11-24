@@ -7,17 +7,12 @@ import 'package:flutter_bloc/flutter_bloc.dart';
 class GradeButtons extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
-    UserBloc _userBloc = BlocProvider.of<UserBloc>(context);
-
-    _onPressed(String grade) {
-      _userBloc.dispatch(UpdateGrade(grade: grade));
-      //@TODO: this is causing a bug that prevent the user from logging out. Checks: https://github.com/felangel/bloc/issues/119
-      Navigator.pushReplacementNamed(context, 'home');
-    }
-
-    return BlocBuilder<UserEvent, UserState>(
-      bloc: _userBloc,
+    return BlocBuilder<UserBloc, UserState>(
       builder: (BuildContext context, UserState state) {
+        _onPressed(String grade) {
+          BlocProvider.of<UserBloc>(context)..add(UpdateGrade(newGrade: grade));
+        }
+
         return Container(
             margin: EdgeInsets.only(top: 40.0),
             child: Column(

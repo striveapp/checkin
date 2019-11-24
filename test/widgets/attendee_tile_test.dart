@@ -4,7 +4,8 @@ import 'package:flutter/foundation.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter/widgets.dart';
 import 'package:flutter_test/flutter_test.dart';
-import 'package:image_test_utils/image_test_utils.dart';
+
+import '../image_test_utils.dart';
 
 void main() {
   testWidgets("AttendeeTile should navigate to attendee's profile when tapped",

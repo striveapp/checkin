@@ -2,7 +2,10 @@ import 'package:checkin/src/models/user.dart';
 import 'package:equatable/equatable.dart';
 
 abstract class UserState extends Equatable {
-  UserState([List props = const []]) : super(props);
+  const UserState();
+
+  @override
+  List<Object> get props => [];
 }
 
 class UserLoading extends UserState {
@@ -11,11 +14,13 @@ class UserLoading extends UserState {
 }
 
 class UserSuccess extends UserState {
-  User currentUser;
+  final User currentUser;
 
-  UserSuccess({
-    this.currentUser
-  }) : super([currentUser]);
+  const UserSuccess({this.currentUser});
+
+  @override
+  List<Object> get props => [currentUser];
+
   @override
   String toString() => 'UserSuccess';
 }

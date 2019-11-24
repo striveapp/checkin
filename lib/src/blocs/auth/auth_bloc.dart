@@ -3,46 +3,55 @@ import 'dart:async';
 import 'package:bloc/bloc.dart';
 import 'package:checkin/src/blocs/auth/auth_event.dart';
 import 'package:checkin/src/blocs/auth/auth_state.dart';
-import 'package:firebase_auth/firebase_auth.dart';
+import 'package:checkin/src/resources/auth_repository.dart';
 import 'package:flutter/foundation.dart';
 import 'package:meta/meta.dart';
 
 class AuthBloc extends Bloc<AuthEvent, AuthState> {
-  final FirebaseAuth auth;
-  StreamSubscription authSub;
-  
-  AuthBloc({
-    @required this.auth,
-  }) {
-    authSub = this.auth.onAuthStateChanged.listen((currentUser){
-      dispatch(AuthUpdated(currentUserEmail: currentUser?.email));
-    });
-  }
+  final AuthRepository _authRepository;
+  StreamSubscription _authSub;
+
+  AuthBloc({@required AuthRepository authRepository})
+      : assert(authRepository != null),
+        _authRepository = authRepository;
+
 
   @override
   AuthState get initialState => AuthUninitialized();
 
   @override
   Stream<AuthState> mapEventToState(AuthEvent event) async* {
+    if(event is AppStarted) {
+      _authSub?.cancel();
+      try {
+        _authSub = this._authRepository.getAuthState().listen((loggedUserEmail){
+          add(AuthUpdated(loggedUserEmail: loggedUserEmail));
+        });
+      } catch(e) {
+        debugPrint('Error ocurred when checking for auth state:' + e.toString());
+        yield AuthUnauthenticated();
+      }
+    }
 
     if(event is AuthUpdated) {
-      debugPrint('dispatched AuthUpdated with user: ${event.currentUserEmail ?? "Unauthenticated"}');
-      yield event.currentUserEmail != null
-          ? AuthAuthenticated(currentUserEmail: event.currentUserEmail, isFirstLogin: false)
+      debugPrint('add AuthUpdated with user: ${event.loggedUserEmail ?? "Unauthenticated"}');
+      yield event.loggedUserEmail != null
+          ? AuthAuthenticated(loggedUserEmail: event.loggedUserEmail)
           : AuthUnauthenticated();
     }
 
     if (event is LoggedIn) {
+      debugPrint('LoggedIn with user: ${event.currentUser}');
       yield AuthAuthenticated(
-          currentUserEmail: event.currentUserEmail,
-          isFirstLogin: event.isFirstLogin
+          loggedUserEmail: event.currentUser.email,
       );
     }
 
     if (event is LogOut) {
       try {
-        await this.auth.signOut();
+        debugPrint('Attempting to LogOut...');
         yield AuthUnauthenticated();
+        await this._authRepository.signOut();
       } catch(e) {
         debugPrint('Error ocurred trying to signOut:' + e.toString());
       }
@@ -50,8 +59,8 @@ class AuthBloc extends Bloc<AuthEvent, AuthState> {
   }
 
   @override
-  void dispose() {
-    authSub.cancel();
-    super.dispose();
+  Future<void> close() {
+    _authSub?.cancel();
+    return super.close();
   }
 }

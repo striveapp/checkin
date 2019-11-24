@@ -1,3 +1,5 @@
+import 'package:bloc_test/bloc_test.dart';
+import 'package:checkin/src/blocs/user/bloc.dart';
 import 'package:checkin/src/models/user.dart';
 import 'package:checkin/src/resources/user_repository.dart';
 import 'package:mockito/mockito.dart';
@@ -6,55 +8,78 @@ import 'package:checkin/src/blocs/profile/bloc.dart';
 
 class MockUserRepository extends Mock implements UserRepository {}
 
+class MockUserBloc extends Mock implements UserBloc {}
+
 void main() {
   group("ProfileBloc", () {
     ProfileBloc profileBloc;
+    MockUserBloc mockUserBloc;
     MockUserRepository mockUserRepository;
-    String testEmail = "test@test.com";
+
+    User loggedUser = User(
+      name: "Logged User",
+      email: "test@test.com",
+      imageUrl: "someImage",
+    );
+
     setUp(() {
       mockUserRepository = MockUserRepository();
-      when(mockUserRepository.getUserByEmail(testEmail)).thenAnswer((_) {
-        return Stream<User>.empty();
-      });
-      profileBloc = ProfileBloc(
-          userRepository: mockUserRepository, profileEmail: testEmail);
+      mockUserBloc = MockUserBloc();
+
+      whenListen(mockUserBloc, Stream.fromIterable([UserSuccess(currentUser: loggedUser)]));
     });
 
-    test("initial state is ProfileUninitialized", () {
-      expect(profileBloc.initialState, ProfileLoading());
-    });
-
-    group("when ProfileUpdated is dispatched", () {
-      test(
-          "the final status should be ProfileSuccess when the the user is present", () {
-        User fakeUser = User(
-          name: "Jack Sparrow", email: testEmail, imageUrl: "some image");
+    group("when load profile of current user", () {
+      test("should emit ProfileSuccess with the current user and isCurrent user as true", () {
+        profileBloc = ProfileBloc(
+          userBloc: mockUserBloc,
+          userRepository: mockUserRepository,
+          profileEmail: loggedUser.email,
+        );
 
         final expectedState = [
           ProfileLoading(),
-          ProfileSuccess(profileUser: fakeUser),
+          ProfileSuccess(
+              profileUser: loggedUser, isCurrentUser: true),
         ];
 
-        profileBloc.dispatch(ProfileUpdated(user: fakeUser));
-
         expectLater(
-          profileBloc.state,
-          emitsInOrder(expectedState),
-        );
-      });
-      test("the finakl status should be ProfileLoading when the user is not present", () {
-
-        final expectedState = [
-          ProfileLoading()
-        ];
-
-        profileBloc.dispatch(ProfileUpdated(user: null));
-
-        expectLater(
-          profileBloc.state,
+          profileBloc,
           emitsInOrder(expectedState),
         );
       });
     });
+
+    group("when load profile on another user", () {
+      test("should emit ProfileSuccess with another user and isCurrent user as false", () {
+        User fakeOtherUser = User(
+          name: "Test",
+          email: "some@other",
+          imageUrl: "someImage",
+        );
+
+        when(mockUserRepository.getUserByEmail(fakeOtherUser.email)).thenAnswer((_) {
+          return Stream<User>.value(fakeOtherUser);
+        });
+
+        profileBloc = ProfileBloc(
+          userBloc: mockUserBloc,
+          userRepository: mockUserRepository,
+          profileEmail: fakeOtherUser.email,
+        );
+
+        final expectedState = [
+          ProfileLoading(),
+          ProfileSuccess(
+              profileUser: fakeOtherUser, isCurrentUser: false),
+        ];
+
+        expectLater(
+          profileBloc,
+          emitsInOrder(expectedState),
+        );
+      });
+    });
+
   });
 }

@@ -1,6 +1,7 @@
 import 'dart:async';
 
 import 'package:bloc/bloc.dart';
+import 'package:checkin/src/blocs/user/bloc.dart';
 import 'package:checkin/src/resources/user_repository.dart';
 import 'package:flutter/foundation.dart';
 import 'package:meta/meta.dart';
@@ -8,19 +9,35 @@ import 'package:meta/meta.dart';
 import 'bloc.dart';
 
 class ProfileBloc extends Bloc<ProfileEvent, ProfileState> {
+  final UserBloc userBloc;
   final UserRepository userRepository;
   String profileEmail;
   StreamSubscription userSub;
 
-  ProfileBloc({@required this.userRepository, @required this.profileEmail}) {
-    userSub = this
-        .userRepository
-        .getUserByEmail(this.profileEmail)
-        .listen((user) => dispatch(ProfileUpdated(user: user)));
+  ProfileBloc({
+    @required this.userBloc,
+    @required this.userRepository,
+    @required this.profileEmail,
+  }) {
+    this.userBloc.listen((userState) {
+      if(userState is UserSuccess) {
+        if(userState.currentUser.email == profileEmail) {
+          add(ProfileUpdated(user: userState.currentUser, isCurrentUser: true));
+        } else {
+          userSub?.cancel();
+          userSub = this
+              .userRepository
+              .getUserByEmail(this.profileEmail)
+              .listen((user) {
+                add(ProfileUpdated(user: user, isCurrentUser: false));
+              });
 
-    userSub.onError((error) => debugPrint(
-          "Error loading profile with mail [$profileEmail]: $error",
-        ));
+          userSub.onError((error) => debugPrint(
+            "Error loading profile with mail [$profileEmail]: $error",
+          ));
+        }
+      }
+    });
   }
 
   @override
@@ -32,14 +49,14 @@ class ProfileBloc extends Bloc<ProfileEvent, ProfileState> {
       if (event.user == null) {
         yield ProfileLoading();
       } else {
-        yield ProfileSuccess(profileUser: event.user);
+        yield ProfileSuccess(profileUser: event.user, isCurrentUser: event.isCurrentUser);
       }
     }
   }
 
   @override
-  void dispose() {
-    userSub.cancel();
-    super.dispose();
+  Future<void> close() {
+    userSub?.cancel();
+    return super.close();
   }
 }

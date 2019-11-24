@@ -1,7 +1,10 @@
 import 'package:equatable/equatable.dart';
 
 abstract class AuthState extends Equatable {
-  AuthState([List props = const []]) : super(props);
+  const AuthState();
+
+  @override
+  List<Object> get props => [];
 }
 
 class AuthUninitialized extends AuthState {
@@ -10,24 +13,26 @@ class AuthUninitialized extends AuthState {
 }
 
 class AuthAuthenticated extends AuthState {
-  bool isFirstLogin;
-  String currentUserEmail;
+  final String loggedUserEmail;
 
-  AuthAuthenticated({
-    this.currentUserEmail,
-    this.isFirstLogin
-  }) : super([currentUserEmail, isFirstLogin]);
+  const AuthAuthenticated({this.loggedUserEmail});
+
+  @override
+  List<Object> get props => [loggedUserEmail];
 
   @override
   String toString() => 'AuthAuthenticated';
 }
 
 class AuthUnauthenticated extends AuthState {
-  Error error;
+  final Error error;
 
-  AuthUnauthenticated({
+  const AuthUnauthenticated({
     this.error,
-  }) : super([error]);
+  });
+
+  @override
+  List<Object> get props => [error];
 
   @override
   String toString() => 'AuthUnauthenticated';

@@ -14,19 +14,19 @@ class UserBloc extends Bloc<UserEvent, UserState> {
   StreamSubscription userSub;
 
   UserBloc({@required this.userRepository, @required this.authBloc}) {
-    this.authBloc.state.listen((authState) {
+    this.authBloc.listen((authState) {
       if (authState is AuthAuthenticated) {
-        var userEmail = authState.currentUserEmail;
-        userSub = this.userRepository.getUserByEmail(userEmail).listen((user) {
-          dispatch(UserUpdated(user: user));
+        userSub?.cancel();
+        userSub = this
+            .userRepository
+            .getUserByEmail(authState.loggedUserEmail)
+            .listen((user) {
+          add(UserUpdated(user: user));
         });
       }
 
-      if( authState is AuthUnauthenticated ) {
-        if( userSub != null ) {
-          userSub.cancel();
-        }
-        dispatch(UserUpdated(user: null));
+      if (authState is AuthUnauthenticated) {
+        userSub?.cancel();
       }
     });
   }
@@ -37,68 +37,60 @@ class UserBloc extends Bloc<UserEvent, UserState> {
   @override
   Stream<UserState> mapEventToState(UserEvent event) async* {
     if (event is UserUpdated) {
-      if( event.user == null ) {
-        yield UserLoading();
+      if (event.user == null) {
+        yield UserError();
       } else {
         yield UserSuccess(currentUser: event.user);
       }
-    } else if (event is Create) {
-      yield* _mapCreateToState(currentState, event);
     } else {
-      yield* _mapUpdateToState(currentState, event);
+      yield* _mapUpdateToState(event);
     }
   }
 
-  Stream<UserState> _mapCreateToState(
-      UserState currentState, Create event) async* {
+  Stream<UserState> _mapUpdateToState(UserEvent event) async* {
     try {
-      debugPrint('Creating user [' + event.user.toString() + ']');
-      await this.userRepository.createUser(
-          event.user.name,
-          event.user.email,
-          event.user.imageUrl,
-          event.user.counter,
-          event.user.rank,
-          event.user.isOwner);
-      debugPrint('Created!');
+      if (event is UpdateGrade) {
+        debugPrint('Updating grade...');
+        if( this.state is UserSuccess ) {
+          yield UserLoading();
+          await this.userRepository.updateUserGrade(
+            (this.state as UserSuccess).currentUser,
+            event.newGrade,
+          );
+        } else {
+          debugPrint('Unable to update user grade to [${event.newGrade}] from userState [$state]');
+          yield UserError();
+        }
+
+      } else if (event is UpdateName) {
+        debugPrint('Updating name...');
+        if( this.state is UserSuccess ) {
+          yield UserLoading();
+          await this.userRepository.updateUserName(
+            (this.state as UserSuccess).currentUser,
+            event.newName,
+          );
+        } else {
+          debugPrint('Unable to update user name to [${event.newName}] from userState [$state]');
+          yield UserError();
+        }
+      } else if (event is UpdateFcmToken) {
+        debugPrint('Updating token...');
+        yield UserLoading();
+        await this.userRepository.updateUserFcmToken(
+          event.currentUser,
+          event.newToken,
+        );
+      }
     } catch (e) {
-      print('Error during user creation: ' + e.toString());
+      print('Error during user update: ' + e.toString());
       yield UserError();
     }
   }
 
-  Stream<UserState> _mapUpdateToState(
-      UserState currentState, UserEvent event) async* {
-    if (currentState is UserSuccess) {
-      try {
-        //TODO: when the user can be null?
-        debugPrint('Update user [${currentState ?? "NO"}]');
-        if (currentState.currentUser != null) {
-          if(event is UpdateGrade) {
-            debugPrint('Updating grade...');
-            this.userRepository.updateUserGrade(currentState.currentUser, event.grade);
-          } else if(event is UpdateName) {
-            debugPrint('Updating name...');
-            this.userRepository.updateUserName(currentState.currentUser, event.name);
-          } else if(event is UpdateFcmToken) {
-            debugPrint('Updating token...');
-            this.userRepository.updateUserFcmToken(currentState.currentUser, event.token);
-          }
-          debugPrint('Updated!');
-        } else {
-          print('Error during user update, user was null');
-          yield UserError();
-        }
-      } catch (e) {
-        print('Error during user update: ' + e.toString());
-        yield UserError();
-      }
-    }
-  }
-
   @override
-  void dispose() {
+  Future<void> close() {
     userSub.cancel();
-    super.dispose();
+    return super.close();
   }
 }

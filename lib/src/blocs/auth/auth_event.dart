@@ -1,15 +1,27 @@
+import 'package:checkin/src/models/user.dart';
 import 'package:equatable/equatable.dart';
 
 abstract class AuthEvent extends Equatable {
-  AuthEvent([List props = const []]) : super(props);
+  const AuthEvent();
+
+  @override
+  List<Object> get props => [];
+}
+
+class AppStarted extends AuthEvent {
+  @override
+  String toString() => 'AppStarted';
 }
 
 class AuthUpdated extends AuthEvent {
-  final String currentUserEmail;
+  final String loggedUserEmail;
 
-  AuthUpdated({
-    this.currentUserEmail,
-  }) : super([currentUserEmail]);
+  const AuthUpdated({
+    this.loggedUserEmail,
+  });
+
+  @override
+  List<Object> get props => [loggedUserEmail];
 
   @override
   String toString() => 'AuthUpdated';
@@ -17,12 +29,15 @@ class AuthUpdated extends AuthEvent {
 
 class LoggedIn extends AuthEvent {
   final bool isFirstLogin;
-  final String currentUserEmail;
+  final User currentUser;
 
-  LoggedIn({
-    this.currentUserEmail,
+ const LoggedIn({
+    this.currentUser,
     this.isFirstLogin,
-  }) : super([currentUserEmail, isFirstLogin]);
+  });
+
+  @override
+  List<Object> get props => [currentUser, isFirstLogin];
 
   @override
   String toString() => 'LoggedIn';

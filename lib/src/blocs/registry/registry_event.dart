@@ -1,69 +1,73 @@
 import 'package:checkin/src/models/attendee.dart';
 import 'package:checkin/src/models/lesson.dart';
+import 'package:checkin/src/models/user.dart';
 import 'package:equatable/equatable.dart';
 
 abstract class RegistryEvent extends Equatable {
-  RegistryEvent([List props = const []]) : super(props);
-}
-
-class LoadLesson extends RegistryEvent {
-  String lessonId;
-
-  LoadLesson({
-    this.lessonId
-  }) : super([lessonId]);
+  const RegistryEvent();
 
   @override
-  String toString() => 'LoadLesson';
+  List<Object> get props => [];
 }
 
 class LessonUpdated extends RegistryEvent {
-
   final Lesson lesson;
+  final User currentUser;
 
-  LessonUpdated({
+  const LessonUpdated({
     this.lesson,
-  }) : super([lesson]);
+    this.currentUser,
+  });
+
+  @override
+  List<Object> get props => [lesson, currentUser];
 
   @override
   String toString() => 'LessonUpdated';
 }
 
-
 class Register extends RegistryEvent {
-  String lessonId;
-  Attendee attendee;
+  final String lessonId;
+  final Attendee attendee;
 
-  Register({
+  const Register({
     this.lessonId,
     this.attendee,
-  }) : super([lessonId, attendee]);
+  });
+
+  @override
+  List<Object> get props => [lessonId, attendee];
 
   @override
   String toString() => 'Register';
 }
 
 class Unregister extends RegistryEvent {
-  String lessonId;
-  Attendee attendee;
+  final String lessonId;
+  final Attendee attendee;
 
-  Unregister({
+  const Unregister({
     this.lessonId,
     this.attendee,
-  }) : super([lessonId, attendee]);
+  });
+
+  @override
+  List<Object> get props => [lessonId, attendee];
 
   @override
   String toString() => 'Unregister';
 }
 
-
-
 class ConfirmAttendees extends RegistryEvent {
-  Lesson lesson;
+  final Lesson lesson;
 
-  ConfirmAttendees({
+  const ConfirmAttendees({
     this.lesson,
-  }) : super([lesson]);
+  });
+
+  @override
+  List<Object> get props => [lesson];
+
   @override
   String toString() => 'ConfirmAttendees';
 }

@@ -9,14 +9,17 @@ part 'master.g.dart';
 class Master extends Equatable {
   final String name;
   final String imageUrl;
-  //TODO: this should not be used here, remove ASAP
+  //TODO: this should not be used here, remove
   final String email;
 
   Master({
     @required this.name,
     @required this.imageUrl,
     @required this.email,
-  }) : super([name, imageUrl, email]);
+  });
+
+  @override
+  List<Object> get props => [name, imageUrl, email];
 
   factory Master.fromUser( User user ) {
     return Master(name: user.name, imageUrl: user.imageUrl, email: user.email);

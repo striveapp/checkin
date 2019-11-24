@@ -77,7 +77,7 @@ class LessonCard extends StatelessWidget {
                 ),
               ))),
       onTap: () {
-        Navigator.of(context).pushNamed('registry', arguments: lesson.id);
+        Navigator.of(context).pushNamed("registry/${lesson.id}");
       },
     );
   }

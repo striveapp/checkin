@@ -1,19 +1,24 @@
+import 'dart:async';
+
+import 'package:bloc_test/bloc_test.dart';
 import 'package:checkin/src/blocs/registry/bloc.dart';
+import 'package:checkin/src/blocs/user/bloc.dart';
 import 'package:checkin/src/models/attendee.dart';
 import 'package:checkin/src/models/lesson.dart';
+import 'package:checkin/src/models/user.dart';
 import 'package:checkin/src/resources/lesson_repository.dart';
-import 'package:checkin/src/resources/user_repository.dart';
 import 'package:mockito/mockito.dart';
 import 'package:test/test.dart';
 
-class MockUserRepository extends Mock implements UserRepository {}
-
 class MockLessonRepository extends Mock implements LessonRepository {}
+
+class MockUserBloc extends Mock implements UserBloc {}
 
 void main() {
   group("RegistryBloc", () {
     RegistryBloc registryBloc;
-    MockUserRepository mockUserRepository;
+    MockUserBloc mockUserBloc;
+
     MockLessonRepository mockLessonRepository;
 
     String fakeLessonId = "some lessonId";
@@ -25,129 +30,152 @@ void main() {
         weekDay: "Monday",
         attendees: [
           Attendee(
-              name: "Test1", email: "test1@test.com", imageUrl: "some image", rank: "White"),
+              name: "Test1",
+              email: "test1@test.com",
+              imageUrl: "some image",
+              rank: "White"),
           Attendee(
-              name: "Test2", email: "test2@test.com", imageUrl: "some image", rank: "White"),
+              name: "Test2",
+              email: "test2@test.com",
+              imageUrl: "some image",
+              rank: "White"),
           Attendee(
-              name: "Test3", email: "test3@test.com", imageUrl: "some image", rank: "White"),
+              name: "Test3",
+              email: "test3@test.com",
+              imageUrl: "some image",
+              rank: "White"),
         ]);
+    User fakeUser = User(
+      name: "Logged User",
+      email: "test@test.com",
+      imageUrl: "someImage",
+    );
+    StreamController<Lesson> lessonStreamCtrl;
 
     setUp(() {
-      mockUserRepository = MockUserRepository();
+      lessonStreamCtrl = StreamController<Lesson>();
       mockLessonRepository = MockLessonRepository();
+      mockUserBloc = MockUserBloc();
+      when(mockLessonRepository.getLesson(fakeLesson.id)).thenAnswer((_) {
+        return lessonStreamCtrl.stream;
+      });
+      lessonStreamCtrl.add(fakeLesson);
+      whenListen(mockUserBloc,
+          Stream.fromIterable([UserSuccess(currentUser: fakeUser)]));
       registryBloc = RegistryBloc(
-          userRepository: mockUserRepository,
-          lessonRepository: mockLessonRepository);
+        lessonId: fakeLesson.id,
+        lessonRepository: mockLessonRepository,
+        userBloc: mockUserBloc,
+      );
+    });
+
+    tearDown(() {
+      reset(mockUserBloc);
+      reset(mockLessonRepository);
+      lessonStreamCtrl?.close();
+      registryBloc?.close();
     });
 
     test("initial state is RegistryUninitialized", () {
       expect(registryBloc.initialState, RegistryUninitialized());
     });
 
-    group("when LoadLesson is dispatched", () {
+    group("when add LessonUpdated", () {
       test(
-          "should subscribe to the lesson and dispatch change the state to RegistryLoaded",
-          () {
-        when(mockLessonRepository.getLesson(fakeLessonId)).thenAnswer((_) {
-          return Stream<Lesson>.value(fakeLesson);
+          "should emit RegistryLoaded with the current lesson and the current user",
+          () async {
+        final expectedState = [
+          RegistryUninitialized(),
+          RegistryLoaded(currentUser: fakeUser, currentLesson: fakeLesson),
+        ];
+
+        await expectLater(
+          registryBloc,
+          emitsInOrder(expectedState),
+        );
+      });
+    });
+
+    group("when add ConfirmAttendees", () {
+      test("should emit RegistryLoading and call acceptAll from the lesson repository", () async {
+        final expectedState = [
+          RegistryUninitialized(),
+          RegistryLoaded(currentUser: fakeUser, currentLesson: fakeLesson),
+          RegistryLoading(),
+          RegistryLoaded(currentUser: fakeUser, currentLesson: fakeLesson),
+        ];
+
+        when(mockLessonRepository.acceptAll(fakeLesson)).thenAnswer((_) {
+          lessonStreamCtrl.add(fakeLesson);
+          return Future.value(null);
         });
 
-        final expectedState = [
-          RegistryUninitialized(),
-          RegistryLoaded(lesson: fakeLesson),
-        ];
-
-        registryBloc.dispatch(LoadLesson(lessonId: fakeLessonId));
-
-        expectLater(
-          registryBloc.state,
-          emitsInOrder(expectedState),
-        );
-      });
-    });
-
-    group("when LessonUpdated is dispatched", () {
-      test("should change the state to RegistryLoaded", () async {
-        final expectedState = [
-          RegistryUninitialized(),
-          RegistryLoaded(lesson: fakeLesson),
-        ];
-
-        registryBloc.dispatch(LessonUpdated(lesson: fakeLesson));
-
+        registryBloc.add(ConfirmAttendees(lesson: fakeLesson));
         await expectLater(
-          registryBloc.state,
+          registryBloc,
           emitsInOrder(expectedState),
         );
-      });
-    });
-
-    group("when ConfirmAttendees is dispatched", () {
-      test(
-          "should increment the user counter for each attendee"
-          "and clear the lesson", () async {
-        final expectedState = [
-          RegistryUninitialized(),
-          RegistryLoading()
-        ];
-
-        registryBloc.dispatch(ConfirmAttendees(
-            lesson: fakeLesson));
-
-        await expectLater(
-          registryBloc.state,
-          emitsInOrder(expectedState),
-        );
-
         verify(mockLessonRepository.acceptAll(fakeLesson));
       });
     });
 
-    group("when Register is dispatched", () {
-      test("should register the user to the lesson", () async {
-        final expectedState = [
-          RegistryUninitialized(),
-        ];
-
+    group("when add Register", () {
+      test("should emit RegistryLoading and call register for an attendee", () async {
         Attendee fakeAttendee = Attendee(
-            name: "Peppe", imageUrl: "that image", email: "pepe@yoyo.com", rank: "White");
-
-        registryBloc
-            .dispatch(Register(lessonId: fakeLessonId, attendee: fakeAttendee));
-
-        await expectLater(
-            registryBloc.state,
-            emitsInOrder(expectedState),
+            name: "pepe",
+            rank: "White",
+            imageUrl: "lol",
+            email: "not@anemail"
         );
 
-        verify(mockLessonRepository.register(
-        fakeLessonId,
-        fakeAttendee
-        ));
+        final expectedState = [
+          RegistryUninitialized(),
+          RegistryLoaded(currentUser: fakeUser, currentLesson: fakeLesson),
+          RegistryLoading(),
+          RegistryLoaded(currentUser: fakeUser, currentLesson: fakeLesson),
+        ];
+
+        when(mockLessonRepository.register(fakeLesson.id, fakeAttendee)).thenAnswer((_) {
+          lessonStreamCtrl.add(fakeLesson);
+          return Future.value(null);
+        });
+
+        registryBloc.add(Register(lessonId: fakeLesson.id, attendee: fakeAttendee));
+        await expectLater(
+          registryBloc,
+          emitsInOrder(expectedState),
+        );
+        verify(mockLessonRepository.register(fakeLesson.id, fakeAttendee));
       });
     });
 
-    group("when Unregister is dispatched", () {
-      test("should register the user to the lesson", () async {
-        final expectedState = [
-          RegistryUninitialized(),
-        ];
-
+    group("when add Unregister", () {
+      test("should emit RegistryLoading and call unregister for an attendee", () async {
         Attendee fakeAttendee = Attendee(
-            name: "Peppe", imageUrl: "that image", email: "pepe@yoyo.com", rank: "White");
-
-        registryBloc
-            .dispatch(Unregister(lessonId: fakeLessonId, attendee: fakeAttendee));
-
-        await expectLater(
-          registryBloc.state,
-          emitsInOrder(expectedState),
+            name: "pepe",
+            rank: "White",
+            imageUrl: "lol",
+            email: "not@anemail"
         );
 
-        verify(mockLessonRepository.unregister(
-            fakeLessonId,
-            fakeAttendee
-        ));
+        final expectedState = [
+          RegistryUninitialized(),
+          RegistryLoaded(currentUser: fakeUser, currentLesson: fakeLesson),
+          RegistryLoading(),
+          RegistryLoaded(currentUser: fakeUser, currentLesson: fakeLesson),
+        ];
+
+        when(mockLessonRepository.unregister(fakeLesson.id, fakeAttendee)).thenAnswer((_) {
+          lessonStreamCtrl.add(fakeLesson);
+          return Future.value(null);
+        });
+
+        registryBloc.add(Unregister(lessonId: fakeLesson.id, attendee: fakeAttendee));
+        await expectLater(
+          registryBloc,
+          emitsInOrder(expectedState),
+        );
+        verify(mockLessonRepository.unregister(fakeLesson.id, fakeAttendee));
       });
     });
   });

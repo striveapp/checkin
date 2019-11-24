@@ -19,8 +19,9 @@ class LessonsBloc extends Bloc<LessonsEvent, LessonsState> {
     @required this.lessonRepository,
     this.dateUtil,
   }) {
+    lessonsSub?.cancel();
     lessonsSub = this.lessonRepository.getLessonsForToday().listen((lessons) {
-      dispatch(LessonsUpdated(lessons: lessons));
+      add(LessonsUpdated(lessons: lessons));
     });
   }
 
@@ -52,8 +53,8 @@ class LessonsBloc extends Bloc<LessonsEvent, LessonsState> {
     return DateTime.parse('$todayDate $time:00');
   }
   @override
-  void dispose() {
-    lessonsSub.cancel();
-    super.dispose();
+  Future<void> close() {
+    lessonsSub?.cancel();
+    return super.close();
   }
 }

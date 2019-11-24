@@ -2,60 +2,61 @@ import 'package:checkin/src/models/user.dart';
 import 'package:equatable/equatable.dart';
 
 abstract class UserEvent extends Equatable {
-  UserEvent([List props = const []]) : super(props);
-}
-
-class Create extends UserEvent {
-  User user;
-
-  Create({
-    this.user
-  }) : super([user]);
+  const UserEvent();
 
   @override
-  String toString() => 'Create';
+  List<Object> get props => [];
 }
 
-
 class UserUpdated extends UserEvent {
-  User user;
+  final User user;
 
-  UserUpdated({
-    this.user
-  }) : super([user]);
+  const UserUpdated({this.user});
+
+  @override
+  List<Object> get props => [user];
 
   @override
   String toString() => 'UserUpdated';
 }
 
 class UpdateGrade extends UserEvent {
-  String grade;
+  final String newGrade;
 
-  UpdateGrade({
-    this.grade
-  }) : super([grade]);
+  const UpdateGrade({this.newGrade});
 
   @override
-  String toString() => 'Update';
+  List<Object> get props => [newGrade];
+
+  @override
+  String toString() => 'UpdateGrade';
 }
 
 class UpdateName extends UserEvent {
-  String name;
+  final String newName;
 
-  UpdateName({
-    this.name
-  }) : super([name]);
+  const UpdateName({
+    this.newName,
+  });
 
   @override
-  String toString() => 'Update';
+  List<Object> get props => [newName];
+
+  @override
+  String toString() => 'UpdateName';
 }
 
 class UpdateFcmToken extends UserEvent {
-  String token;
+  final User currentUser;
+  final String newToken;
 
-  UpdateFcmToken({
-    this.token
-  }) : super([token]);
+  const UpdateFcmToken({
+    this.currentUser,
+    this.newToken,
+  });
+
+  @override
+  List<Object> get props => [currentUser, newToken];
 
   @override
   String toString() => 'UpdateFcmToken';

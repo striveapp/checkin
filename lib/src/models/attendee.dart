@@ -18,7 +18,10 @@ class Attendee extends Equatable {
     @required this.rank,
     @required this.imageUrl,
     @required this.email,
-  }) : super([name, rank, imageUrl, email]);
+  });
+
+  @override
+  List<Object> get props => [name, rank, imageUrl, email];
 
   factory Attendee.fromUser( User user ) {
     return Attendee(name: user.name, rank: user.rank, imageUrl: user.imageUrl, email: user.email);
@@ -31,4 +34,5 @@ class Attendee extends Equatable {
 
   factory Attendee.fromJson(Map<String, dynamic> json) => _$AttendeeFromJson(json);
   Map<String, dynamic> toJson() => _$AttendeeToJson(this);
+
 }

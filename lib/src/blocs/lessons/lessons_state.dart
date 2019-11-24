@@ -2,7 +2,10 @@ import 'package:checkin/src/models/lesson.dart';
 import 'package:equatable/equatable.dart';
 
 abstract class LessonsState extends Equatable {
-  LessonsState([List props = const []]) : super(props);
+  const LessonsState();
+
+  @override
+  List<Object> get props => [];
 }
 
 class LessonsUninitialized extends LessonsState {
@@ -16,14 +19,13 @@ class LessonsError extends LessonsState {
 }
 
 class LessonsLoaded extends LessonsState {
-
   final List<Lesson> lessons;
   final String day;
 
-  LessonsLoaded({
-    this.lessons,
-    this.day
-  }) : super([lessons, day]);
+  const LessonsLoaded({this.lessons, this.day});
+
+  @override
+  List<Object> get props => [lessons, day];
 
   @override
   String toString() => 'LessonsLoaded';
@@ -32,9 +34,10 @@ class LessonsLoaded extends LessonsState {
 class LessonsLoadedEmpty extends LessonsState {
   final String day;
 
-  LessonsLoadedEmpty({
-    this.day
-  }) : super([day]);
+  const LessonsLoadedEmpty({this.day});
+
+  @override
+  List<Object> get props => [day];
 
   @override
   String toString() => 'LessonsLoadedEmpty';
