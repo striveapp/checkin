@@ -76,7 +76,6 @@ class UserBloc extends Bloc<UserEvent, UserState> {
         }
       } else if (event is UpdateFcmToken) {
         debugPrint('Updating token...');
-        yield UserLoading();
         await this.userRepository.updateUserFcmToken(
           event.currentUser,
           event.newToken,
