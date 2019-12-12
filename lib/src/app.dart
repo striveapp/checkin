@@ -5,6 +5,7 @@ import 'package:checkin/src/routes/application.dart';
 import 'package:checkin/src/ui/pages/home_page.dart';
 import 'package:checkin/src/ui/pages/login_page.dart';
 import 'package:checkin/src/ui/pages/splash_page.dart';
+import 'package:checkin/src/ui/pages/stats_page.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:flutter_localizations/flutter_localizations.dart';
@@ -103,7 +104,26 @@ class App extends StatelessWidget {
               userRepository: _userRepository,
               authBloc: BlocProvider.of<AuthBloc>(context),
             ),
-            child: HomePage(),
+            child: DefaultTabController(
+                length: 2,
+                child: Scaffold(
+                  bottomNavigationBar: Material(
+                    color: Colors.black87,
+                    child: TabBar(
+                      tabs: <Widget>[
+                        Tab(icon: Icon(Icons.home)),
+                        Tab(icon: Icon(Icons.insert_chart)),
+                      ],
+                    ),
+                  ),
+                  body: TabBarView(
+                    physics: NeverScrollableScrollPhysics(),
+                    children: [
+                      HomePage(),
+                      StatsPage(),
+                    ],
+                  ),
+                )),
           );
         }
 

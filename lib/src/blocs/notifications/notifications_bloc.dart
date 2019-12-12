@@ -46,7 +46,7 @@ class NotificationsBloc extends Bloc<NotificationsEvent, NotificationsState> {
 
   @override
   Future<void> close() {
-    _iosSubscription.cancel();
+    _iosSubscription?.cancel();
     return super.close();
   }
 

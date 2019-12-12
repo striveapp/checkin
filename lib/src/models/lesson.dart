@@ -15,6 +15,7 @@ class Lesson extends Equatable {
   final String weekDay;
   final List<Attendee> attendees;
   final List<Master> masters;
+  final int timestamp;
 
   Lesson(
       {this.id,
@@ -23,15 +24,16 @@ class Lesson extends Equatable {
       this.timeEnd,
       this.weekDay,
       this.attendees,
-      this.masters});
+      this.masters,
+      this.timestamp});
 
   @override
   List<Object> get props =>
-      [id, name, timeStart, timeEnd, weekDay, attendees, masters];
+      [id, name, timeStart, timeEnd, weekDay, attendees, masters, timestamp];
 
   @override
   String toString() {
-    return 'Lesson{id: $id, name: $name, timeStart: $timeStart, timeEnd: $timeEnd, weekDay: $weekDay, attendees: $attendees}, masters: $masters';
+    return 'Lesson{id: $id, name: $name, timeStart: $timeStart, timeEnd: $timeEnd, weekDay: $weekDay, attendees: $attendees, masters: $masters, timestamp: $timestamp}';
   }
 
   bool containsUser(String email) {

@@ -47,6 +47,10 @@ service cloud.firestore {
       allow read, write: if isLoggedUser(request.auth.token.email);
     }
 
+    match /users_history/{email} {
+      allow read: if isLoggedUser(email);
+    }
+
     // https://stackoverflow.com/a/41922261/4349619
     // To allow adding new nodes, but prevent deleting or overwriting any node
   }
