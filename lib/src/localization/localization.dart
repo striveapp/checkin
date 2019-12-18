@@ -6,7 +6,7 @@ import 'package:flutter/material.dart';
 import 'localization_strings.dart';
 
 
-class Localization {
+class   Localization {
   final Locale locale;
 
   Localization(this.locale);
@@ -50,6 +50,13 @@ class Localization {
   String get by => getValue(By);
   String get you => getValue(You);
   String get full => getValue(Full);
+  String get matTime => getValue(MatTime);
+  String get hours => getValue(Hours);
+  String get youAttended => getValue(YouAttended);
+  String get classesThis => getValue(ClassesThis);
+  String get week => getValue(Week);
+  String get month => getValue(Month);
+  String get year => getValue(Year);
 }
 
 class LocalizationDelegate extends LocalizationsDelegate<Localization> {

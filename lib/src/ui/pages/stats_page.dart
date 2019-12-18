@@ -14,7 +14,7 @@ class StatsPage extends StatelessWidget {
   Widget build(BuildContext context) {
     return Scaffold(
       appBar: BaseAppBar(
-        title: 'Stats',
+        title: "Stats",
       ),
       body: BlocProvider<StatsBloc>(
         create: (context) => StatsBloc(
@@ -36,6 +36,7 @@ class StatsPage extends StatelessWidget {
                       padding: EdgeInsets.symmetric(horizontal: 20),
                       //TODO: change name of this
                       child: ClassStats(
+                        timeSpan: "week",
                         counter: state.attendedLessons.length,
                       ),
                     ),

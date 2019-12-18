@@ -25,7 +25,14 @@ const String EmptyClass = 'empty_class',
     And = "and",
     By = "by",
     You = "you",
-    Full = "full"
+    Full = "full",
+    MatTime = 'mat_time',
+    Hours = 'hours',
+    YouAttended = 'you_attended',
+    ClassesThis = 'classes_this',
+    Week = 'week',
+    Month = 'month',
+    Year = 'year'
 ;
 
 final es = {
@@ -57,6 +64,13 @@ final es = {
   By: 'Por',
   You: 'Tú',
   Full: 'lleno',
+  MatTime: 'Horas de Mat',
+  Hours: 'horas',
+  YouAttended: 'Has atendido',
+  ClassesThis: 'clases esta',
+  Week: 'semana',
+  Month: 'mese',
+  Year: 'año',
 };
 
 final en = {
@@ -88,4 +102,11 @@ final en = {
   By: 'By',
   You: 'You',
   Full: 'full',
+  MatTime: 'Mat Time',
+  Hours: 'hours',
+  YouAttended: 'You attended',
+  ClassesThis: 'classes this',
+  Week: 'week',
+  Month: 'month',
+  Year: 'year',
 };
