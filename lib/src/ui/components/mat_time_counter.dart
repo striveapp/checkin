@@ -36,7 +36,7 @@ class MatTimeCounter extends StatelessWidget {
           ],
         ),
         Text(
-          getHourFromClasses(counter),
+          _getHourFromClasses(counter),
           key: Key('matHours'),
           textAlign: TextAlign.center,
           style: Theme.of(context)
@@ -56,7 +56,7 @@ class MatTimeCounter extends StatelessWidget {
                     style: Theme.of(context).textTheme.display1,
                   ),
                   Text(
-                      "${getTotalMatTimeHours(timeSpan)} ${Localization.of(context).hours}",
+                      "${_getTotalMatTimeHours(timeSpan)} ${Localization.of(context).hours}",
                       style: Theme.of(context).textTheme.display1),
                 ],
               ),
@@ -65,7 +65,7 @@ class MatTimeCounter extends StatelessWidget {
               height: 5,
             ),
             LinearProgressIndicator(
-              value: getAttendancePercentage(counter, timeSpan),
+              value: _getAttendancePercentage(counter, timeSpan),
               valueColor:
                   AlwaysStoppedAnimation<Color>(Theme.of(context).accentColor),
               backgroundColor: Color(0x241B3FE3),
@@ -76,14 +76,22 @@ class MatTimeCounter extends StatelessWidget {
           height: 10,
         ),
         Text(
-          "${Localization.of(context).youAttended} $counter ${Localization.of(context).classesThis} ${Localization.of(context).getValue(timeSpan)}",
+          _getAttendedClassTextLocalized(context),
           style: Theme.of(context).textTheme.body1.apply(fontWeightDelta: 2),
         )
       ],
     );
   }
 
-  int getTotalMatTimeHours(String timeSpan) {
+  //TODO: we can't internationalize this kind of strings well, we should migrate to a more complex i18n system
+  String _getAttendedClassTextLocalized(BuildContext context) {
+    return "${Localization.of(context).youAttended} "
+        "$counter "
+        "${Localization.of(context).classesThis} "
+        "${Localization.of(context).getValue(timeSpan)}";
+  }
+
+  int _getTotalMatTimeHours(String timeSpan) {
     if(timeSpan == constants.WEEK) {
       return config.TOTAL_MAT_TIME_WEEK;
     } else if(timeSpan == constants.MONTH) {
@@ -92,7 +100,7 @@ class MatTimeCounter extends StatelessWidget {
     return config.TOTAL_MAT_TIME_YEAR;
   }
 
-  double getAttendancePercentage(int counter, String timeSpan) {
+  double _getAttendancePercentage(int counter, String timeSpan) {
     if(timeSpan == constants.WEEK) {
       return ((counter * 1.5) * 100 / config.TOTAL_MAT_TIME_WEEK) / 100;
     } else if(timeSpan == constants.MONTH) {
@@ -101,7 +109,7 @@ class MatTimeCounter extends StatelessWidget {
     return ((counter * 1.5) * 100 / config.TOTAL_MAT_TIME_YEAR) / 100;
   }
 
-  String getHourFromClasses(int counter) {
+  String _getHourFromClasses(int counter) {
     return (counter * 1.5).floor().toString();
   }
 }
