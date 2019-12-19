@@ -1,10 +1,13 @@
 import 'package:checkin/src/blocs/stats/bloc.dart';
 import 'package:checkin/src/blocs/user/bloc.dart';
+import 'package:checkin/src/constants.dart' as constants;
+import 'package:checkin/src/localization/localization.dart';
 import 'package:checkin/src/resources/stats_repository.dart';
+import 'package:checkin/src/ui/components/attended_lessons_list.dart';
 import 'package:checkin/src/ui/components/base_app_bar.dart';
-import 'package:checkin/src/ui/components/class_stats.dart';
-import 'package:checkin/src/ui/components/lesson_card.dart';
 import 'package:checkin/src/ui/components/loading_indicator.dart';
+import 'package:checkin/src/ui/components/mat_time_counter.dart';
+import 'package:checkin/src/util.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter/widgets.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
@@ -14,12 +17,14 @@ class StatsPage extends StatelessWidget {
   Widget build(BuildContext context) {
     return Scaffold(
       appBar: BaseAppBar(
-        title: "Stats",
+        title: Localization.of(context).stats,
       ),
       body: BlocProvider<StatsBloc>(
         create: (context) => StatsBloc(
             userBloc: BlocProvider.of<UserBloc>(context),
-            statsRepository: StatsRepository()),
+            statsRepository: StatsRepository(),
+            dateUtil: DateUtil(),
+        ),
         child: BlocBuilder<StatsBloc, StatsState>(
             builder: (BuildContext context, StatsState state) {
           if (state is StatsUninitialized) {
@@ -32,22 +37,29 @@ class StatsPage extends StatelessWidget {
                 padding: EdgeInsets.symmetric(horizontal: 10, vertical: 20),
                 child: Column(
                   children: <Widget>[
+                    DropdownButton<String>(
+                      value: state.timeSpan,
+                      items: <String>[constants.WEEK, constants.MONTH, constants.YEAR]
+                          .map((String value) => DropdownMenuItem<String>(
+                                child: Text(_capitalize(Localization.of(context).getValue(value))),
+                                value: value,
+                              ))
+                          .toList(),
+                      onChanged: (value) {
+                        BlocProvider.of<StatsBloc>(context).add(LoadStats(timeSpan: value));
+                      },
+                    ),
                     Padding(
                       padding: EdgeInsets.symmetric(horizontal: 20),
-                      //TODO: change name of this
-                      child: ClassStats(
-                        timeSpan: "week",
+                      child: MatTimeCounter(
+                        timeSpan: state.timeSpan,
                         counter: state.attendedLessons.length,
                       ),
                     ),
                     SizedBox(
                       height: 30,
                     ),
-                    //TODO: change this with a proper widget
-                    Text("Lessons Details", style: Theme.of(context).textTheme.headline.apply(color: Colors.black87),),
-                    ...state.attendedLessons
-                        .map((lesson) => LessonCard(lesson: lesson))
-                        .toList(),
+                    AttendedLessonsList(attendedLessons: state.attendedLessons),
                   ],
                 ),
               )),
@@ -58,4 +70,6 @@ class StatsPage extends StatelessWidget {
       ),
     );
   }
+
+  String _capitalize(String s) => s[0].toUpperCase() + s.substring(1);
 }

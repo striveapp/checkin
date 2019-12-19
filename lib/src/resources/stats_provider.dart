@@ -8,13 +8,14 @@ class StatsProvider {
 
   Firestore _firestore = Firestore.instance;
 
-  Stream<UserHistory> getUserStats(String email) {
+  Stream<UserHistory> getUserStats(String email, int fromTimestamp) {
     return _firestore
         .collection(path)
         .document(email)
         .snapshots()
         .map((doc) => UserHistory(
             attendedLessons: (doc.data['attendedLessons'] as List)
+                ?.where((lesson) => lesson['timestamp'] > fromTimestamp)
                 ?.map((lesson) => Lesson(
                     id: lesson['id'],
                     name: lesson['name'],

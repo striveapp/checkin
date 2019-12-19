@@ -57,6 +57,8 @@ class   Localization {
   String get week => getValue(Week);
   String get month => getValue(Month);
   String get year => getValue(Year);
+  String get attendedClasses => getValue(AttendedClasses);
+  String get stats => getValue(Stats);
 }
 
 class LocalizationDelegate extends LocalizationsDelegate<Localization> {

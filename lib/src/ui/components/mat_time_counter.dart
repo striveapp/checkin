@@ -1,24 +1,27 @@
 import 'package:checkin/src/config.dart' as config;
+import 'package:checkin/src/constants.dart' as constants;
+
 import 'package:checkin/src/localization/localization.dart';
 import 'package:flutter/material.dart';
 
-class ClassStats extends StatelessWidget {
+
+class MatTimeCounter extends StatelessWidget {
   final int counter;
   final String timeSpan;
 
-  ClassStats({
+  MatTimeCounter({
     Key key,
     this.counter,
     this.timeSpan,
   }) : super(key: key);
 
-  //TODO: internationalize strings
   @override
   Widget build(BuildContext context) {
     return Container(
       child: Column(
         children: <Widget>[
           Container(
+            //TODO: we should use flex here
             width: 155,
             child: Row(
               children: <Widget>[
@@ -43,7 +46,7 @@ class ClassStats extends StatelessWidget {
             style: Theme.of(context)
                 .textTheme
                 .headline
-                .apply(fontSizeFactor: 4, color: Theme.of(context).accentColor),
+                .apply(fontSizeFactor: 3, color: Theme.of(context).accentColor),
           ),
           Column(
             children: <Widget>[
@@ -57,7 +60,7 @@ class ClassStats extends StatelessWidget {
                       style: Theme.of(context).textTheme.display1,
                     ),
                     Text(
-                        "${config.TOTAL_MAT_TIME_WEEK} ${Localization.of(context).hours}",
+                        "${getTotalMatTimeHours(timeSpan)} ${Localization.of(context).hours}",
                         style: Theme.of(context).textTheme.display1),
                   ],
                 ),
@@ -66,7 +69,7 @@ class ClassStats extends StatelessWidget {
                 height: 5,
               ),
               LinearProgressIndicator(
-                value: getAttendancePercentage(counter),
+                value: getAttendancePercentage(counter, timeSpan),
                 valueColor: AlwaysStoppedAnimation<Color>(
                     Theme.of(context).accentColor),
                 backgroundColor: Color(0x241B3FE3),
@@ -85,8 +88,22 @@ class ClassStats extends StatelessWidget {
     );
   }
 
-  double getAttendancePercentage(int counter) {
-    return ((counter * 1.5) * 100 / config.TOTAL_MAT_TIME_WEEK) / 100;
+  int getTotalMatTimeHours(String timeSpan) {
+    if(timeSpan == constants.WEEK) {
+      return config.TOTAL_MAT_TIME_WEEK;
+    } else if(timeSpan == constants.MONTH) {
+      return config.TOTAL_MAT_TIME_MONTH;
+    }
+    return config.TOTAL_MAT_TIME_YEAR;
+  }
+
+  double getAttendancePercentage(int counter, String timeSpan) {
+    if(timeSpan == constants.WEEK) {
+      return ((counter * 1.5) * 100 / config.TOTAL_MAT_TIME_WEEK) / 100;
+    } else if(timeSpan == constants.MONTH) {
+      return ((counter * 1.5) * 100 / config.TOTAL_MAT_TIME_MONTH) / 100;
+    }
+    return ((counter * 1.5) * 100 / config.TOTAL_MAT_TIME_YEAR) / 100;
   }
 
   String getHourFromClasses(int counter) {

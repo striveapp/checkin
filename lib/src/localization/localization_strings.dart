@@ -32,7 +32,9 @@ const String EmptyClass = 'empty_class',
     ClassesThis = 'classes_this',
     Week = 'week',
     Month = 'month',
-    Year = 'year'
+    Year = 'year',
+    AttendedClasses = 'attended_classes',
+    Stats = 'stats'
 ;
 
 final es = {
@@ -71,6 +73,8 @@ final es = {
   Week: 'semana',
   Month: 'mese',
   Year: 'año',
+  AttendedClasses: 'Clases atendidas',
+  Stats: 'Estadísticas',
 };
 
 final en = {
@@ -109,4 +113,6 @@ final en = {
   Week: 'week',
   Month: 'month',
   Year: 'year',
+  AttendedClasses: 'Attended Classes',
+  Stats: 'Stats',
 };
