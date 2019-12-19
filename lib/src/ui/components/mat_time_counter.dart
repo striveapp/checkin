@@ -17,74 +17,69 @@ class MatTimeCounter extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    return Container(
-      child: Column(
-        children: <Widget>[
-          Container(
-            //TODO: we should use flex here
-            width: 155,
-            child: Row(
-              children: <Widget>[
-                Icon(Icons.timer),
-                SizedBox(
-                  width: 5,
-                ),
-                Text(
-                  Localization.of(context).matTime,
-                  style: Theme.of(context)
-                      .textTheme
-                      .headline
-                      .apply(color: Colors.black87),
-                ),
-              ],
+    return Column(
+      children: <Widget>[
+        Row(
+          mainAxisAlignment: MainAxisAlignment.center,
+          children: <Widget>[
+            Icon(Icons.timer),
+            SizedBox(
+              width: 5,
             ),
-          ),
-          Text(
-            getHourFromClasses(counter),
-            key: Key('matHours'),
-            textAlign: TextAlign.center,
-            style: Theme.of(context)
-                .textTheme
-                .headline
-                .apply(fontSizeFactor: 3, color: Theme.of(context).accentColor),
-          ),
-          Column(
-            children: <Widget>[
-              Padding(
-                padding: const EdgeInsets.symmetric(horizontal: 5),
-                child: Row(
-                  mainAxisAlignment: MainAxisAlignment.spaceBetween,
-                  children: <Widget>[
-                    Text(
-                      "0 ${Localization.of(context).hours}",
-                      style: Theme.of(context).textTheme.display1,
-                    ),
-                    Text(
-                        "${getTotalMatTimeHours(timeSpan)} ${Localization.of(context).hours}",
-                        style: Theme.of(context).textTheme.display1),
-                  ],
-                ),
+            Text(
+              Localization.of(context).matTime,
+              style: Theme.of(context)
+                  .textTheme
+                  .headline
+                  .apply(color: Colors.black87),
+            ),
+          ],
+        ),
+        Text(
+          getHourFromClasses(counter),
+          key: Key('matHours'),
+          textAlign: TextAlign.center,
+          style: Theme.of(context)
+              .textTheme
+              .headline
+              .apply(fontSizeFactor: 3, color: Theme.of(context).accentColor),
+        ),
+        Column(
+          children: <Widget>[
+            Padding(
+              padding: const EdgeInsets.symmetric(horizontal: 5),
+              child: Row(
+                mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                children: <Widget>[
+                  Text(
+                    "0 ${Localization.of(context).hours}",
+                    style: Theme.of(context).textTheme.display1,
+                  ),
+                  Text(
+                      "${getTotalMatTimeHours(timeSpan)} ${Localization.of(context).hours}",
+                      style: Theme.of(context).textTheme.display1),
+                ],
               ),
-              SizedBox(
-                height: 5,
-              ),
-              LinearProgressIndicator(
-                value: getAttendancePercentage(counter, timeSpan),
-                valueColor: AlwaysStoppedAnimation<Color>(
-                    Theme.of(context).accentColor),
-                backgroundColor: Color(0x241B3FE3),
-              ),
-            ],
-          ),
-          SizedBox(
-            height: 10,
-          ),
-          Text(
-            "${Localization.of(context).youAttended} $counter ${Localization.of(context).classesThis} ${Localization.of(context).getValue(timeSpan)}",
-            style: Theme.of(context).textTheme.body1.apply(fontWeightDelta: 2),
-          )
-        ],
-      ),
+            ),
+            SizedBox(
+              height: 5,
+            ),
+            LinearProgressIndicator(
+              value: getAttendancePercentage(counter, timeSpan),
+              valueColor:
+                  AlwaysStoppedAnimation<Color>(Theme.of(context).accentColor),
+              backgroundColor: Color(0x241B3FE3),
+            ),
+          ],
+        ),
+        SizedBox(
+          height: 10,
+        ),
+        Text(
+          "${Localization.of(context).youAttended} $counter ${Localization.of(context).classesThis} ${Localization.of(context).getValue(timeSpan)}",
+          style: Theme.of(context).textTheme.body1.apply(fontWeightDelta: 2),
+        )
+      ],
     );
   }
 
