@@ -6,7 +6,7 @@ import 'package:checkin/src/ui/components/days_picker.dart';
 import 'package:checkin/src/ui/components/lesson_card.dart';
 import 'package:checkin/src/ui/components/loading_indicator.dart';
 import 'package:checkin/src/ui/components/no_lessons_banner.dart';
-import 'package:checkin/src/util.dart';
+import 'package:checkin/src/util/date_util.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter/widgets.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
@@ -71,7 +71,8 @@ class LessonsPage extends StatelessWidget {
                 ),
               );
             }
-            return ErrorWidget('Unknown State [$state] received in: lesson_page');
+            return ErrorWidget(
+                'Unknown State [$state] received in: lesson_page');
           }),
         ));
   }

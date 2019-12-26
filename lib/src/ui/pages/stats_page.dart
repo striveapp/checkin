@@ -7,7 +7,7 @@ import 'package:checkin/src/ui/components/attended_lessons_list.dart';
 import 'package:checkin/src/ui/components/base_app_bar.dart';
 import 'package:checkin/src/ui/components/loading_indicator.dart';
 import 'package:checkin/src/ui/components/mat_time_counter.dart';
-import 'package:checkin/src/util.dart';
+import 'package:checkin/src/util/date_util.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter/widgets.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';

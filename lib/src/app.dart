@@ -1,4 +1,5 @@
 import 'package:checkin/src/blocs/auth/bloc.dart';
+import 'package:checkin/src/blocs/dynamic_link/bloc.dart';
 import 'package:checkin/src/resources/auth_repository.dart';
 import 'package:checkin/src/resources/user_repository.dart';
 import 'package:checkin/src/routes/application.dart';
@@ -90,45 +91,52 @@ class App extends StatelessWidget {
           ),
         ),
       ),
-      home: BlocBuilder<AuthBloc, AuthState>(
-          builder: (BuildContext context, AuthState state) {
-        if (state is AuthUnauthenticated) {
-          return LoginPage(
-              authRepository: _authRepository, userRepository: _userRepository);
-        }
+      home: BlocListener<DynamicLinkBloc, DynamicLinkState>(
+        listener: (BuildContext context, DynamicLinkState state) {
+          if(state is DynamicLinkToRegistry) {
+            Navigator.of(context).pushNamed('registry/${state.lessonId}');
+          }
+        },
+        child: BlocBuilder<AuthBloc, AuthState>(
+            builder: (BuildContext context, AuthState state) {
+          if (state is AuthUnauthenticated) {
+            return LoginPage(
+                authRepository: _authRepository, userRepository: _userRepository);
+          }
 
-        if (state is AuthAuthenticated) {
-          debugPrint("User Authenticated: [${state.loggedUserEmail}]");
-          return BlocProvider<UserBloc>(
-            create: (BuildContext context) => UserBloc(
-              userRepository: _userRepository,
-              authBloc: BlocProvider.of<AuthBloc>(context),
-            ),
-            child: DefaultTabController(
-                length: 2,
-                child: Scaffold(
-                  bottomNavigationBar: Material(
-                    color: Colors.black87,
-                    child: TabBar(
-                      tabs: <Widget>[
-                        Tab(icon: Icon(Icons.home)),
-                        Tab(icon: Icon(Icons.insert_chart)),
+          if (state is AuthAuthenticated) {
+            debugPrint("User Authenticated: [${state.loggedUserEmail}]");
+            return BlocProvider<UserBloc>(
+              create: (BuildContext context) => UserBloc(
+                userRepository: _userRepository,
+                authBloc: BlocProvider.of<AuthBloc>(context),
+              ),
+              child: DefaultTabController(
+                  length: 2,
+                  child: Scaffold(
+                    bottomNavigationBar: Material(
+                      color: Colors.black87,
+                      child: TabBar(
+                        tabs: <Widget>[
+                          Tab(icon: Icon(Icons.home)),
+                          Tab(icon: Icon(Icons.insert_chart)),
+                        ],
+                      ),
+                    ),
+                    body: TabBarView(
+                      physics: NeverScrollableScrollPhysics(),
+                      children: [
+                        HomePage(),
+                        StatsPage(),
                       ],
                     ),
-                  ),
-                  body: TabBarView(
-                    physics: NeverScrollableScrollPhysics(),
-                    children: [
-                      HomePage(),
-                      StatsPage(),
-                    ],
-                  ),
-                )),
-          );
-        }
+                  )),
+            );
+          }
 
-        return SplashPage();
-      }),
+          return SplashPage();
+        }),
+      ),
     );
   }
 }

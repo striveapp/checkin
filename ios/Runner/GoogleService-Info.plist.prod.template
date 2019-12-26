@@ -2,14 +2,12 @@
 <!DOCTYPE plist PUBLIC "-//Apple//DTD PLIST 1.0//EN" "http://www.apple.com/DTDs/PropertyList-1.0.dtd">
 <plist version="1.0">
 <dict>
-	<key>AD_UNIT_ID_FOR_BANNER_TEST</key>
-	<string>ca-app-pub-3940256099942544/2934735716</string>
-	<key>AD_UNIT_ID_FOR_INTERSTITIAL_TEST</key>
-	<string>ca-app-pub-3940256099942544/4411468910</string>
 	<key>CLIENT_ID</key>
-	<string>1079767834354-2jli4tfv49bevdsarfc21g58ibi1q74s.apps.googleusercontent.com</string>
+	<string>1079767834354-d95tgajptthheaki3kqnun0fgpaa3htt.apps.googleusercontent.com</string>
 	<key>REVERSED_CLIENT_ID</key>
-	<string>com.googleusercontent.apps.1079767834354-2jli4tfv49bevdsarfc21g58ibi1q74s</string>
+	<string>com.googleusercontent.apps.1079767834354-d95tgajptthheaki3kqnun0fgpaa3htt</string>
+	<key>ANDROID_CLIENT_ID</key>
+	<string>1079767834354-hpeimojujkqjkt5ivne8r4499t2qaspa.apps.googleusercontent.com</string>
 	<key>API_KEY</key>
 	<string>__IOS_FIREBASE_API_KEY__</string>
 	<key>GCM_SENDER_ID</key>
@@ -23,17 +21,17 @@
 	<key>STORAGE_BUCKET</key>
 	<string>checkin-b7e8d.appspot.com</string>
 	<key>IS_ADS_ENABLED</key>
-	<true></true>
+	<false></false>
 	<key>IS_ANALYTICS_ENABLED</key>
 	<false></false>
 	<key>IS_APPINVITE_ENABLED</key>
-	<false></false>
+	<true></true>
 	<key>IS_GCM_ENABLED</key>
 	<true></true>
 	<key>IS_SIGNIN_ENABLED</key>
 	<true></true>
 	<key>GOOGLE_APP_ID</key>
-	<string>1:1079767834354:ios:546868399b12982a</string>
+	<string>1:1079767834354:ios:cd8a4e2df1ae1e1c1afa6b</string>
 	<key>DATABASE_URL</key>
 	<string>https://checkin-b7e8d.firebaseio.com</string>
 </dict>

@@ -9,11 +9,10 @@ import 'package:checkin/src/ui/components/base_app_bar.dart';
 import 'package:checkin/src/ui/components/class_counter.dart';
 import 'package:checkin/src/ui/components/loading_indicator.dart';
 import 'package:checkin/src/ui/components/user_image.dart';
+import 'package:checkin/src/util/debug_util.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter/widgets.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
-
-import '../../util.dart';
 
 //TODO: this should be a StatelessWidget
 class ProfilePage extends StatefulWidget {
