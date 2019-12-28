@@ -24,5 +24,8 @@ export const app = functions.https.onRequest(adminApp);
 // https onCall triggers
 export * from "./api/lessons";
 
+// https onRequest triggers
+export * from "./payments/webhook";
+
 // firestore triggers
 export const userNotification = classCounterIncrementNotification;
