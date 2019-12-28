@@ -8,6 +8,8 @@
     "test": "mocha",
     "deploy:all": "firebase deploy",
     "deploy:lessons-api": "firebase deploy --only functions:acceptAll",
+    "deploy:payments": "firebase deploy --only functions:webhook",
+    "deploy:admin-app": "firebase deploy --only functions:app",
     "deploy:rules": "firebase deploy --only firestore:rules"
   },
   "devDependencies": {
