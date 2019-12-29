@@ -49,6 +49,7 @@ class App extends StatelessWidget {
         buttonTheme: ButtonThemeData(
             buttonColor: Color(0xFF5770FF),
             disabledColor: Color(0xFFBBBBBB),
+            colorScheme: Theme.of(context).buttonTheme.colorScheme.copyWith(error: Color(0xFFEF5350)),
             height: 48,
             shape: RoundedRectangleBorder(
                 borderRadius: new BorderRadius.circular(4.0))),

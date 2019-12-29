@@ -53,8 +53,7 @@ class _RegistryControlsState extends State<RegistryControls> {
 
         var onPressAcceptAll = !_isClassEmpty(currentLesson)
             ? () {
-                registryBloc
-                    .add(ConfirmAttendees(lesson: currentLesson));
+                registryBloc.add(ConfirmAttendees(lesson: currentLesson));
               }
             : null;
 
@@ -66,11 +65,11 @@ class _RegistryControlsState extends State<RegistryControls> {
               )
             : (_isUserInClass(currentLesson, currentUser)
                 ? RegistryButton(
-                    key: Key('unregisterClass'),
-                    text: Localization.of(context).unregisterClass,
-                    color: Color(0xFFEF5350),
-                    onPressed: onPressUnregisterClass,
-                  )
+                  key: Key('unregisterClass'),
+                  text: Localization.of(context).unregisterClass,
+                  color: Theme.of(context).buttonTheme.colorScheme.error,
+                  onPressed: onPressUnregisterClass,
+                )
                 : RegistryButton(
                     key: Key('registerClass'),
                     text: Localization.of(context).registerClass,

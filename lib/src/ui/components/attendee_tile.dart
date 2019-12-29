@@ -36,6 +36,7 @@ class AttendeeTile extends StatelessWidget {
             ),
             onTap: () async {
               debugPrint("User tapped on ${attendee.name}");
+              //TODO: this should go to stats page of the user
               Navigator.of(context).pushNamed('profile/${attendee.email}');
             },
           ),

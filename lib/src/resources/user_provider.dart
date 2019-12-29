@@ -1,5 +1,6 @@
 import 'dart:io';
 
+import 'package:checkin/src/models/subscription.dart';
 import 'package:checkin/src/models/user.dart';
 import 'package:cloud_firestore/cloud_firestore.dart';
 
@@ -19,6 +20,9 @@ class UserProvider {
     counter: user.data['counter'] ?? 0,
     rank: user.data['rank'],
     isOwner: user.data['isOwner'] ?? false,
+    subscription: Subscription(cardLastFourDigits: "1234")
+      //TODO: this should be connected with the user collection (but maybe not)
+//    subscription: Subscription.fromStripe(user.data['sub'])
   ));
 
   Future<void> createUser(User newUser) async {
