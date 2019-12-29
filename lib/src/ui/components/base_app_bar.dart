@@ -36,10 +36,10 @@ class BaseAppBar extends StatelessWidget implements PreferredSizeWidget {
               Padding(
                 padding: EdgeInsets.only(right: 10.0),
                 child: IconButton(
-                    key: Key('profilePageButton'),
+                    key: Key('accountPageButton'),
                     onPressed: () {
                       Navigator.of(context)
-                          .pushNamed('profile/${currentUser.email}');
+                          .pushNamed('account');
                     },
                     icon: UserImage(
                       userImage: currentUser.imageUrl,
