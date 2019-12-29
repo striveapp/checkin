@@ -156,7 +156,9 @@ class MembershipCard extends StatelessWidget {
                             "Change Plan",
                             style: Theme.of(context).textTheme.button,
                           ),
-                          onPressed: () {},
+                          onPressed: () {
+                            Navigator.of(context).pushNamed("subscriptions");
+                          },
                         ),
                       ],
                     )
