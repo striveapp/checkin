@@ -142,6 +142,7 @@ class MembershipCard extends StatelessWidget {
                                         ),
                                       ),
                                       onPressed: () {
+
                                         Navigator.of(context).pop();
                                       },
                                     ),

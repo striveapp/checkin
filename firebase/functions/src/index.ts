@@ -22,9 +22,9 @@ export const masterNotification = functions.pubsub
 // http triggers
 export const app = functions.https.onRequest(adminApp);
 
-
 // https onCall triggers
 export * from "./api/lessons";
+export * from "./payments/unsubscribe";
 
 // https onRequest triggers
 export * from "./payments/webhook";

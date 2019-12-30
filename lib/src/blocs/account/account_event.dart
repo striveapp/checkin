@@ -17,5 +17,4 @@ class AccountUpdated extends AccountEvent {
     List<Object> get props => [user];
 
     String toString() => 'AccountUpdated';
-
 }
