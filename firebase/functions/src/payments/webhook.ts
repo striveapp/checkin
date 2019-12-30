@@ -24,7 +24,7 @@ function checkoutCompleted(event: any) {
 
     console.log("received complete event ", JSON.stringify(session));
     // Fulfill the purchase...
-    let email = session["customer_email"] || "unknownUser";
+    const email = session["customer_email"] || "unknownUser";
 
     return db.collection("customers")
         .doc(email)
@@ -41,7 +41,7 @@ function subscriptionUpdated(event: any) {
 
     console.log("received subscription updated event ", JSON.stringify(subscription));
 
-    let customer = subscription["customer"];
+    const customer = subscription["customer"];
     return db.collection("customers")
         .where("stripeIds", "array-contains", customer)
         .get()
@@ -74,8 +74,8 @@ function customerUpdated(event: any) {
 
     console.log("received customer updated ", JSON.stringify(customer));
 
-    let id = customer["id"];
-    let email = customer["email"];
+    const id = customer["id"];
+    const email = customer["email"];
 
 
     return db.collection("customers")
@@ -91,7 +91,7 @@ function paymentMethodAttached(event: any) {
 
     console.log("received paymentMethod attached ", JSON.stringify(paymentMethod));
 
-    let email = paymentMethod["billing_details"]["email"];
+    const email = paymentMethod["billing_details"]["email"];
 
     return db.collection("customers")
         .doc(email)
@@ -102,11 +102,12 @@ export const webhook = functions.https.onRequest(async (request, response) => {
     console.log("Received webhook event: ", JSON.stringify(request.body));
 
     const sig = request.headers['stripe-signature'];
-    let event;
 
     if (!sig) {
         return response.status(400).send(`Webhook Error: stripe-signature is required`);
     }
+
+    let event;
 
     try {
         event = stripe.webhooks.constructEvent(request.rawBody, sig, functions.config().stripe.web_hook_key);
