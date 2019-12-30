@@ -5,4 +5,7 @@
 # Typescript v1 declaration files
 typings/
 
+### Script to setup Stripe keys
+setup_stripe_keys.sh
+
 node_modules/

@@ -2,16 +2,9 @@ import * as functions from "firebase-functions";
 import * as StripeApi from "stripe";
 import * as admin from "firebase-admin";
 
-// Set your secret key: remember to change this to your live secret key in production
 // See your keys here: https://dashboard.stripe.com/account/apikeys
-//TODO: this should become parametric
-const stripe = new StripeApi('sk_test_ffufTz0ylkruTgFFMS0mgpgR00A18tXLpF');
-
+const stripe = new StripeApi(functions.config().stripe.secret_key);
 const db = admin.firestore();
-
-// Find your endpoint's secret in your Dashboard's webhook settings
-// todo this should become parametric??
-const endpointSecret = 'whsec_udbaiePfQWOvNsh9RsqBUMwZs2tG4d4z';
 
 /**
  * Webhook possible events to be handled:
@@ -105,8 +98,6 @@ function paymentMethodAttached(event: any) {
         .set({payment_method: paymentMethod}, {merge: true});
 }
 
-
-
 export const webhook = functions.https.onRequest(async (request, response) => {
     console.log("Received webhook event: ", JSON.stringify(request.body));
 
@@ -118,7 +109,7 @@ export const webhook = functions.https.onRequest(async (request, response) => {
     }
 
     try {
-        event = stripe.webhooks.constructEvent(request.rawBody, sig, endpointSecret);
+        event = stripe.webhooks.constructEvent(request.rawBody, sig, functions.config().stripe.web_hook_key);
 
         // todo update user information with batch update to show in profile
         // todo prevent all users from reading subscriptions collection
