@@ -14,6 +14,12 @@ import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 
 class SubscriptionsPage extends StatelessWidget {
+  final String customerEmail;
+
+  SubscriptionsPage({
+    Key key,
+    @required this.customerEmail}) : super(key: key);
+
   @override
   Widget build(BuildContext context) {
     return Scaffold(
@@ -22,8 +28,9 @@ class SubscriptionsPage extends StatelessWidget {
         showUserImage: false,
       ),
       body: BlocProvider<SubscriptionPlansBloc>(
-        create: (BuildContext context) => SubscriptionPlansBloc(
-            subscriptionPlansRepository: SubscriptionPlansRepository()),
+        create: (BuildContext context) =>
+            SubscriptionPlansBloc(
+                subscriptionPlansRepository: SubscriptionPlansRepository()),
         child: BlocBuilder<SubscriptionPlansBloc, SubscriptionPlansState>(
           builder: (BuildContext context, SubscriptionPlansState state) {
             if (state is SubscriptionPlansLoaded) {
@@ -42,23 +49,28 @@ class SubscriptionsPage extends StatelessWidget {
                         child: Text(
                             "Choose a subcription plan and start training hard",
                             textAlign: TextAlign.center,
-                            style: Theme.of(context).textTheme.subtitle),
+                            style: Theme
+                                .of(context)
+                                .textTheme
+                                .subtitle),
                       ),
                       SizedBox(
                         height: 50,
                       ),
                       Column(
                           children: state.subscriptionPlans
-                              .map((plan) => Column(
-                                    children: <Widget>[
-                                      SubscriptionPlanCard(
-                                        plan: plan,
-                                      ),
-                                      SizedBox(
-                                        height: 25,
-                                      ),
-                                    ],
-                                  ))
+                              .map((plan) =>
+                              Column(
+                                children: <Widget>[
+                                  SubscriptionPlanCard(
+                                    plan: plan,
+                                    customerEmail: customerEmail,
+                                  ),
+                                  SizedBox(
+                                    height: 25,
+                                  ),
+                                ],
+                              ))
                               .toList()),
                     ],
                   ),

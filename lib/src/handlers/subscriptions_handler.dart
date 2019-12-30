@@ -8,6 +8,7 @@ import 'package:flutter/widgets.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 
 class SubscriptionsHandler extends Handler implements RegisterableHandler {
+  static final String email = "email";
 
   @override
   void registerRoute(Router router) {
@@ -24,9 +25,9 @@ class SubscriptionsHandler extends Handler implements RegisterableHandler {
             userRepository: userRepository,
             authBloc: BlocProvider.of<AuthBloc>(context),
           );
-        },child: SubscriptionsPage()
+        },child: SubscriptionsPage(customerEmail: params[email][0])
     );
   };
 
-  String get route => "subscriptions";
+  String get route => "subscriptions/:$email";
 }

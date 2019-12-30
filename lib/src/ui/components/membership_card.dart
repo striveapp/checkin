@@ -157,7 +157,7 @@ class MembershipCard extends StatelessWidget {
                             style: Theme.of(context).textTheme.button,
                           ),
                           onPressed: () {
-                            Navigator.of(context).pushNamed("subscriptions");
+                            Navigator.of(context).pushNamed("subscriptions/${user.email}");
                           },
                         ),
                       ],
