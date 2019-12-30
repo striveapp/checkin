@@ -1,21 +1,29 @@
 import 'package:equatable/equatable.dart';
+import 'package:flutter/cupertino.dart';
 
 class SubscriptionPlan extends Equatable {
   final String name;
+  final String description;
   final String code;
   final String interval;
   final String currency;
-  final String price;
+  final int price;
 
 
-  SubscriptionPlan(
-      this.name, this.code, this.interval, this.currency, this.price);
+  SubscriptionPlan({
+    @required this.name,
+    @required this.code,
+    @required this.interval,
+    @required this.currency,
+    @required this.price,
+    this.description = "",
+  });
 
   @override
-  List<Object> get props => [name, code, interval, currency, price];
+  List<Object> get props => [name, code, interval, currency, price, description];
 
   @override
   String toString() {
-    return 'SubscriptionPlan{name: $name, code: $code, interval: $interval, currency: $currency, price: $price}';
+    return 'SubscriptionPlan{name: $name, description: $description, code: $code, interval: $interval, currency: $currency, price: $price}';
   }
 }

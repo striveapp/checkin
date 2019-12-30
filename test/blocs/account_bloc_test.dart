@@ -6,7 +6,6 @@ import 'package:mockito/mockito.dart';
 import 'package:test/test.dart';
 
 class MockUserBloc extends Mock implements UserBloc {}
-//class MockUser extends Mock implements User {}
 
 void main() {
   group("AccountBloc", () {
@@ -27,7 +26,6 @@ void main() {
         expect(accountBloc.initialState, AccountInitial());
       });
     });
-
 
     group("AccountUpdated", () {
       test("should emits AccountLoaded and passing the user informations", () {
@@ -62,8 +60,6 @@ void main() {
           emitsInOrder(expectedState),
         );
       });
-
-
     });
   });
 }
