@@ -1,6 +1,6 @@
 import 'package:checkin/src/blocs/lessons/bloc.dart';
 import 'package:checkin/src/localization/localization.dart';
-import 'package:checkin/src/resources/lesson_repository.dart';
+import 'package:checkin/src/repositories/lesson_repository.dart';
 import 'package:checkin/src/ui/components/base_app_bar.dart';
 import 'package:checkin/src/ui/components/days_picker.dart';
 import 'package:checkin/src/ui/components/lesson_card.dart';

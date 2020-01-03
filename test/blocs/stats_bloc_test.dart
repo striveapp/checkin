@@ -4,7 +4,7 @@ import 'package:checkin/src/blocs/user/bloc.dart';
 import 'package:checkin/src/models/lesson.dart';
 import 'package:checkin/src/models/user.dart';
 import 'package:checkin/src/models/user_history.dart';
-import 'package:checkin/src/resources/stats_repository.dart';
+import 'package:checkin/src/repositories/stats_repository.dart';
 import 'package:checkin/src/util/date_util.dart';
 import 'package:mockito/mockito.dart';
 import 'package:test/test.dart';

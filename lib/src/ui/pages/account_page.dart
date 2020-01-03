@@ -1,10 +1,10 @@
 import 'package:checkin/src/blocs/account/bloc.dart';
+import 'package:checkin/src/blocs/membership/bloc.dart';
 import 'package:checkin/src/blocs/user/bloc.dart';
-import 'package:checkin/src/localization/localization.dart';
+import 'package:checkin/src/repositories/membership_repository.dart';
 import 'package:checkin/src/ui/components/base_app_bar.dart';
 import 'package:checkin/src/ui/components/membership_card.dart';
 import 'package:checkin/src/ui/components/profile_card.dart';
-import 'package:checkin/src/ui/components/user_image.dart';
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
@@ -25,10 +25,19 @@ class AccountPage extends StatelessWidget {
           title: "Account",
           showUserImage: false,
         ),
-        body: BlocProvider<AccountBloc>(
-          create: (BuildContext context) => AccountBloc(
-            userBloc: BlocProvider.of<UserBloc>(context),
-          ),
+        body: MultiBlocProvider(
+          providers: [
+            BlocProvider<AccountBloc>(
+              create: (BuildContext context) => AccountBloc(
+                userBloc: BlocProvider.of<UserBloc>(context),
+              ),
+            ),
+            BlocProvider<MembershipBloc>(
+              create: (BuildContext context) => MembershipBloc(
+                membershipRepository: MembershipRepository(),
+              ),
+            ),
+          ],
           child: BlocBuilder<AccountBloc, AccountState>(
             builder: (BuildContext context, AccountState state) {
               if (state is AccountLoaded) {

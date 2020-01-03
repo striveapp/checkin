@@ -1,6 +1,6 @@
 import 'package:checkin/src/models/user.dart';
 
-import 'user_provider.dart';
+import '../resources/user_provider.dart';
 
 class UserRepository {
   final _userProvider = UserProvider();

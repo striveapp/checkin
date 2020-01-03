@@ -8,7 +8,7 @@
     "start": "npm run shell",
     "deploy": "firebase deploy --only functions",
     "logs": "firebase functions:log",
-    "config-stripe": "./setup_stripe_key.sh"
+    "config-stripe": "./setup_stripe_keys.sh"
   },
   "engines": {
     "node": "8"

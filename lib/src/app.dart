@@ -1,7 +1,7 @@
 import 'package:checkin/src/blocs/auth/bloc.dart';
 import 'package:checkin/src/blocs/dynamic_link/bloc.dart';
-import 'package:checkin/src/resources/auth_repository.dart';
-import 'package:checkin/src/resources/user_repository.dart';
+import 'package:checkin/src/repositories/auth_repository.dart';
+import 'package:checkin/src/repositories/user_repository.dart';
 import 'package:checkin/src/routes/application.dart';
 import 'package:checkin/src/ui/pages/home_page.dart';
 import 'package:checkin/src/ui/pages/login_page.dart';

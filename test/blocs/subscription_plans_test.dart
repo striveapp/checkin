@@ -1,8 +1,6 @@
-import 'dart:io';
-
 import 'package:checkin/src/blocs/subscription_plans/bloc.dart';
 import 'package:checkin/src/models/subscription_plan.dart';
-import 'package:checkin/src/resources/subscription_plans_repository.dart';
+import 'package:checkin/src/repositories/subscription_plans_repository.dart';
 import 'package:mockito/mockito.dart';
 import 'package:test/test.dart';
 
@@ -140,7 +138,8 @@ void main() {
 
     group("SubscriptionPlansEmpty", () {
       setUp(() {
-        subscriptionPlansBloc = SubscriptionPlansBloc();
+        mockSubscriptionPlansRepository = MockSubscriptionPlansRepository();
+        subscriptionPlansBloc = SubscriptionPlansBloc(subscriptionPlansRepository: mockSubscriptionPlansRepository);
       });
       test("should emits SubscriptionPlansEmpty with empty plans", () {
         subscriptionPlansBloc

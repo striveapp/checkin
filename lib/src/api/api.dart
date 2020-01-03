@@ -14,7 +14,7 @@ class Api {
       }).catchError((error) {
         debugPrint("Function ($functionName) got an error");
         debugPrint("Message: ${error?.message}");
-//        debugPrint("Message: ${error.stackTrace}, Stacktrace:\n }");
+        debugPrint("Stacktrace:\n ${error?.stackTrace} }");
         throw error;
 
       });
