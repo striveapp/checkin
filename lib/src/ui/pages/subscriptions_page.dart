@@ -1,14 +1,8 @@
-import 'package:checkin/src/blocs/account/bloc.dart';
 import 'package:checkin/src/blocs/subscription_plans/bloc.dart';
-import 'package:checkin/src/blocs/user/bloc.dart';
-import 'package:checkin/src/localization/localization.dart';
-import 'package:checkin/src/resources/subscription_plans_repository.dart';
+import 'package:checkin/src/repositories/subscription_plans_repository.dart';
 import 'package:checkin/src/ui/components/base_app_bar.dart';
 import 'package:checkin/src/ui/components/loading_indicator.dart';
-import 'package:checkin/src/ui/components/membership_card.dart';
-import 'package:checkin/src/ui/components/profile_card.dart';
 import 'package:checkin/src/ui/components/subscription_plan_card.dart';
-import 'package:checkin/src/ui/components/user_image.dart';
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';

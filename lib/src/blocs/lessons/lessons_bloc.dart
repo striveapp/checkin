@@ -2,7 +2,7 @@ import 'dart:async';
 
 import 'package:bloc/bloc.dart';
 import 'package:checkin/src/models/lesson.dart';
-import 'package:checkin/src/resources/lesson_repository.dart';
+import 'package:checkin/src/repositories/lesson_repository.dart';
 import 'package:checkin/src/util/date_util.dart';
 import 'package:flutter/foundation.dart';
 import 'package:meta/meta.dart';

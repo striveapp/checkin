@@ -1,7 +1,7 @@
 import 'package:bloc_test/bloc_test.dart';
 import 'package:checkin/src/blocs/user/bloc.dart';
 import 'package:checkin/src/models/user.dart';
-import 'package:checkin/src/resources/user_repository.dart';
+import 'package:checkin/src/repositories/user_repository.dart';
 import 'package:mockito/mockito.dart';
 import 'package:test/test.dart';
 import 'package:checkin/src/blocs/profile/bloc.dart';

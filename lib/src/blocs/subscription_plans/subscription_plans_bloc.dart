@@ -4,7 +4,7 @@ import 'package:bloc/bloc.dart';
 import 'package:checkin/src/blocs/subscription_plans/subscription_plans_event.dart';
 import 'package:checkin/src/blocs/subscription_plans/subscription_plans_state.dart';
 import 'package:checkin/src/models/subscription_plan.dart';
-import 'package:checkin/src/resources/subscription_plans_repository.dart';
+import 'package:checkin/src/repositories/subscription_plans_repository.dart';
 import 'package:flutter/cupertino.dart';
 
 class SubscriptionPlansBloc

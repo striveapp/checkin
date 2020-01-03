@@ -2,7 +2,7 @@ import 'package:checkin/src/blocs/stats/bloc.dart';
 import 'package:checkin/src/blocs/user/bloc.dart';
 import 'package:checkin/src/constants.dart' as constants;
 import 'package:checkin/src/localization/localization.dart';
-import 'package:checkin/src/resources/stats_repository.dart';
+import 'package:checkin/src/repositories/stats_repository.dart';
 import 'package:checkin/src/ui/components/attended_lessons_list.dart';
 import 'package:checkin/src/ui/components/base_app_bar.dart';
 import 'package:checkin/src/ui/components/loading_indicator.dart';

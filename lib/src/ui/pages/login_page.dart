@@ -1,6 +1,6 @@
 import 'package:checkin/src/blocs/login/bloc.dart';
-import 'package:checkin/src/resources/auth_repository.dart';
-import 'package:checkin/src/resources/user_repository.dart';
+import 'package:checkin/src/repositories/auth_repository.dart';
+import 'package:checkin/src/repositories/user_repository.dart';
 import 'package:checkin/src/ui/components/login_form.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';

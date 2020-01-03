@@ -1,5 +1,7 @@
+import 'package:checkin/src/blocs/membership/bloc.dart';
 import 'package:checkin/src/models/user.dart';
 import 'package:flutter/material.dart';
+import 'package:flutter_bloc/flutter_bloc.dart';
 
 class MembershipCard extends StatelessWidget {
   final User user;
@@ -93,62 +95,71 @@ class MembershipCard extends StatelessWidget {
                           onPressed: () {
                             showDialog(
                               context: context,
-                              builder: (BuildContext context) {
-                                return AlertDialog(
-                                  content: SizedBox(
-                                    height: 100,
-                                    child: Column(
-                                      children: <Widget>[
-                                        Text(
-                                            "You are about to permanently cancel your subscription.",
-                                            textAlign: TextAlign.center,
+                              builder: (_) => BlocProvider.value(
+                                  value:
+                                      BlocProvider.of<MembershipBloc>(context),
+                                  child: AlertDialog(
+                                    content: SizedBox(
+                                      height: 100,
+                                      child: Column(
+                                        children: <Widget>[
+                                          Text(
+                                              "You are about to permanently cancel your subscription.",
+                                              textAlign: TextAlign.center,
+                                              style: Theme.of(context)
+                                                  .textTheme
+                                                  .body1),
+                                          SizedBox(
+                                            height: 20,
+                                          ),
+                                          Text(
+                                            "This operation cannot be undone",
                                             style: Theme.of(context)
                                                 .textTheme
-                                                .body1),
-                                        SizedBox(height: 20,),
-                                        Text(
-                                          "This operation cannot be undone",
-                                          style:
-                                              Theme.of(context).textTheme.body1.apply(fontWeightDelta: 2),
-                                        ),
-                                      ],
-                                    ),
-                                  ),
-                                  actions: <Widget>[
-                                    RaisedButton(
-                                      child: Padding(
-                                        padding: EdgeInsets.symmetric(vertical: 10, horizontal: 10),
-                                        child: Text(
-                                          "Keep Subscription",
-                                          style:
-                                          Theme.of(context).textTheme.button,
-                                        ),
+                                                .body1
+                                                .apply(fontWeightDelta: 2),
+                                          ),
+                                        ],
                                       ),
-                                      onPressed: () {
-                                        Navigator.of(context).pop();
-                                      },
                                     ),
-                                    RaisedButton(
-                                      color: Theme.of(context)
-                                          .buttonTheme
-                                          .colorScheme
-                                          .error,
-                                      child: Padding(
-                                        padding: EdgeInsets.symmetric(vertical: 10, horizontal: 10),
-                                        child: Text(
-                                          "Unsubscribe",
-                                          style:
-                                          Theme.of(context).textTheme.button,
+                                    actions: <Widget>[
+                                      RaisedButton(
+                                        child: Padding(
+                                          padding: EdgeInsets.symmetric(
+                                              vertical: 10, horizontal: 10),
+                                          child: Text(
+                                            "Keep Subscription",
+                                            style: Theme.of(context)
+                                                .textTheme
+                                                .button,
+                                          ),
                                         ),
+                                        onPressed: () {
+                                          Navigator.of(context).pop();
+                                        },
                                       ),
-                                      onPressed: () {
-
-                                        Navigator.of(context).pop();
-                                      },
-                                    ),
-                                  ],
-                                );
-                              },
+                                      RaisedButton(
+                                        color: Theme.of(context)
+                                            .buttonTheme
+                                            .colorScheme
+                                            .error,
+                                        child: Padding(
+                                          padding: EdgeInsets.symmetric(
+                                              vertical: 10, horizontal: 10),
+                                          child: Text(
+                                            "Unsubscribe",
+                                            style: Theme.of(context)
+                                                .textTheme
+                                                .button,
+                                          ),
+                                        ),
+                                        onPressed: () {
+                                          BlocProvider.of<MembershipBloc>(context).add(Unsubscribe());
+                                          Navigator.of(context).pop();
+                                        },
+                                      ),
+                                    ],
+                                  )),
                             );
                           },
                         ),
@@ -158,7 +169,8 @@ class MembershipCard extends StatelessWidget {
                             style: Theme.of(context).textTheme.button,
                           ),
                           onPressed: () {
-                            Navigator.of(context).pushNamed("subscriptions/${user.email}");
+                            Navigator.of(context)
+                                .pushNamed("subscriptions/${user.email}");
                           },
                         ),
                       ],

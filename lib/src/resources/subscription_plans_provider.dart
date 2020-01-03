@@ -1,6 +1,5 @@
 import 'package:checkin/src/models/subscription_plan.dart';
 import 'package:cloud_firestore/cloud_firestore.dart';
-import 'package:flutter/cupertino.dart';
 
 class SubscriptionPlansProvider {
   static const String path = 'subscription_plans';

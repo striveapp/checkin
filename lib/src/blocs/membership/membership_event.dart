@@ -7,6 +7,14 @@ abstract class MembershipEvent extends Equatable {
   List<Object> get props => [];
 }
 
-class  extends MembershipEvent {
+class MembershipUpdated extends MembershipEvent {
 
+  @override
+  String toString() => 'MembershipLoaded';
+}
+
+class Unsubscribe extends MembershipEvent {
+
+  @override
+  String toString() => 'Unsubscribe';
 }

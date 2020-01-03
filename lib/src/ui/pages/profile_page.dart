@@ -4,7 +4,7 @@ import 'package:checkin/src/blocs/profile/bloc.dart';
 import 'package:checkin/src/blocs/user/bloc.dart';
 import 'package:checkin/src/localization/localization.dart';
 import 'package:checkin/src/models/user.dart';
-import 'package:checkin/src/resources/user_repository.dart';
+import 'package:checkin/src/repositories/user_repository.dart';
 import 'package:checkin/src/ui/components/base_app_bar.dart';
 import 'package:checkin/src/ui/components/class_counter.dart';
 import 'package:checkin/src/ui/components/loading_indicator.dart';
