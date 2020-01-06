@@ -1,6 +1,7 @@
 import 'package:checkin/src/blocs/account/bloc.dart';
 import 'package:checkin/src/blocs/membership/bloc.dart';
 import 'package:checkin/src/blocs/user/bloc.dart';
+import 'package:checkin/src/localization/localization.dart';
 import 'package:checkin/src/repositories/membership_repository.dart';
 import 'package:checkin/src/ui/components/base_app_bar.dart';
 import 'package:checkin/src/ui/components/membership_card.dart';
@@ -22,7 +23,7 @@ class AccountPage extends StatelessWidget {
       },
       child: Scaffold(
         appBar: BaseAppBar(
-          title: "Account",
+          title: Localization.of(context).account,
           showUserImage: false,
         ),
         body: MultiBlocProvider(
@@ -53,7 +54,7 @@ class AccountPage extends StatelessWidget {
                         Padding(
                           padding: EdgeInsets.only(left: 10.0),
                           child: Text(
-                            "Membership",
+                            Localization.of(context).membership,
                             style: Theme.of(context)
                                 .textTheme
                                 .headline
@@ -62,7 +63,9 @@ class AccountPage extends StatelessWidget {
                         ),
                         Padding(
                           padding: EdgeInsets.only(top: 10.0),
-                          child: MembershipCard(user: state.user,),
+                          child: MembershipCard(
+                            user: state.user,
+                          ),
                         ),
                         SizedBox(
                           height: 50,
@@ -70,14 +73,16 @@ class AccountPage extends StatelessWidget {
                         Padding(
                           padding: EdgeInsets.only(left: 10.0),
                           child: Text(
-                            "Profile",
+                            Localization.of(context).profile,
                             style: Theme.of(context)
                                 .textTheme
                                 .headline
                                 .apply(color: Colors.black87),
                           ),
                         ),
-                        ProfileCard(user: state.user,),
+                        ProfileCard(
+                          user: state.user,
+                        ),
                       ],
                     ),
                   ),

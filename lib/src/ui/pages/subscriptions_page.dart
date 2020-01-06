@@ -1,4 +1,5 @@
 import 'package:checkin/src/blocs/subscription_plans/bloc.dart';
+import 'package:checkin/src/localization/localization.dart';
 import 'package:checkin/src/repositories/subscription_plans_repository.dart';
 import 'package:checkin/src/ui/components/base_app_bar.dart';
 import 'package:checkin/src/ui/components/loading_indicator.dart';
@@ -18,7 +19,7 @@ class SubscriptionsPage extends StatelessWidget {
   Widget build(BuildContext context) {
     return Scaffold(
       appBar: BaseAppBar(
-        title: "Subscriptions",
+        title: Localization.of(context).subscriptions,
         showUserImage: false,
       ),
       body: BlocProvider<SubscriptionPlansBloc>(
@@ -41,7 +42,7 @@ class SubscriptionsPage extends StatelessWidget {
                       Padding(
                         padding: EdgeInsets.only(left: 10.0),
                         child: Text(
-                            "Choose a subcription plan and start training hard",
+                            Localization.of(context).chooseSubAndStartTraining,
                             textAlign: TextAlign.center,
                             style: Theme
                                 .of(context)

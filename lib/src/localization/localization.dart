@@ -59,6 +59,19 @@ class   Localization {
   String get year => getValue(Year);
   String get attendedClasses => getValue(AttendedClasses);
   String get stats => getValue(Stats);
+  String get nextBilling => getValue(NextBilling);
+  String get unsubscribe => getValue(Unsubscribe);
+  String get changePlan => getValue(ChangePlan);
+  String get creditCard => getValue(CreditCard);
+  String get account => getValue(Account);
+  String get membership => getValue(Membership);
+  String get cannotBeUndone => getValue(CannotBeUndone);
+  String get keepSubscription => getValue(KeepSubscription);
+  String get aboutToPermanentlyDeleteSubscription => getValue(AboutToPermanentlyDeleteSubscription);
+  String get email => getValue(Email);
+  String get chooseSubAndStartTraining => getValue(ChooseSubAndStartTraining);
+  String get subscriptions => getValue(Subscriptions);
+
 }
 
 class LocalizationDelegate extends LocalizationsDelegate<Localization> {
