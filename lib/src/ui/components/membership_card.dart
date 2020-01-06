@@ -1,4 +1,5 @@
 import 'package:checkin/src/blocs/membership/bloc.dart';
+import 'package:checkin/src/localization/localization.dart';
 import 'package:checkin/src/models/user.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
@@ -26,7 +27,7 @@ class MembershipCard extends StatelessWidget {
                 mainAxisAlignment: MainAxisAlignment.spaceBetween,
                 children: <Widget>[
                   Text(
-                    "Billing email:",
+                    "${Localization.of(context).email}:",
                     style: Theme.of(context)
                         .textTheme
                         .subtitle
@@ -42,7 +43,7 @@ class MembershipCard extends StatelessWidget {
                 mainAxisAlignment: MainAxisAlignment.spaceBetween,
                 children: <Widget>[
                   Text(
-                    "Card:",
+                    "${Localization.of(context).creditCard}:",
                     style: Theme.of(context)
                         .textTheme
                         .subtitle
@@ -68,7 +69,7 @@ class MembershipCard extends StatelessWidget {
               Center(
                 child: Column(
                   children: <Widget>[
-                    Text("The next billing date is",
+                    Text(Localization.of(context).nextBilling,
                         textAlign: TextAlign.center,
                         style: Theme.of(context)
                             .textTheme
@@ -87,7 +88,7 @@ class MembershipCard extends StatelessWidget {
                       children: <Widget>[
                         RaisedButton(
                           child: Text(
-                            "Unsubscribe",
+                            Localization.of(context).unsubscribe,
                             style: Theme.of(context).textTheme.button,
                           ),
                           color:
@@ -104,7 +105,7 @@ class MembershipCard extends StatelessWidget {
                                       child: Column(
                                         children: <Widget>[
                                           Text(
-                                              "You are about to permanently cancel your subscription.",
+                                              Localization.of(context).aboutToPermanentlyDeleteSubscription,
                                               textAlign: TextAlign.center,
                                               style: Theme.of(context)
                                                   .textTheme
@@ -113,7 +114,7 @@ class MembershipCard extends StatelessWidget {
                                             height: 20,
                                           ),
                                           Text(
-                                            "This operation cannot be undone",
+                                            Localization.of(context).cannotBeUndone,
                                             style: Theme.of(context)
                                                 .textTheme
                                                 .body1
@@ -128,7 +129,7 @@ class MembershipCard extends StatelessWidget {
                                           padding: EdgeInsets.symmetric(
                                               vertical: 10, horizontal: 10),
                                           child: Text(
-                                            "Keep Subscription",
+                                            Localization.of(context).keepSubscription,
                                             style: Theme.of(context)
                                                 .textTheme
                                                 .button,
@@ -147,7 +148,7 @@ class MembershipCard extends StatelessWidget {
                                           padding: EdgeInsets.symmetric(
                                               vertical: 10, horizontal: 10),
                                           child: Text(
-                                            "Unsubscribe",
+                                            Localization.of(context).unsubscribe,
                                             style: Theme.of(context)
                                                 .textTheme
                                                 .button,
@@ -165,7 +166,7 @@ class MembershipCard extends StatelessWidget {
                         ),
                         RaisedButton(
                           child: Text(
-                            "Change Plan",
+                            Localization.of(context).changePlan,
                             style: Theme.of(context).textTheme.button,
                           ),
                           onPressed: () {

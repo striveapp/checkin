@@ -34,7 +34,20 @@ const String EmptyClass = 'empty_class',
     Month = 'month',
     Year = 'year',
     AttendedClasses = 'attended_classes',
-    Stats = 'stats'
+    Stats = 'stats',
+    NextBilling = 'next_billing',
+    Unsubscribe = 'unsubscribe',
+    ChangePlan = 'change_plan',
+    CreditCard = 'credit_card',
+    Account = 'account',
+    Membership = 'membership',
+    CannotBeUndone = 'cannot_be_undone',
+    KeepSubscription = 'keep_subscription',
+    AboutToPermanentlyDeleteSubscription =
+        'about_to_permanently_delete_subscription',
+    Email = 'email',
+    ChooseSubAndStartTraining = 'choose_sub_and_start_training',
+    Subscriptions = 'subscriptions'
 ;
 
 final es = {
@@ -71,10 +84,23 @@ final es = {
   YouAttended: 'Has atendido',
   ClassesThis: 'clases esta',
   Week: 'semana',
-  Month: 'mese',
+  Month: 'mes',
   Year: 'año',
   AttendedClasses: 'Clases atendidas',
   Stats: 'Estadísticas',
+  NextBilling: 'El siguiente pago es el',
+  Unsubscribe: 'Darse de baja',
+  ChangePlan: 'Cambiar cuota',
+  CreditCard: 'Tarjeta',
+  Account: 'Cuenta',
+  Membership: 'Afiliación',
+  CannotBeUndone: 'Esta operación no se puede deshacer',
+  KeepSubscription: 'Mantener subscripción',
+  AboutToPermanentlyDeleteSubscription:
+      'Estás a punto de cancelar tu cuota de forma permanente',
+  Email: 'Email',
+  ChooseSubAndStartTraining: 'Escoje tu cuota y empieza a entrenar a tope',
+  Subscriptions: 'Cuotas',
 };
 
 final en = {
@@ -115,4 +141,17 @@ final en = {
   Year: 'year',
   AttendedClasses: 'Attended Classes',
   Stats: 'Stats',
+  NextBilling: 'The next billing date is',
+  Unsubscribe: 'Unsubscribe',
+  ChangePlan: 'Change plan',
+  CreditCard: 'Card',
+  Account: "Account",
+  Membership: 'Membership',
+  CannotBeUndone: 'This operation cannot be undone',
+  KeepSubscription: 'Keep Subscription',
+  AboutToPermanentlyDeleteSubscription:
+      'You are about to permanently cancel your subscription.',
+  Email: 'Email',
+  ChooseSubAndStartTraining: 'Choose a subcription plan and start training hard',
+  Subscriptions: 'Subscriptions',
 };
