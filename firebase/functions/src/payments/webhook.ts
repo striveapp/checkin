@@ -13,6 +13,7 @@ const db = admin.firestore();
  *  - customer.updated: Occurs whenever any property of a customer changes.
  *  - checkout.session.completed: Occurs when a Checkout Session has been successfully completed.
  *  - payment_method.attached: Occurs whenever a new payment method is attached to a customer.
+ *  - customer.subscription.deleted:
  * */
 
 
@@ -34,7 +35,7 @@ function checkoutCompleted(event: any) {
 }
 
 /**
- * Event: customer.subscription.updated
+ * Events: [ customer.subscription.updated, customer.subscription.deleted ]
  * */
 function subscriptionUpdated(event: any) {
     const subscription: any = event.data.object;
@@ -118,6 +119,8 @@ export const webhook = functions.https.onRequest(async (request, response) => {
             case 'checkout.session.completed':
                 await checkoutCompleted(event);
                 break;
+            case 'customer.subscription.deleted':
+                console.log( "Received subscription deleted event" );
             case 'customer.subscription.updated':
                 await subscriptionUpdated(event);
                 break;
