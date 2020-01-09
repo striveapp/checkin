@@ -14,7 +14,7 @@ class StatsProvider {
         .document(email)
         .snapshots()
         .map((doc) => UserHistory(
-            attendedLessons: (doc.data['attendedLessons'] as List)
+            attendedLessons: (doc.data != null ? doc.data['attendedLessons'] as List : [])
                 ?.where((lesson) => lesson['timestamp'] > fromTimestamp)
                 ?.map((lesson) => Lesson(
                     id: lesson['id'],
