@@ -9,12 +9,13 @@
         var urlParams = new URLSearchParams(window.location.search);
         var customerEmail = urlParams.get('customerEmail');
         var plan = urlParams.get('plan');
+        // todo handle prod and test prefix url
         stripe.redirectToCheckout({
             items: [
                 {plan: plan, quantity: 1},
             ],
-            successUrl: 'https://example.com/success',
-            cancelUrl: 'https://example.com/cancel',
+            successUrl: 'https://arya.page.link/payment/success',
+            cancelUrl: 'https://arya.page.link/subscriptions/' + customerEmail,
             customerEmail: customerEmail,
         })
     </script>

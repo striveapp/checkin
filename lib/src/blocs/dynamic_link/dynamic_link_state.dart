@@ -26,6 +26,20 @@ class DynamicLinkToRegistry extends DynamicLinkState {
   String toString() => 'DynamicLinkToRegistry';
 }
 
+class DynamicLinkToNavigate extends DynamicLinkState {
+  final String path;
+
+  DynamicLinkToNavigate({this.path});
+
+  @override
+  List<Object> get props => [path];
+
+  @override
+  String toString() {
+    return 'DynamicLinkToNavigate';
+  }
+}
+
 class DynamicLinkError extends DynamicLinkState {
   @override
   String toString() => 'DynamicLinkError';

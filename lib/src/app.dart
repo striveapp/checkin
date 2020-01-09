@@ -97,6 +97,11 @@ class App extends StatelessWidget {
           if(state is DynamicLinkToRegistry) {
             Navigator.of(context).pushNamed('registry/${state.lessonId}');
           }
+
+          if( state is DynamicLinkToNavigate ) {
+            debugPrint("deep link received with path ${state.path}");
+            Navigator.of(context).pushNamed(state.path);
+          }
         },
         child: BlocBuilder<AuthBloc, AuthState>(
             builder: (BuildContext context, AuthState state) {

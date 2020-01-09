@@ -35,6 +35,8 @@ class DynamicLinkBloc extends Bloc<DynamicLinkEvent, DynamicLinkState> {
       var lessonId = event.deepLink.queryParameters['lessonId'];
       if (lessonId != null) {
         yield DynamicLinkToRegistry(lessonId: lessonId);
+      } else {
+        yield DynamicLinkToNavigate(path: event.deepLink.path);
       }
     }
 

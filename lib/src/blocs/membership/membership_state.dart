@@ -1,3 +1,4 @@
+import 'package:checkin/src/models/membership.dart';
 import 'package:equatable/equatable.dart';
 
 abstract class MembershipState extends Equatable {
@@ -12,9 +13,31 @@ class MembershipInitial extends MembershipState {
   String toString() => 'MembershipInitial';
 }
 
-class MembershipLoaded extends MembershipState {
+class MembershipActive extends MembershipState {
+  final Membership membership;
+
+
+  MembershipActive({this.membership});
+
+  @override
+  List<Object> get props => [membership];
+
   @override
   String toString() => 'MembershipLoaded';
+}
+
+class MembershipInactive extends MembershipState {
+  final String email;
+
+  MembershipInactive({this.email});
+
+  @override
+  List<Object> get props => [email];
+
+  @override
+  String toString() {
+    return 'MembershipInactive';
+  }
 }
 
 class MembershipLoading extends MembershipState {
