@@ -51,6 +51,10 @@ service cloud.firestore {
       allow read: if isLoggedUser(email);
     }
 
+    match /customers/{email} {
+      allow read: if isLoggedUser(email);
+    }
+
     match /subscription_plans/{document=**} {
       allow read: if isLoggedUser(request.auth.token.email);
     }

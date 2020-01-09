@@ -10,7 +10,8 @@
     "deploy:lessons-api": "firebase deploy --only functions:acceptAll",
     "deploy:payments": "firebase deploy --only functions:webhook,functions:unsubscribe",
     "deploy:admin-app": "firebase deploy --only functions:app",
-    "deploy:rules": "firebase deploy --only firestore:rules"
+    "deploy:rules": "firebase deploy --only firestore:rules",
+    "deploy:hosting": "firebase deploy --only hosting"
   },
   "devDependencies": {
     "@firebase/testing": "^0.11.4",

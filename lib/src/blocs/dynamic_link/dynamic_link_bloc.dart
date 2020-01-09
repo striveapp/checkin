@@ -30,11 +30,14 @@ class DynamicLinkBloc extends Bloc<DynamicLinkEvent, DynamicLinkState> {
         onError: onErrorLink,
       );
     }
-
+    debugPrint("dynamic link received");
     if (event is DeepLinkReceived) {
+      debugPrint("deep link received");
       var lessonId = event.deepLink.queryParameters['lessonId'];
       if (lessonId != null) {
         yield DynamicLinkToRegistry(lessonId: lessonId);
+      } else {
+        yield DynamicLinkToNavigate(path: event.deepLink.path);
       }
     }
 
@@ -43,7 +46,7 @@ class DynamicLinkBloc extends Bloc<DynamicLinkEvent, DynamicLinkState> {
     }
   }
 
-  void onSuccessLink(PendingDynamicLinkData dynamicLink) async {
+  Future<void> onSuccessLink(PendingDynamicLinkData dynamicLink) async {
     final Uri deepLink = dynamicLink?.link;
 
     if (deepLink != null) {
@@ -51,7 +54,7 @@ class DynamicLinkBloc extends Bloc<DynamicLinkEvent, DynamicLinkState> {
     }
   }
 
-  void onErrorLink(OnLinkErrorException e) async {
+  Future<void> onErrorLink(OnLinkErrorException e) async {
     print('onLinkError');
     print(e.message);
     add(DeepLinkErrorEvent());

@@ -4,7 +4,7 @@ import 'package:checkin/src/blocs/user/bloc.dart';
 import 'package:checkin/src/localization/localization.dart';
 import 'package:checkin/src/repositories/membership_repository.dart';
 import 'package:checkin/src/ui/components/base_app_bar.dart';
-import 'package:checkin/src/ui/components/membership_card.dart';
+import 'package:checkin/src/ui/components/membership/membership_card.dart';
 import 'package:checkin/src/ui/components/profile_card.dart';
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
@@ -36,6 +36,7 @@ class AccountPage extends StatelessWidget {
             BlocProvider<MembershipBloc>(
               create: (BuildContext context) => MembershipBloc(
                 membershipRepository: MembershipRepository(),
+                userBloc: BlocProvider.of<UserBloc>(context),
               ),
             ),
           ],
@@ -63,9 +64,7 @@ class AccountPage extends StatelessWidget {
                         ),
                         Padding(
                           padding: EdgeInsets.only(top: 10.0),
-                          child: MembershipCard(
-                            user: state.user,
-                          ),
+                          child: MembershipCard(),
                         ),
                         SizedBox(
                           height: 50,
