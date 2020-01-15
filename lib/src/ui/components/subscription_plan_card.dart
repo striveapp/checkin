@@ -1,4 +1,5 @@
 import 'package:checkin/src/models/subscription_plan.dart';
+import 'package:checkin/src/util/debug_util.dart';
 import 'package:flutter/material.dart';
 import 'package:intl/intl.dart';
 import 'package:url_launcher/url_launcher.dart';
@@ -77,8 +78,8 @@ class SubscriptionPlanCard extends StatelessWidget {
   }
 
   void _launchURL() async {
-
-    var url = "https://checkin-test-fba3d.firebaseapp.com/payment.html?customerEmail=$customerEmail&plan=${plan.code}&nocache=${DateTime.now()}";
+    var host = isInDebugMode ? 'arya.page.link' : 'aranha.page.link';
+    var url = "https://checkin-test-fba3d.firebaseapp.com/payment.html?host=$host&customerEmail=$customerEmail&plan=${plan.code}&nocache=${DateTime.now()}";
     if (await canLaunch(url)) {
       await launch(url);
     } else {

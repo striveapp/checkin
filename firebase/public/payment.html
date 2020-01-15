@@ -5,18 +5,19 @@
     <title>Payment</title>
     <script src="https://js.stripe.com/v3/"></script>
     <script type="application/javascript">
-        // todo handle different public key for stripe
+        // TODO: handle different public key for stripe
         var stripe = Stripe('pk_test_8K7vXBkISjYbdzi7EzEvuS4J00v3T0aos8');
         var urlParams = new URLSearchParams(window.location.search);
+        var host = urlParams.get('host');
         var customerEmail = urlParams.get('customerEmail');
         var plan = urlParams.get('plan');
-        // todo handle prod and test prefix url
+
         stripe.redirectToCheckout({
             items: [
                 {plan: plan, quantity: 1},
             ],
-            successUrl: 'https://arya.page.link?apn=com.arya.checkin&ibi=com.arya.checkin&link=https%3A%2F%2Fexample.com%2Fpayment%2Fsuccess',
-            cancelUrl: 'https://arya.page.link?apn=com.arya.checkin&ibi=com.arya.checkin&link=https%3A%2F%2Fexample.com%2Fsubscriptions%2F' + customerEmail,
+            successUrl: 'https://' + host + '?apn=com.arya.checkin&ibi=com.arya.checkin&link=https%3A%2F%2Fexample.com%2Fpayment%2Fsuccess',
+            cancelUrl: 'https://' + host + '?apn=com.arya.checkin&ibi=com.arya.checkin&link=https%3A%2F%2Fexample.com%2Fsubscriptions%2F' + customerEmail,
             customerEmail: customerEmail,
         })
     </script>
