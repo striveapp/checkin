@@ -37,6 +37,8 @@ const String EmptyClass = 'empty_class',
     Stats = 'stats',
     NextBilling = 'next_billing',
     Unsubscribe = 'unsubscribe',
+    Subscribe = 'subscribe',
+    NotActiveSubscription = 'not_active_subscription',
     ChangePlan = 'change_plan',
     CreditCard = 'credit_card',
     Account = 'account',
@@ -47,7 +49,10 @@ const String EmptyClass = 'empty_class',
         'about_to_permanently_delete_subscription',
     Email = 'email',
     ChooseSubAndStartTraining = 'choose_sub_and_start_training',
-    Subscriptions = 'subscriptions'
+    Subscriptions = 'subscriptions',
+    GoToAccount = 'go_to_account',
+    PaymentSuccessful = 'payment_successful',
+    DisclaimerSubscription30Min = 'disclamer_subscription_30_min'
 ;
 
 final es = {
@@ -90,6 +95,8 @@ final es = {
   Stats: 'Estadísticas',
   NextBilling: 'El siguiente pago es el',
   Unsubscribe: 'Darse de baja',
+  Subscribe: 'Suscribirse',
+  NotActiveSubscription: 'Tu subscripción no está activa todavia',
   ChangePlan: 'Cambiar cuota',
   CreditCard: 'Tarjeta',
   Account: 'Cuenta',
@@ -101,6 +108,9 @@ final es = {
   Email: 'Email',
   ChooseSubAndStartTraining: 'Escoje tu cuota y empieza a entrenar a tope',
   Subscriptions: 'Cuotas',
+  GoToAccount: 'Volver a la Cuenta',
+  PaymentSuccessful: 'Pagado con Exito',
+  DisclaimerSubscription30Min: 'Tu subscripción puede tardar hasta 30 minutos en aparecer en tu cuenta',
 };
 
 final en = {
@@ -143,6 +153,8 @@ final en = {
   Stats: 'Stats',
   NextBilling: 'The next billing date is',
   Unsubscribe: 'Unsubscribe',
+  Subscribe: 'Subscribe',
+  NotActiveSubscription: 'Your subscription is not active yet',
   ChangePlan: 'Change plan',
   CreditCard: 'Card',
   Account: "Account",
@@ -154,4 +166,7 @@ final en = {
   Email: 'Email',
   ChooseSubAndStartTraining: 'Choose a subcription plan and start training hard',
   Subscriptions: 'Subscriptions',
+  GoToAccount: 'Go to account',
+  PaymentSuccessful: 'Payment Successful',
+  DisclaimerSubscription30Min: 'It can take up to 30 minutes for your order to appear in your account',
 };

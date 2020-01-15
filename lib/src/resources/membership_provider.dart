@@ -1,7 +1,4 @@
-import 'package:checkin/src/models/lesson.dart';
-import 'package:checkin/src/models/master.dart';
 import 'package:checkin/src/models/membership.dart';
-import 'package:checkin/src/models/user_history.dart';
 import 'package:cloud_firestore/cloud_firestore.dart';
 
 class MembershipProvider {

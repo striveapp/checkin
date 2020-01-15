@@ -30,7 +30,7 @@ class DynamicLinkBloc extends Bloc<DynamicLinkEvent, DynamicLinkState> {
         onError: onErrorLink,
       );
     }
-
+    debugPrint("dynamic link received");
     if (event is DeepLinkReceived) {
       var lessonId = event.deepLink.queryParameters['lessonId'];
       if (lessonId != null) {

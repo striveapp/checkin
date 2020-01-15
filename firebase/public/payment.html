@@ -5,6 +5,7 @@
     <title>Payment</title>
     <script src="https://js.stripe.com/v3/"></script>
     <script type="application/javascript">
+        // todo handle different public key for stripe
         var stripe = Stripe('pk_test_8K7vXBkISjYbdzi7EzEvuS4J00v3T0aos8');
         var urlParams = new URLSearchParams(window.location.search);
         var customerEmail = urlParams.get('customerEmail');
@@ -14,8 +15,8 @@
             items: [
                 {plan: plan, quantity: 1},
             ],
-            successUrl: 'https://arya.page.link/payment/success',
-            cancelUrl: 'https://arya.page.link/subscriptions/' + customerEmail,
+            successUrl: 'https://arya.page.link?apn=com.arya.checkin&ibi=com.arya.checkin&link=https%3A%2F%2Fexample.com%2Fpayment%2Fsuccess',
+            cancelUrl: 'https://arya.page.link?apn=com.arya.checkin&ibi=com.arya.checkin&link=https%3A%2F%2Fexample.com%2Fsubscriptions%2F' + customerEmail,
             customerEmail: customerEmail,
         })
     </script>

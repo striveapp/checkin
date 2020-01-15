@@ -107,16 +107,6 @@ class ActiveMembershipView extends StatelessWidget {
                         );
                       },
                     ),
-//                            RaisedButton(
-//                              child: Text(
-//                                Localization.of(context).changePlan,
-//                                style: Theme.of(context).textTheme.button,
-//                              ),
-//                              onPressed: () {
-//                                Navigator.of(context)
-//                                    .pushNamed("subscriptions/${membership.email}");
-//                              },
-//                            ),
                   ],
                 )
               ],

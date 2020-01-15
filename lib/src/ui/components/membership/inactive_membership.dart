@@ -1,3 +1,4 @@
+import 'package:checkin/src/localization/localization.dart';
 import 'package:flutter/material.dart';
 
 class InactiveMembershipView extends StatelessWidget {
@@ -14,14 +15,14 @@ class InactiveMembershipView extends StatelessWidget {
           mainAxisAlignment: MainAxisAlignment.spaceEvenly,
           crossAxisAlignment: CrossAxisAlignment.center,
           children: <Widget>[
-            Text("Your subscription is not active",
+            Text(Localization.of(context).notActiveSubscription,
               style: Theme.of(context)
                 .textTheme
                 .subtitle
                 .apply(fontSizeDelta: 1),),
             RaisedButton(
               child: Text(
-                "Subscribe",
+                Localization.of(context).subscribe,
                 style: Theme.of(context).textTheme.button,
               ),
               onPressed: () {

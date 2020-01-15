@@ -61,6 +61,8 @@ class   Localization {
   String get stats => getValue(Stats);
   String get nextBilling => getValue(NextBilling);
   String get unsubscribe => getValue(Unsubscribe);
+  String get subscribe => getValue(Subscribe);
+  String get notActiveSubscription => getValue(NotActiveSubscription);
   String get changePlan => getValue(ChangePlan);
   String get creditCard => getValue(CreditCard);
   String get account => getValue(Account);
@@ -71,6 +73,9 @@ class   Localization {
   String get email => getValue(Email);
   String get chooseSubAndStartTraining => getValue(ChooseSubAndStartTraining);
   String get subscriptions => getValue(Subscriptions);
+  String get goToAccount => getValue(GoToAccount);
+  String get paymentSuccessful => getValue(PaymentSuccessful);
+  String get disclaimerSubscription30Min => getValue(DisclaimerSubscription30Min);
 
 }
 
