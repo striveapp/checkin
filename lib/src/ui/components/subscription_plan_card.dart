@@ -79,7 +79,8 @@ class SubscriptionPlanCard extends StatelessWidget {
 
   void _launchURL() async {
     var host = isInDebugMode ? 'arya.page.link' : 'aranha.page.link';
-    var url = "https://checkin-test-fba3d.firebaseapp.com/payment.html?host=$host&customerEmail=$customerEmail&plan=${plan.code}&nocache=${DateTime.now()}";
+    var url = Uri.encodeFull("https://checkin-test-fba3d.firebaseapp.com/payment.html?host=$host&customerEmail=$customerEmail&plan=${plan.code}&nocache=${DateTime.now()}");
+
     if (await canLaunch(url)) {
       await launch(url);
     } else {

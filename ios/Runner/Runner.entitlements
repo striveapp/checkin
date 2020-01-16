@@ -8,6 +8,7 @@
 	<array>
 		<string>applinks:checkin2.page.link</string>
 		<string>applinks:arya.page.link</string>
+		<string>applinks:aranha.page.link</string>
 	</array>
 </dict>
 </plist>

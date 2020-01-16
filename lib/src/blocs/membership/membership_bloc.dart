@@ -20,7 +20,7 @@ class MembershipBloc extends Bloc<MembershipEvent, MembershipState> {
     this.userBloc.listen((userState) {
       if (userState is UserSuccess) {
         membershipSub?.cancel();
-
+        add(MembershipUpdated(email: userState.currentUser.email, membership: null));
         membershipSub = this.membershipRepository
             .getMembership(userState.currentUser.email).listen((membership) {
           add(MembershipUpdated(email: userState.currentUser.email, membership: membership));
@@ -43,7 +43,7 @@ class MembershipBloc extends Bloc<MembershipEvent, MembershipState> {
     }
 
     if( event is MembershipUpdated ) {
-      if( event.membership.status == "active") {
+      if( event.membership?.status == "active") {
         yield MembershipActive(membership: event.membership);
       } else {
         yield MembershipInactive(email: event.email);
