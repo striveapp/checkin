@@ -22,9 +22,7 @@ export const masterNotification = functions.pubsub
 export const app = functions.https.onRequest(adminApp);
 
 // https onCall triggers
-import { acceptAll } from "./api/lessons";
-
-export const pepe = acceptAll;
+export * from "./api/lessons";
 
 // firestore triggers
 export const userNotification = classCounterIncrementNotification;
