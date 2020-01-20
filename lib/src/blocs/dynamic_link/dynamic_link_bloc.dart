@@ -43,7 +43,7 @@ class DynamicLinkBloc extends Bloc<DynamicLinkEvent, DynamicLinkState> {
     }
   }
 
-  void onSuccessLink(PendingDynamicLinkData dynamicLink) async {
+  Future<dynamic> onSuccessLink(PendingDynamicLinkData dynamicLink) async {
     final Uri deepLink = dynamicLink?.link;
 
     if (deepLink != null) {
@@ -51,7 +51,7 @@ class DynamicLinkBloc extends Bloc<DynamicLinkEvent, DynamicLinkState> {
     }
   }
 
-  void onErrorLink(OnLinkErrorException e) async {
+  Future<dynamic> onErrorLink(OnLinkErrorException e) async {
     print('onLinkError');
     print(e.message);
     add(DeepLinkErrorEvent());
