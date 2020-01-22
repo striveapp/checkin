@@ -4,6 +4,8 @@ import 'package:flutter/material.dart';
 class DaysPicker extends StatelessWidget {
   final String day;
 
+  static const String today = 'Today';
+
   DaysPicker({
     Key key,
     this.day
@@ -18,7 +20,7 @@ class DaysPicker extends StatelessWidget {
         mainAxisAlignment: MainAxisAlignment.spaceAround,
         children: <Widget>[
           Text(
-            Localization.of(context).today,
+            today.i18n,
             key: Key('todaysClassesText'),
             style: Theme.of(context).textTheme.title,
           ),

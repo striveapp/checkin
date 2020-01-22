@@ -33,7 +33,7 @@ class _LoginFormState extends State<LoginForm> {
             ..showSnackBar(
               SnackBar(
                 content:
-                    Text(Localization.of(context).getValue(state.errorMessage)),
+                    Text(state.errorMessage.i18n),
                 backgroundColor: Colors.red,
               ),
             );

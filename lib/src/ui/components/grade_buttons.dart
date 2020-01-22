@@ -5,6 +5,12 @@ import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 
 class GradeButtons extends StatelessWidget {
+  static const String whiteGrade = 'White';
+  static const String blueGrade = 'Blue';
+  static const String purpleGrade = 'Purple';
+  static const String brownGrade = 'Brown';
+  static const String blackGrade = 'Black';
+
   @override
   Widget build(BuildContext context) {
     return BlocBuilder<UserBloc, UserState>(
@@ -26,7 +32,7 @@ class GradeButtons extends StatelessWidget {
                         padding: const EdgeInsets.all(0.0),
                         child: RaisedButton(
                             child: Text(
-                              Localization.of(context).getValue(grade.toLowerCase() + '_grade'),
+                              grade.i18n,
                               style: TextStyle(
                                   color: (grade == 'White') ? Colors.black : Colors.white,
                                   fontStyle: FontStyle.normal,

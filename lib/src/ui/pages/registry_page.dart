@@ -1,6 +1,5 @@
 import 'package:checkin/src/blocs/registry/bloc.dart';
 import 'package:checkin/src/blocs/user/bloc.dart';
-import 'package:checkin/src/localization/localization.dart';
 import 'package:checkin/src/models/lesson.dart';
 import 'package:checkin/src/models/user.dart';
 import 'package:checkin/src/resources/lesson_repository.dart';
@@ -17,6 +16,8 @@ import 'package:flutter_bloc/flutter_bloc.dart';
 class RegistryPage extends StatelessWidget {
   final String lessonId;
 
+  static const String registry = 'Registry';
+
   RegistryPage({
     Key key,
     @required this.lessonId,
@@ -27,7 +28,7 @@ class RegistryPage extends StatelessWidget {
     return Scaffold(
       appBar: BaseAppBar(
         //TODO: we should pass the name of the class here instead of "registry"
-        title: Localization.of(context).registry,
+        title: RegistryPage.registry,
       ),
       body: BlocProvider<RegistryBloc>(
         create: (context) => RegistryBloc(

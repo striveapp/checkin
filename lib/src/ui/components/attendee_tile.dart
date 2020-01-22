@@ -7,6 +7,8 @@ class AttendeeTile extends StatelessWidget {
   final Attendee attendee;
   final bool isCurrent;
 
+  static const String you = 'You';
+
   const AttendeeTile({
     Key key,
     @required this.attendee,
@@ -28,7 +30,7 @@ class AttendeeTile extends StatelessWidget {
             title: Padding(
               padding: const EdgeInsets.only(left: 6),
               child: Text(
-                "${attendee.name}${this.isCurrent ? " (${Localization.of(context).you})": ""}",
+                "${attendee.name}${this.isCurrent ? " (${you.i18n})": ""}",
                 style: this.isCurrent ?
                   Theme.of(context).textTheme.subtitle.apply(color: Theme.of(context).accentColor) :
                   Theme.of(context).textTheme.subtitle

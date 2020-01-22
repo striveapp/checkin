@@ -9,9 +9,9 @@ import 'package:checkin/src/ui/pages/stats_page.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:flutter_localizations/flutter_localizations.dart';
+import 'package:i18n_extension/i18n_widget.dart';
 
 import 'blocs/user/bloc.dart';
-import 'localization/localization.dart';
 
 class App extends StatelessWidget {
   final AuthRepository _authRepository;
@@ -31,7 +31,7 @@ class App extends StatelessWidget {
     return MaterialApp(
       debugShowCheckedModeBanner: false,
       localizationsDelegates: [
-        const LocalizationDelegate(),
+        // todo can this be removed?
         GlobalMaterialLocalizations.delegate,
         GlobalWidgetsLocalizations.delegate,
       ],
@@ -90,45 +90,47 @@ class App extends StatelessWidget {
           ),
         ),
       ),
-      home: BlocBuilder<AuthBloc, AuthState>(
-          builder: (BuildContext context, AuthState state) {
-        if (state is AuthUnauthenticated) {
-          return LoginPage(
-              authRepository: _authRepository, userRepository: _userRepository);
-        }
+      home: I18n(
+        child: BlocBuilder<AuthBloc, AuthState>(
+            builder: (BuildContext context, AuthState state) {
+          if (state is AuthUnauthenticated) {
+            return LoginPage(
+                authRepository: _authRepository, userRepository: _userRepository);
+          }
 
-        if (state is AuthAuthenticated) {
-          debugPrint("User Authenticated: [${state.loggedUserEmail}]");
-          return BlocProvider<UserBloc>(
-            create: (BuildContext context) => UserBloc(
-              userRepository: _userRepository,
-              authBloc: BlocProvider.of<AuthBloc>(context),
-            ),
-            child: DefaultTabController(
-                length: 2,
-                child: Scaffold(
-                  bottomNavigationBar: Material(
-                    color: Colors.black87,
-                    child: TabBar(
-                      tabs: <Widget>[
-                        Tab(icon: Icon(Icons.home)),
-                        Tab(icon: Icon(Icons.insert_chart)),
+          if (state is AuthAuthenticated) {
+            debugPrint("User Authenticated: [${state.loggedUserEmail}]");
+            return BlocProvider<UserBloc>(
+              create: (BuildContext context) => UserBloc(
+                userRepository: _userRepository,
+                authBloc: BlocProvider.of<AuthBloc>(context),
+              ),
+              child: DefaultTabController(
+                  length: 2,
+                  child: Scaffold(
+                    bottomNavigationBar: Material(
+                      color: Colors.black87,
+                      child: TabBar(
+                        tabs: <Widget>[
+                          Tab(icon: Icon(Icons.home)),
+                          Tab(icon: Icon(Icons.insert_chart)),
+                        ],
+                      ),
+                    ),
+                    body: TabBarView(
+                      physics: NeverScrollableScrollPhysics(),
+                      children: [
+                        HomePage(),
+                        StatsPage(),
                       ],
                     ),
-                  ),
-                  body: TabBarView(
-                    physics: NeverScrollableScrollPhysics(),
-                    children: [
-                      HomePage(),
-                      StatsPage(),
-                    ],
-                  ),
-                )),
-          );
-        }
+                  )),
+            );
+          }
 
-        return SplashPage();
-      }),
+          return SplashPage();
+        }),
+      ),
     );
   }
 }

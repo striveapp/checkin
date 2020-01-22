@@ -7,6 +7,8 @@ class AttendedLessonsList extends StatelessWidget {
 
   final List<Lesson> attendedLessons;
 
+  static const String attendedClasses = 'Attended Classes';
+
   const AttendedLessonsList({
     Key key,
     @required this.attendedLessons,
@@ -16,7 +18,7 @@ class AttendedLessonsList extends StatelessWidget {
   Widget build(BuildContext context) {
     return Column(children: <Widget>[
       Text(
-        Localization.of(context).attendedClasses,
+        AttendedLessonsList.attendedClasses.i18n,
         style: Theme.of(context)
             .textTheme
             .headline

@@ -6,6 +6,8 @@ import 'package:flutter/material.dart';
 class AttendeesPreview extends StatelessWidget {
   final Lesson lesson;
   final int maxAttendeesToDisplay;
+
+  static const String andOthers = 'and others';
   
   AttendeesPreview({
     Key key,
@@ -30,7 +32,7 @@ class AttendeesPreview extends StatelessWidget {
             ?.toList(),
         if (lesson.attendees.length > 5)
           Text(
-              "${Localization.of(context).andOthers} ${lesson.attendees.length - maxAttendeesToDisplay}",
+              "${andOthers.i18n} ${lesson.attendees.length - maxAttendeesToDisplay}",
               style: Theme.of(context).textTheme.display1)
       ],
     );

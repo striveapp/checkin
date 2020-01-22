@@ -5,6 +5,7 @@ import 'package:flutter/material.dart';
 import 'package:flutter/widgets.dart';
 
 class GradePage extends StatelessWidget {
+  static const String beltSelection = 'Classes';
   final User currentUser;
 
   GradePage({
@@ -24,7 +25,7 @@ class GradePage extends StatelessWidget {
         Container(
           alignment: Alignment.center,
           child: Text(
-            Localization.of(context).beltSelection,
+            beltSelection.i18n,
             style: TextStyle(
                 fontStyle: FontStyle.normal,
                 fontWeight: FontWeight.bold,

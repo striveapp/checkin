@@ -1,79 +1,126 @@
-import 'dart:async';
+import 'package:checkin/src/constants.dart' as constants;
+import 'package:checkin/src/ui/components/attended_lessons_list.dart';
+import 'package:checkin/src/ui/components/attendee_tile.dart';
+import 'package:checkin/src/ui/components/attendees_counter.dart';
+import 'package:checkin/src/ui/components/attendees_preview.dart';
+import 'package:checkin/src/ui/components/class_counter.dart';
+import 'package:checkin/src/ui/components/days_picker.dart';
+import 'package:checkin/src/ui/components/google_sign_in_button.dart';
+import 'package:checkin/src/ui/components/grade_buttons.dart';
+import 'package:checkin/src/ui/components/lesson_infos.dart';
+import 'package:checkin/src/ui/components/mat_time_counter.dart';
+import 'package:checkin/src/ui/components/no_lessons_banner.dart';
+import 'package:checkin/src/ui/components/registry_controls.dart';
+import 'package:checkin/src/ui/pages/grade_page.dart';
+import 'package:checkin/src/ui/pages/lessons_page.dart';
+import 'package:checkin/src/ui/pages/profile_page.dart';
+import 'package:checkin/src/ui/pages/registry_page.dart';
+import 'package:checkin/src/ui/pages/stats_page.dart';
+import 'package:i18n_extension/i18n_extension.dart';
 
-import 'package:flutter/foundation.dart';
-import 'package:flutter/material.dart';
 
-import 'localization_strings.dart';
-
-
-class   Localization {
-  final Locale locale;
-
-  Localization(this.locale);
-
-  static Localization of(BuildContext context) {
-    return Localizations.of<Localization>(context, Localization);
-  }
-
-  static Map<String, Map<String, String>> _localizedValues = {
-    'es' : es,
-    'en' : en
+extension Localization on String {
+  static var _t = Translations('en') + {
+    'en': LessonsPage.classes,
+    "es": "Clases",
+  } + {
+    'en': GradePage.beltSelection,
+    'es': 'Cuál es tu cinturón?',
+  } + {
+    'en': ProfilePage.profile,
+    'es': 'Perfil',
+  } + {
+    'en': ProfilePage.enterYourName,
+    'es': 'Intorduzca su nombre',
+  } + {
+    'en': ProfilePage.logout,
+    'es': 'Desconectar',
+  } + {
+    'en': RegistryPage.registry,
+    'es': 'Registro',
+  } + {
+    'en': StatsPage.stats,
+    'es': 'Estadísticas',
+  } + {
+    'en': constants.WEEK,
+    'es': 'semana',
+  } + {
+    'en': constants.MONTH,
+    'es': 'mese',
+  } + {
+    'en': constants.YEAR,
+    'es': 'año',
+  } + {
+    'en': constants.by,
+    'es': 'Por',
+  } + {
+    'en': constants.emptyClass,
+    'es': 'Nadie en clase todavía',
+  } + {
+    'en': AttendedLessonsList.attendedClasses,
+    'es': 'Clases atendidas',
+  } + {
+    'en': MatTimeCounter.classesThis,
+    'es': 'clases esta',
+  } + {
+    'en': MatTimeCounter.matTime,
+    'es': 'Horas de Mat',
+  } + {
+    'en': MatTimeCounter.hours,
+    'es': 'horas',
+  } + {
+    'en': MatTimeCounter.youAttended,
+    'es': 'Has atendido',
+  } + {
+    'en': AttendeesCounter.full,
+    'es': 'lleno',
+  } + {
+    'en': AttendeeTile.you,
+    'es': 'Tú',
+  } + {
+    'en': LessonInfos.and,
+    'es': 'y',
+  } + {
+    'en': AttendeesPreview.andOthers,
+    'es': 'y otros',
+  } + {
+    'en': NoLessonsBanner.noClasses,
+    'es': 'No hay clases hoy',
+  } + {
+    'en': DaysPicker.today,
+    'es': 'Hoy',
+  } + {
+    'en': GradeButtons.whiteGrade,
+    'es': 'Blanco',
+  } + {
+    'en': GradeButtons.blueGrade,
+    'es': 'Azúl',
+  } + {
+    'en': GradeButtons.purpleGrade,
+    'es': 'Morado',
+  } + {
+    'en': GradeButtons.brownGrade,
+    'es': 'Marron',
+  } + {
+    'en': GradeButtons.blackGrade,
+    'es': 'Negro',
+  } + {
+    'en': RegistryControls.unregisterClass,
+    'es': 'Despuntarse de clase',
+  } + {
+    'en': RegistryControls.registerClass,
+    'es': 'Apuntarse a clase',
+  } + {
+    'en': RegistryControls.acceptAll,
+    'es': 'Aceptar todos',
+  } + {
+    'en': GoogleSignInButton.googleSignin,
+    'es': 'Acceso con Google',
+  } + {
+    'en': ClassCounter.totalClasses,
+    'es': 'Clases atendidas',
   };
 
-  getValue(String key) => _localizedValues[locale.languageCode][key];
+String get i18n => localize(this, _t);
 
-  String get emptyClass => getValue(EmptyClass);
-  String get totalClasses => getValue(TotalClasses);
-  String get googleSignin => getValue(GoogleSignin);
-  String get beltSelection => getValue(BeltSelection);
-  String get registry => getValue(Registry);
-  String get acceptAll => getValue(AcceptAll);
-  String get logout => getValue(Logout);
-  String get registerClass => getValue(RegisterClass);
-  String get unregisterClass => getValue(UnregisterClass);
-  String get status => getValue(Status);
-  String get classes => getValue(Classes);
-  String get loginFailed => getValue(LoginFailed);
-  String get whiteGrade => getValue(WhiteGrade);
-  String get blueGrade => getValue(BlueGrade);
-  String get purpleGrade => getValue(PurpleGrade);
-  String get brownGrade => getValue(BrownGrade);
-  String get blackGrade => getValue(BlackGrade);
-  String get today => getValue(Today);
-  String get noClasses => getValue(NoClasses);
-  String get profile => getValue(Profile);
-  String get swipeToRemove => getValue(SwipeToRemove);
-  String get nameHint => getValue(NameHint);
-  String get teacher => getValue(Teacher);
-  String get andOthers => getValue(AndOthers);
-  String get and => getValue(And);
-  String get by => getValue(By);
-  String get you => getValue(You);
-  String get full => getValue(Full);
-  String get matTime => getValue(MatTime);
-  String get hours => getValue(Hours);
-  String get youAttended => getValue(YouAttended);
-  String get classesThis => getValue(ClassesThis);
-  String get week => getValue(Week);
-  String get month => getValue(Month);
-  String get year => getValue(Year);
-  String get attendedClasses => getValue(AttendedClasses);
-  String get stats => getValue(Stats);
-}
-
-class LocalizationDelegate extends LocalizationsDelegate<Localization> {
-  const LocalizationDelegate();
-
-  @override
-  bool isSupported(Locale locale) => ['en', 'es'].contains(locale.languageCode);
-
-  @override
-  Future<Localization> load(Locale locale) {
-    // Returning a SynchronousFuture here because an async "load" operation
-    // isn't needed to produce an instance of Localization.
-    return SynchronousFuture<Localization>(Localization(locale));
-  }
-
-  @override
-  bool shouldReload(LocalizationDelegate old) => false;
 }

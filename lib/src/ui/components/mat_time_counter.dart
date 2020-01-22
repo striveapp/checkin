@@ -8,6 +8,11 @@ import 'package:flutter/material.dart';
 class MatTimeCounter extends StatelessWidget {
   final int counter;
   final String timeSpan;
+  // todo this might be better with interpolation
+  static const String classesThis = 'classes this';
+  static const String matTime = 'Mat Time';
+  static const String hours = 'hours';
+  static const String youAttended = 'You attended';
 
   MatTimeCounter({
     Key key,
@@ -27,7 +32,7 @@ class MatTimeCounter extends StatelessWidget {
               width: 5,
             ),
             Text(
-              Localization.of(context).matTime,
+              MatTimeCounter.matTime.i18n,
               style: Theme.of(context)
                   .textTheme
                   .headline
@@ -52,11 +57,11 @@ class MatTimeCounter extends StatelessWidget {
                 mainAxisAlignment: MainAxisAlignment.spaceBetween,
                 children: <Widget>[
                   Text(
-                    "0 ${Localization.of(context).hours}",
+                    "0 ${hours.i18n}",
                     style: Theme.of(context).textTheme.display1,
                   ),
                   Text(
-                      "${_getTotalMatTimeHours(timeSpan)} ${Localization.of(context).hours}",
+                      "${_getTotalMatTimeHours(timeSpan)} ${hours.i18n}",
                       style: Theme.of(context).textTheme.display1),
                 ],
               ),
@@ -85,10 +90,11 @@ class MatTimeCounter extends StatelessWidget {
 
   //TODO: we can't internationalize this kind of strings well, we should migrate to a more complex i18n system
   String _getAttendedClassTextLocalized(BuildContext context) {
-    return "${Localization.of(context).youAttended} "
+    // todo this might be better with interpolation
+    return "${youAttended.i18n} "
         "$counter "
-        "${Localization.of(context).classesThis} "
-        "${Localization.of(context).getValue(timeSpan)}";
+        "${classesThis.i18n} "
+        "${timeSpan.i18n}";
   }
 
   int _getTotalMatTimeHours(String timeSpan) {

@@ -5,6 +5,7 @@ import 'package:flutter/material.dart';
 
 class AttendeesCounter extends StatelessWidget {
   final List<Attendee> attendees;
+  static const String full = 'full';
 
   const AttendeesCounter({Key key, @required this.attendees}) : super(key: key);
 
@@ -18,7 +19,7 @@ class AttendeesCounter extends StatelessWidget {
           "Attendees (${attendees.length})",
           style: Theme.of(context).textTheme.title,
         ),
-        Text("${_getFullPercentage(attendees.length)} ${Localization.of(context).full}",
+        Text("${_getFullPercentage(attendees.length)} ${full.i18n}",
             style:
                 Theme.of(context).textTheme.display1.apply(fontWeightDelta: 3))
       ],
