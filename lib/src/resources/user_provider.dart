@@ -26,7 +26,6 @@ class UserProvider {
       'name': newUser.name,
       'email': newUser.email,
       'imageUrl': newUser.imageUrl,
-      'isFirstLogin': true,
     }, merge: true );
   }
 
@@ -56,12 +55,5 @@ class UserProvider {
       'createdAt': FieldValue.serverTimestamp(), // optional
       'platform': Platform.operatingSystem // optional
     });
-  }
-
-  Future<void> updateUserIsFirstLogin(User currentUser, bool newIsFirstLogin) async {
-    await _firestore
-        .collection(path)
-        .document(currentUser.email)
-        .updateData({"isFirstLogin": newIsFirstLogin});
   }
 }
