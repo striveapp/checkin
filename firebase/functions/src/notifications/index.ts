@@ -27,7 +27,7 @@ export const classCounterIncrementNotification = functions.firestore.document("u
                 const tokenDocument = await tokenReference.get();
                 const token = tokenDocument.data() || {};
 
-                return admin.messaging().sendToDevice(token.token, notificationContent).then(() => {
+                return admin.messaging().sendToDevice(token.token, notificationContent, {contentAvailable: true}).then(() => {
                     console.info(`Notification sent to ${token.token}!`);
                 })
             }));
@@ -50,7 +50,7 @@ export const reminderOfNonAcceptedUsersForMaster = async () => {
                 masters = [],
             } = doc.data();
 
-            if(attendees.length > 0) {
+            if (attendees.length > 0) {
                 console.info(`Found class (${doc.id}) with attendees`);
                 console.info("Needs to notify master, sending notification");
                 masters.forEach(async ({name, email: masterEmail}: any) => {
@@ -74,7 +74,7 @@ export const reminderOfNonAcceptedUsersForMaster = async () => {
                             const tokenDocument = await tokenReference.get();
                             const token = tokenDocument.data() || {};
 
-                            return admin.messaging().sendToDevice(token.token, notificationContent).then(() => {
+                            return admin.messaging().sendToDevice(token.token, notificationContent, { contentAvailable: true }).then(() => {
                                 console.info(`Notification sent to ${token.token}!`);
                             })
                         }));

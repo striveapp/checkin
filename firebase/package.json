@@ -7,6 +7,7 @@
     "pretest": "tsc",
     "test": "mocha",
     "deploy:all": "firebase deploy",
+    "deploy:notifications": "firebase deploy --only functions:userNotification",
     "deploy:lessons-api": "firebase deploy --only functions:acceptAll",
     "deploy:rules": "firebase deploy --only firestore:rules"
   },

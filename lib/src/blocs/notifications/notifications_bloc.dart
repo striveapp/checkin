@@ -106,9 +106,10 @@ class NotificationsBloc extends Bloc<NotificationsEvent, NotificationsState> {
   }
 
   BasicNotification _mapMsgToGeneralNotification(Map<String, dynamic> msg) {
+    var notification = msg['notification'] ?? msg['aps']['alert'];
     return BasicNotification(
-      msg['notification']['title'],
-      msg['notification']['body'],
+      notification['title'],
+      notification['body'],
     );
   }
 
