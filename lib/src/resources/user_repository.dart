@@ -18,7 +18,4 @@ class UserRepository {
 
   Future<void> updateUserFcmToken(User currentUser, String newToken) =>
       _userProvider.updateUserFcmToken(currentUser, newToken);
-  
-  Future<void> updateUserIsFirstLogin(User currentUser, bool newIsFirstLogin) =>
-      _userProvider.updateUserIsFirstLogin(currentUser, newIsFirstLogin);
 }
