@@ -19,7 +19,7 @@ class StatsPage extends StatelessWidget {
   Widget build(BuildContext context) {
     return Scaffold(
       appBar: BaseAppBar(
-        title: StatsPage.stats,
+        title: StatsPage.stats.i18n,
       ),
       body: BlocProvider<StatsBloc>(
         create: (context) => StatsBloc(

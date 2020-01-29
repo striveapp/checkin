@@ -5,7 +5,7 @@ import 'package:flutter/material.dart';
 import 'package:flutter/widgets.dart';
 
 class GradePage extends StatelessWidget {
-  static const String beltSelection = 'Classes';
+  static const String beltSelection = 'What\'s your belt?';
   final User currentUser;
 
   GradePage({

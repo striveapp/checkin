@@ -18,11 +18,10 @@ import 'package:checkin/src/ui/pages/registry_page.dart';
 import 'package:checkin/src/ui/pages/stats_page.dart';
 import 'package:i18n_extension/i18n_extension.dart';
 
-
 extension Localization on String {
   static var _t = Translations('en') + {
     'en': LessonsPage.classes,
-    "es": "Clases",
+    'es': "Clases",
   } + {
     'en': GradePage.beltSelection,
     'es': 'Cuál es tu cinturón?',
@@ -46,7 +45,7 @@ extension Localization on String {
     'es': 'semana',
   } + {
     'en': constants.MONTH,
-    'es': 'mese',
+    'es': 'mes',
   } + {
     'en': constants.YEAR,
     'es': 'año',
@@ -60,17 +59,35 @@ extension Localization on String {
     'en': AttendedLessonsList.attendedClasses,
     'es': 'Clases atendidas',
   } + {
-    'en': MatTimeCounter.classesThis,
-    'es': 'clases esta',
-  } + {
     'en': MatTimeCounter.matTime,
     'es': 'Horas de Mat',
   } + {
-    'en': MatTimeCounter.hours,
-    'es': 'horas',
+    'en': MatTimeCounter.hours
+        .zero('0 hours')
+        .one('1 hour')
+        .many('%d hours'),
+    'es': '%d horas'
+        .zero('0 horas')
+        .one('1 hora')
+        .many('%d horas'),
   } + {
-    'en': MatTimeCounter.youAttended,
-    'es': 'Has atendido',
+    'en': MatTimeCounter.attendedClasses
+        .zero('No classes attended')
+        .one('You attended one class')
+        .many('You attended %d classes'),
+    'es': 'Has atendido %d clases'
+        .zero('No has atendido ninguna clase')
+        .one('Has atendido una clase')
+        .many('Has atendido %d clases'),
+  } + {
+    'en': MatTimeCounter.thisTimespan
+        .modifier(constants.WEEK, 'this week')
+        .modifier(constants.MONTH, 'this month')
+        .modifier(constants.YEAR, 'this year'),
+    'es': 'este %s'
+        .modifier(constants.WEEK, 'esta semana')
+        .modifier(constants.MONTH, 'este mes')
+        .modifier(constants.YEAR, 'este año'),
   } + {
     'en': AttendeesCounter.full,
     'es': 'lleno',
@@ -81,8 +98,12 @@ extension Localization on String {
     'en': LessonInfos.and,
     'es': 'y',
   } + {
-    'en': AttendeesPreview.andOthers,
-    'es': 'y otros',
+    'en': AttendeesPreview.andOthers
+        .one('and another one')
+        .many('and %d others'),
+    'es': 'y %d otros'
+        .one('y un otro')
+        .many('y %d otros'),
   } + {
     'en': NoLessonsBanner.noClasses,
     'es': 'No hay clases hoy',
@@ -122,5 +143,11 @@ extension Localization on String {
   };
 
 String get i18n => localize(this, _t);
+
+String plural(int value) => localizePlural(value, this, _t);
+
+String fill(List<Object> params) => localizeFill(this, params);
+
+String gender(String gender) => localizeVersion(gender, this, _t);
 
 }

@@ -91,6 +91,8 @@ class App extends StatelessWidget {
         ),
       ),
       home: I18n(
+//        note: enable es locale
+//        initialLocale: Locale("es", "ES"),
         child: BlocBuilder<AuthBloc, AuthState>(
             builder: (BuildContext context, AuthState state) {
           if (state is AuthUnauthenticated) {

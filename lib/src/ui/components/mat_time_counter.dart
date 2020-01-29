@@ -8,11 +8,11 @@ import 'package:flutter/material.dart';
 class MatTimeCounter extends StatelessWidget {
   final int counter;
   final String timeSpan;
-  // todo this might be better with interpolation
-  static const String classesThis = 'classes this';
+
   static const String matTime = 'Mat Time';
-  static const String hours = 'hours';
-  static const String youAttended = 'You attended';
+  static const String hours = '%d hours';
+  static const String attendedClasses = 'You attended %d classes';
+  static const String thisTimespan = 'this %s';
 
   MatTimeCounter({
     Key key,
@@ -57,11 +57,11 @@ class MatTimeCounter extends StatelessWidget {
                 mainAxisAlignment: MainAxisAlignment.spaceBetween,
                 children: <Widget>[
                   Text(
-                    "0 ${hours.i18n}",
+                    hours.plural(0),
                     style: Theme.of(context).textTheme.display1,
                   ),
                   Text(
-                      "${_getTotalMatTimeHours(timeSpan)} ${hours.i18n}",
+                      hours.plural(_getTotalMatTimeHours(timeSpan)),
                       style: Theme.of(context).textTheme.display1),
                 ],
               ),
@@ -81,20 +81,11 @@ class MatTimeCounter extends StatelessWidget {
           height: 10,
         ),
         Text(
-          _getAttendedClassTextLocalized(context),
+          "${attendedClasses.plural(counter)} ${thisTimespan.gender(timeSpan)}",
           style: Theme.of(context).textTheme.body1.apply(fontWeightDelta: 2),
         )
       ],
     );
-  }
-
-  //TODO: we can't internationalize this kind of strings well, we should migrate to a more complex i18n system
-  String _getAttendedClassTextLocalized(BuildContext context) {
-    // todo this might be better with interpolation
-    return "${youAttended.i18n} "
-        "$counter "
-        "${classesThis.i18n} "
-        "${timeSpan.i18n}";
   }
 
   int _getTotalMatTimeHours(String timeSpan) {

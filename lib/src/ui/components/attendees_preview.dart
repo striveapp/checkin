@@ -7,7 +7,7 @@ class AttendeesPreview extends StatelessWidget {
   final Lesson lesson;
   final int maxAttendeesToDisplay;
 
-  static const String andOthers = 'and others';
+  static const String andOthers = 'and %d other';
   
   AttendeesPreview({
     Key key,
@@ -17,6 +17,7 @@ class AttendeesPreview extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
+    final otherAttendeesNumber = lesson.attendees.length - maxAttendeesToDisplay;
     return Row(
       children: <Widget>[
         ...lesson.attendees
@@ -32,7 +33,7 @@ class AttendeesPreview extends StatelessWidget {
             ?.toList(),
         if (lesson.attendees.length > 5)
           Text(
-              "${andOthers.i18n} ${lesson.attendees.length - maxAttendeesToDisplay}",
+              "${andOthers.plural(otherAttendeesNumber)}",
               style: Theme.of(context).textTheme.display1)
       ],
     );
