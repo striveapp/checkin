@@ -6,6 +6,7 @@ import 'package:checkin/src/repositories/membership_repository.dart';
 import 'package:checkin/src/ui/components/base_app_bar.dart';
 import 'package:checkin/src/ui/components/membership/membership_card.dart';
 import 'package:checkin/src/ui/components/profile_card.dart';
+import 'package:checkin/src/util/debug_util.dart';
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
@@ -49,23 +50,27 @@ class AccountPage extends StatelessWidget {
                     child: Column(
                       crossAxisAlignment: CrossAxisAlignment.start,
                       children: <Widget>[
-                        SizedBox(
-                          height: 50,
-                        ),
-                        Padding(
-                          padding: EdgeInsets.only(left: 10.0),
-                          child: Text(
-                            Localization.of(context).membership,
-                            style: Theme.of(context)
-                                .textTheme
-                                .headline
-                                .apply(color: Colors.black87),
+                        //TODO: activate for prod when the stipe account is active [https://trello.com/c/BhjQ2Mbg]
+                        if (!isInDebugMode)
+                          SizedBox(
+                            height: 50,
                           ),
-                        ),
-                        Padding(
-                          padding: EdgeInsets.only(top: 10.0),
-                          child: MembershipCard(),
-                        ),
+                        if (!isInDebugMode)
+                          Padding(
+                            padding: EdgeInsets.only(left: 10.0),
+                            child: Text(
+                              Localization.of(context).membership,
+                              style: Theme.of(context)
+                                  .textTheme
+                                  .headline
+                                  .apply(color: Colors.black87),
+                            ),
+                          ),
+                        if (!isInDebugMode)
+                          Padding(
+                            padding: EdgeInsets.only(top: 10.0),
+                            child: MembershipCard(),
+                          ),
                         SizedBox(
                           height: 50,
                         ),
