@@ -4,7 +4,6 @@ export type HistoryAttendee = Attendee & {
     weekCounter: WeekCountersMap,
 }
 
-
 type WeekCounter = {
     counter: number | FirebaseFirestore.FieldValue
 }

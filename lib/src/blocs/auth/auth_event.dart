@@ -28,16 +28,14 @@ class AuthUpdated extends AuthEvent {
 }
 
 class LoggedIn extends AuthEvent {
-  final bool isFirstLogin;
   final User currentUser;
 
  const LoggedIn({
     this.currentUser,
-    this.isFirstLogin,
   });
 
   @override
-  List<Object> get props => [currentUser, isFirstLogin];
+  List<Object> get props => [currentUser];
 
   @override
   String toString() => 'LoggedIn';

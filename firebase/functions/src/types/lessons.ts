@@ -22,7 +22,6 @@ export type LessonDetails = {
 
 export type Lesson = LessonDetails & {
   attendees: Attendee[]
-
 }
 
 export type AcceptAllPayload = {

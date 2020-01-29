@@ -1,8 +1,8 @@
 import 'package:bloc/bloc.dart';
 import 'package:checkin/src/blocs/login/login_event.dart';
 import 'package:checkin/src/blocs/login/login_state.dart';
-import 'package:checkin/src/resources/auth_repository.dart';
-import 'package:checkin/src/resources/user_repository.dart';
+import 'package:checkin/src/repositories/auth_repository.dart';
+import 'package:checkin/src/repositories/user_repository.dart';
 import 'package:flutter/foundation.dart';
 import 'package:meta/meta.dart';
 

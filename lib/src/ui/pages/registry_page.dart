@@ -2,7 +2,7 @@ import 'package:checkin/src/blocs/registry/bloc.dart';
 import 'package:checkin/src/blocs/user/bloc.dart';
 import 'package:checkin/src/models/lesson.dart';
 import 'package:checkin/src/models/user.dart';
-import 'package:checkin/src/resources/lesson_repository.dart';
+import 'package:checkin/src/repositories/lesson_repository.dart';
 import 'package:checkin/src/ui/components/attendees_counter.dart';
 import 'package:checkin/src/ui/components/attendees_list.dart';
 import 'package:checkin/src/ui/components/base_app_bar.dart';

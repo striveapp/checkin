@@ -1,7 +1,7 @@
 import 'package:checkin/src/blocs/lessons/bloc.dart';
 import 'package:checkin/src/models/lesson.dart';
-import 'package:checkin/src/resources/lesson_repository.dart';
-import 'package:checkin/src/util.dart';
+import 'package:checkin/src/repositories/lesson_repository.dart';
+import 'package:checkin/src/util/date_util.dart';
 import 'package:mockito/mockito.dart';
 import 'package:test/test.dart';
 

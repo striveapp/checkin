@@ -36,7 +36,7 @@ class LoginFailure extends LoginState {
   final String errorMessage;
 
   const LoginFailure({
-    this.errorMessage,
+    this.errorMessage = 'login_failed',
   });
 
   @override

@@ -1,6 +1,5 @@
 import * as admin from 'firebase-admin'
 import * as functions from 'firebase-functions';
-
 import {generateBackup} from './backups';
 import {classCounterIncrementNotification, reminderOfNonAcceptedUsersForMaster} from "./notifications";
 import adminApp from "./admin";
@@ -22,9 +21,12 @@ export const masterNotification = functions.pubsub
 // http triggers
 export const app = functions.https.onRequest(adminApp);
 
-
 // https onCall triggers
 export * from "./api/lessons";
+export * from "./payments/unsubscribe";
+
+// https onRequest triggers
+export * from "./payments/webhook";
 
 // firestore triggers
 export const userNotification = classCounterIncrementNotification;

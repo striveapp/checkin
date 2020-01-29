@@ -29,10 +29,10 @@ class User extends Equatable {
   factory User.fromFirebaseUser(FirebaseUser firebaseUser) {
     return firebaseUser != null
         ? User(
-            name: firebaseUser.displayName,
-            email: firebaseUser.email,
-            imageUrl: firebaseUser.photoUrl,
-          )
+      name: firebaseUser.displayName,
+      email: firebaseUser.email,
+      imageUrl: firebaseUser.photoUrl,
+    )
         : null;
   }
 

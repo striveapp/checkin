@@ -4,16 +4,16 @@ import 'package:checkin/src/blocs/profile/bloc.dart';
 import 'package:checkin/src/blocs/user/bloc.dart';
 import 'package:checkin/src/localization/localization.dart';
 import 'package:checkin/src/models/user.dart';
-import 'package:checkin/src/resources/user_repository.dart';
+import 'package:checkin/src/repositories/user_repository.dart';
 import 'package:checkin/src/ui/components/base_app_bar.dart';
 import 'package:checkin/src/ui/components/class_counter.dart';
 import 'package:checkin/src/ui/components/loading_indicator.dart';
 import 'package:checkin/src/ui/components/user_image.dart';
+import 'package:checkin/src/util/debug_util.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter/widgets.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
-
-import '../../util.dart';
+import 'package:url_launcher/url_launcher.dart';
 
 //TODO: this should be a StatelessWidget
 class ProfilePage extends StatefulWidget {
@@ -155,6 +155,12 @@ class _ProfileState extends State<ProfilePage> {
                       padding: const EdgeInsets.symmetric(vertical: 50),
                       child: ClassCounter(counter: profileUser.counter),
                     ),
+                    // todo retrieve plans and build list
+                    RaisedButton(
+                      key: Key("subscribe"), // todo generate key
+                      child: Text("Subscribe!"), // todo i18n
+                      onPressed: _launchURL,
+                    ),
                     if (isInDebugMode && state.isCurrentUser)
                       RaisedButton(
                         key: Key('logoutButton'),
@@ -177,6 +183,16 @@ class _ProfileState extends State<ProfilePage> {
         return ErrorWidget('Unknown State [$state] received in: profile_page');
       }),
     );
+  }
+
+  void _launchURL() async {
+    // todo generate url prefix + plan and customerEmail
+    const url = 'https://checkin-test-fba3d.firebaseapp.com/payment.html?customerEmail=test@test.com&plan=plan_GREmgLjDaw1LsE';
+    if (await canLaunch(url)) {
+      await launch(url);
+    } else {
+      throw 'Could not launch $url';
+    }
   }
 }
 

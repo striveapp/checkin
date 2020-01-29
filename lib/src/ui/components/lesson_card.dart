@@ -3,8 +3,10 @@ import 'package:checkin/src/localization/localization.dart';
 import 'package:checkin/src/models/lesson.dart';
 import 'package:checkin/src/ui/components/attendees_preview.dart';
 import 'package:checkin/src/ui/components/user_image.dart';
+import 'package:checkin/src/util/dynamic_link_util.dart';
 import 'package:flutter/material.dart';
 import 'package:checkin/src/constants.dart' as constants;
+import 'package:share/share.dart';
 
 class LessonCard extends StatelessWidget {
   final Lesson lesson;
@@ -16,14 +18,17 @@ class LessonCard extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    return GestureDetector(
-      child: Container(
-          height: 180,
-          padding: EdgeInsets.only(top: 15.0),
-          child: Card(
-              key: Key(lesson.name),
-              color: Colors.white,
-              margin: EdgeInsets.symmetric(horizontal: 20),
+    return Container(
+        height: 180,
+        padding: EdgeInsets.only(top: 15.0),
+        child: Card(
+            key: Key(lesson.name),
+            color: Colors.white,
+            margin: EdgeInsets.symmetric(horizontal: 20),
+            child: InkWell(
+              onTap: () {
+                Navigator.of(context).pushNamed("registry/${lesson.id}");
+              },
               child: Padding(
                 padding:
                     EdgeInsets.only(right: 20, left: 20, top: 16, bottom: 24),
@@ -31,28 +36,35 @@ class LessonCard extends StatelessWidget {
                   mainAxisAlignment: MainAxisAlignment.spaceBetween,
                   children: <Widget>[
                     Row(
+                      mainAxisAlignment: MainAxisAlignment.spaceBetween,
                       crossAxisAlignment: CrossAxisAlignment.start,
                       children: <Widget>[
-                        UserImage(
-                          userImage: lesson.masters.first.imageUrl,
+                        Row(
+                          children: <Widget>[
+                            UserImage(
+                              userImage: lesson.masters.first.imageUrl,
+                            ),
+                            SizedBox(width: 20,),
+                            Column(
+                              crossAxisAlignment: CrossAxisAlignment.start,
+                              children: <Widget>[
+                                Text(
+                                  _capitalize(lesson.name),
+                                  style: Theme.of(context)
+                                      .textTheme
+                                      .headline
+                                      .apply(color: Colors.black87),
+                                ),
+                                Text("${lesson.timeStart} - ${lesson.timeEnd}",
+                                    style: Theme.of(context).textTheme.subtitle)
+                              ],
+                            ),
+                          ],
                         ),
-                        Padding(
-                          padding: const EdgeInsets.only(left: 16.0),
-                          child: Column(
-                            crossAxisAlignment: CrossAxisAlignment.start,
-                            children: <Widget>[
-                              Text(
-                                _capitalize(lesson.name),
-                                style: Theme.of(context)
-                                    .textTheme
-                                    .headline
-                                    .apply(color: Colors.black87),
-                              ),
-                              Text("${lesson.timeStart} - ${lesson.timeEnd}",
-                                  style: Theme.of(context).textTheme.subtitle)
-                            ],
-                          ),
-                        ),
+                        IconButton(icon: Icon(Icons.share), onPressed: () async {
+                          var link = await DynamicLinkUtil().getLink(lessonId: lesson.id);
+                          Share.share(link);
+                        },)
                       ],
                     ),
                     if (lesson.attendees.length > 0)
@@ -76,11 +88,8 @@ class LessonCard extends StatelessWidget {
                     )
                   ],
                 ),
-              ))),
-      onTap: () {
-        Navigator.of(context).pushNamed("registry/${lesson.id}");
-      },
-    );
+              ),
+            )));
   }
 }
 
