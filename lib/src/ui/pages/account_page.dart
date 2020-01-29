@@ -51,11 +51,11 @@ class AccountPage extends StatelessWidget {
                       crossAxisAlignment: CrossAxisAlignment.start,
                       children: <Widget>[
                         //TODO: activate for prod when the stipe account is active [https://trello.com/c/BhjQ2Mbg]
-                        if (!isInDebugMode)
+                        if (isInDebugMode)
                           SizedBox(
                             height: 50,
                           ),
-                        if (!isInDebugMode)
+                        if (isInDebugMode)
                           Padding(
                             padding: EdgeInsets.only(left: 10.0),
                             child: Text(
@@ -66,7 +66,7 @@ class AccountPage extends StatelessWidget {
                                   .apply(color: Colors.black87),
                             ),
                           ),
-                        if (!isInDebugMode)
+                        if (isInDebugMode)
                           Padding(
                             padding: EdgeInsets.only(top: 10.0),
                             child: MembershipCard(),
