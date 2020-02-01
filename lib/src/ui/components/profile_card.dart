@@ -3,7 +3,7 @@ import 'package:checkin/src/models/user.dart';
 import 'package:checkin/src/ui/components/user_image.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
-import 'package:i18n_extension/default.i18n.dart';
+import 'package:checkin/src/localization/localization.dart';
 
 class ProfileCard extends StatelessWidget {
   final User user;

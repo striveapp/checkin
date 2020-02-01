@@ -9,7 +9,7 @@ import 'package:checkin/src/util/debug_util.dart';
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
-import 'package:i18n_extension/default.i18n.dart';
+import 'package:checkin/src/localization/localization.dart';
 
 class AccountPage extends StatelessWidget {
   static const String account = 'Account';

@@ -1,5 +1,5 @@
 import 'package:flutter/material.dart';
-import 'package:i18n_extension/default.i18n.dart';
+import 'package:checkin/src/localization/localization.dart';
 
 class PaymentSuccessPage extends StatelessWidget {
   static const String paymentSuccessful = 'Payment Successful';

@@ -9,10 +9,16 @@ import 'package:checkin/src/ui/components/google_sign_in_button.dart';
 import 'package:checkin/src/ui/components/grade_buttons.dart';
 import 'package:checkin/src/ui/components/lesson_infos.dart';
 import 'package:checkin/src/ui/components/mat_time_counter.dart';
+import 'package:checkin/src/ui/components/membership/active_membership.dart';
+import 'package:checkin/src/ui/components/membership/inactive_membership.dart';
+import 'package:checkin/src/ui/components/membership/unsubscribe_dialog.dart';
 import 'package:checkin/src/ui/components/no_lessons_banner.dart';
+import 'package:checkin/src/ui/components/profile_card.dart';
 import 'package:checkin/src/ui/components/registry_controls.dart';
+import 'package:checkin/src/ui/pages/account_page.dart';
 import 'package:checkin/src/ui/pages/grade_page.dart';
 import 'package:checkin/src/ui/pages/lessons_page.dart';
+import 'package:checkin/src/ui/pages/payment_success_page.dart';
 import 'package:checkin/src/ui/pages/profile_page.dart';
 import 'package:checkin/src/ui/pages/registry_page.dart';
 import 'package:checkin/src/ui/pages/stats_page.dart';
@@ -140,6 +146,57 @@ extension Localization on String {
   } + {
     'en': ClassCounter.totalClasses,
     'es': 'Clases atendidas',
+  } + {
+    'en': AccountPage.account,
+    'es': 'Cuenta',
+  } + {
+    'en': AccountPage.membership,
+    'es': 'Afiliación',
+  } + {
+    'en': AccountPage.profile,
+    'es': 'Perfil',
+  } + {
+    'en': PaymentSuccessPage.paymentSuccessful,
+    'es': 'Pagado con Exito',
+  } + {
+    'en': PaymentSuccessPage.goToAccount,
+    'es': 'Volver a la Cuenta',
+  } + {
+    'en': PaymentSuccessPage.disclaimerSubscription30Min,
+    'es': 'Tu subscripción puede tardar hasta 30 minutos en aparecer en tu cuenta',
+  } + {
+    'en': ActiveMembershipView.email,
+    'es': 'Correo:',
+  } + {
+    'en': ActiveMembershipView.creditCard,
+    'es': 'Tarjeta:',
+  } + {
+    'en': ActiveMembershipView.unsubscribe,
+    'es': 'Darse de baja',
+  } + {
+    'en': ActiveMembershipView.nextBilling,
+    'es': 'El siguiente pago es el',
+  } + {
+    'en': ProfileCard.enterYourName,
+    'es': 'Intorduzca su nombre',
+  } + {
+    'en': InactiveMembershipView.subscribe,
+    'es': 'Suscribirse',
+  } + {
+    'en': InactiveMembershipView.notActiveSubscription,
+    'es': 'Tu subscripción no está activa todavia',
+  } + {
+    'en': UnsubscribeDialog.unsubscribe,
+    'es': 'Darse de baja',
+  } + {
+    'en': UnsubscribeDialog.aboutToPermanentlyDeleteSubscription,
+    'es': 'Estás a punto de cancelar tu cuota de forma permanente',
+  } + {
+    'en': UnsubscribeDialog.cannotBeUndone,
+    'es': 'Esta operación no se puede deshacer',
+  } + {
+    'en': UnsubscribeDialog.keepSubscription,
+    'es': 'Mantener subscripción',
   };
 
 String get i18n => localize(this, _t);

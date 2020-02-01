@@ -2,7 +2,7 @@ import 'package:checkin/src/models/membership.dart';
 import 'package:checkin/src/ui/components/membership/unsubscribe_dialog.dart';
 import 'package:flutter/material.dart';
 import 'package:intl/intl.dart';
-import 'package:i18n_extension/default.i18n.dart';
+import 'package:checkin/src/localization/localization.dart';
 
 class ActiveMembershipView extends StatelessWidget {
   final Membership membership;
