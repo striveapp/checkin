@@ -36,7 +36,6 @@ class GradeButtons extends StatelessWidget {
                               style: TextStyle(
                                   color: (grade == 'White') ? Colors.black : Colors.white,
                                   fontStyle: FontStyle.normal,
-                                  fontFamily: 'Roboto',
                                   fontSize: 22.0
                               ),
                             ),

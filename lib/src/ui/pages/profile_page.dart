@@ -113,7 +113,6 @@ class _ProfileState extends State<ProfilePage> {
                           style: TextStyle(
                               fontSize: 20,
                               letterSpacing: 0.8,
-                              fontFamily: "Roboto",
                               fontWeight: FontWeight.w400),
                         ),
                       ),
@@ -142,7 +141,6 @@ class _ProfileState extends State<ProfilePage> {
                           style: TextStyle(
                               fontSize: 20,
                               letterSpacing: 0.8,
-                              fontFamily: "Roboto",
                               fontWeight: FontWeight.w400),
                           controller: TextEditingController.fromValue(
                               TextEditingValue(

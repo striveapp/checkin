@@ -69,7 +69,6 @@ class GoogleSignInButton extends StatelessWidget {
                 googleSignin.i18n,
                 style: TextStyle(
                   fontSize: 18.0,
-                  fontFamily: "Roboto",
                   fontWeight: FontWeight.w500,
                   color:
                   darkMode ? Colors.white : Colors.black.withOpacity(0.54),
