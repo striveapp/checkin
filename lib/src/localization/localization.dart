@@ -22,6 +22,7 @@ import 'package:checkin/src/ui/pages/payment_success_page.dart';
 import 'package:checkin/src/ui/pages/profile_page.dart';
 import 'package:checkin/src/ui/pages/registry_page.dart';
 import 'package:checkin/src/ui/pages/stats_page.dart';
+import 'package:checkin/src/ui/pages/subscriptions_page.dart';
 import 'package:i18n_extension/i18n_extension.dart';
 
 extension Localization on String {
@@ -198,6 +199,12 @@ extension Localization on String {
   } + {
     'en': UnsubscribeDialog.keepSubscription,
     'es': 'Mantener subscripción',
+  } + {
+    'en': SubscriptionsPage.subscriptions,
+    'es': 'Subscripciónes',
+  } + {
+    'en': SubscriptionsPage.chooseSub,
+    'es': 'Escoje tu subscripción',
   };
 
 String get i18n => localize(this, _t);

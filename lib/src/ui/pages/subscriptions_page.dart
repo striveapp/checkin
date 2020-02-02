@@ -12,7 +12,7 @@ class SubscriptionsPage extends StatelessWidget {
   final String customerEmail;
 
   static const String subscriptions = 'Subscriptions';
-  static const String chooseSubAndStartTraining = 'Choose a subcription plan and start training hard';
+  static const String chooseSub = 'Choose a subcription plan';
 
   SubscriptionsPage({
     Key key,
@@ -37,7 +37,7 @@ class SubscriptionsPage extends StatelessWidget {
                   padding: EdgeInsets.symmetric(horizontal: 10),
                   child: Column(
                     mainAxisAlignment: MainAxisAlignment.spaceAround,
-                    crossAxisAlignment: CrossAxisAlignment.start,
+                    crossAxisAlignment: CrossAxisAlignment.center,
                     children: <Widget>[
                       SizedBox(
                         height: 50,
@@ -45,7 +45,7 @@ class SubscriptionsPage extends StatelessWidget {
                       Padding(
                         padding: EdgeInsets.only(left: 10.0),
                         child: Text(
-                            chooseSubAndStartTraining.i18n,
+                            chooseSub.i18n,
                             textAlign: TextAlign.center,
                             style: Theme
                                 .of(context)
