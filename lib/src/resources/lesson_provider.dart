@@ -1,4 +1,5 @@
 import 'package:checkin/src/models/attendee.dart';
+import 'package:checkin/src/models/grade.dart';
 import 'package:checkin/src/models/lesson.dart';
 import 'package:checkin/src/models/master.dart';
 import 'package:checkin/src/util/debug_util.dart';
@@ -42,7 +43,7 @@ class LessonProvider {
               attendees: (doc.data['attendees'] as List)
                       ?.map((attendee) => Attendee(
                           name: attendee['name'],
-                          rank: attendee["grade"],
+                          grade: (attendee["grade"] as String).toGrade(),
                           imageUrl: attendee["imageUrl"],
                           email: attendee["email"]))
                       ?.toList() ??
@@ -70,7 +71,7 @@ class LessonProvider {
           attendees: (doc.data['attendees'] as List)
                   ?.map((attendee) => Attendee(
                       name: attendee['name'],
-                      rank: attendee["grade"],
+                      grade: (attendee["grade"] as String).toGrade(),
                       imageUrl: attendee["imageUrl"],
                       email: attendee["email"]))
                   ?.toList() ??
@@ -83,7 +84,7 @@ class LessonProvider {
         {
           'name': attendee.name,
           'imageUrl': attendee.imageUrl,
-          'grade': attendee.rank,
+          'grade': attendee.grade.name,
           'email': attendee.email
         }
       ])
@@ -97,7 +98,7 @@ class LessonProvider {
         {
           'name': attendee.name,
           'imageUrl': attendee.imageUrl,
-          'grade': attendee.rank,
+          'grade': attendee.grade.name,
           'email': attendee.email
         }
       ])

@@ -3,6 +3,7 @@ import 'package:checkin/src/blocs/auth/bloc.dart';
 import 'package:checkin/src/blocs/profile/bloc.dart';
 import 'package:checkin/src/blocs/user/bloc.dart';
 import 'package:checkin/src/localization/localization.dart';
+import 'package:checkin/src/models/grade.dart';
 import 'package:checkin/src/models/user.dart';
 import 'package:checkin/src/repositories/user_repository.dart';
 import 'package:checkin/src/ui/components/base_app_bar.dart';
@@ -91,7 +92,7 @@ class _ProfileState extends State<ProfilePage> {
               resizeToAvoidBottomPadding: false,
               appBar: BaseAppBar(
                 title: ProfilePage.profile.i18n,
-                backgroundColor: _getAppBarColor(profileUser.rank),
+                backgroundColor: _getAppBarColor(profileUser.grade),
                 actions: appBarActions,
                 showUserImage: false,
               ),
@@ -177,17 +178,17 @@ class _ProfileState extends State<ProfilePage> {
   }
 }
 
-_getAppBarColor(String grade) {
+_getAppBarColor(Grade grade) {
   switch (grade) {
-    case 'White':
+    case Grade.white:
       return Colors.white10;
-    case 'Blue':
+    case Grade.blue:
       return Colors.blueAccent;
-    case 'Purple':
+    case Grade.purple:
       return Colors.purple;
-    case 'Brown':
+    case Grade.brown:
       return Colors.brown;
-    case 'Black':
+    case Grade.black:
       return Colors.black87;
   }
 }

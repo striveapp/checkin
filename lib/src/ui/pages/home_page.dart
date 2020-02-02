@@ -39,10 +39,8 @@ class HomePage extends StatelessWidget {
           }
 
           if (state is UserSuccess) {
-            if (state.currentUser.rank == null) {
-              return GradePage(
-                currentUser: state.currentUser,
-              );
+            if (state.currentUser.grade == null) {
+              return GradePage();
             }
             return LessonsPage();
           }

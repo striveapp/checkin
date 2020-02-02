@@ -1,10 +1,10 @@
 import 'dart:io';
 
+import 'package:checkin/src/models/grade.dart';
 import 'package:checkin/src/models/user.dart';
 import 'package:cloud_firestore/cloud_firestore.dart';
 
 class UserProvider {
-  //@TODO: Rename rank in grade
   Firestore _firestore = Firestore.instance;
   static const String path = 'users';
 
@@ -17,7 +17,8 @@ class UserProvider {
     email: user.data['email'],
     imageUrl: user.data['imageUrl'],
     counter: user.data['counter'] ?? 0,
-    rank: user.data['rank'],
+    // TODO: remove rank when all users have grade
+    grade: ((user.data['grade'] ?? user.data['rank']) as String).toGrade(),
     isOwner: user.data['isOwner'] ?? false,
     hasActivePayments: user.data['hasActivePayments'] ?? false,
   ));
@@ -34,7 +35,7 @@ class UserProvider {
     await _firestore
         .collection(path)
         .document(currentUser.email)
-        .updateData({"rank": newGrade});
+        .updateData({"grade": newGrade});
   }
 
   Future<void> updateUserName(User currentUser, String newName) async {

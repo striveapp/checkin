@@ -1,7 +1,8 @@
 export type Attendee = {
   name: string
   imageUrl: string
-  rank: string
+  grade?: string
+  rank?: string
   email: string
 }
 
