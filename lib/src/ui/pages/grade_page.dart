@@ -28,7 +28,6 @@ class GradePage extends StatelessWidget {
             style: TextStyle(
                 fontStyle: FontStyle.normal,
                 fontWeight: FontWeight.bold,
-                fontFamily: 'Roboto',
                 fontSize: 32.0),
           ),
         ),
