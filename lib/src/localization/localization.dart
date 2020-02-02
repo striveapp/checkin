@@ -25,6 +25,7 @@ import 'package:checkin/src/ui/pages/stats_page.dart';
 import 'package:i18n_extension/i18n_extension.dart';
 
 extension Localization on String {
+  // ignore: unused_field
   static var _t = Translations('en') + {
     'en': LessonsPage.classes,
     'es': "Clases",
