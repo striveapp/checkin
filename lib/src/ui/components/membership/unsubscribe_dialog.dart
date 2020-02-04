@@ -1,9 +1,14 @@
 import 'package:checkin/src/blocs/membership/bloc.dart';
-import 'package:checkin/src/localization/localization.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
+import 'package:checkin/src/localization/localization.dart';
 
 class UnsubscribeDialog {
+  static const String aboutToPermanentlyDeleteSubscription = 'You are about to permanently cancel your subscription.';
+  static const String cannotBeUndone = 'This operation cannot be undone';
+  static const String keepSubscription = 'Keep Subscription';
+  static const String unsubscribe = 'Unsubscribe';
+
   Widget build(BuildContext context) {
     return BlocProvider.value(
         value: BlocProvider.of<
@@ -14,9 +19,7 @@ class UnsubscribeDialog {
             child: Column(
               children: <Widget>[
                 Text(
-                    Localization.of(
-                        context)
-                        .aboutToPermanentlyDeleteSubscription,
+                    aboutToPermanentlyDeleteSubscription.i18n,
                     textAlign:
                     TextAlign.center,
                     style:
@@ -27,8 +30,7 @@ class UnsubscribeDialog {
                   height: 20,
                 ),
                 Text(
-                  Localization.of(context)
-                      .cannotBeUndone,
+                  cannotBeUndone.i18n,
                   style: Theme.of(context)
                       .textTheme
                       .body1
@@ -47,8 +49,7 @@ class UnsubscribeDialog {
                     vertical: 10,
                     horizontal: 10),
                 child: Text(
-                  Localization.of(context)
-                      .keepSubscription,
+                  keepSubscription.i18n,
                   style: Theme.of(context)
                       .textTheme
                       .button,
@@ -70,8 +71,7 @@ class UnsubscribeDialog {
                     vertical: 10,
                     horizontal: 10),
                 child: Text(
-                  Localization.of(context)
-                      .unsubscribe,
+                  unsubscribe.i18n,
                   style: Theme.of(context)
                       .textTheme
                       .button,

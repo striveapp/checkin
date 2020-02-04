@@ -1,97 +1,218 @@
-import 'dart:async';
+import 'package:checkin/src/constants.dart' as constants;
+import 'package:checkin/src/ui/components/attended_lessons_list.dart';
+import 'package:checkin/src/ui/components/attendee_tile.dart';
+import 'package:checkin/src/ui/components/attendees_counter.dart';
+import 'package:checkin/src/ui/components/attendees_preview.dart';
+import 'package:checkin/src/ui/components/class_counter.dart';
+import 'package:checkin/src/ui/components/days_picker.dart';
+import 'package:checkin/src/ui/components/google_sign_in_button.dart';
+import 'package:checkin/src/ui/components/grade_buttons.dart';
+import 'package:checkin/src/ui/components/lesson_infos.dart';
+import 'package:checkin/src/ui/components/mat_time_counter.dart';
+import 'package:checkin/src/ui/components/membership/active_membership.dart';
+import 'package:checkin/src/ui/components/membership/inactive_membership.dart';
+import 'package:checkin/src/ui/components/membership/unsubscribe_dialog.dart';
+import 'package:checkin/src/ui/components/no_lessons_banner.dart';
+import 'package:checkin/src/ui/components/profile_card.dart';
+import 'package:checkin/src/ui/components/registry_controls.dart';
+import 'package:checkin/src/ui/pages/account_page.dart';
+import 'package:checkin/src/ui/pages/grade_page.dart';
+import 'package:checkin/src/ui/pages/lessons_page.dart';
+import 'package:checkin/src/ui/pages/payment_success_page.dart';
+import 'package:checkin/src/ui/pages/profile_page.dart';
+import 'package:checkin/src/ui/pages/registry_page.dart';
+import 'package:checkin/src/ui/pages/stats_page.dart';
+import 'package:checkin/src/ui/pages/subscriptions_page.dart';
+import 'package:i18n_extension/i18n_extension.dart';
 
-import 'package:flutter/foundation.dart';
-import 'package:flutter/material.dart';
-
-import 'localization_strings.dart';
-
-
-class   Localization {
-  final Locale locale;
-
-  Localization(this.locale);
-
-  static Localization of(BuildContext context) {
-    return Localizations.of<Localization>(context, Localization);
-  }
-
-  static Map<String, Map<String, String>> _localizedValues = {
-    'es' : es,
-    'en' : en
+extension Localization on String {
+  // ignore: unused_field
+  static var _t = Translations('en') + {
+    'en': LessonsPage.classes,
+    'es': "Clases",
+  } + {
+    'en': GradePage.beltSelection,
+    'es': 'Cuál es tu cinturón?',
+  } + {
+    'en': ProfilePage.profile,
+    'es': 'Perfil',
+  } + {
+    'en': ProfilePage.enterYourName,
+    'es': 'Intorduzca su nombre',
+  } + {
+    'en': ProfilePage.logout,
+    'es': 'Desconectar',
+  } + {
+    'en': RegistryPage.registry,
+    'es': 'Registro',
+  } + {
+    'en': StatsPage.stats,
+    'es': 'Estadísticas',
+  } + {
+    'en': constants.WEEK,
+    'es': 'semana',
+  } + {
+    'en': constants.MONTH,
+    'es': 'mes',
+  } + {
+    'en': constants.YEAR,
+    'es': 'año',
+  } + {
+    'en': constants.by,
+    'es': 'Por',
+  } + {
+    'en': constants.emptyClass,
+    'es': 'Nadie en clase todavía',
+  } + {
+    'en': AttendedLessonsList.attendedClasses,
+    'es': 'Clases atendidas',
+  } + {
+    'en': MatTimeCounter.matTime,
+    'es': 'Horas de Mat',
+  } + {
+    'en': MatTimeCounter.hours
+        .zero('0 hours')
+        .one('1 hour')
+        .many('%d hours'),
+    'es': '%d horas'
+        .zero('0 horas')
+        .one('1 hora')
+        .many('%d horas'),
+  } + {
+    'en': MatTimeCounter.attendedClasses
+        .zero('No classes attended')
+        .one('You attended one class')
+        .many('You attended %d classes'),
+    'es': 'Has atendido %d clases'
+        .zero('No has atendido ninguna clase')
+        .one('Has atendido una clase')
+        .many('Has atendido %d clases'),
+  } + {
+    'en': MatTimeCounter.thisTimespan
+        .modifier(constants.WEEK, 'this week')
+        .modifier(constants.MONTH, 'this month')
+        .modifier(constants.YEAR, 'this year'),
+    'es': 'este %s'
+        .modifier(constants.WEEK, 'esta semana')
+        .modifier(constants.MONTH, 'este mes')
+        .modifier(constants.YEAR, 'este año'),
+  } + {
+    'en': AttendeesCounter.full,
+    'es': 'lleno',
+  } + {
+    'en': AttendeeTile.you,
+    'es': 'Tú',
+  } + {
+    'en': LessonInfos.and,
+    'es': 'y',
+  } + {
+    'en': AttendeesPreview.andOthers
+        .one('and another one')
+        .many('and %d others'),
+    'es': 'y %d otros'
+        .one('y un otro')
+        .many('y %d otros'),
+  } + {
+    'en': NoLessonsBanner.noClasses,
+    'es': 'No hay clases hoy',
+  } + {
+    'en': DaysPicker.today,
+    'es': 'Hoy',
+  } + {
+    'en': GradeButtons.whiteGrade,
+    'es': 'Blanco',
+  } + {
+    'en': GradeButtons.blueGrade,
+    'es': 'Azúl',
+  } + {
+    'en': GradeButtons.purpleGrade,
+    'es': 'Morado',
+  } + {
+    'en': GradeButtons.brownGrade,
+    'es': 'Marron',
+  } + {
+    'en': GradeButtons.blackGrade,
+    'es': 'Negro',
+  } + {
+    'en': RegistryControls.unregisterClass,
+    'es': 'Despuntarse de clase',
+  } + {
+    'en': RegistryControls.registerClass,
+    'es': 'Apuntarse a clase',
+  } + {
+    'en': RegistryControls.acceptAll,
+    'es': 'Aceptar todos',
+  } + {
+    'en': GoogleSignInButton.googleSignin,
+    'es': 'Acceso con Google',
+  } + {
+    'en': ClassCounter.totalClasses,
+    'es': 'Clases atendidas',
+  } + {
+    'en': AccountPage.account,
+    'es': 'Cuenta',
+  } + {
+    'en': AccountPage.membership,
+    'es': 'Afiliación',
+  } + {
+    'en': AccountPage.profile,
+    'es': 'Perfil',
+  } + {
+    'en': PaymentSuccessPage.paymentSuccessful,
+    'es': 'Pagado con Exito',
+  } + {
+    'en': PaymentSuccessPage.goToAccount,
+    'es': 'Volver a la Cuenta',
+  } + {
+    'en': PaymentSuccessPage.disclaimerSubscription30Min,
+    'es': 'Tu subscripción puede tardar hasta 30 minutos en aparecer en tu cuenta',
+  } + {
+    'en': ActiveMembershipView.email,
+    'es': 'Correo:',
+  } + {
+    'en': ActiveMembershipView.creditCard,
+    'es': 'Tarjeta:',
+  } + {
+    'en': ActiveMembershipView.unsubscribe,
+    'es': 'Darse de baja',
+  } + {
+    'en': ActiveMembershipView.nextBilling,
+    'es': 'El siguiente pago es el',
+  } + {
+    'en': ProfileCard.enterYourName,
+    'es': 'Intorduzca su nombre',
+  } + {
+    'en': InactiveMembershipView.subscribe,
+    'es': 'Suscribirse',
+  } + {
+    'en': InactiveMembershipView.notActiveSubscription,
+    'es': 'Tu subscripción no está activa todavia',
+  } + {
+    'en': UnsubscribeDialog.unsubscribe,
+    'es': 'Darse de baja',
+  } + {
+    'en': UnsubscribeDialog.aboutToPermanentlyDeleteSubscription,
+    'es': 'Estás a punto de cancelar tu cuota de forma permanente',
+  } + {
+    'en': UnsubscribeDialog.cannotBeUndone,
+    'es': 'Esta operación no se puede deshacer',
+  } + {
+    'en': UnsubscribeDialog.keepSubscription,
+    'es': 'Mantener subscripción',
+  } + {
+    'en': SubscriptionsPage.subscriptions,
+    'es': 'Subscripciónes',
+  } + {
+    'en': SubscriptionsPage.chooseSub,
+    'es': 'Escoje tu subscripción',
   };
 
-  getValue(String key) => _localizedValues[locale.languageCode][key];
+String get i18n => localize(this, _t);
 
-  String get emptyClass => getValue(EmptyClass);
-  String get totalClasses => getValue(TotalClasses);
-  String get googleSignin => getValue(GoogleSignin);
-  String get beltSelection => getValue(BeltSelection);
-  String get registry => getValue(Registry);
-  String get acceptAll => getValue(AcceptAll);
-  String get logout => getValue(Logout);
-  String get registerClass => getValue(RegisterClass);
-  String get unregisterClass => getValue(UnregisterClass);
-  String get status => getValue(Status);
-  String get classes => getValue(Classes);
-  String get loginFailed => getValue(LoginFailed);
-  String get whiteGrade => getValue(WhiteGrade);
-  String get blueGrade => getValue(BlueGrade);
-  String get purpleGrade => getValue(PurpleGrade);
-  String get brownGrade => getValue(BrownGrade);
-  String get blackGrade => getValue(BlackGrade);
-  String get today => getValue(Today);
-  String get noClasses => getValue(NoClasses);
-  String get profile => getValue(Profile);
-  String get swipeToRemove => getValue(SwipeToRemove);
-  String get nameHint => getValue(NameHint);
-  String get teacher => getValue(Teacher);
-  String get andOthers => getValue(AndOthers);
-  String get and => getValue(And);
-  String get by => getValue(By);
-  String get you => getValue(You);
-  String get full => getValue(Full);
-  String get matTime => getValue(MatTime);
-  String get hours => getValue(Hours);
-  String get youAttended => getValue(YouAttended);
-  String get classesThis => getValue(ClassesThis);
-  String get week => getValue(Week);
-  String get month => getValue(Month);
-  String get year => getValue(Year);
-  String get attendedClasses => getValue(AttendedClasses);
-  String get stats => getValue(Stats);
-  String get nextBilling => getValue(NextBilling);
-  String get unsubscribe => getValue(Unsubscribe);
-  String get subscribe => getValue(Subscribe);
-  String get notActiveSubscription => getValue(NotActiveSubscription);
-  String get changePlan => getValue(ChangePlan);
-  String get creditCard => getValue(CreditCard);
-  String get account => getValue(Account);
-  String get membership => getValue(Membership);
-  String get cannotBeUndone => getValue(CannotBeUndone);
-  String get keepSubscription => getValue(KeepSubscription);
-  String get aboutToPermanentlyDeleteSubscription => getValue(AboutToPermanentlyDeleteSubscription);
-  String get email => getValue(Email);
-  String get chooseSubAndStartTraining => getValue(ChooseSubAndStartTraining);
-  String get subscriptions => getValue(Subscriptions);
-  String get goToAccount => getValue(GoToAccount);
-  String get paymentSuccessful => getValue(PaymentSuccessful);
-  String get disclaimerSubscription30Min => getValue(DisclaimerSubscription30Min);
+String plural(int value) => localizePlural(value, this, _t);
 
-}
+String fill(List<Object> params) => localizeFill(this, params);
 
-class LocalizationDelegate extends LocalizationsDelegate<Localization> {
-  const LocalizationDelegate();
+String gender(String gender) => localizeVersion(gender, this, _t);
 
-  @override
-  bool isSupported(Locale locale) => ['en', 'es'].contains(locale.languageCode);
-
-  @override
-  Future<Localization> load(Locale locale) {
-    // Returning a SynchronousFuture here because an async "load" operation
-    // isn't needed to produce an instance of Localization.
-    return SynchronousFuture<Localization>(Localization(locale));
-  }
-
-  @override
-  bool shouldReload(LocalizationDelegate old) => false;
 }

@@ -9,6 +9,11 @@ class MatTimeCounter extends StatelessWidget {
   final int counter;
   final String timeSpan;
 
+  static const String matTime = 'Mat Time';
+  static const String hours = '%d hours';
+  static const String attendedClasses = 'You attended %d classes';
+  static const String thisTimespan = 'this %s';
+
   MatTimeCounter({
     Key key,
     this.counter,
@@ -27,7 +32,7 @@ class MatTimeCounter extends StatelessWidget {
               width: 5,
             ),
             Text(
-              Localization.of(context).matTime,
+              MatTimeCounter.matTime.i18n,
               style: Theme.of(context)
                   .textTheme
                   .headline
@@ -52,11 +57,11 @@ class MatTimeCounter extends StatelessWidget {
                 mainAxisAlignment: MainAxisAlignment.spaceBetween,
                 children: <Widget>[
                   Text(
-                    "0 ${Localization.of(context).hours}",
+                    hours.plural(0),
                     style: Theme.of(context).textTheme.display1,
                   ),
                   Text(
-                      "${_getTotalMatTimeHours(timeSpan)} ${Localization.of(context).hours}",
+                      hours.plural(_getTotalMatTimeHours(timeSpan)),
                       style: Theme.of(context).textTheme.display1),
                 ],
               ),
@@ -76,19 +81,11 @@ class MatTimeCounter extends StatelessWidget {
           height: 10,
         ),
         Text(
-          _getAttendedClassTextLocalized(context),
+          "${attendedClasses.plural(counter)} ${thisTimespan.gender(timeSpan)}",
           style: Theme.of(context).textTheme.body1.apply(fontWeightDelta: 2),
         )
       ],
     );
-  }
-
-  //TODO: we can't internationalize this kind of strings well, we should migrate to a more complex i18n system
-  String _getAttendedClassTextLocalized(BuildContext context) {
-    return "${Localization.of(context).youAttended} "
-        "$counter "
-        "${Localization.of(context).classesThis} "
-        "${Localization.of(context).getValue(timeSpan)}";
   }
 
   int _getTotalMatTimeHours(String timeSpan) {

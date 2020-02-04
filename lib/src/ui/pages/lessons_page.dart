@@ -11,12 +11,15 @@ import 'package:flutter/material.dart';
 import 'package:flutter/widgets.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 
+
 class LessonsPage extends StatelessWidget {
+  static const String classes = 'Classes';
+
   @override
   Widget build(BuildContext context) {
     return Scaffold(
         appBar: BaseAppBar(
-          title: Localization.of(context).classes,
+          title: classes.i18n,
         ),
         body: BlocProvider<LessonsBloc>(
           create: (BuildContext context) => LessonsBloc(

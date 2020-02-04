@@ -13,11 +13,13 @@ import 'package:flutter/widgets.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 
 class StatsPage extends StatelessWidget {
+  static const String stats = 'Stats';
+
   @override
   Widget build(BuildContext context) {
     return Scaffold(
       appBar: BaseAppBar(
-        title: Localization.of(context).stats,
+        title: StatsPage.stats.i18n,
       ),
       body: BlocProvider<StatsBloc>(
         create: (context) => StatsBloc(
@@ -41,7 +43,7 @@ class StatsPage extends StatelessWidget {
                       value: state.timeSpan,
                       items: <String>[constants.WEEK, constants.MONTH, constants.YEAR]
                           .map((String value) => DropdownMenuItem<String>(
-                                child: Text(_capitalize(Localization.of(context).getValue(value))),
+                                child: Text(_capitalize(value.i18n)),
                                 value: value,
                               ))
                           .toList(),

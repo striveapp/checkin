@@ -3,6 +3,7 @@ import 'package:flutter/material.dart';
 
 class ClassCounter extends StatelessWidget {
   final int counter;
+  static const String totalClasses = 'Attended classes';
 
   ClassCounter({
     Key key,
@@ -20,7 +21,7 @@ class ClassCounter extends StatelessWidget {
             mainAxisAlignment: MainAxisAlignment.spaceEvenly,
             children: <Widget>[
               Text(
-                Localization.of(context).totalClasses,
+                totalClasses.i18n,
                 textAlign: TextAlign.center,
                 style: TextStyle(fontSize: 22, fontWeight: FontWeight.w400),
               ),

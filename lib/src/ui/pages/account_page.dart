@@ -1,7 +1,6 @@
 import 'package:checkin/src/blocs/account/bloc.dart';
 import 'package:checkin/src/blocs/membership/bloc.dart';
 import 'package:checkin/src/blocs/user/bloc.dart';
-import 'package:checkin/src/localization/localization.dart';
 import 'package:checkin/src/repositories/membership_repository.dart';
 import 'package:checkin/src/ui/components/base_app_bar.dart';
 import 'package:checkin/src/ui/components/membership/membership_card.dart';
@@ -10,8 +9,13 @@ import 'package:checkin/src/util/debug_util.dart';
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
+import 'package:checkin/src/localization/localization.dart';
 
 class AccountPage extends StatelessWidget {
+  static const String account = 'Account';
+  static const String membership = 'Membership';
+  static const String profile = 'Profile';
+
   @override
   Widget build(BuildContext context) {
     return GestureDetector(
@@ -24,7 +28,7 @@ class AccountPage extends StatelessWidget {
       },
       child: Scaffold(
         appBar: BaseAppBar(
-          title: Localization.of(context).account,
+          title: account.i18n,
           showUserImage: false,
         ),
         body: MultiBlocProvider(
@@ -59,7 +63,7 @@ class AccountPage extends StatelessWidget {
                           Padding(
                             padding: EdgeInsets.only(left: 10.0),
                             child: Text(
-                              Localization.of(context).membership,
+                              membership.i18n,
                               style: Theme.of(context)
                                   .textTheme
                                   .headline
@@ -77,7 +81,7 @@ class AccountPage extends StatelessWidget {
                         Padding(
                           padding: EdgeInsets.only(left: 10.0),
                           child: Text(
-                            Localization.of(context).profile,
+                            profile.i18n,
                             style: Theme.of(context)
                                 .textTheme
                                 .headline
