@@ -1,4 +1,5 @@
 import 'package:checkin/src/blocs/account/bloc.dart';
+import 'package:checkin/src/blocs/auth/bloc.dart';
 import 'package:checkin/src/blocs/membership/bloc.dart';
 import 'package:checkin/src/blocs/user/bloc.dart';
 import 'package:checkin/src/repositories/membership_repository.dart';
@@ -91,6 +92,23 @@ class AccountPage extends StatelessWidget {
                         ProfileCard(
                           user: state.user,
                         ),
+                        if (isInDebugMode)
+                          RaisedButton(
+                            key: Key('logoutButton'),
+                            color: Colors.red,
+                            child: Text("Logout",
+                                style: TextStyle(
+                                    fontSize: 18,
+                                    color: Colors.white,
+                                    fontWeight: FontWeight.w600)),
+                            onPressed: () {
+                              Navigator.popUntil(
+                                context,
+                                ModalRoute.withName(Navigator.defaultRouteName),
+                              );
+                              BlocProvider.of<AuthBloc>(context).add(LogOut());
+                            },
+                          ),
                       ],
                     ),
                   ),
