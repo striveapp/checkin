@@ -94,21 +94,30 @@ class AccountPage extends StatelessWidget {
                           user: state.user,
                         ),
                         if (isInDebugMode)
-                          RaisedButton(
-                            key: Key('logoutButton'),
-                            color: Colors.red,
-                            child: Text("Logout",
-                                style: TextStyle(
-                                    fontSize: 18,
-                                    color: Colors.white,
-                                    fontWeight: FontWeight.w600)),
-                            onPressed: () {
-                              Navigator.popUntil(
-                                context,
-                                ModalRoute.withName(Navigator.defaultRouteName),
-                              );
-                              BlocProvider.of<AuthBloc>(context).add(LogOut());
-                            },
+                          SizedBox(
+                            height: 50,
+                          ),
+                        if (isInDebugMode)
+                          Row(
+                            mainAxisAlignment: MainAxisAlignment.center,
+                            children: <Widget>[
+                              RaisedButton(
+                                key: Key('logoutButton'),
+                                color: Colors.red,
+                                child: Text("Logout",
+                                    style: TextStyle(
+                                        fontSize: 18,
+                                        color: Colors.white,
+                                        fontWeight: FontWeight.w600)),
+                                onPressed: () {
+                                  Navigator.popUntil(
+                                    context,
+                                    ModalRoute.withName(Navigator.defaultRouteName),
+                                  );
+                                  BlocProvider.of<AuthBloc>(context).add(LogOut());
+                                },
+                              ),
+                            ],
                           ),
                       ],
                     ),

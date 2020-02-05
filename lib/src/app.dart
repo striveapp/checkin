@@ -100,10 +100,6 @@ class App extends StatelessWidget {
 //        initialLocale: Locale("es", "ES"),
           child: BlocListener<DynamicLinkBloc, DynamicLinkState>(
             listener: (BuildContext context, DynamicLinkState state) {
-              if (state is DynamicLinkToRegistry) {
-                Navigator.of(context).pushNamed('registry/${state.lessonId}');
-              }
-
               if (state is DynamicLinkToNavigate) {
                 debugPrint("deep link received with path ${state.path}");
                 Navigator.of(context).pushNamed(state.path);
