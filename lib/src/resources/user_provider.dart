@@ -19,6 +19,7 @@ class UserProvider {
     counter: user.data['counter'] ?? 0,
     rank: user.data['rank'],
     isOwner: user.data['isOwner'] ?? false,
+    hasActivePayments: user.data['hasActivePayments'] ?? false,
   ));
 
   Future<void> createUser(User newUser) async {

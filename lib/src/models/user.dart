@@ -16,6 +16,7 @@ class User extends Equatable {
   final int counter;
   final String rank;
   final bool isOwner;
+  final bool hasActivePayments;
 
   User({
     @required this.name,
@@ -24,6 +25,7 @@ class User extends Equatable {
     this.rank,
     this.counter = 0,
     this.isOwner = false,
+    this.hasActivePayments = false,
   });
 
   factory User.fromFirebaseUser(FirebaseUser firebaseUser) {
@@ -37,10 +39,10 @@ class User extends Equatable {
   }
 
   @override
-  List<Object> get props => [name, email, imageUrl, counter, rank, isOwner];
+  List<Object> get props => [name, email, imageUrl, counter, rank, isOwner, hasActivePayments];
 
   @override
   String toString() {
-    return 'User{name: $name, email: $email, imageUrl: $imageUrl, counter: $counter, rank: $rank, isOwner: $isOwner}';
+    return 'User{name: $name, email: $email, imageUrl: $imageUrl, counter: $counter, rank: $rank, isOwner: $isOwner, hasActivePayments: $hasActivePayments}';
   }
 }

@@ -55,26 +55,27 @@ class AccountPage extends StatelessWidget {
                     child: Column(
                       crossAxisAlignment: CrossAxisAlignment.start,
                       children: <Widget>[
-                        //TODO: activate for prod when the stipe account is active [https://trello.com/c/BhjQ2Mbg]
-                        if (isInDebugMode)
-                          SizedBox(
-                            height: 50,
-                          ),
-                        if (isInDebugMode)
-                          Padding(
-                            padding: EdgeInsets.only(left: 10.0),
-                            child: Text(
-                              membership.i18n,
-                              style: Theme.of(context)
-                                  .textTheme
-                                  .headline
-                                  .apply(color: Colors.black87),
-                            ),
-                          ),
-                        if (isInDebugMode)
-                          Padding(
-                            padding: EdgeInsets.only(top: 10.0),
-                            child: MembershipCard(),
+                        if (state.user.hasActivePayments)
+                          Column(
+                            children: <Widget>[
+                              SizedBox(
+                                height: 50,
+                              ),
+                              Padding(
+                                padding: EdgeInsets.only(left: 10.0),
+                                child: Text(
+                                  membership.i18n,
+                                  style: Theme.of(context)
+                                      .textTheme
+                                      .headline
+                                      .apply(color: Colors.black87),
+                                ),
+                              ),
+                              Padding(
+                                padding: EdgeInsets.only(top: 10.0),
+                                child: MembershipCard(),
+                              ),
+                            ],
                           ),
                         SizedBox(
                           height: 50,
