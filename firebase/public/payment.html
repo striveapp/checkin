@@ -6,7 +6,8 @@
     <script src="https://js.stripe.com/v3/"></script>
     <script type="application/javascript">
         // TODO: handle different public key for stripe
-        var stripe = Stripe('pk_test_8K7vXBkISjYbdzi7EzEvuS4J00v3T0aos8');
+        var publicKey = urlParams.get('pk');
+        var stripe = Stripe(publicKey);
         var urlParams = new URLSearchParams(window.location.search);
         var host = urlParams.get('host');
         var customerEmail = urlParams.get('customerEmail');
