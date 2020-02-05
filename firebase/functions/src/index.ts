@@ -1,7 +1,11 @@
 import * as admin from 'firebase-admin'
 import * as functions from 'firebase-functions';
 import {generateBackup} from './backups';
-import {classCounterIncrementNotification, reminderOfNonAcceptedUsersForMaster} from "./notifications";
+import {
+    classCounterIncrementNotification,
+    firstUserRegisterToClassNotification,
+    reminderOfNonAcceptedUsersForMaster
+} from "./notifications";
 import adminApp from "./admin";
 
 admin.initializeApp();
@@ -12,7 +16,7 @@ export const automatedBackups = functions.pubsub
     .timeZone('Europe/Madrid')
     .onRun(generateBackup);
 
-export const masterNotification = functions.pubsub
+export const masterReminderNotification = functions.pubsub
     .schedule('0 23 * * 1-6')
     .timeZone('Europe/Madrid')
     .onRun(reminderOfNonAcceptedUsersForMaster);
@@ -30,3 +34,4 @@ export * from "./payments/webhook";
 
 // firestore triggers
 export const userNotification = classCounterIncrementNotification;
+export const masterNotification = firstUserRegisterToClassNotification;
