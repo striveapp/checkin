@@ -10,6 +10,9 @@ import 'package:flutter_bloc/flutter_bloc.dart';
 class RegistryControls extends StatefulWidget {
   final User currentUser;
   final Lesson currentLesson;
+  static const String unregisterClass = 'Unregister from class';
+  static const String registerClass = 'Register to class';
+  static const String acceptAll = 'Accept all';
 
   const RegistryControls({
     Key key,
@@ -61,18 +64,18 @@ class _RegistryControlsState extends State<RegistryControls> {
             ? RegistryButton(
                 key: Key('acceptAll'),
                 onPressed: onPressAcceptAll,
-                text: Localization.of(context).acceptAll,
+                text: RegistryControls.acceptAll.i18n,
               )
             : (_isUserInClass(currentLesson, currentUser)
                 ? RegistryButton(
-                  key: Key('unregisterClass'),
-                  text: Localization.of(context).unregisterClass,
-                  color: Theme.of(context).buttonTheme.colorScheme.error,
-                  onPressed: onPressUnregisterClass,
-                )
+                    key: Key('unregisterClass'),
+                    text: RegistryControls.unregisterClass.i18n,
+                    color: Theme.of(context).buttonTheme.colorScheme.error,
+                    onPressed: onPressUnregisterClass,
+                  )
                 : RegistryButton(
                     key: Key('registerClass'),
-                    text: Localization.of(context).registerClass,
+                    text: RegistryControls.registerClass.i18n,
                     onPressed: onPressRegisterClass,
                   ));
       },

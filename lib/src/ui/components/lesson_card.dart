@@ -5,6 +5,7 @@ import 'package:checkin/src/ui/components/attendees_preview.dart';
 import 'package:checkin/src/ui/components/user_image.dart';
 import 'package:checkin/src/util/dynamic_link_util.dart';
 import 'package:flutter/material.dart';
+import 'package:checkin/src/constants.dart' as constants;
 import 'package:share/share.dart';
 
 class LessonCard extends StatelessWidget {
@@ -76,7 +77,7 @@ class LessonCard extends StatelessWidget {
                       ),
                     if (lesson.attendees.length == 0)
                       Text(
-                        Localization.of(context).emptyClass,
+                        constants.emptyClass.i18n,
                         style: Theme.of(context).textTheme.display1,
                       ),
                     LinearProgressIndicator(

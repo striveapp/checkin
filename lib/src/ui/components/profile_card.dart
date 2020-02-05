@@ -1,12 +1,13 @@
 import 'package:checkin/src/blocs/user/bloc.dart';
-import 'package:checkin/src/localization/localization.dart';
 import 'package:checkin/src/models/user.dart';
 import 'package:checkin/src/ui/components/user_image.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
+import 'package:checkin/src/localization/localization.dart';
 
 class ProfileCard extends StatelessWidget {
   final User user;
+  static const String enterYourName = 'Enter your name';
 
   ProfileCard({
     @required this.user,
@@ -42,8 +43,8 @@ class ProfileCard extends StatelessWidget {
                     border: InputBorder.none,
                     focusedBorder: InputBorder.none,
                     counter: SizedBox.shrink(),
-                    hintText:
-                    Localization.of(context).nameHint),
+                    hintText: enterYourName.i18n
+                ),
                 controller: TextEditingController.fromValue(
                     TextEditingValue(
                         text: user.name,

@@ -1,11 +1,15 @@
-import 'package:checkin/src/localization/localization.dart';
 import 'package:checkin/src/models/membership.dart';
 import 'package:checkin/src/ui/components/membership/unsubscribe_dialog.dart';
 import 'package:flutter/material.dart';
 import 'package:intl/intl.dart';
+import 'package:checkin/src/localization/localization.dart';
 
 class ActiveMembershipView extends StatelessWidget {
   final Membership membership;
+  static const String email = 'Email:';
+  static const String creditCard = 'Card:';
+  static const String nextBilling = 'The next billing date is:';
+  static const String unsubscribe = 'Unsubscribe';
 
   const ActiveMembershipView({Key key, this.membership}) : super(key: key);
 
@@ -22,7 +26,7 @@ class ActiveMembershipView extends StatelessWidget {
             mainAxisAlignment: MainAxisAlignment.spaceBetween,
             children: <Widget>[
               Text(
-                "${Localization.of(context).email}:",
+                email.i18n,
                 style: Theme.of(context)
                     .textTheme
                     .subtitle
@@ -38,7 +42,7 @@ class ActiveMembershipView extends StatelessWidget {
             mainAxisAlignment: MainAxisAlignment.spaceBetween,
             children: <Widget>[
               Text(
-                "${Localization.of(context).creditCard}:",
+                creditCard.i18n,
                 style: Theme.of(context)
                     .textTheme
                     .subtitle
@@ -64,7 +68,7 @@ class ActiveMembershipView extends StatelessWidget {
           Center(
             child: Column(
               children: <Widget>[
-                Text(Localization.of(context).nextBilling,
+                Text(nextBilling.i18n,
                     textAlign: TextAlign.center,
                     style: Theme.of(context)
                         .textTheme
@@ -92,7 +96,7 @@ class ActiveMembershipView extends StatelessWidget {
                   children: <Widget>[
                     RaisedButton(
                       child: Text(
-                        Localization.of(context).unsubscribe,
+                        unsubscribe.i18n,
                         style:
                         Theme.of(context).textTheme.button,
                       ),

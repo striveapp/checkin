@@ -7,6 +7,7 @@ import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 
 import 'attendee_tile.dart';
+import 'package:checkin/src/constants.dart' as constants;
 
 class AttendeesList extends StatefulWidget {
   final User currentUser;
@@ -49,7 +50,7 @@ class _AttendeesListState extends State<AttendeesList> {
               ? Container(
                   alignment: Alignment(0, 0),
                   child: Text(
-                    Localization.of(context).emptyClass,
+                    constants.emptyClass.i18n,
                     style: Theme.of(context).textTheme.display1,
                   ),
                 )

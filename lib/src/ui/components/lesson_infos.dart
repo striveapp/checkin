@@ -3,9 +3,12 @@ import 'package:checkin/src/models/lesson.dart';
 import 'package:checkin/src/models/master.dart';
 import 'package:checkin/src/ui/components/user_image.dart';
 import 'package:flutter/material.dart';
+import 'package:checkin/src/constants.dart' as constants;
 
 class LessonInfos extends StatelessWidget {
   final Lesson lesson;
+
+  static const String and = 'and';
 
   const LessonInfos({Key key, @required this.lesson}) : super(key: key);
 
@@ -30,11 +33,11 @@ class LessonInfos extends StatelessWidget {
                   .apply(color: Colors.black87),
             ),
             Text(
-              "${Localization.of(context).by} ${lesson.masters.first.name}",
+              "${constants.by.i18n} ${lesson.masters.first.name}",
               style: Theme.of(context).textTheme.subtitle,
             ),
             if (lesson.masters.length > 1)
-              Text("${Localization.of(context).and} ${getOtherMasterNames(lesson.masters)}",
+              Text("${and.i18n} ${getOtherMasterNames(lesson.masters)}",
                   style: Theme.of(context).textTheme.subtitle),
           ],
         )

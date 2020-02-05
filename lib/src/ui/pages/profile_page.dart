@@ -16,6 +16,10 @@ import 'package:flutter_bloc/flutter_bloc.dart';
 
 //TODO: this should be a StatelessWidget
 class ProfilePage extends StatefulWidget {
+  static const String profile = 'Profile';
+  static const String enterYourName = 'Enter your name';
+  static const String logout = 'Logout';
+
   final String _email;
   final UserRepository _userRepository;
 
@@ -86,7 +90,7 @@ class _ProfileState extends State<ProfilePage> {
           return Scaffold(
               resizeToAvoidBottomPadding: false,
               appBar: BaseAppBar(
-                title: Localization.of(context).profile,
+                title: ProfilePage.profile.i18n,
                 backgroundColor: _getAppBarColor(profileUser.rank),
                 actions: appBarActions,
                 showUserImage: false,
@@ -132,7 +136,7 @@ class _ProfileState extends State<ProfilePage> {
                           decoration: InputDecoration(
                               border: InputBorder.none,
                               focusedBorder: InputBorder.none,
-                              hintText: Localization.of(context).nameHint),
+                              hintText: ProfilePage.enterYourName),
                           style: TextStyle(
                               fontSize: 20,
                               letterSpacing: 0.8,
@@ -152,7 +156,7 @@ class _ProfileState extends State<ProfilePage> {
                       RaisedButton(
                         key: Key('logoutButton'),
                         color: Colors.red,
-                        child: Text(Localization.of(context).logout,
+                        child: Text(ProfilePage.logout,
                             style: TextStyle(
                                 fontSize: 18,
                                 color: Colors.white,

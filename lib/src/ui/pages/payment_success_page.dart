@@ -1,7 +1,11 @@
-import 'package:checkin/src/localization/localization.dart';
 import 'package:flutter/material.dart';
+import 'package:checkin/src/localization/localization.dart';
 
 class PaymentSuccessPage extends StatelessWidget {
+  static const String paymentSuccessful = 'Payment Successful';
+  static const String disclaimerSubscription30Min = 'It can take up to 30 minutes for your order to appear in your account';
+  static const String goToAccount = 'Go to account';
+
   @override
   Widget build(BuildContext context) {
     return Scaffold(
@@ -21,12 +25,12 @@ class PaymentSuccessPage extends StatelessWidget {
                   ),
                   SizedBox(height: 20,),
                   Text(
-                    Localization.of(context).paymentSuccessful,
+                    paymentSuccessful.i18n,
                     style: Theme.of(context).textTheme.headline,
                   ),
                   SizedBox(height: 10,),
                   Text(
-                    Localization.of(context).disclaimerSubscription30Min,
+                    disclaimerSubscription30Min.i18n,
                     textAlign: TextAlign.center,
                     style: Theme.of(context)
                         .textTheme
@@ -39,7 +43,7 @@ class PaymentSuccessPage extends StatelessWidget {
                 Navigator.of(context).pushNamedAndRemoveUntil("account", ModalRoute.withName('/'),);
               }, child: Padding(
                 padding: const EdgeInsets.all(15.0),
-                child: Text(Localization.of(context).goToAccount, style: Theme.of(context).textTheme.button.apply(fontSizeDelta: 4),),
+                child: Text(goToAccount.i18n, style: Theme.of(context).textTheme.button.apply(fontSizeDelta: 4),),
               ),),
             ],
           ),
