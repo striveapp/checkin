@@ -4,7 +4,6 @@ import 'package:checkin/src/ui/components/attendee_tile.dart';
 import 'package:checkin/src/ui/components/attendees_counter.dart';
 import 'package:checkin/src/ui/components/attendees_preview.dart';
 import 'package:checkin/src/ui/components/class_counter.dart';
-import 'package:checkin/src/ui/components/days_picker.dart';
 import 'package:checkin/src/ui/components/google_sign_in_button.dart';
 import 'package:checkin/src/ui/components/grade_buttons.dart';
 import 'package:checkin/src/ui/components/lesson_infos.dart';
@@ -115,9 +114,6 @@ extension Localization on String {
   } + {
     'en': NoLessonsBanner.noClasses,
     'es': 'No hay clases hoy',
-  } + {
-    'en': DaysPicker.today,
-    'es': 'Hoy',
   } + {
     'en': GradeButtons.whiteGrade,
     'es': 'Blanco',
