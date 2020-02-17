@@ -47,7 +47,7 @@ export const firstUserRegisterToClassNotification = functions.firestore.document
     const docBefore = change.before.data() || {};
     const docAfter = change.after.data() || {};
 
-    if (docBefore.attendees.length === 0 && docAfter.attendees.length === 1) {
+    if ((docBefore.attendees === undefined || docBefore.attendees.length === 0) && docAfter.attendees.length === 1) {
         console.info("First user registered to class, sending notification to masters");
         return Promise.all(docAfter.masters.map(async ({name, email: masterEmail}: any) => {
             console.info(`Send notification to: ${name}`);
