@@ -57,31 +57,31 @@ class App extends StatelessWidget {
               shape: RoundedRectangleBorder(
                   borderRadius: new BorderRadius.circular(4.0))),
           textTheme: TextTheme(
-            headline: TextStyle(
+            headline1: TextStyle(
               fontSize: 24.0,
               fontWeight: FontWeight.w700,
               color: Colors.white,
               letterSpacing: 0.25,
             ),
-            title: TextStyle(
+            headline2: TextStyle(
               fontSize: 20.0,
               fontWeight: FontWeight.w600,
               color: Colors.black87,
               letterSpacing: 0.25,
             ),
-            subtitle: TextStyle(
+            headline3: TextStyle(
               fontSize: 18.0,
               fontWeight: FontWeight.w500,
               color: Colors.black87,
               letterSpacing: 0.25,
             ),
-            body1: TextStyle(
+            headline4: TextStyle(
               fontSize: 16.0,
               fontWeight: FontWeight.w400,
               color: Colors.black87,
               letterSpacing: 0.25,
             ),
-            display1: TextStyle(
+            headline5: TextStyle(
               fontSize: 14.0,
               fontWeight: FontWeight.w400,
               color: Color(0xFF2F54FC),

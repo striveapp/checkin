@@ -52,11 +52,11 @@ class LessonCard extends StatelessWidget {
                                   _capitalize(lesson.name),
                                   style: Theme.of(context)
                                       .textTheme
-                                      .headline
+                                      .headline1
                                       .apply(color: Colors.black87),
                                 ),
                                 Text("${lesson.timeStart} - ${lesson.timeEnd}",
-                                    style: Theme.of(context).textTheme.subtitle)
+                                    style: Theme.of(context).textTheme.headline3)
                               ],
                             ),
                           ],
@@ -78,7 +78,7 @@ class LessonCard extends StatelessWidget {
                     if (lesson.attendees.length == 0)
                       Text(
                         constants.emptyClass.i18n,
-                        style: Theme.of(context).textTheme.display1,
+                        style: Theme.of(context).textTheme.headline5,
                       ),
                     LinearProgressIndicator(
                       value: _getFullPercentage(lesson.attendees.length),

@@ -25,7 +25,7 @@ class UnsubscribeDialog {
                     style:
                     Theme.of(context)
                         .textTheme
-                        .body1),
+                        .headline4),
                 SizedBox(
                   height: 20,
                 ),
@@ -33,7 +33,7 @@ class UnsubscribeDialog {
                   cannotBeUndone.i18n,
                   style: Theme.of(context)
                       .textTheme
-                      .body1
+                      .headline4
                       .apply(
                       fontWeightDelta:
                       2),

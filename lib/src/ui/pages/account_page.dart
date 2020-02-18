@@ -67,7 +67,7 @@ class AccountPage extends StatelessWidget {
                                   membership.i18n,
                                   style: Theme.of(context)
                                       .textTheme
-                                      .headline
+                                      .headline1
                                       .apply(color: Colors.black87),
                                 ),
                               ),
@@ -86,7 +86,7 @@ class AccountPage extends StatelessWidget {
                             profile.i18n,
                             style: Theme.of(context)
                                 .textTheme
-                                .headline
+                                .headline1
                                 .apply(color: Colors.black87),
                           ),
                         ),

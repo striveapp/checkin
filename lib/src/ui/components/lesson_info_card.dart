@@ -38,14 +38,14 @@ class LessonInfoCard extends StatelessWidget {
                               _getDayNumber(lesson.timestamp),
                               style: Theme.of(context)
                                   .textTheme
-                                  .headline
+                                  .headline1
                                   .apply(color: Theme.of(context).accentColor),
                             ),
                             Text(
                               _getMonthThreeLetter(lesson.timestamp),
                               style: Theme.of(context)
                                   .textTheme
-                                  .headline
+                                  .headline1
                                   .apply(color: Theme.of(context).accentColor),
                             ),
                           ],
@@ -60,14 +60,14 @@ class LessonInfoCard extends StatelessWidget {
                               "${_capitalize(lesson.name)}",
                               style: Theme.of(context)
                                   .textTheme
-                                  .headline
+                                  .headline1
                                   .apply(color: Colors.black87),
                             ),
                             Text("${constants.by.i18n} ${lesson.masters.first.name}",
-                                style: Theme.of(context).textTheme.subtitle),
+                                style: Theme.of(context).textTheme.headline3),
                             Text(
                                 "${lesson.weekDay} (${lesson.timeStart} - ${lesson.timeEnd})",
-                                style: Theme.of(context).textTheme.subtitle)
+                                style: Theme.of(context).textTheme.headline3)
                           ],
                         ),
                       ),

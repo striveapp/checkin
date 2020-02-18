@@ -20,7 +20,7 @@ class InactiveMembershipView extends StatelessWidget {
             Text(notActiveSubscription.i18n,
               style: Theme.of(context)
                 .textTheme
-                .subtitle
+                .headline3
                 .apply(fontSizeDelta: 1),),
             RaisedButton(
               child: Text(

@@ -26,7 +26,7 @@ class PaymentSuccessPage extends StatelessWidget {
                   SizedBox(height: 20,),
                   Text(
                     paymentSuccessful.i18n,
-                    style: Theme.of(context).textTheme.headline,
+                    style: Theme.of(context).textTheme.headline1,
                   ),
                   SizedBox(height: 10,),
                   Text(
@@ -34,7 +34,7 @@ class PaymentSuccessPage extends StatelessWidget {
                     textAlign: TextAlign.center,
                     style: Theme.of(context)
                         .textTheme
-                        .subtitle
+                        .headline3
                         .apply(color: Colors.white60),
                   ),
                 ],

@@ -32,8 +32,8 @@ class AttendeeTile extends StatelessWidget {
               child: Text(
                 "${attendee.name}${this.isCurrent ? " (${you.i18n})": ""}",
                 style: this.isCurrent ?
-                  Theme.of(context).textTheme.subtitle.apply(color: Theme.of(context).accentColor) :
-                  Theme.of(context).textTheme.subtitle
+                  Theme.of(context).textTheme.headline3.apply(color: Theme.of(context).accentColor) :
+                  Theme.of(context).textTheme.headline3
               ),
             ),
             onTap: () async {

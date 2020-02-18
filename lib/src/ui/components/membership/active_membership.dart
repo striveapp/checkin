@@ -29,12 +29,12 @@ class ActiveMembershipView extends StatelessWidget {
                 email.i18n,
                 style: Theme.of(context)
                     .textTheme
-                    .subtitle
+                    .headline3
                     .apply(fontWeightDelta: 1),
               ),
               Text(
                 membership.email,
-                style: Theme.of(context).textTheme.subtitle,
+                style: Theme.of(context).textTheme.headline3,
               ),
             ],
           ),
@@ -45,7 +45,7 @@ class ActiveMembershipView extends StatelessWidget {
                 creditCard.i18n,
                 style: Theme.of(context)
                     .textTheme
-                    .subtitle
+                    .headline3
                     .apply(fontWeightDelta: 1),
               ),
               Row(
@@ -56,7 +56,7 @@ class ActiveMembershipView extends StatelessWidget {
                   ),
                   Text(
                     "•••• •••• •••• ${membership.cardLastFourDigits}",
-                    style: Theme.of(context).textTheme.subtitle,
+                    style: Theme.of(context).textTheme.headline3,
                   ),
                 ],
               ),
@@ -72,7 +72,7 @@ class ActiveMembershipView extends StatelessWidget {
                     textAlign: TextAlign.center,
                     style: Theme.of(context)
                         .textTheme
-                        .subtitle
+                        .headline3
                         .apply(color: Colors.black87)),
                 Text(
                     DateFormat('dd MMM y').format(
@@ -82,7 +82,7 @@ class ActiveMembershipView extends StatelessWidget {
                     textAlign: TextAlign.center,
                     style: Theme.of(context)
                         .textTheme
-                        .subtitle
+                        .headline3
                         .apply(
                         fontWeightDelta: 1,
                         color:

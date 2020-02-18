@@ -50,7 +50,7 @@ class SubscriptionsPage extends StatelessWidget {
                             style: Theme
                                 .of(context)
                                 .textTheme
-                                .subtitle),
+                                .headline3),
                       ),
                       SizedBox(
                         height: 50,

@@ -30,7 +30,7 @@ class BaseAppBar extends StatelessWidget implements PreferredSizeWidget {
         return AppBar(
           centerTitle: true,
           backgroundColor: this.backgroundColor ?? Theme.of(context).primaryColor,
-          title: Text(this.title, style: Theme.of(context).textTheme.headline),
+          title: Text(this.title, style: Theme.of(context).textTheme.headline1),
           actions: <Widget>[
             if (showUserImage && currentUser != null)
               Padding(

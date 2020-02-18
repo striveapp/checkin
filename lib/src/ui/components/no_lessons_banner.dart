@@ -9,7 +9,7 @@ class NoLessonsBanner extends StatelessWidget {
     return Text(
       NoLessonsBanner.noClasses.i18n,
       key: Key('noClassesText'),
-      style: Theme.of(context).textTheme.headline.apply(color: Colors.black87)
+      style: Theme.of(context).textTheme.headline1.apply(color: Colors.black87)
     );
   }
 }

@@ -29,16 +29,16 @@ class LessonInfos extends StatelessWidget {
               "${lesson.timeStart} - ${lesson.timeEnd}",
               style: Theme.of(context)
                   .textTheme
-                  .headline
+                  .headline1
                   .apply(color: Colors.black87),
             ),
             Text(
               "${constants.by.i18n} ${lesson.masters.first.name}",
-              style: Theme.of(context).textTheme.subtitle,
+              style: Theme.of(context).textTheme.headline3,
             ),
             if (lesson.masters.length > 1)
               Text("${and.i18n} ${getOtherMasterNames(lesson.masters)}",
-                  style: Theme.of(context).textTheme.subtitle),
+                  style: Theme.of(context).textTheme.headline3),
           ],
         )
       ],

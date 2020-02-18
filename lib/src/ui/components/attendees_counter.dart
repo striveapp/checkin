@@ -17,11 +17,11 @@ class AttendeesCounter extends StatelessWidget {
       children: <Widget>[
         Text(
           "Attendees (${attendees.length})",
-          style: Theme.of(context).textTheme.title,
+          style: Theme.of(context).textTheme.headline2,
         ),
         Text("${_getFullPercentage(attendees.length)} ${full.i18n}",
             style:
-                Theme.of(context).textTheme.display1.apply(fontWeightDelta: 3))
+                Theme.of(context).textTheme.headline5.apply(fontWeightDelta: 3))
       ],
     );
   }

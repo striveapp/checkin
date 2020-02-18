@@ -34,12 +34,12 @@ class SubscriptionPlanCard extends StatelessWidget {
                         plan.name,
                         style: Theme.of(context)
                             .textTheme
-                            .headline
+                            .headline1
                             .apply(fontSizeFactor: 1.2, color: Colors.black87),
                       ),
                       Text(
                         plan.description,
-                        style: Theme.of(context).textTheme.body2,
+                        style: Theme.of(context).textTheme.headline4,
                       ),
                     ],
                   ),
@@ -48,7 +48,7 @@ class SubscriptionPlanCard extends StatelessWidget {
                     children: <Widget>[
                       Text(
                         "€${_formatPrice(plan.price)}",
-                        style: Theme.of(context).textTheme.headline.apply(
+                        style: Theme.of(context).textTheme.headline1.apply(
                             fontSizeFactor: 1.7,
                             color: Theme.of(context).accentColor),
                       ),
@@ -56,7 +56,7 @@ class SubscriptionPlanCard extends StatelessWidget {
                         "/${_getIntervalShort(plan.interval)}",
                         style: Theme.of(context)
                             .textTheme
-                            .display1
+                            .headline5
                             .apply(color: Colors.black54),
                       ),
                     ],

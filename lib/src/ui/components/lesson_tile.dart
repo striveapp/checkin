@@ -20,21 +20,21 @@ class LessonTile extends StatelessWidget {
             key: Key("tile-${lesson.timestamp}"),
             leading: Padding(
               padding: const EdgeInsets.only(left: 30),
-              child: Text(lesson.name, style: Theme.of(context).textTheme.subtitle.apply(fontWeightDelta: 2, fontSizeFactor: 1.5),),
+              child: Text(lesson.name, style: Theme.of(context).textTheme.headline3.apply(fontWeightDelta: 2, fontSizeFactor: 1.5),),
             ),
             title: Column(
               children: <Widget>[
                 Text(
                     "${lesson.weekDay}",
-                    style: Theme.of(context).textTheme.subtitle
+                    style: Theme.of(context).textTheme.headline3
                 ),
                 Text(
                     "${lesson.timeStart} - ${lesson.timeEnd}",
-                    style: Theme.of(context).textTheme.subtitle
+                    style: Theme.of(context).textTheme.headline3
                 ),
                 Text(
                     "By ${lesson.masters.length > 0 ? lesson.masters.first.name : "porcodio"}",
-                    style: Theme.of(context).textTheme.subtitle
+                    style: Theme.of(context).textTheme.headline3
                 ),
               ],
             ),

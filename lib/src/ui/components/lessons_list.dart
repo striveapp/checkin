@@ -30,7 +30,7 @@ class _LessonsListState extends State<LessonsList> {
                   alignment: Alignment(0, 0),
                   child: Text(
                     "No attended lessons yet",
-                    style: Theme.of(context).textTheme.display1,
+                    style: Theme.of(context).textTheme.headline5,
                   ),
                 )
               : Column(

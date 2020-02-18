@@ -21,7 +21,7 @@ class AttendedLessonsList extends StatelessWidget {
         AttendedLessonsList.attendedClasses.i18n,
         style: Theme.of(context)
             .textTheme
-            .headline
+            .headline1
             .apply(color: Colors.black87),
       ),
       ...attendedLessons

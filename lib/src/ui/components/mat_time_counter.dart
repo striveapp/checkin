@@ -35,7 +35,7 @@ class MatTimeCounter extends StatelessWidget {
               MatTimeCounter.matTime.i18n,
               style: Theme.of(context)
                   .textTheme
-                  .headline
+                  .headline1
                   .apply(color: Colors.black87),
             ),
           ],
@@ -46,7 +46,7 @@ class MatTimeCounter extends StatelessWidget {
           textAlign: TextAlign.center,
           style: Theme.of(context)
               .textTheme
-              .headline
+              .headline1
               .apply(fontSizeFactor: 3, color: Theme.of(context).accentColor),
         ),
         Column(
@@ -58,11 +58,11 @@ class MatTimeCounter extends StatelessWidget {
                 children: <Widget>[
                   Text(
                     hours.plural(0),
-                    style: Theme.of(context).textTheme.display1,
+                    style: Theme.of(context).textTheme.headline5,
                   ),
                   Text(
                       hours.plural(_getTotalMatTimeHours(timeSpan)),
-                      style: Theme.of(context).textTheme.display1),
+                      style: Theme.of(context).textTheme.headline5),
                 ],
               ),
             ),
@@ -82,7 +82,7 @@ class MatTimeCounter extends StatelessWidget {
         ),
         Text(
           "${attendedClasses.plural(counter)} ${thisTimespan.gender(timeSpan)}",
-          style: Theme.of(context).textTheme.body1.apply(fontWeightDelta: 2),
+          style: Theme.of(context).textTheme.headline4.apply(fontWeightDelta: 2),
         )
       ],
     );

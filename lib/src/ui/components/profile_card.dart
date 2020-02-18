@@ -37,7 +37,7 @@ class ProfileCard extends StatelessWidget {
                 autocorrect: false,
                 maxLength: 30,
                 autofocus: false,
-                style: Theme.of(context).textTheme.subtitle,
+                style: Theme.of(context).textTheme.headline3,
                 decoration: InputDecoration(
                     suffixIcon: Icon(Icons.edit),
                     border: InputBorder.none,

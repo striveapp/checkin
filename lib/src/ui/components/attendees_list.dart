@@ -51,7 +51,7 @@ class _AttendeesListState extends State<AttendeesList> {
                   alignment: Alignment(0, 0),
                   child: Text(
                     constants.emptyClass.i18n,
-                    style: Theme.of(context).textTheme.display1,
+                    style: Theme.of(context).textTheme.headline5,
                   ),
                 )
               : Column(
