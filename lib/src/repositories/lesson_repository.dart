@@ -13,6 +13,9 @@ class LessonRepository {
   Stream<List<Lesson>> getLessonsForToday() =>
       _lessonProvider.getLessonsForToday();
 
+  Stream getLessonForDay(DateTime day) =>
+      _lessonProvider.getLessonsForDay(day);
+
   Stream<Lesson> getLesson(String lessonId) =>
       _lessonProvider.getLesson(lessonId);
 
@@ -22,6 +25,5 @@ class LessonRepository {
   Future<void> unregister(String lessonId, Attendee attendee) =>
       _lessonProvider.unregister(lessonId, attendee);
 
-  Future<void> acceptAll(Lesson lesson) =>
-      _lessonApi.acceptAll(lesson);
+  Future<void> acceptAll(Lesson lesson) => _lessonApi.acceptAll(lesson);
 }

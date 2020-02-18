@@ -30,7 +30,7 @@ class DynamicLinkBloc extends Bloc<DynamicLinkEvent, DynamicLinkState> {
         onError: onErrorLink,
       );
     }
-    debugPrint("dynamic link received");
+
     if (event is DeepLinkReceived) {
       yield DynamicLinkToNavigate(path: event.deepLink.path);
     }
@@ -49,8 +49,6 @@ class DynamicLinkBloc extends Bloc<DynamicLinkEvent, DynamicLinkState> {
   }
 
   Future<dynamic> onErrorLink(OnLinkErrorException e) async {
-    print('onLinkError');
-    print(e.message);
     add(DeepLinkErrorEvent());
   }
 }

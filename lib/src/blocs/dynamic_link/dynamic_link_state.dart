@@ -12,20 +12,6 @@ class DynamicLinkInitial extends DynamicLinkState {
   String toString() => 'DynamicLinkInitial';
 }
 
-class DynamicLinkToRegistry extends DynamicLinkState {
-  final String lessonId;
-
-  const DynamicLinkToRegistry({
-    this.lessonId,
-  });
-
-  @override
-  List<Object> get props => [lessonId];
-
-  @override
-  String toString() => 'DynamicLinkToRegistry';
-}
-
 class DynamicLinkToNavigate extends DynamicLinkState {
   final String path;
 

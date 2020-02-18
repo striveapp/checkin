@@ -7,7 +7,6 @@ import 'package:checkin/src/ui/components/lesson_card.dart';
 import 'package:checkin/src/ui/components/loading_indicator.dart';
 import 'package:checkin/src/ui/components/no_lessons_banner.dart';
 import 'package:checkin/src/ui/components/week_calendar.dart';
-import 'package:checkin/src/util/date_util.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter/widgets.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
@@ -25,7 +24,6 @@ class LessonsPage extends StatelessWidget {
         body: BlocProvider<LessonsBloc>(
           create: (BuildContext context) => LessonsBloc(
             lessonRepository: LessonRepository(),
-            dateUtil: DateUtil(),
           ),
           child: BlocBuilder<LessonsBloc, LessonsState>(
               builder: (BuildContext context, LessonsState state) {
@@ -43,7 +41,9 @@ class LessonsPage extends StatelessWidget {
                   child: Column(
                     crossAxisAlignment: CrossAxisAlignment.center,
                     children: <Widget>[
-                      WeekCalendar(holidaysRepository: HolidaysRepository(), onDaySelected: (DateTime dt, List<dynamic> l) {},),
+                      WeekCalendar(holidaysRepository: HolidaysRepository(), onDaySelected: (DateTime selectedDay, List<dynamic> event) {
+                        BlocProvider.of<LessonsBloc>(context).add(LoadLessons(selectedDay: selectedDay));
+                      },),
                       Container(
                         child: Expanded(
                           child: ListView(
@@ -65,7 +65,9 @@ class LessonsPage extends StatelessWidget {
                   child: Column(
                     mainAxisAlignment: MainAxisAlignment.spaceBetween,
                     children: <Widget>[
-                      WeekCalendar(holidaysRepository: HolidaysRepository(), onDaySelected: (DateTime dt, List<dynamic> l) {},),
+                      WeekCalendar(holidaysRepository: HolidaysRepository(), onDaySelected: (DateTime selectedDay, List<dynamic> event) {
+                        BlocProvider.of<LessonsBloc>(context).add(LoadLessons(selectedDay: selectedDay));
+                      },),
                       NoLessonsBanner(),
                     ],
                   ),

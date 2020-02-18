@@ -21,3 +21,19 @@ class LessonsUpdated extends LessonsEvent {
   @override
   String toString() => 'LessonsUpdated';
 }
+
+class LoadLessons extends LessonsEvent {
+  final DateTime selectedDay;
+
+  LoadLessons({
+    this.selectedDay,
+  });
+
+  @override
+  List<Object> get props => [selectedDay];
+
+  @override
+  String toString() {
+    return 'LoadLessons';
+  }
+}

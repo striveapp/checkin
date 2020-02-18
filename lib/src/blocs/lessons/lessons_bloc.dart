@@ -3,7 +3,6 @@ import 'dart:async';
 import 'package:bloc/bloc.dart';
 import 'package:checkin/src/models/lesson.dart';
 import 'package:checkin/src/repositories/lesson_repository.dart';
-import 'package:checkin/src/util/date_util.dart';
 import 'package:flutter/foundation.dart';
 import 'package:meta/meta.dart';
 import 'package:intl/intl.dart';
@@ -12,12 +11,10 @@ import 'bloc.dart';
 
 class LessonsBloc extends Bloc<LessonsEvent, LessonsState> {
   final LessonRepository lessonRepository;
-  final DateUtil dateUtil;
   StreamSubscription<List<Lesson>> lessonsSub;
 
   LessonsBloc({
-    @required this.lessonRepository,
-    this.dateUtil,
+    @required this.lessonRepository
   }) {
     lessonsSub?.cancel();
     lessonsSub = this.lessonRepository.getLessonsForToday().listen((lessons) {
@@ -33,13 +30,21 @@ class LessonsBloc extends Bloc<LessonsEvent, LessonsState> {
     if (event is LessonsUpdated) {
       try {
         if (event.lessons.length > 0) {
-          yield LessonsLoaded(lessons: _sortLessonsByTime(event.lessons), day: dateUtil.getToday());
+          yield LessonsLoaded(lessons: _sortLessonsByTime(event.lessons));
         } else {
-          yield LessonsLoadedEmpty(day: dateUtil.getToday());
+          yield LessonsLoadedEmpty();
         }
       } catch (e) {
         print(e);
       }
+    }
+
+    if (event is LoadLessons) {
+      lessonsSub?.cancel();
+
+      lessonsSub = this.lessonRepository.getLessonForDay(event.selectedDay).listen((lessons) {
+        add(LessonsUpdated(lessons: lessons));
+      });
     }
   }
 
@@ -52,6 +57,7 @@ class LessonsBloc extends Bloc<LessonsEvent, LessonsState> {
 
     return DateTime.parse('$todayDate $time:00');
   }
+
   @override
   Future<void> close() {
     lessonsSub?.cancel();

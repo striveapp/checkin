@@ -1,11 +1,4 @@
-import 'package:intl/intl.dart';
-
 class DateUtil {
-  getToday() {
-    DateTime now = DateTime.now();
-    return DateFormat('dd MMM').format(now);
-  }
-
   getFirstDayOfTheWeekMilliseconds() {
     DateTime today = DateTime.now();
     DateTime firstDayOfTheWeek = today.subtract(new Duration(days: today.weekday - 1));

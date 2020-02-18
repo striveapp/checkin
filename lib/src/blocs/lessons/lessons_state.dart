@@ -20,25 +20,17 @@ class LessonsError extends LessonsState {
 
 class LessonsLoaded extends LessonsState {
   final List<Lesson> lessons;
-  final String day;
 
-  const LessonsLoaded({this.lessons, this.day});
+  const LessonsLoaded({this.lessons});
 
   @override
-  List<Object> get props => [lessons, day];
+  List<Object> get props => [lessons];
 
   @override
   String toString() => 'LessonsLoaded';
 }
 
 class LessonsLoadedEmpty extends LessonsState {
-  final String day;
-
-  const LessonsLoadedEmpty({this.day});
-
-  @override
-  List<Object> get props => [day];
-
   @override
   String toString() => 'LessonsLoadedEmpty';
 }

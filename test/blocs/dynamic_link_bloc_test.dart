@@ -20,7 +20,7 @@ void main() {
     setUp(() {
       mockFirebaseDynamicLinks = MockFirebaseDynamicLinks();
       when(fakeData.link).thenReturn(
-          Uri.parse("https://fakelink.com/?lessonId=$fakeLessonId"));
+          Uri.parse("https://fakelink.com/path/$fakeLessonId"));
       when(mockFirebaseDynamicLinks.getInitialLink()).thenAnswer((_) {
         return Future<PendingDynamicLinkData>.value(fakeData);
       });
@@ -43,7 +43,7 @@ void main() {
         dynamicLinkBloc.add(DeepLinkSetup());
         final expectedState = [
           DynamicLinkInitial(),
-          DynamicLinkToRegistry(lessonId: fakeLessonId),
+          DynamicLinkToNavigate(path: "/path/$fakeLessonId"),
         ];
 
         await expectLater(
@@ -60,7 +60,7 @@ void main() {
 
           final expectedState = [
             DynamicLinkInitial(),
-            DynamicLinkToRegistry(lessonId: fakeLessonId),
+            DynamicLinkToNavigate(path: "/path/$fakeLessonId"),
           ];
 
           await expectLater(

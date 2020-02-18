@@ -13,36 +13,27 @@ void main() {
   group("LessonsBloc", () {
     LessonsBloc lessonsBloc;
     MockLessonRepository mockLessonRepository;
-    MockDateUtil mockDateUtil;
-    String today = "10 Nov";
 
     setUp(() {
       mockLessonRepository = MockLessonRepository();
-      mockDateUtil = MockDateUtil();
-      when(mockLessonRepository.getLessonsForToday()).thenAnswer((_) {
-        return Stream<List<Lesson>>.empty();
-      });
-      when(mockDateUtil.getToday()).thenReturn(today);
-      lessonsBloc = LessonsBloc(
-          lessonRepository: mockLessonRepository, dateUtil: mockDateUtil);
     });
 
     tearDown(() {
       lessonsBloc?.close();
     });
 
-    test("initial state is ProfileUninitialized", () {
-      expect(lessonsBloc.initialState, LessonsUninitialized());
-    });
-
     group("LessonsUpdated", () {
       group("when no lessons", () {
+        setUp(() {
+          when(mockLessonRepository.getLessonsForToday()).thenAnswer((_) {
+            return Stream<List<Lesson>>.value([]);
+          });
+          lessonsBloc = LessonsBloc(lessonRepository: mockLessonRepository);
+        });
         test("should emits LessonsLoadedEmpty", () {
-          lessonsBloc.add(LessonsUpdated(lessons: []));
-
           final expectedState = [
             LessonsUninitialized(),
-            LessonsLoadedEmpty(day: today),
+            LessonsLoadedEmpty(),
           ];
 
           expectLater(
@@ -51,19 +42,22 @@ void main() {
           );
         });
       });
-
       group("when lessons", () {
+        List<Lesson> lessons = [
+          Lesson(timeStart: "19:00", timeEnd: "20:00")
+        ];
+
+        setUp(() {
+          when(mockLessonRepository.getLessonsForToday()).thenAnswer((_) {
+            return Stream<List<Lesson>>.value(lessons);
+          });
+          lessonsBloc = LessonsBloc(lessonRepository: mockLessonRepository);
+        });
+
         test("should emits LessonsLoaded with the right lessons", () {
-          Lesson lesson = Lesson(timeStart: "19:00", timeEnd: "20:00");
-          lessonsBloc.add(LessonsUpdated(lessons: [
-            lesson,
-          ]));
-
           final expectedState = [
             LessonsUninitialized(),
-            LessonsLoaded(lessons: [
-              lesson,
-            ], day: today),
+            LessonsLoaded(lessons: lessons),
           ];
 
           expectLater(
@@ -72,31 +66,71 @@ void main() {
           );
         });
 
-        test("should emits LessonLoaded with lessons sorted by time", () {
-          List<Lesson> unorderdLessons = [
+        group("when unordered lessons", () {
+          List<Lesson> unsortedLessons = [
             Lesson(timeStart: "19:00", timeEnd: "20:00"),
             Lesson(timeStart: "10:00", timeEnd: "11:00"),
             Lesson(timeStart: "07:15", timeEnd: "08:30"),
           ];
 
-          lessonsBloc.add(LessonsUpdated(lessons: unorderdLessons));
-
-          List<Lesson> orderdLessons = [
+          List<Lesson> sortedLessons = [
             Lesson(timeStart: "07:15", timeEnd: "08:30"),
             Lesson(timeStart: "10:00", timeEnd: "11:00"),
             Lesson(timeStart: "19:00", timeEnd: "20:00"),
           ];
 
-          final expectedState = [
-            LessonsUninitialized(),
-            LessonsLoaded(lessons: orderdLessons, day: today),
-          ];
+          setUp(() {
+            when(mockLessonRepository.getLessonsForToday()).thenAnswer((_) {
+              return Stream<List<Lesson>>.value(unsortedLessons);
+            });
+            lessonsBloc = LessonsBloc(lessonRepository: mockLessonRepository);
+          });
 
-          expectLater(
-            lessonsBloc,
-            emitsInOrder(expectedState),
-          );
+          test("should emits LessonLoaded with lessons sorted by time", () {
+            final expectedState = [
+              LessonsUninitialized(),
+              LessonsLoaded(lessons: sortedLessons),
+            ];
+
+            expectLater(
+              lessonsBloc,
+              emitsInOrder(expectedState),
+            );
+          });
         });
+      });
+    });
+
+    group("LoadLessons", () {
+      DateTime selectedDay = DateTime(2020, 1, 1);
+      List<Lesson> lessons = [
+        Lesson(timeStart: "19:00", timeEnd: "20:00")
+      ];
+      List<Lesson> newLessons = [
+        Lesson(timeStart: "20:00", timeEnd: "21:00")
+      ];
+
+      setUp(() {
+        when(mockLessonRepository.getLessonsForToday()).thenAnswer((_) {
+          return Stream<List<Lesson>>.value(lessons);
+        });
+        when(mockLessonRepository.getLessonForDay(selectedDay)).thenAnswer((_) {
+          return Stream<List<Lesson>>.value(newLessons);
+        });
+        lessonsBloc = LessonsBloc(lessonRepository: mockLessonRepository);
+        lessonsBloc.add(LoadLessons(selectedDay: selectedDay));
+      });
+      test("should load new lessons for the selected day", () {
+        final expectedState = [
+          LessonsUninitialized(),
+          LessonsLoaded(lessons: lessons),
+          LessonsLoaded(lessons: newLessons),
+        ];
+
+        expectLater(
+          lessonsBloc,
+          emitsInOrder(expectedState),
+        );
       });
     });
   });

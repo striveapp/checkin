@@ -21,8 +21,6 @@ class _WeekCalendarState extends State<WeekCalendar> {
   @override
   void initState() {
     super.initState();
-    final _selectedDay = DateTime.now();
-
     _calendarController = CalendarController();
   }
 
