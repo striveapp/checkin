@@ -1,29 +1,26 @@
 import 'dart:async';
-import 'package:platform/platform.dart';
+import 'package:checkin/src/repositories/notification_repository.dart';
 
 import 'package:bloc/bloc.dart';
 import 'package:checkin/src/blocs/user/bloc.dart';
 import 'package:checkin/src/models/notification.dart';
-import 'package:firebase_messaging/firebase_messaging.dart';
 import 'package:flutter/foundation.dart';
 import 'package:meta/meta.dart';
 import 'bloc.dart';
 
 class NotificationsBloc extends Bloc<NotificationsEvent, NotificationsState> {
   final UserBloc userBloc;
-  final LocalPlatform platform;
-
-  FirebaseMessaging _notificationProvider;
-  StreamSubscription _iosSubscription;
+  final NotificationRepository notificationRepository;
 
   NotificationsBloc({
     @required this.userBloc,
-    @required this.platform
+    @required this.notificationRepository,
   }) {
-    //TODO: this should have his own repository
-    _notificationProvider = FirebaseMessaging();
-    _notificationProvider.configure(
-        onMessage: _onMessage, onResume: _onResume, onLaunch: _onLaunch);
+    notificationRepository.config(
+      onMessage: _onMessage,
+      onResume: _onResume,
+      onLaunch: _onLaunch,
+    );
   }
 
   @override
@@ -32,13 +29,16 @@ class NotificationsBloc extends Bloc<NotificationsEvent, NotificationsState> {
   @override
   Stream<NotificationsState> mapEventToState(NotificationsEvent event) async* {
     if (event is Setup) {
-      await _setupNotifications();
-      yield NotificationsInitialized();
+      try {
+        this.notificationRepository.setup(onSuccess: _saveUserToken);
+        yield NotificationsInitialized();
+      } catch(err) {
+        debugPrint(err);
+      }
     }
     if (event is ShowDialog) {
       yield BasicNotificationsLoaded(notification: event.notification);
     }
-
     if (event is GoToLesson) {
       yield ActionNotificationsLoaded(lessonId: event.lessonId);
     }
@@ -46,31 +46,16 @@ class NotificationsBloc extends Bloc<NotificationsEvent, NotificationsState> {
 
   @override
   Future<void> close() {
-    _iosSubscription?.cancel();
     return super.close();
   }
 
-  Future<void> _saveDeviceToken() async {
-    String token = await _notificationProvider.getToken();
+  void _saveUserToken(String token) {
     userBloc.listen((userState) {
-      if(userState is UserSuccess) {
-        userBloc.add(UpdateFcmToken(currentUser: userState.currentUser, newToken: token));
+      if (userState is UserSuccess) {
+        userBloc.add(UpdateFcmToken(
+            currentUser: userState.currentUser, newToken: token));
       }
     });
-  }
-
-  Future<void> _setupNotifications() async {
-    if (platform.isIOS) {
-      _iosSubscription =
-          _notificationProvider.onIosSettingsRegistered.listen((data) async {
-        await _saveDeviceToken();
-      });
-
-      _notificationProvider
-          .requestNotificationPermissions(IosNotificationSettings());
-    } else {
-      await _saveDeviceToken();
-    }
   }
 
   Future _onMessage(Map<String, dynamic> msg) async {
@@ -90,7 +75,7 @@ class NotificationsBloc extends Bloc<NotificationsEvent, NotificationsState> {
     // we may receive and implement is custom behaviour adding different states
     // based on the type of the event
 
-    if( notification.type == "master_reminder") {
+    if (notification.type == "master_reminder") {
       add(GoToLesson(lessonId: notification.lessonId));
     }
   }

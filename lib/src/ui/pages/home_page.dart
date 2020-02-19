@@ -1,11 +1,11 @@
 import 'package:checkin/src/blocs/notifications/bloc.dart';
 import 'package:checkin/src/blocs/user/bloc.dart';
+import 'package:checkin/src/repositories/notification_repository.dart';
 import 'package:checkin/src/ui/components/loading_indicator.dart';
 import 'package:checkin/src/ui/components/notification_toast.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter/widgets.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
-import 'package:platform/platform.dart';
 
 import 'grade_page.dart';
 import 'lessons_page.dart';
@@ -16,7 +16,7 @@ class HomePage extends StatelessWidget {
     return BlocProvider(
       create: (context) => NotificationsBloc(
         userBloc: BlocProvider.of<UserBloc>(context),
-        platform: LocalPlatform(),
+        notificationRepository: NotificationRepository(),
       )..add(Setup()),
       child: BlocListener<NotificationsBloc, NotificationsState>(
         listener: (BuildContext context, NotificationsState state) {
