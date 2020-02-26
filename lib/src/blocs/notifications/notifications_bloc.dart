@@ -37,7 +37,7 @@ class NotificationsBloc extends Bloc<NotificationsEvent, NotificationsState> {
       }
     }
     if (event is ShowDialog) {
-      yield BasicNotificationsLoaded(notification: event.notification);
+      yield NotificationToDialog(notification: event.notification);
     }
     if(event is NotificationOpened) {
       yield NotificationToNavigate(path: event.path);
@@ -66,17 +66,14 @@ class NotificationsBloc extends Bloc<NotificationsEvent, NotificationsState> {
 
   void _onLaunchOrOnResume(Map<String, dynamic> msg) {
     ActionNotification notification = _mapMsgToMasterNotification(msg);
-    // TODO this logic should be moved inside mapEventToState
-    // in order to to be tested properly
 
-    // My proposed refactoring would be add a DoAction event
-    // where we pass the type and a Map<String, dynamic> of custom arguments
-    // and then in the top method we should manage every type of action notification
-    // we may receive and implement is custom behaviour adding different states
-    // based on the type of the event
-
-    if (notification.type == "master_reminder") {
-      add(NotificationOpened(path: "registry/${notification.lessonId}"));
+    switch( notification.type ) {
+      case "master_reminder":
+        add(NotificationOpened(path: "registry/${notification.lessonId}"));
+        break;
+      case "class_attended":
+        add(NotificationOpened(path: "/stats"));
+        break;
     }
   }
 
@@ -100,6 +97,7 @@ class NotificationsBloc extends Bloc<NotificationsEvent, NotificationsState> {
 
   ActionNotification _mapMsgToMasterNotification(Map<String, dynamic> msg) {
     var data = msg['data'] ?? msg;
+    // todo lessonId to be refactored into generic type
     return ActionNotification(
       data['type'],
       data['lessonId'],

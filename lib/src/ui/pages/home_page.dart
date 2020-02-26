@@ -20,7 +20,7 @@ class HomePage extends StatelessWidget {
       )..add(Setup()),
       child: BlocListener<NotificationsBloc, NotificationsState>(
         listener: (BuildContext context, NotificationsState state) {
-          if (state is BasicNotificationsLoaded) {
+          if (state is NotificationToDialog) {
             NotificationToast.show(
                 context, state.notification.title, state.notification.body);
           }

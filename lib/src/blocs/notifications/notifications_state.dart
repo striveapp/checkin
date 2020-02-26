@@ -18,10 +18,10 @@ class NotificationsInitialized extends NotificationsState {
   String toString() => 'NotificationsInitialized';
 }
 
-class BasicNotificationsLoaded extends NotificationsState {
+class NotificationToDialog extends NotificationsState {
   final BasicNotification notification;
 
-  const BasicNotificationsLoaded({
+  const NotificationToDialog({
     this.notification,
   });
 
