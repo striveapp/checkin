@@ -24,8 +24,9 @@ class HomePage extends StatelessWidget {
             NotificationToast.show(
                 context, state.notification.title, state.notification.body);
           }
-          if (state is ActionNotificationsLoaded) {
-            Navigator.of(context).pushNamed('registry/${state.lessonId}');
+          if(state is NotificationToNavigate) {
+            debugPrint("notification received with path ${state.path}");
+            Navigator.of(context).pushNamed(state.path);
           }
         },
         child: BlocBuilder<UserBloc, UserState>(

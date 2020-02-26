@@ -32,16 +32,14 @@ class BasicNotificationsLoaded extends NotificationsState {
   String toString() => 'BasicNotificationsLoaded';
 }
 
-class ActionNotificationsLoaded extends NotificationsState {
-  final String lessonId;
+class NotificationToNavigate extends NotificationsState {
+  final String path;
 
-  const ActionNotificationsLoaded({
-    this.lessonId,
-  });
+  const NotificationToNavigate({this.path});
 
   @override
-  List<Object> get props => [lessonId];
+  List<Object> get props => [path];
 
   @override
-  String toString() => 'ActionNotificationsLoaded';
+  String toString() => 'NotificationToNavigate';
 }

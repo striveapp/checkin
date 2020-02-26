@@ -39,8 +39,8 @@ class NotificationsBloc extends Bloc<NotificationsEvent, NotificationsState> {
     if (event is ShowDialog) {
       yield BasicNotificationsLoaded(notification: event.notification);
     }
-    if (event is GoToLesson) {
-      yield ActionNotificationsLoaded(lessonId: event.lessonId);
+    if(event is NotificationOpened) {
+      yield NotificationToNavigate(path: event.path);
     }
   }
 
@@ -76,7 +76,7 @@ class NotificationsBloc extends Bloc<NotificationsEvent, NotificationsState> {
     // based on the type of the event
 
     if (notification.type == "master_reminder") {
-      add(GoToLesson(lessonId: notification.lessonId));
+      add(NotificationOpened(path: "registry/${notification.lessonId}"));
     }
   }
 

@@ -25,14 +25,14 @@ class ShowDialog extends NotificationsEvent {
   String toString() => 'ShowDialog';
 }
 
-class GoToLesson extends NotificationsEvent {
-  final String lessonId;
-
-  const GoToLesson({this.lessonId});
-
+class NotificationOpened extends NotificationsEvent {
+  final String path;
+  
+  const NotificationOpened({this.path});
+  
   @override
-  List<Object> get props => [lessonId];
-
+  List<Object> get props => [path];
+  
   @override
-  String toString() => 'GoToLesson';
+  String toString() => 'NotificationOpened';
 }
