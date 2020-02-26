@@ -15,17 +15,17 @@ class BasicNotification extends Equatable {
   }
 }
 
-class ActionNotification extends Equatable {
+class NavigationNotification extends Equatable {
   final String type;
-  final String lessonId;
+  final String path;
 
-  ActionNotification(this.type, this.lessonId);
+  NavigationNotification(this.type, this.path);
 
   @override
-  List<Object> get props => [type, lessonId];
+  List<Object> get props => [type, path];
 
   @override
   String toString() {
-    return 'ActionNotification{type: $type, lessonId: $lessonId}';
+    return 'ActionNotification{type: $type, path: $path}';
   }
 }

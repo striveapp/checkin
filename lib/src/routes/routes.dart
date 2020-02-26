@@ -11,7 +11,6 @@ class Routes {
   static List<RegisterableHandler> routeHandlers = [
     HomeHandler(),
     RegistryHandler(),
-    ProfileHandler(),
     AccountHandler(),
     SubscriptionsHandler(),
     PaymentSuccessHandler(),

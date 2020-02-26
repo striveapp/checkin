@@ -25,6 +25,7 @@ export const classCounterIncrementNotification = functions.firestore.document("u
             const notificationContent = {
                 data: {
                     type: "class_attended",
+                    path: `/stats/${userEmail}`,
                     timestamp: `${Date.now()}`
                 },
                 notification: {
@@ -43,7 +44,7 @@ export const classCounterIncrementNotification = functions.firestore.document("u
 });
 
 //TODO: this should be changed when the attendees stops to get removed from the class
-export const firstUserRegisterToClassNotification = functions.firestore.document("lessons/{idLesson}").onUpdate((change, context) => {
+export const firstUserRegisterToClassNotification = functions.firestore.document("lessons/{lessonId}").onUpdate((change, context) => {
     const docBefore = change.before.data() || {};
     const docAfter = change.after.data() || {};
 
@@ -57,6 +58,7 @@ export const firstUserRegisterToClassNotification = functions.firestore.document
                 const notificationContent = {
                     data: {
                         type: "first_user_registered",
+                        path: `registry/${context.params.lessonId}`,
                         timestamp: `${Date.now()}`
                     },
                     notification: {
@@ -96,7 +98,7 @@ export const reminderOfNonAcceptedUsersForMaster = async () => {
                         const notificationContent = {
                             data: {
                                 type: "master_reminder",
-                                lessonId: doc.id,
+                                path: `registry/${doc.id}`,
                                 timestamp: `${Date.now()}`
                             },
                             notification: {

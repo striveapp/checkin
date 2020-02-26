@@ -3,36 +3,27 @@ import 'dart:async';
 import 'package:bloc/bloc.dart';
 import 'package:checkin/src/blocs/stats/stats_event.dart';
 import 'package:checkin/src/blocs/stats/stats_state.dart';
-import 'package:checkin/src/blocs/user/bloc.dart';
+import 'package:checkin/src/constants.dart' as constants;
 import 'package:checkin/src/models/user_history.dart';
 import 'package:checkin/src/repositories/stats_repository.dart';
 import 'package:checkin/src/util/date_util.dart';
 import 'package:flutter/material.dart';
 
-import 'package:checkin/src/constants.dart' as constants;
-
 class StatsBloc extends Bloc<StatsEvent, StatsState> {
   final StatsRepository statsRepository;
-  final UserBloc userBloc;
   final DateUtil dateUtil;
 
-  String userEmail;
+  final String userEmail;
   StreamSubscription<UserHistory> statsSub;
 
   StatsBloc({
     @required this.statsRepository,
-    @required this.userBloc,
     @required this.dateUtil,
+    @required this.userEmail,
   }) {
     statsSub?.cancel();
-    userBloc.listen((userState) {
-      if(userState is UserSuccess) {
-        userEmail = userState.currentUser.email;
-        statsSub?.cancel();
-        statsSub = this.statsRepository.getUserStats(userEmail, dateUtil.getFirstDayOfTheWeekMilliseconds()).listen((userHistory) {
-          add(StatsUpdated(attendedLessons: userHistory.attendedLessons, timeSpan: constants.WEEK));
-        });
-      }
+    statsSub = this.statsRepository.getUserStats(userEmail, dateUtil.getFirstDayOfTheWeekMilliseconds()).listen((userHistory) {
+      add(StatsUpdated(attendedLessons: userHistory.attendedLessons, timeSpan: constants.WEEK));
     });
   }
 

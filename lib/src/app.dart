@@ -136,7 +136,7 @@ class App extends StatelessWidget {
                           physics: NeverScrollableScrollPhysics(),
                           children: [
                             HomePage(),
-                            StatsPage(),
+                            StatsPage(userEmail: state.loggedUserEmail,),
                           ],
                         ),
                       )),

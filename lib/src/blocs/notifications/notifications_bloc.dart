@@ -65,14 +65,13 @@ class NotificationsBloc extends Bloc<NotificationsEvent, NotificationsState> {
   }
 
   void _onLaunchOrOnResume(Map<String, dynamic> msg) {
-    ActionNotification notification = _mapMsgToMasterNotification(msg);
+    NavigationNotification notification = _mapMsgToNavigationNotification(msg);
 
     switch( notification.type ) {
       case "master_reminder":
-        add(NotificationOpened(path: "registry/${notification.lessonId}"));
-        break;
       case "class_attended":
-        add(NotificationOpened(path: "/stats"));
+      case "first_user_registered":
+        add(NotificationOpened(path: notification.path));
         break;
     }
   }
@@ -95,12 +94,11 @@ class NotificationsBloc extends Bloc<NotificationsEvent, NotificationsState> {
     );
   }
 
-  ActionNotification _mapMsgToMasterNotification(Map<String, dynamic> msg) {
+  NavigationNotification _mapMsgToNavigationNotification(Map<String, dynamic> msg) {
     var data = msg['data'] ?? msg;
-    // todo lessonId to be refactored into generic type
-    return ActionNotification(
+    return NavigationNotification(
       data['type'],
-      data['lessonId'],
+      data['path'],
     );
   }
 }

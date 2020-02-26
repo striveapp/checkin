@@ -1,5 +1,4 @@
 import 'package:checkin/src/blocs/stats/bloc.dart';
-import 'package:checkin/src/blocs/user/bloc.dart';
 import 'package:checkin/src/constants.dart' as constants;
 import 'package:checkin/src/localization/localization.dart';
 import 'package:checkin/src/repositories/stats_repository.dart';
@@ -15,6 +14,15 @@ import 'package:flutter_bloc/flutter_bloc.dart';
 class StatsPage extends StatelessWidget {
   static const String stats = 'Stats';
 
+  final String _userEmail;
+
+  StatsPage({
+    Key key,
+    @required String userEmail,
+  }) : assert(userEmail != null),
+        _userEmail = userEmail,
+        super(key: key);
+
   @override
   Widget build(BuildContext context) {
     return Scaffold(
@@ -23,9 +31,9 @@ class StatsPage extends StatelessWidget {
       ),
       body: BlocProvider<StatsBloc>(
         create: (context) => StatsBloc(
-            userBloc: BlocProvider.of<UserBloc>(context),
             statsRepository: StatsRepository(),
             dateUtil: DateUtil(),
+            userEmail: _userEmail,
         ),
         child: BlocBuilder<StatsBloc, StatsState>(
             builder: (BuildContext context, StatsState state) {

@@ -8,6 +8,8 @@ import 'package:flutter/widgets.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 
 class StatsHandler extends Handler implements RegisterableHandler {
+  static final String userEmail = "userEmail";
+
   @override
   void registerRoute(Router router) {
     router.define(route, handler: this);
@@ -23,9 +25,9 @@ class StatsHandler extends Handler implements RegisterableHandler {
             userRepository: userRepository,
             authBloc: BlocProvider.of<AuthBloc>(context),
           );
-        },child: StatsPage()
+        },child: StatsPage(userEmail: params[userEmail][0],)
     );
   };
 
-  String get route => "stats";
+  String get route => "stats/:$userEmail";
 }

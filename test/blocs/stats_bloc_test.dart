@@ -54,7 +54,7 @@ void main() {
         });
 
         statsBloc = StatsBloc(
-            statsRepository: mockStatsRepository, userBloc: mockUserBloc, dateUtil: mockDateUtil);
+            statsRepository: mockStatsRepository, userEmail: loggedUser.email, dateUtil: mockDateUtil);
 
         final expectedState = [
           StatsUninitialized(),
@@ -77,7 +77,7 @@ void main() {
                 UserHistory(attendedLessons: attendedLessons));
           });
           statsBloc = StatsBloc(
-              statsRepository: mockStatsRepository, userBloc: mockUserBloc, dateUtil: mockDateUtil);
+              statsRepository: mockStatsRepository, userEmail: loggedUser.email, dateUtil: mockDateUtil);
           statsBloc.add(LoadStats(timeSpan: "week"));
         });
 
@@ -105,7 +105,7 @@ void main() {
                 UserHistory(attendedLessons: attendedLessons));
           });
           statsBloc = StatsBloc(
-              statsRepository: mockStatsRepository, userBloc: mockUserBloc, dateUtil: mockDateUtil);
+              statsRepository: mockStatsRepository, userEmail: loggedUser.email, dateUtil: mockDateUtil);
           statsBloc.add(LoadStats(timeSpan: expectedTimeSpan));
         });
 
@@ -134,7 +134,7 @@ void main() {
                 UserHistory(attendedLessons: attendedLessons));
           });
           statsBloc = StatsBloc(
-              statsRepository: mockStatsRepository, userBloc: mockUserBloc, dateUtil: mockDateUtil);
+              statsRepository: mockStatsRepository, userEmail: loggedUser.email, dateUtil: mockDateUtil);
           statsBloc.add(LoadStats(timeSpan: expectedTimeSpan));
         });
 

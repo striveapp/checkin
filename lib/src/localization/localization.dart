@@ -18,7 +18,6 @@ import 'package:checkin/src/ui/pages/account_page.dart';
 import 'package:checkin/src/ui/pages/grade_page.dart';
 import 'package:checkin/src/ui/pages/lessons_page.dart';
 import 'package:checkin/src/ui/pages/payment_success_page.dart';
-import 'package:checkin/src/ui/pages/profile_page.dart';
 import 'package:checkin/src/ui/pages/registry_page.dart';
 import 'package:checkin/src/ui/pages/stats_page.dart';
 import 'package:checkin/src/ui/pages/subscriptions_page.dart';
@@ -32,15 +31,6 @@ extension Localization on String {
   } + {
     'en': GradePage.beltSelection,
     'es': 'Cuál es tu cinturón?',
-  } + {
-    'en': ProfilePage.profile,
-    'es': 'Perfil',
-  } + {
-    'en': ProfilePage.enterYourName,
-    'es': 'Intorduzca su nombre',
-  } + {
-    'en': ProfilePage.logout,
-    'es': 'Desconectar',
   } + {
     'en': RegistryPage.registry,
     'es': 'Registro',
