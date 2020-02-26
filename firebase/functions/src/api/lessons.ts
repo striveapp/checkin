@@ -15,11 +15,12 @@ const getMondayOfCurrentWeek = () => {
     return new Date(date.getFullYear(), date.getMonth(), date.getDate() + (day == 0?-6:1)-day ).getTime();
 };
 
-const generateHistoryAttendee = ({email, name, imageUrl, rank}: Attendee): HistoryAttendee => ({
+// TODO: remove rank when all versions are upgraded
+const generateHistoryAttendee = ({email, name, imageUrl, grade, rank}: Attendee): HistoryAttendee => ({
     email,
     name,
     imageUrl,
-    rank,
+    grade: !!grade ? grade : rank,
     weekCounter: {
         [getMondayOfCurrentWeek()]: {
             counter: admin.firestore.FieldValue.increment(1)

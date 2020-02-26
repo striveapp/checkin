@@ -4,6 +4,7 @@ import 'package:bloc_test/bloc_test.dart';
 import 'package:checkin/src/blocs/registry/bloc.dart';
 import 'package:checkin/src/blocs/user/bloc.dart';
 import 'package:checkin/src/models/attendee.dart';
+import 'package:checkin/src/models/grade.dart';
 import 'package:checkin/src/models/lesson.dart';
 import 'package:checkin/src/models/user.dart';
 import 'package:checkin/src/repositories/lesson_repository.dart';
@@ -33,17 +34,17 @@ void main() {
               name: "Test1",
               email: "test1@test.com",
               imageUrl: "some image",
-              rank: "White"),
+              grade: Grade.white),
           Attendee(
               name: "Test2",
               email: "test2@test.com",
               imageUrl: "some image",
-              rank: "White"),
+              grade: Grade.white),
           Attendee(
               name: "Test3",
               email: "test3@test.com",
               imageUrl: "some image",
-              rank: "White"),
+              grade: Grade.white),
         ]);
     User fakeUser = User(
       name: "Logged User",
@@ -123,7 +124,7 @@ void main() {
       test("should emit RegistryLoading and call register for an attendee", () async {
         Attendee fakeAttendee = Attendee(
             name: "pepe",
-            rank: "White",
+            grade: Grade.white,
             imageUrl: "lol",
             email: "not@anemail"
         );
@@ -153,7 +154,7 @@ void main() {
       test("should emit RegistryLoading and call unregister for an attendee", () async {
         Attendee fakeAttendee = Attendee(
             name: "pepe",
-            rank: "White",
+            grade: Grade.white,
             imageUrl: "lol",
             email: "not@anemail"
         );

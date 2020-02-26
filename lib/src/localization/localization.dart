@@ -1,11 +1,12 @@
 import 'package:checkin/src/constants.dart' as constants;
+import 'package:checkin/src/models/grade.dart';
 import 'package:checkin/src/ui/components/attended_lessons_list.dart';
 import 'package:checkin/src/ui/components/attendee_tile.dart';
 import 'package:checkin/src/ui/components/attendees_counter.dart';
 import 'package:checkin/src/ui/components/attendees_preview.dart';
 import 'package:checkin/src/ui/components/class_counter.dart';
 import 'package:checkin/src/ui/components/google_sign_in_button.dart';
-import 'package:checkin/src/ui/components/grade_buttons.dart';
+import 'package:checkin/src/ui/components/grade_card.dart';
 import 'package:checkin/src/ui/components/lesson_infos.dart';
 import 'package:checkin/src/ui/components/mat_time_counter.dart';
 import 'package:checkin/src/ui/components/membership/active_membership.dart';
@@ -105,20 +106,35 @@ extension Localization on String {
     'en': NoLessonsBanner.noClasses,
     'es': 'No hay clases hoy',
   } + {
-    'en': GradeButtons.whiteGrade,
+    'en': Grade.white.name,
     'es': 'Blanco',
   } + {
-    'en': GradeButtons.blueGrade,
+    'en': Grade.blue.name,
     'es': 'Azúl',
   } + {
-    'en': GradeButtons.purpleGrade,
+    'en': Grade.purple.name,
     'es': 'Morado',
   } + {
-    'en': GradeButtons.brownGrade,
+    'en': Grade.brown.name,
     'es': 'Marron',
   } + {
-    'en': GradeButtons.blackGrade,
+    'en': Grade.black.name,
     'es': 'Negro',
+  } + {
+    'en': Grade.white.description,
+    'es': 'Construyendo las bases',
+  } + {
+    'en': Grade.blue.description,
+    'es': 'Habilidad técnica',
+  } + {
+    'en': Grade.purple.description,
+    'es': 'Desarrollo del juego y experimentación',
+  } + {
+    'en': Grade.brown.description,
+    'es': 'Pensar conceptualmente y fortalecer las debilidades',
+  } + {
+    'en': Grade.black.description,
+    'es': 'Comenzar de nuevo, enseñar y reflexionar',
   } + {
     'en': RegistryControls.unregisterClass,
     'es': 'Despuntarse de clase',
@@ -191,6 +207,9 @@ extension Localization on String {
   } + {
     'en': SubscriptionsPage.chooseSub,
     'es': 'Escoje tu subscripción',
+  } + {
+    'en': GradeCard.beltColor,
+    'es': 'Cinturón %s'
   };
 
 String get i18n => localize(this, _t);

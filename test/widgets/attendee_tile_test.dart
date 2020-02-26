@@ -1,4 +1,5 @@
 import 'package:checkin/src/models/attendee.dart';
+import 'package:checkin/src/models/grade.dart';
 import 'package:checkin/src/ui/components/attendee_tile.dart';
 import 'package:flutter/foundation.dart';
 import 'package:flutter/material.dart';
@@ -14,7 +15,7 @@ void main() {
       await tester.pumpWidget(buildTestApplication(AttendeeTile(
         attendee: Attendee(
             name: "testAttendee",
-            rank: "testRank",
+            grade: Grade.white,
             imageUrl: "testImage",
             email: "testMail"),
       )));
