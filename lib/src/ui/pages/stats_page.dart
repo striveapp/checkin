@@ -1,11 +1,15 @@
+import 'package:checkin/src/blocs/profile/bloc.dart';
 import 'package:checkin/src/blocs/stats/bloc.dart';
+import 'package:checkin/src/blocs/user/bloc.dart';
 import 'package:checkin/src/constants.dart' as constants;
 import 'package:checkin/src/localization/localization.dart';
 import 'package:checkin/src/repositories/stats_repository.dart';
+import 'package:checkin/src/repositories/user_repository.dart';
 import 'package:checkin/src/ui/components/attended_lessons_list.dart';
 import 'package:checkin/src/ui/components/base_app_bar.dart';
 import 'package:checkin/src/ui/components/loading_indicator.dart';
 import 'package:checkin/src/ui/components/mat_time_counter.dart';
+import 'package:checkin/src/ui/components/profile_card.dart';
 import 'package:checkin/src/util/date_util.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter/widgets.dart';
@@ -19,7 +23,7 @@ class StatsPage extends StatelessWidget {
   StatsPage({
     Key key,
     @required String userEmail,
-  }) : assert(userEmail != null),
+  })  : assert(userEmail != null),
         _userEmail = userEmail,
         super(key: key);
 
@@ -29,12 +33,21 @@ class StatsPage extends StatelessWidget {
       appBar: BaseAppBar(
         title: StatsPage.stats.i18n,
       ),
-      body: BlocProvider<StatsBloc>(
-        create: (context) => StatsBloc(
-            statsRepository: StatsRepository(),
-            dateUtil: DateUtil(),
-            userEmail: _userEmail,
-        ),
+      body: MultiBlocProvider(
+        providers: [
+          BlocProvider<StatsBloc>(
+              create: (context) => StatsBloc(
+                    statsRepository: StatsRepository(),
+                    dateUtil: DateUtil(),
+                    userEmail: _userEmail,
+                  )),
+          BlocProvider<ProfileBloc>(
+            create: (context) => ProfileBloc(
+                userRepository: UserRepository(),
+                nonCurrentEmail: _userEmail,
+                userBloc: BlocProvider.of<UserBloc>(context)),
+          )
+        ],
         child: BlocBuilder<StatsBloc, StatsState>(
             builder: (BuildContext context, StatsState state) {
           if (state is StatsUninitialized) {
@@ -47,16 +60,29 @@ class StatsPage extends StatelessWidget {
                 padding: EdgeInsets.symmetric(horizontal: 10, vertical: 20),
                 child: Column(
                   children: <Widget>[
+                    Text(
+                      "User".i18n,
+                      style: Theme.of(context)
+                          .textTheme
+                          .headline1
+                          .apply(color: Colors.black87),
+                    ),
+                    ProfileCard(userEmail: _userEmail),
                     DropdownButton<String>(
                       value: state.timeSpan,
-                      items: <String>[constants.WEEK, constants.MONTH, constants.YEAR]
+                      items: <String>[
+                        constants.WEEK,
+                        constants.MONTH,
+                        constants.YEAR
+                      ]
                           .map((String value) => DropdownMenuItem<String>(
                                 child: Text(_capitalize(value.i18n)),
                                 value: value,
                               ))
                           .toList(),
                       onChanged: (value) {
-                        BlocProvider.of<StatsBloc>(context).add(LoadStats(timeSpan: value));
+                        BlocProvider.of<StatsBloc>(context)
+                            .add(LoadStats(timeSpan: value));
                       },
                     ),
                     Padding(

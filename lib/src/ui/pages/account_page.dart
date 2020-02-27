@@ -1,8 +1,10 @@
 import 'package:checkin/src/blocs/account/bloc.dart';
 import 'package:checkin/src/blocs/auth/bloc.dart';
 import 'package:checkin/src/blocs/membership/bloc.dart';
+import 'package:checkin/src/blocs/profile/bloc.dart';
 import 'package:checkin/src/blocs/user/bloc.dart';
 import 'package:checkin/src/repositories/membership_repository.dart';
+import 'package:checkin/src/repositories/user_repository.dart';
 import 'package:checkin/src/ui/components/base_app_bar.dart';
 import 'package:checkin/src/ui/components/membership/membership_card.dart';
 import 'package:checkin/src/ui/components/profile_card.dart';
@@ -34,6 +36,10 @@ class AccountPage extends StatelessWidget {
         ),
         body: MultiBlocProvider(
           providers: [
+            BlocProvider<ProfileBloc>(create: (BuildContext context) =>
+                ProfileBloc(
+                    userRepository: UserRepository(),
+                    userBloc: BlocProvider.of<UserBloc>(context)),),
             BlocProvider<AccountBloc>(
               create: (BuildContext context) => AccountBloc(
                 userBloc: BlocProvider.of<UserBloc>(context),
@@ -91,7 +97,8 @@ class AccountPage extends StatelessWidget {
                           ),
                         ),
                         ProfileCard(
-                          user: state.user,
+                          readOnly: false,
+                          userEmail: state.user.email,
                         ),
                         if (isInDebugMode)
                           SizedBox(
