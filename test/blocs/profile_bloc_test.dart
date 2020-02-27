@@ -33,8 +33,7 @@ void main() {
       test("should emit ProfileSuccess with the current user and isCurrent user as true", () {
         profileBloc = ProfileBloc(
           userBloc: mockUserBloc,
-          userRepository: mockUserRepository,
-          nonCurrentEmail: loggedUser.email,
+          userRepository: mockUserRepository
         );
 
         final expectedState = [
@@ -65,7 +64,7 @@ void main() {
         profileBloc = ProfileBloc(
           userBloc: mockUserBloc,
           userRepository: mockUserRepository,
-          nonCurrentEmail: fakeOtherUser.email,
+          nonCurrentUserEmail: fakeOtherUser.email,
         );
 
         final expectedState = [

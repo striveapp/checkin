@@ -44,7 +44,7 @@ class StatsPage extends StatelessWidget {
           BlocProvider<ProfileBloc>(
             create: (context) => ProfileBloc(
                 userRepository: UserRepository(),
-                nonCurrentEmail: _userEmail,
+                nonCurrentUserEmail: _userEmail,
                 userBloc: BlocProvider.of<UserBloc>(context)),
           )
         ],

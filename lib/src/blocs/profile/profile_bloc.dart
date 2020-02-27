@@ -11,30 +11,30 @@ import 'bloc.dart';
 class ProfileBloc extends Bloc<ProfileEvent, ProfileState> {
   final UserBloc userBloc;
   final UserRepository userRepository;
-  String nonCurrentEmail;
+  String nonCurrentUserEmail;
   StreamSubscription userSub;
 
   ProfileBloc({
     @required this.userBloc,
     @required this.userRepository,
-    this.nonCurrentEmail,
+    this.nonCurrentUserEmail,
   }) {
     this.userBloc.listen((userState) {
-      if(userState is UserSuccess) {
-        if(nonCurrentEmail == null) {
+      if (userState is UserSuccess) {
+        if (nonCurrentUserEmail == null) {
           add(ProfileUpdated(user: userState.currentUser, isCurrentUser: true));
         } else {
           userSub?.cancel();
           userSub = this
               .userRepository
-              .getUserByEmail(this.nonCurrentEmail)
+              .getUserByEmail(this.nonCurrentUserEmail)
               .listen((user) {
-                add(ProfileUpdated(user: user, isCurrentUser: false));
-              });
+            add(ProfileUpdated(user: user, isCurrentUser: false));
+          });
 
           userSub.onError((error) => debugPrint(
-            "Error loading profile with mail [$nonCurrentEmail]: $error",
-          ));
+                "Error loading profile with mail [$nonCurrentUserEmail]: $error",
+              ));
         }
       }
     });
@@ -46,11 +46,8 @@ class ProfileBloc extends Bloc<ProfileEvent, ProfileState> {
   @override
   Stream<ProfileState> mapEventToState(ProfileEvent event) async* {
     if (event is ProfileUpdated) {
-      if (event.user == null) {
-        yield ProfileLoading();
-      } else {
-        yield ProfileSuccess(profileUser: event.user, isCurrentUser: event.isCurrentUser);
-      }
+      yield ProfileSuccess(
+          profileUser: event.user, isCurrentUser: event.isCurrentUser);
     }
   }
 

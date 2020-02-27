@@ -34,7 +34,7 @@ void main() {
 MaterialApp buildTestApplication(Widget testWidget) {
   return MaterialApp(
       routes: {
-        'profile/testMail': (context) {
+        'stats/testMail': (context) {
           return Scaffold(
             body: Text("Navigated!"),
           );
