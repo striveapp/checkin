@@ -10,7 +10,8 @@ class MatTimeCounter extends StatelessWidget {
   final String timeSpan;
 
   static const String matTime = 'Mat Time';
-  static const String hours = '%d hours';
+  static const String numHours = '%d hours';
+  static const String hours = 'hours';
   static const String attendedClasses = 'You attended %d classes';
   static const String thisTimespan = 'this %s';
 
@@ -27,27 +28,17 @@ class MatTimeCounter extends StatelessWidget {
         Row(
           mainAxisAlignment: MainAxisAlignment.center,
           children: <Widget>[
-            Icon(Icons.timer),
-            SizedBox(
-              width: 5,
-            ),
             Text(
-              MatTimeCounter.matTime.i18n,
+              _getHourFromClasses(counter).toString(),
+              key: Key('matHours'),
+              textAlign: TextAlign.center,
               style: Theme.of(context)
                   .textTheme
                   .headline1
-                  .apply(color: Colors.black87),
+                  .apply(fontSizeFactor: 3, color: Theme.of(context).accentColor),
             ),
+            Text(hours.plural(_getHourFromClasses(counter)), style: Theme.of(context).textTheme.headline5,),
           ],
-        ),
-        Text(
-          _getHourFromClasses(counter),
-          key: Key('matHours'),
-          textAlign: TextAlign.center,
-          style: Theme.of(context)
-              .textTheme
-              .headline1
-              .apply(fontSizeFactor: 3, color: Theme.of(context).accentColor),
         ),
         Column(
           children: <Widget>[
@@ -57,11 +48,11 @@ class MatTimeCounter extends StatelessWidget {
                 mainAxisAlignment: MainAxisAlignment.spaceBetween,
                 children: <Widget>[
                   Text(
-                    hours.plural(0),
+                    numHours.plural(0),
                     style: Theme.of(context).textTheme.headline5,
                   ),
                   Text(
-                      hours.plural(_getTotalMatTimeHours(timeSpan)),
+                      numHours.plural(_getTotalMatTimeHours(timeSpan)),
                       style: Theme.of(context).textTheme.headline5),
                 ],
               ),
@@ -106,7 +97,7 @@ class MatTimeCounter extends StatelessWidget {
     return ((counter * 1.5) * 100 / config.TOTAL_MAT_TIME_YEAR) / 100;
   }
 
-  String _getHourFromClasses(int counter) {
-    return (counter * 1.5).floor().toString();
+  int _getHourFromClasses(int counter) {
+    return (counter * 1.5).floor();
   }
 }
