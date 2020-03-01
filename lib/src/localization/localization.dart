@@ -16,6 +16,7 @@ import 'package:checkin/src/ui/components/no_lessons_banner.dart';
 import 'package:checkin/src/ui/components/profile_card.dart';
 import 'package:checkin/src/ui/components/profile_infos.dart';
 import 'package:checkin/src/ui/components/registry_controls.dart';
+import 'package:checkin/src/ui/components/upgrader_dialog.dart';
 import 'package:checkin/src/ui/pages/account_page.dart';
 import 'package:checkin/src/ui/pages/grade_page.dart';
 import 'package:checkin/src/ui/pages/lessons_page.dart';
@@ -223,6 +224,12 @@ extension Localization on String {
   } + {
     'en': ProfileInfos.beltColor,
     'es': 'Cinturón %s'
+  } + {
+    'en': UpgraderDialog.update,
+    'es': 'Actualizar' // todo nerd check this
+  } + {
+    'en': UpgraderDialog.versionNotSupported,
+    'es': 'La versión actual de esta aplicación ya no es compatible\n\nPor favor actualice ahora' // todo nerd check this
   };
 
 String get i18n => localize(this, _t);
