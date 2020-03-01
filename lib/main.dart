@@ -2,9 +2,11 @@ import 'dart:async';
 
 import 'package:bloc/bloc.dart';
 import 'package:checkin/src/blocs/auth/bloc.dart';
+import 'package:checkin/src/blocs/version/bloc.dart';
 import 'package:checkin/src/blocs/dynamic_link/bloc.dart';
 import 'package:checkin/src/repositories/auth_repository.dart';
 import 'package:checkin/src/repositories/user_repository.dart';
+import 'package:checkin/src/repositories/version_repository.dart';
 import 'package:checkin/src/routes/application.dart';
 import 'package:checkin/src/routes/routes.dart';
 import 'package:checkin/src/simple_bloc_delegate.dart';
@@ -44,6 +46,8 @@ void main() {
           BlocProvider<DynamicLinkBloc>(
             create: (context) => DynamicLinkBloc(dynamicLinks: dynamicLinks)..add(DeepLinkSetup()),
           ),
+          BlocProvider<VersionBloc>(
+            create: (context) => VersionBloc(versionRepository: VersionRepository())),
         ],
         child: App(
           userRepository: userRepository,
