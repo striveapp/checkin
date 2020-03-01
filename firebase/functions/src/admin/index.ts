@@ -1,7 +1,8 @@
 import * as express from 'express';
-import {validateFirebaseIdToken} from "../middlewares/validations";
+import {validateFirebaseIdToken} from "./middlewares/validations";
 import {restoreBackup} from "../backups";
 import {reminderOfNonAcceptedUsersForMaster} from "../notifications";
+import {importLessonTemplate} from "../imports";
 
 const adminApp = express();
 
@@ -27,5 +28,14 @@ adminApp.get('/notifyMaster', async (req, res) => {
     }
 });
 
+adminApp.get('/importLessonTemplate', async (req, res) => {
+    try {
+        await importLessonTemplate();
+        res.status(200).send("Gotcha!");
+    } catch (e) {
+        console.error(`Something bad happen with the import of lesson template: ${e.message}`)
+        res.status(400).send("Bad things");
+    }
+});
 
 export default adminApp;

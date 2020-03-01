@@ -6,7 +6,7 @@ export type Attendee = {
   email: string
 }
 
-type Master = {
+export type Master = {
   name: string
   imageUrl: string
   email: string
