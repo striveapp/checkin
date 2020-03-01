@@ -8,12 +8,10 @@ import 'package:flutter_bloc/flutter_bloc.dart';
 
 class ProfileCard extends StatelessWidget {
   final String userEmail;
-  final bool readOnly;
   static const String enterYourName = 'Enter your name';
 
   ProfileCard({
     @required this.userEmail,
-    this.readOnly = true,
   });
 
   @override
@@ -36,7 +34,27 @@ class ProfileCard extends StatelessWidget {
                   width: 15,
                 ),
                 Expanded(
-                  child: buildName(context, state),
+                  child: TextField(
+                    onSubmitted: (name) {
+                      if (name.length > 3) {
+                        BlocProvider.of<UserBloc>(context).add(UpdateName(newName: name));
+                      }
+                    },
+                    autocorrect: false,
+                    maxLength: 30,
+                    autofocus: false,
+                    style: Theme.of(context).textTheme.headline3,
+                    decoration: InputDecoration(
+                        suffixIcon: Icon(Icons.edit),
+                        border: InputBorder.none,
+                        focusedBorder: InputBorder.none,
+                        counter: SizedBox.shrink(),
+                        hintText: enterYourName.i18n),
+                    controller: TextEditingController.fromValue(TextEditingValue(
+                        text: state.profileUser.name,
+                        selection: new TextSelection.collapsed(
+                            offset: state.profileUser.name.length))),
+                  ),
                 ),
               ],
             );
@@ -48,32 +66,4 @@ class ProfileCard extends StatelessWidget {
     );
   }
 
-  Widget buildName(BuildContext context, ProfileSuccess state) {
-    if (readOnly) {
-      return Text(state.profileUser.name,
-          style: Theme.of(context).textTheme.headline3);
-    }
-
-    return TextField(
-      onSubmitted: (name) {
-        if (name.length > 3) {
-          BlocProvider.of<UserBloc>(context).add(UpdateName(newName: name));
-        }
-      },
-      autocorrect: false,
-      maxLength: 30,
-      autofocus: false,
-      style: Theme.of(context).textTheme.headline3,
-      decoration: InputDecoration(
-          suffixIcon: Icon(Icons.edit),
-          border: InputBorder.none,
-          focusedBorder: InputBorder.none,
-          counter: SizedBox.shrink(),
-          hintText: enterYourName.i18n),
-      controller: TextEditingController.fromValue(TextEditingValue(
-          text: state.profileUser.name,
-          selection: new TextSelection.collapsed(
-              offset: state.profileUser.name.length))),
-    );
-  }
 }

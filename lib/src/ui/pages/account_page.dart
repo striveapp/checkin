@@ -97,7 +97,6 @@ class AccountPage extends StatelessWidget {
                           ),
                         ),
                         ProfileCard(
-                          readOnly: false,
                           userEmail: state.user.email,
                         ),
                         if (isInDebugMode)

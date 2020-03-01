@@ -14,6 +14,7 @@ import 'package:checkin/src/ui/components/membership/inactive_membership.dart';
 import 'package:checkin/src/ui/components/membership/unsubscribe_dialog.dart';
 import 'package:checkin/src/ui/components/no_lessons_banner.dart';
 import 'package:checkin/src/ui/components/profile_card.dart';
+import 'package:checkin/src/ui/components/profile_infos.dart';
 import 'package:checkin/src/ui/components/registry_controls.dart';
 import 'package:checkin/src/ui/pages/account_page.dart';
 import 'package:checkin/src/ui/pages/grade_page.dart';
@@ -60,7 +61,7 @@ extension Localization on String {
     'en': MatTimeCounter.matTime,
     'es': 'Horas de Mat',
   } + {
-    'en': MatTimeCounter.hours
+    'en': MatTimeCounter.numHours
         .zero('0 hours')
         .one('1 hour')
         .many('%d hours'),
@@ -68,6 +69,15 @@ extension Localization on String {
         .zero('0 horas')
         .one('1 hora')
         .many('%d horas'),
+  } + {
+    'en': MatTimeCounter.hours
+        .zero('hours')
+        .one('hour')
+        .many('hours'),
+    'es': 'horas'
+        .zero('horas')
+        .one('hora')
+        .many('horas'),
   } + {
     'en': MatTimeCounter.attendedClasses
         .zero('No classes attended')
@@ -209,6 +219,9 @@ extension Localization on String {
     'es': 'Escoje tu subscripción',
   } + {
     'en': GradeCard.beltColor,
+    'es': 'Cinturón %s'
+  } + {
+    'en': ProfileInfos.beltColor,
     'es': 'Cinturón %s'
   };
 

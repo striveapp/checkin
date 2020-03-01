@@ -48,7 +48,7 @@ service cloud.firestore {
     }
 
     match /users_history/{email} {
-      allow read: if isLoggedUser(email);
+      allow read: if true;
     }
 
     match /customers/{email} {

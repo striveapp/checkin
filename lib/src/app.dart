@@ -87,6 +87,12 @@ class App extends StatelessWidget {
               color: Color(0xFF2F54FC),
               letterSpacing: 0.4,
             ),
+            bodyText1: TextStyle(
+              fontSize: 12.0,
+              fontWeight: FontWeight.w400,
+              color: Colors.black87,
+              letterSpacing: 0.4,
+            ),
             button: TextStyle(
               fontSize: 15.0,
               fontWeight: FontWeight.w600,
