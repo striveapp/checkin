@@ -117,7 +117,9 @@ class App extends StatelessWidget {
             }),
             BlocListener<VersionBloc, VersionState>(
                 listener: (BuildContext context, VersionState state) {
+               if(state is UpdateRequired) {
                   UpgraderDialog.show(context);
+                }
             }),
           ],
           child: BlocBuilder<AuthBloc, AuthState>(
