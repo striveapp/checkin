@@ -63,8 +63,3 @@ node_modules/
 
 # dotenv environment variables file
 .env
-
-# typescript
-
-*.js
-*.js.map

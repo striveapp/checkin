@@ -1,7 +1,7 @@
 ## Compiled JavaScript files
 lib/
-/***.js
-**/*.js.map
+*.js
+*.js.map
 
 # Typescript v1 declaration files
 typings/
@@ -10,3 +10,4 @@ typings/
 setup_stripe_keys.sh
 
 node_modules/
+
