@@ -80,21 +80,8 @@ export default {
         },
         {
             "name": "BJJ",
-            "timeStart": "10:00",
-            "timeEnd": "11:00",
-            "weekDay": "tuesday",
-            "masters": [
-                {
-                    "name": "Yan",
-                    "email": "yancabraljj@hotmail.com",
-                    "imageUrl": "https://firebasestorage.googleapis.com/v0/b/checkin-b7e8d.appspot.com/o/yan.png?alt=media&token=20bc4140-3eb8-4f59-a848-9ad6c71209a7"
-                }
-            ]
-        },
-        {
-            "name": "BJJ",
-            "timeStart": "10:00",
-            "timeEnd": "11:00",
+            "timeStart": "19:15",
+            "timeEnd": "20:30",
             "weekDay": "tuesday",
             "masters": [
                 {

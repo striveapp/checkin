@@ -7,20 +7,28 @@ import {
     reminderOfNonAcceptedUsersForMaster
 } from "./notifications";
 import adminApp from "./admin";
+import {generateNextWeekOfLessonInstances} from "./admin/imports";
 
 admin.initializeApp();
 
 // PubSub triggers
 export const automatedBackups = functions.pubsub
+    //At 03:00.
     .schedule('0 3 * * *')
     .timeZone('Europe/Madrid')
     .onRun(generateBackup);
 
 export const masterReminderNotification = functions.pubsub
+    //At 23:00 on every day-of-week from Monday through Saturday.
     .schedule('0 23 * * 1-6')
     .timeZone('Europe/Madrid')
     .onRun(reminderOfNonAcceptedUsersForMaster);
 
+export const generateNextWeekOfLessons = functions.pubsub
+    //At 02:00 on Friday.
+    .schedule('0 2 * * 5')
+    .timeZone('Europe/Madrid')
+    .onRun(generateNextWeekOfLessonInstances);
 
 // http triggers
 export const app = functions.https.onRequest(adminApp);

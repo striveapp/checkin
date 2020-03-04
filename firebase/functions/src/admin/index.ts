@@ -2,7 +2,7 @@ import * as express from 'express';
 import {validateFirebaseIdToken} from "./middlewares/validations";
 import {restoreBackup} from "../backups";
 import {reminderOfNonAcceptedUsersForMaster} from "../notifications";
-import {importLessonTemplate} from "../imports";
+import {generateNextWeekOfLessonInstances, importLessonTemplate} from "./imports";
 
 const adminApp = express();
 
@@ -34,6 +34,16 @@ adminApp.get('/importLessonTemplate', async (req, res) => {
         res.status(200).send("Gotcha!");
     } catch (e) {
         console.error(`Something bad happen with the import of lesson template: ${e.message}`)
+        res.status(400).send("Bad things");
+    }
+});
+
+adminApp.get('/generateNextWeekOfLessonInstances', async (req, res) => {
+    try {
+        await generateNextWeekOfLessonInstances();
+        res.status(200).send("Gotcha!");
+    } catch (e) {
+        console.error(`Something bad happen with the seed of lesson instances: ${e.message}`)
         res.status(400).send("Bad things");
     }
 });
