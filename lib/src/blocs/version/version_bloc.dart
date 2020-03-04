@@ -29,16 +29,22 @@ class VersionBloc extends Bloc<VersionEvent, VersionState> {
   @override
   Stream<VersionState> mapEventToState(VersionEvent event) async* {
     if (event is VersionUpdated) {
-      PackageInfo packageInfo = await PackageInfo.fromPlatform();
 
       final minimumVersionRequired = VersionConstraint.parse(
           '^${event.minimumVersionRequired}');
 
-      Version currentVersion = Version.parse(packageInfo.version);
+      Version currentVersion = await _getCurrentVersion();
+
       if (!minimumVersionRequired.allows(currentVersion)) {
         yield UpdateRequired();
       }
     }
+  }
+
+  Future<Version> _getCurrentVersion() async {
+    PackageInfo packageInfo = await PackageInfo.fromPlatform();
+    Version currentVersion = Version.parse(packageInfo.version);
+    return currentVersion;
   }
 
   @override
