@@ -13,7 +13,8 @@
     "deploy:payments": "firebase deploy --only functions:webhook,functions:unsubscribe",
     "deploy:admin-app": "firebase deploy --only functions:app",
     "deploy:rules": "firebase deploy --only firestore:rules",
-    "deploy:hosting": "firebase deploy --only hosting"
+    "deploy:hosting": "firebase deploy --only hosting",
+    "functions:log": "firebase functions:log"
   },
   "devDependencies": {
     "@firebase/testing": "^0.11.4",
