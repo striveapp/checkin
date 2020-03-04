@@ -3,6 +3,8 @@ import 'package:checkin/src/localization/localization.dart';
 import 'package:flutter/widgets.dart';
 import 'package:open_appstore/open_appstore.dart';
 
+import '../../constants.dart';
+
 
 class UpgraderDialog {
   static final String update = "Update";
@@ -37,7 +39,7 @@ class UpgraderDialog {
           actions: <Widget>[RaisedButton(
               child: Text(update.i18n),
               onPressed: () {
-                OpenAppstore.launch(androidAppId: "com.arya.checkin", iOSAppId: "1471462737");
+                OpenAppstore.launch(androidAppId: ANDROID_APP_ID, iOSAppId: IOS_APP_ID);
               }
               ,)],
             title: Text(versionNotSupported.i18n))
