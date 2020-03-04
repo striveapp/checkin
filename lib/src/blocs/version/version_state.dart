@@ -14,7 +14,5 @@ class VersionInitial extends VersionState {
 
 class UpdateRequired extends VersionState {
   @override
-  String toString() {
-    return 'UpdateRequired';
-  }
+  String toString() => 'UpdateRequired';
 }

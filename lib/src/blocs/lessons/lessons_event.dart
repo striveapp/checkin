@@ -33,7 +33,5 @@ class LoadLessons extends LessonsEvent {
   List<Object> get props => [selectedDay];
 
   @override
-  String toString() {
-    return 'LoadLessons';
-  }
+  String toString() => 'LoadLessons';
 }

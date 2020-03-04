@@ -13,7 +13,5 @@ class UserHistory extends Equatable {
   List<Object> get props => [attendedLessons];
 
   @override
-  String toString() {
-    return 'UserHistory{attendedLessons: $attendedLessons}';
-  }
+  String toString() => 'UserHistory{attendedLessons: $attendedLessons}';
 }

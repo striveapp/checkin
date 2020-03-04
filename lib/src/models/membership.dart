@@ -19,7 +19,5 @@ class Membership extends Equatable {
   List<Object> get props => [status, email, currentPeriodEnd, cardLastFourDigits];
 
   @override
-  String toString() {
-    return 'Membership{status: $status, currentPeriodEnd: $currentPeriodEnd, cardLastFourDigits: $cardLastFourDigits, email: $email}';
-  }
+  String toString() => 'Membership{status: $status, currentPeriodEnd: $currentPeriodEnd, cardLastFourDigits: $cardLastFourDigits, email: $email}';
 }

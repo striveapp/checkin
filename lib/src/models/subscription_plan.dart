@@ -23,7 +23,5 @@ class SubscriptionPlan extends Equatable {
   List<Object> get props => [name, code, interval, currency, price, description];
 
   @override
-  String toString() {
-    return 'SubscriptionPlan{name: $name, description: $description, code: $code, interval: $interval, currency: $currency, price: $price}';
-  }
+  String toString() => 'SubscriptionPlan{name: $name, description: $description, code: $code, interval: $interval, currency: $currency, price: $price}';
 }

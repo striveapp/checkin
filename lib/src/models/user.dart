@@ -36,7 +36,5 @@ class User extends Equatable {
   List<Object> get props => [name, email, imageUrl, counter, grade, isOwner, hasActivePayments];
 
   @override
-  String toString() {
-    return 'User{name: $name, email: $email, imageUrl: $imageUrl, counter: $counter, grade: $grade, isOwner: $isOwner, hasActivePayments: $hasActivePayments}';
-  }
+  String toString() => 'User{name: $name, email: $email, imageUrl: $imageUrl, counter: $counter, grade: $grade, isOwner: $isOwner, hasActivePayments: $hasActivePayments}';
 }
