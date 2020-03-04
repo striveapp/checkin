@@ -10,9 +10,7 @@ class BasicNotification extends Equatable {
   List<Object> get props => [title, body];
 
   @override
-  String toString() {
-    return 'BasicNotification{title: $title, body: $body}';
-  }
+  String toString() => 'BasicNotification{title: $title, body: $body}';
 }
 
 class NavigationNotification extends Equatable {
@@ -25,7 +23,5 @@ class NavigationNotification extends Equatable {
   List<Object> get props => [type, path];
 
   @override
-  String toString() {
-    return 'ActionNotification{type: $type, path: $path}';
-  }
+  String toString() => 'ActionNotification{type: $type, path: $path}';
 }

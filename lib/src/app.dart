@@ -3,6 +3,7 @@ import 'package:checkin/src/blocs/dynamic_link/bloc.dart';
 import 'package:checkin/src/repositories/auth_repository.dart';
 import 'package:checkin/src/repositories/user_repository.dart';
 import 'package:checkin/src/routes/application.dart';
+import 'package:checkin/src/ui/components/upgrader_dialog.dart';
 import 'package:checkin/src/ui/pages/home_page.dart';
 import 'package:checkin/src/ui/pages/login_page.dart';
 import 'package:checkin/src/ui/pages/splash_page.dart';
@@ -13,6 +14,7 @@ import 'package:flutter_localizations/flutter_localizations.dart';
 import 'package:i18n_extension/i18n_widget.dart';
 
 import 'blocs/user/bloc.dart';
+import 'blocs/version/bloc.dart';
 
 class App extends StatelessWidget {
   final AuthRepository _authRepository;
@@ -104,54 +106,66 @@ class App extends StatelessWidget {
         home: I18n(
 //        note: enable es locale
 //        initialLocale: Locale("es", "ES"),
-          child: BlocListener<DynamicLinkBloc, DynamicLinkState>(
-            listener: (BuildContext context, DynamicLinkState state) {
+        child: MultiBlocListener(
+          listeners: [
+            BlocListener<DynamicLinkBloc, DynamicLinkState>(
+                listener: (BuildContext context, DynamicLinkState state) {
               if (state is DynamicLinkToNavigate) {
                 debugPrint("deep link received with path ${state.path}");
                 Navigator.of(context).pushNamed(state.path);
               }
-            },
-            child: BlocBuilder<AuthBloc, AuthState>(
-                builder: (BuildContext context, AuthState state) {
-              if (state is AuthUnauthenticated) {
-                return LoginPage(
-                    authRepository: _authRepository,
-                    userRepository: _userRepository);
-              }
+            }),
+            BlocListener<VersionBloc, VersionState>(
+                listener: (BuildContext context, VersionState state) {
+               if(state is UpdateRequired) {
+                  UpgraderDialog.show(context);
+                }
+            }),
+          ],
+          child: BlocBuilder<AuthBloc, AuthState>(
+              builder: (BuildContext context, AuthState state) {
+            if (state is AuthUnauthenticated) {
+              return LoginPage(
+                  authRepository: _authRepository,
+                  userRepository: _userRepository);
+            }
 
-              if (state is AuthAuthenticated) {
-                debugPrint("User Authenticated: [${state.loggedUserEmail}]");
-                return BlocProvider<UserBloc>(
-                  create: (BuildContext context) => UserBloc(
-                    userRepository: _userRepository,
-                    authBloc: BlocProvider.of<AuthBloc>(context),
-                  ),
-                  child: DefaultTabController(
-                      length: 2,
-                      child: Scaffold(
-                        bottomNavigationBar: Material(
-                          color: Colors.black87,
-                          child: TabBar(
-                            tabs: <Widget>[
-                              Tab(icon: Icon(Icons.home)),
-                              Tab(icon: Icon(Icons.insert_chart)),
-                            ],
-                          ),
-                        ),
-                        body: TabBarView(
-                          physics: NeverScrollableScrollPhysics(),
-                          children: [
-                            HomePage(),
-                            StatsPage(userEmail: state.loggedUserEmail,),
+            if (state is AuthAuthenticated) {
+              debugPrint("User Authenticated: [${state.loggedUserEmail}]");
+              return BlocProvider<UserBloc>(
+                create: (BuildContext context) => UserBloc(
+                  userRepository: _userRepository,
+                  authBloc: BlocProvider.of<AuthBloc>(context),
+                ),
+                child: DefaultTabController(
+                    length: 2,
+                    child: Scaffold(
+                      bottomNavigationBar: Material(
+                        color: Colors.black87,
+                        child: TabBar(
+                          tabs: <Widget>[
+                            Tab(icon: Icon(Icons.home)),
+                            Tab(icon: Icon(Icons.insert_chart)),
                           ],
                         ),
-                      )),
-                );
-              }
+                      ),
+                      body: TabBarView(
+                        physics: NeverScrollableScrollPhysics(),
+                        children: [
+                          HomePage(),
+                          StatsPage(
+                            userEmail: state.loggedUserEmail,
+                          ),
+                        ],
+                      ),
+                    )),
+              );
+            }
 
-              return SplashPage();
-            }),
-          ),
-        ));
+            return SplashPage();
+          }),
+        ),
+      ),
+    );
   }
 }

@@ -21,9 +21,7 @@ class DynamicLinkToNavigate extends DynamicLinkState {
   List<Object> get props => [path];
 
   @override
-  String toString() {
-    return 'DynamicLinkToNavigate';
-  }
+  String toString() => 'DynamicLinkToNavigate';
 }
 
 class DynamicLinkError extends DynamicLinkState {

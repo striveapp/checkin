@@ -27,9 +27,7 @@ class StatsLoaded extends StatsState {
   List<Object> get props => [attendedLessons, timeSpan];
 
   @override
-  String toString() {
-    return 'StatsLoaded{attendedLessons: $attendedLessons}';
-  }
+  String toString() => 'StatsLoaded{attendedLessons: $attendedLessons}';
 
 
 }

@@ -32,9 +32,7 @@ class Lesson extends Equatable {
       [id, name, timeStart, timeEnd, weekDay, attendees, masters, timestamp];
 
   @override
-  String toString() {
-    return 'Lesson{id: $id, name: $name, timeStart: $timeStart, timeEnd: $timeEnd, weekDay: $weekDay, attendees: $attendees, masters: $masters, timestamp: $timestamp}';
-  }
+  String toString() => 'Lesson{id: $id, name: $name, timeStart: $timeStart, timeEnd: $timeEnd, weekDay: $weekDay, attendees: $attendees, masters: $masters, timestamp: $timestamp}';
 
   bool containsUser(String email) {
     // todo: we should use some kind of id to perform this check not the email

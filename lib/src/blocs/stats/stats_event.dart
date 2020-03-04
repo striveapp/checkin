@@ -22,9 +22,7 @@ class StatsUpdated extends StatsEvent {
   List<Object> get props => [attendedLessons];
 
   @override
-  String toString() {
-    return 'StatsUpdated{attendedLessons: $attendedLessons}';
-  }
+  String toString() => 'StatsUpdated{attendedLessons: $attendedLessons}';
 }
 
 class LoadStats extends StatsEvent {

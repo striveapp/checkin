@@ -35,9 +35,7 @@ class MembershipInactive extends MembershipState {
   List<Object> get props => [email];
 
   @override
-  String toString() {
-    return 'MembershipInactive';
-  }
+  String toString() => 'MembershipInactive';
 }
 
 class MembershipLoading extends MembershipState {

@@ -26,9 +26,7 @@ class ProfileSuccess extends ProfileState {
   List<Object> get props => [profileUser, isCurrentUser];
 
   @override
-  String toString() {
-    return 'ProfileSuccess{profileUser: $profileUser, isCurrentUser: $isCurrentUser}';
-  }
+  String toString() => 'ProfileSuccess{profileUser: $profileUser, isCurrentUser: $isCurrentUser}';
 
 
 }
