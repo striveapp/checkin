@@ -171,8 +171,8 @@ export default {
         },
         {
             "name": "BJJ",
-            "timeStart": "10:00",
-            "timeEnd": "11:00",
+            "timeStart": "19:15",
+            "timeEnd": "20:30",
             "weekDay": "thursday",
             "masters": [
                 {
