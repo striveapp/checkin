@@ -1,7 +1,16 @@
 import 'package:checkin/src/models/grade.dart';
+import 'package:checkin/src/models/user_history.dart';
 import 'package:equatable/equatable.dart';
 import 'package:firebase_auth/firebase_auth.dart';
 import 'package:meta/meta.dart';
+
+class UserWithHistory extends User {
+  final UserHistory history;
+
+  UserWithHistory(User user, UserHistory history) :
+    this.history = history,
+    super(name: user.name, email: user.email, imageUrl: user.imageUrl, counter: user.counter, grade: user.grade, isOwner: user.isOwner, hasActivePayments: user.hasActivePayments);
+}
 
 class User extends Equatable {
   final String name;
@@ -30,6 +39,10 @@ class User extends Equatable {
       imageUrl: firebaseUser.photoUrl,
     )
         : null;
+  }
+
+  UserWithHistory withHistory(UserHistory history) {
+    return UserWithHistory(this, history);
   }
 
   @override

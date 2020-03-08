@@ -5,6 +5,7 @@ import 'package:checkin/src/repositories/user_repository.dart';
 import 'package:checkin/src/routes/application.dart';
 import 'package:checkin/src/ui/components/upgrader_dialog.dart';
 import 'package:checkin/src/ui/pages/home_page.dart';
+import 'package:checkin/src/ui/pages/leaderboard_page.dart';
 import 'package:checkin/src/ui/pages/login_page.dart';
 import 'package:checkin/src/ui/pages/splash_page.dart';
 import 'package:checkin/src/ui/pages/stats_page.dart';
@@ -146,12 +147,14 @@ class App extends StatelessWidget {
                           tabs: <Widget>[
                             Tab(icon: Icon(Icons.home)),
                             Tab(icon: Icon(Icons.insert_chart)),
+                            // Tab(icon: Icon(Icons.star)),
                           ],
                         ),
                       ),
                       body: TabBarView(
                         physics: NeverScrollableScrollPhysics(),
                         children: [
+                          // LeaderboardPage(), //TODO: move back to the 3 position
                           HomePage(),
                           StatsPage(
                             userEmail: state.loggedUserEmail,
