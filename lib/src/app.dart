@@ -5,7 +5,6 @@ import 'package:checkin/src/repositories/user_repository.dart';
 import 'package:checkin/src/routes/application.dart';
 import 'package:checkin/src/ui/components/upgrader_dialog.dart';
 import 'package:checkin/src/ui/pages/home_page.dart';
-import 'package:checkin/src/ui/pages/leaderboard_page.dart';
 import 'package:checkin/src/ui/pages/login_page.dart';
 import 'package:checkin/src/ui/pages/splash_page.dart';
 import 'package:checkin/src/ui/pages/stats_page.dart';
