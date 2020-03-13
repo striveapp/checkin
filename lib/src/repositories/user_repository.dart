@@ -8,6 +8,10 @@ class UserRepository {
   Stream<User> getUserByEmail(String email) =>
       _userProvider.getUserByEmail(email);
 
+
+  Stream<List<User>> getAllUsers() =>
+      _userProvider.getAllUsers();
+
   Future<void> createUser(User newUser) => _userProvider.createUser(newUser);
 
   Future<void> updateUserGrade(User currentUser, String newGrade) =>

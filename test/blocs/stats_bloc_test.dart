@@ -50,7 +50,9 @@ void main() {
         when(mockDateUtil.getFirstDayOfTheWeekMilliseconds()).thenReturn(fakeTimestamp);
         when(mockStatsRepository.getUserStats(loggedUser.email, fakeTimestamp)).thenAnswer((_) {
           return Stream<UserHistory>.value(
-              UserHistory(attendedLessons: attendedLessons));
+              UserHistory(
+                  email: "test@test.com",
+                  attendedLessons: attendedLessons));
         });
 
         statsBloc = StatsBloc(
@@ -74,7 +76,7 @@ void main() {
           when(mockDateUtil.getFirstDayOfTheWeekMilliseconds()).thenReturn(fakeTimestamp);
           when(mockStatsRepository.getUserStats(loggedUser.email, fakeTimestamp)).thenAnswer((_) {
             return Stream<UserHistory>.value(
-                UserHistory(attendedLessons: attendedLessons));
+                UserHistory(email: "test@test.com", attendedLessons: attendedLessons));
           });
           statsBloc = StatsBloc(
               statsRepository: mockStatsRepository, userEmail: loggedUser.email, dateUtil: mockDateUtil);
@@ -102,7 +104,8 @@ void main() {
           when(mockDateUtil.getFirstDayOfTheMonthMilliseconds()).thenReturn(fakeTimestamp);
           when(mockStatsRepository.getUserStats(loggedUser.email, fakeTimestamp)).thenAnswer((_) {
             return Stream<UserHistory>.value(
-                UserHistory(attendedLessons: attendedLessons));
+                UserHistory(
+                     email: "test@test.com", attendedLessons: attendedLessons));
           });
           statsBloc = StatsBloc(
               statsRepository: mockStatsRepository, userEmail: loggedUser.email, dateUtil: mockDateUtil);
@@ -131,7 +134,7 @@ void main() {
           when(mockDateUtil.getFirstDayOfTheYearMilliseconds()).thenReturn(fakeTimestamp);
           when(mockStatsRepository.getUserStats(loggedUser.email, fakeTimestamp)).thenAnswer((_) {
             return Stream<UserHistory>.value(
-                UserHistory(attendedLessons: attendedLessons));
+                UserHistory(email: "test@test.com", attendedLessons: attendedLessons));
           });
           statsBloc = StatsBloc(
               statsRepository: mockStatsRepository, userEmail: loggedUser.email, dateUtil: mockDateUtil);

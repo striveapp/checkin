@@ -1,17 +1,22 @@
-import 'package:checkin/src/models/user.dart';
+import 'package:checkin/src/models/user_history.dart';
 import 'package:equatable/equatable.dart';
 
 abstract class LeaderboardEvent extends Equatable {
+  const LeaderboardEvent();
+
   @override
   List<Object> get props => [];
 }
 
 class LeaderboardUpdated extends LeaderboardEvent {
-  final List<UserWithHistory> users;
+  final List<UserHistory> usersHistory;
 
-  LeaderboardUpdated({ this.users });
+  LeaderboardUpdated({
+    this.usersHistory,
+  });
 
-  List<Object> get props => [users];
+  @override
+  List<Object> get props => [usersHistory];
 
   @override
   String toString() => 'LeaderboardUpdated';

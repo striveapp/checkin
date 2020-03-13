@@ -1,10 +1,10 @@
-import 'package:checkin/src/models/user.dart';
+import 'package:checkin/src/models/user_history.dart';
 import 'package:equatable/equatable.dart';
 
 abstract class LeaderboardState extends Equatable {
+  const LeaderboardState();
   @override
   List<Object> get props => [];
-
 }
 
 class LeaderboardInitial extends LeaderboardState {
@@ -13,9 +13,14 @@ class LeaderboardInitial extends LeaderboardState {
 }
 
 class LeaderboardLoaded extends LeaderboardState {
-  final List<UserWithHistory> users;
+  final List<UserHistory> usersHistory;
 
-  LeaderboardLoaded({ this.users });
+  LeaderboardLoaded({
+    this.usersHistory,
+  });
+
+  @override
+  List<Object> get props => [usersHistory];
 
   @override
   String toString() => 'LeaderboardLoaded';

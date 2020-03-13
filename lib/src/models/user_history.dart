@@ -3,9 +3,11 @@ import 'package:equatable/equatable.dart';
 import 'package:flutter/cupertino.dart';
 
 class UserHistory extends Equatable {
+  final String email;
   final List<Lesson> attendedLessons;
 
   UserHistory({
+    @required this.email,
     @required this.attendedLessons
   });
 

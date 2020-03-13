@@ -1,14 +1,34 @@
 import 'package:checkin/src/blocs/leaderboard/bloc.dart';
 import 'package:checkin/src/models/lesson.dart';
-import 'package:checkin/src/models/user.dart';
 import 'package:checkin/src/models/user_history.dart';
+import 'package:checkin/src/repositories/stats_repository.dart';
+import 'package:mockito/mockito.dart';
 import 'package:test/test.dart';
+
+
+class MockStatsRepository extends Mock implements StatsRepository {}
 
 void main() {
   group("LeaderboardBloc", () {
     LeaderboardBloc leaderboardBloc;
+    MockStatsRepository mockStatsRepository;
 
-    setUp(() {});
+    List<Lesson> attendedLessons = [
+      Lesson(timeStart: "19:00", timeEnd: "20:00"),
+      Lesson(timeStart: "10:00", timeEnd: "11:00"),
+      Lesson(timeStart: "07:15", timeEnd: "08:30"),
+    ];
+
+    List<UserHistory> usersHistory = [
+      UserHistory(
+        email: "test@test.com",
+        attendedLessons: attendedLessons,
+      ),
+      UserHistory(
+        email: "test-two@test.com",
+        attendedLessons: attendedLessons,
+      ),
+    ];
 
     tearDown(() {
       leaderboardBloc?.close();
@@ -16,23 +36,20 @@ void main() {
 
     group("LeaderboardUpdated", () {
       setUp(() {
-        leaderboardBloc = LeaderboardBloc();
+        mockStatsRepository = MockStatsRepository();
+        when(mockStatsRepository.getAllUserStats()).thenAnswer((_) {
+          return Stream<List<UserHistory>>.value(usersHistory);
+        });
+        leaderboardBloc = LeaderboardBloc(statsRepository: mockStatsRepository);
       });
       test("should emit LeaderboardLoaded with users", () {
-        List<Lesson> attendedLessons = [
-          Lesson(timeStart: "19:00", timeEnd: "20:00"),
-          Lesson(timeStart: "10:00", timeEnd: "11:00"),
-          Lesson(timeStart: "07:15", timeEnd: "08:30"),
-        ];
-
-        List<UserWithHistory> users = [User(name: 'test', email: 'test@test.com', imageUrl: 'test.png').withHistory(UserHistory(attendedLessons: attendedLessons))];
 
         final expectedState = [
           LeaderboardInitial(),
-          LeaderboardLoaded(users: users),
+          LeaderboardLoaded(usersHistory: usersHistory),
         ];
 
-        leaderboardBloc.add(LeaderboardUpdated(users: users));
+        leaderboardBloc.add(LeaderboardUpdated(usersHistory: usersHistory));
 
         expectLater(
           leaderboardBloc,
@@ -40,7 +57,7 @@ void main() {
         );
       });
 
-      test('should emit LeaderboardLoaded with sorted users by attendedLessons count [desc]', () {
+      group("when sorted", () {
         List<Lesson> attendedLessons1 = [
           Lesson(timeStart: "19:00", timeEnd: "20:00"),
           Lesson(timeStart: "10:00", timeEnd: "11:00"),
@@ -53,21 +70,39 @@ void main() {
           Lesson(timeStart: "10:00", timeEnd: "11:00"),
           Lesson(timeStart: "10:00", timeEnd: "11:00"),
         ];
-        UserWithHistory user1 = User(name: 'test', email: 'test@test.com', imageUrl: 'test.png').withHistory(UserHistory(attendedLessons: attendedLessons1));
-        UserWithHistory user2 = User(name: 'test', email: 'test@test.com', imageUrl: 'test.png').withHistory(UserHistory(attendedLessons: attendedLessons2));
+        UserHistory userHistory1 = UserHistory(
+            email: "test@test.com",
+            attendedLessons: attendedLessons1
+        );
+        UserHistory userHistory2 = UserHistory(
+            email: "test-two@test.com",
+            attendedLessons: attendedLessons2
+        );
 
-        List<UserWithHistory> unsortedUsers = [user1, user2];
-        List<UserWithHistory> sortedUsers = [user2, user1];
+        List<UserHistory> unsortedUsersHistory = [userHistory1, userHistory2];
+        List<UserHistory> sortedUsersHistory = [userHistory2, userHistory1];
 
-        leaderboardBloc.add(LeaderboardUpdated(users: unsortedUsers));
+        setUp(() {
+          mockStatsRepository = MockStatsRepository();
+          when(mockStatsRepository.getAllUserStats()).thenAnswer((_) {
+            return Stream<List<UserHistory>>.value(unsortedUsersHistory);
+          });
+          leaderboardBloc = LeaderboardBloc(statsRepository: mockStatsRepository);
+        });
 
-        final expectedState = [
-          LeaderboardInitial(),
-          LeaderboardLoaded(users: sortedUsers),
-        ];
+        test(
+            'should emit LeaderboardLoaded with sorted users by attendedLessons count [desc]',
+                () {
+              leaderboardBloc.add(LeaderboardUpdated(usersHistory: unsortedUsersHistory));
 
+              final expectedState = [
+                LeaderboardInitial(),
+                LeaderboardLoaded(usersHistory: sortedUsersHistory),
+              ];
 
-        expectLater(leaderboardBloc, emitsInOrder(expectedState));
+              expectLater(leaderboardBloc, emitsInOrder(expectedState));
+            });
+
       });
     });
   });

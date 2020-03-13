@@ -8,4 +8,6 @@ class StatsRepository {
 
   Stream<UserHistory> getUserStats(String email, int fromTimestamp) =>
       _statsProvider.getUserStats(email, fromTimestamp);
+
+  Stream<List<UserHistory>> getAllUserStats() => _statsProvider.getAllUserStats();
 }

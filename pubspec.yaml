@@ -42,7 +42,7 @@ dependencies:
   package_info: ^0.4.0+14
   open_appstore: ^1.0.2
   pub_semver: ^1.4.2
-
+  
 dev_dependencies:
   test: ">=1.6.3 <2.0.0"
   mockito: ^4.1.1
