@@ -9,6 +9,7 @@ part 'lesson.g.dart';
 @JsonSerializable(explicitToJson: true)
 class Lesson extends Equatable {
   final String id;
+  final String date;
   final String name;
   final String timeStart;
   final String timeEnd;
@@ -19,6 +20,7 @@ class Lesson extends Equatable {
 
   Lesson(
       {this.id,
+      this.date,
       this.name,
       this.timeStart,
       this.timeEnd,
@@ -29,10 +31,12 @@ class Lesson extends Equatable {
 
   @override
   List<Object> get props =>
-      [id, name, timeStart, timeEnd, weekDay, attendees, masters, timestamp];
+      [id, date, name, timeStart, timeEnd, weekDay, attendees, masters, timestamp];
 
   @override
-  String toString() => 'Lesson{id: $id, name: $name, timeStart: $timeStart, timeEnd: $timeEnd, weekDay: $weekDay, attendees: $attendees, masters: $masters, timestamp: $timestamp}';
+  String toString() {
+    return 'Lesson{id: $id, date: $date, name: $name, timeStart: $timeStart, timeEnd: $timeEnd, weekDay: $weekDay, attendees: $attendees, masters: $masters, timestamp: $timestamp}';
+  }
 
   bool containsUser(String email) {
     // todo: we should use some kind of id to perform this check not the email

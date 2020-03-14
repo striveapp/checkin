@@ -16,12 +16,14 @@ import 'package:flutter_bloc/flutter_bloc.dart';
 
 class RegistryPage extends StatelessWidget {
   final String lessonId;
+  final String date;
 
   static const String registry = 'Registry';
 
   RegistryPage({
     Key key,
     @required this.lessonId,
+    @required this.date,
   }) : super(key: key);
 
   @override
@@ -34,6 +36,7 @@ class RegistryPage extends StatelessWidget {
       body: BlocProvider<RegistryBloc>(
         create: (context) => RegistryBloc(
           lessonId: lessonId,
+          date: date,
           lessonRepository: RepositoryProvider.of<LessonRepository>(context),
           lessonApi: RepositoryProvider.of<LessonApi>(context),
           userBloc: BlocProvider.of<UserBloc>(context),

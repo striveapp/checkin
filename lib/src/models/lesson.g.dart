@@ -9,6 +9,7 @@ part of 'lesson.dart';
 Lesson _$LessonFromJson(Map<String, dynamic> json) {
   return Lesson(
     id: json['id'] as String,
+    date: json['date'] as String,
     name: json['name'] as String,
     timeStart: json['timeStart'] as String,
     timeEnd: json['timeEnd'] as String,
@@ -27,6 +28,7 @@ Lesson _$LessonFromJson(Map<String, dynamic> json) {
 
 Map<String, dynamic> _$LessonToJson(Lesson instance) => <String, dynamic>{
       'id': instance.id,
+      'date': instance.date,
       'name': instance.name,
       'timeStart': instance.timeStart,
       'timeEnd': instance.timeEnd,

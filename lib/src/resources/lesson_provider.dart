@@ -3,7 +3,6 @@ import 'package:checkin/src/models/grade.dart';
 import 'package:checkin/src/models/lesson.dart';
 import 'package:checkin/src/models/master.dart';
 import 'package:checkin/src/repositories/lesson_repository.dart';
-import 'package:checkin/src/util/debug_util.dart';
 import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:flutter/material.dart';
 import 'package:intl/intl.dart';
@@ -17,9 +16,7 @@ class LessonProvider implements LessonRepository {
   String _formatDate(DateTime day) => DateFormat('EEEE', 'en_US').format(day);
 
   Stream<List<Lesson>> getLessonsForToday() {
-    var today = isInDebugMode ? DateTime(2020, 2, 17) : DateTime.now();
-
-    return getLessonsForDay(today);
+    return getLessonsForDay(DateTime.now());
   }
 
   Stream<List<Lesson>> getLessonsForDay(DateTime day) => _firestore
@@ -51,7 +48,7 @@ class LessonProvider implements LessonRepository {
                   []))
           .toList());
 
-  Stream<Lesson> getLesson(String lessonId) => _firestore
+  Stream<Lesson> getLesson(_, String lessonId) => _firestore
       .collection(path)
       .document(lessonId)
       .snapshots()
@@ -78,9 +75,10 @@ class LessonProvider implements LessonRepository {
                   ?.toList() ??
               []));
 
-  Future<void> register(String lessonId, Attendee attendee) async {
+  Future<void> register(_, String lessonId, Attendee attendee) async {
     debugPrint("User [$attendee] attends lesson with id [$lessonId]");
-    await _firestore.collection(path).document(lessonId).updateData({
+    await _firestore.collection(path)
+        .document(lessonId).updateData({
       'attendees': FieldValue.arrayUnion([
         {
           'name': attendee.name,
@@ -92,7 +90,7 @@ class LessonProvider implements LessonRepository {
     });
   }
 
-  Future<void> unregister(String lessonId, Attendee attendee) async {
+  Future<void> unregister(_, String lessonId, Attendee attendee) async {
     debugPrint("User [$attendee] removed from lesson with id [$lessonId]");
     await _firestore.collection(path).document(lessonId).updateData({
       'attendees': FieldValue.arrayRemove([

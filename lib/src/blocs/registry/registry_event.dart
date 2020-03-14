@@ -2,6 +2,7 @@ import 'package:checkin/src/models/attendee.dart';
 import 'package:checkin/src/models/lesson.dart';
 import 'package:checkin/src/models/user.dart';
 import 'package:equatable/equatable.dart';
+import 'package:flutter/foundation.dart';
 
 abstract class RegistryEvent extends Equatable {
   const RegistryEvent();
@@ -28,15 +29,17 @@ class LessonUpdated extends RegistryEvent {
 
 class Register extends RegistryEvent {
   final String lessonId;
+  final String date;
   final Attendee attendee;
 
   const Register({
-    this.lessonId,
-    this.attendee,
+    @required this.lessonId,
+    @required this.date,
+    @required this.attendee,
   });
 
   @override
-  List<Object> get props => [lessonId, attendee];
+  List<Object> get props => [lessonId, date, attendee];
 
   @override
   String toString() => 'Register';
@@ -44,15 +47,17 @@ class Register extends RegistryEvent {
 
 class Unregister extends RegistryEvent {
   final String lessonId;
+  final String date;
   final Attendee attendee;
 
   const Unregister({
-    this.lessonId,
-    this.attendee,
+    @required this.lessonId,
+    @required this.date,
+    @required this.attendee,
   });
 
   @override
-  List<Object> get props => [lessonId, attendee];
+  List<Object> get props => [lessonId, date, attendee];
 
   @override
   String toString() => 'Unregister';

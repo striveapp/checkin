@@ -15,11 +15,13 @@ class RegistryBloc extends Bloc<RegistryEvent, RegistryState> {
   final LessonApi lessonApi;
   final UserBloc userBloc;
   final String lessonId;
+  final String date;
   StreamSubscription<Lesson> registrySub;
   String currentLessonId;
 
   RegistryBloc({
     @required this.lessonId,
+    @required this.date,
     @required this.lessonRepository,
     @required this.lessonApi,
     @required this.userBloc,
@@ -28,7 +30,7 @@ class RegistryBloc extends Bloc<RegistryEvent, RegistryState> {
       if (userState is UserSuccess) {
         registrySub?.cancel();
         registrySub = lessonRepository
-            .getLesson(lessonId)
+            .getLesson(date, lessonId)
             .listen((lesson) => add(LessonUpdated(lesson: lesson, currentUser: userState.currentUser)));
       }
     });
@@ -62,7 +64,7 @@ class RegistryBloc extends Bloc<RegistryEvent, RegistryState> {
     if (event is Register) {
       try {
         yield RegistryLoading();
-        await this.lessonRepository.register(event.lessonId, event.attendee);
+        await this.lessonRepository.register(event.date, event.lessonId, event.attendee);
       } catch (e) {
         print(e);
       }
@@ -71,7 +73,7 @@ class RegistryBloc extends Bloc<RegistryEvent, RegistryState> {
     if (event is Unregister) {
       try {
         yield RegistryLoading();
-        await this.lessonRepository.unregister(event.lessonId, event.attendee);
+        await this.lessonRepository.unregister(event.date, event.lessonId, event.attendee);
       } catch (e) {
         print(e);
       }

@@ -84,7 +84,7 @@ class _AttendeesListState extends State<AttendeesList> {
                                       ),
                                       onDismissed: (direction) {
                                         _removeAttendee(
-                                            currentLesson.id, attendee);
+                                            currentLesson.date, currentLesson.id, attendee);
                                       },
                                       child: AttendeeTile(attendee: attendee))
                                   : AttendeeTile(attendee: attendee);
@@ -104,9 +104,10 @@ class _AttendeesListState extends State<AttendeesList> {
   }
 
   //TODO: this will not work if the user changes his infos first and then attempt to unregister
-  void _removeAttendee(String lessonId, Attendee attendee) {
+  void _removeAttendee(String date, String lessonId, Attendee attendee) {
     registryBloc.add(Unregister(
       lessonId: lessonId,
+      date: date,
       attendee: attendee,
     ));
   }

@@ -91,8 +91,9 @@ export const acceptAll = functions.https.onCall(({lesson}: AcceptAllPayload, con
     batch.set(globalHistoryRef, generateGlobalHistory(lesson, historyAttendees), {merge: true});
 
     // remove users from lessons
-    const lessonRef = db.collection("lessons").doc(lessonId);
+    const lessonRef = db.collection(`lesson_instances/${lesson.date}/instances`).doc(lessonId);
     batch.update(lessonRef, {
+        "acceptedAttendees": admin.firestore.FieldValue.arrayUnion(...attendees),
         "attendees": admin.firestore.FieldValue.delete()
     });
 

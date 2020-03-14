@@ -43,6 +43,7 @@ class _RegistryControlsState extends State<RegistryControls> {
         var onPressUnregisterClass = () {
           registryBloc.add(Unregister(
             lessonId: currentLesson.id,
+            date: currentLesson.date,
             attendee: Attendee.fromUser(currentUser),
           ));
         };
@@ -50,6 +51,7 @@ class _RegistryControlsState extends State<RegistryControls> {
         var onPressRegisterClass = () {
           registryBloc.add(Register(
             lessonId: currentLesson.id,
+            date: currentLesson.date,
             attendee: Attendee.fromUser(currentUser),
           ));
         };

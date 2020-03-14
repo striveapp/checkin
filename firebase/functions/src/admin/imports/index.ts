@@ -29,7 +29,7 @@ const generateLessonForDay = (day: Date) => {
             };
             const documentRef = db.collection("lesson_instances")
                 .doc(dateISO)
-                .collection("instances").doc();
+                .collection("instances").doc(lessonTemplate.id);
             batch.set(documentRef, lessonInstance)
         });
         return batch.commit();

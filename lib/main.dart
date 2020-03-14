@@ -9,7 +9,7 @@ import 'package:checkin/src/repositories/auth_repository.dart';
 import 'package:checkin/src/repositories/lesson_repository.dart';
 import 'package:checkin/src/repositories/user_repository.dart';
 import 'package:checkin/src/repositories/version_repository.dart';
-import 'package:checkin/src/resources/lesson_provider.dart';
+import 'package:checkin/src/resources/lesson_instances_provider.dart';
 import 'package:checkin/src/routes/application.dart';
 import 'package:checkin/src/routes/routes.dart';
 import 'package:checkin/src/simple_bloc_delegate.dart';
@@ -45,7 +45,7 @@ void main() {
         providers: [
           RepositoryProvider<LessonRepository>(
             create: (context) {
-              return LessonProvider();
+              return LessonInstancesProvider();
             },
           ),
           RepositoryProvider<LessonApi>(

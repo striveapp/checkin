@@ -27,7 +27,7 @@ class LessonCard extends StatelessWidget {
             margin: EdgeInsets.symmetric(horizontal: 20),
             child: InkWell(
               onTap: () {
-                Navigator.of(context).pushNamed("registry/${lesson.id}");
+                Navigator.of(context).pushNamed("registry/${lesson.date}/${lesson.id}");
               },
               child: Padding(
                 padding:

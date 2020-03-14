@@ -9,6 +9,7 @@ import 'package:flutter_bloc/flutter_bloc.dart';
 
 class RegistryHandler extends Handler implements RegisterableHandler {
   static final String lessonId = "lessonId";
+  static final String date = "date";
 
   void registerRoute(Router router) {
     router.define(route, handler: this);
@@ -25,9 +26,9 @@ class RegistryHandler extends Handler implements RegisterableHandler {
             authBloc: BlocProvider.of<AuthBloc>(context),
           );
         },
-      child: RegistryPage(lessonId: params[lessonId][0]),
+      child: RegistryPage(lessonId: params[lessonId][0], date: params[date][0]),
     );
   };
 
-  String get route => "registry/:$lessonId";
+  String get route => "registry/:$date/:$lessonId";
 }

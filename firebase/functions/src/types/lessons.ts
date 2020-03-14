@@ -14,6 +14,7 @@ export type Master = {
 
 export type LessonDetails = {
   id: string,
+  date: string,
   name: string,
   timeStart: string,
   timeEnd: string,

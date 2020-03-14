@@ -60,7 +60,7 @@ void main() {
       mockLessonRepository = MockLessonRepository();
       mockLessonApi = MockLessonApi();
       mockUserBloc = MockUserBloc();
-      when(mockLessonRepository.getLesson(fakeLesson.id)).thenAnswer((_) {
+      when(mockLessonRepository.getLesson(fakeLesson.date, fakeLesson.id)).thenAnswer((_) {
         return lessonStreamCtrl.stream;
       });
       lessonStreamCtrl.add(fakeLesson);
@@ -68,6 +68,7 @@ void main() {
           Stream.fromIterable([UserSuccess(currentUser: fakeUser)]));
       registryBloc = RegistryBloc(
         lessonId: fakeLesson.id,
+        date: fakeLesson.date,
         lessonRepository: mockLessonRepository,
         lessonApi: mockLessonApi,
         userBloc: mockUserBloc,
@@ -140,17 +141,17 @@ void main() {
           RegistryLoaded(currentUser: fakeUser, currentLesson: fakeLesson),
         ];
 
-        when(mockLessonRepository.register(fakeLesson.id, fakeAttendee)).thenAnswer((_) {
+        when(mockLessonRepository.register(fakeLesson.date, fakeLesson.id, fakeAttendee)).thenAnswer((_) {
           lessonStreamCtrl.add(fakeLesson);
           return Future.value(null);
         });
 
-        registryBloc.add(Register(lessonId: fakeLesson.id, attendee: fakeAttendee));
+        registryBloc.add(Register(date: fakeLesson.date, lessonId: fakeLesson.id, attendee: fakeAttendee));
         await expectLater(
           registryBloc,
           emitsInOrder(expectedState),
         );
-        verify(mockLessonRepository.register(fakeLesson.id, fakeAttendee));
+        verify(mockLessonRepository.register(fakeLesson.date, fakeLesson.id, fakeAttendee));
       });
     });
 
@@ -170,17 +171,17 @@ void main() {
           RegistryLoaded(currentUser: fakeUser, currentLesson: fakeLesson),
         ];
 
-        when(mockLessonRepository.unregister(fakeLesson.id, fakeAttendee)).thenAnswer((_) {
+        when(mockLessonRepository.unregister(fakeLesson.date, fakeLesson.id, fakeAttendee)).thenAnswer((_) {
           lessonStreamCtrl.add(fakeLesson);
           return Future.value(null);
         });
 
-        registryBloc.add(Unregister(lessonId: fakeLesson.id, attendee: fakeAttendee));
+        registryBloc.add(Unregister(date: fakeLesson.date, lessonId: fakeLesson.id, attendee: fakeAttendee));
         await expectLater(
           registryBloc,
           emitsInOrder(expectedState),
         );
-        verify(mockLessonRepository.unregister(fakeLesson.id, fakeAttendee));
+        verify(mockLessonRepository.unregister(fakeLesson.date, fakeLesson.id, fakeAttendee));
       });
     });
   });

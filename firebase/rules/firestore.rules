@@ -47,6 +47,10 @@ service cloud.firestore {
       allow read, write: if isLoggedUser(request.auth.token.email);
     }
 
+    match /lesson_instances/{date}/instances/{id} {
+      allow read, write: if isLoggedUser(request.auth.token.email);
+    }
+
     match /users_history/{email} {
       allow read: if true;
     }

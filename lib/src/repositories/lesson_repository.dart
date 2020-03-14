@@ -8,9 +8,9 @@ abstract class LessonRepository {
 
   Stream<List<Lesson>> getLessonsForDay(DateTime day);
 
-  Stream<Lesson> getLesson(String lessonId);
+  Stream<Lesson> getLesson(String date, String lessonId);
 
-  Future<void> register(String lessonId, Attendee attendee);
+  Future<void> register(String date, String lessonId, Attendee attendee);
 
-  Future<void> unregister(String lessonId, Attendee attendee);
+  Future<void> unregister(String date, String lessonId, Attendee attendee);
 }
