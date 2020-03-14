@@ -1,12 +1,15 @@
 import 'dart:async';
 
 import 'package:bloc/bloc.dart';
+import 'package:checkin/src/api/api.dart';
 import 'package:checkin/src/blocs/auth/bloc.dart';
-import 'package:checkin/src/blocs/version/bloc.dart';
 import 'package:checkin/src/blocs/dynamic_link/bloc.dart';
+import 'package:checkin/src/blocs/version/bloc.dart';
 import 'package:checkin/src/repositories/auth_repository.dart';
+import 'package:checkin/src/repositories/lesson_repository.dart';
 import 'package:checkin/src/repositories/user_repository.dart';
 import 'package:checkin/src/repositories/version_repository.dart';
+import 'package:checkin/src/resources/lesson_provider.dart';
 import 'package:checkin/src/routes/application.dart';
 import 'package:checkin/src/routes/routes.dart';
 import 'package:checkin/src/simple_bloc_delegate.dart';
@@ -36,22 +39,37 @@ void main() {
   final FirebaseDynamicLinks dynamicLinks = FirebaseDynamicLinks.instance;
 
   runZoned<Future<void>>(() async {
+
     runApp(
-      MultiBlocProvider(
+      MultiRepositoryProvider(
         providers: [
-          BlocProvider<AuthBloc>(
-            create: (context) =>
-                AuthBloc(authRepository: authRepository)..add(AppStarted()),
+          RepositoryProvider<LessonRepository>(
+            create: (context) {
+              return LessonProvider();
+            },
           ),
-          BlocProvider<DynamicLinkBloc>(
-            create: (context) => DynamicLinkBloc(dynamicLinks: dynamicLinks)..add(DeepLinkSetup()),
+          RepositoryProvider<LessonApi>(
+            create: (context) {
+              return LessonApi();
+            },
           ),
-          BlocProvider<VersionBloc>(
-            create: (context) => VersionBloc(versionRepository: VersionRepository())),
         ],
-        child: App(
-          userRepository: userRepository,
-          authRepository: authRepository,
+        child: MultiBlocProvider(
+          providers: [
+            BlocProvider<AuthBloc>(
+              create: (context) =>
+                  AuthBloc(authRepository: authRepository)..add(AppStarted()),
+            ),
+            BlocProvider<DynamicLinkBloc>(
+              create: (context) => DynamicLinkBloc(dynamicLinks: dynamicLinks)..add(DeepLinkSetup()),
+            ),
+            BlocProvider<VersionBloc>(
+              create: (context) => VersionBloc(versionRepository: VersionRepository())),
+          ],
+          child: App(
+            userRepository: userRepository,
+            authRepository: authRepository,
+          ),
         ),
       ),
     );

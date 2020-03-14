@@ -1,6 +1,7 @@
 import 'dart:async';
 
 import 'package:bloc/bloc.dart';
+import 'package:checkin/src/api/api.dart';
 import 'package:checkin/src/blocs/user/bloc.dart';
 import 'package:checkin/src/models/lesson.dart';
 import 'package:checkin/src/repositories/lesson_repository.dart';
@@ -11,6 +12,7 @@ import 'bloc.dart';
 
 class RegistryBloc extends Bloc<RegistryEvent, RegistryState> {
   final LessonRepository lessonRepository;
+  final LessonApi lessonApi;
   final UserBloc userBloc;
   final String lessonId;
   StreamSubscription<Lesson> registrySub;
@@ -19,6 +21,7 @@ class RegistryBloc extends Bloc<RegistryEvent, RegistryState> {
   RegistryBloc({
     @required this.lessonId,
     @required this.lessonRepository,
+    @required this.lessonApi,
     @required this.userBloc,
   }) {
     this.userBloc.listen((userState) {
@@ -50,7 +53,7 @@ class RegistryBloc extends Bloc<RegistryEvent, RegistryState> {
     if (event is ConfirmAttendees) {
       try {
         yield RegistryLoading();
-        await this.lessonRepository.acceptAll(event.lesson);
+        await this.lessonApi.acceptAll(event.lesson);
       } catch (e) {
         print(e);
       }

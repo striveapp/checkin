@@ -114,7 +114,7 @@ void main() {
         when(mockLessonRepository.getLessonsForToday()).thenAnswer((_) {
           return Stream<List<Lesson>>.value(lessons);
         });
-        when(mockLessonRepository.getLessonForDay(selectedDay)).thenAnswer((_) {
+        when(mockLessonRepository.getLessonsForDay(selectedDay)).thenAnswer((_) {
           return Stream<List<Lesson>>.value(newLessons);
         });
         lessonsBloc = LessonsBloc(lessonRepository: mockLessonRepository);

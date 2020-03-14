@@ -42,7 +42,7 @@ class LessonsBloc extends Bloc<LessonsEvent, LessonsState> {
     if (event is LoadLessons) {
       lessonsSub?.cancel();
 
-      lessonsSub = this.lessonRepository.getLessonForDay(event.selectedDay).listen((lessons) {
+      lessonsSub = this.lessonRepository.getLessonsForDay(event.selectedDay).listen((lessons) {
         add(LessonsUpdated(lessons: lessons));
       });
     }

@@ -1,6 +1,7 @@
 import 'dart:async';
 
 import 'package:bloc_test/bloc_test.dart';
+import 'package:checkin/src/api/api.dart';
 import 'package:checkin/src/blocs/registry/bloc.dart';
 import 'package:checkin/src/blocs/user/bloc.dart';
 import 'package:checkin/src/models/attendee.dart';
@@ -12,13 +13,14 @@ import 'package:mockito/mockito.dart';
 import 'package:test/test.dart';
 
 class MockLessonRepository extends Mock implements LessonRepository {}
-
+class MockLessonApi extends Mock implements LessonApi {}
 class MockUserBloc extends Mock implements UserBloc {}
 
 void main() {
   group("RegistryBloc", () {
     RegistryBloc registryBloc;
     MockUserBloc mockUserBloc;
+    MockLessonApi mockLessonApi;
 
     MockLessonRepository mockLessonRepository;
 
@@ -56,6 +58,7 @@ void main() {
     setUp(() {
       lessonStreamCtrl = StreamController<Lesson>();
       mockLessonRepository = MockLessonRepository();
+      mockLessonApi = MockLessonApi();
       mockUserBloc = MockUserBloc();
       when(mockLessonRepository.getLesson(fakeLesson.id)).thenAnswer((_) {
         return lessonStreamCtrl.stream;
@@ -66,6 +69,7 @@ void main() {
       registryBloc = RegistryBloc(
         lessonId: fakeLesson.id,
         lessonRepository: mockLessonRepository,
+        lessonApi: mockLessonApi,
         userBloc: mockUserBloc,
       );
     });
@@ -106,7 +110,7 @@ void main() {
           RegistryLoaded(currentUser: fakeUser, currentLesson: fakeLesson),
         ];
 
-        when(mockLessonRepository.acceptAll(fakeLesson)).thenAnswer((_) {
+        when(mockLessonApi.acceptAll(fakeLesson)).thenAnswer((_) {
           lessonStreamCtrl.add(fakeLesson);
           return Future.value(null);
         });
@@ -116,7 +120,7 @@ void main() {
           registryBloc,
           emitsInOrder(expectedState),
         );
-        verify(mockLessonRepository.acceptAll(fakeLesson));
+        verify(mockLessonApi.acceptAll(fakeLesson));
       });
     });
 
