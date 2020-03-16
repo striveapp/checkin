@@ -39,19 +39,14 @@ void main() {
   final FirebaseDynamicLinks dynamicLinks = FirebaseDynamicLinks.instance;
 
   runZoned<Future<void>>(() async {
-
     runApp(
       MultiRepositoryProvider(
         providers: [
           RepositoryProvider<LessonRepository>(
-            create: (context) {
-              return LessonInstancesProvider();
-            },
+            create: (context) => LessonInstancesProvider(),
           ),
           RepositoryProvider<LessonApi>(
-            create: (context) {
-              return LessonApi();
-            },
+            create: (context) => LessonApi(),
           ),
         ],
         child: MultiBlocProvider(
@@ -61,10 +56,12 @@ void main() {
                   AuthBloc(authRepository: authRepository)..add(AppStarted()),
             ),
             BlocProvider<DynamicLinkBloc>(
-              create: (context) => DynamicLinkBloc(dynamicLinks: dynamicLinks)..add(DeepLinkSetup()),
+              create: (context) => DynamicLinkBloc(dynamicLinks: dynamicLinks)
+                ..add(DeepLinkSetup()),
             ),
             BlocProvider<VersionBloc>(
-              create: (context) => VersionBloc(versionRepository: VersionRepository())),
+                create: (context) =>
+                    VersionBloc(versionRepository: VersionRepository())),
           ],
           child: App(
             userRepository: userRepository,
