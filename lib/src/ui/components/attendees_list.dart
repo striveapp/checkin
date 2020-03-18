@@ -113,7 +113,7 @@ class _AttendeesListState extends State<AttendeesList> {
   }
 
   bool _isUserInClass(Lesson currentLesson, User currentUser) {
-    return currentLesson.containsUser(currentUser.email);
+    return currentLesson.isUserRegistered(currentUser.email);
   }
 
   bool _isClassEmpty(Lesson currentLesson) {

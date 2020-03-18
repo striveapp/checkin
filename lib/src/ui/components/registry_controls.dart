@@ -7,9 +7,10 @@ import 'package:checkin/src/ui/components/registry_button.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 
-class RegistryControls extends StatefulWidget {
-  final User currentUser;
+class RegistryControls extends StatelessWidget {
+  final VoidCallback disabledButton = null;
   final Lesson currentLesson;
+  final User currentUser;
   static const String unregisterClass = 'Unregister from class';
   static const String registerClass = 'Register to class';
   static const String acceptAll = 'Accept all';
@@ -21,71 +22,60 @@ class RegistryControls extends StatefulWidget {
   }) : super(key: key);
 
   @override
-  _RegistryControlsState createState() => _RegistryControlsState();
-}
-
-class _RegistryControlsState extends State<RegistryControls> {
-  RegistryBloc registryBloc;
-
-  @override
-  void initState() {
-    registryBloc = BlocProvider.of<RegistryBloc>(context);
-    super.initState();
-  }
-
-  @override
   Widget build(BuildContext context) {
-    return BlocBuilder<RegistryBloc, RegistryState>(
-      builder: (BuildContext context, RegistryState state) {
-        var currentLesson = widget.currentLesson;
-        var currentUser = widget.currentUser;
+    VoidCallback onPressUnregisterClass = () {
+      BlocProvider.of<RegistryBloc>(context).add(Unregister(
+        lessonId: this.currentLesson.id,
+        date: currentLesson.date,
+        attendee: Attendee.fromUser(currentUser),
+      ));
+    };
 
-        var onPressUnregisterClass = () {
-          registryBloc.add(Unregister(
-            lessonId: currentLesson.id,
-            date: currentLesson.date,
-            attendee: Attendee.fromUser(currentUser),
-          ));
-        };
+    VoidCallback onPressRegisterClass = () {
+      BlocProvider.of<RegistryBloc>(context).add(Register(
+        lessonId: currentLesson.id,
+        date: currentLesson.date,
+        attendee: Attendee.fromUser(currentUser),
+      ));
+    };
 
-        var onPressRegisterClass = () {
-          registryBloc.add(Register(
-            lessonId: currentLesson.id,
-            date: currentLesson.date,
-            attendee: Attendee.fromUser(currentUser),
-          ));
-        };
+    VoidCallback onPressAcceptAll = () {
+      return !_isClassEmpty(currentLesson)
+          ? () {
+        BlocProvider.of<RegistryBloc>(context).add(ConfirmAttendees(lesson: currentLesson));
+      } : disabledButton;
+    };
 
-        var onPressAcceptAll = !_isClassEmpty(currentLesson)
-            ? () {
-                registryBloc.add(ConfirmAttendees(lesson: currentLesson));
-              }
-            : null;
+    if(currentUser.isOwner) {
+      return RegistryButton(
+        key: Key('acceptAll'),
+        onPressed: onPressAcceptAll,
+        text: RegistryControls.acceptAll.i18n,
+      );
+    }
 
-        return currentUser.isOwner
-            ? RegistryButton(
-                key: Key('acceptAll'),
-                onPressed: onPressAcceptAll,
-                text: RegistryControls.acceptAll.i18n,
-              )
-            : (_isUserInClass(currentLesson, currentUser)
-                ? RegistryButton(
-                    key: Key('unregisterClass'),
-                    text: RegistryControls.unregisterClass.i18n,
-                    color: Theme.of(context).buttonTheme.colorScheme.error,
-                    onPressed: onPressUnregisterClass,
-                  )
-                : RegistryButton(
-                    key: Key('registerClass'),
-                    text: RegistryControls.registerClass.i18n,
-                    onPressed: onPressRegisterClass,
-                  ));
-      },
+    if( currentLesson.isUserAccepted(currentUser.email)) {
+      return RegistryButton(
+        key: Key('acceptedInClass'),
+        text: RegistryControls.registerClass.i18n,
+        onPressed: disabledButton,
+      );
+    }
+
+    if(currentLesson.isUserRegistered(currentUser.email)) {
+      return RegistryButton(
+        key: Key('unregisterClass'),
+        text: RegistryControls.unregisterClass.i18n,
+        color: Theme.of(context).buttonTheme.colorScheme.error,
+        onPressed: onPressUnregisterClass,
+      );
+    }
+
+    return RegistryButton(
+      key: Key('registerClass'),
+      text: RegistryControls.registerClass.i18n,
+      onPressed: onPressRegisterClass,
     );
-  }
-
-  bool _isUserInClass(Lesson currentLesson, User currentUser) {
-    return currentLesson.containsUser(currentUser.email);
   }
 
   bool _isClassEmpty(Lesson currentLesson) {
