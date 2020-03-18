@@ -57,24 +57,18 @@ class RegistryPage extends StatelessWidget {
                 child: Column(
                     mainAxisAlignment: MainAxisAlignment.spaceAround,
                     children: [
-                      LessonInfos(
-                        lesson: currentLesson,
-                      ),
+                      LessonInfos(),
                       Column(
                         mainAxisAlignment: MainAxisAlignment.spaceAround,
                         children: <Widget>[
                           Padding(
                             padding: EdgeInsets.symmetric(horizontal: 5),
-                            child: AttendeesCounter(
-                                attendees: currentLesson.attendees),
+                            child: AttendeesCounter(),
                           ),
                           SizedBox(
                             height: 10,
                           ),
-                          AttendeesList(
-                            currentUser: currentUser,
-                            currentLesson: currentLesson,
-                          ),
+                          AttendeesList(),
                           SizedBox(
                             height: 20,
                           ),

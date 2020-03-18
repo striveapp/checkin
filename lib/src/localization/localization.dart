@@ -100,6 +100,9 @@ extension Localization on String {
   } + {
     'en': AttendeesCounter.full,
     'es': 'lleno',
+  }  + {
+    'en': AttendeesCounter.attendees,
+    'es': 'Participantes',
   } + {
     'en': AttendeeTile.you,
     'es': 'Tú',
