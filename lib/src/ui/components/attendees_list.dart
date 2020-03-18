@@ -49,6 +49,7 @@ class AttendeesList extends StatelessWidget {
                                 AttendeeTile(
                                   attendee: Attendee.fromUser(currentUser),
                                   isCurrent: true,
+                                  isAccepted: currentLesson.isUserAccepted(currentUser.email)
                                 ),
                                 Divider()
                               ],
@@ -79,8 +80,9 @@ class AttendeesList extends StatelessWidget {
                                                   context);
                                             },
                                             child: AttendeeTile(
+                                                isAccepted: currentLesson.isUserAccepted(attendee.email),
                                                 attendee: attendee))
-                                        : AttendeeTile(attendee: attendee);
+                                        : AttendeeTile(attendee: attendee, isAccepted: currentLesson.isUserAccepted(attendee.email));
                                   }
                                   return null;
                                 }),
@@ -96,7 +98,7 @@ class AttendeesList extends StatelessWidget {
 
   List<Attendee> _getAttendeeListWithoutCurrentUser(
       Lesson currentLesson, User currentUser) {
-    return currentLesson.attendees
+    return [...currentLesson.attendees, ...currentLesson.acceptedAttendees]
         .where((attendee) => attendee.email != currentUser.email)
         .toList();
   }
@@ -113,10 +115,10 @@ class AttendeesList extends StatelessWidget {
   }
 
   bool _isUserInClass(Lesson currentLesson, User currentUser) {
-    return currentLesson.isUserRegistered(currentUser.email);
+    return currentLesson.isUserRegistered(currentUser.email) || currentLesson.isUserAccepted(currentUser.email);
   }
 
   bool _isClassEmpty(Lesson currentLesson) {
-    return currentLesson.attendees.length == 0;
+    return currentLesson.attendees.length == 0 && currentLesson.acceptedAttendees.length == 0;
   }
 }

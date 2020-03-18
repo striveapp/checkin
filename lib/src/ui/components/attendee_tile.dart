@@ -6,6 +6,7 @@ import 'package:flutter/material.dart';
 class AttendeeTile extends StatelessWidget {
   final Attendee attendee;
   final bool isCurrent;
+  final bool isAccepted;
 
   static const String you = 'You';
 
@@ -13,6 +14,7 @@ class AttendeeTile extends StatelessWidget {
     Key key,
     @required this.attendee,
     this.isCurrent=false,
+    this.isAccepted=false,
   }) : super(key: key);
 
   @override
@@ -36,6 +38,7 @@ class AttendeeTile extends StatelessWidget {
                   Theme.of(context).textTheme.headline3
               ),
             ),
+            trailing: Icon(_getTrailingIcon(), color: Theme.of(context).accentColor),
             onTap: () async {
               debugPrint("User tapped on ${attendee.name}");
               Navigator.of(context).pushNamed('stats/${attendee.email}');
@@ -44,5 +47,13 @@ class AttendeeTile extends StatelessWidget {
         ),
       ],
     );
+  }
+
+  _getTrailingIcon() {
+    if(this.isAccepted) {
+      return Icons.check_circle;
+    }
+
+    return Icons.radio_button_unchecked;
   }
 }

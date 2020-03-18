@@ -18,15 +18,17 @@ class AttendeesCounter extends StatelessWidget {
         }
 
         if (state is RegistryLoaded) {
+          var allAttendees = [...state.currentLesson.attendees, ...state.currentLesson.acceptedAttendees];
+
           return Row(
             mainAxisAlignment: MainAxisAlignment.spaceBetween,
             crossAxisAlignment: CrossAxisAlignment.center,
             children: <Widget>[
               Text(
-                "${attendees.i18n} (${state.currentLesson.attendees.length})",
+                "${attendees.i18n} (${allAttendees.length})",
                 style: Theme.of(context).textTheme.headline2,
               ),
-              Text("${_getFullPercentage(state.currentLesson.attendees.length)} ${full.i18n}",
+              Text("${_getFullPercentage(allAttendees.length)} ${full.i18n}",
                   style:
                   Theme.of(context).textTheme.headline5.apply(fontWeightDelta: 3))
             ],
