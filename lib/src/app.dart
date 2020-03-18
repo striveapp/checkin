@@ -5,6 +5,7 @@ import 'package:checkin/src/repositories/user_repository.dart';
 import 'package:checkin/src/routes/application.dart';
 import 'package:checkin/src/ui/components/upgrader_dialog.dart';
 import 'package:checkin/src/ui/pages/home_page.dart';
+import 'package:checkin/src/ui/pages/leaderboard_page.dart';
 import 'package:checkin/src/ui/pages/login_page.dart';
 import 'package:checkin/src/ui/pages/splash_page.dart';
 import 'package:checkin/src/ui/pages/stats_page.dart';
@@ -34,7 +35,6 @@ class App extends StatelessWidget {
     return MaterialApp(
       debugShowCheckedModeBanner: false,
       localizationsDelegates: [
-        // todo can this be removed?
         GlobalMaterialLocalizations.delegate,
         GlobalWidgetsLocalizations.delegate,
       ],
@@ -138,7 +138,7 @@ class App extends StatelessWidget {
                   authBloc: BlocProvider.of<AuthBloc>(context),
                 ),
                 child: DefaultTabController(
-                    length: 2,
+                    length: 3,
                     child: Scaffold(
                       bottomNavigationBar: Material(
                         color: Colors.black87,
@@ -146,7 +146,7 @@ class App extends StatelessWidget {
                           tabs: <Widget>[
                             Tab(icon: Icon(Icons.home)),
                             Tab(icon: Icon(Icons.insert_chart)),
-//                            Tab(icon: Icon(Icons.star)),
+                            Tab(icon: Icon(Icons.star)),
                           ],
                         ),
                       ),
@@ -157,7 +157,7 @@ class App extends StatelessWidget {
                           StatsPage(
                             userEmail: state.loggedUserEmail,
                           ),
-//                          LeaderboardPage(),
+                          LeaderboardPage(),
                         ],
                       ),
                     )),

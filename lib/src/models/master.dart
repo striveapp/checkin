@@ -9,7 +9,7 @@ part 'master.g.dart';
 class Master extends Equatable {
   final String name;
   final String imageUrl;
-  //TODO: this should not be used here, remove
+  // TODO: we should use some kind of id to perform this check not the email https://trello.com/c/j5sAVRXJ
   final String email;
 
   Master({

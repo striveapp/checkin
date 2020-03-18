@@ -1,6 +1,8 @@
 import 'package:checkin/src/blocs/leaderboard/bloc.dart';
+import 'package:checkin/src/models/user_history.dart';
 import 'package:checkin/src/repositories/stats_repository.dart';
 import 'package:checkin/src/ui/components/base_app_bar.dart';
+import 'package:checkin/src/ui/components/leaderboard/no_leaderboard_banner.dart';
 import 'package:checkin/src/ui/components/leaderboard/podium_header.dart';
 import 'package:checkin/src/ui/components/leaderboard/profile_tile.dart';
 import 'package:checkin/src/ui/components/loading_indicator.dart';
@@ -24,9 +26,12 @@ class LeaderboardPage extends StatelessWidget {
               return LoadingIndicator();
             }
 
-            //TODO: needs a state to handle the case for when you have less than 3 users
+            if(state is LeaderboardNotAvailable) {
+              return NoLeaderboardBanner();
+            }
 
             if (state is LeaderboardLoaded) {
+              List<UserHistory> userHistoryWithoutPodium = state.usersHistory.sublist(3);
               return Column(
                 children: <Widget>[
                   Expanded(flex:1,
@@ -36,17 +41,18 @@ class LeaderboardPage extends StatelessWidget {
                         thirdProfileEmail: state.usersHistory[2].email,
                       )
                   ),
+                  SizedBox(height: 20,),
                   Expanded(
                     flex: 2,
                     child: ListView.builder(
-                        itemCount: state.usersHistory.length,
-                        itemBuilder: (BuildContext context, int index) =>
-                            ProfileTile(
-                              profileEmail: state.usersHistory[index].email,
-                              attendedClasses: state
-                                  .usersHistory[index].attendedLessons.length,
-                              position: index + 1,
-                            )),
+                        itemCount: userHistoryWithoutPodium.length,
+                        itemBuilder: (BuildContext context, int index) {
+                          return ProfileTile(
+                              profileEmail: userHistoryWithoutPodium[index].email,
+                              attendedClasses: userHistoryWithoutPodium[index].attendedLessons.length,
+                              position: index + 4,
+                            );
+                        }),
                   ),
                 ],
               );

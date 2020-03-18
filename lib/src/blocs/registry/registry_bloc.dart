@@ -49,9 +49,6 @@ class RegistryBloc extends Bloc<RegistryEvent, RegistryState> {
       }
     }
 
-    //TODO We should probably change the state when
-    // ConfirmAttendees, Register and Unregister got dispatched
-    // and remove logic from the UI
     if (event is ConfirmAttendees) {
       try {
         yield RegistryLoading();

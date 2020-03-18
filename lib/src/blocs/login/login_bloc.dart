@@ -38,7 +38,7 @@ class LoginBloc extends Bloc<LoginEvent, LoginState> {
       }
     }
 
-    //TODO: We put this because we have no way to test google auth for now.
+    //TODO: We put this because we have no way to test google auth for now. https://trello.com/c/I4PenA6Y
     if (event is LoginWithTestUser) {
       yield LoginLoading();
       final testUser1 = await _authRepository.loginWithTestUser(test: 1);

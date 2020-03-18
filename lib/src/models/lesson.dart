@@ -39,7 +39,7 @@ class Lesson extends Equatable {
   }
 
   bool containsUser(String email) {
-    // todo: we should use some kind of id to perform this check not the email
+    // TODO: we should use some kind of id to perform this check not the email https://trello.com/c/j5sAVRXJ
     if (attendees == null) {
       return false;
     }

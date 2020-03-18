@@ -7,6 +7,7 @@ import 'package:checkin/src/ui/components/attendees_preview.dart';
 import 'package:checkin/src/ui/components/class_counter.dart';
 import 'package:checkin/src/ui/components/google_sign_in_button.dart';
 import 'package:checkin/src/ui/components/grade_card.dart';
+import 'package:checkin/src/ui/components/leaderboard/no_leaderboard_banner.dart';
 import 'package:checkin/src/ui/components/lesson_infos.dart';
 import 'package:checkin/src/ui/components/mat_time_counter.dart';
 import 'package:checkin/src/ui/components/membership/active_membership.dart';
@@ -226,10 +227,13 @@ extension Localization on String {
     'es': 'Cinturón %s'
   } + {
     'en': UpgraderDialog.update,
-    'es': 'Actualizar' // todo nerd check this
+    'es': 'Actualizar'
   } + {
     'en': UpgraderDialog.versionNotSupported,
-    'es': 'La versión actual de esta aplicación ya no es compatible\n\nPor favor actualice ahora' // todo nerd check this
+    'es': 'La versión actual de esta aplicación ya no es compatible\n\nPor favor actualice ahora'
+  } + {
+    'en': NoLeaderboardBanner.noLeaderboard,
+    'es': 'El leaderboard no està disponible todavia'
   };
 
 String get i18n => localize(this, _t);

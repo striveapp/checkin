@@ -27,7 +27,11 @@ class LeaderboardBloc extends Bloc<LeaderboardEvent, LeaderboardState> {
   @override
   Stream<LeaderboardState> mapEventToState(LeaderboardEvent event) async* {
     if (event is LeaderboardUpdated) {
-      yield LeaderboardLoaded(usersHistory: _getSortedUsers(event.usersHistory));
+      if(event.usersHistory.length >= 3) {
+        yield LeaderboardLoaded(usersHistory: _getSortedUsers(event.usersHistory));
+      } else {
+        yield LeaderboardNotAvailable();
+      }
     }
   }
 

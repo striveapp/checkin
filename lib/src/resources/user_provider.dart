@@ -19,7 +19,7 @@ class UserProvider {
             email: user.data['email'],
             imageUrl: user.data['imageUrl'],
             counter: user.data['counter'] ?? 0,
-            // TODO: remove rank when all users have grade
+            // TODO: remove rank when all users have grade https://trello.com/c/d26R05mY
             grade:
                 ((user.data['grade'] ?? user.data['rank']) as String).toGrade(),
             isOwner: user.data['isOwner'] ?? false,
@@ -35,7 +35,7 @@ class UserProvider {
                 email: doc.data['email'],
                 imageUrl: doc.data['imageUrl'],
                 counter: doc.data['counter'] ?? 0,
-                // TODO: remove rank when all users have grade
+                // TODO: remove rank when all users have grade https://trello.com/c/d26R05mY
                 grade: ((doc.data['grade'] ?? doc.data['rank']) as String)
                     .toGrade(),
                 isOwner: doc.data['isOwner'] ?? false,

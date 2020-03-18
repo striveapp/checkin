@@ -10,7 +10,7 @@ import 'package:intl/intl.dart';
 class LessonProvider implements LessonRepository {
   static const String path = 'lessons';
 
-  //TODO: use only a single instance of firestore
+  //TODO: use only a single instance of firestore https://trello.com/c/LZ79VvWa
   Firestore _firestore = Firestore.instance;
 
   String _formatDate(DateTime day) => DateFormat('EEEE', 'en_US').format(day);

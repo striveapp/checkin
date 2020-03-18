@@ -20,7 +20,7 @@ class DynamicLinkUtil {
   }
 
   Future<String> getLink({String lessonId}) async {
-    //TODO: this should change into something more personalized (maybe flutter web?)
+    //TODO: this should change into something more personalized (maybe flutter web?) https://trello.com/c/nyvDNHuR
     Uri link = Uri.parse('https://example.com/registry/$lessonId');
 
     DynamicLinkParameters parameters = _getParameters(link);

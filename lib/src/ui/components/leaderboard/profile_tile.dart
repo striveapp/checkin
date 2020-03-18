@@ -1,7 +1,6 @@
 import 'package:checkin/src/blocs/profile/bloc.dart';
 import 'package:checkin/src/blocs/user/bloc.dart';
 import 'package:checkin/src/repositories/user_repository.dart';
-import 'package:checkin/src/ui/components/loading_indicator.dart';
 import 'package:checkin/src/localization/localization.dart';
 import 'package:checkin/src/ui/components/user_image.dart';
 import 'package:flutter/material.dart';
@@ -26,65 +25,69 @@ class ProfileTile extends StatelessWidget {
             nonCurrentUserEmail: profileEmail),
         builder: (BuildContext context, ProfileState state) {
           if (state is ProfileSuccess) {
-            return Column(
-              children: <Widget>[
-                ListTile(
-                  onTap: () {
-                    Navigator.of(context)
-                        .pushNamed('stats/${state.profileUser.email}');
-                  },
-                  leading: Text(
-                    _getOrdinal(position),
-                    style: Theme.of(context).textTheme.headline2,
+            return Padding(
+              padding: const EdgeInsets.symmetric(vertical: 3),
+              child: Column(
+                children: <Widget>[
+                  ListTile(
+                    onTap: () {
+                      Navigator.of(context)
+                          .pushNamed('stats/${state.profileUser.email}');
+                    },
+                    leading: Text(
+                      _getOrdinal(position),
+                      style: Theme.of(context).textTheme.headline2,
+                    ),
+                    title: Row(
+                      children: <Widget>[
+                        UserImage(
+                          userImage: state.profileUser.imageUrl,
+                          width: 40,
+                          height: 40,
+                        ),
+                        SizedBox(
+                          width: 15,
+                        ),
+                        Column(
+                          crossAxisAlignment: CrossAxisAlignment.start,
+                          children: <Widget>[
+                            Text(
+                              state.profileUser.name,
+                              style: Theme.of(context)
+                                  .textTheme
+                                  .bodyText1
+                                  .apply(fontWeightDelta: 2),
+                            ),
+                            SizedBox(
+                              height: 2.5,
+                            ),
+                            Text(
+                              beltColor.i18n
+                                  .fill([state.profileUser.grade.name.i18n]),
+                              style: Theme.of(context).textTheme.bodyText1,
+                            ),
+                          ],
+                        ),
+                      ],
+                    ),
+                    trailing: Text(
+                      attendedClasses.toString(),
+                      style: Theme.of(context)
+                          .textTheme
+                          .headline2
+                          .apply(color: Theme.of(context).accentColor),
+                    ),
                   ),
-                  title: Row(
-                    children: <Widget>[
-                      UserImage(
-                        userImage: state.profileUser.imageUrl,
-                        width: 40,
-                        height: 40,
-                      ),
-                      SizedBox(
-                        width: 15,
-                      ),
-                      Column(
-                        crossAxisAlignment: CrossAxisAlignment.start,
-                        children: <Widget>[
-                          Text(
-                            state.profileUser.name,
-                            style: Theme.of(context)
-                                .textTheme
-                                .bodyText1
-                                .apply(fontWeightDelta: 2),
-                          ),
-                          SizedBox(
-                            height: 2.5,
-                          ),
-                          Text(
-                            beltColor.i18n
-                                .fill([state.profileUser.grade.name.i18n]),
-                            style: Theme.of(context).textTheme.bodyText1,
-                          ),
-                        ],
-                      ),
-                    ],
+                  Divider(
+                    height: 0,
+                    thickness: 1,
                   ),
-                  trailing: Text(
-                    attendedClasses.toString(),
-                    style: Theme.of(context)
-                        .textTheme
-                        .headline2
-                        .apply(color: Theme.of(context).accentColor),
-                  ),
-                ),
-                Divider(
-                  thickness: 1,
-                ),
-              ],
+                ],
+              ),
             );
           }
           //TODO: this can be improved to use List tile with placeholders
-          return LoadingIndicator();
+          return ListTile();
         },
       );
 

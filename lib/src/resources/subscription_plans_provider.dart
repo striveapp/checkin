@@ -4,7 +4,7 @@ import 'package:cloud_firestore/cloud_firestore.dart';
 class SubscriptionPlansProvider {
   static const String path = 'subscription_plans';
 
-  //TODO: use only a single instance of firestore
+  //TODO: use only a single instance of firestore https://trello.com/c/LZ79VvWa
   Firestore _firestore = Firestore.instance;
 
   Stream<List<SubscriptionPlan>> getPlans() {

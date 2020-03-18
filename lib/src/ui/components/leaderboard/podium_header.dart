@@ -6,7 +6,12 @@ class PodiumHeader extends StatelessWidget {
   final String secondProfileEmail;
   final String thirdProfileEmail;
 
-  const PodiumHeader({Key key, this.firstProfileEmail, this.secondProfileEmail, this.thirdProfileEmail}) : super(key: key);
+  const PodiumHeader(
+      {Key key,
+      this.firstProfileEmail,
+      this.secondProfileEmail,
+      this.thirdProfileEmail})
+      : super(key: key);
 
   @override
   Widget build(BuildContext context) {
@@ -15,17 +20,37 @@ class PodiumHeader extends StatelessWidget {
       child: Row(
         mainAxisAlignment: MainAxisAlignment.spaceAround,
         children: <Widget>[
-          Padding(
-            padding: const EdgeInsets.only(top: 60),
-            child: PodiumProfile(position: 2, profileEmail: secondProfileEmail,),
+          Flexible(
+            flex: 1,
+            child: Padding(
+              padding: const EdgeInsets.only(top: 60),
+              child: PodiumProfile(
+                position: 2,
+                profileEmail: secondProfileEmail,
+                color: Color(0xffC0C0C0),
+              ),
+            ),
           ),
-          Padding(
-            padding: const EdgeInsets.only(top: 20),
-            child: PodiumProfile(position: 1, profileEmail: firstProfileEmail,),
+          Flexible(
+            flex: 2,
+            child: Padding(
+              padding: const EdgeInsets.only(top: 20),
+              child: PodiumProfile(
+                position: 1,
+                profileEmail: firstProfileEmail,
+                color: Color(0xeeCFB53B),
+              ),
+            ),
           ),
-          Padding(
-            padding: const EdgeInsets.only(top: 60),
-            child: PodiumProfile(position: 3, profileEmail: thirdProfileEmail,),
+          Flexible(
+            flex: 1,
+            child: Padding(
+              padding: const EdgeInsets.only(top: 60),
+              child: PodiumProfile(
+                  position: 3,
+                  profileEmail: thirdProfileEmail,
+                  color: Color(0xeecd7f32)),
+            ),
           ),
         ],
       ),

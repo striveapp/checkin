@@ -11,7 +11,7 @@ class Attendee extends Equatable {
   final String name;
   final Grade grade;
   final String imageUrl;
-  //TODO: this should not be used here, remove ASAP
+  // TODO: we should use some kind of id to perform this check not the email https://trello.com/c/j5sAVRXJ
   final String email;
 
   Attendee({
