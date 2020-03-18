@@ -4,7 +4,6 @@ import 'package:checkin/src/ui/components/attended_lessons_list.dart';
 import 'package:checkin/src/ui/components/attendee_tile.dart';
 import 'package:checkin/src/ui/components/attendees_counter.dart';
 import 'package:checkin/src/ui/components/attendees_preview.dart';
-import 'package:checkin/src/ui/components/class_counter.dart';
 import 'package:checkin/src/ui/components/google_sign_in_button.dart';
 import 'package:checkin/src/ui/components/grade_card.dart';
 import 'package:checkin/src/ui/components/leaderboard/no_leaderboard_banner.dart';
@@ -159,9 +158,6 @@ extension Localization on String {
   } + {
     'en': GoogleSignInButton.googleSignin,
     'es': 'Acceso con Google',
-  } + {
-    'en': ClassCounter.totalClasses,
-    'es': 'Clases atendidas',
   } + {
     'en': AccountPage.account,
     'es': 'Cuenta',

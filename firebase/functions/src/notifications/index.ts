@@ -12,11 +12,11 @@ const sendNotificationToDevices = (tokens: FirebaseFirestore.DocumentReference[]
     }));
 
 
-export const classCounterIncrementNotification = functions.firestore.document("users/{userEmail}").onUpdate((change, context) => {
+export const classCounterIncrementNotification = functions.firestore.document("users_history/{userEmail}").onUpdate((change, context) => {
     const docBefore = change.before.data() || {};
     const docAfter = change.after.data() || {};
 
-    if (docBefore.counter < docAfter.counter) {
+    if (docBefore.attendedLessons.length < docAfter.attendedLessons.length) {
         console.info("User counter increased, sending notification");
         const userEmail = context.params.userEmail;
 
@@ -30,7 +30,7 @@ export const classCounterIncrementNotification = functions.firestore.document("u
                 },
                 notification: {
                     title: "Class confirmed!",
-                    body: `You attended ${docAfter.counter} classes`,
+                    body: `You attended ${docAfter.attendedLessons.length} classes this year`,
                     clickAction: "FLUTTER_NOTIFICATION_CLICK",
                 }
             };

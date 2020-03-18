@@ -35,10 +35,6 @@ const generateUserHistory = ({attendees, ...lessonWithoutAttendees}: Lesson): Us
     })
 });
 
-const incrementUserCounter = () => ({
-    "counter": admin.firestore.FieldValue.increment(1)
-});
-
 const generateGlobalHistory = ({attendees, ...lessonDetails}: Lesson, historyAttendees: HistoryAttendeesMap): GlobalHistory => ({
     ...lessonDetails,
     totalWeekCounters: {
@@ -81,9 +77,6 @@ export const acceptAll = functions.https.onCall(({lesson}: AcceptAllPayload, con
 
         const userHistoryRef = db.collection("users_history").doc(email);
         batch.set(userHistoryRef, generateUserHistory(lesson), {merge: true});
-
-        const userRef = db.collection("users").doc(email);
-        batch.update(userRef, incrementUserCounter());
     });
 
     // update globalHistory
