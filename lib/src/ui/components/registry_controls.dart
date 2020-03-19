@@ -40,16 +40,13 @@ class RegistryControls extends StatelessWidget {
     };
 
     VoidCallback onPressAcceptAll = () {
-      return !_isClassEmpty(currentLesson)
-          ? () {
-        BlocProvider.of<RegistryBloc>(context).add(ConfirmAttendees(lesson: currentLesson));
-      } : disabledButton;
+      BlocProvider.of<RegistryBloc>(context).add(ConfirmAttendees(lesson: currentLesson));
     };
 
     if(currentUser.isOwner) {
       return RegistryButton(
         key: Key('acceptAll'),
-        onPressed: onPressAcceptAll,
+        onPressed: !_isClassEmpty(currentLesson) ? onPressAcceptAll : disabledButton,
         text: RegistryControls.acceptAll.i18n,
       );
     }
