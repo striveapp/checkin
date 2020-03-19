@@ -22,7 +22,7 @@ import 'package:checkin/src/ui/pages/grade_page.dart';
 import 'package:checkin/src/ui/pages/lessons_page.dart';
 import 'package:checkin/src/ui/pages/payment_success_page.dart';
 import 'package:checkin/src/ui/pages/registry_page.dart';
-import 'package:checkin/src/ui/pages/stats_page.dart';
+import 'package:checkin/src/ui/pages/user_stats_page.dart';
 import 'package:checkin/src/ui/pages/subscriptions_page.dart';
 import 'package:i18n_extension/i18n_extension.dart';
 
@@ -38,7 +38,7 @@ extension Localization on String {
     'en': RegistryPage.registry,
     'es': 'Registro',
   } + {
-    'en': StatsPage.stats,
+    'en': UserStatsPage.stats,
     'es': 'Estadísticas',
   } + {
     'en': constants.WEEK,
