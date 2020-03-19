@@ -1,6 +1,8 @@
 import 'package:bloc_test/bloc_test.dart';
-import 'package:checkin/src/blocs/stats/bloc.dart';
 import 'package:checkin/src/blocs/user/bloc.dart';
+import 'package:checkin/src/blocs/user_stats/user_stats_event.dart';
+import 'package:checkin/src/blocs/user_stats/user_stats_state.dart';
+import 'package:checkin/src/blocs/user_stats/user_stats_bloc.dart';
 import 'package:checkin/src/models/lesson.dart';
 import 'package:checkin/src/models/user.dart';
 import 'package:checkin/src/models/user_history.dart';
@@ -15,7 +17,7 @@ class MockDateUtil extends Mock implements DateUtil {}
 
 void main() {
   group("StatsBloc", () {
-    StatsBloc statsBloc;
+    UserStatsBloc statsBloc;
     MockUserBloc mockUserBloc;
     MockStatsRepository mockStatsRepository;
     MockDateUtil mockDateUtil;
@@ -55,7 +57,7 @@ void main() {
                   attendedLessons: attendedLessons));
         });
 
-        statsBloc = StatsBloc(
+        statsBloc = UserStatsBloc(
             statsRepository: mockStatsRepository, userEmail: loggedUser.email, dateUtil: mockDateUtil);
 
         final expectedState = [
@@ -78,7 +80,7 @@ void main() {
             return Stream<UserHistory>.value(
                 UserHistory(email: "test@test.com", attendedLessons: attendedLessons));
           });
-          statsBloc = StatsBloc(
+          statsBloc = UserStatsBloc(
               statsRepository: mockStatsRepository, userEmail: loggedUser.email, dateUtil: mockDateUtil);
           statsBloc.add(LoadStats(timeSpan: "week"));
         });
@@ -107,7 +109,7 @@ void main() {
                 UserHistory(
                      email: "test@test.com", attendedLessons: attendedLessons));
           });
-          statsBloc = StatsBloc(
+          statsBloc = UserStatsBloc(
               statsRepository: mockStatsRepository, userEmail: loggedUser.email, dateUtil: mockDateUtil);
           statsBloc.add(LoadStats(timeSpan: expectedTimeSpan));
         });
@@ -136,7 +138,7 @@ void main() {
             return Stream<UserHistory>.value(
                 UserHistory(email: "test@test.com", attendedLessons: attendedLessons));
           });
-          statsBloc = StatsBloc(
+          statsBloc = UserStatsBloc(
               statsRepository: mockStatsRepository, userEmail: loggedUser.email, dateUtil: mockDateUtil);
           statsBloc.add(LoadStats(timeSpan: expectedTimeSpan));
         });

@@ -1,4 +1,5 @@
-import 'package:checkin/src/blocs/stats/bloc.dart';
+import 'package:checkin/src/blocs/user_stats/bloc.dart';
+import 'package:checkin/src/blocs/user_stats/user_stats_bloc.dart';
 import 'package:flutter/material.dart';
 import 'package:checkin/src/constants.dart' as constants;
 import 'package:flutter_bloc/flutter_bloc.dart';
@@ -31,7 +32,7 @@ class _TimespanTogglesState extends State<TimespanToggles> {
       children: _elements,
       isSelected: _selections,
       onPressed: (int index) {
-        BlocProvider.of<StatsBloc>(context)
+        BlocProvider.of<UserStatsBloc>(context)
             .add(LoadStats(timeSpan: timeSpans[index]));
 
         _updateSelected(index);

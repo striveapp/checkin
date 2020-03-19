@@ -2,14 +2,14 @@ import 'package:checkin/src/models/lesson.dart';
 import 'package:equatable/equatable.dart';
 import 'package:flutter/material.dart';
 
-abstract class StatsEvent extends Equatable {
-  const StatsEvent();
+abstract class UserStatsEvent extends Equatable {
+  const UserStatsEvent();
 
   @override
   List<Object> get props => [];
 }
 
-class StatsUpdated extends StatsEvent {
+class StatsUpdated extends UserStatsEvent {
   final List<Lesson> attendedLessons;
   final String timeSpan;
 
@@ -25,7 +25,7 @@ class StatsUpdated extends StatsEvent {
   String toString() => 'StatsUpdated{attendedLessons: $attendedLessons}';
 }
 
-class LoadStats extends StatsEvent {
+class LoadStats extends UserStatsEvent {
   final String timeSpan;
 
   LoadStats({
