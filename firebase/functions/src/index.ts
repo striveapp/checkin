@@ -7,7 +7,7 @@ import {
     reminderOfNonAcceptedUsersForMaster
 } from "./notifications";
 import adminApp from "./admin";
-import {generateNextWeekOfLessonInstances} from "./admin/imports";
+import {generateNext2WeekOfLessonInstances} from "./admin/imports";
 
 admin.initializeApp();
 
@@ -24,11 +24,11 @@ export const masterReminderNotification = functions.pubsub
     .timeZone('Europe/Madrid')
     .onRun(reminderOfNonAcceptedUsersForMaster);
 
-export const generateNextWeekOfLessons = functions.pubsub
+export const generateNext2WeekOfLessons = functions.pubsub
     //At 02:00 on Friday.
     .schedule('0 2 * * 5')
     .timeZone('Europe/Madrid')
-    .onRun(generateNextWeekOfLessonInstances);
+    .onRun(generateNext2WeekOfLessonInstances);
 
 // http triggers
 export const app = functions.https.onRequest(adminApp);

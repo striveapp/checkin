@@ -30,7 +30,7 @@ const generateLessonForDay = (day: Date) => {
             const documentRef = db.collection("lesson_instances")
                 .doc(dateISO)
                 .collection("instances").doc(lessonTemplate.id);
-            batch.set(documentRef, lessonInstance)
+            batch.set(documentRef, lessonInstance, {merge: true})
         });
         return batch.commit();
     });
@@ -68,4 +68,38 @@ const getNextWeekMonday = () => {
 
     nextWeekDay.setDate(nextWeekDay.getDate() + (day == 0 ? -6 : 1) - day);
     return nextWeekDay;
+};
+
+export const generateNext2WeekOfLessonInstances = async () => {
+    await generateNextWeekOfLessonInstances();
+
+    const next2WeekMonday = getNext2WeekMonday();
+    console.log("Next in 2 weeks Monday: ", next2WeekMonday);
+
+    try {
+        //This will loop over the week and generate all the lesson instances
+        for (let i = 0; i < 7; i++) {
+            await generateLessonForDay(next2WeekMonday);
+            next2WeekMonday.setDate(next2WeekMonday.getDate() + 1);
+        }
+    } catch (e) {
+        return Promise.reject(e);
+    }
+
+    return Promise.resolve();
+};
+
+const getNext2WeekDay = () => {
+    const d = new Date();
+    d.setDate(d.getDate() + 14);
+    return d;
+};
+
+const getNext2WeekMonday = () => {
+    const next2WeekDay = getNext2WeekDay();
+    next2WeekDay.setUTCHours(0);
+    const day = next2WeekDay.getDay();
+
+    next2WeekDay.setDate(next2WeekDay.getDate() + (day == 0 ? -6 : 1) - day);
+    return next2WeekDay;
 };

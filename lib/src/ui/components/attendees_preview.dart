@@ -1,4 +1,5 @@
 import 'package:checkin/src/localization/localization.dart';
+import 'package:checkin/src/models/attendee.dart';
 import 'package:checkin/src/models/lesson.dart';
 import 'package:checkin/src/ui/components/user_image.dart';
 import 'package:flutter/material.dart';
@@ -17,21 +18,24 @@ class AttendeesPreview extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    final otherAttendeesNumber = lesson.attendees.length - maxAttendeesToDisplay;
+    List<Attendee> allAttendees = [...lesson.attendees, ...lesson.acceptedAttendees];
+    final otherAttendeesNumber = allAttendees.length - maxAttendeesToDisplay;
     return Row(
       children: <Widget>[
-        ...lesson.attendees
+        ...allAttendees
             .take(maxAttendeesToDisplay)
             .map((attendee) => Padding(
           padding: const EdgeInsets.only(right: 10),
-          child: UserImage(
-            userImage: attendee.imageUrl,
-            width: MediaQuery.of(context).size.width * 0.06,
-            height: MediaQuery.of(context).size.width * 0.06,
+          child: Container(
+            child: UserImage(
+              userImage: attendee.imageUrl,
+              width: MediaQuery.of(context).size.width * 0.06,
+              height: MediaQuery.of(context).size.width * 0.06,
+            ),
           ),
         ))
             ?.toList(),
-        if (lesson.attendees.length > 5)
+        if (allAttendees.length > 5)
           Text(
               "${andOthers.plural(otherAttendeesNumber)}",
               style: Theme.of(context).textTheme.headline5)

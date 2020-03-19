@@ -30,9 +30,13 @@ class _WeekCalendarState extends State<WeekCalendar> {
       calendarController: _calendarController,
       locale: Localizations.localeOf(context).toLanguageTag(),
       headerVisible: false,
+      availableCalendarFormats: const {
+        CalendarFormat.twoWeeks: '2 weeks',
+        CalendarFormat.week: 'Week',
+      },
       initialCalendarFormat: CalendarFormat.week,
       startingDayOfWeek: StartingDayOfWeek.monday,
-      availableGestures: AvailableGestures.none,
+      availableGestures: AvailableGestures.verticalSwipe,
       onDaySelected: widget.onDaySelected,
       holidays: widget.holidaysRepository.getHolidays(),
     );

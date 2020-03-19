@@ -6,12 +6,14 @@ function functionsSetup() {
   this.notifyMasterButton = document.getElementById('notify-master-button');
   this.importLesssonTemplateButton = document.getElementById('import-lesson-template-button');
   this.generateNextWeekOfLessonInstancesButton = document.getElementById('generate-next-week-of-lesson-instances-button');
+  this.generateNext2WeekOfLessonInstancesButton = document.getElementById('generate-next-2-week-of-lesson-instances-button');
 
   //Callbacks
   this.restoreBackupButton.addEventListener('click', this.runFunction.bind(this, 'restoreBackup'));
   this.notifyMasterButton.addEventListener('click', this.runFunction.bind(this, 'notifyMaster'));
   this.importLesssonTemplateButton.addEventListener('click', this.runFunction.bind(this, 'importLessonTemplate'));
   this.generateNextWeekOfLessonInstancesButton.addEventListener('click', this.runFunction.bind(this, 'generateNextWeekOfLessonInstances'));
+  this.generateNext2WeekOfLessonInstancesButton.addEventListener('click', this.runFunction.bind(this, 'generateNext2WeekOfLessonInstances'));
 }
 
 function DOMSetup() {
