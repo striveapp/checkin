@@ -1,6 +1,6 @@
 import * as express from 'express';
 import {validateFirebaseIdToken} from "./middlewares/validations";
-import {restoreBackup} from "../backups";
+import {restoreBackup, generateBackup} from "../backups";
 import {reminderOfNonAcceptedUsersForMaster} from "../notifications";
 import {generateNextWeekOfLessonInstances, generateNext2WeekOfLessonInstances, importLessonTemplate} from "./imports";
 
@@ -14,6 +14,16 @@ adminApp.get('/restoreBackup', async (req, res) => {
         res.status(200).send("Gotcha!");
     } catch (e) {
         console.error(`Something bad happen with the backup restore: ${e.message}`)
+        res.status(400).send("Bad things");
+    }
+});
+
+adminApp.get('/generateBackup', async (req, res) => {
+    try {
+        await generateBackup();
+        res.status(200).send("Gotcha!");
+    } catch (e) {
+        console.error(`Something bad happen with the generate backup: ${e.message}`)
         res.status(400).send("Bad things");
     }
 });

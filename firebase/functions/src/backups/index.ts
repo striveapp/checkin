@@ -10,9 +10,9 @@ export const generateBackup = async () => {
     })
     const timestamp = dateformat(Date.now(), 'yyyy-mm-dd')
     const path = `${timestamp}`
-    const BUCKET_NAME = `checkin-firestore-backups`
-
     const projectId = await auth.getProjectId()
+    const BUCKET_NAME = `${projectId}-firestore-backups`
+
     const url = `https://firestore.googleapis.com/v1beta1/projects/${projectId}/databases/(default):exportDocuments`
     const backup_route = `gs://${BUCKET_NAME}/${path}`
     return client.request({
@@ -23,7 +23,7 @@ export const generateBackup = async () => {
         }
     }).then(async (res) => {
         console.log(`Backup saved on folder on ${backup_route}`)
-    }).catch(async (e) => Promise.reject({message: e.message}))
+    }).catch(async (e) => Promise.reject({message: `Backup failed on folder [${backup_route}]: ${e.message}`}))
 }
 
 export const restoreBackup = async () => {

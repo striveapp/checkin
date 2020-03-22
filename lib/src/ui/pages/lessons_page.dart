@@ -63,10 +63,11 @@ class LessonCardList extends StatelessWidget {
     return BlocBuilder<LessonsBloc, LessonsState>(
         builder: (BuildContext context, LessonsState state) {
       if (state is LessonsLoaded) {
-        return ListView(
-            children: state.lessons
-                .map((lesson) => LessonCard(lesson: lesson))
-                .toList());
+        return ListView.builder(
+            itemCount: state.lessons.length,
+            itemBuilder: (BuildContext context, int index) {
+              return LessonCard( key: Key("lesson_$index"), lesson: state.lessons[index]);
+            });
       }
 
       if (state is LessonsUninitialized) {

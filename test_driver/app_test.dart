@@ -96,37 +96,6 @@ void main() {
     });
 
     group("Attend class journey", () {
-      test("increase the counter when master approves the class", () async {
-
-        prettyPrint("Login as user and attend class");
-        await loginAsUser();
-        await attendClass('basic');
-        await goBack();
-        await goToProfilePage();
-
-        prettyPrint("Then get the amount of classes attended and logout");
-        var classCounter = await driver.getText(find.byValueKey("classCounter"));
-        await logout();
-
-        prettyPrint("Then login as owner and accept all go to profile and logout");
-        await loginAsOwner();
-        await acceptAll('basic');
-        await goBack();
-        await goToProfilePage();
-        await logout();
-
-        prettyPrint("Then login as user again and check that counter has increase");
-        await loginAsUser();
-        await goToProfilePage();
-        var newClassCounter = await driver.getText(find.byValueKey("classCounter"));
-
-        prettyPrint("Then logout");
-        await logout();
-
-        var expectedClassCounter = (int.parse(classCounter) + 1).toString();
-
-        expect(newClassCounter, expectedClassCounter);
-      });
 
       test("increase the counter and accept only from the specific class", () async {
 

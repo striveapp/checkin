@@ -2,6 +2,7 @@
 
 function functionsSetup() {
   //Functions buttons
+  this.generateBackupButton = document.getElementById('generate-backup-button');
   this.restoreBackupButton = document.getElementById('restore-backup-button');
   this.notifyMasterButton = document.getElementById('notify-master-button');
   this.importLesssonTemplateButton = document.getElementById('import-lesson-template-button');
@@ -9,6 +10,7 @@ function functionsSetup() {
   this.generateNext2WeekOfLessonInstancesButton = document.getElementById('generate-next-2-week-of-lesson-instances-button');
 
   //Callbacks
+  this.generateBackupButton.addEventListener('click', this.runFunction.bind(this, 'generateBackup'));
   this.restoreBackupButton.addEventListener('click', this.runFunction.bind(this, 'restoreBackup'));
   this.notifyMasterButton.addEventListener('click', this.runFunction.bind(this, 'notifyMaster'));
   this.importLesssonTemplateButton.addEventListener('click', this.runFunction.bind(this, 'importLessonTemplate'));
