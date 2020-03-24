@@ -47,7 +47,6 @@ void main() {
         prettyPrint("Then get the amount of classes attended and logout");
         await registryPage.tapTestAttendee();
         var initialMatHours = await statsPage.getMathHours();
-        expect(initialMatHours, "6");
         await driver.goBack();
         await registryPage.goToAccountPage();
         await accountPage.logout();
@@ -64,7 +63,7 @@ void main() {
         prettyPrint("Then get the amount of classes attended and check it increased");
         await registryPage.tapTestAttendee();
         var finalMatHours = await statsPage.getMathHours();
-        expect(finalMatHours, "7");
+        expect(int.parse(finalMatHours), int.parse(initialMatHours) + 1);
 
         prettyPrint("Then logout");
         await driver.goBack();
