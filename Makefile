@@ -19,11 +19,15 @@ unit-test:
 
 .PHONY: run-fast
 run-fast:
-	flutter run -d emulator-5554 --fast-start --target=test_driver/journeys/attend.dart --host-vmservice-port $(VM_PORT) --disable-service-auth-codes
+	$(info *** STARTING APP ***)
+	flutter run -d $(DEVICE_ID) --fast-start --target=test_driver/journeys/attend.dart --host-vmservice-port $(VM_PORT) --disable-service-auth-codes
 
 .PHONY: integration-test
-integration-test: run-fast
-	gcloud --project=checkin-test-fba3d firestore import gs://checkin-test-fba3d-firestore-backups/seed --async
+integration-test:
+	$(info ---------------------)
+	$(info INTEGRATION TESTS)
+	$(info ---------------------)
+	@gcloud --project=checkin-test-fba3d firestore import gs://checkin-test-fba3d-firestore-backups/seed --async
 	$(envars) dart test_driver/journeys/attend_test.dart
 
 .PHONY: codegen-runner

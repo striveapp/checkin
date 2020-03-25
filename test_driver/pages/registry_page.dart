@@ -28,8 +28,8 @@ class RegistryPage {
   }
 
   Future<void> acceptAll() async {
-      await _driver.waitFor(_acceptAllButton);
-      await _driver.tap(_acceptAllButton);
-      await _driver.waitForAbsent(loadingIndicator);
+    await _driver.waitFor(_acceptAllButton);
+    await _driver.tap(_acceptAllButton);
+    await _driver.waitForAbsent(loadingIndicator);
   }
 }
