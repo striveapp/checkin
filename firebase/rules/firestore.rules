@@ -53,6 +53,7 @@ service cloud.firestore {
 
     match /users_history/{email} {
       allow read: if true;
+      // allow write: if isLoggedUser("test@test.com");
     }
 
     match /customers/{email} {

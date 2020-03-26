@@ -46,4 +46,12 @@ class StatsProvider {
                   .map(getLesson)
                   .toList()))
           .toList());
+
+  Future<void> cleanUserHistory(String email) async {
+    await _firestore
+        .collection(path)
+        .document(email)
+    // .delete(); todo https://trello.com/c/oXkaXNqb
+        .updateData({"attendedLessons": []});
+  }
 }

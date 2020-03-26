@@ -8,8 +8,8 @@ class StatsPage {
     this._driver = driver;
   }
 
-  Future<String> getMathHours() {
-    _driver.waitFor(_matHours);
+  Future<String> getMathHours() async {
+    await _driver.waitFor(_matHours);
     return _driver.getText(_matHours);
   }
 }

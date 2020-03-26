@@ -1,3 +1,4 @@
+PID_FILE ?= /tmp/flutter-hot-reload.pid
 VM_PORT ?= 8888
 envars = VM_SERVICE_URL=http://127.0.0.1:$(VM_PORT)
 
@@ -20,14 +21,15 @@ unit-test:
 .PHONY: run-fast
 run-fast:
 	$(info *** STARTING APP ***)
-	flutter run -d $(DEVICE_ID) --fast-start --target=test_driver/journeys/attend.dart --host-vmservice-port $(VM_PORT) --disable-service-auth-codes
+	flutter run -d $$(flutter devices | tail -1 | awk -F '•' '{print $$2}' | xargs) --target=test_driver/journeys/attend.dart --host-vmservice-port $(VM_PORT) \
+	 --disable-service-auth-codes --use-application-binary=test_driver/build/run-fast-app-debug.apk --pid-file $(PID_FILE)
 
 .PHONY: integration-test
 integration-test:
 	$(info ---------------------)
 	$(info INTEGRATION TESTS)
 	$(info ---------------------)
-	@gcloud --project=checkin-test-fba3d firestore import gs://checkin-test-fba3d-firestore-backups/seed --async
+	@kill -USR2 $$(cat $(PID_FILE))
 	$(envars) dart test_driver/journeys/attend_test.dart
 
 .PHONY: codegen-runner

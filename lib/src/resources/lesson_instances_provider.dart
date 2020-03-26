@@ -51,13 +51,19 @@ class LessonInstancesProvider implements LessonRepository {
         weekDay: lesson.data['weekDay'],
         masters: (lesson.data['masters'] as List)
             ?.map((master) => Master(
-          name: master['name'],
-          email: master['email'],
-          imageUrl: master['imageUrl'],
-        ))
+                  name: master['name'],
+                  email: master['email'],
+                  imageUrl: master['imageUrl'],
+                ))
             ?.toList(),
-        attendees: (lesson.data['attendees'] as List)?.map((attendee) => toAttendee(attendee))?.toList() ?? [],
-        acceptedAttendees: (lesson.data['acceptedAttendees'] as List)?.map((attendee) => toAttendee(attendee))?.toList() ?? []);
+        attendees: (lesson.data['attendees'] as List)
+                ?.map((attendee) => toAttendee(attendee))
+                ?.toList() ??
+            [],
+        acceptedAttendees: (lesson.data['acceptedAttendees'] as List)
+                ?.map((attendee) => toAttendee(attendee))
+                ?.toList() ??
+            []);
   }
 
   Attendee toAttendee(Map<dynamic, dynamic> attendee) {
@@ -104,6 +110,18 @@ class LessonInstancesProvider implements LessonRepository {
           'email': attendee.email
         }
       ])
+    });
+  }
+
+  Future<void> cleanLessonAttendees(String date, String lessonId) async {
+    await _firestore
+        .collection(path)
+        .document(date)
+        .collection("instances")
+        .document(lessonId)
+        .updateData({
+      "attendees": FieldValue.delete(),
+      "acceptedAttendees": FieldValue.delete()
     });
   }
 }

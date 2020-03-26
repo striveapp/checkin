@@ -35,7 +35,6 @@ void main() {
 
     test("increase the counter when master approves the class", () async {
       prettyPrint("Login as user and attend class");
-
       await loginPage.loginAsTest();
       await lessonsPage.selectDay(WeekDay.monday);
       await lessonsPage.selectLessonOfTheDay(0);
@@ -55,7 +54,7 @@ void main() {
       await registryPage.acceptAll();
 
       prettyPrint("Then check notification has been sent");
-      await driver.waitFor(find.text("You attended 6 classes this year"));
+      await driver.waitFor(find.text("You attended 1 classes this year"));
 
       prettyPrint(
           "Then get the amount of classes attended and check it increased");
