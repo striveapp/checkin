@@ -30,6 +30,7 @@ integration-test:
 	$(info INTEGRATION TESTS)
 	$(info ---------------------)
 	@kill -USR2 $$(cat $(PID_FILE))
+	@sleep 2
 	$(envars) dart test_driver/journeys/attend_test.dart
 
 .PHONY: codegen-runner

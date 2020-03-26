@@ -1,5 +1,3 @@
-import 'dart:io';
-
 import 'package:flutter_driver/flutter_driver.dart';
 import 'package:test/test.dart';
 
@@ -58,12 +56,6 @@ void main() {
       await driver.tap(find.byValueKey('registerClass'));
     }
 
-    unattendClass(classKey) async {
-      await goToRegistryOf(classKey);
-      await driver.waitFor(find.byValueKey('unregisterClass'));
-      await driver.tap(find.byValueKey('unregisterClass'));
-    }
-
     acceptAll(classKey) async {
       await goToRegistryOf(classKey);
       await driver.waitFor(find.byValueKey('acceptAll'));
@@ -81,168 +73,9 @@ void main() {
       await driver.tap(find.byValueKey('editProfileButton'));
     }
 
-    swipeToRemoveUser(userKey) async {
-      final SerializableFinder testUser = find.byValueKey(userKey);
-      await driver.waitFor(testUser);
-      await driver.scroll(testUser, -400, 0, Duration(milliseconds: 300));
-      //TODO: for some reason the flutter driver seems to loose the track
-      // of the element if we dont wait here
-      sleep(Duration(milliseconds: 1000));
-    }
-
     test('check flutter driver health', () async {
       Health health = await driver.checkHealth();
       print(health.status);
-    });
-
-    group("Attend class journey", () {
-
-      test("increase the counter and accept only from the specific class", () async {
-
-        prettyPrint("Login as user and attend 2 different classes");
-        await loginAsUser();
-        await attendClass('basic');
-        await goBack();
-        await attendClass('intermediate');
-        await goBack();
-        await goToProfilePage();
-
-        prettyPrint("Then get the amount of classes attended and logout");
-        var classCounter = await driver.getText(find.byValueKey("classCounter"));
-        await logout();
-
-        prettyPrint("Then login as owner and accept all for 1 of the classes");
-        await loginAsOwner();
-        await acceptAll('basic');
-
-        prettyPrint("Then check if user is still in the other class");
-        await goBack();
-        await goToRegistryOf('intermediate');
-        await driver.waitFor(find.byValueKey("tile-test@test.com"));
-
-        prettyPrint("Then approves all");
-        await driver.waitFor(find.byValueKey('acceptAll'));
-        await driver.tap(find.byValueKey('acceptAll'));
-
-        prettyPrint("Then check if user is not in the initial class and logout");
-        await goBack();
-        await goToRegistryOf('basic');
-        await driver.waitForAbsent(find.byValueKey("tile-test@test.com"));
-        await goBack();
-        await goToProfilePage();
-        await logout();
-
-        prettyPrint("Then login as user and check that counter has increase");
-        await loginAsUser();
-        await goToProfilePage();
-        var newClassCounter = await driver.getText(find.byValueKey("classCounter"));
-
-        prettyPrint("Then logout");
-        await logout();
-
-        var expectedClassCounter = (int.parse(classCounter) + 2).toString();
-
-        expect(newClassCounter, expectedClassCounter);
-      });
-
-      test("it should increase the counter of multiple users when in class and accepted by the master", () async {
-        prettyPrint("Login as user and attend class");
-        await loginAsUser();
-        await attendClass('basic');
-        await goBack();
-        await goToProfilePage();
-
-        prettyPrint("Then get the amount of classes attended and logout");
-        var classCounterTest= await driver.getText(find.byValueKey("classCounter"));
-        await logout();
-
-        prettyPrint("Then login as TestTwo and attend class");
-        await loginAsUser(user: 'TestTwo');
-        await attendClass('basic');
-        await goBack();
-        await goToProfilePage();
-
-        prettyPrint("Then get the amount of classes attended and logout");
-        var classCounterTestTwo = await driver.getText(find.byValueKey("classCounter"));
-        await logout();
-
-        prettyPrint("Then login as owner, accept all and logout");
-        await loginAsOwner();
-        await acceptAll('basic');
-        await goBack();
-        await goToProfilePage();
-        await logout();
-
-        prettyPrint("Then login as Test and check that counter has increase");
-        await loginAsUser();
-        await goToProfilePage();
-        var newClassCounter = await driver.getText(find.byValueKey("classCounter"));
-
-        prettyPrint("Then logout");
-        await logout();
-
-        prettyPrint("Then login as TestTwo and check that counter has increase");
-        await loginAsUser(user: 'TestTwo');
-        await goToProfilePage();
-        var newClassCounterTwo = await driver.getText(find.byValueKey("classCounter"));
-
-        prettyPrint("Then logout");
-        await logout();
-
-        var expectedClassCounter = (int.parse(classCounterTest) + 1).toString();
-        var expectedClassCounterTwo = (int.parse(classCounterTestTwo) + 1).toString();
-
-        expect(newClassCounter, expectedClassCounter);
-        expect(newClassCounterTwo, expectedClassCounterTwo);
-      });
-
-      test("user should be able to remove himself from class", () async {
-        prettyPrint("Login as user and attend class");
-        await loginAsUser();
-        await attendClass('basic');
-        await driver.waitFor(find.byValueKey("tile-test@test.com"));
-        await goBack();
-        prettyPrint("Then unregister himself from class");
-        await unattendClass('basic');
-        await driver.waitForAbsent(find.byValueKey("tile-test@test.com"));
-
-        prettyPrint("Then logout");
-        await goBack();
-        await goToProfilePage();
-        await logout();
-      });
-
-      test("owner should be able to remove users from class", () async {
-        final classKey = 'basic';
-
-        prettyPrint("Login as user and attend class");
-        await loginAsUser();
-        await attendClass(classKey);
-        await goBack();
-        await goToProfilePage();
-        await logout();
-
-        prettyPrint("Then login as TestTwo and attend class");
-        await loginAsUser(user: 'TestTwo');
-        await attendClass(classKey);
-        await goBack();
-        await goToProfilePage();
-        await logout();
-
-        prettyPrint("Then login as owner, and remove Test user from class");
-        await loginAsOwner();
-        await goToRegistryOf(classKey);
-
-        await swipeToRemoveUser("test@test.com");
-        await driver.waitForAbsent(find.byValueKey("tile-test@test.com"));
-        await swipeToRemoveUser("test-two@test.com");
-        await driver.waitForAbsent(find.text("TestTwo"));
-
-        prettyPrint("Then logout");
-        await goBack();
-        await goToProfilePage();
-        await logout();
-      });
     });
 
     group("User profile journey", () {
