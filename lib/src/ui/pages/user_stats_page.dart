@@ -13,46 +13,47 @@ class UserStatsPage extends StatelessWidget {
   static const String stats = 'Stats';
 
   final String _userEmail;
+  final String _timestamp;
 
   UserStatsPage({
     Key key,
     @required String userEmail,
-  })  : assert(userEmail != null),
+    @required String timestamp,
+  })  : assert(userEmail != null && timestamp != null),
         _userEmail = userEmail,
+        _timestamp = timestamp,
         super(key: key);
 
   @override
   Widget build(BuildContext context) {
-    return BlocProvider<UserStatsBloc>(
-      create: (context) => UserStatsBloc(
-        statsRepository: StatsRepository(),
-        dateUtil: DateUtil(),
-        userEmail: _userEmail,
-      ),
-      child: BlocBuilder<UserStatsBloc, UserStatsState>(
-          builder: (BuildContext context, UserStatsState state) {
-        if (state is StatsUninitialized) {
-          return LoadingIndicator();
-        }
-        if (state is StatsLoaded) {
-          return Column(
-            children: <Widget>[
-              Padding(
-                padding: EdgeInsets.symmetric(horizontal: 20),
-                child: MatTimeCounter(
-                  timeSpan: state.timeSpan,
-                  counter: state.attendedLessons.length,
-                ),
+    return BlocBuilder<UserStatsBloc, UserStatsState>(
+        bloc: UserStatsBloc(
+          statsRepository: StatsRepository(),
+          dateUtil: DateUtil(),
+          userEmail: _userEmail,
+        )..add(LoadStats(timespan: _timestamp)),
+        builder: (BuildContext context, UserStatsState state) {
+      if (state is StatsUninitialized) {
+        return LoadingIndicator();
+      }
+      if (state is StatsLoaded) {
+        return Column(
+          children: <Widget>[
+            Padding(
+              padding: EdgeInsets.symmetric(horizontal: 20),
+              child: MatTimeCounter(
+                timeSpan: _timestamp,
+                counter: state.attendedLessons.length,
               ),
-              SizedBox(
-                height: 30,
-              ),
-              AttendedLessonsList(attendedLessons: state.attendedLessons),
-            ],
-          );
-        }
-        return ErrorWidget("Unknown State [$state] received in: stats_page");
-      }),
-    );
+            ),
+            SizedBox(
+              height: 30,
+            ),
+            AttendedLessonsList(attendedLessons: state.attendedLessons),
+          ],
+        );
+      }
+      return ErrorWidget("Unknown State [$state] received in: stats_page");
+    });
   }
 }

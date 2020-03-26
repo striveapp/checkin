@@ -1,16 +1,16 @@
 import 'package:checkin/src/blocs/profile/bloc.dart';
+import 'package:checkin/src/blocs/stats/bloc.dart';
 import 'package:checkin/src/blocs/user/bloc.dart';
+import 'package:checkin/src/localization/localization.dart';
 import 'package:checkin/src/repositories/user_repository.dart';
 import 'package:checkin/src/ui/components/base_app_bar.dart';
 import 'package:checkin/src/ui/components/loading_indicator.dart';
-import 'package:checkin/src/ui/components/profile_infos.dart';
-import 'package:checkin/src/ui/components/timespan_toggles.dart';
-import 'package:checkin/src/ui/pages/lessons_stats_page.dart';
+import 'package:checkin/src/ui/components/stats/stats_body.dart';
+import 'package:checkin/src/ui/components/stats/stats_header.dart';
 import 'package:checkin/src/ui/pages/user_stats_page.dart';
-import 'package:checkin/src/localization/localization.dart';
-import 'package:checkin/src/util/debug_util.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
+import 'package:checkin/src/constants.dart' as constants;
 
 class StatsPage extends StatelessWidget {
   final String userEmail;
@@ -29,49 +29,41 @@ class StatsPage extends StatelessWidget {
         title: UserStatsPage.stats.i18n,
         showUserImage: false,
       ),
-      body: BlocProvider<ProfileBloc>(
-        create: (context) => ProfileBloc(
-            userRepository: UserRepository(),
-            nonCurrentUserEmail: userEmail,
-            userBloc: BlocProvider.of<UserBloc>(context)),
+      body: MultiBlocProvider(
+        providers: [
+          BlocProvider<ProfileBloc>(
+            create: (context) => ProfileBloc(
+                userRepository: UserRepository(),
+                nonCurrentUserEmail: userEmail,
+                userBloc: BlocProvider.of<UserBloc>(context)),
+          ),
+          BlocProvider<StatsBloc>(
+            create: (context) => StatsBloc()..add(TimespanUpdate(timespan: constants.WEEK)),
+          ),
+        ],
         child: SingleChildScrollView(
           child: Container(
             child: Padding(
               padding: EdgeInsets.symmetric(horizontal: 10, vertical: 10),
               child: Column(
                 children: <Widget>[
-                  Row(
-                    mainAxisAlignment: MainAxisAlignment.spaceBetween,
-                    children: <Widget>[
-                      ProfileInfos(
-                        userEmail: userEmail,
-                      ),
-                      Padding(
-                        padding: EdgeInsets.only(right: 20),
-                        child: TimespanToggles(),
-                      ),
-                    ],
-                  ),
+                  StatsHeader(userEmail: userEmail),
+                  BlocBuilder<StatsBloc, StatsState>(
+                    builder: (BuildContext context, StatsState state) {
+                      if (state is InitialStatsState) {
+                        return LoadingIndicator();
+                      }
 
-                  BlocBuilder<ProfileBloc, ProfileState>(
-                      builder: (BuildContext context, ProfileState state) {
-                        if (state is ProfileSuccess) {
-                          if (state.profileUser.isOwner && isInDebugMode) {
-                            return LessonsStatsPage();
-                          }
+                      if(state is TimespanUpdated) {
+                        return StatsBody(
+                          userEmail: userEmail,
+                          timespan: state.timespan,
+                        );
+                      }
 
-                          return UserStatsPage(
-                            userEmail: userEmail,
-                          );
-                        }
-
-                        if (state is ProfileLoading) {
-                          return LoadingIndicator();
-                        }
-
-                        return ErrorWidget('Unknow state in StatsPage $state');
+                      return ErrorWidget("Unexpected state in stats_page: [$state]");
                     },
-                  )
+                  ),
                 ],
               ),
             ),

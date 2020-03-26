@@ -26,12 +26,12 @@ class StatsUpdated extends UserStatsEvent {
 }
 
 class LoadStats extends UserStatsEvent {
-  final String timeSpan;
+  final String timespan;
 
   LoadStats({
-    @required this.timeSpan,
+    @required this.timespan,
   });
 
   @override
-  List<Object> get props => [timeSpan];
+  List<Object> get props => [timespan];
 }

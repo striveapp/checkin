@@ -20,12 +20,7 @@ class UserStatsBloc extends Bloc<UserStatsEvent, UserStatsState> {
     @required this.statsRepository,
     @required this.dateUtil,
     @required this.userEmail,
-  }) {
-    statsSub?.cancel();
-    statsSub = this.statsRepository.getUserStats(userEmail, dateUtil.getFirstDayOfTheWeekMilliseconds()).listen((userHistory) {
-      add(StatsUpdated(attendedLessons: userHistory.attendedLessons, timeSpan: constants.WEEK));
-    });
-  }
+  });
 
   @override
   Future<void> close() {
@@ -44,8 +39,8 @@ class UserStatsBloc extends Bloc<UserStatsEvent, UserStatsState> {
 
     if(event is LoadStats) {
       statsSub?.cancel();
-      statsSub = this.statsRepository.getUserStats(userEmail, _getFromTimestampBy(event.timeSpan)).listen((userHistory) {
-        add(StatsUpdated(attendedLessons: userHistory.attendedLessons, timeSpan: event.timeSpan));
+      statsSub = this.statsRepository.getUserStats(userEmail, _getFromTimestampBy(event.timespan)).listen((userHistory) {
+        add(StatsUpdated(attendedLessons: userHistory.attendedLessons, timeSpan: event.timespan));
       });
     }
   }
