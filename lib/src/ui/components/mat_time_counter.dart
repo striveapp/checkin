@@ -29,7 +29,7 @@ class MatTimeCounter extends StatelessWidget {
           mainAxisAlignment: MainAxisAlignment.center,
           children: <Widget>[
             Text(
-              _getHourFromClasses(counter).toString(),
+              counter.toString(),
               key: Key('matHours'),
               textAlign: TextAlign.center,
               style: Theme.of(context)
@@ -37,7 +37,7 @@ class MatTimeCounter extends StatelessWidget {
                   .headline1
                   .apply(fontSizeFactor: 3, color: Theme.of(context).accentColor),
             ),
-            Text(hours.plural(_getHourFromClasses(counter)), style: Theme.of(context).textTheme.headline5,),
+            Text(hours.plural(counter), style: Theme.of(context).textTheme.headline5,),
           ],
         ),
         Column(
@@ -95,9 +95,5 @@ class MatTimeCounter extends StatelessWidget {
       return ((counter * 1.5) * 100 / config.TOTAL_MAT_TIME_MONTH) / 100;
     }
     return ((counter * 1.5) * 100 / config.TOTAL_MAT_TIME_YEAR) / 100;
-  }
-
-  int _getHourFromClasses(int counter) {
-    return (counter * 1.5).floor();
   }
 }

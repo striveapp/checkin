@@ -9,6 +9,7 @@ class RegistryPage {
 
   final _registerClassButton = find.byValueKey('registerClass');
   final _testAttendeeTile = find.byValueKey('tile-test@test.com');
+  final _testAttendeeTwoTile = find.byValueKey('tile-test@test-two.com');
   final _acceptAllButton = find.byValueKey('acceptAll');
   final _unregisterClassButton = find.byValueKey('unregisterClass');
 
@@ -31,6 +32,11 @@ class RegistryPage {
   Future<void> tapTestAttendee() async {
     await _driver.waitFor(_testAttendeeTile);
     await _driver.tap(_testAttendeeTile);
+  }
+
+  Future<void> tapTestTwoAttendee() async {
+    await _driver.waitFor(_testAttendeeTwoTile);
+    await _driver.tap(_testAttendeeTwoTile);
   }
 
   Future<void> goToAccountPage() async {

@@ -30,95 +30,7 @@ void main() {
       }
     });
 
-    group("when user attends classes", () {
-      test("increase the counter when master approves the class", () async {
-        prettyPrint("Login as user and attend class");
-        await loginPage.loginAsTest();
-        await lessonsPage.selectDay(WeekDay.monday);
-        await lessonsPage.selectLessonOfTheDay(0);
-        await registryPage.registerToClass();
-
-        prettyPrint("Then get the amount of classes attended and logout");
-        await registryPage.tapTestAttendee();
-        var initialMatHours = await statsPage.getMathHours();
-
-        prettyPrint("Then logout");
-        await statsPage.logout();
-
-        prettyPrint("Then login as owner and accept all");
-        await loginPage.loginAsOwner();
-        await lessonsPage.selectDay(WeekDay.monday);
-        await lessonsPage.selectLessonOfTheDay(0);
-        await registryPage.acceptAll();
-
-        prettyPrint("Then check notification has been sent");
-        await driver.waitFor(find.text("You attended 1 classes this year"));
-
-        prettyPrint(
-            "Then get the amount of classes attended and check it increased");
-        await registryPage.tapTestAttendee();
-        var finalMatHours = await statsPage.getMathHours();
-        expect(int.parse(finalMatHours), int.parse(initialMatHours) + 1);
-
-        prettyPrint("Then logout");
-        await statsPage.logout();
-
-      });
-
-      test("it should increase the counter of multiple users when in class and accepted by the master", () async {
-//        prettyPrint("Login as user and attend class");
-//        await loginAsUser();
-//        await attendClass('basic');
-//        await goBack();
-//        await goToProfilePage();
-//
-//        prettyPrint("Then get the amount of classes attended and logout");
-//        var classCounterTest= await driver.getText(find.byValueKey("classCounter"));
-//        await logout();
-//
-//        prettyPrint("Then login as TestTwo and attend class");
-//        await loginAsUser(user: 'TestTwo');
-//        await attendClass('basic');
-//        await goBack();
-//        await goToProfilePage();
-//
-//        prettyPrint("Then get the amount of classes attended and logout");
-//        var classCounterTestTwo = await driver.getText(find.byValueKey("classCounter"));
-//        await logout();
-//
-//        prettyPrint("Then login as owner, accept all and logout");
-//        await loginAsOwner();
-//        await acceptAll('basic');
-//        await goBack();
-//        await goToProfilePage();
-//        await logout();
-//
-//        prettyPrint("Then login as Test and check that counter has increase");
-//        await loginAsUser();
-//        await goToProfilePage();
-//        var newClassCounter = await driver.getText(find.byValueKey("classCounter"));
-//
-//        prettyPrint("Then logout");
-//        await logout();
-//
-//        prettyPrint("Then login as TestTwo and check that counter has increase");
-//        await loginAsUser(user: 'TestTwo');
-//        await goToProfilePage();
-//        var newClassCounterTwo = await driver.getText(find.byValueKey("classCounter"));
-//
-//        prettyPrint("Then logout");
-//        await logout();
-//
-//        var expectedClassCounter = (int.parse(classCounterTest) + 1).toString();
-//        var expectedClassCounterTwo = (int.parse(classCounterTestTwo) + 1).toString();
-//
-//        expect(newClassCounter, expectedClassCounter);
-//        expect(newClassCounterTwo, expectedClassCounterTwo);
-      });
-
-    });
-
-    group("when user is removed from class", (){
+    group("when user is removed from class", () {
       test("user should be able to remove himself from class", () async {
         prettyPrint("Login as user and attend class");
         await loginPage.loginAsTest();
@@ -161,5 +73,94 @@ void main() {
       });
     });
 
+    group("when user attends classes", () {
+      test("increase the counter when master approves the class", () async {
+        prettyPrint("Login as user and attend class");
+        await loginPage.loginAsTest();
+        await lessonsPage.selectDay(WeekDay.monday);
+        await lessonsPage.selectLessonOfTheDay(0);
+        await registryPage.registerToClass();
+
+        prettyPrint("Then get the amount of classes attended and logout");
+        await registryPage.tapTestAttendee();
+        var initialMatHours = await statsPage.getMathHours();
+
+        prettyPrint("Then logout");
+        await statsPage.logout();
+
+        prettyPrint("Then login as owner and accept all");
+        await loginPage.loginAsOwner();
+        await lessonsPage.selectDay(WeekDay.monday);
+        await lessonsPage.selectLessonOfTheDay(0);
+        await registryPage.acceptAll();
+
+        prettyPrint("Then check notification has been sent");
+        //NOTE: this should be waited for longer, since when notification are cold they may take a while
+        await driver.waitFor(find.text("You attended 1 classes this year"), timeout: Duration(seconds: 120));
+
+        prettyPrint(
+            "Then get the amount of classes attended and check it increased");
+        await registryPage.tapTestAttendee();
+        var finalMatHours = await statsPage.getMathHours();
+        expect(int.parse(finalMatHours), int.parse(initialMatHours) + 1);
+
+        prettyPrint("Then logout");
+        await statsPage.logout();
+      });
+
+      test(
+          "it should increase the counter of multiple users when in class and accepted by the master",
+          () async {
+        prettyPrint("Login as user Test and attend class");
+        await loginPage.loginAsTest();
+        await lessonsPage.selectDay(WeekDay.monday);
+        await lessonsPage.selectLessonOfTheDay(1);
+        await registryPage.registerToClass();
+
+        prettyPrint("Then get the amount of classes attended and logout");
+        await registryPage.tapTestAttendee();
+        var initialMatHoursTest = await statsPage.getMathHours();
+
+        prettyPrint("Then logout");
+        await statsPage.logout();
+
+        prettyPrint("Login as user TestTwo and attend class");
+        await loginPage.loginAsTestTwo();
+        await lessonsPage.selectDay(WeekDay.monday);
+        await lessonsPage.selectLessonOfTheDay(1);
+        await registryPage.registerToClass();
+
+        prettyPrint("Then get the amount of classes attended and logout");
+        await registryPage.tapTestAttendee();
+        var initialMatHoursTestTwo = await statsPage.getMathHours();
+
+        prettyPrint("Then logout");
+        await statsPage.logout();
+
+        prettyPrint("Then login as owner and accept all");
+        await loginPage.loginAsOwner();
+        await lessonsPage.selectDay(WeekDay.monday);
+        await lessonsPage.selectLessonOfTheDay(1);
+        await registryPage.acceptAll();
+
+        prettyPrint(
+            "Then get the amount of classes attended by Test and check they have increased");
+        await registryPage.tapTestAttendee();
+        var finalMatHoursTest = await statsPage.getMathHours();
+        expect(int.parse(finalMatHoursTest), int.parse(initialMatHoursTest) + 1);
+
+        prettyPrint("Then go back");
+        await driver.goBack();
+
+        prettyPrint(
+            "Then get the amount of classes attended by TestTwo and check they have increased");
+        await registryPage.tapTestAttendee();
+        var finalMatHoursTestTwo = await statsPage.getMathHours();
+        expect(int.parse(finalMatHoursTestTwo), int.parse(initialMatHoursTestTwo) + 1);
+
+        prettyPrint("Then logout");
+        await statsPage.logout();
+      });
+    });
   });
 }

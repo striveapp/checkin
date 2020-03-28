@@ -16,6 +16,7 @@ class UserStatsBloc extends Bloc<UserStatsEvent, UserStatsState> {
   final String userEmail;
   StreamSubscription<UserHistory> statsSub;
 
+  //TODO: this should recieve the StatsBloc and listen to his state changes
   UserStatsBloc({
     @required this.statsRepository,
     @required this.dateUtil,
