@@ -36,7 +36,7 @@ void main() {
         prettyPrint("Login as user and attend class");
         await loginPage.loginAsTest();
         await lessonsPage.selectDay(WeekDay.monday);
-        await lessonsPage.selectLessonOfTheDay(1);
+        await lessonsPage.selectLessonOfTheDay(WeekDay.monday, 1);
         await registryPage.registerToClass();
         prettyPrint("Then unregister himself from class");
         await registryPage.unregisterFromClass();
@@ -49,7 +49,7 @@ void main() {
         prettyPrint("Login as user and attend class");
         await loginPage.loginAsTest();
         await lessonsPage.selectDay(WeekDay.monday);
-        await lessonsPage.selectLessonOfTheDay(1);
+        await lessonsPage.selectLessonOfTheDay(WeekDay.monday, 1);
         await registryPage.registerToClass();
         prettyPrint("Then logout");
         await registryPage.logout();
@@ -57,7 +57,7 @@ void main() {
         prettyPrint("Then login as TestTwo and attend class");
         await loginPage.loginAsTestTwo();
         await lessonsPage.selectDay(WeekDay.monday);
-        await lessonsPage.selectLessonOfTheDay(1);
+        await lessonsPage.selectLessonOfTheDay(WeekDay.monday, 1);
         await registryPage.registerToClass();
         prettyPrint("Then logout");
         await registryPage.logout();
@@ -65,7 +65,7 @@ void main() {
         prettyPrint("Then login as owner, and remove Test user from class");
         await loginPage.loginAsOwner();
         await lessonsPage.selectDay(WeekDay.monday);
-        await lessonsPage.selectLessonOfTheDay(1);
+        await lessonsPage.selectLessonOfTheDay(WeekDay.monday, 1);
         await registryPage.swipeToRemoveUser("test@test.com");
         await registryPage.swipeToRemoveUser("test-two@test.com");
 
@@ -79,7 +79,7 @@ void main() {
         prettyPrint("Login as user and attend class");
         await loginPage.loginAsTest();
         await lessonsPage.selectDay(WeekDay.monday);
-        await lessonsPage.selectLessonOfTheDay(0);
+        await lessonsPage.selectLessonOfTheDay(WeekDay.monday, 0);
         await registryPage.registerToClass();
 
         prettyPrint("Then get the amount of classes attended and logout");
@@ -92,7 +92,7 @@ void main() {
         prettyPrint("Then login as owner and accept all");
         await loginPage.loginAsOwner();
         await lessonsPage.selectDay(WeekDay.monday);
-        await lessonsPage.selectLessonOfTheDay(0);
+        await lessonsPage.selectLessonOfTheDay(WeekDay.monday, 0);
         await registryPage.acceptAll();
 
         prettyPrint("Then check notification has been sent");
@@ -115,7 +115,7 @@ void main() {
         prettyPrint("Login as user Test and attend class");
         await loginPage.loginAsTest();
         await lessonsPage.selectDay(WeekDay.monday);
-        await lessonsPage.selectLessonOfTheDay(1);
+        await lessonsPage.selectLessonOfTheDay(WeekDay.monday, 1);
         await registryPage.registerToClass();
 
         prettyPrint("Then get the amount of classes attended and logout");
@@ -128,7 +128,7 @@ void main() {
         prettyPrint("Login as user TestTwo and attend class");
         await loginPage.loginAsTestTwo();
         await lessonsPage.selectDay(WeekDay.monday);
-        await lessonsPage.selectLessonOfTheDay(1);
+        await lessonsPage.selectLessonOfTheDay(WeekDay.monday, 1);
         await registryPage.registerToClass();
 
         prettyPrint("Then get the amount of classes attended and logout");
@@ -141,7 +141,7 @@ void main() {
         prettyPrint("Then login as owner and accept all");
         await loginPage.loginAsOwner();
         await lessonsPage.selectDay(WeekDay.monday);
-        await lessonsPage.selectLessonOfTheDay(1);
+        await lessonsPage.selectLessonOfTheDay(WeekDay.monday, 1);
         await registryPage.acceptAll();
 
         prettyPrint(

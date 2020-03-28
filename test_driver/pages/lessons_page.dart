@@ -5,7 +5,6 @@ import '../util.dart';
 
 class LessonsPage {
   FlutterDriver _driver;
-  final firstLessonCard = find.byValueKey("lesson_0");
   final mondayButton = find.text("16");
 
   LessonsPage(FlutterDriver driver) {
@@ -29,8 +28,8 @@ class LessonsPage {
     }
   }
 
-  Future<void> selectLessonOfTheDay(int lessonIndex) async {
-    final lessonCard = _getLessonCard(lessonIndex);
+  Future<void> selectLessonOfTheDay(WeekDay day, int lessonIndex) async {
+    final lessonCard = _getLessonCard(day, lessonIndex);
     await _driver.waitFor(lessonCard);
     await _driver.tap(lessonCard);
   }
@@ -39,7 +38,11 @@ class LessonsPage {
     await _driver.tap(accountPageButton);
   }
 
-  SerializableFinder _getLessonCard(int lessonIndex) {
-    return find.byValueKey("lesson_$lessonIndex");
+  SerializableFinder _getLessonCard(WeekDay day, int lessonIndex) {
+    var key = "lesson_${describeEnum(day)}_$lessonIndex";
+    print("finding $key");
+    return find.byValueKey(key);
   }
+
+
 }
