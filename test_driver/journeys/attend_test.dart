@@ -66,9 +66,8 @@ void main() {
         await loginPage.loginAsOwner();
         await lessonsPage.selectDay(WeekDay.monday);
         await lessonsPage.selectLessonOfTheDay(WeekDay.monday, 1);
-        await registryPage.swipeToRemoveUser("test@test.com");
         await registryPage.swipeToRemoveUser("test-two@test.com");
-
+        await registryPage.swipeToRemoveUser("test@test.com");
         prettyPrint("Then logout");
         await registryPage.logout();
       });
