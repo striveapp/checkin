@@ -3,9 +3,12 @@ import 'package:checkin/src/models/grade.dart';
 import 'package:checkin/src/models/lesson.dart';
 import 'package:checkin/src/models/master.dart';
 import 'package:checkin/src/repositories/lesson_repository.dart';
+import 'package:checkin/src/util/debug_util.dart';
 import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:flutter/cupertino.dart';
 import 'package:intl/intl.dart';
+
+import '../constants.dart';
 
 class LessonInstancesProvider implements LessonRepository {
   static const String path = 'lesson_instances';
@@ -16,6 +19,11 @@ class LessonInstancesProvider implements LessonRepository {
   String _formatDate(DateTime day) => DateFormat("yyyy-MM-dd").format(day);
 
   Stream<List<Lesson>> getLessonsForToday() {
+    if(isInDebugMode) {
+      return getLessonsForDay(testDate);
+    }
+
+
     return getLessonsForDay(DateTime.now());
   }
 

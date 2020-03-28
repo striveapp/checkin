@@ -14,9 +14,9 @@ class LessonsPage {
   Future<void> selectDay(WeekDay day) async {
     switch (day) {
       case WeekDay.monday:
-        await _driver.waitFor(mondayButton);
-        await _driver.tap(mondayButton);
-        await _driver.waitUntilNoTransientCallbacks();
+//        await _driver.waitFor(mondayButton);
+//        await _driver.tap(mondayButton);
+//        await _driver.waitUntilNoTransientCallbacks();
         break;
       case WeekDay.tuesday:
       case WeekDay.wednesday:
@@ -39,9 +39,7 @@ class LessonsPage {
   }
 
   SerializableFinder _getLessonCard(WeekDay day, int lessonIndex) {
-    var key = "lesson_${describeEnum(day)}_$lessonIndex";
-    print("finding $key");
-    return find.byValueKey(key);
+    return find.byValueKey("lesson_${describeEnum(day)}_$lessonIndex");
   }
 
 

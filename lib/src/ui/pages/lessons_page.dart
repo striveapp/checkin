@@ -21,8 +21,7 @@ class LessonsPage extends StatelessWidget {
         body: BlocProvider<LessonsBloc>(
           create: (BuildContext context) =>
               LessonsBloc(
-                lessonRepository: RepositoryProvider.of<LessonRepository>(
-                    context),
+                lessonRepository: RepositoryProvider.of<LessonRepository>(context),
               ),
           child: Builder(
             builder: (BuildContext context) =>
