@@ -124,7 +124,9 @@ class App extends StatelessWidget {
           ],
           child: BlocBuilder<AuthBloc, AuthState>(
               builder: (BuildContext context, AuthState state) {
-            if (state is AuthUnauthenticated) {
+                debugPrint("auth state change detected in main app [$state]");
+
+                if (state is AuthUnauthenticated) {
               return LoginPage(
                   authRepository: _authRepository,
                   userRepository: _userRepository);

@@ -18,6 +18,7 @@ void main() {
 
     setUpAll(() async {
       driver = await FlutterDriver.connect();
+      await driver.requestData("setup");
       loginPage = LoginPage(driver);
       lessonsPage = LessonsPage(driver);
       registryPage = RegistryPage(driver);

@@ -2,11 +2,14 @@ import 'package:checkin/main.dart' as app;
 import 'package:checkin/src/resources/lesson_instances_provider.dart';
 import 'package:checkin/src/resources/stats_provider.dart';
 import 'package:firebase_auth/firebase_auth.dart';
+import 'package:flutter/cupertino.dart';
 import 'package:flutter_driver/driver_extension.dart';
 
 Future<void> main() async {
-  await setup();
-  enableFlutterDriverExtension();
+  enableFlutterDriverExtension(handler: (message) async {
+    await setup();
+    return "ok";
+  });
   app.main();
 }
 
@@ -16,6 +19,7 @@ Future<void> setup() async {
   await firebaseAuth.signInWithEmailAndPassword(email: "test@test.com", password: "test123");
   await cleanDatabase();
   await firebaseAuth.signOut();
+  debugPrint("Finished setup, db cleaned!");
 }
 
 Future<void> cleanDatabase() async {

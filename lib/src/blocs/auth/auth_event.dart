@@ -1,4 +1,3 @@
-import 'package:checkin/src/models/user.dart';
 import 'package:equatable/equatable.dart';
 
 abstract class AuthEvent extends Equatable {
@@ -25,20 +24,6 @@ class AuthUpdated extends AuthEvent {
 
   @override
   String toString() => 'AuthUpdated';
-}
-
-class LoggedIn extends AuthEvent {
-  final User currentUser;
-
- const LoggedIn({
-    this.currentUser,
-  });
-
-  @override
-  List<Object> get props => [currentUser];
-
-  @override
-  String toString() => 'LoggedIn';
 }
 
 class LogOut extends AuthEvent {

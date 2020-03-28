@@ -40,17 +40,9 @@ class AuthBloc extends Bloc<AuthEvent, AuthState> {
           : AuthUnauthenticated();
     }
 
-    if (event is LoggedIn) {
-      debugPrint('LoggedIn with user: ${event.currentUser}');
-      yield AuthAuthenticated(
-          loggedUserEmail: event.currentUser.email,
-      );
-    }
-
     if (event is LogOut) {
       try {
         debugPrint('Attempting to LogOut...');
-        yield AuthUnauthenticated();
         await this._authRepository.signOut();
       } catch(e) {
         debugPrint('Error ocurred trying to signOut:' + e.toString());

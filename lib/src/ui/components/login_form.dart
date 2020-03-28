@@ -1,8 +1,6 @@
 import 'package:checkin/src/blocs/login/bloc.dart';
-import 'package:checkin/src/blocs/auth/bloc.dart';
 import 'package:checkin/src/localization/localization.dart';
 import 'package:checkin/src/ui/components/google_sign_in_button.dart';
-import 'package:checkin/src/ui/components/loading_indicator.dart';
 import 'package:checkin/src/util/debug_util.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
@@ -13,13 +11,11 @@ class LoginForm extends StatefulWidget {
 }
 
 class _LoginFormState extends State<LoginForm> {
-  AuthBloc _authBloc;
   LoginBloc _loginBloc;
 
   @override
   void initState() {
     super.initState();
-    _authBloc = BlocProvider.of<AuthBloc>(context);
     _loginBloc = BlocProvider.of<LoginBloc>(context);
   }
 
@@ -33,17 +29,11 @@ class _LoginFormState extends State<LoginForm> {
             ..showSnackBar(
               SnackBar(
                 content:
-                    Text(state.errorMessage.i18n),
+                Text(state.errorMessage.i18n),
                 backgroundColor: Colors.red,
               ),
             );
         }
-
-        if (state is LoginSuccess) {
-          _authBloc.add(LoggedIn(currentUser: state.loggedUser));
-        }
-
-        return LoadingIndicator();
       },
       child: BlocBuilder<LoginBloc, LoginState>(
         builder: (

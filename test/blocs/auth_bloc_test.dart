@@ -1,5 +1,4 @@
 import 'package:checkin/src/blocs/auth/bloc.dart';
-import 'package:checkin/src/models/user.dart';
 import 'package:checkin/src/repositories/auth_repository.dart';
 import 'package:mockito/mockito.dart';
 import 'package:test/test.dart';
@@ -63,21 +62,6 @@ void main() {
 
           expectLater(authBloc, emitsInOrder(expectedResponse));
         });
-    });
-
-    group('dispatch LoggedIn', () {
-      var fakeUser = User(name: "test", email: "test@test.ts", imageUrl: "someImage");
-      setUp(() {
-        authBloc.add(LoggedIn(currentUser: fakeUser));
-      });
-
-      test("should emit AuthAuthenticated with current user email", () {
-        final expectedResponse = [
-          AuthUninitialized(),
-          AuthAuthenticated(loggedUserEmail: fakeUser.email),
-        ];
-        expectLater(authBloc, emitsInOrder(expectedResponse));
-      });
     });
 
     group('dispatch LoggedOut', () {
