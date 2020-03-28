@@ -73,11 +73,6 @@ void main() {
       await driver.tap(find.byValueKey('editProfileButton'));
     }
 
-    test('check flutter driver health', () async {
-      Health health = await driver.checkHealth();
-      print(health.status);
-    });
-
     group("User profile journey", () {
       //TODO: this tests are not actually testing this feature e2e since we are not able to submit the TextField
       // More details about the issue here: https://github.com/flutter/flutter/issues/29450

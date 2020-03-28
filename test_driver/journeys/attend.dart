@@ -5,8 +5,8 @@ import 'package:firebase_auth/firebase_auth.dart';
 import 'package:flutter_driver/driver_extension.dart';
 
 Future<void> main() async {
+  await setup();
   enableFlutterDriverExtension();
-  setup();
   app.main();
 }
 
