@@ -4,7 +4,7 @@ import 'package:checkin/src/blocs/user/bloc.dart';
 import 'package:checkin/src/models/lesson.dart';
 import 'package:checkin/src/models/user.dart';
 import 'package:checkin/src/repositories/lesson_repository.dart';
-import 'package:checkin/src/ui/components/attendees_counter.dart';
+import 'package:checkin/src/ui/components/lesson_attendees_counter.dart';
 import 'package:checkin/src/ui/components/attendees_list.dart';
 import 'package:checkin/src/ui/components/base_app_bar.dart';
 import 'package:checkin/src/ui/components/lesson_infos.dart';
@@ -63,7 +63,7 @@ class RegistryPage extends StatelessWidget {
                         children: <Widget>[
                           Padding(
                             padding: EdgeInsets.symmetric(horizontal: 5),
-                            child: AttendeesCounter(),
+                            child: LessonAttendeesCounter(),
                           ),
                           SizedBox(
                             height: 10,

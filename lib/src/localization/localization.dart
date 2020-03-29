@@ -2,7 +2,7 @@ import 'package:checkin/src/constants.dart' as constants;
 import 'package:checkin/src/models/grade.dart';
 import 'package:checkin/src/ui/components/attended_lessons_list.dart';
 import 'package:checkin/src/ui/components/attendee_tile.dart';
-import 'package:checkin/src/ui/components/attendees_counter.dart';
+import 'package:checkin/src/ui/components/lesson_attendees_counter.dart';
 import 'package:checkin/src/ui/components/attendees_preview.dart';
 import 'package:checkin/src/ui/components/google_sign_in_button.dart';
 import 'package:checkin/src/ui/components/grade_card.dart';
@@ -98,10 +98,10 @@ extension Localization on String {
         .modifier(constants.MONTH, 'este mes')
         .modifier(constants.YEAR, 'este año'),
   } + {
-    'en': AttendeesCounter.full,
+    'en': LessonAttendeesCounter.full,
     'es': 'lleno',
   }  + {
-    'en': AttendeesCounter.attendees,
+    'en': LessonAttendeesCounter.attendees,
     'es': 'Participantes',
   } + {
     'en': AttendeeTile.you,
