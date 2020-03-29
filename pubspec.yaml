@@ -28,8 +28,8 @@ dependencies:
   cloud_functions: ^0.4.1+4
   google_sign_in: ^4.0.14
   share: ^0.6.3+5
-  bloc: ^2.0.0
-  flutter_bloc: ^2.1.1
+  bloc: ^3.0.0
+  flutter_bloc: ^3.2.0
   equatable: ^1.0.1
   cached_network_image: 2.0.0-rc
   fluro: ^1.6.1
@@ -46,7 +46,7 @@ dependencies:
 dev_dependencies:
   test: ">=1.6.3 <2.0.0"
   mockito: ^4.1.1
-  bloc_test: ^2.2.2
+  bloc_test: ^4.0.0
   flutter_launcher_icons: "^0.7.0"
   flutter_test:
     sdk: flutter
