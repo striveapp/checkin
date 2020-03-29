@@ -1,6 +1,6 @@
 import 'package:checkin/src/localization/localization.dart';
 import 'package:checkin/src/models/lesson.dart';
-import 'package:checkin/src/ui/components/lesson_info_card.dart';
+import 'package:checkin/src/ui/components/stats/user/lesson_info_card.dart';
 import 'package:flutter/material.dart';
 
 class AttendedLessonsList extends StatelessWidget {
