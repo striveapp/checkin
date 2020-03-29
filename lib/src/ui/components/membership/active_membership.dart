@@ -1,8 +1,8 @@
+import 'package:checkin/src/localization/localization.dart';
 import 'package:checkin/src/models/membership.dart';
 import 'package:checkin/src/ui/components/membership/unsubscribe_dialog.dart';
 import 'package:flutter/material.dart';
 import 'package:intl/intl.dart';
-import 'package:checkin/src/localization/localization.dart';
 
 class ActiveMembershipView extends StatelessWidget {
   final Membership membership;
@@ -16,8 +16,7 @@ class ActiveMembershipView extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return Padding(
-      padding:
-      EdgeInsets.symmetric(vertical: 25, horizontal: 20),
+      padding: EdgeInsets.symmetric(vertical: 25, horizontal: 20),
       child: Column(
         mainAxisAlignment: MainAxisAlignment.spaceAround,
         crossAxisAlignment: CrossAxisAlignment.start,
@@ -32,9 +31,16 @@ class ActiveMembershipView extends StatelessWidget {
                     .headline3
                     .apply(fontWeightDelta: 1),
               ),
-              Text(
-                membership.email,
-                style: Theme.of(context).textTheme.headline3,
+              SizedBox(
+                width: 10,
+              ),
+              Flexible(
+                flex: 2,
+                child: Text(
+                  membership.email,
+                  style: Theme.of(context).textTheme.headline3,
+                  overflow: TextOverflow.ellipsis,
+                ),
               ),
             ],
           ),
@@ -77,33 +83,23 @@ class ActiveMembershipView extends StatelessWidget {
                 Text(
                     DateFormat('dd MMM y').format(
                         DateTime.fromMillisecondsSinceEpoch(
-                            membership.currentPeriodEnd *
-                                1000)),
+                            membership.currentPeriodEnd * 1000)),
                     textAlign: TextAlign.center,
-                    style: Theme.of(context)
-                        .textTheme
-                        .headline3
-                        .apply(
+                    style: Theme.of(context).textTheme.headline3.apply(
                         fontWeightDelta: 1,
-                        color:
-                        Theme.of(context).accentColor)),
+                        color: Theme.of(context).accentColor)),
                 SizedBox(
                   height: 20,
                 ),
                 Row(
-                  mainAxisAlignment:
-                  MainAxisAlignment.spaceAround,
+                  mainAxisAlignment: MainAxisAlignment.spaceAround,
                   children: <Widget>[
                     RaisedButton(
                       child: Text(
                         unsubscribe.i18n,
-                        style:
-                        Theme.of(context).textTheme.button,
+                        style: Theme.of(context).textTheme.button,
                       ),
-                      color: Theme.of(context)
-                          .buttonTheme
-                          .colorScheme
-                          .error,
+                      color: Theme.of(context).buttonTheme.colorScheme.error,
                       onPressed: () {
                         showDialog(
                           context: context,
