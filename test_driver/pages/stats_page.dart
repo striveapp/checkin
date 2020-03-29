@@ -15,7 +15,7 @@ class StatsPage {
 
   Future<String> getMathHours() async {
     await _driver.waitFor(_matHours);
-    return _driver.getText(_matHours);
+    return await _driver.getText(_matHours);
   }
 
   Future<void> logout() async {
