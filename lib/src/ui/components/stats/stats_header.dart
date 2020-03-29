@@ -12,8 +12,10 @@ class StatsHeader extends StatelessWidget {
     return Row(
       mainAxisAlignment: MainAxisAlignment.spaceBetween,
       children: <Widget>[
-        ProfileInfos(
-          userEmail: userEmail,
+        Expanded(
+          child: ProfileInfos(
+            userEmail: userEmail,
+          ),
         ),
         Padding(
           padding: EdgeInsets.only(right: 20),
