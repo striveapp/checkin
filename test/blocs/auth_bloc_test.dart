@@ -64,7 +64,7 @@ void main() {
         });
     });
 
-    group('dispatch LoggedOut', () {
+    group('LogOut', () {
       setUp(() {
         authBloc.add(LogOut());
       });
@@ -72,7 +72,6 @@ void main() {
       test("should emit AuthUnauthenticated and perform logout", () {
         final expectedState = [
           AuthUninitialized(),
-          AuthUnauthenticated(),
         ];
 
         expectLater(
