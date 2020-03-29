@@ -24,14 +24,3 @@ class StatsUpdated extends UserStatsEvent {
   @override
   String toString() => 'StatsUpdated{attendedLessons: $attendedLessons}';
 }
-
-class LoadStats extends UserStatsEvent {
-  final String timespan;
-
-  LoadStats({
-    @required this.timespan,
-  });
-
-  @override
-  List<Object> get props => [timespan];
-}

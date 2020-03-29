@@ -16,15 +16,15 @@ class StatsUninitialized extends UserStatsState {
 
 class StatsLoaded extends UserStatsState {
   final List<Lesson> attendedLessons;
-  final String timeSpan;
+  final String timespan;
 
   StatsLoaded({
     @required this.attendedLessons,
-    @required this.timeSpan,
+    @required this.timespan,
   });
 
   @override
-  List<Object> get props => [attendedLessons, timeSpan];
+  List<Object> get props => [attendedLessons, timespan];
 
   @override
   String toString() => 'StatsLoaded{attendedLessons: $attendedLessons}';

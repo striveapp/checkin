@@ -8,9 +8,8 @@ import 'package:flutter_bloc/flutter_bloc.dart';
 
 class StatsBody extends StatelessWidget {
   final String userEmail;
-  final String timespan;
 
-  StatsBody({this.userEmail, this.timespan});
+  StatsBody({this.userEmail});
 
   @override
   Widget build(BuildContext context) {
@@ -21,10 +20,7 @@ class StatsBody extends StatelessWidget {
             return LessonsStatsPage();
           }
 
-          return UserStatsPage(
-            userEmail: userEmail,
-            timestamp: timespan,
-          );
+          return UserStatsPage(userEmail: userEmail);
         }
 
         if (state is ProfileLoading) {

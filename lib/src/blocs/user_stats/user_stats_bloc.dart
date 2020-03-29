@@ -1,6 +1,7 @@
 import 'dart:async';
 
 import 'package:bloc/bloc.dart';
+import 'package:checkin/src/blocs/stats/bloc.dart';
 import 'package:checkin/src/blocs/user_stats/user_stats_event.dart';
 import 'package:checkin/src/blocs/user_stats/user_stats_state.dart';
 import 'package:checkin/src/constants.dart' as constants;
@@ -12,16 +13,26 @@ import 'package:flutter/material.dart';
 class UserStatsBloc extends Bloc<UserStatsEvent, UserStatsState> {
   final StatsRepository statsRepository;
   final DateUtil dateUtil;
+  final StatsBloc statsBloc;
 
   final String userEmail;
   StreamSubscription<UserHistory> statsSub;
 
-  //TODO: this should recieve the StatsBloc and listen to his state changes
   UserStatsBloc({
     @required this.statsRepository,
     @required this.dateUtil,
     @required this.userEmail,
-  });
+    @required this.statsBloc,
+  }) {
+    statsBloc.listen((statsBlocState) {
+      if (statsBlocState is TimespanUpdated) {
+        statsSub?.cancel();
+        statsSub = this.statsRepository.getUserStats(userEmail, _getFromTimestampBy(statsBlocState.timespan)).listen((userHistory) {
+          add(StatsUpdated(attendedLessons: userHistory.attendedLessons, timeSpan: statsBlocState.timespan));
+        });
+      }
+    });
+  }
 
   @override
   Future<void> close() {
@@ -35,15 +46,9 @@ class UserStatsBloc extends Bloc<UserStatsEvent, UserStatsState> {
   @override
   Stream<UserStatsState> mapEventToState(UserStatsEvent event) async* {
     if(event is StatsUpdated) {
-      yield StatsLoaded(attendedLessons: event.attendedLessons, timeSpan: event.timeSpan);
+      yield StatsLoaded(attendedLessons: event.attendedLessons, timespan: event.timeSpan);
     }
 
-    if(event is LoadStats) {
-      statsSub?.cancel();
-      statsSub = this.statsRepository.getUserStats(userEmail, _getFromTimestampBy(event.timespan)).listen((userHistory) {
-        add(StatsUpdated(attendedLessons: userHistory.attendedLessons, timeSpan: event.timespan));
-      });
-    }
   }
 
   int _getFromTimestampBy(String timeSpan) {

@@ -1,3 +1,4 @@
+import 'package:checkin/src/blocs/stats/bloc.dart';
 import 'package:checkin/src/blocs/user_stats/bloc.dart';
 import 'package:checkin/src/blocs/user_stats/user_stats_bloc.dart';
 import 'package:checkin/src/repositories/stats_repository.dart';
@@ -13,15 +14,12 @@ class UserStatsPage extends StatelessWidget {
   static const String stats = 'Stats';
 
   final String _userEmail;
-  final String _timestamp;
 
   UserStatsPage({
     Key key,
     @required String userEmail,
-    @required String timestamp,
-  })  : assert(userEmail != null && timestamp != null),
+  })  : assert(userEmail != null),
         _userEmail = userEmail,
-        _timestamp = timestamp,
         super(key: key);
 
   @override
@@ -31,7 +29,8 @@ class UserStatsPage extends StatelessWidget {
           statsRepository: StatsRepository(),
           dateUtil: DateUtil(),
           userEmail: _userEmail,
-        )..add(LoadStats(timespan: _timestamp)),
+          statsBloc: BlocProvider.of<StatsBloc>(context)
+        ),
         builder: (BuildContext context, UserStatsState state) {
       if (state is StatsUninitialized) {
         return LoadingIndicator();
@@ -42,7 +41,7 @@ class UserStatsPage extends StatelessWidget {
             Padding(
               padding: EdgeInsets.symmetric(horizontal: 20),
               child: MatTimeCounter(
-                timeSpan: _timestamp,
+                timeSpan: state.timespan,
                 counter: state.attendedLessons.length,
               ),
             ),

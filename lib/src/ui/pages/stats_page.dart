@@ -1,16 +1,15 @@
 import 'package:checkin/src/blocs/profile/bloc.dart';
 import 'package:checkin/src/blocs/stats/bloc.dart';
 import 'package:checkin/src/blocs/user/bloc.dart';
+import 'package:checkin/src/constants.dart' as constants;
 import 'package:checkin/src/localization/localization.dart';
 import 'package:checkin/src/repositories/user_repository.dart';
 import 'package:checkin/src/ui/components/base_app_bar.dart';
-import 'package:checkin/src/ui/components/loading_indicator.dart';
 import 'package:checkin/src/ui/components/stats/stats_body.dart';
 import 'package:checkin/src/ui/components/stats/stats_header.dart';
 import 'package:checkin/src/ui/pages/user_stats_page.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
-import 'package:checkin/src/constants.dart' as constants;
 
 class StatsPage extends StatelessWidget {
   final String userEmail;
@@ -38,7 +37,8 @@ class StatsPage extends StatelessWidget {
                 userBloc: BlocProvider.of<UserBloc>(context)),
           ),
           BlocProvider<StatsBloc>(
-            create: (context) => StatsBloc()..add(TimespanUpdate(timespan: constants.WEEK)),
+            create: (context) =>
+                StatsBloc()..add(TimespanUpdate(timespan: constants.WEEK)),
           ),
         ],
         child: SingleChildScrollView(
@@ -48,22 +48,7 @@ class StatsPage extends StatelessWidget {
               child: Column(
                 children: <Widget>[
                   StatsHeader(userEmail: userEmail),
-                  BlocBuilder<StatsBloc, StatsState>(
-                    builder: (BuildContext context, StatsState state) {
-                      if (state is InitialStatsState) {
-                        return LoadingIndicator();
-                      }
-
-                      if(state is TimespanUpdated) {
-                        return StatsBody(
-                          userEmail: userEmail,
-                          timespan: state.timespan,
-                        );
-                      }
-
-                      return ErrorWidget("Unexpected state in stats_page: [$state]");
-                    },
-                  ),
+                  StatsBody(userEmail: userEmail),
                 ],
               ),
             ),
