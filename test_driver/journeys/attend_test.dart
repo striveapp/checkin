@@ -18,9 +18,7 @@ void main() {
 
     setUpAll(() async {
       driver = await FlutterDriver.connect();
-      await driver.requestData("setup");
-      driver.sendCommand(SetFrameSync(false));
-
+      
       loginPage = LoginPage(driver);
       lessonsPage = LessonsPage(driver);
       registryPage = RegistryPage(driver);
@@ -34,6 +32,11 @@ void main() {
     });
 
     group("when user is removed from class", () {
+      setUp(() async {
+        await driver.requestData("setup");
+        await driver.waitForValue(() => driver.requestData("is_db_clean"), "true");
+      });
+
       test("user should be able to remove himself from class", () async {
         prettyPrint("Login as user and attend class");
         await loginPage.loginAsTest();
@@ -64,18 +67,22 @@ void main() {
         prettyPrint("Then logout");
         await registryPage.logout();
 
-        prettyPrint("Then login as owner, and remove Test user from class");
+        prettyPrint("Then login as owner, and remove Test user & Test Two from class");
         await loginPage.loginAsOwner();
         await lessonsPage.selectDay(WeekDay.monday);
         await lessonsPage.selectLessonOfTheDay(WeekDay.monday, 1);
-        await registryPage.swipeToRemoveUser("test-two@test.com");
         await registryPage.swipeToRemoveUser("test@test.com");
+        await registryPage.swipeToRemoveUser("test-two@test.com");
         prettyPrint("Then logout");
         await registryPage.logout();
       });
     });
 
     group("when user attends classes", () {
+      setUp(() async {
+        await driver.requestData("setup");
+        await driver.waitForValue(() => driver.requestData("is_db_clean"), "true");
+      });
       test("increase the counter when master approves the class", () async {
         prettyPrint("Login as user and attend class");
         await loginPage.loginAsTest();
@@ -104,8 +111,8 @@ void main() {
         prettyPrint(
             "Then get the amount of classes attended and check it increased");
         await registryPage.tapTestAttendee();
-        var finalMatHours = await statsPage.getMathHours();
-        expect(int.parse(finalMatHours), int.parse(initialMatHours) + 1);
+        await driver.waitForValue(() => statsPage.getMathHours(),
+            (int.parse(initialMatHours) + 1).toString());
 
         prettyPrint("Then logout");
         await statsPage.logout();
@@ -149,8 +156,8 @@ void main() {
         prettyPrint(
             "Then get the amount of classes attended by Test and check they have increased");
         await registryPage.tapTestAttendee();
-        var finalMatHoursTest = await statsPage.getMathHours();
-        expect(int.parse(finalMatHoursTest), int.parse(initialMatHoursTest) + 1);
+        await driver.waitForValue(() => statsPage.getMathHours(),
+            (int.parse(initialMatHoursTest) + 1).toString());
 
         prettyPrint("Then go back");
         await driver.goBack();
@@ -158,8 +165,8 @@ void main() {
         prettyPrint(
             "Then get the amount of classes attended by TestTwo and check they have increased");
         await registryPage.tapTestAttendee();
-        var finalMatHoursTestTwo = await statsPage.getMathHours();
-        expect(int.parse(finalMatHoursTestTwo), int.parse(initialMatHoursTestTwo) + 1);
+        await driver.waitForValue(() => statsPage.getMathHours(),
+            (int.parse(initialMatHoursTestTwo) + 1).toString());
 
         prettyPrint("Then logout");
         await statsPage.logout();

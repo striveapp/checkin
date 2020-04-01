@@ -1,5 +1,7 @@
 import 'package:flutter_driver/flutter_driver.dart';
 
+const defaultTimeout = Duration(seconds: 30);
+
 prettyPrint(msg) => print("\n@@@@@@@@@@ $msg @@@@@@@@@@");
 
 final loadingIndicator = find.byValueKey('loadingIndicator');
@@ -9,6 +11,18 @@ extension Util on FlutterDriver {
   Future<void> goBack() async {
     await tap(find.pageBack());
   }
+
+  Future<String> waitForValue(Future<String> Function() f, String expectedValue,
+          {Duration timeout = defaultTimeout}) async =>
+      _getTextValueFromFuture(f, expectedValue).timeout(timeout);
+}
+
+Future<String> _getTextValueFromFuture(
+    Future<String> Function() f, String expectedValue) async {
+  if (await f.call() == expectedValue) {
+    return expectedValue;
+  }
+  return _getTextValueFromFuture(f, expectedValue);
 }
 
 String describeEnum(Object enumEntry) {
