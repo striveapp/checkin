@@ -8,6 +8,7 @@ import 'package:firebase_auth/firebase_auth.dart';
 import 'package:flutter/cupertino.dart';
 import 'package:flutter_driver/driver_extension.dart';
 
+final navigationObserver = NavigatorObserver();
 bool isDbClean = false;
 StreamSubscription<Lesson> lessonSub;
 
@@ -20,7 +21,7 @@ Future<void> main() async {
     }
     return "ok";
   });
-  app.main();
+  app.mainTest(navigationObserver);
 }
 
 Future<void> setup() async {
@@ -29,6 +30,7 @@ Future<void> setup() async {
   await firebaseAuth.signInWithEmailAndPassword(email: "test@test.com", password: "test123");
   await cleanDatabase();
   await firebaseAuth.signOut();
+  navigationObserver.navigator.popUntil(ModalRoute.withName('/'));
   debugPrint("Finished setup, db cleaned!");
 }
 

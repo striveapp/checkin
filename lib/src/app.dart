@@ -20,14 +20,17 @@ import 'blocs/version/bloc.dart';
 class App extends StatelessWidget {
   final AuthRepository _authRepository;
   final UserRepository _userRepository;
+  final NavigatorObserver _navigatorObserver;
 
   App({
     Key key,
     @required AuthRepository authRepository,
     @required UserRepository userRepository,
+    @required NavigatorObserver navigationObserver,
   })  : assert(authRepository != null && userRepository != null),
         _authRepository = authRepository,
         _userRepository = userRepository,
+        _navigatorObserver = navigationObserver,
         super(key: key);
 
   @override
@@ -44,6 +47,7 @@ class App extends StatelessWidget {
       ],
       onGenerateRoute: Application.router.generator,
       initialRoute: '/',
+      navigatorObservers: _navigatorObserver == null ? [] : [_navigatorObserver],
       theme: ThemeData(
         fontFamily: 'Raleway',
         primaryColor: Color(0xFF242966),

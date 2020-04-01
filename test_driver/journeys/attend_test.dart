@@ -18,7 +18,7 @@ void main() {
 
     setUpAll(() async {
       driver = await FlutterDriver.connect();
-      
+
       loginPage = LoginPage(driver);
       lessonsPage = LessonsPage(driver);
       registryPage = RegistryPage(driver);
@@ -45,10 +45,9 @@ void main() {
         await registryPage.registerToClass();
         prettyPrint("Then unregister himself from class");
         await registryPage.unregisterFromClass();
-
         prettyPrint("Then logout");
         await registryPage.logout();
-      });
+      }, retry: 2);
 
       test("owner should be able to remove users from class", () async {
         prettyPrint("Login as user and attend class");
@@ -75,7 +74,7 @@ void main() {
         await registryPage.swipeToRemoveUser("test-two@test.com");
         prettyPrint("Then logout");
         await registryPage.logout();
-      });
+      }, retry: 2);
     });
 
     group("when user attends classes", () {
@@ -116,7 +115,7 @@ void main() {
 
         prettyPrint("Then logout");
         await statsPage.logout();
-      });
+      }, retry: 2);
 
       test(
           "it should increase the counter of multiple users when in class and accepted by the master",
@@ -170,7 +169,7 @@ void main() {
 
         prettyPrint("Then logout");
         await statsPage.logout();
-      });
+      }, retry: 2);
     });
   });
 }
