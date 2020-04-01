@@ -18,6 +18,7 @@ void main() {
 
     setUpAll(() async {
       driver = await FlutterDriver.connect();
+      await driver.sendCommand(SetFrameSync(false));
 
       loginPage = LoginPage(driver);
       lessonsPage = LessonsPage(driver);
