@@ -68,36 +68,6 @@ void main() {
       await driver.tap(find.byValueKey('profilePageButton'));
     }
 
-    editProfile() async {
-      await driver.waitFor(find.byValueKey('classCounter'));
-      await driver.tap(find.byValueKey('editProfileButton'));
-    }
-
-    group("User profile journey", () {
-      //TODO: this tests are not actually testing this feature e2e since we are not able to submit the TextField
-      // More details about the issue here: https://github.com/flutter/flutter/issues/29450
-      test("user should be able to change name", () async {
-        prettyPrint("Login as user go to profile page and edit");
-        await loginAsUser();
-        await goToProfilePage();
-        await editProfile();
-
-        prettyPrint("Change the name");
-        var newName = 'Felice Mastronzo';
-        var oldName = 'Test';
-
-        await driver.setTextEntryEmulation(enabled: true);
-        await driver.enterText(newName);
-        await driver.waitForAbsent(find.text(oldName));
-        await driver.waitFor(find.text(newName));
-
-        prettyPrint("Reset the name and logout");
-        await driver.enterText(oldName);
-        await driver.waitFor(find.text(oldName));
-        await logout();
-      });
-    });
-
     group("User browsing profiles journey", () {
       test("user should be able to see other user's profile", () async {
         final classKey = 'basic';

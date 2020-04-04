@@ -32,9 +32,7 @@ Future<FlutterDriver> getDriverAndWaitForHotRestartFinished() async {
     try {
       await driver.waitForExpectedValue(() async {
         try {
-          print("start is_hot_restarting request");
           var result = await driver.requestData( "is_hot_restarting", timeout: Duration(seconds: 1)).timeout(Duration(seconds:1));
-          print("is_hot_restarting: $result");
           return result;
         } catch (e) {
           print("reconnecting: $e");

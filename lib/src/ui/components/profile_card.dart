@@ -35,6 +35,7 @@ class ProfileCard extends StatelessWidget {
                 ),
                 Expanded(
                   child: TextField(
+                    key: Key("editProfileButton"),
                     onSubmitted: (name) {
                       if (name.length > 3) {
                         BlocProvider.of<UserBloc>(context).add(UpdateName(newName: name));

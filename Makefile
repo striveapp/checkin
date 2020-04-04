@@ -21,7 +21,7 @@ unit-test:
 .PHONY: run-fast
 run-fast:
 	$(info *** STARTING APP ***)
-	flutter run -d $$(flutter devices | tail -1 | awk -F '•' '{print $$2}' | xargs) --target=test_driver/journeys/attend.dart --host-vmservice-port $(VM_PORT) \
+	flutter run -d $$(flutter devices | tail -1 | awk -F '•' '{print $$2}' | xargs) --target=test_driver/journeys/journeys.dart --host-vmservice-port $(VM_PORT) \
 	 --disable-service-auth-codes --use-application-binary=test_driver/build/run-fast-app-debug.apk --pid-file $(PID_FILE)
 
 .PHONY: integration-test
@@ -31,7 +31,7 @@ integration-test:
 	$(info ---------------------)
 	@kill -USR2 $$(cat $(PID_FILE))
 	@sleep 2
-	$(envars) dart test_driver/journeys/attend_test.dart
+	$(envars) dart test_driver/journeys/journeys_test.dart
 
 .PHONY: codegen-runner
 codegen-runner:
