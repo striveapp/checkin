@@ -8,12 +8,20 @@ import 'package:firebase_auth/firebase_auth.dart';
 import 'package:flutter/cupertino.dart';
 import 'package:flutter_driver/driver_extension.dart';
 
-final navigationObserver = NavigatorObserver();
 bool isDbClean = false;
 StreamSubscription<Lesson> lessonSub;
+bool isHotRestarting = false;
 
 Future<void> main() async {
   enableFlutterDriverExtension(handler: (message) async {
+    if(message == "init_hot_restart") {
+      isHotRestarting = true;
+    }
+
+    if( message == "is_hot_restarting") {
+      return isHotRestarting.toString();
+    }
+
     if(message == "setup") {
       await setup();
     } else if (message == "is_db_clean") {
@@ -21,7 +29,7 @@ Future<void> main() async {
     }
     return "ok";
   });
-  app.mainTest(navigationObserver);
+  app.main();
 }
 
 Future<void> setup() async {
@@ -30,7 +38,6 @@ Future<void> setup() async {
   await firebaseAuth.signInWithEmailAndPassword(email: "test@test.com", password: "test123");
   await cleanDatabase();
   await firebaseAuth.signOut();
-  navigationObserver.navigator.popUntil(ModalRoute.withName('/'));
   debugPrint("Finished setup, db cleaned!");
 }
 

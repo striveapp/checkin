@@ -1,3 +1,5 @@
+import 'dart:io';
+
 import 'package:flutter_driver/flutter_driver.dart';
 import 'package:test/test.dart';
 
@@ -9,6 +11,7 @@ import '../pages/stats_page.dart';
 import '../util.dart';
 
 void main() {
+  var pidFile = File('/tmp/flutter-hot-reload.pid');
   group('Attend lesson journey', () {
     FlutterDriver driver;
     LoginPage loginPage;
@@ -16,26 +19,48 @@ void main() {
     RegistryPage registryPage;
     StatsPage statsPage;
 
-    setUpAll(() async {
+    setUp(() async {
       driver = await FlutterDriver.connect();
-      await driver.sendCommand(SetFrameSync(false));
 
+      if(await pidFile.exists()) {
+        try {
+          await driver.waitForExpectedValue(() async {
+            try {
+              return await driver.requestData( "is_hot_restarting", timeout: Duration(seconds: 1));
+            } catch (e) {
+              print("reconnecting: $e");
+              driver = await FlutterDriver.connect();
+            }
+            return "true";
+          }, "false");
+        } catch( e ) {
+          print("something went wrong: $e");
+        }
+      }
       loginPage = LoginPage(driver);
       lessonsPage = LessonsPage(driver);
       registryPage = RegistryPage(driver);
       statsPage = StatsPage(driver);
     });
 
-    tearDownAll(() async {
-      if (driver != null) {
+    tearDown(() async {
+      print("teardown");
+      if( driver == null) return;
+      var pidFile = File('/tmp/flutter-hot-reload.pid');
+      if(await pidFile.exists()) {
+        await driver.requestData("init_hot_restart");
         await driver.close();
+        String pid = await File('/tmp/flutter-hot-reload.pid').readAsString();
+        Process.killPid(int.parse(pid), ProcessSignal.sigusr2);
       }
+      driver.close();
+      print("teardown finished");
     });
 
     group("when user is removed from class", () {
       setUp(() async {
         await driver.requestData("setup");
-        await driver.waitForValue(() => driver.requestData("is_db_clean"), "true");
+        await driver.waitForExpectedValue(() => driver.requestData("is_db_clean"), "true");
       });
 
       test("user should be able to remove himself from class", () async {
@@ -48,7 +73,7 @@ void main() {
         await registryPage.unregisterFromClass();
         prettyPrint("Then logout");
         await registryPage.logout();
-      }, retry: 2);
+      });
 
       test("owner should be able to remove users from class", () async {
         prettyPrint("Login as user and attend class");
@@ -75,13 +100,13 @@ void main() {
         await registryPage.swipeToRemoveUser("test-two@test.com");
         prettyPrint("Then logout");
         await registryPage.logout();
-      }, retry: 2);
+      });
     });
 
     group("when user attends classes", () {
       setUp(() async {
         await driver.requestData("setup");
-        await driver.waitForValue(() => driver.requestData("is_db_clean"), "true");
+        await driver.waitForExpectedValue(() => driver.requestData("is_db_clean"), "true");
       });
       test("increase the counter when master approves the class", () async {
         prettyPrint("Login as user and attend class");
@@ -111,12 +136,12 @@ void main() {
         prettyPrint(
             "Then get the amount of classes attended and check it increased");
         await registryPage.tapTestAttendee();
-        await driver.waitForValue(() => statsPage.getMathHours(),
+        await driver.waitForExpectedValue(() => statsPage.getMathHours(),
             (int.parse(initialMatHours) + 1).toString());
 
         prettyPrint("Then logout");
         await statsPage.logout();
-      }, retry: 2);
+      });
 
       test(
           "it should increase the counter of multiple users when in class and accepted by the master",
@@ -156,7 +181,7 @@ void main() {
         prettyPrint(
             "Then get the amount of classes attended by Test and check they have increased");
         await registryPage.tapTestAttendee();
-        await driver.waitForValue(() => statsPage.getMathHours(),
+        await driver.waitForExpectedValue(() => statsPage.getMathHours(),
             (int.parse(initialMatHoursTest) + 1).toString());
 
         prettyPrint("Then go back");
@@ -165,12 +190,12 @@ void main() {
         prettyPrint(
             "Then get the amount of classes attended by TestTwo and check they have increased");
         await registryPage.tapTestAttendee();
-        await driver.waitForValue(() => statsPage.getMathHours(),
+        await driver.waitForExpectedValue(() => statsPage.getMathHours(),
             (int.parse(initialMatHoursTestTwo) + 1).toString());
 
         prettyPrint("Then logout");
         await statsPage.logout();
-      }, retry: 2);
+      });
     });
   });
 }

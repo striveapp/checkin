@@ -12,15 +12,19 @@ extension Util on FlutterDriver {
     await tap(find.pageBack());
   }
 
-  Future<String> waitForValue(Future<String> Function() f, String expectedValue,
+  Future<String> waitForExpectedValue(Future<String> Function() f, String expectedValue,
           {Duration timeout = defaultTimeout}) async =>
       _getTextValueFromFuture(f, expectedValue).timeout(timeout);
 }
 
 Future<String> _getTextValueFromFuture(
     Future<String> Function() f, String expectedValue) async {
-  if (await f.call() == expectedValue) {
-    return expectedValue;
+  try {
+    if (await f.call() == expectedValue) {
+      return expectedValue;
+    }
+  } catch( e ) {
+    print("function call failed: $e");
   }
   return _getTextValueFromFuture(f, expectedValue);
 }

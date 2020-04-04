@@ -21,15 +21,7 @@ import 'package:flutter_bloc/flutter_bloc.dart';
 import 'src/app.dart';
 import 'src/blocs/dynamic_link/dynamic_link_event.dart';
 
-void main(NavigatorObserver navigatorObserver) {
-  _main(null);
-}
-
-void mainTest(NavigatorObserver navigatorObserver) {
-  _main(navigatorObserver);
-}
-
-void _main(NavigatorObserver navigatorObserver) {
+void main() {
   WidgetsFlutterBinding.ensureInitialized();
 
   // init bloc delegate
@@ -74,7 +66,6 @@ void _main(NavigatorObserver navigatorObserver) {
           child: App(
             userRepository: userRepository,
             authRepository: authRepository,
-            navigationObserver: navigatorObserver,
           ),
         ),
       ),

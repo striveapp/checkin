@@ -56,10 +56,14 @@ class RegistryPage {
   }
 
   Future<void> swipeToRemoveUser(userKey) async {
-    final SerializableFinder testUser = find.byValueKey(userKey);
-    await _driver.waitFor(testUser);
-    await _driver.scroll(testUser, -400, 0, Duration(milliseconds: 500));
-    await _driver.waitForAbsent(find.byValueKey("tile-$userKey"));
-    await _driver.waitUntilNoTransientCallbacks();
+    await _driver.waitForExpectedValue(() async {
+        final SerializableFinder testUser = find.byValueKey(userKey);
+        await _driver.waitFor(testUser);
+        await _driver.scroll(testUser, -400, 0, Duration(milliseconds: 500));
+        await _driver.waitForAbsent(find.byValueKey("tile-$userKey"), timeout: Duration(seconds:3));
+        await _driver.waitUntilNoTransientCallbacks();
+        return "ok";
+    }, "ok");
+
   }
 }
