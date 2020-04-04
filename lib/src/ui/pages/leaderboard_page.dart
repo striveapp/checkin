@@ -48,9 +48,10 @@ class LeaderboardPage extends StatelessWidget {
                         itemCount: userHistoryWithoutPodium.length,
                         itemBuilder: (BuildContext context, int index) {
                           return ProfileTile(
-                              profileEmail: userHistoryWithoutPodium[index].email,
-                              attendedClasses: userHistoryWithoutPodium[index].attendedLessons.length,
-                              position: index + 4,
+                            key: Key('tile_${index + 4}_${userHistoryWithoutPodium[index].email}'),
+                            profileEmail: userHistoryWithoutPodium[index].email,
+                            attendedClasses: userHistoryWithoutPodium[index].attendedLessons.length,
+                            position: index + 4,
                             );
                         }),
                   ),

@@ -24,6 +24,7 @@ class PodiumProfile extends StatelessWidget {
           nonCurrentUserEmail: profileEmail),
       builder: (BuildContext context, ProfileState state) {
         if (state is ProfileSuccess) {
+          debugPrint("key: Key(podium_profile_${position}_$profileEmail)");
           //TODO: this should be simplified https://trello.com/c/EVfSfCQy
           return GestureDetector(
             onTap: () {
@@ -42,6 +43,7 @@ class PodiumProfile extends StatelessWidget {
                           borderRadius: BorderRadius.all(Radius.circular(50)),
                         ),
                         child: UserImage(
+                          key: Key("podium_profile_${position}_$profileEmail"),
                           userImage: state.profileUser.imageUrl,
                           width: 90,
                           height: 90,

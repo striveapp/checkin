@@ -3,6 +3,7 @@ import 'package:stack_trace/stack_trace.dart';
 
 import '../driver_extension.dart';
 import '../pages/account_page.dart';
+import '../pages/leaderboard_page.dart';
 import '../pages/lessons_page.dart';
 import '../pages/login_page.dart';
 import '../pages/registry_page.dart';
@@ -15,6 +16,7 @@ abstract class AbstractTest {
   RegistryPage registryPage;
   StatsPage statsPage;
   AccountPage accountPage;
+  LeaderboardPage leaderboardPage;
 
   void main() {
     Chain.capture(() {
@@ -31,6 +33,7 @@ abstract class AbstractTest {
     registryPage = RegistryPage(driver);
     statsPage = StatsPage(driver);
     accountPage = AccountPage(driver);
+    leaderboardPage = LeaderboardPage(driver);
     await driver.requestData("setup");
     await driver.waitForExpectedValue(() => driver.requestData("is_db_clean"), "true");
     print("setup finished");

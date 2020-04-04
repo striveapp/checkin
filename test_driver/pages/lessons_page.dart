@@ -8,6 +8,7 @@ class LessonsPage {
   final mondayButton = find.text("16");
   final _accountPageButton = find.byValueKey('accountPageButton');
   final _statsTab = find.byValueKey('statsTab');
+  final _leaderboardTab = find.byValueKey('leaderboardTab');
 
   LessonsPage(FlutterDriver driver) {
     this._driver = driver;
@@ -30,6 +31,11 @@ class LessonsPage {
   goToStatsTab() async {
     await _driver.waitFor(_statsTab);
     await _driver.tap(_statsTab);
+  }
+
+  goToLeaderboardTab() async {
+    await _driver.waitFor(_leaderboardTab);
+    await _driver.tap(_leaderboardTab);
   }
 
 
