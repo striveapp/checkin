@@ -1,4 +1,5 @@
 import 'package:flutter_driver/flutter_driver.dart';
+import 'package:stack_trace/stack_trace.dart';
 import 'package:test/test.dart';
 
 import '../constants.dart';
@@ -10,6 +11,15 @@ import '../driver_extension.dart';
 import '../util.dart';
 
 void main() {
+  Chain.capture(() {
+    startTests();
+  }, onError: (error, stack) {
+//    print(error);
+    print(new Trace.from(stack).terse);
+  });
+}
+
+void startTests() {
   group('Attend lesson journey', () {
     FlutterDriver driver;
     LoginPage loginPage;

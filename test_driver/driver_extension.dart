@@ -15,12 +15,13 @@ extension DriverExtension on FlutterDriver {
 
   Future<void> closeAndHotRestart() async {
     if(await pidFile.exists()) {
+
       await requestData("init_hot_restart");
-      close();
+      await close();
       String pid = await pidFile.readAsString();
       Process.killPid(int.parse(pid), ProcessSignal.sigusr2);
     }
-    close();
+    await close();
   }
 }
 
@@ -31,7 +32,10 @@ Future<FlutterDriver> getDriverAndWaitForHotRestartFinished() async {
     try {
       await driver.waitForExpectedValue(() async {
         try {
-          return await driver.requestData( "is_hot_restarting", timeout: Duration(seconds: 1));
+          print("start is_hot_restarting request");
+          var result = await driver.requestData( "is_hot_restarting", timeout: Duration(seconds: 1)).timeout(Duration(seconds:1));
+          print("is_hot_restarting: $result");
+          return result;
         } catch (e) {
           print("reconnecting: $e");
           driver = await FlutterDriver.connect();
