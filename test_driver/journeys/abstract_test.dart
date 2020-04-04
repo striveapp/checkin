@@ -31,6 +31,8 @@ abstract class AbstractTest {
     registryPage = RegistryPage(driver);
     statsPage = StatsPage(driver);
     accountPage = AccountPage(driver);
+    await driver.requestData("setup");
+    await driver.waitForExpectedValue(() => driver.requestData("is_db_clean"), "true");
     print("setup finished");
   }
 

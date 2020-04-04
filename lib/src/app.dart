@@ -147,7 +147,7 @@ class App extends StatelessWidget {
                         child: TabBar(
                           tabs: <Widget>[
                             Tab(icon: Icon(Icons.home)),
-                            Tab(icon: Icon(Icons.insert_chart)),
+                            Tab(key: Key("statsTab"), icon: Icon(Icons.insert_chart)),
                             Tab(icon: Icon(Icons.star)),
                           ],
                         ),

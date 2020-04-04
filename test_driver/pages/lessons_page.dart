@@ -7,6 +7,7 @@ class LessonsPage {
   FlutterDriver _driver;
   final mondayButton = find.text("16");
   final _accountPageButton = find.byValueKey('accountPageButton');
+  final _statsTab = find.byValueKey('statsTab');
 
   LessonsPage(FlutterDriver driver) {
     this._driver = driver;
@@ -24,6 +25,11 @@ class LessonsPage {
 
   SerializableFinder _getLessonCard(WeekDay day, int lessonIndex) {
     return find.byValueKey("lesson_${describeEnum(day)}_$lessonIndex");
+  }
+
+  goToStatsTab() async {
+    await _driver.waitFor(_statsTab);
+    await _driver.tap(_statsTab);
   }
 
 

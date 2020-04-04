@@ -22,4 +22,9 @@ class StatsPage {
     await _driver.goBack();
     await _registryPage.logout();
   }
+
+  selectTimeSpan(String timespan) async {
+    await _driver.waitFor(find.byValueKey('timespan_$timespan'));
+    await _driver.tap(find.byValueKey('timespan_$timespan'));
+  }
 }

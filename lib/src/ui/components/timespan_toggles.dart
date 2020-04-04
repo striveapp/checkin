@@ -19,7 +19,7 @@ class _TimespanTogglesState extends State<TimespanToggles> {
   Widget build(BuildContext context) {
     List<Widget> _elements = StatsBloc.timespans.map((String value) => Padding(
       padding: const EdgeInsets.symmetric(horizontal: 5),
-      child: Text(_capitalize(value.i18n), style: Theme.of(context).textTheme.bodyText1.apply(color: Colors.black),),
+      child: Text(_capitalize(value.i18n), style: Theme.of(context).textTheme.bodyText1.apply(color: Colors.black),key: Key("timespan_$value")),
     ),).toList();
 
     return ToggleButtons(

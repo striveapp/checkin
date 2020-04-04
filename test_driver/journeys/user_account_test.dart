@@ -22,7 +22,7 @@ class UserAccountTest extends AbstractTest {
       //TODO: this tests are not actually testing this feature e2e since we are not able to submit the TextField
       // More details about the issue here: https://github.com/flutter/flutter/issues/29450
       test("user should be able to change name", () async {
-        prettyPrint("Login as user go to profile page and edit");
+        prettyPrint("Login as user go to account page and edit");
         await loginPage.loginAsTest();
         await lessonsPage.goToAccountPage();
         await accountPage.editProfile();

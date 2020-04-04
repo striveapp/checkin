@@ -17,11 +17,6 @@ class AttendTest extends AbstractTest {
       });
 
       group("when user is removed from class", () {
-        setUp(() async {
-          await driver.requestData("setup");
-          await driver.waitForExpectedValue(() => driver.requestData("is_db_clean"), "true");
-        });
-
         test("user should be able to remove himself from class", () async {
           prettyPrint("Login as user and attend class");
           await loginPage.loginAsTest();
@@ -59,10 +54,6 @@ class AttendTest extends AbstractTest {
       });
 
       group("when user attends classes", () {
-        setUp(() async {
-          await driver.requestData("setup");
-          await driver.waitForExpectedValue(() => driver.requestData("is_db_clean"), "true");
-        });
         test("increase the counter when master approves the class", () async {
           prettyPrint("Login as user and attend class");
           await loginPage.loginAsTest();
