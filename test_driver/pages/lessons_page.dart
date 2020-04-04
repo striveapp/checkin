@@ -6,26 +6,10 @@ import '../util.dart';
 class LessonsPage {
   FlutterDriver _driver;
   final mondayButton = find.text("16");
+  final _accountPageButton = find.byValueKey('accountPageButton');
 
   LessonsPage(FlutterDriver driver) {
     this._driver = driver;
-  }
-
-  Future<void> selectDay(WeekDay day) async {
-    switch (day) {
-      case WeekDay.monday:
-//        await _driver.waitFor(mondayButton);
-//        await _driver.tap(mondayButton);
-//        await _driver.waitUntilNoTransientCallbacks();
-        break;
-      case WeekDay.tuesday:
-      case WeekDay.wednesday:
-      case WeekDay.thursday:
-      case WeekDay.friday:
-      case WeekDay.saturday:
-      case WeekDay.sunday:
-        break;
-    }
   }
 
   Future<void> selectLessonOfTheDay(WeekDay day, int lessonIndex) async {
@@ -35,7 +19,7 @@ class LessonsPage {
   }
 
   Future<void> goToAccountPage() async {
-    await _driver.tap(accountPageButton);
+    await _driver.tap(_accountPageButton);
   }
 
   SerializableFinder _getLessonCard(WeekDay day, int lessonIndex) {

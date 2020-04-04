@@ -1,5 +1,3 @@
-import 'dart:io';
-
 import 'package:flutter_driver/flutter_driver.dart';
 import 'package:test/test.dart';
 
@@ -8,10 +6,10 @@ import '../pages/lessons_page.dart';
 import '../pages/login_page.dart';
 import '../pages/registry_page.dart';
 import '../pages/stats_page.dart';
+import '../driver_extension.dart';
 import '../util.dart';
 
 void main() {
-  var pidFile = File('/tmp/flutter-hot-reload.pid');
   group('Attend lesson journey', () {
     FlutterDriver driver;
     LoginPage loginPage;
@@ -20,23 +18,7 @@ void main() {
     StatsPage statsPage;
 
     setUp(() async {
-      driver = await FlutterDriver.connect();
-
-      if(await pidFile.exists()) {
-        try {
-          await driver.waitForExpectedValue(() async {
-            try {
-              return await driver.requestData( "is_hot_restarting", timeout: Duration(seconds: 1));
-            } catch (e) {
-              print("reconnecting: $e");
-              driver = await FlutterDriver.connect();
-            }
-            return "true";
-          }, "false");
-        } catch( e ) {
-          print("something went wrong: $e");
-        }
-      }
+      driver = await getDriverAndWaitForHotRestartFinished();
       loginPage = LoginPage(driver);
       lessonsPage = LessonsPage(driver);
       registryPage = RegistryPage(driver);
@@ -45,15 +27,7 @@ void main() {
 
     tearDown(() async {
       print("teardown");
-      if( driver == null) return;
-      var pidFile = File('/tmp/flutter-hot-reload.pid');
-      if(await pidFile.exists()) {
-        await driver.requestData("init_hot_restart");
-        await driver.close();
-        String pid = await File('/tmp/flutter-hot-reload.pid').readAsString();
-        Process.killPid(int.parse(pid), ProcessSignal.sigusr2);
-      }
-      driver.close();
+      await driver?.closeAndHotRestart();
       print("teardown finished");
     });
 
@@ -66,7 +40,6 @@ void main() {
       test("user should be able to remove himself from class", () async {
         prettyPrint("Login as user and attend class");
         await loginPage.loginAsTest();
-        await lessonsPage.selectDay(WeekDay.monday);
         await lessonsPage.selectLessonOfTheDay(WeekDay.monday, 1);
         await registryPage.registerToClass();
         prettyPrint("Then unregister himself from class");
@@ -78,7 +51,6 @@ void main() {
       test("owner should be able to remove users from class", () async {
         prettyPrint("Login as user and attend class");
         await loginPage.loginAsTest();
-        await lessonsPage.selectDay(WeekDay.monday);
         await lessonsPage.selectLessonOfTheDay(WeekDay.monday, 1);
         await registryPage.registerToClass();
         prettyPrint("Then logout");
@@ -86,7 +58,6 @@ void main() {
 
         prettyPrint("Then login as TestTwo and attend class");
         await loginPage.loginAsTestTwo();
-        await lessonsPage.selectDay(WeekDay.monday);
         await lessonsPage.selectLessonOfTheDay(WeekDay.monday, 1);
         await registryPage.registerToClass();
         prettyPrint("Then logout");
@@ -94,7 +65,6 @@ void main() {
 
         prettyPrint("Then login as owner, and remove Test user & Test Two from class");
         await loginPage.loginAsOwner();
-        await lessonsPage.selectDay(WeekDay.monday);
         await lessonsPage.selectLessonOfTheDay(WeekDay.monday, 1);
         await registryPage.swipeToRemoveUser("test@test.com");
         await registryPage.swipeToRemoveUser("test-two@test.com");
@@ -111,7 +81,6 @@ void main() {
       test("increase the counter when master approves the class", () async {
         prettyPrint("Login as user and attend class");
         await loginPage.loginAsTest();
-        await lessonsPage.selectDay(WeekDay.monday);
         await lessonsPage.selectLessonOfTheDay(WeekDay.monday, 0);
         await registryPage.registerToClass();
 
@@ -124,7 +93,6 @@ void main() {
 
         prettyPrint("Then login as owner and accept all");
         await loginPage.loginAsOwner();
-        await lessonsPage.selectDay(WeekDay.monday);
         await lessonsPage.selectLessonOfTheDay(WeekDay.monday, 0);
         await registryPage.acceptAll();
 
@@ -148,7 +116,6 @@ void main() {
           () async {
         prettyPrint("Login as user Test and attend class");
         await loginPage.loginAsTest();
-        await lessonsPage.selectDay(WeekDay.monday);
         await lessonsPage.selectLessonOfTheDay(WeekDay.monday, 1);
         await registryPage.registerToClass();
 
@@ -161,7 +128,6 @@ void main() {
 
         prettyPrint("Login as user TestTwo and attend class");
         await loginPage.loginAsTestTwo();
-        await lessonsPage.selectDay(WeekDay.monday);
         await lessonsPage.selectLessonOfTheDay(WeekDay.monday, 1);
         await registryPage.registerToClass();
 
@@ -174,7 +140,6 @@ void main() {
 
         prettyPrint("Then login as owner and accept all");
         await loginPage.loginAsOwner();
-        await lessonsPage.selectDay(WeekDay.monday);
         await lessonsPage.selectLessonOfTheDay(WeekDay.monday, 1);
         await registryPage.acceptAll();
 

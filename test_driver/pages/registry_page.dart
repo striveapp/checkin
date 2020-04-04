@@ -1,17 +1,19 @@
 import 'package:flutter_driver/flutter_driver.dart';
 
-import '../util.dart';
+import '../driver_extension.dart';
 import 'account_page.dart';
 
 class RegistryPage {
   FlutterDriver _driver;
   AccountPage _accountPage;
+  final _accountPageButton = find.byValueKey('accountPageButton');
 
   final _registerClassButton = find.byValueKey('registerClass');
   final _testAttendeeTile = find.byValueKey('tile-test@test.com');
   final _testAttendeeTwoTile = find.byValueKey('tile-test@test-two.com');
   final _acceptAllButton = find.byValueKey('acceptAll');
   final _unregisterClassButton = find.byValueKey('unregisterClass');
+  final _loadingIndicator = find.byValueKey('loadingIndicator');
 
   RegistryPage(FlutterDriver driver) {
     this._driver = driver;
@@ -40,14 +42,14 @@ class RegistryPage {
   }
 
   Future<void> goToAccountPage() async {
-    await _driver.waitFor(accountPageButton);
-    await _driver.tap(accountPageButton);
+    await _driver.waitFor(_accountPageButton);
+    await _driver.tap(_accountPageButton);
   }
 
   Future<void> acceptAll() async {
     await _driver.waitFor(_acceptAllButton);
     await _driver.tap(_acceptAllButton);
-    await _driver.waitForAbsent(loadingIndicator);
+    await _driver.waitForAbsent(_loadingIndicator);
   }
 
   Future<void> logout() async {

@@ -1,5 +1,5 @@
 import 'package:flutter_driver/flutter_driver.dart';
-import '../util.dart';
+import '../driver_extension.dart';
 import 'registry_page.dart';
 
 class StatsPage {
