@@ -103,4 +103,9 @@ class LessonProvider implements LessonRepository {
       ])
     });
   }
+
+  @override
+  Stream<List<Lesson>> getLessonsByMasterAndTimespan(Master master, DateTime firstDayOfTimespan) {
+    return Stream.value([]);
+  }
 }

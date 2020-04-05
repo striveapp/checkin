@@ -32,10 +32,10 @@ class UserStatsPage extends StatelessWidget {
           statsBloc: BlocProvider.of<StatsBloc>(context)
         ),
         builder: (BuildContext context, UserStatsState state) {
-      if (state is StatsUninitialized) {
+      if (state is UserStatsUninitialized) {
         return LoadingIndicator();
       }
-      if (state is StatsLoaded) {
+      if (state is UserStatsLoaded) {
         return Column(
           children: <Widget>[
             Padding(

@@ -1,10 +1,15 @@
 import 'package:checkin/src/blocs/lessons_stats/lessons_stats_bloc.dart';
+import 'package:checkin/src/models/master.dart';
 import 'package:checkin/src/ui/components/stats/lessons/attendee_info_card.dart';
 import 'package:checkin/src/ui/components/stats/lessons/attendees_counter.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 
 class LessonsStatsPage extends StatelessWidget {
+  final Master master;
+
+  const LessonsStatsPage({Key key, this.master}) : super(key: key);
+
   @override
   Widget build(BuildContext context) {
     return BlocProvider<LessonsStatsBloc>(

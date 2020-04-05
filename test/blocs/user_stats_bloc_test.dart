@@ -36,7 +36,7 @@ void main() {
       Lesson(timeStart: "07:15", timeEnd: "08:30"),
     ];
 
-    int fakeTimestamp = 123456789;
+    DateTime fakeDateTime = DateTime(2020, 5, 4);
 
     setUp(() {
       mockStatsRepository = MockStatsRepository();
@@ -48,108 +48,105 @@ void main() {
       userStatsBloc?.close();
     });
 
-    group("LoadStats", () {
-      group("per week", () {
-        setUp(() {
-          whenListen(mockStatsBloc,
-              Stream.fromIterable([TimespanUpdated(timespan: WEEK)]));
-          when(mockDateUtil.getFirstDayOfTheWeekMilliseconds())
-              .thenReturn(fakeTimestamp);
-          when(mockStatsRepository.getUserStats(
-                  loggedUser.email, fakeTimestamp))
-              .thenAnswer((_) {
-            return Stream<UserHistory>.value(UserHistory(
-                email: "test@test.com", attendedLessons: attendedLessons));
-          });
-          userStatsBloc = UserStatsBloc(
-            statsRepository: mockStatsRepository,
-            userEmail: loggedUser.email,
-            dateUtil: mockDateUtil,
-            statsBloc: mockStatsBloc,
-          );
+    group("per week", () {
+      setUp(() {
+        whenListen(mockStatsBloc,
+            Stream.fromIterable([TimespanUpdated(timespan: WEEK)]));
+        when(mockDateUtil.getFirstDayOfTimespan(WEEK)).thenReturn(fakeDateTime);
+        when(mockStatsRepository.getUserStats(
+                loggedUser.email, fakeDateTime.millisecondsSinceEpoch))
+            .thenAnswer((_) {
+          return Stream<UserHistory>.value(UserHistory(
+              email: "test@test.com", attendedLessons: attendedLessons));
         });
-
-        test("should emits StatsLoaded when StatsBloc add an TimespanUpdated",
-            () {
-          final expectedState = [
-            StatsUninitialized(),
-            StatsLoaded(attendedLessons: attendedLessons, timespan: WEEK),
-          ];
-
-          expectLater(
-            userStatsBloc,
-            emitsInOrder(expectedState),
-          );
-        });
+        userStatsBloc = UserStatsBloc(
+          statsRepository: mockStatsRepository,
+          userEmail: loggedUser.email,
+          dateUtil: mockDateUtil,
+          statsBloc: mockStatsBloc,
+        );
       });
 
-      group("per month", () {
-        setUp(() {
-          whenListen(mockStatsBloc,
-              Stream.fromIterable([TimespanUpdated(timespan: MONTH)]));
-          when(mockDateUtil.getFirstDayOfTheMonthMilliseconds())
-              .thenReturn(fakeTimestamp);
-          when(mockStatsRepository.getUserStats(
-                  loggedUser.email, fakeTimestamp))
-              .thenAnswer((_) {
-            return Stream<UserHistory>.value(UserHistory(
-                email: "test@test.com", attendedLessons: attendedLessons));
-          });
-          userStatsBloc = UserStatsBloc(
-            statsRepository: mockStatsRepository,
-            userEmail: loggedUser.email,
-            dateUtil: mockDateUtil,
-            statsBloc: mockStatsBloc,
-          );
-        });
+      test(
+          "should emits UserStatsLoaded when StatsBloc add a TimespanUpdated event",
+          () {
+        final expectedState = [
+          UserStatsUninitialized(),
+          UserStatsLoaded(attendedLessons: attendedLessons, timespan: WEEK),
+        ];
 
-        test(
-            "should emits StatsLoaded for week first and for month leter when the event is added",
-            () {
-          final expectedState = [
-            StatsUninitialized(),
-            StatsLoaded(attendedLessons: attendedLessons, timespan: MONTH),
-          ];
+        expectLater(
+          userStatsBloc,
+          emitsInOrder(expectedState),
+        );
+      });
+    });
 
-          expectLater(
-            userStatsBloc,
-            emitsInOrder(expectedState),
-          );
+    group("per month", () {
+      setUp(() {
+        whenListen(mockStatsBloc,
+            Stream.fromIterable([TimespanUpdated(timespan: MONTH)]));
+        when(mockDateUtil.getFirstDayOfTimespan(MONTH))
+            .thenReturn(fakeDateTime);
+        when(mockStatsRepository.getUserStats(
+                loggedUser.email, fakeDateTime.millisecondsSinceEpoch))
+            .thenAnswer((_) {
+          return Stream<UserHistory>.value(UserHistory(
+              email: "test@test.com", attendedLessons: attendedLessons));
         });
+        userStatsBloc = UserStatsBloc(
+          statsRepository: mockStatsRepository,
+          userEmail: loggedUser.email,
+          dateUtil: mockDateUtil,
+          statsBloc: mockStatsBloc,
+        );
       });
 
-      group("per year", () {
-        setUp(() {
-          whenListen(mockStatsBloc,
-              Stream.fromIterable([TimespanUpdated(timespan: YEAR)]));
-          when(mockDateUtil.getFirstDayOfTheYearMilliseconds())
-              .thenReturn(fakeTimestamp);
-          when(mockStatsRepository.getUserStats(
-                  loggedUser.email, fakeTimestamp))
-              .thenAnswer((_) {
-            return Stream<UserHistory>.value(UserHistory(
-                email: "test@test.com", attendedLessons: attendedLessons));
-          });
-          userStatsBloc = UserStatsBloc(
-            statsRepository: mockStatsRepository,
-            userEmail: loggedUser.email,
-            dateUtil: mockDateUtil,
-            statsBloc: mockStatsBloc,
-          );
-        });
-        test(
-            "should emits StatsLoaded for week first and for year leter when the event is added",
-            () {
-          final expectedState = [
-            StatsUninitialized(),
-            StatsLoaded(attendedLessons: attendedLessons, timespan: YEAR),
-          ];
+      test(
+          "should emits StatsLoaded for week first and for month leter when the event is added",
+          () {
+        final expectedState = [
+          UserStatsUninitialized(),
+          UserStatsLoaded(attendedLessons: attendedLessons, timespan: MONTH),
+        ];
 
-          expectLater(
-            userStatsBloc,
-            emitsInOrder(expectedState),
-          );
+        expectLater(
+          userStatsBloc,
+          emitsInOrder(expectedState),
+        );
+      });
+    });
+
+    group("per year", () {
+      setUp(() {
+        whenListen(mockStatsBloc,
+            Stream.fromIterable([TimespanUpdated(timespan: YEAR)]));
+        when(mockDateUtil.getFirstDayOfTimespan(YEAR)).thenReturn(fakeDateTime);
+        when(mockStatsRepository.getUserStats(
+                loggedUser.email, fakeDateTime.millisecondsSinceEpoch))
+            .thenAnswer((_) {
+          return Stream<UserHistory>.value(UserHistory(
+              email: "test@test.com", attendedLessons: attendedLessons));
         });
+        userStatsBloc = UserStatsBloc(
+          statsRepository: mockStatsRepository,
+          userEmail: loggedUser.email,
+          dateUtil: mockDateUtil,
+          statsBloc: mockStatsBloc,
+        );
+      });
+      test(
+          "should emits StatsLoaded for week first and for year leter when the event is added",
+          () {
+        final expectedState = [
+          UserStatsUninitialized(),
+          UserStatsLoaded(attendedLessons: attendedLessons, timespan: YEAR),
+        ];
+
+        expectLater(
+          userStatsBloc,
+          emitsInOrder(expectedState),
+        );
       });
     });
   });

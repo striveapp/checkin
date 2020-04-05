@@ -4,7 +4,6 @@ import 'package:bloc/bloc.dart';
 import 'package:checkin/src/blocs/stats/bloc.dart';
 import 'package:checkin/src/blocs/user_stats/user_stats_event.dart';
 import 'package:checkin/src/blocs/user_stats/user_stats_state.dart';
-import 'package:checkin/src/constants.dart' as constants;
 import 'package:checkin/src/models/user_history.dart';
 import 'package:checkin/src/repositories/stats_repository.dart';
 import 'package:checkin/src/util/date_util.dart';
@@ -14,8 +13,8 @@ class UserStatsBloc extends Bloc<UserStatsEvent, UserStatsState> {
   final StatsRepository statsRepository;
   final DateUtil dateUtil;
   final StatsBloc statsBloc;
-
   final String userEmail;
+
   StreamSubscription<UserHistory> statsSub;
 
   UserStatsBloc({
@@ -26,9 +25,18 @@ class UserStatsBloc extends Bloc<UserStatsEvent, UserStatsState> {
   }) {
     statsBloc.listen((statsBlocState) {
       if (statsBlocState is TimespanUpdated) {
+        var fromTimespanTimestamp = dateUtil
+            .getFirstDayOfTimespan(statsBlocState.timespan)
+            .millisecondsSinceEpoch;
+
         statsSub?.cancel();
-        statsSub = this.statsRepository.getUserStats(userEmail, _getFromTimestampBy(statsBlocState.timespan)).listen((userHistory) {
-          add(StatsUpdated(attendedLessons: userHistory.attendedLessons, timeSpan: statsBlocState.timespan));
+        statsSub = this
+            .statsRepository
+            .getUserStats(userEmail, fromTimespanTimestamp)
+            .listen((userHistory) {
+          add(UserStatsUpdated(
+              attendedLessons: userHistory.attendedLessons,
+              timeSpan: statsBlocState.timespan));
         });
       }
     });
@@ -41,23 +49,13 @@ class UserStatsBloc extends Bloc<UserStatsEvent, UserStatsState> {
   }
 
   @override
-  UserStatsState get initialState => StatsUninitialized();
+  UserStatsState get initialState => UserStatsUninitialized();
 
   @override
   Stream<UserStatsState> mapEventToState(UserStatsEvent event) async* {
-    if(event is StatsUpdated) {
-      yield StatsLoaded(attendedLessons: event.attendedLessons, timespan: event.timeSpan);
-    }
-
-  }
-
-  int _getFromTimestampBy(String timeSpan) {
-    if(timeSpan == constants.WEEK) {
-      return dateUtil.getFirstDayOfTheWeekMilliseconds();
-    } else if(timeSpan == constants.MONTH) {
-      return dateUtil.getFirstDayOfTheMonthMilliseconds();
-    } else {
-      return dateUtil.getFirstDayOfTheYearMilliseconds();
+    if (event is UserStatsUpdated) {
+      yield UserStatsLoaded(
+          attendedLessons: event.attendedLessons, timespan: event.timeSpan);
     }
   }
 }

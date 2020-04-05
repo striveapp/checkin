@@ -1,22 +1,27 @@
+import 'package:checkin/src/constants.dart' as constants;
+
 class DateUtil {
-  getFirstDayOfTheWeekMilliseconds() {
+  DateTime getFirstDayOfTheWeek() {
     DateTime today = DateTime.now();
-    DateTime firstDayOfTheWeek = today.subtract(new Duration(days: today.weekday - 1));
-
-    return firstDayOfTheWeek.millisecondsSinceEpoch;
+    return today.subtract(new Duration(days: today.weekday - 1));
   }
 
-  getFirstDayOfTheMonthMilliseconds() {
+  DateTime getFirstDayOfTheMonth() {
     DateTime now = DateTime.now();
-    DateTime firstDayOfTheMonth = DateTime(now.year, now.month, 1);
-
-    return firstDayOfTheMonth.millisecondsSinceEpoch;
+    return DateTime(now.year, now.month, 1);
   }
 
-  getFirstDayOfTheYearMilliseconds() {
+  DateTime getFirstDayOfTheYear() {
     DateTime now = DateTime.now();
-    DateTime firstDayOfTheYear = DateTime(now.year, 1, 1);
+    return DateTime(now.year, 1, 1);
+  }
 
-    return firstDayOfTheYear.millisecondsSinceEpoch;
+  DateTime getFirstDayOfTimespan(String timeSpan) {
+    if (timeSpan == constants.WEEK) {
+      return getFirstDayOfTheWeek();
+    } else if (timeSpan == constants.MONTH) {
+      return getFirstDayOfTheMonth();
+    }
+    return getFirstDayOfTheYear();
   }
 }

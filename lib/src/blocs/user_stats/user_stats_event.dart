@@ -9,11 +9,11 @@ abstract class UserStatsEvent extends Equatable {
   List<Object> get props => [];
 }
 
-class StatsUpdated extends UserStatsEvent {
+class UserStatsUpdated extends UserStatsEvent {
   final List<Lesson> attendedLessons;
   final String timeSpan;
 
-  StatsUpdated({
+  UserStatsUpdated({
     @required this.attendedLessons,
     @required this.timeSpan,
   });
@@ -22,5 +22,5 @@ class StatsUpdated extends UserStatsEvent {
   List<Object> get props => [attendedLessons];
 
   @override
-  String toString() => 'StatsUpdated{attendedLessons: $attendedLessons}';
+  String toString() => 'UserStatsUpdated';
 }

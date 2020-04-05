@@ -48,7 +48,7 @@ class StatsPage extends StatelessWidget {
               child: Column(
                 children: <Widget>[
                   StatsHeader(userEmail: userEmail),
-                  StatsBody(userEmail: userEmail),
+                  StatsBody(),
                 ],
               ),
             ),

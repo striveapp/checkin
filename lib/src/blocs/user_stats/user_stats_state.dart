@@ -9,16 +9,16 @@ abstract class UserStatsState extends Equatable {
   List<Object> get props => [];
 }
 
-class StatsUninitialized extends UserStatsState {
+class UserStatsUninitialized extends UserStatsState {
   @override
   String toString() => 'StatsInitial';
 }
 
-class StatsLoaded extends UserStatsState {
+class UserStatsLoaded extends UserStatsState {
   final List<Lesson> attendedLessons;
   final String timespan;
 
-  StatsLoaded({
+  UserStatsLoaded({
     @required this.attendedLessons,
     @required this.timespan,
   });
@@ -27,7 +27,5 @@ class StatsLoaded extends UserStatsState {
   List<Object> get props => [attendedLessons, timespan];
 
   @override
-  String toString() => 'StatsLoaded{attendedLessons: $attendedLessons}';
-
-
+  String toString() => 'UserStatsLoaded';
 }

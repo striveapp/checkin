@@ -12,21 +12,52 @@ import '../constants.dart';
 
 class LessonInstancesProvider implements LessonRepository {
   static const String path = 'lesson_instances';
+  static const String sub_collection_path = 'instances';
 
   //TODO: use only a single instance of firestore https://trello.com/c/LZ79VvWa
   Firestore _firestore = Firestore.instance;
 
   String _formatDate(DateTime day) => DateFormat("yyyy-MM-dd").format(day);
 
+  Lesson _toLesson(DocumentSnapshot lesson) => Lesson(
+      id: lesson.documentID,
+      date: lesson.data['date'],
+      name: lesson.data['name'],
+      timeStart: lesson.data['timeStart'],
+      timeEnd: lesson.data['timeEnd'],
+      weekDay: lesson.data['weekDay'],
+      masters: (lesson.data['masters'] as List)
+          ?.map((master) => Master(
+                name: master['name'],
+                email: master['email'],
+                imageUrl: master['imageUrl'],
+              ))
+          ?.toList(),
+      attendees: (lesson.data['attendees'] as List)
+              ?.map((attendee) => _toAttendee(attendee))
+              ?.toList() ??
+          [],
+      acceptedAttendees: (lesson.data['acceptedAttendees'] as List)
+              ?.map((attendee) => _toAttendee(attendee))
+              ?.toList() ??
+          []);
+
+  Attendee _toAttendee(Map<dynamic, dynamic> attendee) => Attendee(
+      name: attendee['name'],
+      grade: (attendee["grade"] as String).toGrade(),
+      imageUrl: attendee["imageUrl"],
+      email: attendee["email"]);
+
+  @override
   Stream<List<Lesson>> getLessonsForToday() {
-    if(isInDebugMode) {
+    if (isInDebugMode) {
       return getLessonsForDay(testDate);
     }
-
 
     return getLessonsForDay(DateTime.now());
   }
 
+  @override
   Stream<List<Lesson>> getLessonsForDay(DateTime day) {
     var formattedDate = _formatDate(day);
     return _firestore
@@ -36,58 +67,42 @@ class LessonInstancesProvider implements LessonRepository {
         .snapshots()
         .map((snapshot) => snapshot.documents
             .where((doc) => doc.data['masters'] != null)
-            .map((doc) => toLesson(doc))
+            .map((doc) => _toLesson(doc))
             .toList());
   }
 
+  @override
   Stream<Lesson> getLesson(String date, String lessonId) => _firestore
       .collection(path)
       .document(date)
-      .collection("instances")
+      .collection(sub_collection_path)
       .document(lessonId)
       .snapshots()
       .where((doc) => doc.data['masters'] != null)
-      .map((doc) => toLesson(doc));
+      .map((doc) => _toLesson(doc));
 
-  Lesson toLesson(DocumentSnapshot lesson) {
-    return Lesson(
-        id: lesson.documentID,
-        date: lesson.data['date'],
-        name: lesson.data['name'],
-        timeStart: lesson.data['timeStart'],
-        timeEnd: lesson.data['timeEnd'],
-        weekDay: lesson.data['weekDay'],
-        masters: (lesson.data['masters'] as List)
-            ?.map((master) => Master(
-                  name: master['name'],
-                  email: master['email'],
-                  imageUrl: master['imageUrl'],
-                ))
-            ?.toList(),
-        attendees: (lesson.data['attendees'] as List)
-                ?.map((attendee) => toAttendee(attendee))
-                ?.toList() ??
-            [],
-        acceptedAttendees: (lesson.data['acceptedAttendees'] as List)
-                ?.map((attendee) => toAttendee(attendee))
-                ?.toList() ??
-            []);
-  }
+  @override
+  Stream<List<Lesson>> getLessonsByMasterAndTimespan(Master master, DateTime firsDayOfTimespan) => _firestore
+        .collectionGroup(sub_collection_path)
+        .where("master", arrayContains: {
+          "name": master.name,
+          "email": master.email,
+          "imageUrl": master.imageUrl,
+        })
+        .where("date", isGreaterThanOrEqualTo: firsDayOfTimespan)
+        .snapshots()
+        .map((snapshot) => snapshot.documents
+            .where((doc) => doc.data['masters'] != null)
+            .map((doc) => _toLesson(doc))
+            .toList());
 
-  Attendee toAttendee(Map<dynamic, dynamic> attendee) {
-    return Attendee(
-        name: attendee['name'],
-        grade: (attendee["grade"] as String).toGrade(),
-        imageUrl: attendee["imageUrl"],
-        email: attendee["email"]);
-  }
-
+  @override
   Future<void> register(String date, String lessonId, Attendee attendee) async {
     debugPrint("User [$attendee] attends lesson with id [$lessonId]");
     await _firestore
         .collection(path)
         .document(date)
-        .collection("instances")
+        .collection(sub_collection_path)
         .document(lessonId)
         .updateData({
       'attendees': FieldValue.arrayUnion([
@@ -101,13 +116,14 @@ class LessonInstancesProvider implements LessonRepository {
     });
   }
 
+  @override
   Future<void> unregister(
       String date, String lessonId, Attendee attendee) async {
     debugPrint("User [$attendee] removed from lesson with id [$lessonId]");
     await _firestore
         .collection(path)
         .document(date)
-        .collection("instances")
+        .collection(sub_collection_path)
         .document(lessonId)
         .updateData({
       'attendees': FieldValue.arrayRemove([
@@ -125,7 +141,7 @@ class LessonInstancesProvider implements LessonRepository {
     await _firestore
         .collection(path)
         .document(date)
-        .collection("instances")
+        .collection(sub_collection_path)
         .document(lessonId)
         .updateData({
       "attendees": FieldValue.delete(),
