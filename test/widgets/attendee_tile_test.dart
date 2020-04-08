@@ -1,6 +1,6 @@
 import 'package:checkin/src/models/attendee.dart';
 import 'package:checkin/src/models/grade.dart';
-import 'package:checkin/src/ui/components/attendee_tile.dart';
+import 'package:checkin/src/ui/components/registry/attendee_tile.dart';
 import 'package:flutter/foundation.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter/widgets.dart';

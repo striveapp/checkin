@@ -6,7 +6,7 @@ import 'package:flutter/material.dart';
 import 'package:checkin/src/constants.dart' as constants;
 import 'package:flutter_bloc/flutter_bloc.dart';
 
-import 'loading_indicator.dart';
+import '../loading_indicator.dart';
 
 class LessonInfos extends StatelessWidget {
   static const String and = 'and';

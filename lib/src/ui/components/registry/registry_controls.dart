@@ -3,7 +3,7 @@ import 'package:checkin/src/localization/localization.dart';
 import 'package:checkin/src/models/attendee.dart';
 import 'package:checkin/src/models/lesson.dart';
 import 'package:checkin/src/models/user.dart';
-import 'package:checkin/src/ui/components/registry_button.dart';
+import 'package:checkin/src/ui/components/registry/registry_button.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 
