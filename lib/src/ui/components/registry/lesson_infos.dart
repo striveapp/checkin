@@ -1,4 +1,4 @@
-import 'package:checkin/src/blocs/registry/bloc.dart';
+import 'package:checkin/src/blocs/lesson/bloc.dart';
 import 'package:checkin/src/localization/localization.dart';
 import 'package:checkin/src/models/master.dart';
 import 'package:checkin/src/ui/components/user_image.dart';
@@ -13,44 +13,45 @@ class LessonInfos extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    return BlocBuilder<RegistryBloc, RegistryState>(
-      builder: (BuildContext context, RegistryState state) {
-        if (state is RegistryUninitialized || state is RegistryLoading) {
+    return BlocBuilder<LessonBloc, LessonState>(
+      builder: (BuildContext context, LessonState state) {
+        if (state is LessonUninitialized || state is LessonLoading) {
           return LoadingIndicator();
         }
 
-        if (state is RegistryLoaded) {
+        if (state is LessonLoaded) {
+          var lesson = state.lesson;
           return Row(
             children: <Widget>[
               Padding(
                 padding: const EdgeInsets.only(right: 16),
                 child: UserImage(
-                  userImage: state.currentLesson.masters.first.imageUrl,
+                  userImage: lesson.masters.first.imageUrl,
                 ),
               ),
               Column(
                 crossAxisAlignment: CrossAxisAlignment.start,
                 children: <Widget>[
                   Text(
-                    "${state.currentLesson.timeStart} - ${state.currentLesson.timeEnd}",
+                    "${lesson.timeStart} - ${lesson.timeEnd}",
                     style: Theme.of(context)
                         .textTheme
                         .headline1
                         .apply(color: Colors.black87),
                   ),
                   Text(
-                    "${constants.by.i18n} ${state.currentLesson.masters.first.name}",
+                    "${constants.by.i18n} ${lesson.masters.first.name}",
                     style: Theme.of(context).textTheme.headline3,
                   ),
-                  if (state.currentLesson.masters.length > 1)
-                    Text("${and.i18n} ${_getOtherMasterNames(state.currentLesson.masters)}",
+                  if (lesson.masters.length > 1)
+                    Text("${and.i18n} ${_getOtherMasterNames(lesson.masters)}",
                         style: Theme.of(context).textTheme.headline3),
                 ],
               )
             ],
           );
         }
-        return ErrorWidget('Unknown State [$state] received in: registry_page');
+        return ErrorWidget('Unknown State [$state] received in: lesson_infos');
       },
     );
   }

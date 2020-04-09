@@ -41,15 +41,6 @@ class Lesson extends Equatable {
     return 'Lesson{id: $id, date: $date, name: $name, timeStart: $timeStart, timeEnd: $timeEnd, weekDay: $weekDay, attendees: $attendees, acceptedAttendees: $acceptedAttendees, masters: $masters, timestamp: $timestamp}';
   }
 
-  bool isUserRegistered(String email) {
-    // TODO: we should use some kind of id to perform this check not the email https://trello.com/c/j5sAVRXJ
-    return attendees.any((attendee) => attendee.email == email);
-  }
-
-  bool isUserAccepted(String email) {
-    return acceptedAttendees.any((attendee) => attendee.email == email);
-  }
-
   factory Lesson.fromJson(Map<String, dynamic> json) => _$LessonFromJson(json);
 
   Map<String, dynamic> toJson() => _$LessonToJson(this);

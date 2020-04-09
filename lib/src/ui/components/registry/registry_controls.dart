@@ -1,81 +1,84 @@
-import 'package:checkin/src/blocs/registry/bloc.dart';
+import 'package:checkin/src/blocs/lesson/registry/bloc.dart';
 import 'package:checkin/src/localization/localization.dart';
 import 'package:checkin/src/models/attendee.dart';
-import 'package:checkin/src/models/lesson.dart';
-import 'package:checkin/src/models/user.dart';
 import 'package:checkin/src/ui/components/registry/registry_button.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 
 class RegistryControls extends StatelessWidget {
   final VoidCallback disabledButton = null;
-  final Lesson currentLesson;
-  final User currentUser;
+
   static const String unregisterClass = 'Unregister from class';
   static const String registerClass = 'Register to class';
   static const String acceptAll = 'Accept all';
 
   const RegistryControls({
     Key key,
-    @required this.currentLesson,
-    @required this.currentUser,
   }) : super(key: key);
 
   @override
   Widget build(BuildContext context) {
-    VoidCallback onPressUnregisterClass = () {
-      BlocProvider.of<RegistryBloc>(context).add(Unregister(
-        lessonId: this.currentLesson.id,
-        date: currentLesson.date,
-        attendee: Attendee.fromUser(currentUser),
-      ));
-    };
+    return BlocBuilder<RegistryBloc, RegistryState>(
+        builder: (BuildContext context, RegistryState state) {
+      if (state is RegistryUninitialized || state is RegistryLoading) {
+        return RegistryButton(
+          isLoading: true,
+          onPressed: disabledButton,
+        );
+      }
 
-    VoidCallback onPressRegisterClass = () {
-      BlocProvider.of<RegistryBloc>(context).add(Register(
-        lessonId: currentLesson.id,
-        date: currentLesson.date,
-        attendee: Attendee.fromUser(currentUser),
-      ));
-    };
+      if (state is RegistryLoaded) {
+        var currentUser = state.currentUser;
 
-    VoidCallback onPressAcceptAll = () {
-      BlocProvider.of<RegistryBloc>(context).add(ConfirmAttendees(lesson: currentLesson));
-    };
+        VoidCallback onPressUnregisterClass = () {
+          BlocProvider.of<RegistryBloc>(context).add(Unregister(
+            attendee: Attendee.fromUser(currentUser),
+          ));
+        };
 
-    if(currentUser.isOwner) {
-      return RegistryButton(
-        key: Key('acceptAll'),
-        onPressed: !_isClassEmpty(currentLesson) ? onPressAcceptAll : disabledButton,
-        text: RegistryControls.acceptAll.i18n,
-      );
-    }
+        VoidCallback onPressRegisterClass = () {
+          BlocProvider.of<RegistryBloc>(context).add(Register(
+            attendee: Attendee.fromUser(currentUser),
+          ));
+        };
 
-    if( currentLesson.isUserAccepted(currentUser.email)) {
-      return RegistryButton(
-        key: Key('acceptedInClass'),
-        text: RegistryControls.registerClass.i18n,
-        onPressed: disabledButton,
-      );
-    }
+        VoidCallback onPressAcceptAll = () {
+          BlocProvider.of<RegistryBloc>(context).add(ConfirmAttendees());
+        };
 
-    if(currentLesson.isUserRegistered(currentUser.email)) {
-      return RegistryButton(
-        key: Key('unregisterClass'),
-        text: RegistryControls.unregisterClass.i18n,
-        color: Theme.of(context).buttonTheme.colorScheme.error,
-        onPressed: onPressUnregisterClass,
-      );
-    }
+        if (currentUser.isOwner) {
+          return RegistryButton(
+            key: Key('acceptAll'),
+            onPressed:
+                state.attendees.length > 0 ? onPressAcceptAll : disabledButton,
+            text: RegistryControls.acceptAll.i18n,
+          );
+        }
 
-    return RegistryButton(
-      key: Key('registerClass'),
-      text: RegistryControls.registerClass.i18n,
-      onPressed: onPressRegisterClass,
-    );
-  }
+        if (state.isUserAccepted(currentUser.email)) {
+          return RegistryButton(
+            key: Key('acceptedInClass'),
+            text: RegistryControls.registerClass.i18n,
+            onPressed: disabledButton,
+          );
+        }
 
-  bool _isClassEmpty(Lesson currentLesson) {
-    return currentLesson.attendees.length == 0;
+        if (state.isUserRegistered(currentUser.email)) {
+          return RegistryButton(
+            key: Key('unregisterClass'),
+            text: RegistryControls.unregisterClass.i18n,
+            color: Theme.of(context).buttonTheme.colorScheme.error,
+            onPressed: onPressUnregisterClass,
+          );
+        }
+
+        return RegistryButton(
+          key: Key('registerClass'),
+          text: RegistryControls.registerClass.i18n,
+          onPressed: onPressRegisterClass,
+        );
+      }
+      return ErrorWidget('unknown state [$state] in registry_controls');
+    });
   }
 }

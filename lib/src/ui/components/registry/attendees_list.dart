@@ -1,124 +1,140 @@
-import 'package:checkin/src/blocs/registry/bloc.dart';
-import 'package:checkin/src/localization/localization.dart';
+import 'package:checkin/src/blocs/lesson/registry/bloc.dart';
 import 'package:checkin/src/models/attendee.dart';
-import 'package:checkin/src/models/lesson.dart';
 import 'package:checkin/src/models/user.dart';
-import 'package:checkin/src/ui/components/loading_indicator.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 
 import 'attendee_tile.dart';
-import 'package:checkin/src/constants.dart' as constants;
+import 'current_user_tile.dart';
+import 'empty_registry.dart';
 
 class AttendeesList extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
-    return BlocBuilder<RegistryBloc, RegistryState>(
-      builder: (BuildContext context, RegistryState state) {
-        if (state is RegistryUninitialized || state is RegistryLoading) {
-          return LoadingIndicator();
-        }
+    return Card(
+      margin: EdgeInsets.zero,
+      child: Container(
+        constraints: BoxConstraints(
+            maxHeight: MediaQuery.of(context).size.height * 0.53),
+        child: BlocBuilder<RegistryBloc, RegistryState>(
+            builder: (BuildContext context, RegistryState state) {
+          if (state is RegistryUninitialized ||
+              (state is RegistryLoaded && _isRegistryEmpty(state))) {
+            return EmptyRegistry();
+          }
 
-        if (state is RegistryLoaded) {
-          Lesson currentLesson = state.currentLesson;
-          User currentUser = state.currentUser;
-          var attendeeListWithoutUser =
-              _getAttendeeListWithoutCurrentUser(currentLesson, currentUser);
+          if (state is RegistryLoading) {
+            return EmptyRegistry(
+              isLoading: true,
+            );
+          }
 
-          return Card(
-            key: _isClassEmpty(currentLesson)
-                ? Key('emptyClassCard')
-                : Key('attendeeList'),
-            margin: EdgeInsets.zero,
-            child: Container(
-                constraints: BoxConstraints(
-                    maxHeight: MediaQuery.of(context).size.height * 0.53),
-                child: _isClassEmpty(currentLesson)
-                    ? Container(
-                        alignment: Alignment(0, 0),
-                        child: Text(
-                          constants.emptyClass.i18n,
-                          style: Theme.of(context).textTheme.headline5,
-                        ),
-                      )
-                    : Column(
-                        children: <Widget>[
-                          if (_isUserInClass(currentLesson, currentUser))
-                            Column(
-                              children: <Widget>[
-                                AttendeeTile(
-                                  attendee: Attendee.fromUser(currentUser),
-                                  isCurrent: true,
-                                  isAccepted: currentLesson.isUserAccepted(currentUser.email)
-                                ),
-                                Divider()
-                              ],
-                            ),
-                          Expanded(
-                            child: ListView.builder(
-                                scrollDirection: Axis.vertical,
-                                shrinkWrap: true,
-                                itemCount: attendeeListWithoutUser.length,
-                                itemBuilder: (BuildContext context, int index) {
-                                  if (index < attendeeListWithoutUser.length) {
-                                    final attendee =
-                                        attendeeListWithoutUser[index];
-                                    return currentUser.isOwner
-                                        ? Dismissible(
-                                            //TODO: this should be changed with ID instead
-                                            key: Key(attendee.email),
-                                            direction:
-                                                DismissDirection.endToStart,
-                                            background: Container(
-                                              color: Colors.red,
-                                            ),
-                                            onDismissed: (direction) {
-                                              _removeAttendee(
-                                                  currentLesson.date,
-                                                  currentLesson.id,
-                                                  attendee,
-                                                  context);
-                                            },
-                                            child: AttendeeTile(
-                                                isAccepted: currentLesson.isUserAccepted(attendee.email),
-                                                attendee: attendee))
-                                        : AttendeeTile(attendee: attendee, isAccepted: currentLesson.isUserAccepted(attendee.email));
-                                  }
-                                  return null;
-                                }),
-                          ),
-                        ],
-                      )),
-          );
-        }
-        return ErrorWidget('Unknown State [$state] received in: registry_page');
-      },
+          if (state is RegistryLoaded) {
+            User currentUser = state.currentUser;
+
+            return Column(
+              key: Key('attendeeList'),
+              children: <Widget>[
+                if (_isUserInClass(state))
+                  CurrentUserTile(
+                      acceptedAttendee: state.acceptedAttendees,
+                      currentUser: currentUser),
+                Expanded(
+                  child: SingleChildScrollView(
+                    child: Column(
+                      children: <Widget>[
+                        AcceptedAttendees(
+                            acceptedAttendees: state.acceptedAttendees,
+                            currentUser: currentUser),
+                        Attendees(
+                            attendees: state.attendees,
+                            currentUser: currentUser),
+                      ],
+                    ),
+                  ),
+                ),
+              ],
+            );
+          }
+
+          return ErrorWidget(
+              'Unknown State [$state] received in: attendees_list');
+        }),
+      ),
     );
   }
 
-  List<Attendee> _getAttendeeListWithoutCurrentUser(
-      Lesson currentLesson, User currentUser) {
-    return [...currentLesson.attendees, ...currentLesson.acceptedAttendees]
-        .where((attendee) => attendee.email != currentUser.email)
-        .toList();
+  bool _isUserInClass(RegistryLoaded state) {
+    return state.isUserRegistered(state.currentUser.email) ||
+        state.isUserAccepted(state.currentUser.email);
   }
 
-  //TODO: this will not work if the user changes his infos first and then attempt to unregister
-  void _removeAttendee(
-      String date, String lessonId, Attendee attendee, BuildContext context) {
-    BlocProvider.of<RegistryBloc>(context)
-      ..add(Unregister(
-        lessonId: lessonId,
-        date: date,
-        attendee: attendee,
-      ));
-  }
+  bool _isRegistryEmpty(RegistryLoaded state) =>
+      [...state.attendees, ...state.acceptedAttendees].length == 0;
+}
 
-  bool _isUserInClass(Lesson currentLesson, User currentUser) {
-    return currentLesson.isUserRegistered(currentUser.email) || currentLesson.isUserAccepted(currentUser.email);
-  }
+class Attendees extends StatelessWidget {
+  final User currentUser;
+  final List<Attendee> attendees;
 
-  bool _isClassEmpty(Lesson currentLesson) {
-    return currentLesson.attendees.length == 0 && currentLesson.acceptedAttendees.length == 0;
+  const Attendees({
+    Key key,
+    @required this.currentUser,
+    @required this.attendees,
+  }) : super(key: key);
+
+  @override
+  Widget build(BuildContext context) {
+    return Column(
+      children: attendees
+          .where((attendee) => attendee.email != currentUser.email)
+          .map((attendee) => currentUser.isOwner
+              ? Dismissible(
+                  key: Key(attendee.email),
+                  direction: DismissDirection.endToStart,
+                  background: Container(
+                    color: Colors.red,
+                  ),
+                  onDismissed: (direction) {
+                    BlocProvider.of<RegistryBloc>(context)
+                      ..add(Unregister(
+                        attendee: attendee,
+                      ));
+                  },
+                  child: AttendeeTile(
+                    attendee: attendee,
+                    isAccepted: false,
+                  ),
+                )
+              : AttendeeTile(
+                  attendee: attendee,
+                  isAccepted: false,
+                ))
+          .toList(),
+    );
+  }
+}
+
+class AcceptedAttendees extends StatelessWidget {
+  final User currentUser;
+  final List<Attendee> acceptedAttendees;
+
+  const AcceptedAttendees({
+    Key key,
+    @required this.currentUser,
+    @required this.acceptedAttendees,
+  }) : super(key: key);
+
+  @override
+  Widget build(BuildContext context) {
+    return Column(
+      children: acceptedAttendees
+          .where((attendee) => attendee.email != currentUser.email)
+          .map((attendee) => AttendeeTile(
+                attendee: attendee,
+                isAccepted: true,
+              ))
+          .toList(),
+    );
   }
 }

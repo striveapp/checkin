@@ -1,15 +1,18 @@
+import 'package:checkin/src/ui/components/loading_indicator.dart';
 import 'package:flutter/material.dart';
 
 class RegistryButton extends StatelessWidget {
   final VoidCallback onPressed;
   final String text;
   final Color color;
+  final bool isLoading;
 
   const RegistryButton({
     Key key,
     @required this.onPressed,
-    @required this.text,
+    this.text,
     this.color,
+    this.isLoading = false,
   }) : super(key: key);
 
   @override
@@ -18,10 +21,12 @@ class RegistryButton extends StatelessWidget {
       width: double.infinity,
       child: RaisedButton(
         color: this.color,
-        child: Text(
-          this.text.toUpperCase(),
-          style: Theme.of(context).textTheme.button,
-        ),
+        child: isLoading
+            ? LoadingIndicator(width: 20, height: 20,)
+            : Text(
+                this.text.toUpperCase(),
+                style: Theme.of(context).textTheme.button,
+              ),
         onPressed: this.onPressed,
       ),
     );

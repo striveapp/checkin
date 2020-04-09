@@ -1,11 +1,12 @@
 import 'package:checkin/src/constants.dart' as constants;
 import 'package:checkin/src/models/grade.dart';
 import 'package:checkin/src/ui/components/registry/attendee_tile.dart';
-import 'package:checkin/src/ui/components/registry/lesson_attendees_counter.dart';
+import 'package:checkin/src/ui/components/registry/attendees_counter.dart';
 import 'package:checkin/src/ui/components/attendees_preview.dart';
 import 'package:checkin/src/ui/components/google_sign_in_button.dart';
 import 'package:checkin/src/ui/components/grade_card.dart';
 import 'package:checkin/src/ui/components/leaderboard/no_leaderboard_banner.dart';
+import 'package:checkin/src/ui/components/registry/empty_registry.dart';
 import 'package:checkin/src/ui/components/registry/lesson_infos.dart';
 import 'package:checkin/src/ui/components/membership/active_membership.dart';
 import 'package:checkin/src/ui/components/membership/inactive_membership.dart';
@@ -53,7 +54,7 @@ extension Localization on String {
     'en': constants.by,
     'es': 'Por',
   } + {
-    'en': constants.emptyClass,
+    'en': EmptyRegistry.emptyClass,
     'es': 'Nadie en clase todavía',
   } + {
     'en': AttendedLessonsList.attendedClasses,
@@ -98,10 +99,10 @@ extension Localization on String {
         .modifier(constants.MONTH, 'este mes')
         .modifier(constants.YEAR, 'este año'),
   } + {
-    'en': LessonAttendeesCounter.full,
+    'en': AttendeesCounter.full,
     'es': 'lleno',
   }  + {
-    'en': LessonAttendeesCounter.attendees,
+    'en': AttendeesCounter.attendees,
     'es': 'Participantes',
   } + {
     'en': AttendeeTile.you,

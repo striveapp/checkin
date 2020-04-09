@@ -1,5 +1,4 @@
 import 'package:checkin/src/models/attendee.dart';
-import 'package:checkin/src/models/lesson.dart';
 import 'package:checkin/src/models/user.dart';
 import 'package:equatable/equatable.dart';
 import 'package:flutter/foundation.dart';
@@ -11,67 +10,50 @@ abstract class RegistryEvent extends Equatable {
   List<Object> get props => [];
 }
 
-class LessonUpdated extends RegistryEvent {
-  final Lesson lesson;
+class RegistryUpdated extends RegistryEvent {
+  final List<Attendee> attendees;
+  final List<Attendee> acceptedAttendees;
   final User currentUser;
 
-  const LessonUpdated({
-    this.lesson,
-    this.currentUser,
-  });
+
+  RegistryUpdated({this.attendees, this.acceptedAttendees, this.currentUser});
 
   @override
-  List<Object> get props => [lesson, currentUser];
+  List<Object> get props => [attendees, acceptedAttendees, currentUser];
 
   @override
   String toString() => 'LessonUpdated';
 }
 
 class Register extends RegistryEvent {
-  final String lessonId;
-  final String date;
   final Attendee attendee;
 
   const Register({
-    @required this.lessonId,
-    @required this.date,
     @required this.attendee,
   });
 
   @override
-  List<Object> get props => [lessonId, date, attendee];
+  List<Object> get props => [attendee];
 
   @override
-  String toString() => 'Register';
+  String toString() => 'Register{attendee: $attendee}';
 }
 
 class Unregister extends RegistryEvent {
-  final String lessonId;
-  final String date;
   final Attendee attendee;
 
   const Unregister({
-    @required this.lessonId,
-    @required this.date,
     @required this.attendee,
   });
 
   @override
-  List<Object> get props => [lessonId, date, attendee];
+  List<Object> get props => [attendee];
 
   @override
-  String toString() => 'Unregister';
+  String toString() => 'Unregister{attendee: $attendee}';
 }
 
 class ConfirmAttendees extends RegistryEvent {
-  final Lesson lesson;
-
-  const ConfirmAttendees({
-    this.lesson,
-  });
-
-  @override
-  List<Object> get props => [lesson];
 
   @override
   String toString() => 'ConfirmAttendees';

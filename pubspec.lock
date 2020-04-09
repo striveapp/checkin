@@ -627,7 +627,7 @@ packages:
     source: hosted
     version: "2.0.0"
   rxdart:
-    dependency: transitive
+    dependency: "direct main"
     description:
       name: rxdart
       url: "https://pub.dartlang.org"
@@ -723,7 +723,7 @@ packages:
     source: hosted
     version: "1.1.7"
   stack_trace:
-    dependency: transitive
+    dependency: "direct dev"
     description:
       name: stack_trace
       url: "https://pub.dartlang.org"
