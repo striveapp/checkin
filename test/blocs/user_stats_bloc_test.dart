@@ -7,7 +7,6 @@ import 'package:checkin/src/models/lesson.dart';
 import 'package:checkin/src/models/user.dart';
 import 'package:checkin/src/models/user_history.dart';
 import 'package:checkin/src/repositories/stats_repository.dart';
-import 'package:checkin/src/util/date_util.dart';
 import 'package:mockito/mockito.dart';
 import 'package:test/test.dart';
 
@@ -15,14 +14,11 @@ class MockStatsRepository extends Mock implements StatsRepository {}
 
 class MockStatsBloc extends Mock implements StatsBloc {}
 
-class MockDateUtil extends Mock implements DateUtil {}
-
 void main() {
   group("UserStatsBloc", () {
     UserStatsBloc userStatsBloc;
     MockStatsBloc mockStatsBloc;
     MockStatsRepository mockStatsRepository;
-    MockDateUtil mockDateUtil;
 
     User loggedUser = User(
       name: "Logged User",
@@ -36,12 +32,9 @@ void main() {
       Lesson(timeStart: "07:15", timeEnd: "08:30"),
     ];
 
-    DateTime fakeDateTime = DateTime(2020, 5, 4);
-
     setUp(() {
       mockStatsRepository = MockStatsRepository();
       mockStatsBloc = MockStatsBloc();
-      mockDateUtil = MockDateUtil();
     });
 
     tearDown(() {
@@ -52,9 +45,8 @@ void main() {
       setUp(() {
         whenListen(mockStatsBloc,
             Stream.fromIterable([TimespanUpdated(timespan: WEEK)]));
-        when(mockDateUtil.getFirstDayOfTimespan(WEEK)).thenReturn(fakeDateTime);
         when(mockStatsRepository.getUserStats(
-                loggedUser.email, fakeDateTime.millisecondsSinceEpoch))
+                loggedUser.email, WEEK))
             .thenAnswer((_) {
           return Stream<UserHistory>.value(UserHistory(
               email: "test@test.com", attendedLessons: attendedLessons));
@@ -62,7 +54,6 @@ void main() {
         userStatsBloc = UserStatsBloc(
           statsRepository: mockStatsRepository,
           userEmail: loggedUser.email,
-          dateUtil: mockDateUtil,
           statsBloc: mockStatsBloc,
         );
       });
@@ -86,10 +77,8 @@ void main() {
       setUp(() {
         whenListen(mockStatsBloc,
             Stream.fromIterable([TimespanUpdated(timespan: MONTH)]));
-        when(mockDateUtil.getFirstDayOfTimespan(MONTH))
-            .thenReturn(fakeDateTime);
         when(mockStatsRepository.getUserStats(
-                loggedUser.email, fakeDateTime.millisecondsSinceEpoch))
+                loggedUser.email, MONTH))
             .thenAnswer((_) {
           return Stream<UserHistory>.value(UserHistory(
               email: "test@test.com", attendedLessons: attendedLessons));
@@ -97,7 +86,6 @@ void main() {
         userStatsBloc = UserStatsBloc(
           statsRepository: mockStatsRepository,
           userEmail: loggedUser.email,
-          dateUtil: mockDateUtil,
           statsBloc: mockStatsBloc,
         );
       });
@@ -121,9 +109,8 @@ void main() {
       setUp(() {
         whenListen(mockStatsBloc,
             Stream.fromIterable([TimespanUpdated(timespan: YEAR)]));
-        when(mockDateUtil.getFirstDayOfTimespan(YEAR)).thenReturn(fakeDateTime);
         when(mockStatsRepository.getUserStats(
-                loggedUser.email, fakeDateTime.millisecondsSinceEpoch))
+                loggedUser.email, YEAR))
             .thenAnswer((_) {
           return Stream<UserHistory>.value(UserHistory(
               email: "test@test.com", attendedLessons: attendedLessons));
@@ -131,7 +118,6 @@ void main() {
         userStatsBloc = UserStatsBloc(
           statsRepository: mockStatsRepository,
           userEmail: loggedUser.email,
-          dateUtil: mockDateUtil,
           statsBloc: mockStatsBloc,
         );
       });

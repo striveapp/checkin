@@ -6,12 +6,10 @@ import 'package:checkin/src/blocs/user_stats/user_stats_event.dart';
 import 'package:checkin/src/blocs/user_stats/user_stats_state.dart';
 import 'package:checkin/src/models/user_history.dart';
 import 'package:checkin/src/repositories/stats_repository.dart';
-import 'package:checkin/src/util/date_util.dart';
 import 'package:flutter/material.dart';
 
 class UserStatsBloc extends Bloc<UserStatsEvent, UserStatsState> {
   final StatsRepository statsRepository;
-  final DateUtil dateUtil;
   final StatsBloc statsBloc;
   final String userEmail;
 
@@ -19,20 +17,15 @@ class UserStatsBloc extends Bloc<UserStatsEvent, UserStatsState> {
 
   UserStatsBloc({
     @required this.statsRepository,
-    @required this.dateUtil,
     @required this.userEmail,
     @required this.statsBloc,
   }) {
     statsBloc.listen((statsBlocState) {
       if (statsBlocState is TimespanUpdated) {
-        var fromTimespanTimestamp = dateUtil
-            .getFirstDayOfTimespan(statsBlocState.timespan)
-            .millisecondsSinceEpoch;
-
         statsSub?.cancel();
         statsSub = this
             .statsRepository
-            .getUserStats(userEmail, fromTimespanTimestamp)
+            .getUserStats(userEmail, statsBlocState.timespan)
             .listen((userHistory) {
           add(UserStatsUpdated(
               attendedLessons: userHistory.attendedLessons,

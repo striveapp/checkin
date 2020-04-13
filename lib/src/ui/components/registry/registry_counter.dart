@@ -4,7 +4,7 @@ import 'package:checkin/src/localization/localization.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 
-class AttendeesCounter extends StatelessWidget {
+class RegistryCounter extends StatelessWidget {
   static const String full = 'full';
   static const String attendees = 'Attendees';
 

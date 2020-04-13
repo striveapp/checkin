@@ -1,5 +1,7 @@
 import 'package:checkin/src/blocs/lessons_stats/lessons_stats_bloc.dart';
+import 'package:checkin/src/blocs/stats/bloc.dart';
 import 'package:checkin/src/models/master.dart';
+import 'package:checkin/src/repositories/lesson_repository.dart';
 import 'package:checkin/src/ui/components/stats/lessons/attendee_info_card.dart';
 import 'package:checkin/src/ui/components/stats/lessons/attendees_counter.dart';
 import 'package:flutter/material.dart';
@@ -13,7 +15,11 @@ class LessonsStatsPage extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return BlocProvider<LessonsStatsBloc>(
-        create: (BuildContext context) => LessonsStatsBloc(),
+        create: (BuildContext context) => LessonsStatsBloc(
+            statsBloc: BlocProvider.of<StatsBloc>(context),
+            lessonsRepository:
+                RepositoryProvider.of<LessonRepository>(context),
+            master: master),
         child: Column(
           children: [
             AttendeesCounter(),

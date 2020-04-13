@@ -9,7 +9,7 @@ abstract class LessonRepository {
 
   Stream<List<Lesson>> getLessonsForDay(DateTime day);
 
-  Stream<List<Lesson>> getLessonsByMasterAndTimespan(Master master, DateTime day);
+  Stream<List<Lesson>> getLessonsByMasterAndTimespan(Master master, String timespan);
 
   Stream<Lesson> getLesson(String date, String lessonId);
 

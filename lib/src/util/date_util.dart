@@ -1,27 +1,27 @@
 import 'package:checkin/src/constants.dart' as constants;
 
 class DateUtil {
-  DateTime getFirstDayOfTheWeek() {
-    DateTime today = DateTime.now();
-    return today.subtract(new Duration(days: today.weekday - 1));
+  static DateTime _getFirstDayOfTheWeek() {
+    DateTime now = DateTime.now();
+    return now.subtract(new Duration(days: now.weekday - 1));
   }
 
-  DateTime getFirstDayOfTheMonth() {
+  static DateTime _getFirstDayOfTheMonth() {
     DateTime now = DateTime.now();
     return DateTime(now.year, now.month, 1);
   }
 
-  DateTime getFirstDayOfTheYear() {
+  static DateTime _getFirstDayOfTheYear() {
     DateTime now = DateTime.now();
     return DateTime(now.year, 1, 1);
   }
 
-  DateTime getFirstDayOfTimespan(String timeSpan) {
-    if (timeSpan == constants.WEEK) {
-      return getFirstDayOfTheWeek();
-    } else if (timeSpan == constants.MONTH) {
-      return getFirstDayOfTheMonth();
+  static DateTime getFirstDayOfTimespan(String timespan) {
+    if (timespan == constants.WEEK) {
+      return _getFirstDayOfTheWeek();
+    } else if (timespan == constants.MONTH) {
+      return _getFirstDayOfTheMonth();
     }
-    return getFirstDayOfTheYear();
+    return _getFirstDayOfTheYear();
   }
 }

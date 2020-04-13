@@ -5,7 +5,6 @@ import 'package:checkin/src/repositories/stats_repository.dart';
 import 'package:checkin/src/ui/components/loading_indicator.dart';
 import 'package:checkin/src/ui/components/stats/user/attended_lessons_list.dart';
 import 'package:checkin/src/ui/components/stats/user/mat_time_counter.dart';
-import 'package:checkin/src/util/date_util.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter/widgets.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
@@ -27,7 +26,6 @@ class UserStatsPage extends StatelessWidget {
     return BlocBuilder<UserStatsBloc, UserStatsState>(
         bloc: UserStatsBloc(
           statsRepository: StatsRepository(),
-          dateUtil: DateUtil(),
           userEmail: _userEmail,
           statsBloc: BlocProvider.of<StatsBloc>(context)
         ),

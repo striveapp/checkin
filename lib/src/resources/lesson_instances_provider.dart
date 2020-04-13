@@ -3,6 +3,7 @@ import 'package:checkin/src/models/grade.dart';
 import 'package:checkin/src/models/lesson.dart';
 import 'package:checkin/src/models/master.dart';
 import 'package:checkin/src/repositories/lesson_repository.dart';
+import 'package:checkin/src/util/date_util.dart';
 import 'package:checkin/src/util/debug_util.dart';
 import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:flutter/cupertino.dart';
@@ -82,14 +83,14 @@ class LessonInstancesProvider implements LessonRepository {
       .map((doc) => _toLesson(doc));
 
   @override
-  Stream<List<Lesson>> getLessonsByMasterAndTimespan(Master master, DateTime firsDayOfTimespan) => _firestore
+  Stream<List<Lesson>> getLessonsByMasterAndTimespan(Master master, String timespan) => _firestore
         .collectionGroup(sub_collection_path)
-        .where("master", arrayContains: {
+        .where("masters", arrayContains: {
           "name": master.name,
           "email": master.email,
           "imageUrl": master.imageUrl,
         })
-        .where("date", isGreaterThanOrEqualTo: firsDayOfTimespan)
+        .where("date", isGreaterThanOrEqualTo: DateFormat('yyyy-MM-dd').format(DateUtil.getFirstDayOfTimespan(timespan)))
         .snapshots()
         .map((snapshot) => snapshot.documents
             .where((doc) => doc.data['masters'] != null)

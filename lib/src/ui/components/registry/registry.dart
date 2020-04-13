@@ -5,7 +5,7 @@ import 'package:checkin/src/ui/components/registry/registry_controls.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 
-import 'attendees_counter.dart';
+import 'registry_counter.dart';
 import 'attendees_list.dart';
 
 class Registry extends StatelessWidget {
@@ -21,7 +21,7 @@ class Registry extends StatelessWidget {
         children: <Widget>[
           Padding(
             padding: EdgeInsets.symmetric(horizontal: 5),
-            child: AttendeesCounter(),
+            child: RegistryCounter(),
           ),
           SizedBox(
             height: 10,

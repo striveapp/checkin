@@ -105,7 +105,7 @@ class LessonProvider implements LessonRepository {
   }
 
   @override
-  Stream<List<Lesson>> getLessonsByMasterAndTimespan(Master master, DateTime firstDayOfTimespan) {
+  Stream<List<Lesson>> getLessonsByMasterAndTimespan(Master master, String timespan) {
     return Stream.value([]);
   }
 }
