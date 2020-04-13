@@ -38,7 +38,7 @@ void main() {
   final UserRepository userRepository = UserRepository();
   final FirebaseDynamicLinks dynamicLinks = FirebaseDynamicLinks.instance;
 
-  runZoned<Future<void>>(() async {
+  runZonedGuarded<Future<void>>(() async {
     runApp(
       MultiRepositoryProvider(
         providers: [
@@ -53,7 +53,7 @@ void main() {
           providers: [
             BlocProvider<AuthBloc>(
               create: (context) =>
-                  AuthBloc(authRepository: authRepository)..add(AppStarted()),
+              AuthBloc(authRepository: authRepository)..add(AppStarted()),
             ),
             BlocProvider<DynamicLinkBloc>(
               create: (context) => DynamicLinkBloc(dynamicLinks: dynamicLinks)
@@ -70,5 +70,7 @@ void main() {
         ),
       ),
     );
-  }, onError: Crashlytics.instance.recordError);
+  }, (Object error, StackTrace stack) {
+    Crashlytics.instance.recordError(error, stack);
+  });
 }
