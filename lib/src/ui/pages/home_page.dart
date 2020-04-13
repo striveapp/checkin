@@ -16,7 +16,7 @@ class HomePage extends StatelessWidget {
     return BlocProvider(
       create: (context) => NotificationsBloc(
         userBloc: BlocProvider.of<UserBloc>(context),
-        notificationRepository: NotificationRepository(),
+        notificationRepository: RepositoryProvider.of<NotificationRepository>(context),
       )..add(Setup()),
       child: BlocListener<NotificationsBloc, NotificationsState>(
         listener: (BuildContext context, NotificationsState state) {

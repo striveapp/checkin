@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:cached_network_image/cached_network_image.dart';
+import 'package:flutter/foundation.dart' show kIsWeb;
 
 class UserImage extends StatelessWidget {
   final String userImage;
@@ -19,7 +20,9 @@ class UserImage extends StatelessWidget {
   Widget build(BuildContext context) {
     return ClipRRect(
       borderRadius: BorderRadius.circular(circularRadius),
-      child: CachedNetworkImage(
+      child: kIsWeb ?
+       Image.network(userImage, width: width, height: height, fit: BoxFit.fill,)
+      : CachedNetworkImage(
         imageUrl: userImage,
         width: width,
         height: height,
