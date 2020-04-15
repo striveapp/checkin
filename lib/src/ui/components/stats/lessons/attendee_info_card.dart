@@ -1,7 +1,17 @@
+import 'package:checkin/src/models/attendee.dart';
 import 'package:checkin/src/ui/components/user_image.dart';
 import 'package:flutter/material.dart';
+import 'package:checkin/src/models/grade.dart';
 
 class AttendeeInfoCard extends StatelessWidget {
+  final Attendee attendee;
+  final int attendedLessons;
+
+  AttendeeInfoCard({
+    @required this.attendee,
+    @required this.attendedLessons,
+  });
+
   @override
   Widget build(BuildContext context) {
     return Card(
@@ -17,8 +27,7 @@ class AttendeeInfoCard extends StatelessWidget {
                   Flexible(
                       flex: 1,
                       child: UserImage(
-                        userImage:
-                            'https://pbs.twimg.com/media/DLfVkiVVAAApK0D.jpg',
+                        userImage: attendee.imageUrl
                       )),
                   SizedBox(
                     width: 10,
@@ -29,13 +38,13 @@ class AttendeeInfoCard extends StatelessWidget {
                       crossAxisAlignment: CrossAxisAlignment.start,
                       children: <Widget>[
                         Text(
-                          "Spanish Student Names",
+                          attendee.name,
                           style: Theme.of(context)
                               .textTheme
                               .headline4
                               .apply(color: Colors.black87, fontWeightDelta: 2),
                         ),
-                        Text("belt color",
+                        Text(attendee.grade.name,
                             style: Theme.of(context)
                                 .textTheme
                                 .headline5
@@ -46,7 +55,7 @@ class AttendeeInfoCard extends StatelessWidget {
                   Expanded(
                     flex: 1,
                     child: Text(
-                      '10',
+                      attendedLessons.toString(),
                       textAlign: TextAlign.center,
                       style: Theme.of(context)
                           .textTheme

@@ -80,13 +80,13 @@ void main() {
       //TODO: this should probably be a different data structure, maybe a map with attendee and counter
       final expectedState = [
         LessonsStatsInitial(),
-        LessonStatsUpdated(acceptedAttendees: [
-          attendee1,
-          attendee2,
-          attendee3,
-          attendee1,
-          attendee2
-        ])
+        LessonStatsUpdated(acceptedAttendeesWithCounter: {
+          attendee1: 2,
+          attendee2: 2,
+          attendee3: 1,
+        },
+          totalAttendees: 5
+        )
       ];
 
       expectLater(

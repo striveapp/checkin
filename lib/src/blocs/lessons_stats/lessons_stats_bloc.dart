@@ -23,7 +23,10 @@ class LessonsStatsBloc extends Bloc<LessonsStatsEvent, LessonsStatsState> {
     statsBloc.listen((statsBlocState) {
       if (statsBlocState is TimespanUpdated) {
         lessonsSub?.cancel();
-        lessonsSub = this.lessonsRepository.getLessonsByMasterAndTimespan(this.master, statsBlocState.timespan).listen((lessons) {
+        lessonsSub = this
+            .lessonsRepository
+            .getLessonsByMasterAndTimespan(this.master, statsBlocState.timespan)
+            .listen((lessons) {
           add(UpdateLessonStats(lessons: lessons));
         });
       }
@@ -38,8 +41,24 @@ class LessonsStatsBloc extends Bloc<LessonsStatsEvent, LessonsStatsState> {
     LessonsStatsEvent event,
   ) async* {
     if (event is UpdateLessonStats) {
-      List<Attendee> acceptedAttendees = event.lessons.expand((lesson) => lesson.acceptedAttendees).toList();
-      yield LessonStatsUpdated(acceptedAttendees: acceptedAttendees);
+      var acceptedAttendees = event.lessons.expand((lesson) => lesson.acceptedAttendees);
+      yield LessonStatsUpdated(
+          acceptedAttendeesWithCounter: _getAttendeesWithCounter(acceptedAttendees),
+          totalAttendees: acceptedAttendees.length);
     }
+  }
+
+  Map<Attendee, int> _getAttendeesWithCounter(
+      Iterable<Attendee> acceptedAttendees) {
+    Map<Attendee, int> acceptedAttendeesWithCounterMap = {};
+
+    acceptedAttendees.forEach((acceptedAttendee) {
+      if (acceptedAttendeesWithCounterMap.containsKey(acceptedAttendee)) {
+        acceptedAttendeesWithCounterMap[acceptedAttendee] += 1;
+      } else {
+        acceptedAttendeesWithCounterMap[acceptedAttendee] = 1;
+      }
+    });
+    return acceptedAttendeesWithCounterMap;
   }
 }

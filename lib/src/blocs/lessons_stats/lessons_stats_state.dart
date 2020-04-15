@@ -12,12 +12,17 @@ class LessonsStatsInitial extends LessonsStatsState {
 }
 
 class LessonStatsUpdated extends LessonsStatsState {
-  final List<Attendee> acceptedAttendees;
+  final Map<Attendee, int> acceptedAttendeesWithCounter;
+  final int totalAttendees;
 
-  LessonStatsUpdated({
-    @required this.acceptedAttendees
-  });
+  LessonStatsUpdated(
+      {@required this.acceptedAttendeesWithCounter,
+      @required this.totalAttendees});
 
   @override
-  List<Object> get props => [acceptedAttendees];
+  List<Object> get props => [acceptedAttendeesWithCounter, totalAttendees];
+
+  @override
+  String toString() =>
+      'LessonStatsUpdated{acceptedAttendeesWithCounter: $acceptedAttendeesWithCounter, totalAttendees: $totalAttendees}';
 }

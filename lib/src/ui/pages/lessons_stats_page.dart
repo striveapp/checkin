@@ -2,8 +2,8 @@ import 'package:checkin/src/blocs/lessons_stats/lessons_stats_bloc.dart';
 import 'package:checkin/src/blocs/stats/bloc.dart';
 import 'package:checkin/src/models/master.dart';
 import 'package:checkin/src/repositories/lesson_repository.dart';
-import 'package:checkin/src/ui/components/stats/lessons/attendee_info_card.dart';
 import 'package:checkin/src/ui/components/stats/lessons/attendees_counter.dart';
+import 'package:checkin/src/ui/components/stats/lessons/attendees_info_list.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 
@@ -41,9 +41,7 @@ class LessonsStatsPage extends StatelessWidget {
                   SizedBox(
                     height: 10,
                   ),
-                  AttendeeInfoCard(),
-                  AttendeeInfoCard(),
-                  AttendeeInfoCard(),
+                  AttendeesInfoList()
                 ],
               ),
             ),

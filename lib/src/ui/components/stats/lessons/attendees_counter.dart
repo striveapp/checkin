@@ -17,7 +17,7 @@ class AttendeesCounter extends StatelessWidget {
         if (state is LessonStatsUpdated) {
           return Column(children: <Widget>[
             Text(
-              state.acceptedAttendees.length.toString(),
+              state.totalAttendees.toString(),
               key: Key('matHours'),
               textAlign: TextAlign.center,
               style: Theme.of(context).textTheme.headline1.apply(
