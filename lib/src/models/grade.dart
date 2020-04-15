@@ -46,5 +46,5 @@ extension GradeExtension on Grade {
 }
 
 extension GradeParser on String {
-  Grade toGrade() => Grade.values.firstWhere((element) => element.name == this, orElse: () => null);
+  Grade toGrade() => Grade.values.firstWhere((element) => element.name.toLowerCase() == this.toLowerCase(), orElse: () => null);
 }
