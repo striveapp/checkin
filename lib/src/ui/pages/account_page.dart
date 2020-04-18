@@ -6,6 +6,7 @@ import 'package:checkin/src/blocs/user/bloc.dart';
 import 'package:checkin/src/repositories/membership_repository.dart';
 import 'package:checkin/src/repositories/user_repository.dart';
 import 'package:checkin/src/ui/components/base_app_bar.dart';
+import 'package:checkin/src/ui/components/loading_indicator.dart';
 import 'package:checkin/src/ui/components/membership/membership_card.dart';
 import 'package:checkin/src/ui/components/profile_card.dart';
 import 'package:checkin/src/util/debug_util.dart';
@@ -54,6 +55,10 @@ class AccountPage extends StatelessWidget {
           ],
           child: BlocBuilder<AccountBloc, AccountState>(
             builder: (BuildContext context, AccountState state) {
+              if(state is AccountInitial) {
+                return LoadingIndicator();
+              }
+
               if (state is AccountLoaded) {
                 return SingleChildScrollView(
                   child: Padding(
@@ -130,6 +135,7 @@ class AccountPage extends StatelessWidget {
                   ),
                 );
               }
+
               return ErrorWidget("unkown state for account_page");
             },
           ),
