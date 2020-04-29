@@ -2,12 +2,17 @@ import 'package:checkin/src/models/membership.dart';
 import 'package:cloud_firestore/cloud_firestore.dart';
 
 class MembershipProvider {
+  static const String gymPath = "gyms";
+  // todo should be dynamic
+  static const String gymDoc = "aranha";
   static const String path = 'customers';
 
   Firestore _firestore = Firestore.instance;
 
   Stream<Membership> getMembership(String email) {
     return _firestore
+        .collection(gymPath)
+        .document(gymDoc)
         .collection(path)
         .document(email)
         .snapshots()

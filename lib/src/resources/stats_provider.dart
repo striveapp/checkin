@@ -5,12 +5,18 @@ import 'package:checkin/src/util/date_util.dart';
 import 'package:cloud_firestore/cloud_firestore.dart';
 
 class StatsProvider {
+  static const String gymPath = "gyms";
+  // todo multigym: should be dynamic
+  static const String gymDoc = "aranha";
   static const String path = 'users_history';
 
   Firestore _firestore = Firestore.instance;
 
   Stream<UserHistory> getUserStats(String email, String timespan) {
-    return _firestore.collection(path).document(email).snapshots().map((doc) =>
+    return _firestore
+        .collection(gymPath)
+        .document(gymDoc)
+        .collection(path).document(email).snapshots().map((doc) =>
         UserHistory(
             email: doc.documentID,
             attendedLessons:
@@ -38,6 +44,8 @@ class StatsProvider {
           []);
 
   Stream<List<UserHistory>> getAllUserStats() => _firestore
+      .collection(gymPath)
+      .document(gymDoc)
       .collection(path)
       .snapshots()
       .map((snapshot) => snapshot.documents
@@ -50,6 +58,8 @@ class StatsProvider {
 
   Future<void> cleanUserHistory(String email) async {
     await _firestore
+        .collection(gymPath)
+        .document(gymDoc)
         .collection(path)
         .document(email)
     // .delete(); todo https://trello.com/c/oXkaXNqb

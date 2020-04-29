@@ -1,14 +1,30 @@
 import * as admin from "firebase-admin";
 import data from "./data/lesson_template";
+import subscriptionPlansData from "./data/subscription_plans";
 import {LessonTemplate} from "../../types/lesson_template";
+import {SubscriptionPlan} from "../../types/subscription_plan";
 
 export const importLessonTemplate = async () => {
     const db = admin.firestore();
     const batch = db.batch();
 
     data.lesson_templates.forEach((lessonTemplate: LessonTemplate) => {
-        const documentRef = db.collection("lesson_templates").doc();
+        // todo multigym
+        const documentRef = db.collection("gyms").doc("aranha").collection("lesson_template").doc();
         batch.set(documentRef, lessonTemplate);
+    });
+
+    return await batch.commit();
+};
+
+export const importSubscriptionPlans = async () => {
+    const db = admin.firestore();
+    const batch = db.batch();
+
+    subscriptionPlansData.subscription_plans.forEach((subscriptionPlan: SubscriptionPlan) => {
+        // todo multigym
+        const documentRef = db.collection("gyms").doc("aranha").collection("subscription_plans").doc();
+        batch.set(documentRef, subscriptionPlan);
     });
 
     return await batch.commit();
@@ -18,8 +34,8 @@ const generateLessonForDay = (day: Date) => {
     const db = admin.firestore();
     const batch = db.batch();
     const weekDay = day.toLocaleString('en-us', {weekday: 'long'}).toLowerCase();
-
-    return db.collection("lesson_templates").where("weekDay", "==", weekDay).get().then((res) => {
+    // todo multigym
+    return db.collection("gyms").doc("aranha").collection("lesson_template").where("weekDay", "==", weekDay).get().then((res) => {
         res.forEach((lessonTemplate) => {
             let dateISO = day.toISOString().split('T')[0];
             const lessonInstance = {
@@ -27,7 +43,8 @@ const generateLessonForDay = (day: Date) => {
                 lessonTemplateRef: lessonTemplate.ref,
                 date: dateISO
             };
-            const documentRef = db.collection("lesson_instances")
+            // todo multigym
+            const documentRef = db.collection("gyms").doc("aranha").collection("lesson_instances")
                 .doc(dateISO)
                 .collection("instances").doc(lessonTemplate.id);
             batch.set(documentRef, lessonInstance, {merge: true})
@@ -89,6 +106,23 @@ export const generateNext2WeekOfLessonInstances = async () => {
     return Promise.resolve();
 };
 
+export const generateThisWeekOfLessonInstances = async () => {
+    const thisWeekMonday = getThisWeekMonday();
+    console.log("This week Monday: ", thisWeekMonday);
+
+    try {
+        //This will loop over the week and generate all the lesson instances
+        for (let i = 0; i < 7; i++) {
+            await generateLessonForDay(thisWeekMonday);
+            thisWeekMonday.setDate(thisWeekMonday.getDate() + 1);
+        }
+    } catch (e) {
+        return Promise.reject(e);
+    }
+
+    return Promise.resolve();
+};
+
 const getNext2WeekDay = () => {
     const d = new Date();
     d.setDate(d.getDate() + 14);
@@ -102,4 +136,14 @@ const getNext2WeekMonday = () => {
 
     next2WeekDay.setDate(next2WeekDay.getDate() + (day == 0 ? -6 : 1) - day);
     return next2WeekDay;
+};
+
+
+const getThisWeekMonday = () => {
+    const thisWeekDay = new Date();
+    thisWeekDay.setUTCHours(0);
+    const day = thisWeekDay.getDay();
+
+    thisWeekDay.setDate(thisWeekDay.getDate() + (day == 0 ? -6 : 1) - day);
+    return thisWeekDay;
 };

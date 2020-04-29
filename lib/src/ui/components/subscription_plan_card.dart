@@ -78,6 +78,7 @@ class SubscriptionPlanCard extends StatelessWidget {
   }
 
   void _launchURL() async {
+    // todo multigym: retrieve from db
     var host = isInDebugMode ? 'arya.page.link' : 'aranha.page.link';
     var domain = isInDebugMode ? 'checkin-test-fba3d.firebaseapp.com' : 'checkin-b7e8d.firebaseapp.com';
     var stripePublicKey = isInDebugMode ? 'pk_test_8K7vXBkISjYbdzi7EzEvuS4J00v3T0aos8' : 'pk_live_sIt4QvkBIEhVOy46UxGMDxlO00pI8U7JrO';

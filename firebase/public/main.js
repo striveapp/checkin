@@ -5,7 +5,9 @@ function functionsSetup() {
   this.generateBackupButton = document.getElementById('generate-backup-button');
   this.restoreBackupButton = document.getElementById('restore-backup-button');
   this.notifyMasterButton = document.getElementById('notify-master-button');
-  this.importLesssonTemplateButton = document.getElementById('import-lesson-template-button');
+  this.importLessonTemplateButton = document.getElementById('import-lesson-template-button');
+  this.importSubscriptionPlansButton = document.getElementById('import-subscription-plans-button');
+  this.generateThisWeekOfLessonInstancesButton = document.getElementById('generate-this-week-of-lesson-instances-button');
   this.generateNextWeekOfLessonInstancesButton = document.getElementById('generate-next-week-of-lesson-instances-button');
   this.generateNext2WeekOfLessonInstancesButton = document.getElementById('generate-next-2-week-of-lesson-instances-button');
 
@@ -13,7 +15,9 @@ function functionsSetup() {
   this.generateBackupButton.addEventListener('click', this.runFunction.bind(this, 'generateBackup'));
   this.restoreBackupButton.addEventListener('click', this.runFunction.bind(this, 'restoreBackup'));
   this.notifyMasterButton.addEventListener('click', this.runFunction.bind(this, 'notifyMaster'));
-  this.importLesssonTemplateButton.addEventListener('click', this.runFunction.bind(this, 'importLessonTemplate'));
+  this.importLessonTemplateButton.addEventListener('click', this.runFunction.bind(this, 'importLessonTemplate'));
+  this.importSubscriptionPlansButton.addEventListener('click', this.runFunction.bind(this, 'importSubscriptionPlans'));
+  this.generateThisWeekOfLessonInstancesButton.addEventListener('click', this.runFunction.bind(this, 'generateThisWeekOfLessonInstances'));
   this.generateNextWeekOfLessonInstancesButton.addEventListener('click', this.runFunction.bind(this, 'generateNextWeekOfLessonInstances'));
   this.generateNext2WeekOfLessonInstancesButton.addEventListener('click', this.runFunction.bind(this, 'generateNext2WeekOfLessonInstances'));
 }

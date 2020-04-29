@@ -12,6 +12,9 @@ import 'package:intl/intl.dart';
 import '../constants.dart';
 
 class LessonInstancesProvider implements LessonRepository {
+  static const String gymPath = "gyms";
+  // todo multigym: should be dynamic
+  static const String gymDoc = "aranha";
   static const String path = 'lesson_instances';
   static const String sub_collection_path = 'instances';
 
@@ -62,6 +65,8 @@ class LessonInstancesProvider implements LessonRepository {
   Stream<List<Lesson>> getLessonsForDay(DateTime day) {
     var formattedDate = _formatDate(day);
     return _firestore
+        .collection(gymPath)
+        .document(gymDoc)
         .collection(path)
         .document(formattedDate)
         .collection("instances")
@@ -74,6 +79,8 @@ class LessonInstancesProvider implements LessonRepository {
 
   @override
   Stream<Lesson> getLesson(String date, String lessonId) => _firestore
+      .collection(gymPath)
+      .document(gymDoc)
       .collection(path)
       .document(date)
       .collection(sub_collection_path)
@@ -101,6 +108,8 @@ class LessonInstancesProvider implements LessonRepository {
   Future<void> register(String date, String lessonId, Attendee attendee) async {
     debugPrint("User [$attendee] attends lesson with id [$lessonId]");
     await _firestore
+        .collection(gymPath)
+        .document(gymDoc)
         .collection(path)
         .document(date)
         .collection(sub_collection_path)
@@ -122,6 +131,8 @@ class LessonInstancesProvider implements LessonRepository {
       String date, String lessonId, Attendee attendee) async {
     debugPrint("User [$attendee] removed from lesson with id [$lessonId]");
     await _firestore
+        .collection(gymPath)
+        .document(gymDoc)
         .collection(path)
         .document(date)
         .collection(sub_collection_path)
@@ -140,6 +151,8 @@ class LessonInstancesProvider implements LessonRepository {
 
   Future<void> cleanLessonAttendees(String date, String lessonId) async {
     await _firestore
+        .collection(gymPath)
+        .document(gymDoc)
         .collection(path)
         .document(date)
         .collection(sub_collection_path)

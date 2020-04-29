@@ -74,17 +74,19 @@ export const acceptAll = functions.https.onCall(({lesson}: AcceptAllPayload, con
         } = attendee;
 
         historyAttendees[email] = generateHistoryAttendee(attendee);
-
-        const userHistoryRef = db.collection("users_history").doc(email);
+        // todo multigym
+        const userHistoryRef = db.collection("gyms").doc("aranha").collection("users_history").doc(email);
         batch.set(userHistoryRef, generateUserHistory(lesson), {merge: true});
     });
 
     // update globalHistory
-    const globalHistoryRef = db.collection("global_history").doc(lessonId);
+    // todo multigym
+    const globalHistoryRef = db.collection("gyms").doc("aranha").collection("global_history").doc(lessonId);
     batch.set(globalHistoryRef, generateGlobalHistory(lesson, historyAttendees), {merge: true});
 
     // remove users from lessons
-    const lessonRef = db.collection(`lesson_instances/${lesson.date}/instances`).doc(lessonId);
+    // todo multigym
+    const lessonRef = db.collection("gyms").doc("aranha").collection(`lesson_instances/${lesson.date}/instances`).doc(lessonId);
     batch.update(lessonRef, {
         "acceptedAttendees": admin.firestore.FieldValue.arrayUnion(...attendees),
         "attendees": admin.firestore.FieldValue.delete()

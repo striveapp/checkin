@@ -2,7 +2,7 @@ import * as express from 'express';
 import {validateFirebaseIdToken} from "./middlewares/validations";
 import {restoreBackup, generateBackup} from "../backups";
 import {reminderOfNonAcceptedUsersForMaster} from "../notifications";
-import {generateNextWeekOfLessonInstances, generateNext2WeekOfLessonInstances, importLessonTemplate} from "./imports";
+import {generateNextWeekOfLessonInstances, generateNext2WeekOfLessonInstances, generateThisWeekOfLessonInstances, importLessonTemplate, importSubscriptionPlans} from "./imports";
 
 const adminApp = express();
 
@@ -48,6 +48,16 @@ adminApp.get('/importLessonTemplate', async (req, res) => {
     }
 });
 
+adminApp.get('/importSubscriptionPlans', async (req, res) => {
+    try {
+        await importSubscriptionPlans();
+        res.status(200).send("Gotcha!");
+    } catch (e) {
+        console.error(`Something bad happen with the import of lesson template: ${e.message}`)
+        res.status(400).send("Bad things");
+    }
+});
+
 adminApp.get('/generateNextWeekOfLessonInstances', async (req, res) => {
     try {
         await generateNextWeekOfLessonInstances();
@@ -61,6 +71,16 @@ adminApp.get('/generateNextWeekOfLessonInstances', async (req, res) => {
 adminApp.get('/generateNext2WeekOfLessonInstances', async (req, res) => {
     try {
         await generateNext2WeekOfLessonInstances();
+        res.status(200).send("Gotcha!");
+    } catch (e) {
+        console.error(`Something bad happen with the seed of lesson instances: ${e.message}`)
+        res.status(400).send("Bad things");
+    }
+});
+
+adminApp.get('/generateThisWeekOfLessonInstances', async (req, res) => {
+    try {
+        await generateThisWeekOfLessonInstances();
         res.status(200).send("Gotcha!");
     } catch (e) {
         console.error(`Something bad happen with the seed of lesson instances: ${e.message}`)

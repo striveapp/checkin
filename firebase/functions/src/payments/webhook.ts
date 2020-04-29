@@ -2,8 +2,6 @@ import * as functions from "firebase-functions";
 import * as StripeApi from "stripe";
 import * as admin from "firebase-admin";
 
-// See your keys here: https://dashboard.stripe.com/account/apikeys
-const stripe = new StripeApi(functions.config().stripe.secret_key);
 const db = admin.firestore();
 
 /**
@@ -20,14 +18,14 @@ const db = admin.firestore();
 /**
  * Event: checkout.session.completed
  * */
-function checkoutCompleted(event: any) {
+function checkoutCompleted(event: any, gymId: string) {
     const session: any = event.data.object;
 
     console.log("received complete event ", JSON.stringify(session));
     // Fulfill the purchase...
     const email = session["customer_email"] || "unknownUser";
 
-    return db.collection("customers")
+    return db.collection("gyms").doc(gymId).collection("customers")
         .doc(email)
         .collection("payments")
         .doc()
@@ -37,13 +35,13 @@ function checkoutCompleted(event: any) {
 /**
  * Events: [ customer.subscription.updated, customer.subscription.deleted ]
  * */
-function subscriptionUpdated(event: any) {
+function subscriptionUpdated(event: any, gymId: string) {
     const subscription: any = event.data.object;
 
     console.log("received subscription updated event ", JSON.stringify(subscription));
 
     const customer = subscription["customer"];
-    return db.collection("customers")
+    return db.collection("gyms").doc(gymId).collection("customers")
         .where("stripeIds", "array-contains", customer)
         .get()
         .then(snapshot => {
@@ -70,7 +68,7 @@ function subscriptionUpdated(event: any) {
  *  - canceled
  *  - unpaid
  * */
-function customerUpdated(event: any) {
+function customerUpdated(event: any, gymId: string) {
     const customer: any = event.data.object;
 
     console.log("received customer updated ", JSON.stringify(customer));
@@ -79,7 +77,7 @@ function customerUpdated(event: any) {
     const email = customer["email"];
 
 
-    return db.collection("customers")
+    return db.collection("gyms").doc(gymId).collection("customers")
         .doc(email)
         .set({infos: customer, stripeIds: admin.firestore.FieldValue.arrayUnion(id)}, {merge: true});
 }
@@ -87,22 +85,22 @@ function customerUpdated(event: any) {
 /**
  * Event: payment_method.attached
  * */
-function paymentMethodAttached(event: any) {
+function paymentMethodAttached(event: any, gymId: string) {
     const paymentMethod: any = event.data.object;
 
     console.log("received paymentMethod attached ", JSON.stringify(paymentMethod));
 
     const email = paymentMethod["billing_details"]["email"];
 
-    return db.collection("customers")
+    return db.collection("gyms").doc(gymId).collection("customers")
         .doc(email)
         .set({payment_method: paymentMethod}, {merge: true});
 }
 
 export const webhook = functions.https.onRequest(async (request, response) => {
     console.log("Received webhook event: ", JSON.stringify(request.body));
-
     const sig = request.headers['stripe-signature'];
+    const gymId = request.query.gymId;
 
     if (!sig) {
         return response.status(400).send(`Webhook Error: stripe-signature is required`);
@@ -111,24 +109,26 @@ export const webhook = functions.https.onRequest(async (request, response) => {
     let event;
 
     try {
-        event = stripe.webhooks.constructEvent(request.rawBody, sig, functions.config().stripe.web_hook_key);
+        // See your keys here: https://dashboard.stripe.com/account/apikeys
+        const stripe = new StripeApi(functions.config().stripe.secret_key[gymId]);
+        event = stripe.webhooks.constructEvent(request.rawBody, sig, functions.config().stripe.web_hook_key[gymId]);
 
         // todo update user information with batch update to show in profile
         // todo prevent all users from reading subscriptions collection
         switch (event.type) {
             case 'checkout.session.completed':
-                await checkoutCompleted(event);
+                await checkoutCompleted(event, gymId);
                 break;
             case 'customer.subscription.deleted':
                 console.log( "Received subscription deleted event" );
             case 'customer.subscription.updated':
-                await subscriptionUpdated(event);
+                await subscriptionUpdated(event, gymId);
                 break;
             case 'customer.updated':
-                await customerUpdated(event);
+                await customerUpdated(event, gymId);
                 break;
             case 'payment_method.attached':
-                await paymentMethodAttached(event);
+                await paymentMethodAttached(event, gymId);
                 break;
             default:
                 return response.status(400).send(`Unknown Webhook Event`);

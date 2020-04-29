@@ -43,11 +43,11 @@ service cloud.firestore {
       allow read, write: if isLoggedUser(email);
     }
 
-    match /lessons/{document=**} {
+    match /lesson_instances/{date}/instances/{id} {
       allow read, write: if isLoggedUser(request.auth.token.email);
     }
 
-    match /lesson_instances/{date}/instances/{id} {
+    match /gyms/{gym}/lesson_instances/{date}/instances/{id} {
       allow read, write: if isLoggedUser(request.auth.token.email);
     }
 
@@ -56,11 +56,24 @@ service cloud.firestore {
       // allow write: if isLoggedUser("test@test.com");
     }
 
+    match /gyms/{gym}/users_history/{email} {
+      allow read: if true;
+      // allow write: if isLoggedUser("test@test.com");
+    }
+
     match /customers/{email} {
       allow read: if isLoggedUser(email);
     }
 
+    match /gyms/{gym}/customers/{email} {
+      allow read: if isLoggedUser(email);
+    }
+
     match /subscription_plans/{document=**} {
+      allow read: if isLoggedUser(request.auth.token.email);
+    }
+
+    match /gyms/{gym}/subscription_plans/{document=**} {
       allow read: if isLoggedUser(request.auth.token.email);
     }
 
