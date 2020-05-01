@@ -11,17 +11,19 @@ function functionsSetup() {
   this.generateNextWeekOfLessonInstancesButton = document.getElementById('generate-next-week-of-lesson-instances-button');
   this.generateNext2WeekOfLessonInstancesButton = document.getElementById('generate-next-2-week-of-lesson-instances-button');
   this.createNewGymButton = document.getElementById('create-new-gym-button');
+  this.migrateToMultiGymButton = document.getElementById('migrate-to-multi-gym-button');
 
   //Callbacks
-  this.generateBackupButton.addEventListener('click', this.runFunction.bind(this, 'generateBackup'));
-  this.restoreBackupButton.addEventListener('click', this.runFunction.bind(this, 'restoreBackup'));
-  this.notifyMasterButton.addEventListener('click', this.runFunction.bind(this, 'notifyMaster'));
-  this.importLessonTemplateButton.addEventListener('click', this.runFunction.bind(this, 'importLessonTemplate', true));
-  this.importSubscriptionPlansButton.addEventListener('click', this.runFunction.bind(this, 'importSubscriptionPlans', true));
-  this.generateThisWeekOfLessonInstancesButton.addEventListener('click', this.runFunction.bind(this, 'generateThisWeekOfLessonInstances', true));
-  this.generateNextWeekOfLessonInstancesButton.addEventListener('click', this.runFunction.bind(this, 'generateNextWeekOfLessonInstances', true));
-  this.generateNext2WeekOfLessonInstancesButton.addEventListener('click', this.runFunction.bind(this, 'generateNext2WeekOfLessonInstances', true));
-  this.createNewGymButton.addEventListener('click', this.runFunction.bind(this, 'createNewGym', true));
+  this.generateBackupButton.addEventListener('click', () => this.runFunction( 'generateBackup'));
+  this.restoreBackupButton.addEventListener('click', () => () => this.runFunction( 'restoreBackup'));
+  this.notifyMasterButton.addEventListener('click', () => this.runFunction('notifyMaster', true));
+  this.importLessonTemplateButton.addEventListener('click', () => this.runFunction('importLessonTemplate', true));
+  this.importSubscriptionPlansButton.addEventListener('click', () => this.runFunction('importSubscriptionPlans', true));
+  this.generateThisWeekOfLessonInstancesButton.addEventListener('click', () => this.runFunction('generateThisWeekOfLessonInstances', true));
+  this.generateNextWeekOfLessonInstancesButton.addEventListener('click', () => this.runFunction('generateNextWeekOfLessonInstances', true));
+  this.generateNext2WeekOfLessonInstancesButton.addEventListener('click', () => this.runFunction('generateNext2WeekOfLessonInstances', true));
+  this.createNewGymButton.addEventListener('click', () => this.runFunction('createNewGym', true));
+  this.migrateToMultiGymButton.addEventListener('click', () => this.runFunction('migrateToMultiGym' ));
 
   //params
   this.gymField = document.getElementById('gym');
