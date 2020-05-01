@@ -12,7 +12,7 @@ const sendNotificationToDevices = (tokens: FirebaseFirestore.DocumentReference[]
     }));
 
 
-export const classCounterIncrementNotification = functions.firestore.document("users_history/{userEmail}").onUpdate((change, context) => {
+export const classCounterIncrementNotification = functions.firestore.document("/gyms/{gymId}/users_history/{userEmail}").onUpdate((change, context) => {
     const docBefore = change.before.data() || {};
     const docAfter = change.after.data() || {};
 
@@ -25,6 +25,7 @@ export const classCounterIncrementNotification = functions.firestore.document("u
             const notificationContent = {
                 data: {
                     type: "class_attended",
+                    // todo multigym
                     path: `/stats/${userEmail}`,
                     timestamp: `${Date.now()}`
                 },
@@ -44,7 +45,7 @@ export const classCounterIncrementNotification = functions.firestore.document("u
 });
 
 //TODO: this should be changed when the attendees stops to get removed from the class
-export const firstUserRegisterToClassNotification = functions.firestore.document("lesson_instances/{date}/instances/{lessonId}").onUpdate((change, context) => {
+export const firstUserRegisterToClassNotification = functions.firestore.document("/gyms/{gymId}/lesson_instances/{date}/instances/{lessonId}").onUpdate((change, context) => {
     const docBefore = change.before.data() || {};
     const docAfter = change.after.data() || {};
 
@@ -58,6 +59,7 @@ export const firstUserRegisterToClassNotification = functions.firestore.document
                 const notificationContent = {
                     data: {
                         type: "first_user_registered",
+                        // todo multigym
                         path: `registry/${context.params.date}/${context.params.lessonId}`,
                         timestamp: `${Date.now()}`
                     },
@@ -76,10 +78,10 @@ export const firstUserRegisterToClassNotification = functions.firestore.document
     return Promise.resolve();
 });
 
-export const reminderOfNonAcceptedUsersForMaster = async () => {
+export const reminderOfNonAcceptedUsersForMaster = async (gymId : string) => {
     const currentDate = new Date().toISOString().split('T')[0];
 
-    return admin.firestore().collection(`/lesson_instances/${currentDate}/instances`).get().then(snapshot => {
+    return admin.firestore().collection(`/gyms/${gymId}/lesson_instances/${currentDate}/instances`).get().then(snapshot => {
         snapshot.forEach(doc => {
             const {
                 attendees = [],
@@ -96,6 +98,7 @@ export const reminderOfNonAcceptedUsersForMaster = async () => {
                         const notificationContent = {
                             data: {
                                 type: "master_reminder",
+                                // todo multigym
                                 path: `registry/${currentDate}/${doc.id}`,
                                 timestamp: `${Date.now()}`
                             },

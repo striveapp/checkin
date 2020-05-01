@@ -10,16 +10,21 @@ function functionsSetup() {
   this.generateThisWeekOfLessonInstancesButton = document.getElementById('generate-this-week-of-lesson-instances-button');
   this.generateNextWeekOfLessonInstancesButton = document.getElementById('generate-next-week-of-lesson-instances-button');
   this.generateNext2WeekOfLessonInstancesButton = document.getElementById('generate-next-2-week-of-lesson-instances-button');
+  this.createNewGymButton = document.getElementById('create-new-gym-button');
 
   //Callbacks
   this.generateBackupButton.addEventListener('click', this.runFunction.bind(this, 'generateBackup'));
   this.restoreBackupButton.addEventListener('click', this.runFunction.bind(this, 'restoreBackup'));
   this.notifyMasterButton.addEventListener('click', this.runFunction.bind(this, 'notifyMaster'));
-  this.importLessonTemplateButton.addEventListener('click', this.runFunction.bind(this, 'importLessonTemplate'));
-  this.importSubscriptionPlansButton.addEventListener('click', this.runFunction.bind(this, 'importSubscriptionPlans'));
-  this.generateThisWeekOfLessonInstancesButton.addEventListener('click', this.runFunction.bind(this, 'generateThisWeekOfLessonInstances'));
-  this.generateNextWeekOfLessonInstancesButton.addEventListener('click', this.runFunction.bind(this, 'generateNextWeekOfLessonInstances'));
-  this.generateNext2WeekOfLessonInstancesButton.addEventListener('click', this.runFunction.bind(this, 'generateNext2WeekOfLessonInstances'));
+  this.importLessonTemplateButton.addEventListener('click', this.runFunction.bind(this, 'importLessonTemplate', true));
+  this.importSubscriptionPlansButton.addEventListener('click', this.runFunction.bind(this, 'importSubscriptionPlans', true));
+  this.generateThisWeekOfLessonInstancesButton.addEventListener('click', this.runFunction.bind(this, 'generateThisWeekOfLessonInstances', true));
+  this.generateNextWeekOfLessonInstancesButton.addEventListener('click', this.runFunction.bind(this, 'generateNextWeekOfLessonInstances', true));
+  this.generateNext2WeekOfLessonInstancesButton.addEventListener('click', this.runFunction.bind(this, 'generateNext2WeekOfLessonInstances', true));
+  this.createNewGymButton.addEventListener('click', this.runFunction.bind(this, 'createNewGym', true));
+
+  //params
+  this.gymField = document.getElementById('gym');
 }
 
 function DOMSetup() {
@@ -58,8 +63,17 @@ CommandCabin.prototype.logIn = function() {
 };
 
 // Does an authenticated request to a Firebase Functions endpoint using an Authorization header.
-CommandCabin.prototype.runFunction = function(endpoint) {
-  var functionUrl = window.location.href + endpoint;
+CommandCabin.prototype.runFunction = function(endpoint, withGymId) {
+  var functionUrl;
+  if( withGymId ) {
+      var gymId = this.gymField.options[this.gymField.selectedIndex].value
+      console.debug(`runFunction for gym [${gymId}]`)
+      functionUrl = `${window.location.href}${gymId}/${endpoint}`;
+  } else {
+      functionUrl = `${window.location.href}${endpoint}`;
+  }
+
+
   this.responseContainer.innerText = '...';
   this.statusCard.style.display = 'block';
   firebase.auth().currentUser.getIdToken().then(function(token) {

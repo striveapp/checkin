@@ -22,13 +22,19 @@ export const masterReminderNotification = functions.pubsub
     //At 23:00 on every day-of-week from Monday through Saturday.
     .schedule('0 23 * * 1-6')
     .timeZone('Europe/Madrid')
-    .onRun(reminderOfNonAcceptedUsersForMaster);
+    .onRun(() => {
+        // todo multigym
+        return reminderOfNonAcceptedUsersForMaster( "aranha" );
+    });
 
 export const generateNext2WeekOfLessons = functions.pubsub
     //At 02:00 on Friday.
     .schedule('0 2 * * 5')
     .timeZone('Europe/Madrid')
-    .onRun(generateNext2WeekOfLessonInstances);
+    .onRun(() => {
+        // todo multigym
+        return generateNext2WeekOfLessonInstances("aranha");
+    });
 
 // http triggers
 export const app = functions.https.onRequest(adminApp);
