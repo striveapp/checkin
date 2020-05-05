@@ -8,13 +8,16 @@ import 'package:checkin/src/ui/components/leaderboard/profile_tile.dart';
 import 'package:checkin/src/ui/components/loading_indicator.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
+import 'package:checkin/src/localization/localization.dart';
 
 class LeaderboardPage extends StatelessWidget {
+  static const String leaderboard = 'Leaderboard';
+
   @override
   Widget build(BuildContext context) {
     return Scaffold(
       appBar: BaseAppBar(
-        title: 'Leaderboard',
+        title: leaderboard.i18n,
         showUserImage: false,
       ),
       body: BlocProvider(

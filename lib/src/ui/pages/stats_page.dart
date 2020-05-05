@@ -7,12 +7,12 @@ import 'package:checkin/src/repositories/user_repository.dart';
 import 'package:checkin/src/ui/components/base_app_bar.dart';
 import 'package:checkin/src/ui/components/stats/stats_body.dart';
 import 'package:checkin/src/ui/components/stats/stats_header.dart';
-import 'package:checkin/src/ui/pages/user_stats_page.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 
 class StatsPage extends StatelessWidget {
   final String userEmail;
+  static const String stats = 'Stats';
 
   StatsPage({
     Key key,
@@ -25,7 +25,7 @@ class StatsPage extends StatelessWidget {
   Widget build(BuildContext context) {
     return Scaffold(
       appBar: BaseAppBar(
-        title: UserStatsPage.stats.i18n,
+        title: stats.i18n,
         showUserImage: false,
       ),
       body: MultiBlocProvider(

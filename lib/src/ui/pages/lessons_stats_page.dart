@@ -6,8 +6,10 @@ import 'package:checkin/src/ui/components/stats/lessons/attendees_counter.dart';
 import 'package:checkin/src/ui/components/stats/lessons/attendees_info_list.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
+import 'package:checkin/src/localization/localization.dart';
 
 class LessonsStatsPage extends StatelessWidget {
+  static const String topStudents = 'Top Students';
   final Master master;
 
   const LessonsStatsPage({Key key, this.master}) : super(key: key);
@@ -32,7 +34,7 @@ class LessonsStatsPage extends StatelessWidget {
                 crossAxisAlignment: CrossAxisAlignment.start,
                 children: <Widget>[
                   Text(
-                    'Top Students:',
+                    topStudents.i18n,
                     style: Theme.of(context)
                         .textTheme
                         .headline1

@@ -10,8 +10,6 @@ import 'package:flutter/widgets.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 
 class UserStatsPage extends StatelessWidget {
-  static const String stats = 'Stats';
-
   final String _userEmail;
 
   UserStatsPage({
@@ -50,7 +48,7 @@ class UserStatsPage extends StatelessWidget {
           ],
         );
       }
-      return ErrorWidget("Unknown State [$state] received in: stats_page");
+      return ErrorWidget("Unknown State [$state] received in: user_stats_page");
     });
   }
 }

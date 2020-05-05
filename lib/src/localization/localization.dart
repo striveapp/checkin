@@ -21,10 +21,12 @@ import 'package:checkin/src/ui/components/stats/user/mat_time_counter.dart';
 import 'package:checkin/src/ui/components/upgrader_dialog.dart';
 import 'package:checkin/src/ui/pages/account_page.dart';
 import 'package:checkin/src/ui/pages/grade_page.dart';
+import 'package:checkin/src/ui/pages/leaderboard_page.dart';
 import 'package:checkin/src/ui/pages/lessons_page.dart';
+import 'package:checkin/src/ui/pages/lessons_stats_page.dart';
 import 'package:checkin/src/ui/pages/payment_success_page.dart';
 import 'package:checkin/src/ui/pages/registry_page.dart';
-import 'package:checkin/src/ui/pages/user_stats_page.dart';
+import 'package:checkin/src/ui/pages/stats_page.dart';
 import 'package:checkin/src/ui/pages/subscriptions_page.dart';
 import 'package:i18n_extension/i18n_extension.dart';
 
@@ -40,7 +42,7 @@ extension Localization on String {
     'en': RegistryPage.registry,
     'es': 'Registro',
   } + {
-    'en': UserStatsPage.stats,
+    'en': StatsPage.stats,
     'es': 'Estadísticas',
   } + {
     'en': constants.WEEK,
@@ -227,6 +229,9 @@ extension Localization on String {
     'en': ProfileInfos.beltColor,
     'es': 'Cinturón %s'
   } + {
+    'en': ProfileInfos.beltColor,
+    'es': 'Cinturón %s'
+  } + {
     'en': UpgraderDialog.update,
     'es': 'Actualizar'
   } + {
@@ -238,6 +243,12 @@ extension Localization on String {
   } + {
     'en': AttendeesCounter.studentsAccepted,
     'es': 'alumnos confirmados'
+  } + {
+    'en': LessonsStatsPage.topStudents,
+    'es': 'Mejores alumnos'
+  } + {
+    'en': LeaderboardPage.leaderboard,
+    'es': 'Clasificación'
   };
 
 String get i18n => localize(this, _t);
