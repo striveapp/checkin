@@ -77,6 +77,10 @@ service cloud.firestore {
       allow read: if isLoggedUser(request.auth.token.email);
     }
 
+    match /gyms/{gym} {
+      allow read: if isLoggedUser(request.auth.token.email);
+    }
+
     match /config/version {
           allow read: if true;
     }

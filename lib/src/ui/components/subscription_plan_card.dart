@@ -1,8 +1,8 @@
+import 'package:checkin/src/blocs/payments/bloc.dart';
 import 'package:checkin/src/models/subscription_plan.dart';
-import 'package:checkin/src/util/debug_util.dart';
 import 'package:flutter/material.dart';
+import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:intl/intl.dart';
-import 'package:url_launcher/url_launcher.dart';
 
 class SubscriptionPlanCard extends StatelessWidget {
   final SubscriptionPlan plan;
@@ -19,7 +19,7 @@ class SubscriptionPlanCard extends StatelessWidget {
         height: 150,
         child: Card(
           child: InkWell(
-            onTap: _launchURL,
+            onTap: () => _launchURL(BlocProvider.of<PaymentsBloc>(context)),
             child: Padding(
               padding: const EdgeInsets.symmetric(horizontal: 20),
               child: Row(
@@ -77,17 +77,7 @@ class SubscriptionPlanCard extends StatelessWidget {
     return s.endsWith('00') ? s.substring(0, s.length - 3) : s;
   }
 
-  void _launchURL() async {
-    // todo multigym: retrieve from db
-    var host = isInDebugMode ? 'arya.page.link' : 'aranha.page.link';
-    var domain = isInDebugMode ? 'checkin-test-fba3d.firebaseapp.com' : 'checkin-b7e8d.firebaseapp.com';
-    var stripePublicKey = isInDebugMode ? 'pk_test_8K7vXBkISjYbdzi7EzEvuS4J00v3T0aos8' : 'pk_live_sIt4QvkBIEhVOy46UxGMDxlO00pI8U7JrO';
-    var url = Uri.encodeFull("https://$domain/payment.html?pk=$stripePublicKey&host=$host&customerEmail=$customerEmail&plan=${plan.code}&nocache=${DateTime.now()}");
-
-    if (await canLaunch(url)) {
-      await launch(url);
-    } else {
-      throw 'Could not launch $url';
-    }
+  void _launchURL(PaymentsBloc paymentsBloc) {
+    paymentsBloc.add(LaunchStripePayment(customerEmail: customerEmail, planCode: plan.code));
   }
 }
