@@ -10,7 +10,7 @@ import {
     importSubscriptionPlans,
     createNewGym
 } from "./imports";
-import {migrateToMultiGym} from "./migrations";
+import {cleanUp, migrateToMultiGym} from "./migrations";
 
 const adminApp = express();
 
@@ -122,5 +122,16 @@ adminApp.get('/migrateToMultiGym', async (req, res) => {
         res.status(400).send("Bad things");
     }
 });
+
+adminApp.get('/cleanUp', async (req, res) => {
+    try {
+        await cleanUp();
+        res.status(200).send("Gotcha!");
+    } catch (e) {
+        console.error(`Something bad happen with the seed of lesson instances: ${e.message}`)
+        res.status(400).send("Bad things");
+    }
+});
+
 
 export default adminApp;

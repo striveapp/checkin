@@ -34,7 +34,7 @@ const generateLessonForDay = (day: Date, gymId: string) => {
     const weekDay = day.toLocaleString('en-us', {weekday: 'long'}).toLowerCase();
     return db.collection("gyms").doc(gymId).collection("lesson_template").where("weekDay", "==", weekDay).get().then((res) => {
         res.forEach((lessonTemplate) => {
-            let dateISO = day.toISOString().split('T')[0];
+            const dateISO = day.toISOString().split('T')[0];
             const lessonInstance = {
                 ...lessonTemplate.data(),
                 lessonTemplateRef: lessonTemplate.ref,

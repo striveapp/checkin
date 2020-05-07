@@ -12,6 +12,7 @@ function functionsSetup() {
   this.generateNext2WeekOfLessonInstancesButton = document.getElementById('generate-next-2-week-of-lesson-instances-button');
   this.createNewGymButton = document.getElementById('create-new-gym-button');
   this.migrateToMultiGymButton = document.getElementById('migrate-to-multi-gym-button');
+  this.cleanUpOldDbButton = document.getElementById('clean-up-old-db-button');
 
   //Callbacks
   this.generateBackupButton.addEventListener('click', () => this.runFunction( 'generateBackup'));
@@ -24,6 +25,7 @@ function functionsSetup() {
   this.generateNext2WeekOfLessonInstancesButton.addEventListener('click', () => this.runFunction('generateNext2WeekOfLessonInstances', true));
   this.createNewGymButton.addEventListener('click', () => this.runFunction('createNewGym', true));
   this.migrateToMultiGymButton.addEventListener('click', () => this.runFunction('migrateToMultiGym' ));
+  this.cleanUpOldDbButton.addEventListener('click', () => this.runFunction('cleanUp' ));
 
   //params
   this.gymField = document.getElementById('gym');

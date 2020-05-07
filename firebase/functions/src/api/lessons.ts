@@ -2,7 +2,7 @@ import * as admin from "firebase-admin";
 import {CallableContext} from "firebase-functions/lib/providers/https";
 import * as functions from "firebase-functions";
 import {AcceptAllPayload, Attendee, Lesson,} from "../types/lessons";
-import {GlobalHistory, HistoryAttendee, HistoryAttendeesMap, UserHistory} from "../types/history";
+import { HistoryAttendee, UserHistory} from "../types/history";
 import {FIREBASE_PROJECT_ID_TEST} from "../config";
 
 const db = admin.firestore();
@@ -33,16 +33,6 @@ const generateUserHistory = ({attendees, ...lessonWithoutAttendees}: Lesson): Us
         ...lessonWithoutAttendees,
         "timestamp": Date.now()
     })
-});
-
-const generateGlobalHistory = ({attendees, ...lessonDetails}: Lesson, historyAttendees: HistoryAttendeesMap): GlobalHistory => ({
-    ...lessonDetails,
-    totalWeekCounters: {
-        [getMondayOfCurrentWeek()]: {
-            counter: admin.firestore.FieldValue.increment(attendees.length)
-        }
-    },
-    attendees: historyAttendees
 });
 
 const getTraceableAttendees = (attendees: Attendee[]) => {
@@ -78,11 +68,6 @@ export const acceptAll = functions.https.onCall(({lesson}: AcceptAllPayload, con
         const userHistoryRef = db.collection("gyms").doc("aranha").collection("users_history").doc(email);
         batch.set(userHistoryRef, generateUserHistory(lesson), {merge: true});
     });
-
-    // update globalHistory
-    // todo multigym
-    const globalHistoryRef = db.collection("gyms").doc("aranha").collection("global_history").doc(lessonId);
-    batch.set(globalHistoryRef, generateGlobalHistory(lesson, historyAttendees), {merge: true});
 
     // remove users from lessons
     // todo multigym

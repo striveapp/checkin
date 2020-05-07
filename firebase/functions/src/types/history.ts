@@ -8,12 +8,6 @@ type WeekCounter = {
     counter: number | FirebaseFirestore.FieldValue
 }
 
-export type GlobalHistory = LessonDetails & {
-    attendees: HistoryAttendeesMap,
-    totalWeekCounters: WeekCountersMap
-}
-
-export type HistoryAttendeesMap = { [email: string]: HistoryAttendee; };
 export type WeekCountersMap = { [timestamp: number]: WeekCounter; };
 
 type HistoryLesson = LessonDetails & {
