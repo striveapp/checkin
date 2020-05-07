@@ -43,9 +43,9 @@ Future<void> setup() async {
 
 Future<void> cleanDatabase() async {
   await StatsProvider().cleanUserHistory("test@test.com");
-  await LessonInstancesProvider().cleanLessonAttendees("2020-03-16", "mj0dLQ18sMM6M9H1KAUo");
-  await LessonInstancesProvider().cleanLessonAttendees("2020-03-16", "lfl8kGUo31ezYhCqP3bS");
-  lessonSub = LessonInstancesProvider().getLesson("2020-03-16", "lfl8kGUo31ezYhCqP3bS").listen((event) {
+  await LessonInstancesProvider().cleanLessonAttendees("2020-05-04", "FLhdKCTv9XzlArDMAwQo");
+  await LessonInstancesProvider().cleanLessonAttendees("2020-05-04", "nUtQA4rjEWr7pXeeLChk");
+  lessonSub = LessonInstancesProvider().getLesson("2020-05-04", "nUtQA4rjEWr7pXeeLChk").listen((event) {
     isDbClean = event?.attendees?.isEmpty;
   });
 }
