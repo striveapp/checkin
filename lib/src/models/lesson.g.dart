@@ -18,6 +18,10 @@ Lesson _$LessonFromJson(Map<String, dynamic> json) {
         ?.map((e) =>
             e == null ? null : Attendee.fromJson(e as Map<String, dynamic>))
         ?.toList(),
+    acceptedAttendees: (json['acceptedAttendees'] as List)
+        ?.map((e) =>
+            e == null ? null : Attendee.fromJson(e as Map<String, dynamic>))
+        ?.toList(),
     masters: (json['masters'] as List)
         ?.map((e) =>
             e == null ? null : Master.fromJson(e as Map<String, dynamic>))
@@ -34,6 +38,8 @@ Map<String, dynamic> _$LessonToJson(Lesson instance) => <String, dynamic>{
       'timeEnd': instance.timeEnd,
       'weekDay': instance.weekDay,
       'attendees': instance.attendees?.map((e) => e?.toJson())?.toList(),
+      'acceptedAttendees':
+          instance.acceptedAttendees?.map((e) => e?.toJson())?.toList(),
       'masters': instance.masters?.map((e) => e?.toJson())?.toList(),
       'timestamp': instance.timestamp,
     };

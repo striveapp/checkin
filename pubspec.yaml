@@ -43,7 +43,8 @@ dependencies:
   open_appstore: ^1.0.2
   pub_semver: ^1.4.2
   rxdart: ^0.23.1
-  
+  freezed: ^0.10.8
+
 dev_dependencies:
   test: ">=1.6.3 <2.0.0"
   mockito: ^4.1.1
@@ -55,9 +56,9 @@ dev_dependencies:
   flutter_driver:
     sdk: flutter
   # build_runner is blocked at this version because requires a newer Dart SDK
-  build_runner: ^1.7.1
+  build_runner: ^1.9.0
   # build_runner is blocked at this version because requires a newer flutter_driver version
-  json_serializable: ^3.2.5
+  json_serializable: ^3.3.0
 
 flutter_icons:
   android: true
