@@ -1,6 +1,8 @@
 import 'package:checkin/src/blocs/auth/bloc.dart';
 import 'package:checkin/src/blocs/dynamic_link/bloc.dart';
+import 'package:checkin/src/blocs/gym/bloc.dart';
 import 'package:checkin/src/repositories/auth_repository.dart';
+import 'package:checkin/src/repositories/gym_repository.dart';
 import 'package:checkin/src/repositories/user_repository.dart';
 import 'package:checkin/src/routes/application.dart';
 import 'package:checkin/src/ui/components/upgrader_dialog.dart';
@@ -16,18 +18,24 @@ import 'package:i18n_extension/i18n_widget.dart';
 
 import 'blocs/user/bloc.dart';
 import 'blocs/version/bloc.dart';
+import 'constants.dart';
 
 class App extends StatelessWidget {
   final AuthRepository _authRepository;
   final UserRepository _userRepository;
+  final GymRepository _gymRepository;
 
   App({
     Key key,
     @required AuthRepository authRepository,
     @required UserRepository userRepository,
-  })  : assert(authRepository != null && userRepository != null),
+    @required GymRepository gymRepository,
+  })  : assert(authRepository != null &&
+            userRepository != null &&
+            gymRepository != null),
         _authRepository = authRepository,
         _userRepository = userRepository,
+        _gymRepository = gymRepository,
         super(key: key);
 
   @override
@@ -124,9 +132,9 @@ class App extends StatelessWidget {
           ],
           child: BlocBuilder<AuthBloc, AuthState>(
               builder: (BuildContext context, AuthState state) {
-                debugPrint("auth state change detected in main app [$state]");
+            debugPrint("auth state change detected in main app [$state]");
 
-                if (state is AuthUnauthenticated) {
+            if (state is AuthUnauthenticated) {
               return LoginPage(
                   authRepository: _authRepository,
                   userRepository: _userRepository);
@@ -134,11 +142,20 @@ class App extends StatelessWidget {
 
             if (state is AuthAuthenticated) {
               debugPrint("User Authenticated: [${state.loggedUserEmail}]");
-              return BlocProvider<UserBloc>(
-                create: (BuildContext context) => UserBloc(
-                  userRepository: _userRepository,
-                  authBloc: BlocProvider.of<AuthBloc>(context),
-                ),
+              return MultiBlocProvider(
+                providers: [
+                  BlocProvider<UserBloc>(
+                      create: (BuildContext context) => UserBloc(
+                            userRepository: _userRepository,
+                            authBloc: BlocProvider.of<AuthBloc>(context),
+                          )),
+                  //todo: multigym
+                  BlocProvider<GymBloc>(
+                      create: (BuildContext context) => GymBloc(
+                            gymId: aranha_gym,
+                            gymRepository: _gymRepository,
+                          )),
+                ],
                 child: DefaultTabController(
                     length: 3,
                     child: Scaffold(
@@ -147,8 +164,12 @@ class App extends StatelessWidget {
                         child: TabBar(
                           tabs: <Widget>[
                             Tab(icon: Icon(Icons.home)),
-                            Tab(key: Key("statsTab"), icon: Icon(Icons.insert_chart)),
-                            Tab(key: Key("leaderboardTab"), icon: Icon(Icons.star)),
+                            Tab(
+                                key: Key("statsTab"),
+                                icon: Icon(Icons.insert_chart)),
+                            Tab(
+                                key: Key("leaderboardTab"),
+                                icon: Icon(Icons.star)),
                           ],
                         ),
                       ),

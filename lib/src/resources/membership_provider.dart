@@ -1,10 +1,12 @@
 import 'package:checkin/src/models/membership.dart';
 import 'package:cloud_firestore/cloud_firestore.dart';
 
+import '../constants.dart';
+
 class MembershipProvider {
   static const String gymPath = "gyms";
   // todo should be dynamic
-  static const String gymDoc = "aranha";
+  static const String gymDoc = aranha_gym;
   static const String path = 'customers';
 
   Firestore _firestore = Firestore.instance;

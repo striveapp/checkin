@@ -10,11 +10,15 @@ abstract class SubscriptionPlansEvent extends Equatable {
 
 class SubscriptionPlansUpdated extends SubscriptionPlansEvent {
   final List<SubscriptionPlan> subscriptionPlans;
+  final String basePaymentUrl;
 
-  SubscriptionPlansUpdated({this.subscriptionPlans});
+  SubscriptionPlansUpdated({
+    this.subscriptionPlans,
+    this.basePaymentUrl,
+  });
 
   @override
-  List<Object> get props => [subscriptionPlans];
+  List<Object> get props => [subscriptionPlans, basePaymentUrl];
 
   @override
   String toString() => 'SubscriptionPlansUpdated';

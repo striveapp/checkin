@@ -1,4 +1,7 @@
+import 'package:bloc_test/bloc_test.dart';
+import 'package:checkin/src/blocs/gym/bloc.dart';
 import 'package:checkin/src/blocs/subscription_plans/bloc.dart';
+import 'package:checkin/src/models/gym.dart';
 import 'package:checkin/src/models/subscription_plan.dart';
 import 'package:checkin/src/repositories/subscription_plans_repository.dart';
 import 'package:mockito/mockito.dart';
@@ -7,10 +10,25 @@ import 'package:test/test.dart';
 class MockSubscriptionPlansRepository extends Mock
     implements SubscriptionPlansRepository {}
 
+class MockGymBloc extends Mock implements GymBloc {}
+
 void main() {
   group("SubscriptionPlansBloc", () {
     SubscriptionPlansBloc subscriptionPlansBloc;
     MockSubscriptionPlansRepository mockSubscriptionPlansRepository;
+    Gym fakeGym = Gym(
+      host: "tha_host",
+      domain: "test.com",
+      stripePublicKey: "pk_kp"
+    );
+    MockGymBloc mockGymBloc;
+    String fakeBasePaymentUrl = "https://${fakeGym.domain}/payment.html?pk=${fakeGym.stripePublicKey}&host=${fakeGym.host}";
+
+    setUp(() {
+      mockGymBloc = MockGymBloc();
+      whenListen(mockGymBloc,
+          Stream.fromIterable([GymLoaded(gym: fakeGym)]));
+    });
 
     group("initial state", () {
       test("initial state is SubscriptionPlansInitial", () {
@@ -18,6 +36,7 @@ void main() {
         when(mockSubscriptionPlansRepository.getPlans())
             .thenAnswer((_) => Stream.value([]));
         subscriptionPlansBloc = SubscriptionPlansBloc(
+            gymBloc: mockGymBloc,
             subscriptionPlansRepository: mockSubscriptionPlansRepository);
         expect(subscriptionPlansBloc.initialState, SubscriptionPlansInitial());
       });
@@ -39,8 +58,11 @@ void main() {
         mockSubscriptionPlansRepository = MockSubscriptionPlansRepository();
         when(mockSubscriptionPlansRepository.getPlans())
             .thenAnswer((_) => Stream.empty());
-        subscriptionPlansBloc = SubscriptionPlansBloc(subscriptionPlansRepository: mockSubscriptionPlansRepository);
-        subscriptionPlansBloc.add(SubscriptionPlansUpdated(subscriptionPlans: testPlans));
+        subscriptionPlansBloc = SubscriptionPlansBloc(
+            gymBloc: mockGymBloc,
+            subscriptionPlansRepository: mockSubscriptionPlansRepository);
+        subscriptionPlansBloc
+            .add(SubscriptionPlansUpdated(subscriptionPlans: testPlans));
 
         final expectedState = [
           SubscriptionPlansInitial(),
@@ -55,7 +77,8 @@ void main() {
         subscriptionPlansBloc.close();
       });
 
-      test("should emits SubscriptionPlansLoaded when fetched by repository", () {
+      test("should emits SubscriptionPlansLoaded when fetched by repository",
+          () {
         List<SubscriptionPlan> testPlans = [
           SubscriptionPlan(
               name: "test1",
@@ -67,26 +90,28 @@ void main() {
 
         mockSubscriptionPlansRepository = MockSubscriptionPlansRepository();
         when(mockSubscriptionPlansRepository.getPlans()).thenAnswer((_) {
-          return Stream<List<SubscriptionPlan>>.fromFuture(Future.value(testPlans));
+          return Stream<List<SubscriptionPlan>>.fromFuture(
+              Future.value(testPlans));
         });
 
-        subscriptionPlansBloc = SubscriptionPlansBloc(subscriptionPlansRepository: mockSubscriptionPlansRepository);
+        subscriptionPlansBloc = SubscriptionPlansBloc(
+            gymBloc: mockGymBloc,
+            subscriptionPlansRepository: mockSubscriptionPlansRepository);
 
         final expectedState = [
           SubscriptionPlansInitial(),
-          SubscriptionPlansLoaded(subscriptionPlans: testPlans),
+          SubscriptionPlansLoaded(basePaymentUrl: fakeBasePaymentUrl, subscriptionPlans: testPlans),
         ];
 
         expectLater(
           subscriptionPlansBloc,
           emitsInOrder(expectedState),
         );
-//        TODO: how to fucking test this sheet
-//        subscriptionPlansBloc.close();
-
       });
 
-      test("should emits SubscriptionPlansLoaded with plans sorted by price (desc)", () {
+      test(
+          "should emits SubscriptionPlansLoaded with plans sorted by price (desc)",
+          () {
         List<SubscriptionPlan> testPlans = [
           SubscriptionPlan(
               name: "test1",
@@ -122,11 +147,13 @@ void main() {
           return Stream<List<SubscriptionPlan>>.value(testPlans);
         });
 
-        subscriptionPlansBloc = SubscriptionPlansBloc(subscriptionPlansRepository: mockSubscriptionPlansRepository);
+        subscriptionPlansBloc = SubscriptionPlansBloc(
+            gymBloc: mockGymBloc,
+            subscriptionPlansRepository: mockSubscriptionPlansRepository);
 
         final expectedState = [
           SubscriptionPlansInitial(),
-          SubscriptionPlansLoaded(subscriptionPlans: sortedTestPlans),
+          SubscriptionPlansLoaded(basePaymentUrl: fakeBasePaymentUrl, subscriptionPlans: sortedTestPlans),
         ];
 
         expectLater(
@@ -139,7 +166,11 @@ void main() {
     group("SubscriptionPlansEmpty", () {
       setUp(() {
         mockSubscriptionPlansRepository = MockSubscriptionPlansRepository();
-        subscriptionPlansBloc = SubscriptionPlansBloc(subscriptionPlansRepository: mockSubscriptionPlansRepository);
+        when(mockSubscriptionPlansRepository.getPlans())
+            .thenAnswer((_) => Stream.empty());
+        subscriptionPlansBloc = SubscriptionPlansBloc(
+            gymBloc: mockGymBloc,
+            subscriptionPlansRepository: mockSubscriptionPlansRepository);
       });
       test("should emits SubscriptionPlansEmpty with empty plans", () {
         subscriptionPlansBloc

@@ -1,24 +1,41 @@
 import 'dart:async';
 
 import 'package:bloc/bloc.dart';
+import 'package:checkin/src/blocs/gym/bloc.dart';
 import 'package:checkin/src/blocs/subscription_plans/subscription_plans_event.dart';
 import 'package:checkin/src/blocs/subscription_plans/subscription_plans_state.dart';
+import 'package:checkin/src/models/gym.dart';
 import 'package:checkin/src/models/subscription_plan.dart';
 import 'package:checkin/src/repositories/subscription_plans_repository.dart';
-import 'package:flutter/cupertino.dart';
+import 'package:flutter/foundation.dart';
 
 class SubscriptionPlansBloc
     extends Bloc<SubscriptionPlansEvent, SubscriptionPlansState> {
   final SubscriptionPlansRepository subscriptionPlansRepository;
+  final GymBloc gymBloc;
+
   StreamSubscription<List<SubscriptionPlan>> streamSubscription;
 
-  SubscriptionPlansBloc({@required this.subscriptionPlansRepository}) : assert(subscriptionPlansRepository != null) {
+  SubscriptionPlansBloc({
+    @required this.subscriptionPlansRepository,
+    @required this.gymBloc,
+  }) : assert(subscriptionPlansRepository != null && gymBloc != null) {
     streamSubscription?.cancel();
     try {
-      streamSubscription = subscriptionPlansRepository.getPlans().listen((plans) {
-        add(SubscriptionPlansUpdated(subscriptionPlans: _sortByPrice(plans)));
+      gymBloc.listen((GymState gymState) {
+        if (gymState is GymLoaded) {
+          Gym gym = gymState.gym;
+          streamSubscription =
+              subscriptionPlansRepository.getPlans().listen((plans) {
+            add(SubscriptionPlansUpdated(
+              basePaymentUrl:
+                  "https://${gym.domain}/payment.html?pk=${gym.stripePublicKey}&host=${gym.host}",
+              subscriptionPlans: _sortByPrice(plans),
+            ));
+          });
+        }
       });
-    } catch(err) {
+    } catch (err) {
       debugPrint("Error while fetching the plans stream $err");
     }
   }
@@ -34,7 +51,7 @@ class SubscriptionPlansBloc
         yield SubscriptionPlansEmpty();
       } else {
         yield SubscriptionPlansLoaded(
-            subscriptionPlans: event.subscriptionPlans);
+            basePaymentUrl: event.basePaymentUrl, subscriptionPlans: event.subscriptionPlans);
       }
     }
   }

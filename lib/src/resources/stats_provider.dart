@@ -4,10 +4,12 @@ import 'package:checkin/src/models/user_history.dart';
 import 'package:checkin/src/util/date_util.dart';
 import 'package:cloud_firestore/cloud_firestore.dart';
 
+import '../constants.dart';
+
 class StatsProvider {
   static const String gymPath = "gyms";
   // todo multigym: should be dynamic
-  static const String gymDoc = "aranha";
+  static const String gymDoc = aranha_gym;
   static const String path = 'users_history';
 
   Firestore _firestore = Firestore.instance;

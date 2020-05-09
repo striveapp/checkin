@@ -14,19 +14,25 @@ class SubscriptionPlansInitial extends SubscriptionPlansState {
 }
 
 class SubscriptionPlansLoaded extends SubscriptionPlansState {
+  final String basePaymentUrl;
   final List<SubscriptionPlan> subscriptionPlans;
 
-  SubscriptionPlansLoaded({this.subscriptionPlans});
+  SubscriptionPlansLoaded({
+    this.subscriptionPlans,
+    this.basePaymentUrl,
+  });
 
   @override
-  List<Object> get props => [subscriptionPlans];
+  List<Object> get props => [
+        subscriptionPlans,
+        basePaymentUrl,
+      ];
 
   @override
   String toString() => 'SubscriptionPlansLoaded';
 }
 
 class SubscriptionPlansEmpty extends SubscriptionPlansState {
-
   @override
   String toString() => 'SubscriptionPlansEmpty';
 }

@@ -6,7 +6,7 @@ import 'package:checkin/src/repositories/lesson_repository.dart';
 import 'package:checkin/src/util/date_util.dart';
 import 'package:checkin/src/util/debug_util.dart';
 import 'package:cloud_firestore/cloud_firestore.dart';
-import 'package:flutter/cupertino.dart';
+import 'package:flutter/foundation.dart';
 import 'package:intl/intl.dart';
 
 import '../constants.dart';
@@ -14,7 +14,7 @@ import '../constants.dart';
 class LessonInstancesProvider implements LessonRepository {
   static const String gymPath = "gyms";
   // todo multigym: should be dynamic
-  static const String gymDoc = "aranha";
+  static const String gymDoc = aranha_gym;
   static const String path = 'lesson_instances';
   static const String sub_collection_path = 'instances';
 
