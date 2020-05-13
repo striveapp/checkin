@@ -13,3 +13,4 @@ const IOS_APP_ID = "1471462737";
 final testDate = DateTime(2020, 5, 4); /* be with you */
 
 const aranha_gym = "aranha";
+const gullo_gym = "gullo_bjj";

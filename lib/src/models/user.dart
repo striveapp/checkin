@@ -8,6 +8,7 @@ class User extends Equatable {
   final String email;
   final String imageUrl;
   final Grade grade;
+  final String selectedGymId;
   final bool isOwner;
   final bool hasActivePayments;
 
@@ -16,6 +17,7 @@ class User extends Equatable {
     @required this.email,
     @required this.imageUrl,
     this.grade,
+    this.selectedGymId,
     this.isOwner = false,
     this.hasActivePayments = false,
   });
@@ -31,8 +33,10 @@ class User extends Equatable {
   }
 
   @override
-  List<Object> get props => [name, email, imageUrl, grade, isOwner, hasActivePayments];
+  List<Object> get props => [name, email, imageUrl, grade, selectedGymId, isOwner, hasActivePayments];
 
   @override
-  String toString() => 'User{name: $name, email: $email, imageUrl: $imageUrl, grade: $grade, isOwner: $isOwner, hasActivePayments: $hasActivePayments}';
+  String toString() {
+    return 'User{name: $name, email: $email, imageUrl: $imageUrl, grade: $grade, isOwner: $isOwner, hasActivePayments: $hasActivePayments, selectedGymId: $selectedGymId}';
+  }
 }

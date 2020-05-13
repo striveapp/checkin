@@ -80,6 +80,12 @@ class UserBloc extends Bloc<UserEvent, UserState> {
           event.currentUser,
           event.newToken,
         );
+      } else if (event is UpdateSelectedGym) {
+        debugPrint('Updating selectedGym...');
+        await this.userRepository.updateSelectedGymId(
+          event.userEmail,
+          event.newSelectedGym,
+        );
       }
     } catch (e) {
       print('Error during user update: ' + e.toString());

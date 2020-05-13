@@ -22,4 +22,7 @@ class UserRepository {
 
   Future<void> updateUserFcmToken(User currentUser, String newToken) =>
       _userProvider.updateUserFcmToken(currentUser, newToken);
+
+  Future<void> updateSelectedGymId(String userEmail, String newSelectedGym) =>
+      _userProvider.updateSelectedGymId(userEmail, newSelectedGym);
 }

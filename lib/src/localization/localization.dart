@@ -249,6 +249,12 @@ extension Localization on String {
   } + {
     'en': LeaderboardPage.leaderboard,
     'es': 'Clasificación'
+  } + {
+    'en': constants.aranha_gym,
+    'es': 'Asociación Aranha Barcelona (Sarrià)'
+  } + {
+    'en': constants.gullo_gym,
+    'es': 'Gullo Jiu-Jitsu Barcelona'
   };
 
 String get i18n => localize(this, _t);

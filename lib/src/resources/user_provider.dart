@@ -20,9 +20,10 @@ class UserProvider {
             imageUrl: user.data['imageUrl'],
             // TODO: remove rank when all users have grade https://trello.com/c/d26R05mY
             grade:
-                ((user.data['grade'] ?? user.data['rank']) as String).toGrade(),
+                ((user.data['grade'] ?? user.data['rank']) as String)?.toGrade(),
             isOwner: user.data['isOwner'] ?? false,
             hasActivePayments: user.data['hasActivePayments'] ?? false,
+            selectedGymId: user.data['selectedGymId']
           ));
 
   Stream<List<User>> getAllUsers() => _firestore
@@ -75,5 +76,12 @@ class UserProvider {
       'createdAt': FieldValue.serverTimestamp(), // optional
       'platform': Platform.operatingSystem // optional
     });
+  }
+
+  Future<void> updateSelectedGymId(String userEmail, String newSelectedGym) async {
+    await _firestore
+        .collection(path)
+        .document(userEmail)
+        .updateData({"selectedGymId": newSelectedGym});
   }
 }

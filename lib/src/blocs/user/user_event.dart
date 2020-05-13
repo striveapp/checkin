@@ -32,6 +32,19 @@ class UpdateGrade extends UserEvent {
   String toString() => 'UpdateGrade';
 }
 
+class UpdateSelectedGym extends UserEvent {
+  final String userEmail;
+  final String newSelectedGym;
+
+  const UpdateSelectedGym({this.userEmail, this.newSelectedGym});
+
+  @override
+  List<Object> get props => [userEmail, newSelectedGym];
+
+  @override
+  String toString() => 'UpdateSelectedGym';
+}
+
 class UpdateName extends UserEvent {
   final String newName;
 

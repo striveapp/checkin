@@ -3,6 +3,8 @@ import 'package:checkin/src/blocs/user/bloc.dart';
 import 'package:checkin/src/repositories/notification_repository.dart';
 import 'package:checkin/src/ui/components/loading_indicator.dart';
 import 'package:checkin/src/ui/components/notification_toast.dart';
+import 'package:checkin/src/ui/pages/gym_selection_page.dart';
+import 'package:checkin/src/util/debug_util.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter/widgets.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
@@ -39,6 +41,9 @@ class HomePage extends StatelessWidget {
           }
 
           if (state is UserSuccess) {
+            if (state.currentUser.selectedGymId == null && isInDebugMode) {
+              return GymSelectionPage(userEmail: state.currentUser.email, userName: state.currentUser.name,);
+            }
             if (state.currentUser.grade == null) {
               return GradePage();
             }
