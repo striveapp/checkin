@@ -58,29 +58,6 @@ void main() {
         });
       });
       group("when lessons", () {
-        List<Lesson> lessons = [
-          Lesson(timeStart: "19:00", timeEnd: "20:00")
-        ];
-
-        setUp(() {
-          when(mockLessonRepository.getLessonsForToday(fakeUser.selectedGymId)).thenAnswer((_) {
-            return Stream<List<Lesson>>.value(lessons);
-          });
-          lessonsBloc = LessonsBloc(userBloc: mockUserBloc, lessonRepository: mockLessonRepository);
-        });
-
-        test("should emits LessonsLoaded with the right lessons", () {
-          final expectedState = [
-            LessonsUninitialized(),
-            LessonsLoaded(lessons: lessons),
-          ];
-
-          expectLater(
-            lessonsBloc,
-            emitsInOrder(expectedState),
-          );
-        });
-
         group("when unordered lessons", () {
           List<Lesson> unsortedLessons = [
             Lesson(timeStart: "19:00", timeEnd: "20:00"),
@@ -101,13 +78,13 @@ void main() {
             lessonsBloc = LessonsBloc(userBloc: mockUserBloc, lessonRepository: mockLessonRepository);
           });
 
-          test("should emits LessonLoaded with lessons sorted by time", () {
+          test("should emits LessonLoaded with lessons sorted by time", () async {
             final expectedState = [
               LessonsUninitialized(),
               LessonsLoaded(lessons: sortedLessons),
             ];
 
-            expectLater(
+            await expectLater(
               lessonsBloc,
               emitsInOrder(expectedState),
             );
