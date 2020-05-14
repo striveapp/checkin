@@ -12,20 +12,22 @@ class MembershipBloc extends Bloc<MembershipEvent, MembershipState> {
   final MembershipRepository membershipRepository;
   final UserBloc userBloc;
 
-  StreamSubscription<Membership> membershipSub;
+  String _gymId;
+  StreamSubscription<Membership> _membershipSub;
 
   MembershipBloc({@required this.membershipRepository, @required this.userBloc})
       : assert(membershipRepository != null) {
 
     this.userBloc.listen((userState) {
       if (userState is UserSuccess) {
-        membershipSub?.cancel();
+        _gymId = userState.currentUser.selectedGymId;
+        _membershipSub?.cancel();
         add(MembershipUpdated(email: userState.currentUser.email, membership: null));
-        membershipSub = this.membershipRepository
+        _membershipSub = this.membershipRepository
             .getMembership(userState.currentUser.email).listen((membership) {
           add(MembershipUpdated(email: userState.currentUser.email, membership: membership));
         });
-        membershipSub.onError((error) {
+        _membershipSub.onError((error) {
           debugPrint("An error occurred while loading membership $error");
         });
       }
@@ -39,7 +41,7 @@ class MembershipBloc extends Bloc<MembershipEvent, MembershipState> {
   Stream<MembershipState> mapEventToState(MembershipEvent event) async* {
     if (event is Unsubscribe) {
       yield MembershipLoading();
-      await this.membershipRepository.unsubscribe();
+      await this.membershipRepository.unsubscribe(gymId: _gymId);
     }
 
     if( event is MembershipUpdated ) {
@@ -53,7 +55,7 @@ class MembershipBloc extends Bloc<MembershipEvent, MembershipState> {
 
   @override
   Future<void> close() {
-    membershipSub?.cancel();
+    _membershipSub?.cancel();
     return super.close();
   }
 }

@@ -16,7 +16,7 @@ class StatsBody extends StatelessWidget {
             return LessonsStatsPage(master: Master.fromUser(state.profileUser));
           }
 
-          return UserStatsPage(userEmail: state.profileUser.email);
+          return UserStatsPage(user: state.profileUser);
         }
 
         if (state is ProfileLoading) {

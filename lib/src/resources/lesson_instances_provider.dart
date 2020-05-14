@@ -13,8 +13,6 @@ import '../constants.dart';
 
 class LessonInstancesProvider implements LessonRepository {
   static const String gymPath = "gyms";
-  // todo multigym: should be dynamic
-  static const String gymDoc = aranha_gym;
   static const String path = 'lesson_instances';
   static const String sub_collection_path = 'instances';
 
@@ -53,20 +51,20 @@ class LessonInstancesProvider implements LessonRepository {
       email: attendee["email"]);
 
   @override
-  Stream<List<Lesson>> getLessonsForToday() {
+  Stream<List<Lesson>> getLessonsForToday(String gymId) {
     if (isInDebugMode) {
-      return getLessonsForDay(testDate);
+      return getLessonsForDay(gymId, testDate);
     }
 
-    return getLessonsForDay(DateTime.now());
+    return getLessonsForDay(gymId, DateTime.now());
   }
 
   @override
-  Stream<List<Lesson>> getLessonsForDay(DateTime day) {
+  Stream<List<Lesson>> getLessonsForDay(String gymId, DateTime day) {
     var formattedDate = _formatDate(day);
     return _firestore
         .collection(gymPath)
-        .document(gymDoc)
+        .document(gymId)
         .collection(path)
         .document(formattedDate)
         .collection("instances")
@@ -78,9 +76,9 @@ class LessonInstancesProvider implements LessonRepository {
   }
 
   @override
-  Stream<Lesson> getLesson(String date, String lessonId) => _firestore
+  Stream<Lesson> getLesson(String gymId, String date, String lessonId) => _firestore
       .collection(gymPath)
-      .document(gymDoc)
+      .document(gymId)
       .collection(path)
       .document(date)
       .collection(sub_collection_path)
@@ -90,6 +88,10 @@ class LessonInstancesProvider implements LessonRepository {
       .map((doc) => _toLesson(doc));
 
   @override
+  //TODO: collectionGroups are not currently supporting our multi gym model,
+  // so in doing that we are running a query on all the instances in all the gyms
+  // it's not causing any bug as of now, but might not be ideal in the long term (ie: query performance)
+  // https://trello.com/c/Qz2hbweo
   Stream<List<Lesson>> getLessonsByMasterAndTimespan(Master master, String timespan) => _firestore
         .collectionGroup(sub_collection_path)
         .where("masters", arrayContains: {
@@ -105,11 +107,11 @@ class LessonInstancesProvider implements LessonRepository {
             .toList());
 
   @override
-  Future<void> register(String date, String lessonId, Attendee attendee) async {
+  Future<void> register(String gymId, String date, String lessonId, Attendee attendee) async {
     debugPrint("User [$attendee] attends lesson with id [$lessonId]");
     await _firestore
         .collection(gymPath)
-        .document(gymDoc)
+        .document(gymId)
         .collection(path)
         .document(date)
         .collection(sub_collection_path)
@@ -127,12 +129,12 @@ class LessonInstancesProvider implements LessonRepository {
   }
 
   @override
-  Future<void> unregister(
+  Future<void> unregister(String gymId,
       String date, String lessonId, Attendee attendee) async {
     debugPrint("User [$attendee] removed from lesson with id [$lessonId]");
     await _firestore
         .collection(gymPath)
-        .document(gymDoc)
+        .document(gymId)
         .collection(path)
         .document(date)
         .collection(sub_collection_path)
@@ -149,10 +151,10 @@ class LessonInstancesProvider implements LessonRepository {
     });
   }
 
-  Future<void> cleanLessonAttendees(String date, String lessonId) async {
+  Future<void> cleanLessonAttendees(String gymId, String date, String lessonId) async {
     await _firestore
         .collection(gymPath)
-        .document(gymDoc)
+        .document(gymId)
         .collection(path)
         .document(date)
         .collection(sub_collection_path)

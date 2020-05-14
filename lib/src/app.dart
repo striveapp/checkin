@@ -1,6 +1,5 @@
 import 'package:checkin/src/blocs/auth/bloc.dart';
 import 'package:checkin/src/blocs/dynamic_link/bloc.dart';
-import 'package:checkin/src/blocs/gym/bloc.dart';
 import 'package:checkin/src/repositories/auth_repository.dart';
 import 'package:checkin/src/repositories/gym_repository.dart';
 import 'package:checkin/src/repositories/user_repository.dart';
@@ -18,12 +17,10 @@ import 'package:i18n_extension/i18n_widget.dart';
 
 import 'blocs/user/bloc.dart';
 import 'blocs/version/bloc.dart';
-import 'constants.dart';
 
 class App extends StatelessWidget {
   final AuthRepository _authRepository;
   final UserRepository _userRepository;
-  final GymRepository _gymRepository;
 
   App({
     Key key,
@@ -35,7 +32,6 @@ class App extends StatelessWidget {
             gymRepository != null),
         _authRepository = authRepository,
         _userRepository = userRepository,
-        _gymRepository = gymRepository,
         super(key: key);
 
   @override
@@ -148,12 +144,6 @@ class App extends StatelessWidget {
                       create: (BuildContext context) => UserBloc(
                             userRepository: _userRepository,
                             authBloc: BlocProvider.of<AuthBloc>(context),
-                          )),
-                  //todo: multigym
-                  BlocProvider<GymBloc>(
-                      create: (BuildContext context) => GymBloc(
-                            gymId: aranha_gym,
-                            gymRepository: _gymRepository,
                           )),
                 ],
                 child: DefaultTabController(

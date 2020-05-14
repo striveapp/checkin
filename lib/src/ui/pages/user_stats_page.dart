@@ -1,6 +1,7 @@
 import 'package:checkin/src/blocs/stats/bloc.dart';
 import 'package:checkin/src/blocs/user_stats/bloc.dart';
 import 'package:checkin/src/blocs/user_stats/user_stats_bloc.dart';
+import 'package:checkin/src/models/user.dart';
 import 'package:checkin/src/repositories/stats_repository.dart';
 import 'package:checkin/src/ui/components/loading_indicator.dart';
 import 'package:checkin/src/ui/components/stats/user/attended_lessons_list.dart';
@@ -10,13 +11,13 @@ import 'package:flutter/widgets.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 
 class UserStatsPage extends StatelessWidget {
-  final String _userEmail;
+  final User _user;
 
   UserStatsPage({
     Key key,
-    @required String userEmail,
-  })  : assert(userEmail != null),
-        _userEmail = userEmail,
+    @required User user,
+  })  : assert(user != null),
+        _user = user,
         super(key: key);
 
   @override
@@ -24,7 +25,7 @@ class UserStatsPage extends StatelessWidget {
     return BlocBuilder<UserStatsBloc, UserStatsState>(
         bloc: UserStatsBloc(
           statsRepository: StatsRepository(),
-          userEmail: _userEmail,
+          user: _user,
           statsBloc: BlocProvider.of<StatsBloc>(context)
         ),
         builder: (BuildContext context, UserStatsState state) {

@@ -1,4 +1,5 @@
 import 'package:checkin/src/blocs/leaderboard/bloc.dart';
+import 'package:checkin/src/blocs/user/bloc.dart';
 import 'package:checkin/src/models/user_history.dart';
 import 'package:checkin/src/repositories/stats_repository.dart';
 import 'package:checkin/src/ui/components/base_app_bar.dart';
@@ -22,7 +23,7 @@ class LeaderboardPage extends StatelessWidget {
       ),
       body: BlocProvider(
         create: (BuildContext context) =>
-            LeaderboardBloc(statsRepository: StatsRepository()),
+            LeaderboardBloc(userBloc: BlocProvider.of<UserBloc>(context), statsRepository: StatsRepository()),
         child: BlocBuilder<LeaderboardBloc, LeaderboardState>(
           builder: (BuildContext context, LeaderboardState state) {
             if (state is LeaderboardInitial) {

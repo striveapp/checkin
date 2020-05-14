@@ -1,6 +1,7 @@
 import 'dart:async';
 
 import 'package:bloc/bloc.dart';
+import 'package:checkin/src/blocs/user/bloc.dart';
 import 'package:checkin/src/models/gym.dart';
 import 'package:checkin/src/repositories/gym_repository.dart';
 import 'package:flutter/foundation.dart';
@@ -12,17 +13,21 @@ class GymBloc extends Bloc<GymEvent, GymState> {
   GymState get initialState => InitialGymState();
 
   final GymRepository gymRepository;
-  final String gymId;
+  final UserBloc userBloc;
 
   StreamSubscription<Gym> gymSub;
 
   GymBloc({
-    @required this.gymId,
     @required this.gymRepository,
+    @required this.userBloc,
   }) {
-    gymSub?.cancel();
-    gymSub = gymRepository.getGym(gymId).listen((gym) {
-      add(GymUpdated(gym: gym));
+    userBloc.listen((userState) {
+     if(userState is UserSuccess) {
+       gymSub?.cancel();
+       gymSub = gymRepository.getGym(userState.currentUser.selectedGymId).listen((gym) {
+         add(GymUpdated(gym: gym));
+       });
+     }
     });
   }
 

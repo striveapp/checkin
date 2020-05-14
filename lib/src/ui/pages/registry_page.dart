@@ -1,5 +1,6 @@
 import 'package:checkin/src/api/api.dart';
 import 'package:checkin/src/blocs/lesson/bloc.dart';
+import 'package:checkin/src/blocs/user/bloc.dart';
 import 'package:checkin/src/repositories/lesson_repository.dart';
 import 'package:checkin/src/ui/components/base_app_bar.dart';
 import 'package:checkin/src/ui/components/registry/lesson_infos.dart';
@@ -29,6 +30,7 @@ class RegistryPage extends StatelessWidget {
       ),
       body: BlocProvider<LessonBloc>(
         create: (context) => LessonBloc(
+          userBloc: BlocProvider.of<UserBloc>(context),
           lessonId: lessonId,
           date: date,
           lessonRepository: RepositoryProvider.of<LessonRepository>(context),

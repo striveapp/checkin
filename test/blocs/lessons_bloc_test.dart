@@ -1,5 +1,8 @@
+import 'package:bloc_test/bloc_test.dart';
 import 'package:checkin/src/blocs/lessons/bloc.dart';
+import 'package:checkin/src/blocs/user/bloc.dart';
 import 'package:checkin/src/models/lesson.dart';
+import 'package:checkin/src/models/user.dart';
 import 'package:checkin/src/repositories/lesson_repository.dart';
 import 'package:checkin/src/util/date_util.dart';
 import 'package:mockito/mockito.dart';
@@ -9,13 +12,25 @@ class MockLessonRepository extends Mock implements LessonRepository {}
 
 class MockDateUtil extends Mock implements DateUtil {}
 
+class MockUserBloc extends Mock implements UserBloc {}
+
 void main() {
   group("LessonsBloc", () {
     LessonsBloc lessonsBloc;
     MockLessonRepository mockLessonRepository;
+    MockUserBloc mockUserBloc;
+    User fakeUser = User(
+      name: "Logged User",
+      email: "test@test.com",
+      imageUrl: "someImage",
+      selectedGymId: "someFakeGym",
+    );
 
     setUp(() {
       mockLessonRepository = MockLessonRepository();
+      mockUserBloc = MockUserBloc();
+      whenListen(mockUserBloc,
+          Stream.fromIterable([UserSuccess(currentUser: fakeUser)]));
     });
 
     tearDown(() {
@@ -25,10 +40,10 @@ void main() {
     group("LessonsUpdated", () {
       group("when no lessons", () {
         setUp(() {
-          when(mockLessonRepository.getLessonsForToday()).thenAnswer((_) {
+          when(mockLessonRepository.getLessonsForToday(fakeUser.selectedGymId)).thenAnswer((_) {
             return Stream<List<Lesson>>.value([]);
           });
-          lessonsBloc = LessonsBloc(lessonRepository: mockLessonRepository);
+          lessonsBloc = LessonsBloc(userBloc: mockUserBloc, lessonRepository: mockLessonRepository);
         });
         test("should emits LessonsLoadedEmpty", () {
           final expectedState = [
@@ -48,10 +63,10 @@ void main() {
         ];
 
         setUp(() {
-          when(mockLessonRepository.getLessonsForToday()).thenAnswer((_) {
+          when(mockLessonRepository.getLessonsForToday(fakeUser.selectedGymId)).thenAnswer((_) {
             return Stream<List<Lesson>>.value(lessons);
           });
-          lessonsBloc = LessonsBloc(lessonRepository: mockLessonRepository);
+          lessonsBloc = LessonsBloc(userBloc: mockUserBloc, lessonRepository: mockLessonRepository);
         });
 
         test("should emits LessonsLoaded with the right lessons", () {
@@ -80,10 +95,10 @@ void main() {
           ];
 
           setUp(() {
-            when(mockLessonRepository.getLessonsForToday()).thenAnswer((_) {
+            when(mockLessonRepository.getLessonsForToday(fakeUser.selectedGymId)).thenAnswer((_) {
               return Stream<List<Lesson>>.value(unsortedLessons);
             });
-            lessonsBloc = LessonsBloc(lessonRepository: mockLessonRepository);
+            lessonsBloc = LessonsBloc(userBloc: mockUserBloc, lessonRepository: mockLessonRepository);
           });
 
           test("should emits LessonLoaded with lessons sorted by time", () {
@@ -111,13 +126,13 @@ void main() {
       ];
 
       setUp(() {
-        when(mockLessonRepository.getLessonsForToday()).thenAnswer((_) {
+        when(mockLessonRepository.getLessonsForToday(fakeUser.selectedGymId)).thenAnswer((_) {
           return Stream<List<Lesson>>.value(lessons);
         });
-        when(mockLessonRepository.getLessonsForDay(selectedDay)).thenAnswer((_) {
+        when(mockLessonRepository.getLessonsForDay(fakeUser.selectedGymId, selectedDay)).thenAnswer((_) {
           return Stream<List<Lesson>>.value(newLessons);
         });
-        lessonsBloc = LessonsBloc(lessonRepository: mockLessonRepository);
+        lessonsBloc = LessonsBloc(userBloc: mockUserBloc, lessonRepository: mockLessonRepository);
         lessonsBloc.add(LoadLessons(selectedDay: selectedDay));
       });
       test("should load new lessons for the selected day", () {

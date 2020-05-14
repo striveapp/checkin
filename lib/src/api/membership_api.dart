@@ -1,18 +1,13 @@
 import 'package:flutter/material.dart';
 
-import '../constants.dart';
 import 'api.dart';
 
 class MembershipApi {
-  Future<void> unsubscribe() async {
-    // todo multigym
+  Future<void> unsubscribe(String gymId) async {
     var parameters = {
-      'gymId': aranha_gym,
+      'gymId': gymId,
     };
-    await Api.call(functionName: "unsubscribe", parameters: parameters )
-        .then((_) => {
-      debugPrint("User unsubscribed")
-    });
+    await Api.call(functionName: "unsubscribe", parameters: parameters)
+        .then((_) => {debugPrint("User unsubscribed")});
   }
 }
-

@@ -26,7 +26,7 @@ class SubscriptionPlansBloc
         if (gymState is GymLoaded) {
           Gym gym = gymState.gym;
           streamSubscription =
-              subscriptionPlansRepository.getPlans().listen((plans) {
+              subscriptionPlansRepository.getPlans(gym.id).listen((plans) {
             add(SubscriptionPlansUpdated(
               basePaymentUrl:
                   "https://${gym.domain}/payment.html?pk=${gym.stripePublicKey}&host=${gym.host}",

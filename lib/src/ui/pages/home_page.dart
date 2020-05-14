@@ -41,6 +41,7 @@ class HomePage extends StatelessWidget {
           }
 
           if (state is UserSuccess) {
+            //todo: multigym [remove isInDebugMode]
             if (state.currentUser.selectedGymId == null && isInDebugMode) {
               return GymSelectionPage(userEmail: state.currentUser.email, userName: state.currentUser.name,);
             }

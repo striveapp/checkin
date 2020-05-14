@@ -5,6 +5,7 @@ import 'api.dart';
 
 class LessonApi {
   Future<void> acceptAll(Lesson lesson) async {
+    //todo: multigym
     var parameters = {
       'lesson': lesson.toJson(),
     };

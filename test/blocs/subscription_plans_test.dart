@@ -17,6 +17,7 @@ void main() {
     SubscriptionPlansBloc subscriptionPlansBloc;
     MockSubscriptionPlansRepository mockSubscriptionPlansRepository;
     Gym fakeGym = Gym(
+      id: "some_id",
       host: "tha_host",
       domain: "test.com",
       stripePublicKey: "pk_kp"
@@ -33,7 +34,7 @@ void main() {
     group("initial state", () {
       test("initial state is SubscriptionPlansInitial", () {
         mockSubscriptionPlansRepository = MockSubscriptionPlansRepository();
-        when(mockSubscriptionPlansRepository.getPlans())
+        when(mockSubscriptionPlansRepository.getPlans(fakeGym.id))
             .thenAnswer((_) => Stream.value([]));
         subscriptionPlansBloc = SubscriptionPlansBloc(
             gymBloc: mockGymBloc,
@@ -56,7 +57,7 @@ void main() {
         ];
 
         mockSubscriptionPlansRepository = MockSubscriptionPlansRepository();
-        when(mockSubscriptionPlansRepository.getPlans())
+        when(mockSubscriptionPlansRepository.getPlans(fakeGym.id))
             .thenAnswer((_) => Stream.empty());
         subscriptionPlansBloc = SubscriptionPlansBloc(
             gymBloc: mockGymBloc,
@@ -89,7 +90,7 @@ void main() {
         ];
 
         mockSubscriptionPlansRepository = MockSubscriptionPlansRepository();
-        when(mockSubscriptionPlansRepository.getPlans()).thenAnswer((_) {
+        when(mockSubscriptionPlansRepository.getPlans(fakeGym.id)).thenAnswer((_) {
           return Stream<List<SubscriptionPlan>>.fromFuture(
               Future.value(testPlans));
         });
@@ -143,7 +144,7 @@ void main() {
         ];
 
         mockSubscriptionPlansRepository = MockSubscriptionPlansRepository();
-        when(mockSubscriptionPlansRepository.getPlans()).thenAnswer((_) {
+        when(mockSubscriptionPlansRepository.getPlans(fakeGym.id)).thenAnswer((_) {
           return Stream<List<SubscriptionPlan>>.value(testPlans);
         });
 
@@ -166,7 +167,7 @@ void main() {
     group("SubscriptionPlansEmpty", () {
       setUp(() {
         mockSubscriptionPlansRepository = MockSubscriptionPlansRepository();
-        when(mockSubscriptionPlansRepository.getPlans())
+        when(mockSubscriptionPlansRepository.getPlans(fakeGym.id))
             .thenAnswer((_) => Stream.empty());
         subscriptionPlansBloc = SubscriptionPlansBloc(
             gymBloc: mockGymBloc,

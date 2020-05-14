@@ -1,4 +1,5 @@
 import 'package:checkin/src/blocs/lessons/bloc.dart';
+import 'package:checkin/src/blocs/user/bloc.dart';
 import 'package:checkin/src/localization/localization.dart';
 import 'package:checkin/src/repositories/holidays_repository.dart';
 import 'package:checkin/src/repositories/lesson_repository.dart';
@@ -21,6 +22,7 @@ class LessonsPage extends StatelessWidget {
         body: BlocProvider<LessonsBloc>(
           create: (BuildContext context) =>
               LessonsBloc(
+                userBloc: BlocProvider.of<UserBloc>(context),
                 lessonRepository: RepositoryProvider.of<LessonRepository>(context),
               ),
           child: Builder(

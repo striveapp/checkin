@@ -4,20 +4,16 @@ import 'package:checkin/src/models/user_history.dart';
 import 'package:checkin/src/util/date_util.dart';
 import 'package:cloud_firestore/cloud_firestore.dart';
 
-import '../constants.dart';
-
 class StatsProvider {
   static const String gymPath = "gyms";
-  // todo multigym: should be dynamic
-  static const String gymDoc = aranha_gym;
   static const String path = 'users_history';
 
   Firestore _firestore = Firestore.instance;
 
-  Stream<UserHistory> getUserStats(String email, String timespan) {
+  Stream<UserHistory> getUserStats(String gymId, String email, String timespan) {
     return _firestore
         .collection(gymPath)
-        .document(gymDoc)
+        .document(gymId)
         .collection(path).document(email).snapshots().map((doc) =>
         UserHistory(
             email: doc.documentID,
@@ -45,9 +41,9 @@ class StatsProvider {
               ?.toList() ??
           []);
 
-  Stream<List<UserHistory>> getAllUserStats() => _firestore
+  Stream<List<UserHistory>> getAllUserStats(String gymId) => _firestore
       .collection(gymPath)
-      .document(gymDoc)
+      .document(gymId)
       .collection(path)
       .snapshots()
       .map((snapshot) => snapshot.documents
@@ -58,10 +54,10 @@ class StatsProvider {
                   .toList()))
           .toList());
 
-  Future<void> cleanUserHistory(String email) async {
+  Future<void> cleanUserHistory(String gymId, String email) async {
     await _firestore
         .collection(gymPath)
-        .document(gymDoc)
+        .document(gymId)
         .collection(path)
         .document(email)
     // .delete(); todo https://trello.com/c/oXkaXNqb

@@ -2,6 +2,7 @@ import 'dart:async';
 
 import 'package:bloc/bloc.dart';
 import 'package:checkin/src/api/lesson_api.dart';
+import 'package:checkin/src/blocs/user/bloc.dart';
 import 'package:checkin/src/models/lesson.dart';
 import 'package:checkin/src/repositories/lesson_repository.dart';
 import 'package:flutter/foundation.dart';
@@ -14,23 +15,31 @@ class LessonBloc extends Bloc<LessonEvent, LessonState> {
   final LessonApi lessonApi;
   final String lessonId;
   final String date;
+  final UserBloc userBloc;
 
   Lesson lesson;
   StreamSubscription<Lesson> lessonSub;
+  String gymId;
 
   LessonBloc({
     @required this.lessonId,
     @required this.date,
     @required this.lessonRepository,
     @required this.lessonApi,
+    @required this.userBloc,
   }) {
-    lessonSub?.cancel();
-    lessonSub = lessonRepository
-        .getLesson(date, lessonId)
-        .listen((lesson) {
+    userBloc.listen((userState) {
+      if(userState is UserSuccess) {
+        gymId = userState.currentUser.selectedGymId;
+        lessonSub?.cancel();
+        lessonSub = lessonRepository
+            .getLesson(userState.currentUser.selectedGymId, date, lessonId)
+            .listen((lesson) {
           this.lesson = lesson;
           add(LessonUpdated(lesson: lesson));
         });
+      }
+    });
   }
 
   @override
@@ -46,7 +55,7 @@ class LessonBloc extends Bloc<LessonEvent, LessonState> {
       try {
         await this
             .lessonRepository
-            .register(this.date, this.lessonId, event.attendee);
+            .register(gymId, this.date, this.lessonId, event.attendee);
       } catch (e) {
         yield LessonError();
       }
@@ -56,7 +65,7 @@ class LessonBloc extends Bloc<LessonEvent, LessonState> {
       try {
         await this
             .lessonRepository
-            .unregister(this.date, this.lessonId, event.attendee);
+            .unregister(gymId, this.date, this.lessonId, event.attendee);
       } catch (e) {
         yield LessonError();
       }

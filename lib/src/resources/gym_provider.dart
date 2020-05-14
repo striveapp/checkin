@@ -11,11 +11,12 @@ class GymProvider implements GymRepository {
         .collection(path)
         .document(gymId)
         .snapshots()
+        .where((snapshot) => snapshot.exists)
         .map((gym) => Gym(
-        domain: gym.data["domain"],
-        host: gym.data["host"],
-        stripePublicKey: gym.data["stripePublicKey"],
-    ) );
+              id: gymId,
+              domain: gym.data["domain"],
+              host: gym.data["host"],
+              stripePublicKey: gym.data["stripePublicKey"],
+            ));
   }
 }
-

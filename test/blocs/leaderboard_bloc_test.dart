@@ -1,17 +1,29 @@
+import 'package:bloc_test/bloc_test.dart';
 import 'package:checkin/src/blocs/leaderboard/bloc.dart';
+import 'package:checkin/src/blocs/user/bloc.dart';
 import 'package:checkin/src/models/lesson.dart';
+import 'package:checkin/src/models/user.dart';
 import 'package:checkin/src/models/user_history.dart';
 import 'package:checkin/src/repositories/stats_repository.dart';
 import 'package:mockito/mockito.dart';
 import 'package:test/test.dart';
 
-
 class MockStatsRepository extends Mock implements StatsRepository {}
 
+class MockUserBloc extends Mock implements UserBloc {}
+
 void main() {
+  User fakeUser = User(
+    email: "test@test.com",
+    name: "ThaTest",
+    imageUrl: "tha_image",
+    selectedGymId: "some fake gym",
+  );
+
   group("LeaderboardBloc", () {
     LeaderboardBloc leaderboardBloc;
     MockStatsRepository mockStatsRepository;
+    MockUserBloc mockUserBloc;
 
     tearDown(() {
       leaderboardBloc?.close();
@@ -40,15 +52,31 @@ void main() {
       ];
       setUp(() {
         mockStatsRepository = MockStatsRepository();
-        when(mockStatsRepository.getAllUserStats()).thenAnswer((_) {
+        mockUserBloc = MockUserBloc();
+        whenListen(mockUserBloc,
+            Stream.fromIterable([UserSuccess(currentUser: fakeUser)]));
+        when(mockStatsRepository.getAllUserStats(fakeUser.selectedGymId)).thenAnswer((_) {
           return Stream<List<UserHistory>>.value(usersHistory);
         });
-        leaderboardBloc = LeaderboardBloc(statsRepository: mockStatsRepository);
+        leaderboardBloc = LeaderboardBloc(userBloc: mockUserBloc, statsRepository: mockStatsRepository);
+      });
+
+      group("when the LeaderboardBloc gets initialized", () {
+        test("should emit LeaderboardLoaded with users", () {
+          final expectedState = [
+            LeaderboardInitial(),
+            LeaderboardLoaded(usersHistory: usersHistory),
+          ];
+
+          expectLater(
+            leaderboardBloc,
+            emitsInOrder(expectedState),
+          );
+        });
       });
 
       group("when more then 3 users", () {
         test("should emit LeaderboardLoaded with users", () {
-
           final expectedState = [
             LeaderboardInitial(),
             LeaderboardLoaded(usersHistory: usersHistory),
@@ -79,42 +107,45 @@ void main() {
             Lesson(timeStart: "19:00", timeEnd: "20:00"),
           ];
           UserHistory userHistory1 = UserHistory(
-              email: "test@test.com",
-              attendedLessons: attendedLessons1
-          );
+              email: "test@test.com", attendedLessons: attendedLessons1);
           UserHistory userHistory2 = UserHistory(
-              email: "test-two@test.com",
-              attendedLessons: attendedLessons2
-          );
+              email: "test-two@test.com", attendedLessons: attendedLessons2);
           UserHistory userHistory3 = UserHistory(
-              email: "test-two@test.com",
-              attendedLessons: attendedLessons3
-          );
+              email: "test-two@test.com", attendedLessons: attendedLessons3);
 
-          List<UserHistory> unsortedUsersHistory = [userHistory1, userHistory2, userHistory3];
-          List<UserHistory> sortedUsersHistory = [userHistory2, userHistory1, userHistory3];
+          List<UserHistory> unsortedUsersHistory = [
+            userHistory1,
+            userHistory2,
+            userHistory3
+          ];
+          List<UserHistory> sortedUsersHistory = [
+            userHistory2,
+            userHistory1,
+            userHistory3
+          ];
 
           setUp(() {
             mockStatsRepository = MockStatsRepository();
-            when(mockStatsRepository.getAllUserStats()).thenAnswer((_) {
+            when(mockStatsRepository.getAllUserStats(fakeUser.selectedGymId)).thenAnswer((_) {
               return Stream<List<UserHistory>>.value(unsortedUsersHistory);
             });
-            leaderboardBloc = LeaderboardBloc(statsRepository: mockStatsRepository);
+            leaderboardBloc =
+                LeaderboardBloc(userBloc: mockUserBloc, statsRepository: mockStatsRepository);
           });
 
           test(
               'should emit LeaderboardLoaded with sorted users by attendedLessons count [desc]',
-                  () {
-                leaderboardBloc.add(LeaderboardUpdated(usersHistory: unsortedUsersHistory));
+              () {
+            leaderboardBloc
+                .add(LeaderboardUpdated(usersHistory: unsortedUsersHistory));
 
-                final expectedState = [
-                  LeaderboardInitial(),
-                  LeaderboardLoaded(usersHistory: sortedUsersHistory),
-                ];
+            final expectedState = [
+              LeaderboardInitial(),
+              LeaderboardLoaded(usersHistory: sortedUsersHistory),
+            ];
 
-                expectLater(leaderboardBloc, emitsInOrder(expectedState));
-              });
-
+            expectLater(leaderboardBloc, emitsInOrder(expectedState));
+          });
         });
       });
     });
@@ -134,14 +165,13 @@ void main() {
       ];
       setUp(() {
         mockStatsRepository = MockStatsRepository();
-        when(mockStatsRepository.getAllUserStats()).thenAnswer((_) {
+        when(mockStatsRepository.getAllUserStats(fakeUser.selectedGymId)).thenAnswer((_) {
           return Stream<List<UserHistory>>.value(usersHistory);
         });
-        leaderboardBloc = LeaderboardBloc(statsRepository: mockStatsRepository);
+        leaderboardBloc = LeaderboardBloc(userBloc: mockUserBloc, statsRepository: mockStatsRepository);
       });
 
       test("should emit LeaderboardNotAvailable", () {
-
         final expectedState = [
           LeaderboardInitial(),
           LeaderboardNotAvailable(),

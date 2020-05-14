@@ -24,6 +24,7 @@ void main() {
       name: "Logged User",
       email: "test@test.com",
       imageUrl: "someImage",
+      selectedGymId: "some fake gym"
     );
 
     List<Lesson> attendedLessons = [
@@ -46,14 +47,14 @@ void main() {
         whenListen(mockStatsBloc,
             Stream.fromIterable([TimespanUpdated(timespan: WEEK)]));
         when(mockStatsRepository.getUserStats(
-                loggedUser.email, WEEK))
+                loggedUser.selectedGymId, loggedUser.email, WEEK))
             .thenAnswer((_) {
           return Stream<UserHistory>.value(UserHistory(
               email: "test@test.com", attendedLessons: attendedLessons));
         });
         userStatsBloc = UserStatsBloc(
           statsRepository: mockStatsRepository,
-          userEmail: loggedUser.email,
+          user: loggedUser,
           statsBloc: mockStatsBloc,
         );
       });
@@ -78,14 +79,14 @@ void main() {
         whenListen(mockStatsBloc,
             Stream.fromIterable([TimespanUpdated(timespan: MONTH)]));
         when(mockStatsRepository.getUserStats(
-                loggedUser.email, MONTH))
+                loggedUser.selectedGymId, loggedUser.email, MONTH))
             .thenAnswer((_) {
           return Stream<UserHistory>.value(UserHistory(
               email: "test@test.com", attendedLessons: attendedLessons));
         });
         userStatsBloc = UserStatsBloc(
           statsRepository: mockStatsRepository,
-          userEmail: loggedUser.email,
+          user: loggedUser,
           statsBloc: mockStatsBloc,
         );
       });
@@ -110,14 +111,14 @@ void main() {
         whenListen(mockStatsBloc,
             Stream.fromIterable([TimespanUpdated(timespan: YEAR)]));
         when(mockStatsRepository.getUserStats(
-                loggedUser.email, YEAR))
+                loggedUser.selectedGymId, loggedUser.email, YEAR))
             .thenAnswer((_) {
           return Stream<UserHistory>.value(UserHistory(
               email: "test@test.com", attendedLessons: attendedLessons));
         });
         userStatsBloc = UserStatsBloc(
           statsRepository: mockStatsRepository,
-          userEmail: loggedUser.email,
+          user: loggedUser,
           statsBloc: mockStatsBloc,
         );
       });

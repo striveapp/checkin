@@ -1,6 +1,7 @@
 import 'dart:async';
 
 import 'package:bloc/bloc.dart';
+import 'package:checkin/src/blocs/user/bloc.dart';
 import 'package:checkin/src/models/lesson.dart';
 import 'package:checkin/src/repositories/lesson_repository.dart';
 import 'package:flutter/foundation.dart';
@@ -11,14 +12,23 @@ import 'bloc.dart';
 
 class LessonsBloc extends Bloc<LessonsEvent, LessonsState> {
   final LessonRepository lessonRepository;
+  final UserBloc userBloc;
+
   StreamSubscription<List<Lesson>> lessonsSub;
+  String gymId;
 
   LessonsBloc({
-    @required this.lessonRepository
+    @required this.userBloc,
+    @required this.lessonRepository,
   }) {
-    lessonsSub?.cancel();
-    lessonsSub = this.lessonRepository.getLessonsForToday().listen((lessons) {
-      add(LessonsUpdated(lessons: lessons));
+    userBloc.listen((userState) {
+      if(userState is UserSuccess) {
+        gymId = userState.currentUser.selectedGymId;
+        lessonsSub?.cancel();
+        lessonsSub = this.lessonRepository.getLessonsForToday(gymId).listen((lessons) {
+          add(LessonsUpdated(lessons: lessons));
+        });
+      }
     });
   }
 
@@ -41,8 +51,7 @@ class LessonsBloc extends Bloc<LessonsEvent, LessonsState> {
 
     if (event is LoadLessons) {
       lessonsSub?.cancel();
-
-      lessonsSub = this.lessonRepository.getLessonsForDay(event.selectedDay).listen((lessons) {
+      lessonsSub = this.lessonRepository.getLessonsForDay(gymId, event.selectedDay).listen((lessons) {
         add(LessonsUpdated(lessons: lessons));
       });
     }
