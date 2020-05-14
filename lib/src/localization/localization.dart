@@ -1,5 +1,6 @@
 import 'package:checkin/src/constants.dart' as constants;
 import 'package:checkin/src/models/grade.dart';
+import 'package:checkin/src/ui/components/gym_selection/gym_dropdown.dart';
 import 'package:checkin/src/ui/components/registry/attendee_tile.dart';
 import 'package:checkin/src/ui/components/registry/registry_counter.dart';
 import 'package:checkin/src/ui/components/attendees_preview.dart';
@@ -21,6 +22,7 @@ import 'package:checkin/src/ui/components/stats/user/mat_time_counter.dart';
 import 'package:checkin/src/ui/components/upgrader_dialog.dart';
 import 'package:checkin/src/ui/pages/account_page.dart';
 import 'package:checkin/src/ui/pages/grade_page.dart';
+import 'package:checkin/src/ui/pages/gym_selection_page.dart';
 import 'package:checkin/src/ui/pages/leaderboard_page.dart';
 import 'package:checkin/src/ui/pages/lessons_page.dart';
 import 'package:checkin/src/ui/pages/lessons_stats_page.dart';
@@ -255,6 +257,15 @@ extension Localization on String {
   } + {
     'en': constants.gullo_gym,
     'es': 'Gullo Jiu-Jitsu Barcelona'
+  } + {
+    'en': GymDropdown.chooseGym,
+    'es': 'Escoges tu gym...'
+  } + {
+    'en': GymSelectionPage.heyUser,
+    'es': 'Hola %s'
+  } + {
+    'en': GymSelectionPage.welcomeToTheFamily,
+    'es': 'Ya eres parte de la familia'
   };
 
 String get i18n => localize(this, _t);
