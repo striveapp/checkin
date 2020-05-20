@@ -1,0 +1,14 @@
+#!/bin/bash
+
+function tag {
+    local tagv=$1
+    output=$(git tag -a "$tagv" -m "tagged $tagv" 2>&1)
+    rs=$?
+    if [[ "$rs" -ne 0 ]]; then
+        echo "$output"
+        return ${rs}
+    fi
+    return ${rs}
+}
+
+[[ ${BASH_SOURCE[0]} != "${0}" ]] || tag $@
