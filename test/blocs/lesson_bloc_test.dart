@@ -182,8 +182,8 @@ void main() {
       test(
           "should emit RegistryLoading call acceptAll from the lesson api and then RegistryLoaded",
           () async {
-        await untilCalled(mockLessonApi.acceptAll(fakeLesson));
-        verify(mockLessonApi.acceptAll(fakeLesson));
+        await untilCalled(mockLessonApi.acceptAll(fakeUser.selectedGymId,fakeLesson));
+        verify(mockLessonApi.acceptAll(fakeUser.selectedGymId,fakeLesson));
       });
     });
   });

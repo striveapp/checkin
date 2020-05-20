@@ -74,7 +74,7 @@ class LessonBloc extends Bloc<LessonEvent, LessonState> {
     if (event is LessonAcceptAll) {
       try {
         //TODO: refactor lesson_bloc when calling acceptAll [https://trello.com/c/o7PBLnEQ]
-        await this.lessonApi.acceptAll(this.lesson);
+        await this.lessonApi.acceptAll(gymId, this.lesson);
       } catch (e) {
         yield LessonError();
       }

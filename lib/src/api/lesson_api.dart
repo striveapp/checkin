@@ -4,10 +4,10 @@ import 'package:flutter/material.dart';
 import 'api.dart';
 
 class LessonApi {
-  Future<void> acceptAll(Lesson lesson) async {
-    //todo: multigym
+  Future<void> acceptAll( String gymId, Lesson lesson) async {
     var parameters = {
       'lesson': lesson.toJson(),
+      'gymId': gymId
     };
 
     await Api.call(functionName: "acceptAll", parameters: parameters)
