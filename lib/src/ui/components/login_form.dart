@@ -47,8 +47,8 @@ class _LoginFormState extends State<LoginForm> {
               Container(
                 margin: new EdgeInsets.symmetric(vertical: 50),
                 child: Image.asset(
-                  "assets/images/logo.png",
-                  width: 150.0,
+                  "assets/images/logo-big.png",
+                  width: 200.0,
                 ),
               ),
               GoogleSignInButton(
