@@ -8,6 +8,8 @@ class GymDropdown extends StatelessWidget {
   final String userEmail;
 
   static const String chooseGym = "Choose your gym...";
+  static const String aranhaGym = "Asociación Aranha Barcelona (Sarrià)";
+  static const String gulloGym = "Gullo Jiu-Jitsu Barcelona";
 
   GymDropdown({this.userEmail});
 
@@ -30,11 +32,14 @@ class GymDropdown extends StatelessWidget {
         BlocProvider.of<UserBloc>(context).add(UpdateSelectedGym(
             userEmail: userEmail, newSelectedGym: newSelectedGym));
       },
-      items: <String>[aranha_gym, gullo_gym]
-          .map<DropdownMenuItem<String>>(
-              (String value) => DropdownMenuItem<String>(
-                  value: value,
-                  child: Text(value.i18n,
+      items: <Map<String, String>>[
+        {"id": aranha_gym, "name": aranhaGym},
+        {"id": gullo_gym, "name": gulloGym}
+      ]
+          .map<DropdownMenuItem<String>>((Map<String, String> value) =>
+              DropdownMenuItem<String>(
+                  value: value["id"],
+                  child: Text(value["name"].i18n,
                       style: Theme.of(context)
                           .textTheme
                           .headline5

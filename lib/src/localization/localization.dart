@@ -252,11 +252,9 @@ extension Localization on String {
     'en': LeaderboardPage.leaderboard,
     'es': 'Clasificación'
   } + {
-    'en': constants.aranha_gym,
-    'es': 'Asociación Aranha Barcelona (Sarrià)'
+    'en': GymDropdown.aranhaGym,
   } + {
-    'en': constants.gullo_gym,
-    'es': 'Gullo Jiu-Jitsu Barcelona'
+    'en': GymDropdown.gulloGym,
   } + {
     'en': GymDropdown.chooseGym,
     'es': 'Escoges tu gym...'
