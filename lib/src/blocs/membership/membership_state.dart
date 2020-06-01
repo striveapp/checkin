@@ -23,7 +23,7 @@ class MembershipActive extends MembershipState {
   List<Object> get props => [membership];
 
   @override
-  String toString() => 'MembershipLoaded';
+  String toString() => 'MembershipActive';
 }
 
 class MembershipInactive extends MembershipState {

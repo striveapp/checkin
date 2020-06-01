@@ -24,7 +24,7 @@ class MembershipBloc extends Bloc<MembershipEvent, MembershipState> {
         _membershipSub?.cancel();
         add(MembershipUpdated(email: userState.currentUser.email, membership: null));
         _membershipSub = this.membershipRepository
-            .getMembership(userState.currentUser.email).listen((membership) {
+            .getMembership(userState.currentUser.selectedGymId, userState.currentUser.email).listen((membership) {
           add(MembershipUpdated(email: userState.currentUser.email, membership: membership));
         });
         _membershipSub.onError((error) {

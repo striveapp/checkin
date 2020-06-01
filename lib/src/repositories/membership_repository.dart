@@ -8,5 +8,5 @@ class MembershipRepository {
 
   Future<void> unsubscribe({String gymId}) => _membershipApi.unsubscribe(gymId);
 
-  Stream<Membership> getMembership(String email) => _membershipProvider.getMembership(email);
+  Stream<Membership> getMembership(String gymId, String email) => _membershipProvider.getMembership(gymId, email);
 }
