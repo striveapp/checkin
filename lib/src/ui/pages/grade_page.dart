@@ -13,26 +13,30 @@ class GradePage extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-        body: Center(
+        backgroundColor: Theme.of(context).primaryColor,
+        body: SafeArea(
+          child: Center(
       child: Padding(
-        padding: EdgeInsets.only(top: 50),
-        child: Column(
-          mainAxisAlignment: MainAxisAlignment.center,
-          children: <Widget>[
-            Padding(
-              padding: EdgeInsets.only(bottom: 10),
-              child: Text(
-                beltSelection.i18n,
-                style: Theme.of(context)
-                    .textTheme
-                    .headline1
-                    .apply(color: Colors.black, fontSizeFactor: 1.3),
+          padding: EdgeInsets.symmetric(vertical: 20),
+          child: Column(
+            mainAxisAlignment: MainAxisAlignment.center,
+            children: <Widget>[
+              Padding(
+                padding: EdgeInsets.only(bottom: 10),
+                child: Text(
+                  beltSelection.i18n,
+                  style: Theme.of(context)
+                      .textTheme
+                      .headline1
+                      .apply(fontSizeFactor: 1.3),
+                ),
               ),
-            ),
-            Expanded(child: GradeButtons()),
-          ],
-        ),
+              SizedBox(height: 10,),
+              Expanded(child: GradeButtons()),
+            ],
+          ),
       ),
-    ));
+    ),
+        ));
   }
 }

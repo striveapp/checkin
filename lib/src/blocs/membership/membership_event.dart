@@ -18,7 +18,7 @@ class MembershipUpdated extends MembershipEvent {
   List<Object> get props => [email, membership];
 
   @override
-  String toString() => 'MembershipLoaded';
+  String toString() => 'MembershipUpdated';
 }
 
 class Unsubscribe extends MembershipEvent {
