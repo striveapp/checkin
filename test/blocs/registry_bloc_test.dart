@@ -158,7 +158,7 @@ void main() {
           return Future.value(null);
         });
 
-        registryBloc.add(ConfirmAttendees());
+        registryBloc.add(AcceptAttendees());
       });
 
       test("should emit RegistryLoaded and call unregister for an attendee",

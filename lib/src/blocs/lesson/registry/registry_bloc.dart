@@ -3,6 +3,7 @@ import 'dart:async';
 import 'package:bloc/bloc.dart';
 import 'package:checkin/src/blocs/lesson/bloc.dart';
 import 'package:checkin/src/blocs/user/bloc.dart';
+import 'package:checkin/src/models/lesson.dart';
 import 'package:flutter/foundation.dart';
 import 'package:meta/meta.dart';
 import 'package:rxdart/rxdart.dart';
@@ -27,8 +28,9 @@ class RegistryBloc extends Bloc<RegistryEvent, RegistryState> {
 
     Rx.combineLatest2(userStream, lessonStream,
         (UserSuccess userState, LessonLoaded lessonState) {
-      var lesson = lessonState.lesson;
+      Lesson lesson = lessonState.lesson;
       return RegistryUpdated(
+          classCapacity: lesson.classCapacity,
           acceptedAttendees: lesson.acceptedAttendees,
           attendees: lesson.attendees,
           currentUser: userState.currentUser);
@@ -44,13 +46,14 @@ class RegistryBloc extends Bloc<RegistryEvent, RegistryState> {
   Stream<RegistryState> mapEventToState(RegistryEvent event) async* {
     if (event is RegistryUpdated) {
       yield RegistryLoaded(
+        classCapacity: event.classCapacity,
         currentUser: event.currentUser,
         attendees: event.attendees,
         acceptedAttendees: event.acceptedAttendees,
       );
     }
 
-    if (event is ConfirmAttendees) {
+    if (event is AcceptAttendees) {
       yield RegistryLoading();
       lessonBloc.add(LessonAcceptAll());
     }

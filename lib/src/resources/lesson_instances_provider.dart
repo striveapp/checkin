@@ -8,6 +8,8 @@ import 'package:checkin/src/util/debug_util.dart';
 import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:flutter/foundation.dart';
 import 'package:intl/intl.dart';
+import 'package:checkin/src/config.dart' as config;
+
 
 import '../constants.dart';
 
@@ -28,6 +30,7 @@ class LessonInstancesProvider implements LessonRepository {
       timeStart: lesson.data['timeStart'],
       timeEnd: lesson.data['timeEnd'],
       weekDay: lesson.data['weekDay'],
+      classCapacity: lesson.data['classCapacity'] ?? config.DEFAULT_CLASS_CAPACITY, // todo retrieve from Gym (config) https://trello.com/c/uIqJLgZL
       masters: (lesson.data['masters'] as List)
           ?.map((master) => Master(
                 name: master['name'],

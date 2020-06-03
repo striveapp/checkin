@@ -1,5 +1,4 @@
 import 'package:checkin/src/blocs/lesson/registry/bloc.dart';
-import 'package:checkin/src/config.dart' as config;
 import 'package:checkin/src/localization/localization.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
@@ -13,20 +12,20 @@ class RegistryCounter extends StatelessWidget {
     return BlocBuilder<RegistryBloc, RegistryState>(
       builder: (BuildContext context, RegistryState state) {
         if (state is RegistryUninitialized || state is RegistryLoading) {
-          return _getCounterWidget(0, context);
+          return _getCounterWidget(0, 1, context);
         }
 
         if (state is RegistryLoaded) {
           var allAttendees = [...state.attendees, ...state.acceptedAttendees];
 
-          return _getCounterWidget(allAttendees.length, context);
+          return _getCounterWidget(allAttendees.length, state.classCapacity, context);
         }
         return ErrorWidget('Unknown State [$state] received in: registry_page');
       },
     );
   }
 
-  Row _getCounterWidget(int counter, BuildContext context) {
+  Row _getCounterWidget(int counter, int classCapacity, BuildContext context) {
     return Row(
       mainAxisAlignment: MainAxisAlignment.spaceBetween,
       crossAxisAlignment: CrossAxisAlignment.center,
@@ -35,14 +34,13 @@ class RegistryCounter extends StatelessWidget {
           "${attendees.i18n} ($counter)",
           style: Theme.of(context).textTheme.headline2,
         ),
-        Text("${_getFullPercentage(counter)} ${full.i18n}",
+        Text("${_getFullPercentage(counter, classCapacity)} ${full.i18n}",
             style:
             Theme.of(context).textTheme.headline5.apply(fontWeightDelta: 3))
       ],
     );
   }
 
-  //TODO this should be configurable
-  String _getFullPercentage(int numberOfAttendees) =>
-      (numberOfAttendees * 100 / config.CLASS_CAPACITY).toStringAsFixed(0) + "%";
+  String _getFullPercentage(int numberOfAttendees, int classCapacity) =>
+      (numberOfAttendees * 100 / classCapacity).toStringAsFixed(0) + "%";
 }

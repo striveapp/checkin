@@ -1,3 +1,3 @@
 analyzer:
   exclude:
-    - test/freezed/test_gym.g.dart
+    - lib/**/*.g.dart

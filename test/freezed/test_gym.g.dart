@@ -23,7 +23,6 @@ Map<String, dynamic> _$_$_TestGymToJson(_$_TestGym instance) =>
       'requiredField': instance.requiredField,
     };
 
-// ignore: non_constant_identifier_names
 _$_CaseOne _$_$_CaseOneFromJson(Map<String, dynamic> json) {
   return _$_CaseOne(
     json['caseOne'] as String ?? 'caseOne',

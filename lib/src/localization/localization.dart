@@ -161,6 +161,9 @@ extension Localization on String {
   } + {
     'en': RegistryControls.registerClass,
     'es': 'Apuntarse a clase',
+  }+ {
+    'en': RegistryControls.registryFull,
+    'es': 'Clase llena',
   } + {
     'en': RegistryControls.acceptAll,
     'es': 'Aceptar todos',

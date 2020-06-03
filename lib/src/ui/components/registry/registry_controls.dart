@@ -10,6 +10,7 @@ class RegistryControls extends StatelessWidget {
 
   static const String unregisterClass = 'Unregister from class';
   static const String registerClass = 'Register to class';
+  static const String registryFull = 'Class full';
   static const String acceptAll = 'Accept all';
 
   const RegistryControls({
@@ -43,7 +44,7 @@ class RegistryControls extends StatelessWidget {
         };
 
         VoidCallback onPressAcceptAll = () {
-          BlocProvider.of<RegistryBloc>(context).add(ConfirmAttendees());
+          BlocProvider.of<RegistryBloc>(context).add(AcceptAttendees());
         };
 
         if (currentUser.isOwner) {
@@ -54,8 +55,16 @@ class RegistryControls extends StatelessWidget {
             text: RegistryControls.acceptAll.i18n,
           );
         }
+        
+        if(state.isFullRegistry()) {
+          return RegistryButton(
+            key: Key('registryFull'),
+            text: RegistryControls.registryFull.i18n,
+            onPressed: disabledButton,
+          );
+        }
 
-        if (state.isUserAccepted(currentUser.email)) {
+        if (state.isAcceptedUser(currentUser.email)) {
           return RegistryButton(
             key: Key('acceptedInClass'),
             text: RegistryControls.registerClass.i18n,
@@ -63,7 +72,7 @@ class RegistryControls extends StatelessWidget {
           );
         }
 
-        if (state.isUserRegistered(currentUser.email)) {
+        if (state.isRegisteredUser(currentUser.email)) {
           return RegistryButton(
             key: Key('unregisterClass'),
             text: RegistryControls.unregisterClass.i18n,

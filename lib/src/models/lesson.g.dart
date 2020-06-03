@@ -6,8 +6,8 @@ part of 'lesson.dart';
 // JsonSerializableGenerator
 // **************************************************************************
 
-Lesson _$LessonFromJson(Map<String, dynamic> json) {
-  return Lesson(
+_$_Lesson _$_$_LessonFromJson(Map<String, dynamic> json) {
+  return _$_Lesson(
     id: json['id'] as String,
     date: json['date'] as String,
     name: json['name'] as String,
@@ -27,10 +27,11 @@ Lesson _$LessonFromJson(Map<String, dynamic> json) {
             e == null ? null : Master.fromJson(e as Map<String, dynamic>))
         ?.toList(),
     timestamp: json['timestamp'] as int,
+    classCapacity: json['classCapacity'] as int,
   );
 }
 
-Map<String, dynamic> _$LessonToJson(Lesson instance) => <String, dynamic>{
+Map<String, dynamic> _$_$_LessonToJson(_$_Lesson instance) => <String, dynamic>{
       'id': instance.id,
       'date': instance.date,
       'name': instance.name,
@@ -42,4 +43,5 @@ Map<String, dynamic> _$LessonToJson(Lesson instance) => <String, dynamic>{
           instance.acceptedAttendees?.map((e) => e?.toJson())?.toList(),
       'masters': instance.masters?.map((e) => e?.toJson())?.toList(),
       'timestamp': instance.timestamp,
+      'classCapacity': instance.classCapacity,
     };

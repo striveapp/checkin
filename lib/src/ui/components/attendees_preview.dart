@@ -1,6 +1,7 @@
 import 'package:checkin/src/localization/localization.dart';
 import 'package:checkin/src/models/attendee.dart';
 import 'package:checkin/src/models/lesson.dart';
+import 'package:checkin/src/ui/components/accepted_badge.dart';
 import 'package:checkin/src/ui/components/user_image.dart';
 import 'package:flutter/material.dart';
 
@@ -27,7 +28,23 @@ class AttendeesPreview extends StatelessWidget {
             .map((attendee) => Padding(
           padding: const EdgeInsets.only(right: 10),
           child: Container(
-            child: UserImage(
+            child: lesson.acceptedAttendees.contains(attendee) ? Stack(
+                alignment: AlignmentDirectional.bottomEnd,
+                overflow: Overflow.visible,
+                children: <Widget>[Container(
+                  decoration: BoxDecoration(
+                    border: Border.all(width: 1.5, color: Theme.of(context).accentColor),
+                    borderRadius: BorderRadius.all(Radius.circular(50)),
+                  ),
+                  child: UserImage(
+                    userImage: attendee.imageUrl,
+                    width: MediaQuery.of(context).size.width * 0.06,
+                    height: MediaQuery.of(context).size.width * 0.06,
+                  ),
+                ),
+                  Positioned(right: -2, bottom: -2, child: AcceptedBadge(),)
+                ]
+            ) : UserImage(
               userImage: attendee.imageUrl,
               width: MediaQuery.of(context).size.width * 0.06,
               height: MediaQuery.of(context).size.width * 0.06,

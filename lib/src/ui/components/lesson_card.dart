@@ -1,11 +1,10 @@
-import 'package:checkin/src/config.dart' as config;
+import 'package:checkin/src/constants.dart' as constants;
 import 'package:checkin/src/localization/localization.dart';
 import 'package:checkin/src/models/lesson.dart';
 import 'package:checkin/src/ui/components/attendees_preview.dart';
 import 'package:checkin/src/ui/components/user_image.dart';
 import 'package:checkin/src/util/dynamic_link_util.dart';
 import 'package:flutter/material.dart';
-import 'package:checkin/src/constants.dart' as constants;
 import 'package:share/share.dart';
 
 class LessonCard extends StatelessWidget {
@@ -18,6 +17,7 @@ class LessonCard extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
+    var allAttendees = lesson.attendees.length + lesson.acceptedAttendees.length;
     return Container(
         height: 180,
         padding: EdgeInsets.only(top: 15.0),
@@ -67,7 +67,7 @@ class LessonCard extends StatelessWidget {
                         },)
                       ],
                     ),
-                    if (lesson.attendees.length > 0)
+                    if (allAttendees > 0)
                       Padding(
                         padding: const EdgeInsets.only(top: 14),
                         child: AttendeesPreview(
@@ -75,13 +75,13 @@ class LessonCard extends StatelessWidget {
                           maxAttendeesToDisplay: 5,
                         ),
                       ),
-                    if (lesson.attendees.length == 0)
+                    if (allAttendees == 0)
                       Text(
                         constants.emptyClass.i18n,
                         style: Theme.of(context).textTheme.headline5,
                       ),
                     LinearProgressIndicator(
-                      value: _getFullPercentage(lesson.attendees.length),
+                      value: _getFullPercentage(allAttendees, lesson.classCapacity),
                       valueColor: AlwaysStoppedAnimation<Color>(
                           Theme.of(context).accentColor),
                       backgroundColor: Color(0x241B3FE3),
@@ -95,6 +95,5 @@ class LessonCard extends StatelessWidget {
 
 String _capitalize(String s) => s[0].toUpperCase() + s.substring(1);
 
-//TODO this should be configurable
-double _getFullPercentage(int numberOfAttendees) =>
-    (numberOfAttendees * 100 / config.CLASS_CAPACITY) / 100;
+double _getFullPercentage(int numberOfAttendees, int classCapacity) =>
+    (numberOfAttendees * 100 / classCapacity) / 100;
