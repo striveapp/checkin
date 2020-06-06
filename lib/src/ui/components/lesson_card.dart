@@ -80,11 +80,21 @@ class LessonCard extends StatelessWidget {
                         constants.emptyClass.i18n,
                         style: Theme.of(context).textTheme.headline5,
                       ),
-                    LinearProgressIndicator(
-                      value: _getFullPercentage(allAttendees, lesson.classCapacity),
-                      valueColor: AlwaysStoppedAnimation<Color>(
-                          Theme.of(context).accentColor),
-                      backgroundColor: Color(0x241B3FE3),
+                    Row(
+                      children: [
+                        Expanded(
+                          child: LinearProgressIndicator(
+                            value: _getFullPercentage(allAttendees, lesson.classCapacity),
+                            valueColor: AlwaysStoppedAnimation<Color>(
+                                Theme.of(context).accentColor),
+                            backgroundColor: Color(0x241B3FE3),
+                          ),
+                        ),
+                        Padding(
+                          padding: const EdgeInsets.only(right: 8, left: 10),
+                          child: Text("$allAttendees/${lesson.classCapacity}", style: Theme.of(context).textTheme.headline5,),
+                        )
+                      ],
                     )
                   ],
                 ),
