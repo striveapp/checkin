@@ -8,7 +8,7 @@ import 'package:flutter_bloc/flutter_bloc.dart';
 class RegistryControls extends StatelessWidget {
   final VoidCallback disabledButton = null;
 
-  static const String unregisterClass = 'Unregister from class';
+  static const String unregisterClass = 'Cancel class';
   static const String registerClass = 'Register to class';
   static const String registryFull = 'Class full';
   static const String acceptAll = 'Accept all';

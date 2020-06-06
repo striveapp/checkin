@@ -39,7 +39,7 @@ extension Localization on String {
     'es': "Clases",
   } + {
     'en': GradePage.beltSelection,
-    'es': 'Cuál es tu cinturón?',
+    'es': '¿Cuál es tu cinturón?',
   } + {
     'en': RegistryPage.registry,
     'es': 'Registro',
@@ -56,6 +56,7 @@ extension Localization on String {
     'en': constants.YEAR,
     'es': 'año',
   } + {
+    //TODO: this might be removed
     'en': constants.by,
     'es': 'Por',
   } + {
@@ -105,7 +106,7 @@ extension Localization on String {
         .modifier(constants.YEAR, 'este año'),
   } + {
     'en': RegistryCounter.full,
-    'es': 'lleno',
+    'es': 'completo',
   }  + {
     'en': RegistryCounter.attendees,
     'es': 'Participantes',
@@ -119,9 +120,9 @@ extension Localization on String {
     'en': AttendeesPreview.andOthers
         .one('and another one')
         .many('and %d others'),
-    'es': 'y %d otros'
-        .one('y un otro')
-        .many('y %d otros'),
+    'es': 'y %d más'
+        .one('y uno más')
+        .many('y %d más'),
   } + {
     'en': NoLessonsBanner.noClasses,
     'es': 'No hay clases hoy',
@@ -130,13 +131,13 @@ extension Localization on String {
     'es': 'Blanco',
   } + {
     'en': Grade.blue.name,
-    'es': 'Azúl',
+    'es': 'Azul',
   } + {
     'en': Grade.purple.name,
     'es': 'Morado',
   } + {
     'en': Grade.brown.name,
-    'es': 'Marron',
+    'es': 'Marrón',
   } + {
     'en': Grade.black.name,
     'es': 'Negro',
@@ -145,7 +146,7 @@ extension Localization on String {
     'es': 'Construyendo las bases',
   } + {
     'en': Grade.blue.description,
-    'es': 'Habilidad técnica',
+    'es': 'Desarrollo de la habilidad técnica',
   } + {
     'en': Grade.purple.description,
     'es': 'Desarrollo del juego y experimentación',
@@ -157,13 +158,13 @@ extension Localization on String {
     'es': 'Comenzar de nuevo, enseñar y reflexionar',
   } + {
     'en': RegistryControls.unregisterClass,
-    'es': 'Despuntarse de clase',
+    'es': 'Desapuntarse de la clase',
   } + {
     'en': RegistryControls.registerClass,
-    'es': 'Apuntarse a clase',
+    'es': 'Apuntarse a la clase',
   }+ {
     'en': RegistryControls.registryFull,
-    'es': 'Clase llena',
+    'es': 'Clase completa',
   } + {
     'en': RegistryControls.acceptAll,
     'es': 'Aceptar todos',
@@ -181,16 +182,16 @@ extension Localization on String {
     'es': 'Perfil',
   } + {
     'en': PaymentSuccessPage.paymentSuccessful,
-    'es': 'Pagado con Exito',
+    'es': 'Pagado con éxito',
   } + {
     'en': PaymentSuccessPage.goToAccount,
-    'es': 'Volver a la Cuenta',
+    'es': 'Volver a la cuenta',
   } + {
     'en': PaymentSuccessPage.disclaimerSubscription30Min,
     'es': 'Tu subscripción puede tardar hasta 30 minutos en aparecer en tu cuenta',
   } + {
     'en': ActiveMembershipView.email,
-    'es': 'Correo:',
+    'es': 'Email:',
   } + {
     'en': ActiveMembershipView.creditCard,
     'es': 'Tarjeta:',
@@ -202,13 +203,13 @@ extension Localization on String {
     'es': 'El siguiente pago es el',
   } + {
     'en': ProfileCard.enterYourName,
-    'es': 'Intorduzca su nombre',
+    'es': 'Escribe tu nombre',
   } + {
     'en': InactiveMembershipView.subscribe,
-    'es': 'Suscribirse',
+    'es': 'Subscribirse',
   } + {
     'en': InactiveMembershipView.notActiveSubscription,
-    'es': 'Tu subscripción no está activa todavia',
+    'es': 'Tu subscripción no está activa todavía',
   } + {
     'en': UnsubscribeDialog.unsubscribe,
     'es': 'Darse de baja',
@@ -223,10 +224,10 @@ extension Localization on String {
     'es': 'Mantener subscripción',
   } + {
     'en': SubscriptionsPage.subscriptions,
-    'es': 'Subscripciónes',
+    'es': 'Subscripciones',
   } + {
     'en': SubscriptionsPage.chooseSub,
-    'es': 'Escoje tu subscripción',
+    'es': 'Escoge tu subscripción',
   } + {
     'en': GradeCard.beltColor,
     'es': 'Cinturón %s'
@@ -241,10 +242,10 @@ extension Localization on String {
     'es': 'Actualizar'
   } + {
     'en': UpgraderDialog.versionNotSupported,
-    'es': 'La versión actual de esta aplicación ya no es compatible\n\nPor favor actualice ahora'
+    'es': 'La versión actual de esta aplicación ya no es compatible\n\nPor favor, actualízala'
   } + {
     'en': NoLeaderboardBanner.noLeaderboard,
-    'es': 'El leaderboard no està disponible todavia'
+    'es': 'El leaderboard no está disponible todavía'
   } + {
     'en': AttendeesCounter.studentsAccepted,
     'es': 'alumnos confirmados'
@@ -260,7 +261,7 @@ extension Localization on String {
     'en': GymDropdown.gulloGym,
   } + {
     'en': GymDropdown.chooseGym,
-    'es': 'Escoges tu gym...'
+    'es': 'Escoge tu gym...'
   } + {
     'en': GymSelectionPage.heyUser,
     'es': 'Hola %s'
