@@ -36,3 +36,8 @@ integration-test:
 .PHONY: codegen-runner
 codegen-runner:
 	flutter pub run build_runner watch --delete-conflicting-outputs
+
+.PHONY: create-app-icons
+create-app-icons:
+	@flutter pub get
+	flutter pub run flutter_launcher_icons:main
