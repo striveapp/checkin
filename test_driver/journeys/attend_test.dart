@@ -137,6 +137,28 @@ class AttendTest extends AbstractTest {
               prettyPrint("Then logout");
               await statsPage.logout();
             });
+
+        test(
+            "it should not allow students to attend full classes",
+                () async {
+              prettyPrint("Login as user Test and attend class");
+              await loginPage.loginAsTest();
+              await lessonsPage.selectLessonOfTheDay(WeekDay.monday, 2);
+              await registryPage.registerToClass();
+
+              prettyPrint("Then logout");
+              await statsPage.logout();
+
+              prettyPrint("Login as user TestTwo and see the disabled class full button");
+              await loginPage.loginAsTestTwo();
+              await lessonsPage.selectLessonOfTheDay(WeekDay.monday, 2);
+              await driver.waitFor(registryPage.registryFullButton);
+
+              await
+              prettyPrint("Then logout");
+              await statsPage.logout();
+            });
+
       });
     });
   }

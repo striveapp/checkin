@@ -55,8 +55,13 @@ $ adb -s 2c7af66d1d017ece shell screenrecord --output-format=h264 - | ffplay -
 
 ```bash
 make integration-test
-``` 
+```
 
+## Run integration tests (The old school way)
+
+```bash
+flutter drive --target=test_driver/journeys/journeys.dart
+```
 
 ## While developing
 

@@ -12,6 +12,7 @@ class RegistryPage {
   final _testAttendeeTile = find.byValueKey('tile-test@test.com');
   final _testAttendeeTwoTile = find.byValueKey('tile-test@test-two.com');
   final _acceptAllButton = find.byValueKey('acceptAll');
+  final registryFullButton = find.byValueKey('registryFull');
   final _unregisterClassButton = find.byValueKey('unregisterClass');
   final _loadingIndicator = find.byValueKey('loadingIndicator');
 
