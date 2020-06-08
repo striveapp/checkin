@@ -34,13 +34,9 @@ class _WeekCalendarState extends State<WeekCalendar> {
       locale: Localizations.localeOf(context).toLanguageTag(),
       headerVisible: false,
       initialSelectedDay: isInDebugMode ? testDate : DateTime.now(), //NOTE: this is used for the e2e tests
-      availableCalendarFormats: const {
-        CalendarFormat.twoWeeks: '2 weeks',
-        CalendarFormat.week: 'Week',
-      },
-      initialCalendarFormat: CalendarFormat.week,
+      initialCalendarFormat: CalendarFormat.twoWeeks,
       startingDayOfWeek: StartingDayOfWeek.monday,
-      availableGestures: AvailableGestures.verticalSwipe,
+      availableGestures: AvailableGestures.none,
       onDaySelected: widget.onDaySelected,
       holidays: widget.holidaysRepository.getHolidays(),
     );
