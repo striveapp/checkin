@@ -1,3 +1,4 @@
+import 'package:checkin/src/blocs/login/bloc.dart';
 import 'package:checkin/src/constants.dart' as constants;
 import 'package:checkin/src/models/grade.dart';
 import 'package:checkin/src/ui/components/gym_selection/gym_dropdown.dart';
@@ -268,7 +269,10 @@ extension Localization on String {
   } + {
     'en': GymSelectionPage.welcomeToTheFamily,
     'es': 'Ya eres parte de la familia'
-  };
+  } + {
+    'en': LoginFailure.message,
+    'es': 'Error de inicio de sesion'
+  } ;
 
 String get i18n => localize(this, _t);
 

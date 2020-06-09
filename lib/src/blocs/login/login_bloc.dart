@@ -34,7 +34,7 @@ class LoginBloc extends Bloc<LoginEvent, LoginState> {
         }
       } catch (e) {
         debugPrint("Unexpected error, login failed [$e]");
-        yield LoginFailure();
+        yield LoginFailure(errorMessage: "Unexpected error! [$e]");
       }
     }
 

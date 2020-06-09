@@ -31,6 +31,7 @@ class _LoginFormState extends State<LoginForm> {
                 content:
                 Text(state.errorMessage.i18n),
                 backgroundColor: Colors.red,
+                duration: Duration(seconds: 10),
               ),
             );
         }

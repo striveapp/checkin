@@ -33,10 +33,11 @@ class LoginSuccess extends LoginState {
 }
 
 class LoginFailure extends LoginState {
+  static const message = 'Login failed';
   final String errorMessage;
 
   const LoginFailure({
-    this.errorMessage = 'login_failed',
+    this.errorMessage = message,
   });
 
   @override

@@ -18,6 +18,12 @@ class AuthProvider {
 
   Future<User> signInWithGoogle() async {
     final GoogleSignInAccount googleUser = await _googleSignIn.signIn();
+
+    ///NOTE: this can be null when the user cancel in the native modal
+    if (googleUser == null) {
+      return null;
+    }
+
     final GoogleSignInAuthentication googleAuth =
         await googleUser.authentication;
     final AuthCredential credential = GoogleAuthProvider.getCredential(
@@ -38,14 +44,17 @@ class AuthProvider {
   }
 
   Future<User> loginWithTestUser(test, owner) async {
-    if(test == 1) {
-      await this._firebaseAuth.signInWithEmailAndPassword(email: "test@test.com", password: "test123");
+    if (test == 1) {
+      await this._firebaseAuth.signInWithEmailAndPassword(
+          email: "test@test.com", password: "test123");
     }
-    if(test == 2) {
-      await this._firebaseAuth.signInWithEmailAndPassword(email: "test-two@test.com", password: "test123");
+    if (test == 2) {
+      await this._firebaseAuth.signInWithEmailAndPassword(
+          email: "test-two@test.com", password: "test123");
     }
-    if(owner) {
-      await this._firebaseAuth.signInWithEmailAndPassword(email: "test-owner@test.com", password: "test123");
+    if (owner) {
+      await this._firebaseAuth.signInWithEmailAndPassword(
+          email: "test-owner@test.com", password: "test123");
     }
     var firebaseUser = await _firebaseAuth.currentUser();
     debugPrint("test firebaseUser is [$firebaseUser]");
