@@ -55,14 +55,6 @@ class RegistryControls extends StatelessWidget {
             text: RegistryControls.acceptAll.i18n,
           );
         }
-        
-        if(state.isFullRegistry()) {
-          return RegistryButton(
-            key: Key('registryFull'),
-            text: RegistryControls.registryFull.i18n,
-            onPressed: disabledButton,
-          );
-        }
 
         if (state.isAcceptedUser(currentUser.email)) {
           return RegistryButton(
@@ -78,6 +70,15 @@ class RegistryControls extends StatelessWidget {
             text: RegistryControls.unregisterClass.i18n,
             color: Theme.of(context).buttonTheme.colorScheme.error,
             onPressed: onPressUnregisterClass,
+          );
+        }
+
+
+        if(state.isFullRegistry()) {
+          return RegistryButton(
+            key: Key('registryFull'),
+            text: RegistryControls.registryFull.i18n,
+            onPressed: disabledButton,
           );
         }
 
