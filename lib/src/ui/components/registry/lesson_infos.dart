@@ -32,6 +32,7 @@ class LessonInfos extends StatelessWidget {
               Column(
                 crossAxisAlignment: CrossAxisAlignment.start,
                 children: <Widget>[
+                  Text(lesson.name, style: Theme.of(context).textTheme.headline5),
                   Text(
                     "${lesson.timeStart} - ${lesson.timeEnd}",
                     style: Theme.of(context)
@@ -51,6 +52,7 @@ class LessonInfos extends StatelessWidget {
             ],
           );
         }
+
         return ErrorWidget('Unknown State [$state] received in: lesson_infos');
       },
     );

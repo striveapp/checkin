@@ -8,7 +8,7 @@ import 'package:checkin/src/ui/components/registry/registry.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter/widgets.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
-import 'package:checkin/src/localization/localization.dart';
+import 'package:intl/intl.dart';
 
 class RegistryPage extends StatelessWidget {
   final String lessonId;
@@ -26,8 +26,7 @@ class RegistryPage extends StatelessWidget {
   Widget build(BuildContext context) {
     return Scaffold(
       appBar: BaseAppBar(
-        //TODO: we should pass the name of the class here instead of "registry"
-        title: RegistryPage.registry.i18n,
+        title: DateFormat('d MMMM').format(DateTime.parse(this.date)),
       ),
       body: BlocProvider<LessonBloc>(
         create: (context) => LessonBloc(
