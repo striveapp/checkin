@@ -20,6 +20,9 @@ class UserRepository {
   Future<void> updateUserName(User currentUser, String newName) =>
       _userProvider.updateUserName(currentUser, newName);
 
+  Future<void> updateUserImage(User currentUser, String newImageUrl) =>
+      _userProvider.updateUserImage(currentUser, newImageUrl);
+
   Future<void> updateUserFcmToken(User currentUser, String newToken) =>
       _userProvider.updateUserFcmToken(currentUser, newToken);
 

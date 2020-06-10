@@ -2,7 +2,7 @@ import 'package:checkin/src/blocs/membership/bloc.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 
-import '../loading_indicator.dart';
+import '../../loading_indicator.dart';
 import 'active_membership.dart';
 import 'inactive_membership.dart';
 

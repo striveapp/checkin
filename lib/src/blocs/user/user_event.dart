@@ -59,6 +59,20 @@ class UpdateName extends UserEvent {
   String toString() => 'UpdateName';
 }
 
+class UpdateImage extends UserEvent {
+  final String newImageUrl;
+
+  const UpdateImage({
+    this.newImageUrl,
+  });
+
+  @override
+  List<Object> get props => [newImageUrl];
+
+  @override
+  String toString() => 'UpdateImage';
+}
+
 class UpdateFcmToken extends UserEvent {
   final User currentUser;
   final String newToken;

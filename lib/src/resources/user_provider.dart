@@ -64,6 +64,13 @@ class UserProvider {
         .updateData({"name": newName});
   }
 
+  Future<void> updateUserImage(User currentUser, String newImageUrl) async {
+    await _firestore
+        .collection(path)
+        .document(currentUser.email)
+        .updateData({"imageUrl": newImageUrl});
+  }
+
   Future<void> updateUserFcmToken(User currentUser, String newFcmToken) async {
     var tokens = _firestore
         .collection(path)

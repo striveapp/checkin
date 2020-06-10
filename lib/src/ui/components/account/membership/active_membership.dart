@@ -1,6 +1,6 @@
 import 'package:checkin/src/localization/localization.dart';
 import 'package:checkin/src/models/membership.dart';
-import 'package:checkin/src/ui/components/membership/unsubscribe_dialog.dart';
+import 'package:checkin/src/ui/components/account/membership/unsubscribe_dialog.dart';
 import 'package:flutter/material.dart';
 import 'package:intl/intl.dart';
 

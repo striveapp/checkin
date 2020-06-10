@@ -1,4 +1,4 @@
-import 'package:checkin/src/ui/components/profile_infos.dart';
+import 'package:checkin/src/ui/components/stats/profile_infos.dart';
 import 'package:checkin/src/ui/components/timespan_toggles.dart';
 import 'package:flutter/material.dart';
 

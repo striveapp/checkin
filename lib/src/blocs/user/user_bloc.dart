@@ -74,6 +74,18 @@ class UserBloc extends Bloc<UserEvent, UserState> {
           debugPrint('Unable to update user name to [${event.newName}] from userState [$state]');
           yield UserError();
         }
+      } else if (event is UpdateImage) {
+        debugPrint('Updating image...');
+        if( this.state is UserSuccess ) {
+          yield UserLoading();
+          await this.userRepository.updateUserImage(
+            (this.state as UserSuccess).currentUser,
+            event.newImageUrl,
+          );
+        } else {
+          debugPrint('Unable to update user name to [${event.newImageUrl}] from userState [$state]');
+          yield UserError();
+        }
       } else if (event is UpdateFcmToken) {
         debugPrint('Updating token...');
         await this.userRepository.updateUserFcmToken(

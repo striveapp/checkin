@@ -1,10 +1,15 @@
+import 'dart:io';
+
 import 'package:checkin/src/blocs/profile/bloc.dart';
 import 'package:checkin/src/blocs/user/bloc.dart';
 import 'package:checkin/src/localization/localization.dart';
 import 'package:checkin/src/ui/components/loading_indicator.dart';
 import 'package:checkin/src/ui/components/user_image.dart';
+import 'package:firebase_storage/firebase_storage.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
+import 'package:image_cropper/image_cropper.dart';
+import 'package:image_picker/image_picker.dart';
 
 class ProfileCard extends StatelessWidget {
   final String userEmail;
@@ -29,7 +34,20 @@ class ProfileCard extends StatelessWidget {
           if (state is ProfileSuccess) {
             return Row(
               children: <Widget>[
-                UserImage(userImage: state.profileUser.imageUrl),
+                InkWell(
+                  child: UserImage(userImage: state.profileUser.imageUrl),
+                  onTap: () async {
+                    PickedFile selected = await ImagePicker().getImage(source: ImageSource.gallery);
+                    File cropped = await ImageCropper.cropImage( sourcePath: selected.path );
+                    if( cropped != null ) {
+                      String filePath = 'images/${state.profileUser.email}-${DateTime.now()}.png';
+                      var storageRef = FirebaseStorage(storageBucket: 'gs://checkin-test-fba3d.appspot.com')
+                          .ref().child(filePath);
+                      await storageRef.putFile(cropped).onComplete;
+
+                      BlocProvider.of<UserBloc>(context).add(UpdateImage(newImageUrl: await storageRef.getDownloadURL()));
+                    }
+                  },),
                 SizedBox(
                   width: 15,
                 ),
