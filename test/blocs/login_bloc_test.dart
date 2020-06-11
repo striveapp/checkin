@@ -77,11 +77,12 @@ void main() {
       });
 
       test("should emit LoginFailure if an error is returned", () async {
-        when(mockAuthRepository.signInWithGoogle()).thenThrow("Kaboom!");
+        var error = "Kaboom!";
+        when(mockAuthRepository.signInWithGoogle()).thenThrow(error);
 
         final expectedState = [
           LoginInitial(),
-          LoginFailure(),
+          LoginFailure(errorMessage: "Unexpected error! [$error]"),
         ];
 
         await expectLater(
