@@ -62,7 +62,7 @@ class LessonCard extends StatelessWidget {
                           ],
                         ),
                         IconButton(icon: Icon(Icons.share), onPressed: () async {
-                          var link = await DynamicLinkUtil().getLink(lessonId: lesson.id);
+                          var link = await DynamicLinkUtil().getLink(date: lesson.date, lessonId: lesson.id);
                           Share.share(link);
                         },)
                       ],
