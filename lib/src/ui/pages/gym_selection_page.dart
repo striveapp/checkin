@@ -1,5 +1,5 @@
 import 'package:checkin/src/localization/localization.dart';
-import 'package:checkin/src/ui/components/gym_selection/gym_dropdown.dart';
+import 'package:checkin/src/ui/components/gym_selection/gym_selection_buttons.dart';
 import 'package:flutter/material.dart';
 
 class GymSelectionPage extends StatelessWidget {
@@ -7,7 +7,7 @@ class GymSelectionPage extends StatelessWidget {
   final String userEmail;
 
   static const String heyUser = "Hey %s";
-  static const String welcomeToTheFamily = "Welcome to the family";
+  static const String whatsYourGym = "What's your gym?";
 
   GymSelectionPage({
     @required this.userName,
@@ -20,7 +20,7 @@ class GymSelectionPage extends StatelessWidget {
       backgroundColor: Theme.of(context).primaryColor,
       body: SafeArea(
         child: Padding(
-          padding: const EdgeInsets.symmetric(vertical: 70, horizontal: 20),
+          padding: EdgeInsets.symmetric(vertical: 70, horizontal: 30),
           child: Center(
             child: Container(
               child: Column(
@@ -35,15 +35,16 @@ class GymSelectionPage extends StatelessWidget {
                     height: 15,
                   ),
                   Text(
-                    welcomeToTheFamily.i18n,
-                    style: Theme.of(context).textTheme.headline2.apply(
-                          color: Colors.white54,
-                        ),
+                    whatsYourGym.i18n,
+                    style: Theme.of(context)
+                        .textTheme
+                        .headline2
+                        .apply(color: Colors.white54),
                   ),
                   SizedBox(
-                    height: 35,
+                    height: 60,
                   ),
-                  GymDropdown(
+                  GymSelectionButtons(
                     userEmail: userEmail,
                   ),
                 ],

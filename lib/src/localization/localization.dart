@@ -1,7 +1,7 @@
 import 'package:checkin/src/blocs/login/bloc.dart';
 import 'package:checkin/src/constants.dart' as constants;
 import 'package:checkin/src/models/grade.dart';
-import 'package:checkin/src/ui/components/gym_selection/gym_dropdown.dart';
+import 'package:checkin/src/ui/components/gym_selection/gym_selection_buttons.dart';
 import 'package:checkin/src/ui/components/registry/attendee_tile.dart';
 import 'package:checkin/src/ui/components/registry/registry_counter.dart';
 import 'package:checkin/src/ui/components/attendees_preview.dart';
@@ -257,18 +257,15 @@ extension Localization on String {
     'en': LeaderboardPage.leaderboard,
     'es': 'Clasificación'
   } + {
-    'en': GymDropdown.aranhaGym,
+    'en': GymSelectionButtons.aranhaGym,
   } + {
-    'en': GymDropdown.gulloGym,
-  } + {
-    'en': GymDropdown.chooseGym,
-    'es': 'Escoge tu gym...'
+    'en': GymSelectionButtons.gulloGym,
   } + {
     'en': GymSelectionPage.heyUser,
     'es': 'Hola %s'
   } + {
-    'en': GymSelectionPage.welcomeToTheFamily,
-    'es': 'Ya eres parte de la familia'
+    'en': GymSelectionPage.whatsYourGym,
+    'es': 'Cuál es tu gimnasio?'
   } + {
     'en': LoginFailure.message,
     'es': 'Error de inicio de sesion'
