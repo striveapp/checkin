@@ -4,7 +4,7 @@ import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 
 class GymSelectionButtons extends StatelessWidget {
-  static const String aranhaGym = "Asociación Aranha Barcelona (Sarrià)";
+  static const String aranhaGym = "Asociación Aranha Barcelona";
   static const String gulloGym = "Gullo Jiu-Jitsu Barcelona";
 
   final String userEmail;
