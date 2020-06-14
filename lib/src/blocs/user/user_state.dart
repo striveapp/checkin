@@ -1,31 +1,12 @@
 import 'package:checkin/src/models/user.dart';
-import 'package:equatable/equatable.dart';
+import 'package:freezed_annotation/freezed_annotation.dart';
+import 'package:flutter/foundation.dart';
 
-abstract class UserState extends Equatable {
-  const UserState();
+part 'user_state.freezed.dart';
 
-  @override
-  List<Object> get props => [];
-}
-
-class UserLoading extends UserState {
-  @override
-  String toString() => 'UserLoading';
-}
-
-class UserSuccess extends UserState {
-  final User currentUser;
-
-  const UserSuccess({this.currentUser});
-
-  @override
-  List<Object> get props => [currentUser];
-
-  @override
-  String toString() => 'UserSuccess';
-}
-
-class UserError extends UserState {
-  @override
-  String toString() => 'UserError';
+@freezed
+abstract class UserState with _$UserState {
+  const factory UserState.userLoading() = UserLoading;
+  const factory UserState.userSuccess({User currentUser}) = UserSuccess;
+  const factory UserState.userError() = UserError;
 }

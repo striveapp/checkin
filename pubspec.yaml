@@ -58,9 +58,7 @@ dev_dependencies:
     sdk: flutter
   flutter_driver:
     sdk: flutter
-  # build_runner is blocked at this version because requires a newer Dart SDK
-  build_runner: ^1.9.0
-  # build_runner is blocked at this version because requires a newer flutter_driver version
+  build_runner: ^1.10.0
   json_serializable: ^3.3.0
 
 flutter_icons:

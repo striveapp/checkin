@@ -14,14 +14,17 @@ class UserRepository {
 
   Future<void> createUser(User newUser) => _userProvider.createUser(newUser);
 
-  Future<void> updateUserGrade(User currentUser, String newGrade) =>
-      _userProvider.updateUserGrade(currentUser, newGrade);
+  Future<void> updateUserGrade(String userEmail, String newGrade) =>
+      _userProvider.updateUserGrade(userEmail, newGrade);
 
-  Future<void> updateUserName(User currentUser, String newName) =>
-      _userProvider.updateUserName(currentUser, newName);
+  Future<void> updateUserName(String userEmail, String newName) =>
+      _userProvider.updateUserName(userEmail, newName);
 
-  Future<void> updateUserFcmToken(User currentUser, String newToken) =>
-      _userProvider.updateUserFcmToken(currentUser, newToken);
+  Future<void> updateUserImageUrl(String userEmail, String newImageUrl) =>
+      _userProvider.updateUserImageUrl(userEmail, newImageUrl);
+
+  Future<void> updateUserFcmToken(String userEmail, String newToken) =>
+      _userProvider.updateUserFcmToken(userEmail, newToken);
 
   Future<void> updateSelectedGymId(String userEmail, String newSelectedGym) =>
       _userProvider.updateSelectedGymId(userEmail, newSelectedGym);

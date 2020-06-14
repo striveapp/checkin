@@ -43,54 +43,50 @@ class UserBloc extends Bloc<UserEvent, UserState> {
         yield UserSuccess(currentUser: event.user);
       }
     } else {
-      yield* _mapUpdateToState(event);
+      try {
+        //TODO: this should be refactored
+        if (this.state is UserSuccess) {
+          _mapUpdateToState(
+              (this.state as UserSuccess).currentUser.email, event);
+        } else {
+          debugPrint('Unable to update user [$event] from userState [$state]');
+          yield UserError();
+        }
+      } catch (e) {
+        print('Error during user update: ' + e.toString());
+        yield UserError();
+      }
     }
   }
 
-  Stream<UserState> _mapUpdateToState(UserEvent event) async* {
-    try {
-      if (event is UpdateGrade) {
-        debugPrint('Updating grade...');
-        if( this.state is UserSuccess ) {
-          yield UserLoading();
-          await this.userRepository.updateUserGrade(
-            (this.state as UserSuccess).currentUser,
-            event.newGrade,
-          );
-        } else {
-          debugPrint('Unable to update user grade to [${event.newGrade}] from userState [$state]');
-          yield UserError();
-        }
-
-      } else if (event is UpdateName) {
-        debugPrint('Updating name...');
-        if( this.state is UserSuccess ) {
-          yield UserLoading();
-          await this.userRepository.updateUserName(
-            (this.state as UserSuccess).currentUser,
-            event.newName,
-          );
-        } else {
-          debugPrint('Unable to update user name to [${event.newName}] from userState [$state]');
-          yield UserError();
-        }
-      } else if (event is UpdateFcmToken) {
-        debugPrint('Updating token...');
-        await this.userRepository.updateUserFcmToken(
-          event.currentUser,
-          event.newToken,
-        );
-      } else if (event is UpdateSelectedGym) {
-        debugPrint('Updating selectedGym...');
-        await this.userRepository.updateSelectedGymId(
-          event.userEmail,
-          event.newSelectedGym,
-        );
-      }
-    } catch (e) {
-      print('Error during user update: ' + e.toString());
-      yield UserError();
-    }
+  void _mapUpdateToState(String userEmail, UserEvent event) {
+    event.maybeWhen(
+        updateName: (String newName) async =>
+            await userRepository.updateUserName(
+              userEmail,
+              newName,
+            ),
+        updateImageUrl: (String userEmail, String newImageUrl) async =>
+            await userRepository.updateUserImageUrl(
+              userEmail,
+              newImageUrl,
+            ),
+        updateGrade: (String newGrade) async =>
+            await userRepository.updateUserGrade(
+              userEmail,
+              newGrade,
+            ),
+        updateFcmToken: (String userEmail, String newToken) async =>
+            await userRepository.updateUserFcmToken(
+              userEmail,
+              newToken,
+            ),
+        updateSelectedGym: (String userEmail, String newSelectedGym) async =>
+            await userRepository.updateSelectedGymId(
+              userEmail,
+              newSelectedGym,
+            ),
+        orElse: () => UserState.userError());
   }
 
   @override

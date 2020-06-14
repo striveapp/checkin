@@ -3,12 +3,14 @@ import 'dart:async';
 import 'package:bloc_test/bloc_test.dart';
 import 'package:checkin/src/blocs/auth/bloc.dart';
 import 'package:checkin/src/blocs/user/bloc.dart';
+import 'package:checkin/src/models/grade.dart';
 import 'package:checkin/src/models/user.dart';
 import 'package:checkin/src/repositories/user_repository.dart';
-import 'package:test/test.dart';
 import 'package:mockito/mockito.dart';
+import 'package:test/test.dart';
 
 class MockUserRepository extends Mock implements UserRepository {}
+
 class MockAuthBloc extends Mock implements AuthBloc {}
 
 void main() {
@@ -23,10 +25,15 @@ void main() {
       mockUserRepository = MockUserRepository();
       mockAuthBloc = MockAuthBloc();
       userStreamCtrl = StreamController<User>();
-      testUser = User(name: "Tobuto Nellano", email: "tobuto@nelano.com", imageUrl: "http://image.url");
-      whenListen(mockAuthBloc, Stream.fromIterable([AuthAuthenticated(loggedUserEmail: testUser.email)]));
-      when(mockUserRepository.getUserByEmail(testUser.email))
-          .thenAnswer((_) {
+      testUser = User(
+          name: "Tobuto Nellano",
+          email: "tobuto@nelano.com",
+          imageUrl: "http://image.url");
+      whenListen(
+          mockAuthBloc,
+          Stream.fromIterable(
+              [AuthAuthenticated(loggedUserEmail: testUser.email)]));
+      when(mockUserRepository.getUserByEmail(testUser.email)).thenAnswer((_) {
         return userStreamCtrl.stream;
       });
     });
@@ -44,7 +51,8 @@ void main() {
           ];
 
           userStreamCtrl.add(testUser);
-          userBloc = UserBloc(authBloc: mockAuthBloc, userRepository: mockUserRepository);
+          userBloc = UserBloc(
+              authBloc: mockAuthBloc, userRepository: mockUserRepository);
 
           await expectLater(
             userBloc,
@@ -60,8 +68,8 @@ void main() {
             UserError(),
           ];
 
-          userBloc = UserBloc(authBloc: mockAuthBloc, userRepository: mockUserRepository);
-
+          userBloc = UserBloc(
+              authBloc: mockAuthBloc, userRepository: mockUserRepository);
 
           userStreamCtrl.add(null);
           await expectLater(
@@ -79,31 +87,42 @@ void main() {
           UserSuccess(currentUser: testUser),
         ];
 
-        userBloc = UserBloc(authBloc: mockAuthBloc, userRepository: mockUserRepository);
+        userBloc = UserBloc(
+            authBloc: mockAuthBloc, userRepository: mockUserRepository);
         userStreamCtrl.add(testUser);
 
         await expectLater(
           userBloc,
           emitsInOrder(setupState),
         );
-        userBloc.add(UpdateGrade(newGrade: "Black"));
 
-        when(mockUserRepository.updateUserGrade(testUser,  "Black")).thenAnswer((_) {
-          userStreamCtrl.add(testUser);
+        userBloc.add(UpdateGrade(newGrade: Grade.black.name));
+
+        User updateUser = User(
+          email: testUser.email,
+          imageUrl: testUser.imageUrl,
+          name: testUser.name,
+          grade: Grade.black,
+        );
+
+        when(mockUserRepository.updateUserGrade(
+                testUser.email, Grade.black.name))
+            .thenAnswer((_) {
+          userStreamCtrl.add(updateUser);
           return Future.value(null);
         });
 
         final expectedState = [
           UserSuccess(currentUser: testUser),
-          UserLoading(),
-          UserSuccess(currentUser: testUser)
+          UserSuccess(currentUser: updateUser)
         ];
 
         await expectLater(
-            userBloc,
-            emitsInOrder(expectedState),
+          userBloc,
+          emitsInOrder(expectedState),
         );
-        verify(mockUserRepository.updateUserGrade(testUser, "Black"));
+        verify(mockUserRepository.updateUserGrade(
+            testUser.email, Grade.black.name));
       });
     });
 
@@ -114,69 +133,174 @@ void main() {
           UserSuccess(currentUser: testUser),
         ];
 
-        userBloc = UserBloc(authBloc: mockAuthBloc, userRepository: mockUserRepository);
+        userBloc = UserBloc(
+            authBloc: mockAuthBloc, userRepository: mockUserRepository);
         userStreamCtrl.add(testUser);
 
         await expectLater(
           userBloc,
           emitsInOrder(setupState),
         );
-        userBloc.add(UpdateName(newName: "Porco"));
 
-        when(mockUserRepository.updateUserName(testUser,  "Porco")).thenAnswer((_) {
-          userStreamCtrl.add(testUser);
+        var newName = "Porco";
+
+        userBloc.add(UpdateName(newName: newName));
+
+        User updateUser = User(
+          email: testUser.email,
+          imageUrl: testUser.imageUrl,
+          name: newName,
+        );
+
+        when(mockUserRepository.updateUserName(testUser.email, newName))
+            .thenAnswer((_) {
+          userStreamCtrl.add(updateUser);
           return Future.value(null);
         });
 
         final expectedState = [
           UserSuccess(currentUser: testUser),
-          UserLoading(),
-          UserSuccess(currentUser: testUser)
+          UserSuccess(currentUser: updateUser)
         ];
 
         await expectLater(
           userBloc,
           emitsInOrder(expectedState),
         );
-        verify(mockUserRepository.updateUserName(testUser, "Porco"));
+        verify(mockUserRepository.updateUserName(testUser.email, newName));
       });
     });
 
-    //TODO: this should me removed from here
-//    group("when add UpdateFcmToken", () {
-//      test("should update the user token", () async {
-//        final setupState = [
-//          UserLoading(),
-//          UserSuccess(currentUser: testUser),
-//        ];
-//
-//        userBloc = UserBloc(authBloc: mockAuthBloc, userRepository: mockUserRepository);
-//        userStreamCtrl.add(testUser);
-//
-//        await expectLater(
-//          userBloc,
-//          emitsInOrder(setupState),
-//        );
-//        userBloc.add(UpdateFcmToken(currentUser: testUser, newToken: "tha token"));
-//
-//        when(mockUserRepository.updateUserFcmToken(testUser,  "tha token")).thenAnswer((_) {
-//          userStreamCtrl.add(testUser);
-//          return Future.value(null);
-//        });
-//
-//        final expectedState = [
-//          UserSuccess(currentUser: testUser),
-//          UserLoading(),
-//          UserSuccess(currentUser: testUser)
-//        ];
-//
-//        await expectLater(
-//          userBloc,
-//          emitsInOrder(expectedState),
-//        );
-//        verify(mockUserRepository.updateUserFcmToken(testUser, "tha token"));
-//      });
-//    });
+    group("when add UpdateImageUrl", () {
+      test("should update the user image url", () async {
+        final setupState = [
+          UserLoading(),
+          UserSuccess(currentUser: testUser),
+        ];
 
+        userBloc = UserBloc(
+            authBloc: mockAuthBloc, userRepository: mockUserRepository);
+        userStreamCtrl.add(testUser);
+
+        await expectLater(
+          userBloc,
+          emitsInOrder(setupState),
+        );
+
+        var newImageUrl = "http://porc.o/a.png";
+
+        userBloc.add(UserEvent.updateImageUrl(
+            userEmail: testUser.email, newImageUrl: newImageUrl));
+
+        User updateUser = User(
+          email: testUser.email,
+          name: testUser.name,
+          imageUrl: newImageUrl,
+        );
+
+        when(mockUserRepository.updateUserImageUrl(testUser.email, newImageUrl))
+            .thenAnswer((_) {
+          userStreamCtrl.add(updateUser);
+          return Future.value(null);
+        });
+
+        final expectedState = [
+          UserSuccess(currentUser: testUser),
+          UserSuccess(currentUser: updateUser)
+        ];
+
+        await expectLater(
+          userBloc,
+          emitsInOrder(expectedState),
+        );
+        verify(
+            mockUserRepository.updateUserImageUrl(testUser.email, newImageUrl));
+      });
+    });
+
+    group("when add UpdateSelectedGym", () {
+      test("should update the user selected gym", () async {
+        final setupState = [
+          UserLoading(),
+          UserSuccess(currentUser: testUser),
+        ];
+
+        userBloc = UserBloc(
+            authBloc: mockAuthBloc, userRepository: mockUserRepository);
+        userStreamCtrl.add(testUser);
+
+        await expectLater(
+          userBloc,
+          emitsInOrder(setupState),
+        );
+
+        var newSelectedGym = "pokemon gym";
+
+        userBloc.add(UserEvent.updateSelectedGym(
+            userEmail: testUser.email, newSelectedGym: newSelectedGym));
+
+        User updateUser = User(
+          email: testUser.email,
+          imageUrl: testUser.imageUrl,
+          name: newSelectedGym,
+        );
+
+        when(mockUserRepository.updateSelectedGymId(
+                testUser.email, newSelectedGym))
+            .thenAnswer((_) {
+          userStreamCtrl.add(updateUser);
+          return Future.value(null);
+        });
+
+        final expectedState = [
+          UserSuccess(currentUser: testUser),
+          UserSuccess(currentUser: updateUser)
+        ];
+
+        await expectLater(
+          userBloc,
+          emitsInOrder(expectedState),
+        );
+        verify(mockUserRepository.updateSelectedGymId(
+            testUser.email, newSelectedGym));
+      });
+    });
+
+    group("when add UpdateFcmToken", () {
+      test("should update the user fcm token", () async {
+        final setupState = [
+          UserLoading(),
+          UserSuccess(currentUser: testUser),
+        ];
+
+        userBloc = UserBloc(
+            authBloc: mockAuthBloc, userRepository: mockUserRepository);
+        userStreamCtrl.add(testUser);
+
+        await expectLater(
+          userBloc,
+          emitsInOrder(setupState),
+        );
+
+        var newToken = "some token";
+
+        userBloc.add(UserEvent.updateFcmToken(
+            userEmail: testUser.email, newToken: newToken));
+
+        when(mockUserRepository.updateUserFcmToken(testUser.email, newToken))
+            .thenAnswer((_) {
+          userStreamCtrl.add(testUser);
+          return Future.value(null);
+        });
+
+        final expectedState = [UserSuccess(currentUser: testUser)];
+
+        await expectLater(
+          userBloc,
+          emitsInAnyOrder(expectedState),
+        );
+        verify(mockUserRepository.updateUserFcmToken(testUser.email, newToken));
+      });
+    });
   });
 }

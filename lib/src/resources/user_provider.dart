@@ -50,24 +50,25 @@ class UserProvider {
     }, merge: true);
   }
 
-  Future<void> updateUserGrade(User currentUser, String newGrade) async {
+  Future<void> updateUserGrade(String userEmail, String newGrade) async {
     await _firestore
         .collection(path)
-        .document(currentUser.email)
+        .document(userEmail)
         .updateData({"grade": newGrade});
   }
 
-  Future<void> updateUserName(User currentUser, String newName) async {
+  Future<void> updateUserName(String userEmail, String newName) async {
+    print("here");
     await _firestore
         .collection(path)
-        .document(currentUser.email)
+        .document(userEmail)
         .updateData({"name": newName});
   }
 
-  Future<void> updateUserFcmToken(User currentUser, String newFcmToken) async {
+  Future<void> updateUserFcmToken(String userEmail, String newFcmToken) async {
     var tokens = _firestore
         .collection(path)
-        .document(currentUser.email)
+        .document(userEmail)
         .collection("tokens")
         .document(newFcmToken);
 
@@ -83,5 +84,12 @@ class UserProvider {
         .collection(path)
         .document(userEmail)
         .updateData({"selectedGymId": newSelectedGym});
+  }
+
+  Future<void> updateUserImageUrl(String userEmail, String newImageUrl) async {
+    await _firestore
+        .collection(path)
+        .document(userEmail)
+        .updateData({"imageUrl": newImageUrl});
   }
 }

@@ -53,7 +53,7 @@ class NotificationsBloc extends Bloc<NotificationsEvent, NotificationsState> {
     userBloc.listen((userState) {
       if (userState is UserSuccess) {
         userBloc.add(UpdateFcmToken(
-            currentUser: userState.currentUser, newToken: token));
+            userEmail: userState.currentUser.email, newToken: token));
       }
     });
   }
