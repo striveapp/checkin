@@ -24,10 +24,9 @@ class _$UserEventTearOff {
     );
   }
 
-  UpdateImageUrl updateImageUrl({String userEmail, String newImageUrl}) {
+  UpdateImageUrl updateImageUrl({String userEmail}) {
     return UpdateImageUrl(
       userEmail: userEmail,
-      newImageUrl: newImageUrl,
     );
   }
 
@@ -61,7 +60,7 @@ mixin _$UserEvent {
   Result when<Result extends Object>({
     @required Result userUpdated(User user),
     @required Result updateName(String newName),
-    @required Result updateImageUrl(String userEmail, String newImageUrl),
+    @required Result updateImageUrl(String userEmail),
     @required Result updateGrade(String newGrade),
     @required Result updateSelectedGym(String userEmail, String newSelectedGym),
     @required Result updateFcmToken(String userEmail, String newToken),
@@ -70,7 +69,7 @@ mixin _$UserEvent {
   Result maybeWhen<Result extends Object>({
     Result userUpdated(User user),
     Result updateName(String newName),
-    Result updateImageUrl(String userEmail, String newImageUrl),
+    Result updateImageUrl(String userEmail),
     Result updateGrade(String newGrade),
     Result updateSelectedGym(String userEmail, String newSelectedGym),
     Result updateFcmToken(String userEmail, String newToken),
@@ -176,7 +175,7 @@ class _$UserUpdated with DiagnosticableTreeMixin implements UserUpdated {
   Result when<Result extends Object>({
     @required Result userUpdated(User user),
     @required Result updateName(String newName),
-    @required Result updateImageUrl(String userEmail, String newImageUrl),
+    @required Result updateImageUrl(String userEmail),
     @required Result updateGrade(String newGrade),
     @required Result updateSelectedGym(String userEmail, String newSelectedGym),
     @required Result updateFcmToken(String userEmail, String newToken),
@@ -195,7 +194,7 @@ class _$UserUpdated with DiagnosticableTreeMixin implements UserUpdated {
   Result maybeWhen<Result extends Object>({
     Result userUpdated(User user),
     Result updateName(String newName),
-    Result updateImageUrl(String userEmail, String newImageUrl),
+    Result updateImageUrl(String userEmail),
     Result updateGrade(String newGrade),
     Result updateSelectedGym(String userEmail, String newSelectedGym),
     Result updateFcmToken(String userEmail, String newToken),
@@ -318,7 +317,7 @@ class _$UpdateName with DiagnosticableTreeMixin implements UpdateName {
   Result when<Result extends Object>({
     @required Result userUpdated(User user),
     @required Result updateName(String newName),
-    @required Result updateImageUrl(String userEmail, String newImageUrl),
+    @required Result updateImageUrl(String userEmail),
     @required Result updateGrade(String newGrade),
     @required Result updateSelectedGym(String userEmail, String newSelectedGym),
     @required Result updateFcmToken(String userEmail, String newToken),
@@ -337,7 +336,7 @@ class _$UpdateName with DiagnosticableTreeMixin implements UpdateName {
   Result maybeWhen<Result extends Object>({
     Result userUpdated(User user),
     Result updateName(String newName),
-    Result updateImageUrl(String userEmail, String newImageUrl),
+    Result updateImageUrl(String userEmail),
     Result updateGrade(String newGrade),
     Result updateSelectedGym(String userEmail, String newSelectedGym),
     Result updateFcmToken(String userEmail, String newToken),
@@ -399,7 +398,7 @@ abstract class $UpdateImageUrlCopyWith<$Res> {
   factory $UpdateImageUrlCopyWith(
           UpdateImageUrl value, $Res Function(UpdateImageUrl) then) =
       _$UpdateImageUrlCopyWithImpl<$Res>;
-  $Res call({String userEmail, String newImageUrl});
+  $Res call({String userEmail});
 }
 
 class _$UpdateImageUrlCopyWithImpl<$Res> extends _$UserEventCopyWithImpl<$Res>
@@ -414,27 +413,22 @@ class _$UpdateImageUrlCopyWithImpl<$Res> extends _$UserEventCopyWithImpl<$Res>
   @override
   $Res call({
     Object userEmail = freezed,
-    Object newImageUrl = freezed,
   }) {
     return _then(UpdateImageUrl(
       userEmail: userEmail == freezed ? _value.userEmail : userEmail as String,
-      newImageUrl:
-          newImageUrl == freezed ? _value.newImageUrl : newImageUrl as String,
     ));
   }
 }
 
 class _$UpdateImageUrl with DiagnosticableTreeMixin implements UpdateImageUrl {
-  const _$UpdateImageUrl({this.userEmail, this.newImageUrl});
+  const _$UpdateImageUrl({this.userEmail});
 
   @override
   final String userEmail;
-  @override
-  final String newImageUrl;
 
   @override
   String toString({DiagnosticLevel minLevel = DiagnosticLevel.info}) {
-    return 'UserEvent.updateImageUrl(userEmail: $userEmail, newImageUrl: $newImageUrl)';
+    return 'UserEvent.updateImageUrl(userEmail: $userEmail)';
   }
 
   @override
@@ -442,8 +436,7 @@ class _$UpdateImageUrl with DiagnosticableTreeMixin implements UpdateImageUrl {
     super.debugFillProperties(properties);
     properties
       ..add(DiagnosticsProperty('type', 'UserEvent.updateImageUrl'))
-      ..add(DiagnosticsProperty('userEmail', userEmail))
-      ..add(DiagnosticsProperty('newImageUrl', newImageUrl));
+      ..add(DiagnosticsProperty('userEmail', userEmail));
   }
 
   @override
@@ -452,17 +445,12 @@ class _$UpdateImageUrl with DiagnosticableTreeMixin implements UpdateImageUrl {
         (other is UpdateImageUrl &&
             (identical(other.userEmail, userEmail) ||
                 const DeepCollectionEquality()
-                    .equals(other.userEmail, userEmail)) &&
-            (identical(other.newImageUrl, newImageUrl) ||
-                const DeepCollectionEquality()
-                    .equals(other.newImageUrl, newImageUrl)));
+                    .equals(other.userEmail, userEmail)));
   }
 
   @override
   int get hashCode =>
-      runtimeType.hashCode ^
-      const DeepCollectionEquality().hash(userEmail) ^
-      const DeepCollectionEquality().hash(newImageUrl);
+      runtimeType.hashCode ^ const DeepCollectionEquality().hash(userEmail);
 
   @override
   $UpdateImageUrlCopyWith<UpdateImageUrl> get copyWith =>
@@ -473,7 +461,7 @@ class _$UpdateImageUrl with DiagnosticableTreeMixin implements UpdateImageUrl {
   Result when<Result extends Object>({
     @required Result userUpdated(User user),
     @required Result updateName(String newName),
-    @required Result updateImageUrl(String userEmail, String newImageUrl),
+    @required Result updateImageUrl(String userEmail),
     @required Result updateGrade(String newGrade),
     @required Result updateSelectedGym(String userEmail, String newSelectedGym),
     @required Result updateFcmToken(String userEmail, String newToken),
@@ -484,7 +472,7 @@ class _$UpdateImageUrl with DiagnosticableTreeMixin implements UpdateImageUrl {
     assert(updateGrade != null);
     assert(updateSelectedGym != null);
     assert(updateFcmToken != null);
-    return updateImageUrl(userEmail, newImageUrl);
+    return updateImageUrl(userEmail);
   }
 
   @override
@@ -492,7 +480,7 @@ class _$UpdateImageUrl with DiagnosticableTreeMixin implements UpdateImageUrl {
   Result maybeWhen<Result extends Object>({
     Result userUpdated(User user),
     Result updateName(String newName),
-    Result updateImageUrl(String userEmail, String newImageUrl),
+    Result updateImageUrl(String userEmail),
     Result updateGrade(String newGrade),
     Result updateSelectedGym(String userEmail, String newSelectedGym),
     Result updateFcmToken(String userEmail, String newToken),
@@ -500,7 +488,7 @@ class _$UpdateImageUrl with DiagnosticableTreeMixin implements UpdateImageUrl {
   }) {
     assert(orElse != null);
     if (updateImageUrl != null) {
-      return updateImageUrl(userEmail, newImageUrl);
+      return updateImageUrl(userEmail);
     }
     return orElse();
   }
@@ -544,11 +532,9 @@ class _$UpdateImageUrl with DiagnosticableTreeMixin implements UpdateImageUrl {
 }
 
 abstract class UpdateImageUrl implements UserEvent {
-  const factory UpdateImageUrl({String userEmail, String newImageUrl}) =
-      _$UpdateImageUrl;
+  const factory UpdateImageUrl({String userEmail}) = _$UpdateImageUrl;
 
   String get userEmail;
-  String get newImageUrl;
   $UpdateImageUrlCopyWith<UpdateImageUrl> get copyWith;
 }
 
@@ -619,7 +605,7 @@ class _$UpdateGrade with DiagnosticableTreeMixin implements UpdateGrade {
   Result when<Result extends Object>({
     @required Result userUpdated(User user),
     @required Result updateName(String newName),
-    @required Result updateImageUrl(String userEmail, String newImageUrl),
+    @required Result updateImageUrl(String userEmail),
     @required Result updateGrade(String newGrade),
     @required Result updateSelectedGym(String userEmail, String newSelectedGym),
     @required Result updateFcmToken(String userEmail, String newToken),
@@ -638,7 +624,7 @@ class _$UpdateGrade with DiagnosticableTreeMixin implements UpdateGrade {
   Result maybeWhen<Result extends Object>({
     Result userUpdated(User user),
     Result updateName(String newName),
-    Result updateImageUrl(String userEmail, String newImageUrl),
+    Result updateImageUrl(String userEmail),
     Result updateGrade(String newGrade),
     Result updateSelectedGym(String userEmail, String newSelectedGym),
     Result updateFcmToken(String userEmail, String newToken),
@@ -778,7 +764,7 @@ class _$UpdateSelectedGym
   Result when<Result extends Object>({
     @required Result userUpdated(User user),
     @required Result updateName(String newName),
-    @required Result updateImageUrl(String userEmail, String newImageUrl),
+    @required Result updateImageUrl(String userEmail),
     @required Result updateGrade(String newGrade),
     @required Result updateSelectedGym(String userEmail, String newSelectedGym),
     @required Result updateFcmToken(String userEmail, String newToken),
@@ -797,7 +783,7 @@ class _$UpdateSelectedGym
   Result maybeWhen<Result extends Object>({
     Result userUpdated(User user),
     Result updateName(String newName),
-    Result updateImageUrl(String userEmail, String newImageUrl),
+    Result updateImageUrl(String userEmail),
     Result updateGrade(String newGrade),
     Result updateSelectedGym(String userEmail, String newSelectedGym),
     Result updateFcmToken(String userEmail, String newToken),
@@ -934,7 +920,7 @@ class _$UpdateFcmToken with DiagnosticableTreeMixin implements UpdateFcmToken {
   Result when<Result extends Object>({
     @required Result userUpdated(User user),
     @required Result updateName(String newName),
-    @required Result updateImageUrl(String userEmail, String newImageUrl),
+    @required Result updateImageUrl(String userEmail),
     @required Result updateGrade(String newGrade),
     @required Result updateSelectedGym(String userEmail, String newSelectedGym),
     @required Result updateFcmToken(String userEmail, String newToken),
@@ -953,7 +939,7 @@ class _$UpdateFcmToken with DiagnosticableTreeMixin implements UpdateFcmToken {
   Result maybeWhen<Result extends Object>({
     Result userUpdated(User user),
     Result updateName(String newName),
-    Result updateImageUrl(String userEmail, String newImageUrl),
+    Result updateImageUrl(String userEmail),
     Result updateGrade(String newGrade),
     Result updateSelectedGym(String userEmail, String newSelectedGym),
     Result updateFcmToken(String userEmail, String newToken),

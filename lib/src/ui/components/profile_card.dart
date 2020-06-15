@@ -29,7 +29,14 @@ class ProfileCard extends StatelessWidget {
           if (state is ProfileSuccess) {
             return Row(
               children: <Widget>[
-                UserImage(userImage: state.profileUser.imageUrl),
+                GestureDetector(
+                  child: UserImage(userImage: state.profileUser.imageUrl),
+                  onTap: () {
+                    BlocProvider.of<UserBloc>(context).add(
+                        UserEvent.updateImageUrl(
+                            userEmail: state.profileUser.email));
+                  },
+                ),
                 SizedBox(
                   width: 15,
                 ),
@@ -38,7 +45,8 @@ class ProfileCard extends StatelessWidget {
                     key: Key("editProfileButton"),
                     onSubmitted: (name) {
                       if (name.length > 3) {
-                        BlocProvider.of<UserBloc>(context).add(UpdateName(newName: name));
+                        BlocProvider.of<UserBloc>(context)
+                            .add(UserEvent.updateName(newName: name));
                       }
                     },
                     autocorrect: false,
@@ -51,10 +59,11 @@ class ProfileCard extends StatelessWidget {
                         focusedBorder: InputBorder.none,
                         counter: SizedBox.shrink(),
                         hintText: enterYourName.i18n),
-                    controller: TextEditingController.fromValue(TextEditingValue(
-                        text: state.profileUser.name,
-                        selection: new TextSelection.collapsed(
-                            offset: state.profileUser.name.length))),
+                    controller: TextEditingController.fromValue(
+                        TextEditingValue(
+                            text: state.profileUser.name,
+                            selection: new TextSelection.collapsed(
+                                offset: state.profileUser.name.length))),
                   ),
                 ),
               ],
@@ -66,5 +75,4 @@ class ProfileCard extends StatelessWidget {
       ),
     );
   }
-
 }

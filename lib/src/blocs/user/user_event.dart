@@ -7,9 +7,16 @@ part 'user_event.freezed.dart';
 @freezed
 abstract class UserEvent with _$UserEvent {
   const factory UserEvent.userUpdated({User user}) = UserUpdated;
+
   const factory UserEvent.updateName({String newName}) = UpdateName;
-  const factory UserEvent.updateImageUrl({String userEmail, String newImageUrl}) = UpdateImageUrl;
+
+  const factory UserEvent.updateImageUrl({String userEmail}) = UpdateImageUrl;
+
   const factory UserEvent.updateGrade({String newGrade}) = UpdateGrade;
-  const factory UserEvent.updateSelectedGym({String userEmail, String newSelectedGym}) = UpdateSelectedGym;
-  const factory UserEvent.updateFcmToken({String userEmail, String newToken}) = UpdateFcmToken;
+
+  const factory UserEvent.updateSelectedGym(
+      {String userEmail, String newSelectedGym}) = UpdateSelectedGym;
+
+  const factory UserEvent.updateFcmToken({String userEmail, String newToken}) =
+      UpdateFcmToken;
 }

@@ -1,19 +1,28 @@
 import 'dart:async';
+import 'dart:io';
 
 import 'package:bloc/bloc.dart';
 import 'package:checkin/src/blocs/auth/bloc.dart';
 import 'package:checkin/src/blocs/user/user_event.dart';
 import 'package:checkin/src/blocs/user/user_state.dart';
+import 'package:checkin/src/repositories/uploader_repository.dart';
 import 'package:checkin/src/repositories/user_repository.dart';
 import 'package:flutter/foundation.dart';
+import 'package:image_cropper/image_cropper.dart';
+import 'package:image_picker/image_picker.dart';
 import 'package:meta/meta.dart';
 
 class UserBloc extends Bloc<UserEvent, UserState> {
   final UserRepository userRepository;
+  final UploaderRepository uploaderRepository;
   final AuthBloc authBloc;
   StreamSubscription userSub;
 
-  UserBloc({@required this.userRepository, @required this.authBloc}) {
+  UserBloc({
+    @required this.userRepository,
+    @required this.uploaderRepository,
+    @required this.authBloc,
+  }) {
     this.authBloc.listen((authState) {
       if (authState is AuthAuthenticated) {
         userSub?.cancel();
@@ -66,11 +75,20 @@ class UserBloc extends Bloc<UserEvent, UserState> {
               userEmail,
               newName,
             ),
-        updateImageUrl: (String userEmail, String newImageUrl) async =>
-            await userRepository.updateUserImageUrl(
-              userEmail,
-              newImageUrl,
-            ),
+        updateImageUrl: (String userEmail) async {
+          PickedFile selectedImage =
+              await ImagePicker().getImage(source: ImageSource.gallery);
+          File croppedFile =
+              await ImageCropper.cropImage(sourcePath: selectedImage.path);
+
+          String fileName = "$userEmail-${DateTime.now()}.png";
+          String newImageUrl = await uploaderRepository.uploadImage(croppedFile, fileName);
+          
+          await userRepository.updateUserImageUrl(
+            userEmail,
+            newImageUrl,
+          );
+        },
         updateGrade: (String newGrade) async =>
             await userRepository.updateUserGrade(
               userEmail,

@@ -1,6 +1,7 @@
 import 'package:checkin/src/blocs/auth/auth_bloc.dart';
 import 'package:checkin/src/blocs/user/bloc.dart';
 import 'package:checkin/src/handlers/registerable_handler.dart';
+import 'package:checkin/src/repositories/uploader_repository.dart';
 import 'package:checkin/src/repositories/user_repository.dart';
 import 'package:checkin/src/ui/pages/account_page.dart';
 import 'package:fluro/fluro.dart';
@@ -14,18 +15,21 @@ class AccountHandler extends Handler implements RegisterableHandler {
   }
 
   @override
-  HandlerFunc get handlerFunc => (BuildContext context, Map<String, List<String>> params) {
-    UserRepository userRepository = UserRepository();
+  HandlerFunc get handlerFunc =>
+      (BuildContext context, Map<String, List<String>> params) {
+        UserRepository userRepository = UserRepository();
+        UploaderRepository uploaderRepository = UploaderRepository();
 
-    return BlocProvider<UserBloc>(
-        create: (BuildContext context) {
-          return UserBloc(
-            userRepository: userRepository,
-            authBloc: BlocProvider.of<AuthBloc>(context),
-          );
-        },child: AccountPage()
-    );
-  };
+        return BlocProvider<UserBloc>(
+            create: (BuildContext context) {
+              return UserBloc(
+                userRepository: userRepository,
+                uploaderRepository: uploaderRepository,
+                authBloc: BlocProvider.of<AuthBloc>(context),
+              );
+            },
+            child: AccountPage());
+      };
 
   String get route => "account";
 }
