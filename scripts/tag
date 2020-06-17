@@ -1,14 +1,180 @@
 #!/bin/bash
 
 function tag {
+    validate
+
     local tagv=$1
+
+    if [ -z "$tagv" ]; then
+      tagv=$(select-version)
+    fi
     output=$(git tag -a "$tagv" -m "tagged $tagv" 2>&1)
     rs=$?
     if [[ "$rs" -ne 0 ]]; then
-        echo "$output"
+        error "$output"
         return ${rs}
     fi
     return ${rs}
 }
+
+function error {
+  local caller="$(ps -o comm= $PPID)"
+  local time="$(date -Iseconds)"
+
+  detect-stdin-input
+  if [[ $? -eq 0 ]]; then
+    while read line; do
+      printf "\e[1m\e[31m[-] %-15s | $time | $line\e[0m\n" "$caller"
+    done
+  else
+    local msg="$@"
+    printf "\e[1m\e[31m[-] %-15s | $time | $msg\e[0m\n" "$caller"
+  fi
+}
+
+function success {
+  local msg="$@"
+
+  local caller="$(ps -o comm= $PPID)"
+
+  local time="$(date -Iseconds)"
+
+  printf "\e[1m\e[32m[+] %-15s | $time | $msg\e[0m\n" "$caller"
+}
+
+function warning {
+  local msg="$@"
+  local caller="$(ps -o comm= $PPID)"
+  local time="$(date -Iseconds)"
+
+  printf "\e[1m\e[35m[!] %-15s | $time | $msg\e[0m\n" "$caller"
+}
+
+function validate {
+  success starting workspace validation and cleanup
+  check-dirty || { error "please clean your workspace" && exit 1; }
+
+  status
+
+  if [[ $? -ne 0 ]]; then
+    warning "your workspace is not up to date, update now? y/n "
+    read yn
+    case $yn in
+      [Yy]* ) pull;;
+      * ) warning "User decided not to update";;
+    esac
+  fi
+}
+
+function status {
+  git fetch
+  local output="$(git status)"
+
+  local msg="$(echo -n "$output" | grep "Your branch")"
+  if [[ "$msg" == *"up-to-date"* ]]; then
+    success ${msg}
+    return 0
+  fi
+
+  if [[ "$msg" == *"up to date"* ]]; then
+    success ${msg}
+    return 0
+  fi
+
+  if [[ "$msg" == *"diverged"* ]]; then
+    error ${msg}
+    return 3
+  fi
+
+ if [[ "$msg" == *"ahead"* ]]; then
+    error ${msg}
+    return 1
+  fi
+
+ if [[ "$msg" == *"behind"* ]]; then
+    error ${msg}
+    return 2
+  fi
+
+  error ${output}
+  return 4
+}
+
+function check-dirty {
+  git fetch
+
+  local output="$(git status)"
+
+  local dirty="$(echo -n "$output" | grep -i "nothing to commit" )"
+
+  if [[ "$dirty" == "" ]]; then
+    error "There are uncommitted changes"
+    error "$output"
+    return 1
+  fi
+
+  success "$dirty"
+}
+
+function detect-stdin-input {
+  if [[ -t 0 ]]; then
+    # echo running  interactivelly
+    return 1
+  else
+    # echo there is stdin input
+    return 0
+  fi
+}
+
+function last-tag() {
+  git tag --sort=taggerdate | tail -1
+}
+
+function select-version() {
+  local LAST_VERSION=${currentVersion}
+  if [[ -z "$LAST_VERSION" ]]; then
+    local LAST_VERSION=$(last-tag)
+  fi
+  set -- "$LAST_VERSION"
+
+  IFS="-"; declare -a ArgsArray=($*)
+  version=${ArgsArray[0]}
+
+  IFS="."; declare -a VersionArray=(${version})
+  major=${VersionArray[0]}
+  minor=${VersionArray[1]}
+  patch=${VersionArray[2]}
+
+  declare -a options
+
+  newPatchVersion=$(echo $(($major))"."$(($minor))"."$(($patch+1)))
+  newMinorVersion=$(echo $(($major))"."$(($minor+1))".0")
+  newMajorVersion=$(echo $(($major+1))".0.0")
+  options+=("$newPatchVersion")
+  options+=("$newMinorVersion")
+  options+=("$newMajorVersion")
+
+  echo -ne "\e[1m\e[32m" 1>&2
+  PS3="Please select desired version (Current source version is [$LAST_VERSION]): $(echo -ne "\e[0m")"$'\n'
+  local COLUMNS=0 # make select always print in single column
+  select opt in "${options[@]}"
+  do
+    case ${opt} in
+      "$newPatchVersion")
+        echo "$opt"
+        break
+        ;;
+      "$newMinorVersion")
+        echo "$opt"
+        break
+        ;;
+      "$newMajorVersion")
+        echo "$opt"
+        break
+        ;;
+    esac
+  done
+}
+
 
 [[ ${BASH_SOURCE[0]} != "${0}" ]] || tag $@
