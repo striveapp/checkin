@@ -78,13 +78,16 @@ class UserBloc extends Bloc<UserEvent, UserState> {
             ),
         updateImageUrl: (String userEmail) async {
           File croppedFile = await imageRepository.getCroppedImage();
-          String fileName = "$userEmail-${DateTime.now()}.png";
-          String newImageUrl = await uploaderRepository.uploadImage(croppedFile, fileName);
-          
-          await userRepository.updateUserImageUrl(
-            userEmail,
-            newImageUrl,
-          );
+          if (croppedFile != null) {
+            String fileName = "$userEmail-${DateTime.now()}.png";
+            String newImageUrl =
+                await uploaderRepository.uploadImage(croppedFile, fileName);
+
+            await userRepository.updateUserImageUrl(
+              userEmail,
+              newImageUrl,
+            );
+          }
         },
         updateGrade: (String newGrade) async =>
             await userRepository.updateUserGrade(
