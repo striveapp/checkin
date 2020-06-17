@@ -1,6 +1,7 @@
 import 'package:checkin/src/blocs/auth/bloc.dart';
 import 'package:checkin/src/blocs/dynamic_link/bloc.dart';
 import 'package:checkin/src/repositories/auth_repository.dart';
+import 'package:checkin/src/repositories/image_repository.dart';
 import 'package:checkin/src/repositories/uploader_repository.dart';
 import 'package:checkin/src/repositories/user_repository.dart';
 import 'package:checkin/src/routes/application.dart';
@@ -22,18 +23,22 @@ class App extends StatelessWidget {
   final AuthRepository _authRepository;
   final UserRepository _userRepository;
   final UploaderRepository _uploaderRepository;
+  final ImageRepository _imageRepository;
 
   App({
     Key key,
     @required AuthRepository authRepository,
     @required UserRepository userRepository,
     @required UploaderRepository uploaderRepository,
+    @required ImageRepository imageRepository,
   })  : assert(authRepository != null &&
             userRepository != null &&
-            uploaderRepository != null),
+            uploaderRepository != null &&
+            imageRepository != null),
         _authRepository = authRepository,
         _userRepository = userRepository,
         _uploaderRepository = uploaderRepository,
+        _imageRepository = imageRepository,
         super(key: key);
 
   @override
@@ -146,6 +151,7 @@ class App extends StatelessWidget {
                       create: (BuildContext context) => UserBloc(
                             userRepository: _userRepository,
                             uploaderRepository: _uploaderRepository,
+                            imageRepository: _imageRepository,
                             authBloc: BlocProvider.of<AuthBloc>(context),
                           )),
                 ],

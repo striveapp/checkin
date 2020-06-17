@@ -58,7 +58,6 @@ class UserProvider {
   }
 
   Future<void> updateUserName(String userEmail, String newName) async {
-    print("here");
     await _firestore
         .collection(path)
         .document(userEmail)

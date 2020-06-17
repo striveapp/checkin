@@ -103,6 +103,7 @@ class AccountPage extends StatelessWidget {
                         ),
                         ProfileCard(
                           userEmail: state.user.email,
+                          isOwner: state.user.isOwner
                         ),
                         if (isInDebugMode)
                           SizedBox(

@@ -1,25 +1,27 @@
 import 'dart:async';
+import 'dart:io';
 
 import 'package:bloc_test/bloc_test.dart';
 import 'package:checkin/src/blocs/auth/bloc.dart';
 import 'package:checkin/src/blocs/user/bloc.dart';
 import 'package:checkin/src/models/grade.dart';
 import 'package:checkin/src/models/user.dart';
+import 'package:checkin/src/repositories/image_repository.dart';
 import 'package:checkin/src/repositories/uploader_repository.dart';
 import 'package:checkin/src/repositories/user_repository.dart';
 import 'package:mockito/mockito.dart';
 import 'package:test/test.dart';
 
 class MockUserRepository extends Mock implements UserRepository {}
-
 class MockUploaderRepository extends Mock implements UploaderRepository {}
-
+class MockImageRepository extends Mock implements ImageRepository {}
 class MockAuthBloc extends Mock implements AuthBloc {}
 
 void main() {
   group("UserBloc", () {
     UserRepository mockUserRepository;
     UploaderRepository mockUploaderRepository;
+    ImageRepository mockImageRepository;
     User testUser;
     UserBloc userBloc;
     AuthBloc mockAuthBloc;
@@ -28,6 +30,7 @@ void main() {
     setUp(() {
       mockUserRepository = MockUserRepository();
       mockUploaderRepository = MockUploaderRepository();
+      mockImageRepository = MockImageRepository();
       mockAuthBloc = MockAuthBloc();
       userStreamCtrl = StreamController<User>();
       testUser = User(
@@ -60,6 +63,7 @@ void main() {
             authBloc: mockAuthBloc,
             userRepository: mockUserRepository,
             uploaderRepository: mockUploaderRepository,
+            imageRepository: mockImageRepository,
           );
 
           await expectLater(
@@ -80,6 +84,7 @@ void main() {
             authBloc: mockAuthBloc,
             userRepository: mockUserRepository,
             uploaderRepository: mockUploaderRepository,
+            imageRepository: mockImageRepository,
           );
 
           userStreamCtrl.add(null);
@@ -102,6 +107,7 @@ void main() {
           authBloc: mockAuthBloc,
           userRepository: mockUserRepository,
           uploaderRepository: mockUploaderRepository,
+          imageRepository: mockImageRepository,
         );
         userStreamCtrl.add(testUser);
 
@@ -151,6 +157,7 @@ void main() {
           authBloc: mockAuthBloc,
           userRepository: mockUserRepository,
           uploaderRepository: mockUploaderRepository,
+          imageRepository: mockImageRepository,
         );
         userStreamCtrl.add(testUser);
 
@@ -188,60 +195,66 @@ void main() {
       });
     });
 
-    //TODO: add tests
-//    group("when add UpdateImageUrl", () {
-//      test("should update the user image url", () async {
-//        final setupState = [
-//          UserLoading(),
-//          UserSuccess(currentUser: testUser),
-//        ];
-//
-//        userBloc = UserBloc(
-//          authBloc: mockAuthBloc,
-//          userRepository: mockUserRepository,
-//          uploaderRepository: mockUploaderRepository,
-//        );
-//        userStreamCtrl.add(testUser);
-//
-//        await expectLater(
-//          userBloc,
-//          emitsInOrder(setupState),
-//        );
-//
-//        var newImageUrl = "http://porc.o/a.png";
-//
-//        userBloc.add(UserEvent.updateImageUrl(
-//          userEmail: testUser.email,
-//        ));
-//
-//        User updateUser = User(
-//          email: testUser.email,
-//          name: testUser.name,
-//          imageUrl: newImageUrl,
-//        );
-//
-//        when(mockUploaderRepository.uploadImage(any, any)).thenAnswer((_) {
-//          return Future.value(newImageUrl);
-//        });
-//        when(mockUserRepository.updateUserImageUrl(testUser.email, newImageUrl))
-//            .thenAnswer((_) {
-//          userStreamCtrl.add(updateUser);
-//          return Future.value(null);
-//        });
-//
-//        final expectedState = [
-//          UserSuccess(currentUser: testUser),
-//          UserSuccess(currentUser: updateUser)
-//        ];
-//
-//        await expectLater(
-//          userBloc,
-//          emitsInOrder(expectedState),
-//        );
-//        verify(
-//            mockUserRepository.updateUserImageUrl(testUser.email, newImageUrl));
-//      });
-//    });
+    group("when add UpdateImageUrl", () {
+      test("should update the user image url", () async {
+        final setupState = [
+          UserLoading(),
+          UserSuccess(currentUser: testUser),
+        ];
+
+        userBloc = UserBloc(
+          authBloc: mockAuthBloc,
+          userRepository: mockUserRepository,
+          uploaderRepository: mockUploaderRepository,
+          imageRepository: mockImageRepository,
+        );
+        userStreamCtrl.add(testUser);
+
+        await expectLater(
+          userBloc,
+          emitsInOrder(setupState),
+        );
+
+        var newImageUrl = "http://porc.o/a.png";
+
+        userBloc.add(UserEvent.updateImageUrl(
+          userEmail: testUser.email,
+        ));
+
+        User updateUser = User(
+          email: testUser.email,
+          name: testUser.name,
+          imageUrl: newImageUrl,
+        );
+        File fakeImage = File("some_file");
+
+        when(mockImageRepository.getCroppedImage()).thenAnswer((_) {
+          return Future.value(fakeImage);
+        });
+
+        when(mockUploaderRepository.uploadImage(fakeImage, argThat(endsWith(".png")))).thenAnswer((_) {
+          return Future.value(newImageUrl);
+        });
+
+        when(mockUserRepository.updateUserImageUrl(testUser.email, newImageUrl))
+            .thenAnswer((_) {
+          userStreamCtrl.add(updateUser);
+          return Future.value(null);
+        });
+
+        final expectedState = [
+          UserSuccess(currentUser: testUser),
+          UserSuccess(currentUser: updateUser)
+        ];
+
+        await expectLater(
+          userBloc,
+          emitsInOrder(expectedState),
+        );
+        verify(
+            mockUserRepository.updateUserImageUrl(testUser.email, newImageUrl));
+      });
+    });
 
     group("when add UpdateSelectedGym", () {
       test("should update the user selected gym", () async {
@@ -254,6 +267,7 @@ void main() {
           authBloc: mockAuthBloc,
           userRepository: mockUserRepository,
           uploaderRepository: mockUploaderRepository,
+          imageRepository: mockImageRepository,
         );
         userStreamCtrl.add(testUser);
 
@@ -305,6 +319,7 @@ void main() {
           authBloc: mockAuthBloc,
           userRepository: mockUserRepository,
           uploaderRepository: mockUploaderRepository,
+          imageRepository: mockImageRepository,
         );
         userStreamCtrl.add(testUser);
 

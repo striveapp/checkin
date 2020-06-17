@@ -31,9 +31,9 @@ class RegistryControls extends StatelessWidget {
       if (state is RegistryLoaded) {
         var currentUser = state.currentUser;
 
-        VoidCallback onPressUnregisterClass = () {
+        Function(Attendee) unregisterFromClass = (Attendee registeredUser) {
           BlocProvider.of<RegistryBloc>(context).add(Unregister(
-            attendee: Attendee.fromUser(currentUser),
+            attendee: registeredUser,
           ));
         };
 
@@ -64,12 +64,13 @@ class RegistryControls extends StatelessWidget {
           );
         }
 
-        if (state.isRegisteredUser(currentUser.email)) {
+        Attendee registeredUser = state.getRegisteredUser(currentUser.email);
+        if (registeredUser != null) {
           return RegistryButton(
             key: Key('unregisterClass'),
             text: RegistryControls.unregisterClass.i18n,
             color: Theme.of(context).buttonTheme.colorScheme.error,
-            onPressed: onPressUnregisterClass,
+            onPressed: () => unregisterFromClass(registeredUser),
           );
         }
 

@@ -6,6 +6,7 @@ import 'package:checkin/src/blocs/auth/bloc.dart';
 import 'package:checkin/src/blocs/dynamic_link/bloc.dart';
 import 'package:checkin/src/blocs/version/bloc.dart';
 import 'package:checkin/src/repositories/auth_repository.dart';
+import 'package:checkin/src/repositories/image_repository.dart';
 import 'package:checkin/src/repositories/lesson_repository.dart';
 import 'package:checkin/src/repositories/uploader_repository.dart';
 import 'package:checkin/src/repositories/user_repository.dart';
@@ -38,6 +39,7 @@ void main() {
   final AuthRepository authRepository = AuthRepository();
   final UserRepository userRepository = UserRepository();
   final UploaderRepository uploaderRepository = UploaderRepository();
+  final ImageRepository imageRepository = ImageRepository();
   final FirebaseDynamicLinks dynamicLinks = FirebaseDynamicLinks.instance;
 
   runZonedGuarded<Future<void>>(() async {
@@ -69,6 +71,7 @@ void main() {
             userRepository: userRepository,
             authRepository: authRepository,
             uploaderRepository: uploaderRepository,
+            imageRepository: imageRepository,
           ),
         ),
       ),

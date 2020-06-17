@@ -1,6 +1,7 @@
 import 'package:checkin/src/blocs/auth/auth_bloc.dart';
 import 'package:checkin/src/blocs/user/bloc.dart';
 import 'package:checkin/src/handlers/registerable_handler.dart';
+import 'package:checkin/src/repositories/image_repository.dart';
 import 'package:checkin/src/repositories/uploader_repository.dart';
 import 'package:checkin/src/repositories/user_repository.dart';
 import 'package:checkin/src/ui/pages/subscriptions_page.dart';
@@ -21,6 +22,7 @@ class SubscriptionsHandler extends Handler implements RegisterableHandler {
       (BuildContext context, Map<String, List<String>> params) {
         UserRepository userRepository = UserRepository();
         UploaderRepository uploaderRepository = UploaderRepository();
+        ImageRepository imageRepository = ImageRepository();
 
         return MultiBlocProvider(
           providers: [
@@ -28,6 +30,7 @@ class SubscriptionsHandler extends Handler implements RegisterableHandler {
               create: (BuildContext context) => UserBloc(
                 userRepository: userRepository,
                 uploaderRepository: uploaderRepository,
+                imageRepository: imageRepository,
                 authBloc: BlocProvider.of<AuthBloc>(context),
               ),
             ),

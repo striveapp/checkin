@@ -19,6 +19,15 @@ extension RegistryLoadedExtension on RegistryLoaded {
     return acceptedAttendees.any((attendee) => attendee.email == email);
   }
 
+  Attendee getRegisteredUser(String email) {
+    // TODO: we should use some kind of id to perform this check not the email https://trello.com/c/j5sAVRXJ
+    Iterable<Attendee> attendeeFromEmail = attendees.where((attendee) => attendee.email == email);
+    if(attendeeFromEmail.isEmpty) {
+      return null;
+    }
+    return attendeeFromEmail.first;
+  }
+
   bool isRegisteredUser(String email) {
     // TODO: we should use some kind of id to perform this check not the email https://trello.com/c/j5sAVRXJ
     return attendees.any((attendee) => attendee.email == email);
