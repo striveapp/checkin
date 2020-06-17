@@ -60,7 +60,7 @@ function validate {
     warning "your workspace is not up to date, update now? y/n "
     read yn
     case $yn in
-      [Yy]* ) pull;;
+      [Yy]* ) git pull;;
       * ) warning "User decided not to update";;
     esac
   fi
