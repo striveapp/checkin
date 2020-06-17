@@ -1,6 +1,7 @@
 import 'package:checkin/src/blocs/profile/bloc.dart';
 import 'package:checkin/src/blocs/user/bloc.dart';
 import 'package:checkin/src/localization/localization.dart';
+import 'package:checkin/src/ui/components/add_photo_badge.dart';
 import 'package:checkin/src/ui/components/loading_indicator.dart';
 import 'package:checkin/src/ui/components/user_image.dart';
 import 'package:flutter/material.dart';
@@ -35,7 +36,18 @@ class ProfileCard extends StatelessWidget {
                 if (isOwner) UserImage(userImage: state.profileUser.imageUrl),
                 if (!isOwner)
                   GestureDetector(
-                    child: UserImage(userImage: state.profileUser.imageUrl),
+                    child: Stack(
+                      alignment: AlignmentDirectional.bottomEnd,
+                      overflow: Overflow.visible,
+                      children: [
+                        UserImage(
+                            userImage: state.profileUser.imageUrl),
+                        Positioned(
+                            right: -8,
+                            bottom: -2,
+                            child: AddPhotoBadge())
+                      ],
+                    ),
                     onTap: () {
                       BlocProvider.of<UserBloc>(context).add(
                           UserEvent.updateImageUrl(
