@@ -1,8 +1,9 @@
 import 'package:checkin/src/blocs/auth/bloc.dart';
 import 'package:checkin/src/blocs/dynamic_link/bloc.dart';
+import 'package:checkin/src/repositories/analytics_repository.dart';
 import 'package:checkin/src/repositories/auth_repository.dart';
 import 'package:checkin/src/repositories/image_repository.dart';
-import 'package:checkin/src/repositories/uploader_repository.dart';
+import 'package:checkin/src/repositories/storage_repository.dart';
 import 'package:checkin/src/repositories/user_repository.dart';
 import 'package:checkin/src/routes/application.dart';
 import 'package:checkin/src/ui/components/upgrader_dialog.dart';
@@ -22,23 +23,27 @@ import 'blocs/version/bloc.dart';
 class App extends StatelessWidget {
   final AuthRepository _authRepository;
   final UserRepository _userRepository;
-  final UploaderRepository _uploaderRepository;
+  final StorageRepository _storageRepository;
   final ImageRepository _imageRepository;
+  final AnalyticsRepository _analyticsRepository;
 
   App({
     Key key,
     @required AuthRepository authRepository,
     @required UserRepository userRepository,
-    @required UploaderRepository uploaderRepository,
+    @required StorageRepository storageRepository,
     @required ImageRepository imageRepository,
+    @required AnalyticsRepository analyticsRepository,
   })  : assert(authRepository != null &&
             userRepository != null &&
-            uploaderRepository != null &&
-            imageRepository != null),
+            storageRepository != null &&
+            imageRepository != null &&
+            analyticsRepository != null),
         _authRepository = authRepository,
         _userRepository = userRepository,
-        _uploaderRepository = uploaderRepository,
+        _storageRepository = storageRepository,
         _imageRepository = imageRepository,
+        _analyticsRepository = analyticsRepository,
         super(key: key);
 
   @override
@@ -55,6 +60,9 @@ class App extends StatelessWidget {
       ],
       onGenerateRoute: Application.router.generator,
       initialRoute: '/',
+      navigatorObservers: [
+        _analyticsRepository.getNavigationObserver(),
+      ],
       theme: ThemeData(
         fontFamily: 'Raleway',
         primaryColor: Color(0xFF242966),
@@ -139,18 +147,20 @@ class App extends StatelessWidget {
 
             if (state is AuthUnauthenticated) {
               return LoginPage(
-                  authRepository: _authRepository,
-                  userRepository: _userRepository);
+                authRepository: _authRepository,
+                userRepository: _userRepository,
+                analyticsRepository: _analyticsRepository,
+              );
             }
 
             if (state is AuthAuthenticated) {
-              debugPrint("User Authenticated: [${state.loggedUserEmail}]");
+              debugPrint("User Authenticated: [${state.loggedUser}]");
               return MultiBlocProvider(
                 providers: [
                   BlocProvider<UserBloc>(
                       create: (BuildContext context) => UserBloc(
                             userRepository: _userRepository,
-                            uploaderRepository: _uploaderRepository,
+                            storageRepository: _storageRepository,
                             imageRepository: _imageRepository,
                             authBloc: BlocProvider.of<AuthBloc>(context),
                           )),
@@ -177,7 +187,7 @@ class App extends StatelessWidget {
                         children: [
                           HomePage(),
                           StatsPage(
-                            userEmail: state.loggedUserEmail,
+                            userEmail: state.loggedUser.email,
                           ),
                           LeaderboardPage(),
                         ],

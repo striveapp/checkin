@@ -267,7 +267,7 @@ extension Localization on String {
     'en': GymSelectionPage.whatsYourGym,
     'es': 'Cuál es tu gimnasio?'
   } + {
-    'en': LoginFailure.message,
+    'en': LoginBloc.loginError,
     'es': 'Error de inicio de sesion'
   } ;
 

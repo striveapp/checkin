@@ -5,7 +5,7 @@ import 'package:firebase_storage/firebase_storage.dart';
 
 import '../config.dart';
 
-class UploaderProvider {
+class StorageProvider {
   FirebaseStorage firebaseStorage = FirebaseStorage(
       storageBucket: isInDebugMode ? TEST_STORAGE_BUCKET : STORAGE_BUCKET);
 

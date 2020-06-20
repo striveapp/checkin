@@ -7,20 +7,20 @@ import 'package:checkin/src/blocs/user/bloc.dart';
 import 'package:checkin/src/models/grade.dart';
 import 'package:checkin/src/models/user.dart';
 import 'package:checkin/src/repositories/image_repository.dart';
-import 'package:checkin/src/repositories/uploader_repository.dart';
+import 'package:checkin/src/repositories/storage_repository.dart';
 import 'package:checkin/src/repositories/user_repository.dart';
 import 'package:mockito/mockito.dart';
 import 'package:test/test.dart';
 
 class MockUserRepository extends Mock implements UserRepository {}
-class MockUploaderRepository extends Mock implements UploaderRepository {}
+class MockstorageRepository extends Mock implements StorageRepository {}
 class MockImageRepository extends Mock implements ImageRepository {}
 class MockAuthBloc extends Mock implements AuthBloc {}
 
 void main() {
   group("UserBloc", () {
     UserRepository mockUserRepository;
-    UploaderRepository mockUploaderRepository;
+    StorageRepository mockstorageRepository;
     ImageRepository mockImageRepository;
     User testUser;
     UserBloc userBloc;
@@ -29,7 +29,7 @@ void main() {
 
     setUp(() {
       mockUserRepository = MockUserRepository();
-      mockUploaderRepository = MockUploaderRepository();
+      mockstorageRepository = MockstorageRepository();
       mockImageRepository = MockImageRepository();
       mockAuthBloc = MockAuthBloc();
       userStreamCtrl = StreamController<User>();
@@ -40,7 +40,7 @@ void main() {
       whenListen(
           mockAuthBloc,
           Stream.fromIterable(
-              [AuthAuthenticated(loggedUserEmail: testUser.email)]));
+              [AuthAuthenticated(loggedUser: testUser)]));
       when(mockUserRepository.getUserByEmail(testUser.email)).thenAnswer((_) {
         return userStreamCtrl.stream;
       });
@@ -62,7 +62,7 @@ void main() {
           userBloc = UserBloc(
             authBloc: mockAuthBloc,
             userRepository: mockUserRepository,
-            uploaderRepository: mockUploaderRepository,
+            storageRepository: mockstorageRepository,
             imageRepository: mockImageRepository,
           );
 
@@ -83,7 +83,7 @@ void main() {
           userBloc = UserBloc(
             authBloc: mockAuthBloc,
             userRepository: mockUserRepository,
-            uploaderRepository: mockUploaderRepository,
+            storageRepository: mockstorageRepository,
             imageRepository: mockImageRepository,
           );
 
@@ -106,7 +106,7 @@ void main() {
         userBloc = UserBloc(
           authBloc: mockAuthBloc,
           userRepository: mockUserRepository,
-          uploaderRepository: mockUploaderRepository,
+          storageRepository: mockstorageRepository,
           imageRepository: mockImageRepository,
         );
         userStreamCtrl.add(testUser);
@@ -156,7 +156,7 @@ void main() {
         userBloc = UserBloc(
           authBloc: mockAuthBloc,
           userRepository: mockUserRepository,
-          uploaderRepository: mockUploaderRepository,
+          storageRepository: mockstorageRepository,
           imageRepository: mockImageRepository,
         );
         userStreamCtrl.add(testUser);
@@ -205,7 +205,7 @@ void main() {
         userBloc = UserBloc(
           authBloc: mockAuthBloc,
           userRepository: mockUserRepository,
-          uploaderRepository: mockUploaderRepository,
+          storageRepository: mockstorageRepository,
           imageRepository: mockImageRepository,
         );
         userStreamCtrl.add(testUser);
@@ -232,7 +232,7 @@ void main() {
           return Future.value(fakeImage);
         });
 
-        when(mockUploaderRepository.uploadImage(fakeImage, argThat(endsWith(".png")))).thenAnswer((_) {
+        when(mockstorageRepository.uploadImage(fakeImage, argThat(endsWith(".png")))).thenAnswer((_) {
           return Future.value(newImageUrl);
         });
 
@@ -266,7 +266,7 @@ void main() {
         userBloc = UserBloc(
           authBloc: mockAuthBloc,
           userRepository: mockUserRepository,
-          uploaderRepository: mockUploaderRepository,
+          storageRepository: mockstorageRepository,
           imageRepository: mockImageRepository,
         );
         userStreamCtrl.add(testUser);
@@ -318,7 +318,7 @@ void main() {
         userBloc = UserBloc(
           authBloc: mockAuthBloc,
           userRepository: mockUserRepository,
-          uploaderRepository: mockUploaderRepository,
+          storageRepository: mockstorageRepository,
           imageRepository: mockImageRepository,
         );
         userStreamCtrl.add(testUser);

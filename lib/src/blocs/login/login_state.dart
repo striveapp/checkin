@@ -1,50 +1,17 @@
 import 'package:checkin/src/models/user.dart';
-import 'package:equatable/equatable.dart';
+import 'package:flutter/foundation.dart';
+import 'package:freezed_annotation/freezed_annotation.dart';
 
-abstract class LoginState extends Equatable {
-  const LoginState();
+part 'login_state.freezed.dart';
 
-  @override
-  List<Object> get props => [];
-}
+@freezed
+abstract class LoginState with _$LoginState {
+  const factory LoginState.loginInitial() = LoginInitial;
 
-class LoginInitial extends LoginState {
-  @override
-  String toString() => 'LoginInitial';
-}
+  const factory LoginState.loginLoading() = LoginLoading;
 
-class LoginLoading extends LoginState {
-  @override
-  String toString() => 'LoginLoading';
-}
+  const factory LoginState.loginSuccess({User loggedUser}) = LoginSuccess;
 
-class LoginSuccess extends LoginState {
-  final User loggedUser;
-
-  const LoginSuccess({
-    this.loggedUser,
-  });
-
-  @override
-  List<Object> get props => [loggedUser];
-  
-  @override
-  String toString() => 'LoginSuccess';
-}
-
-class LoginFailure extends LoginState {
-  static const message = 'Login failed';
-  final String errorMessage;
-
-  const LoginFailure({
-    this.errorMessage = message,
-  });
-
-  @override
-  List<Object> get props => [errorMessage];
-
-  @override
-  String toString() {
-    return 'LoginFailure{errorMessage: $errorMessage}';
-  }
+  const factory LoginState.loginWithTestUserOwner({String errorMessage}) =
+      LoginFailure;
 }

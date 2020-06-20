@@ -19,12 +19,14 @@ dependencies:
     sdk: flutter
 
   cupertino_icons: ^0.1.2
-  firebase_core: ^0.4.1+5
+  firebase_core: ^0.4.5
   firebase_auth: ^0.14.0+9
   firebase_crashlytics: ^0.1.1+2
   firebase_messaging: ^5.1.8
   firebase_dynamic_links: ^0.5.0+9
-  cloud_firestore: ^0.12.10+2
+  firebase_storage: ^3.1.6
+  firebase_analytics: ^5.0.15
+  cloud_firestore: ^0.13.6
   cloud_functions: ^0.4.1+4
   google_sign_in: ^4.5.1
   share: ^0.6.3+5
@@ -44,7 +46,6 @@ dependencies:
   pub_semver: ^1.4.2
   rxdart: ^0.23.1
   freezed: ^0.10.8
-  firebase_storage: ^3.1.6
   image_cropper: ^1.2.3
   image_picker: ^0.6.7+1
 

@@ -1,5 +1,6 @@
 import 'package:checkin/src/blocs/login/bloc.dart';
 import 'package:checkin/src/models/user.dart';
+import 'package:checkin/src/repositories/analytics_repository.dart';
 import 'package:checkin/src/repositories/auth_repository.dart';
 import 'package:checkin/src/repositories/user_repository.dart';
 import 'package:mockito/mockito.dart';
@@ -8,20 +9,24 @@ import 'package:test/test.dart';
 class MockUserRepository extends Mock implements UserRepository {}
 
 class MockAuthRepository extends Mock implements AuthRepository {}
+class MockAnalyticsRepository extends Mock implements AnalyticsRepository {}
 
 void main() {
   group("LoginBloc", () {
     LoginBloc loginBloc;
     UserRepository mockUserRepository;
     AuthRepository mockAuthRepository;
+    AnalyticsRepository mockAnalyticsRepository;
 
     setUp(() {
       mockAuthRepository = MockAuthRepository();
       mockUserRepository = MockUserRepository();
+      mockAnalyticsRepository = MockAnalyticsRepository();
 
       loginBloc = LoginBloc(
         authRepository: mockAuthRepository,
         userRepository: mockUserRepository,
+        analyticsRepository: mockAnalyticsRepository,
       );
     });
 
@@ -35,6 +40,7 @@ void main() {
 
     group("LoginWithGoogle", () {
       var fakeLoggedUser = User(
+        uid: "1234",
         name: "Batman",
         email: "not@work.com",
         imageUrl: "http://image.url",
@@ -57,6 +63,9 @@ void main() {
           loginBloc,
           emitsInOrder(expectedState),
         );
+
+        verify(mockAnalyticsRepository.setUserProperties(fakeLoggedUser.uid));
+        verify(mockAnalyticsRepository.logLoginWithGoogleSignIn());
         verify(mockUserRepository.createUser(fakeLoggedUser));
       });
 
@@ -66,13 +75,16 @@ void main() {
 
         final expectedState = [
           LoginInitial(),
-          LoginFailure(),
+          LoginFailure(errorMessage: 'Login failed'),
         ];
 
         await expectLater(
             loginBloc,
             emitsInOrder(expectedState),
         );
+
+        verifyNever(mockAnalyticsRepository.setUserProperties(fakeLoggedUser.uid));
+        verifyNever(mockAnalyticsRepository.logLoginWithGoogleSignIn());
         verifyNever(mockUserRepository.createUser(fakeLoggedUser));
       });
 
@@ -89,6 +101,9 @@ void main() {
             loginBloc,
             emitsInOrder(expectedState),
         );
+
+        verifyNever(mockAnalyticsRepository.setUserProperties(fakeLoggedUser.uid));
+        verifyNever(mockAnalyticsRepository.logLoginWithGoogleSignIn());
         verifyNever(mockUserRepository.createUser(fakeLoggedUser));
       });
     });

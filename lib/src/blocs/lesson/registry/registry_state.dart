@@ -11,7 +11,6 @@ abstract class RegistryState with _$RegistryState {
   const factory RegistryState.registryLoading() = RegistryLoading;
   const factory RegistryState.registryError() = RegistryError;
   const factory RegistryState.registryLoaded({int classCapacity, List<Attendee> attendees, List<Attendee> acceptedAttendees, User currentUser}) = RegistryLoaded;
-
 }
 
 extension RegistryLoadedExtension on RegistryLoaded {

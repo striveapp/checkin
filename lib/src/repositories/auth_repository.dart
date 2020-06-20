@@ -4,7 +4,7 @@ import 'package:checkin/src/resources/auth_provider.dart';
 class AuthRepository {
   final _authProvider = AuthProvider();
 
-  Stream<String> getAuthState() => _authProvider.getAuthState();
+  Stream<User> getAuthState() => _authProvider.getAuthState();
 
   Future<void> signOut() => _authProvider.signOut();
 

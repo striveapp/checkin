@@ -7,13 +7,13 @@ class AuthProvider {
   final FirebaseAuth _firebaseAuth;
   final GoogleSignIn _googleSignIn;
 
-  AuthProvider({FirebaseAuth firebaseAuth, GoogleSignIn googleSignin})
+  AuthProvider({FirebaseAuth firebaseAuth, GoogleSignIn googleSignIn})
       : _firebaseAuth = firebaseAuth ?? FirebaseAuth.instance,
-        _googleSignIn = googleSignin ?? GoogleSignIn();
+        _googleSignIn = googleSignIn ?? GoogleSignIn();
 
-  Stream<String> getAuthState() {
+  Stream<User> getAuthState() {
     return _firebaseAuth.onAuthStateChanged
-        .map((firebaseUser) => firebaseUser?.email);
+        .map((firebaseUser) => User.fromFirebaseUser(firebaseUser));
   }
 
   Future<User> signInWithGoogle() async {

@@ -1,18 +1,35 @@
 import 'package:checkin/src/blocs/auth/bloc.dart';
+import 'package:checkin/src/models/user.dart';
+import 'package:checkin/src/repositories/analytics_repository.dart';
 import 'package:checkin/src/repositories/auth_repository.dart';
 import 'package:mockito/mockito.dart';
 import 'package:test/test.dart';
 
 class MockAuthRepository extends Mock implements AuthRepository {}
 
+class MockAnalyticsRepository extends Mock implements AnalyticsRepository {}
+
 void main() {
   group('AuthBloc', () {
     AuthBloc authBloc;
     MockAuthRepository mockAuthRepository;
+    MockAnalyticsRepository mockAnalyticsRepository;
+
+    User fakeUser = User(
+      uid: "123",
+      email: "test@test.com",
+      name: "lol",
+      imageUrl: "http://lol",
+    );
 
     setUp(() {
       mockAuthRepository = MockAuthRepository();
-      authBloc = AuthBloc(authRepository: mockAuthRepository);
+      mockAnalyticsRepository = MockAnalyticsRepository();
+
+      authBloc = AuthBloc(
+        authRepository: mockAuthRepository,
+        analyticsRepository: mockAnalyticsRepository,
+      );
     });
 
     tearDown(() {
@@ -25,43 +42,43 @@ void main() {
 
     group("AppStarted", () {
       setUp(() {
+        when(mockAuthRepository.getAuthState()).thenAnswer((_) {
+          return Stream<User>.value(fakeUser);
+        });
+
         authBloc.add(AppStarted());
       });
 
-      test("should emit AuthAuthenticated with logged user email", () {
-        var fakeUserEmail = "fakeUserEmail";
-        when(mockAuthRepository.getAuthState())
-            .thenAnswer((_) {
-              return Stream<String>.value(fakeUserEmail);
-            });
-
+      test("should emit AuthAuthenticated with logged user", () async {
         final expectedResponse = [
           AuthUninitialized(),
-          AuthAuthenticated(loggedUserEmail: fakeUserEmail),
+          AuthAuthenticated(loggedUser: fakeUser),
         ];
-        expectLater(authBloc, emitsInOrder(expectedResponse));
+
+        await expectLater(authBloc, emitsInOrder(expectedResponse));
+        verify(mockAnalyticsRepository.setUserProperties(fakeUser.uid));
       });
-      test("should emit AuthUnauthenticated if logged user email is not present", () {
-        when(mockAuthRepository.getAuthState())
-            .thenAnswer((_) {
-          return Stream<String>.value(null);
+      test("should emit AuthUnauthenticated if logged user is not present", () async {
+        when(mockAuthRepository.getAuthState()).thenAnswer((_) {
+          return Stream<User>.value(null);
         });
 
         final expectedResponse = [
           AuthUninitialized(),
           AuthUnauthenticated(),
         ];
-        expectLater(authBloc, emitsInOrder(expectedResponse));
-      });
-      test("should emit AuthUnauthenticated", () {
-          when(mockAuthRepository.getAuthState()).thenThrow("Kaboom!");
-          final expectedResponse = [
-            AuthUninitialized(),
-            AuthUnauthenticated(),
-          ];
 
-          expectLater(authBloc, emitsInOrder(expectedResponse));
-        });
+        await expectLater(authBloc, emitsInOrder(expectedResponse));
+      });
+      test("should emit AuthUnauthenticated", () async {
+        when(mockAuthRepository.getAuthState()).thenThrow("Kaboom!");
+        final expectedResponse = [
+          AuthUninitialized(),
+          AuthUnauthenticated(),
+        ];
+
+        await expectLater(authBloc, emitsInOrder(expectedResponse));
+      });
     });
 
     group('LogOut', () {

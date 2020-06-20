@@ -6,21 +6,21 @@ import 'package:checkin/src/blocs/auth/bloc.dart';
 import 'package:checkin/src/blocs/user/user_event.dart';
 import 'package:checkin/src/blocs/user/user_state.dart';
 import 'package:checkin/src/repositories/image_repository.dart';
-import 'package:checkin/src/repositories/uploader_repository.dart';
+import 'package:checkin/src/repositories/storage_repository.dart';
 import 'package:checkin/src/repositories/user_repository.dart';
 import 'package:flutter/foundation.dart';
 import 'package:meta/meta.dart';
 
 class UserBloc extends Bloc<UserEvent, UserState> {
   final UserRepository userRepository;
-  final UploaderRepository uploaderRepository;
+  final StorageRepository storageRepository;
   final ImageRepository imageRepository;
   final AuthBloc authBloc;
   StreamSubscription userSub;
 
   UserBloc({
     @required this.userRepository,
-    @required this.uploaderRepository,
+    @required this.storageRepository,
     @required this.imageRepository,
     @required this.authBloc,
   }) {
@@ -29,7 +29,7 @@ class UserBloc extends Bloc<UserEvent, UserState> {
         userSub?.cancel();
         userSub = this
             .userRepository
-            .getUserByEmail(authState.loggedUserEmail)
+            .getUserByEmail(authState.loggedUser.email)
             .listen((user) {
           add(UserUpdated(user: user));
         });
@@ -81,7 +81,7 @@ class UserBloc extends Bloc<UserEvent, UserState> {
           if (croppedFile != null) {
             String fileName = "$userEmail-${DateTime.now()}.png";
             String newImageUrl =
-                await uploaderRepository.uploadImage(croppedFile, fileName);
+                await storageRepository.uploadImage(croppedFile, fileName);
 
             await userRepository.updateUserImageUrl(
               userEmail,

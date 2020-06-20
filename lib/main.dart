@@ -5,12 +5,14 @@ import 'package:checkin/src/api/api.dart';
 import 'package:checkin/src/blocs/auth/bloc.dart';
 import 'package:checkin/src/blocs/dynamic_link/bloc.dart';
 import 'package:checkin/src/blocs/version/bloc.dart';
+import 'package:checkin/src/repositories/analytics_repository.dart';
 import 'package:checkin/src/repositories/auth_repository.dart';
 import 'package:checkin/src/repositories/image_repository.dart';
 import 'package:checkin/src/repositories/lesson_repository.dart';
-import 'package:checkin/src/repositories/uploader_repository.dart';
+import 'package:checkin/src/repositories/storage_repository.dart';
 import 'package:checkin/src/repositories/user_repository.dart';
 import 'package:checkin/src/repositories/version_repository.dart';
+import 'package:checkin/src/resources/analytics_provider.dart';
 import 'package:checkin/src/resources/lesson_instances_provider.dart';
 import 'package:checkin/src/routes/application.dart';
 import 'package:checkin/src/routes/routes.dart';
@@ -38,9 +40,10 @@ void main() {
   // init repositories
   final AuthRepository authRepository = AuthRepository();
   final UserRepository userRepository = UserRepository();
-  final UploaderRepository uploaderRepository = UploaderRepository();
+  final StorageRepository storageRepository = StorageRepository();
   final ImageRepository imageRepository = ImageRepository();
   final FirebaseDynamicLinks dynamicLinks = FirebaseDynamicLinks.instance;
+  final AnalyticsRepository analyticsRepository = AnalyticsProvider();
 
   runZonedGuarded<Future<void>>(() async {
     runApp(
@@ -56,8 +59,10 @@ void main() {
         child: MultiBlocProvider(
           providers: [
             BlocProvider<AuthBloc>(
-              create: (context) =>
-              AuthBloc(authRepository: authRepository)..add(AppStarted()),
+              create: (context) => AuthBloc(
+                authRepository: authRepository,
+                analyticsRepository: analyticsRepository,
+              )..add(AppStarted()),
             ),
             BlocProvider<DynamicLinkBloc>(
               create: (context) => DynamicLinkBloc(dynamicLinks: dynamicLinks)
@@ -70,8 +75,9 @@ void main() {
           child: App(
             userRepository: userRepository,
             authRepository: authRepository,
-            uploaderRepository: uploaderRepository,
+            storageRepository: storageRepository,
             imageRepository: imageRepository,
+            analyticsRepository: analyticsRepository,
           ),
         ),
       ),

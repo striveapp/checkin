@@ -4,6 +4,7 @@ import 'package:firebase_auth/firebase_auth.dart';
 import 'package:meta/meta.dart';
 
 class User extends Equatable {
+  final String uid;
   final String name;
   final String email;
   final String imageUrl;
@@ -16,6 +17,7 @@ class User extends Equatable {
     @required this.name,
     @required this.email,
     @required this.imageUrl,
+    this.uid,
     this.grade,
     this.selectedGymId,
     this.isOwner = false,
@@ -25,6 +27,7 @@ class User extends Equatable {
   factory User.fromFirebaseUser(FirebaseUser firebaseUser) {
     return firebaseUser != null
         ? User(
+      uid: firebaseUser.uid,
       name: firebaseUser.displayName,
       email: firebaseUser.email,
       imageUrl: firebaseUser.photoUrl,

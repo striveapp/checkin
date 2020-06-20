@@ -1,32 +1,12 @@
-import 'package:equatable/equatable.dart';
+import 'package:checkin/src/models/user.dart';
+import 'package:flutter/foundation.dart';
+import 'package:freezed_annotation/freezed_annotation.dart';
 
-abstract class AuthEvent extends Equatable {
-  const AuthEvent();
+part 'auth_event.freezed.dart';
 
-  @override
-  List<Object> get props => [];
-}
-
-class AppStarted extends AuthEvent {
-  @override
-  String toString() => 'AppStarted';
-}
-
-class AuthUpdated extends AuthEvent {
-  final String loggedUserEmail;
-
-  const AuthUpdated({
-    this.loggedUserEmail,
-  });
-
-  @override
-  List<Object> get props => [loggedUserEmail];
-
-  @override
-  String toString() => 'AuthUpdated';
-}
-
-class LogOut extends AuthEvent {
-  @override
-  String toString() => 'LoggedOut';
+@freezed
+abstract class AuthEvent with _$AuthEvent {
+  const factory AuthEvent.appStarted() = AppStarted;
+  const factory AuthEvent.authUpdated({User loggedUser}) = AuthUpdated;
+  const factory AuthEvent.logOut() = LogOut;
 }

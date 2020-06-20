@@ -1,28 +1,15 @@
-import 'package:equatable/equatable.dart';
+import 'package:flutter/foundation.dart';
+import 'package:freezed_annotation/freezed_annotation.dart';
 
-abstract class LoginEvent extends Equatable {
-  const LoginEvent();
+part 'login_event.freezed.dart';
 
-  @override
-  List<Object> get props => [];
-}
+@freezed
+abstract class LoginEvent with _$LoginEvent {
+  const factory LoginEvent.loginWithGoogle() = LoginWithGoogle;
 
-class LoginWithGoogle extends LoginEvent {
-  @override
-  String toString() => 'LoginWithGoogle';
-}
+  const factory LoginEvent.loginWithTestUser() = LoginWithTestUser;
 
-class LoginWithTestUser extends LoginEvent {
-  @override
-  String toString() => 'LoginWithTestUser';
-}
+  const factory LoginEvent.loginWithTestUserTwo() = LoginWithTestUserTwo;
 
-class LoginWithTestUserTwo extends LoginEvent {
-  @override
-  String toString() => 'LoginWithTestUserTwo';
-}
-
-class LoginWithTestUserOwner extends LoginEvent {
-  @override
-  String toString() => 'LoginWithTestUserOwner';
+  const factory LoginEvent.loginWithTestUserOwner() = LoginWithTestUserOwner;
 }
