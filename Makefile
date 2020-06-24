@@ -41,3 +41,11 @@ codegen-runner:
 create-app-icons:
 	@flutter pub get
 	flutter pub run flutter_launcher_icons:main
+
+.PHONY: start-debug-view
+start-debug-view:
+	$(info ---------------------)
+	$(info Starting the debug view)
+	$(info ---------------------)
+	@adb shell setprop debug.firebase.analytics.app com.arya.checkin
+	@echo "DebugView open in: https://console.firebase.google.com/u/1/project/checkin-test-fba3d/analytics/app/android:com.arya.checkin/debugview"

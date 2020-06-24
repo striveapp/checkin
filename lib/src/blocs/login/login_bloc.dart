@@ -41,9 +41,13 @@ class LoginBloc extends Bloc<LoginEvent, LoginState> {
           debugPrint("Unable to login, loggedUser: $loggedUser");
           yield LoginFailure(errorMessage: loginError);
         }
-      } catch (e) {
-        debugPrint("Unexpected error, login failed [$e]");
-        yield LoginFailure(errorMessage: "Unexpected error! [$e]");
+      } catch (err, stackTrace) {
+        debugPrint("Unexpected error, login failed [$err]");
+        await _analyticsRepository.loginError(
+          err: err,
+          stackTrace: stackTrace,
+        );
+        yield LoginFailure(errorMessage: "Unexpected error! Please contact the gym owner");
       }
     }
 

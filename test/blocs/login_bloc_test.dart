@@ -9,6 +9,7 @@ import 'package:test/test.dart';
 class MockUserRepository extends Mock implements UserRepository {}
 
 class MockAuthRepository extends Mock implements AuthRepository {}
+
 class MockAnalyticsRepository extends Mock implements AnalyticsRepository {}
 
 void main() {
@@ -79,32 +80,41 @@ void main() {
         ];
 
         await expectLater(
-            loginBloc,
-            emitsInOrder(expectedState),
+          loginBloc,
+          emitsInOrder(expectedState),
         );
 
-        verifyNever(mockAnalyticsRepository.setUserProperties(fakeLoggedUser.uid));
+        verifyNever(
+            mockAnalyticsRepository.setUserProperties(fakeLoggedUser.uid));
         verifyNever(mockAnalyticsRepository.logLoginWithGoogleSignIn());
         verifyNever(mockUserRepository.createUser(fakeLoggedUser));
       });
 
-      test("should emit LoginFailure if an error is returned", () async {
+      test(
+          "should emit LoginFailure if an error is returned and track the error",
+          () async {
         var error = "Kaboom!";
         when(mockAuthRepository.signInWithGoogle()).thenThrow(error);
 
         final expectedState = [
           LoginInitial(),
-          LoginFailure(errorMessage: "Unexpected error! [$error]"),
+          LoginFailure(
+              errorMessage: "Unexpected error! Please contact the gym owner"),
         ];
 
         await expectLater(
-            loginBloc,
-            emitsInOrder(expectedState),
+          loginBloc,
+          emitsInOrder(expectedState),
         );
 
-        verifyNever(mockAnalyticsRepository.setUserProperties(fakeLoggedUser.uid));
+        verifyNever(
+            mockAnalyticsRepository.setUserProperties(fakeLoggedUser.uid));
         verifyNever(mockAnalyticsRepository.logLoginWithGoogleSignIn());
         verifyNever(mockUserRepository.createUser(fakeLoggedUser));
+        verify(mockAnalyticsRepository.loginError(
+          err: error,
+          stackTrace: argThat(isA<StackTrace>(), named: 'stackTrace'),
+        ));
       });
     });
   });
