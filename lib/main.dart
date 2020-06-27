@@ -4,6 +4,7 @@ import 'package:bloc/bloc.dart';
 import 'package:checkin/src/api/api.dart';
 import 'package:checkin/src/blocs/auth/bloc.dart';
 import 'package:checkin/src/blocs/dynamic_link/bloc.dart';
+import 'package:checkin/src/blocs/theme/bloc.dart';
 import 'package:checkin/src/blocs/version/bloc.dart';
 import 'package:checkin/src/repositories/analytics_repository.dart';
 import 'package:checkin/src/repositories/auth_repository.dart';
@@ -58,6 +59,9 @@ void main() {
         ],
         child: MultiBlocProvider(
           providers: [
+            BlocProvider<ThemeBloc>(
+              create: (context) => ThemeBloc(),
+            ),
             BlocProvider<AuthBloc>(
               create: (context) => AuthBloc(
                 authRepository: authRepository,
@@ -72,13 +76,15 @@ void main() {
                 create: (context) =>
                     VersionBloc(versionRepository: VersionRepository())),
           ],
-          child: App(
-            userRepository: userRepository,
-            authRepository: authRepository,
-            storageRepository: storageRepository,
-            imageRepository: imageRepository,
-            analyticsRepository: analyticsRepository,
-          ),
+          child: BlocBuilder<ThemeBloc, ThemeState>(
+              builder: (BuildContext context, ThemeState state) => App(
+                    themeData: state.themeData,
+                    userRepository: userRepository,
+                    authRepository: authRepository,
+                    storageRepository: storageRepository,
+                    imageRepository: imageRepository,
+                    analyticsRepository: analyticsRepository,
+                  )),
         ),
       ),
     );

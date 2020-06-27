@@ -6,7 +6,7 @@ import 'package:checkin/src/blocs/membership/membership_state.dart';
 import 'package:checkin/src/blocs/user/bloc.dart';
 import 'package:checkin/src/models/membership.dart';
 import 'package:checkin/src/repositories/membership_repository.dart';
-import 'package:flutter/cupertino.dart';
+import 'package:flutter/material.dart';
 
 class MembershipBloc extends Bloc<MembershipEvent, MembershipState> {
   final MembershipRepository membershipRepository;

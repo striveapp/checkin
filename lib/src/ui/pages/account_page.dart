@@ -9,8 +9,6 @@ import 'package:checkin/src/ui/components/base_app_bar.dart';
 import 'package:checkin/src/ui/components/loading_indicator.dart';
 import 'package:checkin/src/ui/components/membership/membership_card.dart';
 import 'package:checkin/src/ui/components/profile_card.dart';
-import 'package:checkin/src/util/debug_util.dart';
-import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:checkin/src/localization/localization.dart';
@@ -105,11 +103,11 @@ class AccountPage extends StatelessWidget {
                           userEmail: state.user.email,
                           isOwner: state.user.isOwner
                         ),
-                        if (isInDebugMode)
+                        if (state.user.selectedGymId == "test")
                           SizedBox(
                             height: 50,
                           ),
-                        if (isInDebugMode)
+                        if (state.user.selectedGymId == "test")
                           Row(
                             mainAxisAlignment: MainAxisAlignment.center,
                             children: <Widget>[
