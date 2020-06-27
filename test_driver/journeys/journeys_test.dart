@@ -8,5 +8,4 @@ void main() {
   UserAccountTest().main();
   StatsTest().main();
   LeaderboardTest().main();
-
 }

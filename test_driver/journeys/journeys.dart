@@ -43,11 +43,11 @@ Future<void> setup() async {
 
 Future<void> cleanDatabase() async {
   //todo: this should use test data not prod data imported in test
-  await StatsProvider().cleanUserHistory("aranha", "test@test.com");
-  await LessonInstancesProvider().cleanLessonAttendees("aranha", "2020-05-04", "FLhdKCTv9XzlArDMAwQo");
-  await LessonInstancesProvider().cleanLessonAttendees("aranha", "2020-05-04", "nUtQA4rjEWr7pXeeLChk");
-  await LessonInstancesProvider().cleanLessonAttendees("aranha", "2020-05-04", "WiinGJDrGnO9sc8z3hW4");
-  lessonSub = LessonInstancesProvider().getLesson("aranha", "2020-05-04", "nUtQA4rjEWr7pXeeLChk").listen((event) {
+  await StatsProvider().cleanUserHistory("test", "test@test.com");
+  await LessonInstancesProvider().cleanLessonAttendees("test", "2020-06-22", "3dbc1886-0c93-4eb3-a815-f4ed69306217");
+  await LessonInstancesProvider().cleanLessonAttendees("test", "2020-06-22", "50be7f9f-d8e4-424a-a4d8-2910dbaf68e3");
+  await LessonInstancesProvider().cleanLessonAttendees("test", "2020-06-22", "d70c08ba-82c9-47ab-99cc-49d7a890bef4");
+  lessonSub = LessonInstancesProvider().getLesson("test", "2020-06-22", "50be7f9f-d8e4-424a-a4d8-2910dbaf68e3").listen((event) {
     isDbClean = event?.attendees?.isEmpty;
   });
 }
