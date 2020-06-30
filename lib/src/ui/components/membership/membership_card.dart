@@ -12,7 +12,6 @@ class MembershipCard extends StatelessWidget {
     return Container(
       constraints: BoxConstraints(maxHeight: 280),
         child: Card(
-            color: Colors.white,
             child: BlocBuilder<MembershipBloc, MembershipState>(
                 builder: (BuildContext context, MembershipState state) {
 

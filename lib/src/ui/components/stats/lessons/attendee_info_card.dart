@@ -18,7 +18,6 @@ class AttendeeInfoCard extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return Card(
-        color: Colors.white,
         child: InkWell(
           onTap: () {
             Navigator.of(context).pushNamed('stats/${attendee.email}');

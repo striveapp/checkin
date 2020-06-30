@@ -20,7 +20,6 @@ class ProfileCard extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return Card(
-      color: Colors.white,
       child: Padding(
         padding: EdgeInsets.symmetric(vertical: 25, horizontal: 20),
         child: BlocBuilder<ProfileBloc, ProfileState>(
