@@ -14,6 +14,7 @@ import 'package:checkin/src/repositories/storage_repository.dart';
 import 'package:checkin/src/repositories/user_repository.dart';
 import 'package:checkin/src/repositories/version_repository.dart';
 import 'package:checkin/src/resources/analytics_provider.dart';
+import 'package:checkin/src/resources/auth_provider.dart';
 import 'package:checkin/src/resources/lesson_instances_provider.dart';
 import 'package:checkin/src/routes/application.dart';
 import 'package:checkin/src/routes/routes.dart';
@@ -39,7 +40,7 @@ void main() {
   Routes.configureRoutes(Application.router);
 
   // init repositories
-  final AuthRepository authRepository = AuthRepository();
+  final AuthRepository authRepository = AuthProvider();
   final UserRepository userRepository = UserRepository();
   final StorageRepository storageRepository = StorageRepository();
   final ImageRepository imageRepository = ImageRepository();

@@ -1,15 +1,13 @@
 import 'package:checkin/src/models/user.dart';
-import 'package:checkin/src/resources/auth_provider.dart';
 
-class AuthRepository {
-  final _authProvider = AuthProvider();
+abstract class AuthRepository {
+  Stream<User> getAuthState();
 
-  Stream<User> getAuthState() => _authProvider.getAuthState();
+  Future<String> getIdToken();
 
-  Future<void> signOut() => _authProvider.signOut();
+  Future<void> signOut();
 
-  Future<User> signInWithGoogle() => _authProvider.signInWithGoogle();
+  Future<User> signInWithGoogle();
 
-  Future<User> loginWithTestUser({test=0, owner=false}) => _authProvider.loginWithTestUser(test, owner);
-
+  Future<User> loginWithTestUser({test = 0, owner = false});
 }

@@ -1,9 +1,10 @@
 import 'package:checkin/src/models/user.dart';
+import 'package:checkin/src/repositories/auth_repository.dart';
 import 'package:firebase_auth/firebase_auth.dart';
 import 'package:flutter/foundation.dart';
 import 'package:google_sign_in/google_sign_in.dart';
 
-class AuthProvider {
+class AuthProvider implements AuthRepository {
   final FirebaseAuth _firebaseAuth;
   final GoogleSignIn _googleSignIn;
 
@@ -14,6 +15,13 @@ class AuthProvider {
   Stream<User> getAuthState() {
     return _firebaseAuth.onAuthStateChanged
         .map((firebaseUser) => User.fromFirebaseUser(firebaseUser));
+  }
+
+  Future<String> getIdToken() async {
+    FirebaseUser firebaseUser = await _firebaseAuth.currentUser();
+    IdTokenResult idToken = await firebaseUser.getIdToken();
+
+    return idToken.token;
   }
 
   Future<User> signInWithGoogle() async {
@@ -43,7 +51,8 @@ class AuthProvider {
     ]);
   }
 
-  Future<User> loginWithTestUser(test, owner) async {
+  @override
+  Future<User> loginWithTestUser({test = 0, owner = false}) async {
     if (test == 1) {
       await this._firebaseAuth.signInWithEmailAndPassword(
           email: "test@test.com", password: "test123");
