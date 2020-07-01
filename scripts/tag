@@ -19,7 +19,7 @@ function tag {
 
 function error {
   local caller="$(ps -o comm= $PPID)"
-  local time="$(date -Iseconds)"
+  local time="$(date -u +"%Y-%m-%dT%H:%M:%SZ")"
 
   detect-stdin-input
   if [[ $? -eq 0 ]]; then
@@ -37,7 +37,7 @@ function success {
 
   local caller="$(ps -o comm= $PPID)"
 
-  local time="$(date -Iseconds)"
+  local time="$(date -u +"%Y-%m-%dT%H:%M:%SZ")"
 
   printf "\e[1m\e[32m[+] %-15s | $time | $msg\e[0m\n" "$caller"
 }
@@ -45,7 +45,7 @@ function success {
 function warning {
   local msg="$@"
   local caller="$(ps -o comm= $PPID)"
-  local time="$(date -Iseconds)"
+  local time="$(date -u +"%Y-%m-%dT%H:%M:%SZ")"
 
   printf "\e[1m\e[35m[!] %-15s | $time | $msg\e[0m\n" "$caller"
 }
