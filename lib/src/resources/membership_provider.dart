@@ -23,24 +23,11 @@ class MembershipProvider {
 
   Membership toMembership(DocumentSnapshot doc) {
     if(doc.data['payment_method']['card'] != null ) {
-      var card = doc.data['payment_method']['card'];
-      return CardMembership(
+      return Membership(
+        //TODO: we should retrieve the name from the DB
+        name: "Puppa",
         status: doc.data['subscription']['status'],
         currentPeriodEnd: doc.data['subscription']['current_period_end'],
-        email: doc.data['infos']['email'],
-        lastFourDigits: card['last4'],
-        country: card['country'],
-      );
-    }
-
-    if( doc.data['payment_method']['sepa_debit'] != null ) {
-      var sepa = doc.data['payment_method']['sepa_debit'];
-      return SepaMembership(
-        status: doc.data['subscription']['status'],
-        currentPeriodEnd: doc.data['subscription']['current_period_end'],
-        email: doc.data['infos']['email'],
-        lastFourDigits: sepa['last4'],
-        country: sepa['country'],
       );
     }
 

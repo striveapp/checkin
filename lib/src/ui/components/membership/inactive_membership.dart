@@ -1,7 +1,4 @@
-import 'package:checkin/src/api/http_client.dart';
-import 'package:checkin/src/api/payment_api.dart';
 import 'package:checkin/src/localization/localization.dart';
-import 'package:checkin/src/resources/auth_provider.dart';
 import 'package:flutter/material.dart';
 
 class InactiveMembershipView extends StatelessWidget {
@@ -32,8 +29,6 @@ class InactiveMembershipView extends StatelessWidget {
                 style: Theme.of(context).textTheme.button,
               ),
               onPressed: () {
-                // todo sepa: handle new payment flow
-//                callPaymentApi();
                 Navigator.of(context)
                     .pushNamed("subscriptions/$email");
               },
@@ -42,12 +37,5 @@ class InactiveMembershipView extends StatelessWidget {
         ),
       ),
     );
-  }
-
-  void callPaymentApi() {
-    PaymentApi(
-            httpClient:
-                HttpClient(authRepository: AuthProvider()))
-        .setupIntent(gymId: "test", customerId: "customerId", customerEmail: "test@test.com");
   }
 }

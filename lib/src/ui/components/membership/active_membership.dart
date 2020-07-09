@@ -34,14 +34,14 @@ class ActiveMembershipView extends StatelessWidget {
               SizedBox(
                 width: 10,
               ),
-              Flexible(
-                flex: 2,
-                child: Text(
-                  membership.email,
-                  style: Theme.of(context).textTheme.headline3,
-                  overflow: TextOverflow.ellipsis,
-                ),
-              ),
+//              Flexible(
+//                flex: 2,
+//                child: Text(
+//                  membership.email,
+//                  style: Theme.of(context).textTheme.headline3,
+//                  overflow: TextOverflow.ellipsis,
+//                ),
+//              ),
             ],
           ),
           Row(
@@ -54,19 +54,19 @@ class ActiveMembershipView extends StatelessWidget {
                     .headline3
                     .apply(fontWeightDelta: 1),
               ),
-              Row(
-                children: <Widget>[
-                  Icon(Icons.credit_card),
-                  SizedBox(
-                    width: 5,
-                  ),
-                  Text(
-                    // todo sepa: display different component for sepa memberships
-                    "•••• •••• •••• ${membership.lastFourDigits}",
-                    style: Theme.of(context).textTheme.headline3,
-                  ),
-                ],
-              ),
+//              Row(
+//                children: <Widget>[
+//                  Icon(Icons.credit_card),
+//                  SizedBox(
+//                    width: 5,
+//                  ),
+//                  Text(
+//                    // todo sepa: display different component for sepa memberships
+//                    "•••• •••• •••• ${membership.lastFourDigits}",
+//                    style: Theme.of(context).textTheme.headline3,
+//                  ),
+//                ],
+//              ),
             ],
           ),
           SizedBox(

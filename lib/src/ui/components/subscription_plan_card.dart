@@ -4,7 +4,6 @@ import 'package:checkin/src/models/subscription_plan.dart';
 import 'package:checkin/src/resources/auth_provider.dart';
 import 'package:flutter/material.dart';
 import 'package:intl/intl.dart';
-import 'package:url_launcher/url_launcher.dart';
 
 class SubscriptionPlanCard extends StatelessWidget {
   final SubscriptionPlan plan;
