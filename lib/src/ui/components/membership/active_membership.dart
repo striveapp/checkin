@@ -61,7 +61,8 @@ class ActiveMembershipView extends StatelessWidget {
                     width: 5,
                   ),
                   Text(
-                    "•••• •••• •••• ${membership.cardLastFourDigits}",
+                    // todo sepa: display different component for sepa memberships
+                    "•••• •••• •••• ${membership.lastFourDigits}",
                     style: Theme.of(context).textTheme.headline3,
                   ),
                 ],

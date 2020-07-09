@@ -1,23 +1,21 @@
-
-import 'package:equatable/equatable.dart';
 import 'package:flutter/foundation.dart';
+import 'package:freezed_annotation/freezed_annotation.dart';
 
-class Membership extends Equatable {
-  final String status;
-  final int currentPeriodEnd;
-  final String cardLastFourDigits;
-  final String email;
+part 'membership.freezed.dart';
 
-  Membership({
-    @required this.status,
-    @required this.email,
-    this.currentPeriodEnd,
-    this.cardLastFourDigits,
-  });
+@freezed
+abstract class Membership with _$Membership {
+  const factory Membership.cardMembership(
+      {@required final String status,
+      @required final int currentPeriodEnd,
+      @required final String email,
+      @required String lastFourDigits,
+      @required String country}) = CardMembership;
 
-  @override
-  List<Object> get props => [status, email, currentPeriodEnd, cardLastFourDigits];
-
-  @override
-  String toString() => 'Membership{status: $status, currentPeriodEnd: $currentPeriodEnd, cardLastFourDigits: $cardLastFourDigits, email: $email}';
+  const factory Membership.sepaMembership(
+      {@required final String status,
+      @required final int currentPeriodEnd,
+      @required final String email,
+      @required String lastFourDigits,
+      @required String country}) = SepaMembership;
 }

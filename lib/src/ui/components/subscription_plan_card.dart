@@ -1,4 +1,7 @@
+import 'package:checkin/src/api/http_client.dart';
+import 'package:checkin/src/api/payment_api.dart';
 import 'package:checkin/src/models/subscription_plan.dart';
+import 'package:checkin/src/resources/auth_provider.dart';
 import 'package:flutter/material.dart';
 import 'package:intl/intl.dart';
 import 'package:url_launcher/url_launcher.dart';
@@ -20,7 +23,7 @@ class SubscriptionPlanCard extends StatelessWidget {
         height: 150,
         child: Card(
           child: InkWell(
-            onTap: () => _launchPayment(),
+            onTap: () => _launchPayment(context),
             child: Padding(
               padding: const EdgeInsets.symmetric(horizontal: 20),
               child: Row(
@@ -78,14 +81,22 @@ class SubscriptionPlanCard extends StatelessWidget {
     return s.endsWith('00') ? s.substring(0, s.length - 3) : s;
   }
 
-  void _launchPayment() async {
-    var url = Uri.encodeFull(
-        "$basePaymentUrl&customerEmail=$customerEmail&plan=${plan.code}&nocache=${DateTime.now()}");
-
-    if (await canLaunch(url)) {
-      await launch(url);
-    } else {
-      throw 'Could not launch $url';
-    }
+  void _launchPayment(BuildContext context) async {
+    await PaymentApi(
+        httpClient:
+        HttpClient(authRepository: AuthProvider()))
+        .createSubscription(gymId: "test", customerId: "cus_HZcWU3P5qbD5MB", priceId: "price_1H0TPrLAVB3C1lDI0uwSN3X5");
+    // todo sepa should also start loading indicator
+    // todo sepa handle error
+    Navigator.of(context)
+        .pushNamed("payment/success");
+//    var url = Uri.encodeFull(
+//        "$basePaymentUrl&customerEmail=$customerEmail&plan=${plan.code}&nocache=${DateTime.now()}");
+//
+//    if (await canLaunch(url)) {
+//      await launch(url);
+//    } else {
+//      throw 'Could not launch $url';
+//    }
   }
 }

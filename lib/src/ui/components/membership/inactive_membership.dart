@@ -32,6 +32,7 @@ class InactiveMembershipView extends StatelessWidget {
                 style: Theme.of(context).textTheme.button,
               ),
               onPressed: () {
+                // todo sepa: handle new payment flow
 //                callPaymentApi();
                 Navigator.of(context)
                     .pushNamed("subscriptions/$email");
@@ -47,6 +48,6 @@ class InactiveMembershipView extends StatelessWidget {
     PaymentApi(
             httpClient:
                 HttpClient(authRepository: AuthProvider()))
-        .setupIntent("test", "customerId");
+        .setupIntent(gymId: "test", customerId: "customerId", customerEmail: "test@test.com");
   }
 }

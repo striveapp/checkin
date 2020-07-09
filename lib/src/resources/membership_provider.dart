@@ -18,11 +18,32 @@ class MembershipProvider {
         .where((doc) => doc.data['infos'] != null)
         .where((doc) => doc.data['subscription'] != null)
         .where((doc) => doc.data['payment_method'] != null)
-        .map((doc) => Membership(
-              status: doc.data['subscription']['status'],
-              email: doc.data['infos']['email'],
-              currentPeriodEnd: doc.data['subscription']['current_period_end'],
-              cardLastFourDigits: doc.data['payment_method']['card']['last4'],
-            ));
+        .map((doc) => toMembership(doc));
+  }
+
+  Membership toMembership(DocumentSnapshot doc) {
+    if(doc.data['payment_method']['card'] != null ) {
+      var card = doc.data['payment_method']['card'];
+      return CardMembership(
+        status: doc.data['subscription']['status'],
+        currentPeriodEnd: doc.data['subscription']['current_period_end'],
+        email: doc.data['infos']['email'],
+        lastFourDigits: card['last4'],
+        country: card['country'],
+      );
+    }
+
+    if( doc.data['payment_method']['sepa_debit'] != null ) {
+      var sepa = doc.data['payment_method']['sepa_debit'];
+      return SepaMembership(
+        status: doc.data['subscription']['status'],
+        currentPeriodEnd: doc.data['subscription']['current_period_end'],
+        email: doc.data['infos']['email'],
+        lastFourDigits: sepa['last4'],
+        country: sepa['country'],
+      );
+    }
+
+    throw Exception("Not supported membership");
   }
 }
