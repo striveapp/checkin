@@ -1,20 +1,12 @@
 import 'package:checkin/src/models/gym.dart';
-import 'package:equatable/equatable.dart';
+import 'package:flutter/foundation.dart';
+import 'package:freezed_annotation/freezed_annotation.dart';
+import 'package:meta/meta.dart';
 
-abstract class GymState extends Equatable {
-  const GymState();
-}
+part 'gym_state.freezed.dart';
 
-class InitialGymState extends GymState {
-  @override
-  List<Object> get props => [];
-}
-
-class GymLoaded extends GymState {
-  final Gym gym;
-
-  GymLoaded({this.gym});
-
-  @override
-  List<Object> get props => [gym];
+@freezed
+abstract class GymState with _$GymState {
+  const factory GymState.initialGymState() = InitialGymState;
+  const factory GymState.gymLoaded({@required Gym gym}) =  GymLoaded;
 }

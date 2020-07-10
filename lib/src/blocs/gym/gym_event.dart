@@ -1,15 +1,11 @@
 import 'package:checkin/src/models/gym.dart';
-import 'package:equatable/equatable.dart';
+import 'package:flutter/foundation.dart';
+import 'package:freezed_annotation/freezed_annotation.dart';
+import 'package:meta/meta.dart';
 
-abstract class GymEvent extends Equatable {
-  const GymEvent();
-}
+part 'gym_event.freezed.dart';
 
-class GymUpdated extends GymEvent {
-  final Gym gym;
-
-  GymUpdated({this.gym});
-
-  @override
-  List<Object> get props => [gym];
+@freezed
+abstract class GymEvent with _$GymEvent {
+  const factory GymEvent.gymUpdated({@required Gym gym}) = GymUpdated;
 }

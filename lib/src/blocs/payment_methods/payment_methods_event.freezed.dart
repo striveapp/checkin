@@ -12,14 +12,20 @@ T _$identity<T>(T value) => value;
 class _$PaymentMethodsEventTearOff {
   const _$PaymentMethodsEventTearOff();
 
-  PaymentMethodUpdated paymentMethodUpdated({PaymentMethod paymentMethod}) {
+  PaymentMethodUpdated paymentMethodUpdated(
+      {@required String userEmail, PaymentMethod paymentMethod}) {
     return PaymentMethodUpdated(
+      userEmail: userEmail,
       paymentMethod: paymentMethod,
     );
   }
 
-  RegisterBankAccount registerBankAccount() {
-    return const RegisterBankAccount();
+  RegisterBankAccount registerBankAccount(
+      {@required Gym gym, @required String billingEmail}) {
+    return RegisterBankAccount(
+      gym: gym,
+      billingEmail: billingEmail,
+    );
   }
 }
 
@@ -29,13 +35,15 @@ const $PaymentMethodsEvent = _$PaymentMethodsEventTearOff();
 mixin _$PaymentMethodsEvent {
   @optionalTypeArgs
   Result when<Result extends Object>({
-    @required Result paymentMethodUpdated(PaymentMethod paymentMethod),
-    @required Result registerBankAccount(),
+    @required
+        Result paymentMethodUpdated(
+            String userEmail, PaymentMethod paymentMethod),
+    @required Result registerBankAccount(Gym gym, String billingEmail),
   });
   @optionalTypeArgs
   Result maybeWhen<Result extends Object>({
-    Result paymentMethodUpdated(PaymentMethod paymentMethod),
-    Result registerBankAccount(),
+    Result paymentMethodUpdated(String userEmail, PaymentMethod paymentMethod),
+    Result registerBankAccount(Gym gym, String billingEmail),
     @required Result orElse(),
   });
   @optionalTypeArgs
@@ -70,7 +78,7 @@ abstract class $PaymentMethodUpdatedCopyWith<$Res> {
   factory $PaymentMethodUpdatedCopyWith(PaymentMethodUpdated value,
           $Res Function(PaymentMethodUpdated) then) =
       _$PaymentMethodUpdatedCopyWithImpl<$Res>;
-  $Res call({PaymentMethod paymentMethod});
+  $Res call({String userEmail, PaymentMethod paymentMethod});
 
   $PaymentMethodCopyWith<$Res> get paymentMethod;
 }
@@ -87,9 +95,11 @@ class _$PaymentMethodUpdatedCopyWithImpl<$Res>
 
   @override
   $Res call({
+    Object userEmail = freezed,
     Object paymentMethod = freezed,
   }) {
     return _then(PaymentMethodUpdated(
+      userEmail: userEmail == freezed ? _value.userEmail : userEmail as String,
       paymentMethod: paymentMethod == freezed
           ? _value.paymentMethod
           : paymentMethod as PaymentMethod,
@@ -110,14 +120,17 @@ class _$PaymentMethodUpdatedCopyWithImpl<$Res>
 class _$PaymentMethodUpdated
     with DiagnosticableTreeMixin
     implements PaymentMethodUpdated {
-  const _$PaymentMethodUpdated({this.paymentMethod});
+  const _$PaymentMethodUpdated({@required this.userEmail, this.paymentMethod})
+      : assert(userEmail != null);
 
+  @override
+  final String userEmail;
   @override
   final PaymentMethod paymentMethod;
 
   @override
   String toString({DiagnosticLevel minLevel = DiagnosticLevel.info}) {
-    return 'PaymentMethodsEvent.paymentMethodUpdated(paymentMethod: $paymentMethod)';
+    return 'PaymentMethodsEvent.paymentMethodUpdated(userEmail: $userEmail, paymentMethod: $paymentMethod)';
   }
 
   @override
@@ -126,6 +139,7 @@ class _$PaymentMethodUpdated
     properties
       ..add(DiagnosticsProperty(
           'type', 'PaymentMethodsEvent.paymentMethodUpdated'))
+      ..add(DiagnosticsProperty('userEmail', userEmail))
       ..add(DiagnosticsProperty('paymentMethod', paymentMethod));
   }
 
@@ -133,6 +147,9 @@ class _$PaymentMethodUpdated
   bool operator ==(dynamic other) {
     return identical(this, other) ||
         (other is PaymentMethodUpdated &&
+            (identical(other.userEmail, userEmail) ||
+                const DeepCollectionEquality()
+                    .equals(other.userEmail, userEmail)) &&
             (identical(other.paymentMethod, paymentMethod) ||
                 const DeepCollectionEquality()
                     .equals(other.paymentMethod, paymentMethod)));
@@ -140,7 +157,9 @@ class _$PaymentMethodUpdated
 
   @override
   int get hashCode =>
-      runtimeType.hashCode ^ const DeepCollectionEquality().hash(paymentMethod);
+      runtimeType.hashCode ^
+      const DeepCollectionEquality().hash(userEmail) ^
+      const DeepCollectionEquality().hash(paymentMethod);
 
   @override
   $PaymentMethodUpdatedCopyWith<PaymentMethodUpdated> get copyWith =>
@@ -150,24 +169,26 @@ class _$PaymentMethodUpdated
   @override
   @optionalTypeArgs
   Result when<Result extends Object>({
-    @required Result paymentMethodUpdated(PaymentMethod paymentMethod),
-    @required Result registerBankAccount(),
+    @required
+        Result paymentMethodUpdated(
+            String userEmail, PaymentMethod paymentMethod),
+    @required Result registerBankAccount(Gym gym, String billingEmail),
   }) {
     assert(paymentMethodUpdated != null);
     assert(registerBankAccount != null);
-    return paymentMethodUpdated(paymentMethod);
+    return paymentMethodUpdated(userEmail, paymentMethod);
   }
 
   @override
   @optionalTypeArgs
   Result maybeWhen<Result extends Object>({
-    Result paymentMethodUpdated(PaymentMethod paymentMethod),
-    Result registerBankAccount(),
+    Result paymentMethodUpdated(String userEmail, PaymentMethod paymentMethod),
+    Result registerBankAccount(Gym gym, String billingEmail),
     @required Result orElse(),
   }) {
     assert(orElse != null);
     if (paymentMethodUpdated != null) {
-      return paymentMethodUpdated(paymentMethod);
+      return paymentMethodUpdated(userEmail, paymentMethod);
     }
     return orElse();
   }
@@ -199,9 +220,11 @@ class _$PaymentMethodUpdated
 }
 
 abstract class PaymentMethodUpdated implements PaymentMethodsEvent {
-  const factory PaymentMethodUpdated({PaymentMethod paymentMethod}) =
-      _$PaymentMethodUpdated;
+  const factory PaymentMethodUpdated(
+      {@required String userEmail,
+      PaymentMethod paymentMethod}) = _$PaymentMethodUpdated;
 
+  String get userEmail;
   PaymentMethod get paymentMethod;
   $PaymentMethodUpdatedCopyWith<PaymentMethodUpdated> get copyWith;
 }
@@ -210,6 +233,7 @@ abstract class $RegisterBankAccountCopyWith<$Res> {
   factory $RegisterBankAccountCopyWith(
           RegisterBankAccount value, $Res Function(RegisterBankAccount) then) =
       _$RegisterBankAccountCopyWithImpl<$Res>;
+  $Res call({Gym gym, String billingEmail});
 }
 
 class _$RegisterBankAccountCopyWithImpl<$Res>
@@ -221,16 +245,36 @@ class _$RegisterBankAccountCopyWithImpl<$Res>
 
   @override
   RegisterBankAccount get _value => super._value as RegisterBankAccount;
+
+  @override
+  $Res call({
+    Object gym = freezed,
+    Object billingEmail = freezed,
+  }) {
+    return _then(RegisterBankAccount(
+      gym: gym == freezed ? _value.gym : gym as Gym,
+      billingEmail: billingEmail == freezed
+          ? _value.billingEmail
+          : billingEmail as String,
+    ));
+  }
 }
 
 class _$RegisterBankAccount
     with DiagnosticableTreeMixin
     implements RegisterBankAccount {
-  const _$RegisterBankAccount();
+  const _$RegisterBankAccount({@required this.gym, @required this.billingEmail})
+      : assert(gym != null),
+        assert(billingEmail != null);
+
+  @override
+  final Gym gym;
+  @override
+  final String billingEmail;
 
   @override
   String toString({DiagnosticLevel minLevel = DiagnosticLevel.info}) {
-    return 'PaymentMethodsEvent.registerBankAccount()';
+    return 'PaymentMethodsEvent.registerBankAccount(gym: $gym, billingEmail: $billingEmail)';
   }
 
   @override
@@ -238,38 +282,55 @@ class _$RegisterBankAccount
     super.debugFillProperties(properties);
     properties
       ..add(DiagnosticsProperty(
-          'type', 'PaymentMethodsEvent.registerBankAccount'));
+          'type', 'PaymentMethodsEvent.registerBankAccount'))
+      ..add(DiagnosticsProperty('gym', gym))
+      ..add(DiagnosticsProperty('billingEmail', billingEmail));
   }
 
   @override
   bool operator ==(dynamic other) {
-    return identical(this, other) || (other is RegisterBankAccount);
+    return identical(this, other) ||
+        (other is RegisterBankAccount &&
+            (identical(other.gym, gym) ||
+                const DeepCollectionEquality().equals(other.gym, gym)) &&
+            (identical(other.billingEmail, billingEmail) ||
+                const DeepCollectionEquality()
+                    .equals(other.billingEmail, billingEmail)));
   }
 
   @override
-  int get hashCode => runtimeType.hashCode;
+  int get hashCode =>
+      runtimeType.hashCode ^
+      const DeepCollectionEquality().hash(gym) ^
+      const DeepCollectionEquality().hash(billingEmail);
+
+  @override
+  $RegisterBankAccountCopyWith<RegisterBankAccount> get copyWith =>
+      _$RegisterBankAccountCopyWithImpl<RegisterBankAccount>(this, _$identity);
 
   @override
   @optionalTypeArgs
   Result when<Result extends Object>({
-    @required Result paymentMethodUpdated(PaymentMethod paymentMethod),
-    @required Result registerBankAccount(),
+    @required
+        Result paymentMethodUpdated(
+            String userEmail, PaymentMethod paymentMethod),
+    @required Result registerBankAccount(Gym gym, String billingEmail),
   }) {
     assert(paymentMethodUpdated != null);
     assert(registerBankAccount != null);
-    return registerBankAccount();
+    return registerBankAccount(gym, billingEmail);
   }
 
   @override
   @optionalTypeArgs
   Result maybeWhen<Result extends Object>({
-    Result paymentMethodUpdated(PaymentMethod paymentMethod),
-    Result registerBankAccount(),
+    Result paymentMethodUpdated(String userEmail, PaymentMethod paymentMethod),
+    Result registerBankAccount(Gym gym, String billingEmail),
     @required Result orElse(),
   }) {
     assert(orElse != null);
     if (registerBankAccount != null) {
-      return registerBankAccount();
+      return registerBankAccount(gym, billingEmail);
     }
     return orElse();
   }
@@ -301,5 +362,11 @@ class _$RegisterBankAccount
 }
 
 abstract class RegisterBankAccount implements PaymentMethodsEvent {
-  const factory RegisterBankAccount() = _$RegisterBankAccount;
+  const factory RegisterBankAccount(
+      {@required Gym gym,
+      @required String billingEmail}) = _$RegisterBankAccount;
+
+  Gym get gym;
+  String get billingEmail;
+  $RegisterBankAccountCopyWith<RegisterBankAccount> get copyWith;
 }

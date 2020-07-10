@@ -2,6 +2,7 @@ import 'package:checkin/src/api/http_client.dart';
 import 'package:checkin/src/api/payment_api.dart';
 import 'package:checkin/src/blocs/account/bloc.dart';
 import 'package:checkin/src/blocs/auth/bloc.dart';
+import 'package:checkin/src/blocs/gym/bloc.dart';
 import 'package:checkin/src/blocs/membership/bloc.dart';
 import 'package:checkin/src/blocs/payment_methods/payment_methods_bloc.dart';
 import 'package:checkin/src/blocs/profile/bloc.dart';
@@ -10,12 +11,14 @@ import 'package:checkin/src/localization/localization.dart';
 import 'package:checkin/src/repositories/membership_repository.dart';
 import 'package:checkin/src/repositories/user_repository.dart';
 import 'package:checkin/src/resources/auth_provider.dart';
+import 'package:checkin/src/resources/gym_provider.dart';
 import 'package:checkin/src/resources/payment_method_provider.dart';
 import 'package:checkin/src/ui/components/base_app_bar.dart';
 import 'package:checkin/src/ui/components/loading_indicator.dart';
 import 'package:checkin/src/ui/components/membership/membership_card.dart';
 import 'package:checkin/src/ui/components/payment_methods/payment_method_card.dart';
 import 'package:checkin/src/ui/components/profile_card.dart';
+import 'package:checkin/src/util/url_launcher_util.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 
@@ -58,11 +61,18 @@ class AccountPage extends StatelessWidget {
 
               ),
             ),
+            BlocProvider<GymBloc>(
+              create: (BuildContext context) => GymBloc(
+                gymRepository: GymProvider(),
+                userBloc: BlocProvider.of<UserBloc>(context),
+              ),
+            ),
             BlocProvider<PaymentMethodsBloc>(
               create: (BuildContext context) => PaymentMethodsBloc(
+                urlLauncherUtil: UrlLauncherUtil(),
+                userBloc: BlocProvider.of<UserBloc>(context),
                 paymentMethodRepository: PaymentMethodProvider(),
                 paymentApi: PaymentApi(httpClient: HttpClient(authRepository: AuthProvider())),
-
               ),
             ),
           ],

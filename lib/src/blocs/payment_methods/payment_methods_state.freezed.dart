@@ -16,14 +16,21 @@ class _$PaymentMethodsStateTearOff {
     return const InitialPaymentMethodsState();
   }
 
-  PaymentMethodLoaded paymentMethodLoaded({PaymentMethod paymentMethod}) {
+  PaymentMethodLoaded paymentMethodLoaded(
+      {@required PaymentMethod paymentMethod}) {
     return PaymentMethodLoaded(
       paymentMethod: paymentMethod,
     );
   }
 
-  PaymentMethodEmpty paymentMethodEmpty() {
-    return const PaymentMethodEmpty();
+  PaymentMethodEmpty paymentMethodEmpty({@required String customerEmail}) {
+    return PaymentMethodEmpty(
+      customerEmail: customerEmail,
+    );
+  }
+
+  PaymentMethodLoading paymentMethodLoading() {
+    return const PaymentMethodLoading();
   }
 }
 
@@ -35,13 +42,15 @@ mixin _$PaymentMethodsState {
   Result when<Result extends Object>({
     @required Result initialPaymentMethodsState(),
     @required Result paymentMethodLoaded(PaymentMethod paymentMethod),
-    @required Result paymentMethodEmpty(),
+    @required Result paymentMethodEmpty(String customerEmail),
+    @required Result paymentMethodLoading(),
   });
   @optionalTypeArgs
   Result maybeWhen<Result extends Object>({
     Result initialPaymentMethodsState(),
     Result paymentMethodLoaded(PaymentMethod paymentMethod),
-    Result paymentMethodEmpty(),
+    Result paymentMethodEmpty(String customerEmail),
+    Result paymentMethodLoading(),
     @required Result orElse(),
   });
   @optionalTypeArgs
@@ -50,12 +59,14 @@ mixin _$PaymentMethodsState {
         Result initialPaymentMethodsState(InitialPaymentMethodsState value),
     @required Result paymentMethodLoaded(PaymentMethodLoaded value),
     @required Result paymentMethodEmpty(PaymentMethodEmpty value),
+    @required Result paymentMethodLoading(PaymentMethodLoading value),
   });
   @optionalTypeArgs
   Result maybeMap<Result extends Object>({
     Result initialPaymentMethodsState(InitialPaymentMethodsState value),
     Result paymentMethodLoaded(PaymentMethodLoaded value),
     Result paymentMethodEmpty(PaymentMethodEmpty value),
+    Result paymentMethodLoading(PaymentMethodLoading value),
     @required Result orElse(),
   });
 }
@@ -124,11 +135,13 @@ class _$InitialPaymentMethodsState
   Result when<Result extends Object>({
     @required Result initialPaymentMethodsState(),
     @required Result paymentMethodLoaded(PaymentMethod paymentMethod),
-    @required Result paymentMethodEmpty(),
+    @required Result paymentMethodEmpty(String customerEmail),
+    @required Result paymentMethodLoading(),
   }) {
     assert(initialPaymentMethodsState != null);
     assert(paymentMethodLoaded != null);
     assert(paymentMethodEmpty != null);
+    assert(paymentMethodLoading != null);
     return initialPaymentMethodsState();
   }
 
@@ -137,7 +150,8 @@ class _$InitialPaymentMethodsState
   Result maybeWhen<Result extends Object>({
     Result initialPaymentMethodsState(),
     Result paymentMethodLoaded(PaymentMethod paymentMethod),
-    Result paymentMethodEmpty(),
+    Result paymentMethodEmpty(String customerEmail),
+    Result paymentMethodLoading(),
     @required Result orElse(),
   }) {
     assert(orElse != null);
@@ -154,10 +168,12 @@ class _$InitialPaymentMethodsState
         Result initialPaymentMethodsState(InitialPaymentMethodsState value),
     @required Result paymentMethodLoaded(PaymentMethodLoaded value),
     @required Result paymentMethodEmpty(PaymentMethodEmpty value),
+    @required Result paymentMethodLoading(PaymentMethodLoading value),
   }) {
     assert(initialPaymentMethodsState != null);
     assert(paymentMethodLoaded != null);
     assert(paymentMethodEmpty != null);
+    assert(paymentMethodLoading != null);
     return initialPaymentMethodsState(this);
   }
 
@@ -167,6 +183,7 @@ class _$InitialPaymentMethodsState
     Result initialPaymentMethodsState(InitialPaymentMethodsState value),
     Result paymentMethodLoaded(PaymentMethodLoaded value),
     Result paymentMethodEmpty(PaymentMethodEmpty value),
+    Result paymentMethodLoading(PaymentMethodLoading value),
     @required Result orElse(),
   }) {
     assert(orElse != null);
@@ -225,7 +242,8 @@ class _$PaymentMethodLoadedCopyWithImpl<$Res>
 class _$PaymentMethodLoaded
     with DiagnosticableTreeMixin
     implements PaymentMethodLoaded {
-  const _$PaymentMethodLoaded({this.paymentMethod});
+  const _$PaymentMethodLoaded({@required this.paymentMethod})
+      : assert(paymentMethod != null);
 
   @override
   final PaymentMethod paymentMethod;
@@ -266,11 +284,13 @@ class _$PaymentMethodLoaded
   Result when<Result extends Object>({
     @required Result initialPaymentMethodsState(),
     @required Result paymentMethodLoaded(PaymentMethod paymentMethod),
-    @required Result paymentMethodEmpty(),
+    @required Result paymentMethodEmpty(String customerEmail),
+    @required Result paymentMethodLoading(),
   }) {
     assert(initialPaymentMethodsState != null);
     assert(paymentMethodLoaded != null);
     assert(paymentMethodEmpty != null);
+    assert(paymentMethodLoading != null);
     return paymentMethodLoaded(paymentMethod);
   }
 
@@ -279,7 +299,8 @@ class _$PaymentMethodLoaded
   Result maybeWhen<Result extends Object>({
     Result initialPaymentMethodsState(),
     Result paymentMethodLoaded(PaymentMethod paymentMethod),
-    Result paymentMethodEmpty(),
+    Result paymentMethodEmpty(String customerEmail),
+    Result paymentMethodLoading(),
     @required Result orElse(),
   }) {
     assert(orElse != null);
@@ -296,10 +317,12 @@ class _$PaymentMethodLoaded
         Result initialPaymentMethodsState(InitialPaymentMethodsState value),
     @required Result paymentMethodLoaded(PaymentMethodLoaded value),
     @required Result paymentMethodEmpty(PaymentMethodEmpty value),
+    @required Result paymentMethodLoading(PaymentMethodLoading value),
   }) {
     assert(initialPaymentMethodsState != null);
     assert(paymentMethodLoaded != null);
     assert(paymentMethodEmpty != null);
+    assert(paymentMethodLoading != null);
     return paymentMethodLoaded(this);
   }
 
@@ -309,6 +332,7 @@ class _$PaymentMethodLoaded
     Result initialPaymentMethodsState(InitialPaymentMethodsState value),
     Result paymentMethodLoaded(PaymentMethodLoaded value),
     Result paymentMethodEmpty(PaymentMethodEmpty value),
+    Result paymentMethodLoading(PaymentMethodLoading value),
     @required Result orElse(),
   }) {
     assert(orElse != null);
@@ -320,7 +344,7 @@ class _$PaymentMethodLoaded
 }
 
 abstract class PaymentMethodLoaded implements PaymentMethodsState {
-  const factory PaymentMethodLoaded({PaymentMethod paymentMethod}) =
+  const factory PaymentMethodLoaded({@required PaymentMethod paymentMethod}) =
       _$PaymentMethodLoaded;
 
   PaymentMethod get paymentMethod;
@@ -331,6 +355,7 @@ abstract class $PaymentMethodEmptyCopyWith<$Res> {
   factory $PaymentMethodEmptyCopyWith(
           PaymentMethodEmpty value, $Res Function(PaymentMethodEmpty) then) =
       _$PaymentMethodEmptyCopyWithImpl<$Res>;
+  $Res call({String customerEmail});
 }
 
 class _$PaymentMethodEmptyCopyWithImpl<$Res>
@@ -342,45 +367,72 @@ class _$PaymentMethodEmptyCopyWithImpl<$Res>
 
   @override
   PaymentMethodEmpty get _value => super._value as PaymentMethodEmpty;
+
+  @override
+  $Res call({
+    Object customerEmail = freezed,
+  }) {
+    return _then(PaymentMethodEmpty(
+      customerEmail: customerEmail == freezed
+          ? _value.customerEmail
+          : customerEmail as String,
+    ));
+  }
 }
 
 class _$PaymentMethodEmpty
     with DiagnosticableTreeMixin
     implements PaymentMethodEmpty {
-  const _$PaymentMethodEmpty();
+  const _$PaymentMethodEmpty({@required this.customerEmail})
+      : assert(customerEmail != null);
+
+  @override
+  final String customerEmail;
 
   @override
   String toString({DiagnosticLevel minLevel = DiagnosticLevel.info}) {
-    return 'PaymentMethodsState.paymentMethodEmpty()';
+    return 'PaymentMethodsState.paymentMethodEmpty(customerEmail: $customerEmail)';
   }
 
   @override
   void debugFillProperties(DiagnosticPropertiesBuilder properties) {
     super.debugFillProperties(properties);
     properties
-      ..add(DiagnosticsProperty(
-          'type', 'PaymentMethodsState.paymentMethodEmpty'));
+      ..add(
+          DiagnosticsProperty('type', 'PaymentMethodsState.paymentMethodEmpty'))
+      ..add(DiagnosticsProperty('customerEmail', customerEmail));
   }
 
   @override
   bool operator ==(dynamic other) {
-    return identical(this, other) || (other is PaymentMethodEmpty);
+    return identical(this, other) ||
+        (other is PaymentMethodEmpty &&
+            (identical(other.customerEmail, customerEmail) ||
+                const DeepCollectionEquality()
+                    .equals(other.customerEmail, customerEmail)));
   }
 
   @override
-  int get hashCode => runtimeType.hashCode;
+  int get hashCode =>
+      runtimeType.hashCode ^ const DeepCollectionEquality().hash(customerEmail);
+
+  @override
+  $PaymentMethodEmptyCopyWith<PaymentMethodEmpty> get copyWith =>
+      _$PaymentMethodEmptyCopyWithImpl<PaymentMethodEmpty>(this, _$identity);
 
   @override
   @optionalTypeArgs
   Result when<Result extends Object>({
     @required Result initialPaymentMethodsState(),
     @required Result paymentMethodLoaded(PaymentMethod paymentMethod),
-    @required Result paymentMethodEmpty(),
+    @required Result paymentMethodEmpty(String customerEmail),
+    @required Result paymentMethodLoading(),
   }) {
     assert(initialPaymentMethodsState != null);
     assert(paymentMethodLoaded != null);
     assert(paymentMethodEmpty != null);
-    return paymentMethodEmpty();
+    assert(paymentMethodLoading != null);
+    return paymentMethodEmpty(customerEmail);
   }
 
   @override
@@ -388,12 +440,13 @@ class _$PaymentMethodEmpty
   Result maybeWhen<Result extends Object>({
     Result initialPaymentMethodsState(),
     Result paymentMethodLoaded(PaymentMethod paymentMethod),
-    Result paymentMethodEmpty(),
+    Result paymentMethodEmpty(String customerEmail),
+    Result paymentMethodLoading(),
     @required Result orElse(),
   }) {
     assert(orElse != null);
     if (paymentMethodEmpty != null) {
-      return paymentMethodEmpty();
+      return paymentMethodEmpty(customerEmail);
     }
     return orElse();
   }
@@ -405,10 +458,12 @@ class _$PaymentMethodEmpty
         Result initialPaymentMethodsState(InitialPaymentMethodsState value),
     @required Result paymentMethodLoaded(PaymentMethodLoaded value),
     @required Result paymentMethodEmpty(PaymentMethodEmpty value),
+    @required Result paymentMethodLoading(PaymentMethodLoading value),
   }) {
     assert(initialPaymentMethodsState != null);
     assert(paymentMethodLoaded != null);
     assert(paymentMethodEmpty != null);
+    assert(paymentMethodLoading != null);
     return paymentMethodEmpty(this);
   }
 
@@ -418,6 +473,7 @@ class _$PaymentMethodEmpty
     Result initialPaymentMethodsState(InitialPaymentMethodsState value),
     Result paymentMethodLoaded(PaymentMethodLoaded value),
     Result paymentMethodEmpty(PaymentMethodEmpty value),
+    Result paymentMethodLoading(PaymentMethodLoading value),
     @required Result orElse(),
   }) {
     assert(orElse != null);
@@ -429,5 +485,120 @@ class _$PaymentMethodEmpty
 }
 
 abstract class PaymentMethodEmpty implements PaymentMethodsState {
-  const factory PaymentMethodEmpty() = _$PaymentMethodEmpty;
+  const factory PaymentMethodEmpty({@required String customerEmail}) =
+      _$PaymentMethodEmpty;
+
+  String get customerEmail;
+  $PaymentMethodEmptyCopyWith<PaymentMethodEmpty> get copyWith;
+}
+
+abstract class $PaymentMethodLoadingCopyWith<$Res> {
+  factory $PaymentMethodLoadingCopyWith(PaymentMethodLoading value,
+          $Res Function(PaymentMethodLoading) then) =
+      _$PaymentMethodLoadingCopyWithImpl<$Res>;
+}
+
+class _$PaymentMethodLoadingCopyWithImpl<$Res>
+    extends _$PaymentMethodsStateCopyWithImpl<$Res>
+    implements $PaymentMethodLoadingCopyWith<$Res> {
+  _$PaymentMethodLoadingCopyWithImpl(
+      PaymentMethodLoading _value, $Res Function(PaymentMethodLoading) _then)
+      : super(_value, (v) => _then(v as PaymentMethodLoading));
+
+  @override
+  PaymentMethodLoading get _value => super._value as PaymentMethodLoading;
+}
+
+class _$PaymentMethodLoading
+    with DiagnosticableTreeMixin
+    implements PaymentMethodLoading {
+  const _$PaymentMethodLoading();
+
+  @override
+  String toString({DiagnosticLevel minLevel = DiagnosticLevel.info}) {
+    return 'PaymentMethodsState.paymentMethodLoading()';
+  }
+
+  @override
+  void debugFillProperties(DiagnosticPropertiesBuilder properties) {
+    super.debugFillProperties(properties);
+    properties
+      ..add(DiagnosticsProperty(
+          'type', 'PaymentMethodsState.paymentMethodLoading'));
+  }
+
+  @override
+  bool operator ==(dynamic other) {
+    return identical(this, other) || (other is PaymentMethodLoading);
+  }
+
+  @override
+  int get hashCode => runtimeType.hashCode;
+
+  @override
+  @optionalTypeArgs
+  Result when<Result extends Object>({
+    @required Result initialPaymentMethodsState(),
+    @required Result paymentMethodLoaded(PaymentMethod paymentMethod),
+    @required Result paymentMethodEmpty(String customerEmail),
+    @required Result paymentMethodLoading(),
+  }) {
+    assert(initialPaymentMethodsState != null);
+    assert(paymentMethodLoaded != null);
+    assert(paymentMethodEmpty != null);
+    assert(paymentMethodLoading != null);
+    return paymentMethodLoading();
+  }
+
+  @override
+  @optionalTypeArgs
+  Result maybeWhen<Result extends Object>({
+    Result initialPaymentMethodsState(),
+    Result paymentMethodLoaded(PaymentMethod paymentMethod),
+    Result paymentMethodEmpty(String customerEmail),
+    Result paymentMethodLoading(),
+    @required Result orElse(),
+  }) {
+    assert(orElse != null);
+    if (paymentMethodLoading != null) {
+      return paymentMethodLoading();
+    }
+    return orElse();
+  }
+
+  @override
+  @optionalTypeArgs
+  Result map<Result extends Object>({
+    @required
+        Result initialPaymentMethodsState(InitialPaymentMethodsState value),
+    @required Result paymentMethodLoaded(PaymentMethodLoaded value),
+    @required Result paymentMethodEmpty(PaymentMethodEmpty value),
+    @required Result paymentMethodLoading(PaymentMethodLoading value),
+  }) {
+    assert(initialPaymentMethodsState != null);
+    assert(paymentMethodLoaded != null);
+    assert(paymentMethodEmpty != null);
+    assert(paymentMethodLoading != null);
+    return paymentMethodLoading(this);
+  }
+
+  @override
+  @optionalTypeArgs
+  Result maybeMap<Result extends Object>({
+    Result initialPaymentMethodsState(InitialPaymentMethodsState value),
+    Result paymentMethodLoaded(PaymentMethodLoaded value),
+    Result paymentMethodEmpty(PaymentMethodEmpty value),
+    Result paymentMethodLoading(PaymentMethodLoading value),
+    @required Result orElse(),
+  }) {
+    assert(orElse != null);
+    if (paymentMethodLoading != null) {
+      return paymentMethodLoading(this);
+    }
+    return orElse();
+  }
+}
+
+abstract class PaymentMethodLoading implements PaymentMethodsState {
+  const factory PaymentMethodLoading() = _$PaymentMethodLoading;
 }
