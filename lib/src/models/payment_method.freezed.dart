@@ -13,10 +13,12 @@ class _$PaymentMethodTearOff {
   const _$PaymentMethodTearOff();
 
   _PaymentMethod call(
-      {@required String billingEmail,
-      @required int lastFourDigits,
+      {@required String customerId,
+      @required String billingEmail,
+      @required String lastFourDigits,
       @required String country}) {
     return _PaymentMethod(
+      customerId: customerId,
       billingEmail: billingEmail,
       lastFourDigits: lastFourDigits,
       country: country,
@@ -28,8 +30,9 @@ class _$PaymentMethodTearOff {
 const $PaymentMethod = _$PaymentMethodTearOff();
 
 mixin _$PaymentMethod {
+  String get customerId;
   String get billingEmail;
-  int get lastFourDigits;
+  String get lastFourDigits;
   String get country;
 
   $PaymentMethodCopyWith<PaymentMethod> get copyWith;
@@ -39,7 +42,11 @@ abstract class $PaymentMethodCopyWith<$Res> {
   factory $PaymentMethodCopyWith(
           PaymentMethod value, $Res Function(PaymentMethod) then) =
       _$PaymentMethodCopyWithImpl<$Res>;
-  $Res call({String billingEmail, int lastFourDigits, String country});
+  $Res call(
+      {String customerId,
+      String billingEmail,
+      String lastFourDigits,
+      String country});
 }
 
 class _$PaymentMethodCopyWithImpl<$Res>
@@ -52,17 +59,20 @@ class _$PaymentMethodCopyWithImpl<$Res>
 
   @override
   $Res call({
+    Object customerId = freezed,
     Object billingEmail = freezed,
     Object lastFourDigits = freezed,
     Object country = freezed,
   }) {
     return _then(_value.copyWith(
+      customerId:
+          customerId == freezed ? _value.customerId : customerId as String,
       billingEmail: billingEmail == freezed
           ? _value.billingEmail
           : billingEmail as String,
       lastFourDigits: lastFourDigits == freezed
           ? _value.lastFourDigits
-          : lastFourDigits as int,
+          : lastFourDigits as String,
       country: country == freezed ? _value.country : country as String,
     ));
   }
@@ -74,7 +84,11 @@ abstract class _$PaymentMethodCopyWith<$Res>
           _PaymentMethod value, $Res Function(_PaymentMethod) then) =
       __$PaymentMethodCopyWithImpl<$Res>;
   @override
-  $Res call({String billingEmail, int lastFourDigits, String country});
+  $Res call(
+      {String customerId,
+      String billingEmail,
+      String lastFourDigits,
+      String country});
 }
 
 class __$PaymentMethodCopyWithImpl<$Res>
@@ -89,17 +103,20 @@ class __$PaymentMethodCopyWithImpl<$Res>
 
   @override
   $Res call({
+    Object customerId = freezed,
     Object billingEmail = freezed,
     Object lastFourDigits = freezed,
     Object country = freezed,
   }) {
     return _then(_PaymentMethod(
+      customerId:
+          customerId == freezed ? _value.customerId : customerId as String,
       billingEmail: billingEmail == freezed
           ? _value.billingEmail
           : billingEmail as String,
       lastFourDigits: lastFourDigits == freezed
           ? _value.lastFourDigits
-          : lastFourDigits as int,
+          : lastFourDigits as String,
       country: country == freezed ? _value.country : country as String,
     ));
   }
@@ -107,23 +124,27 @@ class __$PaymentMethodCopyWithImpl<$Res>
 
 class _$_PaymentMethod with DiagnosticableTreeMixin implements _PaymentMethod {
   _$_PaymentMethod(
-      {@required this.billingEmail,
+      {@required this.customerId,
+      @required this.billingEmail,
       @required this.lastFourDigits,
       @required this.country})
-      : assert(billingEmail != null),
+      : assert(customerId != null),
+        assert(billingEmail != null),
         assert(lastFourDigits != null),
         assert(country != null);
 
   @override
+  final String customerId;
+  @override
   final String billingEmail;
   @override
-  final int lastFourDigits;
+  final String lastFourDigits;
   @override
   final String country;
 
   @override
   String toString({DiagnosticLevel minLevel = DiagnosticLevel.info}) {
-    return 'PaymentMethod(billingEmail: $billingEmail, lastFourDigits: $lastFourDigits, country: $country)';
+    return 'PaymentMethod(customerId: $customerId, billingEmail: $billingEmail, lastFourDigits: $lastFourDigits, country: $country)';
   }
 
   @override
@@ -131,6 +152,7 @@ class _$_PaymentMethod with DiagnosticableTreeMixin implements _PaymentMethod {
     super.debugFillProperties(properties);
     properties
       ..add(DiagnosticsProperty('type', 'PaymentMethod'))
+      ..add(DiagnosticsProperty('customerId', customerId))
       ..add(DiagnosticsProperty('billingEmail', billingEmail))
       ..add(DiagnosticsProperty('lastFourDigits', lastFourDigits))
       ..add(DiagnosticsProperty('country', country));
@@ -140,6 +162,9 @@ class _$_PaymentMethod with DiagnosticableTreeMixin implements _PaymentMethod {
   bool operator ==(dynamic other) {
     return identical(this, other) ||
         (other is _PaymentMethod &&
+            (identical(other.customerId, customerId) ||
+                const DeepCollectionEquality()
+                    .equals(other.customerId, customerId)) &&
             (identical(other.billingEmail, billingEmail) ||
                 const DeepCollectionEquality()
                     .equals(other.billingEmail, billingEmail)) &&
@@ -153,6 +178,7 @@ class _$_PaymentMethod with DiagnosticableTreeMixin implements _PaymentMethod {
   @override
   int get hashCode =>
       runtimeType.hashCode ^
+      const DeepCollectionEquality().hash(customerId) ^
       const DeepCollectionEquality().hash(billingEmail) ^
       const DeepCollectionEquality().hash(lastFourDigits) ^
       const DeepCollectionEquality().hash(country);
@@ -164,14 +190,17 @@ class _$_PaymentMethod with DiagnosticableTreeMixin implements _PaymentMethod {
 
 abstract class _PaymentMethod implements PaymentMethod {
   factory _PaymentMethod(
-      {@required String billingEmail,
-      @required int lastFourDigits,
+      {@required String customerId,
+      @required String billingEmail,
+      @required String lastFourDigits,
       @required String country}) = _$_PaymentMethod;
 
   @override
+  String get customerId;
+  @override
   String get billingEmail;
   @override
-  int get lastFourDigits;
+  String get lastFourDigits;
   @override
   String get country;
   @override

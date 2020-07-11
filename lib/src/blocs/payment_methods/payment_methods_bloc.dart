@@ -35,9 +35,13 @@ class PaymentMethodsBloc
       _userBloc.listen((UserState userState) {
         if (userState is UserSuccess) {
           _paymentMethodSub = _paymentMethodRepository
-              .getPaymentMethod(gymId: userState.currentUser.selectedGymId, email: userState.currentUser.email)
+              .getPaymentMethod(
+                  gymId: userState.currentUser.selectedGymId,
+                  email: userState.currentUser.email)
               .listen((paymentMethod) {
-            add(PaymentMethodUpdated(paymentMethod: paymentMethod, userEmail: userState.currentUser.email));
+            add(PaymentMethodUpdated(
+                paymentMethod: paymentMethod,
+                userEmail: userState.currentUser.email));
           });
         }
       });
@@ -56,10 +60,26 @@ class PaymentMethodsBloc
     if (event is RegisterBankAccount) {
       yield PaymentMethodLoading();
       try {
-       var gym = event.gym;
+        var gym = event.gym;
 
         String clientSecret = await _paymentApi.setupIntent(
-          customerEmail: event.billingEmail, gymId: gym.id);
+            customerEmail: event.billingEmail, gymId: gym.id);
+
+        await _urlLauncherUtil.launchUrl(
+            "https://${gym.domain}/sepa.html?pk=${gym.stripePublicKey}&customerEmail=${event.billingEmail}&cs=$clientSecret");
+      } catch (err) {
+        print(err);
+      }
+    }
+    if (event is ChangeBankAccount) {
+      yield PaymentMethodLoading();
+      try {
+        var gym = event.gym;
+
+        String clientSecret = await _paymentApi.setupIntent(
+            customerEmail: event.billingEmail,
+            gymId: gym.id,
+            customerId: event.customerId);
 
         await _urlLauncherUtil.launchUrl(
             "https://${gym.domain}/sepa.html?pk=${gym.stripePublicKey}&customerEmail=${event.billingEmail}&cs=$clientSecret");
@@ -69,7 +89,9 @@ class PaymentMethodsBloc
     }
     if (event is PaymentMethodUpdated) {
       if (event.paymentMethod != null) {
-        yield PaymentMethodLoaded(paymentMethod: event.paymentMethod);
+        yield PaymentMethodLoaded(
+          paymentMethod: event.paymentMethod,
+        );
       } else {
         yield PaymentMethodEmpty(customerEmail: event.userEmail);
       }

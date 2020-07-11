@@ -24,8 +24,9 @@ class PaymentMethodProvider implements PaymentMethodRepository {
     }
     return PaymentMethod(
       billingEmail: email,
-      lastFourDigits: data['payment_method']['last4'],
-      country: data['payment_method']['country'],
+      lastFourDigits: data['payment_method']['sepa_debit']['last4'],
+      country: data['payment_method']['sepa_debit']['country'],
+      customerId: data['infos']['id'],
     );
   }
 }

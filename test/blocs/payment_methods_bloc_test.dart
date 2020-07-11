@@ -29,7 +29,8 @@ void main() {
 
   String fakeEmail = "test@test.com";
   PaymentMethod fakePaymentMethod = PaymentMethod(
-    lastFourDigits: 1234,
+    customerId: "cus_123",
+    lastFourDigits: "1234",
     billingEmail: fakeEmail,
     country: "ES",
   );
@@ -86,7 +87,6 @@ void main() {
               gymId: fakeUser.selectedGymId, email: fakeUser.email));
         });
       });
-
       group("when there are payment methods", () {
         setUp(() {
           whenListen(mockUserBloc,
@@ -218,6 +218,55 @@ void main() {
           verify(mockUrlLauncherUtil.launchUrl(
               "https://prod-app/sepa.html?pk=prod_key&customerEmail=prod@email.com&cs=prod_secret"));
         });
+      });
+    });
+    group("ChangeBankAccount", () {
+      group("when calling dev endpoint", () {
+        setUp(() {
+          whenListen(mockUserBloc,
+              Stream.fromIterable([UserSuccess(currentUser: fakeUser)]));
+          when(mockPaymentMethodRepository.getPaymentMethod(
+              gymId: fakeGymId, email: fakeEmail))
+              .thenAnswer((realInvocation) {
+            return Stream.value(fakePaymentMethod);
+          });
+          when(mockPaymentApi.setupIntent(
+              gymId: fakeGymId, customerEmail: fakeEmail, customerId: "cus_123"))
+              .thenAnswer((realInvocation) {
+            return Future.value("some_secret");
+          });
+
+          paymentMethodsBloc = PaymentMethodsBloc(
+              userBloc: mockUserBloc,
+              paymentApi: mockPaymentApi,
+              paymentMethodRepository: mockPaymentMethodRepository,
+              urlLauncherUtil: mockUrlLauncherUtil);
+
+          paymentMethodsBloc.add(ChangeBankAccount(gym: testGym, billingEmail: fakeUser.email, customerId: "cus_123"));
+        });
+
+
+        test(
+            "should call the payment api to setup intent of register a payment method",
+                () async {
+              final expectedState = [
+                InitialPaymentMethodsState(),
+                PaymentMethodLoaded(paymentMethod: fakePaymentMethod),
+                PaymentMethodLoading()
+              ];
+
+              await expectLater(
+                paymentMethodsBloc,
+                emitsInAnyOrder(expectedState),
+              );
+
+              logInvocations([mockPaymentApi, mockUrlLauncherUtil]);
+
+              verify(mockPaymentApi.setupIntent(
+                  customerEmail: fakeEmail, gymId: fakeGymId, customerId: "cus_123"));
+              verify(mockUrlLauncherUtil.launchUrl(
+                  "https://${testGym.domain}/sepa.html?pk=${testGym.stripePublicKey}&customerEmail=test@test.com&cs=some_secret"));
+            });
       });
     });
   });
