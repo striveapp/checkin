@@ -164,8 +164,7 @@ void main() {
 
           verify(mockPaymentApi.setupIntent(
               customerEmail: fakeEmail, gymId: fakeGymId));
-          verify(mockUrlLauncherUtil.launchUrl(
-              "https://${testGym.domain}/sepa.html?pk=${testGym.stripePublicKey}&customerEmail=test@test.com&cs=some_secret"));
+          verify(mockUrlLauncherUtil.launchUrl(argThat(startsWith("https://${testGym.domain}/sepa.html?pk=${testGym.stripePublicKey}&customerEmail=test@test.com&cs=some_secret"))));
             });
       });
       group("when calling prod endpoint", () {
@@ -215,8 +214,7 @@ void main() {
 
           verify(mockPaymentApi.setupIntent(
               customerEmail: prodUser.email, gymId: "prodGym"));
-          verify(mockUrlLauncherUtil.launchUrl(
-              "https://prod-app/sepa.html?pk=prod_key&customerEmail=prod@email.com&cs=prod_secret"));
+          verify(mockUrlLauncherUtil.launchUrl(argThat(startsWith("https://prod-app/sepa.html?pk=prod_key&customerEmail=prod@email.com&cs=prod_secret"))));
         });
       });
     });
@@ -264,8 +262,7 @@ void main() {
 
               verify(mockPaymentApi.setupIntent(
                   customerEmail: fakeEmail, gymId: fakeGymId, customerId: "cus_123"));
-              verify(mockUrlLauncherUtil.launchUrl(
-                  "https://${testGym.domain}/sepa.html?pk=${testGym.stripePublicKey}&customerEmail=test@test.com&cs=some_secret"));
+              verify(mockUrlLauncherUtil.launchUrl(argThat(startsWith("https://${testGym.domain}/sepa.html?pk=${testGym.stripePublicKey}&customerEmail=test@test.com&cs=some_secret"))));
             });
       });
     });
