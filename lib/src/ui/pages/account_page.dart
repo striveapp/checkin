@@ -1,4 +1,5 @@
 import 'package:checkin/src/api/http_client.dart';
+import 'package:checkin/src/api/membership_api.dart';
 import 'package:checkin/src/api/payment_api.dart';
 import 'package:checkin/src/blocs/account/bloc.dart';
 import 'package:checkin/src/blocs/auth/bloc.dart';
@@ -8,10 +9,10 @@ import 'package:checkin/src/blocs/payment_methods/payment_methods_bloc.dart';
 import 'package:checkin/src/blocs/profile/bloc.dart';
 import 'package:checkin/src/blocs/user/bloc.dart';
 import 'package:checkin/src/localization/localization.dart';
-import 'package:checkin/src/repositories/membership_repository.dart';
 import 'package:checkin/src/repositories/user_repository.dart';
 import 'package:checkin/src/resources/auth_provider.dart';
 import 'package:checkin/src/resources/gym_provider.dart';
+import 'package:checkin/src/resources/membership_provider.dart';
 import 'package:checkin/src/resources/payment_method_provider.dart';
 import 'package:checkin/src/ui/components/base_app_bar.dart';
 import 'package:checkin/src/ui/components/loading_indicator.dart';
@@ -56,9 +57,10 @@ class AccountPage extends StatelessWidget {
             ),
             BlocProvider<MembershipBloc>(
               create: (BuildContext context) => MembershipBloc(
-                membershipRepository: MembershipRepository(),
+                membershipApi: MembershipApi(
+                    httpClient: HttpClient(authRepository: AuthProvider())),
+                membershipRepository: MembershipProvider(),
                 userBloc: BlocProvider.of<UserBloc>(context),
-
               ),
             ),
             BlocProvider<GymBloc>(
@@ -72,7 +74,8 @@ class AccountPage extends StatelessWidget {
                 urlLauncherUtil: UrlLauncherUtil(),
                 userBloc: BlocProvider.of<UserBloc>(context),
                 paymentMethodRepository: PaymentMethodProvider(),
-                paymentApi: PaymentApi(httpClient: HttpClient(authRepository: AuthProvider())),
+                paymentApi: PaymentApi(
+                    httpClient: HttpClient(authRepository: AuthProvider())),
               ),
             ),
           ],

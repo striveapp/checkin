@@ -2,12 +2,12 @@ import 'dart:async';
 
 import 'package:bloc/bloc.dart';
 import 'package:checkin/src/blocs/gym/bloc.dart';
-import 'package:checkin/src/blocs/subscription_plans/subscription_plans_event.dart';
-import 'package:checkin/src/blocs/subscription_plans/subscription_plans_state.dart';
 import 'package:checkin/src/models/gym.dart';
 import 'package:checkin/src/models/subscription_plan.dart';
 import 'package:checkin/src/repositories/subscription_plans_repository.dart';
 import 'package:flutter/foundation.dart';
+
+import 'bloc.dart';
 
 class SubscriptionPlansBloc
     extends Bloc<SubscriptionPlansEvent, SubscriptionPlansState> {
@@ -26,11 +26,12 @@ class SubscriptionPlansBloc
         if (gymState is GymLoaded) {
           Gym gym = gymState.gym;
           streamSubscription =
-              subscriptionPlansRepository.getPlans(gym.id).listen((plans) {
+              subscriptionPlansRepository.getPlans(gymId: gym.id).listen((plans) {
             add(SubscriptionPlansUpdated(
               basePaymentUrl:
                   "https://${gym.domain}/payment.html?pk=${gym.stripePublicKey}&host=${gym.host}",
               subscriptionPlans: _sortByPrice(plans),
+              gym: gym,
             ));
           });
         }
@@ -47,11 +48,14 @@ class SubscriptionPlansBloc
   Stream<SubscriptionPlansState> mapEventToState(
       SubscriptionPlansEvent event) async* {
     if (event is SubscriptionPlansUpdated) {
-      if (event.subscriptionPlans == null || event.subscriptionPlans.isEmpty) {
+      if (event.subscriptionPlans.isEmpty) {
         yield SubscriptionPlansEmpty();
       } else {
         yield SubscriptionPlansLoaded(
-            basePaymentUrl: event.basePaymentUrl, subscriptionPlans: event.subscriptionPlans);
+          basePaymentUrl: event.basePaymentUrl,
+          subscriptionPlans: event.subscriptionPlans,
+          gymId: event.gym.id,
+        );
       }
     }
   }

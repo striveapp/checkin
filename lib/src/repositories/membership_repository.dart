@@ -1,12 +1,9 @@
-import 'package:checkin/src/api/membership_api.dart';
 import 'package:checkin/src/models/membership.dart';
-import 'package:checkin/src/resources/membership_provider.dart';
+import 'package:flutter/material.dart';
 
-class MembershipRepository {
-  final _membershipApi = MembershipApi();
-  final _membershipProvider = MembershipProvider();
-
-  Future<void> unsubscribe({String gymId}) => _membershipApi.unsubscribe(gymId);
-
-  Stream<Membership> getMembership(String gymId, String email) => _membershipProvider.getMembership(gymId, email);
+abstract class MembershipRepository {
+  Stream<Membership> getMembership({
+    @required String gymId,
+    @required String email,
+  });
 }

@@ -11,6 +11,7 @@ import 'package:flutter_bloc/flutter_bloc.dart';
 
 class SubscriptionsHandler extends Handler implements RegisterableHandler {
   static final String email = "email";
+  static final String customerId = "customerId";
 
   @override
   void registerRoute(Router router) {
@@ -35,9 +36,9 @@ class SubscriptionsHandler extends Handler implements RegisterableHandler {
               ),
             ),
           ],
-          child: SubscriptionsPage(customerEmail: params[email][0]),
+          child: SubscriptionsPage(customerEmail: params[email][0], customerId: params[customerId][0]),
         );
       };
 
-  String get route => "subscriptions/:$email";
+  String get route => "subscriptions/:$email/:$customerId";
 }

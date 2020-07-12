@@ -1,30 +1,27 @@
 import 'package:checkin/src/models/subscription_plan.dart';
+import 'package:checkin/src/repositories/subscription_plans_repository.dart';
 import 'package:cloud_firestore/cloud_firestore.dart';
 
-class SubscriptionPlansProvider {
+class SubscriptionPlansProvider implements SubscriptionPlansRepository {
   static const String gymPath = "gyms";
   static const String path = 'subscription_plans';
 
   //TODO: use only a single instance of firestore https://trello.com/c/LZ79VvWa
   Firestore _firestore = Firestore.instance;
 
-  Stream<List<SubscriptionPlan>> getPlans(String gymId) {
-    return _firestore
-        .collection(gymPath)
-        .document(gymId)
-        .collection(path)
-        .snapshots().map((snap) {
-        return snap.documents.map((doc) {
-          return SubscriptionPlan(
-            name: doc.data['name'],
-            description: doc.data['description'],
-            code: doc.data['code'],
-            currency: doc.data['currency'],
-            price: doc.data['price'],
-            interval: doc.data['interval'],
-          );
-        }).toList();
-    });
-  }
-
+  Stream<List<SubscriptionPlan>> getPlans({String gymId}) => _firestore
+      .collection(gymPath)
+      .document(gymId)
+      .collection(path)
+      .snapshots()
+      .map((snap) => snap.documents
+          .map((doc) => SubscriptionPlan(
+                name: doc.data['name'],
+                description: doc.data['description'],
+                code: doc.data['code'],
+                currency: doc.data['currency'],
+                price: doc.data['price'],
+                interval: doc.data['interval'],
+              ))
+          .toList());
 }

@@ -17,24 +17,23 @@ void main() {
     SubscriptionPlansBloc subscriptionPlansBloc;
     MockSubscriptionPlansRepository mockSubscriptionPlansRepository;
     Gym fakeGym = Gym(
-      id: "some_id",
-      host: "tha_host",
-      domain: "test.com",
-      stripePublicKey: "pk_kp"
-    );
+        id: "some_id",
+        host: "tha_host",
+        domain: "test.com",
+        stripePublicKey: "pk_kp");
     MockGymBloc mockGymBloc;
-    String fakeBasePaymentUrl = "https://${fakeGym.domain}/payment.html?pk=${fakeGym.stripePublicKey}&host=${fakeGym.host}";
+    String fakeBasePaymentUrl =
+        "https://${fakeGym.domain}/payment.html?pk=${fakeGym.stripePublicKey}&host=${fakeGym.host}";
 
     setUp(() {
       mockGymBloc = MockGymBloc();
-      whenListen(mockGymBloc,
-          Stream.fromIterable([GymLoaded(gym: fakeGym)]));
+      whenListen(mockGymBloc, Stream.fromIterable([GymLoaded(gym: fakeGym)]));
     });
 
     group("initial state", () {
       test("initial state is SubscriptionPlansInitial", () {
         mockSubscriptionPlansRepository = MockSubscriptionPlansRepository();
-        when(mockSubscriptionPlansRepository.getPlans(fakeGym.id))
+        when(mockSubscriptionPlansRepository.getPlans(gymId: fakeGym.id))
             .thenAnswer((_) => Stream.value([]));
         subscriptionPlansBloc = SubscriptionPlansBloc(
             gymBloc: mockGymBloc,
@@ -57,17 +56,24 @@ void main() {
         ];
 
         mockSubscriptionPlansRepository = MockSubscriptionPlansRepository();
-        when(mockSubscriptionPlansRepository.getPlans(fakeGym.id))
+        when(mockSubscriptionPlansRepository.getPlans(gymId: fakeGym.id))
             .thenAnswer((_) => Stream.empty());
         subscriptionPlansBloc = SubscriptionPlansBloc(
             gymBloc: mockGymBloc,
             subscriptionPlansRepository: mockSubscriptionPlansRepository);
-        subscriptionPlansBloc
-            .add(SubscriptionPlansUpdated(subscriptionPlans: testPlans));
+        subscriptionPlansBloc.add(SubscriptionPlansUpdated(
+            gym: fakeGym,
+            basePaymentUrl:
+                "https://${fakeGym.domain}/payment.html?pk=${fakeGym.stripePublicKey}&host=${fakeGym.host}",
+            subscriptionPlans: testPlans));
 
         final expectedState = [
           SubscriptionPlansInitial(),
-          SubscriptionPlansLoaded(subscriptionPlans: testPlans),
+          SubscriptionPlansLoaded(
+              gymId: fakeGym.id,
+              basePaymentUrl:
+                  "https://${fakeGym.domain}/payment.html?pk=${fakeGym.stripePublicKey}&host=${fakeGym.host}",
+              subscriptionPlans: testPlans),
           emitsDone
         ];
 
@@ -90,7 +96,8 @@ void main() {
         ];
 
         mockSubscriptionPlansRepository = MockSubscriptionPlansRepository();
-        when(mockSubscriptionPlansRepository.getPlans(fakeGym.id)).thenAnswer((_) {
+        when(mockSubscriptionPlansRepository.getPlans(gymId: fakeGym.id))
+            .thenAnswer((_) {
           return Stream<List<SubscriptionPlan>>.fromFuture(
               Future.value(testPlans));
         });
@@ -101,7 +108,10 @@ void main() {
 
         final expectedState = [
           SubscriptionPlansInitial(),
-          SubscriptionPlansLoaded(basePaymentUrl: fakeBasePaymentUrl, subscriptionPlans: testPlans),
+          SubscriptionPlansLoaded(
+              gymId: fakeGym.id,
+              basePaymentUrl: fakeBasePaymentUrl,
+              subscriptionPlans: testPlans),
         ];
 
         expectLater(
@@ -144,7 +154,8 @@ void main() {
         ];
 
         mockSubscriptionPlansRepository = MockSubscriptionPlansRepository();
-        when(mockSubscriptionPlansRepository.getPlans(fakeGym.id)).thenAnswer((_) {
+        when(mockSubscriptionPlansRepository.getPlans(gymId: fakeGym.id))
+            .thenAnswer((_) {
           return Stream<List<SubscriptionPlan>>.value(testPlans);
         });
 
@@ -154,7 +165,10 @@ void main() {
 
         final expectedState = [
           SubscriptionPlansInitial(),
-          SubscriptionPlansLoaded(basePaymentUrl: fakeBasePaymentUrl, subscriptionPlans: sortedTestPlans),
+          SubscriptionPlansLoaded(
+              gymId: fakeGym.id,
+              basePaymentUrl: fakeBasePaymentUrl,
+              subscriptionPlans: sortedTestPlans),
         ];
 
         expectLater(
@@ -167,32 +181,18 @@ void main() {
     group("SubscriptionPlansEmpty", () {
       setUp(() {
         mockSubscriptionPlansRepository = MockSubscriptionPlansRepository();
-        when(mockSubscriptionPlansRepository.getPlans(fakeGym.id))
+        when(mockSubscriptionPlansRepository.getPlans(gymId: fakeGym.id))
             .thenAnswer((_) => Stream.empty());
         subscriptionPlansBloc = SubscriptionPlansBloc(
             gymBloc: mockGymBloc,
             subscriptionPlansRepository: mockSubscriptionPlansRepository);
       });
       test("should emits SubscriptionPlansEmpty with empty plans", () {
-        subscriptionPlansBloc
-            .add(SubscriptionPlansUpdated(subscriptionPlans: []));
-        final expectedState = [
-          SubscriptionPlansInitial(),
-          SubscriptionPlansEmpty(),
-          emitsDone
-        ];
-
-        expectLater(
-          subscriptionPlansBloc,
-          emitsInOrder(expectedState),
-        );
-
-        subscriptionPlansBloc.close();
-      });
-
-      test("should emits SubscriptionPlansEmpty with null plans", () {
-        subscriptionPlansBloc
-            .add(SubscriptionPlansUpdated(subscriptionPlans: null));
+        subscriptionPlansBloc.add(SubscriptionPlansUpdated(
+            gym: fakeGym,
+            basePaymentUrl:
+                "https://${fakeGym.domain}/payment.html?pk=${fakeGym.stripePublicKey}&host=${fakeGym.host}",
+            subscriptionPlans: []));
         final expectedState = [
           SubscriptionPlansInitial(),
           SubscriptionPlansEmpty(),

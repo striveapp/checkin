@@ -1,44 +1,14 @@
 import 'package:checkin/src/models/membership.dart';
-import 'package:equatable/equatable.dart';
+import 'package:flutter/foundation.dart';
+import 'package:freezed_annotation/freezed_annotation.dart';
+import 'package:meta/meta.dart';
 
-abstract class MembershipState extends Equatable {
-  const MembershipState();
+part 'membership_state.freezed.dart';
 
-  @override
-  List<Object> get props => [];
-}
-
-class MembershipInitial extends MembershipState {
-  @override
-  String toString() => 'MembershipInitial';
-}
-
-class MembershipActive extends MembershipState {
-  final Membership membership;
-
-
-  MembershipActive({this.membership});
-
-  @override
-  List<Object> get props => [membership];
-
-  @override
-  String toString() => 'MembershipActive';
-}
-
-class MembershipInactive extends MembershipState {
-  final String email;
-
-  MembershipInactive({this.email});
-
-  @override
-  List<Object> get props => [email];
-
-  @override
-  String toString() => 'MembershipInactive';
-}
-
-class MembershipLoading extends MembershipState {
-  @override
-  String toString() => 'MembershipLoading';
+@freezed
+abstract class MembershipState with _$MembershipState {
+  const factory MembershipState.initialMembershipState() = InitialMembershipState;
+  const factory MembershipState.membershipActive({@required Membership membership}) = MembershipActive;
+  const factory MembershipState.membershipInactive({@required String customerEmail, @required String customerId}) = MembershipInactive;
+  const factory MembershipState.membershipLoading() = MembershipLoading;
 }

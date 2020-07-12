@@ -7,7 +7,8 @@ part 'membership.freezed.dart';
 abstract class Membership with _$Membership {
   factory Membership({
     @required final String status,
-    @required final String name,
-    @required final int currentPeriodEnd,
+    final String customerId,
+    final String name,
+    final int currentPeriodEnd,
   }) = _Membership;
 }

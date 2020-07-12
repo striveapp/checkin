@@ -20,6 +20,7 @@ import 'package:checkin/src/ui/components/registry/registry_controls.dart';
 import 'package:checkin/src/ui/components/stats/lessons/attendees_counter.dart';
 import 'package:checkin/src/ui/components/stats/user/attended_lessons_list.dart';
 import 'package:checkin/src/ui/components/stats/user/mat_time_counter.dart';
+import 'package:checkin/src/ui/components/subscriptions/subscription_plan_cards.dart';
 import 'package:checkin/src/ui/components/upgrader_dialog.dart';
 import 'package:checkin/src/ui/pages/account_page.dart';
 import 'package:checkin/src/ui/pages/grade_page.dart';
@@ -191,12 +192,6 @@ extension Localization on String {
     'en': PaymentSuccessPage.disclaimerSubscription30Min,
     'es': 'Tu subscripción puede tardar hasta 30 minutos en aparecer en tu cuenta',
   } + {
-    'en': ActiveMembershipView.email,
-    'es': 'Email:',
-  } + {
-    'en': ActiveMembershipView.creditCard,
-    'es': 'Tarjeta:',
-  } + {
     'en': ActiveMembershipView.unsubscribe,
     'es': 'Darse de baja',
   } + {
@@ -227,8 +222,11 @@ extension Localization on String {
     'en': SubscriptionsPage.subscriptions,
     'es': 'Subscripciones',
   } + {
-    'en': SubscriptionsPage.chooseSub,
+    'en': SubscriptionPlanCards.chooseSub,
     'es': 'Escoge tu subscripción',
+  } + {
+    'en': SubscriptionPlanCards.noPlansYet,
+    'es': 'No hay subscripciónes disponibles',
   } + {
     'en': GradeCard.beltColor,
     'es': 'Cinturón %s'

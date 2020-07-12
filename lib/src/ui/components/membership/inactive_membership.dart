@@ -3,11 +3,12 @@ import 'package:flutter/material.dart';
 
 class InactiveMembershipView extends StatelessWidget {
   final String email;
+  final String customerId;
   static const String notActiveSubscription =
       'Your subscription is not active yet';
   static const String subscribe = 'Subscribe';
 
-  const InactiveMembershipView({Key key, this.email}) : super(key: key);
+  const InactiveMembershipView({Key key, this.email, this.customerId}) : super(key: key);
 
   @override
   Widget build(BuildContext context) {
@@ -30,7 +31,7 @@ class InactiveMembershipView extends StatelessWidget {
               ),
               onPressed: () {
                 Navigator.of(context)
-                    .pushNamed("subscriptions/$email");
+                    .pushNamed("subscriptions/$email/$customerId");
               },
             ),
           ],

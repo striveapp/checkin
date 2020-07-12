@@ -1,22 +1,29 @@
+import 'package:checkin/src/api/http_client.dart';
+import 'package:checkin/src/api/membership_api.dart';
 import 'package:checkin/src/blocs/gym/bloc.dart';
+import 'package:checkin/src/blocs/subscription/bloc.dart';
 import 'package:checkin/src/blocs/subscription_plans/bloc.dart';
 import 'package:checkin/src/blocs/user/bloc.dart';
 import 'package:checkin/src/localization/localization.dart';
-import 'package:checkin/src/repositories/subscription_plans_repository.dart';
+import 'package:checkin/src/resources/auth_provider.dart';
 import 'package:checkin/src/resources/gym_provider.dart';
+import 'package:checkin/src/resources/subscription_plans_provider.dart';
 import 'package:checkin/src/ui/components/base_app_bar.dart';
-import 'package:checkin/src/ui/components/loading_indicator.dart';
-import 'package:checkin/src/ui/components/subscription_plan_card.dart';
+import 'package:checkin/src/ui/components/subscriptions/subscription_plan_cards.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 
 class SubscriptionsPage extends StatelessWidget {
   final String customerEmail;
+  final String customerId;
 
   static const String subscriptions = 'Subscriptions';
-  static const String chooseSub = 'Choose a subscription plan';
 
-  SubscriptionsPage({Key key, @required this.customerEmail}) : super(key: key);
+  SubscriptionsPage({
+    Key key,
+    @required this.customerEmail,
+    @required this.customerId,
+  }) : super(key: key);
 
   @override
   Widget build(BuildContext context) {
@@ -25,62 +32,40 @@ class SubscriptionsPage extends StatelessWidget {
         title: subscriptions.i18n,
         showUserImage: false,
       ),
-      body: BlocProvider<SubscriptionPlansBloc>(
-        create: (BuildContext context) => SubscriptionPlansBloc(
-            gymBloc: GymBloc(
+      body: MultiBlocProvider(
+        providers: [
+          BlocProvider<GymBloc>(
+            create: (BuildContext context) => GymBloc(
                 userBloc: BlocProvider.of<UserBloc>(context),
                 gymRepository: GymProvider()),
-            subscriptionPlansRepository: SubscriptionPlansRepository()),
-        child: BlocBuilder<SubscriptionPlansBloc, SubscriptionPlansState>(
-          builder: (BuildContext context, SubscriptionPlansState state) {
-            if (state is SubscriptionPlansLoaded) {
-              return SingleChildScrollView(
-                child: Padding(
-                  padding: EdgeInsets.symmetric(horizontal: 10),
-                  child: Column(
-                    mainAxisAlignment: MainAxisAlignment.spaceAround,
-                    crossAxisAlignment: CrossAxisAlignment.center,
-                    children: <Widget>[
-                      SizedBox(
-                        height: 50,
-                      ),
-                      Padding(
-                        padding: EdgeInsets.only(left: 10.0),
-                        child: Text(chooseSub.i18n,
-                            textAlign: TextAlign.center,
-                            style: Theme.of(context).textTheme.headline3),
-                      ),
-                      SizedBox(
-                        height: 50,
-                      ),
-                      //TODO: this is the only widget that really need to listen for Subcscription Plan changes
-                      // https://trello.com/c/a2SG5TBc
-                      Column(
-                          children: state.subscriptionPlans
-                              .map((plan) => Column(
-                                    children: <Widget>[
-                                      SubscriptionPlanCard(
-                                        basePaymentUrl: state.basePaymentUrl,
-                                        plan: plan,
-                                        customerEmail: customerEmail,
-                                      ),
-                                      SizedBox(
-                                        height: 25,
-                                      ),
-                                    ],
-                                  ))
-                              .toList()),
-                    ],
-                  ),
-                ),
-              );
-            }
-
-            if (state is SubscriptionPlansInitial) {
-              return LoadingIndicator();
-            }
-            return ErrorWidget("unknown state for subscriptions_page");
-          },
+          ),
+          BlocProvider<SubscriptionBloc>(
+            create: (BuildContext context) => SubscriptionBloc(
+              membershipApi: MembershipApi(
+                  httpClient: HttpClient(authRepository: AuthProvider())),
+            ),
+          ),
+          BlocProvider<SubscriptionPlansBloc>(
+            create: (BuildContext context) => SubscriptionPlansBloc(
+              gymBloc: BlocProvider.of<GymBloc>(context),
+              subscriptionPlansRepository: SubscriptionPlansProvider(),
+            ),
+          ),
+        ],
+        child: SingleChildScrollView(
+          child: Padding(
+            padding: EdgeInsets.symmetric(horizontal: 10),
+            child: Column(
+              mainAxisAlignment: MainAxisAlignment.spaceAround,
+              crossAxisAlignment: CrossAxisAlignment.center,
+              children: <Widget>[
+                SubscriptionPlanCards(
+                  customerEmail: customerEmail,
+                  customerId: customerId,
+                )
+              ],
+            ),
+          ),
         ),
       ),
     );

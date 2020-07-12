@@ -14,10 +14,12 @@ class _$MembershipTearOff {
 
   _Membership call(
       {@required String status,
-      @required String name,
-      @required int currentPeriodEnd}) {
+      String customerId,
+      String name,
+      int currentPeriodEnd}) {
     return _Membership(
       status: status,
+      customerId: customerId,
       name: name,
       currentPeriodEnd: currentPeriodEnd,
     );
@@ -29,6 +31,7 @@ const $Membership = _$MembershipTearOff();
 
 mixin _$Membership {
   String get status;
+  String get customerId;
   String get name;
   int get currentPeriodEnd;
 
@@ -39,7 +42,8 @@ abstract class $MembershipCopyWith<$Res> {
   factory $MembershipCopyWith(
           Membership value, $Res Function(Membership) then) =
       _$MembershipCopyWithImpl<$Res>;
-  $Res call({String status, String name, int currentPeriodEnd});
+  $Res call(
+      {String status, String customerId, String name, int currentPeriodEnd});
 }
 
 class _$MembershipCopyWithImpl<$Res> implements $MembershipCopyWith<$Res> {
@@ -52,11 +56,14 @@ class _$MembershipCopyWithImpl<$Res> implements $MembershipCopyWith<$Res> {
   @override
   $Res call({
     Object status = freezed,
+    Object customerId = freezed,
     Object name = freezed,
     Object currentPeriodEnd = freezed,
   }) {
     return _then(_value.copyWith(
       status: status == freezed ? _value.status : status as String,
+      customerId:
+          customerId == freezed ? _value.customerId : customerId as String,
       name: name == freezed ? _value.name : name as String,
       currentPeriodEnd: currentPeriodEnd == freezed
           ? _value.currentPeriodEnd
@@ -70,7 +77,8 @@ abstract class _$MembershipCopyWith<$Res> implements $MembershipCopyWith<$Res> {
           _Membership value, $Res Function(_Membership) then) =
       __$MembershipCopyWithImpl<$Res>;
   @override
-  $Res call({String status, String name, int currentPeriodEnd});
+  $Res call(
+      {String status, String customerId, String name, int currentPeriodEnd});
 }
 
 class __$MembershipCopyWithImpl<$Res> extends _$MembershipCopyWithImpl<$Res>
@@ -85,11 +93,14 @@ class __$MembershipCopyWithImpl<$Res> extends _$MembershipCopyWithImpl<$Res>
   @override
   $Res call({
     Object status = freezed,
+    Object customerId = freezed,
     Object name = freezed,
     Object currentPeriodEnd = freezed,
   }) {
     return _then(_Membership(
       status: status == freezed ? _value.status : status as String,
+      customerId:
+          customerId == freezed ? _value.customerId : customerId as String,
       name: name == freezed ? _value.name : name as String,
       currentPeriodEnd: currentPeriodEnd == freezed
           ? _value.currentPeriodEnd
@@ -101,14 +112,15 @@ class __$MembershipCopyWithImpl<$Res> extends _$MembershipCopyWithImpl<$Res>
 class _$_Membership with DiagnosticableTreeMixin implements _Membership {
   _$_Membership(
       {@required this.status,
-      @required this.name,
-      @required this.currentPeriodEnd})
-      : assert(status != null),
-        assert(name != null),
-        assert(currentPeriodEnd != null);
+      this.customerId,
+      this.name,
+      this.currentPeriodEnd})
+      : assert(status != null);
 
   @override
   final String status;
+  @override
+  final String customerId;
   @override
   final String name;
   @override
@@ -116,7 +128,7 @@ class _$_Membership with DiagnosticableTreeMixin implements _Membership {
 
   @override
   String toString({DiagnosticLevel minLevel = DiagnosticLevel.info}) {
-    return 'Membership(status: $status, name: $name, currentPeriodEnd: $currentPeriodEnd)';
+    return 'Membership(status: $status, customerId: $customerId, name: $name, currentPeriodEnd: $currentPeriodEnd)';
   }
 
   @override
@@ -125,6 +137,7 @@ class _$_Membership with DiagnosticableTreeMixin implements _Membership {
     properties
       ..add(DiagnosticsProperty('type', 'Membership'))
       ..add(DiagnosticsProperty('status', status))
+      ..add(DiagnosticsProperty('customerId', customerId))
       ..add(DiagnosticsProperty('name', name))
       ..add(DiagnosticsProperty('currentPeriodEnd', currentPeriodEnd));
   }
@@ -135,6 +148,9 @@ class _$_Membership with DiagnosticableTreeMixin implements _Membership {
         (other is _Membership &&
             (identical(other.status, status) ||
                 const DeepCollectionEquality().equals(other.status, status)) &&
+            (identical(other.customerId, customerId) ||
+                const DeepCollectionEquality()
+                    .equals(other.customerId, customerId)) &&
             (identical(other.name, name) ||
                 const DeepCollectionEquality().equals(other.name, name)) &&
             (identical(other.currentPeriodEnd, currentPeriodEnd) ||
@@ -146,6 +162,7 @@ class _$_Membership with DiagnosticableTreeMixin implements _Membership {
   int get hashCode =>
       runtimeType.hashCode ^
       const DeepCollectionEquality().hash(status) ^
+      const DeepCollectionEquality().hash(customerId) ^
       const DeepCollectionEquality().hash(name) ^
       const DeepCollectionEquality().hash(currentPeriodEnd);
 
@@ -157,11 +174,14 @@ class _$_Membership with DiagnosticableTreeMixin implements _Membership {
 abstract class _Membership implements Membership {
   factory _Membership(
       {@required String status,
-      @required String name,
-      @required int currentPeriodEnd}) = _$_Membership;
+      String customerId,
+      String name,
+      int currentPeriodEnd}) = _$_Membership;
 
   @override
   String get status;
+  @override
+  String get customerId;
   @override
   String get name;
   @override

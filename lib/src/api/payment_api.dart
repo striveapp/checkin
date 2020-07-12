@@ -23,12 +23,4 @@ class PaymentApi {
     print("clientSecret $clientSecret");
     return clientSecret;
   }
-
-  Future<void> createSubscription({String gymId, String customerId, String priceId}) async {
-    var data = {
-      "customerId": customerId,
-      "priceId":  priceId
-    };
-    await _httpClient.post(endpoint: "payments/$gymId/create-subscription", body: data);
-  }
 }

@@ -1,25 +1,16 @@
+import 'package:checkin/src/models/gym.dart';
 import 'package:checkin/src/models/subscription_plan.dart';
-import 'package:equatable/equatable.dart';
+import 'package:flutter/foundation.dart';
+import 'package:freezed_annotation/freezed_annotation.dart';
+import 'package:meta/meta.dart';
 
-abstract class SubscriptionPlansEvent extends Equatable {
-  const SubscriptionPlansEvent();
+part 'subscription_plans_event.freezed.dart';
 
-  @override
-  List<Object> get props => [];
-}
-
-class SubscriptionPlansUpdated extends SubscriptionPlansEvent {
-  final List<SubscriptionPlan> subscriptionPlans;
-  final String basePaymentUrl;
-
-  SubscriptionPlansUpdated({
-    this.subscriptionPlans,
-    this.basePaymentUrl,
-  });
-
-  @override
-  List<Object> get props => [subscriptionPlans, basePaymentUrl];
-
-  @override
-  String toString() => 'SubscriptionPlansUpdated';
+@freezed
+abstract class SubscriptionPlansEvent with _$SubscriptionPlansEvent {
+  const factory SubscriptionPlansEvent.subscriptionPlansUpdated({
+    @required List<SubscriptionPlan> subscriptionPlans,
+    @required String basePaymentUrl,
+    @required Gym gym,
+  }) = SubscriptionPlansUpdated;
 }

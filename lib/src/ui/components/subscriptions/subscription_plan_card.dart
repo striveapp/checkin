@@ -1,19 +1,22 @@
-import 'package:checkin/src/api/http_client.dart';
-import 'package:checkin/src/api/payment_api.dart';
+import 'package:checkin/src/blocs/subscription/bloc.dart';
 import 'package:checkin/src/models/subscription_plan.dart';
-import 'package:checkin/src/resources/auth_provider.dart';
 import 'package:flutter/material.dart';
+import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:intl/intl.dart';
 
 class SubscriptionPlanCard extends StatelessWidget {
   final SubscriptionPlan plan;
   final String customerEmail;
   final String basePaymentUrl;
+  final String customerId;
+  final String gymId;
 
   SubscriptionPlanCard({
     @required this.plan,
     @required this.customerEmail,
     @required this.basePaymentUrl,
+    @required this.customerId,
+    @required this.gymId,
   });
 
   @override
@@ -22,7 +25,13 @@ class SubscriptionPlanCard extends StatelessWidget {
         height: 150,
         child: Card(
           child: InkWell(
-            onTap: () => _launchPayment(context),
+            onTap: () {
+              BlocProvider.of<SubscriptionBloc>(context).add(Subscribe(
+                gymId: gymId,
+                priceId: plan.code,
+                customerId: customerId,
+              ));
+            },
             child: Padding(
               padding: const EdgeInsets.symmetric(horizontal: 20),
               child: Row(
@@ -78,24 +87,5 @@ class SubscriptionPlanCard extends StatelessWidget {
     final f = NumberFormat("###.00");
     final s = f.format(price / 100);
     return s.endsWith('00') ? s.substring(0, s.length - 3) : s;
-  }
-
-  void _launchPayment(BuildContext context) async {
-    await PaymentApi(
-        httpClient:
-        HttpClient(authRepository: AuthProvider()))
-        .createSubscription(gymId: "test", customerId: "cus_HZcWU3P5qbD5MB", priceId: "price_1H0TPrLAVB3C1lDI0uwSN3X5");
-    // todo sepa should also start loading indicator
-    // todo sepa handle error
-    Navigator.of(context)
-        .pushNamed("payment/success");
-//    var url = Uri.encodeFull(
-//        "$basePaymentUrl&customerEmail=$customerEmail&plan=${plan.code}&nocache=${DateTime.now()}");
-//
-//    if (await canLaunch(url)) {
-//      await launch(url);
-//    } else {
-//      throw 'Could not launch $url';
-//    }
   }
 }

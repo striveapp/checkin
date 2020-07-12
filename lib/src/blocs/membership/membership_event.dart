@@ -1,28 +1,16 @@
 import 'package:checkin/src/models/membership.dart';
-import 'package:equatable/equatable.dart';
+import 'package:flutter/foundation.dart';
+import 'package:freezed_annotation/freezed_annotation.dart';
+import 'package:meta/meta.dart';
 
-abstract class MembershipEvent extends Equatable {
-  const MembershipEvent();
+part 'membership_event.freezed.dart';
 
-  @override
-  List<Object> get props => [];
-}
+@freezed
+abstract class MembershipEvent with _$MembershipEvent {
+  const factory MembershipEvent.membershipUpdated({
+    @required String customerEmail,
+    @required Membership membership,
+  }) =  MembershipUpdated;
 
-class MembershipUpdated extends MembershipEvent {
-  final Membership membership;
-  final String email;
-
-  MembershipUpdated({this.email, this.membership});
-
-  @override
-  List<Object> get props => [email, membership];
-
-  @override
-  String toString() => 'MembershipUpdated';
-}
-
-class Unsubscribe extends MembershipEvent {
-
-  @override
-  String toString() => 'Unsubscribe';
+  const factory MembershipEvent.unsubscribe() = Unsubscribe;
 }

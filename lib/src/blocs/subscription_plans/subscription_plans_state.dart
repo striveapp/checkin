@@ -1,38 +1,20 @@
 import 'package:checkin/src/models/subscription_plan.dart';
-import 'package:equatable/equatable.dart';
+import 'package:flutter/foundation.dart';
+import 'package:freezed_annotation/freezed_annotation.dart';
+import 'package:meta/meta.dart';
 
-abstract class SubscriptionPlansState extends Equatable {
-  const SubscriptionPlansState();
+part 'subscription_plans_state.freezed.dart';
 
-  @override
-  List<Object> get props => [];
-}
+@freezed
+abstract class SubscriptionPlansState with _$SubscriptionPlansState {
+  const factory SubscriptionPlansState.subscriptionPlansInitial() =
+      SubscriptionPlansInitial;
 
-class SubscriptionPlansInitial extends SubscriptionPlansState {
-  @override
-  String toString() => 'SubscriptionPlansInitial';
-}
+  const factory SubscriptionPlansState.subscriptionPlansLoaded({
+    @required List<SubscriptionPlan> subscriptionPlans,
+    @required String basePaymentUrl,
+    @required String gymId,
+  }) = SubscriptionPlansLoaded;
 
-class SubscriptionPlansLoaded extends SubscriptionPlansState {
-  final String basePaymentUrl;
-  final List<SubscriptionPlan> subscriptionPlans;
-
-  SubscriptionPlansLoaded({
-    this.subscriptionPlans,
-    this.basePaymentUrl,
-  });
-
-  @override
-  List<Object> get props => [
-        subscriptionPlans,
-        basePaymentUrl,
-      ];
-
-  @override
-  String toString() => 'SubscriptionPlansLoaded';
-}
-
-class SubscriptionPlansEmpty extends SubscriptionPlansState {
-  @override
-  String toString() => 'SubscriptionPlansEmpty';
+  const factory SubscriptionPlansState.subscriptionPlansEmpty() = SubscriptionPlansEmpty;
 }
