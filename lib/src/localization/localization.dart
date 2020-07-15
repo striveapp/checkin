@@ -2,6 +2,8 @@ import 'package:checkin/src/blocs/login/bloc.dart';
 import 'package:checkin/src/constants.dart' as constants;
 import 'package:checkin/src/models/grade.dart';
 import 'package:checkin/src/ui/components/gym_selection/gym_selection_buttons.dart';
+import 'package:checkin/src/ui/components/payment_methods/active_payment_method.dart';
+import 'package:checkin/src/ui/components/payment_methods/empty_payment_method.dart';
 import 'package:checkin/src/ui/components/registry/attendee_tile.dart';
 import 'package:checkin/src/ui/components/registry/registry_counter.dart';
 import 'package:checkin/src/ui/components/attendees_preview.dart';
@@ -198,6 +200,9 @@ extension Localization on String {
     'en': ActiveMembershipView.nextBilling,
     'es': 'El siguiente pago es el',
   } + {
+    'en': ActiveMembershipView.plan,
+    'es': 'Plano',
+  } + {
     'en': ProfileCard.enterYourName,
     'es': 'Escribe tu nombre',
   } + {
@@ -267,7 +272,22 @@ extension Localization on String {
   } + {
     'en': LoginBloc.loginError,
     'es': 'Error de inicio de sesion'
-  } ;
+  } + {
+    'en': EmptyPaymentMethod.connectBankAccount,
+    'es': 'Conecta tu banco'
+  } + {
+    'en': EmptyPaymentMethod.noRegisteredPaymentMethod,
+    'es': 'No hay métodos de pago registrados'
+  } + {
+    'en': ActivePaymentMethodView.bankAccount,
+    'es': 'Cuenta Bancaria'
+  } + {
+    'en': ActivePaymentMethodView.billingEmail,
+    'es': 'Correo de facturación'
+  } + {
+    'en': ActivePaymentMethodView.changePaymentInfo,
+    'es': 'Cambia tu información'
+  };
 
 String get i18n => localize(this, _t);
 

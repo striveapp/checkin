@@ -8,6 +8,9 @@ import 'package:flutter_bloc/flutter_bloc.dart';
 import '../loading_indicator.dart';
 
 class EmptyPaymentMethod extends StatelessWidget {
+  static const String connectBankAccount = 'Connect Bank Account';
+  static const String noRegisteredPaymentMethod = 'There are no registered payment methods';
+
   final String customerEmail;
 
   const EmptyPaymentMethod({Key key, @required this.customerEmail})
@@ -19,7 +22,7 @@ class EmptyPaymentMethod extends StatelessWidget {
       mainAxisAlignment: MainAxisAlignment.spaceAround,
       children: [
         Text(
-          "There are no registered payment methods".i18n,
+          noRegisteredPaymentMethod.i18n,
           textAlign: TextAlign.center,
           style: Theme.of(context).textTheme.headline3.apply(fontSizeDelta: 1),
         ),
@@ -28,7 +31,7 @@ class EmptyPaymentMethod extends StatelessWidget {
                 initialGymState: () => LoadingIndicator(),
                 gymLoaded: (Gym gym) => RaisedButton(
                       child: Text(
-                        "Connect Bank Account".i18n,
+                        connectBankAccount.i18n,
                         style: Theme.of(context).textTheme.button,
                       ),
                       onPressed: () {

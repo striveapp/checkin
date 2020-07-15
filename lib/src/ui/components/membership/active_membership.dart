@@ -8,6 +8,7 @@ class ActiveMembershipView extends StatelessWidget {
   final Membership membership;
   static const String nextBilling = 'The next billing date is ';
   static const String unsubscribe = 'Unsubscribe';
+  static const String plan = 'Plan';
 
   const ActiveMembershipView({Key key, this.membership}) : super(key: key);
 
@@ -22,7 +23,7 @@ class ActiveMembershipView extends StatelessWidget {
           crossAxisAlignment: CrossAxisAlignment.start,
           children: <Widget>[
             Text(
-              "Plan".i18n,
+              plan.i18n,
               style:
                   Theme.of(context).textTheme.headline3.apply(fontWeightDelta: 1),
             ),
@@ -54,6 +55,7 @@ class ActiveMembershipView extends StatelessWidget {
                 ),
               ),
             ),
+            SizedBox(height: 5,),
             Center(
               child: RaisedButton(
                 child: Text(

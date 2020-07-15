@@ -9,6 +9,9 @@ import 'package:flutter_bloc/flutter_bloc.dart';
 import '../loading_indicator.dart';
 
 class ActivePaymentMethodView extends StatelessWidget {
+  static const String changePaymentInfo = 'Change payment infos';
+  static const String billingEmail = 'Billing email';
+  static const String bankAccount = 'Bank account';
   final PaymentMethod paymentMethod;
 
   const ActivePaymentMethodView({Key key, this.paymentMethod})
@@ -20,7 +23,7 @@ class ActivePaymentMethodView extends StatelessWidget {
         crossAxisAlignment: CrossAxisAlignment.start,
         children: [
           Text(
-            "Billing email".i18n,
+            billingEmail.i18n,
             style:
                 Theme.of(context).textTheme.headline3.apply(fontWeightDelta: 1),
           ),
@@ -39,7 +42,7 @@ class ActivePaymentMethodView extends StatelessWidget {
             ],
           ),
           Text(
-            "Bank account".i18n,
+            bankAccount.i18n,
             style:
                 Theme.of(context).textTheme.headline3.apply(fontWeightDelta: 1),
           ),
@@ -67,7 +70,7 @@ class ActivePaymentMethodView extends StatelessWidget {
                 initialGymState: () => LoadingIndicator(),
                 gymLoaded: (Gym gym) => RaisedButton(
                       child: Text(
-                        "Change payment infos".i18n,
+                        changePaymentInfo.i18n,
                         style: Theme.of(context).textTheme.button,
                       ),
                       color: Theme.of(context).buttonTheme.colorScheme.error,
