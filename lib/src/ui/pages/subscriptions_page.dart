@@ -5,6 +5,7 @@ import 'package:checkin/src/blocs/subscription/bloc.dart';
 import 'package:checkin/src/blocs/subscription_plans/bloc.dart';
 import 'package:checkin/src/blocs/user/bloc.dart';
 import 'package:checkin/src/localization/localization.dart';
+import 'package:checkin/src/repositories/analytics_repository.dart';
 import 'package:checkin/src/resources/auth_provider.dart';
 import 'package:checkin/src/resources/gym_provider.dart';
 import 'package:checkin/src/resources/subscription_plans_provider.dart';
@@ -43,6 +44,7 @@ class SubscriptionsPage extends StatelessWidget {
             create: (BuildContext context) => SubscriptionBloc(
               membershipApi: MembershipApi(
                   httpClient: HttpClient(authRepository: AuthProvider())),
+              analyticsRepository: RepositoryProvider.of<AnalyticsRepository>(context)
             ),
           ),
           BlocProvider<SubscriptionPlansBloc>(

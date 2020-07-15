@@ -8,4 +8,6 @@ abstract class AnalyticsRepository {
   Future<void> logLoginWithGoogleSignIn();
 
   Future<void> loginError({dynamic err, StackTrace stackTrace});
+
+  Future<void> subscriptionError({dynamic err, StackTrace stackTrace});
 }

@@ -26,7 +26,6 @@ class App extends StatelessWidget {
   final UserRepository _userRepository;
   final StorageRepository _storageRepository;
   final ImageRepository _imageRepository;
-  final AnalyticsRepository _analyticsRepository;
 
   App({
     Key key,
@@ -35,19 +34,16 @@ class App extends StatelessWidget {
     @required UserRepository userRepository,
     @required StorageRepository storageRepository,
     @required ImageRepository imageRepository,
-    @required AnalyticsRepository analyticsRepository,
   })  : assert(themeData != null &&
             authRepository != null &&
             userRepository != null &&
             storageRepository != null &&
-            imageRepository != null &&
-            analyticsRepository != null),
+            imageRepository != null),
         _themeData = themeData,
         _authRepository = authRepository,
         _userRepository = userRepository,
         _storageRepository = storageRepository,
         _imageRepository = imageRepository,
-        _analyticsRepository = analyticsRepository,
         super(key: key);
 
   @override
@@ -65,7 +61,7 @@ class App extends StatelessWidget {
       onGenerateRoute: Application.router.generator,
       initialRoute: '/',
       navigatorObservers: [
-        _analyticsRepository.getNavigationObserver(),
+        RepositoryProvider.of<AnalyticsRepository>(context).getNavigationObserver(),
       ],
       theme: _themeData,
       home: I18n(
@@ -95,7 +91,6 @@ class App extends StatelessWidget {
               return LoginPage(
                 authRepository: _authRepository,
                 userRepository: _userRepository,
-                analyticsRepository: _analyticsRepository,
               );
             }
 

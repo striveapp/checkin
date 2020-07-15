@@ -45,7 +45,6 @@ void main() {
   final StorageRepository storageRepository = StorageRepository();
   final ImageRepository imageRepository = ImageRepository();
   final FirebaseDynamicLinks dynamicLinks = FirebaseDynamicLinks.instance;
-  final AnalyticsRepository analyticsRepository = AnalyticsProvider();
 
   runZonedGuarded<Future<void>>(() async {
     runApp(
@@ -57,6 +56,9 @@ void main() {
           RepositoryProvider<LessonApi>(
             create: (context) => LessonApi(),
           ),
+          RepositoryProvider<AnalyticsRepository>(
+            create: (context) => AnalyticsProvider(),
+          ),
         ],
         child: MultiBlocProvider(
           providers: [
@@ -66,7 +68,7 @@ void main() {
             BlocProvider<AuthBloc>(
               create: (context) => AuthBloc(
                 authRepository: authRepository,
-                analyticsRepository: analyticsRepository,
+                analyticsRepository: RepositoryProvider.of<AnalyticsRepository>(context),
               )..add(AppStarted()),
             ),
             BlocProvider<DynamicLinkBloc>(
@@ -84,7 +86,6 @@ void main() {
                     authRepository: authRepository,
                     storageRepository: storageRepository,
                     imageRepository: imageRepository,
-                    analyticsRepository: analyticsRepository,
                   )),
         ),
       ),

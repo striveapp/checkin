@@ -30,4 +30,16 @@ class AnalyticsProvider implements AnalyticsRepository {
       "message": message.substring(0, 100),
     });
   }
+
+  Future<void> subscriptionError({dynamic err, StackTrace stackTrace}) async {
+    String message = err.toString();
+
+    await _crashlytics.recordError(err, stackTrace, context: "subscription error");
+    await _firebaseAnalytics.logEvent(name: "subscription_error", parameters: {
+      "hash": CryptoUtil.generateMd5(message),
+      "message": message.substring(0, 100),
+    });
+  }
+
+
 }
