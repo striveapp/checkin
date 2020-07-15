@@ -33,6 +33,12 @@ class _$MembershipStateTearOff {
   MembershipLoading membershipLoading() {
     return const MembershipLoading();
   }
+
+  MembershipError membershipError({@required String errorMessage}) {
+    return MembershipError(
+      errorMessage: errorMessage,
+    );
+  }
 }
 
 // ignore: unused_element
@@ -46,6 +52,7 @@ mixin _$MembershipState {
     @required
         Result membershipInactive(String customerEmail, String customerId),
     @required Result membershipLoading(),
+    @required Result membershipError(String errorMessage),
   });
   @optionalTypeArgs
   Result maybeWhen<Result extends Object>({
@@ -53,6 +60,7 @@ mixin _$MembershipState {
     Result membershipActive(Membership membership),
     Result membershipInactive(String customerEmail, String customerId),
     Result membershipLoading(),
+    Result membershipError(String errorMessage),
     @required Result orElse(),
   });
   @optionalTypeArgs
@@ -61,6 +69,7 @@ mixin _$MembershipState {
     @required Result membershipActive(MembershipActive value),
     @required Result membershipInactive(MembershipInactive value),
     @required Result membershipLoading(MembershipLoading value),
+    @required Result membershipError(MembershipError value),
   });
   @optionalTypeArgs
   Result maybeMap<Result extends Object>({
@@ -68,6 +77,7 @@ mixin _$MembershipState {
     Result membershipActive(MembershipActive value),
     Result membershipInactive(MembershipInactive value),
     Result membershipLoading(MembershipLoading value),
+    Result membershipError(MembershipError value),
     @required Result orElse(),
   });
 }
@@ -138,11 +148,13 @@ class _$InitialMembershipState
     @required
         Result membershipInactive(String customerEmail, String customerId),
     @required Result membershipLoading(),
+    @required Result membershipError(String errorMessage),
   }) {
     assert(initialMembershipState != null);
     assert(membershipActive != null);
     assert(membershipInactive != null);
     assert(membershipLoading != null);
+    assert(membershipError != null);
     return initialMembershipState();
   }
 
@@ -153,6 +165,7 @@ class _$InitialMembershipState
     Result membershipActive(Membership membership),
     Result membershipInactive(String customerEmail, String customerId),
     Result membershipLoading(),
+    Result membershipError(String errorMessage),
     @required Result orElse(),
   }) {
     assert(orElse != null);
@@ -169,11 +182,13 @@ class _$InitialMembershipState
     @required Result membershipActive(MembershipActive value),
     @required Result membershipInactive(MembershipInactive value),
     @required Result membershipLoading(MembershipLoading value),
+    @required Result membershipError(MembershipError value),
   }) {
     assert(initialMembershipState != null);
     assert(membershipActive != null);
     assert(membershipInactive != null);
     assert(membershipLoading != null);
+    assert(membershipError != null);
     return initialMembershipState(this);
   }
 
@@ -184,6 +199,7 @@ class _$InitialMembershipState
     Result membershipActive(MembershipActive value),
     Result membershipInactive(MembershipInactive value),
     Result membershipLoading(MembershipLoading value),
+    Result membershipError(MembershipError value),
     @required Result orElse(),
   }) {
     assert(orElse != null);
@@ -285,11 +301,13 @@ class _$MembershipActive
     @required
         Result membershipInactive(String customerEmail, String customerId),
     @required Result membershipLoading(),
+    @required Result membershipError(String errorMessage),
   }) {
     assert(initialMembershipState != null);
     assert(membershipActive != null);
     assert(membershipInactive != null);
     assert(membershipLoading != null);
+    assert(membershipError != null);
     return membershipActive(membership);
   }
 
@@ -300,6 +318,7 @@ class _$MembershipActive
     Result membershipActive(Membership membership),
     Result membershipInactive(String customerEmail, String customerId),
     Result membershipLoading(),
+    Result membershipError(String errorMessage),
     @required Result orElse(),
   }) {
     assert(orElse != null);
@@ -316,11 +335,13 @@ class _$MembershipActive
     @required Result membershipActive(MembershipActive value),
     @required Result membershipInactive(MembershipInactive value),
     @required Result membershipLoading(MembershipLoading value),
+    @required Result membershipError(MembershipError value),
   }) {
     assert(initialMembershipState != null);
     assert(membershipActive != null);
     assert(membershipInactive != null);
     assert(membershipLoading != null);
+    assert(membershipError != null);
     return membershipActive(this);
   }
 
@@ -331,6 +352,7 @@ class _$MembershipActive
     Result membershipActive(MembershipActive value),
     Result membershipInactive(MembershipInactive value),
     Result membershipLoading(MembershipLoading value),
+    Result membershipError(MembershipError value),
     @required Result orElse(),
   }) {
     assert(orElse != null);
@@ -438,11 +460,13 @@ class _$MembershipInactive
     @required
         Result membershipInactive(String customerEmail, String customerId),
     @required Result membershipLoading(),
+    @required Result membershipError(String errorMessage),
   }) {
     assert(initialMembershipState != null);
     assert(membershipActive != null);
     assert(membershipInactive != null);
     assert(membershipLoading != null);
+    assert(membershipError != null);
     return membershipInactive(customerEmail, customerId);
   }
 
@@ -453,6 +477,7 @@ class _$MembershipInactive
     Result membershipActive(Membership membership),
     Result membershipInactive(String customerEmail, String customerId),
     Result membershipLoading(),
+    Result membershipError(String errorMessage),
     @required Result orElse(),
   }) {
     assert(orElse != null);
@@ -469,11 +494,13 @@ class _$MembershipInactive
     @required Result membershipActive(MembershipActive value),
     @required Result membershipInactive(MembershipInactive value),
     @required Result membershipLoading(MembershipLoading value),
+    @required Result membershipError(MembershipError value),
   }) {
     assert(initialMembershipState != null);
     assert(membershipActive != null);
     assert(membershipInactive != null);
     assert(membershipLoading != null);
+    assert(membershipError != null);
     return membershipInactive(this);
   }
 
@@ -484,6 +511,7 @@ class _$MembershipInactive
     Result membershipActive(MembershipActive value),
     Result membershipInactive(MembershipInactive value),
     Result membershipLoading(MembershipLoading value),
+    Result membershipError(MembershipError value),
     @required Result orElse(),
   }) {
     assert(orElse != null);
@@ -554,11 +582,13 @@ class _$MembershipLoading
     @required
         Result membershipInactive(String customerEmail, String customerId),
     @required Result membershipLoading(),
+    @required Result membershipError(String errorMessage),
   }) {
     assert(initialMembershipState != null);
     assert(membershipActive != null);
     assert(membershipInactive != null);
     assert(membershipLoading != null);
+    assert(membershipError != null);
     return membershipLoading();
   }
 
@@ -569,6 +599,7 @@ class _$MembershipLoading
     Result membershipActive(Membership membership),
     Result membershipInactive(String customerEmail, String customerId),
     Result membershipLoading(),
+    Result membershipError(String errorMessage),
     @required Result orElse(),
   }) {
     assert(orElse != null);
@@ -585,11 +616,13 @@ class _$MembershipLoading
     @required Result membershipActive(MembershipActive value),
     @required Result membershipInactive(MembershipInactive value),
     @required Result membershipLoading(MembershipLoading value),
+    @required Result membershipError(MembershipError value),
   }) {
     assert(initialMembershipState != null);
     assert(membershipActive != null);
     assert(membershipInactive != null);
     assert(membershipLoading != null);
+    assert(membershipError != null);
     return membershipLoading(this);
   }
 
@@ -600,6 +633,7 @@ class _$MembershipLoading
     Result membershipActive(MembershipActive value),
     Result membershipInactive(MembershipInactive value),
     Result membershipLoading(MembershipLoading value),
+    Result membershipError(MembershipError value),
     @required Result orElse(),
   }) {
     assert(orElse != null);
@@ -612,4 +646,150 @@ class _$MembershipLoading
 
 abstract class MembershipLoading implements MembershipState {
   const factory MembershipLoading() = _$MembershipLoading;
+}
+
+abstract class $MembershipErrorCopyWith<$Res> {
+  factory $MembershipErrorCopyWith(
+          MembershipError value, $Res Function(MembershipError) then) =
+      _$MembershipErrorCopyWithImpl<$Res>;
+  $Res call({String errorMessage});
+}
+
+class _$MembershipErrorCopyWithImpl<$Res>
+    extends _$MembershipStateCopyWithImpl<$Res>
+    implements $MembershipErrorCopyWith<$Res> {
+  _$MembershipErrorCopyWithImpl(
+      MembershipError _value, $Res Function(MembershipError) _then)
+      : super(_value, (v) => _then(v as MembershipError));
+
+  @override
+  MembershipError get _value => super._value as MembershipError;
+
+  @override
+  $Res call({
+    Object errorMessage = freezed,
+  }) {
+    return _then(MembershipError(
+      errorMessage: errorMessage == freezed
+          ? _value.errorMessage
+          : errorMessage as String,
+    ));
+  }
+}
+
+class _$MembershipError
+    with DiagnosticableTreeMixin
+    implements MembershipError {
+  const _$MembershipError({@required this.errorMessage})
+      : assert(errorMessage != null);
+
+  @override
+  final String errorMessage;
+
+  @override
+  String toString({DiagnosticLevel minLevel = DiagnosticLevel.info}) {
+    return 'MembershipState.membershipError(errorMessage: $errorMessage)';
+  }
+
+  @override
+  void debugFillProperties(DiagnosticPropertiesBuilder properties) {
+    super.debugFillProperties(properties);
+    properties
+      ..add(DiagnosticsProperty('type', 'MembershipState.membershipError'))
+      ..add(DiagnosticsProperty('errorMessage', errorMessage));
+  }
+
+  @override
+  bool operator ==(dynamic other) {
+    return identical(this, other) ||
+        (other is MembershipError &&
+            (identical(other.errorMessage, errorMessage) ||
+                const DeepCollectionEquality()
+                    .equals(other.errorMessage, errorMessage)));
+  }
+
+  @override
+  int get hashCode =>
+      runtimeType.hashCode ^ const DeepCollectionEquality().hash(errorMessage);
+
+  @override
+  $MembershipErrorCopyWith<MembershipError> get copyWith =>
+      _$MembershipErrorCopyWithImpl<MembershipError>(this, _$identity);
+
+  @override
+  @optionalTypeArgs
+  Result when<Result extends Object>({
+    @required Result initialMembershipState(),
+    @required Result membershipActive(Membership membership),
+    @required
+        Result membershipInactive(String customerEmail, String customerId),
+    @required Result membershipLoading(),
+    @required Result membershipError(String errorMessage),
+  }) {
+    assert(initialMembershipState != null);
+    assert(membershipActive != null);
+    assert(membershipInactive != null);
+    assert(membershipLoading != null);
+    assert(membershipError != null);
+    return membershipError(errorMessage);
+  }
+
+  @override
+  @optionalTypeArgs
+  Result maybeWhen<Result extends Object>({
+    Result initialMembershipState(),
+    Result membershipActive(Membership membership),
+    Result membershipInactive(String customerEmail, String customerId),
+    Result membershipLoading(),
+    Result membershipError(String errorMessage),
+    @required Result orElse(),
+  }) {
+    assert(orElse != null);
+    if (membershipError != null) {
+      return membershipError(errorMessage);
+    }
+    return orElse();
+  }
+
+  @override
+  @optionalTypeArgs
+  Result map<Result extends Object>({
+    @required Result initialMembershipState(InitialMembershipState value),
+    @required Result membershipActive(MembershipActive value),
+    @required Result membershipInactive(MembershipInactive value),
+    @required Result membershipLoading(MembershipLoading value),
+    @required Result membershipError(MembershipError value),
+  }) {
+    assert(initialMembershipState != null);
+    assert(membershipActive != null);
+    assert(membershipInactive != null);
+    assert(membershipLoading != null);
+    assert(membershipError != null);
+    return membershipError(this);
+  }
+
+  @override
+  @optionalTypeArgs
+  Result maybeMap<Result extends Object>({
+    Result initialMembershipState(InitialMembershipState value),
+    Result membershipActive(MembershipActive value),
+    Result membershipInactive(MembershipInactive value),
+    Result membershipLoading(MembershipLoading value),
+    Result membershipError(MembershipError value),
+    @required Result orElse(),
+  }) {
+    assert(orElse != null);
+    if (membershipError != null) {
+      return membershipError(this);
+    }
+    return orElse();
+  }
+}
+
+abstract class MembershipError implements MembershipState {
+  const factory MembershipError({@required String errorMessage}) =
+      _$MembershipError;
+
+  String get errorMessage;
+  $MembershipErrorCopyWith<MembershipError> get copyWith;
 }

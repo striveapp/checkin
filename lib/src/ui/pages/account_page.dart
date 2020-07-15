@@ -9,6 +9,7 @@ import 'package:checkin/src/blocs/payment_methods/payment_methods_bloc.dart';
 import 'package:checkin/src/blocs/profile/bloc.dart';
 import 'package:checkin/src/blocs/user/bloc.dart';
 import 'package:checkin/src/localization/localization.dart';
+import 'package:checkin/src/repositories/analytics_repository.dart';
 import 'package:checkin/src/repositories/user_repository.dart';
 import 'package:checkin/src/resources/auth_provider.dart';
 import 'package:checkin/src/resources/gym_provider.dart';
@@ -57,6 +58,7 @@ class AccountPage extends StatelessWidget {
             ),
             BlocProvider<MembershipBloc>(
               create: (BuildContext context) => MembershipBloc(
+                analyticsRepository: RepositoryProvider.of<AnalyticsRepository>(context),
                 membershipApi: MembershipApi(
                     httpClient: HttpClient(authRepository: AuthProvider())),
                 membershipRepository: MembershipProvider(),

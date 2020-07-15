@@ -5,6 +5,7 @@ import 'package:checkin/src/api/membership_api.dart';
 import 'package:checkin/src/blocs/membership/bloc.dart';
 import 'package:checkin/src/blocs/user/bloc.dart';
 import 'package:checkin/src/models/membership.dart';
+import 'package:checkin/src/repositories/analytics_repository.dart';
 import 'package:checkin/src/repositories/membership_repository.dart';
 import 'package:flutter/material.dart';
 
@@ -12,19 +13,23 @@ class MembershipBloc extends Bloc<MembershipEvent, MembershipState> {
   final MembershipRepository _membershipRepository;
   final MembershipApi _membershipApi;
   final UserBloc _userBloc;
+  final AnalyticsRepository _analyticsRepository;
 
   String _gymId;
   StreamSubscription<Membership> _membershipSub;
 
-  MembershipBloc({
-    @required MembershipRepository membershipRepository,
-    @required MembershipApi membershipApi,
-    @required UserBloc userBloc,
-  })  : assert(membershipRepository != null &&
+  MembershipBloc(
+      {@required MembershipRepository membershipRepository,
+      @required MembershipApi membershipApi,
+      @required UserBloc userBloc,
+      @required AnalyticsRepository analyticsRepository})
+      : assert(membershipRepository != null &&
             membershipApi != null &&
-            userBloc != null),
+            userBloc != null &&
+            analyticsRepository != null),
         _membershipRepository = membershipRepository,
         _membershipApi = membershipApi,
+        _analyticsRepository = analyticsRepository,
         _userBloc = userBloc {
     _userBloc.listen((userState) {
       if (userState is UserSuccess) {
@@ -55,14 +60,15 @@ class MembershipBloc extends Bloc<MembershipEvent, MembershipState> {
   @override
   Stream<MembershipState> mapEventToState(MembershipEvent event) async* {
 
-//    await PaymentApi(
-//        httpClient:
-//        HttpClient(authRepository: AuthProvider()))
-//        .createSubscription(gymId: gym.id, customerId: customerId, priceId: plan.code);
-
     if (event is Unsubscribe) {
       yield MembershipLoading();
-      await _membershipApi.unsubscribe(gymId: _gymId);
+      try {
+        await _membershipApi.unsubscribe(gymId: _gymId);
+      } catch (err, stackTrace) {
+        _analyticsRepository.unsubscribeError(err: err, stackTrace: stackTrace);
+        yield MembershipError(
+            errorMessage: "Something went wrong while with unsubscribe: [$err]");
+      }
     }
 
     if (event is MembershipUpdated) {
