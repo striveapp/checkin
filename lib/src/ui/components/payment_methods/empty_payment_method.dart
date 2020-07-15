@@ -16,7 +16,7 @@ class EmptyPaymentMethod extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return Column(
-      mainAxisAlignment: MainAxisAlignment.spaceBetween,
+      mainAxisAlignment: MainAxisAlignment.spaceAround,
       children: [
         Text(
           "There are no registered payment methods".i18n,

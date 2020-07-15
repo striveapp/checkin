@@ -31,10 +31,19 @@ class AnalyticsProvider implements AnalyticsRepository {
     });
   }
 
+  Future<void> logSubscriptionWithEmptyCustomer(
+          {String gymId, String priceId}) async =>
+      await _firebaseAnalytics
+          .logEvent(name: "subscription_with_empty_customer", parameters: {
+        "gymId": gymId,
+        "priceId": priceId,
+      });
+
   Future<void> subscriptionError({dynamic err, StackTrace stackTrace}) async {
     String message = err.toString();
 
-    await _crashlytics.recordError(err, stackTrace, context: "subscription error");
+    await _crashlytics.recordError(err, stackTrace,
+        context: "subscription error");
     await _firebaseAnalytics.logEvent(name: "subscription_error", parameters: {
       "hash": CryptoUtil.generateMd5(message),
       "message": message.substring(0, 100),
@@ -44,12 +53,11 @@ class AnalyticsProvider implements AnalyticsRepository {
   Future<void> unsubscribeError({dynamic err, StackTrace stackTrace}) async {
     String message = err.toString();
 
-    await _crashlytics.recordError(err, stackTrace, context: "unsubscribe error");
+    await _crashlytics.recordError(err, stackTrace,
+        context: "unsubscribe error");
     await _firebaseAnalytics.logEvent(name: "unsubscribe_error", parameters: {
       "hash": CryptoUtil.generateMd5(message),
       "message": message.substring(0, 100),
     });
   }
-
-
 }

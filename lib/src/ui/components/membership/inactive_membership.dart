@@ -8,7 +8,11 @@ class InactiveMembershipView extends StatelessWidget {
       'Your subscription is not active yet';
   static const String subscribe = 'Subscribe';
 
-  const InactiveMembershipView({Key key, this.email, this.customerId}) : super(key: key);
+  const InactiveMembershipView({
+    Key key,
+    this.email,
+    this.customerId,
+  }) : super(key: key);
 
   @override
   Widget build(BuildContext context) {

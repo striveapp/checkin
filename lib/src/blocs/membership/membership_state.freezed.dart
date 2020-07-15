@@ -23,7 +23,7 @@ class _$MembershipStateTearOff {
   }
 
   MembershipInactive membershipInactive(
-      {@required String customerEmail, @required String customerId}) {
+      {@required String customerEmail, String customerId}) {
     return MembershipInactive(
       customerEmail: customerEmail,
       customerId: customerId,
@@ -406,10 +406,8 @@ class _$MembershipInactiveCopyWithImpl<$Res>
 class _$MembershipInactive
     with DiagnosticableTreeMixin
     implements MembershipInactive {
-  const _$MembershipInactive(
-      {@required this.customerEmail, @required this.customerId})
-      : assert(customerEmail != null),
-        assert(customerId != null);
+  const _$MembershipInactive({@required this.customerEmail, this.customerId})
+      : assert(customerEmail != null);
 
   @override
   final String customerEmail;
@@ -525,7 +523,7 @@ class _$MembershipInactive
 abstract class MembershipInactive implements MembershipState {
   const factory MembershipInactive(
       {@required String customerEmail,
-      @required String customerId}) = _$MembershipInactive;
+      String customerId}) = _$MembershipInactive;
 
   String get customerEmail;
   String get customerId;

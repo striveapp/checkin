@@ -5,6 +5,7 @@ import 'package:mockito/mockito.dart';
 import 'package:test/test.dart';
 
 class MockAnalyticsRepository extends Mock implements AnalyticsRepository {}
+
 class MockMembershipApi extends Mock implements MembershipApi {}
 
 void main() {
@@ -32,13 +33,18 @@ void main() {
     });
 
     group("Subscribe", () {
-
       setUp(() {
-        subscriptionBloc.add(Subscribe(gymId: "fake-gym", priceId: "fake-price", customerId: "fake-customer"));
+
       });
 
-      test("should emit SubscriptionLoading and SubscriptionSuccess when api call is successful", () async {
-        when(mockMembershipApi.createSubscription(gymId: "fake-gym", priceId: "fake-price", customerId: "fake-customer") )
+      test(
+          "should emit SubscriptionLoading and SubscriptionSuccess when api call is successful", () async {
+        subscriptionBloc.add(Subscribe(gymId: "fake-gym",
+            priceId: "fake-price",
+            customerId: "fake-customer"));
+        when(mockMembershipApi.createSubscription(gymId: "fake-gym",
+            priceId: "fake-price",
+            customerId: "fake-customer"))
             .thenAnswer((_) => Future.value(null));
 
         final expectedState = [
@@ -52,20 +58,31 @@ void main() {
           emitsInOrder(expectedState),
         );
 
-        verify(mockMembershipApi.createSubscription(gymId: "fake-gym", priceId: "fake-price", customerId: "fake-customer") );
+        verify(mockMembershipApi.createSubscription(gymId: "fake-gym",
+            priceId: "fake-price",
+            customerId: "fake-customer"));
       });
 
-      test("should emit SubscriptionLoading and SubscriptionError when api call blows up", () async {
-        when(mockMembershipApi.createSubscription(gymId: "fake-gym", priceId: "fake-price", customerId: "fake-customer") )
+      test(
+          "should emit SubscriptionLoading and SubscriptionError when api call blows up", () async {
+        subscriptionBloc.add(Subscribe(gymId: "fake-gym",
+            priceId: "fake-price",
+            customerId: "fake-customer"));
+        when(mockMembershipApi.createSubscription(gymId: "fake-gym",
+            priceId: "fake-price",
+            customerId: "fake-customer"))
             .thenThrow("a little nice error");
 
-        when(mockAnalyticsRepository.subscriptionError(err: "a little nice error", stackTrace: argThat(isA<StackTrace>(), named: 'stackTrace') ))
+        when(mockAnalyticsRepository.subscriptionError(
+            err: "a little nice error",
+            stackTrace: argThat(isA<StackTrace>(), named: 'stackTrace')))
             .thenAnswer((_) => Future.value(null));
 
         final expectedState = [
           SubscriptionInitial(),
           SubscriptionLoading(),
-          SubscriptionError(errorMessage: "Something went wrong with subscription: [a little nice error]")
+          SubscriptionError(
+              errorMessage: "Something went wrong with subscription: [a little nice error]")
         ];
 
         await expectLater(
@@ -73,8 +90,38 @@ void main() {
           emitsInOrder(expectedState),
         );
 
-        verify(mockMembershipApi.createSubscription(gymId: "fake-gym", priceId: "fake-price", customerId: "fake-customer") );
-        verify(mockAnalyticsRepository.subscriptionError(err: "a little nice error", stackTrace: argThat(isA<StackTrace>(), named: 'stackTrace') ));
+        verify(mockMembershipApi.createSubscription(gymId: "fake-gym",
+            priceId: "fake-price",
+            customerId: "fake-customer"));
+        verify(mockAnalyticsRepository.subscriptionError(
+            err: "a little nice error",
+            stackTrace: argThat(isA<StackTrace>(), named: 'stackTrace')));
+      });
+
+      test(
+          "should emit SubscriptionLoading and SubscriptionError when there is no customerId", () async {
+        subscriptionBloc.add(Subscribe(gymId: "fake-gym",
+            priceId: "fake-price",
+            customerId: "null"));
+
+        when(mockAnalyticsRepository.logSubscriptionWithEmptyCustomer(priceId: "fake-price", gymId:"fake-gym"));
+
+        final expectedState = [
+          SubscriptionInitial(),
+          SubscriptionLoading(),
+          SubscriptionError(
+              errorMessage: "You must first activate your bank account")
+        ];
+
+        await expectLater(
+          subscriptionBloc,
+          emitsInOrder(expectedState),
+        );
+
+        verifyNever(mockMembershipApi.createSubscription(gymId: "fake-gym",
+            priceId: "fake-price",
+            customerId: "null"));
+        verify(mockAnalyticsRepository.logSubscriptionWithEmptyCustomer(priceId: "fake-price", gymId:"fake-gym"));
       });
     });
   });

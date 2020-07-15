@@ -23,7 +23,7 @@ class SubscriptionsPage extends StatelessWidget {
   SubscriptionsPage({
     Key key,
     @required this.customerEmail,
-    @required this.customerId,
+    this.customerId,
   }) : super(key: key);
 
   @override

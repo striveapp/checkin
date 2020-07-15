@@ -9,6 +9,8 @@ abstract class AnalyticsRepository {
 
   Future<void> loginError({dynamic err, StackTrace stackTrace});
 
+  Future<void> logSubscriptionWithEmptyCustomer({String priceId, String gymId});
+
   Future<void> subscriptionError({dynamic err, StackTrace stackTrace});
 
   Future<void> unsubscribeError({dynamic err, StackTrace stackTrace});

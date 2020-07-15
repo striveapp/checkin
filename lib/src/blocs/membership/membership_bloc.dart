@@ -61,21 +61,21 @@ class MembershipBloc extends Bloc<MembershipEvent, MembershipState> {
   Stream<MembershipState> mapEventToState(MembershipEvent event) async* {
 
     if (event is Unsubscribe) {
-      yield MembershipLoading();
+      yield MembershipState.membershipLoading();
       try {
         await _membershipApi.unsubscribe(gymId: _gymId);
       } catch (err, stackTrace) {
         _analyticsRepository.unsubscribeError(err: err, stackTrace: stackTrace);
-        yield MembershipError(
+        yield MembershipState.membershipError(
             errorMessage: "Something went wrong while with unsubscribe: [$err]");
       }
     }
 
     if (event is MembershipUpdated) {
       if (event.membership.status == "active") {
-        yield MembershipActive(membership: event.membership);
+        yield MembershipState.membershipActive(membership: event.membership);
       } else {
-        yield MembershipInactive(
+        yield MembershipState.membershipInactive(
           customerEmail: event.customerEmail,
           customerId: event.membership.customerId,
         );
