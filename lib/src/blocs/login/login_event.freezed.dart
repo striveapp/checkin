@@ -16,6 +16,10 @@ class _$LoginEventTearOff {
     return const LoginWithGoogle();
   }
 
+  LoginWithApple loginWithApple() {
+    return const LoginWithApple();
+  }
+
   LoginWithTestUser loginWithTestUser() {
     return const LoginWithTestUser();
   }
@@ -36,6 +40,7 @@ mixin _$LoginEvent {
   @optionalTypeArgs
   Result when<Result extends Object>({
     @required Result loginWithGoogle(),
+    @required Result loginWithApple(),
     @required Result loginWithTestUser(),
     @required Result loginWithTestUserTwo(),
     @required Result loginWithTestUserOwner(),
@@ -43,6 +48,7 @@ mixin _$LoginEvent {
   @optionalTypeArgs
   Result maybeWhen<Result extends Object>({
     Result loginWithGoogle(),
+    Result loginWithApple(),
     Result loginWithTestUser(),
     Result loginWithTestUserTwo(),
     Result loginWithTestUserOwner(),
@@ -51,6 +57,7 @@ mixin _$LoginEvent {
   @optionalTypeArgs
   Result map<Result extends Object>({
     @required Result loginWithGoogle(LoginWithGoogle value),
+    @required Result loginWithApple(LoginWithApple value),
     @required Result loginWithTestUser(LoginWithTestUser value),
     @required Result loginWithTestUserTwo(LoginWithTestUserTwo value),
     @required Result loginWithTestUserOwner(LoginWithTestUserOwner value),
@@ -58,6 +65,7 @@ mixin _$LoginEvent {
   @optionalTypeArgs
   Result maybeMap<Result extends Object>({
     Result loginWithGoogle(LoginWithGoogle value),
+    Result loginWithApple(LoginWithApple value),
     Result loginWithTestUser(LoginWithTestUser value),
     Result loginWithTestUserTwo(LoginWithTestUserTwo value),
     Result loginWithTestUserOwner(LoginWithTestUserOwner value),
@@ -123,11 +131,13 @@ class _$LoginWithGoogle
   @optionalTypeArgs
   Result when<Result extends Object>({
     @required Result loginWithGoogle(),
+    @required Result loginWithApple(),
     @required Result loginWithTestUser(),
     @required Result loginWithTestUserTwo(),
     @required Result loginWithTestUserOwner(),
   }) {
     assert(loginWithGoogle != null);
+    assert(loginWithApple != null);
     assert(loginWithTestUser != null);
     assert(loginWithTestUserTwo != null);
     assert(loginWithTestUserOwner != null);
@@ -138,6 +148,7 @@ class _$LoginWithGoogle
   @optionalTypeArgs
   Result maybeWhen<Result extends Object>({
     Result loginWithGoogle(),
+    Result loginWithApple(),
     Result loginWithTestUser(),
     Result loginWithTestUserTwo(),
     Result loginWithTestUserOwner(),
@@ -154,11 +165,13 @@ class _$LoginWithGoogle
   @optionalTypeArgs
   Result map<Result extends Object>({
     @required Result loginWithGoogle(LoginWithGoogle value),
+    @required Result loginWithApple(LoginWithApple value),
     @required Result loginWithTestUser(LoginWithTestUser value),
     @required Result loginWithTestUserTwo(LoginWithTestUserTwo value),
     @required Result loginWithTestUserOwner(LoginWithTestUserOwner value),
   }) {
     assert(loginWithGoogle != null);
+    assert(loginWithApple != null);
     assert(loginWithTestUser != null);
     assert(loginWithTestUserTwo != null);
     assert(loginWithTestUserOwner != null);
@@ -169,6 +182,7 @@ class _$LoginWithGoogle
   @optionalTypeArgs
   Result maybeMap<Result extends Object>({
     Result loginWithGoogle(LoginWithGoogle value),
+    Result loginWithApple(LoginWithApple value),
     Result loginWithTestUser(LoginWithTestUser value),
     Result loginWithTestUserTwo(LoginWithTestUserTwo value),
     Result loginWithTestUserOwner(LoginWithTestUserOwner value),
@@ -184,6 +198,117 @@ class _$LoginWithGoogle
 
 abstract class LoginWithGoogle implements LoginEvent {
   const factory LoginWithGoogle() = _$LoginWithGoogle;
+}
+
+abstract class $LoginWithAppleCopyWith<$Res> {
+  factory $LoginWithAppleCopyWith(
+          LoginWithApple value, $Res Function(LoginWithApple) then) =
+      _$LoginWithAppleCopyWithImpl<$Res>;
+}
+
+class _$LoginWithAppleCopyWithImpl<$Res> extends _$LoginEventCopyWithImpl<$Res>
+    implements $LoginWithAppleCopyWith<$Res> {
+  _$LoginWithAppleCopyWithImpl(
+      LoginWithApple _value, $Res Function(LoginWithApple) _then)
+      : super(_value, (v) => _then(v as LoginWithApple));
+
+  @override
+  LoginWithApple get _value => super._value as LoginWithApple;
+}
+
+class _$LoginWithApple with DiagnosticableTreeMixin implements LoginWithApple {
+  const _$LoginWithApple();
+
+  @override
+  String toString({DiagnosticLevel minLevel = DiagnosticLevel.info}) {
+    return 'LoginEvent.loginWithApple()';
+  }
+
+  @override
+  void debugFillProperties(DiagnosticPropertiesBuilder properties) {
+    super.debugFillProperties(properties);
+    properties..add(DiagnosticsProperty('type', 'LoginEvent.loginWithApple'));
+  }
+
+  @override
+  bool operator ==(dynamic other) {
+    return identical(this, other) || (other is LoginWithApple);
+  }
+
+  @override
+  int get hashCode => runtimeType.hashCode;
+
+  @override
+  @optionalTypeArgs
+  Result when<Result extends Object>({
+    @required Result loginWithGoogle(),
+    @required Result loginWithApple(),
+    @required Result loginWithTestUser(),
+    @required Result loginWithTestUserTwo(),
+    @required Result loginWithTestUserOwner(),
+  }) {
+    assert(loginWithGoogle != null);
+    assert(loginWithApple != null);
+    assert(loginWithTestUser != null);
+    assert(loginWithTestUserTwo != null);
+    assert(loginWithTestUserOwner != null);
+    return loginWithApple();
+  }
+
+  @override
+  @optionalTypeArgs
+  Result maybeWhen<Result extends Object>({
+    Result loginWithGoogle(),
+    Result loginWithApple(),
+    Result loginWithTestUser(),
+    Result loginWithTestUserTwo(),
+    Result loginWithTestUserOwner(),
+    @required Result orElse(),
+  }) {
+    assert(orElse != null);
+    if (loginWithApple != null) {
+      return loginWithApple();
+    }
+    return orElse();
+  }
+
+  @override
+  @optionalTypeArgs
+  Result map<Result extends Object>({
+    @required Result loginWithGoogle(LoginWithGoogle value),
+    @required Result loginWithApple(LoginWithApple value),
+    @required Result loginWithTestUser(LoginWithTestUser value),
+    @required Result loginWithTestUserTwo(LoginWithTestUserTwo value),
+    @required Result loginWithTestUserOwner(LoginWithTestUserOwner value),
+  }) {
+    assert(loginWithGoogle != null);
+    assert(loginWithApple != null);
+    assert(loginWithTestUser != null);
+    assert(loginWithTestUserTwo != null);
+    assert(loginWithTestUserOwner != null);
+    return loginWithApple(this);
+  }
+
+  @override
+  @optionalTypeArgs
+  Result maybeMap<Result extends Object>({
+    Result loginWithGoogle(LoginWithGoogle value),
+    Result loginWithApple(LoginWithApple value),
+    Result loginWithTestUser(LoginWithTestUser value),
+    Result loginWithTestUserTwo(LoginWithTestUserTwo value),
+    Result loginWithTestUserOwner(LoginWithTestUserOwner value),
+    @required Result orElse(),
+  }) {
+    assert(orElse != null);
+    if (loginWithApple != null) {
+      return loginWithApple(this);
+    }
+    return orElse();
+  }
+}
+
+abstract class LoginWithApple implements LoginEvent {
+  const factory LoginWithApple() = _$LoginWithApple;
 }
 
 abstract class $LoginWithTestUserCopyWith<$Res> {
@@ -232,11 +357,13 @@ class _$LoginWithTestUser
   @optionalTypeArgs
   Result when<Result extends Object>({
     @required Result loginWithGoogle(),
+    @required Result loginWithApple(),
     @required Result loginWithTestUser(),
     @required Result loginWithTestUserTwo(),
     @required Result loginWithTestUserOwner(),
   }) {
     assert(loginWithGoogle != null);
+    assert(loginWithApple != null);
     assert(loginWithTestUser != null);
     assert(loginWithTestUserTwo != null);
     assert(loginWithTestUserOwner != null);
@@ -247,6 +374,7 @@ class _$LoginWithTestUser
   @optionalTypeArgs
   Result maybeWhen<Result extends Object>({
     Result loginWithGoogle(),
+    Result loginWithApple(),
     Result loginWithTestUser(),
     Result loginWithTestUserTwo(),
     Result loginWithTestUserOwner(),
@@ -263,11 +391,13 @@ class _$LoginWithTestUser
   @optionalTypeArgs
   Result map<Result extends Object>({
     @required Result loginWithGoogle(LoginWithGoogle value),
+    @required Result loginWithApple(LoginWithApple value),
     @required Result loginWithTestUser(LoginWithTestUser value),
     @required Result loginWithTestUserTwo(LoginWithTestUserTwo value),
     @required Result loginWithTestUserOwner(LoginWithTestUserOwner value),
   }) {
     assert(loginWithGoogle != null);
+    assert(loginWithApple != null);
     assert(loginWithTestUser != null);
     assert(loginWithTestUserTwo != null);
     assert(loginWithTestUserOwner != null);
@@ -278,6 +408,7 @@ class _$LoginWithTestUser
   @optionalTypeArgs
   Result maybeMap<Result extends Object>({
     Result loginWithGoogle(LoginWithGoogle value),
+    Result loginWithApple(LoginWithApple value),
     Result loginWithTestUser(LoginWithTestUser value),
     Result loginWithTestUserTwo(LoginWithTestUserTwo value),
     Result loginWithTestUserOwner(LoginWithTestUserOwner value),
@@ -341,11 +472,13 @@ class _$LoginWithTestUserTwo
   @optionalTypeArgs
   Result when<Result extends Object>({
     @required Result loginWithGoogle(),
+    @required Result loginWithApple(),
     @required Result loginWithTestUser(),
     @required Result loginWithTestUserTwo(),
     @required Result loginWithTestUserOwner(),
   }) {
     assert(loginWithGoogle != null);
+    assert(loginWithApple != null);
     assert(loginWithTestUser != null);
     assert(loginWithTestUserTwo != null);
     assert(loginWithTestUserOwner != null);
@@ -356,6 +489,7 @@ class _$LoginWithTestUserTwo
   @optionalTypeArgs
   Result maybeWhen<Result extends Object>({
     Result loginWithGoogle(),
+    Result loginWithApple(),
     Result loginWithTestUser(),
     Result loginWithTestUserTwo(),
     Result loginWithTestUserOwner(),
@@ -372,11 +506,13 @@ class _$LoginWithTestUserTwo
   @optionalTypeArgs
   Result map<Result extends Object>({
     @required Result loginWithGoogle(LoginWithGoogle value),
+    @required Result loginWithApple(LoginWithApple value),
     @required Result loginWithTestUser(LoginWithTestUser value),
     @required Result loginWithTestUserTwo(LoginWithTestUserTwo value),
     @required Result loginWithTestUserOwner(LoginWithTestUserOwner value),
   }) {
     assert(loginWithGoogle != null);
+    assert(loginWithApple != null);
     assert(loginWithTestUser != null);
     assert(loginWithTestUserTwo != null);
     assert(loginWithTestUserOwner != null);
@@ -387,6 +523,7 @@ class _$LoginWithTestUserTwo
   @optionalTypeArgs
   Result maybeMap<Result extends Object>({
     Result loginWithGoogle(LoginWithGoogle value),
+    Result loginWithApple(LoginWithApple value),
     Result loginWithTestUser(LoginWithTestUser value),
     Result loginWithTestUserTwo(LoginWithTestUserTwo value),
     Result loginWithTestUserOwner(LoginWithTestUserOwner value),
@@ -450,11 +587,13 @@ class _$LoginWithTestUserOwner
   @optionalTypeArgs
   Result when<Result extends Object>({
     @required Result loginWithGoogle(),
+    @required Result loginWithApple(),
     @required Result loginWithTestUser(),
     @required Result loginWithTestUserTwo(),
     @required Result loginWithTestUserOwner(),
   }) {
     assert(loginWithGoogle != null);
+    assert(loginWithApple != null);
     assert(loginWithTestUser != null);
     assert(loginWithTestUserTwo != null);
     assert(loginWithTestUserOwner != null);
@@ -465,6 +604,7 @@ class _$LoginWithTestUserOwner
   @optionalTypeArgs
   Result maybeWhen<Result extends Object>({
     Result loginWithGoogle(),
+    Result loginWithApple(),
     Result loginWithTestUser(),
     Result loginWithTestUserTwo(),
     Result loginWithTestUserOwner(),
@@ -481,11 +621,13 @@ class _$LoginWithTestUserOwner
   @optionalTypeArgs
   Result map<Result extends Object>({
     @required Result loginWithGoogle(LoginWithGoogle value),
+    @required Result loginWithApple(LoginWithApple value),
     @required Result loginWithTestUser(LoginWithTestUser value),
     @required Result loginWithTestUserTwo(LoginWithTestUserTwo value),
     @required Result loginWithTestUserOwner(LoginWithTestUserOwner value),
   }) {
     assert(loginWithGoogle != null);
+    assert(loginWithApple != null);
     assert(loginWithTestUser != null);
     assert(loginWithTestUserTwo != null);
     assert(loginWithTestUserOwner != null);
@@ -496,6 +638,7 @@ class _$LoginWithTestUserOwner
   @optionalTypeArgs
   Result maybeMap<Result extends Object>({
     Result loginWithGoogle(LoginWithGoogle value),
+    Result loginWithApple(LoginWithApple value),
     Result loginWithTestUser(LoginWithTestUser value),
     Result loginWithTestUserTwo(LoginWithTestUserTwo value),
     Result loginWithTestUserOwner(LoginWithTestUserOwner value),

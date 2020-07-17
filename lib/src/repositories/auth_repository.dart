@@ -9,5 +9,7 @@ abstract class AuthRepository {
 
   Future<User> signInWithGoogle();
 
+  Future<User> signInWithApple();
+
   Future<User> loginWithTestUser({test = 0, owner = false});
 }

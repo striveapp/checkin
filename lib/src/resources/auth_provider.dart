@@ -3,6 +3,7 @@ import 'package:checkin/src/repositories/auth_repository.dart';
 import 'package:firebase_auth/firebase_auth.dart';
 import 'package:flutter/foundation.dart';
 import 'package:google_sign_in/google_sign_in.dart';
+import 'package:sign_in_with_apple/sign_in_with_apple.dart';
 
 class AuthProvider implements AuthRepository {
   final FirebaseAuth _firebaseAuth;
@@ -38,10 +39,36 @@ class AuthProvider implements AuthRepository {
       accessToken: googleAuth.accessToken,
       idToken: googleAuth.idToken,
     );
+
+    return await _getAuthenticatedUserFromFirebase(credential);
+  }
+
+  Future<User> _getAuthenticatedUserFromFirebase(AuthCredential credential, {String displayName}) async {
     await _firebaseAuth.signInWithCredential(credential);
     var firebaseUser = await _firebaseAuth.currentUser();
 
-    return User.fromFirebaseUser(firebaseUser);
+    return User.fromFirebaseUser(firebaseUser, displayName: displayName);
+  }
+
+  Future<User> signInWithApple() async {
+    if(! await SignInWithApple.isAvailable()){
+      throw Exception("Sign in with apple is not supported for your version of IOS");
+    }
+
+    final appleAuth = await SignInWithApple.getAppleIDCredential(
+      scopes: [
+        AppleIDAuthorizationScopes.email,
+        AppleIDAuthorizationScopes.fullName,
+      ],
+    );
+
+    final AuthCredential credential =
+        OAuthProvider(providerId: 'apple.com').getCredential(
+      idToken: appleAuth.identityToken,
+      accessToken: appleAuth.authorizationCode,
+    );
+
+    return await _getAuthenticatedUserFromFirebase(credential, displayName: "${appleAuth.givenName} ${appleAuth.familyName}");
   }
 
   Future<void> signOut() async {

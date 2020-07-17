@@ -6,7 +6,7 @@ class GoogleSignInButton extends StatelessWidget {
   final double borderRadius;
   final VoidCallback onPressed;
 
-  static const String googleSignin = 'Sign in with Google';
+  static const String googleSignIn = 'Sign in with Google';
 
   GoogleSignInButton(
       {@required this.onPressed,
@@ -66,7 +66,7 @@ class GoogleSignInButton extends StatelessWidget {
             Padding(
               padding: const EdgeInsets.fromLTRB(0.0, 8.0, 14.0, 8.0),
               child: Text(
-                googleSignin.i18n,
+                googleSignIn.i18n,
                 style: TextStyle(
                   fontSize: 18.0,
                   fontWeight: FontWeight.w500,

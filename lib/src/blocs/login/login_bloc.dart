@@ -51,6 +51,28 @@ class LoginBloc extends Bloc<LoginEvent, LoginState> {
       }
     }
 
+    if (event is LoginWithApple) {
+      try {
+        final loggedUser = await _authRepository.signInWithApple();
+        if (loggedUser != null) {
+          await _analyticsRepository.setUserProperties(loggedUser.uid);
+          await _analyticsRepository.logLoginWithAppleSignIn();
+          await _userRepository.createUser(loggedUser);
+          yield LoginSuccess(loggedUser: loggedUser);
+        } else {
+          debugPrint("Unable to login, loggedUser: $loggedUser");
+          yield LoginFailure(errorMessage: loginError);
+        }
+      } catch (err, stackTrace) {
+        debugPrint("Unexpected error, login failed [$err]");
+        await _analyticsRepository.loginError(
+          err: err,
+          stackTrace: stackTrace,
+        );
+        yield LoginFailure(errorMessage: "Unexpected error! Please contact the gym owner");
+      }
+    }
+
     //TODO: We put this because we have no way to test google auth for now. https://trello.com/c/I4PenA6Y
     if (event is LoginWithTestUser) {
       yield LoginLoading();

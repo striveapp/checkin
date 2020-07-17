@@ -1,9 +1,11 @@
 import 'package:checkin/src/blocs/login/bloc.dart';
 import 'package:checkin/src/localization/localization.dart';
+import 'package:checkin/src/ui/components/apple_sign_in_button.dart';
 import 'package:checkin/src/ui/components/google_sign_in_button.dart';
 import 'package:checkin/src/util/debug_util.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
+import 'package:platform/platform.dart';
 
 class LoginForm extends StatefulWidget {
   @override
@@ -60,6 +62,9 @@ class _LoginFormState extends State<LoginForm> {
                 darkMode: true,
                 borderRadius: 50.0,
               ),
+              SizedBox(height: 20,),
+              if(LocalPlatform().isIOS)
+                AppleSignInButton(),
               if (isInDebugMode)
                 Column(
                   children: <Widget>[
