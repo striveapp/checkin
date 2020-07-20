@@ -201,7 +201,10 @@ extension Localization on String {
     'es': 'El siguiente pago es el',
   } + {
     'en': ActiveMembershipView.plan,
-    'es': 'Plano',
+    'es': 'Tu subscripción',
+  } + {
+    'en': ActiveMembershipView.remainingSessions,
+    'es': 'Sesiones restantes',
   } + {
     'en': ProfileCard.enterYourName,
     'es': 'Escribe tu nombre',

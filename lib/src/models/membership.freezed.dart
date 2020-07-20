@@ -16,12 +16,14 @@ class _$MembershipTearOff {
       {@required String status,
       String customerId,
       String name,
-      int currentPeriodEnd}) {
+      int currentPeriodEnd,
+      double totalLessonsOfPlan}) {
     return _Membership(
       status: status,
       customerId: customerId,
       name: name,
       currentPeriodEnd: currentPeriodEnd,
+      totalLessonsOfPlan: totalLessonsOfPlan,
     );
   }
 }
@@ -34,6 +36,7 @@ mixin _$Membership {
   String get customerId;
   String get name;
   int get currentPeriodEnd;
+  double get totalLessonsOfPlan;
 
   $MembershipCopyWith<Membership> get copyWith;
 }
@@ -43,7 +46,11 @@ abstract class $MembershipCopyWith<$Res> {
           Membership value, $Res Function(Membership) then) =
       _$MembershipCopyWithImpl<$Res>;
   $Res call(
-      {String status, String customerId, String name, int currentPeriodEnd});
+      {String status,
+      String customerId,
+      String name,
+      int currentPeriodEnd,
+      double totalLessonsOfPlan});
 }
 
 class _$MembershipCopyWithImpl<$Res> implements $MembershipCopyWith<$Res> {
@@ -59,6 +66,7 @@ class _$MembershipCopyWithImpl<$Res> implements $MembershipCopyWith<$Res> {
     Object customerId = freezed,
     Object name = freezed,
     Object currentPeriodEnd = freezed,
+    Object totalLessonsOfPlan = freezed,
   }) {
     return _then(_value.copyWith(
       status: status == freezed ? _value.status : status as String,
@@ -68,6 +76,9 @@ class _$MembershipCopyWithImpl<$Res> implements $MembershipCopyWith<$Res> {
       currentPeriodEnd: currentPeriodEnd == freezed
           ? _value.currentPeriodEnd
           : currentPeriodEnd as int,
+      totalLessonsOfPlan: totalLessonsOfPlan == freezed
+          ? _value.totalLessonsOfPlan
+          : totalLessonsOfPlan as double,
     ));
   }
 }
@@ -78,7 +89,11 @@ abstract class _$MembershipCopyWith<$Res> implements $MembershipCopyWith<$Res> {
       __$MembershipCopyWithImpl<$Res>;
   @override
   $Res call(
-      {String status, String customerId, String name, int currentPeriodEnd});
+      {String status,
+      String customerId,
+      String name,
+      int currentPeriodEnd,
+      double totalLessonsOfPlan});
 }
 
 class __$MembershipCopyWithImpl<$Res> extends _$MembershipCopyWithImpl<$Res>
@@ -96,6 +111,7 @@ class __$MembershipCopyWithImpl<$Res> extends _$MembershipCopyWithImpl<$Res>
     Object customerId = freezed,
     Object name = freezed,
     Object currentPeriodEnd = freezed,
+    Object totalLessonsOfPlan = freezed,
   }) {
     return _then(_Membership(
       status: status == freezed ? _value.status : status as String,
@@ -105,6 +121,9 @@ class __$MembershipCopyWithImpl<$Res> extends _$MembershipCopyWithImpl<$Res>
       currentPeriodEnd: currentPeriodEnd == freezed
           ? _value.currentPeriodEnd
           : currentPeriodEnd as int,
+      totalLessonsOfPlan: totalLessonsOfPlan == freezed
+          ? _value.totalLessonsOfPlan
+          : totalLessonsOfPlan as double,
     ));
   }
 }
@@ -114,7 +133,8 @@ class _$_Membership with DiagnosticableTreeMixin implements _Membership {
       {@required this.status,
       this.customerId,
       this.name,
-      this.currentPeriodEnd})
+      this.currentPeriodEnd,
+      this.totalLessonsOfPlan})
       : assert(status != null);
 
   @override
@@ -125,10 +145,12 @@ class _$_Membership with DiagnosticableTreeMixin implements _Membership {
   final String name;
   @override
   final int currentPeriodEnd;
+  @override
+  final double totalLessonsOfPlan;
 
   @override
   String toString({DiagnosticLevel minLevel = DiagnosticLevel.info}) {
-    return 'Membership(status: $status, customerId: $customerId, name: $name, currentPeriodEnd: $currentPeriodEnd)';
+    return 'Membership(status: $status, customerId: $customerId, name: $name, currentPeriodEnd: $currentPeriodEnd, totalLessonsOfPlan: $totalLessonsOfPlan)';
   }
 
   @override
@@ -139,7 +161,8 @@ class _$_Membership with DiagnosticableTreeMixin implements _Membership {
       ..add(DiagnosticsProperty('status', status))
       ..add(DiagnosticsProperty('customerId', customerId))
       ..add(DiagnosticsProperty('name', name))
-      ..add(DiagnosticsProperty('currentPeriodEnd', currentPeriodEnd));
+      ..add(DiagnosticsProperty('currentPeriodEnd', currentPeriodEnd))
+      ..add(DiagnosticsProperty('totalLessonsOfPlan', totalLessonsOfPlan));
   }
 
   @override
@@ -155,7 +178,10 @@ class _$_Membership with DiagnosticableTreeMixin implements _Membership {
                 const DeepCollectionEquality().equals(other.name, name)) &&
             (identical(other.currentPeriodEnd, currentPeriodEnd) ||
                 const DeepCollectionEquality()
-                    .equals(other.currentPeriodEnd, currentPeriodEnd)));
+                    .equals(other.currentPeriodEnd, currentPeriodEnd)) &&
+            (identical(other.totalLessonsOfPlan, totalLessonsOfPlan) ||
+                const DeepCollectionEquality()
+                    .equals(other.totalLessonsOfPlan, totalLessonsOfPlan)));
   }
 
   @override
@@ -164,7 +190,8 @@ class _$_Membership with DiagnosticableTreeMixin implements _Membership {
       const DeepCollectionEquality().hash(status) ^
       const DeepCollectionEquality().hash(customerId) ^
       const DeepCollectionEquality().hash(name) ^
-      const DeepCollectionEquality().hash(currentPeriodEnd);
+      const DeepCollectionEquality().hash(currentPeriodEnd) ^
+      const DeepCollectionEquality().hash(totalLessonsOfPlan);
 
   @override
   _$MembershipCopyWith<_Membership> get copyWith =>
@@ -176,7 +203,8 @@ abstract class _Membership implements Membership {
       {@required String status,
       String customerId,
       String name,
-      int currentPeriodEnd}) = _$_Membership;
+      int currentPeriodEnd,
+      double totalLessonsOfPlan}) = _$_Membership;
 
   @override
   String get status;
@@ -186,6 +214,8 @@ abstract class _Membership implements Membership {
   String get name;
   @override
   int get currentPeriodEnd;
+  @override
+  double get totalLessonsOfPlan;
   @override
   _$MembershipCopyWith<_Membership> get copyWith;
 }

@@ -18,29 +18,32 @@ class EmptyPaymentMethod extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    return Column(
-      mainAxisAlignment: MainAxisAlignment.spaceAround,
-      children: [
-        Text(
-          noRegisteredPaymentMethod.i18n,
-          textAlign: TextAlign.center,
-          style: Theme.of(context).textTheme.headline3.apply(fontSizeDelta: 1),
-        ),
-        BlocBuilder<GymBloc, GymState>(
-            builder: (BuildContext context, GymState state) => state.when(
-                initialGymState: () => LoadingIndicator(),
-                gymLoaded: (Gym gym) => RaisedButton(
-                      child: Text(
-                        connectBankAccount.i18n,
-                        style: Theme.of(context).textTheme.button,
-                      ),
-                      onPressed: () {
-                        BlocProvider.of<PaymentMethodsBloc>(context).add(
-                            RegisterBankAccount(
-                                gym: gym, billingEmail: customerEmail));
-                      },
-                    )))
-      ],
+    return Container(
+      height: 150,
+      child: Column(
+        mainAxisAlignment: MainAxisAlignment.spaceAround,
+        children: [
+          Text(
+            noRegisteredPaymentMethod.i18n,
+            textAlign: TextAlign.center,
+            style: Theme.of(context).textTheme.headline3.apply(fontSizeDelta: 1),
+          ),
+          BlocBuilder<GymBloc, GymState>(
+              builder: (BuildContext context, GymState state) => state.when(
+                  initialGymState: () => LoadingIndicator(),
+                  gymLoaded: (Gym gym) => RaisedButton(
+                        child: Text(
+                          connectBankAccount.i18n,
+                          style: Theme.of(context).textTheme.button,
+                        ),
+                        onPressed: () {
+                          BlocProvider.of<PaymentMethodsBloc>(context).add(
+                              RegisterBankAccount(
+                                  gym: gym, billingEmail: customerEmail));
+                        },
+                      )))
+        ],
+      ),
     );
   }
 }

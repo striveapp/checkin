@@ -10,5 +10,6 @@ abstract class Membership with _$Membership {
     final String customerId,
     final String name,
     final int currentPeriodEnd,
+    final double totalLessonsOfPlan,
   }) = _Membership;
 }
