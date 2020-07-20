@@ -7,6 +7,8 @@ part 'login_event.freezed.dart';
 abstract class LoginEvent with _$LoginEvent {
   const factory LoginEvent.loginWithGoogle() = LoginWithGoogle;
 
+  const factory LoginEvent.loginWithApple() = LoginWithApple;
+
   const factory LoginEvent.loginWithTestUser() = LoginWithTestUser;
 
   const factory LoginEvent.loginWithTestUserTwo() = LoginWithTestUserTwo;

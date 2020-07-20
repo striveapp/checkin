@@ -7,6 +7,8 @@ abstract class AnalyticsRepository {
 
   Future<void> logLoginWithGoogleSignIn();
 
+  Future<void> logLoginWithAppleSignIn();
+
   Future<void> loginError({dynamic err, StackTrace stackTrace});
 
   Future<void> logSubscriptionWithEmptyCustomer({String priceId, String gymId});

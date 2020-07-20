@@ -3,6 +3,8 @@ import 'package:equatable/equatable.dart';
 import 'package:firebase_auth/firebase_auth.dart';
 import 'package:meta/meta.dart';
 
+import '../config.dart' as config;
+
 class User extends Equatable {
   final String uid;
   final String name;
@@ -24,13 +26,13 @@ class User extends Equatable {
     this.hasActivePayments = false,
   });
 
-  factory User.fromFirebaseUser(FirebaseUser firebaseUser) {
+  factory User.fromFirebaseUser(FirebaseUser firebaseUser, {String displayName}) {
     return firebaseUser != null
         ? User(
       uid: firebaseUser.uid,
-      name: firebaseUser.displayName,
+      name: firebaseUser.displayName ?? displayName,
       email: firebaseUser.email,
-      imageUrl: firebaseUser.photoUrl,
+      imageUrl: firebaseUser.photoUrl ?? config.DEFAULT_USER_IMAGE_URL,
     )
         : null;
   }

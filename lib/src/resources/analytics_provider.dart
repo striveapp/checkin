@@ -21,6 +21,11 @@ class AnalyticsProvider implements AnalyticsRepository {
   Future<void> logLoginWithGoogleSignIn() async =>
       await _firebaseAnalytics.logLogin(loginMethod: "google_sign_in");
 
+  @override
+  Future<void> logLoginWithAppleSignIn() async {
+    await _firebaseAnalytics.logLogin(loginMethod: "apple_sign_in");
+  }
+
   Future<void> loginError({dynamic err, StackTrace stackTrace}) async {
     String message = err.toString();
 
@@ -60,4 +65,5 @@ class AnalyticsProvider implements AnalyticsRepository {
       "message": message.substring(0, 100),
     });
   }
+
 }

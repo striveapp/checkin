@@ -1,6 +1,7 @@
 import 'package:checkin/src/blocs/login/bloc.dart';
 import 'package:checkin/src/constants.dart' as constants;
 import 'package:checkin/src/models/grade.dart';
+import 'package:checkin/src/ui/components/apple_sign_in_button.dart';
 import 'package:checkin/src/ui/components/gym_selection/gym_selection_buttons.dart';
 import 'package:checkin/src/ui/components/payment_methods/active_payment_method.dart';
 import 'package:checkin/src/ui/components/payment_methods/empty_payment_method.dart';
@@ -173,8 +174,11 @@ extension Localization on String {
     'en': RegistryControls.acceptAll,
     'es': 'Aceptar todos',
   } + {
-    'en': GoogleSignInButton.googleSignin,
+    'en': GoogleSignInButton.googleSignIn,
     'es': 'Acceso con Google',
+  } + {
+    'en': AppleSignInButton.appleSignIn,
+    'es': 'Acceso con Apple',
   } + {
     'en': AccountPage.account,
     'es': 'Cuenta',
