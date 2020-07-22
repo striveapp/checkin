@@ -3,8 +3,9 @@ import 'package:checkin/src/models/master.dart';
 import 'package:checkin/src/models/user_history.dart';
 import 'package:checkin/src/util/date_util.dart';
 import 'package:cloud_firestore/cloud_firestore.dart';
+import 'package:checkin/src/repositories/stats_repository.dart';
 
-class StatsProvider {
+class StatsProvider implements StatsRepository {
   static const String gymPath = "gyms";
   static const String path = 'users_history';
 

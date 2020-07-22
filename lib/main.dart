@@ -10,12 +10,14 @@ import 'package:checkin/src/repositories/analytics_repository.dart';
 import 'package:checkin/src/repositories/auth_repository.dart';
 import 'package:checkin/src/repositories/image_repository.dart';
 import 'package:checkin/src/repositories/lesson_repository.dart';
+import 'package:checkin/src/repositories/stats_repository.dart';
 import 'package:checkin/src/repositories/storage_repository.dart';
 import 'package:checkin/src/repositories/user_repository.dart';
 import 'package:checkin/src/repositories/version_repository.dart';
 import 'package:checkin/src/resources/analytics_provider.dart';
 import 'package:checkin/src/resources/auth_provider.dart';
 import 'package:checkin/src/resources/lesson_instances_provider.dart';
+import 'package:checkin/src/resources/stats_provider.dart';
 import 'package:checkin/src/routes/application.dart';
 import 'package:checkin/src/routes/routes.dart';
 import 'package:checkin/src/simple_bloc_delegate.dart';
@@ -59,6 +61,9 @@ void main() {
           RepositoryProvider<AnalyticsRepository>(
             create: (context) => AnalyticsProvider(),
           ),
+          RepositoryProvider<StatsRepository>(
+            create: (context) => StatsProvider(),
+          )
         ],
         child: MultiBlocProvider(
           providers: [

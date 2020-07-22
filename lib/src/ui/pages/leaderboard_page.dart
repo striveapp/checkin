@@ -22,41 +22,48 @@ class LeaderboardPage extends StatelessWidget {
         showUserImage: false,
       ),
       body: BlocProvider(
-        create: (BuildContext context) =>
-            LeaderboardBloc(userBloc: BlocProvider.of<UserBloc>(context), statsRepository: StatsRepository()),
+        create: (BuildContext context) => LeaderboardBloc(
+            userBloc: BlocProvider.of<UserBloc>(context),
+            statsRepository: RepositoryProvider.of<StatsRepository>(context)),
         child: BlocBuilder<LeaderboardBloc, LeaderboardState>(
           builder: (BuildContext context, LeaderboardState state) {
             if (state is LeaderboardInitial) {
               return LoadingIndicator();
             }
 
-            if(state is LeaderboardNotAvailable) {
+            if (state is LeaderboardNotAvailable) {
               return NoLeaderboardBanner();
             }
 
             if (state is LeaderboardLoaded) {
-              List<UserHistory> userHistoryWithoutPodium = state.usersHistory.sublist(3);
+              List<UserHistory> userHistoryWithoutPodium =
+                  state.usersHistory.sublist(3);
               return Column(
                 children: <Widget>[
-                  Expanded(flex:1,
+                  Expanded(
+                      flex: 1,
                       child: PodiumHeader(
                         firstProfileEmail: state.usersHistory[0].email,
                         secondProfileEmail: state.usersHistory[1].email,
                         thirdProfileEmail: state.usersHistory[2].email,
-                      )
+                      )),
+                  SizedBox(
+                    height: 20,
                   ),
-                  SizedBox(height: 20,),
                   Expanded(
                     flex: 2,
                     child: ListView.builder(
                         itemCount: userHistoryWithoutPodium.length,
                         itemBuilder: (BuildContext context, int index) {
                           return ProfileTile(
-                            key: Key('tile_${index + 4}_${userHistoryWithoutPodium[index].email}'),
+                            key: Key(
+                                'tile_${index + 4}_${userHistoryWithoutPodium[index].email}'),
                             profileEmail: userHistoryWithoutPodium[index].email,
-                            attendedClasses: userHistoryWithoutPodium[index].attendedLessons.length,
+                            attendedClasses: userHistoryWithoutPodium[index]
+                                .attendedLessons
+                                .length,
                             position: index + 4,
-                            );
+                          );
                         }),
                   ),
                 ],

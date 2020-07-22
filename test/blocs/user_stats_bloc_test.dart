@@ -54,7 +54,8 @@ void main() {
         });
         userStatsBloc = UserStatsBloc(
           statsRepository: mockStatsRepository,
-          user: loggedUser,
+          userEmail: loggedUser.email,
+          selectedGymId: loggedUser.selectedGymId,
           statsBloc: mockStatsBloc,
         );
       });
@@ -86,7 +87,8 @@ void main() {
         });
         userStatsBloc = UserStatsBloc(
           statsRepository: mockStatsRepository,
-          user: loggedUser,
+          userEmail: loggedUser.email,
+          selectedGymId: loggedUser.selectedGymId,
           statsBloc: mockStatsBloc,
         );
       });
@@ -118,7 +120,8 @@ void main() {
         });
         userStatsBloc = UserStatsBloc(
           statsRepository: mockStatsRepository,
-          user: loggedUser,
+          userEmail: loggedUser.email,
+          selectedGymId: loggedUser.selectedGymId,
           statsBloc: mockStatsBloc,
         );
       });

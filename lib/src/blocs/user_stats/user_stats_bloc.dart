@@ -4,7 +4,6 @@ import 'package:bloc/bloc.dart';
 import 'package:checkin/src/blocs/stats/bloc.dart';
 import 'package:checkin/src/blocs/user_stats/user_stats_event.dart';
 import 'package:checkin/src/blocs/user_stats/user_stats_state.dart';
-import 'package:checkin/src/models/user.dart';
 import 'package:checkin/src/models/user_history.dart';
 import 'package:checkin/src/repositories/stats_repository.dart';
 import 'package:flutter/material.dart';
@@ -12,13 +11,15 @@ import 'package:flutter/material.dart';
 class UserStatsBloc extends Bloc<UserStatsEvent, UserStatsState> {
   final StatsRepository statsRepository;
   final StatsBloc statsBloc;
-  final User user;
+  final String userEmail;
+  final String selectedGymId;
 
   StreamSubscription<UserHistory> statsSub;
 
   UserStatsBloc({
     @required this.statsRepository,
-    @required this.user,
+    @required this.userEmail,
+    @required this.selectedGymId,
     @required this.statsBloc,
   }) {
     statsBloc.listen((statsBlocState) {
@@ -26,7 +27,7 @@ class UserStatsBloc extends Bloc<UserStatsEvent, UserStatsState> {
         statsSub?.cancel();
         statsSub = this
             .statsRepository
-            .getUserStats(user.selectedGymId, user.email, statsBlocState.timespan)
+            .getUserStats(selectedGymId, userEmail, statsBlocState.timespan)
             .listen((userHistory) {
           add(UserStatsUpdated(
               attendedLessons: userHistory.attendedLessons,

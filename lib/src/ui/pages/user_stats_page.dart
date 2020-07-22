@@ -24,8 +24,9 @@ class UserStatsPage extends StatelessWidget {
   Widget build(BuildContext context) {
     return BlocBuilder<UserStatsBloc, UserStatsState>(
         bloc: UserStatsBloc(
-          statsRepository: StatsRepository(),
-          user: _user,
+          statsRepository: RepositoryProvider.of<StatsRepository>(context),
+          userEmail: _user.email,
+          selectedGymId: _user.selectedGymId,
           statsBloc: BlocProvider.of<StatsBloc>(context)
         ),
         builder: (BuildContext context, UserStatsState state) {
