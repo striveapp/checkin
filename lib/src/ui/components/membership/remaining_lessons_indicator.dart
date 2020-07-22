@@ -20,7 +20,7 @@ class RemainingLessonsIndicator extends StatelessWidget {
         ),
         Padding(
           padding: const EdgeInsets.only(right: 8, left: 10),
-          child: Text("3/${totalLessonsOfPlan == double.infinity ? "∞": totalLessonsOfPlan.toString()}", style: Theme.of(context).textTheme.headline5,),
+          child: Text("3/${totalLessonsOfPlan == double.infinity ? "∞": totalLessonsOfPlan.toStringAsFixed(0)}", style: Theme.of(context).textTheme.headline5,),
         )
       ],
     );

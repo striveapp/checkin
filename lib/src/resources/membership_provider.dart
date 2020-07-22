@@ -44,7 +44,7 @@ class MembershipProvider implements MembershipRepository {
       name: subscription["plan"]["nickname"],
       currentPeriodEnd: subscription['current_period_end'],
       //TODO: this needs to come from the db
-      totalLessonsOfPlan: double.infinity,
+      totalLessonsOfPlan: (subscription['totalLessonsOfPlan'] as int)?.toDouble() ?? double.infinity,
     );
   }
 }
