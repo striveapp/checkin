@@ -1,6 +1,7 @@
 import 'package:checkin/src/models/user.dart';
 import 'package:checkin/src/repositories/auth_repository.dart';
 import 'package:firebase_auth/firebase_auth.dart';
+import 'package:firebase_crashlytics/firebase_crashlytics.dart';
 import 'package:flutter/foundation.dart';
 import 'package:google_sign_in/google_sign_in.dart';
 import 'package:sign_in_with_apple/sign_in_with_apple.dart';
@@ -8,6 +9,7 @@ import 'package:sign_in_with_apple/sign_in_with_apple.dart';
 class AuthProvider implements AuthRepository {
   final FirebaseAuth _firebaseAuth;
   final GoogleSignIn _googleSignIn;
+  final Crashlytics _crashlytics = Crashlytics.instance;
 
   AuthProvider({FirebaseAuth firebaseAuth, GoogleSignIn googleSignIn})
       : _firebaseAuth = firebaseAuth ?? FirebaseAuth.instance,
@@ -26,19 +28,38 @@ class AuthProvider implements AuthRepository {
   }
 
   Future<User> signInWithGoogle() async {
-    final GoogleSignInAccount googleUser = await _googleSignIn.signIn();
+    GoogleSignInAccount googleUser;
+    GoogleSignInAuthentication googleAuth;
+    AuthCredential credential;
+
+    try {
+      googleUser = await _googleSignIn.signIn();
+    } catch(err, stackTrace) {
+      await _crashlytics.recordError(err, stackTrace, context: "login error (signIn)");
+      throw err;
+    }
 
     ///NOTE: this can be null when the user cancel in the native modal
     if (googleUser == null) {
       return null;
     }
 
-    final GoogleSignInAuthentication googleAuth =
-        await googleUser.authentication;
-    final AuthCredential credential = GoogleAuthProvider.getCredential(
-      accessToken: googleAuth.accessToken,
-      idToken: googleAuth.idToken,
-    );
+    try {
+      googleAuth = await googleUser.authentication;
+    } catch (err, stackTrace) {
+      await _crashlytics.recordError(err, stackTrace, context: "login error (authentication)");
+      throw err;
+    }
+
+    try {
+      credential = GoogleAuthProvider.getCredential(
+        accessToken: googleAuth.accessToken,
+        idToken: googleAuth.idToken,
+      );
+    } catch(err, stackTrace) {
+      await _crashlytics.recordError(err, stackTrace, context: "login error (getCredential)");
+      throw err;
+    }
 
     return await _getAuthenticatedUserFromFirebase(credential);
   }
