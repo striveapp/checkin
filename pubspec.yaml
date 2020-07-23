@@ -41,7 +41,7 @@ dependencies:
   i18n_extension: 1.3.0
   url_launcher: ^5.4.1
   table_calendar: ^2.2.2
-  flutter_svg: ^0.17.4
+  flutter_svg: ^0.18.0
   package_info: ^0.4.0+14
   open_appstore: ^1.0.2
   pub_semver: ^1.4.2
