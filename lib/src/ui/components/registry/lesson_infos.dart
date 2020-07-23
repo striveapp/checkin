@@ -38,7 +38,6 @@ class LessonInfos extends StatelessWidget {
                     style: Theme.of(context)
                         .textTheme
                         .headline1
-                        .apply(color: Colors.black87),
                   ),
                   Text(
                     "${constants.by.i18n} ${lesson.masters.first.name}",

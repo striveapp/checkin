@@ -20,7 +20,7 @@ void main() {
     group("ThemeUpdated", () {
       test("should emits AppTheme and passing the new ThemeType", () {
         themeBloc = ThemeBloc();
-        final ThemeType newThemeType = ThemeType.Dark;
+        final ThemeType newThemeType = ThemeType.NewLight;
         themeBloc.add(ThemeEvent.themeUpdated(themeType: newThemeType));
 
         final expectedState = [

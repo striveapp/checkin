@@ -39,6 +39,9 @@ class _WeekCalendarState extends State<WeekCalendar> {
       availableGestures: AvailableGestures.none,
       onDaySelected: widget.onDaySelected,
       holidays: widget.holidaysRepository.getHolidays(),
+      calendarStyle: CalendarStyle(
+        selectedColor: Theme.of(context).accentColor,
+      ),
     );
   }
 
