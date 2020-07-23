@@ -31,6 +31,7 @@ import 'package:flutter_bloc/flutter_bloc.dart';
 class AccountPage extends StatelessWidget {
   static const String account = 'Account';
   static const String membership = 'Membership';
+  static const String paymentMethods = 'Payment Methods';
   static const String profile = 'Profile';
 
   @override
@@ -135,7 +136,7 @@ class AccountPage extends StatelessWidget {
                                 Padding(
                                   padding: EdgeInsets.only(left: 10.0),
                                   child: Text(
-                                    "Payment methods",
+                                    paymentMethods.i18n,
                                     style: Theme.of(context)
                                         .textTheme
                                         .headline1

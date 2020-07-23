@@ -186,6 +186,9 @@ extension Localization on String {
     'en': AccountPage.membership,
     'es': 'Afiliación',
   } + {
+    'en': AccountPage.paymentMethods,
+    'es': 'Metodos de pago',
+  } + {
     'en': AccountPage.profile,
     'es': 'Perfil',
   } + {
