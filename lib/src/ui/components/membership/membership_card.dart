@@ -10,23 +10,28 @@ class MembershipCard extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return Card(
-      child: BlocBuilder<MembershipBloc, MembershipState>(
-          builder: (BuildContext context, MembershipState state) {
+      child: Container(
+        constraints: BoxConstraints(
+          minHeight: 150
+        ),
+        child: BlocBuilder<MembershipBloc, MembershipState>(
+            builder: (BuildContext context, MembershipState state) {
 
-        if (state is MembershipLoading || state is InitialMembershipState) {
-          return Container(child: Card(child: LoadingIndicator()));
-        }
+          if (state is MembershipLoading || state is InitialMembershipState) {
+            return LoadingIndicator();
+          }
 
-        if (state is MembershipInactive) {
-          return InactiveMembershipView(email: state.customerEmail, customerId: state.customerId);
-        }
+          if (state is MembershipInactive) {
+            return InactiveMembershipView(email: state.customerEmail, customerId: state.customerId);
+          }
 
-        if (state is MembershipActive) {
-          return ActiveMembershipView(membership: state.membership,);
-        }
+          if (state is MembershipActive) {
+            return ActiveMembershipView(membership: state.membership,);
+          }
 
-        return ErrorWidget("unkown state for membership_card");
-      }),
+          return ErrorWidget("unkown state for membership_card");
+        }),
+      ),
     );
   }
 }

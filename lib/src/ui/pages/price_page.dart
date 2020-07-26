@@ -10,27 +10,24 @@ import 'package:checkin/src/resources/auth_provider.dart';
 import 'package:checkin/src/resources/gym_provider.dart';
 import 'package:checkin/src/resources/subscription_plans_provider.dart';
 import 'package:checkin/src/ui/components/base_app_bar.dart';
-import 'package:checkin/src/ui/components/subscriptions/subscription_plan_cards.dart';
+import 'package:checkin/src/ui/components/plans/price/price_footer.dart';
+import 'package:checkin/src/ui/components/plans/price/price_header.dart';
+import 'package:checkin/src/ui/components/plans/price/price_list.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 
-class SubscriptionsPage extends StatelessWidget {
-  final String customerEmail;
-  final String customerId;
+class PricePage extends StatelessWidget {
+  static const String prices = 'Prices';
 
-  static const String subscriptions = 'Subscriptions';
-
-  SubscriptionsPage({
+  PricePage({
     Key key,
-    @required this.customerEmail,
-    this.customerId,
   }) : super(key: key);
 
   @override
   Widget build(BuildContext context) {
     return Scaffold(
       appBar: BaseAppBar(
-        title: subscriptions.i18n,
+        title: prices.i18n,
         showUserImage: false,
       ),
       body: MultiBlocProvider(
@@ -54,20 +51,19 @@ class SubscriptionsPage extends StatelessWidget {
             ),
           ),
         ],
-        child: SingleChildScrollView(
-          child: Padding(
-            padding: EdgeInsets.symmetric(horizontal: 10),
-            child: Column(
-              mainAxisAlignment: MainAxisAlignment.spaceAround,
-              crossAxisAlignment: CrossAxisAlignment.center,
-              children: <Widget>[
-                SubscriptionPlanCards(
-                  customerEmail: customerEmail,
-                  customerId: customerId,
-                )
-              ],
+        child: Column(
+          children: [
+            SizedBox(
+              height: 20,
             ),
-          ),
+            PriceHeader(),
+            SizedBox(height: 15,),
+            Expanded(child: PriceList()),
+            Padding(
+              padding: const EdgeInsets.all(10),
+              child: PriceFooter(),
+            )
+          ],
         ),
       ),
     );

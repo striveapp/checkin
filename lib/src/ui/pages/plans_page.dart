@@ -10,17 +10,19 @@ import 'package:checkin/src/resources/auth_provider.dart';
 import 'package:checkin/src/resources/gym_provider.dart';
 import 'package:checkin/src/resources/subscription_plans_provider.dart';
 import 'package:checkin/src/ui/components/base_app_bar.dart';
-import 'package:checkin/src/ui/components/subscriptions/subscription_plan_cards.dart';
+import 'package:checkin/src/ui/components/plans/plans_callout.dart';
+import 'package:checkin/src/ui/components/plans/plans_footer.dart';
+import 'package:checkin/src/ui/components/plans/plans_list.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 
-class SubscriptionsPage extends StatelessWidget {
+class PlansPage extends StatelessWidget {
   final String customerEmail;
   final String customerId;
 
-  static const String subscriptions = 'Subscriptions';
+  static const String plans = 'Plans';
 
-  SubscriptionsPage({
+  PlansPage({
     Key key,
     @required this.customerEmail,
     this.customerId,
@@ -30,7 +32,7 @@ class SubscriptionsPage extends StatelessWidget {
   Widget build(BuildContext context) {
     return Scaffold(
       appBar: BaseAppBar(
-        title: subscriptions.i18n,
+        title: plans.i18n,
         showUserImage: false,
       ),
       body: MultiBlocProvider(
@@ -54,20 +56,25 @@ class SubscriptionsPage extends StatelessWidget {
             ),
           ),
         ],
-        child: SingleChildScrollView(
-          child: Padding(
-            padding: EdgeInsets.symmetric(horizontal: 10),
-            child: Column(
-              mainAxisAlignment: MainAxisAlignment.spaceAround,
-              crossAxisAlignment: CrossAxisAlignment.center,
-              children: <Widget>[
-                SubscriptionPlanCards(
-                  customerEmail: customerEmail,
-                  customerId: customerId,
-                )
-              ],
+        child: Column(
+          mainAxisAlignment: MainAxisAlignment.spaceAround,
+          children: [
+            SizedBox(
+              height: 25,
             ),
-          ),
+            Padding(
+              padding: EdgeInsets.symmetric(horizontal: 20),
+              child: PlansCallout(),
+            ),
+            SizedBox(
+              height: 5,
+            ),
+            Expanded(child: PlansList()),
+            Padding(
+              padding: const EdgeInsets.all(10),
+              child: PlansFooter(),
+            )
+          ],
         ),
       ),
     );
