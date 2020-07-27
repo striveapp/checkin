@@ -10,6 +10,7 @@ import 'package:flutter/widgets.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 
 class PriceHandler extends Handler implements RegisterableHandler {
+  static final String planId = "planId";
 
   @override
   void registerRoute(Router router) {
@@ -34,9 +35,10 @@ class PriceHandler extends Handler implements RegisterableHandler {
               ),
             ),
           ],
+          // todo BlocProvider of Plans: planId: params[planId][0]
           child: PricePage(),
         );
       };
 
-  String get route => "price";
+  String get route => "price/:$planId";
 }

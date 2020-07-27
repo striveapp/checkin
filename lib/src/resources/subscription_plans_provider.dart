@@ -15,13 +15,26 @@ class SubscriptionPlansProvider implements SubscriptionPlansRepository {
       .collection(path)
       .snapshots()
       .map((snap) => snap.documents
-          .map((doc) => SubscriptionPlan(
-                name: doc.data['name'],
-                description: doc.data['description'],
-                code: doc.data['code'],
-                currency: doc.data['currency'],
-                price: doc.data['price'],
-                interval: doc.data['interval'],
-              ))
+          .map((doc) => toSubscriptionPlan(doc))
           .toList());
+
+  SubscriptionPlan toSubscriptionPlan(DocumentSnapshot doc) {
+    if( doc.data['startingPrice'] != null ) {
+      return SubscriptionPlan.subscriptionWithPrices(
+          id: doc.documentID,
+          name: doc.data['name'],
+          description: doc.data['description'],
+          currency: doc.data['currency'],
+          startingPrice: doc.data['startingPrice']);
+    }
+
+    return SubscriptionPlan.simpleSubscription(
+              name: doc.data['name'],
+              description: doc.data['description'],
+              code: doc.data['code'],
+              currency: doc.data['currency'],
+              price: doc.data['price'],
+              interval: doc.data['interval'],
+            );
+  }
 }

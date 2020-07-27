@@ -5,7 +5,7 @@ import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:intl/intl.dart';
 
 class SubscriptionPlanCard extends StatelessWidget {
-  final SubscriptionPlan plan;
+  final SimpleSubscription plan;
   final String customerEmail;
   final String basePaymentUrl;
   final String customerId;

@@ -62,7 +62,8 @@ class SubscriptionPlansBloc
 
   List<SubscriptionPlan> _sortByPrice(List<SubscriptionPlan> plans) {
     List<SubscriptionPlan> sortedPlans = plans;
-    sortedPlans.sort((planA, planB) => planA.price.compareTo(planB.price) * -1);
+    // todo planWithPrices: fix sort
+//    sortedPlans.sort((planA, planB) => planA.price.compareTo(planB.price) * -1);
     return sortedPlans;
   }
 

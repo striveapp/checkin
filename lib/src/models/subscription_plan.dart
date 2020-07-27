@@ -1,27 +1,25 @@
-import 'package:equatable/equatable.dart';
 import 'package:flutter/material.dart';
+import 'package:freezed_annotation/freezed_annotation.dart';
+import 'package:flutter/foundation.dart';
 
-class SubscriptionPlan extends Equatable {
-  final String name;
-  final String description;
-  final String code;
-  final String interval;
-  final String currency;
-  final int price;
+part 'subscription_plan.freezed.dart';
+
+@freezed
+abstract class SubscriptionPlan with _$SubscriptionPlan {
+  const factory SubscriptionPlan.simpleSubscription(
+      { @required String name,
+        @required String code,
+        @required String interval,
+        @required String currency,
+        @required int price,
+        String description }) = SimpleSubscription;
+
+  const factory SubscriptionPlan.subscriptionWithPrices(
+      { @required String id,
+        @required String name,
+        @required String currency,
+        @required int startingPrice,
+        String description }) = SubscriptionWithPrices;
 
 
-  SubscriptionPlan({
-    @required this.name,
-    @required this.code,
-    @required this.interval,
-    @required this.currency,
-    @required this.price,
-    this.description = "",
-  });
-
-  @override
-  List<Object> get props => [name, code, interval, currency, price, description];
-
-  @override
-  String toString() => 'SubscriptionPlan{name: $name, description: $description, code: $code, interval: $interval, currency: $currency, price: $price}';
 }

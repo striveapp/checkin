@@ -1,21 +1,16 @@
-import 'package:checkin/src/localization/localization.dart';
+import 'package:checkin/src/models/subscription_plan.dart';
 import 'package:checkin/src/ui/components/plans/price.dart';
 import 'package:flutter/material.dart';
+import 'package:checkin/src/localization/localization.dart';
 
 class PlanCard extends StatelessWidget {
-  final String _name;
-  final String _description;
-  final int _yearlyPlanPrice;
+  final SubscriptionWithPrices _plan;
 
   const PlanCard({
     Key key,
-    @required String name,
-    @required String description,
-    @required int yearlyPlanPrice,
-  })  : assert(name != null && description != null && yearlyPlanPrice != null),
-        _name = name,
-        _description = description,
-        _yearlyPlanPrice = yearlyPlanPrice,
+    @required SubscriptionPlan plan,
+  })  : assert(plan != null),
+        _plan = plan,
         super(key: key);
 
   @override
@@ -29,7 +24,7 @@ class PlanCard extends StatelessWidget {
         child: InkWell(
           onTap: () {
             Navigator.of(context)
-                .pushNamed("price");
+                .pushNamed("price/${_plan.id}");
           },
           child: Padding(
             padding: const EdgeInsets.symmetric(horizontal: 20),
@@ -46,20 +41,20 @@ class PlanCard extends StatelessWidget {
                     crossAxisAlignment: CrossAxisAlignment.start,
                     children: <Widget>[
                       Text(
-                        _name,
+                        _plan.name,
                         style: Theme.of(context)
                             .textTheme
                             .headline1
                             .apply(fontSizeFactor: 1.2, color: Colors.black87),
                       ),
                       Text(
-                        _description.i18n,
+                        _plan.description.i18n,
                         style: Theme.of(context).textTheme.headline4,
                       ),
                     ],
                   ),
                 ),
-                Price(price: _yearlyPlanPrice,),
+                Price(price: _plan.startingPrice,),
               ],
             ),
           ),
