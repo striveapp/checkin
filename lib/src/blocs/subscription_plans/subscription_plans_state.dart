@@ -10,6 +10,9 @@ abstract class SubscriptionPlansState with _$SubscriptionPlansState {
   const factory SubscriptionPlansState.subscriptionPlansInitial() =
       SubscriptionPlansInitial;
 
+  const factory SubscriptionPlansState.subscriptionPlansLoading() =
+      SubscriptionPlansLoading;
+
   const factory SubscriptionPlansState.subscriptionPlansLoaded({
     @required List<SubscriptionPlan> subscriptionPlans,
     @required String basePaymentUrl,

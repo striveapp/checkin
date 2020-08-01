@@ -13,27 +13,40 @@ class SubscriptionPlansBloc
     extends Bloc<SubscriptionPlansEvent, SubscriptionPlansState> {
   final SubscriptionPlansRepository subscriptionPlansRepository;
   final GymBloc gymBloc;
+  final String planId;
 
   StreamSubscription<List<SubscriptionPlan>> streamSubscription;
 
   SubscriptionPlansBloc({
     @required this.subscriptionPlansRepository,
     @required this.gymBloc,
+    this.planId
   }) : assert(subscriptionPlansRepository != null && gymBloc != null) {
     streamSubscription?.cancel();
     try {
       gymBloc.listen((GymState gymState) {
         if (gymState is GymLoaded) {
           Gym gym = gymState.gym;
-          streamSubscription =
-              subscriptionPlansRepository.getPlans(gymId: gym.id).listen((plans) {
-            add(SubscriptionPlansUpdated(
-              basePaymentUrl:
-                  "https://${gym.domain}/payment.html?pk=${gym.stripePublicKey}&host=${gym.host}",
-              subscriptionPlans: _sortByPrice(plans),
-              gym: gym,
-            ));
-          });
+          if( planId == null ) {
+            streamSubscription =
+                subscriptionPlansRepository.getPlans(gymId: gym.id).listen((plans) {
+                  add(SubscriptionPlansUpdated(
+                    basePaymentUrl:
+                    "https://${gym.domain}/payment.html?pk=${gym.stripePublicKey}&host=${gym.host}",
+                    subscriptionPlans: _sortByPrice(plans),
+                    gym: gym,
+                  ));
+                });
+          } else {
+            streamSubscription = subscriptionPlansRepository.getSubPlans(gymId: gym.id, planId: planId).listen((plans) {
+              add(SubscriptionPlansUpdated(
+                basePaymentUrl:
+                "https://${gym.domain}/payment.html?pk=${gym.stripePublicKey}&host=${gym.host}",
+                subscriptionPlans: _sortByPrice(plans),
+                gym: gym,
+              ));
+            });
+          }
         }
       });
     } catch (err) {

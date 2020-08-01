@@ -9,8 +9,10 @@ import 'package:fluro/fluro.dart';
 import 'package:flutter/widgets.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 
+// todo planWithPrices: rename subplan
 class PriceHandler extends Handler implements RegisterableHandler {
   static final String planId = "planId";
+  static final String customerId = "customerId";
 
   @override
   void registerRoute(Router router) {
@@ -35,10 +37,10 @@ class PriceHandler extends Handler implements RegisterableHandler {
               ),
             ),
           ],
-          // todo BlocProvider of Plans: planId: params[planId][0]
-          child: PricePage(),
+          child: PricePage(customerId: params[customerId][0],planId: params[planId][0]),
         );
       };
 
-  String get route => "price/:$planId";
+  // todo planWithPrices: rename subPlan
+  String get route => "price/:$customerId/:$planId";
 }

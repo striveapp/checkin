@@ -13,4 +13,8 @@ abstract class SubscriptionPlansEvent with _$SubscriptionPlansEvent {
     @required String basePaymentUrl,
     @required Gym gym,
   }) = SubscriptionPlansUpdated;
+
+  const factory SubscriptionPlansEvent.loadSubscriptionPlans({
+    @required String planId
+  }) = LoadSubscriptionPlans;
 }

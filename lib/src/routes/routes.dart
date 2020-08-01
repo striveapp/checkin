@@ -4,7 +4,6 @@ import 'package:checkin/src/handlers/payment_success_handler.dart';
 import 'package:checkin/src/handlers/price_handler.dart';
 import 'package:checkin/src/handlers/registerable_handler.dart';
 import 'package:checkin/src/handlers/stats_handler.dart';
-import 'package:checkin/src/handlers/subscriptions_handler.dart';
 import 'package:fluro/fluro.dart';
 
 
@@ -13,7 +12,6 @@ class Routes {
     HomeHandler(),
     RegistryHandler(),
     AccountHandler(),
-    SubscriptionsHandler(),
     PlansHandler(),
     PriceHandler(),
     PaymentSuccessHandler(),

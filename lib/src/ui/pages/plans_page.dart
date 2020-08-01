@@ -17,14 +17,12 @@ import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 
 class PlansPage extends StatelessWidget {
-  final String customerEmail;
   final String customerId;
 
   static const String plans = 'Plans';
 
   PlansPage({
     Key key,
-    @required this.customerEmail,
     this.customerId,
   }) : super(key: key);
 
@@ -44,6 +42,7 @@ class PlansPage extends StatelessWidget {
           ),
           BlocProvider<SubscriptionBloc>(
             create: (BuildContext context) => SubscriptionBloc(
+                gymBloc: BlocProvider.of<GymBloc>(context),
                 membershipApi: MembershipApi(
                     httpClient: HttpClient(authRepository: AuthProvider())),
                 analyticsRepository:
@@ -69,7 +68,7 @@ class PlansPage extends StatelessWidget {
             SizedBox(
               height: 5,
             ),
-            Expanded(child: PlansList()),
+            Expanded(child: PlansList(customerId: customerId)),
             Padding(
               padding: const EdgeInsets.all(10),
               child: PlansFooter(),

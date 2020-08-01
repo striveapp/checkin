@@ -23,7 +23,6 @@ import 'package:checkin/src/ui/components/registry/registry_controls.dart';
 import 'package:checkin/src/ui/components/stats/lessons/attendees_counter.dart';
 import 'package:checkin/src/ui/components/stats/user/attended_lessons_list.dart';
 import 'package:checkin/src/ui/components/stats/user/mat_time_counter.dart';
-import 'package:checkin/src/ui/components/subscriptions/subscription_plan_cards.dart';
 import 'package:checkin/src/ui/components/upgrader_dialog.dart';
 import 'package:checkin/src/ui/pages/account_page.dart';
 import 'package:checkin/src/ui/pages/grade_page.dart';
@@ -34,7 +33,6 @@ import 'package:checkin/src/ui/pages/lessons_stats_page.dart';
 import 'package:checkin/src/ui/pages/payment_success_page.dart';
 import 'package:checkin/src/ui/pages/registry_page.dart';
 import 'package:checkin/src/ui/pages/stats_page.dart';
-import 'package:checkin/src/ui/pages/subscriptions_page.dart';
 import 'package:i18n_extension/i18n_extension.dart';
 
 extension Localization on String {
@@ -233,15 +231,6 @@ extension Localization on String {
   } + {
     'en': UnsubscribeDialog.keepSubscription,
     'es': 'Mantener subscripción',
-  } + {
-    'en': SubscriptionsPage.subscriptions,
-    'es': 'Subscripciones',
-  } + {
-    'en': SubscriptionPlanCards.chooseSub,
-    'es': 'Escoge tu subscripción',
-  } + {
-    'en': SubscriptionPlanCards.noPlansYet,
-    'es': 'No hay subscripciónes disponibles',
   } + {
     'en': GradeCard.beltColor,
     'es': 'Cinturón %s'

@@ -1,5 +1,4 @@
 import 'package:checkin/src/localization/localization.dart';
-import 'package:checkin/src/util/debug_util.dart';
 import 'package:flutter/material.dart';
 
 class InactiveMembershipView extends StatelessWidget {
@@ -35,12 +34,8 @@ class InactiveMembershipView extends StatelessWidget {
                 style: Theme.of(context).textTheme.button,
               ),
               onPressed: () {
-                //TODO: this should change based on the gym configuration
-                isInDebugMode
-                    ? Navigator.of(context)
-                        .pushNamed("plans/$email/$customerId")
-                    : Navigator.of(context)
-                        .pushNamed("subscriptions/$email/$customerId");
+                Navigator.of(context)
+                        .pushNamed("plans/$customerId");
               },
             ),
           ],

@@ -10,7 +10,6 @@ import 'package:flutter/widgets.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 
 class PlansHandler extends Handler implements RegisterableHandler {
-  static final String email = "email";
   static final String customerId = "customerId";
 
   @override
@@ -25,22 +24,19 @@ class PlansHandler extends Handler implements RegisterableHandler {
         StorageRepository storageRepository = StorageRepository();
         ImageRepository imageRepository = ImageRepository();
 
-        return MultiBlocProvider(
-          providers: [
-            BlocProvider<UserBloc>(
-              create: (BuildContext context) => UserBloc(
-                userRepository: userRepository,
-                storageRepository: storageRepository,
-                imageRepository: imageRepository,
-                authBloc: BlocProvider.of<AuthBloc>(context),
-              ),
+        return MultiBlocProvider(providers: [
+          BlocProvider<UserBloc>(
+            create: (BuildContext context) => UserBloc(
+              userRepository: userRepository,
+              storageRepository: storageRepository,
+              imageRepository: imageRepository,
+              authBloc: BlocProvider.of<AuthBloc>(context),
             ),
-          ],
-          child: PlansPage(
-              customerEmail: params[email][0],
-              customerId: params[customerId][0]),
+          ),
+        ], child: PlansPage(
+            customerId: params[customerId][0]),
         );
       };
 
-  String get route => "plans/:$email/:$customerId";
+  String get route => "plans/:$customerId";
 }

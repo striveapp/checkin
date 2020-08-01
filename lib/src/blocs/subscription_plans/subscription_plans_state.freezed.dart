@@ -16,6 +16,10 @@ class _$SubscriptionPlansStateTearOff {
     return const SubscriptionPlansInitial();
   }
 
+  SubscriptionPlansLoading subscriptionPlansLoading() {
+    return const SubscriptionPlansLoading();
+  }
+
   SubscriptionPlansLoaded subscriptionPlansLoaded(
       {@required List<SubscriptionPlan> subscriptionPlans,
       @required String basePaymentUrl,
@@ -39,6 +43,7 @@ mixin _$SubscriptionPlansState {
   @optionalTypeArgs
   Result when<Result extends Object>({
     @required Result subscriptionPlansInitial(),
+    @required Result subscriptionPlansLoading(),
     @required
         Result subscriptionPlansLoaded(List<SubscriptionPlan> subscriptionPlans,
             String basePaymentUrl, String gymId),
@@ -47,6 +52,7 @@ mixin _$SubscriptionPlansState {
   @optionalTypeArgs
   Result maybeWhen<Result extends Object>({
     Result subscriptionPlansInitial(),
+    Result subscriptionPlansLoading(),
     Result subscriptionPlansLoaded(List<SubscriptionPlan> subscriptionPlans,
         String basePaymentUrl, String gymId),
     Result subscriptionPlansEmpty(),
@@ -55,12 +61,14 @@ mixin _$SubscriptionPlansState {
   @optionalTypeArgs
   Result map<Result extends Object>({
     @required Result subscriptionPlansInitial(SubscriptionPlansInitial value),
+    @required Result subscriptionPlansLoading(SubscriptionPlansLoading value),
     @required Result subscriptionPlansLoaded(SubscriptionPlansLoaded value),
     @required Result subscriptionPlansEmpty(SubscriptionPlansEmpty value),
   });
   @optionalTypeArgs
   Result maybeMap<Result extends Object>({
     Result subscriptionPlansInitial(SubscriptionPlansInitial value),
+    Result subscriptionPlansLoading(SubscriptionPlansLoading value),
     Result subscriptionPlansLoaded(SubscriptionPlansLoaded value),
     Result subscriptionPlansEmpty(SubscriptionPlansEmpty value),
     @required Result orElse(),
@@ -130,12 +138,14 @@ class _$SubscriptionPlansInitial
   @optionalTypeArgs
   Result when<Result extends Object>({
     @required Result subscriptionPlansInitial(),
+    @required Result subscriptionPlansLoading(),
     @required
         Result subscriptionPlansLoaded(List<SubscriptionPlan> subscriptionPlans,
             String basePaymentUrl, String gymId),
     @required Result subscriptionPlansEmpty(),
   }) {
     assert(subscriptionPlansInitial != null);
+    assert(subscriptionPlansLoading != null);
     assert(subscriptionPlansLoaded != null);
     assert(subscriptionPlansEmpty != null);
     return subscriptionPlansInitial();
@@ -145,6 +155,7 @@ class _$SubscriptionPlansInitial
   @optionalTypeArgs
   Result maybeWhen<Result extends Object>({
     Result subscriptionPlansInitial(),
+    Result subscriptionPlansLoading(),
     Result subscriptionPlansLoaded(List<SubscriptionPlan> subscriptionPlans,
         String basePaymentUrl, String gymId),
     Result subscriptionPlansEmpty(),
@@ -161,10 +172,12 @@ class _$SubscriptionPlansInitial
   @optionalTypeArgs
   Result map<Result extends Object>({
     @required Result subscriptionPlansInitial(SubscriptionPlansInitial value),
+    @required Result subscriptionPlansLoading(SubscriptionPlansLoading value),
     @required Result subscriptionPlansLoaded(SubscriptionPlansLoaded value),
     @required Result subscriptionPlansEmpty(SubscriptionPlansEmpty value),
   }) {
     assert(subscriptionPlansInitial != null);
+    assert(subscriptionPlansLoading != null);
     assert(subscriptionPlansLoaded != null);
     assert(subscriptionPlansEmpty != null);
     return subscriptionPlansInitial(this);
@@ -174,6 +187,7 @@ class _$SubscriptionPlansInitial
   @optionalTypeArgs
   Result maybeMap<Result extends Object>({
     Result subscriptionPlansInitial(SubscriptionPlansInitial value),
+    Result subscriptionPlansLoading(SubscriptionPlansLoading value),
     Result subscriptionPlansLoaded(SubscriptionPlansLoaded value),
     Result subscriptionPlansEmpty(SubscriptionPlansEmpty value),
     @required Result orElse(),
@@ -188,6 +202,120 @@ class _$SubscriptionPlansInitial
 
 abstract class SubscriptionPlansInitial implements SubscriptionPlansState {
   const factory SubscriptionPlansInitial() = _$SubscriptionPlansInitial;
+}
+
+abstract class $SubscriptionPlansLoadingCopyWith<$Res> {
+  factory $SubscriptionPlansLoadingCopyWith(SubscriptionPlansLoading value,
+          $Res Function(SubscriptionPlansLoading) then) =
+      _$SubscriptionPlansLoadingCopyWithImpl<$Res>;
+}
+
+class _$SubscriptionPlansLoadingCopyWithImpl<$Res>
+    extends _$SubscriptionPlansStateCopyWithImpl<$Res>
+    implements $SubscriptionPlansLoadingCopyWith<$Res> {
+  _$SubscriptionPlansLoadingCopyWithImpl(SubscriptionPlansLoading _value,
+      $Res Function(SubscriptionPlansLoading) _then)
+      : super(_value, (v) => _then(v as SubscriptionPlansLoading));
+
+  @override
+  SubscriptionPlansLoading get _value =>
+      super._value as SubscriptionPlansLoading;
+}
+
+class _$SubscriptionPlansLoading
+    with DiagnosticableTreeMixin
+    implements SubscriptionPlansLoading {
+  const _$SubscriptionPlansLoading();
+
+  @override
+  String toString({DiagnosticLevel minLevel = DiagnosticLevel.info}) {
+    return 'SubscriptionPlansState.subscriptionPlansLoading()';
+  }
+
+  @override
+  void debugFillProperties(DiagnosticPropertiesBuilder properties) {
+    super.debugFillProperties(properties);
+    properties
+      ..add(DiagnosticsProperty(
+          'type', 'SubscriptionPlansState.subscriptionPlansLoading'));
+  }
+
+  @override
+  bool operator ==(dynamic other) {
+    return identical(this, other) || (other is SubscriptionPlansLoading);
+  }
+
+  @override
+  int get hashCode => runtimeType.hashCode;
+
+  @override
+  @optionalTypeArgs
+  Result when<Result extends Object>({
+    @required Result subscriptionPlansInitial(),
+    @required Result subscriptionPlansLoading(),
+    @required
+        Result subscriptionPlansLoaded(List<SubscriptionPlan> subscriptionPlans,
+            String basePaymentUrl, String gymId),
+    @required Result subscriptionPlansEmpty(),
+  }) {
+    assert(subscriptionPlansInitial != null);
+    assert(subscriptionPlansLoading != null);
+    assert(subscriptionPlansLoaded != null);
+    assert(subscriptionPlansEmpty != null);
+    return subscriptionPlansLoading();
+  }
+
+  @override
+  @optionalTypeArgs
+  Result maybeWhen<Result extends Object>({
+    Result subscriptionPlansInitial(),
+    Result subscriptionPlansLoading(),
+    Result subscriptionPlansLoaded(List<SubscriptionPlan> subscriptionPlans,
+        String basePaymentUrl, String gymId),
+    Result subscriptionPlansEmpty(),
+    @required Result orElse(),
+  }) {
+    assert(orElse != null);
+    if (subscriptionPlansLoading != null) {
+      return subscriptionPlansLoading();
+    }
+    return orElse();
+  }
+
+  @override
+  @optionalTypeArgs
+  Result map<Result extends Object>({
+    @required Result subscriptionPlansInitial(SubscriptionPlansInitial value),
+    @required Result subscriptionPlansLoading(SubscriptionPlansLoading value),
+    @required Result subscriptionPlansLoaded(SubscriptionPlansLoaded value),
+    @required Result subscriptionPlansEmpty(SubscriptionPlansEmpty value),
+  }) {
+    assert(subscriptionPlansInitial != null);
+    assert(subscriptionPlansLoading != null);
+    assert(subscriptionPlansLoaded != null);
+    assert(subscriptionPlansEmpty != null);
+    return subscriptionPlansLoading(this);
+  }
+
+  @override
+  @optionalTypeArgs
+  Result maybeMap<Result extends Object>({
+    Result subscriptionPlansInitial(SubscriptionPlansInitial value),
+    Result subscriptionPlansLoading(SubscriptionPlansLoading value),
+    Result subscriptionPlansLoaded(SubscriptionPlansLoaded value),
+    Result subscriptionPlansEmpty(SubscriptionPlansEmpty value),
+    @required Result orElse(),
+  }) {
+    assert(orElse != null);
+    if (subscriptionPlansLoading != null) {
+      return subscriptionPlansLoading(this);
+    }
+    return orElse();
+  }
+}
+
+abstract class SubscriptionPlansLoading implements SubscriptionPlansState {
+  const factory SubscriptionPlansLoading() = _$SubscriptionPlansLoading;
 }
 
 abstract class $SubscriptionPlansLoadedCopyWith<$Res> {
@@ -292,12 +420,14 @@ class _$SubscriptionPlansLoaded
   @optionalTypeArgs
   Result when<Result extends Object>({
     @required Result subscriptionPlansInitial(),
+    @required Result subscriptionPlansLoading(),
     @required
         Result subscriptionPlansLoaded(List<SubscriptionPlan> subscriptionPlans,
             String basePaymentUrl, String gymId),
     @required Result subscriptionPlansEmpty(),
   }) {
     assert(subscriptionPlansInitial != null);
+    assert(subscriptionPlansLoading != null);
     assert(subscriptionPlansLoaded != null);
     assert(subscriptionPlansEmpty != null);
     return subscriptionPlansLoaded(subscriptionPlans, basePaymentUrl, gymId);
@@ -307,6 +437,7 @@ class _$SubscriptionPlansLoaded
   @optionalTypeArgs
   Result maybeWhen<Result extends Object>({
     Result subscriptionPlansInitial(),
+    Result subscriptionPlansLoading(),
     Result subscriptionPlansLoaded(List<SubscriptionPlan> subscriptionPlans,
         String basePaymentUrl, String gymId),
     Result subscriptionPlansEmpty(),
@@ -323,10 +454,12 @@ class _$SubscriptionPlansLoaded
   @optionalTypeArgs
   Result map<Result extends Object>({
     @required Result subscriptionPlansInitial(SubscriptionPlansInitial value),
+    @required Result subscriptionPlansLoading(SubscriptionPlansLoading value),
     @required Result subscriptionPlansLoaded(SubscriptionPlansLoaded value),
     @required Result subscriptionPlansEmpty(SubscriptionPlansEmpty value),
   }) {
     assert(subscriptionPlansInitial != null);
+    assert(subscriptionPlansLoading != null);
     assert(subscriptionPlansLoaded != null);
     assert(subscriptionPlansEmpty != null);
     return subscriptionPlansLoaded(this);
@@ -336,6 +469,7 @@ class _$SubscriptionPlansLoaded
   @optionalTypeArgs
   Result maybeMap<Result extends Object>({
     Result subscriptionPlansInitial(SubscriptionPlansInitial value),
+    Result subscriptionPlansLoading(SubscriptionPlansLoading value),
     Result subscriptionPlansLoaded(SubscriptionPlansLoaded value),
     Result subscriptionPlansEmpty(SubscriptionPlansEmpty value),
     @required Result orElse(),
@@ -407,12 +541,14 @@ class _$SubscriptionPlansEmpty
   @optionalTypeArgs
   Result when<Result extends Object>({
     @required Result subscriptionPlansInitial(),
+    @required Result subscriptionPlansLoading(),
     @required
         Result subscriptionPlansLoaded(List<SubscriptionPlan> subscriptionPlans,
             String basePaymentUrl, String gymId),
     @required Result subscriptionPlansEmpty(),
   }) {
     assert(subscriptionPlansInitial != null);
+    assert(subscriptionPlansLoading != null);
     assert(subscriptionPlansLoaded != null);
     assert(subscriptionPlansEmpty != null);
     return subscriptionPlansEmpty();
@@ -422,6 +558,7 @@ class _$SubscriptionPlansEmpty
   @optionalTypeArgs
   Result maybeWhen<Result extends Object>({
     Result subscriptionPlansInitial(),
+    Result subscriptionPlansLoading(),
     Result subscriptionPlansLoaded(List<SubscriptionPlan> subscriptionPlans,
         String basePaymentUrl, String gymId),
     Result subscriptionPlansEmpty(),
@@ -438,10 +575,12 @@ class _$SubscriptionPlansEmpty
   @optionalTypeArgs
   Result map<Result extends Object>({
     @required Result subscriptionPlansInitial(SubscriptionPlansInitial value),
+    @required Result subscriptionPlansLoading(SubscriptionPlansLoading value),
     @required Result subscriptionPlansLoaded(SubscriptionPlansLoaded value),
     @required Result subscriptionPlansEmpty(SubscriptionPlansEmpty value),
   }) {
     assert(subscriptionPlansInitial != null);
+    assert(subscriptionPlansLoading != null);
     assert(subscriptionPlansLoaded != null);
     assert(subscriptionPlansEmpty != null);
     return subscriptionPlansEmpty(this);
@@ -451,6 +590,7 @@ class _$SubscriptionPlansEmpty
   @optionalTypeArgs
   Result maybeMap<Result extends Object>({
     Result subscriptionPlansInitial(SubscriptionPlansInitial value),
+    Result subscriptionPlansLoading(SubscriptionPlansLoading value),
     Result subscriptionPlansLoaded(SubscriptionPlansLoaded value),
     Result subscriptionPlansEmpty(SubscriptionPlansEmpty value),
     @required Result orElse(),

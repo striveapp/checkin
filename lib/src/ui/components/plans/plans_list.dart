@@ -8,8 +8,11 @@ import 'package:flutter_bloc/flutter_bloc.dart';
 import '../loading_indicator.dart';
 
 class PlansList extends StatelessWidget {
+  final String customerId;
+
   const PlansList({
     Key key,
+    this.customerId
   }) : super(key: key);
 
   @override
@@ -18,6 +21,7 @@ class PlansList extends StatelessWidget {
       builder: (BuildContext context, SubscriptionPlansState state) {
         return state.when(
             subscriptionPlansInitial: () => LoadingIndicator(),
+            subscriptionPlansLoading: () => LoadingIndicator(),
             subscriptionPlansLoaded: (List<SubscriptionPlan> subscriptionPlans,
                     String basePaymentUrl, String gymId) =>
                 Container(
@@ -29,7 +33,7 @@ class PlansList extends StatelessWidget {
                     children: [
                       ...subscriptionPlans
                           .map(
-                            (plan) => GenericCard(plan: plan),
+                            (plan) => GenericCard(plan: plan, customerId: customerId),
                           )
                           .toList(),
                     ],

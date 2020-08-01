@@ -1,31 +1,31 @@
 import 'package:checkin/src/models/subscription_plan.dart';
 import 'package:checkin/src/ui/components/plans/plan_card.dart';
-import 'package:checkin/src/ui/components/subscriptions/subscription_plan_card.dart';
+import 'package:checkin/src/ui/components/plans/plan_with_prices_card.dart';
 import 'package:flutter/material.dart';
-
 
 class GenericCard extends StatelessWidget {
   final SubscriptionPlan _plan;
+  final String _customerId;
 
   const GenericCard({
     Key key,
     @required SubscriptionPlan plan,
-  })
-      : assert(plan != null),
+    customerId,
+  })  : assert(plan != null),
         _plan = plan,
+        _customerId = customerId,
         super(key: key);
 
   @override
   Widget build(BuildContext context) {
     return _plan.map(
       simpleSubscription: (SimpleSubscription simpleSubscription) =>
-          // todo planWithPrices: fix integration
-          SubscriptionPlanCard(plan: simpleSubscription,
-            customerEmail: "",
-            basePaymentUrl: "",
-            customerId: "",
-            gymId: "",),
+          PlanCard(
+        plan: simpleSubscription,
+        customerId: _customerId,
+      ),
       subscriptionWithPrices: (SubscriptionWithPrices subscriptionWithPrices) =>
-          PlanCard(plan: subscriptionWithPrices),);
+          PlanWithPricesCard(customerId: _customerId, plan: subscriptionWithPrices),
+    );
   }
 }

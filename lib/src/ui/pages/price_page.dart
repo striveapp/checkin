@@ -10,17 +10,22 @@ import 'package:checkin/src/resources/auth_provider.dart';
 import 'package:checkin/src/resources/gym_provider.dart';
 import 'package:checkin/src/resources/subscription_plans_provider.dart';
 import 'package:checkin/src/ui/components/base_app_bar.dart';
+import 'package:checkin/src/ui/components/plans/plans_list.dart';
 import 'package:checkin/src/ui/components/plans/price/price_footer.dart';
 import 'package:checkin/src/ui/components/plans/price/price_header.dart';
-import 'package:checkin/src/ui/components/plans/price/price_list.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 
 class PricePage extends StatelessWidget {
   static const String prices = 'Prices';
 
+  final String customerId;
+  final String planId;
+
   PricePage({
     Key key,
+    @required this.planId,
+    this.customerId,
   }) : super(key: key);
 
   @override
@@ -33,22 +38,27 @@ class PricePage extends StatelessWidget {
       body: MultiBlocProvider(
         providers: [
           BlocProvider<GymBloc>(
-            create: (BuildContext context) => GymBloc(
-                userBloc: BlocProvider.of<UserBloc>(context),
-                gymRepository: GymProvider()),
+            create: (BuildContext context) =>
+                GymBloc(
+                    userBloc: BlocProvider.of<UserBloc>(context),
+                    gymRepository: GymProvider()),
           ),
           BlocProvider<SubscriptionBloc>(
-            create: (BuildContext context) => SubscriptionBloc(
-                membershipApi: MembershipApi(
-                    httpClient: HttpClient(authRepository: AuthProvider())),
-                analyticsRepository:
+            create: (BuildContext context) =>
+                SubscriptionBloc(
+                    gymBloc: BlocProvider.of<GymBloc>(context),
+                    membershipApi: MembershipApi(
+                        httpClient: HttpClient(authRepository: AuthProvider())),
+                    analyticsRepository:
                     RepositoryProvider.of<AnalyticsRepository>(context)),
           ),
           BlocProvider<SubscriptionPlansBloc>(
-            create: (BuildContext context) => SubscriptionPlansBloc(
-              gymBloc: BlocProvider.of<GymBloc>(context),
-              subscriptionPlansRepository: SubscriptionPlansProvider(),
-            ),
+            create: (BuildContext context) =>
+                SubscriptionPlansBloc(
+                  planId: planId,
+                  gymBloc: BlocProvider.of<GymBloc>(context),
+                  subscriptionPlansRepository: SubscriptionPlansProvider(),
+                ),
           ),
         ],
         child: Column(
@@ -58,7 +68,7 @@ class PricePage extends StatelessWidget {
             ),
             PriceHeader(),
             SizedBox(height: 15,),
-            Expanded(child: PriceList()),
+            Expanded(child: PlansList(customerId: customerId,)),
             Padding(
               padding: const EdgeInsets.all(10),
               child: PriceFooter(),

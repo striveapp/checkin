@@ -8,7 +8,6 @@ part 'subscription_event.freezed.dart';
 abstract class SubscriptionEvent with _$SubscriptionEvent {
 
   const factory SubscriptionEvent.subscribe({
-    @required String gymId,
     @required String priceId,
     @required String customerId,
   }) = Subscribe;

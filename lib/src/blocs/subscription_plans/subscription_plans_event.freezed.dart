@@ -22,27 +22,51 @@ class _$SubscriptionPlansEventTearOff {
       gym: gym,
     );
   }
+
+  LoadSubscriptionPlans loadSubscriptionPlans({@required String planId}) {
+    return LoadSubscriptionPlans(
+      planId: planId,
+    );
+  }
 }
 
 // ignore: unused_element
 const $SubscriptionPlansEvent = _$SubscriptionPlansEventTearOff();
 
 mixin _$SubscriptionPlansEvent {
-  List<SubscriptionPlan> get subscriptionPlans;
-  String get basePaymentUrl;
-  Gym get gym;
-
-  $SubscriptionPlansEventCopyWith<SubscriptionPlansEvent> get copyWith;
+  @optionalTypeArgs
+  Result when<Result extends Object>({
+    @required
+        Result subscriptionPlansUpdated(
+            List<SubscriptionPlan> subscriptionPlans,
+            String basePaymentUrl,
+            Gym gym),
+    @required Result loadSubscriptionPlans(String planId),
+  });
+  @optionalTypeArgs
+  Result maybeWhen<Result extends Object>({
+    Result subscriptionPlansUpdated(List<SubscriptionPlan> subscriptionPlans,
+        String basePaymentUrl, Gym gym),
+    Result loadSubscriptionPlans(String planId),
+    @required Result orElse(),
+  });
+  @optionalTypeArgs
+  Result map<Result extends Object>({
+    @required Result subscriptionPlansUpdated(SubscriptionPlansUpdated value),
+    @required Result loadSubscriptionPlans(LoadSubscriptionPlans value),
+  });
+  @optionalTypeArgs
+  Result maybeMap<Result extends Object>({
+    Result subscriptionPlansUpdated(SubscriptionPlansUpdated value),
+    Result loadSubscriptionPlans(LoadSubscriptionPlans value),
+    @required Result orElse(),
+  });
 }
 
 abstract class $SubscriptionPlansEventCopyWith<$Res> {
   factory $SubscriptionPlansEventCopyWith(SubscriptionPlansEvent value,
           $Res Function(SubscriptionPlansEvent) then) =
       _$SubscriptionPlansEventCopyWithImpl<$Res>;
-  $Res call(
-      {List<SubscriptionPlan> subscriptionPlans,
-      String basePaymentUrl,
-      Gym gym});
 }
 
 class _$SubscriptionPlansEventCopyWithImpl<$Res>
@@ -52,31 +76,12 @@ class _$SubscriptionPlansEventCopyWithImpl<$Res>
   final SubscriptionPlansEvent _value;
   // ignore: unused_field
   final $Res Function(SubscriptionPlansEvent) _then;
-
-  @override
-  $Res call({
-    Object subscriptionPlans = freezed,
-    Object basePaymentUrl = freezed,
-    Object gym = freezed,
-  }) {
-    return _then(_value.copyWith(
-      subscriptionPlans: subscriptionPlans == freezed
-          ? _value.subscriptionPlans
-          : subscriptionPlans as List<SubscriptionPlan>,
-      basePaymentUrl: basePaymentUrl == freezed
-          ? _value.basePaymentUrl
-          : basePaymentUrl as String,
-      gym: gym == freezed ? _value.gym : gym as Gym,
-    ));
-  }
 }
 
-abstract class $SubscriptionPlansUpdatedCopyWith<$Res>
-    implements $SubscriptionPlansEventCopyWith<$Res> {
+abstract class $SubscriptionPlansUpdatedCopyWith<$Res> {
   factory $SubscriptionPlansUpdatedCopyWith(SubscriptionPlansUpdated value,
           $Res Function(SubscriptionPlansUpdated) then) =
       _$SubscriptionPlansUpdatedCopyWithImpl<$Res>;
-  @override
   $Res call(
       {List<SubscriptionPlan> subscriptionPlans,
       String basePaymentUrl,
@@ -171,6 +176,61 @@ class _$SubscriptionPlansUpdated
   $SubscriptionPlansUpdatedCopyWith<SubscriptionPlansUpdated> get copyWith =>
       _$SubscriptionPlansUpdatedCopyWithImpl<SubscriptionPlansUpdated>(
           this, _$identity);
+
+  @override
+  @optionalTypeArgs
+  Result when<Result extends Object>({
+    @required
+        Result subscriptionPlansUpdated(
+            List<SubscriptionPlan> subscriptionPlans,
+            String basePaymentUrl,
+            Gym gym),
+    @required Result loadSubscriptionPlans(String planId),
+  }) {
+    assert(subscriptionPlansUpdated != null);
+    assert(loadSubscriptionPlans != null);
+    return subscriptionPlansUpdated(subscriptionPlans, basePaymentUrl, gym);
+  }
+
+  @override
+  @optionalTypeArgs
+  Result maybeWhen<Result extends Object>({
+    Result subscriptionPlansUpdated(List<SubscriptionPlan> subscriptionPlans,
+        String basePaymentUrl, Gym gym),
+    Result loadSubscriptionPlans(String planId),
+    @required Result orElse(),
+  }) {
+    assert(orElse != null);
+    if (subscriptionPlansUpdated != null) {
+      return subscriptionPlansUpdated(subscriptionPlans, basePaymentUrl, gym);
+    }
+    return orElse();
+  }
+
+  @override
+  @optionalTypeArgs
+  Result map<Result extends Object>({
+    @required Result subscriptionPlansUpdated(SubscriptionPlansUpdated value),
+    @required Result loadSubscriptionPlans(LoadSubscriptionPlans value),
+  }) {
+    assert(subscriptionPlansUpdated != null);
+    assert(loadSubscriptionPlans != null);
+    return subscriptionPlansUpdated(this);
+  }
+
+  @override
+  @optionalTypeArgs
+  Result maybeMap<Result extends Object>({
+    Result subscriptionPlansUpdated(SubscriptionPlansUpdated value),
+    Result loadSubscriptionPlans(LoadSubscriptionPlans value),
+    @required Result orElse(),
+  }) {
+    assert(orElse != null);
+    if (subscriptionPlansUpdated != null) {
+      return subscriptionPlansUpdated(this);
+    }
+    return orElse();
+  }
 }
 
 abstract class SubscriptionPlansUpdated implements SubscriptionPlansEvent {
@@ -179,12 +239,139 @@ abstract class SubscriptionPlansUpdated implements SubscriptionPlansEvent {
       @required String basePaymentUrl,
       @required Gym gym}) = _$SubscriptionPlansUpdated;
 
-  @override
   List<SubscriptionPlan> get subscriptionPlans;
-  @override
   String get basePaymentUrl;
-  @override
   Gym get gym;
-  @override
   $SubscriptionPlansUpdatedCopyWith<SubscriptionPlansUpdated> get copyWith;
+}
+
+abstract class $LoadSubscriptionPlansCopyWith<$Res> {
+  factory $LoadSubscriptionPlansCopyWith(LoadSubscriptionPlans value,
+          $Res Function(LoadSubscriptionPlans) then) =
+      _$LoadSubscriptionPlansCopyWithImpl<$Res>;
+  $Res call({String planId});
+}
+
+class _$LoadSubscriptionPlansCopyWithImpl<$Res>
+    extends _$SubscriptionPlansEventCopyWithImpl<$Res>
+    implements $LoadSubscriptionPlansCopyWith<$Res> {
+  _$LoadSubscriptionPlansCopyWithImpl(
+      LoadSubscriptionPlans _value, $Res Function(LoadSubscriptionPlans) _then)
+      : super(_value, (v) => _then(v as LoadSubscriptionPlans));
+
+  @override
+  LoadSubscriptionPlans get _value => super._value as LoadSubscriptionPlans;
+
+  @override
+  $Res call({
+    Object planId = freezed,
+  }) {
+    return _then(LoadSubscriptionPlans(
+      planId: planId == freezed ? _value.planId : planId as String,
+    ));
+  }
+}
+
+class _$LoadSubscriptionPlans
+    with DiagnosticableTreeMixin
+    implements LoadSubscriptionPlans {
+  const _$LoadSubscriptionPlans({@required this.planId})
+      : assert(planId != null);
+
+  @override
+  final String planId;
+
+  @override
+  String toString({DiagnosticLevel minLevel = DiagnosticLevel.info}) {
+    return 'SubscriptionPlansEvent.loadSubscriptionPlans(planId: $planId)';
+  }
+
+  @override
+  void debugFillProperties(DiagnosticPropertiesBuilder properties) {
+    super.debugFillProperties(properties);
+    properties
+      ..add(DiagnosticsProperty(
+          'type', 'SubscriptionPlansEvent.loadSubscriptionPlans'))
+      ..add(DiagnosticsProperty('planId', planId));
+  }
+
+  @override
+  bool operator ==(dynamic other) {
+    return identical(this, other) ||
+        (other is LoadSubscriptionPlans &&
+            (identical(other.planId, planId) ||
+                const DeepCollectionEquality().equals(other.planId, planId)));
+  }
+
+  @override
+  int get hashCode =>
+      runtimeType.hashCode ^ const DeepCollectionEquality().hash(planId);
+
+  @override
+  $LoadSubscriptionPlansCopyWith<LoadSubscriptionPlans> get copyWith =>
+      _$LoadSubscriptionPlansCopyWithImpl<LoadSubscriptionPlans>(
+          this, _$identity);
+
+  @override
+  @optionalTypeArgs
+  Result when<Result extends Object>({
+    @required
+        Result subscriptionPlansUpdated(
+            List<SubscriptionPlan> subscriptionPlans,
+            String basePaymentUrl,
+            Gym gym),
+    @required Result loadSubscriptionPlans(String planId),
+  }) {
+    assert(subscriptionPlansUpdated != null);
+    assert(loadSubscriptionPlans != null);
+    return loadSubscriptionPlans(planId);
+  }
+
+  @override
+  @optionalTypeArgs
+  Result maybeWhen<Result extends Object>({
+    Result subscriptionPlansUpdated(List<SubscriptionPlan> subscriptionPlans,
+        String basePaymentUrl, Gym gym),
+    Result loadSubscriptionPlans(String planId),
+    @required Result orElse(),
+  }) {
+    assert(orElse != null);
+    if (loadSubscriptionPlans != null) {
+      return loadSubscriptionPlans(planId);
+    }
+    return orElse();
+  }
+
+  @override
+  @optionalTypeArgs
+  Result map<Result extends Object>({
+    @required Result subscriptionPlansUpdated(SubscriptionPlansUpdated value),
+    @required Result loadSubscriptionPlans(LoadSubscriptionPlans value),
+  }) {
+    assert(subscriptionPlansUpdated != null);
+    assert(loadSubscriptionPlans != null);
+    return loadSubscriptionPlans(this);
+  }
+
+  @override
+  @optionalTypeArgs
+  Result maybeMap<Result extends Object>({
+    Result subscriptionPlansUpdated(SubscriptionPlansUpdated value),
+    Result loadSubscriptionPlans(LoadSubscriptionPlans value),
+    @required Result orElse(),
+  }) {
+    assert(orElse != null);
+    if (loadSubscriptionPlans != null) {
+      return loadSubscriptionPlans(this);
+    }
+    return orElse();
+  }
+}
+
+abstract class LoadSubscriptionPlans implements SubscriptionPlansEvent {
+  const factory LoadSubscriptionPlans({@required String planId}) =
+      _$LoadSubscriptionPlans;
+
+  String get planId;
+  $LoadSubscriptionPlansCopyWith<LoadSubscriptionPlans> get copyWith;
 }
