@@ -32,7 +32,7 @@ class AnalyticsProvider implements AnalyticsRepository {
     await _crashlytics.recordError(err, stackTrace, context: "login error");
     await _firebaseAnalytics.logEvent(name: "login_error", parameters: {
       "hash": CryptoUtil.generateMd5(message),
-      "message": message.substring(0, 100),
+      "message": message.length > 100 ? message.substring(0, 100) : message,
     });
   }
 
@@ -51,7 +51,7 @@ class AnalyticsProvider implements AnalyticsRepository {
         context: "subscription error");
     await _firebaseAnalytics.logEvent(name: "subscription_error", parameters: {
       "hash": CryptoUtil.generateMd5(message),
-      "message": message.substring(0, 100),
+      "message": message.length > 100 ? message.substring(0, 100) : message,
     });
   }
 
@@ -62,7 +62,7 @@ class AnalyticsProvider implements AnalyticsRepository {
         context: "unsubscribe error");
     await _firebaseAnalytics.logEvent(name: "unsubscribe_error", parameters: {
       "hash": CryptoUtil.generateMd5(message),
-      "message": message.substring(0, 100),
+      "message": message.length > 100 ? message.substring(0, 100) : message,
     });
   }
 

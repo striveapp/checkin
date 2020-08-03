@@ -1,3 +1,4 @@
+import 'package:checkin/src/blocs/subscription/bloc.dart';
 import 'package:checkin/src/blocs/subscription_plans/bloc.dart';
 import 'package:checkin/src/localization/localization.dart';
 import 'package:checkin/src/models/subscription_plan.dart';
@@ -12,14 +13,34 @@ class PlansList extends StatelessWidget {
 
   final String customerId;
 
-  const PlansList({
-    Key key,
-    this.customerId
-  }) : super(key: key);
+  const PlansList({Key key, this.customerId}) : super(key: key);
 
   @override
   Widget build(BuildContext context) {
-    return BlocBuilder<SubscriptionPlansBloc, SubscriptionPlansState>(
+    return BlocListener<SubscriptionBloc, SubscriptionState>(
+        listener: (BuildContext context, SubscriptionState state) {
+      if (state is SubscriptionError) {
+        Navigator.of(context).pop();
+        Scaffold.of(context)
+          ..hideCurrentSnackBar()
+          ..showSnackBar(
+            SnackBar(
+              content: Text(state.errorMessage.i18n),
+              backgroundColor: Colors.red,
+              duration: Duration(seconds: 5),
+            ),
+          );
+      }
+
+      if (state is SubscriptionLoading) {
+        showDialog(context: context, child: LoadingIndicator());
+      }
+
+      if (state is SubscriptionSuccess) {
+        Navigator.of(context).pop();
+        Navigator.of(context).pushNamed("payment/success");
+      }
+    }, child: BlocBuilder<SubscriptionPlansBloc, SubscriptionPlansState>(
       builder: (BuildContext context, SubscriptionPlansState state) {
         return state.when(
             subscriptionPlansInitial: () => LoadingIndicator(),
@@ -35,7 +56,8 @@ class PlansList extends StatelessWidget {
                     children: [
                       ...subscriptionPlans
                           .map(
-                            (plan) => GenericCard(plan: plan, customerId: customerId),
+                            (plan) =>
+                                GenericCard(plan: plan, customerId: customerId),
                           )
                           .toList(),
                     ],
@@ -57,6 +79,6 @@ class PlansList extends StatelessWidget {
                   ],
                 ));
       },
-    );
+    ));
   }
 }
