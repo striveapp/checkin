@@ -4,15 +4,16 @@ import 'package:checkin/src/handlers/registerable_handler.dart';
 import 'package:checkin/src/repositories/image_repository.dart';
 import 'package:checkin/src/repositories/storage_repository.dart';
 import 'package:checkin/src/repositories/user_repository.dart';
-import 'package:checkin/src/ui/pages/price_page.dart';
+import 'package:checkin/src/ui/pages/sub_plan_page.dart';
 import 'package:fluro/fluro.dart';
 import 'package:flutter/widgets.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 
-// todo planWithPrices: rename subplan
-class PriceHandler extends Handler implements RegisterableHandler {
+class SubPlanHandler extends Handler implements RegisterableHandler {
   static final String planId = "planId";
   static final String customerId = "customerId";
+  static final String name = "name";
+  static final String description = "description";
 
   @override
   void registerRoute(Router router) {
@@ -37,10 +38,14 @@ class PriceHandler extends Handler implements RegisterableHandler {
               ),
             ),
           ],
-          child: PricePage(customerId: params[customerId][0],planId: params[planId][0]),
+          child: SubPlanPage(
+              customerId: params[customerId][0],
+              planId: params[planId][0],
+              name: params[name][0],
+              description: params[description][0]),
+
         );
       };
 
-  // todo planWithPrices: rename subPlan
-  String get route => "price/:$customerId/:$planId";
+  String get route => "subPlan/:$customerId/:$planId/:$name/:$description";
 }

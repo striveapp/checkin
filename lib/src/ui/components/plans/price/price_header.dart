@@ -1,8 +1,13 @@
 import 'package:flutter/material.dart';
 
 class PriceHeader extends StatelessWidget {
+  final String name;
+  final String description;
+
   const PriceHeader({
     Key key,
+    @required String this.name,
+    @required String this.description
   }) : super(key: key);
 
   @override
@@ -18,9 +23,9 @@ class PriceHeader extends StatelessWidget {
         child: Column(
           mainAxisAlignment: MainAxisAlignment.spaceBetween,
           children: [
-            Text("8 Sessions", style: Theme.of(context).textTheme.headline2,),
+            Text(name, style: Theme.of(context).textTheme.headline2,),
             SizedBox(height: 5,),
-            Text("Plus 3 open mats", style: Theme.of(context).textTheme.subtitle1, )
+            Text(description, style: Theme.of(context).textTheme.subtitle1, )
           ],
         ),
       ),

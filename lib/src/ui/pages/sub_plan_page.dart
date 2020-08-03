@@ -16,15 +16,19 @@ import 'package:checkin/src/ui/components/plans/price/price_header.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 
-class PricePage extends StatelessWidget {
+class SubPlanPage extends StatelessWidget {
   static const String prices = 'Prices';
 
   final String customerId;
   final String planId;
+  final String name;
+  final String description;
 
-  PricePage({
+  SubPlanPage({
     Key key,
     @required this.planId,
+    @required this.name,
+    @required this.description,
     this.customerId,
   }) : super(key: key);
 
@@ -66,7 +70,7 @@ class PricePage extends StatelessWidget {
             SizedBox(
               height: 20,
             ),
-            PriceHeader(),
+            PriceHeader(name: name, description: description),
             SizedBox(height: 15,),
             Expanded(child: PlansList(customerId: customerId,)),
             Padding(

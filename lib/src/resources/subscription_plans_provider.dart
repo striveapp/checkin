@@ -5,8 +5,7 @@ import 'package:cloud_firestore/cloud_firestore.dart';
 class SubscriptionPlansProvider implements SubscriptionPlansRepository {
   static const String gymPath = "gyms";
   static const String path = 'subscription_plans';
-  // todo planWithPrices: rename subplans
-  static const String prices = 'prices';
+  static const String subPlans = 'subPlans';
 
   //TODO: use only a single instance of firestore https://trello.com/c/LZ79VvWa
   Firestore _firestore = Firestore.instance;
@@ -25,7 +24,7 @@ class SubscriptionPlansProvider implements SubscriptionPlansRepository {
       .document(gymId)
       .collection(path)
       .document(planId)
-      .collection(prices)
+      .collection(subPlans)
       .snapshots()
       .map((snap) => snap.documents
           .map((doc) => toSubscriptionPlan(doc))

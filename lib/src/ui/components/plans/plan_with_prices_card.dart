@@ -27,7 +27,7 @@ class PlanWithPricesCard extends StatelessWidget {
         child: InkWell(
           onTap: () {
             Navigator.of(context)
-                .pushNamed("price/${_customerId}/${_plan.id}");
+                .pushNamed("subPlan/${_customerId}/${_plan.id}/${_plan.name}/${_plan.description}");
           },
           child: Padding(
             padding: const EdgeInsets.symmetric(horizontal: 20),

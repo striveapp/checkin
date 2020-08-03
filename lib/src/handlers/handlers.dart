@@ -6,4 +6,4 @@ export 'package:checkin/src/handlers/registry_handler.dart';
 export 'package:checkin/src/handlers/simple_handler.dart';
 export 'package:checkin/src/handlers/stats_handler.dart';
 export 'package:checkin/src/handlers/plans_handler.dart';
-export 'package:checkin/src/handlers/price_handler.dart';
+export 'package:checkin/src/handlers/sub_plan_handler.dart';
