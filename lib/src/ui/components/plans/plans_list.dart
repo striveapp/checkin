@@ -8,6 +8,8 @@ import 'package:flutter_bloc/flutter_bloc.dart';
 import '../loading_indicator.dart';
 
 class PlansList extends StatelessWidget {
+  static const String noPlansYet = 'There are not available plans yet';
+
   final String customerId;
 
   const PlansList({
@@ -44,9 +46,8 @@ class PlansList extends StatelessWidget {
                     SizedBox(
                       height: 50,
                     ),
-                    // todo planWithPrices: fix i18n
                     Center(
-                      child: Text("noPlansYet".i18n,
+                      child: Text(noPlansYet.i18n,
                           textAlign: TextAlign.center,
                           style: Theme.of(context).textTheme.headline3),
                     ),

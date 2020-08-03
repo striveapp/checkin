@@ -5,6 +5,9 @@ import 'package:checkin/src/ui/components/apple_sign_in_button.dart';
 import 'package:checkin/src/ui/components/gym_selection/gym_selection_buttons.dart';
 import 'package:checkin/src/ui/components/payment_methods/active_payment_method.dart';
 import 'package:checkin/src/ui/components/payment_methods/empty_payment_method.dart';
+import 'package:checkin/src/ui/components/plans/plans_footer.dart';
+import 'package:checkin/src/ui/components/plans/plans_list.dart';
+import 'package:checkin/src/ui/components/plans/price/price_footer.dart';
 import 'package:checkin/src/ui/components/registry/attendee_tile.dart';
 import 'package:checkin/src/ui/components/registry/registry_counter.dart';
 import 'package:checkin/src/ui/components/attendees_preview.dart';
@@ -286,6 +289,21 @@ extension Localization on String {
   } + {
     'en': ActivePaymentMethodView.changePaymentInfo,
     'es': 'Cambia tu información'
+  } + {
+    'en': PlansFooter.note,
+    'es': 'nota'
+  } + {
+    'en': PlansFooter.plansDisclaimer,
+    'es': 'los precios mostrados aquí representan los del plan anual'
+  } + {
+    'en': PriceFooter.note,
+    'es': 'nota'
+  } + {
+    'en': PriceFooter.pricesDisclaimer,
+    'es': 'no podrá reducir el período de tiempo de su suscripción'
+  } + {
+    'en': PlansList.noPlansYet,
+    'es': 'No hay planes disponibles todavía'
   };
 
 String get i18n => localize(this, _t);
