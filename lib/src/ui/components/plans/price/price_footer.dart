@@ -2,6 +2,9 @@ import 'package:flutter/material.dart';
 import 'package:checkin/src/localization/localization.dart';
 
 class PriceFooter extends StatelessWidget {
+  static const String note = 'note';
+  static const String pricesDisclaimer = 'you will not be able to reduce the timespan of your subscription';
+
   const PriceFooter({
     Key key,
   }) : super(key: key);
@@ -14,11 +17,11 @@ class PriceFooter extends StatelessWidget {
           child: RichText(
             text: TextSpan(children: [
               TextSpan(
-                text: "note: ".i18n,
+                text: "${note.i18n}: ",
                 style: Theme.of(context).textTheme.caption.apply(fontWeightDelta: 4),
               ),
               TextSpan(
-                text: "you will not be able to reduce the timespan of your subscription".i18n,
+                text: pricesDisclaimer.i18n,
                 style: Theme.of(context).textTheme.caption,
               ),
             ]),
