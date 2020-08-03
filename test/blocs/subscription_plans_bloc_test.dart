@@ -119,63 +119,63 @@ void main() {
           emitsInOrder(expectedState),
         );
       });
-// todo planWithPrices: fix test
-//      test(
-//          "should emits SubscriptionPlansLoaded with plans sorted by price (desc)",
-//          () {
-//        List<SubscriptionPlan> testPlans = [
-//          SubscriptionPlan.simpleSubscription(
-//              name: "test1",
-//              interval: "int1",
-//              currency: "EUR",
-//              code: "plan1",
-//              price: 1),
-//          SubscriptionPlan.simpleSubscription(
-//              name: "test1",
-//              interval: "int1",
-//              currency: "EUR",
-//              code: "plan1",
-//              price: 2)
-//        ];
-//
-//        List<SubscriptionPlan> sortedTestPlans = [
-//          SubscriptionPlan.simpleSubscription(
-//              name: "test1",
-//              interval: "int1",
-//              currency: "EUR",
-//              code: "plan1",
-//              price: 2),
-//          SubscriptionPlan.simpleSubscription(
-//              name: "test1",
-//              interval: "int1",
-//              currency: "EUR",
-//              code: "plan1",
-//              price: 1),
-//        ];
-//
-//        mockSubscriptionPlansRepository = MockSubscriptionPlansRepository();
-//        when(mockSubscriptionPlansRepository.getPlans(gymId: fakeGym.id))
-//            .thenAnswer((_) {
-//          return Stream<List<SubscriptionPlan>>.value(testPlans);
-//        });
-//
-//        subscriptionPlansBloc = SubscriptionPlansBloc(
-//            gymBloc: mockGymBloc,
-//            subscriptionPlansRepository: mockSubscriptionPlansRepository);
-//
-//        final expectedState = [
-//          SubscriptionPlansInitial(),
-//          SubscriptionPlansLoaded(
-//              gymId: fakeGym.id,
-//              basePaymentUrl: fakeBasePaymentUrl,
-//              subscriptionPlans: sortedTestPlans),
-//        ];
-//
-//        expectLater(
-//          subscriptionPlansBloc,
-//          emitsInOrder(expectedState),
-//        );
-//      });
+
+      test(
+          "should emits SubscriptionPlansLoaded with plans sorted by price (desc)",
+          () {
+        List<SubscriptionPlan> testPlans = [
+          SubscriptionPlan.simpleSubscription(
+              name: "test1",
+              interval: "int1",
+              currency: "EUR",
+              code: "plan1",
+              price: 1),
+          SubscriptionPlan.simpleSubscription(
+              name: "test1",
+              interval: "int1",
+              currency: "EUR",
+              code: "plan1",
+              price: 2)
+        ];
+
+        List<SubscriptionPlan> sortedTestPlans = [
+          SubscriptionPlan.simpleSubscription(
+              name: "test1",
+              interval: "int1",
+              currency: "EUR",
+              code: "plan1",
+              price: 2),
+          SubscriptionPlan.simpleSubscription(
+              name: "test1",
+              interval: "int1",
+              currency: "EUR",
+              code: "plan1",
+              price: 1),
+        ];
+
+        mockSubscriptionPlansRepository = MockSubscriptionPlansRepository();
+        when(mockSubscriptionPlansRepository.getPlans(gymId: fakeGym.id))
+            .thenAnswer((_) {
+          return Stream<List<SubscriptionPlan>>.value(testPlans);
+        });
+
+        subscriptionPlansBloc = SubscriptionPlansBloc(
+            gymBloc: mockGymBloc,
+            subscriptionPlansRepository: mockSubscriptionPlansRepository);
+
+        final expectedState = [
+          SubscriptionPlansInitial(),
+          SubscriptionPlansLoaded(
+              gymId: fakeGym.id,
+              basePaymentUrl: fakeBasePaymentUrl,
+              subscriptionPlans: sortedTestPlans),
+        ];
+
+        expectLater(
+          subscriptionPlansBloc,
+          emitsInOrder(expectedState),
+        );
+      });
     });
 
     group("SubscriptionPlansEmpty", () {

@@ -1,6 +1,8 @@
+import 'package:bloc_test/bloc_test.dart';
 import 'package:checkin/src/api/membership_api.dart';
 import 'package:checkin/src/blocs/gym/bloc.dart';
 import 'package:checkin/src/blocs/subscription/bloc.dart';
+import 'package:checkin/src/models/gym.dart';
 import 'package:checkin/src/repositories/analytics_repository.dart';
 import 'package:mockito/mockito.dart';
 import 'package:test/test.dart';
@@ -16,13 +18,18 @@ void main() {
     SubscriptionBloc subscriptionBloc;
     MembershipApi mockMembershipApi;
     AnalyticsRepository mockAnalyticsRepository;
+    GymBloc mockGymBloc;
 
     setUp(() {
       mockAnalyticsRepository = MockAnalyticsRepository();
       mockMembershipApi = MockMembershipApi();
+      mockGymBloc = GymBlocMock();
+
+      whenListen(mockGymBloc, Stream.fromIterable([GymLoaded(gym: Gym(id: "fake-gym", domain: "test-domain", host: "test-host", stripePublicKey: "test-key"))]));
+
 
       subscriptionBloc = SubscriptionBloc(
-        gymBloc: GymBlocMock(),
+        gymBloc: mockGymBloc,
         membershipApi: mockMembershipApi,
         analyticsRepository: mockAnalyticsRepository,
       );
@@ -36,98 +43,97 @@ void main() {
       expect(subscriptionBloc.initialState, SubscriptionInitial());
     });
 
-    // todo planWithPrices: fix tests
-//    group("Subscribe", () {
-//      setUp(() {
-//
-//      });
-//
-//      test(
-//          "should emit SubscriptionLoading and SubscriptionSuccess when api call is successful", () async {
-//        subscriptionBloc.add(Subscribe(
-//            priceId: "fake-price",
-//            customerId: "fake-customer"));
-//        when(mockMembershipApi.createSubscription(gymId: "fake-gym",
-//            priceId: "fake-price",
-//            customerId: "fake-customer"))
-//            .thenAnswer((_) => Future.value(null));
-//
-//        final expectedState = [
-//          SubscriptionInitial(),
-//          SubscriptionLoading(),
-//          SubscriptionSuccess()
-//        ];
-//
-//        await expectLater(
-//          subscriptionBloc,
-//          emitsInOrder(expectedState),
-//        );
-//
-//        verify(mockMembershipApi.createSubscription(gymId: "fake-gym",
-//            priceId: "fake-price",
-//            customerId: "fake-customer"));
-//      });
-//
-//      test(
-//          "should emit SubscriptionLoading and SubscriptionError when api call blows up", () async {
-//        subscriptionBloc.add(Subscribe(
-//            priceId: "fake-price",
-//            customerId: "fake-customer"));
-//        when(mockMembershipApi.createSubscription(gymId: "fake-gym",
-//            priceId: "fake-price",
-//            customerId: "fake-customer"))
-//            .thenThrow("a little nice error");
-//
-//        when(mockAnalyticsRepository.subscriptionError(
-//            err: "a little nice error",
-//            stackTrace: argThat(isA<StackTrace>(), named: 'stackTrace')))
-//            .thenAnswer((_) => Future.value(null));
-//
-//        final expectedState = [
-//          SubscriptionInitial(),
-//          SubscriptionLoading(),
-//          SubscriptionError(
-//              errorMessage: "Something went wrong with subscription: [a little nice error]")
-//        ];
-//
-//        await expectLater(
-//          subscriptionBloc,
-//          emitsInOrder(expectedState),
-//        );
-//
-//        verify(mockMembershipApi.createSubscription(gymId: "fake-gym",
-//            priceId: "fake-price",
-//            customerId: "fake-customer"));
-//        verify(mockAnalyticsRepository.subscriptionError(
-//            err: "a little nice error",
-//            stackTrace: argThat(isA<StackTrace>(), named: 'stackTrace')));
-//      });
-//
-//      test(
-//          "should emit SubscriptionLoading and SubscriptionError when there is no customerId", () async {
-//        subscriptionBloc.add(Subscribe(
-//            priceId: "fake-price",
-//            customerId: "null"));
-//
-//        when(mockAnalyticsRepository.logSubscriptionWithEmptyCustomer(priceId: "fake-price", gymId:"fake-gym"));
-//
-//        final expectedState = [
-//          SubscriptionInitial(),
-//          SubscriptionLoading(),
-//          SubscriptionError(
-//              errorMessage: "You must first activate your bank account")
-//        ];
-//
-//        await expectLater(
-//          subscriptionBloc,
-//          emitsInOrder(expectedState),
-//        );
-//
-//        verifyNever(mockMembershipApi.createSubscription(gymId: "fake-gym",
-//            priceId: "fake-price",
-//            customerId: "null"));
-//        verify(mockAnalyticsRepository.logSubscriptionWithEmptyCustomer(priceId: "fake-price", gymId:"fake-gym"));
-//      });
-//    });
+    group("Subscribe", () {
+      setUp(() {
+
+      });
+
+      test(
+          "should emit SubscriptionLoading and SubscriptionSuccess when api call is successful", () async {
+        subscriptionBloc.add(Subscribe(
+            priceId: "fake-price",
+            customerId: "fake-customer"));
+        when(mockMembershipApi.createSubscription(gymId: "fake-gym",
+            priceId: "fake-price",
+            customerId: "fake-customer"))
+            .thenAnswer((_) => Future.value(null));
+
+        final expectedState = [
+          SubscriptionInitial(),
+          SubscriptionLoading(),
+          SubscriptionSuccess()
+        ];
+
+        await expectLater(
+          subscriptionBloc,
+          emitsInOrder(expectedState),
+        );
+
+        verify(mockMembershipApi.createSubscription(gymId: "fake-gym",
+            priceId: "fake-price",
+            customerId: "fake-customer"));
+      });
+
+      test(
+          "should emit SubscriptionLoading and SubscriptionError when api call blows up", () async {
+        subscriptionBloc.add(Subscribe(
+            priceId: "fake-price",
+            customerId: "fake-customer"));
+        when(mockMembershipApi.createSubscription(gymId: "fake-gym",
+            priceId: "fake-price",
+            customerId: "fake-customer"))
+            .thenThrow("a little nice error");
+
+        when(mockAnalyticsRepository.subscriptionError(
+            err: "a little nice error",
+            stackTrace: argThat(isA<StackTrace>(), named: 'stackTrace')))
+            .thenAnswer((_) => Future.value(null));
+
+        final expectedState = [
+          SubscriptionInitial(),
+          SubscriptionLoading(),
+          SubscriptionError(
+              errorMessage: "Something went wrong with subscription: [a little nice error]")
+        ];
+
+        await expectLater(
+          subscriptionBloc,
+          emitsInOrder(expectedState),
+        );
+
+        verify(mockMembershipApi.createSubscription(gymId: "fake-gym",
+            priceId: "fake-price",
+            customerId: "fake-customer"));
+        verify(mockAnalyticsRepository.subscriptionError(
+            err: "a little nice error",
+            stackTrace: argThat(isA<StackTrace>(), named: 'stackTrace')));
+      });
+
+      test(
+          "should emit SubscriptionLoading and SubscriptionError when there is no customerId", () async {
+        subscriptionBloc.add(Subscribe(
+            priceId: "fake-price",
+            customerId: "null"));
+
+        when(mockAnalyticsRepository.logSubscriptionWithEmptyCustomer(priceId: "fake-price", gymId:"fake-gym"));
+
+        final expectedState = [
+          SubscriptionInitial(),
+          SubscriptionLoading(),
+          SubscriptionError(
+              errorMessage: "You must first activate your bank account")
+        ];
+
+        await expectLater(
+          subscriptionBloc,
+          emitsInOrder(expectedState),
+        );
+
+        verifyNever(mockMembershipApi.createSubscription(gymId: "fake-gym",
+            priceId: "fake-price",
+            customerId: "null"));
+        verify(mockAnalyticsRepository.logSubscriptionWithEmptyCustomer(priceId: "fake-price", gymId:"fake-gym"));
+      });
+    });
   });
 }

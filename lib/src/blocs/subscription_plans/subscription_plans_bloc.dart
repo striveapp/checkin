@@ -75,8 +75,7 @@ class SubscriptionPlansBloc
 
   List<SubscriptionPlan> _sortByPrice(List<SubscriptionPlan> plans) {
     List<SubscriptionPlan> sortedPlans = plans;
-    // todo planWithPrices: fix sort
-//    sortedPlans.sort((planA, planB) => planA.price.compareTo(planB.price) * -1);
+    sortedPlans.sort((planA, planB) => comparePlans(planA, planB));
     return sortedPlans;
   }
 
@@ -84,5 +83,19 @@ class SubscriptionPlansBloc
   Future<void> close() {
     streamSubscription?.cancel();
     return super.close();
+  }
+
+  int comparePlans(SubscriptionPlan planA, SubscriptionPlan planB) {
+    if( planA is SimpleSubscription && planB is SimpleSubscription ) {
+      return planA.price.compareTo(planB.price) * -1;
+    }
+
+
+    if( planA is SubscriptionWithPrices && planB is SubscriptionWithPrices ) {
+      return planA.startingPrice.compareTo(planB.startingPrice) * - 1;
+    }
+
+    // todo mixed cases not yet handled
+    return 0;
   }
 }
