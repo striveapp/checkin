@@ -66,7 +66,7 @@ class PaymentMethodsBloc
             customerEmail: event.billingEmail, gymId: gym.id);
 
         await _urlLauncherUtil.launchUrl(
-            "https://${gym.domain}/sepa.html?pk=${gym.stripePublicKey}&customerEmail=${event.billingEmail}&cs=$clientSecret&nocache=${DateTime.now()}");
+            "https://${gym.paymentAppDomain}?pk=${gym.stripePublicKey}&customerEmail=${event.billingEmail}&cs=$clientSecret&nocache=${DateTime.now()}");
       } catch (err) {
         print(err);
       }
@@ -82,7 +82,7 @@ class PaymentMethodsBloc
             customerId: event.customerId);
 
         await _urlLauncherUtil.launchUrl(
-            "https://${gym.domain}/sepa.html?pk=${gym.stripePublicKey}&customerEmail=${event.billingEmail}&cs=$clientSecret&nocache=${DateTime.now()}");
+            "https://${gym.paymentAppDomain}?pk=${gym.stripePublicKey}&customerEmail=${event.billingEmail}&cs=$clientSecret&nocache=${DateTime.now()}");
       } catch (err) {
         print(err);
       }

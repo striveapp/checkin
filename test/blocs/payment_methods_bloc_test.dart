@@ -37,12 +37,12 @@ void main() {
   String fakeGymId = "testGym";
   Gym testGym = Gym(
       id: fakeGymId,
-      domain: "test-app",
+      paymentAppDomain: "test-app",
       stripePublicKey: "test_key",
       host: "da_host");
   Gym prodGym = Gym(
       id: "prodGym",
-      domain: "prod-app",
+      paymentAppDomain: "prod-app",
       stripePublicKey: "prod_key",
       host: "da_host");
 
@@ -164,7 +164,7 @@ void main() {
 
           verify(mockPaymentApi.setupIntent(
               customerEmail: fakeEmail, gymId: fakeGymId));
-          verify(mockUrlLauncherUtil.launchUrl(argThat(startsWith("https://${testGym.domain}/sepa.html?pk=${testGym.stripePublicKey}&customerEmail=test@test.com&cs=some_secret"))));
+          verify(mockUrlLauncherUtil.launchUrl(argThat(startsWith("https://${testGym.paymentAppDomain}?pk=${testGym.stripePublicKey}&customerEmail=test@test.com&cs=some_secret"))));
             });
       });
       group("when calling prod endpoint", () {
@@ -214,7 +214,7 @@ void main() {
 
           verify(mockPaymentApi.setupIntent(
               customerEmail: prodUser.email, gymId: "prodGym"));
-          verify(mockUrlLauncherUtil.launchUrl(argThat(startsWith("https://prod-app/sepa.html?pk=prod_key&customerEmail=prod@email.com&cs=prod_secret"))));
+          verify(mockUrlLauncherUtil.launchUrl(argThat(startsWith("https://prod-app?pk=prod_key&customerEmail=prod@email.com&cs=prod_secret"))));
         });
       });
     });
@@ -262,7 +262,7 @@ void main() {
 
               verify(mockPaymentApi.setupIntent(
                   customerEmail: fakeEmail, gymId: fakeGymId, customerId: "cus_123"));
-              verify(mockUrlLauncherUtil.launchUrl(argThat(startsWith("https://${testGym.domain}/sepa.html?pk=${testGym.stripePublicKey}&customerEmail=test@test.com&cs=some_secret"))));
+              verify(mockUrlLauncherUtil.launchUrl(argThat(startsWith("https://${testGym.paymentAppDomain}?pk=${testGym.stripePublicKey}&customerEmail=test@test.com&cs=some_secret"))));
             });
       });
     });

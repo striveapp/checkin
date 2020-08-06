@@ -45,8 +45,7 @@ class PlansList extends StatelessWidget {
         return state.when(
             subscriptionPlansInitial: () => LoadingIndicator(),
             subscriptionPlansLoading: () => LoadingIndicator(),
-            subscriptionPlansLoaded: (List<SubscriptionPlan> subscriptionPlans,
-                    String basePaymentUrl, String gymId) =>
+            subscriptionPlansLoaded: (List<SubscriptionPlan> subscriptionPlans) =>
                 Container(
                   constraints: BoxConstraints(
                     maxHeight: MediaQuery.of(context).size.height,

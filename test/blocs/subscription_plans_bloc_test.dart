@@ -19,11 +19,9 @@ void main() {
     Gym fakeGym = Gym(
         id: "some_id",
         host: "tha_host",
-        domain: "test.com",
+        paymentAppDomain: "test.com",
         stripePublicKey: "pk_kp");
     MockGymBloc mockGymBloc;
-    String fakeBasePaymentUrl =
-        "https://${fakeGym.domain}/payment.html?pk=${fakeGym.stripePublicKey}&host=${fakeGym.host}";
 
     setUp(() {
       mockGymBloc = MockGymBloc();
@@ -62,17 +60,11 @@ void main() {
             gymBloc: mockGymBloc,
             subscriptionPlansRepository: mockSubscriptionPlansRepository);
         subscriptionPlansBloc.add(SubscriptionPlansUpdated(
-            gym: fakeGym,
-            basePaymentUrl:
-                "https://${fakeGym.domain}/payment.html?pk=${fakeGym.stripePublicKey}&host=${fakeGym.host}",
             subscriptionPlans: testPlans));
 
         final expectedState = [
           SubscriptionPlansInitial(),
           SubscriptionPlansLoaded(
-              gymId: fakeGym.id,
-              basePaymentUrl:
-                  "https://${fakeGym.domain}/payment.html?pk=${fakeGym.stripePublicKey}&host=${fakeGym.host}",
               subscriptionPlans: testPlans),
           emitsDone
         ];
@@ -109,8 +101,6 @@ void main() {
         final expectedState = [
           SubscriptionPlansInitial(),
           SubscriptionPlansLoaded(
-              gymId: fakeGym.id,
-              basePaymentUrl: fakeBasePaymentUrl,
               subscriptionPlans: testPlans),
         ];
 
@@ -166,8 +156,6 @@ void main() {
         final expectedState = [
           SubscriptionPlansInitial(),
           SubscriptionPlansLoaded(
-              gymId: fakeGym.id,
-              basePaymentUrl: fakeBasePaymentUrl,
               subscriptionPlans: sortedTestPlans),
         ];
 
@@ -189,9 +177,6 @@ void main() {
       });
       test("should emits SubscriptionPlansEmpty with empty plans", () {
         subscriptionPlansBloc.add(SubscriptionPlansUpdated(
-            gym: fakeGym,
-            basePaymentUrl:
-                "https://${fakeGym.domain}/payment.html?pk=${fakeGym.stripePublicKey}&host=${fakeGym.host}",
             subscriptionPlans: []));
         final expectedState = [
           SubscriptionPlansInitial(),

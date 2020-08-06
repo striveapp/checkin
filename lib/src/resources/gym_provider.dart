@@ -14,7 +14,7 @@ class GymProvider implements GymRepository {
         .where((snapshot) => snapshot.exists)
         .map((gym) => Gym(
               id: gymId,
-              domain: gym.data["domain"],
+              paymentAppDomain: gym.data["paymentAppDomain"],
               host: gym.data["host"],
               stripePublicKey: gym.data["stripePublicKey"],
             ));

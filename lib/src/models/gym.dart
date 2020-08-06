@@ -1,24 +1,15 @@
-import 'package:equatable/equatable.dart';
 import 'package:flutter/foundation.dart';
+import 'package:freezed_annotation/freezed_annotation.dart';
 
-class Gym extends Equatable {
-  final String id;
-  final String domain;
-  final String host;
-  final String stripePublicKey;
+part 'gym.freezed.dart';
 
-  Gym({
-    @required this.id,
-    @required this.domain,
-    @required this.host,
-    @required this.stripePublicKey,
-  });
-
-  @override
-  List<Object> get props => [id, domain, host, stripePublicKey];
-
-  @override
-  String toString() {
-    return 'Gym{id: $id, domain: $domain, host: $host, stripePublicKey: $stripePublicKey}';
-  }
+@freezed
+abstract class Gym with _$Gym {
+  factory  Gym({
+    @required final String id,
+    @required final String paymentAppDomain,
+    @required final String host,
+    @required final String stripePublicKey,
+  }) = _Gym;
 }
+

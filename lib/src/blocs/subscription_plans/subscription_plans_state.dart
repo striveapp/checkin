@@ -15,8 +15,6 @@ abstract class SubscriptionPlansState with _$SubscriptionPlansState {
 
   const factory SubscriptionPlansState.subscriptionPlansLoaded({
     @required List<SubscriptionPlan> subscriptionPlans,
-    @required String basePaymentUrl,
-    @required String gymId,
   }) = SubscriptionPlansLoaded;
 
   const factory SubscriptionPlansState.subscriptionPlansEmpty() = SubscriptionPlansEmpty;

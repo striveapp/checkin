@@ -24,7 +24,7 @@ void main() {
     Gym fakeGym = Gym(
       id: fakeGymId,
       host: "test",
-      domain: "pepe",
+      paymentAppDomain: "pepe",
       stripePublicKey: "pk_pk",
     );
 

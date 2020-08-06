@@ -21,13 +21,9 @@ class _$SubscriptionPlansStateTearOff {
   }
 
   SubscriptionPlansLoaded subscriptionPlansLoaded(
-      {@required List<SubscriptionPlan> subscriptionPlans,
-      @required String basePaymentUrl,
-      @required String gymId}) {
+      {@required List<SubscriptionPlan> subscriptionPlans}) {
     return SubscriptionPlansLoaded(
       subscriptionPlans: subscriptionPlans,
-      basePaymentUrl: basePaymentUrl,
-      gymId: gymId,
     );
   }
 
@@ -45,16 +41,15 @@ mixin _$SubscriptionPlansState {
     @required Result subscriptionPlansInitial(),
     @required Result subscriptionPlansLoading(),
     @required
-        Result subscriptionPlansLoaded(List<SubscriptionPlan> subscriptionPlans,
-            String basePaymentUrl, String gymId),
+        Result subscriptionPlansLoaded(
+            List<SubscriptionPlan> subscriptionPlans),
     @required Result subscriptionPlansEmpty(),
   });
   @optionalTypeArgs
   Result maybeWhen<Result extends Object>({
     Result subscriptionPlansInitial(),
     Result subscriptionPlansLoading(),
-    Result subscriptionPlansLoaded(List<SubscriptionPlan> subscriptionPlans,
-        String basePaymentUrl, String gymId),
+    Result subscriptionPlansLoaded(List<SubscriptionPlan> subscriptionPlans),
     Result subscriptionPlansEmpty(),
     @required Result orElse(),
   });
@@ -140,8 +135,8 @@ class _$SubscriptionPlansInitial
     @required Result subscriptionPlansInitial(),
     @required Result subscriptionPlansLoading(),
     @required
-        Result subscriptionPlansLoaded(List<SubscriptionPlan> subscriptionPlans,
-            String basePaymentUrl, String gymId),
+        Result subscriptionPlansLoaded(
+            List<SubscriptionPlan> subscriptionPlans),
     @required Result subscriptionPlansEmpty(),
   }) {
     assert(subscriptionPlansInitial != null);
@@ -156,8 +151,7 @@ class _$SubscriptionPlansInitial
   Result maybeWhen<Result extends Object>({
     Result subscriptionPlansInitial(),
     Result subscriptionPlansLoading(),
-    Result subscriptionPlansLoaded(List<SubscriptionPlan> subscriptionPlans,
-        String basePaymentUrl, String gymId),
+    Result subscriptionPlansLoaded(List<SubscriptionPlan> subscriptionPlans),
     Result subscriptionPlansEmpty(),
     @required Result orElse(),
   }) {
@@ -254,8 +248,8 @@ class _$SubscriptionPlansLoading
     @required Result subscriptionPlansInitial(),
     @required Result subscriptionPlansLoading(),
     @required
-        Result subscriptionPlansLoaded(List<SubscriptionPlan> subscriptionPlans,
-            String basePaymentUrl, String gymId),
+        Result subscriptionPlansLoaded(
+            List<SubscriptionPlan> subscriptionPlans),
     @required Result subscriptionPlansEmpty(),
   }) {
     assert(subscriptionPlansInitial != null);
@@ -270,8 +264,7 @@ class _$SubscriptionPlansLoading
   Result maybeWhen<Result extends Object>({
     Result subscriptionPlansInitial(),
     Result subscriptionPlansLoading(),
-    Result subscriptionPlansLoaded(List<SubscriptionPlan> subscriptionPlans,
-        String basePaymentUrl, String gymId),
+    Result subscriptionPlansLoaded(List<SubscriptionPlan> subscriptionPlans),
     Result subscriptionPlansEmpty(),
     @required Result orElse(),
   }) {
@@ -322,10 +315,7 @@ abstract class $SubscriptionPlansLoadedCopyWith<$Res> {
   factory $SubscriptionPlansLoadedCopyWith(SubscriptionPlansLoaded value,
           $Res Function(SubscriptionPlansLoaded) then) =
       _$SubscriptionPlansLoadedCopyWithImpl<$Res>;
-  $Res call(
-      {List<SubscriptionPlan> subscriptionPlans,
-      String basePaymentUrl,
-      String gymId});
+  $Res call({List<SubscriptionPlan> subscriptionPlans});
 }
 
 class _$SubscriptionPlansLoadedCopyWithImpl<$Res>
@@ -341,17 +331,11 @@ class _$SubscriptionPlansLoadedCopyWithImpl<$Res>
   @override
   $Res call({
     Object subscriptionPlans = freezed,
-    Object basePaymentUrl = freezed,
-    Object gymId = freezed,
   }) {
     return _then(SubscriptionPlansLoaded(
       subscriptionPlans: subscriptionPlans == freezed
           ? _value.subscriptionPlans
           : subscriptionPlans as List<SubscriptionPlan>,
-      basePaymentUrl: basePaymentUrl == freezed
-          ? _value.basePaymentUrl
-          : basePaymentUrl as String,
-      gymId: gymId == freezed ? _value.gymId : gymId as String,
     ));
   }
 }
@@ -359,24 +343,15 @@ class _$SubscriptionPlansLoadedCopyWithImpl<$Res>
 class _$SubscriptionPlansLoaded
     with DiagnosticableTreeMixin
     implements SubscriptionPlansLoaded {
-  const _$SubscriptionPlansLoaded(
-      {@required this.subscriptionPlans,
-      @required this.basePaymentUrl,
-      @required this.gymId})
-      : assert(subscriptionPlans != null),
-        assert(basePaymentUrl != null),
-        assert(gymId != null);
+  const _$SubscriptionPlansLoaded({@required this.subscriptionPlans})
+      : assert(subscriptionPlans != null);
 
   @override
   final List<SubscriptionPlan> subscriptionPlans;
-  @override
-  final String basePaymentUrl;
-  @override
-  final String gymId;
 
   @override
   String toString({DiagnosticLevel minLevel = DiagnosticLevel.info}) {
-    return 'SubscriptionPlansState.subscriptionPlansLoaded(subscriptionPlans: $subscriptionPlans, basePaymentUrl: $basePaymentUrl, gymId: $gymId)';
+    return 'SubscriptionPlansState.subscriptionPlansLoaded(subscriptionPlans: $subscriptionPlans)';
   }
 
   @override
@@ -385,9 +360,7 @@ class _$SubscriptionPlansLoaded
     properties
       ..add(DiagnosticsProperty(
           'type', 'SubscriptionPlansState.subscriptionPlansLoaded'))
-      ..add(DiagnosticsProperty('subscriptionPlans', subscriptionPlans))
-      ..add(DiagnosticsProperty('basePaymentUrl', basePaymentUrl))
-      ..add(DiagnosticsProperty('gymId', gymId));
+      ..add(DiagnosticsProperty('subscriptionPlans', subscriptionPlans));
   }
 
   @override
@@ -396,20 +369,13 @@ class _$SubscriptionPlansLoaded
         (other is SubscriptionPlansLoaded &&
             (identical(other.subscriptionPlans, subscriptionPlans) ||
                 const DeepCollectionEquality()
-                    .equals(other.subscriptionPlans, subscriptionPlans)) &&
-            (identical(other.basePaymentUrl, basePaymentUrl) ||
-                const DeepCollectionEquality()
-                    .equals(other.basePaymentUrl, basePaymentUrl)) &&
-            (identical(other.gymId, gymId) ||
-                const DeepCollectionEquality().equals(other.gymId, gymId)));
+                    .equals(other.subscriptionPlans, subscriptionPlans)));
   }
 
   @override
   int get hashCode =>
       runtimeType.hashCode ^
-      const DeepCollectionEquality().hash(subscriptionPlans) ^
-      const DeepCollectionEquality().hash(basePaymentUrl) ^
-      const DeepCollectionEquality().hash(gymId);
+      const DeepCollectionEquality().hash(subscriptionPlans);
 
   @override
   $SubscriptionPlansLoadedCopyWith<SubscriptionPlansLoaded> get copyWith =>
@@ -422,15 +388,15 @@ class _$SubscriptionPlansLoaded
     @required Result subscriptionPlansInitial(),
     @required Result subscriptionPlansLoading(),
     @required
-        Result subscriptionPlansLoaded(List<SubscriptionPlan> subscriptionPlans,
-            String basePaymentUrl, String gymId),
+        Result subscriptionPlansLoaded(
+            List<SubscriptionPlan> subscriptionPlans),
     @required Result subscriptionPlansEmpty(),
   }) {
     assert(subscriptionPlansInitial != null);
     assert(subscriptionPlansLoading != null);
     assert(subscriptionPlansLoaded != null);
     assert(subscriptionPlansEmpty != null);
-    return subscriptionPlansLoaded(subscriptionPlans, basePaymentUrl, gymId);
+    return subscriptionPlansLoaded(subscriptionPlans);
   }
 
   @override
@@ -438,14 +404,13 @@ class _$SubscriptionPlansLoaded
   Result maybeWhen<Result extends Object>({
     Result subscriptionPlansInitial(),
     Result subscriptionPlansLoading(),
-    Result subscriptionPlansLoaded(List<SubscriptionPlan> subscriptionPlans,
-        String basePaymentUrl, String gymId),
+    Result subscriptionPlansLoaded(List<SubscriptionPlan> subscriptionPlans),
     Result subscriptionPlansEmpty(),
     @required Result orElse(),
   }) {
     assert(orElse != null);
     if (subscriptionPlansLoaded != null) {
-      return subscriptionPlansLoaded(subscriptionPlans, basePaymentUrl, gymId);
+      return subscriptionPlansLoaded(subscriptionPlans);
     }
     return orElse();
   }
@@ -484,13 +449,10 @@ class _$SubscriptionPlansLoaded
 
 abstract class SubscriptionPlansLoaded implements SubscriptionPlansState {
   const factory SubscriptionPlansLoaded(
-      {@required List<SubscriptionPlan> subscriptionPlans,
-      @required String basePaymentUrl,
-      @required String gymId}) = _$SubscriptionPlansLoaded;
+          {@required List<SubscriptionPlan> subscriptionPlans}) =
+      _$SubscriptionPlansLoaded;
 
   List<SubscriptionPlan> get subscriptionPlans;
-  String get basePaymentUrl;
-  String get gymId;
   $SubscriptionPlansLoadedCopyWith<SubscriptionPlansLoaded> get copyWith;
 }
 
@@ -543,8 +505,8 @@ class _$SubscriptionPlansEmpty
     @required Result subscriptionPlansInitial(),
     @required Result subscriptionPlansLoading(),
     @required
-        Result subscriptionPlansLoaded(List<SubscriptionPlan> subscriptionPlans,
-            String basePaymentUrl, String gymId),
+        Result subscriptionPlansLoaded(
+            List<SubscriptionPlan> subscriptionPlans),
     @required Result subscriptionPlansEmpty(),
   }) {
     assert(subscriptionPlansInitial != null);
@@ -559,8 +521,7 @@ class _$SubscriptionPlansEmpty
   Result maybeWhen<Result extends Object>({
     Result subscriptionPlansInitial(),
     Result subscriptionPlansLoading(),
-    Result subscriptionPlansLoaded(List<SubscriptionPlan> subscriptionPlans,
-        String basePaymentUrl, String gymId),
+    Result subscriptionPlansLoaded(List<SubscriptionPlan> subscriptionPlans),
     Result subscriptionPlansEmpty(),
     @required Result orElse(),
   }) {

@@ -13,13 +13,9 @@ class _$SubscriptionPlansEventTearOff {
   const _$SubscriptionPlansEventTearOff();
 
   SubscriptionPlansUpdated subscriptionPlansUpdated(
-      {@required List<SubscriptionPlan> subscriptionPlans,
-      @required String basePaymentUrl,
-      @required Gym gym}) {
+      {@required List<SubscriptionPlan> subscriptionPlans}) {
     return SubscriptionPlansUpdated(
       subscriptionPlans: subscriptionPlans,
-      basePaymentUrl: basePaymentUrl,
-      gym: gym,
     );
   }
 
@@ -38,15 +34,12 @@ mixin _$SubscriptionPlansEvent {
   Result when<Result extends Object>({
     @required
         Result subscriptionPlansUpdated(
-            List<SubscriptionPlan> subscriptionPlans,
-            String basePaymentUrl,
-            Gym gym),
+            List<SubscriptionPlan> subscriptionPlans),
     @required Result loadSubscriptionPlans(String planId),
   });
   @optionalTypeArgs
   Result maybeWhen<Result extends Object>({
-    Result subscriptionPlansUpdated(List<SubscriptionPlan> subscriptionPlans,
-        String basePaymentUrl, Gym gym),
+    Result subscriptionPlansUpdated(List<SubscriptionPlan> subscriptionPlans),
     Result loadSubscriptionPlans(String planId),
     @required Result orElse(),
   });
@@ -82,10 +75,7 @@ abstract class $SubscriptionPlansUpdatedCopyWith<$Res> {
   factory $SubscriptionPlansUpdatedCopyWith(SubscriptionPlansUpdated value,
           $Res Function(SubscriptionPlansUpdated) then) =
       _$SubscriptionPlansUpdatedCopyWithImpl<$Res>;
-  $Res call(
-      {List<SubscriptionPlan> subscriptionPlans,
-      String basePaymentUrl,
-      Gym gym});
+  $Res call({List<SubscriptionPlan> subscriptionPlans});
 }
 
 class _$SubscriptionPlansUpdatedCopyWithImpl<$Res>
@@ -102,17 +92,11 @@ class _$SubscriptionPlansUpdatedCopyWithImpl<$Res>
   @override
   $Res call({
     Object subscriptionPlans = freezed,
-    Object basePaymentUrl = freezed,
-    Object gym = freezed,
   }) {
     return _then(SubscriptionPlansUpdated(
       subscriptionPlans: subscriptionPlans == freezed
           ? _value.subscriptionPlans
           : subscriptionPlans as List<SubscriptionPlan>,
-      basePaymentUrl: basePaymentUrl == freezed
-          ? _value.basePaymentUrl
-          : basePaymentUrl as String,
-      gym: gym == freezed ? _value.gym : gym as Gym,
     ));
   }
 }
@@ -120,24 +104,15 @@ class _$SubscriptionPlansUpdatedCopyWithImpl<$Res>
 class _$SubscriptionPlansUpdated
     with DiagnosticableTreeMixin
     implements SubscriptionPlansUpdated {
-  const _$SubscriptionPlansUpdated(
-      {@required this.subscriptionPlans,
-      @required this.basePaymentUrl,
-      @required this.gym})
-      : assert(subscriptionPlans != null),
-        assert(basePaymentUrl != null),
-        assert(gym != null);
+  const _$SubscriptionPlansUpdated({@required this.subscriptionPlans})
+      : assert(subscriptionPlans != null);
 
   @override
   final List<SubscriptionPlan> subscriptionPlans;
-  @override
-  final String basePaymentUrl;
-  @override
-  final Gym gym;
 
   @override
   String toString({DiagnosticLevel minLevel = DiagnosticLevel.info}) {
-    return 'SubscriptionPlansEvent.subscriptionPlansUpdated(subscriptionPlans: $subscriptionPlans, basePaymentUrl: $basePaymentUrl, gym: $gym)';
+    return 'SubscriptionPlansEvent.subscriptionPlansUpdated(subscriptionPlans: $subscriptionPlans)';
   }
 
   @override
@@ -146,9 +121,7 @@ class _$SubscriptionPlansUpdated
     properties
       ..add(DiagnosticsProperty(
           'type', 'SubscriptionPlansEvent.subscriptionPlansUpdated'))
-      ..add(DiagnosticsProperty('subscriptionPlans', subscriptionPlans))
-      ..add(DiagnosticsProperty('basePaymentUrl', basePaymentUrl))
-      ..add(DiagnosticsProperty('gym', gym));
+      ..add(DiagnosticsProperty('subscriptionPlans', subscriptionPlans));
   }
 
   @override
@@ -157,20 +130,13 @@ class _$SubscriptionPlansUpdated
         (other is SubscriptionPlansUpdated &&
             (identical(other.subscriptionPlans, subscriptionPlans) ||
                 const DeepCollectionEquality()
-                    .equals(other.subscriptionPlans, subscriptionPlans)) &&
-            (identical(other.basePaymentUrl, basePaymentUrl) ||
-                const DeepCollectionEquality()
-                    .equals(other.basePaymentUrl, basePaymentUrl)) &&
-            (identical(other.gym, gym) ||
-                const DeepCollectionEquality().equals(other.gym, gym)));
+                    .equals(other.subscriptionPlans, subscriptionPlans)));
   }
 
   @override
   int get hashCode =>
       runtimeType.hashCode ^
-      const DeepCollectionEquality().hash(subscriptionPlans) ^
-      const DeepCollectionEquality().hash(basePaymentUrl) ^
-      const DeepCollectionEquality().hash(gym);
+      const DeepCollectionEquality().hash(subscriptionPlans);
 
   @override
   $SubscriptionPlansUpdatedCopyWith<SubscriptionPlansUpdated> get copyWith =>
@@ -182,27 +148,24 @@ class _$SubscriptionPlansUpdated
   Result when<Result extends Object>({
     @required
         Result subscriptionPlansUpdated(
-            List<SubscriptionPlan> subscriptionPlans,
-            String basePaymentUrl,
-            Gym gym),
+            List<SubscriptionPlan> subscriptionPlans),
     @required Result loadSubscriptionPlans(String planId),
   }) {
     assert(subscriptionPlansUpdated != null);
     assert(loadSubscriptionPlans != null);
-    return subscriptionPlansUpdated(subscriptionPlans, basePaymentUrl, gym);
+    return subscriptionPlansUpdated(subscriptionPlans);
   }
 
   @override
   @optionalTypeArgs
   Result maybeWhen<Result extends Object>({
-    Result subscriptionPlansUpdated(List<SubscriptionPlan> subscriptionPlans,
-        String basePaymentUrl, Gym gym),
+    Result subscriptionPlansUpdated(List<SubscriptionPlan> subscriptionPlans),
     Result loadSubscriptionPlans(String planId),
     @required Result orElse(),
   }) {
     assert(orElse != null);
     if (subscriptionPlansUpdated != null) {
-      return subscriptionPlansUpdated(subscriptionPlans, basePaymentUrl, gym);
+      return subscriptionPlansUpdated(subscriptionPlans);
     }
     return orElse();
   }
@@ -235,13 +198,10 @@ class _$SubscriptionPlansUpdated
 
 abstract class SubscriptionPlansUpdated implements SubscriptionPlansEvent {
   const factory SubscriptionPlansUpdated(
-      {@required List<SubscriptionPlan> subscriptionPlans,
-      @required String basePaymentUrl,
-      @required Gym gym}) = _$SubscriptionPlansUpdated;
+          {@required List<SubscriptionPlan> subscriptionPlans}) =
+      _$SubscriptionPlansUpdated;
 
   List<SubscriptionPlan> get subscriptionPlans;
-  String get basePaymentUrl;
-  Gym get gym;
   $SubscriptionPlansUpdatedCopyWith<SubscriptionPlansUpdated> get copyWith;
 }
 
@@ -317,9 +277,7 @@ class _$LoadSubscriptionPlans
   Result when<Result extends Object>({
     @required
         Result subscriptionPlansUpdated(
-            List<SubscriptionPlan> subscriptionPlans,
-            String basePaymentUrl,
-            Gym gym),
+            List<SubscriptionPlan> subscriptionPlans),
     @required Result loadSubscriptionPlans(String planId),
   }) {
     assert(subscriptionPlansUpdated != null);
@@ -330,8 +288,7 @@ class _$LoadSubscriptionPlans
   @override
   @optionalTypeArgs
   Result maybeWhen<Result extends Object>({
-    Result subscriptionPlansUpdated(List<SubscriptionPlan> subscriptionPlans,
-        String basePaymentUrl, Gym gym),
+    Result subscriptionPlansUpdated(List<SubscriptionPlan> subscriptionPlans),
     Result loadSubscriptionPlans(String planId),
     @required Result orElse(),
   }) {

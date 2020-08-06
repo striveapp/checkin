@@ -30,20 +30,13 @@ class SubscriptionPlansBloc
           if( planId == null ) {
             streamSubscription =
                 subscriptionPlansRepository.getPlans(gymId: gym.id).listen((plans) {
-                  add(SubscriptionPlansUpdated(
-                    basePaymentUrl:
-                    "https://${gym.domain}/payment.html?pk=${gym.stripePublicKey}&host=${gym.host}",
-                    subscriptionPlans: _sortByPrice(plans),
-                    gym: gym,
+                  add(SubscriptionPlansUpdated(subscriptionPlans: _sortByPrice(plans),
                   ));
                 });
           } else {
             streamSubscription = subscriptionPlansRepository.getSubPlans(gymId: gym.id, planId: planId).listen((plans) {
               add(SubscriptionPlansUpdated(
-                basePaymentUrl:
-                "https://${gym.domain}/payment.html?pk=${gym.stripePublicKey}&host=${gym.host}",
                 subscriptionPlans: _sortByPrice(plans),
-                gym: gym,
               ));
             });
           }
@@ -65,9 +58,7 @@ class SubscriptionPlansBloc
         yield SubscriptionPlansEmpty();
       } else {
         yield SubscriptionPlansLoaded(
-          basePaymentUrl: event.basePaymentUrl,
           subscriptionPlans: event.subscriptionPlans,
-          gymId: event.gym.id,
         );
       }
     }

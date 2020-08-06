@@ -25,7 +25,7 @@ void main() {
       mockMembershipApi = MockMembershipApi();
       mockGymBloc = GymBlocMock();
 
-      whenListen(mockGymBloc, Stream.fromIterable([GymLoaded(gym: Gym(id: "fake-gym", domain: "test-domain", host: "test-host", stripePublicKey: "test-key"))]));
+      whenListen(mockGymBloc, Stream.fromIterable([GymLoaded(gym: Gym(id: "fake-gym", paymentAppDomain: "test-domain", host: "test-host", stripePublicKey: "test-key"))]));
 
 
       subscriptionBloc = SubscriptionBloc(
