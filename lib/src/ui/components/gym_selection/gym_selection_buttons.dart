@@ -30,6 +30,7 @@ class GymSelectionButtons extends StatelessWidget {
                 child: SizedBox(
                   width: double.infinity,
                   child: RaisedButton(
+                    color: Theme.of(context).accentColor,
                     child: Text(gym["name"],
                         style: Theme.of(context).textTheme.button),
                     onPressed: () {

@@ -18,7 +18,10 @@ class PodiumBedge extends StatelessWidget {
               text,
               textAlign: TextAlign.center,
               style: Theme.of(context).textTheme.headline4.apply(
-                  fontSizeFactor: 0.6, color: Colors.white, fontWeightDelta: 2),
+                    fontSizeFactor: 0.6,
+                    color: Colors.white,
+                    fontWeightDelta: 2,
+                  ),
             ))),
       );
 }

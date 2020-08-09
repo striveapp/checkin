@@ -19,7 +19,6 @@ class GradeCard extends StatelessWidget {
     }
 
     return Card(
-        color: Theme.of(context).primaryColor.withAlpha(45),
         elevation: 2,
         child: InkWell(
           onTap: () => _onTap(grade),
@@ -35,9 +34,7 @@ class GradeCard extends StatelessWidget {
                       children: <Widget>[
                         Text(
                           beltColor.i18n.fill([grade.name.i18n]),
-                          style: Theme.of(context).textTheme.headline2.apply(
-                                color: Colors.white70,
-                              ),
+                          style: Theme.of(context).textTheme.headline2
                         ),
                         SizedBox(
                           height: 5,
@@ -45,7 +42,11 @@ class GradeCard extends StatelessWidget {
                         Text(
                           grade.description.i18n,
                           style: Theme.of(context).textTheme.headline3.apply(
-                              color: Colors.white38, fontSizeFactor: 0.8),
+                              color: Theme.of(context)
+                                  .textTheme
+                                  .headline2
+                                  .color
+                                  .withAlpha(100), fontSizeFactor: 0.8),
                         ),
                       ],
                     ),

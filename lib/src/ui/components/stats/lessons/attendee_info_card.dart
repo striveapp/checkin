@@ -19,61 +19,59 @@ class AttendeeInfoCard extends StatelessWidget {
   Widget build(BuildContext context) {
     return Card(
         child: InkWell(
-          onTap: () {
-            Navigator.of(context).pushNamed('stats/${attendee.email}');
-          },
-          child: Padding(
-            padding: EdgeInsets.symmetric(vertical: 16, horizontal: 10),
-            child: Column(
+      onTap: () {
+        Navigator.of(context).pushNamed('stats/${attendee.email}');
+      },
+      child: Padding(
+        padding: EdgeInsets.symmetric(vertical: 16, horizontal: 10),
+        child: Column(
+          mainAxisAlignment: MainAxisAlignment.spaceBetween,
+          children: <Widget>[
+            Row(
               mainAxisAlignment: MainAxisAlignment.spaceBetween,
               children: <Widget>[
-                Row(
-                  mainAxisAlignment: MainAxisAlignment.spaceBetween,
-                  children: <Widget>[
-                    Flexible(
-                        flex: 1,
-                        child: UserImage(
-                          userImage: attendee.imageUrl
-                        )),
-                    SizedBox(
-                      width: 10,
-                    ),
-                    Expanded(
-                      flex: 3,
-                      child: Column(
-                        crossAxisAlignment: CrossAxisAlignment.start,
-                        children: <Widget>[
-                          Text(
-                            attendee.name,
-                            style: Theme.of(context)
-                                .textTheme
-                                .headline4
-                                .apply(color: Colors.black87, fontWeightDelta: 2),
-                          ),
-                          Text(beltColor.i18n.fill([attendee.grade.name.i18n]),
-                              style: Theme.of(context)
-                                  .textTheme
-                                  .headline5
-                                  .apply(color: Colors.black87)),
-                        ],
-                      ),
-                    ),
-                    Expanded(
-                      flex: 1,
-                      child: Text(
-                        attendedLessons.toString(),
-                        textAlign: TextAlign.center,
+                Flexible(
+                    flex: 1, child: UserImage(userImage: attendee.imageUrl)),
+                SizedBox(
+                  width: 10,
+                ),
+                Expanded(
+                  flex: 3,
+                  child: Column(
+                    crossAxisAlignment: CrossAxisAlignment.start,
+                    children: <Widget>[
+                      Text(
+                        attendee.name,
                         style: Theme.of(context)
                             .textTheme
-                            .headline1
-                            .apply(color: Theme.of(context).accentColor),
+                            .headline4
+                            .apply(fontWeightDelta: 4),
                       ),
-                    ),
-                  ],
+                      Text(
+                        beltColor.i18n.fill([attendee.grade.name.i18n]),
+                        style: Theme.of(context)
+                            .textTheme
+                            .headline5
+                      ),
+                    ],
+                  ),
+                ),
+                Expanded(
+                  flex: 1,
+                  child: Text(
+                    attendedLessons.toString(),
+                    textAlign: TextAlign.center,
+                    style: Theme.of(context)
+                        .textTheme
+                        .headline1
+                        .apply(color: Theme.of(context).accentColor),
+                  ),
                 ),
               ],
             ),
-          ),
-        ));
+          ],
+        ),
+      ),
+    ));
   }
 }

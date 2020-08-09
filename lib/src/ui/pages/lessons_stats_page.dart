@@ -38,7 +38,6 @@ class LessonsStatsPage extends StatelessWidget {
                     style: Theme.of(context)
                         .textTheme
                         .headline1
-                        .apply(color: Colors.black87),
                   ),
                   SizedBox(
                     height: 10,

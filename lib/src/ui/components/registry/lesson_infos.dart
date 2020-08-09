@@ -37,7 +37,7 @@ class LessonInfos extends StatelessWidget {
                     "${lesson.timeStart} - ${lesson.timeEnd}",
                     style: Theme.of(context)
                         .textTheme
-                        .headline1
+                        .headline2.apply(fontSizeDelta: 4)
                   ),
                   Text(
                     "${constants.by.i18n} ${lesson.masters.first.name}",

@@ -20,7 +20,7 @@ class RemainingLessonsIndicator extends StatelessWidget {
                   minHeight: 10,
                   valueColor: AlwaysStoppedAnimation<Color>(
                       Theme.of(context).accentColor),
-                  backgroundColor: Color(0x241B3FE3),
+                  backgroundColor: Theme.of(context).primaryColor.withAlpha(70),
                 ),
               ),
               Padding(
@@ -38,7 +38,7 @@ class RemainingLessonsIndicator extends StatelessWidget {
                 minHeight: 10,
                 valueColor: AlwaysStoppedAnimation<Color>(
                     Theme.of(context).accentColor),
-                backgroundColor: Color(0x241B3FE3),
+                backgroundColor: Theme.of(context).primaryColor.withAlpha(70),
               ),
             ),
             Padding(

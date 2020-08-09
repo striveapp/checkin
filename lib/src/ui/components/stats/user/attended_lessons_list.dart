@@ -4,7 +4,6 @@ import 'package:checkin/src/ui/components/stats/user/lesson_info_card.dart';
 import 'package:flutter/material.dart';
 
 class AttendedLessonsList extends StatelessWidget {
-
   final List<Lesson> attendedLessons;
 
   static const String attendedClasses = 'Attended Classes';
@@ -16,17 +15,16 @@ class AttendedLessonsList extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    return Column(children: <Widget>[
-      Text(
-        AttendedLessonsList.attendedClasses.i18n,
-        style: Theme.of(context)
-            .textTheme
-            .headline1
-            .apply(color: Colors.black87),
-      ),
-      ...attendedLessons
-          .map((lesson) => LessonInfoCard(lesson: lesson))
-          .toList(),
-    ],);
+    return Column(
+      children: <Widget>[
+        Text(
+          AttendedLessonsList.attendedClasses.i18n,
+          style: Theme.of(context).textTheme.headline1,
+        ),
+        ...attendedLessons
+            .map((lesson) => LessonInfoCard(lesson: lesson))
+            .toList(),
+      ],
+    );
   }
 }

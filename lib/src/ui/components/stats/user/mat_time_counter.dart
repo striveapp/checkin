@@ -64,7 +64,7 @@ class MatTimeCounter extends StatelessWidget {
               value: _getAttendancePercentage(counter, timeSpan),
               valueColor:
                   AlwaysStoppedAnimation<Color>(Theme.of(context).accentColor),
-              backgroundColor: Color(0x241B3FE3),
+              backgroundColor: Theme.of(context).primaryColor.withAlpha(70),
             ),
           ],
         ),

@@ -25,11 +25,12 @@ import 'package:firebase_crashlytics/firebase_crashlytics.dart';
 import 'package:firebase_dynamic_links/firebase_dynamic_links.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
+import 'package:flutter_svg/flutter_svg.dart';
 
 import 'src/app.dart';
 import 'src/blocs/dynamic_link/dynamic_link_event.dart';
 
-void main() {
+Future<void> main() async {
   WidgetsFlutterBinding.ensureInitialized();
 
   // init bloc delegate
@@ -47,6 +48,13 @@ void main() {
   final StorageRepository storageRepository = StorageRepository();
   final ImageRepository imageRepository = ImageRepository();
   final FirebaseDynamicLinks dynamicLinks = FirebaseDynamicLinks.instance;
+
+  // precache assets
+  await precachePicture(ExactAssetPicture(SvgPicture.svgStringDecoder, 'assets/icons/white-belt.svg'), null);
+  await precachePicture(ExactAssetPicture(SvgPicture.svgStringDecoder, 'assets/icons/blue-belt.svg'), null);
+  await precachePicture(ExactAssetPicture(SvgPicture.svgStringDecoder, 'assets/icons/purple-belt.svg'), null);
+  await precachePicture(ExactAssetPicture(SvgPicture.svgStringDecoder, 'assets/icons/brown-belt.svg'), null);
+  await precachePicture(ExactAssetPicture(SvgPicture.svgStringDecoder, 'assets/icons/black-belt.svg'), null);
 
   runZonedGuarded<Future<void>>(() async {
     runApp(

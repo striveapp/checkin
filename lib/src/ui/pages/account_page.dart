@@ -114,7 +114,7 @@ class AccountPage extends StatelessWidget {
                               crossAxisAlignment: CrossAxisAlignment.start,
                               children: <Widget>[
                                 SizedBox(
-                                  height: 50,
+                                  height: 40,
                                 ),
                                 Padding(
                                   padding: EdgeInsets.only(left: 10.0),
@@ -123,7 +123,6 @@ class AccountPage extends StatelessWidget {
                                     style: Theme.of(context)
                                         .textTheme
                                         .headline1
-                                        .apply(color: Colors.black87),
                                   ),
                                 ),
                                 Padding(
@@ -131,7 +130,7 @@ class AccountPage extends StatelessWidget {
                                   child: MembershipCard(),
                                 ),
                                 SizedBox(
-                                  height: 50,
+                                  height: 40,
                                 ),
                                 Padding(
                                   padding: EdgeInsets.only(left: 10.0),
@@ -140,7 +139,6 @@ class AccountPage extends StatelessWidget {
                                     style: Theme.of(context)
                                         .textTheme
                                         .headline1
-                                        .apply(color: Colors.black87),
                                   ),
                                 ),
                                 Padding(
@@ -150,7 +148,7 @@ class AccountPage extends StatelessWidget {
                               ],
                             ),
                           SizedBox(
-                            height: 50,
+                            height: 40,
                           ),
                           Padding(
                             padding: EdgeInsets.only(left: 10.0),
@@ -159,12 +157,14 @@ class AccountPage extends StatelessWidget {
                               style: Theme.of(context)
                                   .textTheme
                                   .headline1
-                                  .apply(color: Colors.black87),
                             ),
                           ),
-                          ProfileCard(
-                              userEmail: state.user.email,
-                              isOwner: state.user.isOwner),
+                          Padding(
+                            padding: EdgeInsets.only(top: 10.0),
+                            child: ProfileCard(
+                                userEmail: state.user.email,
+                                isOwner: state.user.isOwner),
+                          ),
                           if (state.user.selectedGymId == "test")
                             SizedBox(
                               height: 50,

@@ -26,8 +26,8 @@ class PlanWithPricesCard extends StatelessWidget {
         ),
         child: InkWell(
           onTap: () {
-            Navigator.of(context)
-                .pushNamed("subPlan/${_customerId}/${_plan.id}/${_plan.name}/${_plan.description}");
+            Navigator.of(context).pushNamed(
+                "subPlan/${_customerId}/${_plan.id}/${_plan.name}/${_plan.description}");
           },
           child: Padding(
             padding: const EdgeInsets.symmetric(horizontal: 20),
@@ -45,10 +45,9 @@ class PlanWithPricesCard extends StatelessWidget {
                     children: <Widget>[
                       Text(
                         _plan.name,
-                        style: Theme.of(context)
-                            .textTheme
-                            .headline1
-                            .apply(fontSizeFactor: 1.2, color: Colors.black87),
+                        style: Theme.of(context).textTheme.headline1.apply(
+                              fontSizeFactor: 1.2,
+                            ),
                       ),
                       Text(
                         _plan.description.i18n,
@@ -57,7 +56,9 @@ class PlanWithPricesCard extends StatelessWidget {
                     ],
                   ),
                 ),
-                Price(price: _plan.startingPrice,),
+                Price(
+                  price: _plan.startingPrice,
+                ),
               ],
             ),
           ),

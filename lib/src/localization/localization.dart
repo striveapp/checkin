@@ -44,7 +44,7 @@ extension Localization on String {
     'en': LessonsPage.classes,
     'es': "Clases",
   } + {
-    'en': GradePage.beltSelection,
+    'en': GradePage.selectYourBelt,
     'es': '¿Cuál es tu cinturón?',
   } + {
     'en': RegistryPage.registry,
@@ -269,8 +269,8 @@ extension Localization on String {
     'en': GymSelectionPage.heyUser,
     'es': 'Hola %s'
   } + {
-    'en': GymSelectionPage.whatsYourGym,
-    'es': 'Cuál es tu gimnasio?'
+    'en': GymSelectionPage.selectYourGym,
+    'es': 'Escoge tu gymnasio'
   } + {
     'en': LoginBloc.loginError,
     'es': 'Error de inicio de sesion'

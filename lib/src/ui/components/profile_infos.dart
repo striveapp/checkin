@@ -37,24 +37,26 @@ class ProfileInfos extends StatelessWidget {
               SizedBox(
                 width: 10,
               ),
-              Column(
-                crossAxisAlignment: CrossAxisAlignment.start,
-                children: <Widget>[
-                  Text(
-                    state.profileUser.name,
-                    style: Theme.of(context)
-                        .textTheme
-                        .bodyText1
-                        .apply(fontWeightDelta: 2),
-                  ),
-                  SizedBox(
-                    height: 2.5,
-                  ),
-                  Text(
-                    beltColor.i18n.fill([state.profileUser.grade.name.i18n]),
-                    style: Theme.of(context).textTheme.bodyText1,
-                  ),
-                ],
+              Expanded(
+                child: Column(
+                  crossAxisAlignment: CrossAxisAlignment.start,
+                  children: <Widget>[
+                    Text(
+                      state.profileUser.name,
+                      style: Theme.of(context)
+                          .textTheme
+                          .bodyText1
+                          .apply(fontWeightDelta: 2),
+                    ),
+                    SizedBox(
+                      height: 2.5,
+                    ),
+                    Text(
+                      beltColor.i18n.fill([state.profileUser.grade.name.i18n]),
+                      style: Theme.of(context).textTheme.bodyText1,
+                    ),
+                  ],
+                ),
               ),
             ],
           );

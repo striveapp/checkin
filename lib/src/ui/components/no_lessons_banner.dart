@@ -6,10 +6,15 @@ class NoLessonsBanner extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    return Text(
-      NoLessonsBanner.noClasses.i18n,
-      key: Key('noClassesText'),
-      style: Theme.of(context).textTheme.headline1.apply(color: Colors.black87)
+    return Column(
+      children: [
+        SizedBox(
+          height: 150,
+        ),
+        Text(NoLessonsBanner.noClasses.i18n,
+            key: Key('noClassesText'),
+            style: Theme.of(context).textTheme.headline1),
+      ],
     );
   }
 }
