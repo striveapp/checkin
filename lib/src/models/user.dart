@@ -26,19 +26,23 @@ class User extends Equatable {
     this.hasActivePayments = false,
   });
 
-  factory User.fromFirebaseUser(FirebaseUser firebaseUser, {String displayName}) {
+  factory User.fromFirebaseUser(FirebaseUser firebaseUser,
+      {String displayName, String photoUrl}) {
     return firebaseUser != null
         ? User(
-      uid: firebaseUser.uid,
-      name: firebaseUser.displayName ?? displayName,
-      email: firebaseUser.email,
-      imageUrl: firebaseUser.photoUrl ?? config.DEFAULT_USER_IMAGE_URL,
-    )
+            uid: firebaseUser.uid,
+            name: firebaseUser.displayName ?? displayName,
+            email: firebaseUser.email,
+            imageUrl: firebaseUser.photoUrl ??
+                photoUrl ??
+                config.DEFAULT_USER_IMAGE_URL,
+          )
         : null;
   }
 
   @override
-  List<Object> get props => [name, email, imageUrl, grade, selectedGymId, isOwner, hasActivePayments];
+  List<Object> get props =>
+      [name, email, imageUrl, grade, selectedGymId, isOwner, hasActivePayments];
 
   @override
   String toString() {

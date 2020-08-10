@@ -34,8 +34,9 @@ class AuthProvider implements AuthRepository {
 
     try {
       googleUser = await _googleSignIn.signIn();
-    } catch(err, stackTrace) {
-      await _crashlytics.recordError(err, stackTrace, context: "login error (signIn)");
+    } catch (err, stackTrace) {
+      await _crashlytics.recordError(err, stackTrace,
+          context: "login error (signIn)");
       throw err;
     }
 
@@ -47,7 +48,8 @@ class AuthProvider implements AuthRepository {
     try {
       googleAuth = await googleUser.authentication;
     } catch (err, stackTrace) {
-      await _crashlytics.recordError(err, stackTrace, context: "login error (authentication)");
+      await _crashlytics.recordError(err, stackTrace,
+          context: "login error (authentication)");
       throw err;
     }
 
@@ -56,24 +58,37 @@ class AuthProvider implements AuthRepository {
         accessToken: googleAuth.accessToken,
         idToken: googleAuth.idToken,
       );
-    } catch(err, stackTrace) {
-      await _crashlytics.recordError(err, stackTrace, context: "login error (getCredential)");
+    } catch (err, stackTrace) {
+      await _crashlytics.recordError(err, stackTrace,
+          context: "login error (getCredential)");
       throw err;
     }
 
-    return await _getAuthenticatedUserFromFirebase(credential);
+    return await _getAuthenticatedUserFromFirebase(credential,
+        displayName: googleUser.displayName, photoUrl: googleUser.photoUrl);
   }
 
-  Future<User> _getAuthenticatedUserFromFirebase(AuthCredential credential, {String displayName}) async {
-    await _firebaseAuth.signInWithCredential(credential);
-    var firebaseUser = await _firebaseAuth.currentUser();
+  Future<User> _getAuthenticatedUserFromFirebase(AuthCredential credential,
+      {String displayName, String photoUrl}) async {
+    final AuthResult authResult =
+        await _firebaseAuth.signInWithCredential(credential);
+    final FirebaseUser user = authResult.user;
 
-    return User.fromFirebaseUser(firebaseUser, displayName: displayName);
+    final FirebaseUser currentUser = await _firebaseAuth.currentUser();
+
+    assert(user.uid == currentUser.uid);
+
+    return User.fromFirebaseUser(
+      user,
+      displayName: displayName,
+      photoUrl: photoUrl,
+    );
   }
 
   Future<User> signInWithApple() async {
-    if(! await SignInWithApple.isAvailable()){
-      throw Exception("Sign in with apple is not supported for your version of IOS");
+    if (!await SignInWithApple.isAvailable()) {
+      throw Exception(
+          "Sign in with apple is not supported for your version of IOS");
     }
 
     final appleAuth = await SignInWithApple.getAppleIDCredential(
@@ -89,7 +104,10 @@ class AuthProvider implements AuthRepository {
       accessToken: appleAuth.authorizationCode,
     );
 
-    return await _getAuthenticatedUserFromFirebase(credential, displayName: "${appleAuth.givenName} ${appleAuth.familyName}");
+    return await _getAuthenticatedUserFromFirebase(
+      credential,
+      displayName: "${appleAuth.givenName} ${appleAuth.familyName}",
+    );
   }
 
   Future<void> signOut() async {

@@ -65,19 +65,21 @@ class SubPlanPage extends StatelessWidget {
                 ),
           ),
         ],
-        child: Column(
-          children: [
-            SizedBox(
-              height: 20,
-            ),
-            PriceHeader(name: name, description: description),
-            SizedBox(height: 15,),
-            Expanded(child: PlansList(customerId: customerId,)),
-            Padding(
-              padding: const EdgeInsets.all(10),
-              child: PriceFooter(),
-            )
-          ],
+        child: SafeArea(
+          child: Column(
+            children: [
+              SizedBox(
+                height: 20,
+              ),
+              PriceHeader(name: name, description: description),
+              SizedBox(height: 15,),
+              Expanded(child: PlansList(customerId: customerId,)),
+              Padding(
+                padding: const EdgeInsets.all(10),
+                child: PriceFooter(),
+              )
+            ],
+          ),
         ),
       ),
     );

@@ -5,6 +5,7 @@ import 'package:checkin/src/ui/components/apple_sign_in_button.dart';
 import 'package:checkin/src/ui/components/gym_selection/gym_selection_buttons.dart';
 import 'package:checkin/src/ui/components/payment_methods/active_payment_method.dart';
 import 'package:checkin/src/ui/components/payment_methods/empty_payment_method.dart';
+import 'package:checkin/src/ui/components/plans/plans_callout.dart';
 import 'package:checkin/src/ui/components/plans/plans_footer.dart';
 import 'package:checkin/src/ui/components/plans/plans_list.dart';
 import 'package:checkin/src/ui/components/plans/price/price_footer.dart';
@@ -34,8 +35,10 @@ import 'package:checkin/src/ui/pages/leaderboard_page.dart';
 import 'package:checkin/src/ui/pages/lessons_page.dart';
 import 'package:checkin/src/ui/pages/lessons_stats_page.dart';
 import 'package:checkin/src/ui/pages/payment_success_page.dart';
+import 'package:checkin/src/ui/pages/plans_page.dart';
 import 'package:checkin/src/ui/pages/registry_page.dart';
 import 'package:checkin/src/ui/pages/stats_page.dart';
+import 'package:checkin/src/ui/pages/sub_plan_page.dart';
 import 'package:i18n_extension/i18n_extension.dart';
 
 extension Localization on String {
@@ -304,6 +307,15 @@ extension Localization on String {
   } + {
     'en': PlansList.noPlansYet,
     'es': 'No hay planes disponibles todavía'
+  } + {
+    'en': PlansCallout.chooseYourPlan,
+    'es': 'Escoge el plan que mejor se adapta a tus necesidades'
+  } + {
+    'en': PlansPage.plans,
+    'es': 'Planos'
+  } + {
+    'en': SubPlanPage.prices,
+    'es': 'Precios'
   };
 
 String get i18n => localize(this, _t);

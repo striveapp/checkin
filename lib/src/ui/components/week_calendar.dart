@@ -41,6 +41,7 @@ class _WeekCalendarState extends State<WeekCalendar> {
       holidays: widget.holidaysRepository.getHolidays(),
       calendarStyle: CalendarStyle(
         selectedColor: Theme.of(context).accentColor,
+        todayColor: Theme.of(context).accentColor.withAlpha(100)
       ),
     );
   }

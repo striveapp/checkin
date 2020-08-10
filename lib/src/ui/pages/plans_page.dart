@@ -55,25 +55,27 @@ class PlansPage extends StatelessWidget {
             ),
           ),
         ],
-        child: Column(
-          mainAxisAlignment: MainAxisAlignment.spaceAround,
-          children: [
-            SizedBox(
-              height: 25,
-            ),
-            Padding(
-              padding: EdgeInsets.symmetric(horizontal: 20),
-              child: PlansCallout(),
-            ),
-            SizedBox(
-              height: 5,
-            ),
-            Expanded(child: PlansList(customerId: customerId)),
-            Padding(
-              padding: const EdgeInsets.all(10),
-              child: PlansFooter(),
-            )
-          ],
+        child: SafeArea(
+          child: Column(
+            mainAxisAlignment: MainAxisAlignment.spaceAround,
+            children: [
+              SizedBox(
+                height: 25,
+              ),
+              Padding(
+                padding: EdgeInsets.symmetric(horizontal: 20),
+                child: PlansCallout(),
+              ),
+              SizedBox(
+                height: 5,
+              ),
+              Expanded(child: PlansList(customerId: customerId)),
+              Padding(
+                padding: const EdgeInsets.all(10),
+                child: PlansFooter(),
+              )
+            ],
+          ),
         ),
       ),
     );
