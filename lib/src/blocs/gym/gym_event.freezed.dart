@@ -32,6 +32,8 @@ abstract class $GymEventCopyWith<$Res> {
   factory $GymEventCopyWith(GymEvent value, $Res Function(GymEvent) then) =
       _$GymEventCopyWithImpl<$Res>;
   $Res call({Gym gym});
+
+  $GymCopyWith<$Res> get gym;
 }
 
 class _$GymEventCopyWithImpl<$Res> implements $GymEventCopyWith<$Res> {
@@ -49,6 +51,16 @@ class _$GymEventCopyWithImpl<$Res> implements $GymEventCopyWith<$Res> {
       gym: gym == freezed ? _value.gym : gym as Gym,
     ));
   }
+
+  @override
+  $GymCopyWith<$Res> get gym {
+    if (_value.gym == null) {
+      return null;
+    }
+    return $GymCopyWith<$Res>(_value.gym, (value) {
+      return _then(_value.copyWith(gym: value));
+    });
+  }
 }
 
 abstract class $GymUpdatedCopyWith<$Res> implements $GymEventCopyWith<$Res> {
@@ -57,6 +69,9 @@ abstract class $GymUpdatedCopyWith<$Res> implements $GymEventCopyWith<$Res> {
       _$GymUpdatedCopyWithImpl<$Res>;
   @override
   $Res call({Gym gym});
+
+  @override
+  $GymCopyWith<$Res> get gym;
 }
 
 class _$GymUpdatedCopyWithImpl<$Res> extends _$GymEventCopyWithImpl<$Res>

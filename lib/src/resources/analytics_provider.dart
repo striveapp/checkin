@@ -36,6 +36,14 @@ class AnalyticsProvider implements AnalyticsRepository {
     });
   }
 
+  Future<void> setupBankAccountError({String error}) async {
+    await _crashlytics.recordError(error, null, context: "setup bank account error");
+    await _firebaseAnalytics.logEvent(name: "setup_bank_account_error", parameters: {
+      "hash": CryptoUtil.generateMd5(error),
+      "message": error.length > 100 ? error.substring(0, 100) : error,
+    });
+  }
+
   Future<void> logSubscriptionWithEmptyCustomer(
           {String gymId, String priceId}) async =>
       await _firebaseAnalytics

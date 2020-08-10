@@ -16,19 +16,34 @@ class PaymentMethodsCard extends StatelessWidget {
             child: Container(
           child: Padding(
             padding: EdgeInsets.symmetric(horizontal: 20, vertical: 20),
-            child: BlocBuilder<PaymentMethodsBloc, PaymentMethodsState>(
-              builder: (BuildContext context, PaymentMethodsState state) =>
-                  state.when(
-                      initialPaymentMethodsState: () => LoadingIndicator(),
-                      paymentMethodLoading: () => LoadingIndicator(),
-                      paymentMethodLoaded: (PaymentMethod paymentMethod) =>
-                          ActivePaymentMethodView(
-                            paymentMethod: paymentMethod,
-                          ),
-                      paymentMethodEmpty: (String customerEmail) =>
-                          EmptyPaymentMethod(
-                            customerEmail: customerEmail,
-                          )),
+            child: BlocListener<PaymentMethodsBloc, PaymentMethodsState>(
+              listener: (BuildContext context, PaymentMethodsState state) {
+                if (state is PaymentMethodLoading) {
+                  if (state.show) {
+                    showDialog(context: context, child: LoadingIndicator());
+                  } else {
+                    Navigator.of(context).pop();
+                  }
+                }
+              },
+              child: BlocBuilder<PaymentMethodsBloc, PaymentMethodsState>(
+                condition: (PaymentMethodsState previous,
+                        PaymentMethodsState current) =>
+                    !(current is PaymentMethodLoading),
+                builder: (BuildContext context, PaymentMethodsState state) =>
+                    state.maybeWhen(
+                  initialPaymentMethodsState: () => LoadingIndicator(),
+                  paymentMethodLoaded: (PaymentMethod paymentMethod) =>
+                      ActivePaymentMethodView(
+                    paymentMethod: paymentMethod,
+                  ),
+                  paymentMethodEmpty: (String customerEmail) =>
+                      EmptyPaymentMethod(
+                    customerEmail: customerEmail,
+                  ),
+                  orElse: () => LoadingIndicator(),
+                ),
+              ),
             ),
           ),
         )));

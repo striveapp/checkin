@@ -73,6 +73,9 @@ class App extends StatelessWidget {
                 listener: (BuildContext context, DynamicLinkState state) {
               if (state is DynamicLinkToNavigate) {
                 debugPrint("deep link received with path ${state.path}");
+                Navigator.of(context).popUntil(
+                    ModalRoute.withName(Navigator.defaultRouteName));
+
                 Navigator.of(context).pushNamed(state.path);
               }
             }),

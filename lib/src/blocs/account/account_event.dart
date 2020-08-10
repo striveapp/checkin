@@ -18,3 +18,14 @@ class AccountUpdated extends AccountEvent {
 
     String toString() => 'AccountUpdated';
 }
+
+class AccountDisplayError extends AccountEvent {
+  final String errorMessage;
+
+  AccountDisplayError({this.errorMessage});
+
+  @override
+  List<Object> get props => [errorMessage];
+
+  String toString() => 'AccountDisplayError';
+}

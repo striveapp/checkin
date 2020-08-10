@@ -23,3 +23,14 @@ class AccountLoaded extends AccountState {
 
   String toString() => 'AccountLoaded';
 }
+
+class AccountError extends AccountState {
+  final String errorMessage;
+
+  AccountError({this.errorMessage});
+
+  @override
+  List<Object> get props => [errorMessage];
+
+  String toString() => 'AccountError';
+}

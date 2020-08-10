@@ -163,6 +163,8 @@ abstract class $GymLoadedCopyWith<$Res> {
   factory $GymLoadedCopyWith(GymLoaded value, $Res Function(GymLoaded) then) =
       _$GymLoadedCopyWithImpl<$Res>;
   $Res call({Gym gym});
+
+  $GymCopyWith<$Res> get gym;
 }
 
 class _$GymLoadedCopyWithImpl<$Res> extends _$GymStateCopyWithImpl<$Res>
@@ -180,6 +182,16 @@ class _$GymLoadedCopyWithImpl<$Res> extends _$GymStateCopyWithImpl<$Res>
     return _then(GymLoaded(
       gym: gym == freezed ? _value.gym : gym as Gym,
     ));
+  }
+
+  @override
+  $GymCopyWith<$Res> get gym {
+    if (_value.gym == null) {
+      return null;
+    }
+    return $GymCopyWith<$Res>(_value.gym, (value) {
+      return _then(_value.copyWith(gym: value));
+    });
   }
 }
 

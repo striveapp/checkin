@@ -14,11 +14,12 @@ class DynamicLinkInitial extends DynamicLinkState {
 
 class DynamicLinkToNavigate extends DynamicLinkState {
   final String path;
+  final DateTime nocache = DateTime.now();
 
   DynamicLinkToNavigate({this.path});
 
   @override
-  List<Object> get props => [path];
+  List<Object> get props => [path, nocache];
 
   @override
   String toString() => 'DynamicLinkToNavigate';

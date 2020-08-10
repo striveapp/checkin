@@ -10,7 +10,7 @@ abstract class PaymentMethodsState with _$PaymentMethodsState {
   const factory PaymentMethodsState.initialPaymentMethodsState() = InitialPaymentMethodsState;
   const factory PaymentMethodsState.paymentMethodLoaded({@required PaymentMethod paymentMethod}) =  PaymentMethodLoaded;
   const factory PaymentMethodsState.paymentMethodEmpty({@required String customerEmail}) =  PaymentMethodEmpty;
-  const factory PaymentMethodsState.paymentMethodLoading() = PaymentMethodLoading;
+  const factory PaymentMethodsState.paymentMethodLoading({@required bool show}) = PaymentMethodLoading;
 }
 
 

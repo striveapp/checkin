@@ -259,6 +259,8 @@ abstract class $RegisterBankAccountCopyWith<$Res> {
           RegisterBankAccount value, $Res Function(RegisterBankAccount) then) =
       _$RegisterBankAccountCopyWithImpl<$Res>;
   $Res call({Gym gym, String billingEmail});
+
+  $GymCopyWith<$Res> get gym;
 }
 
 class _$RegisterBankAccountCopyWithImpl<$Res>
@@ -282,6 +284,16 @@ class _$RegisterBankAccountCopyWithImpl<$Res>
           ? _value.billingEmail
           : billingEmail as String,
     ));
+  }
+
+  @override
+  $GymCopyWith<$Res> get gym {
+    if (_value.gym == null) {
+      return null;
+    }
+    return $GymCopyWith<$Res>(_value.gym, (value) {
+      return _then(_value.copyWith(gym: value));
+    });
   }
 }
 
@@ -409,6 +421,8 @@ abstract class $ChangeBankAccountCopyWith<$Res> {
           ChangeBankAccount value, $Res Function(ChangeBankAccount) then) =
       _$ChangeBankAccountCopyWithImpl<$Res>;
   $Res call({Gym gym, String billingEmail, String customerId});
+
+  $GymCopyWith<$Res> get gym;
 }
 
 class _$ChangeBankAccountCopyWithImpl<$Res>
@@ -435,6 +449,16 @@ class _$ChangeBankAccountCopyWithImpl<$Res>
       customerId:
           customerId == freezed ? _value.customerId : customerId as String,
     ));
+  }
+
+  @override
+  $GymCopyWith<$Res> get gym {
+    if (_value.gym == null) {
+      return null;
+    }
+    return $GymCopyWith<$Res>(_value.gym, (value) {
+      return _then(_value.copyWith(gym: value));
+    });
   }
 }
 

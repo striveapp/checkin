@@ -29,8 +29,10 @@ class _$PaymentMethodsStateTearOff {
     );
   }
 
-  PaymentMethodLoading paymentMethodLoading() {
-    return const PaymentMethodLoading();
+  PaymentMethodLoading paymentMethodLoading({@required bool show}) {
+    return PaymentMethodLoading(
+      show: show,
+    );
   }
 }
 
@@ -43,14 +45,14 @@ mixin _$PaymentMethodsState {
     @required Result initialPaymentMethodsState(),
     @required Result paymentMethodLoaded(PaymentMethod paymentMethod),
     @required Result paymentMethodEmpty(String customerEmail),
-    @required Result paymentMethodLoading(),
+    @required Result paymentMethodLoading(bool show),
   });
   @optionalTypeArgs
   Result maybeWhen<Result extends Object>({
     Result initialPaymentMethodsState(),
     Result paymentMethodLoaded(PaymentMethod paymentMethod),
     Result paymentMethodEmpty(String customerEmail),
-    Result paymentMethodLoading(),
+    Result paymentMethodLoading(bool show),
     @required Result orElse(),
   });
   @optionalTypeArgs
@@ -136,7 +138,7 @@ class _$InitialPaymentMethodsState
     @required Result initialPaymentMethodsState(),
     @required Result paymentMethodLoaded(PaymentMethod paymentMethod),
     @required Result paymentMethodEmpty(String customerEmail),
-    @required Result paymentMethodLoading(),
+    @required Result paymentMethodLoading(bool show),
   }) {
     assert(initialPaymentMethodsState != null);
     assert(paymentMethodLoaded != null);
@@ -151,7 +153,7 @@ class _$InitialPaymentMethodsState
     Result initialPaymentMethodsState(),
     Result paymentMethodLoaded(PaymentMethod paymentMethod),
     Result paymentMethodEmpty(String customerEmail),
-    Result paymentMethodLoading(),
+    Result paymentMethodLoading(bool show),
     @required Result orElse(),
   }) {
     assert(orElse != null);
@@ -285,7 +287,7 @@ class _$PaymentMethodLoaded
     @required Result initialPaymentMethodsState(),
     @required Result paymentMethodLoaded(PaymentMethod paymentMethod),
     @required Result paymentMethodEmpty(String customerEmail),
-    @required Result paymentMethodLoading(),
+    @required Result paymentMethodLoading(bool show),
   }) {
     assert(initialPaymentMethodsState != null);
     assert(paymentMethodLoaded != null);
@@ -300,7 +302,7 @@ class _$PaymentMethodLoaded
     Result initialPaymentMethodsState(),
     Result paymentMethodLoaded(PaymentMethod paymentMethod),
     Result paymentMethodEmpty(String customerEmail),
-    Result paymentMethodLoading(),
+    Result paymentMethodLoading(bool show),
     @required Result orElse(),
   }) {
     assert(orElse != null);
@@ -426,7 +428,7 @@ class _$PaymentMethodEmpty
     @required Result initialPaymentMethodsState(),
     @required Result paymentMethodLoaded(PaymentMethod paymentMethod),
     @required Result paymentMethodEmpty(String customerEmail),
-    @required Result paymentMethodLoading(),
+    @required Result paymentMethodLoading(bool show),
   }) {
     assert(initialPaymentMethodsState != null);
     assert(paymentMethodLoaded != null);
@@ -441,7 +443,7 @@ class _$PaymentMethodEmpty
     Result initialPaymentMethodsState(),
     Result paymentMethodLoaded(PaymentMethod paymentMethod),
     Result paymentMethodEmpty(String customerEmail),
-    Result paymentMethodLoading(),
+    Result paymentMethodLoading(bool show),
     @required Result orElse(),
   }) {
     assert(orElse != null);
@@ -496,6 +498,7 @@ abstract class $PaymentMethodLoadingCopyWith<$Res> {
   factory $PaymentMethodLoadingCopyWith(PaymentMethodLoading value,
           $Res Function(PaymentMethodLoading) then) =
       _$PaymentMethodLoadingCopyWithImpl<$Res>;
+  $Res call({bool show});
 }
 
 class _$PaymentMethodLoadingCopyWithImpl<$Res>
@@ -507,16 +510,28 @@ class _$PaymentMethodLoadingCopyWithImpl<$Res>
 
   @override
   PaymentMethodLoading get _value => super._value as PaymentMethodLoading;
+
+  @override
+  $Res call({
+    Object show = freezed,
+  }) {
+    return _then(PaymentMethodLoading(
+      show: show == freezed ? _value.show : show as bool,
+    ));
+  }
 }
 
 class _$PaymentMethodLoading
     with DiagnosticableTreeMixin
     implements PaymentMethodLoading {
-  const _$PaymentMethodLoading();
+  const _$PaymentMethodLoading({@required this.show}) : assert(show != null);
+
+  @override
+  final bool show;
 
   @override
   String toString({DiagnosticLevel minLevel = DiagnosticLevel.info}) {
-    return 'PaymentMethodsState.paymentMethodLoading()';
+    return 'PaymentMethodsState.paymentMethodLoading(show: $show)';
   }
 
   @override
@@ -524,16 +539,26 @@ class _$PaymentMethodLoading
     super.debugFillProperties(properties);
     properties
       ..add(DiagnosticsProperty(
-          'type', 'PaymentMethodsState.paymentMethodLoading'));
+          'type', 'PaymentMethodsState.paymentMethodLoading'))
+      ..add(DiagnosticsProperty('show', show));
   }
 
   @override
   bool operator ==(dynamic other) {
-    return identical(this, other) || (other is PaymentMethodLoading);
+    return identical(this, other) ||
+        (other is PaymentMethodLoading &&
+            (identical(other.show, show) ||
+                const DeepCollectionEquality().equals(other.show, show)));
   }
 
   @override
-  int get hashCode => runtimeType.hashCode;
+  int get hashCode =>
+      runtimeType.hashCode ^ const DeepCollectionEquality().hash(show);
+
+  @override
+  $PaymentMethodLoadingCopyWith<PaymentMethodLoading> get copyWith =>
+      _$PaymentMethodLoadingCopyWithImpl<PaymentMethodLoading>(
+          this, _$identity);
 
   @override
   @optionalTypeArgs
@@ -541,13 +566,13 @@ class _$PaymentMethodLoading
     @required Result initialPaymentMethodsState(),
     @required Result paymentMethodLoaded(PaymentMethod paymentMethod),
     @required Result paymentMethodEmpty(String customerEmail),
-    @required Result paymentMethodLoading(),
+    @required Result paymentMethodLoading(bool show),
   }) {
     assert(initialPaymentMethodsState != null);
     assert(paymentMethodLoaded != null);
     assert(paymentMethodEmpty != null);
     assert(paymentMethodLoading != null);
-    return paymentMethodLoading();
+    return paymentMethodLoading(show);
   }
 
   @override
@@ -556,12 +581,12 @@ class _$PaymentMethodLoading
     Result initialPaymentMethodsState(),
     Result paymentMethodLoaded(PaymentMethod paymentMethod),
     Result paymentMethodEmpty(String customerEmail),
-    Result paymentMethodLoading(),
+    Result paymentMethodLoading(bool show),
     @required Result orElse(),
   }) {
     assert(orElse != null);
     if (paymentMethodLoading != null) {
-      return paymentMethodLoading();
+      return paymentMethodLoading(show);
     }
     return orElse();
   }
@@ -600,5 +625,9 @@ class _$PaymentMethodLoading
 }
 
 abstract class PaymentMethodLoading implements PaymentMethodsState {
-  const factory PaymentMethodLoading() = _$PaymentMethodLoading;
+  const factory PaymentMethodLoading({@required bool show}) =
+      _$PaymentMethodLoading;
+
+  bool get show;
+  $PaymentMethodLoadingCopyWith<PaymentMethodLoading> get copyWith;
 }

@@ -58,21 +58,22 @@ class PaymentMethodsBloc
     PaymentMethodsEvent event,
   ) async* {
     if (event is RegisterBankAccount) {
-      yield PaymentMethodLoading();
+      yield PaymentMethodLoading(show: true);
       try {
         var gym = event.gym;
 
         String clientSecret = await _paymentApi.setupIntent(
             customerEmail: event.billingEmail, gymId: gym.id);
 
+        yield PaymentMethodLoading(show: false);
         await _urlLauncherUtil.launchUrl(
-            "https://${gym.paymentAppDomain}?pk=${gym.stripePublicKey}&customerEmail=${event.billingEmail}&cs=$clientSecret&nocache=${DateTime.now()}");
+            "https://${gym.paymentAppDomain}?pk=${gym.stripePublicKey}&customerEmail=${event.billingEmail}&cs=$clientSecret&gymName=${gym.id}&nocache=${DateTime.now()}");
       } catch (err) {
         print(err);
       }
     }
     if (event is ChangeBankAccount) {
-      yield PaymentMethodLoading();
+      yield PaymentMethodLoading(show: true);
       try {
         var gym = event.gym;
 
@@ -81,8 +82,9 @@ class PaymentMethodsBloc
             gymId: gym.id,
             customerId: event.customerId);
 
+        yield PaymentMethodLoading(show: false);
         await _urlLauncherUtil.launchUrl(
-            "https://${gym.paymentAppDomain}?pk=${gym.stripePublicKey}&customerEmail=${event.billingEmail}&cs=$clientSecret&nocache=${DateTime.now()}");
+            "https://${gym.paymentAppDomain}?pk=${gym.stripePublicKey}&customerEmail=${event.billingEmail}&cs=$clientSecret&gymName=${gym.id}&nocache=${DateTime.now()}");
       } catch (err) {
         print(err);
       }

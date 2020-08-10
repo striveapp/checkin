@@ -10,6 +10,20 @@ class MockPendingDynamicLinkData extends Mock
 
 class MockOnLinkErrorException extends Mock implements OnLinkErrorException {}
 
+class MyDynamicLinkToNavigate extends DynamicLinkToNavigate {
+
+  MyDynamicLinkToNavigate({String path}): super(path: path);
+
+  @override
+  bool operator ==(Object other) {
+    if( other is DynamicLinkToNavigate ) {
+      return path == other.path;
+    }
+    return false;
+  }
+
+}
+
 void main() {
   MockFirebaseDynamicLinks mockFirebaseDynamicLinks;
 
@@ -43,7 +57,7 @@ void main() {
         dynamicLinkBloc.add(DeepLinkSetup());
         final expectedState = [
           DynamicLinkInitial(),
-          DynamicLinkToNavigate(path: "/path/$fakeLessonId"),
+          MyDynamicLinkToNavigate(path: "/path/$fakeLessonId"),
         ];
 
         await expectLater(
@@ -60,7 +74,7 @@ void main() {
 
           final expectedState = [
             DynamicLinkInitial(),
-            DynamicLinkToNavigate(path: "/path/$fakeLessonId"),
+            MyDynamicLinkToNavigate(path: "/path/$fakeLessonId"),
           ];
 
           await expectLater(

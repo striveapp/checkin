@@ -152,7 +152,8 @@ void main() {
           final expectedState = [
             InitialPaymentMethodsState(),
             PaymentMethodEmpty(customerEmail: fakeUser.email),
-            PaymentMethodLoading()
+            PaymentMethodLoading(show: true),
+            PaymentMethodLoading(show: false)
           ];
 
           await expectLater(
@@ -164,7 +165,7 @@ void main() {
 
           verify(mockPaymentApi.setupIntent(
               customerEmail: fakeEmail, gymId: fakeGymId));
-          verify(mockUrlLauncherUtil.launchUrl(argThat(startsWith("https://${testGym.paymentAppDomain}?pk=${testGym.stripePublicKey}&customerEmail=test@test.com&cs=some_secret"))));
+          verify(mockUrlLauncherUtil.launchUrl(argThat(startsWith("https://${testGym.paymentAppDomain}?pk=${testGym.stripePublicKey}&customerEmail=test@test.com&cs=some_secret&gymName=${testGym.id}"))));
             });
       });
       group("when calling prod endpoint", () {
@@ -202,7 +203,8 @@ void main() {
           final expectedState = [
             InitialPaymentMethodsState(),
             PaymentMethodEmpty(customerEmail: prodUser.email),
-            PaymentMethodLoading()
+            PaymentMethodLoading(show: true),
+            PaymentMethodLoading(show: false),
           ];
 
           await expectLater(
@@ -214,7 +216,7 @@ void main() {
 
           verify(mockPaymentApi.setupIntent(
               customerEmail: prodUser.email, gymId: "prodGym"));
-          verify(mockUrlLauncherUtil.launchUrl(argThat(startsWith("https://prod-app?pk=prod_key&customerEmail=prod@email.com&cs=prod_secret"))));
+          verify(mockUrlLauncherUtil.launchUrl(argThat(startsWith("https://prod-app?pk=prod_key&customerEmail=prod@email.com&cs=prod_secret&gymName=prodGym"))));
         });
       });
     });
@@ -250,7 +252,8 @@ void main() {
               final expectedState = [
                 InitialPaymentMethodsState(),
                 PaymentMethodLoaded(paymentMethod: fakePaymentMethod),
-                PaymentMethodLoading()
+                PaymentMethodLoading(show: true),
+                PaymentMethodLoading(show: false),
               ];
 
               await expectLater(
@@ -262,7 +265,7 @@ void main() {
 
               verify(mockPaymentApi.setupIntent(
                   customerEmail: fakeEmail, gymId: fakeGymId, customerId: "cus_123"));
-              verify(mockUrlLauncherUtil.launchUrl(argThat(startsWith("https://${testGym.paymentAppDomain}?pk=${testGym.stripePublicKey}&customerEmail=test@test.com&cs=some_secret"))));
+              verify(mockUrlLauncherUtil.launchUrl(argThat(startsWith("https://${testGym.paymentAppDomain}?pk=${testGym.stripePublicKey}&customerEmail=test@test.com&cs=some_secret&gymName=${testGym.id}"))));
             });
       });
     });

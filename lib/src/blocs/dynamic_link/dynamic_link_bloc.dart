@@ -32,7 +32,11 @@ class DynamicLinkBloc extends Bloc<DynamicLinkEvent, DynamicLinkState> {
     }
 
     if (event is DeepLinkReceived) {
-      yield DynamicLinkToNavigate(path: event.deepLink.path);
+      String path = event.deepLink.path;
+      if( event.deepLink.hasQuery ) {
+        path = "$path?${event.deepLink.query}";
+      }
+      yield DynamicLinkToNavigate(path: path);
     }
 
     if (event is DeepLinkErrorEvent) {

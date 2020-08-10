@@ -34,6 +34,10 @@ class AccountPage extends StatelessWidget {
   static const String paymentMethods = 'Payment Methods';
   static const String profile = 'Profile';
 
+  final String errorMessage;
+
+  AccountPage({this.errorMessage});
+
   @override
   Widget build(BuildContext context) {
     return GestureDetector(
@@ -59,6 +63,8 @@ class AccountPage extends StatelessWidget {
             BlocProvider<AccountBloc>(
               create: (BuildContext context) => AccountBloc(
                 userBloc: BlocProvider.of<UserBloc>(context),
+                analyticsRepository:
+                    RepositoryProvider.of<AnalyticsRepository>(context),
               ),
             ),
             BlocProvider<MembershipBloc>(
@@ -87,121 +93,135 @@ class AccountPage extends StatelessWidget {
               ),
             ),
           ],
-          child: BlocBuilder<AccountBloc, AccountState>(
-            builder: (BuildContext context, AccountState state) {
-              if (state is AccountInitial) {
-                return LoadingIndicator();
+          child: BlocListener<AccountBloc, AccountState>(
+            listener: (BuildContext context, AccountState state) {
+              if (state is AccountError) {
+                Scaffold.of(context)
+                  ..hideCurrentSnackBar()
+                  ..showSnackBar(
+                    SnackBar(
+                      content: Text(errorMessage),
+                      backgroundColor: Colors.red,
+                      duration: Duration(seconds: 5),
+                    ),
+                  );
               }
+            },
+            child: BlocBuilder<AccountBloc, AccountState>(
+              condition: (AccountState previous, AccountState current) =>
+                  !(current is AccountError),
+              builder: (BuildContext context, AccountState state) {
+                if (errorMessage != null) {
+                  BlocProvider.of<AccountBloc>(context)
+                      .add(AccountDisplayError(errorMessage: errorMessage));
+                }
 
-              if (state is AccountLoaded) {
-                return BlocProvider<UserStatsBloc>(
-                  create: (BuildContext context) => UserStatsBloc(
-                    statsRepository:
-                        RepositoryProvider.of<StatsRepository>(context),
-                    userEmail: state.user.email,
-                    selectedGymId: state.user.selectedGymId,
-                    statsBloc: StatsBloc()
-                      ..add(TimespanUpdate(timespan: constants.MONTH)),
-                  ),
-                  child: SingleChildScrollView(
-                    child: Padding(
-                      padding: EdgeInsets.symmetric(horizontal: 10),
-                      child: Column(
-                        crossAxisAlignment: CrossAxisAlignment.start,
-                        children: <Widget>[
-                          if (state.user.hasActivePayments)
-                            Column(
-                              crossAxisAlignment: CrossAxisAlignment.start,
-                              children: <Widget>[
-                                SizedBox(
-                                  height: 40,
-                                ),
-                                Padding(
-                                  padding: EdgeInsets.only(left: 10.0),
-                                  child: Text(
-                                    membership.i18n,
-                                    style: Theme.of(context)
-                                        .textTheme
-                                        .headline1
+                if (state is AccountInitial) {
+                  return LoadingIndicator();
+                }
+
+                if (state is AccountLoaded) {
+                  return BlocProvider<UserStatsBloc>(
+                    create: (BuildContext context) => UserStatsBloc(
+                      statsRepository:
+                          RepositoryProvider.of<StatsRepository>(context),
+                      userEmail: state.user.email,
+                      selectedGymId: state.user.selectedGymId,
+                      statsBloc: StatsBloc()
+                        ..add(TimespanUpdate(timespan: constants.MONTH)),
+                    ),
+                    child: SingleChildScrollView(
+                      child: Padding(
+                        padding: EdgeInsets.symmetric(horizontal: 10),
+                        child: Column(
+                          crossAxisAlignment: CrossAxisAlignment.start,
+                          children: <Widget>[
+                            if (state.user.hasActivePayments)
+                              Column(
+                                crossAxisAlignment: CrossAxisAlignment.start,
+                                children: <Widget>[
+                                  SizedBox(
+                                    height: 40,
                                   ),
-                                ),
-                                Padding(
-                                  padding: EdgeInsets.only(top: 10.0),
-                                  child: MembershipCard(),
-                                ),
-                                SizedBox(
-                                  height: 40,
-                                ),
-                                Padding(
-                                  padding: EdgeInsets.only(left: 10.0),
-                                  child: Text(
-                                    paymentMethods.i18n,
-                                    style: Theme.of(context)
-                                        .textTheme
-                                        .headline1
+                                  Padding(
+                                    padding: EdgeInsets.only(left: 10.0),
+                                    child: Text(membership.i18n,
+                                        style: Theme.of(context)
+                                            .textTheme
+                                            .headline1),
                                   ),
-                                ),
-                                Padding(
-                                  padding: EdgeInsets.only(top: 10.0),
-                                  child: PaymentMethodsCard(),
-                                ),
-                              ],
-                            ),
-                          SizedBox(
-                            height: 40,
-                          ),
-                          Padding(
-                            padding: EdgeInsets.only(left: 10.0),
-                            child: Text(
-                              profile.i18n,
-                              style: Theme.of(context)
-                                  .textTheme
-                                  .headline1
-                            ),
-                          ),
-                          Padding(
-                            padding: EdgeInsets.only(top: 10.0),
-                            child: ProfileCard(
-                                userEmail: state.user.email,
-                                isOwner: state.user.isOwner),
-                          ),
-                          if (state.user.selectedGymId == "test")
+                                  Padding(
+                                    padding: EdgeInsets.only(top: 10.0),
+                                    child: MembershipCard(),
+                                  ),
+                                  SizedBox(
+                                    height: 40,
+                                  ),
+                                  Padding(
+                                    padding: EdgeInsets.only(left: 10.0),
+                                    child: Text(paymentMethods.i18n,
+                                        style: Theme.of(context)
+                                            .textTheme
+                                            .headline1),
+                                  ),
+                                  Padding(
+                                    padding: EdgeInsets.only(top: 10.0),
+                                    child: PaymentMethodsCard(),
+                                  ),
+                                ],
+                              ),
                             SizedBox(
-                              height: 50,
+                              height: 40,
                             ),
-                          if (state.user.selectedGymId == "test")
-                            Row(
-                              mainAxisAlignment: MainAxisAlignment.center,
-                              children: <Widget>[
-                                RaisedButton(
-                                  key: Key('logoutButton'),
-                                  color: Colors.red,
-                                  child: Text("Logout",
-                                      style: TextStyle(
-                                          fontSize: 18,
-                                          color: Colors.white,
-                                          fontWeight: FontWeight.w600)),
-                                  onPressed: () {
-                                    Navigator.popUntil(
-                                      context,
-                                      ModalRoute.withName(
-                                          Navigator.defaultRouteName),
-                                    );
-                                    BlocProvider.of<AuthBloc>(context)
-                                        .add(LogOut());
-                                  },
-                                ),
-                              ],
+                            Padding(
+                              padding: EdgeInsets.only(left: 10.0),
+                              child: Text(profile.i18n,
+                                  style: Theme.of(context).textTheme.headline1),
                             ),
-                        ],
+                            Padding(
+                              padding: EdgeInsets.only(top: 10.0),
+                              child: ProfileCard(
+                                  userEmail: state.user.email,
+                                  isOwner: state.user.isOwner),
+                            ),
+                            if (state.user.selectedGymId == "test")
+                              SizedBox(
+                                height: 50,
+                              ),
+                            if (state.user.selectedGymId == "test")
+                              Row(
+                                mainAxisAlignment: MainAxisAlignment.center,
+                                children: <Widget>[
+                                  RaisedButton(
+                                    key: Key('logoutButton'),
+                                    color: Colors.red,
+                                    child: Text("Logout",
+                                        style: TextStyle(
+                                            fontSize: 18,
+                                            color: Colors.white,
+                                            fontWeight: FontWeight.w600)),
+                                    onPressed: () {
+                                      Navigator.popUntil(
+                                        context,
+                                        ModalRoute.withName(
+                                            Navigator.defaultRouteName),
+                                      );
+                                      BlocProvider.of<AuthBloc>(context)
+                                          .add(LogOut());
+                                    },
+                                  ),
+                                ],
+                              ),
+                          ],
+                        ),
                       ),
                     ),
-                  ),
-                );
-              }
+                  );
+                }
 
-              return ErrorWidget("unkown state for account_page");
-            },
+                return ErrorWidget("unkown state for account_page");
+              },
+            ),
           ),
         ),
       ),
