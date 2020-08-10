@@ -25,8 +25,12 @@ class PlansList extends StatelessWidget {
           ..hideCurrentSnackBar()
           ..showSnackBar(
             SnackBar(
-              content: Text(state.errorMessage.i18n),
-              backgroundColor: Colors.red,
+              content: Text(
+                state.errorMessage.i18n,
+                textAlign: TextAlign.center,
+                style: Theme.of(context).textTheme.bodyText1,
+              ),
+              backgroundColor: Theme.of(context).accentColor.withAlpha(150),
               duration: Duration(seconds: 5),
             ),
           );
@@ -45,7 +49,8 @@ class PlansList extends StatelessWidget {
         return state.when(
             subscriptionPlansInitial: () => LoadingIndicator(),
             subscriptionPlansLoading: () => LoadingIndicator(),
-            subscriptionPlansLoaded: (List<SubscriptionPlan> subscriptionPlans) =>
+            subscriptionPlansLoaded: (List<SubscriptionPlan>
+                    subscriptionPlans) =>
                 Container(
                   constraints: BoxConstraints(
                     maxHeight: MediaQuery.of(context).size.height,
