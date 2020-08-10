@@ -66,12 +66,11 @@ dev_dependencies:
   json_serializable: ^3.3.0
 
 flutter_icons:
-  android: true
+  image_path: "assets/images/main_logo.png"
+  adaptive_icon_foreground: "assets/images/foreground_logo.png"
+  adaptive_icon_background: "#D02E2E"
   ios: true
-  image_path_android: "assets/images/logo.png"
-  image_path_ios: "assets/images/logo-ios.png"
-  adaptive_icon_background: "assets/images/bg.png"
-  adaptive_icon_foreground: "assets/images/fg.png"
+  android: true
 
 # For information on the generic Dart part of this file, see the
 # following page: https://www.dartlang.org/tools/pub/pubspec
