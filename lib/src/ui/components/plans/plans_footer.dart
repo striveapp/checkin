@@ -13,17 +13,19 @@ class PlansFooter extends StatelessWidget {
   Widget build(BuildContext context) {
     return Row(
       children: [
-        RichText(
-          text: TextSpan(children: [
-            TextSpan(
-              text: "${note.i18n}: ",
-              style: Theme.of(context).textTheme.caption.apply(fontWeightDelta: 4),
-            ),
-            TextSpan(
-              text: plansDisclaimer.i18n,
-              style: Theme.of(context).textTheme.caption,
-            ),
-          ]),
+        Expanded(
+          child: RichText(
+            text: TextSpan(children: [
+              TextSpan(
+                text: "${note.i18n}: ",
+                style: Theme.of(context).textTheme.caption.apply(fontWeightDelta: 4),
+              ),
+              TextSpan(
+                text: plansDisclaimer.i18n,
+                style: Theme.of(context).textTheme.caption,
+              ),
+            ]),
+          ),
         ),
       ],
     );
