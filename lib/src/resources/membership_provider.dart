@@ -41,7 +41,7 @@ class MembershipProvider implements MembershipRepository {
     return Membership(
       status: subscription['status'],
       customerId: infos["id"],
-      name: subscription["subscriptionPlanName"],
+      name: subscription["subscriptionPlanName"] ?? "Unknown Subscription",
       currentPeriodEnd: subscription['current_period_end'],
       totalLessonsOfPlan: (subscription['totalLessonsOfPlan'] as int)?.toDouble() ?? double.infinity,
     );
