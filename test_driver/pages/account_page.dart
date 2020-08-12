@@ -14,6 +14,7 @@ class AccountPage {
 
   logout() async {
     prettyPrint("Loggin out");
+    await _driver.scrollIntoView(_logoutButton);
     await _driver.tap(_logoutButton);
     await _driver.waitFor(_loginButton);
   }
