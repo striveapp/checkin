@@ -30,9 +30,12 @@ class _LoginFormState extends State<LoginForm> {
             ..hideCurrentSnackBar()
             ..showSnackBar(
               SnackBar(
-                content:
-                Text(state.errorMessage.i18n),
-                backgroundColor: Colors.red,
+                content: Text(
+                  state.errorMessage.i18n,
+                  textAlign: TextAlign.center,
+                  style: Theme.of(context).textTheme.bodyText1,
+                ),
+                backgroundColor: Theme.of(context).accentColor.withAlpha(150),
                 duration: Duration(seconds: 10),
               ),
             );
@@ -62,9 +65,10 @@ class _LoginFormState extends State<LoginForm> {
                 darkMode: true,
                 borderRadius: 50.0,
               ),
-              SizedBox(height: 20,),
-              if(LocalPlatform().isIOS)
-                AppleSignInButton(),
+              SizedBox(
+                height: 20,
+              ),
+              if (LocalPlatform().isIOS) AppleSignInButton(),
               if (isInDebugMode)
                 Column(
                   children: <Widget>[

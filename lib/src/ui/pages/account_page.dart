@@ -100,8 +100,12 @@ class AccountPage extends StatelessWidget {
                   ..hideCurrentSnackBar()
                   ..showSnackBar(
                     SnackBar(
-                      content: Text(errorMessage),
-                      backgroundColor: Colors.red,
+                      content: Text(
+                        errorMessage,
+                        textAlign: TextAlign.center,
+                        style: Theme.of(context).textTheme.bodyText1,
+                      ),
+                      backgroundColor: Theme.of(context).accentColor.withAlpha(150),
                       duration: Duration(seconds: 5),
                     ),
                   );

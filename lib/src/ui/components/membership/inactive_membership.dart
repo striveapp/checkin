@@ -25,6 +25,7 @@ class InactiveMembershipView extends StatelessWidget {
           children: <Widget>[
             Text(
               notActiveSubscription.i18n,
+              textAlign: TextAlign.center,
               style:
                   Theme.of(context).textTheme.headline3.apply(fontSizeDelta: 1),
             ),
