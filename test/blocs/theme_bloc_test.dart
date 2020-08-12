@@ -13,18 +13,18 @@ void main() {
     group("initial state", () {
       test("initial state is AppTheme", () {
         themeBloc = ThemeBloc();
-        expect(themeBloc.initialState, AppTheme(themeData: theme[ThemeType.Light]));
+        expect(themeBloc.initialState, AppTheme(themeData: theme[ThemeType.NewLight]));
       });
     });
 
     group("ThemeUpdated", () {
       test("should emits AppTheme and passing the new ThemeType", () {
         themeBloc = ThemeBloc();
-        final ThemeType newThemeType = ThemeType.NewLight;
+        final ThemeType newThemeType = ThemeType.Dark;
         themeBloc.add(ThemeEvent.themeUpdated(themeType: newThemeType));
 
         final expectedState = [
-          AppTheme(themeData: theme[ThemeType.Light]),
+          AppTheme(themeData: theme[ThemeType.NewLight]),
           AppTheme(themeData: theme[newThemeType]),
         ];
 
