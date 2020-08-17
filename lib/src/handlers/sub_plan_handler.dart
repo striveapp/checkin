@@ -6,7 +6,7 @@ import 'package:checkin/src/repositories/storage_repository.dart';
 import 'package:checkin/src/repositories/user_repository.dart';
 import 'package:checkin/src/ui/pages/sub_plan_page.dart';
 import 'package:fluro/fluro.dart';
-import 'package:flutter/widgets.dart';
+import 'package:flutter/widgets.dart' hide Router;
 import 'package:flutter_bloc/flutter_bloc.dart';
 
 class SubPlanHandler extends Handler implements RegisterableHandler {

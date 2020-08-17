@@ -1,7 +1,7 @@
 import 'package:checkin/src/handlers/registerable_handler.dart';
 import 'package:checkin/src/ui/pages/payment_success_page.dart';
 import 'package:fluro/fluro.dart';
-import 'package:flutter/material.dart';
+import 'package:flutter/widgets.dart' hide Router;
 
 class PaymentSuccessHandler extends Handler implements RegisterableHandler {
   @override

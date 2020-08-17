@@ -6,8 +6,7 @@ import 'package:checkin/src/repositories/storage_repository.dart';
 import 'package:checkin/src/repositories/user_repository.dart';
 import 'package:checkin/src/ui/pages/account_page.dart';
 import 'package:fluro/fluro.dart';
-import 'package:flutter/material.dart';
-import 'package:flutter/widgets.dart';
+import 'package:flutter/widgets.dart' hide Router;
 import 'package:flutter_bloc/flutter_bloc.dart';
 
 class AccountHandler extends Handler implements RegisterableHandler {

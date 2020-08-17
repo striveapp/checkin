@@ -6,8 +6,8 @@ import 'package:checkin/src/repositories/storage_repository.dart';
 import 'package:checkin/src/repositories/user_repository.dart';
 import 'package:checkin/src/ui/pages/stats_page.dart';
 import 'package:fluro/fluro.dart';
-import 'package:flutter/widgets.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
+import 'package:flutter/widgets.dart' hide Router;
 
 class StatsHandler extends Handler implements RegisterableHandler {
   static final String userEmail = "userEmail";

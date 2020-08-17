@@ -3,3 +3,4 @@ analyzer:
     - build/**
     - lib/**/*.g.dart
     - lib/**/*.freezed.dart
+    - test/**/*.freezed.dart
