@@ -56,7 +56,8 @@ dev_dependencies:
   test: ">=1.6.3 <2.0.0"
   mockito: ^4.1.1
   bloc_test: ^4.0.0
-  flutter_launcher_icons: "^0.7.5"
+  flutter_launcher_icons: ^0.7.5
+  flutter_native_splash: ^0.1.9
   stack_trace: ^1.9.3
   flutter_test:
     sdk: flutter
@@ -71,6 +72,11 @@ flutter_icons:
   adaptive_icon_background: "#D02E2E"
   ios: true
   android: true
+
+flutter_native_splash:
+  image: assets/images/splash.png
+  color: "#D02E2E"
+  android_disable_fullscreen: true
 
 # For information on the generic Dart part of this file, see the
 # following page: https://www.dartlang.org/tools/pub/pubspec

@@ -42,6 +42,12 @@ create-app-icons:
 	@flutter pub get
 	flutter pub run flutter_launcher_icons:main
 
+.PHONY: generate-splash-screen
+generate-splash-screen:
+	@flutter pub get
+	flutter clean
+	flutter pub pub run flutter_native_splash:create
+
 .PHONY: start-debug-view
 start-debug-view:
 	$(info ---------------------)
