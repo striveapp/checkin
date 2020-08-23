@@ -8,7 +8,7 @@ import 'package:flutter_bloc/flutter_bloc.dart';
 import '../loading_indicator.dart';
 
 class EmptyPaymentMethod extends StatelessWidget {
-  static const String connectBankAccount = 'Connect Bank Account';
+  static const String connectBankAccount = 'Connect your bank account';
   static const String noRegisteredPaymentMethod = 'There are no registered payment methods';
 
   final String customerEmail;

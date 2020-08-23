@@ -211,7 +211,7 @@ extension Localization on String {
     'en': ActiveMembershipView.nextBilling,
     'es': 'El siguiente pago es el',
   } + {
-    'en': ActiveMembershipView.plan,
+    'en': ActiveMembershipView.yourSubscription,
     'es': 'Tu subscripción',
   } + {
     'en': ActiveMembershipView.remainingSessions,
@@ -220,8 +220,8 @@ extension Localization on String {
     'en': ProfileCard.enterYourName,
     'es': 'Escribe tu nombre',
   } + {
-    'en': InactiveMembershipView.subscribe,
-    'es': 'Subscribirse',
+    'en': InactiveMembershipView.chooseYourSubscription,
+    'es': 'Escoje tu subscripción',
   } + {
     'en': InactiveMembershipView.notActiveSubscription,
     'es': 'Tu subscripción no está activa todavía',
@@ -296,8 +296,8 @@ extension Localization on String {
     'en': PlansFooter.note,
     'es': 'nota'
   } + {
-    'en': PlansFooter.plansDisclaimer,
-    'es': 'los precios mostrados aquí representan los del plan anual'
+    'en': PlansFooter.subscriptionDisclaimer,
+    'es': 'los precios mostrados aquí representan los de la subscripción anual'
   } + {
     'en': PriceFooter.note,
     'es': 'nota'
@@ -306,13 +306,13 @@ extension Localization on String {
     'es': 'no podrá reducir el período de tiempo de su suscripción'
   } + {
     'en': PlansList.noPlansYet,
-    'es': 'No hay planes disponibles todavía'
+    'es': 'No hay subscripciónes disponibles todavía'
   } + {
-    'en': PlansCallout.chooseYourPlan,
-    'es': 'Escoge el plan que mejor se adapta a tus necesidades'
+    'en': PlansCallout.chooseYourSubscription,
+    'es': 'Escoge la subscripción que mejor se adapta a tus necesidades'
   } + {
-    'en': PlansPage.plans,
-    'es': 'Planos'
+    'en': PlansPage.subscriptions,
+    'es': 'Subscripciones'
   } + {
     'en': SubPlanPage.prices,
     'es': 'Precios'

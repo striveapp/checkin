@@ -6,7 +6,7 @@ class InactiveMembershipView extends StatelessWidget {
   final String customerId;
   static const String notActiveSubscription =
       'Your subscription is not active yet';
-  static const String subscribe = 'Subscribe';
+  static const String chooseYourSubscription = 'Choose your subscription';
 
   const InactiveMembershipView({
     Key key,
@@ -31,7 +31,7 @@ class InactiveMembershipView extends StatelessWidget {
             ),
             RaisedButton(
               child: Text(
-                subscribe.i18n,
+                chooseYourSubscription.i18n,
                 style: Theme.of(context).textTheme.button,
               ),
               onPressed: () {

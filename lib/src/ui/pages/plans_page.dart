@@ -19,7 +19,7 @@ import 'package:flutter_bloc/flutter_bloc.dart';
 class PlansPage extends StatelessWidget {
   final String customerId;
 
-  static const String plans = 'Plans';
+  static const String subscriptions = 'Subscriptions';
 
   PlansPage({
     Key key,
@@ -30,7 +30,7 @@ class PlansPage extends StatelessWidget {
   Widget build(BuildContext context) {
     return Scaffold(
       appBar: BaseAppBar(
-        title: plans.i18n,
+        title: subscriptions.i18n,
         showUserImage: false,
       ),
       body: MultiBlocProvider(
