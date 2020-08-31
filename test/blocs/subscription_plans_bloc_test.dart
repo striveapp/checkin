@@ -111,24 +111,9 @@ void main() {
       });
 
       test(
-          "should emits SubscriptionPlansLoaded with plans sorted by price (desc)",
+          "should emits SubscriptionPlansLoaded with plans sorted by price (asc)",
           () {
         List<SubscriptionPlan> testPlans = [
-          SubscriptionPlan.simpleSubscription(
-              name: "test1",
-              interval: "int1",
-              currency: "EUR",
-              code: "plan1",
-              price: 1),
-          SubscriptionPlan.simpleSubscription(
-              name: "test1",
-              interval: "int1",
-              currency: "EUR",
-              code: "plan1",
-              price: 2)
-        ];
-
-        List<SubscriptionPlan> sortedTestPlans = [
           SubscriptionPlan.simpleSubscription(
               name: "test1",
               interval: "int1",
@@ -140,7 +125,22 @@ void main() {
               interval: "int1",
               currency: "EUR",
               code: "plan1",
+              price: 1)
+        ];
+
+        List<SubscriptionPlan> sortedTestPlans = [
+          SubscriptionPlan.simpleSubscription(
+              name: "test1",
+              interval: "int1",
+              currency: "EUR",
+              code: "plan1",
               price: 1),
+          SubscriptionPlan.simpleSubscription(
+              name: "test1",
+              interval: "int1",
+              currency: "EUR",
+              code: "plan1",
+              price: 2),
         ];
 
         mockSubscriptionPlansRepository = MockSubscriptionPlansRepository();

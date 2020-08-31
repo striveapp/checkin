@@ -78,12 +78,12 @@ class SubscriptionPlansBloc
 
   int comparePlans(SubscriptionPlan planA, SubscriptionPlan planB) {
     if( planA is SimpleSubscription && planB is SimpleSubscription ) {
-      return planA.price.compareTo(planB.price) * -1;
+      return planA.price.compareTo(planB.price);
     }
 
 
     if( planA is SubscriptionWithPrices && planB is SubscriptionWithPrices ) {
-      return planA.startingPrice.compareTo(planB.startingPrice) * - 1;
+      return planA.startingPrice.compareTo(planB.startingPrice);
     }
 
     // todo mixed cases not yet handled
