@@ -87,8 +87,7 @@ class AuthProvider implements AuthRepository {
 
   Future<User> signInWithApple() async {
     if (!await SignInWithApple.isAvailable()) {
-      throw Exception(
-          "Sign in with apple is not supported for your version of IOS");
+      throw AppleSignInNotSupportedException();
     }
 
     final appleAuth = await SignInWithApple.getAppleIDCredential(
@@ -135,5 +134,19 @@ class AuthProvider implements AuthRepository {
     debugPrint("test firebaseUser is [$firebaseUser]");
 
     return User.fromFirebaseUser(firebaseUser);
+  }
+}
+
+class AppleSignInNotSupportedException implements Exception {
+
+  String _message;
+
+  AppleSignInNotSupportedException([String message = 'Sign in with Apple is not supported for your version of IOS']) {
+    this._message = message;
+  }
+
+  @override
+  String toString() {
+    return _message;
   }
 }

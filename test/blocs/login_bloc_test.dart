@@ -3,6 +3,7 @@ import 'package:checkin/src/models/user.dart';
 import 'package:checkin/src/repositories/analytics_repository.dart';
 import 'package:checkin/src/repositories/auth_repository.dart';
 import 'package:checkin/src/repositories/user_repository.dart';
+import 'package:checkin/src/resources/auth_provider.dart';
 import 'package:mockito/mockito.dart';
 import 'package:test/test.dart';
 
@@ -193,6 +194,32 @@ void main() {
             verify(mockAnalyticsRepository.loginError(
               err: error,
               stackTrace: argThat(isA<StackTrace>(), named: 'stackTrace'),
+            ));
+          });
+
+      test(
+          "should emit LoginFailure if apple sign in is not supported and track the error",
+              () async {
+            var error =  AppleSignInNotSupportedException();
+            when(mockAuthRepository.signInWithApple()).thenThrow(error);
+
+            final expectedState = [
+              LoginInitial(),
+              LoginFailure(
+                  errorMessage: "Sign in with Apple is not supported for your version of IOS"),
+            ];
+
+            await expectLater(
+              loginBloc,
+              emitsInOrder(expectedState),
+            );
+
+            verifyNever(
+                mockAnalyticsRepository.setUserProperties(fakeLoggedUser.uid));
+            verifyNever(mockAnalyticsRepository.logLoginWithGoogleSignIn());
+            verifyNever(mockUserRepository.createUser(fakeLoggedUser));
+            verify(mockAnalyticsRepository.loginError(
+              err: error,
             ));
           });
     });
