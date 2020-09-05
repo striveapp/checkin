@@ -4,6 +4,7 @@ import 'package:checkin/src/blocs/login/login_state.dart';
 import 'package:checkin/src/repositories/analytics_repository.dart';
 import 'package:checkin/src/repositories/auth_repository.dart';
 import 'package:checkin/src/repositories/user_repository.dart';
+import 'package:checkin/src/resources/auth_provider.dart' hide AuthProvider;
 import 'package:flutter/foundation.dart';
 import 'package:meta/meta.dart';
 
@@ -63,6 +64,11 @@ class LoginBloc extends Bloc<LoginEvent, LoginState> {
           debugPrint("Unable to login, loggedUser: $loggedUser");
           yield LoginFailure(errorMessage: loginError);
         }
+      } on AppleSignInNotSupportedException catch(err) {
+        await _analyticsRepository.loginError(
+          err: err,
+        );
+        yield LoginFailure(errorMessage: err.toString());
       } catch (err, stackTrace) {
         debugPrint("Unexpected error, login failed [$err]");
         await _analyticsRepository.loginError(
