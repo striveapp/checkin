@@ -1,5 +1,5 @@
 // GENERATED CODE - DO NOT MODIFY BY HAND
-// ignore_for_file: deprecated_member_use_from_same_package, use_function_type_syntax_for_parameters, unnecessary_const, avoid_init_to_null, invalid_override_different_default_values_named
+// ignore_for_file: deprecated_member_use, deprecated_member_use_from_same_package, use_function_type_syntax_for_parameters, unnecessary_const, avoid_init_to_null, invalid_override_different_default_values_named, prefer_expression_function_bodies
 
 part of 'user_event.dart';
 
@@ -12,30 +12,35 @@ T _$identity<T>(T value) => value;
 class _$UserEventTearOff {
   const _$UserEventTearOff();
 
+// ignore: unused_element
   UserUpdated userUpdated({User user}) {
     return UserUpdated(
       user: user,
     );
   }
 
+// ignore: unused_element
   UpdateName updateName({String newName}) {
     return UpdateName(
       newName: newName,
     );
   }
 
+// ignore: unused_element
   UpdateImageUrl updateImageUrl({String userEmail}) {
     return UpdateImageUrl(
       userEmail: userEmail,
     );
   }
 
+// ignore: unused_element
   UpdateGrade updateGrade({String newGrade}) {
     return UpdateGrade(
       newGrade: newGrade,
     );
   }
 
+// ignore: unused_element
   UpdateSelectedGym updateSelectedGym(
       {String userEmail, String newSelectedGym}) {
     return UpdateSelectedGym(
@@ -44,6 +49,7 @@ class _$UserEventTearOff {
     );
   }
 
+// ignore: unused_element
   UpdateFcmToken updateFcmToken({String userEmail, String newToken}) {
     return UpdateFcmToken(
       userEmail: userEmail,

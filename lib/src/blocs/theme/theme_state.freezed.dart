@@ -1,5 +1,5 @@
 // GENERATED CODE - DO NOT MODIFY BY HAND
-// ignore_for_file: deprecated_member_use_from_same_package, use_function_type_syntax_for_parameters, unnecessary_const, avoid_init_to_null, invalid_override_different_default_values_named
+// ignore_for_file: deprecated_member_use, deprecated_member_use_from_same_package, use_function_type_syntax_for_parameters, unnecessary_const, avoid_init_to_null, invalid_override_different_default_values_named, prefer_expression_function_bodies
 
 part of 'theme_state.dart';
 
@@ -12,6 +12,7 @@ T _$identity<T>(T value) => value;
 class _$ThemeStateTearOff {
   const _$ThemeStateTearOff();
 
+// ignore: unused_element
   AppTheme appTheme({ThemeData themeData}) {
     return AppTheme(
       themeData: themeData,
@@ -24,6 +25,25 @@ const $ThemeState = _$ThemeStateTearOff();
 
 mixin _$ThemeState {
   ThemeData get themeData;
+
+  @optionalTypeArgs
+  Result when<Result extends Object>({
+    @required Result appTheme(ThemeData themeData),
+  });
+  @optionalTypeArgs
+  Result maybeWhen<Result extends Object>({
+    Result appTheme(ThemeData themeData),
+    @required Result orElse(),
+  });
+  @optionalTypeArgs
+  Result map<Result extends Object>({
+    @required Result appTheme(AppTheme value),
+  });
+  @optionalTypeArgs
+  Result maybeMap<Result extends Object>({
+    Result appTheme(AppTheme value),
+    @required Result orElse(),
+  });
 
   $ThemeStateCopyWith<ThemeState> get copyWith;
 }
@@ -114,6 +134,50 @@ class _$AppTheme with DiagnosticableTreeMixin implements AppTheme {
   @override
   $AppThemeCopyWith<AppTheme> get copyWith =>
       _$AppThemeCopyWithImpl<AppTheme>(this, _$identity);
+
+  @override
+  @optionalTypeArgs
+  Result when<Result extends Object>({
+    @required Result appTheme(ThemeData themeData),
+  }) {
+    assert(appTheme != null);
+    return appTheme(themeData);
+  }
+
+  @override
+  @optionalTypeArgs
+  Result maybeWhen<Result extends Object>({
+    Result appTheme(ThemeData themeData),
+    @required Result orElse(),
+  }) {
+    assert(orElse != null);
+    if (appTheme != null) {
+      return appTheme(themeData);
+    }
+    return orElse();
+  }
+
+  @override
+  @optionalTypeArgs
+  Result map<Result extends Object>({
+    @required Result appTheme(AppTheme value),
+  }) {
+    assert(appTheme != null);
+    return appTheme(this);
+  }
+
+  @override
+  @optionalTypeArgs
+  Result maybeMap<Result extends Object>({
+    Result appTheme(AppTheme value),
+    @required Result orElse(),
+  }) {
+    assert(orElse != null);
+    if (appTheme != null) {
+      return appTheme(this);
+    }
+    return orElse();
+  }
 }
 
 abstract class AppTheme implements ThemeState {

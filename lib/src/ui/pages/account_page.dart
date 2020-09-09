@@ -19,10 +19,9 @@ import 'package:checkin/src/resources/auth_provider.dart';
 import 'package:checkin/src/resources/gym_provider.dart';
 import 'package:checkin/src/resources/membership_provider.dart';
 import 'package:checkin/src/resources/payment_method_provider.dart';
+import 'package:checkin/src/ui/components/account/payment.dart';
 import 'package:checkin/src/ui/components/base_app_bar.dart';
 import 'package:checkin/src/ui/components/loading_indicator.dart';
-import 'package:checkin/src/ui/components/membership/membership_card.dart';
-import 'package:checkin/src/ui/components/payment_methods/payment_method_card.dart';
 import 'package:checkin/src/ui/components/profile_card.dart';
 import 'package:checkin/src/util/url_launcher_util.dart';
 import 'package:flutter/material.dart';
@@ -30,8 +29,6 @@ import 'package:flutter_bloc/flutter_bloc.dart';
 
 class AccountPage extends StatelessWidget {
   static const String account = 'Account';
-  static const String membership = 'Membership';
-  static const String paymentMethods = 'Payment Methods';
   static const String profile = 'Profile';
 
   final String errorMessage;
@@ -140,40 +137,7 @@ class AccountPage extends StatelessWidget {
                         child: Column(
                           crossAxisAlignment: CrossAxisAlignment.start,
                           children: <Widget>[
-                            if (state.user.hasActivePayments)
-                              Column(
-                                crossAxisAlignment: CrossAxisAlignment.start,
-                                children: <Widget>[
-                                  SizedBox(
-                                    height: 40,
-                                  ),
-                                  Padding(
-                                    padding: EdgeInsets.only(left: 10.0),
-                                    child: Text(membership.i18n,
-                                        style: Theme.of(context)
-                                            .textTheme
-                                            .headline1),
-                                  ),
-                                  Padding(
-                                    padding: EdgeInsets.only(top: 10.0),
-                                    child: MembershipCard(),
-                                  ),
-                                  SizedBox(
-                                    height: 40,
-                                  ),
-                                  Padding(
-                                    padding: EdgeInsets.only(left: 10.0),
-                                    child: Text(paymentMethods.i18n,
-                                        style: Theme.of(context)
-                                            .textTheme
-                                            .headline1),
-                                  ),
-                                  Padding(
-                                    padding: EdgeInsets.only(top: 10.0),
-                                    child: PaymentMethodsCard(),
-                                  ),
-                                ],
-                              ),
+                            Payment(userHasActivePayments: state.user.hasActivePayments),
                             SizedBox(
                               height: 40,
                             ),

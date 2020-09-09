@@ -1,5 +1,5 @@
 // GENERATED CODE - DO NOT MODIFY BY HAND
-// ignore_for_file: deprecated_member_use_from_same_package, use_function_type_syntax_for_parameters, unnecessary_const, avoid_init_to_null, invalid_override_different_default_values_named
+// ignore_for_file: deprecated_member_use, deprecated_member_use_from_same_package, use_function_type_syntax_for_parameters, unnecessary_const, avoid_init_to_null, invalid_override_different_default_values_named, prefer_expression_function_bodies
 
 part of 'gym.dart';
 
@@ -12,16 +12,19 @@ T _$identity<T>(T value) => value;
 class _$GymTearOff {
   const _$GymTearOff();
 
+// ignore: unused_element
   _Gym call(
       {@required String id,
       @required String paymentAppDomain,
       @required String host,
-      @required String stripePublicKey}) {
+      @required String stripePublicKey,
+      @required bool hasActivePayments}) {
     return _Gym(
       id: id,
       paymentAppDomain: paymentAppDomain,
       host: host,
       stripePublicKey: stripePublicKey,
+      hasActivePayments: hasActivePayments,
     );
   }
 }
@@ -34,6 +37,7 @@ mixin _$Gym {
   String get paymentAppDomain;
   String get host;
   String get stripePublicKey;
+  bool get hasActivePayments;
 
   $GymCopyWith<Gym> get copyWith;
 }
@@ -45,7 +49,8 @@ abstract class $GymCopyWith<$Res> {
       {String id,
       String paymentAppDomain,
       String host,
-      String stripePublicKey});
+      String stripePublicKey,
+      bool hasActivePayments});
 }
 
 class _$GymCopyWithImpl<$Res> implements $GymCopyWith<$Res> {
@@ -61,6 +66,7 @@ class _$GymCopyWithImpl<$Res> implements $GymCopyWith<$Res> {
     Object paymentAppDomain = freezed,
     Object host = freezed,
     Object stripePublicKey = freezed,
+    Object hasActivePayments = freezed,
   }) {
     return _then(_value.copyWith(
       id: id == freezed ? _value.id : id as String,
@@ -71,6 +77,9 @@ class _$GymCopyWithImpl<$Res> implements $GymCopyWith<$Res> {
       stripePublicKey: stripePublicKey == freezed
           ? _value.stripePublicKey
           : stripePublicKey as String,
+      hasActivePayments: hasActivePayments == freezed
+          ? _value.hasActivePayments
+          : hasActivePayments as bool,
     ));
   }
 }
@@ -83,7 +92,8 @@ abstract class _$GymCopyWith<$Res> implements $GymCopyWith<$Res> {
       {String id,
       String paymentAppDomain,
       String host,
-      String stripePublicKey});
+      String stripePublicKey,
+      bool hasActivePayments});
 }
 
 class __$GymCopyWithImpl<$Res> extends _$GymCopyWithImpl<$Res>
@@ -100,6 +110,7 @@ class __$GymCopyWithImpl<$Res> extends _$GymCopyWithImpl<$Res>
     Object paymentAppDomain = freezed,
     Object host = freezed,
     Object stripePublicKey = freezed,
+    Object hasActivePayments = freezed,
   }) {
     return _then(_Gym(
       id: id == freezed ? _value.id : id as String,
@@ -110,6 +121,9 @@ class __$GymCopyWithImpl<$Res> extends _$GymCopyWithImpl<$Res>
       stripePublicKey: stripePublicKey == freezed
           ? _value.stripePublicKey
           : stripePublicKey as String,
+      hasActivePayments: hasActivePayments == freezed
+          ? _value.hasActivePayments
+          : hasActivePayments as bool,
     ));
   }
 }
@@ -119,11 +133,13 @@ class _$_Gym with DiagnosticableTreeMixin implements _Gym {
       {@required this.id,
       @required this.paymentAppDomain,
       @required this.host,
-      @required this.stripePublicKey})
+      @required this.stripePublicKey,
+      @required this.hasActivePayments})
       : assert(id != null),
         assert(paymentAppDomain != null),
         assert(host != null),
-        assert(stripePublicKey != null);
+        assert(stripePublicKey != null),
+        assert(hasActivePayments != null);
 
   @override
   final String id;
@@ -133,10 +149,12 @@ class _$_Gym with DiagnosticableTreeMixin implements _Gym {
   final String host;
   @override
   final String stripePublicKey;
+  @override
+  final bool hasActivePayments;
 
   @override
   String toString({DiagnosticLevel minLevel = DiagnosticLevel.info}) {
-    return 'Gym(id: $id, paymentAppDomain: $paymentAppDomain, host: $host, stripePublicKey: $stripePublicKey)';
+    return 'Gym(id: $id, paymentAppDomain: $paymentAppDomain, host: $host, stripePublicKey: $stripePublicKey, hasActivePayments: $hasActivePayments)';
   }
 
   @override
@@ -147,7 +165,8 @@ class _$_Gym with DiagnosticableTreeMixin implements _Gym {
       ..add(DiagnosticsProperty('id', id))
       ..add(DiagnosticsProperty('paymentAppDomain', paymentAppDomain))
       ..add(DiagnosticsProperty('host', host))
-      ..add(DiagnosticsProperty('stripePublicKey', stripePublicKey));
+      ..add(DiagnosticsProperty('stripePublicKey', stripePublicKey))
+      ..add(DiagnosticsProperty('hasActivePayments', hasActivePayments));
   }
 
   @override
@@ -163,7 +182,10 @@ class _$_Gym with DiagnosticableTreeMixin implements _Gym {
                 const DeepCollectionEquality().equals(other.host, host)) &&
             (identical(other.stripePublicKey, stripePublicKey) ||
                 const DeepCollectionEquality()
-                    .equals(other.stripePublicKey, stripePublicKey)));
+                    .equals(other.stripePublicKey, stripePublicKey)) &&
+            (identical(other.hasActivePayments, hasActivePayments) ||
+                const DeepCollectionEquality()
+                    .equals(other.hasActivePayments, hasActivePayments)));
   }
 
   @override
@@ -172,7 +194,8 @@ class _$_Gym with DiagnosticableTreeMixin implements _Gym {
       const DeepCollectionEquality().hash(id) ^
       const DeepCollectionEquality().hash(paymentAppDomain) ^
       const DeepCollectionEquality().hash(host) ^
-      const DeepCollectionEquality().hash(stripePublicKey);
+      const DeepCollectionEquality().hash(stripePublicKey) ^
+      const DeepCollectionEquality().hash(hasActivePayments);
 
   @override
   _$GymCopyWith<_Gym> get copyWith =>
@@ -184,7 +207,8 @@ abstract class _Gym implements Gym {
       {@required String id,
       @required String paymentAppDomain,
       @required String host,
-      @required String stripePublicKey}) = _$_Gym;
+      @required String stripePublicKey,
+      @required bool hasActivePayments}) = _$_Gym;
 
   @override
   String get id;
@@ -194,6 +218,8 @@ abstract class _Gym implements Gym {
   String get host;
   @override
   String get stripePublicKey;
+  @override
+  bool get hasActivePayments;
   @override
   _$GymCopyWith<_Gym> get copyWith;
 }

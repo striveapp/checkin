@@ -17,6 +17,7 @@ class GymProvider implements GymRepository {
               paymentAppDomain: gym.data["paymentAppDomain"],
               host: gym.data["host"],
               stripePublicKey: gym.data["stripePublicKey"],
+              hasActivePayments: gym.data["hasActivePayments"] ?? false,
             ));
   }
 }

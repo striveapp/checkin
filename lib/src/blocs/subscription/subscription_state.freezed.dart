@@ -1,5 +1,5 @@
 // GENERATED CODE - DO NOT MODIFY BY HAND
-// ignore_for_file: deprecated_member_use_from_same_package, use_function_type_syntax_for_parameters, unnecessary_const, avoid_init_to_null, invalid_override_different_default_values_named
+// ignore_for_file: deprecated_member_use, deprecated_member_use_from_same_package, use_function_type_syntax_for_parameters, unnecessary_const, avoid_init_to_null, invalid_override_different_default_values_named, prefer_expression_function_bodies
 
 part of 'subscription_state.dart';
 
@@ -12,18 +12,22 @@ T _$identity<T>(T value) => value;
 class _$SubscriptionStateTearOff {
   const _$SubscriptionStateTearOff();
 
+// ignore: unused_element
   SubscriptionInitial subscriptionInitial() {
     return const SubscriptionInitial();
   }
 
+// ignore: unused_element
   SubscriptionSuccess subscriptionSuccess() {
     return const SubscriptionSuccess();
   }
 
+// ignore: unused_element
   SubscriptionLoading subscriptionLoading() {
     return const SubscriptionLoading();
   }
 
+// ignore: unused_element
   SubscriptionError subscriptionError({String errorMessage}) {
     return SubscriptionError(
       errorMessage: errorMessage,

@@ -1,5 +1,5 @@
 // GENERATED CODE - DO NOT MODIFY BY HAND
-// ignore_for_file: deprecated_member_use_from_same_package, use_function_type_syntax_for_parameters, unnecessary_const, avoid_init_to_null, invalid_override_different_default_values_named
+// ignore_for_file: deprecated_member_use, deprecated_member_use_from_same_package, use_function_type_syntax_for_parameters, unnecessary_const, avoid_init_to_null, invalid_override_different_default_values_named, prefer_expression_function_bodies
 
 part of 'subscription_event.dart';
 
@@ -12,6 +12,7 @@ T _$identity<T>(T value) => value;
 class _$SubscriptionEventTearOff {
   const _$SubscriptionEventTearOff();
 
+// ignore: unused_element
   Subscribe subscribe({@required String priceId, @required String customerId}) {
     return Subscribe(
       priceId: priceId,
@@ -26,6 +27,25 @@ const $SubscriptionEvent = _$SubscriptionEventTearOff();
 mixin _$SubscriptionEvent {
   String get priceId;
   String get customerId;
+
+  @optionalTypeArgs
+  Result when<Result extends Object>({
+    @required Result subscribe(String priceId, String customerId),
+  });
+  @optionalTypeArgs
+  Result maybeWhen<Result extends Object>({
+    Result subscribe(String priceId, String customerId),
+    @required Result orElse(),
+  });
+  @optionalTypeArgs
+  Result map<Result extends Object>({
+    @required Result subscribe(Subscribe value),
+  });
+  @optionalTypeArgs
+  Result maybeMap<Result extends Object>({
+    Result subscribe(Subscribe value),
+    @required Result orElse(),
+  });
 
   $SubscriptionEventCopyWith<SubscriptionEvent> get copyWith;
 }
@@ -133,6 +153,50 @@ class _$Subscribe with DiagnosticableTreeMixin implements Subscribe {
   @override
   $SubscribeCopyWith<Subscribe> get copyWith =>
       _$SubscribeCopyWithImpl<Subscribe>(this, _$identity);
+
+  @override
+  @optionalTypeArgs
+  Result when<Result extends Object>({
+    @required Result subscribe(String priceId, String customerId),
+  }) {
+    assert(subscribe != null);
+    return subscribe(priceId, customerId);
+  }
+
+  @override
+  @optionalTypeArgs
+  Result maybeWhen<Result extends Object>({
+    Result subscribe(String priceId, String customerId),
+    @required Result orElse(),
+  }) {
+    assert(orElse != null);
+    if (subscribe != null) {
+      return subscribe(priceId, customerId);
+    }
+    return orElse();
+  }
+
+  @override
+  @optionalTypeArgs
+  Result map<Result extends Object>({
+    @required Result subscribe(Subscribe value),
+  }) {
+    assert(subscribe != null);
+    return subscribe(this);
+  }
+
+  @override
+  @optionalTypeArgs
+  Result maybeMap<Result extends Object>({
+    Result subscribe(Subscribe value),
+    @required Result orElse(),
+  }) {
+    assert(orElse != null);
+    if (subscribe != null) {
+      return subscribe(this);
+    }
+    return orElse();
+  }
 }
 
 abstract class Subscribe implements SubscriptionEvent {

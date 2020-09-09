@@ -1,5 +1,5 @@
 // GENERATED CODE - DO NOT MODIFY BY HAND
-// ignore_for_file: deprecated_member_use_from_same_package, use_function_type_syntax_for_parameters, unnecessary_const, avoid_init_to_null, invalid_override_different_default_values_named
+// ignore_for_file: deprecated_member_use, deprecated_member_use_from_same_package, use_function_type_syntax_for_parameters, unnecessary_const, avoid_init_to_null, invalid_override_different_default_values_named, prefer_expression_function_bodies
 
 part of 'gym_event.dart';
 
@@ -12,6 +12,7 @@ T _$identity<T>(T value) => value;
 class _$GymEventTearOff {
   const _$GymEventTearOff();
 
+// ignore: unused_element
   GymUpdated gymUpdated({@required Gym gym}) {
     return GymUpdated(
       gym: gym,
@@ -24,6 +25,25 @@ const $GymEvent = _$GymEventTearOff();
 
 mixin _$GymEvent {
   Gym get gym;
+
+  @optionalTypeArgs
+  Result when<Result extends Object>({
+    @required Result gymUpdated(Gym gym),
+  });
+  @optionalTypeArgs
+  Result maybeWhen<Result extends Object>({
+    Result gymUpdated(Gym gym),
+    @required Result orElse(),
+  });
+  @optionalTypeArgs
+  Result map<Result extends Object>({
+    @required Result gymUpdated(GymUpdated value),
+  });
+  @optionalTypeArgs
+  Result maybeMap<Result extends Object>({
+    Result gymUpdated(GymUpdated value),
+    @required Result orElse(),
+  });
 
   $GymEventCopyWith<GymEvent> get copyWith;
 }
@@ -126,6 +146,50 @@ class _$GymUpdated with DiagnosticableTreeMixin implements GymUpdated {
   @override
   $GymUpdatedCopyWith<GymUpdated> get copyWith =>
       _$GymUpdatedCopyWithImpl<GymUpdated>(this, _$identity);
+
+  @override
+  @optionalTypeArgs
+  Result when<Result extends Object>({
+    @required Result gymUpdated(Gym gym),
+  }) {
+    assert(gymUpdated != null);
+    return gymUpdated(gym);
+  }
+
+  @override
+  @optionalTypeArgs
+  Result maybeWhen<Result extends Object>({
+    Result gymUpdated(Gym gym),
+    @required Result orElse(),
+  }) {
+    assert(orElse != null);
+    if (gymUpdated != null) {
+      return gymUpdated(gym);
+    }
+    return orElse();
+  }
+
+  @override
+  @optionalTypeArgs
+  Result map<Result extends Object>({
+    @required Result gymUpdated(GymUpdated value),
+  }) {
+    assert(gymUpdated != null);
+    return gymUpdated(this);
+  }
+
+  @override
+  @optionalTypeArgs
+  Result maybeMap<Result extends Object>({
+    Result gymUpdated(GymUpdated value),
+    @required Result orElse(),
+  }) {
+    assert(orElse != null);
+    if (gymUpdated != null) {
+      return gymUpdated(this);
+    }
+    return orElse();
+  }
 }
 
 abstract class GymUpdated implements GymEvent {

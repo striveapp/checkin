@@ -1,5 +1,5 @@
 // GENERATED CODE - DO NOT MODIFY BY HAND
-// ignore_for_file: deprecated_member_use_from_same_package, use_function_type_syntax_for_parameters, unnecessary_const, avoid_init_to_null, invalid_override_different_default_values_named
+// ignore_for_file: deprecated_member_use, deprecated_member_use_from_same_package, use_function_type_syntax_for_parameters, unnecessary_const, avoid_init_to_null, invalid_override_different_default_values_named, prefer_expression_function_bodies
 
 part of 'theme_event.dart';
 
@@ -12,6 +12,7 @@ T _$identity<T>(T value) => value;
 class _$ThemeEventTearOff {
   const _$ThemeEventTearOff();
 
+// ignore: unused_element
   ThemeUpdated themeUpdated({ThemeType themeType}) {
     return ThemeUpdated(
       themeType: themeType,
@@ -24,6 +25,25 @@ const $ThemeEvent = _$ThemeEventTearOff();
 
 mixin _$ThemeEvent {
   ThemeType get themeType;
+
+  @optionalTypeArgs
+  Result when<Result extends Object>({
+    @required Result themeUpdated(ThemeType themeType),
+  });
+  @optionalTypeArgs
+  Result maybeWhen<Result extends Object>({
+    Result themeUpdated(ThemeType themeType),
+    @required Result orElse(),
+  });
+  @optionalTypeArgs
+  Result map<Result extends Object>({
+    @required Result themeUpdated(ThemeUpdated value),
+  });
+  @optionalTypeArgs
+  Result maybeMap<Result extends Object>({
+    Result themeUpdated(ThemeUpdated value),
+    @required Result orElse(),
+  });
 
   $ThemeEventCopyWith<ThemeEvent> get copyWith;
 }
@@ -117,6 +137,50 @@ class _$ThemeUpdated with DiagnosticableTreeMixin implements ThemeUpdated {
   @override
   $ThemeUpdatedCopyWith<ThemeUpdated> get copyWith =>
       _$ThemeUpdatedCopyWithImpl<ThemeUpdated>(this, _$identity);
+
+  @override
+  @optionalTypeArgs
+  Result when<Result extends Object>({
+    @required Result themeUpdated(ThemeType themeType),
+  }) {
+    assert(themeUpdated != null);
+    return themeUpdated(themeType);
+  }
+
+  @override
+  @optionalTypeArgs
+  Result maybeWhen<Result extends Object>({
+    Result themeUpdated(ThemeType themeType),
+    @required Result orElse(),
+  }) {
+    assert(orElse != null);
+    if (themeUpdated != null) {
+      return themeUpdated(themeType);
+    }
+    return orElse();
+  }
+
+  @override
+  @optionalTypeArgs
+  Result map<Result extends Object>({
+    @required Result themeUpdated(ThemeUpdated value),
+  }) {
+    assert(themeUpdated != null);
+    return themeUpdated(this);
+  }
+
+  @override
+  @optionalTypeArgs
+  Result maybeMap<Result extends Object>({
+    Result themeUpdated(ThemeUpdated value),
+    @required Result orElse(),
+  }) {
+    assert(orElse != null);
+    if (themeUpdated != null) {
+      return themeUpdated(this);
+    }
+    return orElse();
+  }
 }
 
 abstract class ThemeUpdated implements ThemeEvent {

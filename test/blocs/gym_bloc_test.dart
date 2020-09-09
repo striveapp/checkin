@@ -26,6 +26,7 @@ void main() {
       host: "test",
       paymentAppDomain: "pepe",
       stripePublicKey: "pk_pk",
+      hasActivePayments: false,
     );
 
     User fakeUser = User(

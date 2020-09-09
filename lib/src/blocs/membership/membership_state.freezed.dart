@@ -1,5 +1,5 @@
 // GENERATED CODE - DO NOT MODIFY BY HAND
-// ignore_for_file: deprecated_member_use_from_same_package, use_function_type_syntax_for_parameters, unnecessary_const, avoid_init_to_null, invalid_override_different_default_values_named
+// ignore_for_file: deprecated_member_use, deprecated_member_use_from_same_package, use_function_type_syntax_for_parameters, unnecessary_const, avoid_init_to_null, invalid_override_different_default_values_named, prefer_expression_function_bodies
 
 part of 'membership_state.dart';
 
@@ -12,16 +12,19 @@ T _$identity<T>(T value) => value;
 class _$MembershipStateTearOff {
   const _$MembershipStateTearOff();
 
+// ignore: unused_element
   InitialMembershipState initialMembershipState() {
     return const InitialMembershipState();
   }
 
+// ignore: unused_element
   MembershipActive membershipActive({@required Membership membership}) {
     return MembershipActive(
       membership: membership,
     );
   }
 
+// ignore: unused_element
   MembershipInactive membershipInactive(
       {@required String customerEmail, String customerId}) {
     return MembershipInactive(
@@ -30,10 +33,12 @@ class _$MembershipStateTearOff {
     );
   }
 
+// ignore: unused_element
   MembershipLoading membershipLoading() {
     return const MembershipLoading();
   }
 
+// ignore: unused_element
   MembershipError membershipError({@required String errorMessage}) {
     return MembershipError(
       errorMessage: errorMessage,

@@ -39,12 +39,14 @@ void main() {
       id: fakeGymId,
       paymentAppDomain: "test-app",
       stripePublicKey: "test_key",
-      host: "da_host");
+      host: "da_host",
+      hasActivePayments: false);
   Gym prodGym = Gym(
       id: "prodGym",
       paymentAppDomain: "prod-app",
       stripePublicKey: "prod_key",
-      host: "da_host");
+      host: "da_host",
+      hasActivePayments: false);
 
   User fakeUser = User(email: fakeEmail, name: "Test", imageUrl: "test", selectedGymId: fakeGymId);
   User prodUser = User(email: "prod@email.com", name: "ProdUser", imageUrl: "test", selectedGymId: "prodGym");

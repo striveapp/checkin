@@ -23,7 +23,7 @@ class User extends Equatable {
     this.grade,
     this.selectedGymId,
     this.isOwner = false,
-    this.hasActivePayments = false,
+    this.hasActivePayments,
   });
 
   factory User.fromFirebaseUser(FirebaseUser firebaseUser,

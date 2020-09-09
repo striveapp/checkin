@@ -1,5 +1,5 @@
 // GENERATED CODE - DO NOT MODIFY BY HAND
-// ignore_for_file: deprecated_member_use_from_same_package, use_function_type_syntax_for_parameters, unnecessary_const, avoid_init_to_null, invalid_override_different_default_values_named
+// ignore_for_file: deprecated_member_use, deprecated_member_use_from_same_package, use_function_type_syntax_for_parameters, unnecessary_const, avoid_init_to_null, invalid_override_different_default_values_named, prefer_expression_function_bodies
 
 part of 'login_event.dart';
 
@@ -12,22 +12,27 @@ T _$identity<T>(T value) => value;
 class _$LoginEventTearOff {
   const _$LoginEventTearOff();
 
+// ignore: unused_element
   LoginWithGoogle loginWithGoogle() {
     return const LoginWithGoogle();
   }
 
+// ignore: unused_element
   LoginWithApple loginWithApple() {
     return const LoginWithApple();
   }
 
+// ignore: unused_element
   LoginWithTestUser loginWithTestUser() {
     return const LoginWithTestUser();
   }
 
+// ignore: unused_element
   LoginWithTestUserTwo loginWithTestUserTwo() {
     return const LoginWithTestUserTwo();
   }
 
+// ignore: unused_element
   LoginWithTestUserOwner loginWithTestUserOwner() {
     return const LoginWithTestUserOwner();
   }

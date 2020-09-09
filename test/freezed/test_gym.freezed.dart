@@ -1,5 +1,5 @@
 // GENERATED CODE - DO NOT MODIFY BY HAND
-// ignore_for_file: deprecated_member_use_from_same_package, use_function_type_syntax_for_parameters, unnecessary_const, avoid_init_to_null, invalid_override_different_default_values_named
+// ignore_for_file: deprecated_member_use, deprecated_member_use_from_same_package, use_function_type_syntax_for_parameters, unnecessary_const, avoid_init_to_null, invalid_override_different_default_values_named, prefer_expression_function_bodies
 
 part of 'test_gym.dart';
 
@@ -29,6 +29,7 @@ TestGym _$TestGymFromJson(Map<String, dynamic> json) {
 class _$TestGymTearOff {
   const _$TestGymTearOff();
 
+// ignore: unused_element
   _TestGym call(
       {String domain,
       String host,
@@ -42,24 +43,28 @@ class _$TestGymTearOff {
     );
   }
 
+// ignore: unused_element
   _CaseOne caseOne([String caseOne = 'caseOne']) {
     return _CaseOne(
       caseOne,
     );
   }
 
+// ignore: unused_element
   _CaseTwo caseTwo(String caseTwo) {
     return _CaseTwo(
       caseTwo,
     );
   }
 
+// ignore: unused_element
   CaseThree caseThree({@required String caseThree}) {
     return CaseThree(
       caseThree: caseThree,
     );
   }
 
+// ignore: unused_element
   CaseFour caseFour({String caseFour}) {
     return CaseFour(
       caseFour: caseFour,

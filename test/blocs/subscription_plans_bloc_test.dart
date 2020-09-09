@@ -20,7 +20,8 @@ void main() {
         id: "some_id",
         host: "tha_host",
         paymentAppDomain: "test.com",
-        stripePublicKey: "pk_kp");
+        stripePublicKey: "pk_kp",
+        hasActivePayments: false);
     MockGymBloc mockGymBloc;
 
     setUp(() {
