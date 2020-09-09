@@ -1,6 +1,7 @@
 import 'dart:async';
 
 import 'package:bloc/bloc.dart';
+import 'package:checkin/src/api/api.dart';
 import 'package:checkin/src/api/membership_api.dart';
 import 'package:checkin/src/blocs/membership/bloc.dart';
 import 'package:checkin/src/blocs/user/bloc.dart';
@@ -60,14 +61,19 @@ class MembershipBloc extends Bloc<MembershipEvent, MembershipState> {
   @override
   Stream<MembershipState> mapEventToState(MembershipEvent event) async* {
 
+    //TODO: this should be handled with a global error message
     if (event is Unsubscribe) {
       yield MembershipState.membershipLoading();
       try {
+        await _analyticsRepository.logUnsubscribe();
         await _membershipApi.unsubscribe(gymId: _gymId);
-      } catch (err, stackTrace) {
-        _analyticsRepository.unsubscribeError(err: err, stackTrace: stackTrace);
+      } on ApiException catch (err) {
         yield MembershipState.membershipError(
-            errorMessage: "Something went wrong while with unsubscribe: [$err]");
+            errorMessage: err.message);
+      } catch (err, stackTrace) {
+        await _analyticsRepository.unsubscribeError(err: err, stackTrace: stackTrace);
+        yield MembershipState.membershipError(
+            errorMessage: "Something went wrong while with unsubscribe: [${err}]");
       }
     }
 

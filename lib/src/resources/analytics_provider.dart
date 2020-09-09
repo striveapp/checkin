@@ -26,6 +26,11 @@ class AnalyticsProvider implements AnalyticsRepository {
     await _firebaseAnalytics.logLogin(loginMethod: "apple_sign_in");
   }
 
+  @override
+  Future<void> logUnsubscribe() async {
+    await _firebaseAnalytics.logEvent(name: "unsubscribe");
+  }
+
   Future<void> loginError({dynamic err, StackTrace stackTrace}) async {
     String message = err.toString();
 

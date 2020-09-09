@@ -9,6 +9,8 @@ abstract class AnalyticsRepository {
 
   Future<void> logLoginWithAppleSignIn();
 
+  Future<void> logUnsubscribe();
+
   Future<void> loginError({dynamic err, StackTrace stackTrace});
 
   Future<void> setupBankAccountError({String error});

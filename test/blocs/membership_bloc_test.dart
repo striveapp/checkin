@@ -1,4 +1,5 @@
 import 'package:bloc_test/bloc_test.dart';
+import 'package:checkin/src/api/api.dart';
 import 'package:checkin/src/api/membership_api.dart';
 import 'package:checkin/src/blocs/membership/bloc.dart';
 import 'package:checkin/src/blocs/user/bloc.dart';
@@ -137,7 +138,6 @@ void main() {
           membershipRepository: mockMembershipRepository,
           membershipApi: mockMembershipApi,
         );
-        membershipBloc.add(Unsubscribe());
       });
 
       tearDown(() {
@@ -155,6 +155,8 @@ void main() {
           MembershipLoading(),
         ];
 
+        membershipBloc.add(Unsubscribe());
+
         await expectLater(
           membershipBloc,
           emitsInAnyOrder(expectedState),
@@ -170,7 +172,42 @@ void main() {
         ));
       });
 
-      test("should emit MembershipError when fails to unsubscribe the customer", () async {
+      test("should emit MembershipError and fail when an ApiException is thrown", () async {
+        ApiException apiError = ApiException("kaboom!", "the_end_of_the_fuckin_world");
+        when(mockMembershipApi.unsubscribe(
+          gymId: fakeUser.selectedGymId,
+        )).thenThrow(apiError);
+
+        when(mockAnalyticsRepository.logUnsubscribe()).thenAnswer((realInvocation) =>  Future.value(null));
+
+        final expectedState = [
+          InitialMembershipState(),
+          MembershipActive(membership: activeMembership),
+          MembershipLoading(),
+          MembershipError(errorMessage: "kaboom!"),
+        ];
+
+        membershipBloc.add(Unsubscribe());
+
+        await expectLater(
+          membershipBloc,
+          emitsInAnyOrder(expectedState),
+        );
+
+        logInvocations([mockMembershipRepository, mockMembershipApi]);
+
+        verify(mockMembershipRepository.getMembership(
+          gymId: fakeUser.selectedGymId,
+          email: fakeEmail,
+        ));
+        verify(mockMembershipApi.unsubscribe(
+          gymId: fakeUser.selectedGymId,
+        ));
+
+        verify(mockAnalyticsRepository.logUnsubscribe());
+
+      });
+      test("should emit MembershipError and fail when a general Exception is thrown", () async {
         when(mockMembershipApi.unsubscribe(
           gymId: fakeUser.selectedGymId,
         )).thenThrow("a bad little error");
@@ -185,10 +222,13 @@ void main() {
           MembershipError(errorMessage: "Something went wrong while with unsubscribe: [a bad little error]"),
         ];
 
+        membershipBloc.add(Unsubscribe());
+
         await expectLater(
           membershipBloc,
           emitsInAnyOrder(expectedState),
         );
+
         logInvocations([mockMembershipRepository, mockMembershipApi]);
 
         verify(mockMembershipRepository.getMembership(
@@ -200,7 +240,6 @@ void main() {
         ));
 
         verify(mockAnalyticsRepository.unsubscribeError(err: "a bad little error", stackTrace: argThat(isA<StackTrace>(), named: 'stackTrace') ));
-
       });
     });
 
