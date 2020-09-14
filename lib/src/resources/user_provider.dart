@@ -10,9 +10,7 @@ class UserProvider implements UserRepository {
   Firestore _firestore = Firestore.instance;
   StatsProvider statsProvider = StatsProvider();
   static const String path = 'users';
-  final String defaultGym;
-
-  UserProvider({this.defaultGym});
+  String defaultGym;
 
   Stream<User> getUserByEmail(String email) => _firestore
       .collection(path)
@@ -88,5 +86,10 @@ class UserProvider implements UserRepository {
         .collection(path)
         .document(userEmail)
         .updateData({"imageUrl": newImageUrl});
+  }
+
+  @override
+  void setDefaultGym(String defaultGym) {
+    this.defaultGym = defaultGym;
   }
 }

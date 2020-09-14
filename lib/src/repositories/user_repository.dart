@@ -14,4 +14,7 @@ abstract class UserRepository {
   Future<void> updateUserFcmToken(String userEmail, String newToken);
 
   Future<void> updateSelectedGymId(String userEmail, String newSelectedGym);
+
+  void setDefaultGym(String defaultGym);
+
 }
