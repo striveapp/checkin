@@ -19,7 +19,7 @@ class PodiumProfile extends StatelessWidget {
   Widget build(BuildContext context) {
     return BlocBuilder<ProfileBloc, ProfileState>(
       bloc: ProfileBloc(
-          userRepository: UserRepository(),
+          userRepository: RepositoryProvider.of<UserRepository>(context),
           userBloc: BlocProvider.of<UserBloc>(context),
           nonCurrentUserEmail: profileEmail),
       builder: (BuildContext context, ProfileState state) {

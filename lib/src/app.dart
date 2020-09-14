@@ -23,7 +23,6 @@ import 'blocs/version/bloc.dart';
 class App extends StatelessWidget {
   final ThemeData _themeData;
   final AuthRepository _authRepository;
-  final UserRepository _userRepository;
   final StorageRepository _storageRepository;
   final ImageRepository _imageRepository;
 
@@ -31,17 +30,14 @@ class App extends StatelessWidget {
     Key key,
     @required ThemeData themeData,
     @required AuthRepository authRepository,
-    @required UserRepository userRepository,
     @required StorageRepository storageRepository,
     @required ImageRepository imageRepository,
   })  : assert(themeData != null &&
             authRepository != null &&
-            userRepository != null &&
             storageRepository != null &&
             imageRepository != null),
         _themeData = themeData,
         _authRepository = authRepository,
-        _userRepository = userRepository,
         _storageRepository = storageRepository,
         _imageRepository = imageRepository,
         super(key: key);
@@ -93,7 +89,6 @@ class App extends StatelessWidget {
             if (state is AuthUnauthenticated) {
               return LoginPage(
                 authRepository: _authRepository,
-                userRepository: _userRepository,
               );
             }
 
@@ -103,7 +98,7 @@ class App extends StatelessWidget {
                 providers: [
                   BlocProvider<UserBloc>(
                       create: (BuildContext context) => UserBloc(
-                            userRepository: _userRepository,
+                            userRepository: RepositoryProvider.of<UserRepository>(context),
                             storageRepository: _storageRepository,
                             imageRepository: _imageRepository,
                             authBloc: BlocProvider.of<AuthBloc>(context),
