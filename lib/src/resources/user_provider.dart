@@ -4,6 +4,8 @@ import 'package:checkin/src/models/grade.dart';
 import 'package:checkin/src/models/user.dart';
 import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:checkin/src/resources/stats_provider.dart';
+import 'package:flutter/material.dart';
+import 'package:package_info/package_info.dart';
 
 class UserProvider {
   Firestore _firestore = Firestore.instance;
@@ -31,10 +33,21 @@ class UserProvider {
   }
 
   Future<void> createUser(User newUser) async {
+    String appVersion = null;
+
+    try {
+      PackageInfo packageInfo = await PackageInfo.fromPlatform();
+      appVersion = "${packageInfo.version}+${packageInfo.buildNumber}";
+    } catch( err ) {
+      debugPrint(
+          'Error ocurred when retrieving current installed version of the app:' + err.toString());
+    }
+
     await _firestore.collection(path).document(newUser.email).setData({
       'name': newUser.name,
       'email': newUser.email,
       'imageUrl': newUser.imageUrl,
+      'appVersion': appVersion
     }, merge: true);
   }
 
