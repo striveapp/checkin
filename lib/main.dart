@@ -18,6 +18,7 @@ import 'package:checkin/src/resources/analytics_provider.dart';
 import 'package:checkin/src/resources/auth_provider.dart';
 import 'package:checkin/src/resources/lesson_instances_provider.dart';
 import 'package:checkin/src/resources/stats_provider.dart';
+import 'package:checkin/src/resources/user_provider.dart';
 import 'package:checkin/src/routes/application.dart';
 import 'package:checkin/src/routes/routes.dart';
 import 'package:checkin/src/simple_bloc_delegate.dart';
@@ -44,7 +45,6 @@ Future<void> main() async {
 
   // init repositories
   final AuthRepository authRepository = AuthProvider();
-  final UserRepository userRepository = UserRepository();
   final StorageRepository storageRepository = StorageRepository();
   final ImageRepository imageRepository = ImageRepository();
   final FirebaseDynamicLinks dynamicLinks = FirebaseDynamicLinks.instance;
@@ -68,6 +68,9 @@ Future<void> main() async {
           ),
           RepositoryProvider<AnalyticsRepository>(
             create: (context) => AnalyticsProvider(),
+          ),
+          RepositoryProvider<UserRepository>(
+            create: (context) => UserProvider(),
           ),
           RepositoryProvider<StatsRepository>(
             create: (context) => StatsProvider(),
@@ -95,7 +98,6 @@ Future<void> main() async {
           child: BlocBuilder<ThemeBloc, ThemeState>(
               builder: (BuildContext context, ThemeState state) => App(
                     themeData: state.themeData,
-                    userRepository: userRepository,
                     authRepository: authRepository,
                     storageRepository: storageRepository,
                     imageRepository: imageRepository,

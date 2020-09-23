@@ -8,16 +8,12 @@ import 'package:flutter_bloc/flutter_bloc.dart';
 
 class LoginPage extends StatelessWidget {
   final AuthRepository _authRepository;
-  final UserRepository _userRepository;
 
   LoginPage({
     Key key,
     @required AuthRepository authRepository,
-    @required UserRepository userRepository,
-  })  : assert(authRepository != null &&
-            userRepository != null ),
+  })  : assert(authRepository != null ),
         _authRepository = authRepository,
-        _userRepository = userRepository,
         super(key: key);
 
   @override
@@ -32,7 +28,7 @@ class LoginPage extends StatelessWidget {
       )),
       child: BlocProvider<LoginBloc>(
         create: (context) => LoginBloc(
-          userRepository: _userRepository,
+          userRepository: RepositoryProvider.of<UserRepository>(context),
           authRepository: _authRepository,
           analyticsRepository: RepositoryProvider.of<AnalyticsRepository>(context),
         ),

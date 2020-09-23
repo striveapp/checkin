@@ -1,11 +1,11 @@
 import 'package:checkin/src/blocs/profile/bloc.dart';
 import 'package:checkin/src/blocs/user/bloc.dart';
-import 'package:checkin/src/repositories/user_repository.dart';
 import 'package:checkin/src/localization/localization.dart';
+import 'package:checkin/src/models/grade.dart';
+import 'package:checkin/src/repositories/user_repository.dart';
 import 'package:checkin/src/ui/components/user_image.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
-import 'package:checkin/src/models/grade.dart';
 
 class ProfileTile extends StatelessWidget {
   final String profileEmail;
@@ -20,7 +20,7 @@ class ProfileTile extends StatelessWidget {
   @override
   Widget build(BuildContext context) => BlocBuilder<ProfileBloc, ProfileState>(
         bloc: ProfileBloc(
-            userRepository: UserRepository(),
+            userRepository: RepositoryProvider.of<UserRepository>(context),
             userBloc: BlocProvider.of<UserBloc>(context),
             nonCurrentUserEmail: profileEmail),
         builder: (BuildContext context, ProfileState state) {

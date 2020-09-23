@@ -1,27 +1,20 @@
 import 'package:checkin/src/models/user.dart';
 
-import '../resources/user_provider.dart';
+abstract class UserRepository {
+  Stream<User> getUserByEmail(String email);
 
-class UserRepository {
-  final _userProvider = UserProvider();
+  Future<void> createUser(User newUser);
 
-  Stream<User> getUserByEmail(String email) =>
-      _userProvider.getUserByEmail(email);
+  Future<void> updateUserGrade(String userEmail, String newGrade);
 
-  Future<void> createUser(User newUser) => _userProvider.createUser(newUser);
+  Future<void> updateUserName(String userEmail, String newName);
 
-  Future<void> updateUserGrade(String userEmail, String newGrade) =>
-      _userProvider.updateUserGrade(userEmail, newGrade);
+  Future<void> updateUserImageUrl(String userEmail, String newImageUrl);
 
-  Future<void> updateUserName(String userEmail, String newName) =>
-      _userProvider.updateUserName(userEmail, newName);
+  Future<void> updateUserFcmToken(String userEmail, String newToken);
 
-  Future<void> updateUserImageUrl(String userEmail, String newImageUrl) =>
-      _userProvider.updateUserImageUrl(userEmail, newImageUrl);
+  Future<void> updateSelectedGymId(String userEmail, String newSelectedGym);
 
-  Future<void> updateUserFcmToken(String userEmail, String newToken) =>
-      _userProvider.updateUserFcmToken(userEmail, newToken);
+  void setDefaultGym(String defaultGym);
 
-  Future<void> updateSelectedGymId(String userEmail, String newSelectedGym) =>
-      _userProvider.updateSelectedGymId(userEmail, newSelectedGym);
 }
