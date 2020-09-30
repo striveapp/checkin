@@ -9,6 +9,7 @@ part of 'payment_method.dart';
 
 T _$identity<T>(T value) => value;
 
+/// @nodoc
 class _$PaymentMethodTearOff {
   const _$PaymentMethodTearOff();
 
@@ -27,9 +28,11 @@ class _$PaymentMethodTearOff {
   }
 }
 
+/// @nodoc
 // ignore: unused_element
 const $PaymentMethod = _$PaymentMethodTearOff();
 
+/// @nodoc
 mixin _$PaymentMethod {
   String get customerId;
   String get billingEmail;
@@ -39,6 +42,7 @@ mixin _$PaymentMethod {
   $PaymentMethodCopyWith<PaymentMethod> get copyWith;
 }
 
+/// @nodoc
 abstract class $PaymentMethodCopyWith<$Res> {
   factory $PaymentMethodCopyWith(
           PaymentMethod value, $Res Function(PaymentMethod) then) =
@@ -50,6 +54,7 @@ abstract class $PaymentMethodCopyWith<$Res> {
       String country});
 }
 
+/// @nodoc
 class _$PaymentMethodCopyWithImpl<$Res>
     implements $PaymentMethodCopyWith<$Res> {
   _$PaymentMethodCopyWithImpl(this._value, this._then);
@@ -79,6 +84,7 @@ class _$PaymentMethodCopyWithImpl<$Res>
   }
 }
 
+/// @nodoc
 abstract class _$PaymentMethodCopyWith<$Res>
     implements $PaymentMethodCopyWith<$Res> {
   factory _$PaymentMethodCopyWith(
@@ -92,6 +98,7 @@ abstract class _$PaymentMethodCopyWith<$Res>
       String country});
 }
 
+/// @nodoc
 class __$PaymentMethodCopyWithImpl<$Res>
     extends _$PaymentMethodCopyWithImpl<$Res>
     implements _$PaymentMethodCopyWith<$Res> {
@@ -123,6 +130,7 @@ class __$PaymentMethodCopyWithImpl<$Res>
   }
 }
 
+/// @nodoc
 class _$_PaymentMethod with DiagnosticableTreeMixin implements _PaymentMethod {
   _$_PaymentMethod(
       {@required this.customerId,

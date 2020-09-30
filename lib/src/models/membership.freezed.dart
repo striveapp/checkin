@@ -9,6 +9,7 @@ part of 'membership.dart';
 
 T _$identity<T>(T value) => value;
 
+/// @nodoc
 class _$MembershipTearOff {
   const _$MembershipTearOff();
 
@@ -29,9 +30,11 @@ class _$MembershipTearOff {
   }
 }
 
+/// @nodoc
 // ignore: unused_element
 const $Membership = _$MembershipTearOff();
 
+/// @nodoc
 mixin _$Membership {
   String get status;
   String get customerId;
@@ -42,6 +45,7 @@ mixin _$Membership {
   $MembershipCopyWith<Membership> get copyWith;
 }
 
+/// @nodoc
 abstract class $MembershipCopyWith<$Res> {
   factory $MembershipCopyWith(
           Membership value, $Res Function(Membership) then) =
@@ -54,6 +58,7 @@ abstract class $MembershipCopyWith<$Res> {
       double totalLessonsOfPlan});
 }
 
+/// @nodoc
 class _$MembershipCopyWithImpl<$Res> implements $MembershipCopyWith<$Res> {
   _$MembershipCopyWithImpl(this._value, this._then);
 
@@ -84,6 +89,7 @@ class _$MembershipCopyWithImpl<$Res> implements $MembershipCopyWith<$Res> {
   }
 }
 
+/// @nodoc
 abstract class _$MembershipCopyWith<$Res> implements $MembershipCopyWith<$Res> {
   factory _$MembershipCopyWith(
           _Membership value, $Res Function(_Membership) then) =
@@ -97,6 +103,7 @@ abstract class _$MembershipCopyWith<$Res> implements $MembershipCopyWith<$Res> {
       double totalLessonsOfPlan});
 }
 
+/// @nodoc
 class __$MembershipCopyWithImpl<$Res> extends _$MembershipCopyWithImpl<$Res>
     implements _$MembershipCopyWith<$Res> {
   __$MembershipCopyWithImpl(
@@ -129,6 +136,7 @@ class __$MembershipCopyWithImpl<$Res> extends _$MembershipCopyWithImpl<$Res>
   }
 }
 
+/// @nodoc
 class _$_Membership with DiagnosticableTreeMixin implements _Membership {
   _$_Membership(
       {@required this.status,

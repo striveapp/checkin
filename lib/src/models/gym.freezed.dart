@@ -9,6 +9,7 @@ part of 'gym.dart';
 
 T _$identity<T>(T value) => value;
 
+/// @nodoc
 class _$GymTearOff {
   const _$GymTearOff();
 
@@ -29,9 +30,11 @@ class _$GymTearOff {
   }
 }
 
+/// @nodoc
 // ignore: unused_element
 const $Gym = _$GymTearOff();
 
+/// @nodoc
 mixin _$Gym {
   String get id;
   String get paymentAppDomain;
@@ -42,6 +45,7 @@ mixin _$Gym {
   $GymCopyWith<Gym> get copyWith;
 }
 
+/// @nodoc
 abstract class $GymCopyWith<$Res> {
   factory $GymCopyWith(Gym value, $Res Function(Gym) then) =
       _$GymCopyWithImpl<$Res>;
@@ -53,6 +57,7 @@ abstract class $GymCopyWith<$Res> {
       bool hasActivePayments});
 }
 
+/// @nodoc
 class _$GymCopyWithImpl<$Res> implements $GymCopyWith<$Res> {
   _$GymCopyWithImpl(this._value, this._then);
 
@@ -84,6 +89,7 @@ class _$GymCopyWithImpl<$Res> implements $GymCopyWith<$Res> {
   }
 }
 
+/// @nodoc
 abstract class _$GymCopyWith<$Res> implements $GymCopyWith<$Res> {
   factory _$GymCopyWith(_Gym value, $Res Function(_Gym) then) =
       __$GymCopyWithImpl<$Res>;
@@ -96,6 +102,7 @@ abstract class _$GymCopyWith<$Res> implements $GymCopyWith<$Res> {
       bool hasActivePayments});
 }
 
+/// @nodoc
 class __$GymCopyWithImpl<$Res> extends _$GymCopyWithImpl<$Res>
     implements _$GymCopyWith<$Res> {
   __$GymCopyWithImpl(_Gym _value, $Res Function(_Gym) _then)
@@ -128,6 +135,7 @@ class __$GymCopyWithImpl<$Res> extends _$GymCopyWithImpl<$Res>
   }
 }
 
+/// @nodoc
 class _$_Gym with DiagnosticableTreeMixin implements _Gym {
   _$_Gym(
       {@required this.id,

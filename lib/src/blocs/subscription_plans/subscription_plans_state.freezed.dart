@@ -9,6 +9,7 @@ part of 'subscription_plans_state.dart';
 
 T _$identity<T>(T value) => value;
 
+/// @nodoc
 class _$SubscriptionPlansStateTearOff {
   const _$SubscriptionPlansStateTearOff();
 
@@ -36,9 +37,11 @@ class _$SubscriptionPlansStateTearOff {
   }
 }
 
+/// @nodoc
 // ignore: unused_element
 const $SubscriptionPlansState = _$SubscriptionPlansStateTearOff();
 
+/// @nodoc
 mixin _$SubscriptionPlansState {
   @optionalTypeArgs
   Result when<Result extends Object>({
@@ -74,12 +77,14 @@ mixin _$SubscriptionPlansState {
   });
 }
 
+/// @nodoc
 abstract class $SubscriptionPlansStateCopyWith<$Res> {
   factory $SubscriptionPlansStateCopyWith(SubscriptionPlansState value,
           $Res Function(SubscriptionPlansState) then) =
       _$SubscriptionPlansStateCopyWithImpl<$Res>;
 }
 
+/// @nodoc
 class _$SubscriptionPlansStateCopyWithImpl<$Res>
     implements $SubscriptionPlansStateCopyWith<$Res> {
   _$SubscriptionPlansStateCopyWithImpl(this._value, this._then);
@@ -89,12 +94,14 @@ class _$SubscriptionPlansStateCopyWithImpl<$Res>
   final $Res Function(SubscriptionPlansState) _then;
 }
 
+/// @nodoc
 abstract class $SubscriptionPlansInitialCopyWith<$Res> {
   factory $SubscriptionPlansInitialCopyWith(SubscriptionPlansInitial value,
           $Res Function(SubscriptionPlansInitial) then) =
       _$SubscriptionPlansInitialCopyWithImpl<$Res>;
 }
 
+/// @nodoc
 class _$SubscriptionPlansInitialCopyWithImpl<$Res>
     extends _$SubscriptionPlansStateCopyWithImpl<$Res>
     implements $SubscriptionPlansInitialCopyWith<$Res> {
@@ -107,6 +114,7 @@ class _$SubscriptionPlansInitialCopyWithImpl<$Res>
       super._value as SubscriptionPlansInitial;
 }
 
+/// @nodoc
 class _$SubscriptionPlansInitial
     with DiagnosticableTreeMixin
     implements SubscriptionPlansInitial {
@@ -202,12 +210,14 @@ abstract class SubscriptionPlansInitial implements SubscriptionPlansState {
   const factory SubscriptionPlansInitial() = _$SubscriptionPlansInitial;
 }
 
+/// @nodoc
 abstract class $SubscriptionPlansLoadingCopyWith<$Res> {
   factory $SubscriptionPlansLoadingCopyWith(SubscriptionPlansLoading value,
           $Res Function(SubscriptionPlansLoading) then) =
       _$SubscriptionPlansLoadingCopyWithImpl<$Res>;
 }
 
+/// @nodoc
 class _$SubscriptionPlansLoadingCopyWithImpl<$Res>
     extends _$SubscriptionPlansStateCopyWithImpl<$Res>
     implements $SubscriptionPlansLoadingCopyWith<$Res> {
@@ -220,6 +230,7 @@ class _$SubscriptionPlansLoadingCopyWithImpl<$Res>
       super._value as SubscriptionPlansLoading;
 }
 
+/// @nodoc
 class _$SubscriptionPlansLoading
     with DiagnosticableTreeMixin
     implements SubscriptionPlansLoading {
@@ -315,6 +326,7 @@ abstract class SubscriptionPlansLoading implements SubscriptionPlansState {
   const factory SubscriptionPlansLoading() = _$SubscriptionPlansLoading;
 }
 
+/// @nodoc
 abstract class $SubscriptionPlansLoadedCopyWith<$Res> {
   factory $SubscriptionPlansLoadedCopyWith(SubscriptionPlansLoaded value,
           $Res Function(SubscriptionPlansLoaded) then) =
@@ -322,6 +334,7 @@ abstract class $SubscriptionPlansLoadedCopyWith<$Res> {
   $Res call({List<SubscriptionPlan> subscriptionPlans});
 }
 
+/// @nodoc
 class _$SubscriptionPlansLoadedCopyWithImpl<$Res>
     extends _$SubscriptionPlansStateCopyWithImpl<$Res>
     implements $SubscriptionPlansLoadedCopyWith<$Res> {
@@ -344,6 +357,7 @@ class _$SubscriptionPlansLoadedCopyWithImpl<$Res>
   }
 }
 
+/// @nodoc
 class _$SubscriptionPlansLoaded
     with DiagnosticableTreeMixin
     implements SubscriptionPlansLoaded {
@@ -460,12 +474,14 @@ abstract class SubscriptionPlansLoaded implements SubscriptionPlansState {
   $SubscriptionPlansLoadedCopyWith<SubscriptionPlansLoaded> get copyWith;
 }
 
+/// @nodoc
 abstract class $SubscriptionPlansEmptyCopyWith<$Res> {
   factory $SubscriptionPlansEmptyCopyWith(SubscriptionPlansEmpty value,
           $Res Function(SubscriptionPlansEmpty) then) =
       _$SubscriptionPlansEmptyCopyWithImpl<$Res>;
 }
 
+/// @nodoc
 class _$SubscriptionPlansEmptyCopyWithImpl<$Res>
     extends _$SubscriptionPlansStateCopyWithImpl<$Res>
     implements $SubscriptionPlansEmptyCopyWith<$Res> {
@@ -477,6 +493,7 @@ class _$SubscriptionPlansEmptyCopyWithImpl<$Res>
   SubscriptionPlansEmpty get _value => super._value as SubscriptionPlansEmpty;
 }
 
+/// @nodoc
 class _$SubscriptionPlansEmpty
     with DiagnosticableTreeMixin
     implements SubscriptionPlansEmpty {

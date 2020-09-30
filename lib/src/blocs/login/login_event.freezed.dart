@@ -9,6 +9,7 @@ part of 'login_event.dart';
 
 T _$identity<T>(T value) => value;
 
+/// @nodoc
 class _$LoginEventTearOff {
   const _$LoginEventTearOff();
 
@@ -38,9 +39,11 @@ class _$LoginEventTearOff {
   }
 }
 
+/// @nodoc
 // ignore: unused_element
 const $LoginEvent = _$LoginEventTearOff();
 
+/// @nodoc
 mixin _$LoginEvent {
   @optionalTypeArgs
   Result when<Result extends Object>({
@@ -78,12 +81,14 @@ mixin _$LoginEvent {
   });
 }
 
+/// @nodoc
 abstract class $LoginEventCopyWith<$Res> {
   factory $LoginEventCopyWith(
           LoginEvent value, $Res Function(LoginEvent) then) =
       _$LoginEventCopyWithImpl<$Res>;
 }
 
+/// @nodoc
 class _$LoginEventCopyWithImpl<$Res> implements $LoginEventCopyWith<$Res> {
   _$LoginEventCopyWithImpl(this._value, this._then);
 
@@ -92,12 +97,14 @@ class _$LoginEventCopyWithImpl<$Res> implements $LoginEventCopyWith<$Res> {
   final $Res Function(LoginEvent) _then;
 }
 
+/// @nodoc
 abstract class $LoginWithGoogleCopyWith<$Res> {
   factory $LoginWithGoogleCopyWith(
           LoginWithGoogle value, $Res Function(LoginWithGoogle) then) =
       _$LoginWithGoogleCopyWithImpl<$Res>;
 }
 
+/// @nodoc
 class _$LoginWithGoogleCopyWithImpl<$Res> extends _$LoginEventCopyWithImpl<$Res>
     implements $LoginWithGoogleCopyWith<$Res> {
   _$LoginWithGoogleCopyWithImpl(
@@ -108,6 +115,7 @@ class _$LoginWithGoogleCopyWithImpl<$Res> extends _$LoginEventCopyWithImpl<$Res>
   LoginWithGoogle get _value => super._value as LoginWithGoogle;
 }
 
+/// @nodoc
 class _$LoginWithGoogle
     with DiagnosticableTreeMixin
     implements LoginWithGoogle {
@@ -205,12 +213,14 @@ abstract class LoginWithGoogle implements LoginEvent {
   const factory LoginWithGoogle() = _$LoginWithGoogle;
 }
 
+/// @nodoc
 abstract class $LoginWithAppleCopyWith<$Res> {
   factory $LoginWithAppleCopyWith(
           LoginWithApple value, $Res Function(LoginWithApple) then) =
       _$LoginWithAppleCopyWithImpl<$Res>;
 }
 
+/// @nodoc
 class _$LoginWithAppleCopyWithImpl<$Res> extends _$LoginEventCopyWithImpl<$Res>
     implements $LoginWithAppleCopyWith<$Res> {
   _$LoginWithAppleCopyWithImpl(
@@ -221,6 +231,7 @@ class _$LoginWithAppleCopyWithImpl<$Res> extends _$LoginEventCopyWithImpl<$Res>
   LoginWithApple get _value => super._value as LoginWithApple;
 }
 
+/// @nodoc
 class _$LoginWithApple with DiagnosticableTreeMixin implements LoginWithApple {
   const _$LoginWithApple();
 
@@ -316,12 +327,14 @@ abstract class LoginWithApple implements LoginEvent {
   const factory LoginWithApple() = _$LoginWithApple;
 }
 
+/// @nodoc
 abstract class $LoginWithTestUserCopyWith<$Res> {
   factory $LoginWithTestUserCopyWith(
           LoginWithTestUser value, $Res Function(LoginWithTestUser) then) =
       _$LoginWithTestUserCopyWithImpl<$Res>;
 }
 
+/// @nodoc
 class _$LoginWithTestUserCopyWithImpl<$Res>
     extends _$LoginEventCopyWithImpl<$Res>
     implements $LoginWithTestUserCopyWith<$Res> {
@@ -333,6 +346,7 @@ class _$LoginWithTestUserCopyWithImpl<$Res>
   LoginWithTestUser get _value => super._value as LoginWithTestUser;
 }
 
+/// @nodoc
 class _$LoginWithTestUser
     with DiagnosticableTreeMixin
     implements LoginWithTestUser {
@@ -431,12 +445,14 @@ abstract class LoginWithTestUser implements LoginEvent {
   const factory LoginWithTestUser() = _$LoginWithTestUser;
 }
 
+/// @nodoc
 abstract class $LoginWithTestUserTwoCopyWith<$Res> {
   factory $LoginWithTestUserTwoCopyWith(LoginWithTestUserTwo value,
           $Res Function(LoginWithTestUserTwo) then) =
       _$LoginWithTestUserTwoCopyWithImpl<$Res>;
 }
 
+/// @nodoc
 class _$LoginWithTestUserTwoCopyWithImpl<$Res>
     extends _$LoginEventCopyWithImpl<$Res>
     implements $LoginWithTestUserTwoCopyWith<$Res> {
@@ -448,6 +464,7 @@ class _$LoginWithTestUserTwoCopyWithImpl<$Res>
   LoginWithTestUserTwo get _value => super._value as LoginWithTestUserTwo;
 }
 
+/// @nodoc
 class _$LoginWithTestUserTwo
     with DiagnosticableTreeMixin
     implements LoginWithTestUserTwo {
@@ -546,12 +563,14 @@ abstract class LoginWithTestUserTwo implements LoginEvent {
   const factory LoginWithTestUserTwo() = _$LoginWithTestUserTwo;
 }
 
+/// @nodoc
 abstract class $LoginWithTestUserOwnerCopyWith<$Res> {
   factory $LoginWithTestUserOwnerCopyWith(LoginWithTestUserOwner value,
           $Res Function(LoginWithTestUserOwner) then) =
       _$LoginWithTestUserOwnerCopyWithImpl<$Res>;
 }
 
+/// @nodoc
 class _$LoginWithTestUserOwnerCopyWithImpl<$Res>
     extends _$LoginEventCopyWithImpl<$Res>
     implements $LoginWithTestUserOwnerCopyWith<$Res> {
@@ -563,6 +582,7 @@ class _$LoginWithTestUserOwnerCopyWithImpl<$Res>
   LoginWithTestUserOwner get _value => super._value as LoginWithTestUserOwner;
 }
 
+/// @nodoc
 class _$LoginWithTestUserOwner
     with DiagnosticableTreeMixin
     implements LoginWithTestUserOwner {

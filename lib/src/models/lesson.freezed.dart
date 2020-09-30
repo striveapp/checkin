@@ -12,6 +12,7 @@ Lesson _$LessonFromJson(Map<String, dynamic> json) {
   return _Lesson.fromJson(json);
 }
 
+/// @nodoc
 class _$LessonTearOff {
   const _$LessonTearOff();
 
@@ -42,11 +43,18 @@ class _$LessonTearOff {
       classCapacity: classCapacity,
     );
   }
+
+// ignore: unused_element
+  Lesson fromJson(Map<String, Object> json) {
+    return Lesson.fromJson(json);
+  }
 }
 
+/// @nodoc
 // ignore: unused_element
 const $Lesson = _$LessonTearOff();
 
+/// @nodoc
 mixin _$Lesson {
   String get id;
   String get date;
@@ -64,6 +72,7 @@ mixin _$Lesson {
   $LessonCopyWith<Lesson> get copyWith;
 }
 
+/// @nodoc
 abstract class $LessonCopyWith<$Res> {
   factory $LessonCopyWith(Lesson value, $Res Function(Lesson) then) =
       _$LessonCopyWithImpl<$Res>;
@@ -81,6 +90,7 @@ abstract class $LessonCopyWith<$Res> {
       int classCapacity});
 }
 
+/// @nodoc
 class _$LessonCopyWithImpl<$Res> implements $LessonCopyWith<$Res> {
   _$LessonCopyWithImpl(this._value, this._then);
 
@@ -123,6 +133,7 @@ class _$LessonCopyWithImpl<$Res> implements $LessonCopyWith<$Res> {
   }
 }
 
+/// @nodoc
 abstract class _$LessonCopyWith<$Res> implements $LessonCopyWith<$Res> {
   factory _$LessonCopyWith(_Lesson value, $Res Function(_Lesson) then) =
       __$LessonCopyWithImpl<$Res>;
@@ -141,6 +152,7 @@ abstract class _$LessonCopyWith<$Res> implements $LessonCopyWith<$Res> {
       int classCapacity});
 }
 
+/// @nodoc
 class __$LessonCopyWithImpl<$Res> extends _$LessonCopyWithImpl<$Res>
     implements _$LessonCopyWith<$Res> {
   __$LessonCopyWithImpl(_Lesson _value, $Res Function(_Lesson) _then)
@@ -185,6 +197,8 @@ class __$LessonCopyWithImpl<$Res> extends _$LessonCopyWithImpl<$Res>
 }
 
 @JsonSerializable()
+
+/// @nodoc
 class _$_Lesson implements _Lesson {
   _$_Lesson(
       {this.id,

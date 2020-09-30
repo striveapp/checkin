@@ -9,6 +9,7 @@ part of 'login_state.dart';
 
 T _$identity<T>(T value) => value;
 
+/// @nodoc
 class _$LoginStateTearOff {
   const _$LoginStateTearOff();
 
@@ -37,9 +38,11 @@ class _$LoginStateTearOff {
   }
 }
 
+/// @nodoc
 // ignore: unused_element
 const $LoginState = _$LoginStateTearOff();
 
+/// @nodoc
 mixin _$LoginState {
   @optionalTypeArgs
   Result when<Result extends Object>({
@@ -73,12 +76,14 @@ mixin _$LoginState {
   });
 }
 
+/// @nodoc
 abstract class $LoginStateCopyWith<$Res> {
   factory $LoginStateCopyWith(
           LoginState value, $Res Function(LoginState) then) =
       _$LoginStateCopyWithImpl<$Res>;
 }
 
+/// @nodoc
 class _$LoginStateCopyWithImpl<$Res> implements $LoginStateCopyWith<$Res> {
   _$LoginStateCopyWithImpl(this._value, this._then);
 
@@ -87,12 +92,14 @@ class _$LoginStateCopyWithImpl<$Res> implements $LoginStateCopyWith<$Res> {
   final $Res Function(LoginState) _then;
 }
 
+/// @nodoc
 abstract class $LoginInitialCopyWith<$Res> {
   factory $LoginInitialCopyWith(
           LoginInitial value, $Res Function(LoginInitial) then) =
       _$LoginInitialCopyWithImpl<$Res>;
 }
 
+/// @nodoc
 class _$LoginInitialCopyWithImpl<$Res> extends _$LoginStateCopyWithImpl<$Res>
     implements $LoginInitialCopyWith<$Res> {
   _$LoginInitialCopyWithImpl(
@@ -103,6 +110,7 @@ class _$LoginInitialCopyWithImpl<$Res> extends _$LoginStateCopyWithImpl<$Res>
   LoginInitial get _value => super._value as LoginInitial;
 }
 
+/// @nodoc
 class _$LoginInitial with DiagnosticableTreeMixin implements LoginInitial {
   const _$LoginInitial();
 
@@ -192,12 +200,14 @@ abstract class LoginInitial implements LoginState {
   const factory LoginInitial() = _$LoginInitial;
 }
 
+/// @nodoc
 abstract class $LoginLoadingCopyWith<$Res> {
   factory $LoginLoadingCopyWith(
           LoginLoading value, $Res Function(LoginLoading) then) =
       _$LoginLoadingCopyWithImpl<$Res>;
 }
 
+/// @nodoc
 class _$LoginLoadingCopyWithImpl<$Res> extends _$LoginStateCopyWithImpl<$Res>
     implements $LoginLoadingCopyWith<$Res> {
   _$LoginLoadingCopyWithImpl(
@@ -208,6 +218,7 @@ class _$LoginLoadingCopyWithImpl<$Res> extends _$LoginStateCopyWithImpl<$Res>
   LoginLoading get _value => super._value as LoginLoading;
 }
 
+/// @nodoc
 class _$LoginLoading with DiagnosticableTreeMixin implements LoginLoading {
   const _$LoginLoading();
 
@@ -297,6 +308,7 @@ abstract class LoginLoading implements LoginState {
   const factory LoginLoading() = _$LoginLoading;
 }
 
+/// @nodoc
 abstract class $LoginSuccessCopyWith<$Res> {
   factory $LoginSuccessCopyWith(
           LoginSuccess value, $Res Function(LoginSuccess) then) =
@@ -304,6 +316,7 @@ abstract class $LoginSuccessCopyWith<$Res> {
   $Res call({User loggedUser});
 }
 
+/// @nodoc
 class _$LoginSuccessCopyWithImpl<$Res> extends _$LoginStateCopyWithImpl<$Res>
     implements $LoginSuccessCopyWith<$Res> {
   _$LoginSuccessCopyWithImpl(
@@ -324,6 +337,7 @@ class _$LoginSuccessCopyWithImpl<$Res> extends _$LoginStateCopyWithImpl<$Res>
   }
 }
 
+/// @nodoc
 class _$LoginSuccess with DiagnosticableTreeMixin implements LoginSuccess {
   const _$LoginSuccess({this.loggedUser});
 
@@ -430,6 +444,7 @@ abstract class LoginSuccess implements LoginState {
   $LoginSuccessCopyWith<LoginSuccess> get copyWith;
 }
 
+/// @nodoc
 abstract class $LoginFailureCopyWith<$Res> {
   factory $LoginFailureCopyWith(
           LoginFailure value, $Res Function(LoginFailure) then) =
@@ -437,6 +452,7 @@ abstract class $LoginFailureCopyWith<$Res> {
   $Res call({String errorMessage});
 }
 
+/// @nodoc
 class _$LoginFailureCopyWithImpl<$Res> extends _$LoginStateCopyWithImpl<$Res>
     implements $LoginFailureCopyWith<$Res> {
   _$LoginFailureCopyWithImpl(
@@ -458,6 +474,7 @@ class _$LoginFailureCopyWithImpl<$Res> extends _$LoginStateCopyWithImpl<$Res>
   }
 }
 
+/// @nodoc
 class _$LoginFailure with DiagnosticableTreeMixin implements LoginFailure {
   const _$LoginFailure({this.errorMessage});
 

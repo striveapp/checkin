@@ -9,6 +9,7 @@ part of 'auth_event.dart';
 
 T _$identity<T>(T value) => value;
 
+/// @nodoc
 class _$AuthEventTearOff {
   const _$AuthEventTearOff();
 
@@ -30,9 +31,11 @@ class _$AuthEventTearOff {
   }
 }
 
+/// @nodoc
 // ignore: unused_element
 const $AuthEvent = _$AuthEventTearOff();
 
+/// @nodoc
 mixin _$AuthEvent {
   @optionalTypeArgs
   Result when<Result extends Object>({
@@ -62,11 +65,13 @@ mixin _$AuthEvent {
   });
 }
 
+/// @nodoc
 abstract class $AuthEventCopyWith<$Res> {
   factory $AuthEventCopyWith(AuthEvent value, $Res Function(AuthEvent) then) =
       _$AuthEventCopyWithImpl<$Res>;
 }
 
+/// @nodoc
 class _$AuthEventCopyWithImpl<$Res> implements $AuthEventCopyWith<$Res> {
   _$AuthEventCopyWithImpl(this._value, this._then);
 
@@ -75,12 +80,14 @@ class _$AuthEventCopyWithImpl<$Res> implements $AuthEventCopyWith<$Res> {
   final $Res Function(AuthEvent) _then;
 }
 
+/// @nodoc
 abstract class $AppStartedCopyWith<$Res> {
   factory $AppStartedCopyWith(
           AppStarted value, $Res Function(AppStarted) then) =
       _$AppStartedCopyWithImpl<$Res>;
 }
 
+/// @nodoc
 class _$AppStartedCopyWithImpl<$Res> extends _$AuthEventCopyWithImpl<$Res>
     implements $AppStartedCopyWith<$Res> {
   _$AppStartedCopyWithImpl(AppStarted _value, $Res Function(AppStarted) _then)
@@ -90,6 +97,7 @@ class _$AppStartedCopyWithImpl<$Res> extends _$AuthEventCopyWithImpl<$Res>
   AppStarted get _value => super._value as AppStarted;
 }
 
+/// @nodoc
 class _$AppStarted with DiagnosticableTreeMixin implements AppStarted {
   const _$AppStarted();
 
@@ -173,6 +181,7 @@ abstract class AppStarted implements AuthEvent {
   const factory AppStarted() = _$AppStarted;
 }
 
+/// @nodoc
 abstract class $AuthUpdatedCopyWith<$Res> {
   factory $AuthUpdatedCopyWith(
           AuthUpdated value, $Res Function(AuthUpdated) then) =
@@ -180,6 +189,7 @@ abstract class $AuthUpdatedCopyWith<$Res> {
   $Res call({User loggedUser});
 }
 
+/// @nodoc
 class _$AuthUpdatedCopyWithImpl<$Res> extends _$AuthEventCopyWithImpl<$Res>
     implements $AuthUpdatedCopyWith<$Res> {
   _$AuthUpdatedCopyWithImpl(
@@ -200,6 +210,7 @@ class _$AuthUpdatedCopyWithImpl<$Res> extends _$AuthEventCopyWithImpl<$Res>
   }
 }
 
+/// @nodoc
 class _$AuthUpdated with DiagnosticableTreeMixin implements AuthUpdated {
   const _$AuthUpdated({this.loggedUser});
 
@@ -300,11 +311,13 @@ abstract class AuthUpdated implements AuthEvent {
   $AuthUpdatedCopyWith<AuthUpdated> get copyWith;
 }
 
+/// @nodoc
 abstract class $LogOutCopyWith<$Res> {
   factory $LogOutCopyWith(LogOut value, $Res Function(LogOut) then) =
       _$LogOutCopyWithImpl<$Res>;
 }
 
+/// @nodoc
 class _$LogOutCopyWithImpl<$Res> extends _$AuthEventCopyWithImpl<$Res>
     implements $LogOutCopyWith<$Res> {
   _$LogOutCopyWithImpl(LogOut _value, $Res Function(LogOut) _then)
@@ -314,6 +327,7 @@ class _$LogOutCopyWithImpl<$Res> extends _$AuthEventCopyWithImpl<$Res>
   LogOut get _value => super._value as LogOut;
 }
 
+/// @nodoc
 class _$LogOut with DiagnosticableTreeMixin implements LogOut {
   const _$LogOut();
 

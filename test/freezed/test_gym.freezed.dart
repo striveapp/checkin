@@ -26,6 +26,7 @@ TestGym _$TestGymFromJson(Map<String, dynamic> json) {
   }
 }
 
+/// @nodoc
 class _$TestGymTearOff {
   const _$TestGymTearOff();
 
@@ -70,11 +71,18 @@ class _$TestGymTearOff {
       caseFour: caseFour,
     );
   }
+
+// ignore: unused_element
+  TestGym fromJson(Map<String, Object> json) {
+    return TestGym.fromJson(json);
+  }
 }
 
+/// @nodoc
 // ignore: unused_element
 const $TestGym = _$TestGymTearOff();
 
+/// @nodoc
 mixin _$TestGym {
   @optionalTypeArgs
   Result when<Result extends Object>(
@@ -115,11 +123,13 @@ mixin _$TestGym {
   Map<String, dynamic> toJson();
 }
 
+/// @nodoc
 abstract class $TestGymCopyWith<$Res> {
   factory $TestGymCopyWith(TestGym value, $Res Function(TestGym) then) =
       _$TestGymCopyWithImpl<$Res>;
 }
 
+/// @nodoc
 class _$TestGymCopyWithImpl<$Res> implements $TestGymCopyWith<$Res> {
   _$TestGymCopyWithImpl(this._value, this._then);
 
@@ -128,6 +138,7 @@ class _$TestGymCopyWithImpl<$Res> implements $TestGymCopyWith<$Res> {
   final $Res Function(TestGym) _then;
 }
 
+/// @nodoc
 abstract class _$TestGymCopyWith<$Res> {
   factory _$TestGymCopyWith(_TestGym value, $Res Function(_TestGym) then) =
       __$TestGymCopyWithImpl<$Res>;
@@ -138,6 +149,7 @@ abstract class _$TestGymCopyWith<$Res> {
       String requiredField});
 }
 
+/// @nodoc
 class __$TestGymCopyWithImpl<$Res> extends _$TestGymCopyWithImpl<$Res>
     implements _$TestGymCopyWith<$Res> {
   __$TestGymCopyWithImpl(_TestGym _value, $Res Function(_TestGym) _then)
@@ -167,6 +179,8 @@ class __$TestGymCopyWithImpl<$Res> extends _$TestGymCopyWithImpl<$Res>
 }
 
 @JsonSerializable()
+
+/// @nodoc
 class _$_TestGym with DiagnosticableTreeMixin implements _TestGym {
   _$_TestGym(
       {this.domain,
@@ -323,12 +337,14 @@ abstract class _TestGym implements TestGym {
   _$TestGymCopyWith<_TestGym> get copyWith;
 }
 
+/// @nodoc
 abstract class _$CaseOneCopyWith<$Res> {
   factory _$CaseOneCopyWith(_CaseOne value, $Res Function(_CaseOne) then) =
       __$CaseOneCopyWithImpl<$Res>;
   $Res call({String caseOne});
 }
 
+/// @nodoc
 class __$CaseOneCopyWithImpl<$Res> extends _$TestGymCopyWithImpl<$Res>
     implements _$CaseOneCopyWith<$Res> {
   __$CaseOneCopyWithImpl(_CaseOne _value, $Res Function(_CaseOne) _then)
@@ -348,6 +364,8 @@ class __$CaseOneCopyWithImpl<$Res> extends _$TestGymCopyWithImpl<$Res>
 }
 
 @JsonSerializable()
+
+/// @nodoc
 class _$_CaseOne with DiagnosticableTreeMixin implements _CaseOne {
   const _$_CaseOne([this.caseOne = 'caseOne']) : assert(caseOne != null);
 
@@ -472,12 +490,14 @@ abstract class _CaseOne implements TestGym {
   _$CaseOneCopyWith<_CaseOne> get copyWith;
 }
 
+/// @nodoc
 abstract class _$CaseTwoCopyWith<$Res> {
   factory _$CaseTwoCopyWith(_CaseTwo value, $Res Function(_CaseTwo) then) =
       __$CaseTwoCopyWithImpl<$Res>;
   $Res call({String caseTwo});
 }
 
+/// @nodoc
 class __$CaseTwoCopyWithImpl<$Res> extends _$TestGymCopyWithImpl<$Res>
     implements _$CaseTwoCopyWith<$Res> {
   __$CaseTwoCopyWithImpl(_CaseTwo _value, $Res Function(_CaseTwo) _then)
@@ -497,6 +517,8 @@ class __$CaseTwoCopyWithImpl<$Res> extends _$TestGymCopyWithImpl<$Res>
 }
 
 @JsonSerializable()
+
+/// @nodoc
 class _$_CaseTwo with DiagnosticableTreeMixin implements _CaseTwo {
   const _$_CaseTwo(this.caseTwo) : assert(caseTwo != null);
 
@@ -620,12 +642,14 @@ abstract class _CaseTwo implements TestGym {
   _$CaseTwoCopyWith<_CaseTwo> get copyWith;
 }
 
+/// @nodoc
 abstract class $CaseThreeCopyWith<$Res> {
   factory $CaseThreeCopyWith(CaseThree value, $Res Function(CaseThree) then) =
       _$CaseThreeCopyWithImpl<$Res>;
   $Res call({String caseThree});
 }
 
+/// @nodoc
 class _$CaseThreeCopyWithImpl<$Res> extends _$TestGymCopyWithImpl<$Res>
     implements $CaseThreeCopyWith<$Res> {
   _$CaseThreeCopyWithImpl(CaseThree _value, $Res Function(CaseThree) _then)
@@ -645,6 +669,8 @@ class _$CaseThreeCopyWithImpl<$Res> extends _$TestGymCopyWithImpl<$Res>
 }
 
 @JsonSerializable()
+
+/// @nodoc
 class _$CaseThree with DiagnosticableTreeMixin implements CaseThree {
   const _$CaseThree({@required this.caseThree}) : assert(caseThree != null);
 
@@ -769,12 +795,14 @@ abstract class CaseThree implements TestGym {
   $CaseThreeCopyWith<CaseThree> get copyWith;
 }
 
+/// @nodoc
 abstract class $CaseFourCopyWith<$Res> {
   factory $CaseFourCopyWith(CaseFour value, $Res Function(CaseFour) then) =
       _$CaseFourCopyWithImpl<$Res>;
   $Res call({String caseFour});
 }
 
+/// @nodoc
 class _$CaseFourCopyWithImpl<$Res> extends _$TestGymCopyWithImpl<$Res>
     implements $CaseFourCopyWith<$Res> {
   _$CaseFourCopyWithImpl(CaseFour _value, $Res Function(CaseFour) _then)
@@ -794,6 +822,8 @@ class _$CaseFourCopyWithImpl<$Res> extends _$TestGymCopyWithImpl<$Res>
 }
 
 @JsonSerializable()
+
+/// @nodoc
 class _$CaseFour with DiagnosticableTreeMixin implements CaseFour {
   const _$CaseFour({this.caseFour});
 

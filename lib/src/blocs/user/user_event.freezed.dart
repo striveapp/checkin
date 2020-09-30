@@ -9,6 +9,7 @@ part of 'user_event.dart';
 
 T _$identity<T>(T value) => value;
 
+/// @nodoc
 class _$UserEventTearOff {
   const _$UserEventTearOff();
 
@@ -56,11 +57,20 @@ class _$UserEventTearOff {
       newToken: newToken,
     );
   }
+
+// ignore: unused_element
+  UpdateVersion updateVersion({String userEmail}) {
+    return UpdateVersion(
+      userEmail: userEmail,
+    );
+  }
 }
 
+/// @nodoc
 // ignore: unused_element
 const $UserEvent = _$UserEventTearOff();
 
+/// @nodoc
 mixin _$UserEvent {
   @optionalTypeArgs
   Result when<Result extends Object>({
@@ -70,6 +80,7 @@ mixin _$UserEvent {
     @required Result updateGrade(String newGrade),
     @required Result updateSelectedGym(String userEmail, String newSelectedGym),
     @required Result updateFcmToken(String userEmail, String newToken),
+    @required Result updateVersion(String userEmail),
   });
   @optionalTypeArgs
   Result maybeWhen<Result extends Object>({
@@ -79,6 +90,7 @@ mixin _$UserEvent {
     Result updateGrade(String newGrade),
     Result updateSelectedGym(String userEmail, String newSelectedGym),
     Result updateFcmToken(String userEmail, String newToken),
+    Result updateVersion(String userEmail),
     @required Result orElse(),
   });
   @optionalTypeArgs
@@ -89,6 +101,7 @@ mixin _$UserEvent {
     @required Result updateGrade(UpdateGrade value),
     @required Result updateSelectedGym(UpdateSelectedGym value),
     @required Result updateFcmToken(UpdateFcmToken value),
+    @required Result updateVersion(UpdateVersion value),
   });
   @optionalTypeArgs
   Result maybeMap<Result extends Object>({
@@ -98,15 +111,18 @@ mixin _$UserEvent {
     Result updateGrade(UpdateGrade value),
     Result updateSelectedGym(UpdateSelectedGym value),
     Result updateFcmToken(UpdateFcmToken value),
+    Result updateVersion(UpdateVersion value),
     @required Result orElse(),
   });
 }
 
+/// @nodoc
 abstract class $UserEventCopyWith<$Res> {
   factory $UserEventCopyWith(UserEvent value, $Res Function(UserEvent) then) =
       _$UserEventCopyWithImpl<$Res>;
 }
 
+/// @nodoc
 class _$UserEventCopyWithImpl<$Res> implements $UserEventCopyWith<$Res> {
   _$UserEventCopyWithImpl(this._value, this._then);
 
@@ -115,6 +131,7 @@ class _$UserEventCopyWithImpl<$Res> implements $UserEventCopyWith<$Res> {
   final $Res Function(UserEvent) _then;
 }
 
+/// @nodoc
 abstract class $UserUpdatedCopyWith<$Res> {
   factory $UserUpdatedCopyWith(
           UserUpdated value, $Res Function(UserUpdated) then) =
@@ -122,6 +139,7 @@ abstract class $UserUpdatedCopyWith<$Res> {
   $Res call({User user});
 }
 
+/// @nodoc
 class _$UserUpdatedCopyWithImpl<$Res> extends _$UserEventCopyWithImpl<$Res>
     implements $UserUpdatedCopyWith<$Res> {
   _$UserUpdatedCopyWithImpl(
@@ -141,6 +159,7 @@ class _$UserUpdatedCopyWithImpl<$Res> extends _$UserEventCopyWithImpl<$Res>
   }
 }
 
+/// @nodoc
 class _$UserUpdated with DiagnosticableTreeMixin implements UserUpdated {
   const _$UserUpdated({this.user});
 
@@ -185,6 +204,7 @@ class _$UserUpdated with DiagnosticableTreeMixin implements UserUpdated {
     @required Result updateGrade(String newGrade),
     @required Result updateSelectedGym(String userEmail, String newSelectedGym),
     @required Result updateFcmToken(String userEmail, String newToken),
+    @required Result updateVersion(String userEmail),
   }) {
     assert(userUpdated != null);
     assert(updateName != null);
@@ -192,6 +212,7 @@ class _$UserUpdated with DiagnosticableTreeMixin implements UserUpdated {
     assert(updateGrade != null);
     assert(updateSelectedGym != null);
     assert(updateFcmToken != null);
+    assert(updateVersion != null);
     return userUpdated(user);
   }
 
@@ -204,6 +225,7 @@ class _$UserUpdated with DiagnosticableTreeMixin implements UserUpdated {
     Result updateGrade(String newGrade),
     Result updateSelectedGym(String userEmail, String newSelectedGym),
     Result updateFcmToken(String userEmail, String newToken),
+    Result updateVersion(String userEmail),
     @required Result orElse(),
   }) {
     assert(orElse != null);
@@ -222,6 +244,7 @@ class _$UserUpdated with DiagnosticableTreeMixin implements UserUpdated {
     @required Result updateGrade(UpdateGrade value),
     @required Result updateSelectedGym(UpdateSelectedGym value),
     @required Result updateFcmToken(UpdateFcmToken value),
+    @required Result updateVersion(UpdateVersion value),
   }) {
     assert(userUpdated != null);
     assert(updateName != null);
@@ -229,6 +252,7 @@ class _$UserUpdated with DiagnosticableTreeMixin implements UserUpdated {
     assert(updateGrade != null);
     assert(updateSelectedGym != null);
     assert(updateFcmToken != null);
+    assert(updateVersion != null);
     return userUpdated(this);
   }
 
@@ -241,6 +265,7 @@ class _$UserUpdated with DiagnosticableTreeMixin implements UserUpdated {
     Result updateGrade(UpdateGrade value),
     Result updateSelectedGym(UpdateSelectedGym value),
     Result updateFcmToken(UpdateFcmToken value),
+    Result updateVersion(UpdateVersion value),
     @required Result orElse(),
   }) {
     assert(orElse != null);
@@ -258,6 +283,7 @@ abstract class UserUpdated implements UserEvent {
   $UserUpdatedCopyWith<UserUpdated> get copyWith;
 }
 
+/// @nodoc
 abstract class $UpdateNameCopyWith<$Res> {
   factory $UpdateNameCopyWith(
           UpdateName value, $Res Function(UpdateName) then) =
@@ -265,6 +291,7 @@ abstract class $UpdateNameCopyWith<$Res> {
   $Res call({String newName});
 }
 
+/// @nodoc
 class _$UpdateNameCopyWithImpl<$Res> extends _$UserEventCopyWithImpl<$Res>
     implements $UpdateNameCopyWith<$Res> {
   _$UpdateNameCopyWithImpl(UpdateName _value, $Res Function(UpdateName) _then)
@@ -283,6 +310,7 @@ class _$UpdateNameCopyWithImpl<$Res> extends _$UserEventCopyWithImpl<$Res>
   }
 }
 
+/// @nodoc
 class _$UpdateName with DiagnosticableTreeMixin implements UpdateName {
   const _$UpdateName({this.newName});
 
@@ -327,6 +355,7 @@ class _$UpdateName with DiagnosticableTreeMixin implements UpdateName {
     @required Result updateGrade(String newGrade),
     @required Result updateSelectedGym(String userEmail, String newSelectedGym),
     @required Result updateFcmToken(String userEmail, String newToken),
+    @required Result updateVersion(String userEmail),
   }) {
     assert(userUpdated != null);
     assert(updateName != null);
@@ -334,6 +363,7 @@ class _$UpdateName with DiagnosticableTreeMixin implements UpdateName {
     assert(updateGrade != null);
     assert(updateSelectedGym != null);
     assert(updateFcmToken != null);
+    assert(updateVersion != null);
     return updateName(newName);
   }
 
@@ -346,6 +376,7 @@ class _$UpdateName with DiagnosticableTreeMixin implements UpdateName {
     Result updateGrade(String newGrade),
     Result updateSelectedGym(String userEmail, String newSelectedGym),
     Result updateFcmToken(String userEmail, String newToken),
+    Result updateVersion(String userEmail),
     @required Result orElse(),
   }) {
     assert(orElse != null);
@@ -364,6 +395,7 @@ class _$UpdateName with DiagnosticableTreeMixin implements UpdateName {
     @required Result updateGrade(UpdateGrade value),
     @required Result updateSelectedGym(UpdateSelectedGym value),
     @required Result updateFcmToken(UpdateFcmToken value),
+    @required Result updateVersion(UpdateVersion value),
   }) {
     assert(userUpdated != null);
     assert(updateName != null);
@@ -371,6 +403,7 @@ class _$UpdateName with DiagnosticableTreeMixin implements UpdateName {
     assert(updateGrade != null);
     assert(updateSelectedGym != null);
     assert(updateFcmToken != null);
+    assert(updateVersion != null);
     return updateName(this);
   }
 
@@ -383,6 +416,7 @@ class _$UpdateName with DiagnosticableTreeMixin implements UpdateName {
     Result updateGrade(UpdateGrade value),
     Result updateSelectedGym(UpdateSelectedGym value),
     Result updateFcmToken(UpdateFcmToken value),
+    Result updateVersion(UpdateVersion value),
     @required Result orElse(),
   }) {
     assert(orElse != null);
@@ -400,6 +434,7 @@ abstract class UpdateName implements UserEvent {
   $UpdateNameCopyWith<UpdateName> get copyWith;
 }
 
+/// @nodoc
 abstract class $UpdateImageUrlCopyWith<$Res> {
   factory $UpdateImageUrlCopyWith(
           UpdateImageUrl value, $Res Function(UpdateImageUrl) then) =
@@ -407,6 +442,7 @@ abstract class $UpdateImageUrlCopyWith<$Res> {
   $Res call({String userEmail});
 }
 
+/// @nodoc
 class _$UpdateImageUrlCopyWithImpl<$Res> extends _$UserEventCopyWithImpl<$Res>
     implements $UpdateImageUrlCopyWith<$Res> {
   _$UpdateImageUrlCopyWithImpl(
@@ -426,6 +462,7 @@ class _$UpdateImageUrlCopyWithImpl<$Res> extends _$UserEventCopyWithImpl<$Res>
   }
 }
 
+/// @nodoc
 class _$UpdateImageUrl with DiagnosticableTreeMixin implements UpdateImageUrl {
   const _$UpdateImageUrl({this.userEmail});
 
@@ -471,6 +508,7 @@ class _$UpdateImageUrl with DiagnosticableTreeMixin implements UpdateImageUrl {
     @required Result updateGrade(String newGrade),
     @required Result updateSelectedGym(String userEmail, String newSelectedGym),
     @required Result updateFcmToken(String userEmail, String newToken),
+    @required Result updateVersion(String userEmail),
   }) {
     assert(userUpdated != null);
     assert(updateName != null);
@@ -478,6 +516,7 @@ class _$UpdateImageUrl with DiagnosticableTreeMixin implements UpdateImageUrl {
     assert(updateGrade != null);
     assert(updateSelectedGym != null);
     assert(updateFcmToken != null);
+    assert(updateVersion != null);
     return updateImageUrl(userEmail);
   }
 
@@ -490,6 +529,7 @@ class _$UpdateImageUrl with DiagnosticableTreeMixin implements UpdateImageUrl {
     Result updateGrade(String newGrade),
     Result updateSelectedGym(String userEmail, String newSelectedGym),
     Result updateFcmToken(String userEmail, String newToken),
+    Result updateVersion(String userEmail),
     @required Result orElse(),
   }) {
     assert(orElse != null);
@@ -508,6 +548,7 @@ class _$UpdateImageUrl with DiagnosticableTreeMixin implements UpdateImageUrl {
     @required Result updateGrade(UpdateGrade value),
     @required Result updateSelectedGym(UpdateSelectedGym value),
     @required Result updateFcmToken(UpdateFcmToken value),
+    @required Result updateVersion(UpdateVersion value),
   }) {
     assert(userUpdated != null);
     assert(updateName != null);
@@ -515,6 +556,7 @@ class _$UpdateImageUrl with DiagnosticableTreeMixin implements UpdateImageUrl {
     assert(updateGrade != null);
     assert(updateSelectedGym != null);
     assert(updateFcmToken != null);
+    assert(updateVersion != null);
     return updateImageUrl(this);
   }
 
@@ -527,6 +569,7 @@ class _$UpdateImageUrl with DiagnosticableTreeMixin implements UpdateImageUrl {
     Result updateGrade(UpdateGrade value),
     Result updateSelectedGym(UpdateSelectedGym value),
     Result updateFcmToken(UpdateFcmToken value),
+    Result updateVersion(UpdateVersion value),
     @required Result orElse(),
   }) {
     assert(orElse != null);
@@ -544,6 +587,7 @@ abstract class UpdateImageUrl implements UserEvent {
   $UpdateImageUrlCopyWith<UpdateImageUrl> get copyWith;
 }
 
+/// @nodoc
 abstract class $UpdateGradeCopyWith<$Res> {
   factory $UpdateGradeCopyWith(
           UpdateGrade value, $Res Function(UpdateGrade) then) =
@@ -551,6 +595,7 @@ abstract class $UpdateGradeCopyWith<$Res> {
   $Res call({String newGrade});
 }
 
+/// @nodoc
 class _$UpdateGradeCopyWithImpl<$Res> extends _$UserEventCopyWithImpl<$Res>
     implements $UpdateGradeCopyWith<$Res> {
   _$UpdateGradeCopyWithImpl(
@@ -570,6 +615,7 @@ class _$UpdateGradeCopyWithImpl<$Res> extends _$UserEventCopyWithImpl<$Res>
   }
 }
 
+/// @nodoc
 class _$UpdateGrade with DiagnosticableTreeMixin implements UpdateGrade {
   const _$UpdateGrade({this.newGrade});
 
@@ -615,6 +661,7 @@ class _$UpdateGrade with DiagnosticableTreeMixin implements UpdateGrade {
     @required Result updateGrade(String newGrade),
     @required Result updateSelectedGym(String userEmail, String newSelectedGym),
     @required Result updateFcmToken(String userEmail, String newToken),
+    @required Result updateVersion(String userEmail),
   }) {
     assert(userUpdated != null);
     assert(updateName != null);
@@ -622,6 +669,7 @@ class _$UpdateGrade with DiagnosticableTreeMixin implements UpdateGrade {
     assert(updateGrade != null);
     assert(updateSelectedGym != null);
     assert(updateFcmToken != null);
+    assert(updateVersion != null);
     return updateGrade(newGrade);
   }
 
@@ -634,6 +682,7 @@ class _$UpdateGrade with DiagnosticableTreeMixin implements UpdateGrade {
     Result updateGrade(String newGrade),
     Result updateSelectedGym(String userEmail, String newSelectedGym),
     Result updateFcmToken(String userEmail, String newToken),
+    Result updateVersion(String userEmail),
     @required Result orElse(),
   }) {
     assert(orElse != null);
@@ -652,6 +701,7 @@ class _$UpdateGrade with DiagnosticableTreeMixin implements UpdateGrade {
     @required Result updateGrade(UpdateGrade value),
     @required Result updateSelectedGym(UpdateSelectedGym value),
     @required Result updateFcmToken(UpdateFcmToken value),
+    @required Result updateVersion(UpdateVersion value),
   }) {
     assert(userUpdated != null);
     assert(updateName != null);
@@ -659,6 +709,7 @@ class _$UpdateGrade with DiagnosticableTreeMixin implements UpdateGrade {
     assert(updateGrade != null);
     assert(updateSelectedGym != null);
     assert(updateFcmToken != null);
+    assert(updateVersion != null);
     return updateGrade(this);
   }
 
@@ -671,6 +722,7 @@ class _$UpdateGrade with DiagnosticableTreeMixin implements UpdateGrade {
     Result updateGrade(UpdateGrade value),
     Result updateSelectedGym(UpdateSelectedGym value),
     Result updateFcmToken(UpdateFcmToken value),
+    Result updateVersion(UpdateVersion value),
     @required Result orElse(),
   }) {
     assert(orElse != null);
@@ -688,6 +740,7 @@ abstract class UpdateGrade implements UserEvent {
   $UpdateGradeCopyWith<UpdateGrade> get copyWith;
 }
 
+/// @nodoc
 abstract class $UpdateSelectedGymCopyWith<$Res> {
   factory $UpdateSelectedGymCopyWith(
           UpdateSelectedGym value, $Res Function(UpdateSelectedGym) then) =
@@ -695,6 +748,7 @@ abstract class $UpdateSelectedGymCopyWith<$Res> {
   $Res call({String userEmail, String newSelectedGym});
 }
 
+/// @nodoc
 class _$UpdateSelectedGymCopyWithImpl<$Res>
     extends _$UserEventCopyWithImpl<$Res>
     implements $UpdateSelectedGymCopyWith<$Res> {
@@ -719,6 +773,7 @@ class _$UpdateSelectedGymCopyWithImpl<$Res>
   }
 }
 
+/// @nodoc
 class _$UpdateSelectedGym
     with DiagnosticableTreeMixin
     implements UpdateSelectedGym {
@@ -774,6 +829,7 @@ class _$UpdateSelectedGym
     @required Result updateGrade(String newGrade),
     @required Result updateSelectedGym(String userEmail, String newSelectedGym),
     @required Result updateFcmToken(String userEmail, String newToken),
+    @required Result updateVersion(String userEmail),
   }) {
     assert(userUpdated != null);
     assert(updateName != null);
@@ -781,6 +837,7 @@ class _$UpdateSelectedGym
     assert(updateGrade != null);
     assert(updateSelectedGym != null);
     assert(updateFcmToken != null);
+    assert(updateVersion != null);
     return updateSelectedGym(userEmail, newSelectedGym);
   }
 
@@ -793,6 +850,7 @@ class _$UpdateSelectedGym
     Result updateGrade(String newGrade),
     Result updateSelectedGym(String userEmail, String newSelectedGym),
     Result updateFcmToken(String userEmail, String newToken),
+    Result updateVersion(String userEmail),
     @required Result orElse(),
   }) {
     assert(orElse != null);
@@ -811,6 +869,7 @@ class _$UpdateSelectedGym
     @required Result updateGrade(UpdateGrade value),
     @required Result updateSelectedGym(UpdateSelectedGym value),
     @required Result updateFcmToken(UpdateFcmToken value),
+    @required Result updateVersion(UpdateVersion value),
   }) {
     assert(userUpdated != null);
     assert(updateName != null);
@@ -818,6 +877,7 @@ class _$UpdateSelectedGym
     assert(updateGrade != null);
     assert(updateSelectedGym != null);
     assert(updateFcmToken != null);
+    assert(updateVersion != null);
     return updateSelectedGym(this);
   }
 
@@ -830,6 +890,7 @@ class _$UpdateSelectedGym
     Result updateGrade(UpdateGrade value),
     Result updateSelectedGym(UpdateSelectedGym value),
     Result updateFcmToken(UpdateFcmToken value),
+    Result updateVersion(UpdateVersion value),
     @required Result orElse(),
   }) {
     assert(orElse != null);
@@ -849,6 +910,7 @@ abstract class UpdateSelectedGym implements UserEvent {
   $UpdateSelectedGymCopyWith<UpdateSelectedGym> get copyWith;
 }
 
+/// @nodoc
 abstract class $UpdateFcmTokenCopyWith<$Res> {
   factory $UpdateFcmTokenCopyWith(
           UpdateFcmToken value, $Res Function(UpdateFcmToken) then) =
@@ -856,6 +918,7 @@ abstract class $UpdateFcmTokenCopyWith<$Res> {
   $Res call({String userEmail, String newToken});
 }
 
+/// @nodoc
 class _$UpdateFcmTokenCopyWithImpl<$Res> extends _$UserEventCopyWithImpl<$Res>
     implements $UpdateFcmTokenCopyWith<$Res> {
   _$UpdateFcmTokenCopyWithImpl(
@@ -877,6 +940,7 @@ class _$UpdateFcmTokenCopyWithImpl<$Res> extends _$UserEventCopyWithImpl<$Res>
   }
 }
 
+/// @nodoc
 class _$UpdateFcmToken with DiagnosticableTreeMixin implements UpdateFcmToken {
   const _$UpdateFcmToken({this.userEmail, this.newToken});
 
@@ -930,6 +994,7 @@ class _$UpdateFcmToken with DiagnosticableTreeMixin implements UpdateFcmToken {
     @required Result updateGrade(String newGrade),
     @required Result updateSelectedGym(String userEmail, String newSelectedGym),
     @required Result updateFcmToken(String userEmail, String newToken),
+    @required Result updateVersion(String userEmail),
   }) {
     assert(userUpdated != null);
     assert(updateName != null);
@@ -937,6 +1002,7 @@ class _$UpdateFcmToken with DiagnosticableTreeMixin implements UpdateFcmToken {
     assert(updateGrade != null);
     assert(updateSelectedGym != null);
     assert(updateFcmToken != null);
+    assert(updateVersion != null);
     return updateFcmToken(userEmail, newToken);
   }
 
@@ -949,6 +1015,7 @@ class _$UpdateFcmToken with DiagnosticableTreeMixin implements UpdateFcmToken {
     Result updateGrade(String newGrade),
     Result updateSelectedGym(String userEmail, String newSelectedGym),
     Result updateFcmToken(String userEmail, String newToken),
+    Result updateVersion(String userEmail),
     @required Result orElse(),
   }) {
     assert(orElse != null);
@@ -967,6 +1034,7 @@ class _$UpdateFcmToken with DiagnosticableTreeMixin implements UpdateFcmToken {
     @required Result updateGrade(UpdateGrade value),
     @required Result updateSelectedGym(UpdateSelectedGym value),
     @required Result updateFcmToken(UpdateFcmToken value),
+    @required Result updateVersion(UpdateVersion value),
   }) {
     assert(userUpdated != null);
     assert(updateName != null);
@@ -974,6 +1042,7 @@ class _$UpdateFcmToken with DiagnosticableTreeMixin implements UpdateFcmToken {
     assert(updateGrade != null);
     assert(updateSelectedGym != null);
     assert(updateFcmToken != null);
+    assert(updateVersion != null);
     return updateFcmToken(this);
   }
 
@@ -986,6 +1055,7 @@ class _$UpdateFcmToken with DiagnosticableTreeMixin implements UpdateFcmToken {
     Result updateGrade(UpdateGrade value),
     Result updateSelectedGym(UpdateSelectedGym value),
     Result updateFcmToken(UpdateFcmToken value),
+    Result updateVersion(UpdateVersion value),
     @required Result orElse(),
   }) {
     assert(orElse != null);
@@ -1003,4 +1073,157 @@ abstract class UpdateFcmToken implements UserEvent {
   String get userEmail;
   String get newToken;
   $UpdateFcmTokenCopyWith<UpdateFcmToken> get copyWith;
+}
+
+/// @nodoc
+abstract class $UpdateVersionCopyWith<$Res> {
+  factory $UpdateVersionCopyWith(
+          UpdateVersion value, $Res Function(UpdateVersion) then) =
+      _$UpdateVersionCopyWithImpl<$Res>;
+  $Res call({String userEmail});
+}
+
+/// @nodoc
+class _$UpdateVersionCopyWithImpl<$Res> extends _$UserEventCopyWithImpl<$Res>
+    implements $UpdateVersionCopyWith<$Res> {
+  _$UpdateVersionCopyWithImpl(
+      UpdateVersion _value, $Res Function(UpdateVersion) _then)
+      : super(_value, (v) => _then(v as UpdateVersion));
+
+  @override
+  UpdateVersion get _value => super._value as UpdateVersion;
+
+  @override
+  $Res call({
+    Object userEmail = freezed,
+  }) {
+    return _then(UpdateVersion(
+      userEmail: userEmail == freezed ? _value.userEmail : userEmail as String,
+    ));
+  }
+}
+
+/// @nodoc
+class _$UpdateVersion with DiagnosticableTreeMixin implements UpdateVersion {
+  const _$UpdateVersion({this.userEmail});
+
+  @override
+  final String userEmail;
+
+  @override
+  String toString({DiagnosticLevel minLevel = DiagnosticLevel.info}) {
+    return 'UserEvent.updateVersion(userEmail: $userEmail)';
+  }
+
+  @override
+  void debugFillProperties(DiagnosticPropertiesBuilder properties) {
+    super.debugFillProperties(properties);
+    properties
+      ..add(DiagnosticsProperty('type', 'UserEvent.updateVersion'))
+      ..add(DiagnosticsProperty('userEmail', userEmail));
+  }
+
+  @override
+  bool operator ==(dynamic other) {
+    return identical(this, other) ||
+        (other is UpdateVersion &&
+            (identical(other.userEmail, userEmail) ||
+                const DeepCollectionEquality()
+                    .equals(other.userEmail, userEmail)));
+  }
+
+  @override
+  int get hashCode =>
+      runtimeType.hashCode ^ const DeepCollectionEquality().hash(userEmail);
+
+  @override
+  $UpdateVersionCopyWith<UpdateVersion> get copyWith =>
+      _$UpdateVersionCopyWithImpl<UpdateVersion>(this, _$identity);
+
+  @override
+  @optionalTypeArgs
+  Result when<Result extends Object>({
+    @required Result userUpdated(User user),
+    @required Result updateName(String newName),
+    @required Result updateImageUrl(String userEmail),
+    @required Result updateGrade(String newGrade),
+    @required Result updateSelectedGym(String userEmail, String newSelectedGym),
+    @required Result updateFcmToken(String userEmail, String newToken),
+    @required Result updateVersion(String userEmail),
+  }) {
+    assert(userUpdated != null);
+    assert(updateName != null);
+    assert(updateImageUrl != null);
+    assert(updateGrade != null);
+    assert(updateSelectedGym != null);
+    assert(updateFcmToken != null);
+    assert(updateVersion != null);
+    return updateVersion(userEmail);
+  }
+
+  @override
+  @optionalTypeArgs
+  Result maybeWhen<Result extends Object>({
+    Result userUpdated(User user),
+    Result updateName(String newName),
+    Result updateImageUrl(String userEmail),
+    Result updateGrade(String newGrade),
+    Result updateSelectedGym(String userEmail, String newSelectedGym),
+    Result updateFcmToken(String userEmail, String newToken),
+    Result updateVersion(String userEmail),
+    @required Result orElse(),
+  }) {
+    assert(orElse != null);
+    if (updateVersion != null) {
+      return updateVersion(userEmail);
+    }
+    return orElse();
+  }
+
+  @override
+  @optionalTypeArgs
+  Result map<Result extends Object>({
+    @required Result userUpdated(UserUpdated value),
+    @required Result updateName(UpdateName value),
+    @required Result updateImageUrl(UpdateImageUrl value),
+    @required Result updateGrade(UpdateGrade value),
+    @required Result updateSelectedGym(UpdateSelectedGym value),
+    @required Result updateFcmToken(UpdateFcmToken value),
+    @required Result updateVersion(UpdateVersion value),
+  }) {
+    assert(userUpdated != null);
+    assert(updateName != null);
+    assert(updateImageUrl != null);
+    assert(updateGrade != null);
+    assert(updateSelectedGym != null);
+    assert(updateFcmToken != null);
+    assert(updateVersion != null);
+    return updateVersion(this);
+  }
+
+  @override
+  @optionalTypeArgs
+  Result maybeMap<Result extends Object>({
+    Result userUpdated(UserUpdated value),
+    Result updateName(UpdateName value),
+    Result updateImageUrl(UpdateImageUrl value),
+    Result updateGrade(UpdateGrade value),
+    Result updateSelectedGym(UpdateSelectedGym value),
+    Result updateFcmToken(UpdateFcmToken value),
+    Result updateVersion(UpdateVersion value),
+    @required Result orElse(),
+  }) {
+    assert(orElse != null);
+    if (updateVersion != null) {
+      return updateVersion(this);
+    }
+    return orElse();
+  }
+}
+
+abstract class UpdateVersion implements UserEvent {
+  const factory UpdateVersion({String userEmail}) = _$UpdateVersion;
+
+  String get userEmail;
+  $UpdateVersionCopyWith<UpdateVersion> get copyWith;
 }

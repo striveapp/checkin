@@ -9,6 +9,7 @@ part of 'subscription_event.dart';
 
 T _$identity<T>(T value) => value;
 
+/// @nodoc
 class _$SubscriptionEventTearOff {
   const _$SubscriptionEventTearOff();
 
@@ -21,9 +22,11 @@ class _$SubscriptionEventTearOff {
   }
 }
 
+/// @nodoc
 // ignore: unused_element
 const $SubscriptionEvent = _$SubscriptionEventTearOff();
 
+/// @nodoc
 mixin _$SubscriptionEvent {
   String get priceId;
   String get customerId;
@@ -50,6 +53,7 @@ mixin _$SubscriptionEvent {
   $SubscriptionEventCopyWith<SubscriptionEvent> get copyWith;
 }
 
+/// @nodoc
 abstract class $SubscriptionEventCopyWith<$Res> {
   factory $SubscriptionEventCopyWith(
           SubscriptionEvent value, $Res Function(SubscriptionEvent) then) =
@@ -57,6 +61,7 @@ abstract class $SubscriptionEventCopyWith<$Res> {
   $Res call({String priceId, String customerId});
 }
 
+/// @nodoc
 class _$SubscriptionEventCopyWithImpl<$Res>
     implements $SubscriptionEventCopyWith<$Res> {
   _$SubscriptionEventCopyWithImpl(this._value, this._then);
@@ -78,6 +83,7 @@ class _$SubscriptionEventCopyWithImpl<$Res>
   }
 }
 
+/// @nodoc
 abstract class $SubscribeCopyWith<$Res>
     implements $SubscriptionEventCopyWith<$Res> {
   factory $SubscribeCopyWith(Subscribe value, $Res Function(Subscribe) then) =
@@ -86,6 +92,7 @@ abstract class $SubscribeCopyWith<$Res>
   $Res call({String priceId, String customerId});
 }
 
+/// @nodoc
 class _$SubscribeCopyWithImpl<$Res>
     extends _$SubscriptionEventCopyWithImpl<$Res>
     implements $SubscribeCopyWith<$Res> {
@@ -108,6 +115,7 @@ class _$SubscribeCopyWithImpl<$Res>
   }
 }
 
+/// @nodoc
 class _$Subscribe with DiagnosticableTreeMixin implements Subscribe {
   const _$Subscribe({@required this.priceId, @required this.customerId})
       : assert(priceId != null),

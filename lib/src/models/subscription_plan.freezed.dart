@@ -9,6 +9,7 @@ part of 'subscription_plan.dart';
 
 T _$identity<T>(T value) => value;
 
+/// @nodoc
 class _$SubscriptionPlanTearOff {
   const _$SubscriptionPlanTearOff();
 
@@ -47,9 +48,11 @@ class _$SubscriptionPlanTearOff {
   }
 }
 
+/// @nodoc
 // ignore: unused_element
 const $SubscriptionPlan = _$SubscriptionPlanTearOff();
 
+/// @nodoc
 mixin _$SubscriptionPlan {
   String get name;
   String get currency;
@@ -87,6 +90,7 @@ mixin _$SubscriptionPlan {
   $SubscriptionPlanCopyWith<SubscriptionPlan> get copyWith;
 }
 
+/// @nodoc
 abstract class $SubscriptionPlanCopyWith<$Res> {
   factory $SubscriptionPlanCopyWith(
           SubscriptionPlan value, $Res Function(SubscriptionPlan) then) =
@@ -94,6 +98,7 @@ abstract class $SubscriptionPlanCopyWith<$Res> {
   $Res call({String name, String currency, String description});
 }
 
+/// @nodoc
 class _$SubscriptionPlanCopyWithImpl<$Res>
     implements $SubscriptionPlanCopyWith<$Res> {
   _$SubscriptionPlanCopyWithImpl(this._value, this._then);
@@ -117,6 +122,7 @@ class _$SubscriptionPlanCopyWithImpl<$Res>
   }
 }
 
+/// @nodoc
 abstract class $SimpleSubscriptionCopyWith<$Res>
     implements $SubscriptionPlanCopyWith<$Res> {
   factory $SimpleSubscriptionCopyWith(
@@ -132,6 +138,7 @@ abstract class $SimpleSubscriptionCopyWith<$Res>
       String description});
 }
 
+/// @nodoc
 class _$SimpleSubscriptionCopyWithImpl<$Res>
     extends _$SubscriptionPlanCopyWithImpl<$Res>
     implements $SimpleSubscriptionCopyWith<$Res> {
@@ -163,6 +170,7 @@ class _$SimpleSubscriptionCopyWithImpl<$Res>
   }
 }
 
+/// @nodoc
 class _$SimpleSubscription
     with DiagnosticableTreeMixin
     implements SimpleSubscription {
@@ -326,6 +334,7 @@ abstract class SimpleSubscription implements SubscriptionPlan {
   $SimpleSubscriptionCopyWith<SimpleSubscription> get copyWith;
 }
 
+/// @nodoc
 abstract class $SubscriptionWithPricesCopyWith<$Res>
     implements $SubscriptionPlanCopyWith<$Res> {
   factory $SubscriptionWithPricesCopyWith(SubscriptionWithPrices value,
@@ -340,6 +349,7 @@ abstract class $SubscriptionWithPricesCopyWith<$Res>
       String description});
 }
 
+/// @nodoc
 class _$SubscriptionWithPricesCopyWithImpl<$Res>
     extends _$SubscriptionPlanCopyWithImpl<$Res>
     implements $SubscriptionWithPricesCopyWith<$Res> {
@@ -371,6 +381,7 @@ class _$SubscriptionWithPricesCopyWithImpl<$Res>
   }
 }
 
+/// @nodoc
 class _$SubscriptionWithPrices
     with DiagnosticableTreeMixin
     implements SubscriptionWithPrices {

@@ -53,7 +53,6 @@ dependencies:
   http: ^0.12.1
 
 dependency_overrides:
-  flutter_driver:
   analyzer: '0.39.16'
 
 dev_dependencies:

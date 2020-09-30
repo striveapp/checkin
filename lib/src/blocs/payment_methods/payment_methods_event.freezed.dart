@@ -9,6 +9,7 @@ part of 'payment_methods_event.dart';
 
 T _$identity<T>(T value) => value;
 
+/// @nodoc
 class _$PaymentMethodsEventTearOff {
   const _$PaymentMethodsEventTearOff();
 
@@ -43,9 +44,11 @@ class _$PaymentMethodsEventTearOff {
   }
 }
 
+/// @nodoc
 // ignore: unused_element
 const $PaymentMethodsEvent = _$PaymentMethodsEventTearOff();
 
+/// @nodoc
 mixin _$PaymentMethodsEvent {
   @optionalTypeArgs
   Result when<Result extends Object>({
@@ -79,12 +82,14 @@ mixin _$PaymentMethodsEvent {
   });
 }
 
+/// @nodoc
 abstract class $PaymentMethodsEventCopyWith<$Res> {
   factory $PaymentMethodsEventCopyWith(
           PaymentMethodsEvent value, $Res Function(PaymentMethodsEvent) then) =
       _$PaymentMethodsEventCopyWithImpl<$Res>;
 }
 
+/// @nodoc
 class _$PaymentMethodsEventCopyWithImpl<$Res>
     implements $PaymentMethodsEventCopyWith<$Res> {
   _$PaymentMethodsEventCopyWithImpl(this._value, this._then);
@@ -94,6 +99,7 @@ class _$PaymentMethodsEventCopyWithImpl<$Res>
   final $Res Function(PaymentMethodsEvent) _then;
 }
 
+/// @nodoc
 abstract class $PaymentMethodUpdatedCopyWith<$Res> {
   factory $PaymentMethodUpdatedCopyWith(PaymentMethodUpdated value,
           $Res Function(PaymentMethodUpdated) then) =
@@ -103,6 +109,7 @@ abstract class $PaymentMethodUpdatedCopyWith<$Res> {
   $PaymentMethodCopyWith<$Res> get paymentMethod;
 }
 
+/// @nodoc
 class _$PaymentMethodUpdatedCopyWithImpl<$Res>
     extends _$PaymentMethodsEventCopyWithImpl<$Res>
     implements $PaymentMethodUpdatedCopyWith<$Res> {
@@ -137,6 +144,7 @@ class _$PaymentMethodUpdatedCopyWithImpl<$Res>
   }
 }
 
+/// @nodoc
 class _$PaymentMethodUpdated
     with DiagnosticableTreeMixin
     implements PaymentMethodUpdated {
@@ -257,6 +265,7 @@ abstract class PaymentMethodUpdated implements PaymentMethodsEvent {
   $PaymentMethodUpdatedCopyWith<PaymentMethodUpdated> get copyWith;
 }
 
+/// @nodoc
 abstract class $RegisterBankAccountCopyWith<$Res> {
   factory $RegisterBankAccountCopyWith(
           RegisterBankAccount value, $Res Function(RegisterBankAccount) then) =
@@ -266,6 +275,7 @@ abstract class $RegisterBankAccountCopyWith<$Res> {
   $GymCopyWith<$Res> get gym;
 }
 
+/// @nodoc
 class _$RegisterBankAccountCopyWithImpl<$Res>
     extends _$PaymentMethodsEventCopyWithImpl<$Res>
     implements $RegisterBankAccountCopyWith<$Res> {
@@ -300,6 +310,7 @@ class _$RegisterBankAccountCopyWithImpl<$Res>
   }
 }
 
+/// @nodoc
 class _$RegisterBankAccount
     with DiagnosticableTreeMixin
     implements RegisterBankAccount {
@@ -419,6 +430,7 @@ abstract class RegisterBankAccount implements PaymentMethodsEvent {
   $RegisterBankAccountCopyWith<RegisterBankAccount> get copyWith;
 }
 
+/// @nodoc
 abstract class $ChangeBankAccountCopyWith<$Res> {
   factory $ChangeBankAccountCopyWith(
           ChangeBankAccount value, $Res Function(ChangeBankAccount) then) =
@@ -428,6 +440,7 @@ abstract class $ChangeBankAccountCopyWith<$Res> {
   $GymCopyWith<$Res> get gym;
 }
 
+/// @nodoc
 class _$ChangeBankAccountCopyWithImpl<$Res>
     extends _$PaymentMethodsEventCopyWithImpl<$Res>
     implements $ChangeBankAccountCopyWith<$Res> {
@@ -465,6 +478,7 @@ class _$ChangeBankAccountCopyWithImpl<$Res>
   }
 }
 
+/// @nodoc
 class _$ChangeBankAccount
     with DiagnosticableTreeMixin
     implements ChangeBankAccount {

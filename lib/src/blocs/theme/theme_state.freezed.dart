@@ -9,6 +9,7 @@ part of 'theme_state.dart';
 
 T _$identity<T>(T value) => value;
 
+/// @nodoc
 class _$ThemeStateTearOff {
   const _$ThemeStateTearOff();
 
@@ -20,9 +21,11 @@ class _$ThemeStateTearOff {
   }
 }
 
+/// @nodoc
 // ignore: unused_element
 const $ThemeState = _$ThemeStateTearOff();
 
+/// @nodoc
 mixin _$ThemeState {
   ThemeData get themeData;
 
@@ -48,6 +51,7 @@ mixin _$ThemeState {
   $ThemeStateCopyWith<ThemeState> get copyWith;
 }
 
+/// @nodoc
 abstract class $ThemeStateCopyWith<$Res> {
   factory $ThemeStateCopyWith(
           ThemeState value, $Res Function(ThemeState) then) =
@@ -55,6 +59,7 @@ abstract class $ThemeStateCopyWith<$Res> {
   $Res call({ThemeData themeData});
 }
 
+/// @nodoc
 class _$ThemeStateCopyWithImpl<$Res> implements $ThemeStateCopyWith<$Res> {
   _$ThemeStateCopyWithImpl(this._value, this._then);
 
@@ -73,6 +78,7 @@ class _$ThemeStateCopyWithImpl<$Res> implements $ThemeStateCopyWith<$Res> {
   }
 }
 
+/// @nodoc
 abstract class $AppThemeCopyWith<$Res> implements $ThemeStateCopyWith<$Res> {
   factory $AppThemeCopyWith(AppTheme value, $Res Function(AppTheme) then) =
       _$AppThemeCopyWithImpl<$Res>;
@@ -80,6 +86,7 @@ abstract class $AppThemeCopyWith<$Res> implements $ThemeStateCopyWith<$Res> {
   $Res call({ThemeData themeData});
 }
 
+/// @nodoc
 class _$AppThemeCopyWithImpl<$Res> extends _$ThemeStateCopyWithImpl<$Res>
     implements $AppThemeCopyWith<$Res> {
   _$AppThemeCopyWithImpl(AppTheme _value, $Res Function(AppTheme) _then)
@@ -99,6 +106,7 @@ class _$AppThemeCopyWithImpl<$Res> extends _$ThemeStateCopyWithImpl<$Res>
   }
 }
 
+/// @nodoc
 class _$AppTheme with DiagnosticableTreeMixin implements AppTheme {
   const _$AppTheme({this.themeData});
 

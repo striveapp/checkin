@@ -9,6 +9,7 @@ part of 'user_state.dart';
 
 T _$identity<T>(T value) => value;
 
+/// @nodoc
 class _$UserStateTearOff {
   const _$UserStateTearOff();
 
@@ -30,9 +31,11 @@ class _$UserStateTearOff {
   }
 }
 
+/// @nodoc
 // ignore: unused_element
 const $UserState = _$UserStateTearOff();
 
+/// @nodoc
 mixin _$UserState {
   @optionalTypeArgs
   Result when<Result extends Object>({
@@ -62,11 +65,13 @@ mixin _$UserState {
   });
 }
 
+/// @nodoc
 abstract class $UserStateCopyWith<$Res> {
   factory $UserStateCopyWith(UserState value, $Res Function(UserState) then) =
       _$UserStateCopyWithImpl<$Res>;
 }
 
+/// @nodoc
 class _$UserStateCopyWithImpl<$Res> implements $UserStateCopyWith<$Res> {
   _$UserStateCopyWithImpl(this._value, this._then);
 
@@ -75,12 +80,14 @@ class _$UserStateCopyWithImpl<$Res> implements $UserStateCopyWith<$Res> {
   final $Res Function(UserState) _then;
 }
 
+/// @nodoc
 abstract class $UserLoadingCopyWith<$Res> {
   factory $UserLoadingCopyWith(
           UserLoading value, $Res Function(UserLoading) then) =
       _$UserLoadingCopyWithImpl<$Res>;
 }
 
+/// @nodoc
 class _$UserLoadingCopyWithImpl<$Res> extends _$UserStateCopyWithImpl<$Res>
     implements $UserLoadingCopyWith<$Res> {
   _$UserLoadingCopyWithImpl(
@@ -91,6 +98,7 @@ class _$UserLoadingCopyWithImpl<$Res> extends _$UserStateCopyWithImpl<$Res>
   UserLoading get _value => super._value as UserLoading;
 }
 
+/// @nodoc
 class _$UserLoading with DiagnosticableTreeMixin implements UserLoading {
   const _$UserLoading();
 
@@ -174,6 +182,7 @@ abstract class UserLoading implements UserState {
   const factory UserLoading() = _$UserLoading;
 }
 
+/// @nodoc
 abstract class $UserSuccessCopyWith<$Res> {
   factory $UserSuccessCopyWith(
           UserSuccess value, $Res Function(UserSuccess) then) =
@@ -181,6 +190,7 @@ abstract class $UserSuccessCopyWith<$Res> {
   $Res call({User currentUser});
 }
 
+/// @nodoc
 class _$UserSuccessCopyWithImpl<$Res> extends _$UserStateCopyWithImpl<$Res>
     implements $UserSuccessCopyWith<$Res> {
   _$UserSuccessCopyWithImpl(
@@ -201,6 +211,7 @@ class _$UserSuccessCopyWithImpl<$Res> extends _$UserStateCopyWithImpl<$Res>
   }
 }
 
+/// @nodoc
 class _$UserSuccess with DiagnosticableTreeMixin implements UserSuccess {
   const _$UserSuccess({this.currentUser});
 
@@ -301,11 +312,13 @@ abstract class UserSuccess implements UserState {
   $UserSuccessCopyWith<UserSuccess> get copyWith;
 }
 
+/// @nodoc
 abstract class $UserErrorCopyWith<$Res> {
   factory $UserErrorCopyWith(UserError value, $Res Function(UserError) then) =
       _$UserErrorCopyWithImpl<$Res>;
 }
 
+/// @nodoc
 class _$UserErrorCopyWithImpl<$Res> extends _$UserStateCopyWithImpl<$Res>
     implements $UserErrorCopyWith<$Res> {
   _$UserErrorCopyWithImpl(UserError _value, $Res Function(UserError) _then)
@@ -315,6 +328,7 @@ class _$UserErrorCopyWithImpl<$Res> extends _$UserStateCopyWithImpl<$Res>
   UserError get _value => super._value as UserError;
 }
 
+/// @nodoc
 class _$UserError with DiagnosticableTreeMixin implements UserError {
   const _$UserError();
 

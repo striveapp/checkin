@@ -9,6 +9,7 @@ part of 'payment_methods_state.dart';
 
 T _$identity<T>(T value) => value;
 
+/// @nodoc
 class _$PaymentMethodsStateTearOff {
   const _$PaymentMethodsStateTearOff();
 
@@ -40,9 +41,11 @@ class _$PaymentMethodsStateTearOff {
   }
 }
 
+/// @nodoc
 // ignore: unused_element
 const $PaymentMethodsState = _$PaymentMethodsStateTearOff();
 
+/// @nodoc
 mixin _$PaymentMethodsState {
   @optionalTypeArgs
   Result when<Result extends Object>({
@@ -77,12 +80,14 @@ mixin _$PaymentMethodsState {
   });
 }
 
+/// @nodoc
 abstract class $PaymentMethodsStateCopyWith<$Res> {
   factory $PaymentMethodsStateCopyWith(
           PaymentMethodsState value, $Res Function(PaymentMethodsState) then) =
       _$PaymentMethodsStateCopyWithImpl<$Res>;
 }
 
+/// @nodoc
 class _$PaymentMethodsStateCopyWithImpl<$Res>
     implements $PaymentMethodsStateCopyWith<$Res> {
   _$PaymentMethodsStateCopyWithImpl(this._value, this._then);
@@ -92,12 +97,14 @@ class _$PaymentMethodsStateCopyWithImpl<$Res>
   final $Res Function(PaymentMethodsState) _then;
 }
 
+/// @nodoc
 abstract class $InitialPaymentMethodsStateCopyWith<$Res> {
   factory $InitialPaymentMethodsStateCopyWith(InitialPaymentMethodsState value,
           $Res Function(InitialPaymentMethodsState) then) =
       _$InitialPaymentMethodsStateCopyWithImpl<$Res>;
 }
 
+/// @nodoc
 class _$InitialPaymentMethodsStateCopyWithImpl<$Res>
     extends _$PaymentMethodsStateCopyWithImpl<$Res>
     implements $InitialPaymentMethodsStateCopyWith<$Res> {
@@ -110,6 +117,7 @@ class _$InitialPaymentMethodsStateCopyWithImpl<$Res>
       super._value as InitialPaymentMethodsState;
 }
 
+/// @nodoc
 class _$InitialPaymentMethodsState
     with DiagnosticableTreeMixin
     implements InitialPaymentMethodsState {
@@ -204,6 +212,7 @@ abstract class InitialPaymentMethodsState implements PaymentMethodsState {
   const factory InitialPaymentMethodsState() = _$InitialPaymentMethodsState;
 }
 
+/// @nodoc
 abstract class $PaymentMethodLoadedCopyWith<$Res> {
   factory $PaymentMethodLoadedCopyWith(
           PaymentMethodLoaded value, $Res Function(PaymentMethodLoaded) then) =
@@ -213,6 +222,7 @@ abstract class $PaymentMethodLoadedCopyWith<$Res> {
   $PaymentMethodCopyWith<$Res> get paymentMethod;
 }
 
+/// @nodoc
 class _$PaymentMethodLoadedCopyWithImpl<$Res>
     extends _$PaymentMethodsStateCopyWithImpl<$Res>
     implements $PaymentMethodLoadedCopyWith<$Res> {
@@ -245,6 +255,7 @@ class _$PaymentMethodLoadedCopyWithImpl<$Res>
   }
 }
 
+/// @nodoc
 class _$PaymentMethodLoaded
     with DiagnosticableTreeMixin
     implements PaymentMethodLoaded {
@@ -357,6 +368,7 @@ abstract class PaymentMethodLoaded implements PaymentMethodsState {
   $PaymentMethodLoadedCopyWith<PaymentMethodLoaded> get copyWith;
 }
 
+/// @nodoc
 abstract class $PaymentMethodEmptyCopyWith<$Res> {
   factory $PaymentMethodEmptyCopyWith(
           PaymentMethodEmpty value, $Res Function(PaymentMethodEmpty) then) =
@@ -364,6 +376,7 @@ abstract class $PaymentMethodEmptyCopyWith<$Res> {
   $Res call({String customerEmail});
 }
 
+/// @nodoc
 class _$PaymentMethodEmptyCopyWithImpl<$Res>
     extends _$PaymentMethodsStateCopyWithImpl<$Res>
     implements $PaymentMethodEmptyCopyWith<$Res> {
@@ -386,6 +399,7 @@ class _$PaymentMethodEmptyCopyWithImpl<$Res>
   }
 }
 
+/// @nodoc
 class _$PaymentMethodEmpty
     with DiagnosticableTreeMixin
     implements PaymentMethodEmpty {
@@ -498,6 +512,7 @@ abstract class PaymentMethodEmpty implements PaymentMethodsState {
   $PaymentMethodEmptyCopyWith<PaymentMethodEmpty> get copyWith;
 }
 
+/// @nodoc
 abstract class $PaymentMethodLoadingCopyWith<$Res> {
   factory $PaymentMethodLoadingCopyWith(PaymentMethodLoading value,
           $Res Function(PaymentMethodLoading) then) =
@@ -505,6 +520,7 @@ abstract class $PaymentMethodLoadingCopyWith<$Res> {
   $Res call({bool show});
 }
 
+/// @nodoc
 class _$PaymentMethodLoadingCopyWithImpl<$Res>
     extends _$PaymentMethodsStateCopyWithImpl<$Res>
     implements $PaymentMethodLoadingCopyWith<$Res> {
@@ -525,6 +541,7 @@ class _$PaymentMethodLoadingCopyWithImpl<$Res>
   }
 }
 
+/// @nodoc
 class _$PaymentMethodLoading
     with DiagnosticableTreeMixin
     implements PaymentMethodLoading {

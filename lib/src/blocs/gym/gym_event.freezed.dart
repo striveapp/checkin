@@ -9,6 +9,7 @@ part of 'gym_event.dart';
 
 T _$identity<T>(T value) => value;
 
+/// @nodoc
 class _$GymEventTearOff {
   const _$GymEventTearOff();
 
@@ -20,9 +21,11 @@ class _$GymEventTearOff {
   }
 }
 
+/// @nodoc
 // ignore: unused_element
 const $GymEvent = _$GymEventTearOff();
 
+/// @nodoc
 mixin _$GymEvent {
   Gym get gym;
 
@@ -48,6 +51,7 @@ mixin _$GymEvent {
   $GymEventCopyWith<GymEvent> get copyWith;
 }
 
+/// @nodoc
 abstract class $GymEventCopyWith<$Res> {
   factory $GymEventCopyWith(GymEvent value, $Res Function(GymEvent) then) =
       _$GymEventCopyWithImpl<$Res>;
@@ -56,6 +60,7 @@ abstract class $GymEventCopyWith<$Res> {
   $GymCopyWith<$Res> get gym;
 }
 
+/// @nodoc
 class _$GymEventCopyWithImpl<$Res> implements $GymEventCopyWith<$Res> {
   _$GymEventCopyWithImpl(this._value, this._then);
 
@@ -83,6 +88,7 @@ class _$GymEventCopyWithImpl<$Res> implements $GymEventCopyWith<$Res> {
   }
 }
 
+/// @nodoc
 abstract class $GymUpdatedCopyWith<$Res> implements $GymEventCopyWith<$Res> {
   factory $GymUpdatedCopyWith(
           GymUpdated value, $Res Function(GymUpdated) then) =
@@ -94,6 +100,7 @@ abstract class $GymUpdatedCopyWith<$Res> implements $GymEventCopyWith<$Res> {
   $GymCopyWith<$Res> get gym;
 }
 
+/// @nodoc
 class _$GymUpdatedCopyWithImpl<$Res> extends _$GymEventCopyWithImpl<$Res>
     implements $GymUpdatedCopyWith<$Res> {
   _$GymUpdatedCopyWithImpl(GymUpdated _value, $Res Function(GymUpdated) _then)
@@ -112,6 +119,7 @@ class _$GymUpdatedCopyWithImpl<$Res> extends _$GymEventCopyWithImpl<$Res>
   }
 }
 
+/// @nodoc
 class _$GymUpdated with DiagnosticableTreeMixin implements GymUpdated {
   const _$GymUpdated({@required this.gym}) : assert(gym != null);
 

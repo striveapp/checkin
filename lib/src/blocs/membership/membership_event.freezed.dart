@@ -9,6 +9,7 @@ part of 'membership_event.dart';
 
 T _$identity<T>(T value) => value;
 
+/// @nodoc
 class _$MembershipEventTearOff {
   const _$MembershipEventTearOff();
 
@@ -27,9 +28,11 @@ class _$MembershipEventTearOff {
   }
 }
 
+/// @nodoc
 // ignore: unused_element
 const $MembershipEvent = _$MembershipEventTearOff();
 
+/// @nodoc
 mixin _$MembershipEvent {
   @optionalTypeArgs
   Result when<Result extends Object>({
@@ -56,12 +59,14 @@ mixin _$MembershipEvent {
   });
 }
 
+/// @nodoc
 abstract class $MembershipEventCopyWith<$Res> {
   factory $MembershipEventCopyWith(
           MembershipEvent value, $Res Function(MembershipEvent) then) =
       _$MembershipEventCopyWithImpl<$Res>;
 }
 
+/// @nodoc
 class _$MembershipEventCopyWithImpl<$Res>
     implements $MembershipEventCopyWith<$Res> {
   _$MembershipEventCopyWithImpl(this._value, this._then);
@@ -71,6 +76,7 @@ class _$MembershipEventCopyWithImpl<$Res>
   final $Res Function(MembershipEvent) _then;
 }
 
+/// @nodoc
 abstract class $MembershipUpdatedCopyWith<$Res> {
   factory $MembershipUpdatedCopyWith(
           MembershipUpdated value, $Res Function(MembershipUpdated) then) =
@@ -80,6 +86,7 @@ abstract class $MembershipUpdatedCopyWith<$Res> {
   $MembershipCopyWith<$Res> get membership;
 }
 
+/// @nodoc
 class _$MembershipUpdatedCopyWithImpl<$Res>
     extends _$MembershipEventCopyWithImpl<$Res>
     implements $MembershipUpdatedCopyWith<$Res> {
@@ -115,6 +122,7 @@ class _$MembershipUpdatedCopyWithImpl<$Res>
   }
 }
 
+/// @nodoc
 class _$MembershipUpdated
     with DiagnosticableTreeMixin
     implements MembershipUpdated {
@@ -226,12 +234,14 @@ abstract class MembershipUpdated implements MembershipEvent {
   $MembershipUpdatedCopyWith<MembershipUpdated> get copyWith;
 }
 
+/// @nodoc
 abstract class $UnsubscribeCopyWith<$Res> {
   factory $UnsubscribeCopyWith(
           Unsubscribe value, $Res Function(Unsubscribe) then) =
       _$UnsubscribeCopyWithImpl<$Res>;
 }
 
+/// @nodoc
 class _$UnsubscribeCopyWithImpl<$Res>
     extends _$MembershipEventCopyWithImpl<$Res>
     implements $UnsubscribeCopyWith<$Res> {
@@ -243,6 +253,7 @@ class _$UnsubscribeCopyWithImpl<$Res>
   Unsubscribe get _value => super._value as Unsubscribe;
 }
 
+/// @nodoc
 class _$Unsubscribe with DiagnosticableTreeMixin implements Unsubscribe {
   const _$Unsubscribe();
 

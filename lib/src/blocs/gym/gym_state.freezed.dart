@@ -9,6 +9,7 @@ part of 'gym_state.dart';
 
 T _$identity<T>(T value) => value;
 
+/// @nodoc
 class _$GymStateTearOff {
   const _$GymStateTearOff();
 
@@ -25,9 +26,11 @@ class _$GymStateTearOff {
   }
 }
 
+/// @nodoc
 // ignore: unused_element
 const $GymState = _$GymStateTearOff();
 
+/// @nodoc
 mixin _$GymState {
   @optionalTypeArgs
   Result when<Result extends Object>({
@@ -53,11 +56,13 @@ mixin _$GymState {
   });
 }
 
+/// @nodoc
 abstract class $GymStateCopyWith<$Res> {
   factory $GymStateCopyWith(GymState value, $Res Function(GymState) then) =
       _$GymStateCopyWithImpl<$Res>;
 }
 
+/// @nodoc
 class _$GymStateCopyWithImpl<$Res> implements $GymStateCopyWith<$Res> {
   _$GymStateCopyWithImpl(this._value, this._then);
 
@@ -66,12 +71,14 @@ class _$GymStateCopyWithImpl<$Res> implements $GymStateCopyWith<$Res> {
   final $Res Function(GymState) _then;
 }
 
+/// @nodoc
 abstract class $InitialGymStateCopyWith<$Res> {
   factory $InitialGymStateCopyWith(
           InitialGymState value, $Res Function(InitialGymState) then) =
       _$InitialGymStateCopyWithImpl<$Res>;
 }
 
+/// @nodoc
 class _$InitialGymStateCopyWithImpl<$Res> extends _$GymStateCopyWithImpl<$Res>
     implements $InitialGymStateCopyWith<$Res> {
   _$InitialGymStateCopyWithImpl(
@@ -82,6 +89,7 @@ class _$InitialGymStateCopyWithImpl<$Res> extends _$GymStateCopyWithImpl<$Res>
   InitialGymState get _value => super._value as InitialGymState;
 }
 
+/// @nodoc
 class _$InitialGymState
     with DiagnosticableTreeMixin
     implements InitialGymState {
@@ -161,6 +169,7 @@ abstract class InitialGymState implements GymState {
   const factory InitialGymState() = _$InitialGymState;
 }
 
+/// @nodoc
 abstract class $GymLoadedCopyWith<$Res> {
   factory $GymLoadedCopyWith(GymLoaded value, $Res Function(GymLoaded) then) =
       _$GymLoadedCopyWithImpl<$Res>;
@@ -169,6 +178,7 @@ abstract class $GymLoadedCopyWith<$Res> {
   $GymCopyWith<$Res> get gym;
 }
 
+/// @nodoc
 class _$GymLoadedCopyWithImpl<$Res> extends _$GymStateCopyWithImpl<$Res>
     implements $GymLoadedCopyWith<$Res> {
   _$GymLoadedCopyWithImpl(GymLoaded _value, $Res Function(GymLoaded) _then)
@@ -197,6 +207,7 @@ class _$GymLoadedCopyWithImpl<$Res> extends _$GymStateCopyWithImpl<$Res>
   }
 }
 
+/// @nodoc
 class _$GymLoaded with DiagnosticableTreeMixin implements GymLoaded {
   const _$GymLoaded({@required this.gym}) : assert(gym != null);
 

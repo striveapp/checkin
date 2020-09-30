@@ -9,6 +9,7 @@ part of 'subscription_plans_event.dart';
 
 T _$identity<T>(T value) => value;
 
+/// @nodoc
 class _$SubscriptionPlansEventTearOff {
   const _$SubscriptionPlansEventTearOff();
 
@@ -28,9 +29,11 @@ class _$SubscriptionPlansEventTearOff {
   }
 }
 
+/// @nodoc
 // ignore: unused_element
 const $SubscriptionPlansEvent = _$SubscriptionPlansEventTearOff();
 
+/// @nodoc
 mixin _$SubscriptionPlansEvent {
   @optionalTypeArgs
   Result when<Result extends Object>({
@@ -58,12 +61,14 @@ mixin _$SubscriptionPlansEvent {
   });
 }
 
+/// @nodoc
 abstract class $SubscriptionPlansEventCopyWith<$Res> {
   factory $SubscriptionPlansEventCopyWith(SubscriptionPlansEvent value,
           $Res Function(SubscriptionPlansEvent) then) =
       _$SubscriptionPlansEventCopyWithImpl<$Res>;
 }
 
+/// @nodoc
 class _$SubscriptionPlansEventCopyWithImpl<$Res>
     implements $SubscriptionPlansEventCopyWith<$Res> {
   _$SubscriptionPlansEventCopyWithImpl(this._value, this._then);
@@ -73,6 +78,7 @@ class _$SubscriptionPlansEventCopyWithImpl<$Res>
   final $Res Function(SubscriptionPlansEvent) _then;
 }
 
+/// @nodoc
 abstract class $SubscriptionPlansUpdatedCopyWith<$Res> {
   factory $SubscriptionPlansUpdatedCopyWith(SubscriptionPlansUpdated value,
           $Res Function(SubscriptionPlansUpdated) then) =
@@ -80,6 +86,7 @@ abstract class $SubscriptionPlansUpdatedCopyWith<$Res> {
   $Res call({List<SubscriptionPlan> subscriptionPlans});
 }
 
+/// @nodoc
 class _$SubscriptionPlansUpdatedCopyWithImpl<$Res>
     extends _$SubscriptionPlansEventCopyWithImpl<$Res>
     implements $SubscriptionPlansUpdatedCopyWith<$Res> {
@@ -103,6 +110,7 @@ class _$SubscriptionPlansUpdatedCopyWithImpl<$Res>
   }
 }
 
+/// @nodoc
 class _$SubscriptionPlansUpdated
     with DiagnosticableTreeMixin
     implements SubscriptionPlansUpdated {
@@ -207,6 +215,7 @@ abstract class SubscriptionPlansUpdated implements SubscriptionPlansEvent {
   $SubscriptionPlansUpdatedCopyWith<SubscriptionPlansUpdated> get copyWith;
 }
 
+/// @nodoc
 abstract class $LoadSubscriptionPlansCopyWith<$Res> {
   factory $LoadSubscriptionPlansCopyWith(LoadSubscriptionPlans value,
           $Res Function(LoadSubscriptionPlans) then) =
@@ -214,6 +223,7 @@ abstract class $LoadSubscriptionPlansCopyWith<$Res> {
   $Res call({String planId});
 }
 
+/// @nodoc
 class _$LoadSubscriptionPlansCopyWithImpl<$Res>
     extends _$SubscriptionPlansEventCopyWithImpl<$Res>
     implements $LoadSubscriptionPlansCopyWith<$Res> {
@@ -234,6 +244,7 @@ class _$LoadSubscriptionPlansCopyWithImpl<$Res>
   }
 }
 
+/// @nodoc
 class _$LoadSubscriptionPlans
     with DiagnosticableTreeMixin
     implements LoadSubscriptionPlans {

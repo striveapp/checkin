@@ -9,6 +9,7 @@ part of 'registry_state.dart';
 
 T _$identity<T>(T value) => value;
 
+/// @nodoc
 class _$RegistryStateTearOff {
   const _$RegistryStateTearOff();
 
@@ -42,9 +43,11 @@ class _$RegistryStateTearOff {
   }
 }
 
+/// @nodoc
 // ignore: unused_element
 const $RegistryState = _$RegistryStateTearOff();
 
+/// @nodoc
 mixin _$RegistryState {
   @optionalTypeArgs
   Result when<Result extends Object>({
@@ -81,12 +84,14 @@ mixin _$RegistryState {
   });
 }
 
+/// @nodoc
 abstract class $RegistryStateCopyWith<$Res> {
   factory $RegistryStateCopyWith(
           RegistryState value, $Res Function(RegistryState) then) =
       _$RegistryStateCopyWithImpl<$Res>;
 }
 
+/// @nodoc
 class _$RegistryStateCopyWithImpl<$Res>
     implements $RegistryStateCopyWith<$Res> {
   _$RegistryStateCopyWithImpl(this._value, this._then);
@@ -96,12 +101,14 @@ class _$RegistryStateCopyWithImpl<$Res>
   final $Res Function(RegistryState) _then;
 }
 
+/// @nodoc
 abstract class $RegistryUninitializedCopyWith<$Res> {
   factory $RegistryUninitializedCopyWith(RegistryUninitialized value,
           $Res Function(RegistryUninitialized) then) =
       _$RegistryUninitializedCopyWithImpl<$Res>;
 }
 
+/// @nodoc
 class _$RegistryUninitializedCopyWithImpl<$Res>
     extends _$RegistryStateCopyWithImpl<$Res>
     implements $RegistryUninitializedCopyWith<$Res> {
@@ -113,6 +120,7 @@ class _$RegistryUninitializedCopyWithImpl<$Res>
   RegistryUninitialized get _value => super._value as RegistryUninitialized;
 }
 
+/// @nodoc
 class _$RegistryUninitialized
     with DiagnosticableTreeMixin
     implements RegistryUninitialized {
@@ -208,12 +216,14 @@ abstract class RegistryUninitialized implements RegistryState {
   const factory RegistryUninitialized() = _$RegistryUninitialized;
 }
 
+/// @nodoc
 abstract class $RegistryLoadingCopyWith<$Res> {
   factory $RegistryLoadingCopyWith(
           RegistryLoading value, $Res Function(RegistryLoading) then) =
       _$RegistryLoadingCopyWithImpl<$Res>;
 }
 
+/// @nodoc
 class _$RegistryLoadingCopyWithImpl<$Res>
     extends _$RegistryStateCopyWithImpl<$Res>
     implements $RegistryLoadingCopyWith<$Res> {
@@ -225,6 +235,7 @@ class _$RegistryLoadingCopyWithImpl<$Res>
   RegistryLoading get _value => super._value as RegistryLoading;
 }
 
+/// @nodoc
 class _$RegistryLoading
     with DiagnosticableTreeMixin
     implements RegistryLoading {
@@ -320,12 +331,14 @@ abstract class RegistryLoading implements RegistryState {
   const factory RegistryLoading() = _$RegistryLoading;
 }
 
+/// @nodoc
 abstract class $RegistryErrorCopyWith<$Res> {
   factory $RegistryErrorCopyWith(
           RegistryError value, $Res Function(RegistryError) then) =
       _$RegistryErrorCopyWithImpl<$Res>;
 }
 
+/// @nodoc
 class _$RegistryErrorCopyWithImpl<$Res>
     extends _$RegistryStateCopyWithImpl<$Res>
     implements $RegistryErrorCopyWith<$Res> {
@@ -337,6 +350,7 @@ class _$RegistryErrorCopyWithImpl<$Res>
   RegistryError get _value => super._value as RegistryError;
 }
 
+/// @nodoc
 class _$RegistryError with DiagnosticableTreeMixin implements RegistryError {
   const _$RegistryError();
 
@@ -429,6 +443,7 @@ abstract class RegistryError implements RegistryState {
   const factory RegistryError() = _$RegistryError;
 }
 
+/// @nodoc
 abstract class $RegistryLoadedCopyWith<$Res> {
   factory $RegistryLoadedCopyWith(
           RegistryLoaded value, $Res Function(RegistryLoaded) then) =
@@ -440,6 +455,7 @@ abstract class $RegistryLoadedCopyWith<$Res> {
       User currentUser});
 }
 
+/// @nodoc
 class _$RegistryLoadedCopyWithImpl<$Res>
     extends _$RegistryStateCopyWithImpl<$Res>
     implements $RegistryLoadedCopyWith<$Res> {
@@ -472,6 +488,7 @@ class _$RegistryLoadedCopyWithImpl<$Res>
   }
 }
 
+/// @nodoc
 class _$RegistryLoaded with DiagnosticableTreeMixin implements RegistryLoaded {
   const _$RegistryLoaded(
       {this.classCapacity,

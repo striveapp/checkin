@@ -9,6 +9,7 @@ part of 'membership_state.dart';
 
 T _$identity<T>(T value) => value;
 
+/// @nodoc
 class _$MembershipStateTearOff {
   const _$MembershipStateTearOff();
 
@@ -46,9 +47,11 @@ class _$MembershipStateTearOff {
   }
 }
 
+/// @nodoc
 // ignore: unused_element
 const $MembershipState = _$MembershipStateTearOff();
 
+/// @nodoc
 mixin _$MembershipState {
   @optionalTypeArgs
   Result when<Result extends Object>({
@@ -87,12 +90,14 @@ mixin _$MembershipState {
   });
 }
 
+/// @nodoc
 abstract class $MembershipStateCopyWith<$Res> {
   factory $MembershipStateCopyWith(
           MembershipState value, $Res Function(MembershipState) then) =
       _$MembershipStateCopyWithImpl<$Res>;
 }
 
+/// @nodoc
 class _$MembershipStateCopyWithImpl<$Res>
     implements $MembershipStateCopyWith<$Res> {
   _$MembershipStateCopyWithImpl(this._value, this._then);
@@ -102,12 +107,14 @@ class _$MembershipStateCopyWithImpl<$Res>
   final $Res Function(MembershipState) _then;
 }
 
+/// @nodoc
 abstract class $InitialMembershipStateCopyWith<$Res> {
   factory $InitialMembershipStateCopyWith(InitialMembershipState value,
           $Res Function(InitialMembershipState) then) =
       _$InitialMembershipStateCopyWithImpl<$Res>;
 }
 
+/// @nodoc
 class _$InitialMembershipStateCopyWithImpl<$Res>
     extends _$MembershipStateCopyWithImpl<$Res>
     implements $InitialMembershipStateCopyWith<$Res> {
@@ -119,6 +126,7 @@ class _$InitialMembershipStateCopyWithImpl<$Res>
   InitialMembershipState get _value => super._value as InitialMembershipState;
 }
 
+/// @nodoc
 class _$InitialMembershipState
     with DiagnosticableTreeMixin
     implements InitialMembershipState {
@@ -219,6 +227,7 @@ abstract class InitialMembershipState implements MembershipState {
   const factory InitialMembershipState() = _$InitialMembershipState;
 }
 
+/// @nodoc
 abstract class $MembershipActiveCopyWith<$Res> {
   factory $MembershipActiveCopyWith(
           MembershipActive value, $Res Function(MembershipActive) then) =
@@ -228,6 +237,7 @@ abstract class $MembershipActiveCopyWith<$Res> {
   $MembershipCopyWith<$Res> get membership;
 }
 
+/// @nodoc
 class _$MembershipActiveCopyWithImpl<$Res>
     extends _$MembershipStateCopyWithImpl<$Res>
     implements $MembershipActiveCopyWith<$Res> {
@@ -259,6 +269,7 @@ class _$MembershipActiveCopyWithImpl<$Res>
   }
 }
 
+/// @nodoc
 class _$MembershipActive
     with DiagnosticableTreeMixin
     implements MembershipActive {
@@ -376,6 +387,7 @@ abstract class MembershipActive implements MembershipState {
   $MembershipActiveCopyWith<MembershipActive> get copyWith;
 }
 
+/// @nodoc
 abstract class $MembershipInactiveCopyWith<$Res> {
   factory $MembershipInactiveCopyWith(
           MembershipInactive value, $Res Function(MembershipInactive) then) =
@@ -383,6 +395,7 @@ abstract class $MembershipInactiveCopyWith<$Res> {
   $Res call({String customerEmail, String customerId});
 }
 
+/// @nodoc
 class _$MembershipInactiveCopyWithImpl<$Res>
     extends _$MembershipStateCopyWithImpl<$Res>
     implements $MembershipInactiveCopyWith<$Res> {
@@ -408,6 +421,7 @@ class _$MembershipInactiveCopyWithImpl<$Res>
   }
 }
 
+/// @nodoc
 class _$MembershipInactive
     with DiagnosticableTreeMixin
     implements MembershipInactive {
@@ -535,12 +549,14 @@ abstract class MembershipInactive implements MembershipState {
   $MembershipInactiveCopyWith<MembershipInactive> get copyWith;
 }
 
+/// @nodoc
 abstract class $MembershipLoadingCopyWith<$Res> {
   factory $MembershipLoadingCopyWith(
           MembershipLoading value, $Res Function(MembershipLoading) then) =
       _$MembershipLoadingCopyWithImpl<$Res>;
 }
 
+/// @nodoc
 class _$MembershipLoadingCopyWithImpl<$Res>
     extends _$MembershipStateCopyWithImpl<$Res>
     implements $MembershipLoadingCopyWith<$Res> {
@@ -552,6 +568,7 @@ class _$MembershipLoadingCopyWithImpl<$Res>
   MembershipLoading get _value => super._value as MembershipLoading;
 }
 
+/// @nodoc
 class _$MembershipLoading
     with DiagnosticableTreeMixin
     implements MembershipLoading {
@@ -651,6 +668,7 @@ abstract class MembershipLoading implements MembershipState {
   const factory MembershipLoading() = _$MembershipLoading;
 }
 
+/// @nodoc
 abstract class $MembershipErrorCopyWith<$Res> {
   factory $MembershipErrorCopyWith(
           MembershipError value, $Res Function(MembershipError) then) =
@@ -658,6 +676,7 @@ abstract class $MembershipErrorCopyWith<$Res> {
   $Res call({String errorMessage});
 }
 
+/// @nodoc
 class _$MembershipErrorCopyWithImpl<$Res>
     extends _$MembershipStateCopyWithImpl<$Res>
     implements $MembershipErrorCopyWith<$Res> {
@@ -680,6 +699,7 @@ class _$MembershipErrorCopyWithImpl<$Res>
   }
 }
 
+/// @nodoc
 class _$MembershipError
     with DiagnosticableTreeMixin
     implements MembershipError {

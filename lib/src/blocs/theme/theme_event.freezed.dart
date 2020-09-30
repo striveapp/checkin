@@ -9,6 +9,7 @@ part of 'theme_event.dart';
 
 T _$identity<T>(T value) => value;
 
+/// @nodoc
 class _$ThemeEventTearOff {
   const _$ThemeEventTearOff();
 
@@ -20,9 +21,11 @@ class _$ThemeEventTearOff {
   }
 }
 
+/// @nodoc
 // ignore: unused_element
 const $ThemeEvent = _$ThemeEventTearOff();
 
+/// @nodoc
 mixin _$ThemeEvent {
   ThemeType get themeType;
 
@@ -48,6 +51,7 @@ mixin _$ThemeEvent {
   $ThemeEventCopyWith<ThemeEvent> get copyWith;
 }
 
+/// @nodoc
 abstract class $ThemeEventCopyWith<$Res> {
   factory $ThemeEventCopyWith(
           ThemeEvent value, $Res Function(ThemeEvent) then) =
@@ -55,6 +59,7 @@ abstract class $ThemeEventCopyWith<$Res> {
   $Res call({ThemeType themeType});
 }
 
+/// @nodoc
 class _$ThemeEventCopyWithImpl<$Res> implements $ThemeEventCopyWith<$Res> {
   _$ThemeEventCopyWithImpl(this._value, this._then);
 
@@ -73,6 +78,7 @@ class _$ThemeEventCopyWithImpl<$Res> implements $ThemeEventCopyWith<$Res> {
   }
 }
 
+/// @nodoc
 abstract class $ThemeUpdatedCopyWith<$Res>
     implements $ThemeEventCopyWith<$Res> {
   factory $ThemeUpdatedCopyWith(
@@ -82,6 +88,7 @@ abstract class $ThemeUpdatedCopyWith<$Res>
   $Res call({ThemeType themeType});
 }
 
+/// @nodoc
 class _$ThemeUpdatedCopyWithImpl<$Res> extends _$ThemeEventCopyWithImpl<$Res>
     implements $ThemeUpdatedCopyWith<$Res> {
   _$ThemeUpdatedCopyWithImpl(
@@ -102,6 +109,7 @@ class _$ThemeUpdatedCopyWithImpl<$Res> extends _$ThemeEventCopyWithImpl<$Res>
   }
 }
 
+/// @nodoc
 class _$ThemeUpdated with DiagnosticableTreeMixin implements ThemeUpdated {
   const _$ThemeUpdated({this.themeType});
 

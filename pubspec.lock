@@ -413,7 +413,7 @@ packages:
     source: hosted
     version: "1.4.1"
   flutter_driver:
-    dependency: "direct dev"
+    dependency: "direct overridden"
     description:
       name: flutter_driver
       url: "https://pub.dartlang.org"
@@ -468,14 +468,14 @@ packages:
       name: freezed
       url: "https://pub.dartlang.org"
     source: hosted
-    version: "0.11.5"
+    version: "0.12.1"
   freezed_annotation:
     dependency: transitive
     description:
       name: freezed_annotation
       url: "https://pub.dartlang.org"
     source: hosted
-    version: "0.11.0+1"
+    version: "0.12.0"
   glob:
     dependency: transitive
     description:

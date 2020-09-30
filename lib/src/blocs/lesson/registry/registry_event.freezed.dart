@@ -9,6 +9,7 @@ part of 'registry_event.dart';
 
 T _$identity<T>(T value) => value;
 
+/// @nodoc
 class _$RegistryEventTearOff {
   const _$RegistryEventTearOff();
 
@@ -46,9 +47,11 @@ class _$RegistryEventTearOff {
   }
 }
 
+/// @nodoc
 // ignore: unused_element
 const $RegistryEvent = _$RegistryEventTearOff();
 
+/// @nodoc
 mixin _$RegistryEvent {
   @optionalTypeArgs
   Result when<Result extends Object>({
@@ -85,12 +88,14 @@ mixin _$RegistryEvent {
   });
 }
 
+/// @nodoc
 abstract class $RegistryEventCopyWith<$Res> {
   factory $RegistryEventCopyWith(
           RegistryEvent value, $Res Function(RegistryEvent) then) =
       _$RegistryEventCopyWithImpl<$Res>;
 }
 
+/// @nodoc
 class _$RegistryEventCopyWithImpl<$Res>
     implements $RegistryEventCopyWith<$Res> {
   _$RegistryEventCopyWithImpl(this._value, this._then);
@@ -100,6 +105,7 @@ class _$RegistryEventCopyWithImpl<$Res>
   final $Res Function(RegistryEvent) _then;
 }
 
+/// @nodoc
 abstract class $RegistryUpdatedCopyWith<$Res> {
   factory $RegistryUpdatedCopyWith(
           RegistryUpdated value, $Res Function(RegistryUpdated) then) =
@@ -111,6 +117,7 @@ abstract class $RegistryUpdatedCopyWith<$Res> {
       User currentUser});
 }
 
+/// @nodoc
 class _$RegistryUpdatedCopyWithImpl<$Res>
     extends _$RegistryEventCopyWithImpl<$Res>
     implements $RegistryUpdatedCopyWith<$Res> {
@@ -143,6 +150,7 @@ class _$RegistryUpdatedCopyWithImpl<$Res>
   }
 }
 
+/// @nodoc
 class _$RegistryUpdated
     with DiagnosticableTreeMixin
     implements RegistryUpdated {
@@ -289,12 +297,14 @@ abstract class RegistryUpdated implements RegistryEvent {
   $RegistryUpdatedCopyWith<RegistryUpdated> get copyWith;
 }
 
+/// @nodoc
 abstract class $RegisterCopyWith<$Res> {
   factory $RegisterCopyWith(Register value, $Res Function(Register) then) =
       _$RegisterCopyWithImpl<$Res>;
   $Res call({Attendee attendee});
 }
 
+/// @nodoc
 class _$RegisterCopyWithImpl<$Res> extends _$RegistryEventCopyWithImpl<$Res>
     implements $RegisterCopyWith<$Res> {
   _$RegisterCopyWithImpl(Register _value, $Res Function(Register) _then)
@@ -313,6 +323,7 @@ class _$RegisterCopyWithImpl<$Res> extends _$RegistryEventCopyWithImpl<$Res>
   }
 }
 
+/// @nodoc
 class _$Register with DiagnosticableTreeMixin implements Register {
   const _$Register({this.attendee});
 
@@ -422,6 +433,7 @@ abstract class Register implements RegistryEvent {
   $RegisterCopyWith<Register> get copyWith;
 }
 
+/// @nodoc
 abstract class $UnregisterCopyWith<$Res> {
   factory $UnregisterCopyWith(
           Unregister value, $Res Function(Unregister) then) =
@@ -429,6 +441,7 @@ abstract class $UnregisterCopyWith<$Res> {
   $Res call({Attendee attendee});
 }
 
+/// @nodoc
 class _$UnregisterCopyWithImpl<$Res> extends _$RegistryEventCopyWithImpl<$Res>
     implements $UnregisterCopyWith<$Res> {
   _$UnregisterCopyWithImpl(Unregister _value, $Res Function(Unregister) _then)
@@ -447,6 +460,7 @@ class _$UnregisterCopyWithImpl<$Res> extends _$RegistryEventCopyWithImpl<$Res>
   }
 }
 
+/// @nodoc
 class _$Unregister with DiagnosticableTreeMixin implements Unregister {
   const _$Unregister({this.attendee});
 
@@ -556,12 +570,14 @@ abstract class Unregister implements RegistryEvent {
   $UnregisterCopyWith<Unregister> get copyWith;
 }
 
+/// @nodoc
 abstract class $AcceptAttendeesCopyWith<$Res> {
   factory $AcceptAttendeesCopyWith(
           AcceptAttendees value, $Res Function(AcceptAttendees) then) =
       _$AcceptAttendeesCopyWithImpl<$Res>;
 }
 
+/// @nodoc
 class _$AcceptAttendeesCopyWithImpl<$Res>
     extends _$RegistryEventCopyWithImpl<$Res>
     implements $AcceptAttendeesCopyWith<$Res> {
@@ -573,6 +589,7 @@ class _$AcceptAttendeesCopyWithImpl<$Res>
   AcceptAttendees get _value => super._value as AcceptAttendees;
 }
 
+/// @nodoc
 class _$AcceptAttendees
     with DiagnosticableTreeMixin
     implements AcceptAttendees {

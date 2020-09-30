@@ -9,6 +9,7 @@ part of 'subscription_state.dart';
 
 T _$identity<T>(T value) => value;
 
+/// @nodoc
 class _$SubscriptionStateTearOff {
   const _$SubscriptionStateTearOff();
 
@@ -35,9 +36,11 @@ class _$SubscriptionStateTearOff {
   }
 }
 
+/// @nodoc
 // ignore: unused_element
 const $SubscriptionState = _$SubscriptionStateTearOff();
 
+/// @nodoc
 mixin _$SubscriptionState {
   @optionalTypeArgs
   Result when<Result extends Object>({
@@ -71,12 +74,14 @@ mixin _$SubscriptionState {
   });
 }
 
+/// @nodoc
 abstract class $SubscriptionStateCopyWith<$Res> {
   factory $SubscriptionStateCopyWith(
           SubscriptionState value, $Res Function(SubscriptionState) then) =
       _$SubscriptionStateCopyWithImpl<$Res>;
 }
 
+/// @nodoc
 class _$SubscriptionStateCopyWithImpl<$Res>
     implements $SubscriptionStateCopyWith<$Res> {
   _$SubscriptionStateCopyWithImpl(this._value, this._then);
@@ -86,12 +91,14 @@ class _$SubscriptionStateCopyWithImpl<$Res>
   final $Res Function(SubscriptionState) _then;
 }
 
+/// @nodoc
 abstract class $SubscriptionInitialCopyWith<$Res> {
   factory $SubscriptionInitialCopyWith(
           SubscriptionInitial value, $Res Function(SubscriptionInitial) then) =
       _$SubscriptionInitialCopyWithImpl<$Res>;
 }
 
+/// @nodoc
 class _$SubscriptionInitialCopyWithImpl<$Res>
     extends _$SubscriptionStateCopyWithImpl<$Res>
     implements $SubscriptionInitialCopyWith<$Res> {
@@ -103,6 +110,7 @@ class _$SubscriptionInitialCopyWithImpl<$Res>
   SubscriptionInitial get _value => super._value as SubscriptionInitial;
 }
 
+/// @nodoc
 class _$SubscriptionInitial implements SubscriptionInitial {
   const _$SubscriptionInitial();
 
@@ -186,12 +194,14 @@ abstract class SubscriptionInitial implements SubscriptionState {
   const factory SubscriptionInitial() = _$SubscriptionInitial;
 }
 
+/// @nodoc
 abstract class $SubscriptionSuccessCopyWith<$Res> {
   factory $SubscriptionSuccessCopyWith(
           SubscriptionSuccess value, $Res Function(SubscriptionSuccess) then) =
       _$SubscriptionSuccessCopyWithImpl<$Res>;
 }
 
+/// @nodoc
 class _$SubscriptionSuccessCopyWithImpl<$Res>
     extends _$SubscriptionStateCopyWithImpl<$Res>
     implements $SubscriptionSuccessCopyWith<$Res> {
@@ -203,6 +213,7 @@ class _$SubscriptionSuccessCopyWithImpl<$Res>
   SubscriptionSuccess get _value => super._value as SubscriptionSuccess;
 }
 
+/// @nodoc
 class _$SubscriptionSuccess implements SubscriptionSuccess {
   const _$SubscriptionSuccess();
 
@@ -286,12 +297,14 @@ abstract class SubscriptionSuccess implements SubscriptionState {
   const factory SubscriptionSuccess() = _$SubscriptionSuccess;
 }
 
+/// @nodoc
 abstract class $SubscriptionLoadingCopyWith<$Res> {
   factory $SubscriptionLoadingCopyWith(
           SubscriptionLoading value, $Res Function(SubscriptionLoading) then) =
       _$SubscriptionLoadingCopyWithImpl<$Res>;
 }
 
+/// @nodoc
 class _$SubscriptionLoadingCopyWithImpl<$Res>
     extends _$SubscriptionStateCopyWithImpl<$Res>
     implements $SubscriptionLoadingCopyWith<$Res> {
@@ -303,6 +316,7 @@ class _$SubscriptionLoadingCopyWithImpl<$Res>
   SubscriptionLoading get _value => super._value as SubscriptionLoading;
 }
 
+/// @nodoc
 class _$SubscriptionLoading implements SubscriptionLoading {
   const _$SubscriptionLoading();
 
@@ -386,6 +400,7 @@ abstract class SubscriptionLoading implements SubscriptionState {
   const factory SubscriptionLoading() = _$SubscriptionLoading;
 }
 
+/// @nodoc
 abstract class $SubscriptionErrorCopyWith<$Res> {
   factory $SubscriptionErrorCopyWith(
           SubscriptionError value, $Res Function(SubscriptionError) then) =
@@ -393,6 +408,7 @@ abstract class $SubscriptionErrorCopyWith<$Res> {
   $Res call({String errorMessage});
 }
 
+/// @nodoc
 class _$SubscriptionErrorCopyWithImpl<$Res>
     extends _$SubscriptionStateCopyWithImpl<$Res>
     implements $SubscriptionErrorCopyWith<$Res> {
@@ -415,6 +431,7 @@ class _$SubscriptionErrorCopyWithImpl<$Res>
   }
 }
 
+/// @nodoc
 class _$SubscriptionError implements SubscriptionError {
   const _$SubscriptionError({this.errorMessage});
 

@@ -9,6 +9,7 @@ part of 'auth_state.dart';
 
 T _$identity<T>(T value) => value;
 
+/// @nodoc
 class _$AuthStateTearOff {
   const _$AuthStateTearOff();
 
@@ -32,9 +33,11 @@ class _$AuthStateTearOff {
   }
 }
 
+/// @nodoc
 // ignore: unused_element
 const $AuthState = _$AuthStateTearOff();
 
+/// @nodoc
 mixin _$AuthState {
   @optionalTypeArgs
   Result when<Result extends Object>({
@@ -64,11 +67,13 @@ mixin _$AuthState {
   });
 }
 
+/// @nodoc
 abstract class $AuthStateCopyWith<$Res> {
   factory $AuthStateCopyWith(AuthState value, $Res Function(AuthState) then) =
       _$AuthStateCopyWithImpl<$Res>;
 }
 
+/// @nodoc
 class _$AuthStateCopyWithImpl<$Res> implements $AuthStateCopyWith<$Res> {
   _$AuthStateCopyWithImpl(this._value, this._then);
 
@@ -77,12 +82,14 @@ class _$AuthStateCopyWithImpl<$Res> implements $AuthStateCopyWith<$Res> {
   final $Res Function(AuthState) _then;
 }
 
+/// @nodoc
 abstract class $AuthUninitializedCopyWith<$Res> {
   factory $AuthUninitializedCopyWith(
           AuthUninitialized value, $Res Function(AuthUninitialized) then) =
       _$AuthUninitializedCopyWithImpl<$Res>;
 }
 
+/// @nodoc
 class _$AuthUninitializedCopyWithImpl<$Res>
     extends _$AuthStateCopyWithImpl<$Res>
     implements $AuthUninitializedCopyWith<$Res> {
@@ -94,6 +101,7 @@ class _$AuthUninitializedCopyWithImpl<$Res>
   AuthUninitialized get _value => super._value as AuthUninitialized;
 }
 
+/// @nodoc
 class _$AuthUninitialized
     with DiagnosticableTreeMixin
     implements AuthUninitialized {
@@ -179,6 +187,7 @@ abstract class AuthUninitialized implements AuthState {
   const factory AuthUninitialized() = _$AuthUninitialized;
 }
 
+/// @nodoc
 abstract class $AuthAuthenticatedCopyWith<$Res> {
   factory $AuthAuthenticatedCopyWith(
           AuthAuthenticated value, $Res Function(AuthAuthenticated) then) =
@@ -186,6 +195,7 @@ abstract class $AuthAuthenticatedCopyWith<$Res> {
   $Res call({User loggedUser});
 }
 
+/// @nodoc
 class _$AuthAuthenticatedCopyWithImpl<$Res>
     extends _$AuthStateCopyWithImpl<$Res>
     implements $AuthAuthenticatedCopyWith<$Res> {
@@ -207,6 +217,7 @@ class _$AuthAuthenticatedCopyWithImpl<$Res>
   }
 }
 
+/// @nodoc
 class _$AuthAuthenticated
     with DiagnosticableTreeMixin
     implements AuthAuthenticated {
@@ -309,6 +320,7 @@ abstract class AuthAuthenticated implements AuthState {
   $AuthAuthenticatedCopyWith<AuthAuthenticated> get copyWith;
 }
 
+/// @nodoc
 abstract class $AuthUnauthenticatedCopyWith<$Res> {
   factory $AuthUnauthenticatedCopyWith(
           AuthUnauthenticated value, $Res Function(AuthUnauthenticated) then) =
@@ -316,6 +328,7 @@ abstract class $AuthUnauthenticatedCopyWith<$Res> {
   $Res call({Error error});
 }
 
+/// @nodoc
 class _$AuthUnauthenticatedCopyWithImpl<$Res>
     extends _$AuthStateCopyWithImpl<$Res>
     implements $AuthUnauthenticatedCopyWith<$Res> {
@@ -336,6 +349,7 @@ class _$AuthUnauthenticatedCopyWithImpl<$Res>
   }
 }
 
+/// @nodoc
 class _$AuthUnauthenticated
     with DiagnosticableTreeMixin
     implements AuthUnauthenticated {
