@@ -2,15 +2,15 @@ import 'dart:io';
 
 import 'package:checkin/src/models/grade.dart';
 import 'package:checkin/src/models/user.dart';
-import 'package:cloud_firestore/cloud_firestore.dart';
+import 'package:checkin/src/repositories/user_repository.dart';
 import 'package:checkin/src/resources/stats_provider.dart';
-import 'package:flutter/material.dart';
-import 'package:package_info/package_info.dart';
+import 'package:cloud_firestore/cloud_firestore.dart';
 
-class UserProvider {
+class UserProvider implements UserRepository {
   Firestore _firestore = Firestore.instance;
   StatsProvider statsProvider = StatsProvider();
   static const String path = 'users';
+  String defaultGym;
 
   Stream<User> getUserByEmail(String email) => _firestore
       .collection(path)
@@ -33,22 +33,17 @@ class UserProvider {
   }
 
   Future<void> createUser(User newUser) async {
-    String appVersion = null;
-
-    try {
-      PackageInfo packageInfo = await PackageInfo.fromPlatform();
-      appVersion = "${packageInfo.version}+${packageInfo.buildNumber}";
-    } catch( err ) {
-      debugPrint(
-          'Error ocurred when retrieving current installed version of the app:' + err.toString());
-    }
-
-    await _firestore.collection(path).document(newUser.email).setData({
+    var userData = {
       'name': newUser.name,
       'email': newUser.email,
       'imageUrl': newUser.imageUrl,
-      'appVersion': appVersion
-    }, merge: true);
+    };
+
+    if( defaultGym != null ) {
+      userData['selectedGymId'] = defaultGym;
+    }
+
+    await _firestore.collection(path).document(newUser.email).setData(userData, merge: true);
   }
 
   Future<void> updateUserGrade(String userEmail, String newGrade) async {
@@ -91,5 +86,10 @@ class UserProvider {
         .collection(path)
         .document(userEmail)
         .updateData({"imageUrl": newImageUrl});
+  }
+
+  @override
+  void setDefaultGym(String defaultGym) {
+    this.defaultGym = defaultGym;
   }
 }

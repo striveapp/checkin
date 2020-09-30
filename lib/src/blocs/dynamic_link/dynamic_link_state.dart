@@ -25,6 +25,18 @@ class DynamicLinkToNavigate extends DynamicLinkState {
   String toString() => 'DynamicLinkToNavigate';
 }
 
+class DynamicLinkSetDefaultGym extends DynamicLinkState {
+  final String defaultGym;
+
+  DynamicLinkSetDefaultGym({this.defaultGym});
+
+  @override
+  List<Object> get props => [defaultGym];
+
+  @override
+  String toString() => 'DynamicLinkSetDefaultGym';
+}
+
 class DynamicLinkError extends DynamicLinkState {
   @override
   String toString() => 'DynamicLinkError';
