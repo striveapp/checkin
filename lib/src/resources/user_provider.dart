@@ -88,6 +88,13 @@ class UserProvider implements UserRepository {
         .updateData({"imageUrl": newImageUrl});
   }
 
+  Future<void> updateUserVersion(String userEmail, String newVersion) async {
+    await _firestore
+        .collection(path)
+        .document(userEmail)
+        .updateData({"appVersion": newVersion});
+  }
+
   @override
   void setDefaultGym(String defaultGym) {
     this.defaultGym = defaultGym;

@@ -9,8 +9,9 @@ import 'package:checkin/src/models/user.dart';
 import 'package:checkin/src/repositories/image_repository.dart';
 import 'package:checkin/src/repositories/storage_repository.dart';
 import 'package:checkin/src/repositories/user_repository.dart';
+import 'package:flutter/services.dart';
+import 'package:flutter_test/flutter_test.dart';
 import 'package:mockito/mockito.dart';
-import 'package:test/test.dart';
 
 class MockUserRepository extends Mock implements UserRepository {}
 class MockstorageRepository extends Mock implements StorageRepository {}
@@ -346,6 +347,56 @@ void main() {
           emitsInAnyOrder(expectedState),
         );
         verify(mockUserRepository.updateUserFcmToken(testUser.email, newToken));
+      });
+    });
+
+    group("when add UpdateVersion", () {
+      test("should update the user version", () async {
+        final setupState = [
+          UserLoading(),
+          UserSuccess(currentUser: testUser),
+        ];
+
+        userBloc = UserBloc(
+          authBloc: mockAuthBloc,
+          userRepository: mockUserRepository,
+          storageRepository: mockstorageRepository,
+          imageRepository: mockImageRepository,
+        );
+        userStreamCtrl.add(testUser);
+
+        await expectLater(
+          userBloc,
+          emitsInOrder(setupState),
+        );
+
+        userBloc.add(UserEvent.updateVersion(
+            userEmail: testUser.email));
+        // set current version to 1.0.0
+        TestWidgetsFlutterBinding.ensureInitialized();
+        const MethodChannel('plugins.flutter.io/package_info').setMockMethodCallHandler((MethodCall methodCall) async {
+          if (methodCall.method == 'getAll') {
+            return <String, dynamic>{
+              'version': '1.0.0',
+              'buildNumber': '12',
+            };
+          }
+          return null;
+        });
+
+        when(mockUserRepository.updateUserVersion(testUser.email, "1.0.0+12"))
+            .thenAnswer((_) {
+          userStreamCtrl.add(testUser);
+          return Future.value(null);
+        });
+
+        final expectedState = [UserSuccess(currentUser: testUser)];
+
+        await expectLater(
+          userBloc,
+          emitsInAnyOrder(expectedState),
+        );
+        verify(mockUserRepository.updateUserVersion(testUser.email, "1.0.0+12"));
       });
     });
   });

@@ -19,4 +19,6 @@ abstract class UserEvent with _$UserEvent {
 
   const factory UserEvent.updateFcmToken({String userEmail, String newToken}) =
       UpdateFcmToken;
+
+  const factory UserEvent.updateVersion({String userEmail}) = UpdateVersion;
 }
