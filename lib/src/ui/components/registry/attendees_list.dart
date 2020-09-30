@@ -37,7 +37,7 @@ class AttendeesList extends StatelessWidget {
               children: <Widget>[
                 if (_isUserInClass(state))
                   CurrentUserTile(
-                      acceptedAttendee: state.acceptedAttendees,
+                      acceptedAttendees: state.acceptedAttendees,
                       currentUser: currentUser),
                 Expanded(
                   child: SingleChildScrollView(
@@ -104,6 +104,7 @@ class Attendees extends StatelessWidget {
                   child: AttendeeTile(
                     attendee: attendee,
                     isAccepted: false,
+                    isOwnerView: true,
                   ),
                 )
               : AttendeeTile(
@@ -133,6 +134,7 @@ class AcceptedAttendees extends StatelessWidget {
           .map((attendee) => AttendeeTile(
                 attendee: attendee,
                 isAccepted: true,
+                isOwnerView: currentUser.isOwner,
               ))
           .toList(),
     );

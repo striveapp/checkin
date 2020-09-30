@@ -64,16 +64,6 @@ class AccountPage extends StatelessWidget {
                     RepositoryProvider.of<AnalyticsRepository>(context),
               ),
             ),
-            BlocProvider<MembershipBloc>(
-              create: (BuildContext context) => MembershipBloc(
-                analyticsRepository:
-                    RepositoryProvider.of<AnalyticsRepository>(context),
-                membershipApi: MembershipApi(
-                    httpClient: HttpClient(authRepository: AuthProvider())),
-                membershipRepository: MembershipProvider(),
-                userBloc: BlocProvider.of<UserBloc>(context),
-              ),
-            ),
             BlocProvider<GymBloc>(
               create: (BuildContext context) => GymBloc(
                 gymRepository: GymProvider(),
@@ -122,15 +112,30 @@ class AccountPage extends StatelessWidget {
                 }
 
                 if (state is AccountLoaded) {
-                  return BlocProvider<UserStatsBloc>(
-                    create: (BuildContext context) => UserStatsBloc(
-                      statsRepository:
+                  return MultiBlocProvider(
+                    providers: [
+                      BlocProvider<UserStatsBloc>(
+                        create: (BuildContext context) => UserStatsBloc(
+                          statsRepository:
                           RepositoryProvider.of<StatsRepository>(context),
-                      userEmail: state.user.email,
-                      selectedGymId: state.user.selectedGymId,
-                      statsBloc: StatsBloc()
-                        ..add(TimespanUpdate(timespan: constants.MONTH)),
-                    ),
+                          userEmail: state.user.email,
+                          selectedGymId: state.user.selectedGymId,
+                          statsBloc: StatsBloc()
+                            ..add(TimespanUpdate(timespan: constants.MONTH)),
+                        ),
+                      ),
+                      BlocProvider<MembershipBloc>(
+                        create: (BuildContext context) => MembershipBloc(
+                          analyticsRepository:
+                          RepositoryProvider.of<AnalyticsRepository>(context),
+                          membershipApi: MembershipApi(
+                              httpClient: HttpClient(authRepository: AuthProvider())),
+                          membershipRepository: MembershipProvider(),
+                          userEmail: state.user.email,
+                          selectedGymId: state.user.selectedGymId
+                        ),
+                      )
+                    ],
                     child: SingleChildScrollView(
                       child: Padding(
                         padding: EdgeInsets.symmetric(horizontal: 10),

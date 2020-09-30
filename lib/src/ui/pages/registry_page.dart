@@ -1,7 +1,13 @@
 import 'package:checkin/src/api/api.dart';
+import 'package:checkin/src/api/http_client.dart';
+import 'package:checkin/src/api/membership_api.dart';
 import 'package:checkin/src/blocs/lesson/bloc.dart';
+import 'package:checkin/src/blocs/membership/bloc.dart';
 import 'package:checkin/src/blocs/user/bloc.dart';
+import 'package:checkin/src/repositories/analytics_repository.dart';
 import 'package:checkin/src/repositories/lesson_repository.dart';
+import 'package:checkin/src/resources/auth_provider.dart';
+import 'package:checkin/src/resources/membership_provider.dart';
 import 'package:checkin/src/ui/components/base_app_bar.dart';
 import 'package:checkin/src/ui/components/registry/lesson_infos.dart';
 import 'package:checkin/src/ui/components/registry/registry.dart';
@@ -28,25 +34,29 @@ class RegistryPage extends StatelessWidget {
       appBar: BaseAppBar(
         title: DateFormat('d MMMM').format(DateTime.parse(this.date)),
       ),
-      body: BlocProvider<LessonBloc>(
-        create: (context) => LessonBloc(
-          userBloc: BlocProvider.of<UserBloc>(context),
-          lessonId: lessonId,
-          date: date,
-          lessonRepository: RepositoryProvider.of<LessonRepository>(context),
-          lessonApi: RepositoryProvider.of<LessonApi>(context),
-        ),
-        child: Container(
-            child: Padding(
-              padding: EdgeInsets.symmetric(horizontal: 10),
-              child: Column(
-                  mainAxisAlignment: MainAxisAlignment.spaceAround,
-                  children: [
-                    LessonInfos(),
-                    Registry(),
-                  ]),
-            ))
-      ),
+      body: MultiBlocProvider(
+          providers: [
+            BlocProvider<LessonBloc>(
+              create: (context) => LessonBloc(
+                userBloc: BlocProvider.of<UserBloc>(context),
+                lessonId: lessonId,
+                date: date,
+                lessonRepository:
+                    RepositoryProvider.of<LessonRepository>(context),
+                lessonApi: RepositoryProvider.of<LessonApi>(context),
+              ),
+            ),
+          ],
+          child: Container(
+              child: Padding(
+            padding: EdgeInsets.symmetric(horizontal: 10),
+            child: Column(
+                mainAxisAlignment: MainAxisAlignment.spaceAround,
+                children: [
+                  LessonInfos(),
+                  Registry(),
+                ]),
+          ))),
     );
   }
 }

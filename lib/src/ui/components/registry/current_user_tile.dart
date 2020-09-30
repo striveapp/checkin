@@ -6,12 +6,12 @@ import 'attendee_tile.dart';
 
 class CurrentUserTile extends StatelessWidget {
   final User currentUser;
-  final List<Attendee> acceptedAttendee;
+  final List<Attendee> acceptedAttendees;
 
   const CurrentUserTile({
     Key key,
     @required this.currentUser,
-    @required this.acceptedAttendee,
+    @required this.acceptedAttendees,
   }) : super(key: key);
 
   @override
@@ -21,7 +21,7 @@ class CurrentUserTile extends StatelessWidget {
         AttendeeTile(
           attendee: Attendee.fromUser(currentUser),
           isCurrent: true,
-          isAccepted: acceptedAttendee
+          isAccepted: acceptedAttendees
               .any((attendee) => attendee.email == currentUser.email),
         ),
         Divider()

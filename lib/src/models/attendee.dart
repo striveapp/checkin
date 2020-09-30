@@ -13,12 +13,14 @@ class Attendee extends Equatable {
   final String imageUrl;
   // TODO: we should use some kind of id to perform this check not the email https://trello.com/c/j5sAVRXJ
   final String email;
+  final bool hasRemainingSessions;
 
   Attendee({
     @required this.name,
     @required this.grade,
     @required this.imageUrl,
     @required this.email,
+    this.hasRemainingSessions = true
   });
 
   @override
