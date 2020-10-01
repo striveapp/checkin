@@ -32,7 +32,8 @@ void main() {
         name: "User",
         email: "ueser@test.com",
         imageUrl: "some image",
-        grade: Grade.white);
+        grade: Grade.white,
+        selectedGymId: "testGym");
 
     Lesson fakeLesson = Lesson(
         id: fakeLessonId,
@@ -45,17 +46,20 @@ void main() {
               name: "Test1",
               email: "test1@test.com",
               imageUrl: "some image",
-              grade: Grade.white),
+              grade: Grade.white,
+              selectedGymId: "testGym"),
           Attendee(
               name: "Test2",
               email: "test2@test.com",
               imageUrl: "some image",
-              grade: Grade.white),
+              grade: Grade.white,
+              selectedGymId: "testGym"),
           Attendee(
               name: "Test3",
               email: "test3@test.com",
               imageUrl: "some image",
-              grade: Grade.white),
+              grade: Grade.white,
+              selectedGymId: "testGym"),
         ]);
     User fakeUser = User(
       name: "Logged User",

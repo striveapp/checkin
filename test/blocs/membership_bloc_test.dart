@@ -49,7 +49,8 @@ void main() {
           )).thenAnswer((realInvocation) => Stream.value(inactiveMembership));
           membershipBloc = MembershipBloc(
             analyticsRepository: mockAnalyticsRepository,
-            userBloc: mockUserBloc,
+            userEmail: fakeEmail,
+            selectedGymId: fakeGymId,
             membershipRepository: mockMembershipRepository,
             membershipApi: mockMembershipApi,
           );
@@ -91,7 +92,8 @@ void main() {
           )).thenAnswer((realInvocation) => Stream.value(activeMembership));
           membershipBloc = MembershipBloc(
             analyticsRepository: mockAnalyticsRepository,
-            userBloc: mockUserBloc,
+            userEmail: fakeEmail,
+            selectedGymId: fakeGymId,
             membershipRepository: mockMembershipRepository,
             membershipApi: mockMembershipApi,
           );
@@ -134,7 +136,8 @@ void main() {
         )).thenAnswer((realInvocation) => Stream.value(activeMembership));
         membershipBloc = MembershipBloc(
           analyticsRepository: mockAnalyticsRepository,
-          userBloc: mockUserBloc,
+          userEmail: fakeEmail,
+          selectedGymId: fakeGymId,
           membershipRepository: mockMembershipRepository,
           membershipApi: mockMembershipApi,
         );

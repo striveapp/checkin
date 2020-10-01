@@ -31,6 +31,7 @@ void main() {
       grade: Grade.white,
       email: "fake@test.com",
       imageUrl: "http://imageUrl",
+      selectedGymId: "testGym",
     );
 
     Attendee attendee2 = Attendee(
@@ -38,6 +39,7 @@ void main() {
       grade: Grade.white,
       email: "fake@test.com",
       imageUrl: "http://imageUrl",
+      selectedGymId: "testGym",
     );
 
     Attendee attendee3 = Attendee(
@@ -45,6 +47,7 @@ void main() {
       grade: Grade.white,
       email: "fake@test.com",
       imageUrl: "http://imageUrl",
+      selectedGymId: "testGym",
     );
 
     List<Lesson> allLessons = [

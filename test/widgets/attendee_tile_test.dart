@@ -17,7 +17,8 @@ void main() {
             name: "testAttendee",
             grade: Grade.white,
             imageUrl: "testImage",
-            email: "testMail"),
+            email: "testMail",
+            selectedGymId: "testGym"),
       )));
       final tile = find.byKey(Key("tile-testMail"));
 

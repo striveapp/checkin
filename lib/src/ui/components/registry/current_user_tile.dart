@@ -21,6 +21,7 @@ class CurrentUserTile extends StatelessWidget {
         AttendeeTile(
           attendee: Attendee.fromUser(currentUser),
           isCurrent: true,
+          isOwnerView: true,
           isAccepted: acceptedAttendees
               .any((attendee) => attendee.email == currentUser.email),
         ),

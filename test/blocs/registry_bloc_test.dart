@@ -25,17 +25,20 @@ void main() {
         name: "Test1",
         email: "test1@test.com",
         imageUrl: "some image",
-        grade: Grade.white);
+        grade: Grade.white,
+        selectedGymId: "testGym");
     var testAttendee2 = Attendee(
         name: "Test2",
         email: "test2@test.com",
         imageUrl: "some image",
-        grade: Grade.white);
+        grade: Grade.white,
+        selectedGymId: "testGym");
     var testAttendee3 = Attendee(
         name: "Test3",
         email: "test3@test.com",
         imageUrl: "some image",
-        grade: Grade.white);
+        grade: Grade.white,
+        selectedGymId: "testGym");
 
     Lesson fakeLesson = Lesson(attendees: [
       testAttendee1,
@@ -83,7 +86,8 @@ void main() {
           name: "pepe",
           grade: Grade.white,
           imageUrl: "lol",
-          email: "not@anemail");
+          email: "not@anemail",
+          selectedGymId: "testGym");
 
       setUp(() {
         when(mockLessonBloc.add(LessonRegister(attendee: fakeAttendee)))

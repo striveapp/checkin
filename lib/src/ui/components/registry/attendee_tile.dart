@@ -63,7 +63,7 @@ class AttendeeTile extends StatelessWidget {
                         statsRepository:
                         RepositoryProvider.of<StatsRepository>(context),
                         userEmail: attendee.email,
-                        selectedGymId: "test",
+                        selectedGymId: attendee.selectedGymId ?? "you like tacconi?",
                         statsBloc: StatsBloc()
                           ..add(TimespanUpdate(timespan: constants.MONTH)),
                       ),
@@ -77,7 +77,7 @@ class AttendeeTile extends StatelessWidget {
                             HttpClient(authRepository: AuthProvider())),
                         membershipRepository: MembershipProvider(),
                         userEmail: attendee.email,
-                        selectedGymId: "test",
+                        selectedGymId: attendee.selectedGymId ?? "you like tacconi?",
                       ),
                     )],
                     child: BlocBuilder<MembershipBloc, MembershipState>(
@@ -90,8 +90,11 @@ class AttendeeTile extends StatelessWidget {
                                   if( state is UserStatsLoaded ) {
 
                                     if( state.attendedLessons.length >= membership.totalLessonsOfPlan) {
-                                      return Icon(Icons.warning_amber_rounded,
-                                          color: Colors.amber);
+                                      return Tooltip(
+                                        message: "${attendee.name} used all available lesson for his plan".i18n,
+                                        child: Icon(Icons.warning_amber_rounded,
+                                            color: Colors.amber),
+                                      );
                                     }
                                   }
 
