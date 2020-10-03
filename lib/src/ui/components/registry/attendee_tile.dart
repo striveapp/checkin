@@ -17,18 +17,20 @@ import 'package:checkin/src/constants.dart' as constants;
 
 class AttendeeTile extends StatelessWidget {
   final Attendee attendee;
+  final String selectedGymId;
   final bool isCurrent;
   final bool isAccepted;
-  final bool isOwnerView;
+  final bool showSessionsWarning;
 
   static const String you = 'You';
 
   const AttendeeTile({
     Key key,
     @required this.attendee,
+    @required this.selectedGymId,
     this.isCurrent = false,
     this.isAccepted = false,
-    this.isOwnerView = false,
+    this.showSessionsWarning = false,
   }) : super(key: key);
 
   @override
@@ -55,7 +57,7 @@ class AttendeeTile extends StatelessWidget {
             trailing: Wrap(
               spacing: 10,
               children: [
-                if (isOwnerView)
+                if (showSessionsWarning && !isAccepted)
                   MultiBlocProvider(
                     providers: [
                       BlocProvider<UserStatsBloc>(
@@ -63,7 +65,7 @@ class AttendeeTile extends StatelessWidget {
                         statsRepository:
                         RepositoryProvider.of<StatsRepository>(context),
                         userEmail: attendee.email,
-                        selectedGymId: attendee.selectedGymId,
+                        selectedGymId: selectedGymId,
                         statsBloc: StatsBloc()
                           ..add(TimespanUpdate(timespan: constants.MONTH)),
                       ),
@@ -77,7 +79,7 @@ class AttendeeTile extends StatelessWidget {
                             HttpClient(authRepository: AuthProvider())),
                         membershipRepository: MembershipProvider(),
                         userEmail: attendee.email,
-                        selectedGymId: attendee.selectedGymId,
+                        selectedGymId: selectedGymId,
                       ),
                     )],
                     child: BlocBuilder<MembershipBloc, MembershipState>(

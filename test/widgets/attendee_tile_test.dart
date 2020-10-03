@@ -13,12 +13,12 @@ void main() {
       (WidgetTester tester) async {
     provideMockedNetworkImages(() async {
       await tester.pumpWidget(buildTestApplication(AttendeeTile(
+      selectedGymId: "testGym",
         attendee: Attendee(
             name: "testAttendee",
             grade: Grade.white,
             imageUrl: "testImage",
-            email: "testMail",
-            selectedGymId: "testGym"),
+            email: "testMail"),
       )));
       final tile = find.byKey(Key("tile-testMail"));
 

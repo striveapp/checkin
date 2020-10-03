@@ -20,8 +20,9 @@ class CurrentUserTile extends StatelessWidget {
       children: <Widget>[
         AttendeeTile(
           attendee: Attendee.fromUser(currentUser),
+          selectedGymId: currentUser.selectedGymId,
           isCurrent: true,
-          isOwnerView: true,
+          showSessionsWarning: true,
           isAccepted: acceptedAttendees
               .any((attendee) => attendee.email == currentUser.email),
         ),

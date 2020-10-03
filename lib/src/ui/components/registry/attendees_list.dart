@@ -103,12 +103,14 @@ class Attendees extends StatelessWidget {
                   },
                   child: AttendeeTile(
                     attendee: attendee,
+                    selectedGymId: currentUser.selectedGymId,
                     isAccepted: false,
-                    isOwnerView: true,
+                    showSessionsWarning: true,
                   ),
                 )
               : AttendeeTile(
                   attendee: attendee,
+                  selectedGymId: currentUser.selectedGymId,
                   isAccepted: false,
                 ))
           .toList(),
@@ -133,8 +135,8 @@ class AcceptedAttendees extends StatelessWidget {
           .where((attendee) => attendee.email != currentUser.email)
           .map((attendee) => AttendeeTile(
                 attendee: attendee,
+                selectedGymId: currentUser.selectedGymId,
                 isAccepted: true,
-                isOwnerView: currentUser.isOwner,
               ))
           .toList(),
     );
