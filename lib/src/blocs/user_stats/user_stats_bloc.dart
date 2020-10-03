@@ -22,6 +22,7 @@ class UserStatsBloc extends Bloc<UserStatsEvent, UserStatsState> {
     @required this.selectedGymId,
     @required this.statsBloc,
   }) {
+
     statsBloc.listen((statsBlocState) {
       if (statsBlocState is TimespanUpdated) {
         statsSub?.cancel();

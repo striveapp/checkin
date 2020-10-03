@@ -52,7 +52,7 @@ class LessonInstancesProvider implements LessonRepository {
       grade: (attendee["grade"] as String).toGrade(),
       imageUrl: attendee["imageUrl"],
       email: attendee["email"],
-      selectedGymId: "testGym");
+      selectedGymId: attendee["selectedGymId"] ?? "unknownGymId");
 
   @override
   Stream<List<Lesson>> getLessonsForToday(String gymId) {
