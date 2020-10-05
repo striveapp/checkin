@@ -149,6 +149,11 @@ void main() {
               gymId: fakeUser.selectedGymId,
               email: fakeEmail,
             ));
+            verify(mockStatsRepository.getUserStats(
+              fakeUser.selectedGymId,
+              fakeEmail,
+              constants.MONTH,
+            ));
           });
 
           test(
@@ -185,6 +190,11 @@ void main() {
             verify(mockMembershipRepository.getMembership(
               gymId: fakeUser.selectedGymId,
               email: fakeEmail,
+            ));
+            verify(mockStatsRepository.getUserStats(
+              fakeUser.selectedGymId,
+              fakeEmail,
+              constants.MONTH,
             ));
           });
         });
