@@ -42,6 +42,7 @@ class AuthBloc extends Bloc<AuthEvent, AuthState> {
           'add AuthUpdated with user: ${event.loggedUser ?? "Unauthenticated"}');
       if(event.loggedUser != null) {
         await _analyticsRepository.setUserProperties(event.loggedUser.uid);
+        await _analyticsRepository.logUserLocale();
         yield AuthAuthenticated(loggedUser: event.loggedUser);
       } else {
         yield AuthUnauthenticated();

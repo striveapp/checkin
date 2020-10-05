@@ -5,6 +5,7 @@ import 'package:firebase_analytics/observer.dart';
 import 'package:firebase_crashlytics/firebase_crashlytics.dart';
 import 'package:flutter/src/widgets/pages.dart';
 import 'package:flutter/src/widgets/routes.dart';
+import 'package:platform/platform.dart';
 
 class AnalyticsProvider implements AnalyticsRepository {
   final FirebaseAnalytics _firebaseAnalytics = FirebaseAnalytics();
@@ -29,6 +30,13 @@ class AnalyticsProvider implements AnalyticsRepository {
   @override
   Future<void> logUnsubscribe() async {
     await _firebaseAnalytics.logEvent(name: "unsubscribe");
+  }
+
+  @override
+  Future<void> logUserLocale() async {
+    await _firebaseAnalytics.logEvent(name: "user_locale", parameters: {
+      "locale": LocalPlatform().localeName,
+    });
   }
 
   Future<void> loginError({dynamic err, StackTrace stackTrace}) async {
@@ -78,5 +86,4 @@ class AnalyticsProvider implements AnalyticsRepository {
       "message": message.length > 100 ? message.substring(0, 100) : message,
     });
   }
-
 }

@@ -57,6 +57,7 @@ void main() {
 
         await expectLater(authBloc, emitsInOrder(expectedResponse));
         verify(mockAnalyticsRepository.setUserProperties(fakeUser.uid));
+        verify(mockAnalyticsRepository.logUserLocale());
       });
       test("should emit AuthUnauthenticated if logged user is not present", () async {
         when(mockAuthRepository.getAuthState()).thenAnswer((_) {

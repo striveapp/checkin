@@ -11,6 +11,8 @@ abstract class AnalyticsRepository {
 
   Future<void> logUnsubscribe();
 
+  Future<void> logUserLocale();
+
   Future<void> loginError({dynamic err, StackTrace stackTrace});
 
   Future<void> setupBankAccountError({String error});
