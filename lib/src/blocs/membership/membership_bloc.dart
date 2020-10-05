@@ -75,7 +75,7 @@ class MembershipBloc extends Bloc<MembershipEvent, MembershipState> {
     }
 
     if (event is MembershipUpdated) {
-      if (event.membership.status == "active") {
+      if (event.membership.status == Membership.ACTIVE_MEMBERSHIP) {
         yield MembershipState.membershipActive(membership: event.membership);
       } else {
         yield MembershipState.membershipInactive(

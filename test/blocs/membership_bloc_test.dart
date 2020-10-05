@@ -37,9 +37,9 @@ void main() {
 
   group("MembershipBloc", () {
     group("MembershipUpdated", () {
-      group("when there are no active membership", () {
+      group("when there is active membership", () {
         Membership inactiveMembership =
-            Membership(status: "inactive", customerId: "cus_123");
+            Membership(status: Membership.INACTIVE_MEMBERSHIP, customerId: "cus_123");
         setUp(() {
           whenListen(mockUserBloc,
               Stream.fromIterable([UserSuccess(currentUser: fakeUser)]));
@@ -82,7 +82,7 @@ void main() {
 
       group("when there is an active membership", () {
         Membership activeMembership =
-            Membership(status: "active", customerId: "cus_123");
+            Membership(status: Membership.ACTIVE_MEMBERSHIP, customerId: "cus_123");
         setUp(() {
           whenListen(mockUserBloc,
               Stream.fromIterable([UserSuccess(currentUser: fakeUser)]));
@@ -126,7 +126,7 @@ void main() {
     });
     group("Unsubscribe", () {
       Membership activeMembership =
-          Membership(status: "active", customerId: "cus_123");
+          Membership(status: Membership.ACTIVE_MEMBERSHIP, customerId: "cus_123");
       setUp(() {
         whenListen(mockUserBloc,
             Stream.fromIterable([UserSuccess(currentUser: fakeUser)]));

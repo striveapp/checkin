@@ -13,11 +13,11 @@ import 'package:checkin/src/blocs/user_stats/bloc.dart';
 import 'package:checkin/src/constants.dart' as constants;
 import 'package:checkin/src/localization/localization.dart';
 import 'package:checkin/src/repositories/analytics_repository.dart';
+import 'package:checkin/src/repositories/membership_repository.dart';
 import 'package:checkin/src/repositories/stats_repository.dart';
 import 'package:checkin/src/repositories/user_repository.dart';
 import 'package:checkin/src/resources/auth_provider.dart';
 import 'package:checkin/src/resources/gym_provider.dart';
-import 'package:checkin/src/resources/membership_provider.dart';
 import 'package:checkin/src/resources/payment_method_provider.dart';
 import 'package:checkin/src/ui/components/account/payment.dart';
 import 'package:checkin/src/ui/components/base_app_bar.dart';
@@ -130,7 +130,7 @@ class AccountPage extends StatelessWidget {
                           RepositoryProvider.of<AnalyticsRepository>(context),
                           membershipApi: MembershipApi(
                               httpClient: HttpClient(authRepository: AuthProvider())),
-                          membershipRepository: MembershipProvider(),
+                          membershipRepository: RepositoryProvider.of<MembershipRepository>(context),
                           userEmail: state.user.email,
                           selectedGymId: state.user.selectedGymId
                         ),

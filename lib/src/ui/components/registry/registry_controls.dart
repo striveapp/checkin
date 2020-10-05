@@ -1,21 +1,13 @@
-import 'package:checkin/src/api/http_client.dart';
-import 'package:checkin/src/api/membership_api.dart';
 import 'package:checkin/src/blocs/lesson/registry/bloc.dart';
-import 'package:checkin/src/blocs/membership/bloc.dart';
-import 'package:checkin/src/blocs/stats/bloc.dart';
-import 'package:checkin/src/blocs/user_stats/bloc.dart';
+import 'package:checkin/src/blocs/sessions/bloc.dart';
 import 'package:checkin/src/localization/localization.dart';
 import 'package:checkin/src/models/attendee.dart';
-import 'package:checkin/src/models/membership.dart';
-import 'package:checkin/src/repositories/analytics_repository.dart';
+import 'package:checkin/src/repositories/membership_repository.dart';
 import 'package:checkin/src/repositories/stats_repository.dart';
-import 'package:checkin/src/resources/auth_provider.dart';
-import 'package:checkin/src/resources/membership_provider.dart';
 import 'package:checkin/src/ui/components/registry/register_dialog.dart';
 import 'package:checkin/src/ui/components/registry/registry_button.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
-import 'package:checkin/src/constants.dart' as constants;
 
 import '../loading_indicator.dart';
 
@@ -57,10 +49,11 @@ class RegistryControls extends StatelessWidget {
           ));
         };
 
-        VoidCallback onPressRegisterClass2 = () {
+        VoidCallback showRegisterDialogOnPressRegisterClass = () {
           showDialog(
             context: context,
-            builder: (_) => RegisterDialog(currentUser: state.currentUser).build(context),
+            builder: (_) =>
+                RegisterDialog(currentUser: state.currentUser).build(context),
           );
         };
 
@@ -105,52 +98,26 @@ class RegistryControls extends StatelessWidget {
 
         return MultiBlocProvider(
           providers: [
-            BlocProvider<UserStatsBloc>(
-              create: (BuildContext context) => UserStatsBloc(
+            BlocProvider<SessionsBloc>(
+              create: (BuildContext context) => SessionsBloc(
                 statsRepository:
                     RepositoryProvider.of<StatsRepository>(context),
                 userEmail: state.currentUser.email,
                 selectedGymId: state.currentUser.selectedGymId,
-                statsBloc: StatsBloc()
-                  ..add(TimespanUpdate(timespan: constants.MONTH)),
-              ),
-            ),
-            BlocProvider<MembershipBloc>(
-              create: (BuildContext context) => MembershipBloc(
-                analyticsRepository:
-                    RepositoryProvider.of<AnalyticsRepository>(context),
-                membershipApi: MembershipApi(
-                    httpClient: HttpClient(authRepository: AuthProvider())),
-                membershipRepository: MembershipProvider(),
-                userEmail: state.currentUser.email,
-                selectedGymId: state.currentUser.selectedGymId,
+                membershipRepository:
+                    RepositoryProvider.of<MembershipRepository>(context),
               ),
             )
           ],
-          child: BlocBuilder<MembershipBloc, MembershipState>(
-              builder: (BuildContext context, MembershipState state) {
+          child: BlocBuilder<SessionsBloc, SessionsState>(
+              builder: (BuildContext context, SessionsState state) {
             return state.maybeWhen(
-                membershipLoading: () => LoadingIndicator(),
-                membershipActive: (Membership membership) =>
-                    BlocBuilder<UserStatsBloc, UserStatsState>(
-                      builder: (BuildContext context, UserStatsState state) {
-                        if (state is UserStatsLoaded) {
-                          if (state.attendedLessons.length >=
-                              membership.totalLessonsOfPlan) {
-                            return RegistryButton(
-                              key: Key('registerClass'),
-                              text: RegistryControls.registerClass.i18n,
-                              onPressed: () => onPressRegisterClass2(),
-                            );
-                          }
-                        }
-
-                        return RegistryButton(
-                          key: Key('registerClass'),
-                          text: RegistryControls.registerClass.i18n,
-                          onPressed: onPressRegisterClass,
-                        );
-                      },
+                initialSessionsState: () => LoadingIndicator(),
+                sessionsWarning: (_totalLessonsOfPlan, _attendedLessons) =>
+                    RegistryButton(
+                      key: Key('registerClass'),
+                      text: RegistryControls.registerClass.i18n,
+                      onPressed: () => showRegisterDialogOnPressRegisterClass(),
                     ),
                 orElse: () => RegistryButton(
                       key: Key('registerClass'),

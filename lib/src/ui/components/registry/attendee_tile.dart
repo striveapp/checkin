@@ -1,19 +1,11 @@
-import 'package:checkin/src/api/http_client.dart';
-import 'package:checkin/src/api/membership_api.dart';
-import 'package:checkin/src/blocs/membership/bloc.dart';
-import 'package:checkin/src/blocs/stats/bloc.dart';
-import 'package:checkin/src/blocs/user_stats/bloc.dart';
+import 'package:checkin/src/blocs/sessions/bloc.dart';
 import 'package:checkin/src/localization/localization.dart';
 import 'package:checkin/src/models/attendee.dart';
-import 'package:checkin/src/models/membership.dart';
-import 'package:checkin/src/repositories/analytics_repository.dart';
+import 'package:checkin/src/repositories/membership_repository.dart';
 import 'package:checkin/src/repositories/stats_repository.dart';
-import 'package:checkin/src/resources/auth_provider.dart';
-import 'package:checkin/src/resources/membership_provider.dart';
 import 'package:checkin/src/ui/components/user_image.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
-import 'package:checkin/src/constants.dart' as constants;
 
 class AttendeeTile extends StatelessWidget {
   final Attendee attendee;
@@ -23,8 +15,10 @@ class AttendeeTile extends StatelessWidget {
   final bool showSessionsWarning;
 
   static const String you = 'You';
-  static const String youHaveNoMoreAvailableSessions = 'You have no more available sessions';
-  static const String thisStudentIsInSessionOverdue = 'This student is in session overdue';
+  static const String youHaveNoMoreAvailableSessions =
+      'You have no more available sessions';
+  static const String thisStudentIsInSessionOverdue =
+      'This student is in session overdue';
 
   const AttendeeTile({
     Key key,
@@ -62,55 +56,35 @@ class AttendeeTile extends StatelessWidget {
                 if (showSessionsWarning && !isAccepted)
                   MultiBlocProvider(
                     providers: [
-                      BlocProvider<UserStatsBloc>(
-                      create: (BuildContext context) => UserStatsBloc(
-                        statsRepository:
-                        RepositoryProvider.of<StatsRepository>(context),
-                        userEmail: attendee.email,
-                        selectedGymId: selectedGymId,
-                        statsBloc: StatsBloc()
-                          ..add(TimespanUpdate(timespan: constants.MONTH)),
-                      ),
-                    ),
-                      BlocProvider<MembershipBloc>(
-                      create: (BuildContext context) => MembershipBloc(
-                        analyticsRepository:
-                        RepositoryProvider.of<AnalyticsRepository>(context),
-                        membershipApi: MembershipApi(
-                            httpClient:
-                            HttpClient(authRepository: AuthProvider())),
-                        membershipRepository: MembershipProvider(),
-                        userEmail: attendee.email,
-                        selectedGymId: selectedGymId,
-                      ),
-                    )],
-                    child: BlocBuilder<MembershipBloc, MembershipState>(
-                        builder: (BuildContext context, MembershipState state) {
-
-                          return state.maybeWhen(
-                              membershipActive: (Membership membership) =>
-                              BlocBuilder<UserStatsBloc,UserStatsState>(
-                                builder: (BuildContext context, UserStatsState state) {
-                                  if( state is UserStatsLoaded ) {
-                                    if( state.attendedLessons.length >= membership.totalLessonsOfPlan) {
-                                      final message = isCurrent
-                                          ? youHaveNoMoreAvailableSessions
-                                          : thisStudentIsInSessionOverdue;
-                                      return Tooltip(
-                                        message: message.i18n,
-                                        child: Icon(Icons.warning_amber_rounded,
-                                            color: Colors.amber),
-                                      );
-                                    }
-                                  }
-
-                                  return SizedBox(width: 1,);
-                                },
-                              ),
-                              orElse: () => SizedBox(
-                                    width: 1,
-                                  ));
-                        }),
+                      BlocProvider<SessionsBloc>(
+                        create: (BuildContext context) => SessionsBloc(
+                          statsRepository:
+                              RepositoryProvider.of<StatsRepository>(context),
+                          userEmail: attendee.email,
+                          selectedGymId: selectedGymId,
+                          membershipRepository:
+                              RepositoryProvider.of<MembershipRepository>(
+                                  context),
+                        ),
+                      )
+                    ],
+                    child: BlocBuilder<SessionsBloc, SessionsState>(
+                        builder: (BuildContext context, SessionsState state) {
+                      final message = isCurrent
+                          ? youHaveNoMoreAvailableSessions
+                          : thisStudentIsInSessionOverdue;
+                      return state.maybeWhen(
+                          sessionsWarning:
+                              (_totalLessonsOfPlan, _attendedLessons) =>
+                                  Tooltip(
+                                    message: message.i18n,
+                                    child: Icon(Icons.warning_amber_rounded,
+                                        color: Colors.amber),
+                                  ),
+                          orElse: () => SizedBox(
+                                width: 1,
+                              ));
+                    }),
                   ),
                 Icon(_getAcceptedStateIcon(),
                     color: Theme.of(context).accentColor),
