@@ -23,6 +23,8 @@ class AttendeeTile extends StatelessWidget {
   final bool showSessionsWarning;
 
   static const String you = 'You';
+  static const String youHaveNoMoreAvailableSessions = 'You have no more available sessions';
+  static const String thisStudentIsInSessionOverdue = 'This student is in session overdue';
 
   const AttendeeTile({
     Key key,
@@ -91,8 +93,11 @@ class AttendeeTile extends StatelessWidget {
                                 builder: (BuildContext context, UserStatsState state) {
                                   if( state is UserStatsLoaded ) {
                                     if( state.attendedLessons.length >= membership.totalLessonsOfPlan) {
+                                      final message = isCurrent
+                                          ? youHaveNoMoreAvailableSessions
+                                          : thisStudentIsInSessionOverdue;
                                       return Tooltip(
-                                        message: "${attendee.name} used all available lesson for his plan".i18n,
+                                        message: message.i18n,
                                         child: Icon(Icons.warning_amber_rounded,
                                             color: Colors.amber),
                                       );
