@@ -3,7 +3,11 @@ import 'package:checkin/src/constants.dart' as constants;
 class DateUtil {
   static DateTime _getFirstDayOfTheWeek() {
     DateTime now = DateTime.now();
-    return now.subtract(new Duration(days: now.weekday - 1));
+    if(now.weekday == 1) {
+      return DateTime(now.year, now.month, now.day);
+    } else {
+      return now.subtract(new Duration(days: now.weekday - 1));
+    }
   }
 
   static DateTime _getFirstDayOfTheMonth() {
