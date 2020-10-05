@@ -124,6 +124,12 @@ extension Localization on String {
     'en': AttendeeTile.you,
     'es': 'Tú',
   } + {
+    'en': AttendeeTile.youHaveNoMoreAvailableSessions,
+    'es': 'No tienes más sesiones disponibles',
+  } +{
+    'en': AttendeeTile.thisStudentIsInSessionOverdue,
+    'es': 'Este estudiante ya no tienes sesiones disponibles',
+  } + {
     'en': LessonInfos.and,
     'es': 'y',
   } + {
