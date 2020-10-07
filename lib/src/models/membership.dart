@@ -5,6 +5,10 @@ part 'membership.freezed.dart';
 
 @freezed
 abstract class Membership with _$Membership {
+  static const String ACTIVE_MEMBERSHIP = "active";
+  static const String INACTIVE_MEMBERSHIP = "inactive";
+
+
   factory Membership({
     @required final String status,
     final String customerId,

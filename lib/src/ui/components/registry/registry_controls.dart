@@ -1,9 +1,15 @@
 import 'package:checkin/src/blocs/lesson/registry/bloc.dart';
+import 'package:checkin/src/blocs/sessions/bloc.dart';
 import 'package:checkin/src/localization/localization.dart';
 import 'package:checkin/src/models/attendee.dart';
+import 'package:checkin/src/repositories/membership_repository.dart';
+import 'package:checkin/src/repositories/stats_repository.dart';
+import 'package:checkin/src/ui/components/registry/register_dialog.dart';
 import 'package:checkin/src/ui/components/registry/registry_button.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
+
+import '../loading_indicator.dart';
 
 class RegistryControls extends StatelessWidget {
   final VoidCallback disabledButton = null;
@@ -43,6 +49,14 @@ class RegistryControls extends StatelessWidget {
           ));
         };
 
+        VoidCallback showRegisterDialogOnPressRegisterClass = () {
+          showDialog(
+            context: context,
+            builder: (_) =>
+                RegisterDialog(currentUser: state.currentUser).build(context),
+          );
+        };
+
         VoidCallback onPressAcceptAll = () {
           BlocProvider.of<RegistryBloc>(context).add(AcceptAttendees());
         };
@@ -74,8 +88,7 @@ class RegistryControls extends StatelessWidget {
           );
         }
 
-
-        if(state.isFullRegistry()) {
+        if (state.isFullRegistry()) {
           return RegistryButton(
             key: Key('registryFull'),
             text: RegistryControls.registryFull.i18n,
@@ -83,10 +96,35 @@ class RegistryControls extends StatelessWidget {
           );
         }
 
-        return RegistryButton(
-          key: Key('registerClass'),
-          text: RegistryControls.registerClass.i18n,
-          onPressed: onPressRegisterClass,
+        return MultiBlocProvider(
+          providers: [
+            BlocProvider<SessionsBloc>(
+              create: (BuildContext context) => SessionsBloc(
+                statsRepository:
+                    RepositoryProvider.of<StatsRepository>(context),
+                userEmail: state.currentUser.email,
+                selectedGymId: state.currentUser.selectedGymId,
+                membershipRepository:
+                    RepositoryProvider.of<MembershipRepository>(context),
+              ),
+            )
+          ],
+          child: BlocBuilder<SessionsBloc, SessionsState>(
+              builder: (BuildContext context, SessionsState state) {
+            return state.maybeWhen(
+                initialSessionsState: () => LoadingIndicator(),
+                sessionsWarning: (_totalLessonsOfPlan, _attendedLessons) =>
+                    RegistryButton(
+                      key: Key('registerClass'),
+                      text: RegistryControls.registerClass.i18n,
+                      onPressed: () => showRegisterDialogOnPressRegisterClass(),
+                    ),
+                orElse: () => RegistryButton(
+                      key: Key('registerClass'),
+                      text: RegistryControls.registerClass.i18n,
+                      onPressed: onPressRegisterClass,
+                    ));
+          }),
         );
       }
       return ErrorWidget('unknown state [$state] in registry_controls');

@@ -14,6 +14,7 @@ class Attendee extends Equatable {
   // TODO: we should use some kind of id to perform this check not the email https://trello.com/c/j5sAVRXJ
   final String email;
 
+
   Attendee({
     @required this.name,
     @required this.grade,
@@ -25,7 +26,7 @@ class Attendee extends Equatable {
   List<Object> get props => [name, grade, imageUrl, email];
 
   factory Attendee.fromUser( User user ) {
-    return Attendee(name: user.name, grade: user.grade, imageUrl: user.imageUrl, email: user.email);
+    return Attendee(name: user.name, grade: user.grade, imageUrl: user.imageUrl, email: user.email,);
   }
 
   @override

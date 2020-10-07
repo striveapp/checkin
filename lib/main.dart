@@ -10,6 +10,7 @@ import 'package:checkin/src/repositories/analytics_repository.dart';
 import 'package:checkin/src/repositories/auth_repository.dart';
 import 'package:checkin/src/repositories/image_repository.dart';
 import 'package:checkin/src/repositories/lesson_repository.dart';
+import 'package:checkin/src/repositories/membership_repository.dart';
 import 'package:checkin/src/repositories/stats_repository.dart';
 import 'package:checkin/src/repositories/storage_repository.dart';
 import 'package:checkin/src/repositories/user_repository.dart';
@@ -17,6 +18,7 @@ import 'package:checkin/src/repositories/version_repository.dart';
 import 'package:checkin/src/resources/analytics_provider.dart';
 import 'package:checkin/src/resources/auth_provider.dart';
 import 'package:checkin/src/resources/lesson_instances_provider.dart';
+import 'package:checkin/src/resources/membership_provider.dart';
 import 'package:checkin/src/resources/stats_provider.dart';
 import 'package:checkin/src/resources/user_provider.dart';
 import 'package:checkin/src/routes/application.dart';
@@ -74,6 +76,9 @@ Future<void> main() async {
           ),
           RepositoryProvider<StatsRepository>(
             create: (context) => StatsProvider(),
+          ),
+          RepositoryProvider<MembershipRepository>(
+            create: (context) => MembershipProvider(),
           )
         ],
         child: MultiBlocProvider(

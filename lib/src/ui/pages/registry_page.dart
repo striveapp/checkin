@@ -28,25 +28,29 @@ class RegistryPage extends StatelessWidget {
       appBar: BaseAppBar(
         title: DateFormat('d MMMM').format(DateTime.parse(this.date)),
       ),
-      body: BlocProvider<LessonBloc>(
-        create: (context) => LessonBloc(
-          userBloc: BlocProvider.of<UserBloc>(context),
-          lessonId: lessonId,
-          date: date,
-          lessonRepository: RepositoryProvider.of<LessonRepository>(context),
-          lessonApi: RepositoryProvider.of<LessonApi>(context),
-        ),
-        child: Container(
-            child: Padding(
-              padding: EdgeInsets.symmetric(horizontal: 10),
-              child: Column(
-                  mainAxisAlignment: MainAxisAlignment.spaceAround,
-                  children: [
-                    LessonInfos(),
-                    Registry(),
-                  ]),
-            ))
-      ),
+      body: MultiBlocProvider(
+          providers: [
+            BlocProvider<LessonBloc>(
+              create: (context) => LessonBloc(
+                userBloc: BlocProvider.of<UserBloc>(context),
+                lessonId: lessonId,
+                date: date,
+                lessonRepository:
+                    RepositoryProvider.of<LessonRepository>(context),
+                lessonApi: RepositoryProvider.of<LessonApi>(context),
+              ),
+            ),
+          ],
+          child: Container(
+              child: Padding(
+            padding: EdgeInsets.symmetric(horizontal: 10),
+            child: Column(
+                mainAxisAlignment: MainAxisAlignment.spaceAround,
+                children: [
+                  LessonInfos(),
+                  Registry(),
+                ]),
+          ))),
     );
   }
 }

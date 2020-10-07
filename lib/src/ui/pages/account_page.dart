@@ -13,11 +13,11 @@ import 'package:checkin/src/blocs/user_stats/bloc.dart';
 import 'package:checkin/src/constants.dart' as constants;
 import 'package:checkin/src/localization/localization.dart';
 import 'package:checkin/src/repositories/analytics_repository.dart';
+import 'package:checkin/src/repositories/membership_repository.dart';
 import 'package:checkin/src/repositories/stats_repository.dart';
 import 'package:checkin/src/repositories/user_repository.dart';
 import 'package:checkin/src/resources/auth_provider.dart';
 import 'package:checkin/src/resources/gym_provider.dart';
-import 'package:checkin/src/resources/membership_provider.dart';
 import 'package:checkin/src/resources/payment_method_provider.dart';
 import 'package:checkin/src/ui/components/account/payment.dart';
 import 'package:checkin/src/ui/components/base_app_bar.dart';
@@ -62,16 +62,6 @@ class AccountPage extends StatelessWidget {
                 userBloc: BlocProvider.of<UserBloc>(context),
                 analyticsRepository:
                     RepositoryProvider.of<AnalyticsRepository>(context),
-              ),
-            ),
-            BlocProvider<MembershipBloc>(
-              create: (BuildContext context) => MembershipBloc(
-                analyticsRepository:
-                    RepositoryProvider.of<AnalyticsRepository>(context),
-                membershipApi: MembershipApi(
-                    httpClient: HttpClient(authRepository: AuthProvider())),
-                membershipRepository: MembershipProvider(),
-                userBloc: BlocProvider.of<UserBloc>(context),
               ),
             ),
             BlocProvider<GymBloc>(
@@ -122,15 +112,30 @@ class AccountPage extends StatelessWidget {
                 }
 
                 if (state is AccountLoaded) {
-                  return BlocProvider<UserStatsBloc>(
-                    create: (BuildContext context) => UserStatsBloc(
-                      statsRepository:
+                  return MultiBlocProvider(
+                    providers: [
+                      BlocProvider<UserStatsBloc>(
+                        create: (BuildContext context) => UserStatsBloc(
+                          statsRepository:
                           RepositoryProvider.of<StatsRepository>(context),
-                      userEmail: state.user.email,
-                      selectedGymId: state.user.selectedGymId,
-                      statsBloc: StatsBloc()
-                        ..add(TimespanUpdate(timespan: constants.MONTH)),
-                    ),
+                          userEmail: state.user.email,
+                          selectedGymId: state.user.selectedGymId,
+                          statsBloc: StatsBloc()
+                            ..add(TimespanUpdate(timespan: constants.MONTH)),
+                        ),
+                      ),
+                      BlocProvider<MembershipBloc>(
+                        create: (BuildContext context) => MembershipBloc(
+                          analyticsRepository:
+                          RepositoryProvider.of<AnalyticsRepository>(context),
+                          membershipApi: MembershipApi(
+                              httpClient: HttpClient(authRepository: AuthProvider())),
+                          membershipRepository: RepositoryProvider.of<MembershipRepository>(context),
+                          userEmail: state.user.email,
+                          selectedGymId: state.user.selectedGymId
+                        ),
+                      )
+                    ],
                     child: SingleChildScrollView(
                       child: Padding(
                         padding: EdgeInsets.symmetric(horizontal: 10),

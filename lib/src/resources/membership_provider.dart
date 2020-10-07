@@ -21,19 +21,19 @@ class MembershipProvider implements MembershipRepository {
 
   Membership toMembership(DocumentSnapshot doc) {
     if (doc.data == null) {
-      return Membership(status: "inactive");
+      return Membership(status: Membership.INACTIVE_MEMBERSHIP);
     }
 
     var subscription = doc.data['subscription'];
     var infos = doc.data['infos'];
 
     if (infos == null) {
-      return Membership(status: "inactive");
+      return Membership(status: Membership.INACTIVE_MEMBERSHIP);
     }
 
     if (subscription == null) {
       return Membership(
-        status: "inactive",
+        status: Membership.INACTIVE_MEMBERSHIP,
         customerId: infos["id"],
       );
     }
