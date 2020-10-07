@@ -11,6 +11,7 @@ import 'package:checkin/src/ui/components/plans/plans_footer.dart';
 import 'package:checkin/src/ui/components/plans/plans_list.dart';
 import 'package:checkin/src/ui/components/plans/price/price_footer.dart';
 import 'package:checkin/src/ui/components/registry/attendee_tile.dart';
+import 'package:checkin/src/ui/components/registry/register_dialog.dart';
 import 'package:checkin/src/ui/components/registry/registry_counter.dart';
 import 'package:checkin/src/ui/components/attendees_preview.dart';
 import 'package:checkin/src/ui/components/google_sign_in_button.dart';
@@ -178,12 +179,21 @@ extension Localization on String {
   } + {
     'en': RegistryControls.registerClass,
     'es': 'Apuntarse a la clase',
-  }+ {
+  } + {
     'en': RegistryControls.registryFull,
     'es': 'Clase completa',
   } + {
     'en': RegistryControls.acceptAll,
     'es': 'Aceptar todos',
+  } + {
+    'en': RegisterDialog.cancel,
+    'es': 'Cancelar',
+  } + {
+    'en': RegisterDialog.continueAnyway,
+    'es': 'Registrame igualmente',
+  } + {
+    'en': RegisterDialog.userFinishedAvailableSessions,
+    'es': 'Ya has usado todas las sesiones disponibles',
   } + {
     'en': GoogleSignInButton.googleSignIn,
     'es': 'Acceso con Google',
