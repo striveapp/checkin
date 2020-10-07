@@ -14,9 +14,16 @@ class _$SessionsEventTearOff {
   const _$SessionsEventTearOff();
 
 // ignore: unused_element
-  SessionsUpdated sessionsUpdated(
-      {@required Membership membership, UserHistory userHistory}) {
+  SessionsUpdated sessionsUpdated({@required Membership membership}) {
     return SessionsUpdated(
+      membership: membership,
+    );
+  }
+
+// ignore: unused_element
+  SessionsUpdatedWithHistory sessionsUpdatedWithHistory(
+      {@required Membership membership, @required UserHistory userHistory}) {
+    return SessionsUpdatedWithHistory(
       membership: membership,
       userHistory: userHistory,
     );
@@ -30,25 +37,31 @@ const $SessionsEvent = _$SessionsEventTearOff();
 /// @nodoc
 mixin _$SessionsEvent {
   Membership get membership;
-  UserHistory get userHistory;
 
   @optionalTypeArgs
   Result when<Result extends Object>({
+    @required Result sessionsUpdated(Membership membership),
     @required
-        Result sessionsUpdated(Membership membership, UserHistory userHistory),
+        Result sessionsUpdatedWithHistory(
+            Membership membership, UserHistory userHistory),
   });
   @optionalTypeArgs
   Result maybeWhen<Result extends Object>({
-    Result sessionsUpdated(Membership membership, UserHistory userHistory),
+    Result sessionsUpdated(Membership membership),
+    Result sessionsUpdatedWithHistory(
+        Membership membership, UserHistory userHistory),
     @required Result orElse(),
   });
   @optionalTypeArgs
   Result map<Result extends Object>({
     @required Result sessionsUpdated(SessionsUpdated value),
+    @required
+        Result sessionsUpdatedWithHistory(SessionsUpdatedWithHistory value),
   });
   @optionalTypeArgs
   Result maybeMap<Result extends Object>({
     Result sessionsUpdated(SessionsUpdated value),
+    Result sessionsUpdatedWithHistory(SessionsUpdatedWithHistory value),
     @required Result orElse(),
   });
 
@@ -60,7 +73,7 @@ abstract class $SessionsEventCopyWith<$Res> {
   factory $SessionsEventCopyWith(
           SessionsEvent value, $Res Function(SessionsEvent) then) =
       _$SessionsEventCopyWithImpl<$Res>;
-  $Res call({Membership membership, UserHistory userHistory});
+  $Res call({Membership membership});
 
   $MembershipCopyWith<$Res> get membership;
 }
@@ -77,14 +90,10 @@ class _$SessionsEventCopyWithImpl<$Res>
   @override
   $Res call({
     Object membership = freezed,
-    Object userHistory = freezed,
   }) {
     return _then(_value.copyWith(
       membership:
           membership == freezed ? _value.membership : membership as Membership,
-      userHistory: userHistory == freezed
-          ? _value.userHistory
-          : userHistory as UserHistory,
     ));
   }
 
@@ -106,7 +115,7 @@ abstract class $SessionsUpdatedCopyWith<$Res>
           SessionsUpdated value, $Res Function(SessionsUpdated) then) =
       _$SessionsUpdatedCopyWithImpl<$Res>;
   @override
-  $Res call({Membership membership, UserHistory userHistory});
+  $Res call({Membership membership});
 
   @override
   $MembershipCopyWith<$Res> get membership;
@@ -126,9 +135,150 @@ class _$SessionsUpdatedCopyWithImpl<$Res>
   @override
   $Res call({
     Object membership = freezed,
-    Object userHistory = freezed,
   }) {
     return _then(SessionsUpdated(
+      membership:
+          membership == freezed ? _value.membership : membership as Membership,
+    ));
+  }
+}
+
+/// @nodoc
+class _$SessionsUpdated
+    with DiagnosticableTreeMixin
+    implements SessionsUpdated {
+  const _$SessionsUpdated({@required this.membership})
+      : assert(membership != null);
+
+  @override
+  final Membership membership;
+
+  @override
+  String toString({DiagnosticLevel minLevel = DiagnosticLevel.info}) {
+    return 'SessionsEvent.sessionsUpdated(membership: $membership)';
+  }
+
+  @override
+  void debugFillProperties(DiagnosticPropertiesBuilder properties) {
+    super.debugFillProperties(properties);
+    properties
+      ..add(DiagnosticsProperty('type', 'SessionsEvent.sessionsUpdated'))
+      ..add(DiagnosticsProperty('membership', membership));
+  }
+
+  @override
+  bool operator ==(dynamic other) {
+    return identical(this, other) ||
+        (other is SessionsUpdated &&
+            (identical(other.membership, membership) ||
+                const DeepCollectionEquality()
+                    .equals(other.membership, membership)));
+  }
+
+  @override
+  int get hashCode =>
+      runtimeType.hashCode ^ const DeepCollectionEquality().hash(membership);
+
+  @override
+  $SessionsUpdatedCopyWith<SessionsUpdated> get copyWith =>
+      _$SessionsUpdatedCopyWithImpl<SessionsUpdated>(this, _$identity);
+
+  @override
+  @optionalTypeArgs
+  Result when<Result extends Object>({
+    @required Result sessionsUpdated(Membership membership),
+    @required
+        Result sessionsUpdatedWithHistory(
+            Membership membership, UserHistory userHistory),
+  }) {
+    assert(sessionsUpdated != null);
+    assert(sessionsUpdatedWithHistory != null);
+    return sessionsUpdated(membership);
+  }
+
+  @override
+  @optionalTypeArgs
+  Result maybeWhen<Result extends Object>({
+    Result sessionsUpdated(Membership membership),
+    Result sessionsUpdatedWithHistory(
+        Membership membership, UserHistory userHistory),
+    @required Result orElse(),
+  }) {
+    assert(orElse != null);
+    if (sessionsUpdated != null) {
+      return sessionsUpdated(membership);
+    }
+    return orElse();
+  }
+
+  @override
+  @optionalTypeArgs
+  Result map<Result extends Object>({
+    @required Result sessionsUpdated(SessionsUpdated value),
+    @required
+        Result sessionsUpdatedWithHistory(SessionsUpdatedWithHistory value),
+  }) {
+    assert(sessionsUpdated != null);
+    assert(sessionsUpdatedWithHistory != null);
+    return sessionsUpdated(this);
+  }
+
+  @override
+  @optionalTypeArgs
+  Result maybeMap<Result extends Object>({
+    Result sessionsUpdated(SessionsUpdated value),
+    Result sessionsUpdatedWithHistory(SessionsUpdatedWithHistory value),
+    @required Result orElse(),
+  }) {
+    assert(orElse != null);
+    if (sessionsUpdated != null) {
+      return sessionsUpdated(this);
+    }
+    return orElse();
+  }
+}
+
+abstract class SessionsUpdated implements SessionsEvent {
+  const factory SessionsUpdated({@required Membership membership}) =
+      _$SessionsUpdated;
+
+  @override
+  Membership get membership;
+  @override
+  $SessionsUpdatedCopyWith<SessionsUpdated> get copyWith;
+}
+
+/// @nodoc
+abstract class $SessionsUpdatedWithHistoryCopyWith<$Res>
+    implements $SessionsEventCopyWith<$Res> {
+  factory $SessionsUpdatedWithHistoryCopyWith(SessionsUpdatedWithHistory value,
+          $Res Function(SessionsUpdatedWithHistory) then) =
+      _$SessionsUpdatedWithHistoryCopyWithImpl<$Res>;
+  @override
+  $Res call({Membership membership, UserHistory userHistory});
+
+  @override
+  $MembershipCopyWith<$Res> get membership;
+}
+
+/// @nodoc
+class _$SessionsUpdatedWithHistoryCopyWithImpl<$Res>
+    extends _$SessionsEventCopyWithImpl<$Res>
+    implements $SessionsUpdatedWithHistoryCopyWith<$Res> {
+  _$SessionsUpdatedWithHistoryCopyWithImpl(SessionsUpdatedWithHistory _value,
+      $Res Function(SessionsUpdatedWithHistory) _then)
+      : super(_value, (v) => _then(v as SessionsUpdatedWithHistory));
+
+  @override
+  SessionsUpdatedWithHistory get _value =>
+      super._value as SessionsUpdatedWithHistory;
+
+  @override
+  $Res call({
+    Object membership = freezed,
+    Object userHistory = freezed,
+  }) {
+    return _then(SessionsUpdatedWithHistory(
       membership:
           membership == freezed ? _value.membership : membership as Membership,
       userHistory: userHistory == freezed
@@ -139,11 +289,13 @@ class _$SessionsUpdatedCopyWithImpl<$Res>
 }
 
 /// @nodoc
-class _$SessionsUpdated
+class _$SessionsUpdatedWithHistory
     with DiagnosticableTreeMixin
-    implements SessionsUpdated {
-  const _$SessionsUpdated({@required this.membership, this.userHistory})
-      : assert(membership != null);
+    implements SessionsUpdatedWithHistory {
+  const _$SessionsUpdatedWithHistory(
+      {@required this.membership, @required this.userHistory})
+      : assert(membership != null),
+        assert(userHistory != null);
 
   @override
   final Membership membership;
@@ -152,14 +304,15 @@ class _$SessionsUpdated
 
   @override
   String toString({DiagnosticLevel minLevel = DiagnosticLevel.info}) {
-    return 'SessionsEvent.sessionsUpdated(membership: $membership, userHistory: $userHistory)';
+    return 'SessionsEvent.sessionsUpdatedWithHistory(membership: $membership, userHistory: $userHistory)';
   }
 
   @override
   void debugFillProperties(DiagnosticPropertiesBuilder properties) {
     super.debugFillProperties(properties);
     properties
-      ..add(DiagnosticsProperty('type', 'SessionsEvent.sessionsUpdated'))
+      ..add(DiagnosticsProperty(
+          'type', 'SessionsEvent.sessionsUpdatedWithHistory'))
       ..add(DiagnosticsProperty('membership', membership))
       ..add(DiagnosticsProperty('userHistory', userHistory));
   }
@@ -167,7 +320,7 @@ class _$SessionsUpdated
   @override
   bool operator ==(dynamic other) {
     return identical(this, other) ||
-        (other is SessionsUpdated &&
+        (other is SessionsUpdatedWithHistory &&
             (identical(other.membership, membership) ||
                 const DeepCollectionEquality()
                     .equals(other.membership, membership)) &&
@@ -183,28 +336,35 @@ class _$SessionsUpdated
       const DeepCollectionEquality().hash(userHistory);
 
   @override
-  $SessionsUpdatedCopyWith<SessionsUpdated> get copyWith =>
-      _$SessionsUpdatedCopyWithImpl<SessionsUpdated>(this, _$identity);
+  $SessionsUpdatedWithHistoryCopyWith<SessionsUpdatedWithHistory>
+      get copyWith =>
+          _$SessionsUpdatedWithHistoryCopyWithImpl<SessionsUpdatedWithHistory>(
+              this, _$identity);
 
   @override
   @optionalTypeArgs
   Result when<Result extends Object>({
+    @required Result sessionsUpdated(Membership membership),
     @required
-        Result sessionsUpdated(Membership membership, UserHistory userHistory),
+        Result sessionsUpdatedWithHistory(
+            Membership membership, UserHistory userHistory),
   }) {
     assert(sessionsUpdated != null);
-    return sessionsUpdated(membership, userHistory);
+    assert(sessionsUpdatedWithHistory != null);
+    return sessionsUpdatedWithHistory(membership, userHistory);
   }
 
   @override
   @optionalTypeArgs
   Result maybeWhen<Result extends Object>({
-    Result sessionsUpdated(Membership membership, UserHistory userHistory),
+    Result sessionsUpdated(Membership membership),
+    Result sessionsUpdatedWithHistory(
+        Membership membership, UserHistory userHistory),
     @required Result orElse(),
   }) {
     assert(orElse != null);
-    if (sessionsUpdated != null) {
-      return sessionsUpdated(membership, userHistory);
+    if (sessionsUpdatedWithHistory != null) {
+      return sessionsUpdatedWithHistory(membership, userHistory);
     }
     return orElse();
   }
@@ -213,34 +373,37 @@ class _$SessionsUpdated
   @optionalTypeArgs
   Result map<Result extends Object>({
     @required Result sessionsUpdated(SessionsUpdated value),
+    @required
+        Result sessionsUpdatedWithHistory(SessionsUpdatedWithHistory value),
   }) {
     assert(sessionsUpdated != null);
-    return sessionsUpdated(this);
+    assert(sessionsUpdatedWithHistory != null);
+    return sessionsUpdatedWithHistory(this);
   }
 
   @override
   @optionalTypeArgs
   Result maybeMap<Result extends Object>({
     Result sessionsUpdated(SessionsUpdated value),
+    Result sessionsUpdatedWithHistory(SessionsUpdatedWithHistory value),
     @required Result orElse(),
   }) {
     assert(orElse != null);
-    if (sessionsUpdated != null) {
-      return sessionsUpdated(this);
+    if (sessionsUpdatedWithHistory != null) {
+      return sessionsUpdatedWithHistory(this);
     }
     return orElse();
   }
 }
 
-abstract class SessionsUpdated implements SessionsEvent {
-  const factory SessionsUpdated(
+abstract class SessionsUpdatedWithHistory implements SessionsEvent {
+  const factory SessionsUpdatedWithHistory(
       {@required Membership membership,
-      UserHistory userHistory}) = _$SessionsUpdated;
+      @required UserHistory userHistory}) = _$SessionsUpdatedWithHistory;
 
   @override
   Membership get membership;
-  @override
   UserHistory get userHistory;
   @override
-  $SessionsUpdatedCopyWith<SessionsUpdated> get copyWith;
+  $SessionsUpdatedWithHistoryCopyWith<SessionsUpdatedWithHistory> get copyWith;
 }

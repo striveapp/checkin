@@ -17,22 +17,26 @@ class SessionsBloc extends Bloc<SessionsEvent, SessionsState> {
   final String selectedGymId;
   final String userEmail;
 
+  StreamSubscription _membershipSub;
+  StreamSubscription _statsSub;
+
   SessionsBloc({
     @required this.membershipRepository,
     @required this.statsRepository,
     @required this.selectedGymId,
     @required this.userEmail,
   }) {
-    this.membershipRepository.getMembership(gymId: selectedGymId, email: userEmail,).listen((membership) {
-      if( membership.totalLessonsOfPlan == null ) {
+    _membershipSub?.cancel();
+    _membershipSub = this.membershipRepository.getMembership(gymId: selectedGymId, email: userEmail,).listen((membership) {
+      if( membership.totalLessonsOfPlan == null || membership.status == Membership.INACTIVE_MEMBERSHIP) {
         add(SessionsUpdated(membership: membership));
       } else {
-        this.statsRepository.getUserStats(selectedGymId, userEmail, constants.MONTH).listen((userHistory) {
-          add(SessionsUpdated(membership: membership, userHistory: userHistory));
+        _statsSub?.cancel();
+        _statsSub = this.statsRepository.getUserStats(selectedGymId, userEmail, constants.MONTH).listen((userHistory) {
+          add(SessionsUpdatedWithHistory(membership: membership, userHistory: userHistory));
         });
       }
     });
-
   }
 
   @override
@@ -40,21 +44,32 @@ class SessionsBloc extends Bloc<SessionsEvent, SessionsState> {
 
   @override
   Stream<SessionsState> mapEventToState(SessionsEvent event,) async* {
-    // TODO: Add Logic
-    if( event is SessionsUpdated) {
-      if( event.membership.totalLessonsOfPlan == null) {
-        yield SessionsState.sessionsUnlimited();
-      }
+    if (event is SessionsUpdated) {
+      // todo handle cases where membership canceled
+      yield SessionsState.sessionsUnlimited();
+    }
 
-      if( event.membership.status == Membership.ACTIVE_MEMBERSHIP) {
-        var attendedLessons = event.userHistory.attendedLessons.length.toDouble();
-        var totalLessonsOfPlan = event.membership.totalLessonsOfPlan;
-        if( attendedLessons >= totalLessonsOfPlan) {
-          yield SessionsState.sessionsWarning(totalLessonsOfPlan: totalLessonsOfPlan, attendedLessons: attendedLessons);
-        } else {
-          yield SessionsState.sessionsLoaded(totalLessonsOfPlan: totalLessonsOfPlan, attendedLessons: attendedLessons);
-        }
+    if (event is SessionsUpdatedWithHistory) {
+      var attendedLessons = event.userHistory.attendedLessons.length.toDouble();
+      var totalLessonsOfPlan = event.membership.totalLessonsOfPlan;
+      if (attendedLessons >= totalLessonsOfPlan) {
+        yield SessionsState.sessionsWarning(
+            totalLessonsOfPlan: totalLessonsOfPlan,
+            attendedLessons: attendedLessons);
+      } else {
+        yield SessionsState.sessionsLoaded(
+            totalLessonsOfPlan: totalLessonsOfPlan,
+            attendedLessons: attendedLessons);
       }
     }
+
+
+  }
+
+  @override
+  Future<void> close() {
+    _membershipSub?.cancel();
+    _statsSub?.cancel();
+    return super.close();
   }
 }
