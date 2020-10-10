@@ -3,7 +3,7 @@
 
 workflows:
   tests-only-new:
-    name: Tests only
+    name: Tests only new
     max_build_duration: 60
     environment:
       vars:
