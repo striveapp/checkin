@@ -47,13 +47,13 @@ workflows:
     cache:
       cache_paths:
         - $FCI_BUILD_DIR/build
-    triggering:
-      events:
-        - push
-      branch_patterns:
-        - pattern: master
-          include: true
-          source: true
+#    triggering:
+#      events:
+#        - push
+#      branch_patterns:
+#        - pattern: master
+#          include: true
+#          source: true
     scripts:
       - "#!/bin/sh\n\nset -e\ntrap 'echo \"\\\"${BASH_COMMAND}\\\" command filed with\
         \ exit code $?.\"' ERR\n\n### ANDROID\necho \"Configuring Android for ${ENV}...\"\
@@ -99,13 +99,13 @@ workflows:
       flutter: beta
       xcode: latest
       cocoapods: default
-    triggering:
-      events:
-        - tag
-      branch_patterns:
-        - pattern: '*'
-          include: true
-          source: true
+#    triggering:
+#      events:
+#        - tag
+#      branch_patterns:
+#        - pattern: '*'
+#          include: true
+#          source: true
     scripts:
       - |
         # set up key.properties
