@@ -62,6 +62,21 @@ android {
             signingConfig signingConfigs.release
         }
     }
+
+    flavorDimensions "app"
+
+    productFlavors {
+        dev {
+            dimension "app"
+            resValue "string", "app_name", "Strive dev"
+            versionNameSuffix "-dev"
+            applicationId "com.arya.checkin.dev"
+        }
+        prod {
+            dimension "app"
+            resValue "string", "app_name", "Strive"
+        }
+    }
 }
 
 flutter {

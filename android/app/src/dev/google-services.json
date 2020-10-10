@@ -8,9 +8,9 @@
   "client": [
     {
       "client_info": {
-        "mobilesdk_app_id": "1:343791697754:android:21fbd1a0648421e5",
+        "mobilesdk_app_id": "1:343791697754:android:6f83ca7989ca271cc5fd63",
         "android_client_info": {
-          "package_name": "com.arya.checkin"
+          "package_name": "com.arya.checkin.dev"
         }
       },
       "oauth_client": [
@@ -21,7 +21,7 @@
       ],
       "api_key": [
         {
-          "current_key": "__ANDROID_FIREBASE_API_KEY__"
+          "current_key": "1"
         }
       ],
       "services": {
@@ -30,6 +30,13 @@
             {
               "client_id": "343791697754-4j6tq87nsffadlhrc2av471hje5klhk9.apps.googleusercontent.com",
               "client_type": 3
+            },
+            {
+              "client_id": "343791697754-pscva95vjh6ebq37hjhgtgmshutugpjs.apps.googleusercontent.com",
+              "client_type": 2,
+              "ios_info": {
+                "bundle_id": "com.arya.checkin"
+              }
             }
           ]
         }
