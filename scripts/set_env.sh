@@ -3,11 +3,13 @@
 set -e
 trap 'echo "\"${BASH_COMMAND}\" command filed with exit code $?."' ERR
 
-### ANDROID
-echo "Configuring Android for ${ENV}..."
+DB_ENV=${DB_ENV:-$FLAVOR}
 
-android_template="$(pwd)/android/app/google-services.json.${ENV}.template"
-result_file="$(pwd)/android/app/google-services.json"
+### ANDROID
+echo "Configuring Android for FLAVOR: ${FLAVOR} and DB_ENV : ${DB_ENV}"
+
+android_template="$(pwd)/android/app/src/${FLAVOR}/google-services.json.${DB_ENV}.template"
+result_file="$(pwd)/android/app/src/${FLAVOR}/google-services.json"
 
 if [[ -z ${ANDROID_FIREBASE_API_KEY+x} ]]; then
     read -s -p "Insert Android API key: " android_api_key
@@ -25,10 +27,10 @@ mv "${android_template}.tmp" ${android_template}
 echo "✅   Done!\n"
 
 ### IOS SETUP
-echo "Configuring IOS for ${ENV}..."
+echo "Configuring IOS for ${FLAVOR}..."
 
-ios_template="$(pwd)/ios/Runner/GoogleService-Info.plist.${ENV}.template"
-result_ios_file="$(pwd)/ios/Runner/GoogleService-Info.plist"
+ios_template="$(pwd)/ios/config/${FLAVOR}/GoogleService-Info.plist.${DB_ENV}.template"
+result_ios_file="$(pwd)/ios/config/${FLAVOR}/GoogleService-Info.plist"
 
 
 if [[ -z ${IOS_FIREBASE_API_KEY+x} ]]; then
