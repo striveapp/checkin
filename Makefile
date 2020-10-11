@@ -2,17 +2,21 @@ PID_FILE ?= /tmp/flutter-hot-reload.pid
 VM_PORT ?= 8888
 envars = VM_SERVICE_URL=http://127.0.0.1:$(VM_PORT)
 
-.PHONY: set-dev-env
-set-dev-env: export ENV = dev
-set-dev-env:
+.PHONY: set-dev
+set-dev: export FLAVOR = dev
+set-dev:
 	@sh scripts/set_env.sh
 	@flutter clean
 
-.PHONY: set-prod-env
-set-prod-env: export ENV = prod
-set-prod-env:
+.PHONY: set-prod
+set-prod: export FLAVOR = prod
+set-prod:
 	@sh scripts/set_env.sh
 	@flutter clean
+
+.PHONY: set-key-properties
+set-key-properties:
+	@sh scripts/set_key_properties.sh
 
 .PHONY: unit-test
 unit-test:
