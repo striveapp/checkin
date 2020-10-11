@@ -1,6 +1,6 @@
 import 'dart:async';
 
-import 'package:checkin/main.dart' as app;
+import 'package:checkin/main_common.dart' as app;
 import 'package:checkin/src/models/lesson.dart';
 import 'package:checkin/src/resources/lesson_instances_provider.dart';
 import 'package:checkin/src/resources/stats_provider.dart';

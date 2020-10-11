@@ -1,6 +1,7 @@
 import 'dart:async';
 
 import 'package:bloc/bloc.dart';
+import 'package:checkin/app_config.dart';
 import 'package:checkin/src/api/api.dart';
 import 'package:checkin/src/blocs/auth/bloc.dart';
 import 'package:checkin/src/blocs/dynamic_link/bloc.dart';
@@ -33,7 +34,7 @@ import 'package:flutter_svg/flutter_svg.dart';
 import 'src/app.dart';
 import 'src/blocs/dynamic_link/dynamic_link_event.dart';
 
-Future<void> main() async {
+Future<void> mainCommon(AppConfig _) async {
   WidgetsFlutterBinding.ensureInitialized();
 
   // init bloc delegate
