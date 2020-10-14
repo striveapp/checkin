@@ -30,8 +30,8 @@
 /build/
 
 #Secrets (Firebase)
-**/android/app/google-services.json
-**/ios/Runner/GoogleService-Info.plist
+**/google-services.json
+**/GoogleService-Info.plist
 
 # Android related
 **/android/**/gradle-wrapper.jar
