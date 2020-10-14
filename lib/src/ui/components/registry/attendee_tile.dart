@@ -39,6 +39,7 @@ class AttendeeTile extends StatelessWidget {
           child: ListTile(
             key: Key("tile-${attendee.email}"),
             leading: UserImage(
+              withBorder: false,
               userImage: attendee.imageUrl,
             ),
             title: Padding(
