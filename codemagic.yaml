@@ -3,7 +3,7 @@
 
 workflows:
   tests-only:
-    name: Tests only new
+    name: Tests only
     max_build_duration: 20
     environment:
       vars:
@@ -27,6 +27,7 @@ workflows:
       - flutter packages pub get
       - flutter analyze
       - flutter test
+      - flutter emulators
       - flutter drive --flavor=dev --target=test_driver/journeys/journeys.dart
     artifacts:
       - build/**/outputs/**/*.apk
