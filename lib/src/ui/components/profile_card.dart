@@ -37,7 +37,7 @@ class ProfileCard extends StatelessWidget {
                   GestureDetector(
                     child: Stack(
                       alignment: AlignmentDirectional.bottomEnd,
-                      overflow: Overflow.visible,
+                      clipBehavior: Clip.none,
                       children: [
                         UserImage(
                             userImage: state.profileUser.imageUrl),

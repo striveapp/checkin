@@ -30,7 +30,7 @@ class AttendeesPreview extends StatelessWidget {
           child: Container(
             child: lesson.acceptedAttendees.contains(attendee) ? Stack(
                 alignment: AlignmentDirectional.bottomEnd,
-                overflow: Overflow.visible,
+                clipBehavior: Clip.none,
                 children: <Widget>[Container(
                   decoration: BoxDecoration(
                     border: Border.all(width: 1.5, color: Theme.of(context).accentColor),
