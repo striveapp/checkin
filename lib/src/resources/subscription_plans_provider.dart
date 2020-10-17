@@ -8,45 +8,46 @@ class SubscriptionPlansProvider implements SubscriptionPlansRepository {
   static const String subPlans = 'subPlans';
 
   //TODO: use only a single instance of firestore https://trello.com/c/LZ79VvWa
-  Firestore _firestore = Firestore.instance;
+  FirebaseFirestore _firestore = FirebaseFirestore.instance;
 
   Stream<List<SubscriptionPlan>> getPlans({String gymId}) => _firestore
       .collection(gymPath)
-      .document(gymId)
+      .doc(gymId)
       .collection(path)
       .snapshots()
-      .map((snap) => snap.documents
+      .map((snap) => snap.docs
           .map((doc) => toSubscriptionPlan(doc))
           .toList());
 
   Stream<List<SubscriptionPlan>> getSubPlans({String gymId, String planId}) => _firestore
       .collection(gymPath)
-      .document(gymId)
+      .doc(gymId)
       .collection(path)
-      .document(planId)
+      .doc(planId)
       .collection(subPlans)
       .snapshots()
-      .map((snap) => snap.documents
+      .map((snap) => snap.docs
           .map((doc) => toSubscriptionPlan(doc))
           .toList());
 
   SubscriptionPlan toSubscriptionPlan(DocumentSnapshot doc) {
-    if( doc.data['startingPrice'] != null ) {
+    final data = doc.data();
+    if( data['startingPrice'] != null ) {
       return SubscriptionPlan.subscriptionWithPrices(
-          id: doc.documentID,
-          name: doc.data['name'],
-          description: doc.data['description'],
-          currency: doc.data['currency'],
-          startingPrice: doc.data['startingPrice']);
+          id: doc.id,
+          name: data['name'],
+          description: data['description'],
+          currency: data['currency'],
+          startingPrice: data['startingPrice']);
     }
 
     return SubscriptionPlan.simpleSubscription(
-              name: doc.data['name'],
-              description: doc.data['description'],
-              code: doc.data['code'],
-              currency: doc.data['currency'],
-              price: doc.data['price'],
-              interval: doc.data['interval'],
+              name: data['name'],
+              description: data['description'],
+              code: data['code'],
+              currency: data['currency'],
+              price: data['price'],
+              interval: data['interval'],
             );
   }
 }

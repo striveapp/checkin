@@ -9,17 +9,17 @@ class StatsProvider implements StatsRepository {
   static const String gymPath = "gyms";
   static const String path = 'users_history';
 
-  Firestore _firestore = Firestore.instance;
+  FirebaseFirestore _firestore = FirebaseFirestore.instance;
 
   Stream<UserHistory> getUserStats(String gymId, String email, String timespan) {
     return _firestore
         .collection(gymPath)
-        .document(gymId)
-        .collection(path).document(email).snapshots().map((doc) =>
+        .doc(gymId)
+        .collection(path).doc(email).snapshots().map((doc) =>
         UserHistory(
-            email: doc.documentID,
+            email: doc.id,
             attendedLessons:
-                (doc.data != null ? doc.data['attendedLessons'] as List : [])
+                (doc.data() != null ? doc.data()['attendedLessons'] as List : [])
                     ?.where((lesson) => lesson['timestamp'] > DateUtil.getFirstDayOfTimespan(timespan).millisecondsSinceEpoch)
                     ?.map(getLesson)
                     ?.toList()));
@@ -44,13 +44,13 @@ class StatsProvider implements StatsRepository {
 
   Stream<List<UserHistory>> getAllUserStats(String gymId) => _firestore
       .collection(gymPath)
-      .document(gymId)
+      .doc(gymId)
       .collection(path)
       .snapshots()
-      .map((snapshot) => snapshot.documents
+      .map((snapshot) => snapshot.docs
           .map((doc) => UserHistory(
-              email: doc.documentID,
-              attendedLessons: (doc.data['attendedLessons'] as List)
+              email: doc.id,
+              attendedLessons: (doc.data()['attendedLessons'] as List)
                   .map(getLesson)
                   .toList()))
           .toList());
@@ -58,10 +58,10 @@ class StatsProvider implements StatsRepository {
   Future<void> cleanUserHistory(String gymId, String email) async {
     await _firestore
         .collection(gymPath)
-        .document(gymId)
+        .doc(gymId)
         .collection(path)
-        .document(email)
+        .doc(email)
     // .delete(); todo https://trello.com/c/oXkaXNqb
-        .updateData({"attendedLessons": []});
+        .update({"attendedLessons": []});
   }
 }

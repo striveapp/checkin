@@ -1,6 +1,6 @@
 import 'package:checkin/src/models/grade.dart';
 import 'package:equatable/equatable.dart';
-import 'package:firebase_auth/firebase_auth.dart';
+import 'package:firebase_auth/firebase_auth.dart' as FirebaseAuth;
 import 'package:meta/meta.dart';
 
 import '../config.dart' as config;
@@ -26,14 +26,14 @@ class User extends Equatable {
     this.hasActivePayments,
   });
 
-  factory User.fromFirebaseUser(FirebaseUser firebaseUser,
+  factory User.fromFirebaseUser(FirebaseAuth.User firebaseUser,
       {String displayName, String photoUrl}) {
     return firebaseUser != null
         ? User(
             uid: firebaseUser.uid,
             name: firebaseUser.displayName ?? displayName,
             email: firebaseUser.email,
-            imageUrl: firebaseUser.photoUrl ??
+            imageUrl: firebaseUser.photoURL ??
                 photoUrl ??
                 config.DEFAULT_USER_IMAGE_URL,
           )

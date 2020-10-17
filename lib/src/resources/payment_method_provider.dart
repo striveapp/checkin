@@ -3,7 +3,7 @@ import 'package:checkin/src/repositories/payment_method_repository.dart';
 import 'package:cloud_firestore/cloud_firestore.dart';
 
 class PaymentMethodProvider implements PaymentMethodRepository {
-  Firestore _firestore = Firestore.instance;
+  FirebaseFirestore _firestore = FirebaseFirestore.instance;
   static const String gymPath = "gyms";
   static const String path = 'customers';
 
@@ -11,14 +11,15 @@ class PaymentMethodProvider implements PaymentMethodRepository {
   Stream<PaymentMethod> getPaymentMethod({String gymId, String email}) {
     return _firestore
         .collection(gymPath)
-        .document(gymId)
+        .doc(gymId)
         .collection(path)
-        .document(email)
+        .doc(email)
         .snapshots()
-        .map((doc) => toPaymentMethod(email, doc.data));
+        .map((doc) => toPaymentMethod(email, doc));
   }
 
-  toPaymentMethod(String email, dynamic data) {
+  toPaymentMethod(String email, DocumentSnapshot doc) {
+    final data = doc.data();
     if (data == null || data['payment_method'] == null) {
       return null;
     }

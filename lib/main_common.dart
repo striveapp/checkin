@@ -25,6 +25,7 @@ import 'package:checkin/src/resources/user_provider.dart';
 import 'package:checkin/src/routes/application.dart';
 import 'package:checkin/src/routes/routes.dart';
 import 'package:checkin/src/simple_bloc_delegate.dart';
+import 'package:firebase_core/firebase_core.dart';
 import 'package:firebase_crashlytics/firebase_crashlytics.dart';
 import 'package:firebase_dynamic_links/firebase_dynamic_links.dart';
 import 'package:flutter/material.dart';
@@ -36,6 +37,8 @@ import 'src/blocs/dynamic_link/dynamic_link_event.dart';
 
 Future<void> mainCommon(AppConfig _) async {
   WidgetsFlutterBinding.ensureInitialized();
+
+  await Firebase.initializeApp();
 
   // init bloc delegate
   BlocSupervisor.delegate = SimpleBlocDelegate();

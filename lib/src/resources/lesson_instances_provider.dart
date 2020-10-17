@@ -19,33 +19,36 @@ class LessonInstancesProvider implements LessonRepository {
   static const String sub_collection_path = 'instances';
 
   //TODO: use only a single instance of firestore https://trello.com/c/LZ79VvWa
-  Firestore _firestore = Firestore.instance;
+  FirebaseFirestore _firestore = FirebaseFirestore.instance;
 
   String _formatDate(DateTime day) => DateFormat("yyyy-MM-dd").format(day);
 
-  Lesson _toLesson(DocumentSnapshot lesson) => Lesson(
-      id: lesson.documentID,
-      date: lesson.data['date'],
-      name: lesson.data['name'],
-      timeStart: lesson.data['timeStart'],
-      timeEnd: lesson.data['timeEnd'],
-      weekDay: lesson.data['weekDay'],
-      classCapacity: lesson.data['classCapacity'] ?? config.DEFAULT_CLASS_CAPACITY, // todo retrieve from Gym (config) https://trello.com/c/uIqJLgZL
-      masters: (lesson.data['masters'] as List)
+  Lesson _toLesson(DocumentSnapshot lesson) {
+    final data = lesson.data();
+    return Lesson(
+      id: lesson.id,
+      date: data['date'],
+      name: data['name'],
+      timeStart: data['timeStart'],
+      timeEnd: data['timeEnd'],
+      weekDay: data['weekDay'],
+      classCapacity: data['classCapacity'] ?? config.DEFAULT_CLASS_CAPACITY, // todo retrieve from Gym (config) https://trello.com/c/uIqJLgZL
+      masters: (data['masters'] as List)
           ?.map((master) => Master(
                 name: master['name'],
                 email: master['email'],
                 imageUrl: master['imageUrl'],
               ))
           ?.toList(),
-      attendees: (lesson.data['attendees'] as List)
+      attendees: (data['attendees'] as List)
               ?.map((attendee) => _toAttendee(attendee))
               ?.toList() ??
           [],
-      acceptedAttendees: (lesson.data['acceptedAttendees'] as List)
+      acceptedAttendees: (data['acceptedAttendees'] as List)
               ?.map((attendee) => _toAttendee(attendee))
               ?.toList() ??
           []);
+  }
 
   Attendee _toAttendee(Map<dynamic, dynamic> attendee) => Attendee(
       name: attendee['name'],
@@ -67,13 +70,13 @@ class LessonInstancesProvider implements LessonRepository {
     var formattedDate = _formatDate(day);
     return _firestore
         .collection(gymPath)
-        .document(gymId)
+        .doc(gymId)
         .collection(path)
-        .document(formattedDate)
+        .doc(formattedDate)
         .collection("instances")
         .snapshots()
-        .map((snapshot) => snapshot.documents
-            .where((doc) => doc.data['masters'] != null)
+        .map((snapshot) => snapshot.docs
+            .where((doc) => doc.data()['masters'] != null)
             .map((doc) => _toLesson(doc))
             .toList());
   }
@@ -81,13 +84,13 @@ class LessonInstancesProvider implements LessonRepository {
   @override
   Stream<Lesson> getLesson(String gymId, String date, String lessonId) => _firestore
       .collection(gymPath)
-      .document(gymId)
+      .doc(gymId)
       .collection(path)
-      .document(date)
+      .doc(date)
       .collection(sub_collection_path)
-      .document(lessonId)
+      .doc(lessonId)
       .snapshots()
-      .where((doc) => doc.data['masters'] != null)
+      .where((doc) => doc.data()['masters'] != null)
       .map((doc) => _toLesson(doc));
 
   @override
@@ -104,8 +107,8 @@ class LessonInstancesProvider implements LessonRepository {
         })
         .where("date", isGreaterThanOrEqualTo: DateFormat('yyyy-MM-dd').format(DateUtil.getFirstDayOfTimespan(timespan)))
         .snapshots()
-        .map((snapshot) => snapshot.documents
-            .where((doc) => doc.data['masters'] != null)
+        .map((snapshot) => snapshot.docs
+            .where((doc) => doc.data()['masters'] != null)
             .map((doc) => _toLesson(doc))
             .toList());
 
@@ -114,12 +117,12 @@ class LessonInstancesProvider implements LessonRepository {
     debugPrint("User [$attendee] attends lesson with id [$lessonId]");
     await _firestore
         .collection(gymPath)
-        .document(gymId)
+        .doc(gymId)
         .collection(path)
-        .document(date)
+        .doc(date)
         .collection(sub_collection_path)
-        .document(lessonId)
-        .updateData({
+        .doc(lessonId)
+        .update({
       'attendees': FieldValue.arrayUnion([
         {
           'name': attendee.name,
@@ -137,12 +140,12 @@ class LessonInstancesProvider implements LessonRepository {
     debugPrint("User [$attendee] removed from lesson with id [$lessonId]");
     await _firestore
         .collection(gymPath)
-        .document(gymId)
+        .doc(gymId)
         .collection(path)
-        .document(date)
+        .doc(date)
         .collection(sub_collection_path)
-        .document(lessonId)
-        .updateData({
+        .doc(lessonId)
+        .update({
       'attendees': FieldValue.arrayRemove([
         {
           'name': attendee.name,
@@ -157,12 +160,12 @@ class LessonInstancesProvider implements LessonRepository {
   Future<void> cleanLessonAttendees(String gymId, String date, String lessonId) async {
     await _firestore
         .collection(gymPath)
-        .document(gymId)
+        .doc(gymId)
         .collection(path)
-        .document(date)
+        .doc(date)
         .collection(sub_collection_path)
-        .document(lessonId)
-        .updateData({
+        .doc(lessonId)
+        .update({
       "attendees": FieldValue.delete(),
       "acceptedAttendees": FieldValue.delete()
     });

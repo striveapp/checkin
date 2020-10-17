@@ -1,6 +1,6 @@
 import 'package:checkin/src/models/user.dart';
 import 'package:checkin/src/repositories/auth_repository.dart';
-import 'package:firebase_auth/firebase_auth.dart';
+import 'package:firebase_auth/firebase_auth.dart' hide User;
 import 'package:firebase_crashlytics/firebase_crashlytics.dart';
 import 'package:flutter/foundation.dart';
 import 'package:google_sign_in/google_sign_in.dart';
@@ -16,21 +16,18 @@ class AuthProvider implements AuthRepository {
         _googleSignIn = googleSignIn ?? GoogleSignIn();
 
   Stream<User> getAuthState() {
-    return _firebaseAuth.onAuthStateChanged
+    return _firebaseAuth
+        .authStateChanges()
         .map((firebaseUser) => User.fromFirebaseUser(firebaseUser));
   }
 
-  Future<String> getIdToken() async {
-    FirebaseUser firebaseUser = await _firebaseAuth.currentUser();
-    IdTokenResult idToken = await firebaseUser.getIdToken();
-
-    return idToken.token;
-  }
+  Future<String> getIdToken() async =>
+      await _firebaseAuth.currentUser.getIdToken();
 
   Future<User> signInWithGoogle() async {
     GoogleSignInAccount googleUser;
     GoogleSignInAuthentication googleAuth;
-    AuthCredential credential;
+    OAuthCredential credential;
 
     try {
       googleUser = await _googleSignIn.signIn();
@@ -54,7 +51,7 @@ class AuthProvider implements AuthRepository {
     }
 
     try {
-      credential = GoogleAuthProvider.getCredential(
+      credential = GoogleAuthProvider.credential(
         accessToken: googleAuth.accessToken,
         idToken: googleAuth.idToken,
       );
@@ -68,15 +65,10 @@ class AuthProvider implements AuthRepository {
         displayName: googleUser.displayName, photoUrl: googleUser.photoUrl);
   }
 
-  Future<User> _getAuthenticatedUserFromFirebase(AuthCredential credential,
+  Future<User> _getAuthenticatedUserFromFirebase(OAuthCredential credential,
       {String displayName, String photoUrl}) async {
-    final AuthResult authResult =
-        await _firebaseAuth.signInWithCredential(credential);
-    final FirebaseUser user = authResult.user;
-
-    final FirebaseUser currentUser = await _firebaseAuth.currentUser();
-
-    assert(user.uid == currentUser.uid);
+    final userCredential = await _firebaseAuth.signInWithCredential(credential);
+    final user = userCredential.user;
 
     return User.fromFirebaseUser(
       user,
@@ -97,8 +89,7 @@ class AuthProvider implements AuthRepository {
       ],
     );
 
-    final AuthCredential credential =
-        OAuthProvider(providerId: 'apple.com').getCredential(
+    final OAuthCredential credential = OAuthProvider('apple.com').credential(
       idToken: appleAuth.identityToken,
       accessToken: appleAuth.authorizationCode,
     );
@@ -130,7 +121,7 @@ class AuthProvider implements AuthRepository {
       await this._firebaseAuth.signInWithEmailAndPassword(
           email: "test-owner@test.com", password: "test123");
     }
-    var firebaseUser = await _firebaseAuth.currentUser();
+    var firebaseUser = _firebaseAuth.currentUser;
     debugPrint("test firebaseUser is [$firebaseUser]");
 
     return User.fromFirebaseUser(firebaseUser);
@@ -138,10 +129,11 @@ class AuthProvider implements AuthRepository {
 }
 
 class AppleSignInNotSupportedException implements Exception {
-
   String _message;
 
-  AppleSignInNotSupportedException([String message = 'Sign in with Apple is not supported for your version of IOS']) {
+  AppleSignInNotSupportedException(
+      [String message =
+          'Sign in with Apple is not supported for your version of IOS']) {
     this._message = message;
   }
 

@@ -6,26 +6,28 @@ class MembershipProvider implements MembershipRepository {
   static const String gymPath = "gyms";
   static const String path = 'customers';
 
-  Firestore _firestore = Firestore.instance;
+  FirebaseFirestore _firestore = FirebaseFirestore.instance;
 
   @override
   Stream<Membership> getMembership({String gymId, String email}) {
     return _firestore
         .collection(gymPath)
-        .document(gymId)
+        .doc(gymId)
         .collection(path)
-        .document(email)
+        .doc(email)
         .snapshots()
         .map((doc) => toMembership(doc));
   }
 
   Membership toMembership(DocumentSnapshot doc) {
-    if (doc.data == null) {
+    final data = doc.data();
+
+    if (data == null) {
       return Membership(status: Membership.INACTIVE_MEMBERSHIP);
     }
 
-    var subscription = doc.data['subscription'];
-    var infos = doc.data['infos'];
+    var subscription = data['subscription'];
+    var infos = data['infos'];
 
     if (infos == null) {
       return Membership(status: Membership.INACTIVE_MEMBERSHIP);

@@ -3,21 +3,24 @@ import 'package:checkin/src/repositories/gym_repository.dart';
 import 'package:cloud_firestore/cloud_firestore.dart';
 
 class GymProvider implements GymRepository {
-  Firestore _firestore = Firestore.instance;
+  FirebaseFirestore _firestore = FirebaseFirestore.instance;
   static const String path = 'gyms';
 
   Stream<Gym> getGym(String gymId) {
     return _firestore
         .collection(path)
-        .document(gymId)
+        .doc(gymId)
         .snapshots()
         .where((snapshot) => snapshot.exists)
-        .map((gym) => Gym(
+        .map((gym) {
+          final data = gym.data();
+          return Gym(
               id: gymId,
-              paymentAppDomain: gym.data["paymentAppDomain"],
-              host: gym.data["host"],
-              stripePublicKey: gym.data["stripePublicKey"],
-              hasActivePayments: gym.data["hasActivePayments"] ?? false,
-            ));
+              paymentAppDomain: data["paymentAppDomain"],
+              host: data["host"],
+              stripePublicKey: data["stripePublicKey"],
+              hasActivePayments: data["hasActivePayments"] ?? false,
+            );
+        });
   }
 }

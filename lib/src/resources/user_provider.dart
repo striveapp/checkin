@@ -7,28 +7,29 @@ import 'package:checkin/src/resources/stats_provider.dart';
 import 'package:cloud_firestore/cloud_firestore.dart';
 
 class UserProvider implements UserRepository {
-  Firestore _firestore = Firestore.instance;
+  FirebaseFirestore _firestore = FirebaseFirestore.instance;
   StatsProvider statsProvider = StatsProvider();
   static const String path = 'users';
   String defaultGym;
 
   Stream<User> getUserByEmail(String email) => _firestore
       .collection(path)
-      .document(email)
+      .doc(email)
       .snapshots()
       .map((user) => toUser(user));
 
   User toUser(DocumentSnapshot user) {
+    final data = user.data();
     return User(
-        name: user.data['name'],
-        email: user.data['email'],
-        imageUrl: user.data['imageUrl'],
+        name: data['name'],
+        email: data['email'],
+        imageUrl: data['imageUrl'],
         // TODO: remove rank when all users have grade https://trello.com/c/d26R05mY
         grade:
-        ((user.data['grade'] ?? user.data['rank']) as String)?.toGrade(),
-        isOwner: user.data['isOwner'] ?? false,
-        hasActivePayments: user.data['hasActivePayments'],
-        selectedGymId: user.data['selectedGymId']
+        ((data['grade'] ?? data['rank']) as String)?.toGrade(),
+        isOwner: data['isOwner'] ?? false,
+        hasActivePayments: data['hasActivePayments'],
+        selectedGymId: data['selectedGymId']
     );
   }
 
@@ -43,31 +44,31 @@ class UserProvider implements UserRepository {
       userData['selectedGymId'] = defaultGym;
     }
 
-    await _firestore.collection(path).document(newUser.email).setData(userData, merge: true);
+    await _firestore.collection(path).doc(newUser.email).set(userData, SetOptions(merge: true));
   }
 
   Future<void> updateUserGrade(String userEmail, String newGrade) async {
     await _firestore
         .collection(path)
-        .document(userEmail)
-        .updateData({"grade": newGrade});
+        .doc(userEmail)
+        .update({"grade": newGrade});
   }
 
   Future<void> updateUserName(String userEmail, String newName) async {
     await _firestore
         .collection(path)
-        .document(userEmail)
-        .updateData({"name": newName});
+        .doc(userEmail)
+        .update({"name": newName});
   }
 
   Future<void> updateUserFcmToken(String userEmail, String newFcmToken) async {
     var tokens = _firestore
         .collection(path)
-        .document(userEmail)
+        .doc(userEmail)
         .collection("tokens")
-        .document(newFcmToken);
+        .doc(newFcmToken);
 
-    await tokens.setData({
+    await tokens.set({
       'token': newFcmToken,
       'createdAt': FieldValue.serverTimestamp(), // optional
       'platform': Platform.operatingSystem // optional
@@ -77,22 +78,22 @@ class UserProvider implements UserRepository {
   Future<void> updateSelectedGymId(String userEmail, String newSelectedGym) async {
     await _firestore
         .collection(path)
-        .document(userEmail)
-        .updateData({"selectedGymId": newSelectedGym});
+        .doc(userEmail)
+        .update({"selectedGymId": newSelectedGym});
   }
 
   Future<void> updateUserImageUrl(String userEmail, String newImageUrl) async {
     await _firestore
         .collection(path)
-        .document(userEmail)
-        .updateData({"imageUrl": newImageUrl});
+        .doc(userEmail)
+        .update({"imageUrl": newImageUrl});
   }
 
   Future<void> updateUserVersion(String userEmail, String newVersion) async {
     await _firestore
         .collection(path)
-        .document(userEmail)
-        .updateData({"appVersion": newVersion});
+        .doc(userEmail)
+        .update({"appVersion": newVersion});
   }
 
   @override
