@@ -23,12 +23,16 @@ workflows:
           include: true
           source: true
     scripts:
-      - make set-dev
-      - flutter packages pub get
-      - flutter analyze
-      - flutter test
-      - flutter emulators
-      - flutter drive --flavor=dev --target=test_driver/journeys/journeys.dart
+      - name: Setup environment
+        script: make set-dev
+      - name: Installing dependencies
+        script: flutter packages pub get
+      - name: Run analyzer
+        script: flutter analyze
+      - name: Run Unit tests
+        script: flutter test
+      - name: Run Integration tests
+        script: flutter emulators --launch emulator && flutter drive --flavor=dev --target=test_driver/journeys/journeys.dart
     artifacts:
       - build/**/outputs/**/*.apk
       - flutter_drive.log
