@@ -9,7 +9,7 @@ import 'package:sign_in_with_apple/sign_in_with_apple.dart';
 class AuthProvider implements AuthRepository {
   final FirebaseAuth _firebaseAuth;
   final GoogleSignIn _googleSignIn;
-  final Crashlytics _crashlytics = Crashlytics.instance;
+  final FirebaseCrashlytics _crashlytics = FirebaseCrashlytics.instance;
 
   AuthProvider({FirebaseAuth firebaseAuth, GoogleSignIn googleSignIn})
       : _firebaseAuth = firebaseAuth ?? FirebaseAuth.instance,
@@ -33,7 +33,7 @@ class AuthProvider implements AuthRepository {
       googleUser = await _googleSignIn.signIn();
     } catch (err, stackTrace) {
       await _crashlytics.recordError(err, stackTrace,
-          context: "login error (signIn)");
+          reason: "login error (signIn)");
       throw err;
     }
 
@@ -46,7 +46,7 @@ class AuthProvider implements AuthRepository {
       googleAuth = await googleUser.authentication;
     } catch (err, stackTrace) {
       await _crashlytics.recordError(err, stackTrace,
-          context: "login error (authentication)");
+          reason: "login error (authentication)");
       throw err;
     }
 
@@ -57,7 +57,7 @@ class AuthProvider implements AuthRepository {
       );
     } catch (err, stackTrace) {
       await _crashlytics.recordError(err, stackTrace,
-          context: "login error (getCredential)");
+          reason: "login error (getCredential)");
       throw err;
     }
 

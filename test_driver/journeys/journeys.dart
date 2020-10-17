@@ -29,7 +29,8 @@ Future<void> main() async {
     }
     return "ok";
   });
-  app.main();
+
+  app.mainCommon(null);
 }
 
 Future<void> setup() async {

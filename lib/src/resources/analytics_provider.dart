@@ -9,7 +9,7 @@ import 'package:platform/platform.dart';
 
 class AnalyticsProvider implements AnalyticsRepository {
   final FirebaseAnalytics _firebaseAnalytics = FirebaseAnalytics();
-  final Crashlytics _crashlytics = Crashlytics.instance;
+  final FirebaseCrashlytics _crashlytics = FirebaseCrashlytics.instance;
 
   @override
   RouteObserver<PageRoute> getNavigationObserver() =>
@@ -42,7 +42,7 @@ class AnalyticsProvider implements AnalyticsRepository {
   Future<void> loginError({dynamic err, StackTrace stackTrace}) async {
     String message = err.toString();
 
-    await _crashlytics.recordError(err, stackTrace, context: "login error");
+    await _crashlytics.recordError(err, stackTrace, reason: "login error");
     await _firebaseAnalytics.logEvent(name: "login_error", parameters: {
       "hash": CryptoUtil.generateMd5(message),
       "message": message.length > 100 ? message.substring(0, 100) : message,
@@ -50,7 +50,7 @@ class AnalyticsProvider implements AnalyticsRepository {
   }
 
   Future<void> setupBankAccountError({String error}) async {
-    await _crashlytics.recordError(error, null, context: "setup bank account error");
+    await _crashlytics.recordError(error, null, reason: "setup bank account error");
     await _firebaseAnalytics.logEvent(name: "setup_bank_account_error", parameters: {
       "hash": CryptoUtil.generateMd5(error),
       "message": error.length > 100 ? error.substring(0, 100) : error,
@@ -69,7 +69,7 @@ class AnalyticsProvider implements AnalyticsRepository {
     String message = err.toString();
 
     await _crashlytics.recordError(err, stackTrace,
-        context: "subscription error");
+        reason: "subscription error");
     await _firebaseAnalytics.logEvent(name: "subscription_error", parameters: {
       "hash": CryptoUtil.generateMd5(message),
       "message": message.length > 100 ? message.substring(0, 100) : message,
@@ -80,7 +80,7 @@ class AnalyticsProvider implements AnalyticsRepository {
     String message = err.toString();
 
     await _crashlytics.recordError(err, stackTrace,
-        context: "unsubscribe error");
+        reason: "unsubscribe error");
     await _firebaseAnalytics.logEvent(name: "unsubscribe_error", parameters: {
       "hash": CryptoUtil.generateMd5(message),
       "message": message.length > 100 ? message.substring(0, 100) : message,

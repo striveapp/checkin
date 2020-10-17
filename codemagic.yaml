@@ -2,7 +2,7 @@
 # Note that this configuration is not an exact match to UI settings. Review and adjust as necessary.
 
 workflows:
-  tests-only-new:
+  tests-only:
     name: Tests only new
     max_build_duration: 20
     environment:
@@ -24,62 +24,12 @@ workflows:
           source: true
     scripts:
       - make set-dev
-      - cd . && flutter packages pub get
-      - cd . && flutter analyze
-      - cd . && flutter test
+      - flutter packages pub get
+      - flutter analyze
+      - flutter test
+      - flutter drive --flavor=dev --target=test_driver/journeys/journeys.dart
     artifacts:
       - build/**/outputs/**/*.apk
-      - flutter_drive.log
-    publishing:
-      slack:
-        channel: '#checkin-app'
-        notify_on_build_start: true
-  tests-only:
-    name: Tests only
-    max_build_duration: 60
-    environment:
-      vars:
-        ANDROID_FIREBASE_API_KEY: Encrypted(Z0FBQUFBQmZnWTZLZG50ZWIxRWwwVnFkRVUybzFuUTFTWDVpRVZpNXhSVTJGVGJPbVVQRzJCTEVIZnU0UXMxQ0ppTVZNRk5KRE1XY0ZicFhoSnJWaFpzcGJjZGlsNDYyZi1KV2EyRExFU3FGMTZyN0ZycHR2b0ZSeTVPWndSSVYwQ1lsZlZIT2pOeng=)
-        ENV: dev
-        IOS_FIREBASE_API_KEY: Encrypted(Z0FBQUFBQmZnWTZLc3F5eFdqa0NKME5HajZlWG1qaE0wLXJTMEJSUmtFQ1hVWEh0S0o2ckk2dnZIUGw0YnJ4YXo0eTI2ZDZQUDlPLWpSaEpTNnBTUmNOUDloQV9aYW52SzZHVnpOTUdBZWcxWElnYzBESHdsYk9ZMDBQeUEyZk1zM1FIU2V2QWxsOVA=)
-      flutter: beta
-      xcode: latest
-      cocoapods: default
-    cache:
-      cache_paths:
-        - $FCI_BUILD_DIR/build
-#    triggering:
-#      events:
-#        - push
-#      branch_patterns:
-#        - pattern: master
-#          include: true
-#          source: true
-    scripts:
-      - "#!/bin/sh\n\nset -e\ntrap 'echo \"\\\"${BASH_COMMAND}\\\" command filed with\
-        \ exit code $?.\"' ERR\n\n### ANDROID\necho \"Configuring Android for ${ENV}...\"\
-        \n\nandroid_template=\"$(pwd)/android/app/google-services.json.${ENV}.template\"\
-        \nresult_file=\"$(pwd)/android/app/google-services.json\"\n\nif [[ -z ${ANDROID_FIREBASE_API_KEY+x}\
-        \ ]]; then\n    read -s -p \"Insert Android API key: \" android_api_key\n\
-        \    ANDROID_FIREBASE_API_KEY=${android_api_key}\n    echo \"\\n\u2705   ANDROID_FIREBASE_API_KEY\
-        \ set!\"\nelse\n    echo \"\u2705   ANDROID_FIREBASE_API_KEY found!\"\nfi\n\
-        \ncp ${android_template} \"${android_template}.tmp\"\nsed -i.bak \"s/__ANDROID_FIREBASE_API_KEY__/${ANDROID_FIREBASE_API_KEY}/\"\
-        \ ${android_template}\nrm -rf \"$android_template.bak\"\nmv ${android_template}\
-        \ ${result_file}\nmv \"${android_template}.tmp\" ${android_template}\necho\
-        \ \"\u2705   Done!\\n\"\n\n### IOS SETUP\necho \"Configuring IOS for ${ENV}...\"\
-        \n\nios_template=\"$(pwd)/ios/Runner/GoogleService-Info.plist.${ENV}.template\"\
-        \nresult_ios_file=\"$(pwd)/ios/Runner/GoogleService-Info.plist\"\n\n\nif [[\
-        \ -z ${IOS_FIREBASE_API_KEY+x} ]]; then\n    read -s -p \"Insert Ios API key:\
-        \ \" ios_api_key\n    IOS_FIREBASE_API_KEY=${ios_api_key}\n    echo \"\\n\u2705\
-        \   IOS_FIREBASE_API_KEY set!\"\nelse\n    echo \"\u2705   IOS_FIREBASE_API_KEY\
-        \ found!\"\nfi\n\ncp ${ios_template} \"${ios_template}.tmp\"\nsed -i.bak \"\
-        s/__IOS_FIREBASE_API_KEY__/${IOS_FIREBASE_API_KEY}/\" ${ios_template}\nrm\
-        \ -rf \"${ios_template}.bak\"\nmv ${ios_template} ${result_ios_file}\nmv \"\
-        ${ios_template}.tmp\" ${ios_template}\necho \"\u2705   Done!\"\n"
-      - cd . && flutter packages pub get
-      - cd . && flutter analyze
-      - cd . && flutter test
-    artifacts:
       - flutter_drive.log
     publishing:
       slack:

@@ -4,4 +4,3 @@ analyzer:
     - lib/**/*.g.dart
     - lib/**/*.freezed.dart
     - test/**/*.freezed.dart
-    - test_driver/**

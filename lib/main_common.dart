@@ -44,7 +44,9 @@ Future<void> mainCommon(AppConfig _) async {
   BlocSupervisor.delegate = SimpleBlocDelegate();
 
   // setup crashlytics
-  FlutterError.onError = Crashlytics.instance.recordFlutterError;
+  FlutterError.onError = FirebaseCrashlytics.instance.recordFlutterError;
+
+  FirebaseCrashlytics.instance.setCrashlyticsCollectionEnabled(true);
 
   // init routes
   Routes.configureRoutes(Application.router);
@@ -115,6 +117,6 @@ Future<void> mainCommon(AppConfig _) async {
       ),
     );
   }, (Object error, StackTrace stack) {
-    Crashlytics.instance.recordError(error, stack);
+    FirebaseCrashlytics.instance.recordError(error, stack);
   });
 }

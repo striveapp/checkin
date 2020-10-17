@@ -20,6 +20,7 @@ class AccountPage {
   }
 
   editProfile() async {
+    await _driver.scrollIntoView(_editProfileButton);
     await _driver.waitFor(_editProfileButton);
     await _driver.tap(_editProfileButton);
   }
