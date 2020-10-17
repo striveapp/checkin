@@ -23,6 +23,8 @@ workflows:
           include: true
           source: true
     scripts:
+      - name: Run doctor
+        script: flutter doctor -v
       - name: Run emulator
         script: flutter emulators --launch emulator
       - name: Setup environment
