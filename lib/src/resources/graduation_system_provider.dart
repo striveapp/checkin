@@ -3,7 +3,7 @@ import 'package:checkin/src/repositories/graduation_system_repository.dart';
 import 'package:cloud_firestore/cloud_firestore.dart';
 
 class GraduationSystemProvider implements GraduationSystemRepository {
-  Firestore _firestore = Firestore.instance;
+  FirebaseFirestore _firestore = FirebaseFirestore.instance;
   static const String gymPath = "gyms";
   static const String path = 'graduation_system';
 
@@ -11,12 +11,12 @@ class GraduationSystemProvider implements GraduationSystemRepository {
   Stream<GraduationSystem> getGraduationSystem(String gymId) {
     return _firestore
         .collection(gymPath)
-        .document(gymId)
+        .doc(gymId)
         .collection(path)
-        .document("bjj")
+        .doc("bjj")
         .snapshots()
         .where((snapshot) => snapshot.exists)
-        .map((graduationSystem) => GraduationSystem(system: toSystem(graduationSystem.data)));
+        .map((graduationSystem) => GraduationSystem(system: toSystem(graduationSystem.data())));
   }
 
   Map<String, GraduationRequirement> toSystem(Map<String, dynamic> firebaseData) {
