@@ -25,7 +25,7 @@ workflows:
     scripts:
       - name: Run doctor
         script: flutter doctor -v
-      - name: Run emulator
+      - name: Run emulator (Android)
         script: flutter emulators --launch emulator
       - name: Setup environment
         script: make set-dev
@@ -33,9 +33,9 @@ workflows:
         script: flutter packages pub get
       - name: Run analyzer
         script: flutter analyze
-      - name: Run Unit tests
+      - name: Run unit tests
         script: flutter test
-      - name: Run Integration tests (Android)
+      - name: Run integration tests
         script: flutter drive --flavor=dev --target=test_driver/journeys/journeys.dart
     artifacts:
       - build/**/outputs/**/*.apk
