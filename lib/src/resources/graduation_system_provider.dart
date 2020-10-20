@@ -1,5 +1,6 @@
 import 'package:checkin/src/models/graduation_system.dart';
 import 'package:checkin/src/repositories/graduation_system_repository.dart';
+import 'package:checkin/src/models/grade.dart';
 import 'package:cloud_firestore/cloud_firestore.dart';
 
 class GraduationSystemProvider implements GraduationSystemRepository {
@@ -24,6 +25,6 @@ class GraduationSystemProvider implements GraduationSystemRepository {
   }
 
   GraduationRequirement toGraduationRequirement(String grade, dynamic graduationRequirement) {
-    return GraduationRequirement(grade: grade, forNextLevel: (graduationRequirement["forNextLevel"] as num).toDouble());
+    return GraduationRequirement(grade: grade.toGrade(), forNextLevel: (graduationRequirement["forNextLevel"] as num).toDouble());
   }
 }

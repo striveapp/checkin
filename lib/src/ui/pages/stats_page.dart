@@ -5,6 +5,7 @@ import 'package:checkin/src/constants.dart' as constants;
 import 'package:checkin/src/localization/localization.dart';
 import 'package:checkin/src/repositories/user_repository.dart';
 import 'package:checkin/src/ui/components/base_app_bar.dart';
+import 'package:checkin/src/ui/components/stats/graduate_fab.dart';
 import 'package:checkin/src/ui/components/stats/stats_body.dart';
 import 'package:checkin/src/ui/components/stats/stats_header.dart';
 import 'package:flutter/material.dart';
@@ -23,33 +24,35 @@ class StatsPage extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    return Scaffold(
-      appBar: BaseAppBar(
-        title: stats.i18n,
-        showUserImage: false,
-      ),
-      body: MultiBlocProvider(
-        providers: [
-          BlocProvider<ProfileBloc>(
-            create: (context) => ProfileBloc(
-                userRepository: RepositoryProvider.of<UserRepository>(context),
-                nonCurrentUserEmail: userEmail,
-                userBloc: BlocProvider.of<UserBloc>(context)),
-          ),
-          BlocProvider<StatsBloc>(
-            create: (context) =>
-                StatsBloc()..add(TimespanUpdate(timespan: constants.WEEK)),
-          ),
-        ],
-        child: SingleChildScrollView(
-          child: Container(
-            child: Padding(
-              padding: EdgeInsets.symmetric(horizontal: 10, vertical: 10),
-              child: Column(
-                children: <Widget>[
-                  StatsHeader(userEmail: userEmail),
-                  StatsBody(),
-                ],
+    return BlocProvider<ProfileBloc>(
+      create: (context) => ProfileBloc(
+          userRepository: RepositoryProvider.of<UserRepository>(context),
+          nonCurrentUserEmail: userEmail,
+          userBloc: BlocProvider.of<UserBloc>(context)),
+      child: Scaffold(
+        appBar: BaseAppBar(
+          title: stats.i18n,
+          showUserImage: false,
+        ),
+        floatingActionButton: GraduateFab(),
+        floatingActionButtonLocation: FloatingActionButtonLocation.centerFloat,
+        body: MultiBlocProvider(
+          providers: [
+            BlocProvider<StatsBloc>(
+              create: (context) =>
+              StatsBloc()..add(TimespanUpdate(timespan: constants.WEEK)),
+            ),
+          ],
+          child: SingleChildScrollView(
+            child: Container(
+              child: Padding(
+                padding: EdgeInsets.symmetric(horizontal: 10, vertical: 10),
+                child: Column(
+                  children: <Widget>[
+                    StatsHeader(userEmail: userEmail),
+                    StatsBody(),
+                  ],
+                ),
               ),
             ),
           ),

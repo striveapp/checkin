@@ -151,7 +151,7 @@ class _$GraduationRequirementTearOff {
 
 // ignore: unused_element
   _GraduationRequirement call(
-      {@required String grade, @required double forNextLevel}) {
+      {@required Grade grade, @required double forNextLevel}) {
     return _GraduationRequirement(
       grade: grade,
       forNextLevel: forNextLevel,
@@ -165,7 +165,7 @@ const $GraduationRequirement = _$GraduationRequirementTearOff();
 
 /// @nodoc
 mixin _$GraduationRequirement {
-  String get grade;
+  Grade get grade;
   double get forNextLevel;
 
   $GraduationRequirementCopyWith<GraduationRequirement> get copyWith;
@@ -176,7 +176,7 @@ abstract class $GraduationRequirementCopyWith<$Res> {
   factory $GraduationRequirementCopyWith(GraduationRequirement value,
           $Res Function(GraduationRequirement) then) =
       _$GraduationRequirementCopyWithImpl<$Res>;
-  $Res call({String grade, double forNextLevel});
+  $Res call({Grade grade, double forNextLevel});
 }
 
 /// @nodoc
@@ -194,7 +194,7 @@ class _$GraduationRequirementCopyWithImpl<$Res>
     Object forNextLevel = freezed,
   }) {
     return _then(_value.copyWith(
-      grade: grade == freezed ? _value.grade : grade as String,
+      grade: grade == freezed ? _value.grade : grade as Grade,
       forNextLevel: forNextLevel == freezed
           ? _value.forNextLevel
           : forNextLevel as double,
@@ -209,7 +209,7 @@ abstract class _$GraduationRequirementCopyWith<$Res>
           $Res Function(_GraduationRequirement) then) =
       __$GraduationRequirementCopyWithImpl<$Res>;
   @override
-  $Res call({String grade, double forNextLevel});
+  $Res call({Grade grade, double forNextLevel});
 }
 
 /// @nodoc
@@ -229,7 +229,7 @@ class __$GraduationRequirementCopyWithImpl<$Res>
     Object forNextLevel = freezed,
   }) {
     return _then(_GraduationRequirement(
-      grade: grade == freezed ? _value.grade : grade as String,
+      grade: grade == freezed ? _value.grade : grade as Grade,
       forNextLevel: forNextLevel == freezed
           ? _value.forNextLevel
           : forNextLevel as double,
@@ -246,7 +246,7 @@ class _$_GraduationRequirement
         assert(forNextLevel != null);
 
   @override
-  final String grade;
+  final Grade grade;
   @override
   final double forNextLevel;
 
@@ -289,11 +289,11 @@ class _$_GraduationRequirement
 
 abstract class _GraduationRequirement implements GraduationRequirement {
   factory _GraduationRequirement(
-      {@required String grade,
+      {@required Grade grade,
       @required double forNextLevel}) = _$_GraduationRequirement;
 
   @override
-  String get grade;
+  Grade get grade;
   @override
   double get forNextLevel;
   @override

@@ -1,3 +1,4 @@
+import 'package:checkin/src/models/grade.dart';
 import 'package:flutter/foundation.dart';
 import 'package:freezed_annotation/freezed_annotation.dart';
 import 'package:meta/meta.dart';
@@ -13,5 +14,5 @@ abstract class GraduationSystem with _$GraduationSystem {
 
 @freezed
 abstract class GraduationRequirement with _$GraduationRequirement {
-  factory GraduationRequirement({@required String grade, @required double forNextLevel}) = _GraduationRequirement;
+  factory GraduationRequirement({@required Grade grade, @required double forNextLevel}) = _GraduationRequirement;
 }

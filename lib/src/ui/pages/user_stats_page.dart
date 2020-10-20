@@ -5,7 +5,6 @@ import 'package:checkin/src/models/user.dart';
 import 'package:checkin/src/repositories/stats_repository.dart';
 import 'package:checkin/src/ui/components/loading_indicator.dart';
 import 'package:checkin/src/ui/components/stats/user/attended_lessons_list.dart';
-import 'package:checkin/src/ui/components/stats/user/graduation_button.dart';
 import 'package:checkin/src/ui/components/stats/user/mat_time_counter.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter/widgets.dart';
@@ -43,14 +42,6 @@ class UserStatsPage extends StatelessWidget {
                 timeSpan: state.timespan,
                 counter: state.attendedLessons.length,
               ),
-            ),
-            SizedBox(
-              height: 30,
-            ),
-            if(_user.selectedGymId == "test")
-              Padding(
-                padding: const EdgeInsets.symmetric(horizontal: 30.0),
-                child: GraduationButton()
             ),
             SizedBox(
               height: 30,
