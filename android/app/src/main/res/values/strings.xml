@@ -2,4 +2,16 @@
 <resources>
     <string name="test_title">Hello world</string>
     <string name="test_body">This is a message</string>
+
+    <string name="class_confirmed">Class confirmed ✅</string>
+    <string name="you_attended_n_classes">You attended %1$d classes this year!</string>
+
+    <string name="reminder">Reminder ⏰</string>
+    <string name="remaining_students_in_class">You still have students to accept in class</string>
+
+    <string name="student_in_class">Student in class 🥋</string>
+    <string name="first_user_sign_up">The first student sign up to your class</string>
+
+    <string name="inactive_user_found">Inactive user found 🔴</string>
+    <string name="student_attended_lessons_days_ago">The user %1$s last attended lesson was %2$d days ago</string>
 </resources>
