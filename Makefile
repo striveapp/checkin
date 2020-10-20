@@ -39,7 +39,7 @@ integration-test:
 
 .PHONY: codegen-runner
 codegen-runner:
-	flutter pub run build_runner watch --delete-conflicting-outputs --enable-experiment=non-nullable
+	flutter pub run build_runner watch --delete-conflicting-outputs
 
 .PHONY: create-app-icons
 create-app-icons:
