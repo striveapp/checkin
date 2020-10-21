@@ -5,7 +5,6 @@ import 'package:bloc/bloc.dart';
 import 'package:checkin/src/blocs/user/bloc.dart';
 import 'package:checkin/src/models/notification.dart';
 import 'package:flutter/foundation.dart';
-import 'package:checkin/src/localization/localization.dart';
 import 'package:meta/meta.dart';
 import 'bloc.dart';
 
