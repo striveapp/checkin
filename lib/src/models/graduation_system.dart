@@ -7,12 +7,5 @@ part 'graduation_system.freezed.dart';
 
 @freezed
 abstract class GraduationSystem with _$GraduationSystem {
-  factory GraduationSystem({
-    @required final Map<String, GraduationRequirement> system
-  }) = _GraduationSystem;
-}
-
-@freezed
-abstract class GraduationRequirement with _$GraduationRequirement {
-  factory GraduationRequirement({@required Grade grade, @required double forNextLevel}) = _GraduationRequirement;
+  factory GraduationSystem({@required Grade grade, @required double forNextLevel}) = _GraduationSystem;
 }

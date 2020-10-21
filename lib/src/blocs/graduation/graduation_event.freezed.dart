@@ -14,8 +14,20 @@ class _$GraduationEventTearOff {
   const _$GraduationEventTearOff();
 
 // ignore: unused_element
-  GraduationSystemUpdated graduationSystemUpdated() {
-    return const GraduationSystemUpdated();
+  GraduationSystemUpdated graduationSystemUpdated(
+      {@required GraduationSystem graduationSystem,
+      @required int attendedLessonsForGrade}) {
+    return GraduationSystemUpdated(
+      graduationSystem: graduationSystem,
+      attendedLessonsForGrade: attendedLessonsForGrade,
+    );
+  }
+
+// ignore: unused_element
+  Graduate graduate({@required Grade newGrade}) {
+    return Graduate(
+      newGrade: newGrade,
+    );
   }
 }
 
@@ -27,20 +39,27 @@ const $GraduationEvent = _$GraduationEventTearOff();
 mixin _$GraduationEvent {
   @optionalTypeArgs
   Result when<Result extends Object>({
-    @required Result graduationSystemUpdated(),
+    @required
+        Result graduationSystemUpdated(
+            GraduationSystem graduationSystem, int attendedLessonsForGrade),
+    @required Result graduate(Grade newGrade),
   });
   @optionalTypeArgs
   Result maybeWhen<Result extends Object>({
-    Result graduationSystemUpdated(),
+    Result graduationSystemUpdated(
+        GraduationSystem graduationSystem, int attendedLessonsForGrade),
+    Result graduate(Grade newGrade),
     @required Result orElse(),
   });
   @optionalTypeArgs
   Result map<Result extends Object>({
     @required Result graduationSystemUpdated(GraduationSystemUpdated value),
+    @required Result graduate(Graduate value),
   });
   @optionalTypeArgs
   Result maybeMap<Result extends Object>({
     Result graduationSystemUpdated(GraduationSystemUpdated value),
+    Result graduate(Graduate value),
     @required Result orElse(),
   });
 }
@@ -67,6 +86,9 @@ abstract class $GraduationSystemUpdatedCopyWith<$Res> {
   factory $GraduationSystemUpdatedCopyWith(GraduationSystemUpdated value,
           $Res Function(GraduationSystemUpdated) then) =
       _$GraduationSystemUpdatedCopyWithImpl<$Res>;
+  $Res call({GraduationSystem graduationSystem, int attendedLessonsForGrade});
+
+  $GraduationSystemCopyWith<$Res> get graduationSystem;
 }
 
 /// @nodoc
@@ -79,17 +101,50 @@ class _$GraduationSystemUpdatedCopyWithImpl<$Res>
 
   @override
   GraduationSystemUpdated get _value => super._value as GraduationSystemUpdated;
+
+  @override
+  $Res call({
+    Object graduationSystem = freezed,
+    Object attendedLessonsForGrade = freezed,
+  }) {
+    return _then(GraduationSystemUpdated(
+      graduationSystem: graduationSystem == freezed
+          ? _value.graduationSystem
+          : graduationSystem as GraduationSystem,
+      attendedLessonsForGrade: attendedLessonsForGrade == freezed
+          ? _value.attendedLessonsForGrade
+          : attendedLessonsForGrade as int,
+    ));
+  }
+
+  @override
+  $GraduationSystemCopyWith<$Res> get graduationSystem {
+    if (_value.graduationSystem == null) {
+      return null;
+    }
+    return $GraduationSystemCopyWith<$Res>(_value.graduationSystem, (value) {
+      return _then(_value.copyWith(graduationSystem: value));
+    });
+  }
 }
 
 /// @nodoc
 class _$GraduationSystemUpdated
     with DiagnosticableTreeMixin
     implements GraduationSystemUpdated {
-  const _$GraduationSystemUpdated();
+  const _$GraduationSystemUpdated(
+      {@required this.graduationSystem, @required this.attendedLessonsForGrade})
+      : assert(graduationSystem != null),
+        assert(attendedLessonsForGrade != null);
+
+  @override
+  final GraduationSystem graduationSystem;
+  @override
+  final int attendedLessonsForGrade;
 
   @override
   String toString({DiagnosticLevel minLevel = DiagnosticLevel.info}) {
-    return 'GraduationEvent.graduationSystemUpdated()';
+    return 'GraduationEvent.graduationSystemUpdated(graduationSystem: $graduationSystem, attendedLessonsForGrade: $attendedLessonsForGrade)';
   }
 
   @override
@@ -97,35 +152,60 @@ class _$GraduationSystemUpdated
     super.debugFillProperties(properties);
     properties
       ..add(DiagnosticsProperty(
-          'type', 'GraduationEvent.graduationSystemUpdated'));
+          'type', 'GraduationEvent.graduationSystemUpdated'))
+      ..add(DiagnosticsProperty('graduationSystem', graduationSystem))
+      ..add(DiagnosticsProperty(
+          'attendedLessonsForGrade', attendedLessonsForGrade));
   }
 
   @override
   bool operator ==(dynamic other) {
-    return identical(this, other) || (other is GraduationSystemUpdated);
+    return identical(this, other) ||
+        (other is GraduationSystemUpdated &&
+            (identical(other.graduationSystem, graduationSystem) ||
+                const DeepCollectionEquality()
+                    .equals(other.graduationSystem, graduationSystem)) &&
+            (identical(
+                    other.attendedLessonsForGrade, attendedLessonsForGrade) ||
+                const DeepCollectionEquality().equals(
+                    other.attendedLessonsForGrade, attendedLessonsForGrade)));
   }
 
   @override
-  int get hashCode => runtimeType.hashCode;
+  int get hashCode =>
+      runtimeType.hashCode ^
+      const DeepCollectionEquality().hash(graduationSystem) ^
+      const DeepCollectionEquality().hash(attendedLessonsForGrade);
+
+  @override
+  $GraduationSystemUpdatedCopyWith<GraduationSystemUpdated> get copyWith =>
+      _$GraduationSystemUpdatedCopyWithImpl<GraduationSystemUpdated>(
+          this, _$identity);
 
   @override
   @optionalTypeArgs
   Result when<Result extends Object>({
-    @required Result graduationSystemUpdated(),
+    @required
+        Result graduationSystemUpdated(
+            GraduationSystem graduationSystem, int attendedLessonsForGrade),
+    @required Result graduate(Grade newGrade),
   }) {
     assert(graduationSystemUpdated != null);
-    return graduationSystemUpdated();
+    assert(graduate != null);
+    return graduationSystemUpdated(graduationSystem, attendedLessonsForGrade);
   }
 
   @override
   @optionalTypeArgs
   Result maybeWhen<Result extends Object>({
-    Result graduationSystemUpdated(),
+    Result graduationSystemUpdated(
+        GraduationSystem graduationSystem, int attendedLessonsForGrade),
+    Result graduate(Grade newGrade),
     @required Result orElse(),
   }) {
     assert(orElse != null);
     if (graduationSystemUpdated != null) {
-      return graduationSystemUpdated();
+      return graduationSystemUpdated(graduationSystem, attendedLessonsForGrade);
     }
     return orElse();
   }
@@ -134,8 +214,10 @@ class _$GraduationSystemUpdated
   @optionalTypeArgs
   Result map<Result extends Object>({
     @required Result graduationSystemUpdated(GraduationSystemUpdated value),
+    @required Result graduate(Graduate value),
   }) {
     assert(graduationSystemUpdated != null);
+    assert(graduate != null);
     return graduationSystemUpdated(this);
   }
 
@@ -143,6 +225,7 @@ class _$GraduationSystemUpdated
   @optionalTypeArgs
   Result maybeMap<Result extends Object>({
     Result graduationSystemUpdated(GraduationSystemUpdated value),
+    Result graduate(Graduate value),
     @required Result orElse(),
   }) {
     assert(orElse != null);
@@ -154,5 +237,135 @@ class _$GraduationSystemUpdated
 }
 
 abstract class GraduationSystemUpdated implements GraduationEvent {
-  const factory GraduationSystemUpdated() = _$GraduationSystemUpdated;
+  const factory GraduationSystemUpdated(
+      {@required GraduationSystem graduationSystem,
+      @required int attendedLessonsForGrade}) = _$GraduationSystemUpdated;
+
+  GraduationSystem get graduationSystem;
+  int get attendedLessonsForGrade;
+  $GraduationSystemUpdatedCopyWith<GraduationSystemUpdated> get copyWith;
+}
+
+/// @nodoc
+abstract class $GraduateCopyWith<$Res> {
+  factory $GraduateCopyWith(Graduate value, $Res Function(Graduate) then) =
+      _$GraduateCopyWithImpl<$Res>;
+  $Res call({Grade newGrade});
+}
+
+/// @nodoc
+class _$GraduateCopyWithImpl<$Res> extends _$GraduationEventCopyWithImpl<$Res>
+    implements $GraduateCopyWith<$Res> {
+  _$GraduateCopyWithImpl(Graduate _value, $Res Function(Graduate) _then)
+      : super(_value, (v) => _then(v as Graduate));
+
+  @override
+  Graduate get _value => super._value as Graduate;
+
+  @override
+  $Res call({
+    Object newGrade = freezed,
+  }) {
+    return _then(Graduate(
+      newGrade: newGrade == freezed ? _value.newGrade : newGrade as Grade,
+    ));
+  }
+}
+
+/// @nodoc
+class _$Graduate with DiagnosticableTreeMixin implements Graduate {
+  const _$Graduate({@required this.newGrade}) : assert(newGrade != null);
+
+  @override
+  final Grade newGrade;
+
+  @override
+  String toString({DiagnosticLevel minLevel = DiagnosticLevel.info}) {
+    return 'GraduationEvent.graduate(newGrade: $newGrade)';
+  }
+
+  @override
+  void debugFillProperties(DiagnosticPropertiesBuilder properties) {
+    super.debugFillProperties(properties);
+    properties
+      ..add(DiagnosticsProperty('type', 'GraduationEvent.graduate'))
+      ..add(DiagnosticsProperty('newGrade', newGrade));
+  }
+
+  @override
+  bool operator ==(dynamic other) {
+    return identical(this, other) ||
+        (other is Graduate &&
+            (identical(other.newGrade, newGrade) ||
+                const DeepCollectionEquality()
+                    .equals(other.newGrade, newGrade)));
+  }
+
+  @override
+  int get hashCode =>
+      runtimeType.hashCode ^ const DeepCollectionEquality().hash(newGrade);
+
+  @override
+  $GraduateCopyWith<Graduate> get copyWith =>
+      _$GraduateCopyWithImpl<Graduate>(this, _$identity);
+
+  @override
+  @optionalTypeArgs
+  Result when<Result extends Object>({
+    @required
+        Result graduationSystemUpdated(
+            GraduationSystem graduationSystem, int attendedLessonsForGrade),
+    @required Result graduate(Grade newGrade),
+  }) {
+    assert(graduationSystemUpdated != null);
+    assert(graduate != null);
+    return graduate(newGrade);
+  }
+
+  @override
+  @optionalTypeArgs
+  Result maybeWhen<Result extends Object>({
+    Result graduationSystemUpdated(
+        GraduationSystem graduationSystem, int attendedLessonsForGrade),
+    Result graduate(Grade newGrade),
+    @required Result orElse(),
+  }) {
+    assert(orElse != null);
+    if (graduate != null) {
+      return graduate(newGrade);
+    }
+    return orElse();
+  }
+
+  @override
+  @optionalTypeArgs
+  Result map<Result extends Object>({
+    @required Result graduationSystemUpdated(GraduationSystemUpdated value),
+    @required Result graduate(Graduate value),
+  }) {
+    assert(graduationSystemUpdated != null);
+    assert(graduate != null);
+    return graduate(this);
+  }
+
+  @override
+  @optionalTypeArgs
+  Result maybeMap<Result extends Object>({
+    Result graduationSystemUpdated(GraduationSystemUpdated value),
+    Result graduate(Graduate value),
+    @required Result orElse(),
+  }) {
+    assert(orElse != null);
+    if (graduate != null) {
+      return graduate(this);
+    }
+    return orElse();
+  }
+}
+
+abstract class Graduate implements GraduationEvent {
+  const factory Graduate({@required Grade newGrade}) = _$Graduate;
+
+  Grade get newGrade;
+  $GraduateCopyWith<Graduate> get copyWith;
 }

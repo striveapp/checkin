@@ -39,4 +39,10 @@ class GymBloc extends Bloc<GymEvent, GymState> {
       yield GymLoaded(gym: event.gym);
     }
   }
+
+  @override
+  Future<void> close() {
+    gymSub?.cancel();
+    return super.close();
+  }
 }

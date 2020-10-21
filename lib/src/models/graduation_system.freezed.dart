@@ -15,9 +15,10 @@ class _$GraduationSystemTearOff {
 
 // ignore: unused_element
   _GraduationSystem call(
-      {@required Map<String, GraduationRequirement> system}) {
+      {@required Grade grade, @required double forNextLevel}) {
     return _GraduationSystem(
-      system: system,
+      grade: grade,
+      forNextLevel: forNextLevel,
     );
   }
 }
@@ -28,7 +29,8 @@ const $GraduationSystem = _$GraduationSystemTearOff();
 
 /// @nodoc
 mixin _$GraduationSystem {
-  Map<String, GraduationRequirement> get system;
+  Grade get grade;
+  double get forNextLevel;
 
   $GraduationSystemCopyWith<GraduationSystem> get copyWith;
 }
@@ -38,7 +40,7 @@ abstract class $GraduationSystemCopyWith<$Res> {
   factory $GraduationSystemCopyWith(
           GraduationSystem value, $Res Function(GraduationSystem) then) =
       _$GraduationSystemCopyWithImpl<$Res>;
-  $Res call({Map<String, GraduationRequirement> system});
+  $Res call({Grade grade, double forNextLevel});
 }
 
 /// @nodoc
@@ -52,12 +54,14 @@ class _$GraduationSystemCopyWithImpl<$Res>
 
   @override
   $Res call({
-    Object system = freezed,
+    Object grade = freezed,
+    Object forNextLevel = freezed,
   }) {
     return _then(_value.copyWith(
-      system: system == freezed
-          ? _value.system
-          : system as Map<String, GraduationRequirement>,
+      grade: grade == freezed ? _value.grade : grade as Grade,
+      forNextLevel: forNextLevel == freezed
+          ? _value.forNextLevel
+          : forNextLevel as double,
     ));
   }
 }
@@ -69,7 +73,7 @@ abstract class _$GraduationSystemCopyWith<$Res>
           _GraduationSystem value, $Res Function(_GraduationSystem) then) =
       __$GraduationSystemCopyWithImpl<$Res>;
   @override
-  $Res call({Map<String, GraduationRequirement> system});
+  $Res call({Grade grade, double forNextLevel});
 }
 
 /// @nodoc
@@ -85,12 +89,14 @@ class __$GraduationSystemCopyWithImpl<$Res>
 
   @override
   $Res call({
-    Object system = freezed,
+    Object grade = freezed,
+    Object forNextLevel = freezed,
   }) {
     return _then(_GraduationSystem(
-      system: system == freezed
-          ? _value.system
-          : system as Map<String, GraduationRequirement>,
+      grade: grade == freezed ? _value.grade : grade as Grade,
+      forNextLevel: forNextLevel == freezed
+          ? _value.forNextLevel
+          : forNextLevel as double,
     ));
   }
 }
@@ -99,149 +105,7 @@ class __$GraduationSystemCopyWithImpl<$Res>
 class _$_GraduationSystem
     with DiagnosticableTreeMixin
     implements _GraduationSystem {
-  _$_GraduationSystem({@required this.system}) : assert(system != null);
-
-  @override
-  final Map<String, GraduationRequirement> system;
-
-  @override
-  String toString({DiagnosticLevel minLevel = DiagnosticLevel.info}) {
-    return 'GraduationSystem(system: $system)';
-  }
-
-  @override
-  void debugFillProperties(DiagnosticPropertiesBuilder properties) {
-    super.debugFillProperties(properties);
-    properties
-      ..add(DiagnosticsProperty('type', 'GraduationSystem'))
-      ..add(DiagnosticsProperty('system', system));
-  }
-
-  @override
-  bool operator ==(dynamic other) {
-    return identical(this, other) ||
-        (other is _GraduationSystem &&
-            (identical(other.system, system) ||
-                const DeepCollectionEquality().equals(other.system, system)));
-  }
-
-  @override
-  int get hashCode =>
-      runtimeType.hashCode ^ const DeepCollectionEquality().hash(system);
-
-  @override
-  _$GraduationSystemCopyWith<_GraduationSystem> get copyWith =>
-      __$GraduationSystemCopyWithImpl<_GraduationSystem>(this, _$identity);
-}
-
-abstract class _GraduationSystem implements GraduationSystem {
-  factory _GraduationSystem(
-          {@required Map<String, GraduationRequirement> system}) =
-      _$_GraduationSystem;
-
-  @override
-  Map<String, GraduationRequirement> get system;
-  @override
-  _$GraduationSystemCopyWith<_GraduationSystem> get copyWith;
-}
-
-/// @nodoc
-class _$GraduationRequirementTearOff {
-  const _$GraduationRequirementTearOff();
-
-// ignore: unused_element
-  _GraduationRequirement call(
-      {@required Grade grade, @required double forNextLevel}) {
-    return _GraduationRequirement(
-      grade: grade,
-      forNextLevel: forNextLevel,
-    );
-  }
-}
-
-/// @nodoc
-// ignore: unused_element
-const $GraduationRequirement = _$GraduationRequirementTearOff();
-
-/// @nodoc
-mixin _$GraduationRequirement {
-  Grade get grade;
-  double get forNextLevel;
-
-  $GraduationRequirementCopyWith<GraduationRequirement> get copyWith;
-}
-
-/// @nodoc
-abstract class $GraduationRequirementCopyWith<$Res> {
-  factory $GraduationRequirementCopyWith(GraduationRequirement value,
-          $Res Function(GraduationRequirement) then) =
-      _$GraduationRequirementCopyWithImpl<$Res>;
-  $Res call({Grade grade, double forNextLevel});
-}
-
-/// @nodoc
-class _$GraduationRequirementCopyWithImpl<$Res>
-    implements $GraduationRequirementCopyWith<$Res> {
-  _$GraduationRequirementCopyWithImpl(this._value, this._then);
-
-  final GraduationRequirement _value;
-  // ignore: unused_field
-  final $Res Function(GraduationRequirement) _then;
-
-  @override
-  $Res call({
-    Object grade = freezed,
-    Object forNextLevel = freezed,
-  }) {
-    return _then(_value.copyWith(
-      grade: grade == freezed ? _value.grade : grade as Grade,
-      forNextLevel: forNextLevel == freezed
-          ? _value.forNextLevel
-          : forNextLevel as double,
-    ));
-  }
-}
-
-/// @nodoc
-abstract class _$GraduationRequirementCopyWith<$Res>
-    implements $GraduationRequirementCopyWith<$Res> {
-  factory _$GraduationRequirementCopyWith(_GraduationRequirement value,
-          $Res Function(_GraduationRequirement) then) =
-      __$GraduationRequirementCopyWithImpl<$Res>;
-  @override
-  $Res call({Grade grade, double forNextLevel});
-}
-
-/// @nodoc
-class __$GraduationRequirementCopyWithImpl<$Res>
-    extends _$GraduationRequirementCopyWithImpl<$Res>
-    implements _$GraduationRequirementCopyWith<$Res> {
-  __$GraduationRequirementCopyWithImpl(_GraduationRequirement _value,
-      $Res Function(_GraduationRequirement) _then)
-      : super(_value, (v) => _then(v as _GraduationRequirement));
-
-  @override
-  _GraduationRequirement get _value => super._value as _GraduationRequirement;
-
-  @override
-  $Res call({
-    Object grade = freezed,
-    Object forNextLevel = freezed,
-  }) {
-    return _then(_GraduationRequirement(
-      grade: grade == freezed ? _value.grade : grade as Grade,
-      forNextLevel: forNextLevel == freezed
-          ? _value.forNextLevel
-          : forNextLevel as double,
-    ));
-  }
-}
-
-/// @nodoc
-class _$_GraduationRequirement
-    with DiagnosticableTreeMixin
-    implements _GraduationRequirement {
-  _$_GraduationRequirement({@required this.grade, @required this.forNextLevel})
+  _$_GraduationSystem({@required this.grade, @required this.forNextLevel})
       : assert(grade != null),
         assert(forNextLevel != null);
 
@@ -252,14 +116,14 @@ class _$_GraduationRequirement
 
   @override
   String toString({DiagnosticLevel minLevel = DiagnosticLevel.info}) {
-    return 'GraduationRequirement(grade: $grade, forNextLevel: $forNextLevel)';
+    return 'GraduationSystem(grade: $grade, forNextLevel: $forNextLevel)';
   }
 
   @override
   void debugFillProperties(DiagnosticPropertiesBuilder properties) {
     super.debugFillProperties(properties);
     properties
-      ..add(DiagnosticsProperty('type', 'GraduationRequirement'))
+      ..add(DiagnosticsProperty('type', 'GraduationSystem'))
       ..add(DiagnosticsProperty('grade', grade))
       ..add(DiagnosticsProperty('forNextLevel', forNextLevel));
   }
@@ -267,7 +131,7 @@ class _$_GraduationRequirement
   @override
   bool operator ==(dynamic other) {
     return identical(this, other) ||
-        (other is _GraduationRequirement &&
+        (other is _GraduationSystem &&
             (identical(other.grade, grade) ||
                 const DeepCollectionEquality().equals(other.grade, grade)) &&
             (identical(other.forNextLevel, forNextLevel) ||
@@ -282,20 +146,19 @@ class _$_GraduationRequirement
       const DeepCollectionEquality().hash(forNextLevel);
 
   @override
-  _$GraduationRequirementCopyWith<_GraduationRequirement> get copyWith =>
-      __$GraduationRequirementCopyWithImpl<_GraduationRequirement>(
-          this, _$identity);
+  _$GraduationSystemCopyWith<_GraduationSystem> get copyWith =>
+      __$GraduationSystemCopyWithImpl<_GraduationSystem>(this, _$identity);
 }
 
-abstract class _GraduationRequirement implements GraduationRequirement {
-  factory _GraduationRequirement(
+abstract class _GraduationSystem implements GraduationSystem {
+  factory _GraduationSystem(
       {@required Grade grade,
-      @required double forNextLevel}) = _$_GraduationRequirement;
+      @required double forNextLevel}) = _$_GraduationSystem;
 
   @override
   Grade get grade;
   @override
   double get forNextLevel;
   @override
-  _$GraduationRequirementCopyWith<_GraduationRequirement> get copyWith;
+  _$GraduationSystemCopyWith<_GraduationSystem> get copyWith;
 }

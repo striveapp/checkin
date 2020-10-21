@@ -5,6 +5,7 @@ import 'package:bloc/bloc.dart';
 import 'package:checkin/src/blocs/auth/bloc.dart';
 import 'package:checkin/src/blocs/user/user_event.dart';
 import 'package:checkin/src/blocs/user/user_state.dart';
+import 'package:checkin/src/models/grade.dart';
 import 'package:checkin/src/repositories/image_repository.dart';
 import 'package:checkin/src/repositories/storage_repository.dart';
 import 'package:checkin/src/repositories/user_repository.dart';
@@ -91,8 +92,8 @@ class UserBloc extends Bloc<UserEvent, UserState> {
             );
           }
         },
-        updateGrade: (String newGrade) async =>
-            await userRepository.updateUserGrade(
+        updateGrade: (Grade newGrade) async =>
+            await userRepository.updateGrade(
               userEmail,
               newGrade,
             ),

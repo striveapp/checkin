@@ -17,6 +17,25 @@ class _$GraduationStateTearOff {
   InitialGraduationState initialGraduationState() {
     return const InitialGraduationState();
   }
+
+// ignore: unused_element
+  NotReadyForGraduation notReadyForGraduation({@required Grade nextGrade}) {
+    return NotReadyForGraduation(
+      nextGrade: nextGrade,
+    );
+  }
+
+// ignore: unused_element
+  ReadyForGraduation readyForGraduation({@required Grade nextGrade}) {
+    return ReadyForGraduation(
+      nextGrade: nextGrade,
+    );
+  }
+
+// ignore: unused_element
+  GraduationLoading graduationLoading() {
+    return const GraduationLoading();
+  }
 }
 
 /// @nodoc
@@ -28,19 +47,31 @@ mixin _$GraduationState {
   @optionalTypeArgs
   Result when<Result extends Object>({
     @required Result initialGraduationState(),
+    @required Result notReadyForGraduation(Grade nextGrade),
+    @required Result readyForGraduation(Grade nextGrade),
+    @required Result graduationLoading(),
   });
   @optionalTypeArgs
   Result maybeWhen<Result extends Object>({
     Result initialGraduationState(),
+    Result notReadyForGraduation(Grade nextGrade),
+    Result readyForGraduation(Grade nextGrade),
+    Result graduationLoading(),
     @required Result orElse(),
   });
   @optionalTypeArgs
   Result map<Result extends Object>({
     @required Result initialGraduationState(InitialGraduationState value),
+    @required Result notReadyForGraduation(NotReadyForGraduation value),
+    @required Result readyForGraduation(ReadyForGraduation value),
+    @required Result graduationLoading(GraduationLoading value),
   });
   @optionalTypeArgs
   Result maybeMap<Result extends Object>({
     Result initialGraduationState(InitialGraduationState value),
+    Result notReadyForGraduation(NotReadyForGraduation value),
+    Result readyForGraduation(ReadyForGraduation value),
+    Result graduationLoading(GraduationLoading value),
     @required Result orElse(),
   });
 }
@@ -112,8 +143,14 @@ class _$InitialGraduationState
   @optionalTypeArgs
   Result when<Result extends Object>({
     @required Result initialGraduationState(),
+    @required Result notReadyForGraduation(Grade nextGrade),
+    @required Result readyForGraduation(Grade nextGrade),
+    @required Result graduationLoading(),
   }) {
     assert(initialGraduationState != null);
+    assert(notReadyForGraduation != null);
+    assert(readyForGraduation != null);
+    assert(graduationLoading != null);
     return initialGraduationState();
   }
 
@@ -121,6 +158,9 @@ class _$InitialGraduationState
   @optionalTypeArgs
   Result maybeWhen<Result extends Object>({
     Result initialGraduationState(),
+    Result notReadyForGraduation(Grade nextGrade),
+    Result readyForGraduation(Grade nextGrade),
+    Result graduationLoading(),
     @required Result orElse(),
   }) {
     assert(orElse != null);
@@ -134,8 +174,14 @@ class _$InitialGraduationState
   @optionalTypeArgs
   Result map<Result extends Object>({
     @required Result initialGraduationState(InitialGraduationState value),
+    @required Result notReadyForGraduation(NotReadyForGraduation value),
+    @required Result readyForGraduation(ReadyForGraduation value),
+    @required Result graduationLoading(GraduationLoading value),
   }) {
     assert(initialGraduationState != null);
+    assert(notReadyForGraduation != null);
+    assert(readyForGraduation != null);
+    assert(graduationLoading != null);
     return initialGraduationState(this);
   }
 
@@ -143,6 +189,9 @@ class _$InitialGraduationState
   @optionalTypeArgs
   Result maybeMap<Result extends Object>({
     Result initialGraduationState(InitialGraduationState value),
+    Result notReadyForGraduation(NotReadyForGraduation value),
+    Result readyForGraduation(ReadyForGraduation value),
+    Result graduationLoading(GraduationLoading value),
     @required Result orElse(),
   }) {
     assert(orElse != null);
@@ -155,4 +204,398 @@ class _$InitialGraduationState
 
 abstract class InitialGraduationState implements GraduationState {
   const factory InitialGraduationState() = _$InitialGraduationState;
+}
+
+/// @nodoc
+abstract class $NotReadyForGraduationCopyWith<$Res> {
+  factory $NotReadyForGraduationCopyWith(NotReadyForGraduation value,
+          $Res Function(NotReadyForGraduation) then) =
+      _$NotReadyForGraduationCopyWithImpl<$Res>;
+  $Res call({Grade nextGrade});
+}
+
+/// @nodoc
+class _$NotReadyForGraduationCopyWithImpl<$Res>
+    extends _$GraduationStateCopyWithImpl<$Res>
+    implements $NotReadyForGraduationCopyWith<$Res> {
+  _$NotReadyForGraduationCopyWithImpl(
+      NotReadyForGraduation _value, $Res Function(NotReadyForGraduation) _then)
+      : super(_value, (v) => _then(v as NotReadyForGraduation));
+
+  @override
+  NotReadyForGraduation get _value => super._value as NotReadyForGraduation;
+
+  @override
+  $Res call({
+    Object nextGrade = freezed,
+  }) {
+    return _then(NotReadyForGraduation(
+      nextGrade: nextGrade == freezed ? _value.nextGrade : nextGrade as Grade,
+    ));
+  }
+}
+
+/// @nodoc
+class _$NotReadyForGraduation
+    with DiagnosticableTreeMixin
+    implements NotReadyForGraduation {
+  const _$NotReadyForGraduation({@required this.nextGrade})
+      : assert(nextGrade != null);
+
+  @override
+  final Grade nextGrade;
+
+  @override
+  String toString({DiagnosticLevel minLevel = DiagnosticLevel.info}) {
+    return 'GraduationState.notReadyForGraduation(nextGrade: $nextGrade)';
+  }
+
+  @override
+  void debugFillProperties(DiagnosticPropertiesBuilder properties) {
+    super.debugFillProperties(properties);
+    properties
+      ..add(
+          DiagnosticsProperty('type', 'GraduationState.notReadyForGraduation'))
+      ..add(DiagnosticsProperty('nextGrade', nextGrade));
+  }
+
+  @override
+  bool operator ==(dynamic other) {
+    return identical(this, other) ||
+        (other is NotReadyForGraduation &&
+            (identical(other.nextGrade, nextGrade) ||
+                const DeepCollectionEquality()
+                    .equals(other.nextGrade, nextGrade)));
+  }
+
+  @override
+  int get hashCode =>
+      runtimeType.hashCode ^ const DeepCollectionEquality().hash(nextGrade);
+
+  @override
+  $NotReadyForGraduationCopyWith<NotReadyForGraduation> get copyWith =>
+      _$NotReadyForGraduationCopyWithImpl<NotReadyForGraduation>(
+          this, _$identity);
+
+  @override
+  @optionalTypeArgs
+  Result when<Result extends Object>({
+    @required Result initialGraduationState(),
+    @required Result notReadyForGraduation(Grade nextGrade),
+    @required Result readyForGraduation(Grade nextGrade),
+    @required Result graduationLoading(),
+  }) {
+    assert(initialGraduationState != null);
+    assert(notReadyForGraduation != null);
+    assert(readyForGraduation != null);
+    assert(graduationLoading != null);
+    return notReadyForGraduation(nextGrade);
+  }
+
+  @override
+  @optionalTypeArgs
+  Result maybeWhen<Result extends Object>({
+    Result initialGraduationState(),
+    Result notReadyForGraduation(Grade nextGrade),
+    Result readyForGraduation(Grade nextGrade),
+    Result graduationLoading(),
+    @required Result orElse(),
+  }) {
+    assert(orElse != null);
+    if (notReadyForGraduation != null) {
+      return notReadyForGraduation(nextGrade);
+    }
+    return orElse();
+  }
+
+  @override
+  @optionalTypeArgs
+  Result map<Result extends Object>({
+    @required Result initialGraduationState(InitialGraduationState value),
+    @required Result notReadyForGraduation(NotReadyForGraduation value),
+    @required Result readyForGraduation(ReadyForGraduation value),
+    @required Result graduationLoading(GraduationLoading value),
+  }) {
+    assert(initialGraduationState != null);
+    assert(notReadyForGraduation != null);
+    assert(readyForGraduation != null);
+    assert(graduationLoading != null);
+    return notReadyForGraduation(this);
+  }
+
+  @override
+  @optionalTypeArgs
+  Result maybeMap<Result extends Object>({
+    Result initialGraduationState(InitialGraduationState value),
+    Result notReadyForGraduation(NotReadyForGraduation value),
+    Result readyForGraduation(ReadyForGraduation value),
+    Result graduationLoading(GraduationLoading value),
+    @required Result orElse(),
+  }) {
+    assert(orElse != null);
+    if (notReadyForGraduation != null) {
+      return notReadyForGraduation(this);
+    }
+    return orElse();
+  }
+}
+
+abstract class NotReadyForGraduation implements GraduationState {
+  const factory NotReadyForGraduation({@required Grade nextGrade}) =
+      _$NotReadyForGraduation;
+
+  Grade get nextGrade;
+  $NotReadyForGraduationCopyWith<NotReadyForGraduation> get copyWith;
+}
+
+/// @nodoc
+abstract class $ReadyForGraduationCopyWith<$Res> {
+  factory $ReadyForGraduationCopyWith(
+          ReadyForGraduation value, $Res Function(ReadyForGraduation) then) =
+      _$ReadyForGraduationCopyWithImpl<$Res>;
+  $Res call({Grade nextGrade});
+}
+
+/// @nodoc
+class _$ReadyForGraduationCopyWithImpl<$Res>
+    extends _$GraduationStateCopyWithImpl<$Res>
+    implements $ReadyForGraduationCopyWith<$Res> {
+  _$ReadyForGraduationCopyWithImpl(
+      ReadyForGraduation _value, $Res Function(ReadyForGraduation) _then)
+      : super(_value, (v) => _then(v as ReadyForGraduation));
+
+  @override
+  ReadyForGraduation get _value => super._value as ReadyForGraduation;
+
+  @override
+  $Res call({
+    Object nextGrade = freezed,
+  }) {
+    return _then(ReadyForGraduation(
+      nextGrade: nextGrade == freezed ? _value.nextGrade : nextGrade as Grade,
+    ));
+  }
+}
+
+/// @nodoc
+class _$ReadyForGraduation
+    with DiagnosticableTreeMixin
+    implements ReadyForGraduation {
+  const _$ReadyForGraduation({@required this.nextGrade})
+      : assert(nextGrade != null);
+
+  @override
+  final Grade nextGrade;
+
+  @override
+  String toString({DiagnosticLevel minLevel = DiagnosticLevel.info}) {
+    return 'GraduationState.readyForGraduation(nextGrade: $nextGrade)';
+  }
+
+  @override
+  void debugFillProperties(DiagnosticPropertiesBuilder properties) {
+    super.debugFillProperties(properties);
+    properties
+      ..add(DiagnosticsProperty('type', 'GraduationState.readyForGraduation'))
+      ..add(DiagnosticsProperty('nextGrade', nextGrade));
+  }
+
+  @override
+  bool operator ==(dynamic other) {
+    return identical(this, other) ||
+        (other is ReadyForGraduation &&
+            (identical(other.nextGrade, nextGrade) ||
+                const DeepCollectionEquality()
+                    .equals(other.nextGrade, nextGrade)));
+  }
+
+  @override
+  int get hashCode =>
+      runtimeType.hashCode ^ const DeepCollectionEquality().hash(nextGrade);
+
+  @override
+  $ReadyForGraduationCopyWith<ReadyForGraduation> get copyWith =>
+      _$ReadyForGraduationCopyWithImpl<ReadyForGraduation>(this, _$identity);
+
+  @override
+  @optionalTypeArgs
+  Result when<Result extends Object>({
+    @required Result initialGraduationState(),
+    @required Result notReadyForGraduation(Grade nextGrade),
+    @required Result readyForGraduation(Grade nextGrade),
+    @required Result graduationLoading(),
+  }) {
+    assert(initialGraduationState != null);
+    assert(notReadyForGraduation != null);
+    assert(readyForGraduation != null);
+    assert(graduationLoading != null);
+    return readyForGraduation(nextGrade);
+  }
+
+  @override
+  @optionalTypeArgs
+  Result maybeWhen<Result extends Object>({
+    Result initialGraduationState(),
+    Result notReadyForGraduation(Grade nextGrade),
+    Result readyForGraduation(Grade nextGrade),
+    Result graduationLoading(),
+    @required Result orElse(),
+  }) {
+    assert(orElse != null);
+    if (readyForGraduation != null) {
+      return readyForGraduation(nextGrade);
+    }
+    return orElse();
+  }
+
+  @override
+  @optionalTypeArgs
+  Result map<Result extends Object>({
+    @required Result initialGraduationState(InitialGraduationState value),
+    @required Result notReadyForGraduation(NotReadyForGraduation value),
+    @required Result readyForGraduation(ReadyForGraduation value),
+    @required Result graduationLoading(GraduationLoading value),
+  }) {
+    assert(initialGraduationState != null);
+    assert(notReadyForGraduation != null);
+    assert(readyForGraduation != null);
+    assert(graduationLoading != null);
+    return readyForGraduation(this);
+  }
+
+  @override
+  @optionalTypeArgs
+  Result maybeMap<Result extends Object>({
+    Result initialGraduationState(InitialGraduationState value),
+    Result notReadyForGraduation(NotReadyForGraduation value),
+    Result readyForGraduation(ReadyForGraduation value),
+    Result graduationLoading(GraduationLoading value),
+    @required Result orElse(),
+  }) {
+    assert(orElse != null);
+    if (readyForGraduation != null) {
+      return readyForGraduation(this);
+    }
+    return orElse();
+  }
+}
+
+abstract class ReadyForGraduation implements GraduationState {
+  const factory ReadyForGraduation({@required Grade nextGrade}) =
+      _$ReadyForGraduation;
+
+  Grade get nextGrade;
+  $ReadyForGraduationCopyWith<ReadyForGraduation> get copyWith;
+}
+
+/// @nodoc
+abstract class $GraduationLoadingCopyWith<$Res> {
+  factory $GraduationLoadingCopyWith(
+          GraduationLoading value, $Res Function(GraduationLoading) then) =
+      _$GraduationLoadingCopyWithImpl<$Res>;
+}
+
+/// @nodoc
+class _$GraduationLoadingCopyWithImpl<$Res>
+    extends _$GraduationStateCopyWithImpl<$Res>
+    implements $GraduationLoadingCopyWith<$Res> {
+  _$GraduationLoadingCopyWithImpl(
+      GraduationLoading _value, $Res Function(GraduationLoading) _then)
+      : super(_value, (v) => _then(v as GraduationLoading));
+
+  @override
+  GraduationLoading get _value => super._value as GraduationLoading;
+}
+
+/// @nodoc
+class _$GraduationLoading
+    with DiagnosticableTreeMixin
+    implements GraduationLoading {
+  const _$GraduationLoading();
+
+  @override
+  String toString({DiagnosticLevel minLevel = DiagnosticLevel.info}) {
+    return 'GraduationState.graduationLoading()';
+  }
+
+  @override
+  void debugFillProperties(DiagnosticPropertiesBuilder properties) {
+    super.debugFillProperties(properties);
+    properties
+      ..add(DiagnosticsProperty('type', 'GraduationState.graduationLoading'));
+  }
+
+  @override
+  bool operator ==(dynamic other) {
+    return identical(this, other) || (other is GraduationLoading);
+  }
+
+  @override
+  int get hashCode => runtimeType.hashCode;
+
+  @override
+  @optionalTypeArgs
+  Result when<Result extends Object>({
+    @required Result initialGraduationState(),
+    @required Result notReadyForGraduation(Grade nextGrade),
+    @required Result readyForGraduation(Grade nextGrade),
+    @required Result graduationLoading(),
+  }) {
+    assert(initialGraduationState != null);
+    assert(notReadyForGraduation != null);
+    assert(readyForGraduation != null);
+    assert(graduationLoading != null);
+    return graduationLoading();
+  }
+
+  @override
+  @optionalTypeArgs
+  Result maybeWhen<Result extends Object>({
+    Result initialGraduationState(),
+    Result notReadyForGraduation(Grade nextGrade),
+    Result readyForGraduation(Grade nextGrade),
+    Result graduationLoading(),
+    @required Result orElse(),
+  }) {
+    assert(orElse != null);
+    if (graduationLoading != null) {
+      return graduationLoading();
+    }
+    return orElse();
+  }
+
+  @override
+  @optionalTypeArgs
+  Result map<Result extends Object>({
+    @required Result initialGraduationState(InitialGraduationState value),
+    @required Result notReadyForGraduation(NotReadyForGraduation value),
+    @required Result readyForGraduation(ReadyForGraduation value),
+    @required Result graduationLoading(GraduationLoading value),
+  }) {
+    assert(initialGraduationState != null);
+    assert(notReadyForGraduation != null);
+    assert(readyForGraduation != null);
+    assert(graduationLoading != null);
+    return graduationLoading(this);
+  }
+
+  @override
+  @optionalTypeArgs
+  Result maybeMap<Result extends Object>({
+    Result initialGraduationState(InitialGraduationState value),
+    Result notReadyForGraduation(NotReadyForGraduation value),
+    Result readyForGraduation(ReadyForGraduation value),
+    Result graduationLoading(GraduationLoading value),
+    @required Result orElse(),
+  }) {
+    assert(orElse != null);
+    if (graduationLoading != null) {
+      return graduationLoading(this);
+    }
+    return orElse();
+  }
+}
+
+abstract class GraduationLoading implements GraduationState {
+  const factory GraduationLoading() = _$GraduationLoading;
 }

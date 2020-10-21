@@ -47,11 +47,12 @@ class UserProvider implements UserRepository {
     await _firestore.collection(path).doc(newUser.email).set(userData, SetOptions(merge: true));
   }
 
-  Future<void> updateUserGrade(String userEmail, String newGrade) async {
+
+  Future<void> updateGrade(String userEmail, Grade newGrade) async {
     await _firestore
         .collection(path)
         .doc(userEmail)
-        .update({"grade": newGrade});
+        .update({"grade": newGrade.name.toLowerCase()});
   }
 
   Future<void> updateUserName(String userEmail, String newName) async {

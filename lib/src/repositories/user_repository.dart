@@ -1,3 +1,4 @@
+import 'package:checkin/src/models/grade.dart';
 import 'package:checkin/src/models/user.dart';
 
 abstract class UserRepository {
@@ -5,7 +6,7 @@ abstract class UserRepository {
 
   Future<void> createUser(User newUser);
 
-  Future<void> updateUserGrade(String userEmail, String newGrade);
+  Future<void> updateGrade(String userEmail, Grade newGrade);
 
   Future<void> updateUserName(String userEmail, String newName);
 

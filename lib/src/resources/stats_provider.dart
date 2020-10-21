@@ -1,3 +1,4 @@
+import 'package:checkin/src/models/grade.dart';
 import 'package:checkin/src/models/lesson.dart';
 import 'package:checkin/src/models/master.dart';
 import 'package:checkin/src/models/user_history.dart';
@@ -55,6 +56,12 @@ class StatsProvider implements StatsRepository {
                   .toList()))
           .toList());
 
+
+  Stream<UserHistory> getUserStatsByGrade(String gymId, String email, Grade grade) {
+    // todo
+    throw "to be implemented";
+  }
+
   Future<void> cleanUserHistory(String gymId, String email) async {
     await _firestore
         .collection(gymPath)
@@ -64,4 +71,5 @@ class StatsProvider implements StatsRepository {
     // .delete(); todo https://trello.com/c/oXkaXNqb
         .update({"attendedLessons": []});
   }
+
 }

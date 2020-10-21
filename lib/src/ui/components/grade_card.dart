@@ -15,7 +15,7 @@ class GradeCard extends StatelessWidget {
   Widget build(BuildContext context) {
     void _onTap(Grade grade) {
       BlocProvider.of<UserBloc>(context)
-        ..add(UpdateGrade(newGrade: grade.name));
+        ..add(UpdateGrade(newGrade: grade));
     }
 
     return Card(

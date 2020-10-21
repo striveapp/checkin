@@ -117,7 +117,7 @@ void main() {
           emitsInOrder(setupState),
         );
 
-        userBloc.add(UpdateGrade(newGrade: Grade.black.name));
+        userBloc.add(UpdateGrade(newGrade: Grade.black));
 
         User updateUser = User(
           email: testUser.email,
@@ -126,8 +126,8 @@ void main() {
           grade: Grade.black,
         );
 
-        when(mockUserRepository.updateUserGrade(
-                testUser.email, Grade.black.name))
+        when(mockUserRepository.updateGrade(
+                testUser.email, Grade.black))
             .thenAnswer((_) {
           userStreamCtrl.add(updateUser);
           return Future.value(null);
@@ -142,8 +142,8 @@ void main() {
           userBloc,
           emitsInOrder(expectedState),
         );
-        verify(mockUserRepository.updateUserGrade(
-            testUser.email, Grade.black.name));
+        verify(mockUserRepository.updateGrade(
+            testUser.email, Grade.black));
       });
     });
 

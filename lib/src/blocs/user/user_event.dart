@@ -1,3 +1,4 @@
+import 'package:checkin/src/models/grade.dart';
 import 'package:checkin/src/models/user.dart';
 import 'package:flutter/foundation.dart';
 import 'package:freezed_annotation/freezed_annotation.dart';
@@ -12,7 +13,7 @@ abstract class UserEvent with _$UserEvent {
 
   const factory UserEvent.updateImageUrl({String userEmail}) = UpdateImageUrl;
 
-  const factory UserEvent.updateGrade({String newGrade}) = UpdateGrade;
+  const factory UserEvent.updateGrade({Grade newGrade}) = UpdateGrade;
 
   const factory UserEvent.updateSelectedGym(
       {String userEmail, String newSelectedGym}) = UpdateSelectedGym;

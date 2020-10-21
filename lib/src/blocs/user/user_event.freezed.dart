@@ -35,7 +35,7 @@ class _$UserEventTearOff {
   }
 
 // ignore: unused_element
-  UpdateGrade updateGrade({String newGrade}) {
+  UpdateGrade updateGrade({Grade newGrade}) {
     return UpdateGrade(
       newGrade: newGrade,
     );
@@ -77,7 +77,7 @@ mixin _$UserEvent {
     @required Result userUpdated(User user),
     @required Result updateName(String newName),
     @required Result updateImageUrl(String userEmail),
-    @required Result updateGrade(String newGrade),
+    @required Result updateGrade(Grade newGrade),
     @required Result updateSelectedGym(String userEmail, String newSelectedGym),
     @required Result updateFcmToken(String userEmail, String newToken),
     @required Result updateVersion(String userEmail),
@@ -87,7 +87,7 @@ mixin _$UserEvent {
     Result userUpdated(User user),
     Result updateName(String newName),
     Result updateImageUrl(String userEmail),
-    Result updateGrade(String newGrade),
+    Result updateGrade(Grade newGrade),
     Result updateSelectedGym(String userEmail, String newSelectedGym),
     Result updateFcmToken(String userEmail, String newToken),
     Result updateVersion(String userEmail),
@@ -201,7 +201,7 @@ class _$UserUpdated with DiagnosticableTreeMixin implements UserUpdated {
     @required Result userUpdated(User user),
     @required Result updateName(String newName),
     @required Result updateImageUrl(String userEmail),
-    @required Result updateGrade(String newGrade),
+    @required Result updateGrade(Grade newGrade),
     @required Result updateSelectedGym(String userEmail, String newSelectedGym),
     @required Result updateFcmToken(String userEmail, String newToken),
     @required Result updateVersion(String userEmail),
@@ -222,7 +222,7 @@ class _$UserUpdated with DiagnosticableTreeMixin implements UserUpdated {
     Result userUpdated(User user),
     Result updateName(String newName),
     Result updateImageUrl(String userEmail),
-    Result updateGrade(String newGrade),
+    Result updateGrade(Grade newGrade),
     Result updateSelectedGym(String userEmail, String newSelectedGym),
     Result updateFcmToken(String userEmail, String newToken),
     Result updateVersion(String userEmail),
@@ -352,7 +352,7 @@ class _$UpdateName with DiagnosticableTreeMixin implements UpdateName {
     @required Result userUpdated(User user),
     @required Result updateName(String newName),
     @required Result updateImageUrl(String userEmail),
-    @required Result updateGrade(String newGrade),
+    @required Result updateGrade(Grade newGrade),
     @required Result updateSelectedGym(String userEmail, String newSelectedGym),
     @required Result updateFcmToken(String userEmail, String newToken),
     @required Result updateVersion(String userEmail),
@@ -373,7 +373,7 @@ class _$UpdateName with DiagnosticableTreeMixin implements UpdateName {
     Result userUpdated(User user),
     Result updateName(String newName),
     Result updateImageUrl(String userEmail),
-    Result updateGrade(String newGrade),
+    Result updateGrade(Grade newGrade),
     Result updateSelectedGym(String userEmail, String newSelectedGym),
     Result updateFcmToken(String userEmail, String newToken),
     Result updateVersion(String userEmail),
@@ -505,7 +505,7 @@ class _$UpdateImageUrl with DiagnosticableTreeMixin implements UpdateImageUrl {
     @required Result userUpdated(User user),
     @required Result updateName(String newName),
     @required Result updateImageUrl(String userEmail),
-    @required Result updateGrade(String newGrade),
+    @required Result updateGrade(Grade newGrade),
     @required Result updateSelectedGym(String userEmail, String newSelectedGym),
     @required Result updateFcmToken(String userEmail, String newToken),
     @required Result updateVersion(String userEmail),
@@ -526,7 +526,7 @@ class _$UpdateImageUrl with DiagnosticableTreeMixin implements UpdateImageUrl {
     Result userUpdated(User user),
     Result updateName(String newName),
     Result updateImageUrl(String userEmail),
-    Result updateGrade(String newGrade),
+    Result updateGrade(Grade newGrade),
     Result updateSelectedGym(String userEmail, String newSelectedGym),
     Result updateFcmToken(String userEmail, String newToken),
     Result updateVersion(String userEmail),
@@ -592,7 +592,7 @@ abstract class $UpdateGradeCopyWith<$Res> {
   factory $UpdateGradeCopyWith(
           UpdateGrade value, $Res Function(UpdateGrade) then) =
       _$UpdateGradeCopyWithImpl<$Res>;
-  $Res call({String newGrade});
+  $Res call({Grade newGrade});
 }
 
 /// @nodoc
@@ -610,7 +610,7 @@ class _$UpdateGradeCopyWithImpl<$Res> extends _$UserEventCopyWithImpl<$Res>
     Object newGrade = freezed,
   }) {
     return _then(UpdateGrade(
-      newGrade: newGrade == freezed ? _value.newGrade : newGrade as String,
+      newGrade: newGrade == freezed ? _value.newGrade : newGrade as Grade,
     ));
   }
 }
@@ -620,7 +620,7 @@ class _$UpdateGrade with DiagnosticableTreeMixin implements UpdateGrade {
   const _$UpdateGrade({this.newGrade});
 
   @override
-  final String newGrade;
+  final Grade newGrade;
 
   @override
   String toString({DiagnosticLevel minLevel = DiagnosticLevel.info}) {
@@ -658,7 +658,7 @@ class _$UpdateGrade with DiagnosticableTreeMixin implements UpdateGrade {
     @required Result userUpdated(User user),
     @required Result updateName(String newName),
     @required Result updateImageUrl(String userEmail),
-    @required Result updateGrade(String newGrade),
+    @required Result updateGrade(Grade newGrade),
     @required Result updateSelectedGym(String userEmail, String newSelectedGym),
     @required Result updateFcmToken(String userEmail, String newToken),
     @required Result updateVersion(String userEmail),
@@ -679,7 +679,7 @@ class _$UpdateGrade with DiagnosticableTreeMixin implements UpdateGrade {
     Result userUpdated(User user),
     Result updateName(String newName),
     Result updateImageUrl(String userEmail),
-    Result updateGrade(String newGrade),
+    Result updateGrade(Grade newGrade),
     Result updateSelectedGym(String userEmail, String newSelectedGym),
     Result updateFcmToken(String userEmail, String newToken),
     Result updateVersion(String userEmail),
@@ -734,9 +734,9 @@ class _$UpdateGrade with DiagnosticableTreeMixin implements UpdateGrade {
 }
 
 abstract class UpdateGrade implements UserEvent {
-  const factory UpdateGrade({String newGrade}) = _$UpdateGrade;
+  const factory UpdateGrade({Grade newGrade}) = _$UpdateGrade;
 
-  String get newGrade;
+  Grade get newGrade;
   $UpdateGradeCopyWith<UpdateGrade> get copyWith;
 }
 
@@ -826,7 +826,7 @@ class _$UpdateSelectedGym
     @required Result userUpdated(User user),
     @required Result updateName(String newName),
     @required Result updateImageUrl(String userEmail),
-    @required Result updateGrade(String newGrade),
+    @required Result updateGrade(Grade newGrade),
     @required Result updateSelectedGym(String userEmail, String newSelectedGym),
     @required Result updateFcmToken(String userEmail, String newToken),
     @required Result updateVersion(String userEmail),
@@ -847,7 +847,7 @@ class _$UpdateSelectedGym
     Result userUpdated(User user),
     Result updateName(String newName),
     Result updateImageUrl(String userEmail),
-    Result updateGrade(String newGrade),
+    Result updateGrade(Grade newGrade),
     Result updateSelectedGym(String userEmail, String newSelectedGym),
     Result updateFcmToken(String userEmail, String newToken),
     Result updateVersion(String userEmail),
@@ -991,7 +991,7 @@ class _$UpdateFcmToken with DiagnosticableTreeMixin implements UpdateFcmToken {
     @required Result userUpdated(User user),
     @required Result updateName(String newName),
     @required Result updateImageUrl(String userEmail),
-    @required Result updateGrade(String newGrade),
+    @required Result updateGrade(Grade newGrade),
     @required Result updateSelectedGym(String userEmail, String newSelectedGym),
     @required Result updateFcmToken(String userEmail, String newToken),
     @required Result updateVersion(String userEmail),
@@ -1012,7 +1012,7 @@ class _$UpdateFcmToken with DiagnosticableTreeMixin implements UpdateFcmToken {
     Result userUpdated(User user),
     Result updateName(String newName),
     Result updateImageUrl(String userEmail),
-    Result updateGrade(String newGrade),
+    Result updateGrade(Grade newGrade),
     Result updateSelectedGym(String userEmail, String newSelectedGym),
     Result updateFcmToken(String userEmail, String newToken),
     Result updateVersion(String userEmail),
@@ -1146,7 +1146,7 @@ class _$UpdateVersion with DiagnosticableTreeMixin implements UpdateVersion {
     @required Result userUpdated(User user),
     @required Result updateName(String newName),
     @required Result updateImageUrl(String userEmail),
-    @required Result updateGrade(String newGrade),
+    @required Result updateGrade(Grade newGrade),
     @required Result updateSelectedGym(String userEmail, String newSelectedGym),
     @required Result updateFcmToken(String userEmail, String newToken),
     @required Result updateVersion(String userEmail),
@@ -1167,7 +1167,7 @@ class _$UpdateVersion with DiagnosticableTreeMixin implements UpdateVersion {
     Result userUpdated(User user),
     Result updateName(String newName),
     Result updateImageUrl(String userEmail),
-    Result updateGrade(String newGrade),
+    Result updateGrade(Grade newGrade),
     Result updateSelectedGym(String userEmail, String newSelectedGym),
     Result updateFcmToken(String userEmail, String newToken),
     Result updateVersion(String userEmail),
