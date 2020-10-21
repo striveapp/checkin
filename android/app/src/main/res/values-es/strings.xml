@@ -1,7 +1,7 @@
 <?xml version="1.0" encoding="utf-8"?>
 <resources>
     <string name="test_title">Hola Mundo</string>
-    <string name="test_body">Esto es un mensaje</string>
+    <string name="test_body">Esto es un mensaje %1$s</string>
 
     <string name="class_confirmed">Clase confirmada ✅</string>
     <string name="you_attended_n_classes">Has atendido %1$d clases este año!</string>
