@@ -1,14 +1,10 @@
 import 'package:checkin/src/api/api.dart';
-import 'package:checkin/src/blocs/graduation/bloc.dart';
 import 'package:checkin/src/blocs/lesson/bloc.dart';
 import 'package:checkin/src/blocs/user/bloc.dart';
 import 'package:checkin/src/repositories/lesson_repository.dart';
-import 'package:checkin/src/repositories/stats_repository.dart';
-import 'package:checkin/src/repositories/user_repository.dart';
 import 'package:checkin/src/ui/components/base_app_bar.dart';
 import 'package:checkin/src/ui/components/registry/lesson_infos.dart';
 import 'package:checkin/src/ui/components/registry/registry.dart';
-import 'package:checkin/src/util/graduation_util.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter/widgets.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
