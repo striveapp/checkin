@@ -106,6 +106,7 @@ class Attendees extends StatelessWidget {
                     selectedGymId: currentUser.selectedGymId,
                     isAccepted: false,
                     showSessionsWarning: true,
+                    showGraduationIndication: true,
                   ),
                 )
               : AttendeeTile(
@@ -137,6 +138,7 @@ class AcceptedAttendees extends StatelessWidget {
                 attendee: attendee,
                 selectedGymId: currentUser.selectedGymId,
                 isAccepted: true,
+                showGraduationIndication: currentUser.isOwner,
               ))
           .toList(),
     );

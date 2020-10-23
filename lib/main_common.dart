@@ -9,6 +9,7 @@ import 'package:checkin/src/blocs/theme/bloc.dart';
 import 'package:checkin/src/blocs/version/bloc.dart';
 import 'package:checkin/src/repositories/analytics_repository.dart';
 import 'package:checkin/src/repositories/auth_repository.dart';
+import 'package:checkin/src/repositories/graduation_system_repository.dart';
 import 'package:checkin/src/repositories/image_repository.dart';
 import 'package:checkin/src/repositories/lesson_repository.dart';
 import 'package:checkin/src/repositories/membership_repository.dart';
@@ -18,6 +19,7 @@ import 'package:checkin/src/repositories/user_repository.dart';
 import 'package:checkin/src/repositories/version_repository.dart';
 import 'package:checkin/src/resources/analytics_provider.dart';
 import 'package:checkin/src/resources/auth_provider.dart';
+import 'package:checkin/src/resources/graduation_system_provider.dart';
 import 'package:checkin/src/resources/lesson_instances_provider.dart';
 import 'package:checkin/src/resources/membership_provider.dart';
 import 'package:checkin/src/resources/stats_provider.dart';
@@ -85,7 +87,10 @@ Future<void> mainCommon(AppConfig _) async {
           ),
           RepositoryProvider<MembershipRepository>(
             create: (context) => MembershipProvider(),
-          )
+          ),
+          RepositoryProvider<GraduationSystemRepository>(
+            create: (context) => GraduationSystemProvider(),
+          ),
         ],
         child: MultiBlocProvider(
           providers: [

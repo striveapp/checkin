@@ -13,17 +13,15 @@ class StatsProvider implements StatsRepository {
   FirebaseFirestore _firestore = FirebaseFirestore.instance;
 
   Stream<UserHistory> getUserStats(String gymId, String email, String timespan) {
-    return _firestore
-        .collection(gymPath)
-        .doc(gymId)
-        .collection(path).doc(email).snapshots().map((doc) =>
-        UserHistory(
+    return _firestore.collection(gymPath).doc(gymId).collection(path).doc(email).snapshots().map(
+        (doc) => UserHistory(
             email: doc.id,
-            attendedLessons:
-                (doc.data() != null ? doc.data()['attendedLessons'] as List : [])
-                    ?.where((lesson) => lesson['timestamp'] > DateUtil.getFirstDayOfTimespan(timespan).millisecondsSinceEpoch)
-                    ?.map(getLesson)
-                    ?.toList()));
+            attendedLessons: (doc.data() != null ? doc.data()['attendedLessons'] as List : [])
+                ?.where((lesson) =>
+                    lesson['timestamp'] >
+                    DateUtil.getFirstDayOfTimespan(timespan).millisecondsSinceEpoch)
+                ?.map(getLesson)
+                ?.toList()));
   }
 
   Lesson getLesson(lesson) => Lesson(
@@ -51,25 +49,22 @@ class StatsProvider implements StatsRepository {
       .map((snapshot) => snapshot.docs
           .map((doc) => UserHistory(
               email: doc.id,
-              attendedLessons: (doc.data()['attendedLessons'] as List)
-                  .map(getLesson)
-                  .toList()))
+              attendedLessons: (doc.data()['attendedLessons'] as List).map(getLesson).toList()))
           .toList());
 
-
   Stream<UserHistory> getUserStatsByGrade(String gymId, String email, Grade grade) {
-    // todo
-    throw "to be implemented";
+    return _firestore.collection(gymPath).doc(gymId).collection(path).doc(email).snapshots().map(
+        (doc) => UserHistory(
+            email: doc.id,
+            attendedLessons: (doc.data() != null ? doc.data()['attendedLessons'] as List : [])
+                ?.where((lesson) => lesson['attendedAsGrade'] == grade.name.toLowerCase())
+                ?.map(getLesson)
+                ?.toList()));
   }
 
   Future<void> cleanUserHistory(String gymId, String email) async {
-    await _firestore
-        .collection(gymPath)
-        .doc(gymId)
-        .collection(path)
-        .doc(email)
-    // .delete(); todo https://trello.com/c/oXkaXNqb
+    await _firestore.collection(gymPath).doc(gymId).collection(path).doc(email)
+        // .delete(); todo https://trello.com/c/oXkaXNqb
         .update({"attendedLessons": []});
   }
-
 }

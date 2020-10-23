@@ -68,7 +68,7 @@ void main() {
         var fakeUserEmail = 'test@test.com';
 
         final GraduationSystem expectedGraduationSystem =
-            GraduationSystem(grade: fakeUserGrade, forNextLevel: 1);
+            GraduationSystem(grade: fakeUserGrade, forNextLevel: 1.0);
 
         when(mockGraduationSystemRepository.getGraduationSystem(fakeGym, fakeUserGrade))
             .thenAnswer((realInvocation) {
