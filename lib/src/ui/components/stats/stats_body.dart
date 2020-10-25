@@ -11,7 +11,7 @@ class StatsBody extends StatelessWidget {
   Widget build(BuildContext context) {
     return BlocBuilder<ProfileBloc, ProfileState>(
       builder: (BuildContext context, ProfileState state) {
-        if (state is ProfileSuccess) {
+        if (state is ProfileLoaded) {
           if (state.profileUser.isOwner) {
             return LessonsStatsPage(master: Master.fromUser(state.profileUser));
           }
@@ -19,7 +19,7 @@ class StatsBody extends StatelessWidget {
           return UserStatsPage(user: state.profileUser);
         }
 
-        if (state is ProfileLoading) {
+        if (state is InitialProfileState) {
           return LoadingIndicator();
         }
 

@@ -41,12 +41,12 @@ class ProfileBloc extends Bloc<ProfileEvent, ProfileState> {
   }
 
   @override
-  ProfileState get initialState => ProfileLoading();
+  ProfileState get initialState => InitialProfileState();
 
   @override
   Stream<ProfileState> mapEventToState(ProfileEvent event) async* {
     if (event is ProfileUpdated) {
-      yield ProfileSuccess(
+      yield ProfileLoaded(
           profileUser: event.user, isCurrentUser: event.isCurrentUser);
     }
   }

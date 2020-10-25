@@ -1,4 +1,5 @@
 import 'package:checkin/src/blocs/gym/bloc.dart';
+import 'package:checkin/src/ui/components/empty_widget.dart';
 import 'package:checkin/src/ui/components/membership/membership_card.dart';
 import 'package:checkin/src/ui/components/payment_methods/payment_method_card.dart';
 import 'package:flutter/material.dart';
@@ -56,7 +57,7 @@ class Payment extends StatelessWidget {
             ],
           );
         }
-        return Container(width: 0.0, height: 0.0,);
+        return EmptyWidget();
       }
     );
   }

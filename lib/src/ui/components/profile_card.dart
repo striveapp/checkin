@@ -24,11 +24,11 @@ class ProfileCard extends StatelessWidget {
         padding: EdgeInsets.symmetric(vertical: 25, horizontal: 20),
         child: BlocBuilder<ProfileBloc, ProfileState>(
             builder: (BuildContext context, ProfileState state) {
-          if (state is ProfileLoading) {
+          if (state is InitialProfileState) {
             return LoadingIndicator();
           }
 
-          if (state is ProfileSuccess) {
+          if (state is ProfileLoaded) {
             return Row(
               children: <Widget>[
                 //TODO: this is disabled temporarily for the owner to prevent other bugs to happen [https://trello.com/c/AsSz0amj]

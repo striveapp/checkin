@@ -163,12 +163,14 @@ void main() {
     });
 
     group("Graduate", () {
-      test("should graduate user", () async {
+      test("should graduate user and prepare for the next graduation", () async {
         mockGraduationSystemRepository = MockGraduationSystemRepository();
         mockUserRepository = MockUserRepository();
+        mockGraduationUtils = MockGraduationUtils();
 
         var fakeUserGrade = Grade.white;
-        var fakeNewGrade = Grade.blue;
+        var fakeNextGrade = Grade.blue;
+        var fakeAfterGraduationNextGrade = Grade.purple;
         var fakeGym = "test";
         var fakeUserEmail = 'test@test.com';
 
@@ -176,6 +178,12 @@ void main() {
             .thenAnswer((realInvocation) {
           return Stream.empty();
         });
+
+        when(mockUserRepository.updateGrade(fakeUserEmail, fakeNextGrade)).thenAnswer((realInvocation) {
+          return Future.value(null);
+        });
+
+        when(mockGraduationUtils.calculateNextGrade(fakeNextGrade)).thenReturn(fakeAfterGraduationNextGrade);
 
         graduationBloc = GraduationBloc(
             graduationSystemRepository: mockGraduationSystemRepository,
@@ -186,11 +194,12 @@ void main() {
             userGrade: fakeUserGrade,
             userEmail: fakeUserEmail);
 
-        graduationBloc.add(Graduate(newGrade: fakeNewGrade));
+        graduationBloc.add(Graduate(newGrade: fakeNextGrade));
 
         final expectedState = [
           InitialGraduationState(),
           GraduationLoading(),
+          NotReadyForGraduation(nextGrade: fakeAfterGraduationNextGrade)
         ];
 
         await expectLater(
@@ -199,7 +208,8 @@ void main() {
         );
 
         verify(mockGraduationSystemRepository.getGraduationSystem(fakeGym, fakeUserGrade));
-        verify(mockUserRepository.updateGrade(fakeUserEmail, fakeNewGrade));
+        verify(mockUserRepository.updateGrade(fakeUserEmail, fakeNextGrade));
+        verify(mockGraduationUtils.calculateNextGrade(fakeNextGrade));
       });
     });
   });

@@ -1,4 +1,5 @@
 import 'package:checkin/src/blocs/membership/bloc.dart';
+import 'package:checkin/src/ui/components/empty_widget.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 
@@ -46,7 +47,7 @@ class MembershipCard extends StatelessWidget {
                 customerId: customerId,
               ),
               membershipLoading: () => LoadingIndicator(),
-              membershipError: (error) => Container(),
+              membershipError: (error) => EmptyWidget(),
             );
           }),
         ),

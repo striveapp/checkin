@@ -22,11 +22,11 @@ class ProfileInfos extends StatelessWidget {
       padding: EdgeInsets.symmetric(vertical: 25, horizontal: 20),
       child: BlocBuilder<ProfileBloc, ProfileState>(
           builder: (BuildContext context, ProfileState state) {
-        if (state is ProfileLoading) {
+        if (state is InitialProfileState) {
           return LoadingIndicator();
         }
 
-        if (state is ProfileSuccess) {
+        if (state is ProfileLoaded) {
           return Row(
             children: <Widget>[
               UserImage(

@@ -26,6 +26,8 @@ import 'package:checkin/src/ui/components/no_lessons_banner.dart';
 import 'package:checkin/src/ui/components/profile_card.dart';
 import 'package:checkin/src/ui/components/profile_infos.dart';
 import 'package:checkin/src/ui/components/registry/registry_controls.dart';
+import 'package:checkin/src/ui/components/stats/graduate_dialog.dart';
+import 'package:checkin/src/ui/components/stats/graduate_fab.dart';
 import 'package:checkin/src/ui/components/stats/lessons/attendees_counter.dart';
 import 'package:checkin/src/ui/components/stats/user/attended_lessons_list.dart';
 import 'package:checkin/src/ui/components/stats/user/mat_time_counter.dart';
@@ -333,6 +335,24 @@ extension Localization on String {
   } + {
     'en': SubPlanPage.prices,
     'es': 'Precios'
+  } + {
+    'en': GraduateFabView.graduateStudent,
+    'es': 'Graduar estudiante'
+  } + {
+    'en': GraduateDialog.graduate,
+    'es': 'Graduar'
+  } + {
+    'en': GraduateDialog.cancel,
+    'es': 'Cancelar'
+  } + {
+    'en': GraduateDialog.graduateAnyway,
+    'es': 'Graduar igualmente'
+  } + {
+    'en': GraduateDialog.notReadyYet,
+    'es': 'Todavía no cuenta con las clases necesarias para graduarse',
+  } + {
+    'en': GraduateDialog.readyForGraduation,
+    'es': 'Ya tiene todas las clases necesarias para graduarse'
   };
 
 String get i18n => localize(this, _t);

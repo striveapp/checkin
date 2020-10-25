@@ -1,37 +1,12 @@
 import 'package:checkin/src/models/user.dart';
-import 'package:equatable/equatable.dart';
+import 'package:flutter/foundation.dart';
+import 'package:freezed_annotation/freezed_annotation.dart';
+import 'package:meta/meta.dart';
 
-abstract class ProfileState extends Equatable {
-  const ProfileState();
+part 'profile_state.freezed.dart';
 
-  @override
-  List<Object> get props => [];
-}
-
-class ProfileLoading extends ProfileState {
-  @override
-  String toString() => 'ProfileLoading';
-}
-
-class ProfileSuccess extends ProfileState {
-  final User profileUser;
-  final bool isCurrentUser;
-
-  const ProfileSuccess({
-    this.profileUser,
-    this.isCurrentUser,
-  });
-
-  @override
-  List<Object> get props => [profileUser, isCurrentUser];
-
-  @override
-  String toString() => 'ProfileSuccess{profileUser: $profileUser, isCurrentUser: $isCurrentUser}';
-
-
-}
-
-class ProfileError extends ProfileState {
-  @override
-  String toString() => 'ProfileError';
+@freezed
+abstract class ProfileState with _$ProfileState {
+  const factory ProfileState.initialProfileState() = InitialProfileState;
+  const factory ProfileState.profileLoaded({@required User profileUser, @required bool isCurrentUser,}) = ProfileLoaded;
 }

@@ -30,15 +30,15 @@ void main() {
     });
 
     group("when load profile of current user", () {
-      test("should emit ProfileSuccess with the current user and isCurrent user as true", () {
+      test("should emit ProfileLoaded with the current user and isCurrent user as true", () {
         profileBloc = ProfileBloc(
           userBloc: mockUserBloc,
           userRepository: mockUserRepository
         );
 
         final expectedState = [
-          ProfileLoading(),
-          ProfileSuccess(
+          InitialProfileState(),
+          ProfileLoaded(
               profileUser: loggedUser, isCurrentUser: true),
         ];
 
@@ -50,7 +50,7 @@ void main() {
     });
 
     group("when load profile on another user", () {
-      test("should emit ProfileSuccess with another user and isCurrent user as false", () {
+      test("should emit ProfileLoaded with another user and isCurrent user as false", () {
         User fakeOtherUser = User(
           name: "Test",
           email: "some@other",
@@ -68,8 +68,8 @@ void main() {
         );
 
         final expectedState = [
-          ProfileLoading(),
-          ProfileSuccess(
+          InitialProfileState(),
+          ProfileLoaded(
               profileUser: fakeOtherUser, isCurrentUser: false),
         ];
 

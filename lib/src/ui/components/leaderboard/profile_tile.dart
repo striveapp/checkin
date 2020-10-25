@@ -24,7 +24,7 @@ class ProfileTile extends StatelessWidget {
             userBloc: BlocProvider.of<UserBloc>(context),
             nonCurrentUserEmail: profileEmail),
         builder: (BuildContext context, ProfileState state) {
-          if (state is ProfileSuccess) {
+          if (state is ProfileLoaded) {
             return Padding(
               padding: const EdgeInsets.symmetric(vertical: 3),
               child: Column(

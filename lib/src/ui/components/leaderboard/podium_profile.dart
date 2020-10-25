@@ -23,7 +23,7 @@ class PodiumProfile extends StatelessWidget {
           userBloc: BlocProvider.of<UserBloc>(context),
           nonCurrentUserEmail: profileEmail),
       builder: (BuildContext context, ProfileState state) {
-        if (state is ProfileSuccess) {
+        if (state is ProfileLoaded) {
           //TODO: this should be simplified https://trello.com/c/EVfSfCQy
           return GestureDetector(
             onTap: () {

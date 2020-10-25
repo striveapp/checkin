@@ -38,13 +38,13 @@ class GraduationBloc extends Bloc<GraduationEvent, GraduationState> {
 
     graduationSystemSub =
         graduationSystemRepository.getGraduationSystem(gymId, userGrade).listen((graduationSystem) {
-          statsSub?.cancel();
+      statsSub?.cancel();
 
-          statsSub = statsRepository.getUserStatsByGrade(gymId, userEmail, userGrade).listen((history) {
-            add(GraduationSystemUpdated(
-                attendedLessonsForGrade: history.attendedLessons.length,
-                graduationSystem: graduationSystem));
-          });
+      statsSub = statsRepository.getUserStatsByGrade(gymId, userEmail, userGrade).listen((history) {
+        add(GraduationSystemUpdated(
+            attendedLessonsForGrade: history.attendedLessons.length,
+            graduationSystem: graduationSystem));
+      });
     });
   }
 
@@ -57,16 +57,20 @@ class GraduationBloc extends Bloc<GraduationEvent, GraduationState> {
   ) async* {
     if (event is GraduationSystemUpdated) {
       Grade nextGrade = graduationUtils.calculateNextGrade(this.userGrade);
-      if( event.attendedLessonsForGrade >= event.graduationSystem.forNextLevel) {
+      if (event.attendedLessonsForGrade >= event.graduationSystem.forNextLevel) {
         yield ReadyForGraduation(nextGrade: nextGrade);
       } else {
         yield NotReadyForGraduation(nextGrade: nextGrade);
       }
     }
-    
-    if(event is Graduate) {
+
+    if (event is Graduate) {
       yield GraduationLoading();
       await userRepository.updateGrade(userEmail, event.newGrade);
+      var calculateNextGrade = graduationUtils.calculateNextGrade(event.newGrade);
+      yield NotReadyForGraduation(
+        nextGrade: calculateNextGrade,
+      );
     }
   }
 
@@ -76,5 +80,3 @@ class GraduationBloc extends Bloc<GraduationEvent, GraduationState> {
     return super.close();
   }
 }
-
-
