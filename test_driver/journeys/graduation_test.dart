@@ -1,7 +1,6 @@
 import 'package:test/test.dart';
 
 import '../constants.dart';
-import '../driver_extension.dart';
 import '../util.dart';
 import 'abstract_test.dart';
 
@@ -33,7 +32,7 @@ class GraduationTest extends AbstractTest {
         await statsPage.openGraduationDialog();
         prettyPrint("Graduate the student and check it changed the grade");
         await graduationDialog.graduate();
-        //TODO how can this be support i18n?
+        //TODO how can this be support i18n? https://trello.com/c/0vAzqrql
         // await driver.waitForExpectedValue(() => statsPage.getUserGrade(), "Blue Belt");
         prettyPrint("Then logout");
         await statsPage.logout();
