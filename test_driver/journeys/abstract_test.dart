@@ -3,6 +3,7 @@ import 'package:stack_trace/stack_trace.dart';
 
 import '../driver_extension.dart';
 import '../pages/account_page.dart';
+import '../pages/dialogs/graduation_dialog.dart';
 import '../pages/leaderboard_page.dart';
 import '../pages/lessons_page.dart';
 import '../pages/login_page.dart';
@@ -17,6 +18,7 @@ abstract class AbstractTest {
   StatsPage statsPage;
   AccountPage accountPage;
   LeaderboardPage leaderboardPage;
+  GraduationDialog graduationDialog;
 
   void main() {
     Chain.capture(() {
@@ -34,6 +36,7 @@ abstract class AbstractTest {
     statsPage = StatsPage(driver);
     accountPage = AccountPage(driver);
     leaderboardPage = LeaderboardPage(driver);
+    graduationDialog = GraduationDialog(driver);
     await driver.requestData("setup");
     await driver.waitForExpectedValue(() => driver.requestData("is_db_clean"), "true");
     print("setup finished");

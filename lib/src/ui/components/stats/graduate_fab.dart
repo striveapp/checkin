@@ -12,13 +12,21 @@ import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 
 class GraduateFab extends StatelessWidget {
+  final String userEmail;
+
+  const GraduateFab({
+    Key key,
+    @required this.userEmail,
+  }) : super(key: key);
+
   @override
   Widget build(BuildContext context) {
     return BlocBuilder<UserBloc, UserState>(
       builder: (BuildContext context, UserState state) {
         return state.maybeWhen(
-          userSuccess: (User currentUser) =>
-              currentUser.isOwner ? GraduateFabView() : EmptyWidget(),
+          userSuccess: (User currentUser) => currentUser.isOwner && userEmail != currentUser.email
+              ? GraduateFabView()
+              : EmptyWidget(),
           orElse: () => EmptyWidget(),
         );
       },
@@ -51,6 +59,7 @@ class GraduateFabView extends StatelessWidget {
           child: BlocBuilder<GraduationBloc, GraduationState>(
               builder: (BuildContext context, GraduationState state) {
             return FloatingActionButton.extended(
+                key: Key("graduateFab"),
                 onPressed: () {
                   showDialog(
                     context: context,

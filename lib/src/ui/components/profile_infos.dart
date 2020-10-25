@@ -53,6 +53,7 @@ class ProfileInfos extends StatelessWidget {
                     ),
                     Text(
                       beltColor.i18n.fill([state.profileUser.grade.name.i18n]),
+                      key: Key("userGrade"),
                       style: Theme.of(context).textTheme.bodyText1,
                     ),
                   ],

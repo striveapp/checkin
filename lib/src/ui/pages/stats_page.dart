@@ -34,7 +34,7 @@ class StatsPage extends StatelessWidget {
           title: stats.i18n,
           showUserImage: false,
         ),
-        floatingActionButton: GraduateFab(),
+        floatingActionButton: GraduateFab(userEmail: userEmail),
         floatingActionButtonLocation: FloatingActionButtonLocation.centerFloat,
         body: MultiBlocProvider(
           providers: [
