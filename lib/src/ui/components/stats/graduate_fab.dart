@@ -10,6 +10,7 @@ import 'package:checkin/src/ui/components/stats/graduate_dialog.dart';
 import 'package:checkin/src/util/graduation_util.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
+import 'package:checkin/src/localization/localization.dart';
 
 class GraduateFab extends StatelessWidget {
   final String userEmail;
@@ -71,7 +72,7 @@ class GraduateFabView extends StatelessWidget {
                 },
                 icon: Icon(Icons.add),
                 label: Text(
-                  graduateStudent.toUpperCase(),
+                  graduateStudent.i18n.toUpperCase(),
                   style: Theme.of(context).textTheme.button,
                 ));
           }),

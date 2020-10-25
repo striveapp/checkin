@@ -1,4 +1,5 @@
 import 'attend_test.dart';
+import 'graduation_test.dart';
 import 'leaderboard_test.dart';
 import 'stats_test.dart';
 import 'user_account_test.dart';
@@ -8,6 +9,5 @@ void main() {
   UserAccountTest().main();
   StatsTest().main();
   LeaderboardTest().main();
-  //TODO: this needs to be completed https://trello.com/c/0vAzqrql
-  // GraduationTest().main();
+  GraduationTest().main();
 }
