@@ -156,7 +156,7 @@ workflows:
             - cd . && flutter packages pub get
             - cd . && flutter analyze
             - cd . && flutter test
-            - cd . && flutter build appbundle --release --build-name=$(git describe --abbrev=0)+$BUILD_NUMBER --build-number=$(($BUILD_NUMBER
+            - cd . && flutter build appbundle -t lib/main_prod.dart --release --build-name=$(git describe --abbrev=0)+$BUILD_NUMBER --build-number=$(($BUILD_NUMBER
               + 100))
             - |
               # generate signed universal apk with user specified keys
@@ -286,7 +286,7 @@ workflows:
             - app-store-connect fetch-signing-files "com.arya.checkin" --type IOS_APP_STORE
               --create
             - keychain add-certificates
-            - cd . && flutter build ios --release --build-name=1.0.$BUILD_NUMBER --build-number=$(($BUILD_NUMBER
+            - cd . && flutter build ios --release -t lib/main_prod.dart --build-name=$(git describe --abbrev=0)+$BUILD_NUMBER --build-number=$(($BUILD_NUMBER
               + 100)) --no-codesign
             - xcode-project use-profiles
             - cd . && xcode-project build-ipa --workspace "ios/Runner.xcworkspace" --scheme
