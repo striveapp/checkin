@@ -170,7 +170,6 @@ workflows:
             - build/**/outputs/**/*.apk
             - build/**/outputs/**/*.aab
             - build/**/outputs/**/mapping.txt
-            - flutter_drive.log
           publishing:
             slack:
               channel: '#checkin-app'
@@ -196,13 +195,13 @@ workflows:
       cocoapods: default
     cache:
       cache_paths: [ ]
-    triggering:
-      events:
-        - tag
-      branch_patterns:
-        - pattern: '*'
-          include: true
-          source: true
+#    triggering:
+#      events:
+#        - tag
+#      branch_patterns:
+#        - pattern: '*'
+#          include: true
+#          source: true
     scripts:
       - "#!/bin/sh\n\nset -e\ntrap 'echo \"\\\"${BASH_COMMAND}\\\" command filed with\
         \ exit code $?.\"' ERR\n\n### ANDROID\necho \"Configuring Android for ${ENV}...\"\
@@ -252,7 +251,7 @@ workflows:
         apple_id: stefano.saitta92@gmail.com
         password: Encrypted(Z0FBQUFBQmZnWTZMOVloRUtYSWJjWU9sTVdDU3dYRE1TNGVRUWhXTTVTQjVmMmtFWnlFT1pQRlV6OThnMk9rODE4NE9fTmp4UjdkcXVKTUFqX2p3bmp2V0luV01kRVVWN3BBd3ZfOTJkQWg0LS0ycUhudUlhdVk9)
   release-ios-new:
-          name: Release IOS
+          name: Release IOS new
           max_build_duration: 120
           environment:
             vars:
@@ -294,7 +293,6 @@ workflows:
           artifacts:
             - build/ios/ipa/*.ipa
             - /tmp/xcodebuild_logs/*.log
-            - flutter_drive.log
           publishing:
             slack:
               channel: '#checkin-app'
