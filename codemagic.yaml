@@ -142,8 +142,7 @@ workflows:
             - name: Add certificates to keychain
               script: keychain add-certificates
             - name: Building
-              script: flutter build ios --flavor prod --release -t lib/main_prod.dart --build-name=$(git describe --abbrev=0)+$BUILD_NUMBER --build-number=$(($BUILD_NUMBER
-              + 100)) --no-codesign
+              script: flutter build ios --flavor prod --release -t lib/main_prod.dart --build-name=$(git describe --abbrev=0)+$BUILD_NUMBER --build-number=$(($BUILD_NUMBER + 100)) --no-codesign
             - xcode-project use-profiles
             - cd . && xcode-project build-ipa --workspace "ios/Runner.xcworkspace" --scheme
               "Runner"
