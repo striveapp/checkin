@@ -27,7 +27,7 @@ workflows:
         script: flutter doctor -v
       - name: Run emulator (Android)
         script: flutter emulators --launch emulator
-      - name: Setup environment
+      - name: Setup environment (dev)
         script: make set-dev
       - name: Installing dependencies
         script: flutter packages pub get
@@ -156,7 +156,7 @@ workflows:
             - cd . && flutter packages pub get
             - cd . && flutter analyze
             - cd . && flutter test
-            - cd . && flutter build appbundle -t lib/main_prod.dart --release --build-name=$(git describe --abbrev=0)+$BUILD_NUMBER --build-number=$(($BUILD_NUMBER
+            - cd . && flutter build appbundle --flavor prod --release -t lib/main_prod.dart --release --build-name=$(git describe --abbrev=0)+$BUILD_NUMBER --build-number=$(($BUILD_NUMBER
               + 100))
             - |
               # generate signed universal apk with user specified keys
@@ -276,16 +276,27 @@ workflows:
                 include: true
                 source: true
           scripts:
-            - make set-prod
-            - cd . && flutter packages pub get
-            - cd . && flutter analyze
-            - cd . && flutter test
-            - find . -name "Podfile" -execdir pod install \;
-            - keychain initialize
+            - name: Run doctor
+              script: flutter doctor -v
+            - name: Run emulator (IOS)
+              script: flutter emulators --launch apple_ios_simulator
+            - name: Setup environment (prod)
+              script: make set-prod
+            - name: Installing dependencies
+              script: flutter packages pub get
+            - name: Run analyzer
+              script: flutter analyze
+            - name: Run unit test
+              script: flutter test
+            - name: Install Pods
+              script: find . -name "Podfile" -execdir pod install \;
+            - name: Initialize keychain
+              script: keychain initialize
             - app-store-connect fetch-signing-files "com.arya.checkin" --type IOS_APP_STORE
               --create
             - keychain add-certificates
-            - cd . && flutter build ios --release -t lib/main_prod.dart --build-name=$(git describe --abbrev=0)+$BUILD_NUMBER --build-number=$(($BUILD_NUMBER
+            - name: Building
+              script: flutter build ios --flavor prod --release -t lib/main_prod.dart --build-name=$(git describe --abbrev=0)+$BUILD_NUMBER --build-number=$(($BUILD_NUMBER
               + 100)) --no-codesign
             - xcode-project use-profiles
             - cd . && xcode-project build-ipa --workspace "ios/Runner.xcworkspace" --scheme
