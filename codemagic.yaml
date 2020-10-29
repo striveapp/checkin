@@ -89,7 +89,7 @@ workflows:
                   --flavor prod \
                   --release -t lib/main_prod.dart \
                   --build-name=$(git describe --abbrev=0)+$BUILD_NUMBER \
-                  --build-number=$(($BUILD_NUMBER + 100))
+                  --build-number=$(($BUILD_NUMBER + 1000))
             - name: Generate apk
               script: |
                 # generate signed universal apk with user specified keys
@@ -161,7 +161,7 @@ workflows:
                   --flavor prod \
                   --release -t lib/main_prod.dart \
                   --build-name=$(git describe --abbrev=0)+$BUILD_NUMBER \
-                  --build-number=$(($BUILD_NUMBER + 100)) \
+                  --build-number=$(($BUILD_NUMBER + 1000)) \
                   --no-codesign
             - xcode-project use-profiles
             - xcode-project build-ipa --workspace "ios/Runner.xcworkspace" --scheme "Runner"
