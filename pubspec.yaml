@@ -34,7 +34,7 @@ dependencies:
   bloc: ^3.0.0
   flutter_bloc: ^3.2.0
   equatable: ^1.1.1
-  cached_network_image: ^2.2.0+1
+  cached_network_image: ^2.3.3
   fluro: ^1.6.1
   platform: 3.0.0-nullsafety.2
   json_annotation: ^3.0.0
