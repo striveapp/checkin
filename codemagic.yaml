@@ -67,24 +67,38 @@ workflows:
                 include: true
                 source: true
           scripts:
-            - make set-key-properties
-            - |
-              # set up local properties
-              echo "flutter.sdk=$HOME/programs/flutter" > "$FCI_BUILD_DIR/android/local.properties"
-            - make set-prod
-            - cd . && flutter packages pub get
-            - cd . && flutter analyze
-            - cd . && flutter test
-            - cd . && flutter build appbundle --flavor prod --release -t lib/main_prod.dart --release --build-name=$(git describe --abbrev=0)+$BUILD_NUMBER --build-number=$(($BUILD_NUMBER
-              + 100))
-            - |
-              # generate signed universal apk with user specified keys
-              android-app-bundle build-universal-apk \
-                --bundle build/**/outputs/**/*.aab \
-                --ks /tmp/keystore.keystore \
-                --ks-pass $CM_KEYSTORE_PASSWORD \
-                --ks-key-alias $CM_KEY_ALIAS_USERNAME \
-                --key-pass $CM_KEY_ALIAS_PASSWORD
+            - name: Run doctor
+              script: flutter doctor -v
+            - name: Run emulator (Android)
+              script: flutter emulators --launch emulator
+            - name: Setup keystore
+              script: |
+                make set-key-properties \
+                && echo "flutter.sdk=$HOME/programs/flutter" > "$FCI_BUILD_DIR/android/local.properties"
+            - name: Setup environment (prod)
+              script: make set-prod
+            - name: Installing dependencies
+              script: flutter packages pub get
+            - name: Run analyzer
+              script: flutter analyze
+            - name: Run unit test
+              script: flutter test
+            - name: Building
+              script: |
+                flutter build appbundle \
+                  --flavor prod \
+                  --release -t lib/main_prod.dart \
+                  --build-name=$(git describe --abbrev=0)+$BUILD_NUMBER \
+                  --build-number=$(($BUILD_NUMBER + 100))
+            - name: Generate apk
+              script: |
+                # generate signed universal apk with user specified keys
+                android-app-bundle build-universal-apk \
+                  --bundle build/**/outputs/**/*.aab \
+                  --ks /tmp/keystore.keystore \
+                  --ks-pass $CM_KEYSTORE_PASSWORD \
+                  --ks-key-alias $CM_KEY_ALIAS_USERNAME \
+                  --key-pass $CM_KEY_ALIAS_PASSWORD
           artifacts:
             - build/**/outputs/**/*.apk
             - build/**/outputs/**/*.aab
@@ -93,9 +107,9 @@ workflows:
             slack:
               channel: '#checkin-app'
               notify_on_build_start: true
-#            google_play:
-#              credentials: Encrypted(Z0FBQUFBQmZnWTZLaTdqSWFOVThRWTVQcFhkQ3lKa05QNldtb3ZISFZ0M29IeGI1OVlmd2I4QnpERmc5dXExZ3NhQi1jckVsWkU5QUhSSUp5dEJJOG9SbFU4YmRVTnNVNkRPcktCTGVzTWN3VENDNkxSUUhobGc3eXZOaUpyTkVxYWVlRkljZ1ZKRUFDdnNFNnVxVHF3WU1IYVdZdE10SUFDaUwyQlhHOGlDVUp0Z0Zwdm4yb2M4VkpEeXltaTh4MnVjR1RjVnlRZEFuMVZwNExXMUJ3UFZRbFY1YzRzZjhXdlh5RkJfZjlVSFc1amJrbXlZNzE4RWdWUjdHWWVIdHJiWkxWdUU0NHhSb2xHQW1aWUF3enJhdmdITWFNbDRpeFFFckl6dWRJLUlRaEc0MEkyTkFaMDVTN1ZhVjdBT2s3b0wxUHFuOTU2RGh2dkdFWl9GMGxzUTJ2UnJ0SDQ3M0ktVWlDcnhrQjB4VEY4WmFlTWI3emczTW1ka0N6X2F4ZDd0UWRkZXZoZWJ1cm5fMUh3cUVtVk1HM2Zzb2I5SHBSVVE1ejQzNmVhRFBvRWN0T2RDcURrR1lDUzIyczhHN1hCS2tERHlhUXJ5RkZ4R19RaE9rWkhMcEhueUw2QlNYT0ZoZFRnT3RBZnE0cFM3RDktZFlsOVpGX2NWS2RhSHBrSHcyMFpfX0NYelVNYW1zU3FKeVU2S3AxRGlrMFN4UUt3WTNvWkk4Y1N4Q2VXcHdzdFdfaS10Y2ZIRDFRTjBGa0RJY0ZDQUVlUkp0eWJWdUFac01TZ2Noel8zMXRvS1poeTd1dmNvdzJlcEFEY0N5MkZFMmEtbmNtZjNyZG9GaXpzNjc0SXNwZlhqNmRJUE5EcF9ibjdQWEdudURXcDFHWGt4anUtVk5scXZ2Z1ppeGQxd0d0SVAyV3dOb255dk5sS2hHVnVXalFqM1VER3pMU0FrZkFZYkNscU5ZY1R5VXJULXpoWXNnWjhFVmI0ZWNuUXdGQ1l0Um5mNDFsbGNlMC1uNXJaOXEzUVNCN2RzSDFmRkNwY3hUbWxiVm1aMTJkUWVMbGlQbjl6a1lCU1FkbEc0OC1vSXRQWklIME9pRFZEeFRNMVNRSU9QSVhqMGxQbGtpWGlTMjl2SmJ4Y0FUMkt4QVg3ZnhvZ2k1cXoxTGM0U1Y0V004VTk5aDBkRFpBU1RvTGxQYVJlQ2prQnJTY1JGWGtlVnB5b2tGNXlpV01fLTUwQXg2WV92azJJTGw3aVhrZndhX2c5TnU0TmdzbGpIRXVYcmJZNnpvVlN3QkNMN2c2LUR1RzJvZDcyVk5pcmhJbUl6bXZOY2l2RkRJSk1rWGNUTm9iM2Rtd1dQQ2tIWms1RjR6NWNDSVlYb0gtTVRZdWE4czI1Z0xXNEhKdWo3X0h4M2Q3UEF3OXRiekM3ODRkbVhLR3QxRmU4UGdKOHI2U211QjdVRGJRdjJFRXBsZk5FWjZabU5BU3U2dlFIRTY3b2lEbV80NWYwSkJhMTlmNllKTFlHSUQ2eXFvVU9mTzlleHRBZUJYYlRhakNtVU5JLUZLTldKeEFnWFlWRVVIRFRVVlZKOERkcklidGVUVno2TzNaVUMxcjlNby1GTGFGUE1Kc3dIWVpYdXNUUE1RNzFrbUtJUm1fMmY3WGJCU3NPZEVGS0JrMVNDYmg1c1NZMllpUy11WXZXZ0U5QTRtLU1jUXB0b25naVpJb2tNLUZfTjZMcUM0d2dfSkQyQTltQk9PLTRmUFJXLWRLYXNwM084aXJmX2FZVEhvV2k3clFlYWE1dlRrb2NhN0NvV0hUVkdLbEY4YjRhZGp3STZNbnJNU2F2SHRyaFhDYUh6bzFXZFRvZkdsZGVKcVp4WTJaS2ZBd3lsVWMzOU1zeWZtblJPYmt3WUJxSXpDVDlIY3p6TEZUMm14cE4xSHlsVnM0UmkzX3U0STBSQUphRDRSRldsdmhHNmtiS0ZjakpaWERpclJQUzNWRncyZG93Zld4YkRMVnAwTXc2RVhHbmd2OVZ1RU1NNGg0YjVfbmhydXV5aF9USFc0M3FXbnh1NnhZZG5QOGxjYnJUU0FUZ1U1YlJTa1VTLXJPZHFCRURpbXhKOUNCSFE4RkViMUltWnc2S3VpRHJpWjVyRnJhX1Rfb2g2OW83U093QWZiekxSb0RzMlBXdHpnam9xNlpaMHkyT2s4QlkteVdJY3Zya2Y1Y0pYYW9GNnFuTzQzamVOY0dvNGtEdTR1Tm5GOXhBeTJvbC1nTHB1UHJnTF9kNUR6dTk4TlhxYWtEZGVndFNSRFFENldLMzlLdWpCV0RNS1NFRlN4dWpWbS1XYTJYUjR1MVRtdFdfa0czVVFXVndrZ0JVVEo2M2RWNGp5a05xWS1uMmZnSGxaSlZuaXBJV2dYYWg2Q3RHX1FIbEk5ZjVlZzV3NmNNelFuNjFuRnhtSTZJRGx5cUtjYWFHNGpRYXR4bkttYVdteWZyWGY0UW11VmZFY3VqbjNVenFNbG9Cb18xWGprMWVsWkY4aGk1TUtTMWFtYXZsNE9qaGtOaWQxa25QbjNkTS1ZdXl2bDBDalViMzY5Q0kxV0FlSHI0NXl0VjdzeFdYUDdWQjQtT3hUR2xoSXpEcVVqNy1qZXZiRDdVbmU0NWZLNjdVMHdmdG9TZkw2QkprUTJVRUItS29YVmVUWGJ2TGlpMjVFdUpkeUZKQmVRdXUzZFlOVUZybUlLWHpHdTA3a3YwRWl1OXNkSE9IdXJFSk01Zi1SYUJseklBa29tbnIzMFZkcF9SMjB5b1BESUhic2RHNmlvOV9zRHBuZ0YzUldRN19ydG1SQnVscU1JNjZQajQ4TlNRMzJabHUxZXR3Ri1hazdXX2pQaWNhWndYTlNzblE2Z2lfdkRDLVNxbkNJODdXMnNmRFY5QjhqZ01KZjRvSjh2dVhzRkQxb3hrbkhWWE42UWlQa05QTWY4LXNPNUFEWDh1dnJXUEtRc1VjdVlTdl9JOC0wZ2VwdTlHTzlzeUl2VVdYMW9YaTk4SWFxRkV1ZWg2cHV6Y09sSXZyZGNVLUZJM2ZWT09ZSk5mb0xfU0VqSjhPcGx6R1VLWjBaZDMwSFFhU3NiTlNjQmlzZ05sc0plR19OUzZzUHVLOEN1cFNDdnZqa0pieEVEdzVaZVRUclhZb2xCc2w2eTBXSWFvLVpEcUg1VW5LdDNKbURvYVRmd0RoSDE2TG5rTEtKZFFETGtRYUZ1b2g5ZTBmOGFWQ0ladHVNRmk4Z1BOWVNYdlNIb1Rla081NDdVamc3QTQ1dWl1UWRkLXJzWUhFUW8tNmgzX1dsY0tVcDJlR0dKOWlLN3pFZjJBNzVzX20wVTliWEtOdzlNblBaMmxIenViODJVdU13MzJFWko5Vldac1NPTnRIRTVaOEc4WU16TDlzakZ3bjdETEZPUEdYclMzM3pSSHhQWV9WOUhTTXhBME5tc0FnXzU4WlJjVUhMWkdYLUdzYnhjVHVmM1J6WlMzaFNoNUFqYVcybjFRQnlxVG1GQjlNaEdwOVRiQVUzZGhrcmt2eVFRQ204NjJYd1hYbmx1NFNjRG9VUFZ4aHNxeFFKd056T3hJbXlkV0xkM0JEb0J0dTYyb3lZSFhwTWZuU1B0LUNVdTM5bHd1VkRNQzEyUmdoOVZqRFhCSy00OGk4d2E5M1BTbXBoOG1iUEVjVlA0Z2dBVlJGaDYxbExpbkdMaElDby05ZW9xTGtYcXQ4Wl9zNjhUZzJKUjNHcDh5NnZwOTdKWkxkb3hfengtVEZaZzRxN3RobkYwbWdsaUM4WFRyX2kxY2R1ZDBRaHdhRDh0eWwzNVEyOHEtTlZEVjd3eDRlZXVTdGZwYW1kMTl5UV9VMzRFOUhtOGRoa1JVSEpldEV0bkFiaWQyc0cwUDFmd3NBLUt2TDd0U2loMzVxWFphdnFXWGxfME9pSXd3OGdKOG43S0tIYnZEeXpqZXRTMG95czJCUGhPZzl2cFBSMzFFdHdVVnpaTEcyZWQtU1FnUHhaUFpicG1xZVJLU1N4cTJpVGY3UlROWUdTSy1HMTE4U2N2SGdrcERXYnd3bE5VUmRaa213SlU0OFRUVmxERXg5Snp6SWdtOGowUUJud250dGF6NFZNMzUzcWdFY2otUFdrYjFVR3B6Z2RKcm5MQVhWbm9QSVg5Nk9YVzM5U3dRLU5NdkhLaWIwZm1leGZtWk05eHZKb1hqVjhaYlZlMnpYYks5M3lzMExLalVMektzYV9aVnNFYzJKaEVGR1RoT0lKSjZVRWwyTVA0bWNJOTlBPT0=)
-#              track: production
+            google_play:
+              credentials: Encrypted(Z0FBQUFBQmZnWTZLaTdqSWFOVThRWTVQcFhkQ3lKa05QNldtb3ZISFZ0M29IeGI1OVlmd2I4QnpERmc5dXExZ3NhQi1jckVsWkU5QUhSSUp5dEJJOG9SbFU4YmRVTnNVNkRPcktCTGVzTWN3VENDNkxSUUhobGc3eXZOaUpyTkVxYWVlRkljZ1ZKRUFDdnNFNnVxVHF3WU1IYVdZdE10SUFDaUwyQlhHOGlDVUp0Z0Zwdm4yb2M4VkpEeXltaTh4MnVjR1RjVnlRZEFuMVZwNExXMUJ3UFZRbFY1YzRzZjhXdlh5RkJfZjlVSFc1amJrbXlZNzE4RWdWUjdHWWVIdHJiWkxWdUU0NHhSb2xHQW1aWUF3enJhdmdITWFNbDRpeFFFckl6dWRJLUlRaEc0MEkyTkFaMDVTN1ZhVjdBT2s3b0wxUHFuOTU2RGh2dkdFWl9GMGxzUTJ2UnJ0SDQ3M0ktVWlDcnhrQjB4VEY4WmFlTWI3emczTW1ka0N6X2F4ZDd0UWRkZXZoZWJ1cm5fMUh3cUVtVk1HM2Zzb2I5SHBSVVE1ejQzNmVhRFBvRWN0T2RDcURrR1lDUzIyczhHN1hCS2tERHlhUXJ5RkZ4R19RaE9rWkhMcEhueUw2QlNYT0ZoZFRnT3RBZnE0cFM3RDktZFlsOVpGX2NWS2RhSHBrSHcyMFpfX0NYelVNYW1zU3FKeVU2S3AxRGlrMFN4UUt3WTNvWkk4Y1N4Q2VXcHdzdFdfaS10Y2ZIRDFRTjBGa0RJY0ZDQUVlUkp0eWJWdUFac01TZ2Noel8zMXRvS1poeTd1dmNvdzJlcEFEY0N5MkZFMmEtbmNtZjNyZG9GaXpzNjc0SXNwZlhqNmRJUE5EcF9ibjdQWEdudURXcDFHWGt4anUtVk5scXZ2Z1ppeGQxd0d0SVAyV3dOb255dk5sS2hHVnVXalFqM1VER3pMU0FrZkFZYkNscU5ZY1R5VXJULXpoWXNnWjhFVmI0ZWNuUXdGQ1l0Um5mNDFsbGNlMC1uNXJaOXEzUVNCN2RzSDFmRkNwY3hUbWxiVm1aMTJkUWVMbGlQbjl6a1lCU1FkbEc0OC1vSXRQWklIME9pRFZEeFRNMVNRSU9QSVhqMGxQbGtpWGlTMjl2SmJ4Y0FUMkt4QVg3ZnhvZ2k1cXoxTGM0U1Y0V004VTk5aDBkRFpBU1RvTGxQYVJlQ2prQnJTY1JGWGtlVnB5b2tGNXlpV01fLTUwQXg2WV92azJJTGw3aVhrZndhX2c5TnU0TmdzbGpIRXVYcmJZNnpvVlN3QkNMN2c2LUR1RzJvZDcyVk5pcmhJbUl6bXZOY2l2RkRJSk1rWGNUTm9iM2Rtd1dQQ2tIWms1RjR6NWNDSVlYb0gtTVRZdWE4czI1Z0xXNEhKdWo3X0h4M2Q3UEF3OXRiekM3ODRkbVhLR3QxRmU4UGdKOHI2U211QjdVRGJRdjJFRXBsZk5FWjZabU5BU3U2dlFIRTY3b2lEbV80NWYwSkJhMTlmNllKTFlHSUQ2eXFvVU9mTzlleHRBZUJYYlRhakNtVU5JLUZLTldKeEFnWFlWRVVIRFRVVlZKOERkcklidGVUVno2TzNaVUMxcjlNby1GTGFGUE1Kc3dIWVpYdXNUUE1RNzFrbUtJUm1fMmY3WGJCU3NPZEVGS0JrMVNDYmg1c1NZMllpUy11WXZXZ0U5QTRtLU1jUXB0b25naVpJb2tNLUZfTjZMcUM0d2dfSkQyQTltQk9PLTRmUFJXLWRLYXNwM084aXJmX2FZVEhvV2k3clFlYWE1dlRrb2NhN0NvV0hUVkdLbEY4YjRhZGp3STZNbnJNU2F2SHRyaFhDYUh6bzFXZFRvZkdsZGVKcVp4WTJaS2ZBd3lsVWMzOU1zeWZtblJPYmt3WUJxSXpDVDlIY3p6TEZUMm14cE4xSHlsVnM0UmkzX3U0STBSQUphRDRSRldsdmhHNmtiS0ZjakpaWERpclJQUzNWRncyZG93Zld4YkRMVnAwTXc2RVhHbmd2OVZ1RU1NNGg0YjVfbmhydXV5aF9USFc0M3FXbnh1NnhZZG5QOGxjYnJUU0FUZ1U1YlJTa1VTLXJPZHFCRURpbXhKOUNCSFE4RkViMUltWnc2S3VpRHJpWjVyRnJhX1Rfb2g2OW83U093QWZiekxSb0RzMlBXdHpnam9xNlpaMHkyT2s4QlkteVdJY3Zya2Y1Y0pYYW9GNnFuTzQzamVOY0dvNGtEdTR1Tm5GOXhBeTJvbC1nTHB1UHJnTF9kNUR6dTk4TlhxYWtEZGVndFNSRFFENldLMzlLdWpCV0RNS1NFRlN4dWpWbS1XYTJYUjR1MVRtdFdfa0czVVFXVndrZ0JVVEo2M2RWNGp5a05xWS1uMmZnSGxaSlZuaXBJV2dYYWg2Q3RHX1FIbEk5ZjVlZzV3NmNNelFuNjFuRnhtSTZJRGx5cUtjYWFHNGpRYXR4bkttYVdteWZyWGY0UW11VmZFY3VqbjNVenFNbG9Cb18xWGprMWVsWkY4aGk1TUtTMWFtYXZsNE9qaGtOaWQxa25QbjNkTS1ZdXl2bDBDalViMzY5Q0kxV0FlSHI0NXl0VjdzeFdYUDdWQjQtT3hUR2xoSXpEcVVqNy1qZXZiRDdVbmU0NWZLNjdVMHdmdG9TZkw2QkprUTJVRUItS29YVmVUWGJ2TGlpMjVFdUpkeUZKQmVRdXUzZFlOVUZybUlLWHpHdTA3a3YwRWl1OXNkSE9IdXJFSk01Zi1SYUJseklBa29tbnIzMFZkcF9SMjB5b1BESUhic2RHNmlvOV9zRHBuZ0YzUldRN19ydG1SQnVscU1JNjZQajQ4TlNRMzJabHUxZXR3Ri1hazdXX2pQaWNhWndYTlNzblE2Z2lfdkRDLVNxbkNJODdXMnNmRFY5QjhqZ01KZjRvSjh2dVhzRkQxb3hrbkhWWE42UWlQa05QTWY4LXNPNUFEWDh1dnJXUEtRc1VjdVlTdl9JOC0wZ2VwdTlHTzlzeUl2VVdYMW9YaTk4SWFxRkV1ZWg2cHV6Y09sSXZyZGNVLUZJM2ZWT09ZSk5mb0xfU0VqSjhPcGx6R1VLWjBaZDMwSFFhU3NiTlNjQmlzZ05sc0plR19OUzZzUHVLOEN1cFNDdnZqa0pieEVEdzVaZVRUclhZb2xCc2w2eTBXSWFvLVpEcUg1VW5LdDNKbURvYVRmd0RoSDE2TG5rTEtKZFFETGtRYUZ1b2g5ZTBmOGFWQ0ladHVNRmk4Z1BOWVNYdlNIb1Rla081NDdVamc3QTQ1dWl1UWRkLXJzWUhFUW8tNmgzX1dsY0tVcDJlR0dKOWlLN3pFZjJBNzVzX20wVTliWEtOdzlNblBaMmxIenViODJVdU13MzJFWko5Vldac1NPTnRIRTVaOEc4WU16TDlzakZ3bjdETEZPUEdYclMzM3pSSHhQWV9WOUhTTXhBME5tc0FnXzU4WlJjVUhMWkdYLUdzYnhjVHVmM1J6WlMzaFNoNUFqYVcybjFRQnlxVG1GQjlNaEdwOVRiQVUzZGhrcmt2eVFRQ204NjJYd1hYbmx1NFNjRG9VUFZ4aHNxeFFKd056T3hJbXlkV0xkM0JEb0J0dTYyb3lZSFhwTWZuU1B0LUNVdTM5bHd1VkRNQzEyUmdoOVZqRFhCSy00OGk4d2E5M1BTbXBoOG1iUEVjVlA0Z2dBVlJGaDYxbExpbkdMaElDby05ZW9xTGtYcXQ4Wl9zNjhUZzJKUjNHcDh5NnZwOTdKWkxkb3hfengtVEZaZzRxN3RobkYwbWdsaUM4WFRyX2kxY2R1ZDBRaHdhRDh0eWwzNVEyOHEtTlZEVjd3eDRlZXVTdGZwYW1kMTl5UV9VMzRFOUhtOGRoa1JVSEpldEV0bkFiaWQyc0cwUDFmd3NBLUt2TDd0U2loMzVxWFphdnFXWGxfME9pSXd3OGdKOG43S0tIYnZEeXpqZXRTMG95czJCUGhPZzl2cFBSMzFFdHdVVnpaTEcyZWQtU1FnUHhaUFpicG1xZVJLU1N4cTJpVGY3UlROWUdTSy1HMTE4U2N2SGdrcERXYnd3bE5VUmRaa213SlU0OFRUVmxERXg5Snp6SWdtOGowUUJud250dGF6NFZNMzUzcWdFY2otUFdrYjFVR3B6Z2RKcm5MQVhWbm9QSVg5Nk9YVzM5U3dRLU5NdkhLaWIwZm1leGZtWk05eHZKb1hqVjhaYlZlMnpYYks5M3lzMExLalVMektzYV9aVnNFYzJKaEVGR1RoT0lKSjZVRWwyTVA0bWNJOTlBPT0=)
+              track: production
   release-ios:
           name: Release IOS
           max_build_duration: 120
@@ -142,10 +156,15 @@ workflows:
             - name: Add certificates to keychain
               script: keychain add-certificates
             - name: Building
-              script: flutter build ios --flavor prod --release -t lib/main_prod.dart --build-name=$(git describe --abbrev=0)+$BUILD_NUMBER --build-number=$(($BUILD_NUMBER + 100)) --no-codesign
+              script: |
+                flutter build ios \
+                  --flavor prod \
+                  --release -t lib/main_prod.dart \
+                  --build-name=$(git describe --abbrev=0)+$BUILD_NUMBER \
+                  --build-number=$(($BUILD_NUMBER + 100)) \
+                  --no-codesign
             - xcode-project use-profiles
-            - cd . && xcode-project build-ipa --workspace "ios/Runner.xcworkspace" --scheme
-              "Runner"
+            - xcode-project build-ipa --workspace "ios/Runner.xcworkspace" --scheme "Runner"
           artifacts:
             - build/ios/ipa/*.ipa
             - /tmp/xcodebuild_logs/*.log

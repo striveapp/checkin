@@ -1,14 +1,14 @@
 "test_title" = "Test ES";
 "test_body" = "Hola mundo!";
 
-"class_confirmed" = "Clase confirmada ✅"
-"you_attended_n_classes" = "Has atendido %@ clases este año!"
+"class_confirmed" = "Clase confirmada ✅";
+"you_attended_n_classes" = "Has atendido %@ clases este año!";
 
-"reminder" = "Recordatorio ⏰"
-"remaining_students_in_class" = "Todavia tienes estudiantes que aceptar en la clase"
+"reminder" = "Recordatorio ⏰";
+"remaining_students_in_class" = "Todavia tienes estudiantes que aceptar en la clase";
 
-"student_in_class" = "Estudiantes en clase 🥋"
-"first_user_sign_up" = "El primer estudiante ya se apuntó a tu clase"
+"student_in_class" = "Estudiantes en clase 🥋";
+"first_user_sign_up" = "El primer estudiante ya se apuntó a tu clase";
 
-"inactive_user_found" = "Usuario inactivo encontrado 🔴"
-"student_attended_lessons_days_ago" = "El estudiante %@ atendió su ultima clase hace %@ dias"
+"inactive_user_found" = "Usuario inactivo encontrado 🔴";
+"student_attended_lessons_days_ago" = "El estudiante %@ atendió su ultima clase hace %@ dias";
