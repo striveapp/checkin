@@ -8,7 +8,7 @@ class AppConfig {
         print("DEV app");
         break;
       case 'prod':
-        print("DEV app");
+        print("PROD app");
         break;
     }
   }

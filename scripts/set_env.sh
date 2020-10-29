@@ -29,8 +29,8 @@ echo "✅   Done!\n"
 ### IOS SETUP
 echo "Configuring IOS for ${FLAVOR}..."
 
-ios_template="$(pwd)/ios/config/${FLAVOR}/GoogleService-Info.plist.${DB_ENV}.template"
-result_ios_file="$(pwd)/ios/config/${FLAVOR}/GoogleService-Info.plist"
+ios_template="$(pwd)/ios/Runner/config/${FLAVOR}/GoogleService-Info.plist.${DB_ENV}.template"
+result_ios_file="$(pwd)/ios/Runner/config/${FLAVOR}/GoogleService-Info.plist"
 
 
 if [[ -z ${IOS_FIREBASE_API_KEY+x} ]]; then
