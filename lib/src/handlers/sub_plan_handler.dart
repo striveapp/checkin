@@ -16,7 +16,7 @@ class SubPlanHandler extends Handler implements RegisterableHandler {
   static final String description = "description";
 
   @override
-  void registerRoute(Router router) {
+  void registerRoute(FluroRouter router) {
     router.define(route, handler: this);
   }
 

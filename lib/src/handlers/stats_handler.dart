@@ -13,7 +13,7 @@ class StatsHandler extends Handler implements RegisterableHandler {
   static final String userEmail = "userEmail";
 
   @override
-  void registerRoute(Router router) {
+  void registerRoute(FluroRouter router) {
     router.define(route, handler: this);
   }
 

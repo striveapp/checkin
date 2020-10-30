@@ -12,7 +12,7 @@ abstract class SimpleHandler extends Handler implements RegisterableHandler {
   }
 
   @override
-  void registerRoute(Router router) {
+  void registerRoute(FluroRouter router) {
     router.define(route, handler: this);
   }
 

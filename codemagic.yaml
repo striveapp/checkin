@@ -44,7 +44,6 @@ workflows:
       slack:
         channel: '#checkin-app'
         notify_on_build_start: true
-  ## NOTE: disable publishing to google play
   release-android:
           name: Release Android
           max_build_duration: 60

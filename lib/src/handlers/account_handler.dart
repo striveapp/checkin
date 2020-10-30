@@ -13,7 +13,7 @@ class AccountHandler extends Handler implements RegisterableHandler {
   final String errorMessage = "errorMessage";
 
   @override
-  void registerRoute(Router router) {
+  void registerRoute(FluroRouter router) {
     router.define(route, handler: this);
   }
 

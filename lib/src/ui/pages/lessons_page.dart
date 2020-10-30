@@ -40,7 +40,7 @@ class LessonsPage extends StatelessWidget {
                         WeekCalendar(
                           holidaysRepository: HolidaysRepository(),
                           onDaySelected:
-                              (DateTime selectedDay, List<dynamic> event) {
+                              (DateTime selectedDay, List<dynamic> event, List<dynamic> holidays) {
                             BlocProvider.of<LessonsBloc>(context)
                                 .add(LoadLessons(selectedDay: selectedDay));
                           },

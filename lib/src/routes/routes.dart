@@ -19,7 +19,7 @@ class Routes {
   ];
 
 
-  static void configureRoutes(Router router) {
+  static void configureRoutes(FluroRouter router) {
     routeHandlers.forEach( (handler) => handler.registerRoute(router));
   }
 }
