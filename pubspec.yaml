@@ -57,7 +57,7 @@ dependency_overrides:
 
 dev_dependencies:
   test: ">=1.6.3 <2.0.0"
-  mockito: ^4.1.1
+  mockito: 4.1.1
   bloc_test: ^4.0.0
   flutter_launcher_icons: ^0.7.5
   flutter_native_splash: ^0.1.9
