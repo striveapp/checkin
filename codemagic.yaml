@@ -147,7 +147,7 @@ workflows:
             - name: Run unit test
               script: flutter test
             - name: Install Pods
-              script: find . -name "Podfile" -execdir pod install \;
+              script: find . -name "Podfile" -execdir pod install --repo-updates \;
             - name: Initialize keychain
               script: keychain initialize
             - name: Fetch certificates
