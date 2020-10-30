@@ -9,7 +9,7 @@ class WeekCalendar extends StatefulWidget {
   @override
   _WeekCalendarState createState() => _WeekCalendarState();
   final HolidaysRepository holidaysRepository;
-  final Function(DateTime, List<dynamic>) onDaySelected;
+  final Function(DateTime, List<dynamic>, List<dynamic>) onDaySelected;
 
   const WeekCalendar({
     Key key,

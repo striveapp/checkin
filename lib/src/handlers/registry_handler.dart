@@ -13,7 +13,7 @@ class RegistryHandler extends Handler implements RegisterableHandler {
   static final String lessonId = "lessonId";
   static final String date = "date";
 
-  void registerRoute(Router router) {
+  void registerRoute(FluroRouter router) {
     router.define(route, handler: this);
   }
 
