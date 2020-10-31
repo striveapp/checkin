@@ -163,7 +163,7 @@ workflows:
                   --build-number=$(($BUILD_NUMBER + 1000)) \
                   --no-codesign
             - xcode-project use-profiles
-            - xcode-project build-ipa --workspace "ios/Runner.xcworkspace" --scheme "Runner"
+            - xcode-project build-ipa --workspace "ios/Runner.xcworkspace" --scheme "prod"
           artifacts:
             - build/ios/ipa/*.ipa
             - /tmp/xcodebuild_logs/*.log
