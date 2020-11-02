@@ -155,7 +155,7 @@ workflows:
               script: |
                 app-store-connect fetch-signing-files "com.arya.checkin" \
                   --private-key "$(echo $APP_STORE_CONNECT_PRIVATE_KEY | base64 --decode)" \
-                  --certificate-key "$(echo $CERTIFICATE_PRIVATE_KEY | base64 --decode)"
+                  --certificate-key "$(echo $CERTIFICATE_PRIVATE_KEY | base64 --decode)" \
                   --type IOS_APP_STORE \
                   --create
             - name: Add certificates to keychain
