@@ -7,7 +7,7 @@ workflows:
     max_build_duration: 20
     environment:
       vars:
-        ANDROID_FIREBASE_API_KEY: Encrypted(Z0FBQUFBQmZnWS1NY2w1NVR2c1ZMNlZRWWNRaGw4UXFzaDBnZTM2OXFqV2x2S3pENmFMZWk5VUh3a1dxUnc2cnJtLXV3SS1VTnpha3hvRkgtdlpLNml3cmUxMC14ZkhpMG9iYXZSM3NJNUEzN21yOElza2hIWG56V0pCNVNLek5FcThGdk0wODVDdG8=)
+        ANDROID_FIREBASE_API_KEY: Encrypted(Z0FBQUFBQmZuLXJzN25BOUlLVFBQaVZ1OG94V0xhSGlpOTdtSHNleEtUR09aUldWazRSOVh4NE41REVfOVAxM09ocHBtMFF6c2ZzRjZMMnBmRmdPOVBPZDBxNFpRUUhOd1BCN1I3WHRHU0N2Zk5yM0VmcDVUUTVXM3JJeFgzaGxJRVJ6TWZfVnljbzA=)
         IOS_FIREBASE_API_KEY: 'not_used'
       flutter: beta
       xcode: latest
@@ -15,6 +15,8 @@ workflows:
     cache:
       cache_paths:
         - $FCI_BUILD_DIR/build
+        - $HOME/.gradle/caches
+        - $FLUTTER_ROOT/.pub-cache
     triggering:
       events:
         - push
