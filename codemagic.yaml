@@ -152,7 +152,11 @@ workflows:
             - name: Initialize keychain
               script: keychain initialize
             - name: Fetch certificates
-              script: app-store-connect fetch-signing-files "com.arya.checkin" --type IOS_APP_STORE --create
+              script: |
+                app-store-connect fetch-signing-files "com.arya.checkin" \
+                  --private-key "$(echo $APP_STORE_CONNECT_PRIVATE_KEY | base64 --decode)" \
+                  --type IOS_APP_STORE \
+                  --create
             - name: Add certificates to keychain
               script: keychain add-certificates
             - name: Building
