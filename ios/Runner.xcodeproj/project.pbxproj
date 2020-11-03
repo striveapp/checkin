@@ -264,7 +264,7 @@
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 			shellPath = /bin/sh;
-			shellScript = "${PODS_ROOT}/Fabric/run\n";
+			shellScript = "${PODS_ROOT}/FirebaseCrashlytics/run\n";
 		};
 		2AB19A7C2531DC48008B3C98 /* Copy GoolgleServices-info.plist to right location */ = {
 			isa = PBXShellScriptBuildPhase;
