@@ -1,8 +1,8 @@
-import 'package:checkin/src/api/api.dart';
 import 'package:checkin/src/blocs/lesson/bloc.dart';
 import 'package:checkin/src/blocs/user/bloc.dart';
 import 'package:checkin/src/repositories/lesson_repository.dart';
 import 'package:checkin/src/ui/components/base_app_bar.dart';
+import 'package:checkin/src/ui/components/loading_indicator.dart';
 import 'package:checkin/src/ui/components/registry/lesson_infos.dart';
 import 'package:checkin/src/ui/components/registry/registry.dart';
 import 'package:flutter/material.dart';
@@ -37,19 +37,25 @@ class RegistryPage extends StatelessWidget {
                 date: date,
                 lessonRepository:
                     RepositoryProvider.of<LessonRepository>(context),
-                lessonApi: RepositoryProvider.of<LessonApi>(context),
               ),
             ),
           ],
           child: Container(
               child: Padding(
             padding: EdgeInsets.symmetric(horizontal: 10),
-            child: Column(
-                mainAxisAlignment: MainAxisAlignment.spaceAround,
-                children: [
-                  LessonInfos(),
-                  Registry(),
-                ]),
+            child: BlocBuilder<LessonBloc, LessonState>(
+              builder: (BuildContext context, LessonState state) {
+                return state.maybeMap(
+                    lessonLoaded: (LessonLoaded lessonLoaded) => Column(
+                        mainAxisAlignment: MainAxisAlignment.spaceAround,
+                        children: [
+                          LessonInfos(lesson: lessonLoaded.lesson,),
+                          Registry(lesson: lessonLoaded.lesson),
+                        ]),
+                    orElse: () => LoadingIndicator());
+              },
+
+            ),
           ))),
     );
   }

@@ -4,8 +4,6 @@ import 'package:cloud_functions/cloud_functions.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
 
-export 'package:checkin/src/api/lesson_api.dart';
-
 class Api {
   static Future<HttpsCallableResult> call(
           {functionName: String, dynamic parameters}) =>

@@ -1,19 +1,27 @@
-import 'package:checkin/src/blocs/lesson/bloc.dart';
+import 'package:checkin/src/api/lesson_api.dart';
 import 'package:checkin/src/blocs/lesson/registry/bloc.dart';
 import 'package:checkin/src/blocs/user/bloc.dart';
+import 'package:checkin/src/models/lesson.dart';
+import 'package:checkin/src/repositories/lesson_repository.dart';
 import 'package:checkin/src/ui/components/registry/registry_controls.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 
-import 'registry_counter.dart';
 import 'attendees_list.dart';
+import 'registry_counter.dart';
 
 class Registry extends StatelessWidget {
+  final Lesson lesson;
+
+  Registry({@required this.lesson});
+
   @override
   Widget build(BuildContext context) {
     return BlocProvider<RegistryBloc>(
       create: (BuildContext context) => RegistryBloc(
-        lessonBloc: BlocProvider.of<LessonBloc>(context),
+        lesson: lesson,
+        lessonApi: RepositoryProvider.of<LessonApi>(context),
+        lessonRepository: RepositoryProvider.of<LessonRepository>(context),
         userBloc: BlocProvider.of<UserBloc>(context),
       ),
       child: Column(

@@ -30,15 +30,21 @@ class _$RegistryStateTearOff {
 
 // ignore: unused_element
   RegistryLoaded registryLoaded(
-      {int classCapacity,
-      List<Attendee> attendees,
-      List<Attendee> acceptedAttendees,
-      User currentUser}) {
+      {@required int classCapacity,
+      @required User currentUser,
+      @required bool isAcceptedUser,
+      @required bool isRegisteredUser,
+      @required bool isFullRegistry,
+      @required List<Attendee> attendees,
+      @required List<Attendee> acceptedAttendees}) {
     return RegistryLoaded(
       classCapacity: classCapacity,
+      currentUser: currentUser,
+      isAcceptedUser: isAcceptedUser,
+      isRegisteredUser: isRegisteredUser,
+      isFullRegistry: isFullRegistry,
       attendees: attendees,
       acceptedAttendees: acceptedAttendees,
-      currentUser: currentUser,
     );
   }
 }
@@ -55,16 +61,28 @@ mixin _$RegistryState {
     @required Result registryLoading(),
     @required Result registryError(),
     @required
-        Result registryLoaded(int classCapacity, List<Attendee> attendees,
-            List<Attendee> acceptedAttendees, User currentUser),
+        Result registryLoaded(
+            int classCapacity,
+            User currentUser,
+            bool isAcceptedUser,
+            bool isRegisteredUser,
+            bool isFullRegistry,
+            List<Attendee> attendees,
+            List<Attendee> acceptedAttendees),
   });
   @optionalTypeArgs
   Result maybeWhen<Result extends Object>({
     Result registryUninitialized(),
     Result registryLoading(),
     Result registryError(),
-    Result registryLoaded(int classCapacity, List<Attendee> attendees,
-        List<Attendee> acceptedAttendees, User currentUser),
+    Result registryLoaded(
+        int classCapacity,
+        User currentUser,
+        bool isAcceptedUser,
+        bool isRegisteredUser,
+        bool isFullRegistry,
+        List<Attendee> attendees,
+        List<Attendee> acceptedAttendees),
     @required Result orElse(),
   });
   @optionalTypeArgs
@@ -153,8 +171,14 @@ class _$RegistryUninitialized
     @required Result registryLoading(),
     @required Result registryError(),
     @required
-        Result registryLoaded(int classCapacity, List<Attendee> attendees,
-            List<Attendee> acceptedAttendees, User currentUser),
+        Result registryLoaded(
+            int classCapacity,
+            User currentUser,
+            bool isAcceptedUser,
+            bool isRegisteredUser,
+            bool isFullRegistry,
+            List<Attendee> attendees,
+            List<Attendee> acceptedAttendees),
   }) {
     assert(registryUninitialized != null);
     assert(registryLoading != null);
@@ -169,8 +193,14 @@ class _$RegistryUninitialized
     Result registryUninitialized(),
     Result registryLoading(),
     Result registryError(),
-    Result registryLoaded(int classCapacity, List<Attendee> attendees,
-        List<Attendee> acceptedAttendees, User currentUser),
+    Result registryLoaded(
+        int classCapacity,
+        User currentUser,
+        bool isAcceptedUser,
+        bool isRegisteredUser,
+        bool isFullRegistry,
+        List<Attendee> attendees,
+        List<Attendee> acceptedAttendees),
     @required Result orElse(),
   }) {
     assert(orElse != null);
@@ -268,8 +298,14 @@ class _$RegistryLoading
     @required Result registryLoading(),
     @required Result registryError(),
     @required
-        Result registryLoaded(int classCapacity, List<Attendee> attendees,
-            List<Attendee> acceptedAttendees, User currentUser),
+        Result registryLoaded(
+            int classCapacity,
+            User currentUser,
+            bool isAcceptedUser,
+            bool isRegisteredUser,
+            bool isFullRegistry,
+            List<Attendee> attendees,
+            List<Attendee> acceptedAttendees),
   }) {
     assert(registryUninitialized != null);
     assert(registryLoading != null);
@@ -284,8 +320,14 @@ class _$RegistryLoading
     Result registryUninitialized(),
     Result registryLoading(),
     Result registryError(),
-    Result registryLoaded(int classCapacity, List<Attendee> attendees,
-        List<Attendee> acceptedAttendees, User currentUser),
+    Result registryLoaded(
+        int classCapacity,
+        User currentUser,
+        bool isAcceptedUser,
+        bool isRegisteredUser,
+        bool isFullRegistry,
+        List<Attendee> attendees,
+        List<Attendee> acceptedAttendees),
     @required Result orElse(),
   }) {
     assert(orElse != null);
@@ -380,8 +422,14 @@ class _$RegistryError with DiagnosticableTreeMixin implements RegistryError {
     @required Result registryLoading(),
     @required Result registryError(),
     @required
-        Result registryLoaded(int classCapacity, List<Attendee> attendees,
-            List<Attendee> acceptedAttendees, User currentUser),
+        Result registryLoaded(
+            int classCapacity,
+            User currentUser,
+            bool isAcceptedUser,
+            bool isRegisteredUser,
+            bool isFullRegistry,
+            List<Attendee> attendees,
+            List<Attendee> acceptedAttendees),
   }) {
     assert(registryUninitialized != null);
     assert(registryLoading != null);
@@ -396,8 +444,14 @@ class _$RegistryError with DiagnosticableTreeMixin implements RegistryError {
     Result registryUninitialized(),
     Result registryLoading(),
     Result registryError(),
-    Result registryLoaded(int classCapacity, List<Attendee> attendees,
-        List<Attendee> acceptedAttendees, User currentUser),
+    Result registryLoaded(
+        int classCapacity,
+        User currentUser,
+        bool isAcceptedUser,
+        bool isRegisteredUser,
+        bool isFullRegistry,
+        List<Attendee> attendees,
+        List<Attendee> acceptedAttendees),
     @required Result orElse(),
   }) {
     assert(orElse != null);
@@ -450,9 +504,12 @@ abstract class $RegistryLoadedCopyWith<$Res> {
       _$RegistryLoadedCopyWithImpl<$Res>;
   $Res call(
       {int classCapacity,
+      User currentUser,
+      bool isAcceptedUser,
+      bool isRegisteredUser,
+      bool isFullRegistry,
       List<Attendee> attendees,
-      List<Attendee> acceptedAttendees,
-      User currentUser});
+      List<Attendee> acceptedAttendees});
 }
 
 /// @nodoc
@@ -469,21 +526,33 @@ class _$RegistryLoadedCopyWithImpl<$Res>
   @override
   $Res call({
     Object classCapacity = freezed,
+    Object currentUser = freezed,
+    Object isAcceptedUser = freezed,
+    Object isRegisteredUser = freezed,
+    Object isFullRegistry = freezed,
     Object attendees = freezed,
     Object acceptedAttendees = freezed,
-    Object currentUser = freezed,
   }) {
     return _then(RegistryLoaded(
       classCapacity: classCapacity == freezed
           ? _value.classCapacity
           : classCapacity as int,
+      currentUser:
+          currentUser == freezed ? _value.currentUser : currentUser as User,
+      isAcceptedUser: isAcceptedUser == freezed
+          ? _value.isAcceptedUser
+          : isAcceptedUser as bool,
+      isRegisteredUser: isRegisteredUser == freezed
+          ? _value.isRegisteredUser
+          : isRegisteredUser as bool,
+      isFullRegistry: isFullRegistry == freezed
+          ? _value.isFullRegistry
+          : isFullRegistry as bool,
       attendees:
           attendees == freezed ? _value.attendees : attendees as List<Attendee>,
       acceptedAttendees: acceptedAttendees == freezed
           ? _value.acceptedAttendees
           : acceptedAttendees as List<Attendee>,
-      currentUser:
-          currentUser == freezed ? _value.currentUser : currentUser as User,
     ));
   }
 }
@@ -491,23 +560,39 @@ class _$RegistryLoadedCopyWithImpl<$Res>
 /// @nodoc
 class _$RegistryLoaded with DiagnosticableTreeMixin implements RegistryLoaded {
   const _$RegistryLoaded(
-      {this.classCapacity,
-      this.attendees,
-      this.acceptedAttendees,
-      this.currentUser});
+      {@required this.classCapacity,
+      @required this.currentUser,
+      @required this.isAcceptedUser,
+      @required this.isRegisteredUser,
+      @required this.isFullRegistry,
+      @required this.attendees,
+      @required this.acceptedAttendees})
+      : assert(classCapacity != null),
+        assert(currentUser != null),
+        assert(isAcceptedUser != null),
+        assert(isRegisteredUser != null),
+        assert(isFullRegistry != null),
+        assert(attendees != null),
+        assert(acceptedAttendees != null);
 
   @override
   final int classCapacity;
   @override
+  final User currentUser;
+  @override
+  final bool isAcceptedUser;
+  @override
+  final bool isRegisteredUser;
+  @override
+  final bool isFullRegistry;
+  @override
   final List<Attendee> attendees;
   @override
   final List<Attendee> acceptedAttendees;
-  @override
-  final User currentUser;
 
   @override
   String toString({DiagnosticLevel minLevel = DiagnosticLevel.info}) {
-    return 'RegistryState.registryLoaded(classCapacity: $classCapacity, attendees: $attendees, acceptedAttendees: $acceptedAttendees, currentUser: $currentUser)';
+    return 'RegistryState.registryLoaded(classCapacity: $classCapacity, currentUser: $currentUser, isAcceptedUser: $isAcceptedUser, isRegisteredUser: $isRegisteredUser, isFullRegistry: $isFullRegistry, attendees: $attendees, acceptedAttendees: $acceptedAttendees)';
   }
 
   @override
@@ -516,9 +601,12 @@ class _$RegistryLoaded with DiagnosticableTreeMixin implements RegistryLoaded {
     properties
       ..add(DiagnosticsProperty('type', 'RegistryState.registryLoaded'))
       ..add(DiagnosticsProperty('classCapacity', classCapacity))
+      ..add(DiagnosticsProperty('currentUser', currentUser))
+      ..add(DiagnosticsProperty('isAcceptedUser', isAcceptedUser))
+      ..add(DiagnosticsProperty('isRegisteredUser', isRegisteredUser))
+      ..add(DiagnosticsProperty('isFullRegistry', isFullRegistry))
       ..add(DiagnosticsProperty('attendees', attendees))
-      ..add(DiagnosticsProperty('acceptedAttendees', acceptedAttendees))
-      ..add(DiagnosticsProperty('currentUser', currentUser));
+      ..add(DiagnosticsProperty('acceptedAttendees', acceptedAttendees));
   }
 
   @override
@@ -528,24 +616,36 @@ class _$RegistryLoaded with DiagnosticableTreeMixin implements RegistryLoaded {
             (identical(other.classCapacity, classCapacity) ||
                 const DeepCollectionEquality()
                     .equals(other.classCapacity, classCapacity)) &&
+            (identical(other.currentUser, currentUser) ||
+                const DeepCollectionEquality()
+                    .equals(other.currentUser, currentUser)) &&
+            (identical(other.isAcceptedUser, isAcceptedUser) ||
+                const DeepCollectionEquality()
+                    .equals(other.isAcceptedUser, isAcceptedUser)) &&
+            (identical(other.isRegisteredUser, isRegisteredUser) ||
+                const DeepCollectionEquality()
+                    .equals(other.isRegisteredUser, isRegisteredUser)) &&
+            (identical(other.isFullRegistry, isFullRegistry) ||
+                const DeepCollectionEquality()
+                    .equals(other.isFullRegistry, isFullRegistry)) &&
             (identical(other.attendees, attendees) ||
                 const DeepCollectionEquality()
                     .equals(other.attendees, attendees)) &&
             (identical(other.acceptedAttendees, acceptedAttendees) ||
                 const DeepCollectionEquality()
-                    .equals(other.acceptedAttendees, acceptedAttendees)) &&
-            (identical(other.currentUser, currentUser) ||
-                const DeepCollectionEquality()
-                    .equals(other.currentUser, currentUser)));
+                    .equals(other.acceptedAttendees, acceptedAttendees)));
   }
 
   @override
   int get hashCode =>
       runtimeType.hashCode ^
       const DeepCollectionEquality().hash(classCapacity) ^
+      const DeepCollectionEquality().hash(currentUser) ^
+      const DeepCollectionEquality().hash(isAcceptedUser) ^
+      const DeepCollectionEquality().hash(isRegisteredUser) ^
+      const DeepCollectionEquality().hash(isFullRegistry) ^
       const DeepCollectionEquality().hash(attendees) ^
-      const DeepCollectionEquality().hash(acceptedAttendees) ^
-      const DeepCollectionEquality().hash(currentUser);
+      const DeepCollectionEquality().hash(acceptedAttendees);
 
   @override
   $RegistryLoadedCopyWith<RegistryLoaded> get copyWith =>
@@ -558,15 +658,21 @@ class _$RegistryLoaded with DiagnosticableTreeMixin implements RegistryLoaded {
     @required Result registryLoading(),
     @required Result registryError(),
     @required
-        Result registryLoaded(int classCapacity, List<Attendee> attendees,
-            List<Attendee> acceptedAttendees, User currentUser),
+        Result registryLoaded(
+            int classCapacity,
+            User currentUser,
+            bool isAcceptedUser,
+            bool isRegisteredUser,
+            bool isFullRegistry,
+            List<Attendee> attendees,
+            List<Attendee> acceptedAttendees),
   }) {
     assert(registryUninitialized != null);
     assert(registryLoading != null);
     assert(registryError != null);
     assert(registryLoaded != null);
-    return registryLoaded(
-        classCapacity, attendees, acceptedAttendees, currentUser);
+    return registryLoaded(classCapacity, currentUser, isAcceptedUser,
+        isRegisteredUser, isFullRegistry, attendees, acceptedAttendees);
   }
 
   @override
@@ -575,14 +681,20 @@ class _$RegistryLoaded with DiagnosticableTreeMixin implements RegistryLoaded {
     Result registryUninitialized(),
     Result registryLoading(),
     Result registryError(),
-    Result registryLoaded(int classCapacity, List<Attendee> attendees,
-        List<Attendee> acceptedAttendees, User currentUser),
+    Result registryLoaded(
+        int classCapacity,
+        User currentUser,
+        bool isAcceptedUser,
+        bool isRegisteredUser,
+        bool isFullRegistry,
+        List<Attendee> attendees,
+        List<Attendee> acceptedAttendees),
     @required Result orElse(),
   }) {
     assert(orElse != null);
     if (registryLoaded != null) {
-      return registryLoaded(
-          classCapacity, attendees, acceptedAttendees, currentUser);
+      return registryLoaded(classCapacity, currentUser, isAcceptedUser,
+          isRegisteredUser, isFullRegistry, attendees, acceptedAttendees);
     }
     return orElse();
   }
@@ -621,14 +733,20 @@ class _$RegistryLoaded with DiagnosticableTreeMixin implements RegistryLoaded {
 
 abstract class RegistryLoaded implements RegistryState {
   const factory RegistryLoaded(
-      {int classCapacity,
-      List<Attendee> attendees,
-      List<Attendee> acceptedAttendees,
-      User currentUser}) = _$RegistryLoaded;
+      {@required int classCapacity,
+      @required User currentUser,
+      @required bool isAcceptedUser,
+      @required bool isRegisteredUser,
+      @required bool isFullRegistry,
+      @required List<Attendee> attendees,
+      @required List<Attendee> acceptedAttendees}) = _$RegistryLoaded;
 
   int get classCapacity;
+  User get currentUser;
+  bool get isAcceptedUser;
+  bool get isRegisteredUser;
+  bool get isFullRegistry;
   List<Attendee> get attendees;
   List<Attendee> get acceptedAttendees;
-  User get currentUser;
   $RegistryLoadedCopyWith<RegistryLoaded> get copyWith;
 }

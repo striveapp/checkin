@@ -2,6 +2,7 @@ import 'package:checkin/src/blocs/lesson/registry/bloc.dart';
 import 'package:checkin/src/blocs/sessions/bloc.dart';
 import 'package:checkin/src/localization/localization.dart';
 import 'package:checkin/src/models/attendee.dart';
+import 'package:checkin/src/models/user.dart';
 import 'package:checkin/src/repositories/membership_repository.dart';
 import 'package:checkin/src/repositories/stats_repository.dart';
 import 'package:checkin/src/ui/components/registry/register_dialog.dart';
@@ -37,97 +38,109 @@ class RegistryControls extends StatelessWidget {
       if (state is RegistryLoaded) {
         var currentUser = state.currentUser;
 
-        Function(Attendee) unregisterFromClass = (Attendee registeredUser) {
-          BlocProvider.of<RegistryBloc>(context).add(Unregister(
-            attendee: registeredUser,
-          ));
-        };
-
-        VoidCallback onPressRegisterClass = () {
-          BlocProvider.of<RegistryBloc>(context).add(Register(
-            attendee: Attendee.fromUser(currentUser),
-          ));
-        };
-
-        VoidCallback showRegisterDialogOnPressRegisterClass = () {
-          showDialog(
-            context: context,
-            builder: (_) =>
-                RegisterDialog(currentUser: state.currentUser).build(context),
-          );
-        };
-
         VoidCallback onPressAcceptAll = () {
-          BlocProvider.of<RegistryBloc>(context).add(AcceptAttendees());
+          BlocProvider.of<RegistryBloc>(context).add(AcceptAttendees(gymId: currentUser.selectedGymId));
         };
 
         if (currentUser.isOwner) {
-          return RegistryButton(
-            key: Key('acceptAll'),
-            onPressed:
-                state.attendees.length > 0 ? onPressAcceptAll : disabledButton,
-            text: RegistryControls.acceptAll.i18n,
-          );
-        }
-
-        if (state.isAcceptedUser(currentUser.email)) {
-          return RegistryButton(
-            key: Key('acceptedInClass'),
-            text: RegistryControls.registerClass.i18n,
-            onPressed: disabledButton,
-          );
-        }
-
-        Attendee registeredUser = state.getRegisteredUser(currentUser.email);
-        if (registeredUser != null) {
-          return RegistryButton(
-            key: Key('unregisterClass'),
-            text: RegistryControls.unregisterClass.i18n,
-            color: Theme.of(context).buttonTheme.colorScheme.error,
-            onPressed: () => unregisterFromClass(registeredUser),
-          );
-        }
-
-        if (state.isFullRegistry()) {
-          return RegistryButton(
-            key: Key('registryFull'),
-            text: RegistryControls.registryFull.i18n,
-            onPressed: disabledButton,
-          );
-        }
-
-        return MultiBlocProvider(
-          providers: [
-            BlocProvider<SessionsBloc>(
-              create: (BuildContext context) => SessionsBloc(
-                statsRepository:
-                    RepositoryProvider.of<StatsRepository>(context),
-                userEmail: state.currentUser.email,
-                selectedGymId: state.currentUser.selectedGymId,
-                membershipRepository:
-                    RepositoryProvider.of<MembershipRepository>(context),
+          return Column(
+            children: [
+              RegistryButton(
+                key: Key('acceptAll'),
+                onPressed:
+                    state.attendees.length > 0 ? onPressAcceptAll : disabledButton,
+                text: RegistryControls.acceptAll.i18n,
               ),
-            )
-          ],
-          child: BlocBuilder<SessionsBloc, SessionsState>(
-              builder: (BuildContext context, SessionsState state) {
-            return state.maybeWhen(
-                initialSessionsState: () => LoadingIndicator(),
-                sessionsWarning: (_totalLessonsOfPlan, _attendedLessons) =>
-                    RegistryButton(
-                      key: Key('registerClass'),
-                      text: RegistryControls.registerClass.i18n,
-                      onPressed: () => showRegisterDialogOnPressRegisterClass(),
-                    ),
-                orElse: () => RegistryButton(
-                      key: Key('registerClass'),
-                      text: RegistryControls.registerClass.i18n,
-                      onPressed: onPressRegisterClass,
-                    ));
-          }),
-        );
+              Container(height: 20,),
+              studentButton(currentUser, context),
+            ],
+          );
+        }
+
+        return studentButton(currentUser, context);
       }
       return ErrorWidget('unknown state [$state] in registry_controls');
     });
+  }
+
+  StatelessWidget studentButton(User currentUser, BuildContext context) {
+    Function(Attendee) unregisterFromClass = (Attendee registeredUser) {
+      BlocProvider.of<RegistryBloc>(context).add(Unregister(
+        gymId: currentUser.selectedGymId,
+        attendee: registeredUser,
+      ));
+    };
+
+    VoidCallback onPressRegisterClass = () {
+      BlocProvider.of<RegistryBloc>(context).add(Register(
+        gymId: currentUser.selectedGymId,
+        attendee: Attendee.fromUser(currentUser),
+      ));
+    };
+
+    VoidCallback showRegisterDialogOnPressRegisterClass = () {
+      showDialog(
+        context: context,
+        builder: (_) =>
+            RegisterDialog(currentUser: currentUser).build(context),
+      );
+    };
+
+    if (state.isAcceptedUser(currentUser.email)) {
+      return RegistryButton(
+        key: Key('acceptedInClass'),
+        text: RegistryControls.registerClass.i18n,
+        onPressed: disabledButton,
+      );
+    }
+
+    Attendee registeredUser = state.getRegisteredUser(currentUser.email);
+    if (registeredUser != null) {
+      return RegistryButton(
+        key: Key('unregisterClass'),
+        text: RegistryControls.unregisterClass.i18n,
+        color: Theme.of(context).buttonTheme.colorScheme.error,
+        onPressed: () => unregisterFromClass(registeredUser),
+      );
+    }
+
+    if (state.isFullRegistry()) {
+      return RegistryButton(
+        key: Key('registryFull'),
+        text: RegistryControls.registryFull.i18n,
+        onPressed: disabledButton,
+      );
+    }
+
+    return MultiBlocProvider(
+      providers: [
+        BlocProvider<SessionsBloc>(
+          create: (BuildContext context) => SessionsBloc(
+            statsRepository:
+                RepositoryProvider.of<StatsRepository>(context),
+            userEmail: currentUser.email,
+            selectedGymId: currentUser.selectedGymId,
+            membershipRepository:
+                RepositoryProvider.of<MembershipRepository>(context),
+          ),
+        )
+      ],
+      child: BlocBuilder<SessionsBloc, SessionsState>(
+          builder: (BuildContext context, SessionsState state) {
+        return state.maybeWhen(
+            initialSessionsState: () => LoadingIndicator(),
+            sessionsWarning: (_totalLessonsOfPlan, _attendedLessons) =>
+                RegistryButton(
+                  key: Key('registerClass'),
+                  text: RegistryControls.registerClass.i18n,
+                  onPressed: () => showRegisterDialogOnPressRegisterClass(),
+                ),
+            orElse: () => RegistryButton(
+                  key: Key('registerClass'),
+                  text: RegistryControls.registerClass.i18n,
+                  onPressed: onPressRegisterClass,
+                ));
+      }),
+    );
   }
 }

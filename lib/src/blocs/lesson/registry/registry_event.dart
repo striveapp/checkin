@@ -7,8 +7,22 @@ part 'registry_event.freezed.dart';
 
 @freezed
 abstract class RegistryEvent with _$RegistryEvent {
-  const factory RegistryEvent.registryUpdated({int classCapacity, List<Attendee> attendees, List<Attendee> acceptedAttendees, User currentUser}) = RegistryUpdated;
-  const factory RegistryEvent.register({Attendee attendee}) = Register;
-  const factory RegistryEvent.unregister({Attendee attendee}) = Unregister;
-  const factory RegistryEvent.acceptAttendees() = AcceptAttendees;
+  const factory RegistryEvent.registryUpdated({
+    @required int classCapacity,
+    @required User currentUser,
+    List<Attendee> attendees,
+    List<Attendee> acceptedAttendees,
+  }) = RegistryUpdated;
+
+  const factory RegistryEvent.register({
+    @required String gymId,
+    @required Attendee attendee,
+  }) = Register;
+
+  const factory RegistryEvent.unregister({
+    @required String gymId,
+    @required Attendee attendee,
+  }) = Unregister;
+
+  const factory RegistryEvent.acceptAttendees({@required String gymId}) = AcceptAttendees;
 }

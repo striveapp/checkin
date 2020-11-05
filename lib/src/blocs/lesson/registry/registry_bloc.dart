@@ -1,41 +1,39 @@
 import 'dart:async';
 
 import 'package:bloc/bloc.dart';
-import 'package:checkin/src/blocs/lesson/bloc.dart';
+import 'package:checkin/src/api/lesson_api.dart';
 import 'package:checkin/src/blocs/user/bloc.dart';
 import 'package:checkin/src/models/lesson.dart';
+import 'package:checkin/src/repositories/lesson_repository.dart';
 import 'package:flutter/foundation.dart';
 import 'package:meta/meta.dart';
-import 'package:rxdart/rxdart.dart';
 
 import 'bloc.dart';
 
 class RegistryBloc extends Bloc<RegistryEvent, RegistryState> {
-  final LessonBloc lessonBloc;
   final UserBloc userBloc;
+  final LessonApi lessonApi;
+  final LessonRepository lessonRepository;
+  final Lesson lesson;
+
+  StreamSubscription userSub;
+
 
   RegistryBloc({
-    @required this.lessonBloc,
     @required this.userBloc,
+    @required this.lessonApi,
+    @required this.lessonRepository,
+    @required this.lesson
   }) {
-    var userStream = userBloc
-        .where((state) => state is UserSuccess)
-        .map((event) => event as UserSuccess);
-
-    var lessonStream = lessonBloc
-        .where((state) => state is LessonLoaded)
-        .map((event) => event as LessonLoaded);
-
-    Rx.combineLatest2(userStream, lessonStream,
-        (UserSuccess userState, LessonLoaded lessonState) {
-      Lesson lesson = lessonState.lesson;
-      return RegistryUpdated(
-          classCapacity: lesson.classCapacity,
-          acceptedAttendees: lesson.acceptedAttendees,
-          attendees: lesson.attendees,
-          currentUser: userState.currentUser);
-    }).listen((event) {
-      add(event);
+    userSub?.cancel();
+    userSub = userBloc.listen((userState) {
+      if(userState is UserSuccess) {
+        add(RegistryUpdated(
+            classCapacity: lesson.classCapacity,
+            acceptedAttendees: lesson.acceptedAttendees,
+            attendees: lesson.attendees,
+            currentUser: userState.currentUser));
+      }
     });
   }
 
@@ -50,25 +48,68 @@ class RegistryBloc extends Bloc<RegistryEvent, RegistryState> {
         currentUser: event.currentUser,
         attendees: event.attendees,
         acceptedAttendees: event.acceptedAttendees,
+        isAcceptedUser: isAcceptedUser(event),
+        isRegisteredUser: isRegisteredUser(event),
+        isFullRegistry: isFullRegistry(event)
       );
     }
 
     if (event is AcceptAttendees) {
       yield RegistryLoading();
-      lessonBloc.add(LessonAcceptAll());
+      try {
+        //TODO: refactor registry_bloc when calling acceptAll [https://trello.com/c/o7PBLnEQ]
+        await this.lessonApi.acceptAll(event.gymId, lesson);
+      } catch (e) {
+        yield RegistryError();
+      }
     }
 
     if (event is Register) {
-      lessonBloc.add(LessonRegister(attendee: event.attendee));
+      try {
+        await this
+            .lessonRepository
+            .register(event.gymId, lesson.date, lesson.id, event.attendee);
+      } catch (e) {
+        yield RegistryError();
+      }
     }
 
     if (event is Unregister) {
-      lessonBloc.add(LessonUnregister(attendee: event.attendee));
+      try {
+        await this
+            .lessonRepository
+            .unregister(event.gymId, lesson.date, lesson.id, event.attendee);
+      } catch (e) {
+        yield RegistryError();
+      }
     }
+  }
+
+  bool isAcceptedUser(RegistryUpdated event) {
+    return event.acceptedAttendees.any((attendee) => attendee.email == event.currentUser.email);
+  }
+
+//  Attendee getRegisteredUser(String email) {
+//    // TODO: we should use some kind of id to perform this check not the email https://trello.com/c/j5sAVRXJ
+//    Iterable<Attendee> attendeeFromEmail = attendees.where((attendee) => attendee.email == email);
+//    if(attendeeFromEmail.isEmpty) {
+//      return null;
+//    }
+//    return attendeeFromEmail.first;
+//  }
+
+  bool isRegisteredUser(RegistryUpdated event) {
+    // TODO: we should use some kind of id to perform this check not the email https://trello.com/c/j5sAVRXJ
+    return event.attendees.any((attendee) => attendee.email == event.currentUser.email);
+  }
+
+  bool isFullRegistry(RegistryUpdated event) {
+    return event.attendees.length + event.acceptedAttendees.length >= event.classCapacity;
   }
 
   @override
   Future<void> close() {
+    userSub?.cancel();
     return super.close();
   }
 }

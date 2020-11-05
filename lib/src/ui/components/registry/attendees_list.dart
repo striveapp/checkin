@@ -98,6 +98,7 @@ class Attendees extends StatelessWidget {
                   onDismissed: (direction) {
                     BlocProvider.of<RegistryBloc>(context)
                       ..add(Unregister(
+                        gymId: currentUser.selectedGymId,
                         attendee: attendee,
                       ));
                   },

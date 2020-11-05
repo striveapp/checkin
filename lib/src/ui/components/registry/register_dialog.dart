@@ -1,9 +1,9 @@
 import 'package:checkin/src/blocs/lesson/registry/bloc.dart';
+import 'package:checkin/src/localization/localization.dart';
 import 'package:checkin/src/models/attendee.dart';
 import 'package:checkin/src/models/user.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
-import 'package:checkin/src/localization/localization.dart';
 
 class RegisterDialog extends StatelessWidget {
   final User currentUser;
@@ -44,6 +44,7 @@ class RegisterDialog extends StatelessWidget {
           ),
           onPressed: () {
             BlocProvider.of<RegistryBloc>(context).add(Register(
+              gymId: currentUser.selectedGymId,
               attendee: Attendee.fromUser(currentUser),
             ));
             Navigator.of(context)

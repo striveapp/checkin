@@ -45,15 +45,10 @@ dependencies:
   package_info: ^0.4.0+14
   open_appstore: ^1.0.2
   pub_semver: ^1.4.4
-  rxdart: ^0.23.1
-  freezed: ^0.12.1
   image_cropper: ^1.2.3
   image_picker: ^0.6.7+1
   crypto: ^2.1.5
   http: ^0.12.1
-
-dependency_overrides:
-  analyzer: '0.39.16'
 
 dev_dependencies:
   test: ">=1.6.3 <2.0.0"
@@ -61,12 +56,13 @@ dev_dependencies:
   bloc_test: ^4.0.0
   flutter_launcher_icons: ^0.7.5
   flutter_native_splash: ^0.1.9
+  freezed: ^0.12.2
   stack_trace: ^1.9.3
   flutter_test:
     sdk: flutter
   flutter_driver:
     sdk: flutter
-  build_runner: ^1.10.1
+  build_runner: ^1.10.4
   json_serializable: ^3.3.0
 
 flutter_icons:
