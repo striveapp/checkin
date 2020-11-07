@@ -1,9 +1,6 @@
 library app_constants;
 
-import 'package:flutter/material.dart';
-
-const VoidCallback DISABLED_BUTTON = null;
-
+const DISABLED_BUTTON = null;
 
 const WEEK = "week";
 const MONTH = "month";
