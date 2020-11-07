@@ -17,17 +17,16 @@ class RegisterDialog extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return AlertDialog(
-      content: SizedBox(
-        height: 80,
-        child: Text(
-            userFinishedAvailableSessions.i18n,
-            textAlign:
-            TextAlign.center,
-            style:
-            Theme.of(context)
-                .textTheme
-                .headline4),
-      ),
+      contentPadding: EdgeInsets.symmetric(horizontal: 15, vertical: 25),
+      content: Text(
+          userFinishedAvailableSessions.i18n,
+          textAlign:
+          TextAlign.center,
+          style:
+          Theme.of(context)
+              .textTheme
+              .headline3),
+      actionsPadding: EdgeInsets.symmetric(horizontal: 10),
       actions: <Widget>[
         RaisedButton(
           child: Padding(

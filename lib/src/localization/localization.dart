@@ -10,6 +10,7 @@ import 'package:checkin/src/ui/components/plans/plans_callout.dart';
 import 'package:checkin/src/ui/components/plans/plans_footer.dart';
 import 'package:checkin/src/ui/components/plans/plans_list.dart';
 import 'package:checkin/src/ui/components/plans/price/price_footer.dart';
+import 'package:checkin/src/ui/components/registry/accept_all_dialog.dart';
 import 'package:checkin/src/ui/components/registry/attendee_tile.dart';
 import 'package:checkin/src/ui/components/registry/register_dialog.dart';
 import 'package:checkin/src/ui/components/registry/registry_counter.dart';
@@ -197,6 +198,16 @@ extension Localization on String {
   } + {
     'en': RegisterDialog.userFinishedAvailableSessions,
     'es': 'Ya has usado todas las sesiones disponibles',
+  } + {
+    'en': AcceptAllDialog.cancel,
+    'es': 'Cancelar',
+  } + {
+    'en': AcceptAllDialog.confirm,
+    'es': 'Confirmar',
+  } + {
+    'en': AcceptAllDialog.acceptingAllTheStudentsDisclaimer,
+    'You are going to confirm all the students in class'
+    'es': 'Estás a punto de aceptar todos los estudiantes',
   } + {
     'en': GoogleSignInButton.googleSignIn,
     'es': 'Acceso con Google',
