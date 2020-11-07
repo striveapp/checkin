@@ -15,12 +15,11 @@ class AttendeesList extends StatelessWidget {
     return Card(
       margin: EdgeInsets.zero,
       child: Container(
-        constraints: BoxConstraints(
-            maxHeight: MediaQuery.of(context).size.height * 0.53),
+        constraints: BoxConstraints(maxHeight: MediaQuery.of(context).size.height * 0.53),
         child: BlocBuilder<RegistryBloc, RegistryState>(
             builder: (BuildContext context, RegistryState state) {
           if (state is RegistryUninitialized ||
-              (state is RegistryLoaded && _isRegistryEmpty(state))) {
+              (state is RegistryLoaded && state.isEmptyRegistry)) {
             return EmptyRegistry();
           }
 
@@ -39,8 +38,7 @@ class AttendeesList extends StatelessWidget {
               children: <Widget>[
                 if (_isUserInClass(state))
                   CurrentUserTile(
-                      acceptedAttendees: currentLesson.acceptedAttendees,
-                      currentUser: currentUser),
+                      acceptedAttendees: currentLesson.acceptedAttendees, currentUser: currentUser),
                 Expanded(
                   child: SingleChildScrollView(
                     child: Column(
@@ -48,9 +46,7 @@ class AttendeesList extends StatelessWidget {
                         AcceptedAttendees(
                             acceptedAttendees: currentLesson.acceptedAttendees,
                             currentUser: currentUser),
-                        Attendees(
-                            attendees: currentLesson.attendees,
-                            currentUser: currentUser),
+                        Attendees(attendees: currentLesson.attendees, currentUser: currentUser),
                       ],
                     ),
                   ),
@@ -59,8 +55,7 @@ class AttendeesList extends StatelessWidget {
             );
           }
 
-          return ErrorWidget(
-              'Unknown State [$state] received in: attendees_list');
+          return ErrorWidget('Unknown State [$state] received in: attendees_list');
         }),
       ),
     );
@@ -69,9 +64,6 @@ class AttendeesList extends StatelessWidget {
   bool _isUserInClass(RegistryLoaded state) {
     return state.isRegisteredUser || state.isAcceptedUser;
   }
-
-  bool _isRegistryEmpty(RegistryLoaded state) =>
-      [...state.currentLesson.attendees, ...state.currentLesson.acceptedAttendees].length == 0;
 }
 
 class Attendees extends StatelessWidget {

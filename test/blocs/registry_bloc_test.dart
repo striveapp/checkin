@@ -105,6 +105,7 @@ void main() {
             isAcceptedUser: true,
             isRegisteredUser: false,
             isFullRegistry: false,
+            isEmptyRegistry: false,
             isMasterOfTheClass: false,
           ),
         ];
@@ -149,6 +150,7 @@ void main() {
             isAcceptedUser: false,
             isRegisteredUser: true,
             isFullRegistry: false,
+            isEmptyRegistry: false,
             isMasterOfTheClass: false,
           ),
         ];
@@ -185,6 +187,7 @@ void main() {
             isAcceptedUser: false,
             isRegisteredUser: false,
             isFullRegistry: false,
+            isEmptyRegistry: true,
             isMasterOfTheClass: false,
           ),
         ];
@@ -195,7 +198,7 @@ void main() {
         );
       });
 
-      test("when lesson is full should emit RegistryLoaded with isFull = true", () async {
+      test("when lesson is full should emit RegistryLoaded with isFullRegistry = true", () async {
         Lesson fakeLessonFull = baseLesson
             .copyWith(attendees: [], acceptedAttendees: [testAttendee1], classCapacity: 1);
 
@@ -221,6 +224,44 @@ void main() {
             isAcceptedUser: false,
             isRegisteredUser: false,
             isFullRegistry: true,
+            isEmptyRegistry: false,
+            isMasterOfTheClass: false,
+          ),
+        ];
+
+        await expectLater(
+          registryBloc,
+          emitsInOrder(expectedState),
+        );
+      });
+
+      test("when lesson is empty should emit RegistryLoaded with isEmptyRegistry = true", () async {
+        Lesson fakeLessonFull = baseLesson
+            .copyWith(attendees: [], acceptedAttendees: [],);
+
+        whenListen(mockUserBloc, Stream.value(UserSuccess(currentUser: fakeUser)));
+        when(mockLessonRepository.getLesson(
+          fakeUser.selectedGymId,
+          fakeLessonFull.date,
+          fakeLessonFull.id,
+        )).thenAnswer((realInvocation) => Stream.value(fakeLessonFull));
+
+        registryBloc = RegistryBloc(
+            lessonId: fakeLessonFull.id,
+            lessonDate: fakeLessonFull.date,
+            lessonRepository: mockLessonRepository,
+            lessonApi: mockLessonApi,
+            userBloc: mockUserBloc);
+
+        final expectedState = [
+          RegistryUninitialized(),
+          RegistryLoaded(
+            currentUser: fakeUser,
+            currentLesson: fakeLessonFull,
+            isAcceptedUser: false,
+            isRegisteredUser: false,
+            isFullRegistry: false,
+            isEmptyRegistry: true,
             isMasterOfTheClass: false,
           ),
         ];
@@ -264,6 +305,7 @@ void main() {
               isAcceptedUser: false,
               isRegisteredUser: false,
               isFullRegistry: false,
+              isEmptyRegistry: true,
               isMasterOfTheClass: false,
           ),
         ];
@@ -316,6 +358,7 @@ void main() {
               currentUser: registeredUser,
               currentLesson: lessonWithRegisteredUser,
               isFullRegistry: false,
+              isEmptyRegistry: false,
               isMasterOfTheClass: false,
               isAcceptedUser: false,
               isRegisteredUser: true),
@@ -371,6 +414,7 @@ void main() {
           isAcceptedUser: false,
           isRegisteredUser: false,
           isFullRegistry: false,
+          isEmptyRegistry: false,
           isMasterOfTheClass: true,
         );
         final expectedSetupState = [RegistryUninitialized(), expectedRegistryLoaded];

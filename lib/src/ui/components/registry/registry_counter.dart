@@ -13,17 +13,18 @@ class RegistryCounter extends StatelessWidget {
   Widget build(BuildContext context) {
     return BlocBuilder<RegistryBloc, RegistryState>(
       builder: (BuildContext context, RegistryState state) {
-        if (state is RegistryUninitialized || state is RegistryLoading) {
-          return _getCounterWidget(0, 1, context);
-        }
+        return state.maybeMap(
+          registryLoaded: (RegistryLoaded registryLoaded) {
+            Lesson currentLesson = registryLoaded.currentLesson;
+            List<Attendee> allAttendees = [
+              ...currentLesson.attendees,
+              ...currentLesson.acceptedAttendees
+            ];
 
-        if (state is RegistryLoaded) {
-          Lesson currentLesson = state.currentLesson;
-          List<Attendee> allAttendees = [...currentLesson.attendees, ...currentLesson.acceptedAttendees];
-
-          return _getCounterWidget(allAttendees.length, currentLesson.classCapacity, context);
-        }
-        return ErrorWidget('Unknown State [$state] received in: registry_page');
+            return _getCounterWidget(allAttendees.length, currentLesson.classCapacity, context);
+          },
+          orElse: () => _getCounterWidget(0, 1, context),
+        );
       },
     );
   }
@@ -38,8 +39,7 @@ class RegistryCounter extends StatelessWidget {
           style: Theme.of(context).textTheme.headline2,
         ),
         Text("${_getFullPercentage(counter, classCapacity)} ${full.i18n}",
-            style:
-            Theme.of(context).textTheme.headline5.apply(fontWeightDelta: 3))
+            style: Theme.of(context).textTheme.headline5.apply(fontWeightDelta: 3))
       ],
     );
   }

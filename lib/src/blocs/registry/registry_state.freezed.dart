@@ -35,6 +35,7 @@ class _$RegistryStateTearOff {
       @required bool isAcceptedUser,
       @required bool isRegisteredUser,
       @required bool isFullRegistry,
+      @required bool isEmptyRegistry,
       @required bool isMasterOfTheClass}) {
     return RegistryLoaded(
       currentUser: currentUser,
@@ -42,6 +43,7 @@ class _$RegistryStateTearOff {
       isAcceptedUser: isAcceptedUser,
       isRegisteredUser: isRegisteredUser,
       isFullRegistry: isFullRegistry,
+      isEmptyRegistry: isEmptyRegistry,
       isMasterOfTheClass: isMasterOfTheClass,
     );
   }
@@ -65,6 +67,7 @@ mixin _$RegistryState {
             bool isAcceptedUser,
             bool isRegisteredUser,
             bool isFullRegistry,
+            bool isEmptyRegistry,
             bool isMasterOfTheClass),
   });
   @optionalTypeArgs
@@ -78,6 +81,7 @@ mixin _$RegistryState {
         bool isAcceptedUser,
         bool isRegisteredUser,
         bool isFullRegistry,
+        bool isEmptyRegistry,
         bool isMasterOfTheClass),
     @required Result orElse(),
   });
@@ -173,6 +177,7 @@ class _$RegistryUninitialized
             bool isAcceptedUser,
             bool isRegisteredUser,
             bool isFullRegistry,
+            bool isEmptyRegistry,
             bool isMasterOfTheClass),
   }) {
     assert(registryUninitialized != null);
@@ -194,6 +199,7 @@ class _$RegistryUninitialized
         bool isAcceptedUser,
         bool isRegisteredUser,
         bool isFullRegistry,
+        bool isEmptyRegistry,
         bool isMasterOfTheClass),
     @required Result orElse(),
   }) {
@@ -298,6 +304,7 @@ class _$RegistryLoading
             bool isAcceptedUser,
             bool isRegisteredUser,
             bool isFullRegistry,
+            bool isEmptyRegistry,
             bool isMasterOfTheClass),
   }) {
     assert(registryUninitialized != null);
@@ -319,6 +326,7 @@ class _$RegistryLoading
         bool isAcceptedUser,
         bool isRegisteredUser,
         bool isFullRegistry,
+        bool isEmptyRegistry,
         bool isMasterOfTheClass),
     @required Result orElse(),
   }) {
@@ -420,6 +428,7 @@ class _$RegistryError with DiagnosticableTreeMixin implements RegistryError {
             bool isAcceptedUser,
             bool isRegisteredUser,
             bool isFullRegistry,
+            bool isEmptyRegistry,
             bool isMasterOfTheClass),
   }) {
     assert(registryUninitialized != null);
@@ -441,6 +450,7 @@ class _$RegistryError with DiagnosticableTreeMixin implements RegistryError {
         bool isAcceptedUser,
         bool isRegisteredUser,
         bool isFullRegistry,
+        bool isEmptyRegistry,
         bool isMasterOfTheClass),
     @required Result orElse(),
   }) {
@@ -498,6 +508,7 @@ abstract class $RegistryLoadedCopyWith<$Res> {
       bool isAcceptedUser,
       bool isRegisteredUser,
       bool isFullRegistry,
+      bool isEmptyRegistry,
       bool isMasterOfTheClass});
 
   $LessonCopyWith<$Res> get currentLesson;
@@ -521,6 +532,7 @@ class _$RegistryLoadedCopyWithImpl<$Res>
     Object isAcceptedUser = freezed,
     Object isRegisteredUser = freezed,
     Object isFullRegistry = freezed,
+    Object isEmptyRegistry = freezed,
     Object isMasterOfTheClass = freezed,
   }) {
     return _then(RegistryLoaded(
@@ -538,6 +550,9 @@ class _$RegistryLoadedCopyWithImpl<$Res>
       isFullRegistry: isFullRegistry == freezed
           ? _value.isFullRegistry
           : isFullRegistry as bool,
+      isEmptyRegistry: isEmptyRegistry == freezed
+          ? _value.isEmptyRegistry
+          : isEmptyRegistry as bool,
       isMasterOfTheClass: isMasterOfTheClass == freezed
           ? _value.isMasterOfTheClass
           : isMasterOfTheClass as bool,
@@ -563,12 +578,14 @@ class _$RegistryLoaded with DiagnosticableTreeMixin implements RegistryLoaded {
       @required this.isAcceptedUser,
       @required this.isRegisteredUser,
       @required this.isFullRegistry,
+      @required this.isEmptyRegistry,
       @required this.isMasterOfTheClass})
       : assert(currentUser != null),
         assert(currentLesson != null),
         assert(isAcceptedUser != null),
         assert(isRegisteredUser != null),
         assert(isFullRegistry != null),
+        assert(isEmptyRegistry != null),
         assert(isMasterOfTheClass != null);
 
   @override
@@ -582,11 +599,13 @@ class _$RegistryLoaded with DiagnosticableTreeMixin implements RegistryLoaded {
   @override
   final bool isFullRegistry;
   @override
+  final bool isEmptyRegistry;
+  @override
   final bool isMasterOfTheClass;
 
   @override
   String toString({DiagnosticLevel minLevel = DiagnosticLevel.info}) {
-    return 'RegistryState.registryLoaded(currentUser: $currentUser, currentLesson: $currentLesson, isAcceptedUser: $isAcceptedUser, isRegisteredUser: $isRegisteredUser, isFullRegistry: $isFullRegistry, isMasterOfTheClass: $isMasterOfTheClass)';
+    return 'RegistryState.registryLoaded(currentUser: $currentUser, currentLesson: $currentLesson, isAcceptedUser: $isAcceptedUser, isRegisteredUser: $isRegisteredUser, isFullRegistry: $isFullRegistry, isEmptyRegistry: $isEmptyRegistry, isMasterOfTheClass: $isMasterOfTheClass)';
   }
 
   @override
@@ -599,6 +618,7 @@ class _$RegistryLoaded with DiagnosticableTreeMixin implements RegistryLoaded {
       ..add(DiagnosticsProperty('isAcceptedUser', isAcceptedUser))
       ..add(DiagnosticsProperty('isRegisteredUser', isRegisteredUser))
       ..add(DiagnosticsProperty('isFullRegistry', isFullRegistry))
+      ..add(DiagnosticsProperty('isEmptyRegistry', isEmptyRegistry))
       ..add(DiagnosticsProperty('isMasterOfTheClass', isMasterOfTheClass));
   }
 
@@ -621,6 +641,9 @@ class _$RegistryLoaded with DiagnosticableTreeMixin implements RegistryLoaded {
             (identical(other.isFullRegistry, isFullRegistry) ||
                 const DeepCollectionEquality()
                     .equals(other.isFullRegistry, isFullRegistry)) &&
+            (identical(other.isEmptyRegistry, isEmptyRegistry) ||
+                const DeepCollectionEquality()
+                    .equals(other.isEmptyRegistry, isEmptyRegistry)) &&
             (identical(other.isMasterOfTheClass, isMasterOfTheClass) ||
                 const DeepCollectionEquality()
                     .equals(other.isMasterOfTheClass, isMasterOfTheClass)));
@@ -634,6 +657,7 @@ class _$RegistryLoaded with DiagnosticableTreeMixin implements RegistryLoaded {
       const DeepCollectionEquality().hash(isAcceptedUser) ^
       const DeepCollectionEquality().hash(isRegisteredUser) ^
       const DeepCollectionEquality().hash(isFullRegistry) ^
+      const DeepCollectionEquality().hash(isEmptyRegistry) ^
       const DeepCollectionEquality().hash(isMasterOfTheClass);
 
   @override
@@ -653,6 +677,7 @@ class _$RegistryLoaded with DiagnosticableTreeMixin implements RegistryLoaded {
             bool isAcceptedUser,
             bool isRegisteredUser,
             bool isFullRegistry,
+            bool isEmptyRegistry,
             bool isMasterOfTheClass),
   }) {
     assert(registryUninitialized != null);
@@ -660,7 +685,7 @@ class _$RegistryLoaded with DiagnosticableTreeMixin implements RegistryLoaded {
     assert(registryError != null);
     assert(registryLoaded != null);
     return registryLoaded(currentUser, currentLesson, isAcceptedUser,
-        isRegisteredUser, isFullRegistry, isMasterOfTheClass);
+        isRegisteredUser, isFullRegistry, isEmptyRegistry, isMasterOfTheClass);
   }
 
   @override
@@ -675,13 +700,20 @@ class _$RegistryLoaded with DiagnosticableTreeMixin implements RegistryLoaded {
         bool isAcceptedUser,
         bool isRegisteredUser,
         bool isFullRegistry,
+        bool isEmptyRegistry,
         bool isMasterOfTheClass),
     @required Result orElse(),
   }) {
     assert(orElse != null);
     if (registryLoaded != null) {
-      return registryLoaded(currentUser, currentLesson, isAcceptedUser,
-          isRegisteredUser, isFullRegistry, isMasterOfTheClass);
+      return registryLoaded(
+          currentUser,
+          currentLesson,
+          isAcceptedUser,
+          isRegisteredUser,
+          isFullRegistry,
+          isEmptyRegistry,
+          isMasterOfTheClass);
     }
     return orElse();
   }
@@ -725,6 +757,7 @@ abstract class RegistryLoaded implements RegistryState {
       @required bool isAcceptedUser,
       @required bool isRegisteredUser,
       @required bool isFullRegistry,
+      @required bool isEmptyRegistry,
       @required bool isMasterOfTheClass}) = _$RegistryLoaded;
 
   User get currentUser;
@@ -732,6 +765,7 @@ abstract class RegistryLoaded implements RegistryState {
   bool get isAcceptedUser;
   bool get isRegisteredUser;
   bool get isFullRegistry;
+  bool get isEmptyRegistry;
   bool get isMasterOfTheClass;
   $RegistryLoadedCopyWith<RegistryLoaded> get copyWith;
 }
