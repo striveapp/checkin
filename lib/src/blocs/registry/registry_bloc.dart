@@ -53,7 +53,8 @@ class RegistryBloc extends Bloc<RegistryEvent, RegistryState> {
         currentLesson: event.currentLesson,
         isAcceptedUser: isAcceptedUser(event),
         isRegisteredUser: isRegisteredUser(event),
-        isFullRegistry: isFullRegistry(event)
+        isFullRegistry: isFullRegistry(event),
+        isMasterOfTheClass: isMasterOfTheClass(event),
       );
     }
 
@@ -103,9 +104,17 @@ class RegistryBloc extends Bloc<RegistryEvent, RegistryState> {
     return currentLesson.attendees.length + currentLesson.acceptedAttendees.length >= currentLesson.classCapacity;
   }
 
+  bool isMasterOfTheClass(RegistryUpdated event) {
+    return event.currentLesson.masters
+        .where((lessonMaster) => lessonMaster.email == event.currentUser.email)
+        .isNotEmpty;
+  }
+
   @override
   Future<void> close() {
     userSub?.cancel();
+    lessonSub?.cancel();
     return super.close();
   }
+
 }

@@ -94,9 +94,16 @@ class LoginBloc extends Bloc<LoginEvent, LoginState> {
       yield LoginSuccess(loggedUser: testUser2);
     }
 
-    if (event is LoginWithTestUserOwner) {
+    if (event is LoginWithTestUserAdmin) {
       yield LoginLoading();
       final testOwner = await _authRepository.loginWithTestUser(owner: true);
+      debugPrint('Logged with test user [$testOwner]');
+      yield LoginSuccess(loggedUser: testOwner);
+    }
+
+    if (event is LoginWithTestUserMaster) {
+      yield LoginLoading();
+      final testOwner = await _authRepository.loginWithTestUser(master: true);
       debugPrint('Logged with test user [$testOwner]');
       yield LoginSuccess(loggedUser: testOwner);
     }

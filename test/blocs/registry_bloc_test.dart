@@ -7,6 +7,7 @@ import 'package:checkin/src/blocs/user/bloc.dart';
 import 'package:checkin/src/models/attendee.dart';
 import 'package:checkin/src/models/grade.dart';
 import 'package:checkin/src/models/lesson.dart';
+import 'package:checkin/src/models/master.dart';
 import 'package:checkin/src/models/user.dart';
 import 'package:checkin/src/repositories/lesson_repository.dart';
 import 'package:mockito/mockito.dart';
@@ -32,6 +33,7 @@ void main() {
       id: "test id",
       date: "test date",
       classCapacity: 10,
+      masters: [],
       attendees: [],
       acceptedAttendees: [],
     );
@@ -103,6 +105,7 @@ void main() {
             isAcceptedUser: true,
             isRegisteredUser: false,
             isFullRegistry: false,
+            isMasterOfTheClass: false,
           ),
         ];
 
@@ -146,6 +149,7 @@ void main() {
             isAcceptedUser: false,
             isRegisteredUser: true,
             isFullRegistry: false,
+            isMasterOfTheClass: false,
           ),
         ];
 
@@ -181,6 +185,7 @@ void main() {
             isAcceptedUser: false,
             isRegisteredUser: false,
             isFullRegistry: false,
+            isMasterOfTheClass: false,
           ),
         ];
 
@@ -216,6 +221,7 @@ void main() {
             isAcceptedUser: false,
             isRegisteredUser: false,
             isFullRegistry: true,
+            isMasterOfTheClass: false,
           ),
         ];
 
@@ -257,7 +263,9 @@ void main() {
               currentLesson: baseLesson,
               isAcceptedUser: false,
               isRegisteredUser: false,
-              isFullRegistry: false),
+              isFullRegistry: false,
+              isMasterOfTheClass: false,
+          ),
         ];
 
         await expectLater(
@@ -308,6 +316,7 @@ void main() {
               currentUser: registeredUser,
               currentLesson: lessonWithRegisteredUser,
               isFullRegistry: false,
+              isMasterOfTheClass: false,
               isAcceptedUser: false,
               isRegisteredUser: true),
         ];
@@ -328,8 +337,10 @@ void main() {
           imageUrl: "masterPic",
           selectedGymId: "testGym");
 
-      Lesson fakeLessonWithRegisteredAttendee =
-          baseLesson.copyWith(attendees: [testAttendee1], acceptedAttendees: []);
+      Lesson fakeLessonWithRegisteredAttendee = baseLesson.copyWith(
+          masters: [Master.fromUser(masterUser)],
+          attendees: [testAttendee1],
+          acceptedAttendees: []);
 
       setUp(() {
         whenListen(mockUserBloc, Stream.value(UserSuccess(currentUser: masterUser)));
@@ -355,15 +366,14 @@ void main() {
 
       test("should call api to accept all attendees", () async {
         RegistryLoaded expectedRegistryLoaded = RegistryLoaded(
-            currentUser: masterUser,
-            currentLesson: fakeLessonWithRegisteredAttendee,
-            isAcceptedUser: false,
-            isRegisteredUser: false,
-            isFullRegistry: false);
-        final expectedSetupState = [
-          RegistryUninitialized(),
-          expectedRegistryLoaded
-        ];
+          currentUser: masterUser,
+          currentLesson: fakeLessonWithRegisteredAttendee,
+          isAcceptedUser: false,
+          isRegisteredUser: false,
+          isFullRegistry: false,
+          isMasterOfTheClass: true,
+        );
+        final expectedSetupState = [RegistryUninitialized(), expectedRegistryLoaded];
 
         await expectLater(
           registryBloc,
@@ -372,10 +382,7 @@ void main() {
 
         registryBloc.add(AcceptAttendees(gymId: masterUser.selectedGymId));
 
-        final expectedFinalState = [
-          expectedRegistryLoaded,
-          RegistryLoading()
-        ];
+        final expectedFinalState = [expectedRegistryLoaded, RegistryLoading()];
 
         await expectLater(
           registryBloc,

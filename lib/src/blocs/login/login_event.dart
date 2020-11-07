@@ -13,5 +13,7 @@ abstract class LoginEvent with _$LoginEvent {
 
   const factory LoginEvent.loginWithTestUserTwo() = LoginWithTestUserTwo;
 
-  const factory LoginEvent.loginWithTestUserOwner() = LoginWithTestUserOwner;
+  const factory LoginEvent.loginWithTestUserAdmin() = LoginWithTestUserAdmin;
+
+  const factory LoginEvent.loginWithTestUserMaster() = LoginWithTestUserMaster;
 }

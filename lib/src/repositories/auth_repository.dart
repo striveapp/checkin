@@ -11,5 +11,5 @@ abstract class AuthRepository {
 
   Future<User> signInWithApple();
 
-  Future<User> loginWithTestUser({test = 0, owner = false});
+  Future<User> loginWithTestUser({test = 0, owner = false, master = false});
 }

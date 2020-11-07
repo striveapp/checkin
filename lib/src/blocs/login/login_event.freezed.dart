@@ -34,8 +34,13 @@ class _$LoginEventTearOff {
   }
 
 // ignore: unused_element
-  LoginWithTestUserOwner loginWithTestUserOwner() {
-    return const LoginWithTestUserOwner();
+  LoginWithTestUserAdmin loginWithTestUserAdmin() {
+    return const LoginWithTestUserAdmin();
+  }
+
+// ignore: unused_element
+  LoginWithTestUserMaster loginWithTestUserMaster() {
+    return const LoginWithTestUserMaster();
   }
 }
 
@@ -51,7 +56,8 @@ mixin _$LoginEvent {
     @required Result loginWithApple(),
     @required Result loginWithTestUser(),
     @required Result loginWithTestUserTwo(),
-    @required Result loginWithTestUserOwner(),
+    @required Result loginWithTestUserAdmin(),
+    @required Result loginWithTestUserMaster(),
   });
   @optionalTypeArgs
   Result maybeWhen<Result extends Object>({
@@ -59,7 +65,8 @@ mixin _$LoginEvent {
     Result loginWithApple(),
     Result loginWithTestUser(),
     Result loginWithTestUserTwo(),
-    Result loginWithTestUserOwner(),
+    Result loginWithTestUserAdmin(),
+    Result loginWithTestUserMaster(),
     @required Result orElse(),
   });
   @optionalTypeArgs
@@ -68,7 +75,8 @@ mixin _$LoginEvent {
     @required Result loginWithApple(LoginWithApple value),
     @required Result loginWithTestUser(LoginWithTestUser value),
     @required Result loginWithTestUserTwo(LoginWithTestUserTwo value),
-    @required Result loginWithTestUserOwner(LoginWithTestUserOwner value),
+    @required Result loginWithTestUserAdmin(LoginWithTestUserAdmin value),
+    @required Result loginWithTestUserMaster(LoginWithTestUserMaster value),
   });
   @optionalTypeArgs
   Result maybeMap<Result extends Object>({
@@ -76,7 +84,8 @@ mixin _$LoginEvent {
     Result loginWithApple(LoginWithApple value),
     Result loginWithTestUser(LoginWithTestUser value),
     Result loginWithTestUserTwo(LoginWithTestUserTwo value),
-    Result loginWithTestUserOwner(LoginWithTestUserOwner value),
+    Result loginWithTestUserAdmin(LoginWithTestUserAdmin value),
+    Result loginWithTestUserMaster(LoginWithTestUserMaster value),
     @required Result orElse(),
   });
 }
@@ -147,13 +156,15 @@ class _$LoginWithGoogle
     @required Result loginWithApple(),
     @required Result loginWithTestUser(),
     @required Result loginWithTestUserTwo(),
-    @required Result loginWithTestUserOwner(),
+    @required Result loginWithTestUserAdmin(),
+    @required Result loginWithTestUserMaster(),
   }) {
     assert(loginWithGoogle != null);
     assert(loginWithApple != null);
     assert(loginWithTestUser != null);
     assert(loginWithTestUserTwo != null);
-    assert(loginWithTestUserOwner != null);
+    assert(loginWithTestUserAdmin != null);
+    assert(loginWithTestUserMaster != null);
     return loginWithGoogle();
   }
 
@@ -164,7 +175,8 @@ class _$LoginWithGoogle
     Result loginWithApple(),
     Result loginWithTestUser(),
     Result loginWithTestUserTwo(),
-    Result loginWithTestUserOwner(),
+    Result loginWithTestUserAdmin(),
+    Result loginWithTestUserMaster(),
     @required Result orElse(),
   }) {
     assert(orElse != null);
@@ -181,13 +193,15 @@ class _$LoginWithGoogle
     @required Result loginWithApple(LoginWithApple value),
     @required Result loginWithTestUser(LoginWithTestUser value),
     @required Result loginWithTestUserTwo(LoginWithTestUserTwo value),
-    @required Result loginWithTestUserOwner(LoginWithTestUserOwner value),
+    @required Result loginWithTestUserAdmin(LoginWithTestUserAdmin value),
+    @required Result loginWithTestUserMaster(LoginWithTestUserMaster value),
   }) {
     assert(loginWithGoogle != null);
     assert(loginWithApple != null);
     assert(loginWithTestUser != null);
     assert(loginWithTestUserTwo != null);
-    assert(loginWithTestUserOwner != null);
+    assert(loginWithTestUserAdmin != null);
+    assert(loginWithTestUserMaster != null);
     return loginWithGoogle(this);
   }
 
@@ -198,7 +212,8 @@ class _$LoginWithGoogle
     Result loginWithApple(LoginWithApple value),
     Result loginWithTestUser(LoginWithTestUser value),
     Result loginWithTestUserTwo(LoginWithTestUserTwo value),
-    Result loginWithTestUserOwner(LoginWithTestUserOwner value),
+    Result loginWithTestUserAdmin(LoginWithTestUserAdmin value),
+    Result loginWithTestUserMaster(LoginWithTestUserMaster value),
     @required Result orElse(),
   }) {
     assert(orElse != null);
@@ -261,13 +276,15 @@ class _$LoginWithApple with DiagnosticableTreeMixin implements LoginWithApple {
     @required Result loginWithApple(),
     @required Result loginWithTestUser(),
     @required Result loginWithTestUserTwo(),
-    @required Result loginWithTestUserOwner(),
+    @required Result loginWithTestUserAdmin(),
+    @required Result loginWithTestUserMaster(),
   }) {
     assert(loginWithGoogle != null);
     assert(loginWithApple != null);
     assert(loginWithTestUser != null);
     assert(loginWithTestUserTwo != null);
-    assert(loginWithTestUserOwner != null);
+    assert(loginWithTestUserAdmin != null);
+    assert(loginWithTestUserMaster != null);
     return loginWithApple();
   }
 
@@ -278,7 +295,8 @@ class _$LoginWithApple with DiagnosticableTreeMixin implements LoginWithApple {
     Result loginWithApple(),
     Result loginWithTestUser(),
     Result loginWithTestUserTwo(),
-    Result loginWithTestUserOwner(),
+    Result loginWithTestUserAdmin(),
+    Result loginWithTestUserMaster(),
     @required Result orElse(),
   }) {
     assert(orElse != null);
@@ -295,13 +313,15 @@ class _$LoginWithApple with DiagnosticableTreeMixin implements LoginWithApple {
     @required Result loginWithApple(LoginWithApple value),
     @required Result loginWithTestUser(LoginWithTestUser value),
     @required Result loginWithTestUserTwo(LoginWithTestUserTwo value),
-    @required Result loginWithTestUserOwner(LoginWithTestUserOwner value),
+    @required Result loginWithTestUserAdmin(LoginWithTestUserAdmin value),
+    @required Result loginWithTestUserMaster(LoginWithTestUserMaster value),
   }) {
     assert(loginWithGoogle != null);
     assert(loginWithApple != null);
     assert(loginWithTestUser != null);
     assert(loginWithTestUserTwo != null);
-    assert(loginWithTestUserOwner != null);
+    assert(loginWithTestUserAdmin != null);
+    assert(loginWithTestUserMaster != null);
     return loginWithApple(this);
   }
 
@@ -312,7 +332,8 @@ class _$LoginWithApple with DiagnosticableTreeMixin implements LoginWithApple {
     Result loginWithApple(LoginWithApple value),
     Result loginWithTestUser(LoginWithTestUser value),
     Result loginWithTestUserTwo(LoginWithTestUserTwo value),
-    Result loginWithTestUserOwner(LoginWithTestUserOwner value),
+    Result loginWithTestUserAdmin(LoginWithTestUserAdmin value),
+    Result loginWithTestUserMaster(LoginWithTestUserMaster value),
     @required Result orElse(),
   }) {
     assert(orElse != null);
@@ -379,13 +400,15 @@ class _$LoginWithTestUser
     @required Result loginWithApple(),
     @required Result loginWithTestUser(),
     @required Result loginWithTestUserTwo(),
-    @required Result loginWithTestUserOwner(),
+    @required Result loginWithTestUserAdmin(),
+    @required Result loginWithTestUserMaster(),
   }) {
     assert(loginWithGoogle != null);
     assert(loginWithApple != null);
     assert(loginWithTestUser != null);
     assert(loginWithTestUserTwo != null);
-    assert(loginWithTestUserOwner != null);
+    assert(loginWithTestUserAdmin != null);
+    assert(loginWithTestUserMaster != null);
     return loginWithTestUser();
   }
 
@@ -396,7 +419,8 @@ class _$LoginWithTestUser
     Result loginWithApple(),
     Result loginWithTestUser(),
     Result loginWithTestUserTwo(),
-    Result loginWithTestUserOwner(),
+    Result loginWithTestUserAdmin(),
+    Result loginWithTestUserMaster(),
     @required Result orElse(),
   }) {
     assert(orElse != null);
@@ -413,13 +437,15 @@ class _$LoginWithTestUser
     @required Result loginWithApple(LoginWithApple value),
     @required Result loginWithTestUser(LoginWithTestUser value),
     @required Result loginWithTestUserTwo(LoginWithTestUserTwo value),
-    @required Result loginWithTestUserOwner(LoginWithTestUserOwner value),
+    @required Result loginWithTestUserAdmin(LoginWithTestUserAdmin value),
+    @required Result loginWithTestUserMaster(LoginWithTestUserMaster value),
   }) {
     assert(loginWithGoogle != null);
     assert(loginWithApple != null);
     assert(loginWithTestUser != null);
     assert(loginWithTestUserTwo != null);
-    assert(loginWithTestUserOwner != null);
+    assert(loginWithTestUserAdmin != null);
+    assert(loginWithTestUserMaster != null);
     return loginWithTestUser(this);
   }
 
@@ -430,7 +456,8 @@ class _$LoginWithTestUser
     Result loginWithApple(LoginWithApple value),
     Result loginWithTestUser(LoginWithTestUser value),
     Result loginWithTestUserTwo(LoginWithTestUserTwo value),
-    Result loginWithTestUserOwner(LoginWithTestUserOwner value),
+    Result loginWithTestUserAdmin(LoginWithTestUserAdmin value),
+    Result loginWithTestUserMaster(LoginWithTestUserMaster value),
     @required Result orElse(),
   }) {
     assert(orElse != null);
@@ -497,13 +524,15 @@ class _$LoginWithTestUserTwo
     @required Result loginWithApple(),
     @required Result loginWithTestUser(),
     @required Result loginWithTestUserTwo(),
-    @required Result loginWithTestUserOwner(),
+    @required Result loginWithTestUserAdmin(),
+    @required Result loginWithTestUserMaster(),
   }) {
     assert(loginWithGoogle != null);
     assert(loginWithApple != null);
     assert(loginWithTestUser != null);
     assert(loginWithTestUserTwo != null);
-    assert(loginWithTestUserOwner != null);
+    assert(loginWithTestUserAdmin != null);
+    assert(loginWithTestUserMaster != null);
     return loginWithTestUserTwo();
   }
 
@@ -514,7 +543,8 @@ class _$LoginWithTestUserTwo
     Result loginWithApple(),
     Result loginWithTestUser(),
     Result loginWithTestUserTwo(),
-    Result loginWithTestUserOwner(),
+    Result loginWithTestUserAdmin(),
+    Result loginWithTestUserMaster(),
     @required Result orElse(),
   }) {
     assert(orElse != null);
@@ -531,13 +561,15 @@ class _$LoginWithTestUserTwo
     @required Result loginWithApple(LoginWithApple value),
     @required Result loginWithTestUser(LoginWithTestUser value),
     @required Result loginWithTestUserTwo(LoginWithTestUserTwo value),
-    @required Result loginWithTestUserOwner(LoginWithTestUserOwner value),
+    @required Result loginWithTestUserAdmin(LoginWithTestUserAdmin value),
+    @required Result loginWithTestUserMaster(LoginWithTestUserMaster value),
   }) {
     assert(loginWithGoogle != null);
     assert(loginWithApple != null);
     assert(loginWithTestUser != null);
     assert(loginWithTestUserTwo != null);
-    assert(loginWithTestUserOwner != null);
+    assert(loginWithTestUserAdmin != null);
+    assert(loginWithTestUserMaster != null);
     return loginWithTestUserTwo(this);
   }
 
@@ -548,7 +580,8 @@ class _$LoginWithTestUserTwo
     Result loginWithApple(LoginWithApple value),
     Result loginWithTestUser(LoginWithTestUser value),
     Result loginWithTestUserTwo(LoginWithTestUserTwo value),
-    Result loginWithTestUserOwner(LoginWithTestUserOwner value),
+    Result loginWithTestUserAdmin(LoginWithTestUserAdmin value),
+    Result loginWithTestUserMaster(LoginWithTestUserMaster value),
     @required Result orElse(),
   }) {
     assert(orElse != null);
@@ -564,45 +597,45 @@ abstract class LoginWithTestUserTwo implements LoginEvent {
 }
 
 /// @nodoc
-abstract class $LoginWithTestUserOwnerCopyWith<$Res> {
-  factory $LoginWithTestUserOwnerCopyWith(LoginWithTestUserOwner value,
-          $Res Function(LoginWithTestUserOwner) then) =
-      _$LoginWithTestUserOwnerCopyWithImpl<$Res>;
+abstract class $LoginWithTestUserAdminCopyWith<$Res> {
+  factory $LoginWithTestUserAdminCopyWith(LoginWithTestUserAdmin value,
+          $Res Function(LoginWithTestUserAdmin) then) =
+      _$LoginWithTestUserAdminCopyWithImpl<$Res>;
 }
 
 /// @nodoc
-class _$LoginWithTestUserOwnerCopyWithImpl<$Res>
+class _$LoginWithTestUserAdminCopyWithImpl<$Res>
     extends _$LoginEventCopyWithImpl<$Res>
-    implements $LoginWithTestUserOwnerCopyWith<$Res> {
-  _$LoginWithTestUserOwnerCopyWithImpl(LoginWithTestUserOwner _value,
-      $Res Function(LoginWithTestUserOwner) _then)
-      : super(_value, (v) => _then(v as LoginWithTestUserOwner));
+    implements $LoginWithTestUserAdminCopyWith<$Res> {
+  _$LoginWithTestUserAdminCopyWithImpl(LoginWithTestUserAdmin _value,
+      $Res Function(LoginWithTestUserAdmin) _then)
+      : super(_value, (v) => _then(v as LoginWithTestUserAdmin));
 
   @override
-  LoginWithTestUserOwner get _value => super._value as LoginWithTestUserOwner;
+  LoginWithTestUserAdmin get _value => super._value as LoginWithTestUserAdmin;
 }
 
 /// @nodoc
-class _$LoginWithTestUserOwner
+class _$LoginWithTestUserAdmin
     with DiagnosticableTreeMixin
-    implements LoginWithTestUserOwner {
-  const _$LoginWithTestUserOwner();
+    implements LoginWithTestUserAdmin {
+  const _$LoginWithTestUserAdmin();
 
   @override
   String toString({DiagnosticLevel minLevel = DiagnosticLevel.info}) {
-    return 'LoginEvent.loginWithTestUserOwner()';
+    return 'LoginEvent.loginWithTestUserAdmin()';
   }
 
   @override
   void debugFillProperties(DiagnosticPropertiesBuilder properties) {
     super.debugFillProperties(properties);
     properties
-      ..add(DiagnosticsProperty('type', 'LoginEvent.loginWithTestUserOwner'));
+      ..add(DiagnosticsProperty('type', 'LoginEvent.loginWithTestUserAdmin'));
   }
 
   @override
   bool operator ==(dynamic other) {
-    return identical(this, other) || (other is LoginWithTestUserOwner);
+    return identical(this, other) || (other is LoginWithTestUserAdmin);
   }
 
   @override
@@ -615,14 +648,16 @@ class _$LoginWithTestUserOwner
     @required Result loginWithApple(),
     @required Result loginWithTestUser(),
     @required Result loginWithTestUserTwo(),
-    @required Result loginWithTestUserOwner(),
+    @required Result loginWithTestUserAdmin(),
+    @required Result loginWithTestUserMaster(),
   }) {
     assert(loginWithGoogle != null);
     assert(loginWithApple != null);
     assert(loginWithTestUser != null);
     assert(loginWithTestUserTwo != null);
-    assert(loginWithTestUserOwner != null);
-    return loginWithTestUserOwner();
+    assert(loginWithTestUserAdmin != null);
+    assert(loginWithTestUserMaster != null);
+    return loginWithTestUserAdmin();
   }
 
   @override
@@ -632,12 +667,13 @@ class _$LoginWithTestUserOwner
     Result loginWithApple(),
     Result loginWithTestUser(),
     Result loginWithTestUserTwo(),
-    Result loginWithTestUserOwner(),
+    Result loginWithTestUserAdmin(),
+    Result loginWithTestUserMaster(),
     @required Result orElse(),
   }) {
     assert(orElse != null);
-    if (loginWithTestUserOwner != null) {
-      return loginWithTestUserOwner();
+    if (loginWithTestUserAdmin != null) {
+      return loginWithTestUserAdmin();
     }
     return orElse();
   }
@@ -649,14 +685,16 @@ class _$LoginWithTestUserOwner
     @required Result loginWithApple(LoginWithApple value),
     @required Result loginWithTestUser(LoginWithTestUser value),
     @required Result loginWithTestUserTwo(LoginWithTestUserTwo value),
-    @required Result loginWithTestUserOwner(LoginWithTestUserOwner value),
+    @required Result loginWithTestUserAdmin(LoginWithTestUserAdmin value),
+    @required Result loginWithTestUserMaster(LoginWithTestUserMaster value),
   }) {
     assert(loginWithGoogle != null);
     assert(loginWithApple != null);
     assert(loginWithTestUser != null);
     assert(loginWithTestUserTwo != null);
-    assert(loginWithTestUserOwner != null);
-    return loginWithTestUserOwner(this);
+    assert(loginWithTestUserAdmin != null);
+    assert(loginWithTestUserMaster != null);
+    return loginWithTestUserAdmin(this);
   }
 
   @override
@@ -666,17 +704,142 @@ class _$LoginWithTestUserOwner
     Result loginWithApple(LoginWithApple value),
     Result loginWithTestUser(LoginWithTestUser value),
     Result loginWithTestUserTwo(LoginWithTestUserTwo value),
-    Result loginWithTestUserOwner(LoginWithTestUserOwner value),
+    Result loginWithTestUserAdmin(LoginWithTestUserAdmin value),
+    Result loginWithTestUserMaster(LoginWithTestUserMaster value),
     @required Result orElse(),
   }) {
     assert(orElse != null);
-    if (loginWithTestUserOwner != null) {
-      return loginWithTestUserOwner(this);
+    if (loginWithTestUserAdmin != null) {
+      return loginWithTestUserAdmin(this);
     }
     return orElse();
   }
 }
 
-abstract class LoginWithTestUserOwner implements LoginEvent {
-  const factory LoginWithTestUserOwner() = _$LoginWithTestUserOwner;
+abstract class LoginWithTestUserAdmin implements LoginEvent {
+  const factory LoginWithTestUserAdmin() = _$LoginWithTestUserAdmin;
+}
+
+/// @nodoc
+abstract class $LoginWithTestUserMasterCopyWith<$Res> {
+  factory $LoginWithTestUserMasterCopyWith(LoginWithTestUserMaster value,
+          $Res Function(LoginWithTestUserMaster) then) =
+      _$LoginWithTestUserMasterCopyWithImpl<$Res>;
+}
+
+/// @nodoc
+class _$LoginWithTestUserMasterCopyWithImpl<$Res>
+    extends _$LoginEventCopyWithImpl<$Res>
+    implements $LoginWithTestUserMasterCopyWith<$Res> {
+  _$LoginWithTestUserMasterCopyWithImpl(LoginWithTestUserMaster _value,
+      $Res Function(LoginWithTestUserMaster) _then)
+      : super(_value, (v) => _then(v as LoginWithTestUserMaster));
+
+  @override
+  LoginWithTestUserMaster get _value => super._value as LoginWithTestUserMaster;
+}
+
+/// @nodoc
+class _$LoginWithTestUserMaster
+    with DiagnosticableTreeMixin
+    implements LoginWithTestUserMaster {
+  const _$LoginWithTestUserMaster();
+
+  @override
+  String toString({DiagnosticLevel minLevel = DiagnosticLevel.info}) {
+    return 'LoginEvent.loginWithTestUserMaster()';
+  }
+
+  @override
+  void debugFillProperties(DiagnosticPropertiesBuilder properties) {
+    super.debugFillProperties(properties);
+    properties
+      ..add(DiagnosticsProperty('type', 'LoginEvent.loginWithTestUserMaster'));
+  }
+
+  @override
+  bool operator ==(dynamic other) {
+    return identical(this, other) || (other is LoginWithTestUserMaster);
+  }
+
+  @override
+  int get hashCode => runtimeType.hashCode;
+
+  @override
+  @optionalTypeArgs
+  Result when<Result extends Object>({
+    @required Result loginWithGoogle(),
+    @required Result loginWithApple(),
+    @required Result loginWithTestUser(),
+    @required Result loginWithTestUserTwo(),
+    @required Result loginWithTestUserAdmin(),
+    @required Result loginWithTestUserMaster(),
+  }) {
+    assert(loginWithGoogle != null);
+    assert(loginWithApple != null);
+    assert(loginWithTestUser != null);
+    assert(loginWithTestUserTwo != null);
+    assert(loginWithTestUserAdmin != null);
+    assert(loginWithTestUserMaster != null);
+    return loginWithTestUserMaster();
+  }
+
+  @override
+  @optionalTypeArgs
+  Result maybeWhen<Result extends Object>({
+    Result loginWithGoogle(),
+    Result loginWithApple(),
+    Result loginWithTestUser(),
+    Result loginWithTestUserTwo(),
+    Result loginWithTestUserAdmin(),
+    Result loginWithTestUserMaster(),
+    @required Result orElse(),
+  }) {
+    assert(orElse != null);
+    if (loginWithTestUserMaster != null) {
+      return loginWithTestUserMaster();
+    }
+    return orElse();
+  }
+
+  @override
+  @optionalTypeArgs
+  Result map<Result extends Object>({
+    @required Result loginWithGoogle(LoginWithGoogle value),
+    @required Result loginWithApple(LoginWithApple value),
+    @required Result loginWithTestUser(LoginWithTestUser value),
+    @required Result loginWithTestUserTwo(LoginWithTestUserTwo value),
+    @required Result loginWithTestUserAdmin(LoginWithTestUserAdmin value),
+    @required Result loginWithTestUserMaster(LoginWithTestUserMaster value),
+  }) {
+    assert(loginWithGoogle != null);
+    assert(loginWithApple != null);
+    assert(loginWithTestUser != null);
+    assert(loginWithTestUserTwo != null);
+    assert(loginWithTestUserAdmin != null);
+    assert(loginWithTestUserMaster != null);
+    return loginWithTestUserMaster(this);
+  }
+
+  @override
+  @optionalTypeArgs
+  Result maybeMap<Result extends Object>({
+    Result loginWithGoogle(LoginWithGoogle value),
+    Result loginWithApple(LoginWithApple value),
+    Result loginWithTestUser(LoginWithTestUser value),
+    Result loginWithTestUserTwo(LoginWithTestUserTwo value),
+    Result loginWithTestUserAdmin(LoginWithTestUserAdmin value),
+    Result loginWithTestUserMaster(LoginWithTestUserMaster value),
+    @required Result orElse(),
+  }) {
+    assert(orElse != null);
+    if (loginWithTestUserMaster != null) {
+      return loginWithTestUserMaster(this);
+    }
+    return orElse();
+  }
+}
+
+abstract class LoginWithTestUserMaster implements LoginEvent {
+  const factory LoginWithTestUserMaster() = _$LoginWithTestUserMaster;
 }

@@ -77,15 +77,23 @@ class _LoginFormState extends State<LoginForm> {
                       onPressed: _onLoginWithTestUser,
                       child: Text('Test'),
                     ),
+                    SizedBox(height: 10),
                     RaisedButton(
                       key: Key('backdoorButtonTwo'),
                       onPressed: _onLoginWithTestUserTwo,
                       child: Text('Test 2'),
                     ),
+                    SizedBox(height: 10),
                     RaisedButton(
                       key: Key('backdoorAdminButton'),
-                      onPressed: _onLoginWithTestUserOwner,
-                      child: Text('Test Owner'),
+                      onPressed: _onLoginWithTestUserAdmin,
+                      child: Text('Test Admin'),
+                    ),
+                    SizedBox(height: 10),
+                    RaisedButton(
+                      key: Key('backdoorMasterButton'),
+                      onPressed: _onLoginWithTestUserMaster,
+                      child: Text('Test Master'),
                     ),
                   ],
                 )
@@ -108,7 +116,11 @@ class _LoginFormState extends State<LoginForm> {
     _loginBloc.add(LoginWithTestUserTwo());
   }
 
-  _onLoginWithTestUserOwner() {
-    _loginBloc.add(LoginWithTestUserOwner());
+  _onLoginWithTestUserAdmin() {
+    _loginBloc.add(LoginWithTestUserAdmin());
+  }
+
+  _onLoginWithTestUserMaster() {
+    _loginBloc.add(LoginWithTestUserMaster());
   }
 }

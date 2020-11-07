@@ -34,13 +34,15 @@ class _$RegistryStateTearOff {
       @required Lesson currentLesson,
       @required bool isAcceptedUser,
       @required bool isRegisteredUser,
-      @required bool isFullRegistry}) {
+      @required bool isFullRegistry,
+      @required bool isMasterOfTheClass}) {
     return RegistryLoaded(
       currentUser: currentUser,
       currentLesson: currentLesson,
       isAcceptedUser: isAcceptedUser,
       isRegisteredUser: isRegisteredUser,
       isFullRegistry: isFullRegistry,
+      isMasterOfTheClass: isMasterOfTheClass,
     );
   }
 }
@@ -57,16 +59,26 @@ mixin _$RegistryState {
     @required Result registryLoading(),
     @required Result registryError(),
     @required
-        Result registryLoaded(User currentUser, Lesson currentLesson,
-            bool isAcceptedUser, bool isRegisteredUser, bool isFullRegistry),
+        Result registryLoaded(
+            User currentUser,
+            Lesson currentLesson,
+            bool isAcceptedUser,
+            bool isRegisteredUser,
+            bool isFullRegistry,
+            bool isMasterOfTheClass),
   });
   @optionalTypeArgs
   Result maybeWhen<Result extends Object>({
     Result registryUninitialized(),
     Result registryLoading(),
     Result registryError(),
-    Result registryLoaded(User currentUser, Lesson currentLesson,
-        bool isAcceptedUser, bool isRegisteredUser, bool isFullRegistry),
+    Result registryLoaded(
+        User currentUser,
+        Lesson currentLesson,
+        bool isAcceptedUser,
+        bool isRegisteredUser,
+        bool isFullRegistry,
+        bool isMasterOfTheClass),
     @required Result orElse(),
   });
   @optionalTypeArgs
@@ -155,8 +167,13 @@ class _$RegistryUninitialized
     @required Result registryLoading(),
     @required Result registryError(),
     @required
-        Result registryLoaded(User currentUser, Lesson currentLesson,
-            bool isAcceptedUser, bool isRegisteredUser, bool isFullRegistry),
+        Result registryLoaded(
+            User currentUser,
+            Lesson currentLesson,
+            bool isAcceptedUser,
+            bool isRegisteredUser,
+            bool isFullRegistry,
+            bool isMasterOfTheClass),
   }) {
     assert(registryUninitialized != null);
     assert(registryLoading != null);
@@ -171,8 +188,13 @@ class _$RegistryUninitialized
     Result registryUninitialized(),
     Result registryLoading(),
     Result registryError(),
-    Result registryLoaded(User currentUser, Lesson currentLesson,
-        bool isAcceptedUser, bool isRegisteredUser, bool isFullRegistry),
+    Result registryLoaded(
+        User currentUser,
+        Lesson currentLesson,
+        bool isAcceptedUser,
+        bool isRegisteredUser,
+        bool isFullRegistry,
+        bool isMasterOfTheClass),
     @required Result orElse(),
   }) {
     assert(orElse != null);
@@ -270,8 +292,13 @@ class _$RegistryLoading
     @required Result registryLoading(),
     @required Result registryError(),
     @required
-        Result registryLoaded(User currentUser, Lesson currentLesson,
-            bool isAcceptedUser, bool isRegisteredUser, bool isFullRegistry),
+        Result registryLoaded(
+            User currentUser,
+            Lesson currentLesson,
+            bool isAcceptedUser,
+            bool isRegisteredUser,
+            bool isFullRegistry,
+            bool isMasterOfTheClass),
   }) {
     assert(registryUninitialized != null);
     assert(registryLoading != null);
@@ -286,8 +313,13 @@ class _$RegistryLoading
     Result registryUninitialized(),
     Result registryLoading(),
     Result registryError(),
-    Result registryLoaded(User currentUser, Lesson currentLesson,
-        bool isAcceptedUser, bool isRegisteredUser, bool isFullRegistry),
+    Result registryLoaded(
+        User currentUser,
+        Lesson currentLesson,
+        bool isAcceptedUser,
+        bool isRegisteredUser,
+        bool isFullRegistry,
+        bool isMasterOfTheClass),
     @required Result orElse(),
   }) {
     assert(orElse != null);
@@ -382,8 +414,13 @@ class _$RegistryError with DiagnosticableTreeMixin implements RegistryError {
     @required Result registryLoading(),
     @required Result registryError(),
     @required
-        Result registryLoaded(User currentUser, Lesson currentLesson,
-            bool isAcceptedUser, bool isRegisteredUser, bool isFullRegistry),
+        Result registryLoaded(
+            User currentUser,
+            Lesson currentLesson,
+            bool isAcceptedUser,
+            bool isRegisteredUser,
+            bool isFullRegistry,
+            bool isMasterOfTheClass),
   }) {
     assert(registryUninitialized != null);
     assert(registryLoading != null);
@@ -398,8 +435,13 @@ class _$RegistryError with DiagnosticableTreeMixin implements RegistryError {
     Result registryUninitialized(),
     Result registryLoading(),
     Result registryError(),
-    Result registryLoaded(User currentUser, Lesson currentLesson,
-        bool isAcceptedUser, bool isRegisteredUser, bool isFullRegistry),
+    Result registryLoaded(
+        User currentUser,
+        Lesson currentLesson,
+        bool isAcceptedUser,
+        bool isRegisteredUser,
+        bool isFullRegistry,
+        bool isMasterOfTheClass),
     @required Result orElse(),
   }) {
     assert(orElse != null);
@@ -455,7 +497,8 @@ abstract class $RegistryLoadedCopyWith<$Res> {
       Lesson currentLesson,
       bool isAcceptedUser,
       bool isRegisteredUser,
-      bool isFullRegistry});
+      bool isFullRegistry,
+      bool isMasterOfTheClass});
 
   $LessonCopyWith<$Res> get currentLesson;
 }
@@ -478,6 +521,7 @@ class _$RegistryLoadedCopyWithImpl<$Res>
     Object isAcceptedUser = freezed,
     Object isRegisteredUser = freezed,
     Object isFullRegistry = freezed,
+    Object isMasterOfTheClass = freezed,
   }) {
     return _then(RegistryLoaded(
       currentUser:
@@ -494,6 +538,9 @@ class _$RegistryLoadedCopyWithImpl<$Res>
       isFullRegistry: isFullRegistry == freezed
           ? _value.isFullRegistry
           : isFullRegistry as bool,
+      isMasterOfTheClass: isMasterOfTheClass == freezed
+          ? _value.isMasterOfTheClass
+          : isMasterOfTheClass as bool,
     ));
   }
 
@@ -515,12 +562,14 @@ class _$RegistryLoaded with DiagnosticableTreeMixin implements RegistryLoaded {
       @required this.currentLesson,
       @required this.isAcceptedUser,
       @required this.isRegisteredUser,
-      @required this.isFullRegistry})
+      @required this.isFullRegistry,
+      @required this.isMasterOfTheClass})
       : assert(currentUser != null),
         assert(currentLesson != null),
         assert(isAcceptedUser != null),
         assert(isRegisteredUser != null),
-        assert(isFullRegistry != null);
+        assert(isFullRegistry != null),
+        assert(isMasterOfTheClass != null);
 
   @override
   final User currentUser;
@@ -532,10 +581,12 @@ class _$RegistryLoaded with DiagnosticableTreeMixin implements RegistryLoaded {
   final bool isRegisteredUser;
   @override
   final bool isFullRegistry;
+  @override
+  final bool isMasterOfTheClass;
 
   @override
   String toString({DiagnosticLevel minLevel = DiagnosticLevel.info}) {
-    return 'RegistryState.registryLoaded(currentUser: $currentUser, currentLesson: $currentLesson, isAcceptedUser: $isAcceptedUser, isRegisteredUser: $isRegisteredUser, isFullRegistry: $isFullRegistry)';
+    return 'RegistryState.registryLoaded(currentUser: $currentUser, currentLesson: $currentLesson, isAcceptedUser: $isAcceptedUser, isRegisteredUser: $isRegisteredUser, isFullRegistry: $isFullRegistry, isMasterOfTheClass: $isMasterOfTheClass)';
   }
 
   @override
@@ -547,7 +598,8 @@ class _$RegistryLoaded with DiagnosticableTreeMixin implements RegistryLoaded {
       ..add(DiagnosticsProperty('currentLesson', currentLesson))
       ..add(DiagnosticsProperty('isAcceptedUser', isAcceptedUser))
       ..add(DiagnosticsProperty('isRegisteredUser', isRegisteredUser))
-      ..add(DiagnosticsProperty('isFullRegistry', isFullRegistry));
+      ..add(DiagnosticsProperty('isFullRegistry', isFullRegistry))
+      ..add(DiagnosticsProperty('isMasterOfTheClass', isMasterOfTheClass));
   }
 
   @override
@@ -568,7 +620,10 @@ class _$RegistryLoaded with DiagnosticableTreeMixin implements RegistryLoaded {
                     .equals(other.isRegisteredUser, isRegisteredUser)) &&
             (identical(other.isFullRegistry, isFullRegistry) ||
                 const DeepCollectionEquality()
-                    .equals(other.isFullRegistry, isFullRegistry)));
+                    .equals(other.isFullRegistry, isFullRegistry)) &&
+            (identical(other.isMasterOfTheClass, isMasterOfTheClass) ||
+                const DeepCollectionEquality()
+                    .equals(other.isMasterOfTheClass, isMasterOfTheClass)));
   }
 
   @override
@@ -578,7 +633,8 @@ class _$RegistryLoaded with DiagnosticableTreeMixin implements RegistryLoaded {
       const DeepCollectionEquality().hash(currentLesson) ^
       const DeepCollectionEquality().hash(isAcceptedUser) ^
       const DeepCollectionEquality().hash(isRegisteredUser) ^
-      const DeepCollectionEquality().hash(isFullRegistry);
+      const DeepCollectionEquality().hash(isFullRegistry) ^
+      const DeepCollectionEquality().hash(isMasterOfTheClass);
 
   @override
   $RegistryLoadedCopyWith<RegistryLoaded> get copyWith =>
@@ -591,15 +647,20 @@ class _$RegistryLoaded with DiagnosticableTreeMixin implements RegistryLoaded {
     @required Result registryLoading(),
     @required Result registryError(),
     @required
-        Result registryLoaded(User currentUser, Lesson currentLesson,
-            bool isAcceptedUser, bool isRegisteredUser, bool isFullRegistry),
+        Result registryLoaded(
+            User currentUser,
+            Lesson currentLesson,
+            bool isAcceptedUser,
+            bool isRegisteredUser,
+            bool isFullRegistry,
+            bool isMasterOfTheClass),
   }) {
     assert(registryUninitialized != null);
     assert(registryLoading != null);
     assert(registryError != null);
     assert(registryLoaded != null);
     return registryLoaded(currentUser, currentLesson, isAcceptedUser,
-        isRegisteredUser, isFullRegistry);
+        isRegisteredUser, isFullRegistry, isMasterOfTheClass);
   }
 
   @override
@@ -608,14 +669,19 @@ class _$RegistryLoaded with DiagnosticableTreeMixin implements RegistryLoaded {
     Result registryUninitialized(),
     Result registryLoading(),
     Result registryError(),
-    Result registryLoaded(User currentUser, Lesson currentLesson,
-        bool isAcceptedUser, bool isRegisteredUser, bool isFullRegistry),
+    Result registryLoaded(
+        User currentUser,
+        Lesson currentLesson,
+        bool isAcceptedUser,
+        bool isRegisteredUser,
+        bool isFullRegistry,
+        bool isMasterOfTheClass),
     @required Result orElse(),
   }) {
     assert(orElse != null);
     if (registryLoaded != null) {
       return registryLoaded(currentUser, currentLesson, isAcceptedUser,
-          isRegisteredUser, isFullRegistry);
+          isRegisteredUser, isFullRegistry, isMasterOfTheClass);
     }
     return orElse();
   }
@@ -658,12 +724,14 @@ abstract class RegistryLoaded implements RegistryState {
       @required Lesson currentLesson,
       @required bool isAcceptedUser,
       @required bool isRegisteredUser,
-      @required bool isFullRegistry}) = _$RegistryLoaded;
+      @required bool isFullRegistry,
+      @required bool isMasterOfTheClass}) = _$RegistryLoaded;
 
   User get currentUser;
   Lesson get currentLesson;
   bool get isAcceptedUser;
   bool get isRegisteredUser;
   bool get isFullRegistry;
+  bool get isMasterOfTheClass;
   $RegistryLoadedCopyWith<RegistryLoaded> get copyWith;
 }

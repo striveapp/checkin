@@ -34,8 +34,11 @@ class RegistryControls extends StatelessWidget {
         if (currentUser.isOwner) {
           return Column(
             children: [
-              StudentButton(registryState: state),
-              SizedBox(height: 20,),
+              if(! state.isMasterOfTheClass)
+                Padding(
+                  padding: const EdgeInsets.only(bottom: 20.0),
+                  child: StudentButton(registryState: state),
+                ),
               RegistryButton(
                 key: Key('acceptAll'),
                 onPressed:

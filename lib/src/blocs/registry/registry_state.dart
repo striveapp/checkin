@@ -19,5 +19,6 @@ abstract class RegistryState with _$RegistryState {
     @required bool isAcceptedUser,
     @required bool isRegisteredUser,
     @required bool isFullRegistry,
+    @required bool isMasterOfTheClass,
   }) = RegistryLoaded;
 }

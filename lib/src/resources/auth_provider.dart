@@ -108,7 +108,7 @@ class AuthProvider implements AuthRepository {
   }
 
   @override
-  Future<User> loginWithTestUser({test = 0, owner = false}) async {
+  Future<User> loginWithTestUser({test = 0, owner = false, master = false}) async {
     if (test == 1) {
       await this._firebaseAuth.signInWithEmailAndPassword(
           email: "test@test.com", password: "test123");
@@ -120,6 +120,10 @@ class AuthProvider implements AuthRepository {
     if (owner) {
       await this._firebaseAuth.signInWithEmailAndPassword(
           email: "test-owner@test.com", password: "test123");
+    }
+    if (master) {
+      await this._firebaseAuth.signInWithEmailAndPassword(
+          email: "test-master@test.com", password: "test123");
     }
     var firebaseUser = _firebaseAuth.currentUser;
     debugPrint("test firebaseUser is [$firebaseUser]");
