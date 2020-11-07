@@ -26,6 +26,7 @@ import 'package:checkin/src/ui/components/no_lessons_banner.dart';
 import 'package:checkin/src/ui/components/profile_card.dart';
 import 'package:checkin/src/ui/components/profile_infos.dart';
 import 'package:checkin/src/ui/components/registry/registry_controls.dart';
+import 'package:checkin/src/ui/components/registry/student_button.dart';
 import 'package:checkin/src/ui/components/stats/graduate_dialog.dart';
 import 'package:checkin/src/ui/components/stats/graduate_fab.dart';
 import 'package:checkin/src/ui/components/stats/lessons/attendees_counter.dart';
@@ -176,13 +177,13 @@ extension Localization on String {
     'en': Grade.black.description,
     'es': 'Comenzar de nuevo, enseñar y reflexionar',
   } + {
-    'en': RegistryControls.unregisterClass,
+    'en': StudentButton.unregisterClass,
     'es': 'Desapuntarse de la clase',
   } + {
-    'en': RegistryControls.registerClass,
+    'en': StudentButton.registerClass,
     'es': 'Apuntarse a la clase',
   } + {
-    'en': RegistryControls.registryFull,
+    'en': StudentButton.registryFull,
     'es': 'Clase completa',
   } + {
     'en': RegistryControls.acceptAll,

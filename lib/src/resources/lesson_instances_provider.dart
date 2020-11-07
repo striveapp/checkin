@@ -1,3 +1,5 @@
+import 'package:checkin/src/config.dart' as config;
+import 'package:checkin/src/constants.dart';
 import 'package:checkin/src/models/attendee.dart';
 import 'package:checkin/src/models/grade.dart';
 import 'package:checkin/src/models/lesson.dart';
@@ -8,10 +10,6 @@ import 'package:checkin/src/util/debug_util.dart';
 import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:flutter/foundation.dart';
 import 'package:intl/intl.dart';
-import 'package:checkin/src/config.dart' as config;
-
-
-import '../constants.dart';
 
 class LessonInstancesProvider implements LessonRepository {
   static const String gymPath = "gyms";

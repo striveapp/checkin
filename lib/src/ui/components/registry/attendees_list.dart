@@ -65,8 +65,7 @@ class AttendeesList extends StatelessWidget {
   }
 
   bool _isUserInClass(RegistryLoaded state) {
-    return state.isRegisteredUser(state.currentUser.email) ||
-        state.isAcceptedUser(state.currentUser.email);
+    return state.isRegisteredUser || state.isAcceptedUser;
   }
 
   bool _isRegistryEmpty(RegistryLoaded state) =>

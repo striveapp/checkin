@@ -2,11 +2,10 @@ import 'package:checkin/src/blocs/subscription/bloc.dart';
 import 'package:checkin/src/blocs/subscription_plans/bloc.dart';
 import 'package:checkin/src/localization/localization.dart';
 import 'package:checkin/src/models/subscription_plan.dart';
+import 'package:checkin/src/ui/components/loading_indicator.dart';
 import 'package:checkin/src/ui/components/plans/generic_card.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
-
-import '../loading_indicator.dart';
 
 class PlansList extends StatelessWidget {
   static const String noPlansYet = 'There are not available plans yet';

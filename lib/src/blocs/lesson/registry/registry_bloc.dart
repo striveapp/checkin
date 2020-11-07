@@ -89,15 +89,6 @@ class RegistryBloc extends Bloc<RegistryEvent, RegistryState> {
     return event.acceptedAttendees.any((attendee) => attendee.email == event.currentUser.email);
   }
 
-//  Attendee getRegisteredUser(String email) {
-//    // TODO: we should use some kind of id to perform this check not the email https://trello.com/c/j5sAVRXJ
-//    Iterable<Attendee> attendeeFromEmail = attendees.where((attendee) => attendee.email == email);
-//    if(attendeeFromEmail.isEmpty) {
-//      return null;
-//    }
-//    return attendeeFromEmail.first;
-//  }
-
   bool isRegisteredUser(RegistryUpdated event) {
     // TODO: we should use some kind of id to perform this check not the email https://trello.com/c/j5sAVRXJ
     return event.attendees.any((attendee) => attendee.email == event.currentUser.email);

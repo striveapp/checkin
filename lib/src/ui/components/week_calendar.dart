@@ -3,7 +3,7 @@ import 'package:checkin/src/util/debug_util.dart';
 import 'package:flutter/material.dart';
 import 'package:table_calendar/table_calendar.dart';
 
-import '../../constants.dart';
+import 'package:checkin/src/constants.dart';
 
 class WeekCalendar extends StatefulWidget {
   @override

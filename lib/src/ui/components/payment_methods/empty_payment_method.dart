@@ -2,10 +2,9 @@ import 'package:checkin/src/blocs/gym/bloc.dart';
 import 'package:checkin/src/blocs/payment_methods/bloc.dart';
 import 'package:checkin/src/localization/localization.dart';
 import 'package:checkin/src/models/gym.dart';
+import 'package:checkin/src/ui/components/loading_indicator.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
-
-import '../loading_indicator.dart';
 
 class EmptyPaymentMethod extends StatelessWidget {
   static const String connectBankAccount = 'Connect your bank account';

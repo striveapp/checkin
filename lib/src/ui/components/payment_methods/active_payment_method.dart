@@ -6,7 +6,7 @@ import 'package:checkin/src/models/payment_method.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 
-import '../loading_indicator.dart';
+import 'package:checkin/src/ui/components/loading_indicator.dart';
 
 class ActivePaymentMethodView extends StatelessWidget {
   static const String changePaymentInfo = 'Change payment infos';

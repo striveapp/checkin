@@ -1,13 +1,12 @@
 import 'dart:convert';
 import 'dart:io';
 
+import 'package:checkin/src/config.dart';
 import 'package:checkin/src/repositories/auth_repository.dart';
 import 'package:checkin/src/util/debug_util.dart';
 import 'package:flutter/material.dart';
 import 'package:http/http.dart' as http;
 import 'package:http/http.dart';
-
-import '../config.dart';
 
 class HttpClient {
   final AuthRepository _authRepository;

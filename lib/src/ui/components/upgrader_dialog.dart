@@ -1,10 +1,8 @@
+import 'package:checkin/src/constants.dart';
 import 'package:flutter/material.dart';
 import 'package:checkin/src/localization/localization.dart';
 import 'package:flutter/widgets.dart';
 import 'package:open_appstore/open_appstore.dart';
-
-import '../../constants.dart';
-
 
 class UpgraderDialog {
   static final String update = "Update";

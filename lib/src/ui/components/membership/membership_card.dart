@@ -3,7 +3,7 @@ import 'package:checkin/src/ui/components/empty_widget.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 
-import '../loading_indicator.dart';
+import 'package:checkin/src/ui/components/loading_indicator.dart';
 import 'active_membership.dart';
 import 'inactive_membership.dart';
 
