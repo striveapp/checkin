@@ -1,4 +1,4 @@
-import 'package:checkin/src/blocs/lesson/registry/bloc.dart';
+import 'package:checkin/src/blocs/registry/bloc.dart';
 import 'package:checkin/src/blocs/sessions/bloc.dart';
 import 'package:checkin/src/constants.dart';
 import 'package:checkin/src/localization/localization.dart';
@@ -56,7 +56,7 @@ class StudentButton extends StatelessWidget {
         key: Key('unregisterClass'),
         text: StudentButton.unregisterClass.i18n,
         color: Theme.of(context).buttonTheme.colorScheme.error,
-        onPressed: () => onPressUnregisterClass,
+        onPressed: onPressUnregisterClass,
       );
     }
 

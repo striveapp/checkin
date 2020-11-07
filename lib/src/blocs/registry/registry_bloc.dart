@@ -14,25 +14,30 @@ class RegistryBloc extends Bloc<RegistryEvent, RegistryState> {
   final UserBloc userBloc;
   final LessonApi lessonApi;
   final LessonRepository lessonRepository;
-  final Lesson lesson;
+  final String lessonId;
+  final String lessonDate;
 
-  StreamSubscription userSub;
-
+  StreamSubscription<UserState> userSub;
+  StreamSubscription<Lesson> lessonSub;
 
   RegistryBloc({
     @required this.userBloc,
     @required this.lessonApi,
     @required this.lessonRepository,
-    @required this.lesson
+    @required this.lessonId,
+    @required this.lessonDate,
   }) {
     userSub?.cancel();
     userSub = userBloc.listen((userState) {
       if(userState is UserSuccess) {
-        add(RegistryUpdated(
-            classCapacity: lesson.classCapacity,
-            acceptedAttendees: lesson.acceptedAttendees,
-            attendees: lesson.attendees,
-            currentUser: userState.currentUser));
+        lessonSub?.cancel();
+        lessonSub = lessonRepository
+            .getLesson(userState.currentUser.selectedGymId, lessonDate, lessonId)
+            .listen((lesson) {
+          add(RegistryUpdated(
+              currentUser: userState.currentUser,
+              currentLesson: lesson));
+        });
       }
     });
   }
@@ -44,10 +49,8 @@ class RegistryBloc extends Bloc<RegistryEvent, RegistryState> {
   Stream<RegistryState> mapEventToState(RegistryEvent event) async* {
     if (event is RegistryUpdated) {
       yield RegistryLoaded(
-        classCapacity: event.classCapacity,
         currentUser: event.currentUser,
-        attendees: event.attendees,
-        acceptedAttendees: event.acceptedAttendees,
+        currentLesson: event.currentLesson,
         isAcceptedUser: isAcceptedUser(event),
         isRegisteredUser: isRegisteredUser(event),
         isFullRegistry: isFullRegistry(event)
@@ -58,7 +61,7 @@ class RegistryBloc extends Bloc<RegistryEvent, RegistryState> {
       yield RegistryLoading();
       try {
         //TODO: refactor registry_bloc when calling acceptAll [https://trello.com/c/o7PBLnEQ]
-        await this.lessonApi.acceptAll(event.gymId, lesson);
+        await this.lessonApi.acceptAll(event.gymId, lessonId, lessonDate);
       } catch (e) {
         yield RegistryError();
       }
@@ -68,7 +71,7 @@ class RegistryBloc extends Bloc<RegistryEvent, RegistryState> {
       try {
         await this
             .lessonRepository
-            .register(event.gymId, lesson.date, lesson.id, event.attendee);
+            .register(event.gymId, lessonDate, lessonId, event.attendee);
       } catch (e) {
         yield RegistryError();
       }
@@ -76,9 +79,10 @@ class RegistryBloc extends Bloc<RegistryEvent, RegistryState> {
 
     if (event is Unregister) {
       try {
+        debugPrint("unregistering user ${event.attendee}");
         await this
             .lessonRepository
-            .unregister(event.gymId, lesson.date, lesson.id, event.attendee);
+            .unregister(event.gymId, lessonDate, lessonId, event.attendee);
       } catch (e) {
         yield RegistryError();
       }
@@ -86,16 +90,17 @@ class RegistryBloc extends Bloc<RegistryEvent, RegistryState> {
   }
 
   bool isAcceptedUser(RegistryUpdated event) {
-    return event.acceptedAttendees.any((attendee) => attendee.email == event.currentUser.email);
+    return event.currentLesson.acceptedAttendees.any((attendee) => attendee.email == event.currentUser.email);
   }
 
   bool isRegisteredUser(RegistryUpdated event) {
     // TODO: we should use some kind of id to perform this check not the email https://trello.com/c/j5sAVRXJ
-    return event.attendees.any((attendee) => attendee.email == event.currentUser.email);
+    return event.currentLesson.attendees.any((attendee) => attendee.email == event.currentUser.email);
   }
 
   bool isFullRegistry(RegistryUpdated event) {
-    return event.attendees.length + event.acceptedAttendees.length >= event.classCapacity;
+    var currentLesson = event.currentLesson;
+    return currentLesson.attendees.length + currentLesson.acceptedAttendees.length >= currentLesson.classCapacity;
   }
 
   @override

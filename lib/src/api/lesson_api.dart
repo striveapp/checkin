@@ -1,18 +1,18 @@
-import 'package:checkin/src/models/lesson.dart';
 import 'package:flutter/material.dart';
 
 import 'api.dart';
 
 class LessonApi {
-  Future<void> acceptAll( String gymId, Lesson lesson) async {
+  Future<void> acceptAll(String gymId, String lessonId, String date) async {
     var parameters = {
-      'lesson': lesson.toJson(),
+      'lessonId': lessonId,
+      'date': date,
       'gymId': gymId
     };
 
     await Api.call(functionName: "acceptAll", parameters: parameters)
         .then((_) => {
-      debugPrint("User accepted from lesson with id [${lesson.id}]")
+      debugPrint("User accepted from lesson with id [$date,$lessonId]")
     });
   }
 }

@@ -1,4 +1,4 @@
-import 'package:checkin/src/blocs/lesson/registry/bloc.dart';
+import 'package:checkin/src/blocs/registry/bloc.dart';
 import 'package:checkin/src/localization/localization.dart';
 import 'package:checkin/src/models/attendee.dart';
 import 'package:checkin/src/models/user.dart';

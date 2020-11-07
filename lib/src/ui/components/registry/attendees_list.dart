@@ -1,5 +1,6 @@
-import 'package:checkin/src/blocs/lesson/registry/bloc.dart';
+import 'package:checkin/src/blocs/registry/bloc.dart';
 import 'package:checkin/src/models/attendee.dart';
+import 'package:checkin/src/models/lesson.dart';
 import 'package:checkin/src/models/user.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
@@ -31,23 +32,24 @@ class AttendeesList extends StatelessWidget {
 
           if (state is RegistryLoaded) {
             User currentUser = state.currentUser;
+            Lesson currentLesson = state.currentLesson;
 
             return Column(
               key: Key('attendeeList'),
               children: <Widget>[
                 if (_isUserInClass(state))
                   CurrentUserTile(
-                      acceptedAttendees: state.acceptedAttendees,
+                      acceptedAttendees: currentLesson.acceptedAttendees,
                       currentUser: currentUser),
                 Expanded(
                   child: SingleChildScrollView(
                     child: Column(
                       children: <Widget>[
                         AcceptedAttendees(
-                            acceptedAttendees: state.acceptedAttendees,
+                            acceptedAttendees: currentLesson.acceptedAttendees,
                             currentUser: currentUser),
                         Attendees(
-                            attendees: state.attendees,
+                            attendees: currentLesson.attendees,
                             currentUser: currentUser),
                       ],
                     ),
@@ -69,7 +71,7 @@ class AttendeesList extends StatelessWidget {
   }
 
   bool _isRegistryEmpty(RegistryLoaded state) =>
-      [...state.attendees, ...state.acceptedAttendees].length == 0;
+      [...state.currentLesson.attendees, ...state.currentLesson.acceptedAttendees].length == 0;
 }
 
 class Attendees extends StatelessWidget {

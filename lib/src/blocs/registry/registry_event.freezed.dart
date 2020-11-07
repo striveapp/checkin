@@ -15,15 +15,10 @@ class _$RegistryEventTearOff {
 
 // ignore: unused_element
   RegistryUpdated registryUpdated(
-      {@required int classCapacity,
-      @required User currentUser,
-      List<Attendee> attendees,
-      List<Attendee> acceptedAttendees}) {
+      {@required User currentUser, @required Lesson currentLesson}) {
     return RegistryUpdated(
-      classCapacity: classCapacity,
       currentUser: currentUser,
-      attendees: attendees,
-      acceptedAttendees: acceptedAttendees,
+      currentLesson: currentLesson,
     );
   }
 
@@ -59,17 +54,14 @@ const $RegistryEvent = _$RegistryEventTearOff();
 mixin _$RegistryEvent {
   @optionalTypeArgs
   Result when<Result extends Object>({
-    @required
-        Result registryUpdated(int classCapacity, User currentUser,
-            List<Attendee> attendees, List<Attendee> acceptedAttendees),
+    @required Result registryUpdated(User currentUser, Lesson currentLesson),
     @required Result register(String gymId, Attendee attendee),
     @required Result unregister(String gymId, Attendee attendee),
     @required Result acceptAttendees(String gymId),
   });
   @optionalTypeArgs
   Result maybeWhen<Result extends Object>({
-    Result registryUpdated(int classCapacity, User currentUser,
-        List<Attendee> attendees, List<Attendee> acceptedAttendees),
+    Result registryUpdated(User currentUser, Lesson currentLesson),
     Result register(String gymId, Attendee attendee),
     Result unregister(String gymId, Attendee attendee),
     Result acceptAttendees(String gymId),
@@ -114,11 +106,9 @@ abstract class $RegistryUpdatedCopyWith<$Res> {
   factory $RegistryUpdatedCopyWith(
           RegistryUpdated value, $Res Function(RegistryUpdated) then) =
       _$RegistryUpdatedCopyWithImpl<$Res>;
-  $Res call(
-      {int classCapacity,
-      User currentUser,
-      List<Attendee> attendees,
-      List<Attendee> acceptedAttendees});
+  $Res call({User currentUser, Lesson currentLesson});
+
+  $LessonCopyWith<$Res> get currentLesson;
 }
 
 /// @nodoc
@@ -134,23 +124,26 @@ class _$RegistryUpdatedCopyWithImpl<$Res>
 
   @override
   $Res call({
-    Object classCapacity = freezed,
     Object currentUser = freezed,
-    Object attendees = freezed,
-    Object acceptedAttendees = freezed,
+    Object currentLesson = freezed,
   }) {
     return _then(RegistryUpdated(
-      classCapacity: classCapacity == freezed
-          ? _value.classCapacity
-          : classCapacity as int,
       currentUser:
           currentUser == freezed ? _value.currentUser : currentUser as User,
-      attendees:
-          attendees == freezed ? _value.attendees : attendees as List<Attendee>,
-      acceptedAttendees: acceptedAttendees == freezed
-          ? _value.acceptedAttendees
-          : acceptedAttendees as List<Attendee>,
+      currentLesson: currentLesson == freezed
+          ? _value.currentLesson
+          : currentLesson as Lesson,
     ));
+  }
+
+  @override
+  $LessonCopyWith<$Res> get currentLesson {
+    if (_value.currentLesson == null) {
+      return null;
+    }
+    return $LessonCopyWith<$Res>(_value.currentLesson, (value) {
+      return _then(_value.copyWith(currentLesson: value));
+    });
   }
 }
 
@@ -159,25 +152,18 @@ class _$RegistryUpdated
     with DiagnosticableTreeMixin
     implements RegistryUpdated {
   const _$RegistryUpdated(
-      {@required this.classCapacity,
-      @required this.currentUser,
-      this.attendees,
-      this.acceptedAttendees})
-      : assert(classCapacity != null),
-        assert(currentUser != null);
+      {@required this.currentUser, @required this.currentLesson})
+      : assert(currentUser != null),
+        assert(currentLesson != null);
 
-  @override
-  final int classCapacity;
   @override
   final User currentUser;
   @override
-  final List<Attendee> attendees;
-  @override
-  final List<Attendee> acceptedAttendees;
+  final Lesson currentLesson;
 
   @override
   String toString({DiagnosticLevel minLevel = DiagnosticLevel.info}) {
-    return 'RegistryEvent.registryUpdated(classCapacity: $classCapacity, currentUser: $currentUser, attendees: $attendees, acceptedAttendees: $acceptedAttendees)';
+    return 'RegistryEvent.registryUpdated(currentUser: $currentUser, currentLesson: $currentLesson)';
   }
 
   @override
@@ -185,37 +171,27 @@ class _$RegistryUpdated
     super.debugFillProperties(properties);
     properties
       ..add(DiagnosticsProperty('type', 'RegistryEvent.registryUpdated'))
-      ..add(DiagnosticsProperty('classCapacity', classCapacity))
       ..add(DiagnosticsProperty('currentUser', currentUser))
-      ..add(DiagnosticsProperty('attendees', attendees))
-      ..add(DiagnosticsProperty('acceptedAttendees', acceptedAttendees));
+      ..add(DiagnosticsProperty('currentLesson', currentLesson));
   }
 
   @override
   bool operator ==(dynamic other) {
     return identical(this, other) ||
         (other is RegistryUpdated &&
-            (identical(other.classCapacity, classCapacity) ||
-                const DeepCollectionEquality()
-                    .equals(other.classCapacity, classCapacity)) &&
             (identical(other.currentUser, currentUser) ||
                 const DeepCollectionEquality()
                     .equals(other.currentUser, currentUser)) &&
-            (identical(other.attendees, attendees) ||
+            (identical(other.currentLesson, currentLesson) ||
                 const DeepCollectionEquality()
-                    .equals(other.attendees, attendees)) &&
-            (identical(other.acceptedAttendees, acceptedAttendees) ||
-                const DeepCollectionEquality()
-                    .equals(other.acceptedAttendees, acceptedAttendees)));
+                    .equals(other.currentLesson, currentLesson)));
   }
 
   @override
   int get hashCode =>
       runtimeType.hashCode ^
-      const DeepCollectionEquality().hash(classCapacity) ^
       const DeepCollectionEquality().hash(currentUser) ^
-      const DeepCollectionEquality().hash(attendees) ^
-      const DeepCollectionEquality().hash(acceptedAttendees);
+      const DeepCollectionEquality().hash(currentLesson);
 
   @override
   $RegistryUpdatedCopyWith<RegistryUpdated> get copyWith =>
@@ -224,9 +200,7 @@ class _$RegistryUpdated
   @override
   @optionalTypeArgs
   Result when<Result extends Object>({
-    @required
-        Result registryUpdated(int classCapacity, User currentUser,
-            List<Attendee> attendees, List<Attendee> acceptedAttendees),
+    @required Result registryUpdated(User currentUser, Lesson currentLesson),
     @required Result register(String gymId, Attendee attendee),
     @required Result unregister(String gymId, Attendee attendee),
     @required Result acceptAttendees(String gymId),
@@ -235,15 +209,13 @@ class _$RegistryUpdated
     assert(register != null);
     assert(unregister != null);
     assert(acceptAttendees != null);
-    return registryUpdated(
-        classCapacity, currentUser, attendees, acceptedAttendees);
+    return registryUpdated(currentUser, currentLesson);
   }
 
   @override
   @optionalTypeArgs
   Result maybeWhen<Result extends Object>({
-    Result registryUpdated(int classCapacity, User currentUser,
-        List<Attendee> attendees, List<Attendee> acceptedAttendees),
+    Result registryUpdated(User currentUser, Lesson currentLesson),
     Result register(String gymId, Attendee attendee),
     Result unregister(String gymId, Attendee attendee),
     Result acceptAttendees(String gymId),
@@ -251,8 +223,7 @@ class _$RegistryUpdated
   }) {
     assert(orElse != null);
     if (registryUpdated != null) {
-      return registryUpdated(
-          classCapacity, currentUser, attendees, acceptedAttendees);
+      return registryUpdated(currentUser, currentLesson);
     }
     return orElse();
   }
@@ -291,15 +262,11 @@ class _$RegistryUpdated
 
 abstract class RegistryUpdated implements RegistryEvent {
   const factory RegistryUpdated(
-      {@required int classCapacity,
-      @required User currentUser,
-      List<Attendee> attendees,
-      List<Attendee> acceptedAttendees}) = _$RegistryUpdated;
+      {@required User currentUser,
+      @required Lesson currentLesson}) = _$RegistryUpdated;
 
-  int get classCapacity;
   User get currentUser;
-  List<Attendee> get attendees;
-  List<Attendee> get acceptedAttendees;
+  Lesson get currentLesson;
   $RegistryUpdatedCopyWith<RegistryUpdated> get copyWith;
 }
 
@@ -380,9 +347,7 @@ class _$Register with DiagnosticableTreeMixin implements Register {
   @override
   @optionalTypeArgs
   Result when<Result extends Object>({
-    @required
-        Result registryUpdated(int classCapacity, User currentUser,
-            List<Attendee> attendees, List<Attendee> acceptedAttendees),
+    @required Result registryUpdated(User currentUser, Lesson currentLesson),
     @required Result register(String gymId, Attendee attendee),
     @required Result unregister(String gymId, Attendee attendee),
     @required Result acceptAttendees(String gymId),
@@ -397,8 +362,7 @@ class _$Register with DiagnosticableTreeMixin implements Register {
   @override
   @optionalTypeArgs
   Result maybeWhen<Result extends Object>({
-    Result registryUpdated(int classCapacity, User currentUser,
-        List<Attendee> attendees, List<Attendee> acceptedAttendees),
+    Result registryUpdated(User currentUser, Lesson currentLesson),
     Result register(String gymId, Attendee attendee),
     Result unregister(String gymId, Attendee attendee),
     Result acceptAttendees(String gymId),
@@ -530,9 +494,7 @@ class _$Unregister with DiagnosticableTreeMixin implements Unregister {
   @override
   @optionalTypeArgs
   Result when<Result extends Object>({
-    @required
-        Result registryUpdated(int classCapacity, User currentUser,
-            List<Attendee> attendees, List<Attendee> acceptedAttendees),
+    @required Result registryUpdated(User currentUser, Lesson currentLesson),
     @required Result register(String gymId, Attendee attendee),
     @required Result unregister(String gymId, Attendee attendee),
     @required Result acceptAttendees(String gymId),
@@ -547,8 +509,7 @@ class _$Unregister with DiagnosticableTreeMixin implements Unregister {
   @override
   @optionalTypeArgs
   Result maybeWhen<Result extends Object>({
-    Result registryUpdated(int classCapacity, User currentUser,
-        List<Attendee> attendees, List<Attendee> acceptedAttendees),
+    Result registryUpdated(User currentUser, Lesson currentLesson),
     Result register(String gymId, Attendee attendee),
     Result unregister(String gymId, Attendee attendee),
     Result acceptAttendees(String gymId),
@@ -672,9 +633,7 @@ class _$AcceptAttendees
   @override
   @optionalTypeArgs
   Result when<Result extends Object>({
-    @required
-        Result registryUpdated(int classCapacity, User currentUser,
-            List<Attendee> attendees, List<Attendee> acceptedAttendees),
+    @required Result registryUpdated(User currentUser, Lesson currentLesson),
     @required Result register(String gymId, Attendee attendee),
     @required Result unregister(String gymId, Attendee attendee),
     @required Result acceptAttendees(String gymId),
@@ -689,8 +648,7 @@ class _$AcceptAttendees
   @override
   @optionalTypeArgs
   Result maybeWhen<Result extends Object>({
-    Result registryUpdated(int classCapacity, User currentUser,
-        List<Attendee> attendees, List<Attendee> acceptedAttendees),
+    Result registryUpdated(User currentUser, Lesson currentLesson),
     Result register(String gymId, Attendee attendee),
     Result unregister(String gymId, Attendee attendee),
     Result acceptAttendees(String gymId),

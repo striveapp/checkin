@@ -1,4 +1,4 @@
-import 'package:checkin/src/blocs/lesson/registry/bloc.dart';
+import 'package:checkin/src/blocs/registry/bloc.dart';
 import 'package:checkin/src/constants.dart';
 import 'package:checkin/src/localization/localization.dart';
 import 'package:checkin/src/ui/components/registry/registry_button.dart';
@@ -34,14 +34,14 @@ class RegistryControls extends StatelessWidget {
         if (currentUser.isOwner) {
           return Column(
             children: [
+              StudentButton(registryState: state),
+              SizedBox(height: 20,),
               RegistryButton(
                 key: Key('acceptAll'),
                 onPressed:
-                    state.attendees.length > 0 ? onPressAcceptAll : DISABLED_BUTTON,
+                state.currentLesson.attendees.length > 0 ? onPressAcceptAll : DISABLED_BUTTON,
                 text: RegistryControls.acceptAll.i18n,
               ),
-              Container(height: 20,),
-              StudentButton(registryState: state),
             ],
           );
         }

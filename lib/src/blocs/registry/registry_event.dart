@@ -1,4 +1,5 @@
 import 'package:checkin/src/models/attendee.dart';
+import 'package:checkin/src/models/lesson.dart';
 import 'package:checkin/src/models/user.dart';
 import 'package:flutter/foundation.dart';
 import 'package:freezed_annotation/freezed_annotation.dart';
@@ -8,10 +9,8 @@ part 'registry_event.freezed.dart';
 @freezed
 abstract class RegistryEvent with _$RegistryEvent {
   const factory RegistryEvent.registryUpdated({
-    @required int classCapacity,
     @required User currentUser,
-    List<Attendee> attendees,
-    List<Attendee> acceptedAttendees,
+    @required Lesson currentLesson
   }) = RegistryUpdated;
 
   const factory RegistryEvent.register({

@@ -1,8 +1,8 @@
-import 'package:checkin/src/blocs/lesson/bloc.dart';
+import 'package:checkin/src/api/lesson_api.dart';
+import 'package:checkin/src/blocs/registry/registry_bloc.dart';
 import 'package:checkin/src/blocs/user/bloc.dart';
 import 'package:checkin/src/repositories/lesson_repository.dart';
 import 'package:checkin/src/ui/components/base_app_bar.dart';
-import 'package:checkin/src/ui/components/loading_indicator.dart';
 import 'package:checkin/src/ui/components/registry/lesson_infos.dart';
 import 'package:checkin/src/ui/components/registry/registry.dart';
 import 'package:flutter/material.dart';
@@ -30,33 +30,25 @@ class RegistryPage extends StatelessWidget {
       ),
       body: MultiBlocProvider(
           providers: [
-            BlocProvider<LessonBloc>(
-              create: (context) => LessonBloc(
-                userBloc: BlocProvider.of<UserBloc>(context),
+            BlocProvider<RegistryBloc>(
+              create: (context) => RegistryBloc(
                 lessonId: lessonId,
-                date: date,
-                lessonRepository:
-                    RepositoryProvider.of<LessonRepository>(context),
+                lessonDate: date,
+                lessonApi: RepositoryProvider.of<LessonApi>(context),
+                lessonRepository: RepositoryProvider.of<LessonRepository>(context),
+                userBloc: BlocProvider.of<UserBloc>(context),
               ),
             ),
           ],
           child: Container(
-              child: Padding(
-            padding: EdgeInsets.symmetric(horizontal: 10),
-            child: BlocBuilder<LessonBloc, LessonState>(
-              builder: (BuildContext context, LessonState state) {
-                return state.maybeMap(
-                    lessonLoaded: (LessonLoaded lessonLoaded) => Column(
-                        mainAxisAlignment: MainAxisAlignment.spaceAround,
-                        children: [
-                          LessonInfos(lesson: lessonLoaded.lesson,),
-                          Registry(lesson: lessonLoaded.lesson),
-                        ]),
-                    orElse: () => LoadingIndicator());
-              },
-
+            child: Padding(
+              padding: EdgeInsets.symmetric(horizontal: 10),
+              child: Column(mainAxisAlignment: MainAxisAlignment.spaceAround, children: [
+                LessonInfos(),
+                Registry(),
+              ]),
             ),
-          ))),
+          )),
     );
   }
 }

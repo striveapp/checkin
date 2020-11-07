@@ -1,5 +1,7 @@
-import 'package:checkin/src/blocs/lesson/registry/bloc.dart';
+import 'package:checkin/src/blocs/registry/bloc.dart';
 import 'package:checkin/src/localization/localization.dart';
+import 'package:checkin/src/models/attendee.dart';
+import 'package:checkin/src/models/lesson.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 
@@ -16,9 +18,10 @@ class RegistryCounter extends StatelessWidget {
         }
 
         if (state is RegistryLoaded) {
-          var allAttendees = [...state.attendees, ...state.acceptedAttendees];
+          Lesson currentLesson = state.currentLesson;
+          List<Attendee> allAttendees = [...currentLesson.attendees, ...currentLesson.acceptedAttendees];
 
-          return _getCounterWidget(allAttendees.length, state.classCapacity, context);
+          return _getCounterWidget(allAttendees.length, currentLesson.classCapacity, context);
         }
         return ErrorWidget('Unknown State [$state] received in: registry_page');
       },
