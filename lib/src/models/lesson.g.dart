@@ -14,20 +14,23 @@ _$_Lesson _$_$_LessonFromJson(Map<String, dynamic> json) {
     timeStart: json['timeStart'] as String,
     timeEnd: json['timeEnd'] as String,
     weekDay: json['weekDay'] as String,
-    attendees: (json['attendees'] as List)
-        ?.map((e) =>
-            e == null ? null : Attendee.fromJson(e as Map<String, dynamic>))
-        ?.toList(),
-    acceptedAttendees: (json['acceptedAttendees'] as List)
-        ?.map((e) =>
-            e == null ? null : Attendee.fromJson(e as Map<String, dynamic>))
-        ?.toList(),
-    masters: (json['masters'] as List)
-        ?.map((e) =>
-            e == null ? null : Master.fromJson(e as Map<String, dynamic>))
-        ?.toList(),
     timestamp: json['timestamp'] as int,
-    classCapacity: json['classCapacity'] as int,
+    classCapacity: json['classCapacity'] as int ?? 10,
+    masters: (json['masters'] as List)
+            ?.map((e) =>
+                e == null ? null : Master.fromJson(e as Map<String, dynamic>))
+            ?.toList() ??
+        [],
+    attendees: (json['attendees'] as List)
+            ?.map((e) =>
+                e == null ? null : Attendee.fromJson(e as Map<String, dynamic>))
+            ?.toList() ??
+        [],
+    acceptedAttendees: (json['acceptedAttendees'] as List)
+            ?.map((e) =>
+                e == null ? null : Attendee.fromJson(e as Map<String, dynamic>))
+            ?.toList() ??
+        [],
   );
 }
 
@@ -38,10 +41,10 @@ Map<String, dynamic> _$_$_LessonToJson(_$_Lesson instance) => <String, dynamic>{
       'timeStart': instance.timeStart,
       'timeEnd': instance.timeEnd,
       'weekDay': instance.weekDay,
+      'timestamp': instance.timestamp,
+      'classCapacity': instance.classCapacity,
+      'masters': instance.masters?.map((e) => e?.toJson())?.toList(),
       'attendees': instance.attendees?.map((e) => e?.toJson())?.toList(),
       'acceptedAttendees':
           instance.acceptedAttendees?.map((e) => e?.toJson())?.toList(),
-      'masters': instance.masters?.map((e) => e?.toJson())?.toList(),
-      'timestamp': instance.timestamp,
-      'classCapacity': instance.classCapacity,
     };

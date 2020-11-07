@@ -47,6 +47,8 @@ Future<void> setup() async {
 Future<void> cleanDatabase() async {
   await StatsProvider().cleanUserHistory("test", "test@test.com");
   await StatsProvider().cleanUserHistory("test", "test-two@test.com");
+  await StatsProvider().cleanUserHistory("test", "test-master@test.com");
+  await StatsProvider().cleanUserHistory("test", "test-owner@test.com");
   await UserProvider().updateGrade("test@test.com", Grade.white);
   await LessonInstancesProvider().cleanLessonAttendees("test", "2020-06-22", "3dbc1886-0c93-4eb3-a815-f4ed69306217");
   await LessonInstancesProvider().cleanLessonAttendees("test", "2020-06-22", "50be7f9f-d8e4-424a-a4d8-2910dbaf68e3");

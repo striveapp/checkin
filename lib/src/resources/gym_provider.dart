@@ -13,14 +13,12 @@ class GymProvider implements GymRepository {
         .snapshots()
         .where((snapshot) => snapshot.exists)
         .map((gym) {
-          final data = gym.data();
-          return Gym(
-              id: gymId,
-              paymentAppDomain: data["paymentAppDomain"],
-              host: data["host"],
-              stripePublicKey: data["stripePublicKey"],
-              hasActivePayments: data["hasActivePayments"] ?? false,
-            );
+          return _toGym(gymId, gym.data());
         });
+  }
+
+  Gym _toGym(String gymId, Map<String, dynamic> gym) {
+    gym.putIfAbsent("id", () => gymId);
+    return Gym.fromJson(gym);
   }
 }

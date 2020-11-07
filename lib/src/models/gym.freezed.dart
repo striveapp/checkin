@@ -8,6 +8,9 @@ part of 'gym.dart';
 // **************************************************************************
 
 T _$identity<T>(T value) => value;
+Gym _$GymFromJson(Map<String, dynamic> json) {
+  return _Gym.fromJson(json);
+}
 
 /// @nodoc
 class _$GymTearOff {
@@ -19,7 +22,7 @@ class _$GymTearOff {
       @required String paymentAppDomain,
       @required String host,
       @required String stripePublicKey,
-      @required bool hasActivePayments}) {
+      bool hasActivePayments = false}) {
     return _Gym(
       id: id,
       paymentAppDomain: paymentAppDomain,
@@ -27,6 +30,11 @@ class _$GymTearOff {
       stripePublicKey: stripePublicKey,
       hasActivePayments: hasActivePayments,
     );
+  }
+
+// ignore: unused_element
+  Gym fromJson(Map<String, Object> json) {
+    return Gym.fromJson(json);
   }
 }
 
@@ -42,6 +50,7 @@ mixin _$Gym {
   String get stripePublicKey;
   bool get hasActivePayments;
 
+  Map<String, dynamic> toJson();
   $GymCopyWith<Gym> get copyWith;
 }
 
@@ -135,6 +144,8 @@ class __$GymCopyWithImpl<$Res> extends _$GymCopyWithImpl<$Res>
   }
 }
 
+@JsonSerializable()
+
 /// @nodoc
 class _$_Gym with DiagnosticableTreeMixin implements _Gym {
   _$_Gym(
@@ -142,12 +153,14 @@ class _$_Gym with DiagnosticableTreeMixin implements _Gym {
       @required this.paymentAppDomain,
       @required this.host,
       @required this.stripePublicKey,
-      @required this.hasActivePayments})
+      this.hasActivePayments = false})
       : assert(id != null),
         assert(paymentAppDomain != null),
         assert(host != null),
         assert(stripePublicKey != null),
         assert(hasActivePayments != null);
+
+  factory _$_Gym.fromJson(Map<String, dynamic> json) => _$_$_GymFromJson(json);
 
   @override
   final String id;
@@ -157,6 +170,7 @@ class _$_Gym with DiagnosticableTreeMixin implements _Gym {
   final String host;
   @override
   final String stripePublicKey;
+  @JsonKey(defaultValue: false)
   @override
   final bool hasActivePayments;
 
@@ -208,6 +222,11 @@ class _$_Gym with DiagnosticableTreeMixin implements _Gym {
   @override
   _$GymCopyWith<_Gym> get copyWith =>
       __$GymCopyWithImpl<_Gym>(this, _$identity);
+
+  @override
+  Map<String, dynamic> toJson() {
+    return _$_$_GymToJson(this);
+  }
 }
 
 abstract class _Gym implements Gym {
@@ -216,7 +235,9 @@ abstract class _Gym implements Gym {
       @required String paymentAppDomain,
       @required String host,
       @required String stripePublicKey,
-      @required bool hasActivePayments}) = _$_Gym;
+      bool hasActivePayments}) = _$_Gym;
+
+  factory _Gym.fromJson(Map<String, dynamic> json) = _$_Gym.fromJson;
 
   @override
   String get id;

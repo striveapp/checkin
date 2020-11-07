@@ -60,7 +60,7 @@ make integration-test
 ## Run integration tests (The old school way)
 
 ```bash
-flutter drive --target=test_driver/journeys/journeys.dart
+flutter drive --target=test_driver/journeys/journeys.dart --flavor dev
 ```
 
 ## While developing

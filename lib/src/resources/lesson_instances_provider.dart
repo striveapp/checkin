@@ -1,4 +1,3 @@
-import 'package:checkin/src/config.dart' as config;
 import 'package:checkin/src/constants.dart';
 import 'package:checkin/src/models/attendee.dart';
 import 'package:checkin/src/models/grade.dart';
@@ -21,39 +20,12 @@ class LessonInstancesProvider implements LessonRepository {
 
   String _formatDate(DateTime day) => DateFormat("yyyy-MM-dd").format(day);
 
+  // todo retrieve from Gym (config) https://trello.com/c/uIqJLgZL
   Lesson _toLesson(DocumentSnapshot lesson) {
     final data = lesson.data();
-    return Lesson(
-        id: lesson.id,
-        date: data['date'],
-        name: data['name'],
-        timeStart: data['timeStart'],
-        timeEnd: data['timeEnd'],
-        weekDay: data['weekDay'],
-        classCapacity: data['classCapacity'] ?? config.DEFAULT_CLASS_CAPACITY,
-        // todo retrieve from Gym (config) https://trello.com/c/uIqJLgZL
-        masters: (data['masters'] as List)
-                ?.map((master) => Master(
-                      name: master['name'],
-                      email: master['email'],
-                      imageUrl: master['imageUrl'],
-                    ))
-                ?.toList() ??
-            [],
-        attendees:
-            (data['attendees'] as List)?.map((attendee) => _toAttendee(attendee))?.toList() ?? [],
-        acceptedAttendees: (data['acceptedAttendees'] as List)
-                ?.map((attendee) => _toAttendee(attendee))
-                ?.toList() ??
-            []);
-  }
 
-  Attendee _toAttendee(Map<dynamic, dynamic> attendee) => Attendee(
-        name: attendee['name'],
-        grade: (attendee["grade"] as String).toGrade(),
-        imageUrl: attendee["imageUrl"],
-        email: attendee["email"],
-      );
+    return Lesson.fromJson(data);
+  }
 
   @override
   Stream<List<Lesson>> getLessonsForToday(String gymId) {

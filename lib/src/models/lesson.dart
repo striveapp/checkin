@@ -1,4 +1,5 @@
 import 'package:freezed_annotation/freezed_annotation.dart';
+import 'package:checkin/src/config.dart' as config;
 
 import 'attendee.dart';
 import 'master.dart';
@@ -16,11 +17,11 @@ abstract class Lesson with _$Lesson {
     final String timeStart,
     final String timeEnd,
     final String weekDay,
-    final List<Attendee> attendees,
-    final List<Attendee> acceptedAttendees,
-    final List<Master> masters,
     final int timestamp,
-    final int classCapacity,
+    @Default(config.DEFAULT_CLASS_CAPACITY) final int classCapacity,
+    @Default([]) final List<Master> masters,
+    @Default([]) final List<Attendee> attendees,
+    @Default([]) final List<Attendee> acceptedAttendees,
   }) = _Lesson;
 
   factory Lesson.fromJson(Map<String, dynamic> json) => _$LessonFromJson(json);

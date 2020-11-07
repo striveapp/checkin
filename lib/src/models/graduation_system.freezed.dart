@@ -8,6 +8,9 @@ part of 'graduation_system.dart';
 // **************************************************************************
 
 T _$identity<T>(T value) => value;
+GraduationSystem _$GraduationSystemFromJson(Map<String, dynamic> json) {
+  return _GraduationSystem.fromJson(json);
+}
 
 /// @nodoc
 class _$GraduationSystemTearOff {
@@ -15,11 +18,17 @@ class _$GraduationSystemTearOff {
 
 // ignore: unused_element
   _GraduationSystem call(
-      {@required Grade grade, @required double forNextLevel}) {
+      {@required @GradeConverter() Grade grade,
+      @required double forNextLevel}) {
     return _GraduationSystem(
       grade: grade,
       forNextLevel: forNextLevel,
     );
+  }
+
+// ignore: unused_element
+  GraduationSystem fromJson(Map<String, Object> json) {
+    return GraduationSystem.fromJson(json);
   }
 }
 
@@ -29,9 +38,11 @@ const $GraduationSystem = _$GraduationSystemTearOff();
 
 /// @nodoc
 mixin _$GraduationSystem {
+  @GradeConverter()
   Grade get grade;
   double get forNextLevel;
 
+  Map<String, dynamic> toJson();
   $GraduationSystemCopyWith<GraduationSystem> get copyWith;
 }
 
@@ -40,7 +51,7 @@ abstract class $GraduationSystemCopyWith<$Res> {
   factory $GraduationSystemCopyWith(
           GraduationSystem value, $Res Function(GraduationSystem) then) =
       _$GraduationSystemCopyWithImpl<$Res>;
-  $Res call({Grade grade, double forNextLevel});
+  $Res call({@GradeConverter() Grade grade, double forNextLevel});
 }
 
 /// @nodoc
@@ -73,7 +84,7 @@ abstract class _$GraduationSystemCopyWith<$Res>
           _GraduationSystem value, $Res Function(_GraduationSystem) then) =
       __$GraduationSystemCopyWithImpl<$Res>;
   @override
-  $Res call({Grade grade, double forNextLevel});
+  $Res call({@GradeConverter() Grade grade, double forNextLevel});
 }
 
 /// @nodoc
@@ -101,15 +112,22 @@ class __$GraduationSystemCopyWithImpl<$Res>
   }
 }
 
+@JsonSerializable()
+
 /// @nodoc
 class _$_GraduationSystem
     with DiagnosticableTreeMixin
     implements _GraduationSystem {
-  _$_GraduationSystem({@required this.grade, @required this.forNextLevel})
+  _$_GraduationSystem(
+      {@required @GradeConverter() this.grade, @required this.forNextLevel})
       : assert(grade != null),
         assert(forNextLevel != null);
 
+  factory _$_GraduationSystem.fromJson(Map<String, dynamic> json) =>
+      _$_$_GraduationSystemFromJson(json);
+
   @override
+  @GradeConverter()
   final Grade grade;
   @override
   final double forNextLevel;
@@ -148,14 +166,23 @@ class _$_GraduationSystem
   @override
   _$GraduationSystemCopyWith<_GraduationSystem> get copyWith =>
       __$GraduationSystemCopyWithImpl<_GraduationSystem>(this, _$identity);
+
+  @override
+  Map<String, dynamic> toJson() {
+    return _$_$_GraduationSystemToJson(this);
+  }
 }
 
 abstract class _GraduationSystem implements GraduationSystem {
   factory _GraduationSystem(
-      {@required Grade grade,
+      {@required @GradeConverter() Grade grade,
       @required double forNextLevel}) = _$_GraduationSystem;
 
+  factory _GraduationSystem.fromJson(Map<String, dynamic> json) =
+      _$_GraduationSystem.fromJson;
+
   @override
+  @GradeConverter()
   Grade get grade;
   @override
   double get forNextLevel;

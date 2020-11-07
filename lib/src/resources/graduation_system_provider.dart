@@ -26,9 +26,8 @@ class GraduationSystemProvider implements GraduationSystemRepository {
   }
 
   GraduationSystem toGraduationSystem(String grade, Map<String, dynamic> data) {
-    return GraduationSystem(
-        grade: grade.toGrade(),
-        forNextLevel: (data["forNextLevel"] as num).toDouble());
+    data.putIfAbsent("grade", () => grade);
+    return GraduationSystem.fromJson(data);
   }
 
 }

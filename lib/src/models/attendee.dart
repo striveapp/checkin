@@ -1,3 +1,4 @@
+import 'package:checkin/src/models/converters/grade_converter.dart';
 import 'package:checkin/src/models/grade.dart';
 import 'package:checkin/src/models/user.dart';
 import 'package:equatable/equatable.dart';
@@ -7,6 +8,7 @@ import 'package:meta/meta.dart';
 part 'attendee.g.dart';
 
 @JsonSerializable()
+@GradeConverter()
 class Attendee extends Equatable {
   final String name;
   final Grade grade;

@@ -24,11 +24,11 @@ class _$LessonTearOff {
       String timeStart,
       String timeEnd,
       String weekDay,
-      List<Attendee> attendees,
-      List<Attendee> acceptedAttendees,
-      List<Master> masters,
       int timestamp,
-      int classCapacity}) {
+      int classCapacity = config.DEFAULT_CLASS_CAPACITY,
+      List<Master> masters = const [],
+      List<Attendee> attendees = const [],
+      List<Attendee> acceptedAttendees = const []}) {
     return _Lesson(
       id: id,
       date: date,
@@ -36,11 +36,11 @@ class _$LessonTearOff {
       timeStart: timeStart,
       timeEnd: timeEnd,
       weekDay: weekDay,
-      attendees: attendees,
-      acceptedAttendees: acceptedAttendees,
-      masters: masters,
       timestamp: timestamp,
       classCapacity: classCapacity,
+      masters: masters,
+      attendees: attendees,
+      acceptedAttendees: acceptedAttendees,
     );
   }
 
@@ -62,11 +62,11 @@ mixin _$Lesson {
   String get timeStart;
   String get timeEnd;
   String get weekDay;
-  List<Attendee> get attendees;
-  List<Attendee> get acceptedAttendees;
-  List<Master> get masters;
   int get timestamp;
   int get classCapacity;
+  List<Master> get masters;
+  List<Attendee> get attendees;
+  List<Attendee> get acceptedAttendees;
 
   Map<String, dynamic> toJson();
   $LessonCopyWith<Lesson> get copyWith;
@@ -83,11 +83,11 @@ abstract class $LessonCopyWith<$Res> {
       String timeStart,
       String timeEnd,
       String weekDay,
-      List<Attendee> attendees,
-      List<Attendee> acceptedAttendees,
-      List<Master> masters,
       int timestamp,
-      int classCapacity});
+      int classCapacity,
+      List<Master> masters,
+      List<Attendee> attendees,
+      List<Attendee> acceptedAttendees});
 }
 
 /// @nodoc
@@ -106,11 +106,11 @@ class _$LessonCopyWithImpl<$Res> implements $LessonCopyWith<$Res> {
     Object timeStart = freezed,
     Object timeEnd = freezed,
     Object weekDay = freezed,
-    Object attendees = freezed,
-    Object acceptedAttendees = freezed,
-    Object masters = freezed,
     Object timestamp = freezed,
     Object classCapacity = freezed,
+    Object masters = freezed,
+    Object attendees = freezed,
+    Object acceptedAttendees = freezed,
   }) {
     return _then(_value.copyWith(
       id: id == freezed ? _value.id : id as String,
@@ -119,16 +119,16 @@ class _$LessonCopyWithImpl<$Res> implements $LessonCopyWith<$Res> {
       timeStart: timeStart == freezed ? _value.timeStart : timeStart as String,
       timeEnd: timeEnd == freezed ? _value.timeEnd : timeEnd as String,
       weekDay: weekDay == freezed ? _value.weekDay : weekDay as String,
+      timestamp: timestamp == freezed ? _value.timestamp : timestamp as int,
+      classCapacity: classCapacity == freezed
+          ? _value.classCapacity
+          : classCapacity as int,
+      masters: masters == freezed ? _value.masters : masters as List<Master>,
       attendees:
           attendees == freezed ? _value.attendees : attendees as List<Attendee>,
       acceptedAttendees: acceptedAttendees == freezed
           ? _value.acceptedAttendees
           : acceptedAttendees as List<Attendee>,
-      masters: masters == freezed ? _value.masters : masters as List<Master>,
-      timestamp: timestamp == freezed ? _value.timestamp : timestamp as int,
-      classCapacity: classCapacity == freezed
-          ? _value.classCapacity
-          : classCapacity as int,
     ));
   }
 }
@@ -145,11 +145,11 @@ abstract class _$LessonCopyWith<$Res> implements $LessonCopyWith<$Res> {
       String timeStart,
       String timeEnd,
       String weekDay,
-      List<Attendee> attendees,
-      List<Attendee> acceptedAttendees,
-      List<Master> masters,
       int timestamp,
-      int classCapacity});
+      int classCapacity,
+      List<Master> masters,
+      List<Attendee> attendees,
+      List<Attendee> acceptedAttendees});
 }
 
 /// @nodoc
@@ -169,11 +169,11 @@ class __$LessonCopyWithImpl<$Res> extends _$LessonCopyWithImpl<$Res>
     Object timeStart = freezed,
     Object timeEnd = freezed,
     Object weekDay = freezed,
-    Object attendees = freezed,
-    Object acceptedAttendees = freezed,
-    Object masters = freezed,
     Object timestamp = freezed,
     Object classCapacity = freezed,
+    Object masters = freezed,
+    Object attendees = freezed,
+    Object acceptedAttendees = freezed,
   }) {
     return _then(_Lesson(
       id: id == freezed ? _value.id : id as String,
@@ -182,16 +182,16 @@ class __$LessonCopyWithImpl<$Res> extends _$LessonCopyWithImpl<$Res>
       timeStart: timeStart == freezed ? _value.timeStart : timeStart as String,
       timeEnd: timeEnd == freezed ? _value.timeEnd : timeEnd as String,
       weekDay: weekDay == freezed ? _value.weekDay : weekDay as String,
+      timestamp: timestamp == freezed ? _value.timestamp : timestamp as int,
+      classCapacity: classCapacity == freezed
+          ? _value.classCapacity
+          : classCapacity as int,
+      masters: masters == freezed ? _value.masters : masters as List<Master>,
       attendees:
           attendees == freezed ? _value.attendees : attendees as List<Attendee>,
       acceptedAttendees: acceptedAttendees == freezed
           ? _value.acceptedAttendees
           : acceptedAttendees as List<Attendee>,
-      masters: masters == freezed ? _value.masters : masters as List<Master>,
-      timestamp: timestamp == freezed ? _value.timestamp : timestamp as int,
-      classCapacity: classCapacity == freezed
-          ? _value.classCapacity
-          : classCapacity as int,
     ));
   }
 }
@@ -207,11 +207,15 @@ class _$_Lesson implements _Lesson {
       this.timeStart,
       this.timeEnd,
       this.weekDay,
-      this.attendees,
-      this.acceptedAttendees,
-      this.masters,
       this.timestamp,
-      this.classCapacity});
+      this.classCapacity = config.DEFAULT_CLASS_CAPACITY,
+      this.masters = const [],
+      this.attendees = const [],
+      this.acceptedAttendees = const []})
+      : assert(classCapacity != null),
+        assert(masters != null),
+        assert(attendees != null),
+        assert(acceptedAttendees != null);
 
   factory _$_Lesson.fromJson(Map<String, dynamic> json) =>
       _$_$_LessonFromJson(json);
@@ -229,19 +233,23 @@ class _$_Lesson implements _Lesson {
   @override
   final String weekDay;
   @override
-  final List<Attendee> attendees;
-  @override
-  final List<Attendee> acceptedAttendees;
-  @override
-  final List<Master> masters;
-  @override
   final int timestamp;
+  @JsonKey(defaultValue: config.DEFAULT_CLASS_CAPACITY)
   @override
   final int classCapacity;
+  @JsonKey(defaultValue: const [])
+  @override
+  final List<Master> masters;
+  @JsonKey(defaultValue: const [])
+  @override
+  final List<Attendee> attendees;
+  @JsonKey(defaultValue: const [])
+  @override
+  final List<Attendee> acceptedAttendees;
 
   @override
   String toString() {
-    return 'Lesson(id: $id, date: $date, name: $name, timeStart: $timeStart, timeEnd: $timeEnd, weekDay: $weekDay, attendees: $attendees, acceptedAttendees: $acceptedAttendees, masters: $masters, timestamp: $timestamp, classCapacity: $classCapacity)';
+    return 'Lesson(id: $id, date: $date, name: $name, timeStart: $timeStart, timeEnd: $timeEnd, weekDay: $weekDay, timestamp: $timestamp, classCapacity: $classCapacity, masters: $masters, attendees: $attendees, acceptedAttendees: $acceptedAttendees)';
   }
 
   @override
@@ -263,21 +271,21 @@ class _$_Lesson implements _Lesson {
             (identical(other.weekDay, weekDay) ||
                 const DeepCollectionEquality()
                     .equals(other.weekDay, weekDay)) &&
-            (identical(other.attendees, attendees) ||
-                const DeepCollectionEquality()
-                    .equals(other.attendees, attendees)) &&
-            (identical(other.acceptedAttendees, acceptedAttendees) ||
-                const DeepCollectionEquality()
-                    .equals(other.acceptedAttendees, acceptedAttendees)) &&
-            (identical(other.masters, masters) ||
-                const DeepCollectionEquality()
-                    .equals(other.masters, masters)) &&
             (identical(other.timestamp, timestamp) ||
                 const DeepCollectionEquality()
                     .equals(other.timestamp, timestamp)) &&
             (identical(other.classCapacity, classCapacity) ||
                 const DeepCollectionEquality()
-                    .equals(other.classCapacity, classCapacity)));
+                    .equals(other.classCapacity, classCapacity)) &&
+            (identical(other.masters, masters) ||
+                const DeepCollectionEquality()
+                    .equals(other.masters, masters)) &&
+            (identical(other.attendees, attendees) ||
+                const DeepCollectionEquality()
+                    .equals(other.attendees, attendees)) &&
+            (identical(other.acceptedAttendees, acceptedAttendees) ||
+                const DeepCollectionEquality()
+                    .equals(other.acceptedAttendees, acceptedAttendees)));
   }
 
   @override
@@ -289,11 +297,11 @@ class _$_Lesson implements _Lesson {
       const DeepCollectionEquality().hash(timeStart) ^
       const DeepCollectionEquality().hash(timeEnd) ^
       const DeepCollectionEquality().hash(weekDay) ^
-      const DeepCollectionEquality().hash(attendees) ^
-      const DeepCollectionEquality().hash(acceptedAttendees) ^
-      const DeepCollectionEquality().hash(masters) ^
       const DeepCollectionEquality().hash(timestamp) ^
-      const DeepCollectionEquality().hash(classCapacity);
+      const DeepCollectionEquality().hash(classCapacity) ^
+      const DeepCollectionEquality().hash(masters) ^
+      const DeepCollectionEquality().hash(attendees) ^
+      const DeepCollectionEquality().hash(acceptedAttendees);
 
   @override
   _$LessonCopyWith<_Lesson> get copyWith =>
@@ -313,11 +321,11 @@ abstract class _Lesson implements Lesson {
       String timeStart,
       String timeEnd,
       String weekDay,
-      List<Attendee> attendees,
-      List<Attendee> acceptedAttendees,
-      List<Master> masters,
       int timestamp,
-      int classCapacity}) = _$_Lesson;
+      int classCapacity,
+      List<Master> masters,
+      List<Attendee> attendees,
+      List<Attendee> acceptedAttendees}) = _$_Lesson;
 
   factory _Lesson.fromJson(Map<String, dynamic> json) = _$_Lesson.fromJson;
 
@@ -334,15 +342,15 @@ abstract class _Lesson implements Lesson {
   @override
   String get weekDay;
   @override
-  List<Attendee> get attendees;
-  @override
-  List<Attendee> get acceptedAttendees;
-  @override
-  List<Master> get masters;
-  @override
   int get timestamp;
   @override
   int get classCapacity;
+  @override
+  List<Master> get masters;
+  @override
+  List<Attendee> get attendees;
+  @override
+  List<Attendee> get acceptedAttendees;
   @override
   _$LessonCopyWith<_Lesson> get copyWith;
 }
