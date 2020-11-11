@@ -12,6 +12,7 @@ class RegistryCounter extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return BlocBuilder<RegistryBloc, RegistryState>(
+      condition: (RegistryState previous, RegistryState current) => !(current is RegistryLoading),
       builder: (BuildContext context, RegistryState state) {
         return state.maybeMap(
           registryLoaded: (RegistryLoaded registryLoaded) {

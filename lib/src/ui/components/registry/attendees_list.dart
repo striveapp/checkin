@@ -17,16 +17,11 @@ class AttendeesList extends StatelessWidget {
       child: Container(
         constraints: BoxConstraints(maxHeight: MediaQuery.of(context).size.height * 0.53),
         child: BlocBuilder<RegistryBloc, RegistryState>(
+            condition: (RegistryState previous, RegistryState current) => !(current is RegistryLoading),
             builder: (BuildContext context, RegistryState state) {
           if (state is RegistryUninitialized ||
               (state is RegistryLoaded && state.isEmptyRegistry)) {
             return EmptyRegistry();
-          }
-
-          if (state is RegistryLoading) {
-            return EmptyRegistry(
-              isLoading: true,
-            );
           }
 
           if (state is RegistryLoaded) {

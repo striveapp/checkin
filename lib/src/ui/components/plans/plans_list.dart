@@ -36,7 +36,7 @@ class PlansList extends StatelessWidget {
       }
 
       if (state is SubscriptionLoading) {
-        showDialog(context: context, child: LoadingIndicator());
+        showDialog(context: context, child: LoadingIndicator(), barrierDismissible: false,);
       }
 
       if (state is SubscriptionSuccess) {
