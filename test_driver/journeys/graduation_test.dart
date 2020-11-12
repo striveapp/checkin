@@ -26,7 +26,7 @@ class GraduationTest extends AbstractTest {
         prettyPrint("Then logout");
         await registryPage.logout();
         prettyPrint("Then login as owner, and check the user stats");
-        await loginPage.loginAsOwner();
+        await loginPage.loginAsAdmin();
         await lessonsPage.selectLessonOfTheDay(WeekDay.monday, 1);
         await registryPage.tapTestAttendee();
         prettyPrint("Open the graduation dialog");

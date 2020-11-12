@@ -27,7 +27,7 @@ class LeaderboardTest extends AbstractTest {
         await registryPage.logout();
 
         prettyPrint("Then login as owner and accept all");
-        await loginPage.loginAsOwner();
+        await loginPage.loginAsAdmin();
         await lessonsPage.selectLessonOfTheDay(WeekDay.monday, 1);
         await registryPage.acceptAll();
 

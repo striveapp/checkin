@@ -15,6 +15,7 @@ class RegistryPage {
   final registryFullButton = find.byValueKey('registryFull');
   final _unregisterClassButton = find.byValueKey('unregisterClass');
   final _loadingIndicator = find.byValueKey('loadingIndicator');
+  final _confirmButton = find.byValueKey('confirmButton');
 
   RegistryPage(FlutterDriver driver) {
     this._driver = driver;
@@ -50,6 +51,8 @@ class RegistryPage {
   Future<void> acceptAll() async {
     await _driver.waitFor(_acceptAllButton);
     await _driver.tap(_acceptAllButton);
+    await _driver.waitFor(_confirmButton);
+    await _driver.tap(_confirmButton);
     await _driver.waitForAbsent(_loadingIndicator);
   }
 

@@ -45,7 +45,7 @@ class AttendTest extends AbstractTest {
 
           prettyPrint(
               "Then login as owner, and remove Test user & Test Two from class");
-          await loginPage.loginAsOwner();
+          await loginPage.loginAsAdmin();
           await lessonsPage.selectLessonOfTheDay(WeekDay.monday, 1);
           await registryPage.swipeToRemoveUser("test@test.com");
           await registryPage.swipeToRemoveUser("test-two@test.com");
@@ -69,7 +69,7 @@ class AttendTest extends AbstractTest {
           await statsPage.logout();
 
           prettyPrint("Then login as owner and accept all");
-          await loginPage.loginAsOwner();
+          await loginPage.loginAsAdmin();
           await lessonsPage.selectLessonOfTheDay(WeekDay.monday, 0);
           await registryPage.acceptAll();
 
@@ -116,7 +116,7 @@ class AttendTest extends AbstractTest {
           await statsPage.logout();
 
           prettyPrint("Then login as owner and accept all");
-          await loginPage.loginAsOwner();
+          await loginPage.loginAsAdmin();
           await lessonsPage.selectLessonOfTheDay(WeekDay.monday, 1);
           await registryPage.acceptAll();
 
@@ -155,6 +155,43 @@ class AttendTest extends AbstractTest {
           await driver.waitFor(registryPage.registryFullButton);
 
           await prettyPrint("Then logout");
+          await statsPage.logout();
+        });
+      });
+
+      group("when master attends classes", () {
+        test("increase the counter when master approves the class", () async {
+          prettyPrint("Login as master and attend class");
+          await loginPage.loginAsMaster();
+          await lessonsPage.selectLessonOfTheDay(WeekDay.monday, 0);
+          await registryPage.registerToClass();
+
+          // todo when master can switch stats view https://trello.com/c/k6soCHCE
+//          prettyPrint("Then get the amount of classes attended and logout");
+//          await registryPage.tapTestAttendee();
+//          var initialMatHours = await statsPage.getMathHours();
+
+          prettyPrint("Then logout");
+          await statsPage.logout();
+
+          prettyPrint("Then login as admin and accept all");
+          await loginPage.loginAsAdmin();
+          await lessonsPage.selectLessonOfTheDay(WeekDay.monday, 0);
+          await registryPage.acceptAll();
+
+          prettyPrint("Then check notification has been sent");
+          //NOTE: this should be waited for longer, since when notification are cold they may take a while
+//        await driver.runUnsynchronized(() async => await driver.waitFor(find.text("You attended 1 classes this year"), timeout: Duration(seconds: 120)));
+//        await driver.waitFor(find.text("You attended 1 classes this year"), timeout: Duration(seconds: 120));
+
+          // todo when master can switch stats view https://trello.com/c/k6soCHCE
+//          prettyPrint(
+//              "Then get the amount of classes attended and check it increased");
+//          await registryPage.tapTestAttendee();
+//          await driver.waitForExpectedValue(() => statsPage.getMathHours(),
+//              (int.parse(initialMatHours) + 1).toString());
+
+          prettyPrint("Then logout");
           await statsPage.logout();
         });
       });

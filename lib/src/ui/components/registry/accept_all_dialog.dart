@@ -25,6 +25,7 @@ class AcceptAllDialog extends StatelessWidget {
       actionsPadding: EdgeInsets.symmetric(horizontal: 10),
       actions: <Widget>[
         RaisedButton(
+          key: Key("confirmButton"),
           child: Padding(
             padding: EdgeInsets.symmetric(vertical: 10, horizontal: 10),
             child: Text(

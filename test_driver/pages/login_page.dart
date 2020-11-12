@@ -4,6 +4,7 @@ import '../util.dart';
 
 class LoginPage {
   final adminLoginButton = find.byValueKey('backdoorAdminButton');
+  final masterLoginButton = find.byValueKey('backdoorMasterButton');
   final testUserLoginButton = find.byValueKey('backdoorButton');
   final testUserTwoLoginButton = find.byValueKey('backdoorButtonTwo');
 
@@ -13,10 +14,16 @@ class LoginPage {
     this._driver = driver;
   }
 
-  Future<void> loginAsOwner() async {
+  Future<void> loginAsAdmin() async {
     await _driver.waitFor(adminLoginButton);
     await _driver.tap(adminLoginButton);
     prettyPrint("Logged as OWNER");
+  }
+
+  Future<void> loginAsMaster() async {
+    await _driver.waitFor(masterLoginButton);
+    await _driver.tap(masterLoginButton);
+    prettyPrint("Logged as MASTER");
   }
 
   Future<void> loginAsTest() async {
