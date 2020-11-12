@@ -1,3 +1,4 @@
+@Skip("doesnt break anymore")
 import 'package:checkin/src/models/attendee.dart';
 import 'package:checkin/src/models/grade.dart';
 import 'package:checkin/src/repositories/graduation_system_repository.dart';
@@ -12,6 +13,7 @@ import 'package:flutter_test/flutter_test.dart';
 
 import '../image_test_utils.dart';
 
+// todo this seems to never fail
 void main() {
   testWidgets("AttendeeTile should navigate to attendee's profile when tapped",
       (WidgetTester tester) async {
