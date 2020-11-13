@@ -15,16 +15,13 @@ class NotificationsBloc extends Bloc<NotificationsEvent, NotificationsState> {
   NotificationsBloc({
     @required this.userBloc,
     @required this.notificationRepository,
-  }) {
+  }) : super(NotificationsUninitialized()) {
     notificationRepository.config(
       onMessage: _onMessage,
       onResume: _onResume,
       onLaunch: _onLaunch,
     );
   }
-
-  @override
-  NotificationsState get initialState => NotificationsUninitialized();
 
   @override
   Stream<NotificationsState> mapEventToState(NotificationsEvent event) async* {

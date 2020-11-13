@@ -23,7 +23,7 @@ class UserStatsPage extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return BlocBuilder<UserStatsBloc, UserStatsState>(
-        bloc: UserStatsBloc(
+        cubit: UserStatsBloc(
           statsRepository: RepositoryProvider.of<StatsRepository>(context),
           userEmail: _user.email,
           selectedGymId: _user.selectedGymId,

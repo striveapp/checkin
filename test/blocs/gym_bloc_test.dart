@@ -8,6 +8,8 @@ import 'package:checkin/src/util/date_util.dart';
 import 'package:flutter_test/flutter_test.dart';
 import 'package:mockito/mockito.dart';
 
+import 'helper/mock_helper.dart';
+
 class MockGymRepository extends Mock implements GymRepository {}
 
 class MockDateUtil extends Mock implements DateUtil {}
@@ -15,11 +17,10 @@ class MockDateUtil extends Mock implements DateUtil {}
 class MockUserBloc extends Mock implements UserBloc {}
 
 void main() {
-  group("GymBloc", ()
-  {
-    GymBloc gymBloc;
+  group("GymBloc", () {
     MockGymRepository mockGymRepository;
     MockUserBloc mockUserBloc;
+
     String fakeGymId = "bjj";
     Gym fakeGym = Gym(
       id: fakeGymId,
@@ -39,31 +40,35 @@ void main() {
     setUp(() {
       mockGymRepository = MockGymRepository();
       mockUserBloc = MockUserBloc();
-      whenListen(mockUserBloc,
-          Stream.fromIterable([UserSuccess(currentUser: fakeUser)]));
-      when(mockGymRepository.getGym(fakeGymId)).thenAnswer((
-          _) {
-        return Stream<Gym>.value(fakeGym);
-      });
-      gymBloc = GymBloc(userBloc: mockUserBloc, gymRepository: mockGymRepository);
+      configureThrowOnMissingStub([mockGymRepository]);
     });
 
-    tearDown(() {
-      gymBloc?.close();
+    tearDown((){
+      logAndVerifyNoMoreInteractions([mockGymRepository]);
     });
 
-    group("GymUpdated", () {
-      test("should emit GymLoaded with the loaded gym", () {
-        final expectedState = [
-          InitialGymState(),
-          GymLoaded(gym: fakeGym)
-        ];
+    // todo missing initial state test
+    group("on GymUpdated event", () {
+      setUp(() {
+        whenListen(mockUserBloc, Stream.fromIterable([UserSuccess(currentUser: fakeUser)]));
 
-        expectLater(
-          gymBloc,
-          emitsInOrder(expectedState),
-        );
+        when(mockGymRepository.getGym(fakeGymId)).thenAnswer((_) {
+          return Stream<Gym>.value(fakeGym);
+        });
       });
+
+      tearDown((){
+        verify(mockGymRepository.getGym(fakeGymId));
+      });
+
+      blocTest(
+        "should emit GymLoaded with the loaded gym",
+        build: () => GymBloc(
+          userBloc: mockUserBloc,
+          gymRepository: mockGymRepository,
+        ),
+        expect: [GymLoaded(gym: fakeGym)],
+      );
     });
   });
 }

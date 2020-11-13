@@ -1,11 +1,13 @@
 import 'package:checkin/src/blocs/auth/bloc.dart';
 import 'package:checkin/src/blocs/dynamic_link/bloc.dart';
+import 'package:checkin/src/blocs/theme/bloc.dart';
 import 'package:checkin/src/repositories/analytics_repository.dart';
 import 'package:checkin/src/repositories/auth_repository.dart';
 import 'package:checkin/src/repositories/image_repository.dart';
 import 'package:checkin/src/repositories/storage_repository.dart';
 import 'package:checkin/src/repositories/user_repository.dart';
 import 'package:checkin/src/routes/application.dart';
+import 'package:checkin/src/themes/theme.dart';
 import 'package:checkin/src/ui/components/upgrader_dialog.dart';
 import 'package:checkin/src/ui/pages/home_page.dart';
 import 'package:checkin/src/ui/pages/leaderboard_page.dart';
@@ -20,7 +22,7 @@ import 'package:i18n_extension/i18n_widget.dart';
 import 'blocs/user/bloc.dart';
 import 'blocs/version/bloc.dart';
 
-class App extends StatelessWidget {
+class App extends StatefulWidget {
   final ThemeData _themeData;
   final AuthRepository _authRepository;
   final StorageRepository _storageRepository;
@@ -43,6 +45,24 @@ class App extends StatelessWidget {
         super(key: key);
 
   @override
+  _AppState createState() => _AppState();
+}
+
+class _AppState extends State<App> with WidgetsBindingObserver {
+
+  @override
+  void didChangePlatformBrightness() {
+    final Brightness brightness =
+        WidgetsBinding.instance.window.platformBrightness;
+    var themeBloc = context.read<ThemeBloc>();
+    if (brightness == Brightness.dark) {
+      themeBloc.add(ThemeUpdated(themeType: ThemeType.Dark));
+    } else {
+      themeBloc.add(ThemeUpdated(themeType: ThemeType.NewLight));
+    }
+  }
+
+  @override
   Widget build(BuildContext context) {
     return MaterialApp(
       debugShowCheckedModeBanner: false,
@@ -57,9 +77,10 @@ class App extends StatelessWidget {
       onGenerateRoute: Application.router.generator,
       initialRoute: '/',
       navigatorObservers: [
-        RepositoryProvider.of<AnalyticsRepository>(context).getNavigationObserver(),
+        RepositoryProvider.of<AnalyticsRepository>(context)
+            .getNavigationObserver(),
       ],
-      theme: _themeData,
+      theme: widget._themeData,
       home: I18n(
 //        note: enable es locale
 //        initialLocale: Locale("es", "ES"),
@@ -69,14 +90,15 @@ class App extends StatelessWidget {
                 listener: (BuildContext context, DynamicLinkState state) {
               if (state is DynamicLinkToNavigate) {
                 debugPrint("deep link received with path ${state.path}");
-                Navigator.of(context).popUntil(
-                    ModalRoute.withName(Navigator.defaultRouteName));
+                Navigator.of(context)
+                    .popUntil(ModalRoute.withName(Navigator.defaultRouteName));
 
                 Navigator.of(context).pushNamed(state.path);
               }
               if (state is DynamicLinkSetDefaultGym) {
                 debugPrint("setting default gym to ${state.defaultGym}");
-                RepositoryProvider.of<UserRepository>(context).setDefaultGym(state.defaultGym);
+                RepositoryProvider.of<UserRepository>(context)
+                    .setDefaultGym(state.defaultGym);
               }
             }),
             BlocListener<VersionBloc, VersionState>(
@@ -92,7 +114,7 @@ class App extends StatelessWidget {
 
             if (state is AuthUnauthenticated) {
               return LoginPage(
-                authRepository: _authRepository,
+                authRepository: widget._authRepository,
               );
             }
 
@@ -102,9 +124,10 @@ class App extends StatelessWidget {
                 providers: [
                   BlocProvider<UserBloc>(
                       create: (BuildContext context) => UserBloc(
-                            userRepository: RepositoryProvider.of<UserRepository>(context),
-                            storageRepository: _storageRepository,
-                            imageRepository: _imageRepository,
+                            userRepository:
+                                RepositoryProvider.of<UserRepository>(context),
+                            storageRepository: widget._storageRepository,
+                            imageRepository: widget._imageRepository,
                             authBloc: BlocProvider.of<AuthBloc>(context),
                           )),
                 ],

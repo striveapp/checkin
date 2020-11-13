@@ -1,3 +1,4 @@
+import 'package:bloc_test/bloc_test.dart';
 import 'package:checkin/src/blocs/sessions/sessions_bloc.dart';
 import 'package:checkin/src/blocs/sessions/sessions_state.dart';
 import 'package:checkin/src/models/lesson.dart';
@@ -10,66 +11,69 @@ import 'package:mockito/mockito.dart';
 import 'package:test/test.dart';
 import 'package:checkin/src/constants.dart' as constants;
 
+import 'helper/mock_helper.dart';
+
 class MockMembershipRepository extends Mock implements MembershipRepository {}
 
 class MockStatsRepository extends Mock implements StatsRepository {}
 
 void main() {
-  MockMembershipRepository mockMembershipRepository =
-      MockMembershipRepository();
-  MockStatsRepository mockStatsRepository = MockStatsRepository();
-  SessionsBloc sessionsBloc;
-
-  String fakeEmail = "test@test.com";
-  String fakeGymId = "testGym";
-  User fakeUser = User(
-    email: fakeEmail,
-    name: "Test",
-    imageUrl: "test",
-    selectedGymId: fakeGymId,
-  );
-
   group("SessionsBloc", () {
-    group("SessionsUpdated", () {
-      group("when there is inactive membership", () {
-        tearDown(() {
-          sessionsBloc.close();
-        });
+    MockMembershipRepository mockMembershipRepository;
+    MockStatsRepository mockStatsRepository;
 
-        test("should emit SessionsUnlimited", () async {
+    String fakeEmail = "test@test.com";
+    String fakeGymId = "testGym";
+    User fakeUser = User(
+      email: fakeEmail,
+      name: "Test",
+      imageUrl: "test",
+      selectedGymId: fakeGymId,
+    );
+
+    setUp((){
+      mockMembershipRepository = MockMembershipRepository();
+      mockStatsRepository = MockStatsRepository();
+      configureThrowOnMissingStub([mockMembershipRepository, mockStatsRepository]);
+    });
+
+    tearDown((){
+      logAndVerifyNoMoreInteractions([mockMembershipRepository, mockStatsRepository]);
+    });
+
+    // todo missing initial state test
+
+    group("on SessionsUpdated event", () {
+      group("when there is inactive membership", () {
+        setUp(() {
           Membership inactiveMembership = Membership(
               status: Membership.INACTIVE_MEMBERSHIP, customerId: "cus_123");
-
           when(mockMembershipRepository.getMembership(
             gymId: fakeUser.selectedGymId,
             email: fakeEmail,
           )).thenAnswer((realInvocation) => Stream.value(inactiveMembership));
+        });
 
-          sessionsBloc = SessionsBloc(
-            userEmail: fakeEmail,
-            selectedGymId: fakeGymId,
-            statsRepository: mockStatsRepository,
-            membershipRepository: mockMembershipRepository,
-          );
-
-          final expectedState = [
-            InitialSessionsState(),
-            SessionsUnlimited(),
-          ];
-
-          await expectLater(
-            sessionsBloc,
-            emitsInOrder(expectedState),
-          );
-          logInvocations([mockMembershipRepository]);
-
+        tearDown(() {
           verify(mockMembershipRepository.getMembership(
             gymId: fakeUser.selectedGymId,
             email: fakeEmail,
           ));
         });
 
-        test("with totalLessonsOfPlan from previous membership should emit SessionUnlimited", () async {
+        blocTest("should emit SessionsUnlimited",
+            build: () =>
+                SessionsBloc(
+                  userEmail: fakeEmail,
+                  selectedGymId: fakeGymId,
+                  statsRepository: mockStatsRepository,
+                  membershipRepository: mockMembershipRepository,
+                ),
+            expect: [SessionsUnlimited()]);
+      });
+
+      group("when there is inactive membership with totalLessonsOfPlan from a previous active membership",(){
+        setUp(() {
           Membership inactiveMembership = Membership(
               status: Membership.INACTIVE_MEMBERSHIP, customerId: "cus_123", totalLessonsOfPlan: 3);
 
@@ -77,39 +81,28 @@ void main() {
             gymId: fakeUser.selectedGymId,
             email: fakeEmail,
           )).thenAnswer((realInvocation) => Stream.value(inactiveMembership));
+        });
 
-          sessionsBloc = SessionsBloc(
-            userEmail: fakeEmail,
-            selectedGymId: fakeGymId,
-            statsRepository: mockStatsRepository,
-            membershipRepository: mockMembershipRepository,
-          );
-
-          final expectedState = [
-            InitialSessionsState(),
-            SessionsUnlimited(),
-          ];
-
-          await expectLater(
-            sessionsBloc,
-            emitsInOrder(expectedState),
-          );
-          logInvocations([mockMembershipRepository]);
-
+        tearDown(() {
           verify(mockMembershipRepository.getMembership(
             gymId: fakeUser.selectedGymId,
             email: fakeEmail,
           ));
         });
+
+        blocTest("should emit SessionsUnlimited",
+            build: () =>
+                SessionsBloc(
+                  userEmail: fakeEmail,
+                  selectedGymId: fakeGymId,
+                  statsRepository: mockStatsRepository,
+                  membershipRepository: mockMembershipRepository,
+                ),
+            expect: [SessionsUnlimited()]);
       });
 
-      group("when there is an active membership", () {
-        tearDown(() {
-          sessionsBloc.close();
-        });
-
-        test("and there are no sessions should emit SessionsUnlimited",
-            () async {
+      group("when there is an active membership with no sessions", () {
+        setUp((){
           Membership activeMembership = Membership(
               status: Membership.ACTIVE_MEMBERSHIP, customerId: "cus_123");
 
@@ -117,127 +110,106 @@ void main() {
             gymId: fakeUser.selectedGymId,
             email: fakeEmail,
           )).thenAnswer((realInvocation) => Stream.value(activeMembership));
-          sessionsBloc = SessionsBloc(
-            userEmail: fakeEmail,
-            selectedGymId: fakeGymId,
-            statsRepository: mockStatsRepository,
-            membershipRepository: mockMembershipRepository,
-          );
+        });
 
-          final expectedState = [
-            InitialSessionsState(),
-            SessionsUnlimited(),
-          ];
-
-          await expectLater(
-            sessionsBloc,
-            emitsInOrder(expectedState),
-          );
-          logInvocations([mockMembershipRepository]);
-
+        tearDown((){
           verify(mockMembershipRepository.getMembership(
             gymId: fakeUser.selectedGymId,
             email: fakeEmail,
           ));
         });
 
-
+        blocTest("should emit SessionsUnlimited",
+            build: () =>
+                SessionsBloc(
+                  userEmail: fakeEmail,
+                  selectedGymId: fakeGymId,
+                  statsRepository: mockStatsRepository,
+                  membershipRepository: mockMembershipRepository,
+                ),
+            expect: [SessionsUnlimited()]);
       });
     });
+
     group("SessionsUpdatedWithHistory", () {
-      group("when there is an active membership", () {
-        group("and there are 3 sessions in the user's plan", () {
+      group("when there is an active membership with 3 sessions in the user's plan", () {
+        setUp((){
           Membership activeMembership = Membership(
               status: Membership.ACTIVE_MEMBERSHIP,
               customerId: "cus_123",
               totalLessonsOfPlan: 3);
 
-          test(
-              "and the user did 1 lesson this month, it should emit SessionsLoaded()",
-                  () async {
-                var attendedOneLesson = [Lesson()];
-                when(mockStatsRepository.getUserStats(
-                    fakeUser.selectedGymId, fakeEmail, constants.MONTH))
-                    .thenAnswer((realInvocation) => Stream.value(UserHistory(
-                    email: fakeEmail, attendedLessons: attendedOneLesson)));
+          when(mockMembershipRepository.getMembership(
+            gymId: fakeUser.selectedGymId,
+            email: fakeEmail,
+          )).thenAnswer((realInvocation) => Stream.value(activeMembership));
+        });
 
-                when(mockMembershipRepository.getMembership(
-                  gymId: fakeUser.selectedGymId,
-                  email: fakeEmail,
-                )).thenAnswer((realInvocation) => Stream.value(activeMembership));
-                sessionsBloc = SessionsBloc(
-                  userEmail: fakeEmail,
-                  selectedGymId: fakeGymId,
-                  statsRepository: mockStatsRepository,
-                  membershipRepository: mockMembershipRepository,
-                );
+        tearDown((){
+          verify(mockMembershipRepository.getMembership(
+            gymId: fakeUser.selectedGymId,
+            email: fakeEmail,
+          ));
+        });
 
-                final expectedState = [
-                  InitialSessionsState(),
-                  SessionsLoaded(totalLessonsOfPlan: 3, attendedLessons: 1),
-                ];
+        group("and the user did 1 lesson this month", () {
+          setUp((){
+            var attendedOneLesson = [Lesson()];
+            when(mockStatsRepository.getUserStats(
+                fakeUser.selectedGymId, fakeEmail, constants.MONTH))
+                .thenAnswer((realInvocation) => Stream.value(UserHistory(
+                email: fakeEmail, attendedLessons: attendedOneLesson)));
+          });
 
-                await expectLater(
-                  sessionsBloc,
-                  emitsInOrder(expectedState),
-                );
-                logInvocations([mockMembershipRepository]);
+          tearDown((){
+            verify(mockStatsRepository.getUserStats(
+              fakeUser.selectedGymId,
+              fakeEmail,
+              constants.MONTH,
+            ));
+          });
 
-                verify(mockMembershipRepository.getMembership(
-                  gymId: fakeUser.selectedGymId,
-                  email: fakeEmail,
-                ));
-                verify(mockStatsRepository.getUserStats(
-                  fakeUser.selectedGymId,
-                  fakeEmail,
-                  constants.MONTH,
-                ));
-              });
+          blocTest("should emit SessionsLoaded",
+              build: () =>
+                  SessionsBloc(
+                    userEmail: fakeEmail,
+                    selectedGymId: fakeGymId,
+                    statsRepository: mockStatsRepository,
+                    membershipRepository: mockMembershipRepository,
+                  ),
+              expect: [SessionsLoaded(totalLessonsOfPlan: 3, attendedLessons: 1)]);
+        });
 
-          test(
-              "and the user did 3 lessons this month, it should emit SessionsWarning()",
-                  () async {
-                var attendedOneLesson = [Lesson(), Lesson(), Lesson()];
-                when(mockStatsRepository.getUserStats(
-                    fakeUser.selectedGymId, fakeEmail, constants.MONTH))
-                    .thenAnswer((realInvocation) => Stream.value(UserHistory(
-                    email: fakeEmail, attendedLessons: attendedOneLesson)));
+        group("and the user did 3 lessons this month", (){
+          setUp((){
+            var attendedOneLesson = [Lesson(), Lesson(), Lesson()];
+            when(mockStatsRepository.getUserStats(
+                fakeUser.selectedGymId, fakeEmail, constants.MONTH))
+                .thenAnswer((realInvocation) => Stream.value(UserHistory(
+                email: fakeEmail, attendedLessons: attendedOneLesson)));
+          });
 
-                when(mockMembershipRepository.getMembership(
-                  gymId: fakeUser.selectedGymId,
-                  email: fakeEmail,
-                )).thenAnswer((realInvocation) => Stream.value(activeMembership));
-                sessionsBloc = SessionsBloc(
-                  userEmail: fakeEmail,
-                  selectedGymId: fakeGymId,
-                  statsRepository: mockStatsRepository,
-                  membershipRepository: mockMembershipRepository,
-                );
+          tearDown((){
+            verify(mockStatsRepository.getUserStats(
+              fakeUser.selectedGymId,
+              fakeEmail,
+              constants.MONTH,
+            ));
+          });
 
-                final expectedState = [
-                  InitialSessionsState(),
-                  SessionsWarning(totalLessonsOfPlan: 3, attendedLessons: 3),
-                ];
-
-                await expectLater(
-                  sessionsBloc,
-                  emitsInOrder(expectedState),
-                );
-                logInvocations([mockMembershipRepository]);
-
-                verify(mockMembershipRepository.getMembership(
-                  gymId: fakeUser.selectedGymId,
-                  email: fakeEmail,
-                ));
-                verify(mockStatsRepository.getUserStats(
-                  fakeUser.selectedGymId,
-                  fakeEmail,
-                  constants.MONTH,
-                ));
-              });
+          blocTest("should emit SessionsWarning",
+              build: () =>
+                  SessionsBloc(
+                    userEmail: fakeEmail,
+                    selectedGymId: fakeGymId,
+                    statsRepository: mockStatsRepository,
+                    membershipRepository: mockMembershipRepository,
+                  ),
+              expect: [SessionsWarning(totalLessonsOfPlan: 3, attendedLessons: 3)]);
         });
       });
-    });
+
+      });
 
   });
 }

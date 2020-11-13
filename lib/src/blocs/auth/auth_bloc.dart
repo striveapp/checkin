@@ -18,10 +18,7 @@ class AuthBloc extends Bloc<AuthEvent, AuthState> {
     @required AnalyticsRepository analyticsRepository,
   })  : assert(authRepository != null && analyticsRepository != null),
         _authRepository = authRepository,
-        _analyticsRepository = analyticsRepository;
-
-  @override
-  AuthState get initialState => AuthUninitialized();
+        _analyticsRepository = analyticsRepository, super(AuthUninitialized());
 
   @override
   Stream<AuthState> mapEventToState(AuthEvent event) async* {
@@ -41,9 +38,12 @@ class AuthBloc extends Bloc<AuthEvent, AuthState> {
       debugPrint(
           'add AuthUpdated with user: ${event.loggedUser ?? "Unauthenticated"}');
       if(event.loggedUser != null) {
-        await _analyticsRepository.setUserProperties(event.loggedUser.uid);
-        await _analyticsRepository.logUserLocale();
-        yield AuthAuthenticated(loggedUser: event.loggedUser);
+        try {
+          await _analyticsRepository.setUserProperties(event.loggedUser.uid);
+          await _analyticsRepository.logUserLocale();
+        } finally {
+          yield AuthAuthenticated(loggedUser: event.loggedUser);
+        }
       } else {
         yield AuthUnauthenticated();
       }

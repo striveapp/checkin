@@ -20,20 +20,20 @@ class LessonsBloc extends Bloc<LessonsEvent, LessonsState> {
   LessonsBloc({
     @required this.userBloc,
     @required this.lessonRepository,
-  }) {
-    userBloc.listen((userState) {
-      if(userState is UserSuccess) {
-        gymId = userState.currentUser.selectedGymId;
-        lessonsSub?.cancel();
-        lessonsSub = this.lessonRepository.getLessonsForToday(gymId).listen((lessons) {
-          add(LessonsUpdated(lessons: lessons));
-        });
-      }
-    });
+  }) : super(LessonsUninitialized()) {
+    _onUserStateChanged(userBloc.state);
+    userBloc.listen(_onUserStateChanged);
   }
 
-  @override
-  LessonsState get initialState => LessonsUninitialized();
+  void _onUserStateChanged(userState) {
+    if(userState is UserSuccess) {
+      gymId = userState.currentUser.selectedGymId;
+      lessonsSub?.cancel();
+      lessonsSub = this.lessonRepository.getLessonsForToday(gymId).listen((lessons) {
+        add(LessonsUpdated(lessons: lessons));
+      });
+    }
+  }
 
   @override
   Stream<LessonsState> mapEventToState(LessonsEvent event) async* {

@@ -10,20 +10,15 @@ class DynamicLinkBloc extends Bloc<DynamicLinkEvent, DynamicLinkState> {
 
   DynamicLinkBloc({@required FirebaseDynamicLinks dynamicLinks})
       : assert(dynamicLinks != null),
-        _dynamicLinks = dynamicLinks;
-
-  @override
-  DynamicLinkState get initialState => DynamicLinkInitial();
+        _dynamicLinks = dynamicLinks,
+        super(DynamicLinkInitial());
 
   @override
   Stream<DynamicLinkState> mapEventToState(DynamicLinkEvent event) async* {
-    if(event is DeepLinkSetup) {
+    if (event is DeepLinkSetup) {
       final PendingDynamicLinkData data = await _dynamicLinks.getInitialLink();
-      final Uri deepLink = data?.link;
 
-      if (deepLink != null) {
-        add(DeepLinkReceived(deepLink: deepLink));
-      }
+      onSuccessLink(data);
 
       _dynamicLinks.onLink(
         onSuccess: onSuccessLink,
@@ -34,8 +29,9 @@ class DynamicLinkBloc extends Bloc<DynamicLinkEvent, DynamicLinkState> {
     if (event is DeepLinkReceived) {
       String path = event.deepLink.path;
 
-      if( path.startsWith("/register/")) {
-        yield DynamicLinkSetDefaultGym(defaultGym: path.replaceAll("/register/", ""));
+      if (path.startsWith("/register/")) {
+        yield DynamicLinkSetDefaultGym(
+            defaultGym: path.replaceAll("/register/", ""));
       } else {
         if (event.deepLink.hasQuery) {
           path = "$path?${event.deepLink.query}";

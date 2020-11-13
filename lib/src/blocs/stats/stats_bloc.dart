@@ -13,8 +13,7 @@ class StatsBloc extends Bloc<StatsEvent, StatsState> {
     constants.YEAR
   ];
 
-  @override
-  StatsState get initialState => InitialStatsState();
+  StatsBloc() : super(InitialStatsState());
 
   @override
   Stream<StatsState> mapEventToState(

@@ -19,22 +19,22 @@ class LessonsStatsBloc extends Bloc<LessonsStatsEvent, LessonsStatsState> {
     this.lessonsRepository,
     this.statsBloc,
     this.master,
-  }) {
-    statsBloc.listen((statsBlocState) {
-      if (statsBlocState is TimespanUpdated) {
-        lessonsSub?.cancel();
-        lessonsSub = this
-            .lessonsRepository
-            .getLessonsByMasterAndTimespan(this.master, statsBlocState.timespan)
-            .listen((lessons) {
-          add(UpdateLessonStats(lessons: lessons));
-        });
-      }
-    });
+  }) : super(LessonsStatsInitial()) {
+    _onStatsStateChanged(statsBloc.state);
+    statsBloc.listen(_onStatsStateChanged);
   }
 
-  @override
-  LessonsStatsState get initialState => LessonsStatsInitial();
+  void _onStatsStateChanged(statsBlocState) {
+    if (statsBlocState is TimespanUpdated) {
+      lessonsSub?.cancel();
+      lessonsSub = this
+          .lessonsRepository
+          .getLessonsByMasterAndTimespan(this.master, statsBlocState.timespan)
+          .listen((lessons) {
+        add(UpdateLessonStats(lessons: lessons));
+      });
+    }
+  }
 
   @override
   Stream<LessonsStatsState> mapEventToState(
@@ -60,5 +60,10 @@ class LessonsStatsBloc extends Bloc<LessonsStatsEvent, LessonsStatsState> {
       }
     });
     return acceptedAttendeesWithCounterMap;
+  }
+
+  @override
+  Future<void> close() {
+    return super.close();
   }
 }

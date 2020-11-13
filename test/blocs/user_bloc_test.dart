@@ -13,222 +13,174 @@ import 'package:flutter/services.dart';
 import 'package:flutter_test/flutter_test.dart';
 import 'package:mockito/mockito.dart';
 
+import 'helper/mock_helper.dart';
+
 class MockUserRepository extends Mock implements UserRepository {}
+
 class MockstorageRepository extends Mock implements StorageRepository {}
+
 class MockImageRepository extends Mock implements ImageRepository {}
+
 class MockAuthBloc extends Mock implements AuthBloc {}
 
 void main() {
   group("UserBloc", () {
-    UserRepository mockUserRepository;
-    StorageRepository mockstorageRepository;
-    ImageRepository mockImageRepository;
-    User testUser;
-    UserBloc userBloc;
+    MockUserRepository mockUserRepository;
+    MockstorageRepository mockstorageRepository;
+    MockImageRepository mockImageRepository;
     AuthBloc mockAuthBloc;
-    StreamController<User> userStreamCtrl;
+    User testUser = User(
+        name: "Tobuto Nellano",
+        email: "tobuto@nelano.com",
+        imageUrl: "http://image.url");
 
     setUp(() {
       mockUserRepository = MockUserRepository();
       mockstorageRepository = MockstorageRepository();
       mockImageRepository = MockImageRepository();
       mockAuthBloc = MockAuthBloc();
-      userStreamCtrl = StreamController<User>();
-      testUser = User(
-          name: "Tobuto Nellano",
-          email: "tobuto@nelano.com",
-          imageUrl: "http://image.url");
-      whenListen(
-          mockAuthBloc,
-          Stream.fromIterable(
-              [AuthAuthenticated(loggedUser: testUser)]));
-      when(mockUserRepository.getUserByEmail(testUser.email)).thenAnswer((_) {
-        return userStreamCtrl.stream;
-      });
+
+      configureThrowOnMissingStub([mockUserRepository, mockstorageRepository, mockImageRepository]);
     });
 
     tearDown(() {
-      userStreamCtrl.close();
+      logAndVerifyNoMoreInteractions(
+          [mockUserRepository, mockstorageRepository, mockImageRepository]);
     });
 
-    group("when add UserUpdated", () {
+    // todo missing initial state test
+
+    group("on UserUpdated event", () {
+      setUp((){
+        whenListen(
+            mockAuthBloc,
+            Stream.fromIterable(
+                [AuthAuthenticated(loggedUser: testUser)]));
+      });
+
       group("when user is not null", () {
-        test("should emits UserSuccess", () async {
-          final expectedState = [
-            UserLoading(),
-            UserSuccess(currentUser: testUser),
-          ];
+        setUp(() {
+          when(mockUserRepository.getUserByEmail(testUser.email)).thenAnswer((_) {
+            return Stream<User>.fromFuture(
+                Future.value(testUser));
+          });
 
-          userStreamCtrl.add(testUser);
-          userBloc = UserBloc(
-            authBloc: mockAuthBloc,
-            userRepository: mockUserRepository,
-            storageRepository: mockstorageRepository,
-            imageRepository: mockImageRepository,
-          );
+          // set current version to 1.0.0
+          TestWidgetsFlutterBinding.ensureInitialized();
+          const MethodChannel('plugins.flutter.io/package_info').setMockMethodCallHandler((MethodCall methodCall) async {
+            if (methodCall.method == 'getAll') {
+              return <String, dynamic>{
+                'version': '1.0.0',
+                'buildNumber': '100'
+              };
+            }
+            return null;
+          });
 
-          await expectLater(
-            userBloc,
-            emitsInOrder(expectedState),
-          );
+          when(mockUserRepository.updateUserVersion(testUser.email, "1.0.0+100")).thenAnswer((realInvocation) => null);
         });
+
+        tearDown(() async {
+          await untilCalled(mockUserRepository.updateUserVersion(testUser.email, "1.0.0+100"));
+          verify(mockUserRepository.updateUserVersion(testUser.email, "1.0.0+100"));
+          verify(mockUserRepository.getUserByEmail(testUser.email));
+        });
+
+        blocTest("should emit UserSuccess", build: () =>
+            UserBloc(
+              authBloc: mockAuthBloc,
+              userRepository: mockUserRepository,
+              storageRepository: mockstorageRepository,
+              imageRepository: mockImageRepository,
+            ),
+          expect: [UserSuccess(currentUser: testUser)],);
       });
 
       group("when user is null", () {
-        test("should emit UserLoading when user is null", () async {
-          final expectedState = [
-            UserLoading(),
-            UserError(),
-          ];
+        setUp(() {
+          when(mockUserRepository.getUserByEmail(testUser.email)).thenAnswer((_) {
+            return Stream<User>.fromFuture(
+                Future.value(null));
+          });
+        });
 
-          userBloc = UserBloc(
+        tearDown(() {
+          verify(mockUserRepository.getUserByEmail(testUser.email));
+        });
+
+        blocTest("should emit UserError", build: () =>
+            UserBloc(
+              authBloc: mockAuthBloc,
+              userRepository: mockUserRepository,
+              storageRepository: mockstorageRepository,
+              imageRepository: mockImageRepository,
+            ),
+          expect: [UserError()],);
+      });
+    });
+
+    group("on UpdateGrade event", () {
+      setUp(() async {
+        when(mockUserRepository.updateGrade(
+            testUser.email, Grade.black))
+            .thenAnswer((_) {
+          return Future.value(null);
+        });
+      });
+
+      tearDown(() async {
+        await untilCalled(mockUserRepository.updateGrade(
+            testUser.email, Grade.black));
+        verify(mockUserRepository.updateGrade(
+            testUser.email, Grade.black));
+      });
+
+      blocTest("should update the user grade",
+        build: () => UserBloc(
+          authBloc: mockAuthBloc,
+          userRepository: mockUserRepository,
+          storageRepository: mockstorageRepository,
+          imageRepository: mockImageRepository,
+        ),
+        seed: UserState.userSuccess(currentUser: testUser),
+        act: (bloc) => bloc.add(UpdateGrade(newGrade: Grade.black)),
+        expect: []
+      );
+    });
+
+    group("on UpdateName event", () {
+      var newName = "Porco";
+
+      setUp((){
+        when(mockUserRepository.updateUserName(testUser.email, newName))
+            .thenAnswer((_) {
+          return Future.value(null);
+        });
+      });
+
+      tearDown(() async {
+        await untilCalled(mockUserRepository.updateUserName(testUser.email, newName));
+        verify(mockUserRepository.updateUserName(testUser.email, newName));
+      });
+
+      blocTest("should update the user name",
+          build: () => UserBloc(
             authBloc: mockAuthBloc,
             userRepository: mockUserRepository,
             storageRepository: mockstorageRepository,
             imageRepository: mockImageRepository,
-          );
-
-          userStreamCtrl.add(null);
-          await expectLater(
-            userBloc,
-            emitsInOrder(expectedState),
-          );
-        });
-      });
+          ),
+          seed: UserState.userSuccess(currentUser: testUser),
+          act: (bloc) => bloc.add(UpdateName(newName: newName)),
+          expect: []
+      );
     });
 
-    group("when add UpdateGrade", () {
-      test("should update the user grade", () async {
-        final setupState = [
-          UserLoading(),
-          UserSuccess(currentUser: testUser),
-        ];
+    group("on UpdateImageUrl event", () {
+      var newImageUrl = "http://porc.o/a.png";
+      File fakeImage = File("some_file");
 
-        userBloc = UserBloc(
-          authBloc: mockAuthBloc,
-          userRepository: mockUserRepository,
-          storageRepository: mockstorageRepository,
-          imageRepository: mockImageRepository,
-        );
-        userStreamCtrl.add(testUser);
-
-        await expectLater(
-          userBloc,
-          emitsInOrder(setupState),
-        );
-
-        userBloc.add(UpdateGrade(newGrade: Grade.black));
-
-        User updateUser = User(
-          email: testUser.email,
-          imageUrl: testUser.imageUrl,
-          name: testUser.name,
-          grade: Grade.black,
-        );
-
-        when(mockUserRepository.updateGrade(
-                testUser.email, Grade.black))
-            .thenAnswer((_) {
-          userStreamCtrl.add(updateUser);
-          return Future.value(null);
-        });
-
-        final expectedState = [
-          UserSuccess(currentUser: testUser),
-          UserSuccess(currentUser: updateUser)
-        ];
-
-        await expectLater(
-          userBloc,
-          emitsInOrder(expectedState),
-        );
-        verify(mockUserRepository.updateGrade(
-            testUser.email, Grade.black));
-      });
-    });
-
-    group("when add UpdateName", () {
-      test("should update the user name", () async {
-        final setupState = [
-          UserLoading(),
-          UserSuccess(currentUser: testUser),
-        ];
-
-        userBloc = UserBloc(
-          authBloc: mockAuthBloc,
-          userRepository: mockUserRepository,
-          storageRepository: mockstorageRepository,
-          imageRepository: mockImageRepository,
-        );
-        userStreamCtrl.add(testUser);
-
-        await expectLater(
-          userBloc,
-          emitsInOrder(setupState),
-        );
-
-        var newName = "Porco";
-
-        userBloc.add(UpdateName(newName: newName));
-
-        User updateUser = User(
-          email: testUser.email,
-          imageUrl: testUser.imageUrl,
-          name: newName,
-        );
-
-        when(mockUserRepository.updateUserName(testUser.email, newName))
-            .thenAnswer((_) {
-          userStreamCtrl.add(updateUser);
-          return Future.value(null);
-        });
-
-        final expectedState = [
-          UserSuccess(currentUser: testUser),
-          UserSuccess(currentUser: updateUser)
-        ];
-
-        await expectLater(
-          userBloc,
-          emitsInOrder(expectedState),
-        );
-        verify(mockUserRepository.updateUserName(testUser.email, newName));
-      });
-    });
-
-    group("when add UpdateImageUrl", () {
-      test("should update the user image url", () async {
-        final setupState = [
-          UserLoading(),
-          UserSuccess(currentUser: testUser),
-        ];
-
-        userBloc = UserBloc(
-          authBloc: mockAuthBloc,
-          userRepository: mockUserRepository,
-          storageRepository: mockstorageRepository,
-          imageRepository: mockImageRepository,
-        );
-        userStreamCtrl.add(testUser);
-
-        await expectLater(
-          userBloc,
-          emitsInOrder(setupState),
-        );
-
-        var newImageUrl = "http://porc.o/a.png";
-
-        userBloc.add(UserEvent.updateImageUrl(
-          userEmail: testUser.email,
-        ));
-
-        User updateUser = User(
-          email: testUser.email,
-          name: testUser.name,
-          imageUrl: newImageUrl,
-        );
-        File fakeImage = File("some_file");
-
+      setUp((){
         when(mockImageRepository.getCroppedImage()).thenAnswer((_) {
           return Future.value(fakeImage);
         });
@@ -239,165 +191,93 @@ void main() {
 
         when(mockUserRepository.updateUserImageUrl(testUser.email, newImageUrl))
             .thenAnswer((_) {
-          userStreamCtrl.add(updateUser);
           return Future.value(null);
         });
-
-        final expectedState = [
-          UserSuccess(currentUser: testUser),
-          UserSuccess(currentUser: updateUser)
-        ];
-
-        await expectLater(
-          userBloc,
-          emitsInOrder(expectedState),
-        );
-        verify(
-            mockUserRepository.updateUserImageUrl(testUser.email, newImageUrl));
       });
+
+      tearDown(() async {
+        await untilCalled(mockImageRepository.getCroppedImage());
+        await untilCalled(mockstorageRepository.uploadImage(fakeImage, argThat(endsWith(".png"))));
+        await untilCalled(mockUserRepository.updateUserImageUrl(testUser.email, newImageUrl));
+        verify(mockImageRepository.getCroppedImage());
+        verify(mockstorageRepository.uploadImage(fakeImage, argThat(endsWith(".png"))));
+        verify(mockUserRepository.updateUserImageUrl(testUser.email, newImageUrl));
+      });
+
+      blocTest("should update the user image url",
+          build: () => UserBloc(
+            authBloc: mockAuthBloc,
+            userRepository: mockUserRepository,
+            storageRepository: mockstorageRepository,
+            imageRepository: mockImageRepository,
+          ),
+          seed: UserState.userSuccess(currentUser: testUser),
+          act: (bloc) => bloc.add(UserEvent.updateImageUrl(
+            userEmail: testUser.email,
+          )),
+          expect: []
+      );
     });
 
-    group("when add UpdateSelectedGym", () {
-      test("should update the user selected gym", () async {
-        final setupState = [
-          UserLoading(),
-          UserSuccess(currentUser: testUser),
-        ];
+    group("on UpdateSelectedGym event", () {
+      var newSelectedGym = "pokemon gym";
 
-        userBloc = UserBloc(
-          authBloc: mockAuthBloc,
-          userRepository: mockUserRepository,
-          storageRepository: mockstorageRepository,
-          imageRepository: mockImageRepository,
-        );
-        userStreamCtrl.add(testUser);
-
-        await expectLater(
-          userBloc,
-          emitsInOrder(setupState),
-        );
-
-        var newSelectedGym = "pokemon gym";
-
-        userBloc.add(UserEvent.updateSelectedGym(
-            userEmail: testUser.email, newSelectedGym: newSelectedGym));
-
-        User updateUser = User(
-          email: testUser.email,
-          imageUrl: testUser.imageUrl,
-          name: newSelectedGym,
-        );
-
+      setUp((){
         when(mockUserRepository.updateSelectedGymId(
-                testUser.email, newSelectedGym))
+            testUser.email, newSelectedGym))
             .thenAnswer((_) {
-          userStreamCtrl.add(updateUser);
           return Future.value(null);
         });
+      });
 
-        final expectedState = [
-          UserSuccess(currentUser: testUser),
-          UserSuccess(currentUser: updateUser)
-        ];
-
-        await expectLater(
-          userBloc,
-          emitsInOrder(expectedState),
-        );
+      tearDown(() async {
+        await untilCalled(mockUserRepository.updateSelectedGymId(
+            testUser.email, newSelectedGym));
         verify(mockUserRepository.updateSelectedGymId(
             testUser.email, newSelectedGym));
       });
+
+      blocTest("should update the user selected gym",
+          build: () => UserBloc(
+            authBloc: mockAuthBloc,
+            userRepository: mockUserRepository,
+            storageRepository: mockstorageRepository,
+            imageRepository: mockImageRepository,
+          ),
+          seed: UserState.userSuccess(currentUser: testUser),
+          act: (bloc) => bloc.add(UserEvent.updateSelectedGym(
+              userEmail: testUser.email, newSelectedGym: newSelectedGym)),
+          expect: []
+      );
     });
 
-    group("when add UpdateFcmToken", () {
-      test("should update the user fcm token", () async {
-        final setupState = [
-          UserLoading(),
-          UserSuccess(currentUser: testUser),
-        ];
+    group("on UpdateFcmToken event", () {
+      var newToken = "some token";
 
-        userBloc = UserBloc(
-          authBloc: mockAuthBloc,
-          userRepository: mockUserRepository,
-          storageRepository: mockstorageRepository,
-          imageRepository: mockImageRepository,
-        );
-        userStreamCtrl.add(testUser);
-
-        await expectLater(
-          userBloc,
-          emitsInOrder(setupState),
-        );
-
-        var newToken = "some token";
-
-        userBloc.add(UserEvent.updateFcmToken(
-            userEmail: testUser.email, newToken: newToken));
-
+      setUp((){
         when(mockUserRepository.updateUserFcmToken(testUser.email, newToken))
             .thenAnswer((_) {
-          userStreamCtrl.add(testUser);
           return Future.value(null);
         });
+      });
 
-        final expectedState = [UserSuccess(currentUser: testUser)];
-
-        await expectLater(
-          userBloc,
-          emitsInAnyOrder(expectedState),
-        );
+      tearDown(() async {
+        await untilCalled(mockUserRepository.updateUserFcmToken(testUser.email, newToken));
         verify(mockUserRepository.updateUserFcmToken(testUser.email, newToken));
       });
-    });
 
-    group("when add UpdateVersion", () {
-      test("should update the user version", () async {
-        final setupState = [
-          UserLoading(),
-          UserSuccess(currentUser: testUser),
-        ];
-
-        userBloc = UserBloc(
-          authBloc: mockAuthBloc,
-          userRepository: mockUserRepository,
-          storageRepository: mockstorageRepository,
-          imageRepository: mockImageRepository,
-        );
-        userStreamCtrl.add(testUser);
-
-        await expectLater(
-          userBloc,
-          emitsInOrder(setupState),
-        );
-
-        userBloc.add(UserEvent.updateVersion(
-            userEmail: testUser.email));
-        // set current version to 1.0.0
-        TestWidgetsFlutterBinding.ensureInitialized();
-        const MethodChannel('plugins.flutter.io/package_info').setMockMethodCallHandler((MethodCall methodCall) async {
-          if (methodCall.method == 'getAll') {
-            return <String, dynamic>{
-              'version': '1.0.0',
-              'buildNumber': '12',
-            };
-          }
-          return null;
-        });
-
-        when(mockUserRepository.updateUserVersion(testUser.email, "1.0.0+12"))
-            .thenAnswer((_) {
-          userStreamCtrl.add(testUser);
-          return Future.value(null);
-        });
-
-        final expectedState = [UserSuccess(currentUser: testUser)];
-
-        await expectLater(
-          userBloc,
-          emitsInAnyOrder(expectedState),
-        );
-        verify(mockUserRepository.updateUserVersion(testUser.email, "1.0.0+12"));
-      });
+      blocTest("should update the user fcm token",
+          build: () => UserBloc(
+            authBloc: mockAuthBloc,
+            userRepository: mockUserRepository,
+            storageRepository: mockstorageRepository,
+            imageRepository: mockImageRepository,
+          ),
+          seed: UserState.userSuccess(currentUser: testUser),
+          act: (bloc) => bloc.add(UserEvent.updateFcmToken(
+              userEmail: testUser.email, newToken: newToken)),
+          expect: []
+      );
     });
   });
 }

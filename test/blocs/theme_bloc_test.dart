@@ -1,38 +1,36 @@
+import 'package:bloc_test/bloc_test.dart';
 import 'package:checkin/src/blocs/theme/bloc.dart';
 import 'package:checkin/src/themes/theme.dart';
 import 'package:test/test.dart';
 
 void main() {
   group("ThemeBloc", () {
-    ThemeBloc themeBloc;
-
-    tearDown(() {
-      themeBloc?.close();
-    });
 
     group("initial state", () {
-      test("initial state is AppTheme", () {
+      ThemeBloc themeBloc;
+
+      setUp(() {
         themeBloc = ThemeBloc();
-        expect(themeBloc.initialState, AppTheme(themeData: theme[ThemeType.NewLight]));
+      });
+
+      test('is AppTheme', () {
+        expect(themeBloc.state, AppTheme(themeData: theme[ThemeType.NewLight]));
+      });
+
+      tearDown(() {
+        themeBloc?.close();
       });
     });
 
-    group("ThemeUpdated", () {
-      test("should emits AppTheme and passing the new ThemeType", () {
-        themeBloc = ThemeBloc();
-        final ThemeType newThemeType = ThemeType.Dark;
-        themeBloc.add(ThemeEvent.themeUpdated(themeType: newThemeType));
+    group("on ThemeUpdated event", () {
+      final ThemeType newThemeType = ThemeType.Dark;
 
-        final expectedState = [
-          AppTheme(themeData: theme[ThemeType.NewLight]),
-          AppTheme(themeData: theme[newThemeType]),
-        ];
-
-        expectLater(
-          themeBloc,
-          emitsInOrder(expectedState),
-        );
-      });
+      blocTest(
+        "should emit AppTheme setting the new theme",
+        build: () => ThemeBloc(),
+        act: (bloc) => bloc.add(ThemeUpdated(themeType: newThemeType)),
+        expect: [AppTheme(themeData: theme[newThemeType])],
+      );
     });
   });
 }

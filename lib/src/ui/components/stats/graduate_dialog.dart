@@ -44,7 +44,7 @@ class GraduateDialog extends StatelessWidget {
                 style: Theme.of(context).textTheme.button,
               ),
               onPressed: () {
-                context.bloc<GraduationBloc>().add(Graduate(newGrade: newGrade));
+                context.read<GraduationBloc>().add(Graduate(newGrade: newGrade));
                 Navigator.of(context).pop();
               },
             ),
@@ -78,7 +78,7 @@ class GraduateDialog extends StatelessWidget {
                     style: Theme.of(context).textTheme.button,
                   ),
                   onPressed: () {
-                    context.bloc<GraduationBloc>().add(Graduate(newGrade: newGrade));
+                    context.read<GraduationBloc>().add(Graduate(newGrade: newGrade));
                     Navigator.of(context).pop();
                   },
                 ),

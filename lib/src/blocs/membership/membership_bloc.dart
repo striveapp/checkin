@@ -15,7 +15,7 @@ class MembershipBloc extends Bloc<MembershipEvent, MembershipState> {
   final AnalyticsRepository _analyticsRepository;
   final String _userEmail;
   final String _selectedGymId;
-  
+
   StreamSubscription<Membership> _membershipSub;
 
   MembershipBloc(
@@ -33,9 +33,8 @@ class MembershipBloc extends Bloc<MembershipEvent, MembershipState> {
         _membershipApi = membershipApi,
         _analyticsRepository = analyticsRepository,
         _userEmail = userEmail,
-        _selectedGymId = selectedGymId {
+        _selectedGymId = selectedGymId, super(InitialMembershipState()) {
     _membershipSub?.cancel();
-
     _membershipSub = _membershipRepository
         .getMembership(
       gymId: _selectedGymId,
@@ -51,9 +50,6 @@ class MembershipBloc extends Bloc<MembershipEvent, MembershipState> {
       debugPrint("An error occurred while loading membership $error");
     });
   }
-
-  @override
-  MembershipState get initialState => InitialMembershipState();
 
   @override
   Stream<MembershipState> mapEventToState(MembershipEvent event) async* {

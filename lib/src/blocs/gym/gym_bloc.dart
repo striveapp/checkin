@@ -9,8 +9,6 @@ import 'package:flutter/foundation.dart';
 import './bloc.dart';
 
 class GymBloc extends Bloc<GymEvent, GymState> {
-  @override
-  GymState get initialState => InitialGymState();
 
   final GymRepository gymRepository;
   final UserBloc userBloc;
@@ -20,15 +18,18 @@ class GymBloc extends Bloc<GymEvent, GymState> {
   GymBloc({
     @required this.gymRepository,
     @required this.userBloc,
-  }) {
-    userBloc.listen((userState) {
-     if(userState is UserSuccess) {
-       gymSub?.cancel();
-       gymSub = gymRepository.getGym(userState.currentUser.selectedGymId).listen((gym) {
-         add(GymUpdated(gym: gym));
-       });
-     }
-    });
+  }) : super(InitialGymState()) {
+    _onUserStateChanged(userBloc.state);
+    userBloc.listen(_onUserStateChanged);
+  }
+
+  void _onUserStateChanged(userState) {
+    if(userState is UserSuccess) {
+      gymSub?.cancel();
+      gymSub = gymRepository.getGym(userState.currentUser.selectedGymId).listen((gym) {
+        add(GymUpdated(gym: gym));
+      });
+    }
   }
 
   @override

@@ -33,7 +33,7 @@ class GraduationBloc extends Bloc<GraduationEvent, GraduationState> {
     @required this.gymId,
     @required this.userEmail,
     @required this.userGrade,
-  }) {
+  }) : super(InitialGraduationState()) {
     graduationSystemSub?.cancel();
 
     graduationSystemSub =
@@ -47,9 +47,6 @@ class GraduationBloc extends Bloc<GraduationEvent, GraduationState> {
       });
     });
   }
-
-  @override
-  GraduationState get initialState => InitialGraduationState();
 
   @override
   Stream<GraduationState> mapEventToState(
@@ -67,6 +64,7 @@ class GraduationBloc extends Bloc<GraduationEvent, GraduationState> {
     if (event is Graduate) {
       yield GraduationLoading();
       await userRepository.updateGrade(userEmail, event.newGrade);
+      // todo why we reload here? should receive the updates user and regenerate a GraduationSystemUpdated event
       var calculateNextGrade = graduationUtils.calculateNextGrade(event.newGrade);
       yield NotReadyForGraduation(
         nextGrade: calculateNextGrade,

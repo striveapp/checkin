@@ -30,28 +30,28 @@ class PaymentMethodsBloc
         _paymentApi = paymentApi,
         _paymentMethodRepository = paymentMethodRepository,
         _urlLauncherUtil = urlLauncherUtil,
-        _userBloc = userBloc {
+        _userBloc = userBloc, super(InitialPaymentMethodsState()) {
     try {
-      _userBloc.listen((UserState userState) {
-        if (userState is UserSuccess) {
-          _paymentMethodSub = _paymentMethodRepository
-              .getPaymentMethod(
-                  gymId: userState.currentUser.selectedGymId,
-                  email: userState.currentUser.email)
-              .listen((paymentMethod) {
-            add(PaymentMethodUpdated(
-                paymentMethod: paymentMethod,
-                userEmail: userState.currentUser.email));
-          });
-        }
-      });
+      _onUserStateChanged(_userBloc.state);
+      _userBloc.listen(_onUserStateChanged);
     } catch (err) {
       debugPrint("Error while fetching the gym stream $err");
     }
   }
 
-  @override
-  PaymentMethodsState get initialState => InitialPaymentMethodsState();
+  void _onUserStateChanged(UserState userState) {
+    if (userState is UserSuccess) {
+      _paymentMethodSub = _paymentMethodRepository
+          .getPaymentMethod(
+          gymId: userState.currentUser.selectedGymId,
+          email: userState.currentUser.email)
+          .listen((paymentMethod) {
+        add(PaymentMethodUpdated(
+            paymentMethod: paymentMethod,
+            userEmail: userState.currentUser.email));
+      });
+    }
+  }
 
   @override
   Stream<PaymentMethodsState> mapEventToState(

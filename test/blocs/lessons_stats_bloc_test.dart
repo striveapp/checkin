@@ -10,13 +10,14 @@ import 'package:checkin/src/repositories/lesson_repository.dart';
 import 'package:mockito/mockito.dart';
 import 'package:test/test.dart';
 
+import 'helper/mock_helper.dart';
+
 class MockStatsBloc extends Mock implements StatsBloc {}
 
 class MockLessonRepository extends Mock implements LessonRepository {}
 
 void main() {
   group("LessonsStatsBloc", () {
-    LessonsStatsBloc lessonsStatsBloc;
     MockStatsBloc mockStatsBloc;
     MockLessonRepository mockLessonRepository;
 
@@ -57,42 +58,51 @@ void main() {
     setUp(() {
       mockLessonRepository = MockLessonRepository();
       mockStatsBloc = MockStatsBloc();
-      whenListen(mockStatsBloc,
-          Stream.fromIterable([TimespanUpdated(timespan: WEEK)]));
-
-      when(mockLessonRepository.getLessonsByMasterAndTimespan(fakeMaster, WEEK))
-          .thenAnswer((_) => Stream<List<Lesson>>.value(allLessons));
-
-      lessonsStatsBloc = LessonsStatsBloc(
-        master: fakeMaster,
-        lessonsRepository: mockLessonRepository,
-        statsBloc: mockStatsBloc,
-      );
+      configureThrowOnMissingStub([mockLessonRepository]);
     });
 
-    tearDown(() {
-      lessonsStatsBloc?.close();
+    tearDown((){
+      logAndVerifyNoMoreInteractions([mockLessonRepository]);
     });
 
-    test(
-        "should emits LessonStatsUpdated when StatsBloc add an TimespanUpdated",
-        () {
-      //TODO: this should probably be a different data structure, maybe a map with attendee and counter
-      final expectedState = [
-        LessonsStatsInitial(),
-        LessonStatsUpdated(acceptedAttendeesWithCounter: {
-          attendee1: 2,
-          attendee2: 2,
-          attendee3: 1,
-        },
-          totalAttendees: 5
-        )
-      ];
+    // todo missing initial state test
 
-      expectLater(
-        lessonsStatsBloc,
-        emitsInOrder(expectedState),
-      );
+    group("on UpdateLessonStats event",(){
+      group("when StatsBloc emits TimespanUpdated state",(){
+        setUp((){
+          whenListen(mockStatsBloc,
+              Stream.fromIterable([TimespanUpdated(timespan: WEEK)]));
+
+          when(mockLessonRepository.getLessonsByMasterAndTimespan(fakeMaster, WEEK))
+              .thenAnswer((_) => Stream<List<Lesson>>.value(allLessons));
+        });
+
+        tearDown((){
+          verify(mockLessonRepository.getLessonsByMasterAndTimespan(fakeMaster, WEEK));
+        });
+
+
+        //TODO: this should probably be a different data structure, maybe a map with attendee and counter
+        blocTest(
+          "should emit LessonStatsUpdated",
+          build: () => LessonsStatsBloc(
+            master: fakeMaster,
+            lessonsRepository: mockLessonRepository,
+            statsBloc: mockStatsBloc,
+          ),
+          expect: [
+            LessonStatsUpdated(
+              acceptedAttendeesWithCounter: {
+                attendee1: 2,
+                attendee2: 2,
+                attendee3: 1,
+              },
+              totalAttendees: 5,
+            ),
+          ],
+        );
+
+      });
     });
   });
 }

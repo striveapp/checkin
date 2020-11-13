@@ -7,6 +7,8 @@ import 'package:checkin/src/repositories/subscription_plans_repository.dart';
 import 'package:mockito/mockito.dart';
 import 'package:test/test.dart';
 
+import 'helper/mock_helper.dart';
+
 class MockSubscriptionPlansRepository extends Mock
     implements SubscriptionPlansRepository {}
 
@@ -14,71 +16,47 @@ class MockGymBloc extends Mock implements GymBloc {}
 
 void main() {
   group("SubscriptionPlansBloc", () {
-    SubscriptionPlansBloc subscriptionPlansBloc;
     MockSubscriptionPlansRepository mockSubscriptionPlansRepository;
+    MockGymBloc mockGymBloc;
+
     Gym fakeGym = Gym(
         id: "some_id",
         host: "tha_host",
         paymentAppDomain: "test.com",
         stripePublicKey: "pk_kp",
         hasActivePayments: false);
-    MockGymBloc mockGymBloc;
 
     setUp(() {
+      mockSubscriptionPlansRepository = MockSubscriptionPlansRepository();
       mockGymBloc = MockGymBloc();
-      whenListen(mockGymBloc, Stream.fromIterable([GymLoaded(gym: fakeGym)]));
+      configureThrowOnMissingStub([mockSubscriptionPlansRepository]);
+
     });
 
     group("initial state", () {
-      test("initial state is SubscriptionPlansInitial", () {
-        mockSubscriptionPlansRepository = MockSubscriptionPlansRepository();
-        when(mockSubscriptionPlansRepository.getPlans(gymId: fakeGym.id))
-            .thenAnswer((_) => Stream.value([]));
+      SubscriptionPlansBloc subscriptionPlansBloc;
+
+      setUp(() {
         subscriptionPlansBloc = SubscriptionPlansBloc(
             gymBloc: mockGymBloc,
             subscriptionPlansRepository: mockSubscriptionPlansRepository);
-        expect(subscriptionPlansBloc.initialState, SubscriptionPlansInitial());
+      });
+
+      test('is SubscriptionPlansInitial', () {
+        expect(subscriptionPlansBloc.state, SubscriptionPlansInitial());
+      });
+
+      tearDown(() {
+        subscriptionPlansBloc?.close();
       });
     });
 
-    group("SubscriptionPlansUpdated", () {
-      test(
-          "should emits SubscriptionPlansLoaded and passing the available plans",
-          () {
-        List<SubscriptionPlan> testPlans = [
-          SubscriptionPlan.simpleSubscription(
-              name: "test1",
-              interval: "int1",
-              currency: "EUR",
-              code: "plan1",
-              price: 1)
-        ];
-
-        mockSubscriptionPlansRepository = MockSubscriptionPlansRepository();
-        when(mockSubscriptionPlansRepository.getPlans(gymId: fakeGym.id))
-            .thenAnswer((_) => Stream.empty());
-        subscriptionPlansBloc = SubscriptionPlansBloc(
-            gymBloc: mockGymBloc,
-            subscriptionPlansRepository: mockSubscriptionPlansRepository);
-        subscriptionPlansBloc.add(SubscriptionPlansUpdated(
-            subscriptionPlans: testPlans));
-
-        final expectedState = [
-          SubscriptionPlansInitial(),
-          SubscriptionPlansLoaded(
-              subscriptionPlans: testPlans),
-          emitsDone
-        ];
-
-        expectLater(
-          subscriptionPlansBloc,
-          emitsInOrder(expectedState),
-        );
-        subscriptionPlansBloc.close();
+    group("on SubscriptionPlansUpdated event", () {
+      setUp((){
+        whenListen(mockGymBloc, Stream.fromIterable([GymLoaded(gym: fakeGym)]));
       });
 
-      test("should emits SubscriptionPlansLoaded when fetched by repository",
-          () {
+      group("when there are plans", (){
         List<SubscriptionPlan> testPlans = [
           SubscriptionPlan.simpleSubscription(
               name: "test1",
@@ -88,32 +66,27 @@ void main() {
               price: 1)
         ];
 
-        mockSubscriptionPlansRepository = MockSubscriptionPlansRepository();
-        when(mockSubscriptionPlansRepository.getPlans(gymId: fakeGym.id))
-            .thenAnswer((_) {
-          return Stream<List<SubscriptionPlan>>.fromFuture(
-              Future.value(testPlans));
+        setUp((){
+          when(mockSubscriptionPlansRepository.getPlans(gymId: fakeGym.id))
+              .thenAnswer((_) {
+            return Stream<List<SubscriptionPlan>>.fromFuture(
+                Future.value(testPlans));
+          });
         });
 
-        subscriptionPlansBloc = SubscriptionPlansBloc(
-            gymBloc: mockGymBloc,
-            subscriptionPlansRepository: mockSubscriptionPlansRepository);
+        tearDown((){
+          verify(mockSubscriptionPlansRepository.getPlans(gymId: fakeGym.id));
+        });
 
-        final expectedState = [
-          SubscriptionPlansInitial(),
-          SubscriptionPlansLoaded(
-              subscriptionPlans: testPlans),
-        ];
-
-        expectLater(
-          subscriptionPlansBloc,
-          emitsInOrder(expectedState),
-        );
+        blocTest("should emit SubscriptionPlansLoaded",
+            build: () => SubscriptionPlansBloc(
+                gymBloc: mockGymBloc,
+                subscriptionPlansRepository: mockSubscriptionPlansRepository),
+            expect: [SubscriptionPlansLoaded(
+                subscriptionPlans: testPlans)]);
       });
 
-      test(
-          "should emits SubscriptionPlansLoaded with plans sorted by price (asc)",
-          () {
+      group("when there are unsorted plans", (){
         List<SubscriptionPlan> testPlans = [
           SubscriptionPlan.simpleSubscription(
               name: "test1",
@@ -144,54 +117,41 @@ void main() {
               price: 2),
         ];
 
-        mockSubscriptionPlansRepository = MockSubscriptionPlansRepository();
-        when(mockSubscriptionPlansRepository.getPlans(gymId: fakeGym.id))
-            .thenAnswer((_) {
-          return Stream<List<SubscriptionPlan>>.value(testPlans);
+        setUp((){
+          when(mockSubscriptionPlansRepository.getPlans(gymId: fakeGym.id))
+              .thenAnswer((_) {
+            return Stream<List<SubscriptionPlan>>.value(testPlans);
+          });
         });
 
-        subscriptionPlansBloc = SubscriptionPlansBloc(
-            gymBloc: mockGymBloc,
-            subscriptionPlansRepository: mockSubscriptionPlansRepository);
+        tearDown((){
+          verify(mockSubscriptionPlansRepository.getPlans(gymId: fakeGym.id));
+        });
 
-        final expectedState = [
-          SubscriptionPlansInitial(),
-          SubscriptionPlansLoaded(
-              subscriptionPlans: sortedTestPlans),
-        ];
+        blocTest("should emit SubscriptionPlansLoaded with plans sorted by price (asc)",
+            build: () => SubscriptionPlansBloc(
+                gymBloc: mockGymBloc,
+                subscriptionPlansRepository: mockSubscriptionPlansRepository),
+            expect: [SubscriptionPlansLoaded(
+                subscriptionPlans: sortedTestPlans)]);
+      });
 
-        expectLater(
-          subscriptionPlansBloc,
-          emitsInOrder(expectedState),
-        );
+      group("when there are NO plans", () {
+        setUp(() {
+          when(mockSubscriptionPlansRepository.getPlans(gymId: fakeGym.id))
+              .thenAnswer((_) => Stream.empty());
+        });
+
+        blocTest("should emit SubscriptionPlansEmpty with empty plans",
+            build: () => SubscriptionPlansBloc(
+                gymBloc: mockGymBloc,
+                subscriptionPlansRepository: mockSubscriptionPlansRepository),
+            act: (bloc) => bloc.add(SubscriptionPlansUpdated(
+                subscriptionPlans: [])),
+            expect: [SubscriptionPlansEmpty()]);
       });
     });
 
-    group("SubscriptionPlansEmpty", () {
-      setUp(() {
-        mockSubscriptionPlansRepository = MockSubscriptionPlansRepository();
-        when(mockSubscriptionPlansRepository.getPlans(gymId: fakeGym.id))
-            .thenAnswer((_) => Stream.empty());
-        subscriptionPlansBloc = SubscriptionPlansBloc(
-            gymBloc: mockGymBloc,
-            subscriptionPlansRepository: mockSubscriptionPlansRepository);
-      });
-      test("should emits SubscriptionPlansEmpty with empty plans", () {
-        subscriptionPlansBloc.add(SubscriptionPlansUpdated(
-            subscriptionPlans: []));
-        final expectedState = [
-          SubscriptionPlansInitial(),
-          SubscriptionPlansEmpty(),
-          emitsDone
-        ];
 
-        expectLater(
-          subscriptionPlansBloc,
-          emitsInOrder(expectedState),
-        );
-
-        subscriptionPlansBloc.close();
-      });
-    });
   });
 }

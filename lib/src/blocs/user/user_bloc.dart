@@ -25,27 +25,27 @@ class UserBloc extends Bloc<UserEvent, UserState> {
     @required this.storageRepository,
     @required this.imageRepository,
     @required this.authBloc,
-  }) {
-    this.authBloc.listen((authState) {
-      if (authState is AuthAuthenticated) {
-        userSub?.cancel();
-        userSub = this
-            .userRepository
-            .getUserByEmail(authState.loggedUser.email)
-            .listen((user) {
-          add(UserUpdated(user: user));
-          add(UserEvent.updateVersion(userEmail: user?.email));
-        });
-      }
-
-      if (authState is AuthUnauthenticated) {
-        userSub?.cancel();
-      }
-    });
+  }) : super(UserLoading()) {
+    _onAuthStateChange(authBloc.state);
+    this.authBloc.listen(_onAuthStateChange);
   }
 
-  @override
-  UserState get initialState => UserLoading();
+  void _onAuthStateChange(authState) {
+    if (authState is AuthAuthenticated) {
+      userSub?.cancel();
+      userSub = this
+          .userRepository
+          .getUserByEmail(authState.loggedUser.email)
+          .listen((user) {
+        add(UserUpdated(user: user));
+        add(UserEvent.updateVersion(userEmail: user?.email));
+      });
+    }
+
+    if (authState is AuthUnauthenticated) {
+      userSub?.cancel();
+    }
+  }
 
   @override
   Stream<UserState> mapEventToState(UserEvent event) async* {
@@ -122,7 +122,7 @@ class UserBloc extends Bloc<UserEvent, UserState> {
 
   @override
   Future<void> close() {
-    userSub.cancel();
+    userSub?.cancel();
     return super.close();
   }
 }

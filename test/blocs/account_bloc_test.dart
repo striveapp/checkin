@@ -3,65 +3,90 @@ import 'package:checkin/src/blocs/account/bloc.dart';
 import 'package:checkin/src/blocs/user/bloc.dart';
 import 'package:checkin/src/models/user.dart';
 import 'package:checkin/src/repositories/analytics_repository.dart';
+import 'package:flutter_test/flutter_test.dart';
 import 'package:mockito/mockito.dart';
-import 'package:test/test.dart';
 
-class MockUserBloc extends Mock implements UserBloc {}
+import 'helper/mock_helper.dart';
+
+class MockUserBloc extends MockBloc<UserState> implements UserBloc {}
 class MockAnalyticsRepository extends Mock implements AnalyticsRepository {}
 
 void main() {
-  group("AccountBloc", () {
-    AccountBloc accountBloc;
-    MockUserBloc mockUserBloc;
-    final User fakeUser = User(
-        name: "Tobuto nellano", email: "tobuto@nellano.com", imageUrl: "nope");
 
-    tearDown(() {
-      accountBloc?.close();
-      mockUserBloc?.close();
+  group("AccountBloc", () {
+    MockUserBloc mockUserBloc;
+    MockAnalyticsRepository mockAnalyticsRepository;
+
+    final User fakeUser = User(
+      name: "Tobuto nellano",
+      email: "tobuto@nellano.com",
+      imageUrl: "nope",
+    );
+
+    setUp(() {
+      mockUserBloc = MockUserBloc();
+      mockAnalyticsRepository = MockAnalyticsRepository();
+      configureThrowOnMissingStub([mockAnalyticsRepository]);
+    });
+
+    tearDown((){
+      logAndVerifyNoMoreInteractions([mockAnalyticsRepository]);
     });
 
     group("initial state", () {
-      test("initial state is AccountInitial", () {
-        mockUserBloc = MockUserBloc();
-        accountBloc = AccountBloc(userBloc: mockUserBloc, analyticsRepository: MockAnalyticsRepository());
-        expect(accountBloc.initialState, AccountInitial());
+      AccountBloc accountBloc;
+
+      setUp((){
+        accountBloc =
+            AccountBloc(userBloc: mockUserBloc, analyticsRepository: mockAnalyticsRepository);
+      });
+
+      tearDown((){
+        accountBloc?.close();
+      });
+
+      test("is AccountInitial", () {
+        expect(accountBloc.state, AccountInitial());
       });
     });
 
-    group("AccountUpdated", () {
-      test("should emits AccountLoaded and passing the user informations", () {
-        mockUserBloc = MockUserBloc();
-        accountBloc = AccountBloc(userBloc: mockUserBloc, analyticsRepository: MockAnalyticsRepository());
-
-        accountBloc.add(AccountUpdated(user: fakeUser));
-
-        final expectedState = [
-          AccountInitial(),
-          AccountLoaded(user: fakeUser),
-        ];
-
-        expectLater(
-          accountBloc,
-          emitsInOrder(expectedState),
+    group("on AccountUpdated event", () {
+      setUp(() {
+        whenListen(
+          mockUserBloc,
+          Stream.fromIterable([UserSuccess(currentUser: fakeUser)]),
         );
       });
 
-      test("should emits AccountLoaded with current user informations", () {
-        mockUserBloc = MockUserBloc();
-        whenListen(mockUserBloc, Stream.value(UserSuccess(currentUser: fakeUser)));
-        accountBloc = AccountBloc(userBloc: mockUserBloc, analyticsRepository: MockAnalyticsRepository());
+      blocTest("should emit AccountLoaded passing the user informations",
+          build: () =>
+              AccountBloc(userBloc: mockUserBloc, analyticsRepository: mockAnalyticsRepository),
+          expect: [
+            AccountLoaded(user: fakeUser),
+          ]);
+    });
 
-        final expectedState = [
-          AccountInitial(),
-          AccountLoaded(user: fakeUser),
-        ];
+    group("on AccountDisplayError event", () {
+      final errorMessage = "Boom!";
 
-        expectLater(
-          accountBloc,
-          emitsInOrder(expectedState),
-        );
+      setUp(() {
+        when(mockAnalyticsRepository.setupBankAccountError(error: errorMessage))
+            .thenAnswer((_) => Future.value(null));
       });
+
+      tearDown(() {
+        verify(mockAnalyticsRepository.setupBankAccountError(error: errorMessage));
+      });
+
+      blocTest(
+        "should track the error and emit AccountError",
+        build: () =>
+            AccountBloc(userBloc: mockUserBloc, analyticsRepository: mockAnalyticsRepository),
+        act: (bloc) => bloc.add(AccountDisplayError(errorMessage: errorMessage)),
+        expect: [
+          AccountError(errorMessage: errorMessage),
+        ],
+      );
     });
   });
 }

@@ -18,30 +18,30 @@ class ProfileBloc extends Bloc<ProfileEvent, ProfileState> {
     @required this.userBloc,
     @required this.userRepository,
     this.nonCurrentUserEmail,
-  }) {
-    this.userBloc.listen((userState) {
-      if (userState is UserSuccess) {
-        if (nonCurrentUserEmail == null) {
-          add(ProfileUpdated(user: userState.currentUser, isCurrentUser: true));
-        } else {
-          userSub?.cancel();
-          userSub = this
-              .userRepository
-              .getUserByEmail(this.nonCurrentUserEmail)
-              .listen((user) {
-            add(ProfileUpdated(user: user, isCurrentUser: false));
-          });
-
-          userSub.onError((error) => debugPrint(
-                "Error loading profile with mail [$nonCurrentUserEmail]: $error",
-              ));
-        }
-      }
-    });
+  }) : super(InitialProfileState()) {
+    _onUserStateChanged(userBloc.state);
+    this.userBloc.listen(_onUserStateChanged);
   }
 
-  @override
-  ProfileState get initialState => InitialProfileState();
+  void _onUserStateChanged(userState) {
+    if (userState is UserSuccess) {
+      if (nonCurrentUserEmail == null) {
+        add(ProfileUpdated(user: userState.currentUser, isCurrentUser: true));
+      } else {
+        userSub?.cancel();
+        userSub = this
+            .userRepository
+            .getUserByEmail(this.nonCurrentUserEmail)
+            .listen((user) {
+          add(ProfileUpdated(user: user, isCurrentUser: false));
+        });
+
+        userSub.onError((error) => debugPrint(
+          "Error loading profile with mail [$nonCurrentUserEmail]: $error",
+        ));
+      }
+    }
+  }
 
   @override
   Stream<ProfileState> mapEventToState(ProfileEvent event) async* {

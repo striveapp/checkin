@@ -35,7 +35,7 @@ void main() {
 //    });
 //
 //    test("initial state is NotificationUninitialized", () {
-//      expect(notificatonsBloc.initialState, NotificationsUninitialized());
+//      expect(notificatonsBloc.state, NotificationsUninitialized());
 //    });
 //
 //    group("when Setup is dispatched", () {

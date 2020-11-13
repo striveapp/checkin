@@ -19,20 +19,20 @@ class SubscriptionBloc extends Bloc<SubscriptionEvent, SubscriptionState> {
     @required this.gymBloc,
     @required this.membershipApi,
     @required this.analyticsRepository,
-  }) : assert(membershipApi != null && analyticsRepository != null && gymBloc != null) {
+  }) : assert(membershipApi != null && analyticsRepository != null && gymBloc != null), super(SubscriptionInitial()) {
     try {
-      gymBloc.listen((GymState gymState) {
-        if (gymState is GymLoaded) {
-          gym = gymState.gym;
-        }
-      });
+      _onGymStateUpdated(gymBloc.state);
+      gymBloc.listen(_onGymStateUpdated);
     } catch (err) {
       debugPrint("Error while fetching the plans stream $err");
     }
   }
 
-  @override
-  SubscriptionState get initialState => SubscriptionInitial();
+  void _onGymStateUpdated(GymState gymState) {
+    if (gymState is GymLoaded) {
+      gym = gymState.gym;
+    }
+  }
 
   @override
   Stream<SubscriptionState> mapEventToState(

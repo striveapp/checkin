@@ -99,7 +99,7 @@ class AccountPage extends StatelessWidget {
               }
             },
             child: BlocBuilder<AccountBloc, AccountState>(
-              condition: (AccountState previous, AccountState current) =>
+              buildWhen: (AccountState previous, AccountState current) =>
                   !(current is AccountError),
               builder: (BuildContext context, AccountState state) {
                 if (errorMessage != null) {

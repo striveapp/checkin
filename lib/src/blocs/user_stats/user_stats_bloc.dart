@@ -21,31 +21,24 @@ class UserStatsBloc extends Bloc<UserStatsEvent, UserStatsState> {
     @required this.userEmail,
     @required this.selectedGymId,
     @required this.statsBloc,
-  }) {
-
-    statsBloc.listen((statsBlocState) {
-      if (statsBlocState is TimespanUpdated) {
-        statsSub?.cancel();
-        statsSub = this
-            .statsRepository
-            .getUserStats(selectedGymId, userEmail, statsBlocState.timespan)
-            .listen((userHistory) {
-          add(UserStatsUpdated(
-              attendedLessons: userHistory.attendedLessons,
-              timeSpan: statsBlocState.timespan));
-        });
-      }
-    });
+  }) : super(UserStatsUninitialized()) {
+    _onStatsStateChanged(statsBloc.state);
+    statsBloc.listen(_onStatsStateChanged);
   }
 
-  @override
-  Future<void> close() {
-    statsSub?.cancel();
-    return super.close();
+  void _onStatsStateChanged(statsBlocState) {
+    if (statsBlocState is TimespanUpdated) {
+      statsSub?.cancel();
+      statsSub = this
+          .statsRepository
+          .getUserStats(selectedGymId, userEmail, statsBlocState.timespan)
+          .listen((userHistory) {
+        add(UserStatsUpdated(
+            attendedLessons: userHistory.attendedLessons,
+            timeSpan: statsBlocState.timespan));
+      });
+    }
   }
-
-  @override
-  UserStatsState get initialState => UserStatsUninitialized();
 
   @override
   Stream<UserStatsState> mapEventToState(UserStatsEvent event) async* {
@@ -53,5 +46,11 @@ class UserStatsBloc extends Bloc<UserStatsEvent, UserStatsState> {
       yield UserStatsLoaded(
           attendedLessons: event.attendedLessons, timespan: event.timeSpan);
     }
+  }
+
+  @override
+  Future<void> close() {
+    statsSub?.cancel();
+    return super.close();
   }
 }

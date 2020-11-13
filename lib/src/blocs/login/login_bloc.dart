@@ -23,10 +23,7 @@ class LoginBloc extends Bloc<LoginEvent, LoginState> {
             authRepository != null),
         _authRepository = authRepository,
         _userRepository = userRepository,
-        _analyticsRepository = analyticsRepository;
-
-  @override
-  LoginState get initialState => LoginInitial();
+        _analyticsRepository = analyticsRepository, super(LoginInitial());
 
   @override
   Stream<LoginState> mapEventToState(LoginEvent event) async* {

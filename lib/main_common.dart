@@ -26,7 +26,7 @@ import 'package:checkin/src/resources/stats_provider.dart';
 import 'package:checkin/src/resources/user_provider.dart';
 import 'package:checkin/src/routes/application.dart';
 import 'package:checkin/src/routes/routes.dart';
-import 'package:checkin/src/simple_bloc_delegate.dart';
+import 'package:checkin/src/simple_bloc_observer.dart';
 import 'package:firebase_core/firebase_core.dart';
 import 'package:firebase_crashlytics/firebase_crashlytics.dart';
 import 'package:firebase_dynamic_links/firebase_dynamic_links.dart';
@@ -43,7 +43,7 @@ Future<void> mainCommon(AppConfig _) async {
   await Firebase.initializeApp();
 
   // init bloc delegate
-  BlocSupervisor.delegate = SimpleBlocDelegate();
+  Bloc.observer = SimpleBlocObserver();
 
   // setup crashlytics
   FlutterError.onError = FirebaseCrashlytics.instance.recordFlutterError;

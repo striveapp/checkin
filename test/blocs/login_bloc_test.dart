@@ -1,3 +1,4 @@
+import 'package:bloc_test/bloc_test.dart';
 import 'package:checkin/src/blocs/login/bloc.dart';
 import 'package:checkin/src/models/user.dart';
 import 'package:checkin/src/repositories/analytics_repository.dart';
@@ -7,6 +8,8 @@ import 'package:checkin/src/resources/auth_provider.dart';
 import 'package:mockito/mockito.dart';
 import 'package:test/test.dart';
 
+import 'helper/mock_helper.dart';
+
 class MockUserRepository extends Mock implements UserRepository {}
 
 class MockAuthRepository extends Mock implements AuthRepository {}
@@ -15,32 +18,50 @@ class MockAnalyticsRepository extends Mock implements AnalyticsRepository {}
 
 void main() {
   group("LoginBloc", () {
-    LoginBloc loginBloc;
-    UserRepository mockUserRepository;
-    AuthRepository mockAuthRepository;
-    AnalyticsRepository mockAnalyticsRepository;
+    MockUserRepository mockUserRepository;
+    MockAuthRepository mockAuthRepository;
+    MockAnalyticsRepository mockAnalyticsRepository;
 
     setUp(() {
       mockAuthRepository = MockAuthRepository();
       mockUserRepository = MockUserRepository();
       mockAnalyticsRepository = MockAnalyticsRepository();
-
-      loginBloc = LoginBloc(
-        authRepository: mockAuthRepository,
-        userRepository: mockUserRepository,
-        analyticsRepository: mockAnalyticsRepository,
-      );
+      configureThrowOnMissingStub([
+        mockAuthRepository,
+        mockUserRepository,
+        mockAnalyticsRepository,
+      ]);
     });
 
     tearDown(() {
-      loginBloc?.close();
+      logAndVerifyNoMoreInteractions([
+        mockAuthRepository,
+        mockUserRepository,
+        mockAnalyticsRepository,
+      ]);
     });
 
-    test('initial state is LoginUninitialized', () {
-      expect(loginBloc.initialState, LoginInitial());
+    group("initial state", () {
+      LoginBloc loginBloc;
+
+      setUp(() {
+        loginBloc = LoginBloc(
+          authRepository: mockAuthRepository,
+          userRepository: mockUserRepository,
+          analyticsRepository: mockAnalyticsRepository,
+        );
+      });
+
+      test('is LoginInitial', () {
+        expect(loginBloc.state, LoginInitial());
+      });
+
+      tearDown(() {
+        loginBloc?.close();
+      });
     });
 
-    group("LoginWithGoogle", () {
+    group("on LoginWithGoogle event", () {
       var fakeLoggedUser = User(
         uid: "1234",
         name: "Batman",
@@ -48,78 +69,89 @@ void main() {
         imageUrl: "http://image.url",
       );
 
-      setUp(() {
-        loginBloc.add(LoginWithGoogle());
-      });
+      group("when a logged user is returned", () {
+        setUp(() {
+          when(mockAuthRepository.signInWithGoogle())
+              .thenAnswer((_) => Future<User>.value(fakeLoggedUser));
+          when(mockAnalyticsRepository.setUserProperties(fakeLoggedUser.uid))
+              .thenAnswer((realInvocation) => null);
+          when(mockAnalyticsRepository.logLoginWithGoogleSignIn())
+              .thenAnswer((realInvocation) => null);
+          when(mockUserRepository.createUser(fakeLoggedUser)).thenAnswer((realInvocation) => null);
+        });
 
-      test("should emit LoginSuccess when a loggedUser is returned", () async {
-        when(mockAuthRepository.signInWithGoogle())
-            .thenAnswer((_) => Future<User>.value(fakeLoggedUser));
+        tearDown(() {
+          verify(mockAuthRepository.signInWithGoogle());
+          verify(mockAnalyticsRepository.setUserProperties(fakeLoggedUser.uid));
+          verify(mockAnalyticsRepository.logLoginWithGoogleSignIn());
+          verify(mockUserRepository.createUser(fakeLoggedUser));
+        });
 
-        final expectedState = [
-          LoginInitial(),
-          LoginSuccess(loggedUser: fakeLoggedUser),
-        ];
-
-        await expectLater(
-          loginBloc,
-          emitsInOrder(expectedState),
+        blocTest(
+          "should emit LoginSuccess",
+          build: () => LoginBloc(
+            authRepository: mockAuthRepository,
+            userRepository: mockUserRepository,
+            analyticsRepository: mockAnalyticsRepository,
+          ),
+          act: (bloc) => bloc.add(LoginWithGoogle()),
+          expect: [LoginSuccess(loggedUser: fakeLoggedUser)],
         );
-
-        verify(mockAnalyticsRepository.setUserProperties(fakeLoggedUser.uid));
-        verify(mockAnalyticsRepository.logLoginWithGoogleSignIn());
-        verify(mockUserRepository.createUser(fakeLoggedUser));
       });
 
-      test("should emit LoginFailure when no user is returned", () async {
-        when(mockAuthRepository.signInWithGoogle())
-            .thenAnswer((_) => Future<User>.value(null));
+      group("when no user is returned", () {
+        setUp(() {
+          when(mockAuthRepository.signInWithGoogle()).thenAnswer((_) => Future<User>.value(null));
+        });
 
-        final expectedState = [
-          LoginInitial(),
-          LoginFailure(errorMessage: 'Login failed'),
-        ];
+        tearDown(() {
+          verify(mockAuthRepository.signInWithGoogle());
+        });
 
-        await expectLater(
-          loginBloc,
-          emitsInOrder(expectedState),
+        blocTest(
+          "should emit LoginFailure",
+          build: () => LoginBloc(
+            authRepository: mockAuthRepository,
+            userRepository: mockUserRepository,
+            analyticsRepository: mockAnalyticsRepository,
+          ),
+          act: (bloc) => bloc.add(LoginWithGoogle()),
+          expect: [LoginFailure(errorMessage: 'Login failed')],
         );
-
-        verifyNever(
-            mockAnalyticsRepository.setUserProperties(fakeLoggedUser.uid));
-        verifyNever(mockAnalyticsRepository.logLoginWithGoogleSignIn());
-        verifyNever(mockUserRepository.createUser(fakeLoggedUser));
       });
 
-      test(
-          "should emit LoginFailure if an error is returned and track the error",
-          () async {
+      group("when an error is returned", () {
         var error = "Kaboom!";
-        when(mockAuthRepository.signInWithGoogle()).thenThrow(error);
 
-        final expectedState = [
-          LoginInitial(),
-          LoginFailure(
-              errorMessage: "Unexpected error! Please contact the gym owner"),
-        ];
+        setUp(() {
+          when(mockAuthRepository.signInWithGoogle()).thenThrow(error);
+          when(mockAnalyticsRepository.loginError(
+            err: error,
+            stackTrace: argThat(isA<StackTrace>(), named: 'stackTrace'),
+          )).thenAnswer((realInvocation) => null);
+        });
 
-        await expectLater(
-          loginBloc,
-          emitsInOrder(expectedState),
-        );
+        tearDown(() {
+          verify(mockAuthRepository.signInWithGoogle());
+          verify(mockAnalyticsRepository.loginError(
+            err: error,
+            stackTrace: argThat(isA<StackTrace>(), named: 'stackTrace'),
+          ));
+        });
 
-        verifyNever(
-            mockAnalyticsRepository.setUserProperties(fakeLoggedUser.uid));
-        verifyNever(mockAnalyticsRepository.logLoginWithGoogleSignIn());
-        verifyNever(mockUserRepository.createUser(fakeLoggedUser));
-        verify(mockAnalyticsRepository.loginError(
-          err: error,
-          stackTrace: argThat(isA<StackTrace>(), named: 'stackTrace'),
-        ));
+        blocTest("should emit LoginFailure and track the error",
+            build: () => LoginBloc(
+                  authRepository: mockAuthRepository,
+                  userRepository: mockUserRepository,
+                  analyticsRepository: mockAnalyticsRepository,
+                ),
+            act: (bloc) => bloc.add(LoginWithGoogle()),
+            expect: [LoginFailure(errorMessage: "Unexpected error! Please contact the gym owner")],
+            verify: (bloc) {});
       });
     });
 
-    group("LoginWithApple", () {
+    group("on LoginWithApple event", () {
       var fakeLoggedUser = User(
         uid: "1234",
         name: "Robin",
@@ -127,101 +159,118 @@ void main() {
         imageUrl: "http://image.url",
       );
 
-      setUp(() {
-        loginBloc.add(LoginWithApple());
-      });
+      group("when a loggedUser is returned", () {
+        setUp(() {
+          when(mockAuthRepository.signInWithApple())
+              .thenAnswer((_) => Future<User>.value(fakeLoggedUser));
+          when(mockAnalyticsRepository.setUserProperties(fakeLoggedUser.uid))
+              .thenAnswer((realInvocation) => null);
+          when(mockAnalyticsRepository.logLoginWithAppleSignIn())
+              .thenAnswer((realInvocation) => null);
+          when(mockUserRepository.createUser(fakeLoggedUser)).thenAnswer((realInvocation) => null);
+        });
 
-      test("should emit LoginSuccess when a loggedUser is returned", () async {
-        when(mockAuthRepository.signInWithApple())
-            .thenAnswer((_) => Future<User>.value(fakeLoggedUser));
+        tearDown(() {
+          verify(mockAuthRepository.signInWithApple());
+          verify(mockAnalyticsRepository.setUserProperties(fakeLoggedUser.uid));
+          verify(mockAnalyticsRepository.logLoginWithAppleSignIn());
+          verify(mockUserRepository.createUser(fakeLoggedUser));
+        });
 
-        final expectedState = [
-          LoginInitial(),
-          LoginSuccess(loggedUser: fakeLoggedUser),
-        ];
-
-        await expectLater(
-          loginBloc,
-          emitsInOrder(expectedState),
+        blocTest(
+          "should emit LoginSuccess",
+          build: () => LoginBloc(
+            authRepository: mockAuthRepository,
+            userRepository: mockUserRepository,
+            analyticsRepository: mockAnalyticsRepository,
+          ),
+          act: (bloc) => bloc.add(LoginWithApple()),
+          expect: [LoginSuccess(loggedUser: fakeLoggedUser)],
         );
-
-        verify(mockAnalyticsRepository.setUserProperties(fakeLoggedUser.uid));
-        verify(mockAnalyticsRepository.logLoginWithAppleSignIn());
-        verify(mockUserRepository.createUser(fakeLoggedUser));
       });
 
-      test("should emit LoginFailure when no user is returned", () async {
-        when(mockAuthRepository.signInWithApple())
-            .thenAnswer((_) => Future<User>.value(null));
+      group("when no user is returned", () {
+        setUp(() {
+          when(mockAuthRepository.signInWithApple()).thenAnswer((_) => Future<User>.value(null));
+        });
 
-        final expectedState = [
-          LoginInitial(),
-          LoginFailure(errorMessage: 'Login failed'),
-        ];
+        tearDown(() {
+          verify(mockAuthRepository.signInWithApple());
+        });
 
-        await expectLater(
-          loginBloc,
-          emitsInOrder(expectedState),
+        blocTest(
+          "should emit LoginFailure",
+          build: () => LoginBloc(
+            authRepository: mockAuthRepository,
+            userRepository: mockUserRepository,
+            analyticsRepository: mockAnalyticsRepository,
+          ),
+          act: (bloc) => bloc.add(LoginWithApple()),
+          expect: [LoginFailure(errorMessage: 'Login failed')],
         );
-
-        verifyNever(
-            mockAnalyticsRepository.setUserProperties(fakeLoggedUser.uid));
-        verifyNever(mockAnalyticsRepository.logLoginWithAppleSignIn());
-        verifyNever(mockUserRepository.createUser(fakeLoggedUser));
       });
 
-      test(
-          "should emit LoginFailure if an error is returned and track the error",
-              () async {
-            var error = "Kaboom!";
-            when(mockAuthRepository.signInWithApple()).thenThrow(error);
+      group("when an error is returned", () {
+        var error = "Kaboom!";
+        setUp(() {
+          when(mockAuthRepository.signInWithApple()).thenThrow(error);
+          when(mockAnalyticsRepository.loginError(
+            err: error,
+            stackTrace: argThat(isA<StackTrace>(), named: 'stackTrace'),
+          )).thenAnswer((realInvocation) => null);
+        });
 
-            final expectedState = [
-              LoginInitial(),
+        tearDown(() {
+          verify(mockAuthRepository.signInWithApple());
+          verify(mockAnalyticsRepository.loginError(
+            err: error,
+            stackTrace: argThat(isA<StackTrace>(), named: 'stackTrace'),
+          ));
+        });
+
+        blocTest(
+          "should emit LoginFailure and track the error",
+          build: () => LoginBloc(
+            authRepository: mockAuthRepository,
+            userRepository: mockUserRepository,
+            analyticsRepository: mockAnalyticsRepository,
+          ),
+          act: (bloc) => bloc.add(LoginWithApple()),
+          expect: [LoginFailure(errorMessage: "Unexpected error! Please contact the gym owner")],
+        );
+      });
+
+      group("when apple sign in is not supported", () {
+        var error = AppleSignInNotSupportedException();
+
+        setUp(() {
+          when(mockAuthRepository.signInWithApple()).thenThrow(error);
+          when(mockAnalyticsRepository.loginError(
+            err: error,
+          )).thenAnswer((realInvocation) => null);
+
+        });
+
+        tearDown((){
+          verify(mockAuthRepository.signInWithApple());
+          verify(mockAnalyticsRepository.loginError(
+            err: error,
+          ));
+        });
+
+        blocTest("should emit LoginFailure",
+            build: () => LoginBloc(
+                  authRepository: mockAuthRepository,
+                  userRepository: mockUserRepository,
+                  analyticsRepository: mockAnalyticsRepository,
+                ),
+            act: (bloc) => bloc.add(LoginWithApple()),
+            expect: [
               LoginFailure(
-                  errorMessage: "Unexpected error! Please contact the gym owner"),
-            ];
-
-            await expectLater(
-              loginBloc,
-              emitsInOrder(expectedState),
-            );
-
-            verifyNever(
-                mockAnalyticsRepository.setUserProperties(fakeLoggedUser.uid));
-            verifyNever(mockAnalyticsRepository.logLoginWithGoogleSignIn());
-            verifyNever(mockUserRepository.createUser(fakeLoggedUser));
-            verify(mockAnalyticsRepository.loginError(
-              err: error,
-              stackTrace: argThat(isA<StackTrace>(), named: 'stackTrace'),
-            ));
-          });
-
-      test(
-          "should emit LoginFailure if apple sign in is not supported and track the error",
-              () async {
-            var error =  AppleSignInNotSupportedException();
-            when(mockAuthRepository.signInWithApple()).thenThrow(error);
-
-            final expectedState = [
-              LoginInitial(),
-              LoginFailure(
-                  errorMessage: "Sign in with Apple is not supported for your version of IOS"),
-            ];
-
-            await expectLater(
-              loginBloc,
-              emitsInOrder(expectedState),
-            );
-
-            verifyNever(
-                mockAnalyticsRepository.setUserProperties(fakeLoggedUser.uid));
-            verifyNever(mockAnalyticsRepository.logLoginWithGoogleSignIn());
-            verifyNever(mockUserRepository.createUser(fakeLoggedUser));
-            verify(mockAnalyticsRepository.loginError(
-              err: error,
-            ));
-          });
+                  errorMessage: "Sign in with Apple is not supported for your version of IOS")
+            ],
+        );
+      });
     });
   });
 }

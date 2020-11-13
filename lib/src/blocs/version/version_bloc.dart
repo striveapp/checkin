@@ -9,18 +9,19 @@ import 'package:pub_semver/pub_semver.dart';
 import 'bloc.dart';
 
 class VersionBloc extends Bloc<VersionEvent, VersionState> {
-  @override
-  VersionState get initialState => VersionInitial();
-
   final VersionRepository versionRepository;
-  StreamSubscription<String> versionSub;
 
+  StreamSubscription<String> versionSub;
 
   VersionBloc({
     @required this.versionRepository,
-  })  : assert(versionRepository != null) {
-    versionSub = this.versionRepository.getMinimumVersionRequired().listen((minimumVersionRequired) {
-      if(minimumVersionRequired != null) {
+  })  : assert(versionRepository != null),
+        super(VersionInitial()) {
+    versionSub = this
+        .versionRepository
+        .getMinimumVersionRequired()
+        .listen((minimumVersionRequired) {
+      if (minimumVersionRequired != null) {
         add(VersionUpdated(minimumVersionRequired: minimumVersionRequired));
       }
     });
@@ -29,9 +30,8 @@ class VersionBloc extends Bloc<VersionEvent, VersionState> {
   @override
   Stream<VersionState> mapEventToState(VersionEvent event) async* {
     if (event is VersionUpdated) {
-
-      final minimumVersionRequired = VersionConstraint.parse(
-          '^${event.minimumVersionRequired}');
+      final minimumVersionRequired =
+          VersionConstraint.parse('^${event.minimumVersionRequired}');
 
       Version currentVersion = await _getCurrentVersion();
 
@@ -53,4 +53,3 @@ class VersionBloc extends Bloc<VersionEvent, VersionState> {
     return super.close();
   }
 }
-

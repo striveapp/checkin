@@ -24,11 +24,19 @@ class StatsPage extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    return BlocProvider<ProfileBloc>(
-      create: (context) => ProfileBloc(
-          userRepository: RepositoryProvider.of<UserRepository>(context),
-          nonCurrentUserEmail: userEmail,
-          userBloc: BlocProvider.of<UserBloc>(context)),
+    return MultiBlocProvider(
+      providers: [
+        BlocProvider<StatsBloc>(
+          create: (context) =>
+              StatsBloc()..add(TimespanUpdate(timespan: constants.WEEK)),
+        ),
+        BlocProvider<ProfileBloc>(
+          create: (context) => ProfileBloc(
+              userRepository: RepositoryProvider.of<UserRepository>(context),
+              nonCurrentUserEmail: userEmail,
+              userBloc: BlocProvider.of<UserBloc>(context)),
+        ),
+      ],
       child: Scaffold(
         appBar: BaseAppBar(
           title: stats.i18n,
@@ -36,23 +44,15 @@ class StatsPage extends StatelessWidget {
         ),
         floatingActionButton: GraduateFab(userEmail: userEmail),
         floatingActionButtonLocation: FloatingActionButtonLocation.centerFloat,
-        body: MultiBlocProvider(
-          providers: [
-            BlocProvider<StatsBloc>(
-              create: (context) =>
-              StatsBloc()..add(TimespanUpdate(timespan: constants.WEEK)),
-            ),
-          ],
-          child: SingleChildScrollView(
-            child: Container(
-              child: Padding(
-                padding: EdgeInsets.symmetric(horizontal: 10, vertical: 10),
-                child: Column(
-                  children: <Widget>[
-                    StatsHeader(userEmail: userEmail),
-                    StatsBody(),
-                  ],
-                ),
+        body: SingleChildScrollView(
+          child: Container(
+            child: Padding(
+              padding: EdgeInsets.symmetric(horizontal: 10, vertical: 10),
+              child: Column(
+                children: <Widget>[
+                  StatsHeader(userEmail: userEmail),
+                  StatsBody(),
+                ],
               ),
             ),
           ),

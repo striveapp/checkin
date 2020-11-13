@@ -27,7 +27,7 @@ class PaymentMethodsCard extends StatelessWidget {
                 }
               },
               child: BlocBuilder<PaymentMethodsBloc, PaymentMethodsState>(
-                condition: (PaymentMethodsState previous,
+                buildWhen: (PaymentMethodsState previous,
                         PaymentMethodsState current) =>
                     !(current is PaymentMethodLoading),
                 builder: (BuildContext context, PaymentMethodsState state) =>

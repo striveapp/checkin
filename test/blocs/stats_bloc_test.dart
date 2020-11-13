@@ -1,30 +1,20 @@
+import 'package:bloc_test/bloc_test.dart';
 import 'package:checkin/src/blocs/stats/bloc.dart';
 import 'package:flutter_test/flutter_test.dart';
 
 void main() {
   group("StatsBloc", () {
-    StatsBloc statsBloc;
-    setUp(() {
-      statsBloc = StatsBloc();
-    });
+    // todo missing initial state test
 
-    group("when add TimespanUpdate", () {
+    group("on TimespanUpdate event", () {
       var fakeTimespan = "week";
-      setUp(() {
-        statsBloc.add(TimespanUpdate(timespan: fakeTimespan));
-      });
 
-      test("should emits TimespanUpdated", () {
-        final expectedState = [
-          InitialStatsState(),
-          TimespanUpdated(timespan: fakeTimespan),
-        ];
-        
-        expectLater(
-          statsBloc,
-          emitsInOrder(expectedState),
-        );
-      });
+      blocTest(
+        "should emit TimespanUpdated",
+        build: () => StatsBloc(),
+        act: (bloc) => bloc.add(TimespanUpdate(timespan: fakeTimespan)),
+        expect: [TimespanUpdated(timespan: fakeTimespan)],
+      );
     });
   });
 }

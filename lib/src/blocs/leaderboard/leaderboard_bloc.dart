@@ -18,21 +18,20 @@ class LeaderboardBloc extends Bloc<LeaderboardEvent, LeaderboardState> {
     @required userBloc,
   })  : assert(statsRepository != null),
         _statsRepository = statsRepository,
-        _userBloc = userBloc
+        _userBloc = userBloc, super(LeaderboardInitial())
   {
-    this._userBloc.listen((userState) {
-      if(userState is UserSuccess) {
-        userHistorySub?.cancel();
-        userHistorySub = _statsRepository.getAllUserStats(userState.currentUser.selectedGymId).listen((usersHistory) {
-          add(LeaderboardUpdated(usersHistory: usersHistory));
-        });
-      }
-    });
-
+    _onUserStateChanged(_userBloc.state);
+    _userBloc.listen(_onUserStateChanged);
   }
 
-  @override
-  get initialState => LeaderboardInitial();
+  void _onUserStateChanged(userState) {
+    if(userState is UserSuccess) {
+      userHistorySub?.cancel();
+      userHistorySub = _statsRepository.getAllUserStats(userState.currentUser.selectedGymId).listen((usersHistory) {
+        add(LeaderboardUpdated(usersHistory: usersHistory));
+      });
+    }
+  }
 
   @override
   Stream<LeaderboardState> mapEventToState(LeaderboardEvent event) async* {

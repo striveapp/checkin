@@ -17,7 +17,6 @@ class RegistryBloc extends Bloc<RegistryEvent, RegistryState> {
   final String lessonId;
   final String lessonDate;
 
-  StreamSubscription<UserState> userSub;
   StreamSubscription<Lesson> lessonSub;
 
   RegistryBloc({
@@ -26,22 +25,21 @@ class RegistryBloc extends Bloc<RegistryEvent, RegistryState> {
     @required this.lessonRepository,
     @required this.lessonId,
     @required this.lessonDate,
-  }) {
-    userSub?.cancel();
-    userSub = userBloc.listen((userState) {
-      if (userState is UserSuccess) {
-        lessonSub?.cancel();
-        lessonSub = lessonRepository
-            .getLesson(userState.currentUser.selectedGymId, lessonDate, lessonId)
-            .listen((lesson) {
-          add(RegistryUpdated(currentUser: userState.currentUser, currentLesson: lesson));
-        });
-      }
-    });
+  }) : super(RegistryUninitialized()) {
+    _onUserStateChanged(userBloc.state);
+    userBloc.listen(_onUserStateChanged);
   }
 
-  @override
-  RegistryState get initialState => RegistryUninitialized();
+  void _onUserStateChanged(userState) {
+    if (userState is UserSuccess) {
+      lessonSub?.cancel();
+      lessonSub = lessonRepository
+          .getLesson(userState.currentUser.selectedGymId, lessonDate, lessonId)
+          .listen((lesson) {
+        add(RegistryUpdated(currentUser: userState.currentUser, currentLesson: lesson));
+      });
+    }
+  }
 
   @override
   Stream<RegistryState> mapEventToState(RegistryEvent event) async* {
@@ -115,7 +113,6 @@ class RegistryBloc extends Bloc<RegistryEvent, RegistryState> {
 
   @override
   Future<void> close() {
-    userSub?.cancel();
     lessonSub?.cancel();
     return super.close();
   }

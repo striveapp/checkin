@@ -25,7 +25,7 @@ class SessionsBloc extends Bloc<SessionsEvent, SessionsState> {
     @required this.statsRepository,
     @required this.selectedGymId,
     @required this.userEmail,
-  }) {
+  }) : super(InitialSessionsState()) {
     _membershipSub?.cancel();
     _membershipSub = this.membershipRepository.getMembership(gymId: selectedGymId, email: userEmail,).listen((membership) {
       if( membership.totalLessonsOfPlan == null || membership.status == Membership.INACTIVE_MEMBERSHIP) {
@@ -38,9 +38,6 @@ class SessionsBloc extends Bloc<SessionsEvent, SessionsState> {
       }
     });
   }
-
-  @override
-  SessionsState get initialState => InitialSessionsState();
 
   @override
   Stream<SessionsState> mapEventToState(SessionsEvent event,) async* {

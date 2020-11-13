@@ -32,7 +32,7 @@ class MembershipCard extends StatelessWidget {
             }
           },
           child: BlocBuilder<MembershipBloc, MembershipState>(
-              condition: (MembershipState previous,
+              buildWhen: (MembershipState previous,
                   MembershipState current) =>
               !(current is MembershipError),
               builder: (BuildContext context, MembershipState state) {

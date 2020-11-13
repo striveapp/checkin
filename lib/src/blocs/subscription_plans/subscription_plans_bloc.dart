@@ -21,34 +21,33 @@ class SubscriptionPlansBloc
     @required this.subscriptionPlansRepository,
     @required this.gymBloc,
     this.planId
-  }) : assert(subscriptionPlansRepository != null && gymBloc != null) {
+  }) : assert(subscriptionPlansRepository != null && gymBloc != null), super(SubscriptionPlansInitial()) {
     streamSubscription?.cancel();
     try {
-      gymBloc.listen((GymState gymState) {
-        if (gymState is GymLoaded) {
-          Gym gym = gymState.gym;
-          if( planId == null ) {
-            streamSubscription =
-                subscriptionPlansRepository.getPlans(gymId: gym.id).listen((plans) {
-                  add(SubscriptionPlansUpdated(subscriptionPlans: _sortByPrice(plans),
-                  ));
-                });
-          } else {
-            streamSubscription = subscriptionPlansRepository.getSubPlans(gymId: gym.id, planId: planId).listen((plans) {
-              add(SubscriptionPlansUpdated(
-                subscriptionPlans: _sortByPrice(plans),
-              ));
-            });
-          }
-        }
-      });
+      _onGymStateChanged(gymBloc.state);
+      gymBloc.listen(_onGymStateChanged);
     } catch (err) {
       debugPrint("Error while fetching the plans stream $err");
     }
   }
-
-  @override
-  SubscriptionPlansState get initialState => SubscriptionPlansInitial();
+  void _onGymStateChanged(GymState gymState) {
+    if (gymState is GymLoaded) {
+      Gym gym = gymState.gym;
+      if( planId == null ) {
+        streamSubscription =
+            subscriptionPlansRepository.getPlans(gymId: gym.id).listen((plans) {
+              add(SubscriptionPlansUpdated(subscriptionPlans: _sortByPrice(plans),
+              ));
+            });
+      } else {
+        streamSubscription = subscriptionPlansRepository.getSubPlans(gymId: gym.id, planId: planId).listen((plans) {
+          add(SubscriptionPlansUpdated(
+            subscriptionPlans: _sortByPrice(plans),
+          ));
+        });
+      }
+    }
+  }
 
   @override
   Stream<SubscriptionPlansState> mapEventToState(

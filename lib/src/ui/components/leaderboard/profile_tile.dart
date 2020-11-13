@@ -19,7 +19,7 @@ class ProfileTile extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) => BlocBuilder<ProfileBloc, ProfileState>(
-        bloc: ProfileBloc(
+        cubit: ProfileBloc(
             userRepository: RepositoryProvider.of<UserRepository>(context),
             userBloc: BlocProvider.of<UserBloc>(context),
             nonCurrentUserEmail: profileEmail),
