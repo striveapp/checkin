@@ -10,7 +10,7 @@ class LessonApi {
       'gymId': gymId
     };
 
-    await Api.call(functionName: "acceptAll", parameters: parameters)
+    await Api.call(functionName: "acceptAllV2", parameters: parameters)
         .then((_) => {
       debugPrint("User accepted from lesson with id [$lessonDate,$lessonId]")
     });
