@@ -75,10 +75,6 @@ extension Localization on String {
     'en': constants.YEAR,
     'es': 'año',
   } + {
-    //TODO: this might be removed
-    'en': constants.by,
-    'es': 'Por',
-  } + {
     'en': EmptyRegistry.emptyClass,
     'es': 'Nadie en clase todavía',
   } + {
