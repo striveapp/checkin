@@ -1,4 +1,3 @@
-import 'package:checkin/src/constants.dart' as constants;
 import 'package:checkin/src/localization/localization.dart';
 import 'package:checkin/src/models/lesson.dart';
 import 'package:checkin/src/ui/components/attendees_preview.dart';
@@ -8,6 +7,8 @@ import 'package:flutter/material.dart';
 import 'package:share/share.dart';
 
 class LessonCard extends StatelessWidget {
+  static const String emptyClass = 'Nobody in class yet';
+
   final Lesson lesson;
 
   LessonCard({
@@ -75,7 +76,7 @@ class LessonCard extends StatelessWidget {
                       ),
                     if (allAttendees == 0)
                       Text(
-                        constants.emptyClass.i18n,
+                        emptyClass.i18n,
                         style: Theme.of(context).textTheme.headline5,
                       ),
                     Row(

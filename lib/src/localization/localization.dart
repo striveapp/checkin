@@ -4,6 +4,7 @@ import 'package:checkin/src/models/grade.dart';
 import 'package:checkin/src/ui/components/account/payment.dart';
 import 'package:checkin/src/ui/components/apple_sign_in_button.dart';
 import 'package:checkin/src/ui/components/gym_selection/gym_selection_buttons.dart';
+import 'package:checkin/src/ui/components/lesson_card.dart';
 import 'package:checkin/src/ui/components/payment_methods/active_payment_method.dart';
 import 'package:checkin/src/ui/components/payment_methods/empty_payment_method.dart';
 import 'package:checkin/src/ui/components/plans/plans_callout.dart';
@@ -52,6 +53,9 @@ extension Localization on String {
   static var _t = Translations('en') + {
     'en': LessonsPage.classes,
     'es': "Clases",
+  } + {
+    'en': LessonCard.emptyClass,
+    'es': "Nadie en clase todavía",
   } + {
     'en': GradePage.selectYourBelt,
     'es': '¿Cuál es tu cinturón?',
@@ -252,7 +256,7 @@ extension Localization on String {
     'es': 'Escribe tu nombre',
   } + {
     'en': InactiveMembershipView.chooseYourSubscription,
-    'es': 'Escoje tu subscripción',
+    'es': 'Escoge tu subscripción',
   } + {
     'en': InactiveMembershipView.notActiveSubscription,
     'es': 'Tu subscripción no está activa todavía',

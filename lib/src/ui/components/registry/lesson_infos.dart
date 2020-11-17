@@ -1,5 +1,4 @@
 import 'package:checkin/src/blocs/registry/bloc.dart';
-import 'package:checkin/src/constants.dart' as constants;
 import 'package:checkin/src/localization/localization.dart';
 import 'package:checkin/src/models/master.dart';
 import 'package:checkin/src/ui/components/loading_indicator.dart';
@@ -34,7 +33,7 @@ class LessonInfos extends StatelessWidget {
                     Text("${currentLesson.timeStart} - ${currentLesson.timeEnd}",
                         style: Theme.of(context).textTheme.headline2.apply(fontSizeDelta: 4)),
                     Text(
-                      "${constants.by.i18n} ${currentLesson.masters.first.name}",
+                      currentLesson.masters.first.name,
                       style: Theme.of(context).textTheme.headline3,
                     ),
                     if (currentLesson.masters.length > 1)

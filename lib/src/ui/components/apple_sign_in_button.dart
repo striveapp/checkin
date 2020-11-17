@@ -9,7 +9,7 @@ class AppleSignInButton extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return Padding(
-      padding: const EdgeInsets.symmetric(horizontal: 85),
+      padding: const EdgeInsets.symmetric(horizontal: 65),
       child: SignInWithAppleButton(
         text: appleSignIn.i18n,
         onPressed: () {

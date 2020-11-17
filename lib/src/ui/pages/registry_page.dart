@@ -56,13 +56,15 @@ class RegistryPage extends StatelessWidget {
                 Navigator.of(context).popUntil((route) => route.settings.name != "dialog");
               }
             },
-            child: Container(
-              child: Padding(
-                padding: EdgeInsets.symmetric(horizontal: 10),
-                child: Column(mainAxisAlignment: MainAxisAlignment.spaceAround, children: [
-                  LessonInfos(),
-                  Registry(),
-                ]),
+            child: SafeArea(
+              child: Container(
+                child: Padding(
+                  padding: EdgeInsets.symmetric(horizontal: 10),
+                  child: Column(mainAxisAlignment: MainAxisAlignment.spaceAround, children: [
+                    LessonInfos(),
+                    Registry(),
+                  ]),
+                ),
               ),
             ),
           )),

@@ -15,7 +15,7 @@ class AttendeesList extends StatelessWidget {
     return Card(
       margin: EdgeInsets.zero,
       child: Container(
-        constraints: BoxConstraints(maxHeight: MediaQuery.of(context).size.height * 0.53),
+        constraints: BoxConstraints(maxHeight: MediaQuery.of(context).size.height * 0.43),
         child: BlocBuilder<RegistryBloc, RegistryState>(
             buildWhen: (RegistryState previous, RegistryState current) => !(current is RegistryLoading),
             builder: (BuildContext context, RegistryState state) {

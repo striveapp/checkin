@@ -1,8 +1,6 @@
-import 'package:checkin/src/localization/localization.dart';
 import 'package:checkin/src/models/lesson.dart';
 import 'package:flutter/material.dart';
 import 'package:intl/intl.dart';
-import 'package:checkin/src/constants.dart' as constants;
 
 class LessonInfoCard extends StatelessWidget {
   final Lesson lesson;
@@ -61,7 +59,7 @@ class LessonInfoCard extends StatelessWidget {
                                   .textTheme
                                   .headline1
                             ),
-                            Text("${constants.by.i18n} ${lesson.masters.first.name}",
+                            Text(lesson.masters.first.name,
                                 style: Theme.of(context).textTheme.headline3),
                             Text(
                                 "${lesson.weekDay} (${lesson.timeStart} - ${lesson.timeEnd})",

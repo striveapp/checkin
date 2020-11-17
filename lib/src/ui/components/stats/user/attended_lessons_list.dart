@@ -15,16 +15,19 @@ class AttendedLessonsList extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    return Column(
-      children: <Widget>[
-        Text(
-          AttendedLessonsList.attendedClasses.i18n,
-          style: Theme.of(context).textTheme.headline1,
-        ),
-        ...attendedLessons
-            .map((lesson) => LessonInfoCard(lesson: lesson))
-            .toList(),
-      ],
+    return Padding(
+      padding: const EdgeInsets.only(bottom: 25),
+      child: Column(
+        children: <Widget>[
+          Text(
+            AttendedLessonsList.attendedClasses.i18n,
+            style: Theme.of(context).textTheme.headline1,
+          ),
+          ...attendedLessons
+              .map((lesson) => LessonInfoCard(lesson: lesson))
+              .toList(),
+        ],
+      ),
     );
   }
 }
