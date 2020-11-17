@@ -73,6 +73,7 @@ class _AppState extends State<App> with WidgetsBindingObserver {
       supportedLocales: [
         const Locale('en', ''),
         const Locale('es', ''),
+        const Locale('it', ''),
       ],
       onGenerateRoute: Application.router.generator,
       initialRoute: '/',
@@ -82,8 +83,8 @@ class _AppState extends State<App> with WidgetsBindingObserver {
       ],
       theme: widget._themeData,
       home: I18n(
-//        note: enable es locale
-//        initialLocale: Locale("es", "ES"),
+        // NOTE: enable locale
+        // initialLocale: Locale("it", "IT"),
         child: MultiBlocListener(
           listeners: [
             BlocListener<DynamicLinkBloc, DynamicLinkState>(
