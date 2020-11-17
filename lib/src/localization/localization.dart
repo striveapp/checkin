@@ -214,13 +214,16 @@ extension Localization on String {
     'it': 'Sviluppando l\'abilitá tecnica',
   } + {
     'en': Grade.purple.description,
-    'es': 'Sviluppo del gioco e sperimentazione',
+    'es': 'Desarrollo del juego y experimentación',
+    'it': 'Sviluppo del gioco e sperimentazione',
   } + {
     'en': Grade.brown.description,
-    'es': 'Pensare concettualmente e rafforzare le debolezze',
+    'es': 'Pensar conceptualmente y fortalecer las debilidades',
+    'it': 'Pensare concettualmente e rafforzare le debolezze',
   } + {
     'en': Grade.black.description,
-    'es': 'Rincominciare, insegnare e riflettere',
+    'es': 'Comenzar de nuevo, enseñar y reflexionar',
+    'it': 'Rincominciare, insegnare e riflettere',
   } + {
     'en': StudentButton.unregisterClass,
     'es': 'Desapuntarse de la clase',
@@ -261,7 +264,7 @@ extension Localization on String {
     'en': AcceptAllDialog.acceptingAllTheStudentsDisclaimer,
     'You are going to confirm all the students in class'
     'es': 'Estás a punto de aceptar todos los estudiantes',
-    'es': 'Stai per accettare tutti gli studenti',
+    'it': 'Stai per accettare tutti gli studenti',
   } + {
     'en': GoogleSignInButton.googleSignIn,
     'es': 'Acceso con Google',
