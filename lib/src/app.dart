@@ -48,14 +48,21 @@ class App extends StatefulWidget {
   _AppState createState() => _AppState();
 }
 
-class _AppState extends State<App> with WidgetsBindingObserver {
-
+class _AppState extends State<App> {
   @override
-  void didChangePlatformBrightness() {
-    final Brightness brightness =
-        WidgetsBinding.instance.window.platformBrightness;
+  void initState() {
+    super.initState();
+    _onPlatformBrightnessChanged();
+
+    final window = WidgetsBinding.instance.window;
+    window.onPlatformBrightnessChanged = _onPlatformBrightnessChanged;
+  }
+
+  void _onPlatformBrightnessChanged() {
+    final platformBrightness = WidgetsBinding.instance.window.platformBrightness;
     var themeBloc = context.read<ThemeBloc>();
-    if (brightness == Brightness.dark) {
+
+    if (platformBrightness == Brightness.dark) {
       themeBloc.add(ThemeUpdated(themeType: ThemeType.Dark));
     } else {
       themeBloc.add(ThemeUpdated(themeType: ThemeType.NewLight));
