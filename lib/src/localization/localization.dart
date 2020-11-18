@@ -226,12 +226,12 @@ extension Localization on String {
     'it': 'Rincominciare, insegnare e riflettere',
   } + {
     'en': StudentButton.unregisterClass,
-    'es': 'Desapuntarse de la clase',
-    'it': 'Disiscriversi dalla classe',
+    'es': 'Desapuntate de la clase',
+    'it': 'Cancellati dalla classe',
   } + {
     'en': StudentButton.registerClass,
-    'es': 'Apuntarse a la clase',
-    'it': 'Iscriversi alla classe',
+    'es': 'Apuntate a la clase',
+    'it': 'Iscriviti alla classe',
   } + {
     'en': StudentButton.registryFull,
     'es': 'Clase completa',
@@ -239,11 +239,11 @@ extension Localization on String {
   } + {
     'en': RegistryControls.acceptAll,
     'es': 'Aceptar todos',
-    'it': 'Accettare tutti',
+    'it': 'Accetta tutti',
   } + {
     'en': RegisterDialog.cancel,
     'es': 'Cancelar',
-    'it': 'Cancellare',
+    'it': 'Cancella',
   } + {
     'en': RegisterDialog.continueAnyway,
     'es': 'Registrame igualmente',
@@ -255,11 +255,11 @@ extension Localization on String {
   } + {
     'en': AcceptAllDialog.cancel,
     'es': 'Cancelar',
-    'it': 'Cancellare',
+    'it': 'Cancella',
   } + {
     'en': AcceptAllDialog.confirm,
     'es': 'Confirmar',
-    'it': 'Confermare',
+    'it': 'Conferma',
   } + {
     'en': AcceptAllDialog.acceptingAllTheStudentsDisclaimer,
     'You are going to confirm all the students in class'
@@ -296,15 +296,15 @@ extension Localization on String {
   } + {
     'en': PaymentSuccessPage.goToAccount,
     'es': 'Volver a la cuenta',
-    'it': 'Tornare all\'account',
+    'it': 'Torna all\'account',
   } + {
     'en': PaymentSuccessPage.disclaimerSubscription30Min,
     'es': 'Tu subscripción puede tardar hasta 30 minutos en aparecer en tu cuenta',
-    'it': 'Il tuo abbonamento può tardare fino a 30 minuti in apparire nel tuo account',
+    'it': 'Il tuo abbonamento può tardare fino a 30 minuti ad apparire nel tuo account',
   } + {
     'en': ActiveMembershipView.unsubscribe,
     'es': 'Darse de baja',
-    'it': 'Disiscriversi',
+    'it': 'Cancella abbonamento',
   } + {
     'en': ActiveMembershipView.nextBilling,
     'es': 'El siguiente pago es el',
@@ -332,7 +332,7 @@ extension Localization on String {
   } + {
     'en': UnsubscribeDialog.unsubscribe,
     'es': 'Darse de baja',
-    'it': 'Disiscriversi',
+    'it': 'Cancella abbonamento',
   } + {
     'en': UnsubscribeDialog.aboutToPermanentlyDeleteSubscription,
     'es': 'Estás a punto de cancelar tu cuota de forma permanente',
@@ -344,7 +344,7 @@ extension Localization on String {
   } + {
     'en': UnsubscribeDialog.keepSubscription,
     'es': 'Mantener subscripción',
-    'it': 'Mantenere abbonamento',
+    'it': 'Mantieni abbonamento',
   } + {
     'en': GradeCard.beltColor,
     'es': 'Cinturón %s',
@@ -416,7 +416,7 @@ extension Localization on String {
   } + {
     'en': ActivePaymentMethodView.changePaymentInfo,
     'es': 'Cambia tu información',
-    'it': 'Cambiare informazioni',
+    'it': 'Aggiorna informazioni',
   } + {
     'en': PlansFooter.note,
     'es': 'nota',
@@ -452,15 +452,15 @@ extension Localization on String {
   } + {
     'en': GraduateFabView.graduateStudent,
     'es': 'Graduar estudiante',
-    'it': 'Promovere studente',
+    'it': 'Promuovi studente',
   } + {
     'en': GraduateDialog.graduate,
     'es': 'Graduar',
-    'it': 'Promuovere',
+    'it': 'Promuovi',
   } + {
     'en': GraduateDialog.cancel,
     'es': 'Cancelar',
-    'it': 'Cancellare',
+    'it': 'Cancella',
   } + {
     'en': GraduateDialog.graduateAnyway,
     'es': 'Graduar igualmente',
