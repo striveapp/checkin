@@ -18,7 +18,7 @@ class Registry extends StatelessWidget {
         SizedBox(
           height: 10,
         ),
-        AttendeesList(),
+        Expanded(child: AttendeesList()),
         SizedBox(
           height: 20,
         ),
