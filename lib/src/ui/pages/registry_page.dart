@@ -33,37 +33,48 @@ class RegistryPage extends StatelessWidget {
       body: MultiBlocProvider(
           providers: [
             BlocProvider<RegistryBloc>(
-              create: (context) =>
-                  RegistryBloc(
-                    lessonId: lessonId,
-                    lessonDate: date,
-                    lessonApi: RepositoryProvider.of<LessonApi>(context),
-                    lessonRepository: RepositoryProvider.of<LessonRepository>(context),
-                    userBloc: BlocProvider.of<UserBloc>(context),
-                  ),
+              create: (context) => RegistryBloc(
+                lessonId: lessonId,
+                lessonDate: date,
+                lessonApi: RepositoryProvider.of<LessonApi>(context),
+                lessonRepository:
+                    RepositoryProvider.of<LessonRepository>(context),
+                userBloc: BlocProvider.of<UserBloc>(context),
+              ),
             ),
           ],
           // todo this logic can be used when we extract a LoadingDialogBloc https://trello.com/c/YqSqs0tl
           child: BlocListener<RegistryBloc, RegistryState>(
             listener: (BuildContext context, RegistryState state) {
               if (state is RegistryLoading) {
-                showDialog(context: context,
+                showDialog(
+                  context: context,
                   child: LoadingIndicator(),
                   barrierDismissible: false,
-                  routeSettings: RouteSettings(name: "dialog"),);
+                  routeSettings: RouteSettings(name: "dialog"),
+                );
               }
               if (state is RegistryLoaded) {
-                Navigator.of(context).popUntil((route) => route.settings.name != "dialog");
+                Navigator.of(context)
+                    .popUntil((route) => route.settings.name != "dialog");
               }
             },
             child: SafeArea(
               child: Container(
                 child: Padding(
                   padding: EdgeInsets.symmetric(horizontal: 10),
-                  child: Column(mainAxisAlignment: MainAxisAlignment.spaceAround, children: [
-                    LessonInfos(),
-                    Registry(),
-                  ]),
+                  child: Column(
+                      mainAxisAlignment: MainAxisAlignment.spaceAround,
+                      children: [
+                        Padding(
+                          padding: const EdgeInsets.symmetric(vertical: 20),
+                          child: LessonInfos(),
+                        ),
+                        Expanded(child: Padding(
+                          padding: const EdgeInsets.only(bottom: 20.0),
+                          child: Registry(),
+                        )),
+                      ]),
                 ),
               ),
             ),

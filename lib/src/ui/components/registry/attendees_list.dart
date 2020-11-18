@@ -14,45 +14,42 @@ class AttendeesList extends StatelessWidget {
   Widget build(BuildContext context) {
     return Card(
       margin: EdgeInsets.zero,
-      child: Container(
-        constraints: BoxConstraints(maxHeight: MediaQuery.of(context).size.height * 0.43),
-        child: BlocBuilder<RegistryBloc, RegistryState>(
-            buildWhen: (RegistryState previous, RegistryState current) => !(current is RegistryLoading),
-            builder: (BuildContext context, RegistryState state) {
-          if (state is RegistryUninitialized ||
-              (state is RegistryLoaded && state.isEmptyRegistry)) {
-            return EmptyRegistry();
-          }
+      child: BlocBuilder<RegistryBloc, RegistryState>(
+          buildWhen: (RegistryState previous, RegistryState current) => !(current is RegistryLoading),
+          builder: (BuildContext context, RegistryState state) {
+        if (state is RegistryUninitialized ||
+            (state is RegistryLoaded && state.isEmptyRegistry)) {
+          return EmptyRegistry();
+        }
 
-          if (state is RegistryLoaded) {
-            User currentUser = state.currentUser;
-            Lesson currentLesson = state.currentLesson;
+        if (state is RegistryLoaded) {
+          User currentUser = state.currentUser;
+          Lesson currentLesson = state.currentLesson;
 
-            return Column(
-              key: Key('attendeeList'),
-              children: <Widget>[
-                if (_isUserInClass(state))
-                  CurrentUserTile(
-                      acceptedAttendees: currentLesson.acceptedAttendees, currentUser: currentUser),
-                Expanded(
-                  child: SingleChildScrollView(
-                    child: Column(
-                      children: <Widget>[
-                        AcceptedAttendees(
-                            acceptedAttendees: currentLesson.acceptedAttendees,
-                            currentUser: currentUser),
-                        Attendees(attendees: currentLesson.attendees, currentUser: currentUser),
-                      ],
-                    ),
+          return Column(
+            key: Key('attendeeList'),
+            children: <Widget>[
+              if (_isUserInClass(state))
+                CurrentUserTile(
+                    acceptedAttendees: currentLesson.acceptedAttendees, currentUser: currentUser),
+              Expanded(
+                child: SingleChildScrollView(
+                  child: Column(
+                    children: <Widget>[
+                      AcceptedAttendees(
+                          acceptedAttendees: currentLesson.acceptedAttendees,
+                          currentUser: currentUser),
+                      Attendees(attendees: currentLesson.attendees, currentUser: currentUser),
+                    ],
                   ),
                 ),
-              ],
-            );
-          }
+              ),
+            ],
+          );
+        }
 
-          return ErrorWidget('Unknown State [$state] received in: attendees_list');
-        }),
-      ),
+        return ErrorWidget('Unknown State [$state] received in: attendees_list');
+      }),
     );
   }
 
