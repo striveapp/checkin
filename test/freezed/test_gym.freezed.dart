@@ -45,7 +45,7 @@ class _$TestGymTearOff {
   }
 
 // ignore: unused_element
-  _CaseOne caseOne([String caseOne = "caseOne"]) {
+  _CaseOne caseOne([String caseOne = 'caseOne']) {
     return _CaseOne(
       caseOne,
     );
@@ -367,12 +367,12 @@ class __$CaseOneCopyWithImpl<$Res> extends _$TestGymCopyWithImpl<$Res>
 
 /// @nodoc
 class _$_CaseOne with DiagnosticableTreeMixin implements _CaseOne {
-  const _$_CaseOne([this.caseOne = "caseOne"]) : assert(caseOne != null);
+  const _$_CaseOne([this.caseOne = 'caseOne']) : assert(caseOne != null);
 
   factory _$_CaseOne.fromJson(Map<String, dynamic> json) =>
       _$_$_CaseOneFromJson(json);
 
-  @JsonKey(defaultValue: "caseOne")
+  @JsonKey(defaultValue: 'caseOne')
   @override
   final String caseOne;
 

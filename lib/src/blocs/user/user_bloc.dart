@@ -38,6 +38,7 @@ class UserBloc extends Bloc<UserEvent, UserState> {
           .getUserByEmail(authState.loggedUser.email)
           .listen((user) {
         add(UserUpdated(user: user));
+        add(UpdateReferredGym(userEmail: user?.email, currentGymId: user?.selectedGymId));
         add(UserEvent.updateVersion(userEmail: user?.email));
       });
     }
@@ -92,8 +93,7 @@ class UserBloc extends Bloc<UserEvent, UserState> {
             );
           }
         },
-        updateGrade: (Grade newGrade) async =>
-            await userRepository.updateGrade(
+        updateGrade: (Grade newGrade) async => await userRepository.updateGrade(
               userEmail,
               newGrade,
             ),
@@ -107,14 +107,18 @@ class UserBloc extends Bloc<UserEvent, UserState> {
               userEmail,
               newSelectedGym,
             ),
+        updateReferredGym: (String userEmail, String currentGymId) async =>
+            await userRepository.updateReferredGymId(userEmail, currentGymId),
         updateVersion: (String userEmail) async {
           try {
             PackageInfo packageInfo = await PackageInfo.fromPlatform();
-            String appVersion = "${packageInfo.version}+${packageInfo.buildNumber}";
+            String appVersion =
+                "${packageInfo.version}+${packageInfo.buildNumber}";
             await userRepository.updateUserVersion(userEmail, appVersion);
-          } catch( err ) {
+          } catch (err) {
             debugPrint(
-                'Error ocurred when retrieving current installed version of the app:' + err.toString());
+                'Error ocurred when retrieving current installed version of the app:' +
+                    err.toString());
           }
         },
         orElse: () => UserState.userError());

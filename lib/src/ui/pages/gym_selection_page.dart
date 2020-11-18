@@ -1,17 +1,14 @@
 import 'package:checkin/src/localization/localization.dart';
-import 'package:checkin/src/ui/components/gym_selection/gym_selection_buttons.dart';
 import 'package:flutter/material.dart';
 
-class GymSelectionPage extends StatelessWidget {
+class UnselectedGymPage extends StatelessWidget {
   final String userName;
-  final String userEmail;
 
   static const String heyUser = "Welcome %s";
-  static const String selectYourGym = "Select your gym";
+  static const String contactYourGymOwner = "Please contact your gym owner to obtain the referral link";
 
-  GymSelectionPage({
+  UnselectedGymPage({
     @required this.userName,
-    @required this.userEmail,
   });
 
   @override
@@ -21,36 +18,28 @@ class GymSelectionPage extends StatelessWidget {
         child: Padding(
           padding: EdgeInsets.symmetric(vertical: 70, horizontal: 30),
           child: Center(
-            child: Container(
-              child: Column(
-                children: <Widget>[
-                  Text(heyUser.i18n.fill([userName]),
-                      textAlign: TextAlign.center,
-                      style: Theme.of(context)
-                          .textTheme
-                          .headline1
-                          .apply(fontSizeDelta: 3)),
-                  SizedBox(
-                    height: 15,
-                  ),
-                  Text(
-                    selectYourGym.i18n,
-                    style: Theme.of(context).textTheme.headline2.apply(
-                          color: Theme.of(context)
-                              .textTheme
-                              .headline2
-                              .color
-                              .withAlpha(100),
-                        ),
-                  ),
-                  SizedBox(
-                    height: 30,
-                  ),
-                  GymSelectionButtons(
-                    userEmail: userEmail,
-                  ),
-                ],
-              ),
+            child: Column(
+              mainAxisAlignment: MainAxisAlignment.start,
+              children: <Widget>[
+                Text(heyUser.i18n.fill([userName]),
+                    textAlign: TextAlign.center,
+                    style: Theme.of(context)
+                        .textTheme
+                        .headline1
+                        .apply(fontSizeDelta: 3)),
+                SizedBox(height: 50),
+                Text(
+                  contactYourGymOwner.i18n,
+                  textAlign: TextAlign.center,
+                  style: Theme.of(context).textTheme.headline3.apply(
+                        color: Theme.of(context)
+                            .textTheme
+                            .headline2
+                            .color
+                            .withAlpha(100),
+                      ),
+                ),
+              ],
             ),
           ),
         ),

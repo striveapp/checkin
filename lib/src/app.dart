@@ -106,7 +106,7 @@ class _AppState extends State<App> {
               if (state is DynamicLinkSetDefaultGym) {
                 debugPrint("setting default gym to ${state.defaultGym}");
                 RepositoryProvider.of<UserRepository>(context)
-                    .setDefaultGym(state.defaultGym);
+                    .setReferredGymId(state.defaultGym);
               }
             }),
             BlocListener<VersionBloc, VersionState>(

@@ -51,6 +51,14 @@ class _$UserEventTearOff {
   }
 
 // ignore: unused_element
+  UpdateReferredGym updateReferredGym({String userEmail, String currentGymId}) {
+    return UpdateReferredGym(
+      userEmail: userEmail,
+      currentGymId: currentGymId,
+    );
+  }
+
+// ignore: unused_element
   UpdateFcmToken updateFcmToken({String userEmail, String newToken}) {
     return UpdateFcmToken(
       userEmail: userEmail,
@@ -79,6 +87,7 @@ mixin _$UserEvent {
     @required Result updateImageUrl(String userEmail),
     @required Result updateGrade(Grade newGrade),
     @required Result updateSelectedGym(String userEmail, String newSelectedGym),
+    @required Result updateReferredGym(String userEmail, String currentGymId),
     @required Result updateFcmToken(String userEmail, String newToken),
     @required Result updateVersion(String userEmail),
   });
@@ -89,6 +98,7 @@ mixin _$UserEvent {
     Result updateImageUrl(String userEmail),
     Result updateGrade(Grade newGrade),
     Result updateSelectedGym(String userEmail, String newSelectedGym),
+    Result updateReferredGym(String userEmail, String currentGymId),
     Result updateFcmToken(String userEmail, String newToken),
     Result updateVersion(String userEmail),
     @required Result orElse(),
@@ -100,6 +110,7 @@ mixin _$UserEvent {
     @required Result updateImageUrl(UpdateImageUrl value),
     @required Result updateGrade(UpdateGrade value),
     @required Result updateSelectedGym(UpdateSelectedGym value),
+    @required Result updateReferredGym(UpdateReferredGym value),
     @required Result updateFcmToken(UpdateFcmToken value),
     @required Result updateVersion(UpdateVersion value),
   });
@@ -110,6 +121,7 @@ mixin _$UserEvent {
     Result updateImageUrl(UpdateImageUrl value),
     Result updateGrade(UpdateGrade value),
     Result updateSelectedGym(UpdateSelectedGym value),
+    Result updateReferredGym(UpdateReferredGym value),
     Result updateFcmToken(UpdateFcmToken value),
     Result updateVersion(UpdateVersion value),
     @required Result orElse(),
@@ -203,6 +215,7 @@ class _$UserUpdated with DiagnosticableTreeMixin implements UserUpdated {
     @required Result updateImageUrl(String userEmail),
     @required Result updateGrade(Grade newGrade),
     @required Result updateSelectedGym(String userEmail, String newSelectedGym),
+    @required Result updateReferredGym(String userEmail, String currentGymId),
     @required Result updateFcmToken(String userEmail, String newToken),
     @required Result updateVersion(String userEmail),
   }) {
@@ -211,6 +224,7 @@ class _$UserUpdated with DiagnosticableTreeMixin implements UserUpdated {
     assert(updateImageUrl != null);
     assert(updateGrade != null);
     assert(updateSelectedGym != null);
+    assert(updateReferredGym != null);
     assert(updateFcmToken != null);
     assert(updateVersion != null);
     return userUpdated(user);
@@ -224,6 +238,7 @@ class _$UserUpdated with DiagnosticableTreeMixin implements UserUpdated {
     Result updateImageUrl(String userEmail),
     Result updateGrade(Grade newGrade),
     Result updateSelectedGym(String userEmail, String newSelectedGym),
+    Result updateReferredGym(String userEmail, String currentGymId),
     Result updateFcmToken(String userEmail, String newToken),
     Result updateVersion(String userEmail),
     @required Result orElse(),
@@ -243,6 +258,7 @@ class _$UserUpdated with DiagnosticableTreeMixin implements UserUpdated {
     @required Result updateImageUrl(UpdateImageUrl value),
     @required Result updateGrade(UpdateGrade value),
     @required Result updateSelectedGym(UpdateSelectedGym value),
+    @required Result updateReferredGym(UpdateReferredGym value),
     @required Result updateFcmToken(UpdateFcmToken value),
     @required Result updateVersion(UpdateVersion value),
   }) {
@@ -251,6 +267,7 @@ class _$UserUpdated with DiagnosticableTreeMixin implements UserUpdated {
     assert(updateImageUrl != null);
     assert(updateGrade != null);
     assert(updateSelectedGym != null);
+    assert(updateReferredGym != null);
     assert(updateFcmToken != null);
     assert(updateVersion != null);
     return userUpdated(this);
@@ -264,6 +281,7 @@ class _$UserUpdated with DiagnosticableTreeMixin implements UserUpdated {
     Result updateImageUrl(UpdateImageUrl value),
     Result updateGrade(UpdateGrade value),
     Result updateSelectedGym(UpdateSelectedGym value),
+    Result updateReferredGym(UpdateReferredGym value),
     Result updateFcmToken(UpdateFcmToken value),
     Result updateVersion(UpdateVersion value),
     @required Result orElse(),
@@ -354,6 +372,7 @@ class _$UpdateName with DiagnosticableTreeMixin implements UpdateName {
     @required Result updateImageUrl(String userEmail),
     @required Result updateGrade(Grade newGrade),
     @required Result updateSelectedGym(String userEmail, String newSelectedGym),
+    @required Result updateReferredGym(String userEmail, String currentGymId),
     @required Result updateFcmToken(String userEmail, String newToken),
     @required Result updateVersion(String userEmail),
   }) {
@@ -362,6 +381,7 @@ class _$UpdateName with DiagnosticableTreeMixin implements UpdateName {
     assert(updateImageUrl != null);
     assert(updateGrade != null);
     assert(updateSelectedGym != null);
+    assert(updateReferredGym != null);
     assert(updateFcmToken != null);
     assert(updateVersion != null);
     return updateName(newName);
@@ -375,6 +395,7 @@ class _$UpdateName with DiagnosticableTreeMixin implements UpdateName {
     Result updateImageUrl(String userEmail),
     Result updateGrade(Grade newGrade),
     Result updateSelectedGym(String userEmail, String newSelectedGym),
+    Result updateReferredGym(String userEmail, String currentGymId),
     Result updateFcmToken(String userEmail, String newToken),
     Result updateVersion(String userEmail),
     @required Result orElse(),
@@ -394,6 +415,7 @@ class _$UpdateName with DiagnosticableTreeMixin implements UpdateName {
     @required Result updateImageUrl(UpdateImageUrl value),
     @required Result updateGrade(UpdateGrade value),
     @required Result updateSelectedGym(UpdateSelectedGym value),
+    @required Result updateReferredGym(UpdateReferredGym value),
     @required Result updateFcmToken(UpdateFcmToken value),
     @required Result updateVersion(UpdateVersion value),
   }) {
@@ -402,6 +424,7 @@ class _$UpdateName with DiagnosticableTreeMixin implements UpdateName {
     assert(updateImageUrl != null);
     assert(updateGrade != null);
     assert(updateSelectedGym != null);
+    assert(updateReferredGym != null);
     assert(updateFcmToken != null);
     assert(updateVersion != null);
     return updateName(this);
@@ -415,6 +438,7 @@ class _$UpdateName with DiagnosticableTreeMixin implements UpdateName {
     Result updateImageUrl(UpdateImageUrl value),
     Result updateGrade(UpdateGrade value),
     Result updateSelectedGym(UpdateSelectedGym value),
+    Result updateReferredGym(UpdateReferredGym value),
     Result updateFcmToken(UpdateFcmToken value),
     Result updateVersion(UpdateVersion value),
     @required Result orElse(),
@@ -507,6 +531,7 @@ class _$UpdateImageUrl with DiagnosticableTreeMixin implements UpdateImageUrl {
     @required Result updateImageUrl(String userEmail),
     @required Result updateGrade(Grade newGrade),
     @required Result updateSelectedGym(String userEmail, String newSelectedGym),
+    @required Result updateReferredGym(String userEmail, String currentGymId),
     @required Result updateFcmToken(String userEmail, String newToken),
     @required Result updateVersion(String userEmail),
   }) {
@@ -515,6 +540,7 @@ class _$UpdateImageUrl with DiagnosticableTreeMixin implements UpdateImageUrl {
     assert(updateImageUrl != null);
     assert(updateGrade != null);
     assert(updateSelectedGym != null);
+    assert(updateReferredGym != null);
     assert(updateFcmToken != null);
     assert(updateVersion != null);
     return updateImageUrl(userEmail);
@@ -528,6 +554,7 @@ class _$UpdateImageUrl with DiagnosticableTreeMixin implements UpdateImageUrl {
     Result updateImageUrl(String userEmail),
     Result updateGrade(Grade newGrade),
     Result updateSelectedGym(String userEmail, String newSelectedGym),
+    Result updateReferredGym(String userEmail, String currentGymId),
     Result updateFcmToken(String userEmail, String newToken),
     Result updateVersion(String userEmail),
     @required Result orElse(),
@@ -547,6 +574,7 @@ class _$UpdateImageUrl with DiagnosticableTreeMixin implements UpdateImageUrl {
     @required Result updateImageUrl(UpdateImageUrl value),
     @required Result updateGrade(UpdateGrade value),
     @required Result updateSelectedGym(UpdateSelectedGym value),
+    @required Result updateReferredGym(UpdateReferredGym value),
     @required Result updateFcmToken(UpdateFcmToken value),
     @required Result updateVersion(UpdateVersion value),
   }) {
@@ -555,6 +583,7 @@ class _$UpdateImageUrl with DiagnosticableTreeMixin implements UpdateImageUrl {
     assert(updateImageUrl != null);
     assert(updateGrade != null);
     assert(updateSelectedGym != null);
+    assert(updateReferredGym != null);
     assert(updateFcmToken != null);
     assert(updateVersion != null);
     return updateImageUrl(this);
@@ -568,6 +597,7 @@ class _$UpdateImageUrl with DiagnosticableTreeMixin implements UpdateImageUrl {
     Result updateImageUrl(UpdateImageUrl value),
     Result updateGrade(UpdateGrade value),
     Result updateSelectedGym(UpdateSelectedGym value),
+    Result updateReferredGym(UpdateReferredGym value),
     Result updateFcmToken(UpdateFcmToken value),
     Result updateVersion(UpdateVersion value),
     @required Result orElse(),
@@ -660,6 +690,7 @@ class _$UpdateGrade with DiagnosticableTreeMixin implements UpdateGrade {
     @required Result updateImageUrl(String userEmail),
     @required Result updateGrade(Grade newGrade),
     @required Result updateSelectedGym(String userEmail, String newSelectedGym),
+    @required Result updateReferredGym(String userEmail, String currentGymId),
     @required Result updateFcmToken(String userEmail, String newToken),
     @required Result updateVersion(String userEmail),
   }) {
@@ -668,6 +699,7 @@ class _$UpdateGrade with DiagnosticableTreeMixin implements UpdateGrade {
     assert(updateImageUrl != null);
     assert(updateGrade != null);
     assert(updateSelectedGym != null);
+    assert(updateReferredGym != null);
     assert(updateFcmToken != null);
     assert(updateVersion != null);
     return updateGrade(newGrade);
@@ -681,6 +713,7 @@ class _$UpdateGrade with DiagnosticableTreeMixin implements UpdateGrade {
     Result updateImageUrl(String userEmail),
     Result updateGrade(Grade newGrade),
     Result updateSelectedGym(String userEmail, String newSelectedGym),
+    Result updateReferredGym(String userEmail, String currentGymId),
     Result updateFcmToken(String userEmail, String newToken),
     Result updateVersion(String userEmail),
     @required Result orElse(),
@@ -700,6 +733,7 @@ class _$UpdateGrade with DiagnosticableTreeMixin implements UpdateGrade {
     @required Result updateImageUrl(UpdateImageUrl value),
     @required Result updateGrade(UpdateGrade value),
     @required Result updateSelectedGym(UpdateSelectedGym value),
+    @required Result updateReferredGym(UpdateReferredGym value),
     @required Result updateFcmToken(UpdateFcmToken value),
     @required Result updateVersion(UpdateVersion value),
   }) {
@@ -708,6 +742,7 @@ class _$UpdateGrade with DiagnosticableTreeMixin implements UpdateGrade {
     assert(updateImageUrl != null);
     assert(updateGrade != null);
     assert(updateSelectedGym != null);
+    assert(updateReferredGym != null);
     assert(updateFcmToken != null);
     assert(updateVersion != null);
     return updateGrade(this);
@@ -721,6 +756,7 @@ class _$UpdateGrade with DiagnosticableTreeMixin implements UpdateGrade {
     Result updateImageUrl(UpdateImageUrl value),
     Result updateGrade(UpdateGrade value),
     Result updateSelectedGym(UpdateSelectedGym value),
+    Result updateReferredGym(UpdateReferredGym value),
     Result updateFcmToken(UpdateFcmToken value),
     Result updateVersion(UpdateVersion value),
     @required Result orElse(),
@@ -828,6 +864,7 @@ class _$UpdateSelectedGym
     @required Result updateImageUrl(String userEmail),
     @required Result updateGrade(Grade newGrade),
     @required Result updateSelectedGym(String userEmail, String newSelectedGym),
+    @required Result updateReferredGym(String userEmail, String currentGymId),
     @required Result updateFcmToken(String userEmail, String newToken),
     @required Result updateVersion(String userEmail),
   }) {
@@ -836,6 +873,7 @@ class _$UpdateSelectedGym
     assert(updateImageUrl != null);
     assert(updateGrade != null);
     assert(updateSelectedGym != null);
+    assert(updateReferredGym != null);
     assert(updateFcmToken != null);
     assert(updateVersion != null);
     return updateSelectedGym(userEmail, newSelectedGym);
@@ -849,6 +887,7 @@ class _$UpdateSelectedGym
     Result updateImageUrl(String userEmail),
     Result updateGrade(Grade newGrade),
     Result updateSelectedGym(String userEmail, String newSelectedGym),
+    Result updateReferredGym(String userEmail, String currentGymId),
     Result updateFcmToken(String userEmail, String newToken),
     Result updateVersion(String userEmail),
     @required Result orElse(),
@@ -868,6 +907,7 @@ class _$UpdateSelectedGym
     @required Result updateImageUrl(UpdateImageUrl value),
     @required Result updateGrade(UpdateGrade value),
     @required Result updateSelectedGym(UpdateSelectedGym value),
+    @required Result updateReferredGym(UpdateReferredGym value),
     @required Result updateFcmToken(UpdateFcmToken value),
     @required Result updateVersion(UpdateVersion value),
   }) {
@@ -876,6 +916,7 @@ class _$UpdateSelectedGym
     assert(updateImageUrl != null);
     assert(updateGrade != null);
     assert(updateSelectedGym != null);
+    assert(updateReferredGym != null);
     assert(updateFcmToken != null);
     assert(updateVersion != null);
     return updateSelectedGym(this);
@@ -889,6 +930,7 @@ class _$UpdateSelectedGym
     Result updateImageUrl(UpdateImageUrl value),
     Result updateGrade(UpdateGrade value),
     Result updateSelectedGym(UpdateSelectedGym value),
+    Result updateReferredGym(UpdateReferredGym value),
     Result updateFcmToken(UpdateFcmToken value),
     Result updateVersion(UpdateVersion value),
     @required Result orElse(),
@@ -908,6 +950,182 @@ abstract class UpdateSelectedGym implements UserEvent {
   String get userEmail;
   String get newSelectedGym;
   $UpdateSelectedGymCopyWith<UpdateSelectedGym> get copyWith;
+}
+
+/// @nodoc
+abstract class $UpdateReferredGymCopyWith<$Res> {
+  factory $UpdateReferredGymCopyWith(
+          UpdateReferredGym value, $Res Function(UpdateReferredGym) then) =
+      _$UpdateReferredGymCopyWithImpl<$Res>;
+  $Res call({String userEmail, String currentGymId});
+}
+
+/// @nodoc
+class _$UpdateReferredGymCopyWithImpl<$Res>
+    extends _$UserEventCopyWithImpl<$Res>
+    implements $UpdateReferredGymCopyWith<$Res> {
+  _$UpdateReferredGymCopyWithImpl(
+      UpdateReferredGym _value, $Res Function(UpdateReferredGym) _then)
+      : super(_value, (v) => _then(v as UpdateReferredGym));
+
+  @override
+  UpdateReferredGym get _value => super._value as UpdateReferredGym;
+
+  @override
+  $Res call({
+    Object userEmail = freezed,
+    Object currentGymId = freezed,
+  }) {
+    return _then(UpdateReferredGym(
+      userEmail: userEmail == freezed ? _value.userEmail : userEmail as String,
+      currentGymId: currentGymId == freezed
+          ? _value.currentGymId
+          : currentGymId as String,
+    ));
+  }
+}
+
+/// @nodoc
+class _$UpdateReferredGym
+    with DiagnosticableTreeMixin
+    implements UpdateReferredGym {
+  const _$UpdateReferredGym({this.userEmail, this.currentGymId});
+
+  @override
+  final String userEmail;
+  @override
+  final String currentGymId;
+
+  @override
+  String toString({DiagnosticLevel minLevel = DiagnosticLevel.info}) {
+    return 'UserEvent.updateReferredGym(userEmail: $userEmail, currentGymId: $currentGymId)';
+  }
+
+  @override
+  void debugFillProperties(DiagnosticPropertiesBuilder properties) {
+    super.debugFillProperties(properties);
+    properties
+      ..add(DiagnosticsProperty('type', 'UserEvent.updateReferredGym'))
+      ..add(DiagnosticsProperty('userEmail', userEmail))
+      ..add(DiagnosticsProperty('currentGymId', currentGymId));
+  }
+
+  @override
+  bool operator ==(dynamic other) {
+    return identical(this, other) ||
+        (other is UpdateReferredGym &&
+            (identical(other.userEmail, userEmail) ||
+                const DeepCollectionEquality()
+                    .equals(other.userEmail, userEmail)) &&
+            (identical(other.currentGymId, currentGymId) ||
+                const DeepCollectionEquality()
+                    .equals(other.currentGymId, currentGymId)));
+  }
+
+  @override
+  int get hashCode =>
+      runtimeType.hashCode ^
+      const DeepCollectionEquality().hash(userEmail) ^
+      const DeepCollectionEquality().hash(currentGymId);
+
+  @override
+  $UpdateReferredGymCopyWith<UpdateReferredGym> get copyWith =>
+      _$UpdateReferredGymCopyWithImpl<UpdateReferredGym>(this, _$identity);
+
+  @override
+  @optionalTypeArgs
+  Result when<Result extends Object>({
+    @required Result userUpdated(User user),
+    @required Result updateName(String newName),
+    @required Result updateImageUrl(String userEmail),
+    @required Result updateGrade(Grade newGrade),
+    @required Result updateSelectedGym(String userEmail, String newSelectedGym),
+    @required Result updateReferredGym(String userEmail, String currentGymId),
+    @required Result updateFcmToken(String userEmail, String newToken),
+    @required Result updateVersion(String userEmail),
+  }) {
+    assert(userUpdated != null);
+    assert(updateName != null);
+    assert(updateImageUrl != null);
+    assert(updateGrade != null);
+    assert(updateSelectedGym != null);
+    assert(updateReferredGym != null);
+    assert(updateFcmToken != null);
+    assert(updateVersion != null);
+    return updateReferredGym(userEmail, currentGymId);
+  }
+
+  @override
+  @optionalTypeArgs
+  Result maybeWhen<Result extends Object>({
+    Result userUpdated(User user),
+    Result updateName(String newName),
+    Result updateImageUrl(String userEmail),
+    Result updateGrade(Grade newGrade),
+    Result updateSelectedGym(String userEmail, String newSelectedGym),
+    Result updateReferredGym(String userEmail, String currentGymId),
+    Result updateFcmToken(String userEmail, String newToken),
+    Result updateVersion(String userEmail),
+    @required Result orElse(),
+  }) {
+    assert(orElse != null);
+    if (updateReferredGym != null) {
+      return updateReferredGym(userEmail, currentGymId);
+    }
+    return orElse();
+  }
+
+  @override
+  @optionalTypeArgs
+  Result map<Result extends Object>({
+    @required Result userUpdated(UserUpdated value),
+    @required Result updateName(UpdateName value),
+    @required Result updateImageUrl(UpdateImageUrl value),
+    @required Result updateGrade(UpdateGrade value),
+    @required Result updateSelectedGym(UpdateSelectedGym value),
+    @required Result updateReferredGym(UpdateReferredGym value),
+    @required Result updateFcmToken(UpdateFcmToken value),
+    @required Result updateVersion(UpdateVersion value),
+  }) {
+    assert(userUpdated != null);
+    assert(updateName != null);
+    assert(updateImageUrl != null);
+    assert(updateGrade != null);
+    assert(updateSelectedGym != null);
+    assert(updateReferredGym != null);
+    assert(updateFcmToken != null);
+    assert(updateVersion != null);
+    return updateReferredGym(this);
+  }
+
+  @override
+  @optionalTypeArgs
+  Result maybeMap<Result extends Object>({
+    Result userUpdated(UserUpdated value),
+    Result updateName(UpdateName value),
+    Result updateImageUrl(UpdateImageUrl value),
+    Result updateGrade(UpdateGrade value),
+    Result updateSelectedGym(UpdateSelectedGym value),
+    Result updateReferredGym(UpdateReferredGym value),
+    Result updateFcmToken(UpdateFcmToken value),
+    Result updateVersion(UpdateVersion value),
+    @required Result orElse(),
+  }) {
+    assert(orElse != null);
+    if (updateReferredGym != null) {
+      return updateReferredGym(this);
+    }
+    return orElse();
+  }
+}
+
+abstract class UpdateReferredGym implements UserEvent {
+  const factory UpdateReferredGym({String userEmail, String currentGymId}) =
+      _$UpdateReferredGym;
+
+  String get userEmail;
+  String get currentGymId;
+  $UpdateReferredGymCopyWith<UpdateReferredGym> get copyWith;
 }
 
 /// @nodoc
@@ -993,6 +1211,7 @@ class _$UpdateFcmToken with DiagnosticableTreeMixin implements UpdateFcmToken {
     @required Result updateImageUrl(String userEmail),
     @required Result updateGrade(Grade newGrade),
     @required Result updateSelectedGym(String userEmail, String newSelectedGym),
+    @required Result updateReferredGym(String userEmail, String currentGymId),
     @required Result updateFcmToken(String userEmail, String newToken),
     @required Result updateVersion(String userEmail),
   }) {
@@ -1001,6 +1220,7 @@ class _$UpdateFcmToken with DiagnosticableTreeMixin implements UpdateFcmToken {
     assert(updateImageUrl != null);
     assert(updateGrade != null);
     assert(updateSelectedGym != null);
+    assert(updateReferredGym != null);
     assert(updateFcmToken != null);
     assert(updateVersion != null);
     return updateFcmToken(userEmail, newToken);
@@ -1014,6 +1234,7 @@ class _$UpdateFcmToken with DiagnosticableTreeMixin implements UpdateFcmToken {
     Result updateImageUrl(String userEmail),
     Result updateGrade(Grade newGrade),
     Result updateSelectedGym(String userEmail, String newSelectedGym),
+    Result updateReferredGym(String userEmail, String currentGymId),
     Result updateFcmToken(String userEmail, String newToken),
     Result updateVersion(String userEmail),
     @required Result orElse(),
@@ -1033,6 +1254,7 @@ class _$UpdateFcmToken with DiagnosticableTreeMixin implements UpdateFcmToken {
     @required Result updateImageUrl(UpdateImageUrl value),
     @required Result updateGrade(UpdateGrade value),
     @required Result updateSelectedGym(UpdateSelectedGym value),
+    @required Result updateReferredGym(UpdateReferredGym value),
     @required Result updateFcmToken(UpdateFcmToken value),
     @required Result updateVersion(UpdateVersion value),
   }) {
@@ -1041,6 +1263,7 @@ class _$UpdateFcmToken with DiagnosticableTreeMixin implements UpdateFcmToken {
     assert(updateImageUrl != null);
     assert(updateGrade != null);
     assert(updateSelectedGym != null);
+    assert(updateReferredGym != null);
     assert(updateFcmToken != null);
     assert(updateVersion != null);
     return updateFcmToken(this);
@@ -1054,6 +1277,7 @@ class _$UpdateFcmToken with DiagnosticableTreeMixin implements UpdateFcmToken {
     Result updateImageUrl(UpdateImageUrl value),
     Result updateGrade(UpdateGrade value),
     Result updateSelectedGym(UpdateSelectedGym value),
+    Result updateReferredGym(UpdateReferredGym value),
     Result updateFcmToken(UpdateFcmToken value),
     Result updateVersion(UpdateVersion value),
     @required Result orElse(),
@@ -1148,6 +1372,7 @@ class _$UpdateVersion with DiagnosticableTreeMixin implements UpdateVersion {
     @required Result updateImageUrl(String userEmail),
     @required Result updateGrade(Grade newGrade),
     @required Result updateSelectedGym(String userEmail, String newSelectedGym),
+    @required Result updateReferredGym(String userEmail, String currentGymId),
     @required Result updateFcmToken(String userEmail, String newToken),
     @required Result updateVersion(String userEmail),
   }) {
@@ -1156,6 +1381,7 @@ class _$UpdateVersion with DiagnosticableTreeMixin implements UpdateVersion {
     assert(updateImageUrl != null);
     assert(updateGrade != null);
     assert(updateSelectedGym != null);
+    assert(updateReferredGym != null);
     assert(updateFcmToken != null);
     assert(updateVersion != null);
     return updateVersion(userEmail);
@@ -1169,6 +1395,7 @@ class _$UpdateVersion with DiagnosticableTreeMixin implements UpdateVersion {
     Result updateImageUrl(String userEmail),
     Result updateGrade(Grade newGrade),
     Result updateSelectedGym(String userEmail, String newSelectedGym),
+    Result updateReferredGym(String userEmail, String currentGymId),
     Result updateFcmToken(String userEmail, String newToken),
     Result updateVersion(String userEmail),
     @required Result orElse(),
@@ -1188,6 +1415,7 @@ class _$UpdateVersion with DiagnosticableTreeMixin implements UpdateVersion {
     @required Result updateImageUrl(UpdateImageUrl value),
     @required Result updateGrade(UpdateGrade value),
     @required Result updateSelectedGym(UpdateSelectedGym value),
+    @required Result updateReferredGym(UpdateReferredGym value),
     @required Result updateFcmToken(UpdateFcmToken value),
     @required Result updateVersion(UpdateVersion value),
   }) {
@@ -1196,6 +1424,7 @@ class _$UpdateVersion with DiagnosticableTreeMixin implements UpdateVersion {
     assert(updateImageUrl != null);
     assert(updateGrade != null);
     assert(updateSelectedGym != null);
+    assert(updateReferredGym != null);
     assert(updateFcmToken != null);
     assert(updateVersion != null);
     return updateVersion(this);
@@ -1209,6 +1438,7 @@ class _$UpdateVersion with DiagnosticableTreeMixin implements UpdateVersion {
     Result updateImageUrl(UpdateImageUrl value),
     Result updateGrade(UpdateGrade value),
     Result updateSelectedGym(UpdateSelectedGym value),
+    Result updateReferredGym(UpdateReferredGym value),
     Result updateFcmToken(UpdateFcmToken value),
     Result updateVersion(UpdateVersion value),
     @required Result orElse(),

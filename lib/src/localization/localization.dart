@@ -3,7 +3,6 @@ import 'package:checkin/src/constants.dart' as constants;
 import 'package:checkin/src/models/grade.dart';
 import 'package:checkin/src/ui/components/account/payment.dart';
 import 'package:checkin/src/ui/components/apple_sign_in_button.dart';
-import 'package:checkin/src/ui/components/gym_selection/gym_selection_buttons.dart';
 import 'package:checkin/src/ui/components/lesson_card.dart';
 import 'package:checkin/src/ui/components/payment_methods/active_payment_method.dart';
 import 'package:checkin/src/ui/components/payment_methods/empty_payment_method.dart';
@@ -382,17 +381,13 @@ extension Localization on String {
     'es': 'Clasificación',
     'it': 'Classifica',
   } + {
-    'en': GymSelectionButtons.aranhaGym,
-  } + {
-    'en': GymSelectionButtons.gulloGym,
-  } + {
-    'en': GymSelectionPage.heyUser,
+    'en': UnselectedGymPage.heyUser,
     'es': 'Hola %s',
     'it': 'Ciao %s',
   } + {
-    'en': GymSelectionPage.selectYourGym,
-    'es': 'Escoge tu gymnasio',
-    'it': 'Scegli la tua accademia',
+    'en': UnselectedGymPage.contactYourGymOwner,
+    'es': 'Porfavor contacta el dueño del gym para obtener el enlace de referencia',
+    'it': 'Perfavore contatta il proprietario dell`\'accademia per ottenere il referral link',
   } + {
     'en': LoginBloc.loginError,
     'es': 'Error de inicio de sesion',

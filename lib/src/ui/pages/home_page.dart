@@ -25,7 +25,7 @@ class HomePage extends StatelessWidget {
             NotificationToast.show(
                 context, state.notification.title, state.notification.body);
           }
-          if(state is NotificationToNavigate) {
+          if (state is NotificationToNavigate) {
             debugPrint("notification received with path ${state.path}");
             Navigator.of(context).pushNamed(state.path);
           }
@@ -41,7 +41,9 @@ class HomePage extends StatelessWidget {
 
           if (state is UserSuccess) {
             if (state.currentUser.selectedGymId == null) {
-              return GymSelectionPage(userEmail: state.currentUser.email, userName: state.currentUser.name,);
+              return UnselectedGymPage(
+                userName: state.currentUser.name,
+              );
             }
             if (state.currentUser.grade == null) {
               return GradePage();
