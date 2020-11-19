@@ -36,34 +36,38 @@ class LessonCard extends StatelessWidget {
                   mainAxisAlignment: MainAxisAlignment.spaceBetween,
                   children: <Widget>[
                     Row(
-                      mainAxisAlignment: MainAxisAlignment.spaceBetween,
                       crossAxisAlignment: CrossAxisAlignment.start,
                       children: <Widget>[
-                        Row(
-                          children: <Widget>[
-                            UserImage(
-                              userImage: lesson.masters.first.imageUrl,
-                            ),
-                            SizedBox(width: 20,),
-                            Column(
-                              crossAxisAlignment: CrossAxisAlignment.start,
-                              children: <Widget>[
-                                Text(
-                                  _capitalize(lesson.name),
-                                  style: Theme.of(context)
-                                      .textTheme
-                                      .headline1,
-                                ),
-                                Text("${lesson.timeStart} - ${lesson.timeEnd}",
-                                    style: Theme.of(context).textTheme.headline3)
-                              ],
-                            ),
-                          ],
+                        UserImage(
+                          userImage: lesson.masters.first.imageUrl,
                         ),
-                        IconButton(icon: Icon(Icons.share), onPressed: () async {
-                          var link = await DynamicLinkUtil().getLink(date: lesson.date, lessonId: lesson.id);
-                          Share.share(link);
-                        },)
+                        SizedBox(width: 20,),
+                        Expanded(
+                          flex: 4,
+                          child: Column(
+                            crossAxisAlignment: CrossAxisAlignment.start,
+                            children: <Widget>[
+                              Text(
+                                _capitalize(lesson.name),
+                                overflow: TextOverflow.fade,
+                                softWrap: false,
+                                style: Theme.of(context)
+                                    .textTheme
+                                    .headline1,
+                              ),
+                              Text("${lesson.timeStart} - ${lesson.timeEnd}",
+                                  style: Theme.of(context).textTheme.headline3)
+                            ],
+                          ),
+                        ),
+                        SizedBox(width: 10,),
+                        Expanded(
+                          flex: 1,
+                          child: IconButton(icon: Icon(Icons.share), onPressed: () async {
+                            var link = await DynamicLinkUtil().getLink(date: lesson.date, lessonId: lesson.id);
+                            Share.share(link);
+                          },),
+                        )
                       ],
                     ),
                     if (allAttendees > 0)
