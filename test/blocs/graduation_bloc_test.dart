@@ -9,8 +9,8 @@ import 'package:checkin/src/repositories/graduation_system_repository.dart';
 import 'package:checkin/src/repositories/stats_repository.dart';
 import 'package:checkin/src/repositories/user_repository.dart';
 import 'package:checkin/src/util/graduation_util.dart';
+import 'package:flutter_test/flutter_test.dart';
 import 'package:mockito/mockito.dart';
-import 'package:test/test.dart';
 
 import 'helper/mock_helper.dart';
 
