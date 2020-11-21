@@ -20,7 +20,7 @@ class PlansList extends StatelessWidget {
         listener: (BuildContext context, SubscriptionState state) {
       if (state is SubscriptionError) {
         Navigator.of(context).pop();
-        Scaffold.of(context)
+        ScaffoldMessenger.of(context)
           ..hideCurrentSnackBar()
           ..showSnackBar(
             SnackBar(
@@ -36,7 +36,10 @@ class PlansList extends StatelessWidget {
       }
 
       if (state is SubscriptionLoading) {
-        showDialog(context: context, child: LoadingIndicator(), barrierDismissible: false,);
+        showDialog(
+            context: context,
+            barrierDismissible: false,
+            builder: (BuildContext context) => LoadingIndicator());
       }
 
       if (state is SubscriptionSuccess) {

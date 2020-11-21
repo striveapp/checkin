@@ -83,7 +83,7 @@ class AccountPage extends StatelessWidget {
           child: BlocListener<AccountBloc, AccountState>(
             listener: (BuildContext context, AccountState state) {
               if (state is AccountError) {
-                Scaffold.of(context)
+                ScaffoldMessenger.of(context)
                   ..hideCurrentSnackBar()
                   ..showSnackBar(
                     SnackBar(

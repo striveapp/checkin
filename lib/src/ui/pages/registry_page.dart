@@ -48,11 +48,10 @@ class RegistryPage extends StatelessWidget {
             listener: (BuildContext context, RegistryState state) {
               if (state is RegistryLoading) {
                 showDialog(
-                  context: context,
-                  child: LoadingIndicator(),
-                  barrierDismissible: false,
-                  routeSettings: RouteSettings(name: "dialog"),
-                );
+                    context: context,
+                    barrierDismissible: false,
+                    routeSettings: RouteSettings(name: "dialog"),
+                    builder: (BuildContext context) => LoadingIndicator());
               }
               if (state is RegistryLoaded) {
                 Navigator.of(context)
@@ -70,7 +69,8 @@ class RegistryPage extends StatelessWidget {
                           padding: const EdgeInsets.symmetric(vertical: 20),
                           child: LessonInfos(),
                         ),
-                        Expanded(child: Padding(
+                        Expanded(
+                            child: Padding(
                           padding: const EdgeInsets.only(bottom: 20.0),
                           child: Registry(),
                         )),

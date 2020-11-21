@@ -20,7 +20,10 @@ class PaymentMethodsCard extends StatelessWidget {
               listener: (BuildContext context, PaymentMethodsState state) {
                 if (state is PaymentMethodLoading) {
                   if (state.show) {
-                    showDialog(context: context, child: LoadingIndicator(), barrierDismissible: false,);
+                    showDialog(
+                        context: context,
+                        barrierDismissible: false,
+                        builder: (BuildContext context) => LoadingIndicator());
                   } else {
                     Navigator.of(context).pop();
                   }

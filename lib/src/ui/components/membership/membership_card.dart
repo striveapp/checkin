@@ -16,7 +16,7 @@ class MembershipCard extends StatelessWidget {
         child: BlocListener<MembershipBloc, MembershipState>(
           listener: (BuildContext context, MembershipState state) {
             if(state is MembershipError) {
-              Scaffold.of(context)
+              ScaffoldMessenger.of(context)
                 ..hideCurrentSnackBar()
                 ..showSnackBar(
                   SnackBar(
