@@ -15,7 +15,7 @@ class _$RegistryEventTearOff {
 
 // ignore: unused_element
   RegistryUpdated registryUpdated(
-      {@required User currentUser, @required Lesson currentLesson}) {
+      {@required User currentUser, Lesson currentLesson}) {
     return RegistryUpdated(
       currentUser: currentUser,
       currentLesson: currentLesson,
@@ -151,10 +151,8 @@ class _$RegistryUpdatedCopyWithImpl<$Res>
 class _$RegistryUpdated
     with DiagnosticableTreeMixin
     implements RegistryUpdated {
-  const _$RegistryUpdated(
-      {@required this.currentUser, @required this.currentLesson})
-      : assert(currentUser != null),
-        assert(currentLesson != null);
+  const _$RegistryUpdated({@required this.currentUser, this.currentLesson})
+      : assert(currentUser != null);
 
   @override
   final User currentUser;
@@ -262,8 +260,7 @@ class _$RegistryUpdated
 
 abstract class RegistryUpdated implements RegistryEvent {
   const factory RegistryUpdated(
-      {@required User currentUser,
-      @required Lesson currentLesson}) = _$RegistryUpdated;
+      {@required User currentUser, Lesson currentLesson}) = _$RegistryUpdated;
 
   User get currentUser;
   Lesson get currentLesson;

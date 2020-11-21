@@ -308,6 +308,45 @@ void main() {
           ],
         );
       });
+
+      group("when lesson is not present anymore", () {
+        final notExistingDate = '2020-30-02';
+        final notExistingLessonId = "not_really_there_anymore";
+
+        setUp((){
+          whenListen(mockUserBloc, Stream.value(UserSuccess(currentUser: fakeUser)));
+          when(mockLessonRepository.getLesson(
+            fakeUser.selectedGymId,
+            notExistingDate,
+            notExistingLessonId,
+          )).thenAnswer((realInvocation) => Stream.value(null));
+        });
+
+        tearDown((){
+          verify(mockLessonRepository.getLesson(
+            fakeUser.selectedGymId,
+            '2020-30-02',
+            "not_really_there_anymore",
+          ));
+        });
+
+
+        blocTest(
+          "should emit RegistryMissing",
+          build: () => RegistryBloc(
+              lessonDate: notExistingDate,
+              lessonId: notExistingLessonId,
+              lessonRepository: mockLessonRepository,
+              lessonApi: mockLessonApi,
+              userBloc: mockUserBloc),
+          expect: [
+            RegistryMissing(),
+          ],
+        );
+
+      });
+
+
     });
 
     group("on Register event", () {

@@ -36,7 +36,10 @@ class RegistryBloc extends Bloc<RegistryEvent, RegistryState> {
       lessonSub = lessonRepository
           .getLesson(userState.currentUser.selectedGymId, lessonDate, lessonId)
           .listen((lesson) {
-        add(RegistryUpdated(currentUser: userState.currentUser, currentLesson: lesson));
+        add(RegistryUpdated(
+          currentUser: userState.currentUser,
+          currentLesson: lesson,
+        ));
       });
     }
   }
@@ -44,22 +47,31 @@ class RegistryBloc extends Bloc<RegistryEvent, RegistryState> {
   @override
   Stream<RegistryState> mapEventToState(RegistryEvent event) async* {
     if (event is RegistryUpdated) {
-      yield RegistryLoaded(
-        currentUser: event.currentUser,
-        currentLesson: event.currentLesson,
-        isAcceptedUser: isAcceptedUser(event),
-        isRegisteredUser: isRegisteredUser(event),
-        isFullRegistry: isFullRegistry(event),
-        isEmptyRegistry: isEmptyRegistry(event),
-        isMasterOfTheClass: isMasterOfTheClass(event),
-      );
+      if (event.currentLesson == null) {
+        //TODO: this is not yet implemented in the UI https://trello.com/c/2C7Tn5Mj
+        yield RegistryMissing();
+      } else {
+        yield RegistryLoaded(
+          currentUser: event.currentUser,
+          currentLesson: event.currentLesson,
+          isAcceptedUser: isAcceptedUser(event),
+          isRegisteredUser: isRegisteredUser(event),
+          isFullRegistry: isFullRegistry(event),
+          isEmptyRegistry: isEmptyRegistry(event),
+          isMasterOfTheClass: isMasterOfTheClass(event),
+        );
+      }
     }
 
     if (event is AcceptAttendees) {
       yield RegistryLoading();
       try {
         //TODO: refactor registry_bloc when calling acceptAll [https://trello.com/c/o7PBLnEQ]
-        await this.lessonApi.acceptAll(event.gymId, lessonId, lessonDate);
+        await this.lessonApi.acceptAll(
+              event.gymId,
+              lessonId,
+              lessonDate,
+            );
       } catch (e) {
         yield RegistryError();
       }
@@ -67,7 +79,12 @@ class RegistryBloc extends Bloc<RegistryEvent, RegistryState> {
 
     if (event is Register) {
       try {
-        await this.lessonRepository.register(event.gymId, lessonDate, lessonId, event.attendee);
+        await this.lessonRepository.register(
+              event.gymId,
+              lessonDate,
+              lessonId,
+              event.attendee,
+            );
       } catch (e) {
         yield RegistryError();
       }
@@ -76,7 +93,12 @@ class RegistryBloc extends Bloc<RegistryEvent, RegistryState> {
     if (event is Unregister) {
       try {
         debugPrint("unregistering user ${event.attendee}");
-        await this.lessonRepository.unregister(event.gymId, lessonDate, lessonId, event.attendee);
+        await this.lessonRepository.unregister(
+              event.gymId,
+              lessonDate,
+              lessonId,
+              event.attendee,
+            );
       } catch (e) {
         yield RegistryError();
       }
@@ -96,13 +118,16 @@ class RegistryBloc extends Bloc<RegistryEvent, RegistryState> {
 
   bool isFullRegistry(RegistryUpdated event) {
     var currentLesson = event.currentLesson;
-    return currentLesson.attendees.length + currentLesson.acceptedAttendees.length >=
+    return currentLesson.attendees.length +
+            currentLesson.acceptedAttendees.length >=
         currentLesson.classCapacity;
   }
 
   bool isEmptyRegistry(RegistryUpdated event) {
     var currentLesson = event.currentLesson;
-    return currentLesson.attendees.length + currentLesson.acceptedAttendees.length == 0;
+    return currentLesson.attendees.length +
+            currentLesson.acceptedAttendees.length ==
+        0;
   }
 
   bool isMasterOfTheClass(RegistryUpdated event) {

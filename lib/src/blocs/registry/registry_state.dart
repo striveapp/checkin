@@ -13,6 +13,8 @@ abstract class RegistryState with _$RegistryState {
 
   const factory RegistryState.registryError() = RegistryError;
 
+  const factory RegistryState.registryMissing() = RegistryMissing;
+
   const factory RegistryState.registryLoaded({
     @required User currentUser,
     @required Lesson currentLesson,
@@ -22,4 +24,5 @@ abstract class RegistryState with _$RegistryState {
     @required bool isEmptyRegistry,
     @required bool isMasterOfTheClass,
   }) = RegistryLoaded;
+
 }

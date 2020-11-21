@@ -24,6 +24,10 @@ class LessonInstancesProvider implements LessonRepository {
   Lesson _toLesson(DocumentSnapshot lesson) {
     final data = lesson.data();
 
+    if(data == null || data['masters'] == null) {
+      return null;
+    }
+
     return Lesson.fromJson(data);
   }
 
@@ -61,7 +65,6 @@ class LessonInstancesProvider implements LessonRepository {
       .collection(sub_collection_path)
       .doc(lessonId)
       .snapshots()
-      .where((doc) => doc.data()['masters'] != null)
       .map((doc) => _toLesson(doc));
 
   @override

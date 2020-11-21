@@ -29,6 +29,11 @@ class _$RegistryStateTearOff {
   }
 
 // ignore: unused_element
+  RegistryMissing registryMissing() {
+    return const RegistryMissing();
+  }
+
+// ignore: unused_element
   RegistryLoaded registryLoaded(
       {@required User currentUser,
       @required Lesson currentLesson,
@@ -60,6 +65,7 @@ mixin _$RegistryState {
     @required Result registryUninitialized(),
     @required Result registryLoading(),
     @required Result registryError(),
+    @required Result registryMissing(),
     @required
         Result registryLoaded(
             User currentUser,
@@ -75,6 +81,7 @@ mixin _$RegistryState {
     Result registryUninitialized(),
     Result registryLoading(),
     Result registryError(),
+    Result registryMissing(),
     Result registryLoaded(
         User currentUser,
         Lesson currentLesson,
@@ -90,6 +97,7 @@ mixin _$RegistryState {
     @required Result registryUninitialized(RegistryUninitialized value),
     @required Result registryLoading(RegistryLoading value),
     @required Result registryError(RegistryError value),
+    @required Result registryMissing(RegistryMissing value),
     @required Result registryLoaded(RegistryLoaded value),
   });
   @optionalTypeArgs
@@ -97,6 +105,7 @@ mixin _$RegistryState {
     Result registryUninitialized(RegistryUninitialized value),
     Result registryLoading(RegistryLoading value),
     Result registryError(RegistryError value),
+    Result registryMissing(RegistryMissing value),
     Result registryLoaded(RegistryLoaded value),
     @required Result orElse(),
   });
@@ -170,6 +179,7 @@ class _$RegistryUninitialized
     @required Result registryUninitialized(),
     @required Result registryLoading(),
     @required Result registryError(),
+    @required Result registryMissing(),
     @required
         Result registryLoaded(
             User currentUser,
@@ -183,6 +193,7 @@ class _$RegistryUninitialized
     assert(registryUninitialized != null);
     assert(registryLoading != null);
     assert(registryError != null);
+    assert(registryMissing != null);
     assert(registryLoaded != null);
     return registryUninitialized();
   }
@@ -193,6 +204,7 @@ class _$RegistryUninitialized
     Result registryUninitialized(),
     Result registryLoading(),
     Result registryError(),
+    Result registryMissing(),
     Result registryLoaded(
         User currentUser,
         Lesson currentLesson,
@@ -216,11 +228,13 @@ class _$RegistryUninitialized
     @required Result registryUninitialized(RegistryUninitialized value),
     @required Result registryLoading(RegistryLoading value),
     @required Result registryError(RegistryError value),
+    @required Result registryMissing(RegistryMissing value),
     @required Result registryLoaded(RegistryLoaded value),
   }) {
     assert(registryUninitialized != null);
     assert(registryLoading != null);
     assert(registryError != null);
+    assert(registryMissing != null);
     assert(registryLoaded != null);
     return registryUninitialized(this);
   }
@@ -231,6 +245,7 @@ class _$RegistryUninitialized
     Result registryUninitialized(RegistryUninitialized value),
     Result registryLoading(RegistryLoading value),
     Result registryError(RegistryError value),
+    Result registryMissing(RegistryMissing value),
     Result registryLoaded(RegistryLoaded value),
     @required Result orElse(),
   }) {
@@ -297,6 +312,7 @@ class _$RegistryLoading
     @required Result registryUninitialized(),
     @required Result registryLoading(),
     @required Result registryError(),
+    @required Result registryMissing(),
     @required
         Result registryLoaded(
             User currentUser,
@@ -310,6 +326,7 @@ class _$RegistryLoading
     assert(registryUninitialized != null);
     assert(registryLoading != null);
     assert(registryError != null);
+    assert(registryMissing != null);
     assert(registryLoaded != null);
     return registryLoading();
   }
@@ -320,6 +337,7 @@ class _$RegistryLoading
     Result registryUninitialized(),
     Result registryLoading(),
     Result registryError(),
+    Result registryMissing(),
     Result registryLoaded(
         User currentUser,
         Lesson currentLesson,
@@ -343,11 +361,13 @@ class _$RegistryLoading
     @required Result registryUninitialized(RegistryUninitialized value),
     @required Result registryLoading(RegistryLoading value),
     @required Result registryError(RegistryError value),
+    @required Result registryMissing(RegistryMissing value),
     @required Result registryLoaded(RegistryLoaded value),
   }) {
     assert(registryUninitialized != null);
     assert(registryLoading != null);
     assert(registryError != null);
+    assert(registryMissing != null);
     assert(registryLoaded != null);
     return registryLoading(this);
   }
@@ -358,6 +378,7 @@ class _$RegistryLoading
     Result registryUninitialized(RegistryUninitialized value),
     Result registryLoading(RegistryLoading value),
     Result registryError(RegistryError value),
+    Result registryMissing(RegistryMissing value),
     Result registryLoaded(RegistryLoaded value),
     @required Result orElse(),
   }) {
@@ -421,6 +442,7 @@ class _$RegistryError with DiagnosticableTreeMixin implements RegistryError {
     @required Result registryUninitialized(),
     @required Result registryLoading(),
     @required Result registryError(),
+    @required Result registryMissing(),
     @required
         Result registryLoaded(
             User currentUser,
@@ -434,6 +456,7 @@ class _$RegistryError with DiagnosticableTreeMixin implements RegistryError {
     assert(registryUninitialized != null);
     assert(registryLoading != null);
     assert(registryError != null);
+    assert(registryMissing != null);
     assert(registryLoaded != null);
     return registryError();
   }
@@ -444,6 +467,7 @@ class _$RegistryError with DiagnosticableTreeMixin implements RegistryError {
     Result registryUninitialized(),
     Result registryLoading(),
     Result registryError(),
+    Result registryMissing(),
     Result registryLoaded(
         User currentUser,
         Lesson currentLesson,
@@ -467,11 +491,13 @@ class _$RegistryError with DiagnosticableTreeMixin implements RegistryError {
     @required Result registryUninitialized(RegistryUninitialized value),
     @required Result registryLoading(RegistryLoading value),
     @required Result registryError(RegistryError value),
+    @required Result registryMissing(RegistryMissing value),
     @required Result registryLoaded(RegistryLoaded value),
   }) {
     assert(registryUninitialized != null);
     assert(registryLoading != null);
     assert(registryError != null);
+    assert(registryMissing != null);
     assert(registryLoaded != null);
     return registryError(this);
   }
@@ -482,6 +508,7 @@ class _$RegistryError with DiagnosticableTreeMixin implements RegistryError {
     Result registryUninitialized(RegistryUninitialized value),
     Result registryLoading(RegistryLoading value),
     Result registryError(RegistryError value),
+    Result registryMissing(RegistryMissing value),
     Result registryLoaded(RegistryLoaded value),
     @required Result orElse(),
   }) {
@@ -495,6 +522,139 @@ class _$RegistryError with DiagnosticableTreeMixin implements RegistryError {
 
 abstract class RegistryError implements RegistryState {
   const factory RegistryError() = _$RegistryError;
+}
+
+/// @nodoc
+abstract class $RegistryMissingCopyWith<$Res> {
+  factory $RegistryMissingCopyWith(
+          RegistryMissing value, $Res Function(RegistryMissing) then) =
+      _$RegistryMissingCopyWithImpl<$Res>;
+}
+
+/// @nodoc
+class _$RegistryMissingCopyWithImpl<$Res>
+    extends _$RegistryStateCopyWithImpl<$Res>
+    implements $RegistryMissingCopyWith<$Res> {
+  _$RegistryMissingCopyWithImpl(
+      RegistryMissing _value, $Res Function(RegistryMissing) _then)
+      : super(_value, (v) => _then(v as RegistryMissing));
+
+  @override
+  RegistryMissing get _value => super._value as RegistryMissing;
+}
+
+/// @nodoc
+class _$RegistryMissing
+    with DiagnosticableTreeMixin
+    implements RegistryMissing {
+  const _$RegistryMissing();
+
+  @override
+  String toString({DiagnosticLevel minLevel = DiagnosticLevel.info}) {
+    return 'RegistryState.registryMissing()';
+  }
+
+  @override
+  void debugFillProperties(DiagnosticPropertiesBuilder properties) {
+    super.debugFillProperties(properties);
+    properties
+      ..add(DiagnosticsProperty('type', 'RegistryState.registryMissing'));
+  }
+
+  @override
+  bool operator ==(dynamic other) {
+    return identical(this, other) || (other is RegistryMissing);
+  }
+
+  @override
+  int get hashCode => runtimeType.hashCode;
+
+  @override
+  @optionalTypeArgs
+  Result when<Result extends Object>({
+    @required Result registryUninitialized(),
+    @required Result registryLoading(),
+    @required Result registryError(),
+    @required Result registryMissing(),
+    @required
+        Result registryLoaded(
+            User currentUser,
+            Lesson currentLesson,
+            bool isAcceptedUser,
+            bool isRegisteredUser,
+            bool isFullRegistry,
+            bool isEmptyRegistry,
+            bool isMasterOfTheClass),
+  }) {
+    assert(registryUninitialized != null);
+    assert(registryLoading != null);
+    assert(registryError != null);
+    assert(registryMissing != null);
+    assert(registryLoaded != null);
+    return registryMissing();
+  }
+
+  @override
+  @optionalTypeArgs
+  Result maybeWhen<Result extends Object>({
+    Result registryUninitialized(),
+    Result registryLoading(),
+    Result registryError(),
+    Result registryMissing(),
+    Result registryLoaded(
+        User currentUser,
+        Lesson currentLesson,
+        bool isAcceptedUser,
+        bool isRegisteredUser,
+        bool isFullRegistry,
+        bool isEmptyRegistry,
+        bool isMasterOfTheClass),
+    @required Result orElse(),
+  }) {
+    assert(orElse != null);
+    if (registryMissing != null) {
+      return registryMissing();
+    }
+    return orElse();
+  }
+
+  @override
+  @optionalTypeArgs
+  Result map<Result extends Object>({
+    @required Result registryUninitialized(RegistryUninitialized value),
+    @required Result registryLoading(RegistryLoading value),
+    @required Result registryError(RegistryError value),
+    @required Result registryMissing(RegistryMissing value),
+    @required Result registryLoaded(RegistryLoaded value),
+  }) {
+    assert(registryUninitialized != null);
+    assert(registryLoading != null);
+    assert(registryError != null);
+    assert(registryMissing != null);
+    assert(registryLoaded != null);
+    return registryMissing(this);
+  }
+
+  @override
+  @optionalTypeArgs
+  Result maybeMap<Result extends Object>({
+    Result registryUninitialized(RegistryUninitialized value),
+    Result registryLoading(RegistryLoading value),
+    Result registryError(RegistryError value),
+    Result registryMissing(RegistryMissing value),
+    Result registryLoaded(RegistryLoaded value),
+    @required Result orElse(),
+  }) {
+    assert(orElse != null);
+    if (registryMissing != null) {
+      return registryMissing(this);
+    }
+    return orElse();
+  }
+}
+
+abstract class RegistryMissing implements RegistryState {
+  const factory RegistryMissing() = _$RegistryMissing;
 }
 
 /// @nodoc
@@ -670,6 +830,7 @@ class _$RegistryLoaded with DiagnosticableTreeMixin implements RegistryLoaded {
     @required Result registryUninitialized(),
     @required Result registryLoading(),
     @required Result registryError(),
+    @required Result registryMissing(),
     @required
         Result registryLoaded(
             User currentUser,
@@ -683,6 +844,7 @@ class _$RegistryLoaded with DiagnosticableTreeMixin implements RegistryLoaded {
     assert(registryUninitialized != null);
     assert(registryLoading != null);
     assert(registryError != null);
+    assert(registryMissing != null);
     assert(registryLoaded != null);
     return registryLoaded(currentUser, currentLesson, isAcceptedUser,
         isRegisteredUser, isFullRegistry, isEmptyRegistry, isMasterOfTheClass);
@@ -694,6 +856,7 @@ class _$RegistryLoaded with DiagnosticableTreeMixin implements RegistryLoaded {
     Result registryUninitialized(),
     Result registryLoading(),
     Result registryError(),
+    Result registryMissing(),
     Result registryLoaded(
         User currentUser,
         Lesson currentLesson,
@@ -724,11 +887,13 @@ class _$RegistryLoaded with DiagnosticableTreeMixin implements RegistryLoaded {
     @required Result registryUninitialized(RegistryUninitialized value),
     @required Result registryLoading(RegistryLoading value),
     @required Result registryError(RegistryError value),
+    @required Result registryMissing(RegistryMissing value),
     @required Result registryLoaded(RegistryLoaded value),
   }) {
     assert(registryUninitialized != null);
     assert(registryLoading != null);
     assert(registryError != null);
+    assert(registryMissing != null);
     assert(registryLoaded != null);
     return registryLoaded(this);
   }
@@ -739,6 +904,7 @@ class _$RegistryLoaded with DiagnosticableTreeMixin implements RegistryLoaded {
     Result registryUninitialized(RegistryUninitialized value),
     Result registryLoading(RegistryLoading value),
     Result registryError(RegistryError value),
+    Result registryMissing(RegistryMissing value),
     Result registryLoaded(RegistryLoaded value),
     @required Result orElse(),
   }) {

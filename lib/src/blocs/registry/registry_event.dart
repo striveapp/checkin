@@ -10,7 +10,7 @@ part 'registry_event.freezed.dart';
 abstract class RegistryEvent with _$RegistryEvent {
   const factory RegistryEvent.registryUpdated({
     @required User currentUser,
-    @required Lesson currentLesson
+    Lesson currentLesson
   }) = RegistryUpdated;
 
   const factory RegistryEvent.register({
