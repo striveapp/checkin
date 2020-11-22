@@ -1,4 +1,5 @@
 import 'package:bloc/bloc.dart';
+import 'package:checkin/src/repositories/local_storage_repository.dart';
 import 'package:firebase_dynamic_links/firebase_dynamic_links.dart';
 import 'package:flutter/material.dart';
 
@@ -7,10 +8,14 @@ import 'dynamic_link_state.dart';
 
 class DynamicLinkBloc extends Bloc<DynamicLinkEvent, DynamicLinkState> {
   final FirebaseDynamicLinks _dynamicLinks;
+  final LocalStorageRepository _localStorageRepository;
 
-  DynamicLinkBloc({@required FirebaseDynamicLinks dynamicLinks})
-      : assert(dynamicLinks != null),
+  DynamicLinkBloc({
+    @required FirebaseDynamicLinks dynamicLinks,
+    @required LocalStorageRepository localStorageRepository,
+  })  : assert(dynamicLinks != null && localStorageRepository != null),
         _dynamicLinks = dynamicLinks,
+        _localStorageRepository = localStorageRepository,
         super(DynamicLinkInitial());
 
   @override
@@ -30,8 +35,11 @@ class DynamicLinkBloc extends Bloc<DynamicLinkEvent, DynamicLinkState> {
       String path = event.deepLink.path;
 
       if (path.startsWith("/register/")) {
-        yield DynamicLinkSetDefaultGym(
-            defaultGym: path.replaceAll("/register/", ""));
+        final referredGymId = path.replaceAll("/register/", "");
+        await _localStorageRepository.setItem(
+          "referredGym",
+          referredGymId,
+        );
       } else {
         if (event.deepLink.hasQuery) {
           path = "$path?${event.deepLink.query}";

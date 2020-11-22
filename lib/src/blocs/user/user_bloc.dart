@@ -38,7 +38,6 @@ class UserBloc extends Bloc<UserEvent, UserState> {
           .getUserByEmail(authState.loggedUser.email)
           .listen((user) {
         add(UserUpdated(user: user));
-        add(UpdateReferredGym(userEmail: user?.email, currentGymId: user?.selectedGymId));
         add(UserEvent.updateVersion(userEmail: user?.email));
       });
     }
@@ -107,8 +106,6 @@ class UserBloc extends Bloc<UserEvent, UserState> {
               userEmail,
               newSelectedGym,
             ),
-        updateReferredGym: (String userEmail, String currentGymId) async =>
-            await userRepository.updateReferredGymId(userEmail, currentGymId),
         updateVersion: (String userEmail) async {
           try {
             PackageInfo packageInfo = await PackageInfo.fromPlatform();

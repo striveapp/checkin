@@ -103,11 +103,6 @@ class _AppState extends State<App> {
 
                 Navigator.of(context).pushNamed(state.path);
               }
-              if (state is DynamicLinkSetDefaultGym) {
-                debugPrint("setting default gym to ${state.defaultGym}");
-                RepositoryProvider.of<UserRepository>(context)
-                    .setReferredGymId(state.defaultGym);
-              }
             }),
             BlocListener<VersionBloc, VersionState>(
                 listener: (BuildContext context, VersionState state) {

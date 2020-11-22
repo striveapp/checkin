@@ -12,6 +12,7 @@ import 'package:checkin/src/repositories/auth_repository.dart';
 import 'package:checkin/src/repositories/graduation_system_repository.dart';
 import 'package:checkin/src/repositories/image_repository.dart';
 import 'package:checkin/src/repositories/lesson_repository.dart';
+import 'package:checkin/src/repositories/local_storage_repository.dart';
 import 'package:checkin/src/repositories/membership_repository.dart';
 import 'package:checkin/src/repositories/stats_repository.dart';
 import 'package:checkin/src/repositories/storage_repository.dart';
@@ -21,6 +22,7 @@ import 'package:checkin/src/resources/analytics_provider.dart';
 import 'package:checkin/src/resources/auth_provider.dart';
 import 'package:checkin/src/resources/graduation_system_provider.dart';
 import 'package:checkin/src/resources/lesson_instances_provider.dart';
+import 'package:checkin/src/resources/local_storage_provider.dart';
 import 'package:checkin/src/resources/membership_provider.dart';
 import 'package:checkin/src/resources/stats_provider.dart';
 import 'package:checkin/src/resources/user_provider.dart';
@@ -59,12 +61,7 @@ Future<void> mainCommon(AppConfig _) async {
   final ImageRepository imageRepository = ImageRepository();
   final FirebaseDynamicLinks dynamicLinks = FirebaseDynamicLinks.instance;
 
-  // precache assets
-  await precachePicture(ExactAssetPicture(SvgPicture.svgStringDecoder, 'assets/icons/white-belt.svg'), null);
-  await precachePicture(ExactAssetPicture(SvgPicture.svgStringDecoder, 'assets/icons/blue-belt.svg'), null);
-  await precachePicture(ExactAssetPicture(SvgPicture.svgStringDecoder, 'assets/icons/purple-belt.svg'), null);
-  await precachePicture(ExactAssetPicture(SvgPicture.svgStringDecoder, 'assets/icons/brown-belt.svg'), null);
-  await precachePicture(ExactAssetPicture(SvgPicture.svgStringDecoder, 'assets/icons/black-belt.svg'), null);
+  await _precacheAssets();
 
   runZonedGuarded<Future<void>>(() async {
     runApp(
@@ -91,6 +88,9 @@ Future<void> mainCommon(AppConfig _) async {
           RepositoryProvider<GraduationSystemRepository>(
             create: (context) => GraduationSystemProvider(),
           ),
+          RepositoryProvider<LocalStorageRepository>(
+            create: (context) => LocalStorageProvider(),
+          ),
         ],
         child: MultiBlocProvider(
           providers: [
@@ -100,12 +100,16 @@ Future<void> mainCommon(AppConfig _) async {
             BlocProvider<AuthBloc>(
               create: (context) => AuthBloc(
                 authRepository: authRepository,
-                analyticsRepository: RepositoryProvider.of<AnalyticsRepository>(context),
+                analyticsRepository:
+                    RepositoryProvider.of<AnalyticsRepository>(context),
               )..add(AppStarted()),
             ),
             BlocProvider<DynamicLinkBloc>(
-              create: (context) => DynamicLinkBloc(dynamicLinks: dynamicLinks)
-                ..add(DeepLinkSetup()),
+              create: (context) => DynamicLinkBloc(
+                dynamicLinks: dynamicLinks,
+                localStorageRepository:
+                    RepositoryProvider.of<LocalStorageRepository>(context),
+              )..add(DeepLinkSetup()),
             ),
             BlocProvider<VersionBloc>(
                 create: (context) =>
@@ -124,4 +128,38 @@ Future<void> mainCommon(AppConfig _) async {
   }, (Object error, StackTrace stack) {
     FirebaseCrashlytics.instance.recordError(error, stack);
   });
+}
+
+Future _precacheAssets() async {
+  await precachePicture(
+      ExactAssetPicture(
+        SvgPicture.svgStringDecoder,
+        'assets/icons/white-belt.svg',
+      ),
+      null);
+  await precachePicture(
+    ExactAssetPicture(
+      SvgPicture.svgStringDecoder,
+      'assets/icons/blue-belt.svg',
+    ),
+    null,
+  );
+  await precachePicture(
+      ExactAssetPicture(
+        SvgPicture.svgStringDecoder,
+        'assets/icons/purple-belt.svg',
+      ),
+      null);
+  await precachePicture(
+      ExactAssetPicture(
+        SvgPicture.svgStringDecoder,
+        'assets/icons/brown-belt.svg',
+      ),
+      null);
+  await precachePicture(
+      ExactAssetPicture(
+        SvgPicture.svgStringDecoder,
+        'assets/icons/black-belt.svg',
+      ),
+      null);
 }

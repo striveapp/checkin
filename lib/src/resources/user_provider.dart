@@ -10,7 +10,6 @@ class UserProvider implements UserRepository {
   FirebaseFirestore _firestore = FirebaseFirestore.instance;
   StatsProvider statsProvider = StatsProvider();
   static const String path = 'users';
-  String referredGymId;
 
   Stream<User> getUserByEmail(String email) => _firestore
       .collection(path)
@@ -31,12 +30,19 @@ class UserProvider implements UserRepository {
         selectedGymId: data['selectedGymId']);
   }
 
-  Future<void> createUser(User newUser) async {
+  Future<void> createUser(User newUser, String referredGym) async {
     var userData = {
       'name': newUser.name,
       'email': newUser.email,
       'imageUrl': newUser.imageUrl,
     };
+
+    if(referredGym != null) {
+      userData = {
+        ...userData,
+        'selectedGymId': referredGym
+      };
+    }
 
     await _firestore
         .collection(path)
@@ -78,14 +84,11 @@ class UserProvider implements UserRepository {
   }
 
   Future<void> updateReferredGymId(
-      String userEmail, String currentGymId) async {
-    if (userEmail != null && referredGymId != null && referredGymId != currentGymId) {
-      print("update $userEmail, $currentGymId -> $referredGymId");
-      await _firestore
-          .collection(path)
-          .doc(userEmail)
-          .update({"selectedGymId": referredGymId});
-    }
+      String userEmail, String referredGymId) async {
+    await _firestore
+        .collection(path)
+        .doc(userEmail)
+        .update({"selectedGymId": referredGymId});
   }
 
   Future<void> updateUserImageUrl(String userEmail, String newImageUrl) async {
@@ -100,10 +103,5 @@ class UserProvider implements UserRepository {
         .collection(path)
         .doc(userEmail)
         .update({"appVersion": newVersion});
-  }
-
-  @override
-  void setReferredGymId(String defaultGym) {
-    this.referredGymId = defaultGym;
   }
 }

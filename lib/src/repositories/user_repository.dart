@@ -4,7 +4,7 @@ import 'package:checkin/src/models/user.dart';
 abstract class UserRepository {
   Stream<User> getUserByEmail(String email);
 
-  Future<void> createUser(User newUser);
+  Future<void> createUser(User newUser, String referredGym);
 
   Future<void> updateGrade(String userEmail, Grade newGrade);
 
@@ -16,10 +16,7 @@ abstract class UserRepository {
 
   Future<void> updateSelectedGymId(String userEmail, String newSelectedGym);
 
-  Future<void> updateReferredGymId(String userEmail, String currentGymId);
+  Future<void> updateReferredGymId(String userEmail, String referredGymId);
 
   Future<void> updateUserVersion(String userEmail, String newVersion);
-
-  void setReferredGymId(String defaultGym);
-
 }
