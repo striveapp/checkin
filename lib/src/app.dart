@@ -48,14 +48,29 @@ class App extends StatefulWidget {
   _AppState createState() => _AppState();
 }
 
-class _AppState extends State<App> {
+class _AppState extends State<App> with WidgetsBindingObserver {
   @override
   void initState() {
     super.initState();
     _onPlatformBrightnessChanged();
 
-    final window = WidgetsBinding.instance.window;
-    window.onPlatformBrightnessChanged = _onPlatformBrightnessChanged;
+    var instance = WidgetsBinding.instance;
+    instance.addObserver(this);
+    instance.window.onPlatformBrightnessChanged = _onPlatformBrightnessChanged;
+  }
+
+  @override
+  void dispose() {
+    WidgetsBinding.instance.removeObserver(this);
+    super.dispose();
+  }
+
+  @override
+  void didChangeAppLifecycleState(final AppLifecycleState state) {
+    if (state == AppLifecycleState.resumed) {
+      var authBloc = context.read<AuthBloc>();
+      authBloc.add(AppStarted());
+    }
   }
 
   void _onPlatformBrightnessChanged() {

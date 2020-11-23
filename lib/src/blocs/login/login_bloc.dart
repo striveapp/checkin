@@ -3,7 +3,6 @@ import 'package:checkin/src/blocs/login/login_event.dart';
 import 'package:checkin/src/blocs/login/login_state.dart';
 import 'package:checkin/src/repositories/analytics_repository.dart';
 import 'package:checkin/src/repositories/auth_repository.dart';
-import 'package:checkin/src/repositories/local_storage_repository.dart';
 import 'package:checkin/src/repositories/user_repository.dart';
 import 'package:checkin/src/resources/auth_provider.dart' hide AuthProvider;
 import 'package:flutter/foundation.dart';
@@ -13,22 +12,18 @@ class LoginBloc extends Bloc<LoginEvent, LoginState> {
   final AuthRepository _authRepository;
   final UserRepository _userRepository;
   final AnalyticsRepository _analyticsRepository;
-  final LocalStorageRepository _localStorageRepository;
   static const loginError = 'Login failed';
 
   LoginBloc({
     @required AuthRepository authRepository,
     @required UserRepository userRepository,
     @required AnalyticsRepository analyticsRepository,
-    @required LocalStorageRepository localStorageRepository,
   })  : assert(authRepository != null &&
             userRepository != null &&
-            authRepository != null &&
-            localStorageRepository != null),
+            authRepository != null),
         _authRepository = authRepository,
         _userRepository = userRepository,
         _analyticsRepository = analyticsRepository,
-        _localStorageRepository = localStorageRepository,
         super(LoginInitial());
 
   @override
@@ -41,7 +36,6 @@ class LoginBloc extends Bloc<LoginEvent, LoginState> {
           await _analyticsRepository.logLoginWithGoogleSignIn();
           await _userRepository.createUser(
             loggedUser,
-            await _getReferredGym(),
           );
           yield LoginSuccess(loggedUser: loggedUser);
         } else {
@@ -67,7 +61,6 @@ class LoginBloc extends Bloc<LoginEvent, LoginState> {
           await _analyticsRepository.logLoginWithAppleSignIn();
           await _userRepository.createUser(
             loggedUser,
-            await _getReferredGym(),
           );
           yield LoginSuccess(loggedUser: loggedUser);
         } else {
@@ -118,12 +111,5 @@ class LoginBloc extends Bloc<LoginEvent, LoginState> {
       debugPrint('Logged with test user [$testOwner]');
       yield LoginSuccess(loggedUser: testOwner);
     }
-  }
-
-  Future<dynamic> _getReferredGym() async {
-    if (await _localStorageRepository.containsItem("referredGym")) {
-      return await _localStorageRepository.getItem("referredGym");
-    }
-    return null;
   }
 }

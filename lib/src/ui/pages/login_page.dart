@@ -1,7 +1,6 @@
 import 'package:checkin/src/blocs/login/bloc.dart';
 import 'package:checkin/src/repositories/analytics_repository.dart';
 import 'package:checkin/src/repositories/auth_repository.dart';
-import 'package:checkin/src/repositories/local_storage_repository.dart';
 import 'package:checkin/src/repositories/user_repository.dart';
 import 'package:checkin/src/ui/components/login_form.dart';
 import 'package:flutter/material.dart';
@@ -32,7 +31,6 @@ class LoginPage extends StatelessWidget {
           authRepository: _authRepository,
           userRepository: context.read<UserRepository>(),
           analyticsRepository: context.read<AnalyticsRepository>(),
-          localStorageRepository: context.read<LocalStorageRepository>(),
         ),
         child: LoginForm(),
       ),

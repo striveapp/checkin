@@ -1,7 +1,7 @@
 abstract class LocalStorageRepository {
-  Future<void> setItem(String key, dynamic value);
+  Stream<String> getReferredGymId();
 
-  Future<dynamic> getItem(String key);
+  Future<void> setReferredGymId(String gymId);
 
-  Future<bool> containsItem(String key);
+  Future<void> removeReferredGym();
 }

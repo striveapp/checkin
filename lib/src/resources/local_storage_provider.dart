@@ -1,37 +1,25 @@
 import 'package:checkin/src/repositories/local_storage_repository.dart';
+import 'package:rx_shared_preferences/rx_shared_preferences.dart';
 import 'package:shared_preferences/shared_preferences.dart';
 
 class LocalStorageProvider implements LocalStorageRepository {
-  @override
-  Future<void> setItem(String key, dynamic value) async {
-    SharedPreferences prefs = await SharedPreferences.getInstance();
-    switch (value.runtimeType) {
-      case int:
-        await prefs.setInt(key, value);
-        break;
-      case String:
-        await prefs.setString(key, value);
-        break;
-      case bool:
-        await prefs.setBool(key, value);
-        break;
-      case double:
-        await prefs.setDouble(key, value);
-        break;
-      default:
-        throw "Is not possible to store values of type: [${value.runtimeType}] in the local storage";
-    }
+  static final String REFERRED_GYM_ID = "referredGym";
+  final rxPrefs = RxSharedPreferences(SharedPreferences.getInstance());
+
+  Future<void> setReferredGymId(String gymId) async {
+    await rxPrefs.setString(
+      REFERRED_GYM_ID,
+      gymId,
+    );
   }
 
-  @override
-  Future<dynamic> getItem(String key) async {
-    SharedPreferences prefs = await SharedPreferences.getInstance();
-    return await prefs.get(key);
+  Stream<String> getReferredGymId() {
+    return rxPrefs
+        .getStringStream(REFERRED_GYM_ID)
+        .skipWhile((element) => element == null);
   }
 
-  @override
-  Future<bool> containsItem(String key) async {
-    SharedPreferences prefs = await SharedPreferences.getInstance();
-    return await prefs.containsKey(key);
+  Future<void> removeReferredGym() async {
+    await rxPrefs.remove(REFERRED_GYM_ID);
   }
 }

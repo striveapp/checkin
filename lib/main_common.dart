@@ -102,6 +102,8 @@ Future<void> mainCommon(AppConfig _) async {
                 authRepository: authRepository,
                 analyticsRepository:
                     RepositoryProvider.of<AnalyticsRepository>(context),
+                userRepository: context.read<UserRepository>(),
+                localStorageRepository: context.read<LocalStorageRepository>()
               )..add(AppStarted()),
             ),
             BlocProvider<DynamicLinkBloc>(

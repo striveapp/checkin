@@ -106,15 +106,13 @@ void main() {
 
         setUp(() {
           TestWidgetsFlutterBinding.ensureInitialized();
-          when(mockLocalStorageRepository.setItem(
-            "referredGym",
+          when(mockLocalStorageRepository.setReferredGymId(
             "fakeGym",
           )).thenAnswer((_) => Future.value(null));
         });
 
         tearDown(() {
-          verify(mockLocalStorageRepository.setItem(
-            "referredGym",
+          verify(mockLocalStorageRepository.setReferredGymId(
             "fakeGym",
           ));
         });

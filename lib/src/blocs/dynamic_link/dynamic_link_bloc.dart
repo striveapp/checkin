@@ -36,10 +36,7 @@ class DynamicLinkBloc extends Bloc<DynamicLinkEvent, DynamicLinkState> {
 
       if (path.startsWith("/register/")) {
         final referredGymId = path.replaceAll("/register/", "");
-        await _localStorageRepository.setItem(
-          "referredGym",
-          referredGymId,
-        );
+        await _localStorageRepository.setReferredGymId(referredGymId);
       } else {
         if (event.deepLink.hasQuery) {
           path = "$path?${event.deepLink.query}";

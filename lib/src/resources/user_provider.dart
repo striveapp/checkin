@@ -30,19 +30,12 @@ class UserProvider implements UserRepository {
         selectedGymId: data['selectedGymId']);
   }
 
-  Future<void> createUser(User newUser, String referredGym) async {
+  Future<void> createUser(User newUser) async {
     var userData = {
       'name': newUser.name,
       'email': newUser.email,
       'imageUrl': newUser.imageUrl,
     };
-
-    if(referredGym != null) {
-      userData = {
-        ...userData,
-        'selectedGymId': referredGym
-      };
-    }
 
     await _firestore
         .collection(path)
