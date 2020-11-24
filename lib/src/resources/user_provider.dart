@@ -76,14 +76,6 @@ class UserProvider implements UserRepository {
         .update({"selectedGymId": newSelectedGym});
   }
 
-  Future<void> updateReferredGymId(
-      String userEmail, String referredGymId) async {
-    await _firestore
-        .collection(path)
-        .doc(userEmail)
-        .update({"selectedGymId": referredGymId});
-  }
-
   Future<void> updateUserImageUrl(String userEmail, String newImageUrl) async {
     await _firestore
         .collection(path)
