@@ -51,34 +51,34 @@ const $PaymentMethodsEvent = _$PaymentMethodsEventTearOff();
 /// @nodoc
 mixin _$PaymentMethodsEvent {
   @optionalTypeArgs
-  Result when<Result extends Object>({
+  TResult when<TResult extends Object>({
     @required
-        Result paymentMethodUpdated(
+        TResult paymentMethodUpdated(
             String userEmail, PaymentMethod paymentMethod),
-    @required Result registerBankAccount(Gym gym, String billingEmail),
+    @required TResult registerBankAccount(Gym gym, String billingEmail),
     @required
-        Result changeBankAccount(
+        TResult changeBankAccount(
             Gym gym, String billingEmail, String customerId),
   });
   @optionalTypeArgs
-  Result maybeWhen<Result extends Object>({
-    Result paymentMethodUpdated(String userEmail, PaymentMethod paymentMethod),
-    Result registerBankAccount(Gym gym, String billingEmail),
-    Result changeBankAccount(Gym gym, String billingEmail, String customerId),
-    @required Result orElse(),
+  TResult maybeWhen<TResult extends Object>({
+    TResult paymentMethodUpdated(String userEmail, PaymentMethod paymentMethod),
+    TResult registerBankAccount(Gym gym, String billingEmail),
+    TResult changeBankAccount(Gym gym, String billingEmail, String customerId),
+    @required TResult orElse(),
   });
   @optionalTypeArgs
-  Result map<Result extends Object>({
-    @required Result paymentMethodUpdated(PaymentMethodUpdated value),
-    @required Result registerBankAccount(RegisterBankAccount value),
-    @required Result changeBankAccount(ChangeBankAccount value),
+  TResult map<TResult extends Object>({
+    @required TResult paymentMethodUpdated(PaymentMethodUpdated value),
+    @required TResult registerBankAccount(RegisterBankAccount value),
+    @required TResult changeBankAccount(ChangeBankAccount value),
   });
   @optionalTypeArgs
-  Result maybeMap<Result extends Object>({
-    Result paymentMethodUpdated(PaymentMethodUpdated value),
-    Result registerBankAccount(RegisterBankAccount value),
-    Result changeBankAccount(ChangeBankAccount value),
-    @required Result orElse(),
+  TResult maybeMap<TResult extends Object>({
+    TResult paymentMethodUpdated(PaymentMethodUpdated value),
+    TResult registerBankAccount(RegisterBankAccount value),
+    TResult changeBankAccount(ChangeBankAccount value),
+    @required TResult orElse(),
   });
 }
 
@@ -196,13 +196,13 @@ class _$PaymentMethodUpdated
 
   @override
   @optionalTypeArgs
-  Result when<Result extends Object>({
+  TResult when<TResult extends Object>({
     @required
-        Result paymentMethodUpdated(
+        TResult paymentMethodUpdated(
             String userEmail, PaymentMethod paymentMethod),
-    @required Result registerBankAccount(Gym gym, String billingEmail),
+    @required TResult registerBankAccount(Gym gym, String billingEmail),
     @required
-        Result changeBankAccount(
+        TResult changeBankAccount(
             Gym gym, String billingEmail, String customerId),
   }) {
     assert(paymentMethodUpdated != null);
@@ -213,11 +213,11 @@ class _$PaymentMethodUpdated
 
   @override
   @optionalTypeArgs
-  Result maybeWhen<Result extends Object>({
-    Result paymentMethodUpdated(String userEmail, PaymentMethod paymentMethod),
-    Result registerBankAccount(Gym gym, String billingEmail),
-    Result changeBankAccount(Gym gym, String billingEmail, String customerId),
-    @required Result orElse(),
+  TResult maybeWhen<TResult extends Object>({
+    TResult paymentMethodUpdated(String userEmail, PaymentMethod paymentMethod),
+    TResult registerBankAccount(Gym gym, String billingEmail),
+    TResult changeBankAccount(Gym gym, String billingEmail, String customerId),
+    @required TResult orElse(),
   }) {
     assert(orElse != null);
     if (paymentMethodUpdated != null) {
@@ -228,10 +228,10 @@ class _$PaymentMethodUpdated
 
   @override
   @optionalTypeArgs
-  Result map<Result extends Object>({
-    @required Result paymentMethodUpdated(PaymentMethodUpdated value),
-    @required Result registerBankAccount(RegisterBankAccount value),
-    @required Result changeBankAccount(ChangeBankAccount value),
+  TResult map<TResult extends Object>({
+    @required TResult paymentMethodUpdated(PaymentMethodUpdated value),
+    @required TResult registerBankAccount(RegisterBankAccount value),
+    @required TResult changeBankAccount(ChangeBankAccount value),
   }) {
     assert(paymentMethodUpdated != null);
     assert(registerBankAccount != null);
@@ -241,11 +241,11 @@ class _$PaymentMethodUpdated
 
   @override
   @optionalTypeArgs
-  Result maybeMap<Result extends Object>({
-    Result paymentMethodUpdated(PaymentMethodUpdated value),
-    Result registerBankAccount(RegisterBankAccount value),
-    Result changeBankAccount(ChangeBankAccount value),
-    @required Result orElse(),
+  TResult maybeMap<TResult extends Object>({
+    TResult paymentMethodUpdated(PaymentMethodUpdated value),
+    TResult registerBankAccount(RegisterBankAccount value),
+    TResult changeBankAccount(ChangeBankAccount value),
+    @required TResult orElse(),
   }) {
     assert(orElse != null);
     if (paymentMethodUpdated != null) {
@@ -361,13 +361,13 @@ class _$RegisterBankAccount
 
   @override
   @optionalTypeArgs
-  Result when<Result extends Object>({
+  TResult when<TResult extends Object>({
     @required
-        Result paymentMethodUpdated(
+        TResult paymentMethodUpdated(
             String userEmail, PaymentMethod paymentMethod),
-    @required Result registerBankAccount(Gym gym, String billingEmail),
+    @required TResult registerBankAccount(Gym gym, String billingEmail),
     @required
-        Result changeBankAccount(
+        TResult changeBankAccount(
             Gym gym, String billingEmail, String customerId),
   }) {
     assert(paymentMethodUpdated != null);
@@ -378,11 +378,11 @@ class _$RegisterBankAccount
 
   @override
   @optionalTypeArgs
-  Result maybeWhen<Result extends Object>({
-    Result paymentMethodUpdated(String userEmail, PaymentMethod paymentMethod),
-    Result registerBankAccount(Gym gym, String billingEmail),
-    Result changeBankAccount(Gym gym, String billingEmail, String customerId),
-    @required Result orElse(),
+  TResult maybeWhen<TResult extends Object>({
+    TResult paymentMethodUpdated(String userEmail, PaymentMethod paymentMethod),
+    TResult registerBankAccount(Gym gym, String billingEmail),
+    TResult changeBankAccount(Gym gym, String billingEmail, String customerId),
+    @required TResult orElse(),
   }) {
     assert(orElse != null);
     if (registerBankAccount != null) {
@@ -393,10 +393,10 @@ class _$RegisterBankAccount
 
   @override
   @optionalTypeArgs
-  Result map<Result extends Object>({
-    @required Result paymentMethodUpdated(PaymentMethodUpdated value),
-    @required Result registerBankAccount(RegisterBankAccount value),
-    @required Result changeBankAccount(ChangeBankAccount value),
+  TResult map<TResult extends Object>({
+    @required TResult paymentMethodUpdated(PaymentMethodUpdated value),
+    @required TResult registerBankAccount(RegisterBankAccount value),
+    @required TResult changeBankAccount(ChangeBankAccount value),
   }) {
     assert(paymentMethodUpdated != null);
     assert(registerBankAccount != null);
@@ -406,11 +406,11 @@ class _$RegisterBankAccount
 
   @override
   @optionalTypeArgs
-  Result maybeMap<Result extends Object>({
-    Result paymentMethodUpdated(PaymentMethodUpdated value),
-    Result registerBankAccount(RegisterBankAccount value),
-    Result changeBankAccount(ChangeBankAccount value),
-    @required Result orElse(),
+  TResult maybeMap<TResult extends Object>({
+    TResult paymentMethodUpdated(PaymentMethodUpdated value),
+    TResult registerBankAccount(RegisterBankAccount value),
+    TResult changeBankAccount(ChangeBankAccount value),
+    @required TResult orElse(),
   }) {
     assert(orElse != null);
     if (registerBankAccount != null) {
@@ -540,13 +540,13 @@ class _$ChangeBankAccount
 
   @override
   @optionalTypeArgs
-  Result when<Result extends Object>({
+  TResult when<TResult extends Object>({
     @required
-        Result paymentMethodUpdated(
+        TResult paymentMethodUpdated(
             String userEmail, PaymentMethod paymentMethod),
-    @required Result registerBankAccount(Gym gym, String billingEmail),
+    @required TResult registerBankAccount(Gym gym, String billingEmail),
     @required
-        Result changeBankAccount(
+        TResult changeBankAccount(
             Gym gym, String billingEmail, String customerId),
   }) {
     assert(paymentMethodUpdated != null);
@@ -557,11 +557,11 @@ class _$ChangeBankAccount
 
   @override
   @optionalTypeArgs
-  Result maybeWhen<Result extends Object>({
-    Result paymentMethodUpdated(String userEmail, PaymentMethod paymentMethod),
-    Result registerBankAccount(Gym gym, String billingEmail),
-    Result changeBankAccount(Gym gym, String billingEmail, String customerId),
-    @required Result orElse(),
+  TResult maybeWhen<TResult extends Object>({
+    TResult paymentMethodUpdated(String userEmail, PaymentMethod paymentMethod),
+    TResult registerBankAccount(Gym gym, String billingEmail),
+    TResult changeBankAccount(Gym gym, String billingEmail, String customerId),
+    @required TResult orElse(),
   }) {
     assert(orElse != null);
     if (changeBankAccount != null) {
@@ -572,10 +572,10 @@ class _$ChangeBankAccount
 
   @override
   @optionalTypeArgs
-  Result map<Result extends Object>({
-    @required Result paymentMethodUpdated(PaymentMethodUpdated value),
-    @required Result registerBankAccount(RegisterBankAccount value),
-    @required Result changeBankAccount(ChangeBankAccount value),
+  TResult map<TResult extends Object>({
+    @required TResult paymentMethodUpdated(PaymentMethodUpdated value),
+    @required TResult registerBankAccount(RegisterBankAccount value),
+    @required TResult changeBankAccount(ChangeBankAccount value),
   }) {
     assert(paymentMethodUpdated != null);
     assert(registerBankAccount != null);
@@ -585,11 +585,11 @@ class _$ChangeBankAccount
 
   @override
   @optionalTypeArgs
-  Result maybeMap<Result extends Object>({
-    Result paymentMethodUpdated(PaymentMethodUpdated value),
-    Result registerBankAccount(RegisterBankAccount value),
-    Result changeBankAccount(ChangeBankAccount value),
-    @required Result orElse(),
+  TResult maybeMap<TResult extends Object>({
+    TResult paymentMethodUpdated(PaymentMethodUpdated value),
+    TResult registerBankAccount(RegisterBankAccount value),
+    TResult changeBankAccount(ChangeBankAccount value),
+    @required TResult orElse(),
   }) {
     assert(orElse != null);
     if (changeBankAccount != null) {

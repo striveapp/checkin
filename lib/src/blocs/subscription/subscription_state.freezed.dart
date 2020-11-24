@@ -43,34 +43,34 @@ const $SubscriptionState = _$SubscriptionStateTearOff();
 /// @nodoc
 mixin _$SubscriptionState {
   @optionalTypeArgs
-  Result when<Result extends Object>({
-    @required Result subscriptionInitial(),
-    @required Result subscriptionSuccess(),
-    @required Result subscriptionLoading(),
-    @required Result subscriptionError(String errorMessage),
+  TResult when<TResult extends Object>({
+    @required TResult subscriptionInitial(),
+    @required TResult subscriptionSuccess(),
+    @required TResult subscriptionLoading(),
+    @required TResult subscriptionError(String errorMessage),
   });
   @optionalTypeArgs
-  Result maybeWhen<Result extends Object>({
-    Result subscriptionInitial(),
-    Result subscriptionSuccess(),
-    Result subscriptionLoading(),
-    Result subscriptionError(String errorMessage),
-    @required Result orElse(),
+  TResult maybeWhen<TResult extends Object>({
+    TResult subscriptionInitial(),
+    TResult subscriptionSuccess(),
+    TResult subscriptionLoading(),
+    TResult subscriptionError(String errorMessage),
+    @required TResult orElse(),
   });
   @optionalTypeArgs
-  Result map<Result extends Object>({
-    @required Result subscriptionInitial(SubscriptionInitial value),
-    @required Result subscriptionSuccess(SubscriptionSuccess value),
-    @required Result subscriptionLoading(SubscriptionLoading value),
-    @required Result subscriptionError(SubscriptionError value),
+  TResult map<TResult extends Object>({
+    @required TResult subscriptionInitial(SubscriptionInitial value),
+    @required TResult subscriptionSuccess(SubscriptionSuccess value),
+    @required TResult subscriptionLoading(SubscriptionLoading value),
+    @required TResult subscriptionError(SubscriptionError value),
   });
   @optionalTypeArgs
-  Result maybeMap<Result extends Object>({
-    Result subscriptionInitial(SubscriptionInitial value),
-    Result subscriptionSuccess(SubscriptionSuccess value),
-    Result subscriptionLoading(SubscriptionLoading value),
-    Result subscriptionError(SubscriptionError value),
-    @required Result orElse(),
+  TResult maybeMap<TResult extends Object>({
+    TResult subscriptionInitial(SubscriptionInitial value),
+    TResult subscriptionSuccess(SubscriptionSuccess value),
+    TResult subscriptionLoading(SubscriptionLoading value),
+    TResult subscriptionError(SubscriptionError value),
+    @required TResult orElse(),
   });
 }
 
@@ -129,11 +129,11 @@ class _$SubscriptionInitial implements SubscriptionInitial {
 
   @override
   @optionalTypeArgs
-  Result when<Result extends Object>({
-    @required Result subscriptionInitial(),
-    @required Result subscriptionSuccess(),
-    @required Result subscriptionLoading(),
-    @required Result subscriptionError(String errorMessage),
+  TResult when<TResult extends Object>({
+    @required TResult subscriptionInitial(),
+    @required TResult subscriptionSuccess(),
+    @required TResult subscriptionLoading(),
+    @required TResult subscriptionError(String errorMessage),
   }) {
     assert(subscriptionInitial != null);
     assert(subscriptionSuccess != null);
@@ -144,12 +144,12 @@ class _$SubscriptionInitial implements SubscriptionInitial {
 
   @override
   @optionalTypeArgs
-  Result maybeWhen<Result extends Object>({
-    Result subscriptionInitial(),
-    Result subscriptionSuccess(),
-    Result subscriptionLoading(),
-    Result subscriptionError(String errorMessage),
-    @required Result orElse(),
+  TResult maybeWhen<TResult extends Object>({
+    TResult subscriptionInitial(),
+    TResult subscriptionSuccess(),
+    TResult subscriptionLoading(),
+    TResult subscriptionError(String errorMessage),
+    @required TResult orElse(),
   }) {
     assert(orElse != null);
     if (subscriptionInitial != null) {
@@ -160,11 +160,11 @@ class _$SubscriptionInitial implements SubscriptionInitial {
 
   @override
   @optionalTypeArgs
-  Result map<Result extends Object>({
-    @required Result subscriptionInitial(SubscriptionInitial value),
-    @required Result subscriptionSuccess(SubscriptionSuccess value),
-    @required Result subscriptionLoading(SubscriptionLoading value),
-    @required Result subscriptionError(SubscriptionError value),
+  TResult map<TResult extends Object>({
+    @required TResult subscriptionInitial(SubscriptionInitial value),
+    @required TResult subscriptionSuccess(SubscriptionSuccess value),
+    @required TResult subscriptionLoading(SubscriptionLoading value),
+    @required TResult subscriptionError(SubscriptionError value),
   }) {
     assert(subscriptionInitial != null);
     assert(subscriptionSuccess != null);
@@ -175,12 +175,12 @@ class _$SubscriptionInitial implements SubscriptionInitial {
 
   @override
   @optionalTypeArgs
-  Result maybeMap<Result extends Object>({
-    Result subscriptionInitial(SubscriptionInitial value),
-    Result subscriptionSuccess(SubscriptionSuccess value),
-    Result subscriptionLoading(SubscriptionLoading value),
-    Result subscriptionError(SubscriptionError value),
-    @required Result orElse(),
+  TResult maybeMap<TResult extends Object>({
+    TResult subscriptionInitial(SubscriptionInitial value),
+    TResult subscriptionSuccess(SubscriptionSuccess value),
+    TResult subscriptionLoading(SubscriptionLoading value),
+    TResult subscriptionError(SubscriptionError value),
+    @required TResult orElse(),
   }) {
     assert(orElse != null);
     if (subscriptionInitial != null) {
@@ -232,11 +232,11 @@ class _$SubscriptionSuccess implements SubscriptionSuccess {
 
   @override
   @optionalTypeArgs
-  Result when<Result extends Object>({
-    @required Result subscriptionInitial(),
-    @required Result subscriptionSuccess(),
-    @required Result subscriptionLoading(),
-    @required Result subscriptionError(String errorMessage),
+  TResult when<TResult extends Object>({
+    @required TResult subscriptionInitial(),
+    @required TResult subscriptionSuccess(),
+    @required TResult subscriptionLoading(),
+    @required TResult subscriptionError(String errorMessage),
   }) {
     assert(subscriptionInitial != null);
     assert(subscriptionSuccess != null);
@@ -247,12 +247,12 @@ class _$SubscriptionSuccess implements SubscriptionSuccess {
 
   @override
   @optionalTypeArgs
-  Result maybeWhen<Result extends Object>({
-    Result subscriptionInitial(),
-    Result subscriptionSuccess(),
-    Result subscriptionLoading(),
-    Result subscriptionError(String errorMessage),
-    @required Result orElse(),
+  TResult maybeWhen<TResult extends Object>({
+    TResult subscriptionInitial(),
+    TResult subscriptionSuccess(),
+    TResult subscriptionLoading(),
+    TResult subscriptionError(String errorMessage),
+    @required TResult orElse(),
   }) {
     assert(orElse != null);
     if (subscriptionSuccess != null) {
@@ -263,11 +263,11 @@ class _$SubscriptionSuccess implements SubscriptionSuccess {
 
   @override
   @optionalTypeArgs
-  Result map<Result extends Object>({
-    @required Result subscriptionInitial(SubscriptionInitial value),
-    @required Result subscriptionSuccess(SubscriptionSuccess value),
-    @required Result subscriptionLoading(SubscriptionLoading value),
-    @required Result subscriptionError(SubscriptionError value),
+  TResult map<TResult extends Object>({
+    @required TResult subscriptionInitial(SubscriptionInitial value),
+    @required TResult subscriptionSuccess(SubscriptionSuccess value),
+    @required TResult subscriptionLoading(SubscriptionLoading value),
+    @required TResult subscriptionError(SubscriptionError value),
   }) {
     assert(subscriptionInitial != null);
     assert(subscriptionSuccess != null);
@@ -278,12 +278,12 @@ class _$SubscriptionSuccess implements SubscriptionSuccess {
 
   @override
   @optionalTypeArgs
-  Result maybeMap<Result extends Object>({
-    Result subscriptionInitial(SubscriptionInitial value),
-    Result subscriptionSuccess(SubscriptionSuccess value),
-    Result subscriptionLoading(SubscriptionLoading value),
-    Result subscriptionError(SubscriptionError value),
-    @required Result orElse(),
+  TResult maybeMap<TResult extends Object>({
+    TResult subscriptionInitial(SubscriptionInitial value),
+    TResult subscriptionSuccess(SubscriptionSuccess value),
+    TResult subscriptionLoading(SubscriptionLoading value),
+    TResult subscriptionError(SubscriptionError value),
+    @required TResult orElse(),
   }) {
     assert(orElse != null);
     if (subscriptionSuccess != null) {
@@ -335,11 +335,11 @@ class _$SubscriptionLoading implements SubscriptionLoading {
 
   @override
   @optionalTypeArgs
-  Result when<Result extends Object>({
-    @required Result subscriptionInitial(),
-    @required Result subscriptionSuccess(),
-    @required Result subscriptionLoading(),
-    @required Result subscriptionError(String errorMessage),
+  TResult when<TResult extends Object>({
+    @required TResult subscriptionInitial(),
+    @required TResult subscriptionSuccess(),
+    @required TResult subscriptionLoading(),
+    @required TResult subscriptionError(String errorMessage),
   }) {
     assert(subscriptionInitial != null);
     assert(subscriptionSuccess != null);
@@ -350,12 +350,12 @@ class _$SubscriptionLoading implements SubscriptionLoading {
 
   @override
   @optionalTypeArgs
-  Result maybeWhen<Result extends Object>({
-    Result subscriptionInitial(),
-    Result subscriptionSuccess(),
-    Result subscriptionLoading(),
-    Result subscriptionError(String errorMessage),
-    @required Result orElse(),
+  TResult maybeWhen<TResult extends Object>({
+    TResult subscriptionInitial(),
+    TResult subscriptionSuccess(),
+    TResult subscriptionLoading(),
+    TResult subscriptionError(String errorMessage),
+    @required TResult orElse(),
   }) {
     assert(orElse != null);
     if (subscriptionLoading != null) {
@@ -366,11 +366,11 @@ class _$SubscriptionLoading implements SubscriptionLoading {
 
   @override
   @optionalTypeArgs
-  Result map<Result extends Object>({
-    @required Result subscriptionInitial(SubscriptionInitial value),
-    @required Result subscriptionSuccess(SubscriptionSuccess value),
-    @required Result subscriptionLoading(SubscriptionLoading value),
-    @required Result subscriptionError(SubscriptionError value),
+  TResult map<TResult extends Object>({
+    @required TResult subscriptionInitial(SubscriptionInitial value),
+    @required TResult subscriptionSuccess(SubscriptionSuccess value),
+    @required TResult subscriptionLoading(SubscriptionLoading value),
+    @required TResult subscriptionError(SubscriptionError value),
   }) {
     assert(subscriptionInitial != null);
     assert(subscriptionSuccess != null);
@@ -381,12 +381,12 @@ class _$SubscriptionLoading implements SubscriptionLoading {
 
   @override
   @optionalTypeArgs
-  Result maybeMap<Result extends Object>({
-    Result subscriptionInitial(SubscriptionInitial value),
-    Result subscriptionSuccess(SubscriptionSuccess value),
-    Result subscriptionLoading(SubscriptionLoading value),
-    Result subscriptionError(SubscriptionError value),
-    @required Result orElse(),
+  TResult maybeMap<TResult extends Object>({
+    TResult subscriptionInitial(SubscriptionInitial value),
+    TResult subscriptionSuccess(SubscriptionSuccess value),
+    TResult subscriptionLoading(SubscriptionLoading value),
+    TResult subscriptionError(SubscriptionError value),
+    @required TResult orElse(),
   }) {
     assert(orElse != null);
     if (subscriptionLoading != null) {
@@ -462,11 +462,11 @@ class _$SubscriptionError implements SubscriptionError {
 
   @override
   @optionalTypeArgs
-  Result when<Result extends Object>({
-    @required Result subscriptionInitial(),
-    @required Result subscriptionSuccess(),
-    @required Result subscriptionLoading(),
-    @required Result subscriptionError(String errorMessage),
+  TResult when<TResult extends Object>({
+    @required TResult subscriptionInitial(),
+    @required TResult subscriptionSuccess(),
+    @required TResult subscriptionLoading(),
+    @required TResult subscriptionError(String errorMessage),
   }) {
     assert(subscriptionInitial != null);
     assert(subscriptionSuccess != null);
@@ -477,12 +477,12 @@ class _$SubscriptionError implements SubscriptionError {
 
   @override
   @optionalTypeArgs
-  Result maybeWhen<Result extends Object>({
-    Result subscriptionInitial(),
-    Result subscriptionSuccess(),
-    Result subscriptionLoading(),
-    Result subscriptionError(String errorMessage),
-    @required Result orElse(),
+  TResult maybeWhen<TResult extends Object>({
+    TResult subscriptionInitial(),
+    TResult subscriptionSuccess(),
+    TResult subscriptionLoading(),
+    TResult subscriptionError(String errorMessage),
+    @required TResult orElse(),
   }) {
     assert(orElse != null);
     if (subscriptionError != null) {
@@ -493,11 +493,11 @@ class _$SubscriptionError implements SubscriptionError {
 
   @override
   @optionalTypeArgs
-  Result map<Result extends Object>({
-    @required Result subscriptionInitial(SubscriptionInitial value),
-    @required Result subscriptionSuccess(SubscriptionSuccess value),
-    @required Result subscriptionLoading(SubscriptionLoading value),
-    @required Result subscriptionError(SubscriptionError value),
+  TResult map<TResult extends Object>({
+    @required TResult subscriptionInitial(SubscriptionInitial value),
+    @required TResult subscriptionSuccess(SubscriptionSuccess value),
+    @required TResult subscriptionLoading(SubscriptionLoading value),
+    @required TResult subscriptionError(SubscriptionError value),
   }) {
     assert(subscriptionInitial != null);
     assert(subscriptionSuccess != null);
@@ -508,12 +508,12 @@ class _$SubscriptionError implements SubscriptionError {
 
   @override
   @optionalTypeArgs
-  Result maybeMap<Result extends Object>({
-    Result subscriptionInitial(SubscriptionInitial value),
-    Result subscriptionSuccess(SubscriptionSuccess value),
-    Result subscriptionLoading(SubscriptionLoading value),
-    Result subscriptionError(SubscriptionError value),
-    @required Result orElse(),
+  TResult maybeMap<TResult extends Object>({
+    TResult subscriptionInitial(SubscriptionInitial value),
+    TResult subscriptionSuccess(SubscriptionSuccess value),
+    TResult subscriptionLoading(SubscriptionLoading value),
+    TResult subscriptionError(SubscriptionError value),
+    @required TResult orElse(),
   }) {
     assert(orElse != null);
     if (subscriptionError != null) {

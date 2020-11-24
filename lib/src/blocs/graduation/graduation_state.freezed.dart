@@ -45,34 +45,34 @@ const $GraduationState = _$GraduationStateTearOff();
 /// @nodoc
 mixin _$GraduationState {
   @optionalTypeArgs
-  Result when<Result extends Object>({
-    @required Result initialGraduationState(),
-    @required Result notReadyForGraduation(Grade nextGrade),
-    @required Result readyForGraduation(Grade nextGrade),
-    @required Result graduationLoading(),
+  TResult when<TResult extends Object>({
+    @required TResult initialGraduationState(),
+    @required TResult notReadyForGraduation(Grade nextGrade),
+    @required TResult readyForGraduation(Grade nextGrade),
+    @required TResult graduationLoading(),
   });
   @optionalTypeArgs
-  Result maybeWhen<Result extends Object>({
-    Result initialGraduationState(),
-    Result notReadyForGraduation(Grade nextGrade),
-    Result readyForGraduation(Grade nextGrade),
-    Result graduationLoading(),
-    @required Result orElse(),
+  TResult maybeWhen<TResult extends Object>({
+    TResult initialGraduationState(),
+    TResult notReadyForGraduation(Grade nextGrade),
+    TResult readyForGraduation(Grade nextGrade),
+    TResult graduationLoading(),
+    @required TResult orElse(),
   });
   @optionalTypeArgs
-  Result map<Result extends Object>({
-    @required Result initialGraduationState(InitialGraduationState value),
-    @required Result notReadyForGraduation(NotReadyForGraduation value),
-    @required Result readyForGraduation(ReadyForGraduation value),
-    @required Result graduationLoading(GraduationLoading value),
+  TResult map<TResult extends Object>({
+    @required TResult initialGraduationState(InitialGraduationState value),
+    @required TResult notReadyForGraduation(NotReadyForGraduation value),
+    @required TResult readyForGraduation(ReadyForGraduation value),
+    @required TResult graduationLoading(GraduationLoading value),
   });
   @optionalTypeArgs
-  Result maybeMap<Result extends Object>({
-    Result initialGraduationState(InitialGraduationState value),
-    Result notReadyForGraduation(NotReadyForGraduation value),
-    Result readyForGraduation(ReadyForGraduation value),
-    Result graduationLoading(GraduationLoading value),
-    @required Result orElse(),
+  TResult maybeMap<TResult extends Object>({
+    TResult initialGraduationState(InitialGraduationState value),
+    TResult notReadyForGraduation(NotReadyForGraduation value),
+    TResult readyForGraduation(ReadyForGraduation value),
+    TResult graduationLoading(GraduationLoading value),
+    @required TResult orElse(),
   });
 }
 
@@ -141,11 +141,11 @@ class _$InitialGraduationState
 
   @override
   @optionalTypeArgs
-  Result when<Result extends Object>({
-    @required Result initialGraduationState(),
-    @required Result notReadyForGraduation(Grade nextGrade),
-    @required Result readyForGraduation(Grade nextGrade),
-    @required Result graduationLoading(),
+  TResult when<TResult extends Object>({
+    @required TResult initialGraduationState(),
+    @required TResult notReadyForGraduation(Grade nextGrade),
+    @required TResult readyForGraduation(Grade nextGrade),
+    @required TResult graduationLoading(),
   }) {
     assert(initialGraduationState != null);
     assert(notReadyForGraduation != null);
@@ -156,12 +156,12 @@ class _$InitialGraduationState
 
   @override
   @optionalTypeArgs
-  Result maybeWhen<Result extends Object>({
-    Result initialGraduationState(),
-    Result notReadyForGraduation(Grade nextGrade),
-    Result readyForGraduation(Grade nextGrade),
-    Result graduationLoading(),
-    @required Result orElse(),
+  TResult maybeWhen<TResult extends Object>({
+    TResult initialGraduationState(),
+    TResult notReadyForGraduation(Grade nextGrade),
+    TResult readyForGraduation(Grade nextGrade),
+    TResult graduationLoading(),
+    @required TResult orElse(),
   }) {
     assert(orElse != null);
     if (initialGraduationState != null) {
@@ -172,11 +172,11 @@ class _$InitialGraduationState
 
   @override
   @optionalTypeArgs
-  Result map<Result extends Object>({
-    @required Result initialGraduationState(InitialGraduationState value),
-    @required Result notReadyForGraduation(NotReadyForGraduation value),
-    @required Result readyForGraduation(ReadyForGraduation value),
-    @required Result graduationLoading(GraduationLoading value),
+  TResult map<TResult extends Object>({
+    @required TResult initialGraduationState(InitialGraduationState value),
+    @required TResult notReadyForGraduation(NotReadyForGraduation value),
+    @required TResult readyForGraduation(ReadyForGraduation value),
+    @required TResult graduationLoading(GraduationLoading value),
   }) {
     assert(initialGraduationState != null);
     assert(notReadyForGraduation != null);
@@ -187,12 +187,12 @@ class _$InitialGraduationState
 
   @override
   @optionalTypeArgs
-  Result maybeMap<Result extends Object>({
-    Result initialGraduationState(InitialGraduationState value),
-    Result notReadyForGraduation(NotReadyForGraduation value),
-    Result readyForGraduation(ReadyForGraduation value),
-    Result graduationLoading(GraduationLoading value),
-    @required Result orElse(),
+  TResult maybeMap<TResult extends Object>({
+    TResult initialGraduationState(InitialGraduationState value),
+    TResult notReadyForGraduation(NotReadyForGraduation value),
+    TResult readyForGraduation(ReadyForGraduation value),
+    TResult graduationLoading(GraduationLoading value),
+    @required TResult orElse(),
   }) {
     assert(orElse != null);
     if (initialGraduationState != null) {
@@ -279,11 +279,11 @@ class _$NotReadyForGraduation
 
   @override
   @optionalTypeArgs
-  Result when<Result extends Object>({
-    @required Result initialGraduationState(),
-    @required Result notReadyForGraduation(Grade nextGrade),
-    @required Result readyForGraduation(Grade nextGrade),
-    @required Result graduationLoading(),
+  TResult when<TResult extends Object>({
+    @required TResult initialGraduationState(),
+    @required TResult notReadyForGraduation(Grade nextGrade),
+    @required TResult readyForGraduation(Grade nextGrade),
+    @required TResult graduationLoading(),
   }) {
     assert(initialGraduationState != null);
     assert(notReadyForGraduation != null);
@@ -294,12 +294,12 @@ class _$NotReadyForGraduation
 
   @override
   @optionalTypeArgs
-  Result maybeWhen<Result extends Object>({
-    Result initialGraduationState(),
-    Result notReadyForGraduation(Grade nextGrade),
-    Result readyForGraduation(Grade nextGrade),
-    Result graduationLoading(),
-    @required Result orElse(),
+  TResult maybeWhen<TResult extends Object>({
+    TResult initialGraduationState(),
+    TResult notReadyForGraduation(Grade nextGrade),
+    TResult readyForGraduation(Grade nextGrade),
+    TResult graduationLoading(),
+    @required TResult orElse(),
   }) {
     assert(orElse != null);
     if (notReadyForGraduation != null) {
@@ -310,11 +310,11 @@ class _$NotReadyForGraduation
 
   @override
   @optionalTypeArgs
-  Result map<Result extends Object>({
-    @required Result initialGraduationState(InitialGraduationState value),
-    @required Result notReadyForGraduation(NotReadyForGraduation value),
-    @required Result readyForGraduation(ReadyForGraduation value),
-    @required Result graduationLoading(GraduationLoading value),
+  TResult map<TResult extends Object>({
+    @required TResult initialGraduationState(InitialGraduationState value),
+    @required TResult notReadyForGraduation(NotReadyForGraduation value),
+    @required TResult readyForGraduation(ReadyForGraduation value),
+    @required TResult graduationLoading(GraduationLoading value),
   }) {
     assert(initialGraduationState != null);
     assert(notReadyForGraduation != null);
@@ -325,12 +325,12 @@ class _$NotReadyForGraduation
 
   @override
   @optionalTypeArgs
-  Result maybeMap<Result extends Object>({
-    Result initialGraduationState(InitialGraduationState value),
-    Result notReadyForGraduation(NotReadyForGraduation value),
-    Result readyForGraduation(ReadyForGraduation value),
-    Result graduationLoading(GraduationLoading value),
-    @required Result orElse(),
+  TResult maybeMap<TResult extends Object>({
+    TResult initialGraduationState(InitialGraduationState value),
+    TResult notReadyForGraduation(NotReadyForGraduation value),
+    TResult readyForGraduation(ReadyForGraduation value),
+    TResult graduationLoading(GraduationLoading value),
+    @required TResult orElse(),
   }) {
     assert(orElse != null);
     if (notReadyForGraduation != null) {
@@ -419,11 +419,11 @@ class _$ReadyForGraduation
 
   @override
   @optionalTypeArgs
-  Result when<Result extends Object>({
-    @required Result initialGraduationState(),
-    @required Result notReadyForGraduation(Grade nextGrade),
-    @required Result readyForGraduation(Grade nextGrade),
-    @required Result graduationLoading(),
+  TResult when<TResult extends Object>({
+    @required TResult initialGraduationState(),
+    @required TResult notReadyForGraduation(Grade nextGrade),
+    @required TResult readyForGraduation(Grade nextGrade),
+    @required TResult graduationLoading(),
   }) {
     assert(initialGraduationState != null);
     assert(notReadyForGraduation != null);
@@ -434,12 +434,12 @@ class _$ReadyForGraduation
 
   @override
   @optionalTypeArgs
-  Result maybeWhen<Result extends Object>({
-    Result initialGraduationState(),
-    Result notReadyForGraduation(Grade nextGrade),
-    Result readyForGraduation(Grade nextGrade),
-    Result graduationLoading(),
-    @required Result orElse(),
+  TResult maybeWhen<TResult extends Object>({
+    TResult initialGraduationState(),
+    TResult notReadyForGraduation(Grade nextGrade),
+    TResult readyForGraduation(Grade nextGrade),
+    TResult graduationLoading(),
+    @required TResult orElse(),
   }) {
     assert(orElse != null);
     if (readyForGraduation != null) {
@@ -450,11 +450,11 @@ class _$ReadyForGraduation
 
   @override
   @optionalTypeArgs
-  Result map<Result extends Object>({
-    @required Result initialGraduationState(InitialGraduationState value),
-    @required Result notReadyForGraduation(NotReadyForGraduation value),
-    @required Result readyForGraduation(ReadyForGraduation value),
-    @required Result graduationLoading(GraduationLoading value),
+  TResult map<TResult extends Object>({
+    @required TResult initialGraduationState(InitialGraduationState value),
+    @required TResult notReadyForGraduation(NotReadyForGraduation value),
+    @required TResult readyForGraduation(ReadyForGraduation value),
+    @required TResult graduationLoading(GraduationLoading value),
   }) {
     assert(initialGraduationState != null);
     assert(notReadyForGraduation != null);
@@ -465,12 +465,12 @@ class _$ReadyForGraduation
 
   @override
   @optionalTypeArgs
-  Result maybeMap<Result extends Object>({
-    Result initialGraduationState(InitialGraduationState value),
-    Result notReadyForGraduation(NotReadyForGraduation value),
-    Result readyForGraduation(ReadyForGraduation value),
-    Result graduationLoading(GraduationLoading value),
-    @required Result orElse(),
+  TResult maybeMap<TResult extends Object>({
+    TResult initialGraduationState(InitialGraduationState value),
+    TResult notReadyForGraduation(NotReadyForGraduation value),
+    TResult readyForGraduation(ReadyForGraduation value),
+    TResult graduationLoading(GraduationLoading value),
+    @required TResult orElse(),
   }) {
     assert(orElse != null);
     if (readyForGraduation != null) {
@@ -535,11 +535,11 @@ class _$GraduationLoading
 
   @override
   @optionalTypeArgs
-  Result when<Result extends Object>({
-    @required Result initialGraduationState(),
-    @required Result notReadyForGraduation(Grade nextGrade),
-    @required Result readyForGraduation(Grade nextGrade),
-    @required Result graduationLoading(),
+  TResult when<TResult extends Object>({
+    @required TResult initialGraduationState(),
+    @required TResult notReadyForGraduation(Grade nextGrade),
+    @required TResult readyForGraduation(Grade nextGrade),
+    @required TResult graduationLoading(),
   }) {
     assert(initialGraduationState != null);
     assert(notReadyForGraduation != null);
@@ -550,12 +550,12 @@ class _$GraduationLoading
 
   @override
   @optionalTypeArgs
-  Result maybeWhen<Result extends Object>({
-    Result initialGraduationState(),
-    Result notReadyForGraduation(Grade nextGrade),
-    Result readyForGraduation(Grade nextGrade),
-    Result graduationLoading(),
-    @required Result orElse(),
+  TResult maybeWhen<TResult extends Object>({
+    TResult initialGraduationState(),
+    TResult notReadyForGraduation(Grade nextGrade),
+    TResult readyForGraduation(Grade nextGrade),
+    TResult graduationLoading(),
+    @required TResult orElse(),
   }) {
     assert(orElse != null);
     if (graduationLoading != null) {
@@ -566,11 +566,11 @@ class _$GraduationLoading
 
   @override
   @optionalTypeArgs
-  Result map<Result extends Object>({
-    @required Result initialGraduationState(InitialGraduationState value),
-    @required Result notReadyForGraduation(NotReadyForGraduation value),
-    @required Result readyForGraduation(ReadyForGraduation value),
-    @required Result graduationLoading(GraduationLoading value),
+  TResult map<TResult extends Object>({
+    @required TResult initialGraduationState(InitialGraduationState value),
+    @required TResult notReadyForGraduation(NotReadyForGraduation value),
+    @required TResult readyForGraduation(ReadyForGraduation value),
+    @required TResult graduationLoading(GraduationLoading value),
   }) {
     assert(initialGraduationState != null);
     assert(notReadyForGraduation != null);
@@ -581,12 +581,12 @@ class _$GraduationLoading
 
   @override
   @optionalTypeArgs
-  Result maybeMap<Result extends Object>({
-    Result initialGraduationState(InitialGraduationState value),
-    Result notReadyForGraduation(NotReadyForGraduation value),
-    Result readyForGraduation(ReadyForGraduation value),
-    Result graduationLoading(GraduationLoading value),
-    @required Result orElse(),
+  TResult maybeMap<TResult extends Object>({
+    TResult initialGraduationState(InitialGraduationState value),
+    TResult notReadyForGraduation(NotReadyForGraduation value),
+    TResult readyForGraduation(ReadyForGraduation value),
+    TResult graduationLoading(GraduationLoading value),
+    @required TResult orElse(),
   }) {
     assert(orElse != null);
     if (graduationLoading != null) {

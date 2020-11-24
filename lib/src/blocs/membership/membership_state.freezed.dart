@@ -54,39 +54,39 @@ const $MembershipState = _$MembershipStateTearOff();
 /// @nodoc
 mixin _$MembershipState {
   @optionalTypeArgs
-  Result when<Result extends Object>({
-    @required Result initialMembershipState(),
-    @required Result membershipActive(Membership membership),
+  TResult when<TResult extends Object>({
+    @required TResult initialMembershipState(),
+    @required TResult membershipActive(Membership membership),
     @required
-        Result membershipInactive(String customerEmail, String customerId),
-    @required Result membershipLoading(),
-    @required Result membershipError(String errorMessage),
+        TResult membershipInactive(String customerEmail, String customerId),
+    @required TResult membershipLoading(),
+    @required TResult membershipError(String errorMessage),
   });
   @optionalTypeArgs
-  Result maybeWhen<Result extends Object>({
-    Result initialMembershipState(),
-    Result membershipActive(Membership membership),
-    Result membershipInactive(String customerEmail, String customerId),
-    Result membershipLoading(),
-    Result membershipError(String errorMessage),
-    @required Result orElse(),
+  TResult maybeWhen<TResult extends Object>({
+    TResult initialMembershipState(),
+    TResult membershipActive(Membership membership),
+    TResult membershipInactive(String customerEmail, String customerId),
+    TResult membershipLoading(),
+    TResult membershipError(String errorMessage),
+    @required TResult orElse(),
   });
   @optionalTypeArgs
-  Result map<Result extends Object>({
-    @required Result initialMembershipState(InitialMembershipState value),
-    @required Result membershipActive(MembershipActive value),
-    @required Result membershipInactive(MembershipInactive value),
-    @required Result membershipLoading(MembershipLoading value),
-    @required Result membershipError(MembershipError value),
+  TResult map<TResult extends Object>({
+    @required TResult initialMembershipState(InitialMembershipState value),
+    @required TResult membershipActive(MembershipActive value),
+    @required TResult membershipInactive(MembershipInactive value),
+    @required TResult membershipLoading(MembershipLoading value),
+    @required TResult membershipError(MembershipError value),
   });
   @optionalTypeArgs
-  Result maybeMap<Result extends Object>({
-    Result initialMembershipState(InitialMembershipState value),
-    Result membershipActive(MembershipActive value),
-    Result membershipInactive(MembershipInactive value),
-    Result membershipLoading(MembershipLoading value),
-    Result membershipError(MembershipError value),
-    @required Result orElse(),
+  TResult maybeMap<TResult extends Object>({
+    TResult initialMembershipState(InitialMembershipState value),
+    TResult membershipActive(MembershipActive value),
+    TResult membershipInactive(MembershipInactive value),
+    TResult membershipLoading(MembershipLoading value),
+    TResult membershipError(MembershipError value),
+    @required TResult orElse(),
   });
 }
 
@@ -155,13 +155,13 @@ class _$InitialMembershipState
 
   @override
   @optionalTypeArgs
-  Result when<Result extends Object>({
-    @required Result initialMembershipState(),
-    @required Result membershipActive(Membership membership),
+  TResult when<TResult extends Object>({
+    @required TResult initialMembershipState(),
+    @required TResult membershipActive(Membership membership),
     @required
-        Result membershipInactive(String customerEmail, String customerId),
-    @required Result membershipLoading(),
-    @required Result membershipError(String errorMessage),
+        TResult membershipInactive(String customerEmail, String customerId),
+    @required TResult membershipLoading(),
+    @required TResult membershipError(String errorMessage),
   }) {
     assert(initialMembershipState != null);
     assert(membershipActive != null);
@@ -173,13 +173,13 @@ class _$InitialMembershipState
 
   @override
   @optionalTypeArgs
-  Result maybeWhen<Result extends Object>({
-    Result initialMembershipState(),
-    Result membershipActive(Membership membership),
-    Result membershipInactive(String customerEmail, String customerId),
-    Result membershipLoading(),
-    Result membershipError(String errorMessage),
-    @required Result orElse(),
+  TResult maybeWhen<TResult extends Object>({
+    TResult initialMembershipState(),
+    TResult membershipActive(Membership membership),
+    TResult membershipInactive(String customerEmail, String customerId),
+    TResult membershipLoading(),
+    TResult membershipError(String errorMessage),
+    @required TResult orElse(),
   }) {
     assert(orElse != null);
     if (initialMembershipState != null) {
@@ -190,12 +190,12 @@ class _$InitialMembershipState
 
   @override
   @optionalTypeArgs
-  Result map<Result extends Object>({
-    @required Result initialMembershipState(InitialMembershipState value),
-    @required Result membershipActive(MembershipActive value),
-    @required Result membershipInactive(MembershipInactive value),
-    @required Result membershipLoading(MembershipLoading value),
-    @required Result membershipError(MembershipError value),
+  TResult map<TResult extends Object>({
+    @required TResult initialMembershipState(InitialMembershipState value),
+    @required TResult membershipActive(MembershipActive value),
+    @required TResult membershipInactive(MembershipInactive value),
+    @required TResult membershipLoading(MembershipLoading value),
+    @required TResult membershipError(MembershipError value),
   }) {
     assert(initialMembershipState != null);
     assert(membershipActive != null);
@@ -207,13 +207,13 @@ class _$InitialMembershipState
 
   @override
   @optionalTypeArgs
-  Result maybeMap<Result extends Object>({
-    Result initialMembershipState(InitialMembershipState value),
-    Result membershipActive(MembershipActive value),
-    Result membershipInactive(MembershipInactive value),
-    Result membershipLoading(MembershipLoading value),
-    Result membershipError(MembershipError value),
-    @required Result orElse(),
+  TResult maybeMap<TResult extends Object>({
+    TResult initialMembershipState(InitialMembershipState value),
+    TResult membershipActive(MembershipActive value),
+    TResult membershipInactive(MembershipInactive value),
+    TResult membershipLoading(MembershipLoading value),
+    TResult membershipError(MembershipError value),
+    @required TResult orElse(),
   }) {
     assert(orElse != null);
     if (initialMembershipState != null) {
@@ -311,13 +311,13 @@ class _$MembershipActive
 
   @override
   @optionalTypeArgs
-  Result when<Result extends Object>({
-    @required Result initialMembershipState(),
-    @required Result membershipActive(Membership membership),
+  TResult when<TResult extends Object>({
+    @required TResult initialMembershipState(),
+    @required TResult membershipActive(Membership membership),
     @required
-        Result membershipInactive(String customerEmail, String customerId),
-    @required Result membershipLoading(),
-    @required Result membershipError(String errorMessage),
+        TResult membershipInactive(String customerEmail, String customerId),
+    @required TResult membershipLoading(),
+    @required TResult membershipError(String errorMessage),
   }) {
     assert(initialMembershipState != null);
     assert(membershipActive != null);
@@ -329,13 +329,13 @@ class _$MembershipActive
 
   @override
   @optionalTypeArgs
-  Result maybeWhen<Result extends Object>({
-    Result initialMembershipState(),
-    Result membershipActive(Membership membership),
-    Result membershipInactive(String customerEmail, String customerId),
-    Result membershipLoading(),
-    Result membershipError(String errorMessage),
-    @required Result orElse(),
+  TResult maybeWhen<TResult extends Object>({
+    TResult initialMembershipState(),
+    TResult membershipActive(Membership membership),
+    TResult membershipInactive(String customerEmail, String customerId),
+    TResult membershipLoading(),
+    TResult membershipError(String errorMessage),
+    @required TResult orElse(),
   }) {
     assert(orElse != null);
     if (membershipActive != null) {
@@ -346,12 +346,12 @@ class _$MembershipActive
 
   @override
   @optionalTypeArgs
-  Result map<Result extends Object>({
-    @required Result initialMembershipState(InitialMembershipState value),
-    @required Result membershipActive(MembershipActive value),
-    @required Result membershipInactive(MembershipInactive value),
-    @required Result membershipLoading(MembershipLoading value),
-    @required Result membershipError(MembershipError value),
+  TResult map<TResult extends Object>({
+    @required TResult initialMembershipState(InitialMembershipState value),
+    @required TResult membershipActive(MembershipActive value),
+    @required TResult membershipInactive(MembershipInactive value),
+    @required TResult membershipLoading(MembershipLoading value),
+    @required TResult membershipError(MembershipError value),
   }) {
     assert(initialMembershipState != null);
     assert(membershipActive != null);
@@ -363,13 +363,13 @@ class _$MembershipActive
 
   @override
   @optionalTypeArgs
-  Result maybeMap<Result extends Object>({
-    Result initialMembershipState(InitialMembershipState value),
-    Result membershipActive(MembershipActive value),
-    Result membershipInactive(MembershipInactive value),
-    Result membershipLoading(MembershipLoading value),
-    Result membershipError(MembershipError value),
-    @required Result orElse(),
+  TResult maybeMap<TResult extends Object>({
+    TResult initialMembershipState(InitialMembershipState value),
+    TResult membershipActive(MembershipActive value),
+    TResult membershipInactive(MembershipInactive value),
+    TResult membershipLoading(MembershipLoading value),
+    TResult membershipError(MembershipError value),
+    @required TResult orElse(),
   }) {
     assert(orElse != null);
     if (membershipActive != null) {
@@ -471,13 +471,13 @@ class _$MembershipInactive
 
   @override
   @optionalTypeArgs
-  Result when<Result extends Object>({
-    @required Result initialMembershipState(),
-    @required Result membershipActive(Membership membership),
+  TResult when<TResult extends Object>({
+    @required TResult initialMembershipState(),
+    @required TResult membershipActive(Membership membership),
     @required
-        Result membershipInactive(String customerEmail, String customerId),
-    @required Result membershipLoading(),
-    @required Result membershipError(String errorMessage),
+        TResult membershipInactive(String customerEmail, String customerId),
+    @required TResult membershipLoading(),
+    @required TResult membershipError(String errorMessage),
   }) {
     assert(initialMembershipState != null);
     assert(membershipActive != null);
@@ -489,13 +489,13 @@ class _$MembershipInactive
 
   @override
   @optionalTypeArgs
-  Result maybeWhen<Result extends Object>({
-    Result initialMembershipState(),
-    Result membershipActive(Membership membership),
-    Result membershipInactive(String customerEmail, String customerId),
-    Result membershipLoading(),
-    Result membershipError(String errorMessage),
-    @required Result orElse(),
+  TResult maybeWhen<TResult extends Object>({
+    TResult initialMembershipState(),
+    TResult membershipActive(Membership membership),
+    TResult membershipInactive(String customerEmail, String customerId),
+    TResult membershipLoading(),
+    TResult membershipError(String errorMessage),
+    @required TResult orElse(),
   }) {
     assert(orElse != null);
     if (membershipInactive != null) {
@@ -506,12 +506,12 @@ class _$MembershipInactive
 
   @override
   @optionalTypeArgs
-  Result map<Result extends Object>({
-    @required Result initialMembershipState(InitialMembershipState value),
-    @required Result membershipActive(MembershipActive value),
-    @required Result membershipInactive(MembershipInactive value),
-    @required Result membershipLoading(MembershipLoading value),
-    @required Result membershipError(MembershipError value),
+  TResult map<TResult extends Object>({
+    @required TResult initialMembershipState(InitialMembershipState value),
+    @required TResult membershipActive(MembershipActive value),
+    @required TResult membershipInactive(MembershipInactive value),
+    @required TResult membershipLoading(MembershipLoading value),
+    @required TResult membershipError(MembershipError value),
   }) {
     assert(initialMembershipState != null);
     assert(membershipActive != null);
@@ -523,13 +523,13 @@ class _$MembershipInactive
 
   @override
   @optionalTypeArgs
-  Result maybeMap<Result extends Object>({
-    Result initialMembershipState(InitialMembershipState value),
-    Result membershipActive(MembershipActive value),
-    Result membershipInactive(MembershipInactive value),
-    Result membershipLoading(MembershipLoading value),
-    Result membershipError(MembershipError value),
-    @required Result orElse(),
+  TResult maybeMap<TResult extends Object>({
+    TResult initialMembershipState(InitialMembershipState value),
+    TResult membershipActive(MembershipActive value),
+    TResult membershipInactive(MembershipInactive value),
+    TResult membershipLoading(MembershipLoading value),
+    TResult membershipError(MembershipError value),
+    @required TResult orElse(),
   }) {
     assert(orElse != null);
     if (membershipInactive != null) {
@@ -596,13 +596,13 @@ class _$MembershipLoading
 
   @override
   @optionalTypeArgs
-  Result when<Result extends Object>({
-    @required Result initialMembershipState(),
-    @required Result membershipActive(Membership membership),
+  TResult when<TResult extends Object>({
+    @required TResult initialMembershipState(),
+    @required TResult membershipActive(Membership membership),
     @required
-        Result membershipInactive(String customerEmail, String customerId),
-    @required Result membershipLoading(),
-    @required Result membershipError(String errorMessage),
+        TResult membershipInactive(String customerEmail, String customerId),
+    @required TResult membershipLoading(),
+    @required TResult membershipError(String errorMessage),
   }) {
     assert(initialMembershipState != null);
     assert(membershipActive != null);
@@ -614,13 +614,13 @@ class _$MembershipLoading
 
   @override
   @optionalTypeArgs
-  Result maybeWhen<Result extends Object>({
-    Result initialMembershipState(),
-    Result membershipActive(Membership membership),
-    Result membershipInactive(String customerEmail, String customerId),
-    Result membershipLoading(),
-    Result membershipError(String errorMessage),
-    @required Result orElse(),
+  TResult maybeWhen<TResult extends Object>({
+    TResult initialMembershipState(),
+    TResult membershipActive(Membership membership),
+    TResult membershipInactive(String customerEmail, String customerId),
+    TResult membershipLoading(),
+    TResult membershipError(String errorMessage),
+    @required TResult orElse(),
   }) {
     assert(orElse != null);
     if (membershipLoading != null) {
@@ -631,12 +631,12 @@ class _$MembershipLoading
 
   @override
   @optionalTypeArgs
-  Result map<Result extends Object>({
-    @required Result initialMembershipState(InitialMembershipState value),
-    @required Result membershipActive(MembershipActive value),
-    @required Result membershipInactive(MembershipInactive value),
-    @required Result membershipLoading(MembershipLoading value),
-    @required Result membershipError(MembershipError value),
+  TResult map<TResult extends Object>({
+    @required TResult initialMembershipState(InitialMembershipState value),
+    @required TResult membershipActive(MembershipActive value),
+    @required TResult membershipInactive(MembershipInactive value),
+    @required TResult membershipLoading(MembershipLoading value),
+    @required TResult membershipError(MembershipError value),
   }) {
     assert(initialMembershipState != null);
     assert(membershipActive != null);
@@ -648,13 +648,13 @@ class _$MembershipLoading
 
   @override
   @optionalTypeArgs
-  Result maybeMap<Result extends Object>({
-    Result initialMembershipState(InitialMembershipState value),
-    Result membershipActive(MembershipActive value),
-    Result membershipInactive(MembershipInactive value),
-    Result membershipLoading(MembershipLoading value),
-    Result membershipError(MembershipError value),
-    @required Result orElse(),
+  TResult maybeMap<TResult extends Object>({
+    TResult initialMembershipState(InitialMembershipState value),
+    TResult membershipActive(MembershipActive value),
+    TResult membershipInactive(MembershipInactive value),
+    TResult membershipLoading(MembershipLoading value),
+    TResult membershipError(MembershipError value),
+    @required TResult orElse(),
   }) {
     assert(orElse != null);
     if (membershipLoading != null) {
@@ -741,13 +741,13 @@ class _$MembershipError
 
   @override
   @optionalTypeArgs
-  Result when<Result extends Object>({
-    @required Result initialMembershipState(),
-    @required Result membershipActive(Membership membership),
+  TResult when<TResult extends Object>({
+    @required TResult initialMembershipState(),
+    @required TResult membershipActive(Membership membership),
     @required
-        Result membershipInactive(String customerEmail, String customerId),
-    @required Result membershipLoading(),
-    @required Result membershipError(String errorMessage),
+        TResult membershipInactive(String customerEmail, String customerId),
+    @required TResult membershipLoading(),
+    @required TResult membershipError(String errorMessage),
   }) {
     assert(initialMembershipState != null);
     assert(membershipActive != null);
@@ -759,13 +759,13 @@ class _$MembershipError
 
   @override
   @optionalTypeArgs
-  Result maybeWhen<Result extends Object>({
-    Result initialMembershipState(),
-    Result membershipActive(Membership membership),
-    Result membershipInactive(String customerEmail, String customerId),
-    Result membershipLoading(),
-    Result membershipError(String errorMessage),
-    @required Result orElse(),
+  TResult maybeWhen<TResult extends Object>({
+    TResult initialMembershipState(),
+    TResult membershipActive(Membership membership),
+    TResult membershipInactive(String customerEmail, String customerId),
+    TResult membershipLoading(),
+    TResult membershipError(String errorMessage),
+    @required TResult orElse(),
   }) {
     assert(orElse != null);
     if (membershipError != null) {
@@ -776,12 +776,12 @@ class _$MembershipError
 
   @override
   @optionalTypeArgs
-  Result map<Result extends Object>({
-    @required Result initialMembershipState(InitialMembershipState value),
-    @required Result membershipActive(MembershipActive value),
-    @required Result membershipInactive(MembershipInactive value),
-    @required Result membershipLoading(MembershipLoading value),
-    @required Result membershipError(MembershipError value),
+  TResult map<TResult extends Object>({
+    @required TResult initialMembershipState(InitialMembershipState value),
+    @required TResult membershipActive(MembershipActive value),
+    @required TResult membershipInactive(MembershipInactive value),
+    @required TResult membershipLoading(MembershipLoading value),
+    @required TResult membershipError(MembershipError value),
   }) {
     assert(initialMembershipState != null);
     assert(membershipActive != null);
@@ -793,13 +793,13 @@ class _$MembershipError
 
   @override
   @optionalTypeArgs
-  Result maybeMap<Result extends Object>({
-    Result initialMembershipState(InitialMembershipState value),
-    Result membershipActive(MembershipActive value),
-    Result membershipInactive(MembershipInactive value),
-    Result membershipLoading(MembershipLoading value),
-    Result membershipError(MembershipError value),
-    @required Result orElse(),
+  TResult maybeMap<TResult extends Object>({
+    TResult initialMembershipState(InitialMembershipState value),
+    TResult membershipActive(MembershipActive value),
+    TResult membershipInactive(MembershipInactive value),
+    TResult membershipLoading(MembershipLoading value),
+    TResult membershipError(MembershipError value),
+    @required TResult orElse(),
   }) {
     assert(orElse != null);
     if (membershipError != null) {

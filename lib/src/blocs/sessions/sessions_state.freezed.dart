@@ -49,38 +49,38 @@ const $SessionsState = _$SessionsStateTearOff();
 /// @nodoc
 mixin _$SessionsState {
   @optionalTypeArgs
-  Result when<Result extends Object>({
-    @required Result initialSessionsState(),
-    @required Result sessionsUnlimited(),
+  TResult when<TResult extends Object>({
+    @required TResult initialSessionsState(),
+    @required TResult sessionsUnlimited(),
     @required
-        Result sessionsLoaded(
+        TResult sessionsLoaded(
             double totalLessonsOfPlan, double attendedLessons),
     @required
-        Result sessionsWarning(
+        TResult sessionsWarning(
             double totalLessonsOfPlan, double attendedLessons),
   });
   @optionalTypeArgs
-  Result maybeWhen<Result extends Object>({
-    Result initialSessionsState(),
-    Result sessionsUnlimited(),
-    Result sessionsLoaded(double totalLessonsOfPlan, double attendedLessons),
-    Result sessionsWarning(double totalLessonsOfPlan, double attendedLessons),
-    @required Result orElse(),
+  TResult maybeWhen<TResult extends Object>({
+    TResult initialSessionsState(),
+    TResult sessionsUnlimited(),
+    TResult sessionsLoaded(double totalLessonsOfPlan, double attendedLessons),
+    TResult sessionsWarning(double totalLessonsOfPlan, double attendedLessons),
+    @required TResult orElse(),
   });
   @optionalTypeArgs
-  Result map<Result extends Object>({
-    @required Result initialSessionsState(InitialSessionsState value),
-    @required Result sessionsUnlimited(SessionsUnlimited value),
-    @required Result sessionsLoaded(SessionsLoaded value),
-    @required Result sessionsWarning(SessionsWarning value),
+  TResult map<TResult extends Object>({
+    @required TResult initialSessionsState(InitialSessionsState value),
+    @required TResult sessionsUnlimited(SessionsUnlimited value),
+    @required TResult sessionsLoaded(SessionsLoaded value),
+    @required TResult sessionsWarning(SessionsWarning value),
   });
   @optionalTypeArgs
-  Result maybeMap<Result extends Object>({
-    Result initialSessionsState(InitialSessionsState value),
-    Result sessionsUnlimited(SessionsUnlimited value),
-    Result sessionsLoaded(SessionsLoaded value),
-    Result sessionsWarning(SessionsWarning value),
-    @required Result orElse(),
+  TResult maybeMap<TResult extends Object>({
+    TResult initialSessionsState(InitialSessionsState value),
+    TResult sessionsUnlimited(SessionsUnlimited value),
+    TResult sessionsLoaded(SessionsLoaded value),
+    TResult sessionsWarning(SessionsWarning value),
+    @required TResult orElse(),
   });
 }
 
@@ -148,14 +148,14 @@ class _$InitialSessionsState
 
   @override
   @optionalTypeArgs
-  Result when<Result extends Object>({
-    @required Result initialSessionsState(),
-    @required Result sessionsUnlimited(),
+  TResult when<TResult extends Object>({
+    @required TResult initialSessionsState(),
+    @required TResult sessionsUnlimited(),
     @required
-        Result sessionsLoaded(
+        TResult sessionsLoaded(
             double totalLessonsOfPlan, double attendedLessons),
     @required
-        Result sessionsWarning(
+        TResult sessionsWarning(
             double totalLessonsOfPlan, double attendedLessons),
   }) {
     assert(initialSessionsState != null);
@@ -167,12 +167,12 @@ class _$InitialSessionsState
 
   @override
   @optionalTypeArgs
-  Result maybeWhen<Result extends Object>({
-    Result initialSessionsState(),
-    Result sessionsUnlimited(),
-    Result sessionsLoaded(double totalLessonsOfPlan, double attendedLessons),
-    Result sessionsWarning(double totalLessonsOfPlan, double attendedLessons),
-    @required Result orElse(),
+  TResult maybeWhen<TResult extends Object>({
+    TResult initialSessionsState(),
+    TResult sessionsUnlimited(),
+    TResult sessionsLoaded(double totalLessonsOfPlan, double attendedLessons),
+    TResult sessionsWarning(double totalLessonsOfPlan, double attendedLessons),
+    @required TResult orElse(),
   }) {
     assert(orElse != null);
     if (initialSessionsState != null) {
@@ -183,11 +183,11 @@ class _$InitialSessionsState
 
   @override
   @optionalTypeArgs
-  Result map<Result extends Object>({
-    @required Result initialSessionsState(InitialSessionsState value),
-    @required Result sessionsUnlimited(SessionsUnlimited value),
-    @required Result sessionsLoaded(SessionsLoaded value),
-    @required Result sessionsWarning(SessionsWarning value),
+  TResult map<TResult extends Object>({
+    @required TResult initialSessionsState(InitialSessionsState value),
+    @required TResult sessionsUnlimited(SessionsUnlimited value),
+    @required TResult sessionsLoaded(SessionsLoaded value),
+    @required TResult sessionsWarning(SessionsWarning value),
   }) {
     assert(initialSessionsState != null);
     assert(sessionsUnlimited != null);
@@ -198,12 +198,12 @@ class _$InitialSessionsState
 
   @override
   @optionalTypeArgs
-  Result maybeMap<Result extends Object>({
-    Result initialSessionsState(InitialSessionsState value),
-    Result sessionsUnlimited(SessionsUnlimited value),
-    Result sessionsLoaded(SessionsLoaded value),
-    Result sessionsWarning(SessionsWarning value),
-    @required Result orElse(),
+  TResult maybeMap<TResult extends Object>({
+    TResult initialSessionsState(InitialSessionsState value),
+    TResult sessionsUnlimited(SessionsUnlimited value),
+    TResult sessionsLoaded(SessionsLoaded value),
+    TResult sessionsWarning(SessionsWarning value),
+    @required TResult orElse(),
   }) {
     assert(orElse != null);
     if (initialSessionsState != null) {
@@ -264,14 +264,14 @@ class _$SessionsUnlimited
 
   @override
   @optionalTypeArgs
-  Result when<Result extends Object>({
-    @required Result initialSessionsState(),
-    @required Result sessionsUnlimited(),
+  TResult when<TResult extends Object>({
+    @required TResult initialSessionsState(),
+    @required TResult sessionsUnlimited(),
     @required
-        Result sessionsLoaded(
+        TResult sessionsLoaded(
             double totalLessonsOfPlan, double attendedLessons),
     @required
-        Result sessionsWarning(
+        TResult sessionsWarning(
             double totalLessonsOfPlan, double attendedLessons),
   }) {
     assert(initialSessionsState != null);
@@ -283,12 +283,12 @@ class _$SessionsUnlimited
 
   @override
   @optionalTypeArgs
-  Result maybeWhen<Result extends Object>({
-    Result initialSessionsState(),
-    Result sessionsUnlimited(),
-    Result sessionsLoaded(double totalLessonsOfPlan, double attendedLessons),
-    Result sessionsWarning(double totalLessonsOfPlan, double attendedLessons),
-    @required Result orElse(),
+  TResult maybeWhen<TResult extends Object>({
+    TResult initialSessionsState(),
+    TResult sessionsUnlimited(),
+    TResult sessionsLoaded(double totalLessonsOfPlan, double attendedLessons),
+    TResult sessionsWarning(double totalLessonsOfPlan, double attendedLessons),
+    @required TResult orElse(),
   }) {
     assert(orElse != null);
     if (sessionsUnlimited != null) {
@@ -299,11 +299,11 @@ class _$SessionsUnlimited
 
   @override
   @optionalTypeArgs
-  Result map<Result extends Object>({
-    @required Result initialSessionsState(InitialSessionsState value),
-    @required Result sessionsUnlimited(SessionsUnlimited value),
-    @required Result sessionsLoaded(SessionsLoaded value),
-    @required Result sessionsWarning(SessionsWarning value),
+  TResult map<TResult extends Object>({
+    @required TResult initialSessionsState(InitialSessionsState value),
+    @required TResult sessionsUnlimited(SessionsUnlimited value),
+    @required TResult sessionsLoaded(SessionsLoaded value),
+    @required TResult sessionsWarning(SessionsWarning value),
   }) {
     assert(initialSessionsState != null);
     assert(sessionsUnlimited != null);
@@ -314,12 +314,12 @@ class _$SessionsUnlimited
 
   @override
   @optionalTypeArgs
-  Result maybeMap<Result extends Object>({
-    Result initialSessionsState(InitialSessionsState value),
-    Result sessionsUnlimited(SessionsUnlimited value),
-    Result sessionsLoaded(SessionsLoaded value),
-    Result sessionsWarning(SessionsWarning value),
-    @required Result orElse(),
+  TResult maybeMap<TResult extends Object>({
+    TResult initialSessionsState(InitialSessionsState value),
+    TResult sessionsUnlimited(SessionsUnlimited value),
+    TResult sessionsLoaded(SessionsLoaded value),
+    TResult sessionsWarning(SessionsWarning value),
+    @required TResult orElse(),
   }) {
     assert(orElse != null);
     if (sessionsUnlimited != null) {
@@ -418,14 +418,14 @@ class _$SessionsLoaded with DiagnosticableTreeMixin implements SessionsLoaded {
 
   @override
   @optionalTypeArgs
-  Result when<Result extends Object>({
-    @required Result initialSessionsState(),
-    @required Result sessionsUnlimited(),
+  TResult when<TResult extends Object>({
+    @required TResult initialSessionsState(),
+    @required TResult sessionsUnlimited(),
     @required
-        Result sessionsLoaded(
+        TResult sessionsLoaded(
             double totalLessonsOfPlan, double attendedLessons),
     @required
-        Result sessionsWarning(
+        TResult sessionsWarning(
             double totalLessonsOfPlan, double attendedLessons),
   }) {
     assert(initialSessionsState != null);
@@ -437,12 +437,12 @@ class _$SessionsLoaded with DiagnosticableTreeMixin implements SessionsLoaded {
 
   @override
   @optionalTypeArgs
-  Result maybeWhen<Result extends Object>({
-    Result initialSessionsState(),
-    Result sessionsUnlimited(),
-    Result sessionsLoaded(double totalLessonsOfPlan, double attendedLessons),
-    Result sessionsWarning(double totalLessonsOfPlan, double attendedLessons),
-    @required Result orElse(),
+  TResult maybeWhen<TResult extends Object>({
+    TResult initialSessionsState(),
+    TResult sessionsUnlimited(),
+    TResult sessionsLoaded(double totalLessonsOfPlan, double attendedLessons),
+    TResult sessionsWarning(double totalLessonsOfPlan, double attendedLessons),
+    @required TResult orElse(),
   }) {
     assert(orElse != null);
     if (sessionsLoaded != null) {
@@ -453,11 +453,11 @@ class _$SessionsLoaded with DiagnosticableTreeMixin implements SessionsLoaded {
 
   @override
   @optionalTypeArgs
-  Result map<Result extends Object>({
-    @required Result initialSessionsState(InitialSessionsState value),
-    @required Result sessionsUnlimited(SessionsUnlimited value),
-    @required Result sessionsLoaded(SessionsLoaded value),
-    @required Result sessionsWarning(SessionsWarning value),
+  TResult map<TResult extends Object>({
+    @required TResult initialSessionsState(InitialSessionsState value),
+    @required TResult sessionsUnlimited(SessionsUnlimited value),
+    @required TResult sessionsLoaded(SessionsLoaded value),
+    @required TResult sessionsWarning(SessionsWarning value),
   }) {
     assert(initialSessionsState != null);
     assert(sessionsUnlimited != null);
@@ -468,12 +468,12 @@ class _$SessionsLoaded with DiagnosticableTreeMixin implements SessionsLoaded {
 
   @override
   @optionalTypeArgs
-  Result maybeMap<Result extends Object>({
-    Result initialSessionsState(InitialSessionsState value),
-    Result sessionsUnlimited(SessionsUnlimited value),
-    Result sessionsLoaded(SessionsLoaded value),
-    Result sessionsWarning(SessionsWarning value),
-    @required Result orElse(),
+  TResult maybeMap<TResult extends Object>({
+    TResult initialSessionsState(InitialSessionsState value),
+    TResult sessionsUnlimited(SessionsUnlimited value),
+    TResult sessionsLoaded(SessionsLoaded value),
+    TResult sessionsWarning(SessionsWarning value),
+    @required TResult orElse(),
   }) {
     assert(orElse != null);
     if (sessionsLoaded != null) {
@@ -580,14 +580,14 @@ class _$SessionsWarning
 
   @override
   @optionalTypeArgs
-  Result when<Result extends Object>({
-    @required Result initialSessionsState(),
-    @required Result sessionsUnlimited(),
+  TResult when<TResult extends Object>({
+    @required TResult initialSessionsState(),
+    @required TResult sessionsUnlimited(),
     @required
-        Result sessionsLoaded(
+        TResult sessionsLoaded(
             double totalLessonsOfPlan, double attendedLessons),
     @required
-        Result sessionsWarning(
+        TResult sessionsWarning(
             double totalLessonsOfPlan, double attendedLessons),
   }) {
     assert(initialSessionsState != null);
@@ -599,12 +599,12 @@ class _$SessionsWarning
 
   @override
   @optionalTypeArgs
-  Result maybeWhen<Result extends Object>({
-    Result initialSessionsState(),
-    Result sessionsUnlimited(),
-    Result sessionsLoaded(double totalLessonsOfPlan, double attendedLessons),
-    Result sessionsWarning(double totalLessonsOfPlan, double attendedLessons),
-    @required Result orElse(),
+  TResult maybeWhen<TResult extends Object>({
+    TResult initialSessionsState(),
+    TResult sessionsUnlimited(),
+    TResult sessionsLoaded(double totalLessonsOfPlan, double attendedLessons),
+    TResult sessionsWarning(double totalLessonsOfPlan, double attendedLessons),
+    @required TResult orElse(),
   }) {
     assert(orElse != null);
     if (sessionsWarning != null) {
@@ -615,11 +615,11 @@ class _$SessionsWarning
 
   @override
   @optionalTypeArgs
-  Result map<Result extends Object>({
-    @required Result initialSessionsState(InitialSessionsState value),
-    @required Result sessionsUnlimited(SessionsUnlimited value),
-    @required Result sessionsLoaded(SessionsLoaded value),
-    @required Result sessionsWarning(SessionsWarning value),
+  TResult map<TResult extends Object>({
+    @required TResult initialSessionsState(InitialSessionsState value),
+    @required TResult sessionsUnlimited(SessionsUnlimited value),
+    @required TResult sessionsLoaded(SessionsLoaded value),
+    @required TResult sessionsWarning(SessionsWarning value),
   }) {
     assert(initialSessionsState != null);
     assert(sessionsUnlimited != null);
@@ -630,12 +630,12 @@ class _$SessionsWarning
 
   @override
   @optionalTypeArgs
-  Result maybeMap<Result extends Object>({
-    Result initialSessionsState(InitialSessionsState value),
-    Result sessionsUnlimited(SessionsUnlimited value),
-    Result sessionsLoaded(SessionsLoaded value),
-    Result sessionsWarning(SessionsWarning value),
-    @required Result orElse(),
+  TResult maybeMap<TResult extends Object>({
+    TResult initialSessionsState(InitialSessionsState value),
+    TResult sessionsUnlimited(SessionsUnlimited value),
+    TResult sessionsLoaded(SessionsLoaded value),
+    TResult sessionsWarning(SessionsWarning value),
+    @required TResult orElse(),
   }) {
     assert(orElse != null);
     if (sessionsWarning != null) {

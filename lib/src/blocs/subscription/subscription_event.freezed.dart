@@ -32,22 +32,22 @@ mixin _$SubscriptionEvent {
   String get customerId;
 
   @optionalTypeArgs
-  Result when<Result extends Object>({
-    @required Result subscribe(String priceId, String customerId),
+  TResult when<TResult extends Object>({
+    @required TResult subscribe(String priceId, String customerId),
   });
   @optionalTypeArgs
-  Result maybeWhen<Result extends Object>({
-    Result subscribe(String priceId, String customerId),
-    @required Result orElse(),
+  TResult maybeWhen<TResult extends Object>({
+    TResult subscribe(String priceId, String customerId),
+    @required TResult orElse(),
   });
   @optionalTypeArgs
-  Result map<Result extends Object>({
-    @required Result subscribe(Subscribe value),
+  TResult map<TResult extends Object>({
+    @required TResult subscribe(Subscribe value),
   });
   @optionalTypeArgs
-  Result maybeMap<Result extends Object>({
-    Result subscribe(Subscribe value),
-    @required Result orElse(),
+  TResult maybeMap<TResult extends Object>({
+    TResult subscribe(Subscribe value),
+    @required TResult orElse(),
   });
 
   $SubscriptionEventCopyWith<SubscriptionEvent> get copyWith;
@@ -164,8 +164,8 @@ class _$Subscribe with DiagnosticableTreeMixin implements Subscribe {
 
   @override
   @optionalTypeArgs
-  Result when<Result extends Object>({
-    @required Result subscribe(String priceId, String customerId),
+  TResult when<TResult extends Object>({
+    @required TResult subscribe(String priceId, String customerId),
   }) {
     assert(subscribe != null);
     return subscribe(priceId, customerId);
@@ -173,9 +173,9 @@ class _$Subscribe with DiagnosticableTreeMixin implements Subscribe {
 
   @override
   @optionalTypeArgs
-  Result maybeWhen<Result extends Object>({
-    Result subscribe(String priceId, String customerId),
-    @required Result orElse(),
+  TResult maybeWhen<TResult extends Object>({
+    TResult subscribe(String priceId, String customerId),
+    @required TResult orElse(),
   }) {
     assert(orElse != null);
     if (subscribe != null) {
@@ -186,8 +186,8 @@ class _$Subscribe with DiagnosticableTreeMixin implements Subscribe {
 
   @override
   @optionalTypeArgs
-  Result map<Result extends Object>({
-    @required Result subscribe(Subscribe value),
+  TResult map<TResult extends Object>({
+    @required TResult subscribe(Subscribe value),
   }) {
     assert(subscribe != null);
     return subscribe(this);
@@ -195,9 +195,9 @@ class _$Subscribe with DiagnosticableTreeMixin implements Subscribe {
 
   @override
   @optionalTypeArgs
-  Result maybeMap<Result extends Object>({
-    Result subscribe(Subscribe value),
-    @required Result orElse(),
+  TResult maybeMap<TResult extends Object>({
+    TResult subscribe(Subscribe value),
+    @required TResult orElse(),
   }) {
     assert(orElse != null);
     if (subscribe != null) {

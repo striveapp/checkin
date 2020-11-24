@@ -48,35 +48,35 @@ const $PaymentMethodsState = _$PaymentMethodsStateTearOff();
 /// @nodoc
 mixin _$PaymentMethodsState {
   @optionalTypeArgs
-  Result when<Result extends Object>({
-    @required Result initialPaymentMethodsState(),
-    @required Result paymentMethodLoaded(PaymentMethod paymentMethod),
-    @required Result paymentMethodEmpty(String customerEmail),
-    @required Result paymentMethodLoading(bool show),
+  TResult when<TResult extends Object>({
+    @required TResult initialPaymentMethodsState(),
+    @required TResult paymentMethodLoaded(PaymentMethod paymentMethod),
+    @required TResult paymentMethodEmpty(String customerEmail),
+    @required TResult paymentMethodLoading(bool show),
   });
   @optionalTypeArgs
-  Result maybeWhen<Result extends Object>({
-    Result initialPaymentMethodsState(),
-    Result paymentMethodLoaded(PaymentMethod paymentMethod),
-    Result paymentMethodEmpty(String customerEmail),
-    Result paymentMethodLoading(bool show),
-    @required Result orElse(),
+  TResult maybeWhen<TResult extends Object>({
+    TResult initialPaymentMethodsState(),
+    TResult paymentMethodLoaded(PaymentMethod paymentMethod),
+    TResult paymentMethodEmpty(String customerEmail),
+    TResult paymentMethodLoading(bool show),
+    @required TResult orElse(),
   });
   @optionalTypeArgs
-  Result map<Result extends Object>({
+  TResult map<TResult extends Object>({
     @required
-        Result initialPaymentMethodsState(InitialPaymentMethodsState value),
-    @required Result paymentMethodLoaded(PaymentMethodLoaded value),
-    @required Result paymentMethodEmpty(PaymentMethodEmpty value),
-    @required Result paymentMethodLoading(PaymentMethodLoading value),
+        TResult initialPaymentMethodsState(InitialPaymentMethodsState value),
+    @required TResult paymentMethodLoaded(PaymentMethodLoaded value),
+    @required TResult paymentMethodEmpty(PaymentMethodEmpty value),
+    @required TResult paymentMethodLoading(PaymentMethodLoading value),
   });
   @optionalTypeArgs
-  Result maybeMap<Result extends Object>({
-    Result initialPaymentMethodsState(InitialPaymentMethodsState value),
-    Result paymentMethodLoaded(PaymentMethodLoaded value),
-    Result paymentMethodEmpty(PaymentMethodEmpty value),
-    Result paymentMethodLoading(PaymentMethodLoading value),
-    @required Result orElse(),
+  TResult maybeMap<TResult extends Object>({
+    TResult initialPaymentMethodsState(InitialPaymentMethodsState value),
+    TResult paymentMethodLoaded(PaymentMethodLoaded value),
+    TResult paymentMethodEmpty(PaymentMethodEmpty value),
+    TResult paymentMethodLoading(PaymentMethodLoading value),
+    @required TResult orElse(),
   });
 }
 
@@ -146,11 +146,11 @@ class _$InitialPaymentMethodsState
 
   @override
   @optionalTypeArgs
-  Result when<Result extends Object>({
-    @required Result initialPaymentMethodsState(),
-    @required Result paymentMethodLoaded(PaymentMethod paymentMethod),
-    @required Result paymentMethodEmpty(String customerEmail),
-    @required Result paymentMethodLoading(bool show),
+  TResult when<TResult extends Object>({
+    @required TResult initialPaymentMethodsState(),
+    @required TResult paymentMethodLoaded(PaymentMethod paymentMethod),
+    @required TResult paymentMethodEmpty(String customerEmail),
+    @required TResult paymentMethodLoading(bool show),
   }) {
     assert(initialPaymentMethodsState != null);
     assert(paymentMethodLoaded != null);
@@ -161,12 +161,12 @@ class _$InitialPaymentMethodsState
 
   @override
   @optionalTypeArgs
-  Result maybeWhen<Result extends Object>({
-    Result initialPaymentMethodsState(),
-    Result paymentMethodLoaded(PaymentMethod paymentMethod),
-    Result paymentMethodEmpty(String customerEmail),
-    Result paymentMethodLoading(bool show),
-    @required Result orElse(),
+  TResult maybeWhen<TResult extends Object>({
+    TResult initialPaymentMethodsState(),
+    TResult paymentMethodLoaded(PaymentMethod paymentMethod),
+    TResult paymentMethodEmpty(String customerEmail),
+    TResult paymentMethodLoading(bool show),
+    @required TResult orElse(),
   }) {
     assert(orElse != null);
     if (initialPaymentMethodsState != null) {
@@ -177,12 +177,12 @@ class _$InitialPaymentMethodsState
 
   @override
   @optionalTypeArgs
-  Result map<Result extends Object>({
+  TResult map<TResult extends Object>({
     @required
-        Result initialPaymentMethodsState(InitialPaymentMethodsState value),
-    @required Result paymentMethodLoaded(PaymentMethodLoaded value),
-    @required Result paymentMethodEmpty(PaymentMethodEmpty value),
-    @required Result paymentMethodLoading(PaymentMethodLoading value),
+        TResult initialPaymentMethodsState(InitialPaymentMethodsState value),
+    @required TResult paymentMethodLoaded(PaymentMethodLoaded value),
+    @required TResult paymentMethodEmpty(PaymentMethodEmpty value),
+    @required TResult paymentMethodLoading(PaymentMethodLoading value),
   }) {
     assert(initialPaymentMethodsState != null);
     assert(paymentMethodLoaded != null);
@@ -193,12 +193,12 @@ class _$InitialPaymentMethodsState
 
   @override
   @optionalTypeArgs
-  Result maybeMap<Result extends Object>({
-    Result initialPaymentMethodsState(InitialPaymentMethodsState value),
-    Result paymentMethodLoaded(PaymentMethodLoaded value),
-    Result paymentMethodEmpty(PaymentMethodEmpty value),
-    Result paymentMethodLoading(PaymentMethodLoading value),
-    @required Result orElse(),
+  TResult maybeMap<TResult extends Object>({
+    TResult initialPaymentMethodsState(InitialPaymentMethodsState value),
+    TResult paymentMethodLoaded(PaymentMethodLoaded value),
+    TResult paymentMethodEmpty(PaymentMethodEmpty value),
+    TResult paymentMethodLoading(PaymentMethodLoading value),
+    @required TResult orElse(),
   }) {
     assert(orElse != null);
     if (initialPaymentMethodsState != null) {
@@ -298,11 +298,11 @@ class _$PaymentMethodLoaded
 
   @override
   @optionalTypeArgs
-  Result when<Result extends Object>({
-    @required Result initialPaymentMethodsState(),
-    @required Result paymentMethodLoaded(PaymentMethod paymentMethod),
-    @required Result paymentMethodEmpty(String customerEmail),
-    @required Result paymentMethodLoading(bool show),
+  TResult when<TResult extends Object>({
+    @required TResult initialPaymentMethodsState(),
+    @required TResult paymentMethodLoaded(PaymentMethod paymentMethod),
+    @required TResult paymentMethodEmpty(String customerEmail),
+    @required TResult paymentMethodLoading(bool show),
   }) {
     assert(initialPaymentMethodsState != null);
     assert(paymentMethodLoaded != null);
@@ -313,12 +313,12 @@ class _$PaymentMethodLoaded
 
   @override
   @optionalTypeArgs
-  Result maybeWhen<Result extends Object>({
-    Result initialPaymentMethodsState(),
-    Result paymentMethodLoaded(PaymentMethod paymentMethod),
-    Result paymentMethodEmpty(String customerEmail),
-    Result paymentMethodLoading(bool show),
-    @required Result orElse(),
+  TResult maybeWhen<TResult extends Object>({
+    TResult initialPaymentMethodsState(),
+    TResult paymentMethodLoaded(PaymentMethod paymentMethod),
+    TResult paymentMethodEmpty(String customerEmail),
+    TResult paymentMethodLoading(bool show),
+    @required TResult orElse(),
   }) {
     assert(orElse != null);
     if (paymentMethodLoaded != null) {
@@ -329,12 +329,12 @@ class _$PaymentMethodLoaded
 
   @override
   @optionalTypeArgs
-  Result map<Result extends Object>({
+  TResult map<TResult extends Object>({
     @required
-        Result initialPaymentMethodsState(InitialPaymentMethodsState value),
-    @required Result paymentMethodLoaded(PaymentMethodLoaded value),
-    @required Result paymentMethodEmpty(PaymentMethodEmpty value),
-    @required Result paymentMethodLoading(PaymentMethodLoading value),
+        TResult initialPaymentMethodsState(InitialPaymentMethodsState value),
+    @required TResult paymentMethodLoaded(PaymentMethodLoaded value),
+    @required TResult paymentMethodEmpty(PaymentMethodEmpty value),
+    @required TResult paymentMethodLoading(PaymentMethodLoading value),
   }) {
     assert(initialPaymentMethodsState != null);
     assert(paymentMethodLoaded != null);
@@ -345,12 +345,12 @@ class _$PaymentMethodLoaded
 
   @override
   @optionalTypeArgs
-  Result maybeMap<Result extends Object>({
-    Result initialPaymentMethodsState(InitialPaymentMethodsState value),
-    Result paymentMethodLoaded(PaymentMethodLoaded value),
-    Result paymentMethodEmpty(PaymentMethodEmpty value),
-    Result paymentMethodLoading(PaymentMethodLoading value),
-    @required Result orElse(),
+  TResult maybeMap<TResult extends Object>({
+    TResult initialPaymentMethodsState(InitialPaymentMethodsState value),
+    TResult paymentMethodLoaded(PaymentMethodLoaded value),
+    TResult paymentMethodEmpty(PaymentMethodEmpty value),
+    TResult paymentMethodLoading(PaymentMethodLoading value),
+    @required TResult orElse(),
   }) {
     assert(orElse != null);
     if (paymentMethodLoaded != null) {
@@ -442,11 +442,11 @@ class _$PaymentMethodEmpty
 
   @override
   @optionalTypeArgs
-  Result when<Result extends Object>({
-    @required Result initialPaymentMethodsState(),
-    @required Result paymentMethodLoaded(PaymentMethod paymentMethod),
-    @required Result paymentMethodEmpty(String customerEmail),
-    @required Result paymentMethodLoading(bool show),
+  TResult when<TResult extends Object>({
+    @required TResult initialPaymentMethodsState(),
+    @required TResult paymentMethodLoaded(PaymentMethod paymentMethod),
+    @required TResult paymentMethodEmpty(String customerEmail),
+    @required TResult paymentMethodLoading(bool show),
   }) {
     assert(initialPaymentMethodsState != null);
     assert(paymentMethodLoaded != null);
@@ -457,12 +457,12 @@ class _$PaymentMethodEmpty
 
   @override
   @optionalTypeArgs
-  Result maybeWhen<Result extends Object>({
-    Result initialPaymentMethodsState(),
-    Result paymentMethodLoaded(PaymentMethod paymentMethod),
-    Result paymentMethodEmpty(String customerEmail),
-    Result paymentMethodLoading(bool show),
-    @required Result orElse(),
+  TResult maybeWhen<TResult extends Object>({
+    TResult initialPaymentMethodsState(),
+    TResult paymentMethodLoaded(PaymentMethod paymentMethod),
+    TResult paymentMethodEmpty(String customerEmail),
+    TResult paymentMethodLoading(bool show),
+    @required TResult orElse(),
   }) {
     assert(orElse != null);
     if (paymentMethodEmpty != null) {
@@ -473,12 +473,12 @@ class _$PaymentMethodEmpty
 
   @override
   @optionalTypeArgs
-  Result map<Result extends Object>({
+  TResult map<TResult extends Object>({
     @required
-        Result initialPaymentMethodsState(InitialPaymentMethodsState value),
-    @required Result paymentMethodLoaded(PaymentMethodLoaded value),
-    @required Result paymentMethodEmpty(PaymentMethodEmpty value),
-    @required Result paymentMethodLoading(PaymentMethodLoading value),
+        TResult initialPaymentMethodsState(InitialPaymentMethodsState value),
+    @required TResult paymentMethodLoaded(PaymentMethodLoaded value),
+    @required TResult paymentMethodEmpty(PaymentMethodEmpty value),
+    @required TResult paymentMethodLoading(PaymentMethodLoading value),
   }) {
     assert(initialPaymentMethodsState != null);
     assert(paymentMethodLoaded != null);
@@ -489,12 +489,12 @@ class _$PaymentMethodEmpty
 
   @override
   @optionalTypeArgs
-  Result maybeMap<Result extends Object>({
-    Result initialPaymentMethodsState(InitialPaymentMethodsState value),
-    Result paymentMethodLoaded(PaymentMethodLoaded value),
-    Result paymentMethodEmpty(PaymentMethodEmpty value),
-    Result paymentMethodLoading(PaymentMethodLoading value),
-    @required Result orElse(),
+  TResult maybeMap<TResult extends Object>({
+    TResult initialPaymentMethodsState(InitialPaymentMethodsState value),
+    TResult paymentMethodLoaded(PaymentMethodLoaded value),
+    TResult paymentMethodEmpty(PaymentMethodEmpty value),
+    TResult paymentMethodLoading(PaymentMethodLoading value),
+    @required TResult orElse(),
   }) {
     assert(orElse != null);
     if (paymentMethodEmpty != null) {
@@ -583,11 +583,11 @@ class _$PaymentMethodLoading
 
   @override
   @optionalTypeArgs
-  Result when<Result extends Object>({
-    @required Result initialPaymentMethodsState(),
-    @required Result paymentMethodLoaded(PaymentMethod paymentMethod),
-    @required Result paymentMethodEmpty(String customerEmail),
-    @required Result paymentMethodLoading(bool show),
+  TResult when<TResult extends Object>({
+    @required TResult initialPaymentMethodsState(),
+    @required TResult paymentMethodLoaded(PaymentMethod paymentMethod),
+    @required TResult paymentMethodEmpty(String customerEmail),
+    @required TResult paymentMethodLoading(bool show),
   }) {
     assert(initialPaymentMethodsState != null);
     assert(paymentMethodLoaded != null);
@@ -598,12 +598,12 @@ class _$PaymentMethodLoading
 
   @override
   @optionalTypeArgs
-  Result maybeWhen<Result extends Object>({
-    Result initialPaymentMethodsState(),
-    Result paymentMethodLoaded(PaymentMethod paymentMethod),
-    Result paymentMethodEmpty(String customerEmail),
-    Result paymentMethodLoading(bool show),
-    @required Result orElse(),
+  TResult maybeWhen<TResult extends Object>({
+    TResult initialPaymentMethodsState(),
+    TResult paymentMethodLoaded(PaymentMethod paymentMethod),
+    TResult paymentMethodEmpty(String customerEmail),
+    TResult paymentMethodLoading(bool show),
+    @required TResult orElse(),
   }) {
     assert(orElse != null);
     if (paymentMethodLoading != null) {
@@ -614,12 +614,12 @@ class _$PaymentMethodLoading
 
   @override
   @optionalTypeArgs
-  Result map<Result extends Object>({
+  TResult map<TResult extends Object>({
     @required
-        Result initialPaymentMethodsState(InitialPaymentMethodsState value),
-    @required Result paymentMethodLoaded(PaymentMethodLoaded value),
-    @required Result paymentMethodEmpty(PaymentMethodEmpty value),
-    @required Result paymentMethodLoading(PaymentMethodLoading value),
+        TResult initialPaymentMethodsState(InitialPaymentMethodsState value),
+    @required TResult paymentMethodLoaded(PaymentMethodLoaded value),
+    @required TResult paymentMethodEmpty(PaymentMethodEmpty value),
+    @required TResult paymentMethodLoading(PaymentMethodLoading value),
   }) {
     assert(initialPaymentMethodsState != null);
     assert(paymentMethodLoaded != null);
@@ -630,12 +630,12 @@ class _$PaymentMethodLoading
 
   @override
   @optionalTypeArgs
-  Result maybeMap<Result extends Object>({
-    Result initialPaymentMethodsState(InitialPaymentMethodsState value),
-    Result paymentMethodLoaded(PaymentMethodLoaded value),
-    Result paymentMethodEmpty(PaymentMethodEmpty value),
-    Result paymentMethodLoading(PaymentMethodLoading value),
-    @required Result orElse(),
+  TResult maybeMap<TResult extends Object>({
+    TResult initialPaymentMethodsState(InitialPaymentMethodsState value),
+    TResult paymentMethodLoaded(PaymentMethodLoaded value),
+    TResult paymentMethodEmpty(PaymentMethodEmpty value),
+    TResult paymentMethodLoading(PaymentMethodLoading value),
+    @required TResult orElse(),
   }) {
     assert(orElse != null);
     if (paymentMethodLoading != null) {

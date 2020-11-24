@@ -53,34 +53,34 @@ const $RegistryEvent = _$RegistryEventTearOff();
 /// @nodoc
 mixin _$RegistryEvent {
   @optionalTypeArgs
-  Result when<Result extends Object>({
-    @required Result registryUpdated(User currentUser, Lesson currentLesson),
-    @required Result register(String gymId, Attendee attendee),
-    @required Result unregister(String gymId, Attendee attendee),
-    @required Result acceptAttendees(String gymId),
+  TResult when<TResult extends Object>({
+    @required TResult registryUpdated(User currentUser, Lesson currentLesson),
+    @required TResult register(String gymId, Attendee attendee),
+    @required TResult unregister(String gymId, Attendee attendee),
+    @required TResult acceptAttendees(String gymId),
   });
   @optionalTypeArgs
-  Result maybeWhen<Result extends Object>({
-    Result registryUpdated(User currentUser, Lesson currentLesson),
-    Result register(String gymId, Attendee attendee),
-    Result unregister(String gymId, Attendee attendee),
-    Result acceptAttendees(String gymId),
-    @required Result orElse(),
+  TResult maybeWhen<TResult extends Object>({
+    TResult registryUpdated(User currentUser, Lesson currentLesson),
+    TResult register(String gymId, Attendee attendee),
+    TResult unregister(String gymId, Attendee attendee),
+    TResult acceptAttendees(String gymId),
+    @required TResult orElse(),
   });
   @optionalTypeArgs
-  Result map<Result extends Object>({
-    @required Result registryUpdated(RegistryUpdated value),
-    @required Result register(Register value),
-    @required Result unregister(Unregister value),
-    @required Result acceptAttendees(AcceptAttendees value),
+  TResult map<TResult extends Object>({
+    @required TResult registryUpdated(RegistryUpdated value),
+    @required TResult register(Register value),
+    @required TResult unregister(Unregister value),
+    @required TResult acceptAttendees(AcceptAttendees value),
   });
   @optionalTypeArgs
-  Result maybeMap<Result extends Object>({
-    Result registryUpdated(RegistryUpdated value),
-    Result register(Register value),
-    Result unregister(Unregister value),
-    Result acceptAttendees(AcceptAttendees value),
-    @required Result orElse(),
+  TResult maybeMap<TResult extends Object>({
+    TResult registryUpdated(RegistryUpdated value),
+    TResult register(Register value),
+    TResult unregister(Unregister value),
+    TResult acceptAttendees(AcceptAttendees value),
+    @required TResult orElse(),
   });
 }
 
@@ -197,11 +197,11 @@ class _$RegistryUpdated
 
   @override
   @optionalTypeArgs
-  Result when<Result extends Object>({
-    @required Result registryUpdated(User currentUser, Lesson currentLesson),
-    @required Result register(String gymId, Attendee attendee),
-    @required Result unregister(String gymId, Attendee attendee),
-    @required Result acceptAttendees(String gymId),
+  TResult when<TResult extends Object>({
+    @required TResult registryUpdated(User currentUser, Lesson currentLesson),
+    @required TResult register(String gymId, Attendee attendee),
+    @required TResult unregister(String gymId, Attendee attendee),
+    @required TResult acceptAttendees(String gymId),
   }) {
     assert(registryUpdated != null);
     assert(register != null);
@@ -212,12 +212,12 @@ class _$RegistryUpdated
 
   @override
   @optionalTypeArgs
-  Result maybeWhen<Result extends Object>({
-    Result registryUpdated(User currentUser, Lesson currentLesson),
-    Result register(String gymId, Attendee attendee),
-    Result unregister(String gymId, Attendee attendee),
-    Result acceptAttendees(String gymId),
-    @required Result orElse(),
+  TResult maybeWhen<TResult extends Object>({
+    TResult registryUpdated(User currentUser, Lesson currentLesson),
+    TResult register(String gymId, Attendee attendee),
+    TResult unregister(String gymId, Attendee attendee),
+    TResult acceptAttendees(String gymId),
+    @required TResult orElse(),
   }) {
     assert(orElse != null);
     if (registryUpdated != null) {
@@ -228,11 +228,11 @@ class _$RegistryUpdated
 
   @override
   @optionalTypeArgs
-  Result map<Result extends Object>({
-    @required Result registryUpdated(RegistryUpdated value),
-    @required Result register(Register value),
-    @required Result unregister(Unregister value),
-    @required Result acceptAttendees(AcceptAttendees value),
+  TResult map<TResult extends Object>({
+    @required TResult registryUpdated(RegistryUpdated value),
+    @required TResult register(Register value),
+    @required TResult unregister(Unregister value),
+    @required TResult acceptAttendees(AcceptAttendees value),
   }) {
     assert(registryUpdated != null);
     assert(register != null);
@@ -243,12 +243,12 @@ class _$RegistryUpdated
 
   @override
   @optionalTypeArgs
-  Result maybeMap<Result extends Object>({
-    Result registryUpdated(RegistryUpdated value),
-    Result register(Register value),
-    Result unregister(Unregister value),
-    Result acceptAttendees(AcceptAttendees value),
-    @required Result orElse(),
+  TResult maybeMap<TResult extends Object>({
+    TResult registryUpdated(RegistryUpdated value),
+    TResult register(Register value),
+    TResult unregister(Unregister value),
+    TResult acceptAttendees(AcceptAttendees value),
+    @required TResult orElse(),
   }) {
     assert(orElse != null);
     if (registryUpdated != null) {
@@ -343,11 +343,11 @@ class _$Register with DiagnosticableTreeMixin implements Register {
 
   @override
   @optionalTypeArgs
-  Result when<Result extends Object>({
-    @required Result registryUpdated(User currentUser, Lesson currentLesson),
-    @required Result register(String gymId, Attendee attendee),
-    @required Result unregister(String gymId, Attendee attendee),
-    @required Result acceptAttendees(String gymId),
+  TResult when<TResult extends Object>({
+    @required TResult registryUpdated(User currentUser, Lesson currentLesson),
+    @required TResult register(String gymId, Attendee attendee),
+    @required TResult unregister(String gymId, Attendee attendee),
+    @required TResult acceptAttendees(String gymId),
   }) {
     assert(registryUpdated != null);
     assert(register != null);
@@ -358,12 +358,12 @@ class _$Register with DiagnosticableTreeMixin implements Register {
 
   @override
   @optionalTypeArgs
-  Result maybeWhen<Result extends Object>({
-    Result registryUpdated(User currentUser, Lesson currentLesson),
-    Result register(String gymId, Attendee attendee),
-    Result unregister(String gymId, Attendee attendee),
-    Result acceptAttendees(String gymId),
-    @required Result orElse(),
+  TResult maybeWhen<TResult extends Object>({
+    TResult registryUpdated(User currentUser, Lesson currentLesson),
+    TResult register(String gymId, Attendee attendee),
+    TResult unregister(String gymId, Attendee attendee),
+    TResult acceptAttendees(String gymId),
+    @required TResult orElse(),
   }) {
     assert(orElse != null);
     if (register != null) {
@@ -374,11 +374,11 @@ class _$Register with DiagnosticableTreeMixin implements Register {
 
   @override
   @optionalTypeArgs
-  Result map<Result extends Object>({
-    @required Result registryUpdated(RegistryUpdated value),
-    @required Result register(Register value),
-    @required Result unregister(Unregister value),
-    @required Result acceptAttendees(AcceptAttendees value),
+  TResult map<TResult extends Object>({
+    @required TResult registryUpdated(RegistryUpdated value),
+    @required TResult register(Register value),
+    @required TResult unregister(Unregister value),
+    @required TResult acceptAttendees(AcceptAttendees value),
   }) {
     assert(registryUpdated != null);
     assert(register != null);
@@ -389,12 +389,12 @@ class _$Register with DiagnosticableTreeMixin implements Register {
 
   @override
   @optionalTypeArgs
-  Result maybeMap<Result extends Object>({
-    Result registryUpdated(RegistryUpdated value),
-    Result register(Register value),
-    Result unregister(Unregister value),
-    Result acceptAttendees(AcceptAttendees value),
-    @required Result orElse(),
+  TResult maybeMap<TResult extends Object>({
+    TResult registryUpdated(RegistryUpdated value),
+    TResult register(Register value),
+    TResult unregister(Unregister value),
+    TResult acceptAttendees(AcceptAttendees value),
+    @required TResult orElse(),
   }) {
     assert(orElse != null);
     if (register != null) {
@@ -490,11 +490,11 @@ class _$Unregister with DiagnosticableTreeMixin implements Unregister {
 
   @override
   @optionalTypeArgs
-  Result when<Result extends Object>({
-    @required Result registryUpdated(User currentUser, Lesson currentLesson),
-    @required Result register(String gymId, Attendee attendee),
-    @required Result unregister(String gymId, Attendee attendee),
-    @required Result acceptAttendees(String gymId),
+  TResult when<TResult extends Object>({
+    @required TResult registryUpdated(User currentUser, Lesson currentLesson),
+    @required TResult register(String gymId, Attendee attendee),
+    @required TResult unregister(String gymId, Attendee attendee),
+    @required TResult acceptAttendees(String gymId),
   }) {
     assert(registryUpdated != null);
     assert(register != null);
@@ -505,12 +505,12 @@ class _$Unregister with DiagnosticableTreeMixin implements Unregister {
 
   @override
   @optionalTypeArgs
-  Result maybeWhen<Result extends Object>({
-    Result registryUpdated(User currentUser, Lesson currentLesson),
-    Result register(String gymId, Attendee attendee),
-    Result unregister(String gymId, Attendee attendee),
-    Result acceptAttendees(String gymId),
-    @required Result orElse(),
+  TResult maybeWhen<TResult extends Object>({
+    TResult registryUpdated(User currentUser, Lesson currentLesson),
+    TResult register(String gymId, Attendee attendee),
+    TResult unregister(String gymId, Attendee attendee),
+    TResult acceptAttendees(String gymId),
+    @required TResult orElse(),
   }) {
     assert(orElse != null);
     if (unregister != null) {
@@ -521,11 +521,11 @@ class _$Unregister with DiagnosticableTreeMixin implements Unregister {
 
   @override
   @optionalTypeArgs
-  Result map<Result extends Object>({
-    @required Result registryUpdated(RegistryUpdated value),
-    @required Result register(Register value),
-    @required Result unregister(Unregister value),
-    @required Result acceptAttendees(AcceptAttendees value),
+  TResult map<TResult extends Object>({
+    @required TResult registryUpdated(RegistryUpdated value),
+    @required TResult register(Register value),
+    @required TResult unregister(Unregister value),
+    @required TResult acceptAttendees(AcceptAttendees value),
   }) {
     assert(registryUpdated != null);
     assert(register != null);
@@ -536,12 +536,12 @@ class _$Unregister with DiagnosticableTreeMixin implements Unregister {
 
   @override
   @optionalTypeArgs
-  Result maybeMap<Result extends Object>({
-    Result registryUpdated(RegistryUpdated value),
-    Result register(Register value),
-    Result unregister(Unregister value),
-    Result acceptAttendees(AcceptAttendees value),
-    @required Result orElse(),
+  TResult maybeMap<TResult extends Object>({
+    TResult registryUpdated(RegistryUpdated value),
+    TResult register(Register value),
+    TResult unregister(Unregister value),
+    TResult acceptAttendees(AcceptAttendees value),
+    @required TResult orElse(),
   }) {
     assert(orElse != null);
     if (unregister != null) {
@@ -629,11 +629,11 @@ class _$AcceptAttendees
 
   @override
   @optionalTypeArgs
-  Result when<Result extends Object>({
-    @required Result registryUpdated(User currentUser, Lesson currentLesson),
-    @required Result register(String gymId, Attendee attendee),
-    @required Result unregister(String gymId, Attendee attendee),
-    @required Result acceptAttendees(String gymId),
+  TResult when<TResult extends Object>({
+    @required TResult registryUpdated(User currentUser, Lesson currentLesson),
+    @required TResult register(String gymId, Attendee attendee),
+    @required TResult unregister(String gymId, Attendee attendee),
+    @required TResult acceptAttendees(String gymId),
   }) {
     assert(registryUpdated != null);
     assert(register != null);
@@ -644,12 +644,12 @@ class _$AcceptAttendees
 
   @override
   @optionalTypeArgs
-  Result maybeWhen<Result extends Object>({
-    Result registryUpdated(User currentUser, Lesson currentLesson),
-    Result register(String gymId, Attendee attendee),
-    Result unregister(String gymId, Attendee attendee),
-    Result acceptAttendees(String gymId),
-    @required Result orElse(),
+  TResult maybeWhen<TResult extends Object>({
+    TResult registryUpdated(User currentUser, Lesson currentLesson),
+    TResult register(String gymId, Attendee attendee),
+    TResult unregister(String gymId, Attendee attendee),
+    TResult acceptAttendees(String gymId),
+    @required TResult orElse(),
   }) {
     assert(orElse != null);
     if (acceptAttendees != null) {
@@ -660,11 +660,11 @@ class _$AcceptAttendees
 
   @override
   @optionalTypeArgs
-  Result map<Result extends Object>({
-    @required Result registryUpdated(RegistryUpdated value),
-    @required Result register(Register value),
-    @required Result unregister(Unregister value),
-    @required Result acceptAttendees(AcceptAttendees value),
+  TResult map<TResult extends Object>({
+    @required TResult registryUpdated(RegistryUpdated value),
+    @required TResult register(Register value),
+    @required TResult unregister(Unregister value),
+    @required TResult acceptAttendees(AcceptAttendees value),
   }) {
     assert(registryUpdated != null);
     assert(register != null);
@@ -675,12 +675,12 @@ class _$AcceptAttendees
 
   @override
   @optionalTypeArgs
-  Result maybeMap<Result extends Object>({
-    Result registryUpdated(RegistryUpdated value),
-    Result register(Register value),
-    Result unregister(Unregister value),
-    Result acceptAttendees(AcceptAttendees value),
-    @required Result orElse(),
+  TResult maybeMap<TResult extends Object>({
+    TResult registryUpdated(RegistryUpdated value),
+    TResult register(Register value),
+    TResult unregister(Unregister value),
+    TResult acceptAttendees(AcceptAttendees value),
+    @required TResult orElse(),
   }) {
     assert(orElse != null);
     if (acceptAttendees != null) {

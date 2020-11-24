@@ -45,7 +45,7 @@ class _$TestGymTearOff {
   }
 
 // ignore: unused_element
-  _CaseOne caseOne([String caseOne = 'caseOne']) {
+  _CaseOne caseOne([String caseOne = "caseOne"]) {
     return _CaseOne(
       caseOne,
     );
@@ -85,40 +85,40 @@ const $TestGym = _$TestGymTearOff();
 /// @nodoc
 mixin _$TestGym {
   @optionalTypeArgs
-  Result when<Result extends Object>(
-    Result $default(String domain, String host, String stripePublicKey,
+  TResult when<TResult extends Object>(
+    TResult $default(String domain, String host, String stripePublicKey,
         String requiredField), {
-    @required Result caseOne(String caseOne),
-    @required Result caseTwo(String caseTwo),
-    @required Result caseThree(String caseThree),
-    @required Result caseFour(String caseFour),
+    @required TResult caseOne(String caseOne),
+    @required TResult caseTwo(String caseTwo),
+    @required TResult caseThree(String caseThree),
+    @required TResult caseFour(String caseFour),
   });
   @optionalTypeArgs
-  Result maybeWhen<Result extends Object>(
-    Result $default(String domain, String host, String stripePublicKey,
+  TResult maybeWhen<TResult extends Object>(
+    TResult $default(String domain, String host, String stripePublicKey,
         String requiredField), {
-    Result caseOne(String caseOne),
-    Result caseTwo(String caseTwo),
-    Result caseThree(String caseThree),
-    Result caseFour(String caseFour),
-    @required Result orElse(),
+    TResult caseOne(String caseOne),
+    TResult caseTwo(String caseTwo),
+    TResult caseThree(String caseThree),
+    TResult caseFour(String caseFour),
+    @required TResult orElse(),
   });
   @optionalTypeArgs
-  Result map<Result extends Object>(
-    Result $default(_TestGym value), {
-    @required Result caseOne(_CaseOne value),
-    @required Result caseTwo(_CaseTwo value),
-    @required Result caseThree(CaseThree value),
-    @required Result caseFour(CaseFour value),
+  TResult map<TResult extends Object>(
+    TResult $default(_TestGym value), {
+    @required TResult caseOne(_CaseOne value),
+    @required TResult caseTwo(_CaseTwo value),
+    @required TResult caseThree(CaseThree value),
+    @required TResult caseFour(CaseFour value),
   });
   @optionalTypeArgs
-  Result maybeMap<Result extends Object>(
-    Result $default(_TestGym value), {
-    Result caseOne(_CaseOne value),
-    Result caseTwo(_CaseTwo value),
-    Result caseThree(CaseThree value),
-    Result caseFour(CaseFour value),
-    @required Result orElse(),
+  TResult maybeMap<TResult extends Object>(
+    TResult $default(_TestGym value), {
+    TResult caseOne(_CaseOne value),
+    TResult caseTwo(_CaseTwo value),
+    TResult caseThree(CaseThree value),
+    TResult caseFour(CaseFour value),
+    @required TResult orElse(),
   });
   Map<String, dynamic> toJson();
 }
@@ -247,13 +247,13 @@ class _$_TestGym with DiagnosticableTreeMixin implements _TestGym {
 
   @override
   @optionalTypeArgs
-  Result when<Result extends Object>(
-    Result $default(String domain, String host, String stripePublicKey,
+  TResult when<TResult extends Object>(
+    TResult $default(String domain, String host, String stripePublicKey,
         String requiredField), {
-    @required Result caseOne(String caseOne),
-    @required Result caseTwo(String caseTwo),
-    @required Result caseThree(String caseThree),
-    @required Result caseFour(String caseFour),
+    @required TResult caseOne(String caseOne),
+    @required TResult caseTwo(String caseTwo),
+    @required TResult caseThree(String caseThree),
+    @required TResult caseFour(String caseFour),
   }) {
     assert($default != null);
     assert(caseOne != null);
@@ -265,14 +265,14 @@ class _$_TestGym with DiagnosticableTreeMixin implements _TestGym {
 
   @override
   @optionalTypeArgs
-  Result maybeWhen<Result extends Object>(
-    Result $default(String domain, String host, String stripePublicKey,
+  TResult maybeWhen<TResult extends Object>(
+    TResult $default(String domain, String host, String stripePublicKey,
         String requiredField), {
-    Result caseOne(String caseOne),
-    Result caseTwo(String caseTwo),
-    Result caseThree(String caseThree),
-    Result caseFour(String caseFour),
-    @required Result orElse(),
+    TResult caseOne(String caseOne),
+    TResult caseTwo(String caseTwo),
+    TResult caseThree(String caseThree),
+    TResult caseFour(String caseFour),
+    @required TResult orElse(),
   }) {
     assert(orElse != null);
     if ($default != null) {
@@ -283,12 +283,12 @@ class _$_TestGym with DiagnosticableTreeMixin implements _TestGym {
 
   @override
   @optionalTypeArgs
-  Result map<Result extends Object>(
-    Result $default(_TestGym value), {
-    @required Result caseOne(_CaseOne value),
-    @required Result caseTwo(_CaseTwo value),
-    @required Result caseThree(CaseThree value),
-    @required Result caseFour(CaseFour value),
+  TResult map<TResult extends Object>(
+    TResult $default(_TestGym value), {
+    @required TResult caseOne(_CaseOne value),
+    @required TResult caseTwo(_CaseTwo value),
+    @required TResult caseThree(CaseThree value),
+    @required TResult caseFour(CaseFour value),
   }) {
     assert($default != null);
     assert(caseOne != null);
@@ -300,13 +300,13 @@ class _$_TestGym with DiagnosticableTreeMixin implements _TestGym {
 
   @override
   @optionalTypeArgs
-  Result maybeMap<Result extends Object>(
-    Result $default(_TestGym value), {
-    Result caseOne(_CaseOne value),
-    Result caseTwo(_CaseTwo value),
-    Result caseThree(CaseThree value),
-    Result caseFour(CaseFour value),
-    @required Result orElse(),
+  TResult maybeMap<TResult extends Object>(
+    TResult $default(_TestGym value), {
+    TResult caseOne(_CaseOne value),
+    TResult caseTwo(_CaseTwo value),
+    TResult caseThree(CaseThree value),
+    TResult caseFour(CaseFour value),
+    @required TResult orElse(),
   }) {
     assert(orElse != null);
     if ($default != null) {
@@ -367,12 +367,12 @@ class __$CaseOneCopyWithImpl<$Res> extends _$TestGymCopyWithImpl<$Res>
 
 /// @nodoc
 class _$_CaseOne with DiagnosticableTreeMixin implements _CaseOne {
-  const _$_CaseOne([this.caseOne = 'caseOne']) : assert(caseOne != null);
+  const _$_CaseOne([this.caseOne = "caseOne"]) : assert(caseOne != null);
 
   factory _$_CaseOne.fromJson(Map<String, dynamic> json) =>
       _$_$_CaseOneFromJson(json);
 
-  @JsonKey(defaultValue: 'caseOne')
+  @JsonKey(defaultValue: "caseOne")
   @override
   final String caseOne;
 
@@ -407,13 +407,13 @@ class _$_CaseOne with DiagnosticableTreeMixin implements _CaseOne {
 
   @override
   @optionalTypeArgs
-  Result when<Result extends Object>(
-    Result $default(String domain, String host, String stripePublicKey,
+  TResult when<TResult extends Object>(
+    TResult $default(String domain, String host, String stripePublicKey,
         String requiredField), {
-    @required Result caseOne(String caseOne),
-    @required Result caseTwo(String caseTwo),
-    @required Result caseThree(String caseThree),
-    @required Result caseFour(String caseFour),
+    @required TResult caseOne(String caseOne),
+    @required TResult caseTwo(String caseTwo),
+    @required TResult caseThree(String caseThree),
+    @required TResult caseFour(String caseFour),
   }) {
     assert($default != null);
     assert(caseOne != null);
@@ -425,14 +425,14 @@ class _$_CaseOne with DiagnosticableTreeMixin implements _CaseOne {
 
   @override
   @optionalTypeArgs
-  Result maybeWhen<Result extends Object>(
-    Result $default(String domain, String host, String stripePublicKey,
+  TResult maybeWhen<TResult extends Object>(
+    TResult $default(String domain, String host, String stripePublicKey,
         String requiredField), {
-    Result caseOne(String caseOne),
-    Result caseTwo(String caseTwo),
-    Result caseThree(String caseThree),
-    Result caseFour(String caseFour),
-    @required Result orElse(),
+    TResult caseOne(String caseOne),
+    TResult caseTwo(String caseTwo),
+    TResult caseThree(String caseThree),
+    TResult caseFour(String caseFour),
+    @required TResult orElse(),
   }) {
     assert(orElse != null);
     if (caseOne != null) {
@@ -443,12 +443,12 @@ class _$_CaseOne with DiagnosticableTreeMixin implements _CaseOne {
 
   @override
   @optionalTypeArgs
-  Result map<Result extends Object>(
-    Result $default(_TestGym value), {
-    @required Result caseOne(_CaseOne value),
-    @required Result caseTwo(_CaseTwo value),
-    @required Result caseThree(CaseThree value),
-    @required Result caseFour(CaseFour value),
+  TResult map<TResult extends Object>(
+    TResult $default(_TestGym value), {
+    @required TResult caseOne(_CaseOne value),
+    @required TResult caseTwo(_CaseTwo value),
+    @required TResult caseThree(CaseThree value),
+    @required TResult caseFour(CaseFour value),
   }) {
     assert($default != null);
     assert(caseOne != null);
@@ -460,13 +460,13 @@ class _$_CaseOne with DiagnosticableTreeMixin implements _CaseOne {
 
   @override
   @optionalTypeArgs
-  Result maybeMap<Result extends Object>(
-    Result $default(_TestGym value), {
-    Result caseOne(_CaseOne value),
-    Result caseTwo(_CaseTwo value),
-    Result caseThree(CaseThree value),
-    Result caseFour(CaseFour value),
-    @required Result orElse(),
+  TResult maybeMap<TResult extends Object>(
+    TResult $default(_TestGym value), {
+    TResult caseOne(_CaseOne value),
+    TResult caseTwo(_CaseTwo value),
+    TResult caseThree(CaseThree value),
+    TResult caseFour(CaseFour value),
+    @required TResult orElse(),
   }) {
     assert(orElse != null);
     if (caseOne != null) {
@@ -559,13 +559,13 @@ class _$_CaseTwo with DiagnosticableTreeMixin implements _CaseTwo {
 
   @override
   @optionalTypeArgs
-  Result when<Result extends Object>(
-    Result $default(String domain, String host, String stripePublicKey,
+  TResult when<TResult extends Object>(
+    TResult $default(String domain, String host, String stripePublicKey,
         String requiredField), {
-    @required Result caseOne(String caseOne),
-    @required Result caseTwo(String caseTwo),
-    @required Result caseThree(String caseThree),
-    @required Result caseFour(String caseFour),
+    @required TResult caseOne(String caseOne),
+    @required TResult caseTwo(String caseTwo),
+    @required TResult caseThree(String caseThree),
+    @required TResult caseFour(String caseFour),
   }) {
     assert($default != null);
     assert(caseOne != null);
@@ -577,14 +577,14 @@ class _$_CaseTwo with DiagnosticableTreeMixin implements _CaseTwo {
 
   @override
   @optionalTypeArgs
-  Result maybeWhen<Result extends Object>(
-    Result $default(String domain, String host, String stripePublicKey,
+  TResult maybeWhen<TResult extends Object>(
+    TResult $default(String domain, String host, String stripePublicKey,
         String requiredField), {
-    Result caseOne(String caseOne),
-    Result caseTwo(String caseTwo),
-    Result caseThree(String caseThree),
-    Result caseFour(String caseFour),
-    @required Result orElse(),
+    TResult caseOne(String caseOne),
+    TResult caseTwo(String caseTwo),
+    TResult caseThree(String caseThree),
+    TResult caseFour(String caseFour),
+    @required TResult orElse(),
   }) {
     assert(orElse != null);
     if (caseTwo != null) {
@@ -595,12 +595,12 @@ class _$_CaseTwo with DiagnosticableTreeMixin implements _CaseTwo {
 
   @override
   @optionalTypeArgs
-  Result map<Result extends Object>(
-    Result $default(_TestGym value), {
-    @required Result caseOne(_CaseOne value),
-    @required Result caseTwo(_CaseTwo value),
-    @required Result caseThree(CaseThree value),
-    @required Result caseFour(CaseFour value),
+  TResult map<TResult extends Object>(
+    TResult $default(_TestGym value), {
+    @required TResult caseOne(_CaseOne value),
+    @required TResult caseTwo(_CaseTwo value),
+    @required TResult caseThree(CaseThree value),
+    @required TResult caseFour(CaseFour value),
   }) {
     assert($default != null);
     assert(caseOne != null);
@@ -612,13 +612,13 @@ class _$_CaseTwo with DiagnosticableTreeMixin implements _CaseTwo {
 
   @override
   @optionalTypeArgs
-  Result maybeMap<Result extends Object>(
-    Result $default(_TestGym value), {
-    Result caseOne(_CaseOne value),
-    Result caseTwo(_CaseTwo value),
-    Result caseThree(CaseThree value),
-    Result caseFour(CaseFour value),
-    @required Result orElse(),
+  TResult maybeMap<TResult extends Object>(
+    TResult $default(_TestGym value), {
+    TResult caseOne(_CaseOne value),
+    TResult caseTwo(_CaseTwo value),
+    TResult caseThree(CaseThree value),
+    TResult caseFour(CaseFour value),
+    @required TResult orElse(),
   }) {
     assert(orElse != null);
     if (caseTwo != null) {
@@ -712,13 +712,13 @@ class _$CaseThree with DiagnosticableTreeMixin implements CaseThree {
 
   @override
   @optionalTypeArgs
-  Result when<Result extends Object>(
-    Result $default(String domain, String host, String stripePublicKey,
+  TResult when<TResult extends Object>(
+    TResult $default(String domain, String host, String stripePublicKey,
         String requiredField), {
-    @required Result caseOne(String caseOne),
-    @required Result caseTwo(String caseTwo),
-    @required Result caseThree(String caseThree),
-    @required Result caseFour(String caseFour),
+    @required TResult caseOne(String caseOne),
+    @required TResult caseTwo(String caseTwo),
+    @required TResult caseThree(String caseThree),
+    @required TResult caseFour(String caseFour),
   }) {
     assert($default != null);
     assert(caseOne != null);
@@ -730,14 +730,14 @@ class _$CaseThree with DiagnosticableTreeMixin implements CaseThree {
 
   @override
   @optionalTypeArgs
-  Result maybeWhen<Result extends Object>(
-    Result $default(String domain, String host, String stripePublicKey,
+  TResult maybeWhen<TResult extends Object>(
+    TResult $default(String domain, String host, String stripePublicKey,
         String requiredField), {
-    Result caseOne(String caseOne),
-    Result caseTwo(String caseTwo),
-    Result caseThree(String caseThree),
-    Result caseFour(String caseFour),
-    @required Result orElse(),
+    TResult caseOne(String caseOne),
+    TResult caseTwo(String caseTwo),
+    TResult caseThree(String caseThree),
+    TResult caseFour(String caseFour),
+    @required TResult orElse(),
   }) {
     assert(orElse != null);
     if (caseThree != null) {
@@ -748,12 +748,12 @@ class _$CaseThree with DiagnosticableTreeMixin implements CaseThree {
 
   @override
   @optionalTypeArgs
-  Result map<Result extends Object>(
-    Result $default(_TestGym value), {
-    @required Result caseOne(_CaseOne value),
-    @required Result caseTwo(_CaseTwo value),
-    @required Result caseThree(CaseThree value),
-    @required Result caseFour(CaseFour value),
+  TResult map<TResult extends Object>(
+    TResult $default(_TestGym value), {
+    @required TResult caseOne(_CaseOne value),
+    @required TResult caseTwo(_CaseTwo value),
+    @required TResult caseThree(CaseThree value),
+    @required TResult caseFour(CaseFour value),
   }) {
     assert($default != null);
     assert(caseOne != null);
@@ -765,13 +765,13 @@ class _$CaseThree with DiagnosticableTreeMixin implements CaseThree {
 
   @override
   @optionalTypeArgs
-  Result maybeMap<Result extends Object>(
-    Result $default(_TestGym value), {
-    Result caseOne(_CaseOne value),
-    Result caseTwo(_CaseTwo value),
-    Result caseThree(CaseThree value),
-    Result caseFour(CaseFour value),
-    @required Result orElse(),
+  TResult maybeMap<TResult extends Object>(
+    TResult $default(_TestGym value), {
+    TResult caseOne(_CaseOne value),
+    TResult caseTwo(_CaseTwo value),
+    TResult caseThree(CaseThree value),
+    TResult caseFour(CaseFour value),
+    @required TResult orElse(),
   }) {
     assert(orElse != null);
     if (caseThree != null) {
@@ -865,13 +865,13 @@ class _$CaseFour with DiagnosticableTreeMixin implements CaseFour {
 
   @override
   @optionalTypeArgs
-  Result when<Result extends Object>(
-    Result $default(String domain, String host, String stripePublicKey,
+  TResult when<TResult extends Object>(
+    TResult $default(String domain, String host, String stripePublicKey,
         String requiredField), {
-    @required Result caseOne(String caseOne),
-    @required Result caseTwo(String caseTwo),
-    @required Result caseThree(String caseThree),
-    @required Result caseFour(String caseFour),
+    @required TResult caseOne(String caseOne),
+    @required TResult caseTwo(String caseTwo),
+    @required TResult caseThree(String caseThree),
+    @required TResult caseFour(String caseFour),
   }) {
     assert($default != null);
     assert(caseOne != null);
@@ -883,14 +883,14 @@ class _$CaseFour with DiagnosticableTreeMixin implements CaseFour {
 
   @override
   @optionalTypeArgs
-  Result maybeWhen<Result extends Object>(
-    Result $default(String domain, String host, String stripePublicKey,
+  TResult maybeWhen<TResult extends Object>(
+    TResult $default(String domain, String host, String stripePublicKey,
         String requiredField), {
-    Result caseOne(String caseOne),
-    Result caseTwo(String caseTwo),
-    Result caseThree(String caseThree),
-    Result caseFour(String caseFour),
-    @required Result orElse(),
+    TResult caseOne(String caseOne),
+    TResult caseTwo(String caseTwo),
+    TResult caseThree(String caseThree),
+    TResult caseFour(String caseFour),
+    @required TResult orElse(),
   }) {
     assert(orElse != null);
     if (caseFour != null) {
@@ -901,12 +901,12 @@ class _$CaseFour with DiagnosticableTreeMixin implements CaseFour {
 
   @override
   @optionalTypeArgs
-  Result map<Result extends Object>(
-    Result $default(_TestGym value), {
-    @required Result caseOne(_CaseOne value),
-    @required Result caseTwo(_CaseTwo value),
-    @required Result caseThree(CaseThree value),
-    @required Result caseFour(CaseFour value),
+  TResult map<TResult extends Object>(
+    TResult $default(_TestGym value), {
+    @required TResult caseOne(_CaseOne value),
+    @required TResult caseTwo(_CaseTwo value),
+    @required TResult caseThree(CaseThree value),
+    @required TResult caseFour(CaseFour value),
   }) {
     assert($default != null);
     assert(caseOne != null);
@@ -918,13 +918,13 @@ class _$CaseFour with DiagnosticableTreeMixin implements CaseFour {
 
   @override
   @optionalTypeArgs
-  Result maybeMap<Result extends Object>(
-    Result $default(_TestGym value), {
-    Result caseOne(_CaseOne value),
-    Result caseTwo(_CaseTwo value),
-    Result caseThree(CaseThree value),
-    Result caseFour(CaseFour value),
-    @required Result orElse(),
+  TResult maybeMap<TResult extends Object>(
+    TResult $default(_TestGym value), {
+    TResult caseOne(_CaseOne value),
+    TResult caseTwo(_CaseTwo value),
+    TResult caseThree(CaseThree value),
+    TResult caseFour(CaseFour value),
+    @required TResult orElse(),
   }) {
     assert(orElse != null);
     if (caseFour != null) {

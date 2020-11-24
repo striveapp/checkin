@@ -30,22 +30,22 @@ mixin _$GymEvent {
   Gym get gym;
 
   @optionalTypeArgs
-  Result when<Result extends Object>({
-    @required Result gymUpdated(Gym gym),
+  TResult when<TResult extends Object>({
+    @required TResult gymUpdated(Gym gym),
   });
   @optionalTypeArgs
-  Result maybeWhen<Result extends Object>({
-    Result gymUpdated(Gym gym),
-    @required Result orElse(),
+  TResult maybeWhen<TResult extends Object>({
+    TResult gymUpdated(Gym gym),
+    @required TResult orElse(),
   });
   @optionalTypeArgs
-  Result map<Result extends Object>({
-    @required Result gymUpdated(GymUpdated value),
+  TResult map<TResult extends Object>({
+    @required TResult gymUpdated(GymUpdated value),
   });
   @optionalTypeArgs
-  Result maybeMap<Result extends Object>({
-    Result gymUpdated(GymUpdated value),
-    @required Result orElse(),
+  TResult maybeMap<TResult extends Object>({
+    TResult gymUpdated(GymUpdated value),
+    @required TResult orElse(),
   });
 
   $GymEventCopyWith<GymEvent> get copyWith;
@@ -157,8 +157,8 @@ class _$GymUpdated with DiagnosticableTreeMixin implements GymUpdated {
 
   @override
   @optionalTypeArgs
-  Result when<Result extends Object>({
-    @required Result gymUpdated(Gym gym),
+  TResult when<TResult extends Object>({
+    @required TResult gymUpdated(Gym gym),
   }) {
     assert(gymUpdated != null);
     return gymUpdated(gym);
@@ -166,9 +166,9 @@ class _$GymUpdated with DiagnosticableTreeMixin implements GymUpdated {
 
   @override
   @optionalTypeArgs
-  Result maybeWhen<Result extends Object>({
-    Result gymUpdated(Gym gym),
-    @required Result orElse(),
+  TResult maybeWhen<TResult extends Object>({
+    TResult gymUpdated(Gym gym),
+    @required TResult orElse(),
   }) {
     assert(orElse != null);
     if (gymUpdated != null) {
@@ -179,8 +179,8 @@ class _$GymUpdated with DiagnosticableTreeMixin implements GymUpdated {
 
   @override
   @optionalTypeArgs
-  Result map<Result extends Object>({
-    @required Result gymUpdated(GymUpdated value),
+  TResult map<TResult extends Object>({
+    @required TResult gymUpdated(GymUpdated value),
   }) {
     assert(gymUpdated != null);
     return gymUpdated(this);
@@ -188,9 +188,9 @@ class _$GymUpdated with DiagnosticableTreeMixin implements GymUpdated {
 
   @override
   @optionalTypeArgs
-  Result maybeMap<Result extends Object>({
-    Result gymUpdated(GymUpdated value),
-    @required Result orElse(),
+  TResult maybeMap<TResult extends Object>({
+    TResult gymUpdated(GymUpdated value),
+    @required TResult orElse(),
   }) {
     assert(orElse != null);
     if (gymUpdated != null) {

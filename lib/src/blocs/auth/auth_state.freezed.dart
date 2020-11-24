@@ -40,30 +40,30 @@ const $AuthState = _$AuthStateTearOff();
 /// @nodoc
 mixin _$AuthState {
   @optionalTypeArgs
-  Result when<Result extends Object>({
-    @required Result authUninitialized(),
-    @required Result authAuthenticated(User loggedUser),
-    @required Result authUnauthenticated(Error error),
+  TResult when<TResult extends Object>({
+    @required TResult authUninitialized(),
+    @required TResult authAuthenticated(User loggedUser),
+    @required TResult authUnauthenticated(Error error),
   });
   @optionalTypeArgs
-  Result maybeWhen<Result extends Object>({
-    Result authUninitialized(),
-    Result authAuthenticated(User loggedUser),
-    Result authUnauthenticated(Error error),
-    @required Result orElse(),
+  TResult maybeWhen<TResult extends Object>({
+    TResult authUninitialized(),
+    TResult authAuthenticated(User loggedUser),
+    TResult authUnauthenticated(Error error),
+    @required TResult orElse(),
   });
   @optionalTypeArgs
-  Result map<Result extends Object>({
-    @required Result authUninitialized(AuthUninitialized value),
-    @required Result authAuthenticated(AuthAuthenticated value),
-    @required Result authUnauthenticated(AuthUnauthenticated value),
+  TResult map<TResult extends Object>({
+    @required TResult authUninitialized(AuthUninitialized value),
+    @required TResult authAuthenticated(AuthAuthenticated value),
+    @required TResult authUnauthenticated(AuthUnauthenticated value),
   });
   @optionalTypeArgs
-  Result maybeMap<Result extends Object>({
-    Result authUninitialized(AuthUninitialized value),
-    Result authAuthenticated(AuthAuthenticated value),
-    Result authUnauthenticated(AuthUnauthenticated value),
-    @required Result orElse(),
+  TResult maybeMap<TResult extends Object>({
+    TResult authUninitialized(AuthUninitialized value),
+    TResult authAuthenticated(AuthAuthenticated value),
+    TResult authUnauthenticated(AuthUnauthenticated value),
+    @required TResult orElse(),
   });
 }
 
@@ -128,10 +128,10 @@ class _$AuthUninitialized
 
   @override
   @optionalTypeArgs
-  Result when<Result extends Object>({
-    @required Result authUninitialized(),
-    @required Result authAuthenticated(User loggedUser),
-    @required Result authUnauthenticated(Error error),
+  TResult when<TResult extends Object>({
+    @required TResult authUninitialized(),
+    @required TResult authAuthenticated(User loggedUser),
+    @required TResult authUnauthenticated(Error error),
   }) {
     assert(authUninitialized != null);
     assert(authAuthenticated != null);
@@ -141,11 +141,11 @@ class _$AuthUninitialized
 
   @override
   @optionalTypeArgs
-  Result maybeWhen<Result extends Object>({
-    Result authUninitialized(),
-    Result authAuthenticated(User loggedUser),
-    Result authUnauthenticated(Error error),
-    @required Result orElse(),
+  TResult maybeWhen<TResult extends Object>({
+    TResult authUninitialized(),
+    TResult authAuthenticated(User loggedUser),
+    TResult authUnauthenticated(Error error),
+    @required TResult orElse(),
   }) {
     assert(orElse != null);
     if (authUninitialized != null) {
@@ -156,10 +156,10 @@ class _$AuthUninitialized
 
   @override
   @optionalTypeArgs
-  Result map<Result extends Object>({
-    @required Result authUninitialized(AuthUninitialized value),
-    @required Result authAuthenticated(AuthAuthenticated value),
-    @required Result authUnauthenticated(AuthUnauthenticated value),
+  TResult map<TResult extends Object>({
+    @required TResult authUninitialized(AuthUninitialized value),
+    @required TResult authAuthenticated(AuthAuthenticated value),
+    @required TResult authUnauthenticated(AuthUnauthenticated value),
   }) {
     assert(authUninitialized != null);
     assert(authAuthenticated != null);
@@ -169,11 +169,11 @@ class _$AuthUninitialized
 
   @override
   @optionalTypeArgs
-  Result maybeMap<Result extends Object>({
-    Result authUninitialized(AuthUninitialized value),
-    Result authAuthenticated(AuthAuthenticated value),
-    Result authUnauthenticated(AuthUnauthenticated value),
-    @required Result orElse(),
+  TResult maybeMap<TResult extends Object>({
+    TResult authUninitialized(AuthUninitialized value),
+    TResult authAuthenticated(AuthAuthenticated value),
+    TResult authUnauthenticated(AuthUnauthenticated value),
+    @required TResult orElse(),
   }) {
     assert(orElse != null);
     if (authUninitialized != null) {
@@ -258,10 +258,10 @@ class _$AuthAuthenticated
 
   @override
   @optionalTypeArgs
-  Result when<Result extends Object>({
-    @required Result authUninitialized(),
-    @required Result authAuthenticated(User loggedUser),
-    @required Result authUnauthenticated(Error error),
+  TResult when<TResult extends Object>({
+    @required TResult authUninitialized(),
+    @required TResult authAuthenticated(User loggedUser),
+    @required TResult authUnauthenticated(Error error),
   }) {
     assert(authUninitialized != null);
     assert(authAuthenticated != null);
@@ -271,11 +271,11 @@ class _$AuthAuthenticated
 
   @override
   @optionalTypeArgs
-  Result maybeWhen<Result extends Object>({
-    Result authUninitialized(),
-    Result authAuthenticated(User loggedUser),
-    Result authUnauthenticated(Error error),
-    @required Result orElse(),
+  TResult maybeWhen<TResult extends Object>({
+    TResult authUninitialized(),
+    TResult authAuthenticated(User loggedUser),
+    TResult authUnauthenticated(Error error),
+    @required TResult orElse(),
   }) {
     assert(orElse != null);
     if (authAuthenticated != null) {
@@ -286,10 +286,10 @@ class _$AuthAuthenticated
 
   @override
   @optionalTypeArgs
-  Result map<Result extends Object>({
-    @required Result authUninitialized(AuthUninitialized value),
-    @required Result authAuthenticated(AuthAuthenticated value),
-    @required Result authUnauthenticated(AuthUnauthenticated value),
+  TResult map<TResult extends Object>({
+    @required TResult authUninitialized(AuthUninitialized value),
+    @required TResult authAuthenticated(AuthAuthenticated value),
+    @required TResult authUnauthenticated(AuthUnauthenticated value),
   }) {
     assert(authUninitialized != null);
     assert(authAuthenticated != null);
@@ -299,11 +299,11 @@ class _$AuthAuthenticated
 
   @override
   @optionalTypeArgs
-  Result maybeMap<Result extends Object>({
-    Result authUninitialized(AuthUninitialized value),
-    Result authAuthenticated(AuthAuthenticated value),
-    Result authUnauthenticated(AuthUnauthenticated value),
-    @required Result orElse(),
+  TResult maybeMap<TResult extends Object>({
+    TResult authUninitialized(AuthUninitialized value),
+    TResult authAuthenticated(AuthAuthenticated value),
+    TResult authUnauthenticated(AuthUnauthenticated value),
+    @required TResult orElse(),
   }) {
     assert(orElse != null);
     if (authAuthenticated != null) {
@@ -389,10 +389,10 @@ class _$AuthUnauthenticated
 
   @override
   @optionalTypeArgs
-  Result when<Result extends Object>({
-    @required Result authUninitialized(),
-    @required Result authAuthenticated(User loggedUser),
-    @required Result authUnauthenticated(Error error),
+  TResult when<TResult extends Object>({
+    @required TResult authUninitialized(),
+    @required TResult authAuthenticated(User loggedUser),
+    @required TResult authUnauthenticated(Error error),
   }) {
     assert(authUninitialized != null);
     assert(authAuthenticated != null);
@@ -402,11 +402,11 @@ class _$AuthUnauthenticated
 
   @override
   @optionalTypeArgs
-  Result maybeWhen<Result extends Object>({
-    Result authUninitialized(),
-    Result authAuthenticated(User loggedUser),
-    Result authUnauthenticated(Error error),
-    @required Result orElse(),
+  TResult maybeWhen<TResult extends Object>({
+    TResult authUninitialized(),
+    TResult authAuthenticated(User loggedUser),
+    TResult authUnauthenticated(Error error),
+    @required TResult orElse(),
   }) {
     assert(orElse != null);
     if (authUnauthenticated != null) {
@@ -417,10 +417,10 @@ class _$AuthUnauthenticated
 
   @override
   @optionalTypeArgs
-  Result map<Result extends Object>({
-    @required Result authUninitialized(AuthUninitialized value),
-    @required Result authAuthenticated(AuthAuthenticated value),
-    @required Result authUnauthenticated(AuthUnauthenticated value),
+  TResult map<TResult extends Object>({
+    @required TResult authUninitialized(AuthUninitialized value),
+    @required TResult authAuthenticated(AuthAuthenticated value),
+    @required TResult authUnauthenticated(AuthUnauthenticated value),
   }) {
     assert(authUninitialized != null);
     assert(authAuthenticated != null);
@@ -430,11 +430,11 @@ class _$AuthUnauthenticated
 
   @override
   @optionalTypeArgs
-  Result maybeMap<Result extends Object>({
-    Result authUninitialized(AuthUninitialized value),
-    Result authAuthenticated(AuthAuthenticated value),
-    Result authUnauthenticated(AuthUnauthenticated value),
-    @required Result orElse(),
+  TResult maybeMap<TResult extends Object>({
+    TResult authUninitialized(AuthUninitialized value),
+    TResult authAuthenticated(AuthAuthenticated value),
+    TResult authUnauthenticated(AuthUnauthenticated value),
+    @required TResult orElse(),
   }) {
     assert(orElse != null);
     if (authUnauthenticated != null) {

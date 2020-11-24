@@ -38,29 +38,29 @@ const $GraduationEvent = _$GraduationEventTearOff();
 /// @nodoc
 mixin _$GraduationEvent {
   @optionalTypeArgs
-  Result when<Result extends Object>({
+  TResult when<TResult extends Object>({
     @required
-        Result graduationSystemUpdated(
+        TResult graduationSystemUpdated(
             GraduationSystem graduationSystem, int attendedLessonsForGrade),
-    @required Result graduate(Grade newGrade),
+    @required TResult graduate(Grade newGrade),
   });
   @optionalTypeArgs
-  Result maybeWhen<Result extends Object>({
-    Result graduationSystemUpdated(
+  TResult maybeWhen<TResult extends Object>({
+    TResult graduationSystemUpdated(
         GraduationSystem graduationSystem, int attendedLessonsForGrade),
-    Result graduate(Grade newGrade),
-    @required Result orElse(),
+    TResult graduate(Grade newGrade),
+    @required TResult orElse(),
   });
   @optionalTypeArgs
-  Result map<Result extends Object>({
-    @required Result graduationSystemUpdated(GraduationSystemUpdated value),
-    @required Result graduate(Graduate value),
+  TResult map<TResult extends Object>({
+    @required TResult graduationSystemUpdated(GraduationSystemUpdated value),
+    @required TResult graduate(Graduate value),
   });
   @optionalTypeArgs
-  Result maybeMap<Result extends Object>({
-    Result graduationSystemUpdated(GraduationSystemUpdated value),
-    Result graduate(Graduate value),
-    @required Result orElse(),
+  TResult maybeMap<TResult extends Object>({
+    TResult graduationSystemUpdated(GraduationSystemUpdated value),
+    TResult graduate(Graduate value),
+    @required TResult orElse(),
   });
 }
 
@@ -184,11 +184,11 @@ class _$GraduationSystemUpdated
 
   @override
   @optionalTypeArgs
-  Result when<Result extends Object>({
+  TResult when<TResult extends Object>({
     @required
-        Result graduationSystemUpdated(
+        TResult graduationSystemUpdated(
             GraduationSystem graduationSystem, int attendedLessonsForGrade),
-    @required Result graduate(Grade newGrade),
+    @required TResult graduate(Grade newGrade),
   }) {
     assert(graduationSystemUpdated != null);
     assert(graduate != null);
@@ -197,11 +197,11 @@ class _$GraduationSystemUpdated
 
   @override
   @optionalTypeArgs
-  Result maybeWhen<Result extends Object>({
-    Result graduationSystemUpdated(
+  TResult maybeWhen<TResult extends Object>({
+    TResult graduationSystemUpdated(
         GraduationSystem graduationSystem, int attendedLessonsForGrade),
-    Result graduate(Grade newGrade),
-    @required Result orElse(),
+    TResult graduate(Grade newGrade),
+    @required TResult orElse(),
   }) {
     assert(orElse != null);
     if (graduationSystemUpdated != null) {
@@ -212,9 +212,9 @@ class _$GraduationSystemUpdated
 
   @override
   @optionalTypeArgs
-  Result map<Result extends Object>({
-    @required Result graduationSystemUpdated(GraduationSystemUpdated value),
-    @required Result graduate(Graduate value),
+  TResult map<TResult extends Object>({
+    @required TResult graduationSystemUpdated(GraduationSystemUpdated value),
+    @required TResult graduate(Graduate value),
   }) {
     assert(graduationSystemUpdated != null);
     assert(graduate != null);
@@ -223,10 +223,10 @@ class _$GraduationSystemUpdated
 
   @override
   @optionalTypeArgs
-  Result maybeMap<Result extends Object>({
-    Result graduationSystemUpdated(GraduationSystemUpdated value),
-    Result graduate(Graduate value),
-    @required Result orElse(),
+  TResult maybeMap<TResult extends Object>({
+    TResult graduationSystemUpdated(GraduationSystemUpdated value),
+    TResult graduate(Graduate value),
+    @required TResult orElse(),
   }) {
     assert(orElse != null);
     if (graduationSystemUpdated != null) {
@@ -311,11 +311,11 @@ class _$Graduate with DiagnosticableTreeMixin implements Graduate {
 
   @override
   @optionalTypeArgs
-  Result when<Result extends Object>({
+  TResult when<TResult extends Object>({
     @required
-        Result graduationSystemUpdated(
+        TResult graduationSystemUpdated(
             GraduationSystem graduationSystem, int attendedLessonsForGrade),
-    @required Result graduate(Grade newGrade),
+    @required TResult graduate(Grade newGrade),
   }) {
     assert(graduationSystemUpdated != null);
     assert(graduate != null);
@@ -324,11 +324,11 @@ class _$Graduate with DiagnosticableTreeMixin implements Graduate {
 
   @override
   @optionalTypeArgs
-  Result maybeWhen<Result extends Object>({
-    Result graduationSystemUpdated(
+  TResult maybeWhen<TResult extends Object>({
+    TResult graduationSystemUpdated(
         GraduationSystem graduationSystem, int attendedLessonsForGrade),
-    Result graduate(Grade newGrade),
-    @required Result orElse(),
+    TResult graduate(Grade newGrade),
+    @required TResult orElse(),
   }) {
     assert(orElse != null);
     if (graduate != null) {
@@ -339,9 +339,9 @@ class _$Graduate with DiagnosticableTreeMixin implements Graduate {
 
   @override
   @optionalTypeArgs
-  Result map<Result extends Object>({
-    @required Result graduationSystemUpdated(GraduationSystemUpdated value),
-    @required Result graduate(Graduate value),
+  TResult map<TResult extends Object>({
+    @required TResult graduationSystemUpdated(GraduationSystemUpdated value),
+    @required TResult graduate(Graduate value),
   }) {
     assert(graduationSystemUpdated != null);
     assert(graduate != null);
@@ -350,10 +350,10 @@ class _$Graduate with DiagnosticableTreeMixin implements Graduate {
 
   @override
   @optionalTypeArgs
-  Result maybeMap<Result extends Object>({
-    Result graduationSystemUpdated(GraduationSystemUpdated value),
-    Result graduate(Graduate value),
-    @required Result orElse(),
+  TResult maybeMap<TResult extends Object>({
+    TResult graduationSystemUpdated(GraduationSystemUpdated value),
+    TResult graduate(Graduate value),
+    @required TResult orElse(),
   }) {
     assert(orElse != null);
     if (graduate != null) {

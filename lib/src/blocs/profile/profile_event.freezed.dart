@@ -33,22 +33,22 @@ mixin _$ProfileEvent {
   bool get isCurrentUser;
 
   @optionalTypeArgs
-  Result when<Result extends Object>({
-    @required Result profileUpdated(User user, bool isCurrentUser),
+  TResult when<TResult extends Object>({
+    @required TResult profileUpdated(User user, bool isCurrentUser),
   });
   @optionalTypeArgs
-  Result maybeWhen<Result extends Object>({
-    Result profileUpdated(User user, bool isCurrentUser),
-    @required Result orElse(),
+  TResult maybeWhen<TResult extends Object>({
+    TResult profileUpdated(User user, bool isCurrentUser),
+    @required TResult orElse(),
   });
   @optionalTypeArgs
-  Result map<Result extends Object>({
-    @required Result profileUpdated(ProfileUpdated value),
+  TResult map<TResult extends Object>({
+    @required TResult profileUpdated(ProfileUpdated value),
   });
   @optionalTypeArgs
-  Result maybeMap<Result extends Object>({
-    Result profileUpdated(ProfileUpdated value),
-    @required Result orElse(),
+  TResult maybeMap<TResult extends Object>({
+    TResult profileUpdated(ProfileUpdated value),
+    @required TResult orElse(),
   });
 
   $ProfileEventCopyWith<ProfileEvent> get copyWith;
@@ -167,8 +167,8 @@ class _$ProfileUpdated with DiagnosticableTreeMixin implements ProfileUpdated {
 
   @override
   @optionalTypeArgs
-  Result when<Result extends Object>({
-    @required Result profileUpdated(User user, bool isCurrentUser),
+  TResult when<TResult extends Object>({
+    @required TResult profileUpdated(User user, bool isCurrentUser),
   }) {
     assert(profileUpdated != null);
     return profileUpdated(user, isCurrentUser);
@@ -176,9 +176,9 @@ class _$ProfileUpdated with DiagnosticableTreeMixin implements ProfileUpdated {
 
   @override
   @optionalTypeArgs
-  Result maybeWhen<Result extends Object>({
-    Result profileUpdated(User user, bool isCurrentUser),
-    @required Result orElse(),
+  TResult maybeWhen<TResult extends Object>({
+    TResult profileUpdated(User user, bool isCurrentUser),
+    @required TResult orElse(),
   }) {
     assert(orElse != null);
     if (profileUpdated != null) {
@@ -189,8 +189,8 @@ class _$ProfileUpdated with DiagnosticableTreeMixin implements ProfileUpdated {
 
   @override
   @optionalTypeArgs
-  Result map<Result extends Object>({
-    @required Result profileUpdated(ProfileUpdated value),
+  TResult map<TResult extends Object>({
+    @required TResult profileUpdated(ProfileUpdated value),
   }) {
     assert(profileUpdated != null);
     return profileUpdated(this);
@@ -198,9 +198,9 @@ class _$ProfileUpdated with DiagnosticableTreeMixin implements ProfileUpdated {
 
   @override
   @optionalTypeArgs
-  Result maybeMap<Result extends Object>({
-    Result profileUpdated(ProfileUpdated value),
-    @required Result orElse(),
+  TResult maybeMap<TResult extends Object>({
+    TResult profileUpdated(ProfileUpdated value),
+    @required TResult orElse(),
   }) {
     assert(orElse != null);
     if (profileUpdated != null) {

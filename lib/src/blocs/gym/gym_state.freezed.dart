@@ -33,26 +33,26 @@ const $GymState = _$GymStateTearOff();
 /// @nodoc
 mixin _$GymState {
   @optionalTypeArgs
-  Result when<Result extends Object>({
-    @required Result initialGymState(),
-    @required Result gymLoaded(Gym gym),
+  TResult when<TResult extends Object>({
+    @required TResult initialGymState(),
+    @required TResult gymLoaded(Gym gym),
   });
   @optionalTypeArgs
-  Result maybeWhen<Result extends Object>({
-    Result initialGymState(),
-    Result gymLoaded(Gym gym),
-    @required Result orElse(),
+  TResult maybeWhen<TResult extends Object>({
+    TResult initialGymState(),
+    TResult gymLoaded(Gym gym),
+    @required TResult orElse(),
   });
   @optionalTypeArgs
-  Result map<Result extends Object>({
-    @required Result initialGymState(InitialGymState value),
-    @required Result gymLoaded(GymLoaded value),
+  TResult map<TResult extends Object>({
+    @required TResult initialGymState(InitialGymState value),
+    @required TResult gymLoaded(GymLoaded value),
   });
   @optionalTypeArgs
-  Result maybeMap<Result extends Object>({
-    Result initialGymState(InitialGymState value),
-    Result gymLoaded(GymLoaded value),
-    @required Result orElse(),
+  TResult maybeMap<TResult extends Object>({
+    TResult initialGymState(InitialGymState value),
+    TResult gymLoaded(GymLoaded value),
+    @required TResult orElse(),
   });
 }
 
@@ -116,9 +116,9 @@ class _$InitialGymState
 
   @override
   @optionalTypeArgs
-  Result when<Result extends Object>({
-    @required Result initialGymState(),
-    @required Result gymLoaded(Gym gym),
+  TResult when<TResult extends Object>({
+    @required TResult initialGymState(),
+    @required TResult gymLoaded(Gym gym),
   }) {
     assert(initialGymState != null);
     assert(gymLoaded != null);
@@ -127,10 +127,10 @@ class _$InitialGymState
 
   @override
   @optionalTypeArgs
-  Result maybeWhen<Result extends Object>({
-    Result initialGymState(),
-    Result gymLoaded(Gym gym),
-    @required Result orElse(),
+  TResult maybeWhen<TResult extends Object>({
+    TResult initialGymState(),
+    TResult gymLoaded(Gym gym),
+    @required TResult orElse(),
   }) {
     assert(orElse != null);
     if (initialGymState != null) {
@@ -141,9 +141,9 @@ class _$InitialGymState
 
   @override
   @optionalTypeArgs
-  Result map<Result extends Object>({
-    @required Result initialGymState(InitialGymState value),
-    @required Result gymLoaded(GymLoaded value),
+  TResult map<TResult extends Object>({
+    @required TResult initialGymState(InitialGymState value),
+    @required TResult gymLoaded(GymLoaded value),
   }) {
     assert(initialGymState != null);
     assert(gymLoaded != null);
@@ -152,10 +152,10 @@ class _$InitialGymState
 
   @override
   @optionalTypeArgs
-  Result maybeMap<Result extends Object>({
-    Result initialGymState(InitialGymState value),
-    Result gymLoaded(GymLoaded value),
-    @required Result orElse(),
+  TResult maybeMap<TResult extends Object>({
+    TResult initialGymState(InitialGymState value),
+    TResult gymLoaded(GymLoaded value),
+    @required TResult orElse(),
   }) {
     assert(orElse != null);
     if (initialGymState != null) {
@@ -245,9 +245,9 @@ class _$GymLoaded with DiagnosticableTreeMixin implements GymLoaded {
 
   @override
   @optionalTypeArgs
-  Result when<Result extends Object>({
-    @required Result initialGymState(),
-    @required Result gymLoaded(Gym gym),
+  TResult when<TResult extends Object>({
+    @required TResult initialGymState(),
+    @required TResult gymLoaded(Gym gym),
   }) {
     assert(initialGymState != null);
     assert(gymLoaded != null);
@@ -256,10 +256,10 @@ class _$GymLoaded with DiagnosticableTreeMixin implements GymLoaded {
 
   @override
   @optionalTypeArgs
-  Result maybeWhen<Result extends Object>({
-    Result initialGymState(),
-    Result gymLoaded(Gym gym),
-    @required Result orElse(),
+  TResult maybeWhen<TResult extends Object>({
+    TResult initialGymState(),
+    TResult gymLoaded(Gym gym),
+    @required TResult orElse(),
   }) {
     assert(orElse != null);
     if (gymLoaded != null) {
@@ -270,9 +270,9 @@ class _$GymLoaded with DiagnosticableTreeMixin implements GymLoaded {
 
   @override
   @optionalTypeArgs
-  Result map<Result extends Object>({
-    @required Result initialGymState(InitialGymState value),
-    @required Result gymLoaded(GymLoaded value),
+  TResult map<TResult extends Object>({
+    @required TResult initialGymState(InitialGymState value),
+    @required TResult gymLoaded(GymLoaded value),
   }) {
     assert(initialGymState != null);
     assert(gymLoaded != null);
@@ -281,10 +281,10 @@ class _$GymLoaded with DiagnosticableTreeMixin implements GymLoaded {
 
   @override
   @optionalTypeArgs
-  Result maybeMap<Result extends Object>({
-    Result initialGymState(InitialGymState value),
-    Result gymLoaded(GymLoaded value),
-    @required Result orElse(),
+  TResult maybeMap<TResult extends Object>({
+    TResult initialGymState(InitialGymState value),
+    TResult gymLoaded(GymLoaded value),
+    @required TResult orElse(),
   }) {
     assert(orElse != null);
     if (gymLoaded != null) {

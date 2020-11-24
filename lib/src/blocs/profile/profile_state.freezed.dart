@@ -35,26 +35,26 @@ const $ProfileState = _$ProfileStateTearOff();
 /// @nodoc
 mixin _$ProfileState {
   @optionalTypeArgs
-  Result when<Result extends Object>({
-    @required Result initialProfileState(),
-    @required Result profileLoaded(User profileUser, bool isCurrentUser),
+  TResult when<TResult extends Object>({
+    @required TResult initialProfileState(),
+    @required TResult profileLoaded(User profileUser, bool isCurrentUser),
   });
   @optionalTypeArgs
-  Result maybeWhen<Result extends Object>({
-    Result initialProfileState(),
-    Result profileLoaded(User profileUser, bool isCurrentUser),
-    @required Result orElse(),
+  TResult maybeWhen<TResult extends Object>({
+    TResult initialProfileState(),
+    TResult profileLoaded(User profileUser, bool isCurrentUser),
+    @required TResult orElse(),
   });
   @optionalTypeArgs
-  Result map<Result extends Object>({
-    @required Result initialProfileState(InitialProfileState value),
-    @required Result profileLoaded(ProfileLoaded value),
+  TResult map<TResult extends Object>({
+    @required TResult initialProfileState(InitialProfileState value),
+    @required TResult profileLoaded(ProfileLoaded value),
   });
   @optionalTypeArgs
-  Result maybeMap<Result extends Object>({
-    Result initialProfileState(InitialProfileState value),
-    Result profileLoaded(ProfileLoaded value),
-    @required Result orElse(),
+  TResult maybeMap<TResult extends Object>({
+    TResult initialProfileState(InitialProfileState value),
+    TResult profileLoaded(ProfileLoaded value),
+    @required TResult orElse(),
   });
 }
 
@@ -121,9 +121,9 @@ class _$InitialProfileState
 
   @override
   @optionalTypeArgs
-  Result when<Result extends Object>({
-    @required Result initialProfileState(),
-    @required Result profileLoaded(User profileUser, bool isCurrentUser),
+  TResult when<TResult extends Object>({
+    @required TResult initialProfileState(),
+    @required TResult profileLoaded(User profileUser, bool isCurrentUser),
   }) {
     assert(initialProfileState != null);
     assert(profileLoaded != null);
@@ -132,10 +132,10 @@ class _$InitialProfileState
 
   @override
   @optionalTypeArgs
-  Result maybeWhen<Result extends Object>({
-    Result initialProfileState(),
-    Result profileLoaded(User profileUser, bool isCurrentUser),
-    @required Result orElse(),
+  TResult maybeWhen<TResult extends Object>({
+    TResult initialProfileState(),
+    TResult profileLoaded(User profileUser, bool isCurrentUser),
+    @required TResult orElse(),
   }) {
     assert(orElse != null);
     if (initialProfileState != null) {
@@ -146,9 +146,9 @@ class _$InitialProfileState
 
   @override
   @optionalTypeArgs
-  Result map<Result extends Object>({
-    @required Result initialProfileState(InitialProfileState value),
-    @required Result profileLoaded(ProfileLoaded value),
+  TResult map<TResult extends Object>({
+    @required TResult initialProfileState(InitialProfileState value),
+    @required TResult profileLoaded(ProfileLoaded value),
   }) {
     assert(initialProfileState != null);
     assert(profileLoaded != null);
@@ -157,10 +157,10 @@ class _$InitialProfileState
 
   @override
   @optionalTypeArgs
-  Result maybeMap<Result extends Object>({
-    Result initialProfileState(InitialProfileState value),
-    Result profileLoaded(ProfileLoaded value),
-    @required Result orElse(),
+  TResult maybeMap<TResult extends Object>({
+    TResult initialProfileState(InitialProfileState value),
+    TResult profileLoaded(ProfileLoaded value),
+    @required TResult orElse(),
   }) {
     assert(orElse != null);
     if (initialProfileState != null) {
@@ -257,9 +257,9 @@ class _$ProfileLoaded with DiagnosticableTreeMixin implements ProfileLoaded {
 
   @override
   @optionalTypeArgs
-  Result when<Result extends Object>({
-    @required Result initialProfileState(),
-    @required Result profileLoaded(User profileUser, bool isCurrentUser),
+  TResult when<TResult extends Object>({
+    @required TResult initialProfileState(),
+    @required TResult profileLoaded(User profileUser, bool isCurrentUser),
   }) {
     assert(initialProfileState != null);
     assert(profileLoaded != null);
@@ -268,10 +268,10 @@ class _$ProfileLoaded with DiagnosticableTreeMixin implements ProfileLoaded {
 
   @override
   @optionalTypeArgs
-  Result maybeWhen<Result extends Object>({
-    Result initialProfileState(),
-    Result profileLoaded(User profileUser, bool isCurrentUser),
-    @required Result orElse(),
+  TResult maybeWhen<TResult extends Object>({
+    TResult initialProfileState(),
+    TResult profileLoaded(User profileUser, bool isCurrentUser),
+    @required TResult orElse(),
   }) {
     assert(orElse != null);
     if (profileLoaded != null) {
@@ -282,9 +282,9 @@ class _$ProfileLoaded with DiagnosticableTreeMixin implements ProfileLoaded {
 
   @override
   @optionalTypeArgs
-  Result map<Result extends Object>({
-    @required Result initialProfileState(InitialProfileState value),
-    @required Result profileLoaded(ProfileLoaded value),
+  TResult map<TResult extends Object>({
+    @required TResult initialProfileState(InitialProfileState value),
+    @required TResult profileLoaded(ProfileLoaded value),
   }) {
     assert(initialProfileState != null);
     assert(profileLoaded != null);
@@ -293,10 +293,10 @@ class _$ProfileLoaded with DiagnosticableTreeMixin implements ProfileLoaded {
 
   @override
   @optionalTypeArgs
-  Result maybeMap<Result extends Object>({
-    Result initialProfileState(InitialProfileState value),
-    Result profileLoaded(ProfileLoaded value),
-    @required Result orElse(),
+  TResult maybeMap<TResult extends Object>({
+    TResult initialProfileState(InitialProfileState value),
+    TResult profileLoaded(ProfileLoaded value),
+    @required TResult orElse(),
   }) {
     assert(orElse != null);
     if (profileLoaded != null) {

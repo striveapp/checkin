@@ -51,42 +51,42 @@ const $LoginEvent = _$LoginEventTearOff();
 /// @nodoc
 mixin _$LoginEvent {
   @optionalTypeArgs
-  Result when<Result extends Object>({
-    @required Result loginWithGoogle(),
-    @required Result loginWithApple(),
-    @required Result loginWithTestUser(),
-    @required Result loginWithTestUserTwo(),
-    @required Result loginWithTestUserAdmin(),
-    @required Result loginWithTestUserMaster(),
+  TResult when<TResult extends Object>({
+    @required TResult loginWithGoogle(),
+    @required TResult loginWithApple(),
+    @required TResult loginWithTestUser(),
+    @required TResult loginWithTestUserTwo(),
+    @required TResult loginWithTestUserAdmin(),
+    @required TResult loginWithTestUserMaster(),
   });
   @optionalTypeArgs
-  Result maybeWhen<Result extends Object>({
-    Result loginWithGoogle(),
-    Result loginWithApple(),
-    Result loginWithTestUser(),
-    Result loginWithTestUserTwo(),
-    Result loginWithTestUserAdmin(),
-    Result loginWithTestUserMaster(),
-    @required Result orElse(),
+  TResult maybeWhen<TResult extends Object>({
+    TResult loginWithGoogle(),
+    TResult loginWithApple(),
+    TResult loginWithTestUser(),
+    TResult loginWithTestUserTwo(),
+    TResult loginWithTestUserAdmin(),
+    TResult loginWithTestUserMaster(),
+    @required TResult orElse(),
   });
   @optionalTypeArgs
-  Result map<Result extends Object>({
-    @required Result loginWithGoogle(LoginWithGoogle value),
-    @required Result loginWithApple(LoginWithApple value),
-    @required Result loginWithTestUser(LoginWithTestUser value),
-    @required Result loginWithTestUserTwo(LoginWithTestUserTwo value),
-    @required Result loginWithTestUserAdmin(LoginWithTestUserAdmin value),
-    @required Result loginWithTestUserMaster(LoginWithTestUserMaster value),
+  TResult map<TResult extends Object>({
+    @required TResult loginWithGoogle(LoginWithGoogle value),
+    @required TResult loginWithApple(LoginWithApple value),
+    @required TResult loginWithTestUser(LoginWithTestUser value),
+    @required TResult loginWithTestUserTwo(LoginWithTestUserTwo value),
+    @required TResult loginWithTestUserAdmin(LoginWithTestUserAdmin value),
+    @required TResult loginWithTestUserMaster(LoginWithTestUserMaster value),
   });
   @optionalTypeArgs
-  Result maybeMap<Result extends Object>({
-    Result loginWithGoogle(LoginWithGoogle value),
-    Result loginWithApple(LoginWithApple value),
-    Result loginWithTestUser(LoginWithTestUser value),
-    Result loginWithTestUserTwo(LoginWithTestUserTwo value),
-    Result loginWithTestUserAdmin(LoginWithTestUserAdmin value),
-    Result loginWithTestUserMaster(LoginWithTestUserMaster value),
-    @required Result orElse(),
+  TResult maybeMap<TResult extends Object>({
+    TResult loginWithGoogle(LoginWithGoogle value),
+    TResult loginWithApple(LoginWithApple value),
+    TResult loginWithTestUser(LoginWithTestUser value),
+    TResult loginWithTestUserTwo(LoginWithTestUserTwo value),
+    TResult loginWithTestUserAdmin(LoginWithTestUserAdmin value),
+    TResult loginWithTestUserMaster(LoginWithTestUserMaster value),
+    @required TResult orElse(),
   });
 }
 
@@ -151,13 +151,13 @@ class _$LoginWithGoogle
 
   @override
   @optionalTypeArgs
-  Result when<Result extends Object>({
-    @required Result loginWithGoogle(),
-    @required Result loginWithApple(),
-    @required Result loginWithTestUser(),
-    @required Result loginWithTestUserTwo(),
-    @required Result loginWithTestUserAdmin(),
-    @required Result loginWithTestUserMaster(),
+  TResult when<TResult extends Object>({
+    @required TResult loginWithGoogle(),
+    @required TResult loginWithApple(),
+    @required TResult loginWithTestUser(),
+    @required TResult loginWithTestUserTwo(),
+    @required TResult loginWithTestUserAdmin(),
+    @required TResult loginWithTestUserMaster(),
   }) {
     assert(loginWithGoogle != null);
     assert(loginWithApple != null);
@@ -170,14 +170,14 @@ class _$LoginWithGoogle
 
   @override
   @optionalTypeArgs
-  Result maybeWhen<Result extends Object>({
-    Result loginWithGoogle(),
-    Result loginWithApple(),
-    Result loginWithTestUser(),
-    Result loginWithTestUserTwo(),
-    Result loginWithTestUserAdmin(),
-    Result loginWithTestUserMaster(),
-    @required Result orElse(),
+  TResult maybeWhen<TResult extends Object>({
+    TResult loginWithGoogle(),
+    TResult loginWithApple(),
+    TResult loginWithTestUser(),
+    TResult loginWithTestUserTwo(),
+    TResult loginWithTestUserAdmin(),
+    TResult loginWithTestUserMaster(),
+    @required TResult orElse(),
   }) {
     assert(orElse != null);
     if (loginWithGoogle != null) {
@@ -188,13 +188,13 @@ class _$LoginWithGoogle
 
   @override
   @optionalTypeArgs
-  Result map<Result extends Object>({
-    @required Result loginWithGoogle(LoginWithGoogle value),
-    @required Result loginWithApple(LoginWithApple value),
-    @required Result loginWithTestUser(LoginWithTestUser value),
-    @required Result loginWithTestUserTwo(LoginWithTestUserTwo value),
-    @required Result loginWithTestUserAdmin(LoginWithTestUserAdmin value),
-    @required Result loginWithTestUserMaster(LoginWithTestUserMaster value),
+  TResult map<TResult extends Object>({
+    @required TResult loginWithGoogle(LoginWithGoogle value),
+    @required TResult loginWithApple(LoginWithApple value),
+    @required TResult loginWithTestUser(LoginWithTestUser value),
+    @required TResult loginWithTestUserTwo(LoginWithTestUserTwo value),
+    @required TResult loginWithTestUserAdmin(LoginWithTestUserAdmin value),
+    @required TResult loginWithTestUserMaster(LoginWithTestUserMaster value),
   }) {
     assert(loginWithGoogle != null);
     assert(loginWithApple != null);
@@ -207,14 +207,14 @@ class _$LoginWithGoogle
 
   @override
   @optionalTypeArgs
-  Result maybeMap<Result extends Object>({
-    Result loginWithGoogle(LoginWithGoogle value),
-    Result loginWithApple(LoginWithApple value),
-    Result loginWithTestUser(LoginWithTestUser value),
-    Result loginWithTestUserTwo(LoginWithTestUserTwo value),
-    Result loginWithTestUserAdmin(LoginWithTestUserAdmin value),
-    Result loginWithTestUserMaster(LoginWithTestUserMaster value),
-    @required Result orElse(),
+  TResult maybeMap<TResult extends Object>({
+    TResult loginWithGoogle(LoginWithGoogle value),
+    TResult loginWithApple(LoginWithApple value),
+    TResult loginWithTestUser(LoginWithTestUser value),
+    TResult loginWithTestUserTwo(LoginWithTestUserTwo value),
+    TResult loginWithTestUserAdmin(LoginWithTestUserAdmin value),
+    TResult loginWithTestUserMaster(LoginWithTestUserMaster value),
+    @required TResult orElse(),
   }) {
     assert(orElse != null);
     if (loginWithGoogle != null) {
@@ -271,13 +271,13 @@ class _$LoginWithApple with DiagnosticableTreeMixin implements LoginWithApple {
 
   @override
   @optionalTypeArgs
-  Result when<Result extends Object>({
-    @required Result loginWithGoogle(),
-    @required Result loginWithApple(),
-    @required Result loginWithTestUser(),
-    @required Result loginWithTestUserTwo(),
-    @required Result loginWithTestUserAdmin(),
-    @required Result loginWithTestUserMaster(),
+  TResult when<TResult extends Object>({
+    @required TResult loginWithGoogle(),
+    @required TResult loginWithApple(),
+    @required TResult loginWithTestUser(),
+    @required TResult loginWithTestUserTwo(),
+    @required TResult loginWithTestUserAdmin(),
+    @required TResult loginWithTestUserMaster(),
   }) {
     assert(loginWithGoogle != null);
     assert(loginWithApple != null);
@@ -290,14 +290,14 @@ class _$LoginWithApple with DiagnosticableTreeMixin implements LoginWithApple {
 
   @override
   @optionalTypeArgs
-  Result maybeWhen<Result extends Object>({
-    Result loginWithGoogle(),
-    Result loginWithApple(),
-    Result loginWithTestUser(),
-    Result loginWithTestUserTwo(),
-    Result loginWithTestUserAdmin(),
-    Result loginWithTestUserMaster(),
-    @required Result orElse(),
+  TResult maybeWhen<TResult extends Object>({
+    TResult loginWithGoogle(),
+    TResult loginWithApple(),
+    TResult loginWithTestUser(),
+    TResult loginWithTestUserTwo(),
+    TResult loginWithTestUserAdmin(),
+    TResult loginWithTestUserMaster(),
+    @required TResult orElse(),
   }) {
     assert(orElse != null);
     if (loginWithApple != null) {
@@ -308,13 +308,13 @@ class _$LoginWithApple with DiagnosticableTreeMixin implements LoginWithApple {
 
   @override
   @optionalTypeArgs
-  Result map<Result extends Object>({
-    @required Result loginWithGoogle(LoginWithGoogle value),
-    @required Result loginWithApple(LoginWithApple value),
-    @required Result loginWithTestUser(LoginWithTestUser value),
-    @required Result loginWithTestUserTwo(LoginWithTestUserTwo value),
-    @required Result loginWithTestUserAdmin(LoginWithTestUserAdmin value),
-    @required Result loginWithTestUserMaster(LoginWithTestUserMaster value),
+  TResult map<TResult extends Object>({
+    @required TResult loginWithGoogle(LoginWithGoogle value),
+    @required TResult loginWithApple(LoginWithApple value),
+    @required TResult loginWithTestUser(LoginWithTestUser value),
+    @required TResult loginWithTestUserTwo(LoginWithTestUserTwo value),
+    @required TResult loginWithTestUserAdmin(LoginWithTestUserAdmin value),
+    @required TResult loginWithTestUserMaster(LoginWithTestUserMaster value),
   }) {
     assert(loginWithGoogle != null);
     assert(loginWithApple != null);
@@ -327,14 +327,14 @@ class _$LoginWithApple with DiagnosticableTreeMixin implements LoginWithApple {
 
   @override
   @optionalTypeArgs
-  Result maybeMap<Result extends Object>({
-    Result loginWithGoogle(LoginWithGoogle value),
-    Result loginWithApple(LoginWithApple value),
-    Result loginWithTestUser(LoginWithTestUser value),
-    Result loginWithTestUserTwo(LoginWithTestUserTwo value),
-    Result loginWithTestUserAdmin(LoginWithTestUserAdmin value),
-    Result loginWithTestUserMaster(LoginWithTestUserMaster value),
-    @required Result orElse(),
+  TResult maybeMap<TResult extends Object>({
+    TResult loginWithGoogle(LoginWithGoogle value),
+    TResult loginWithApple(LoginWithApple value),
+    TResult loginWithTestUser(LoginWithTestUser value),
+    TResult loginWithTestUserTwo(LoginWithTestUserTwo value),
+    TResult loginWithTestUserAdmin(LoginWithTestUserAdmin value),
+    TResult loginWithTestUserMaster(LoginWithTestUserMaster value),
+    @required TResult orElse(),
   }) {
     assert(orElse != null);
     if (loginWithApple != null) {
@@ -395,13 +395,13 @@ class _$LoginWithTestUser
 
   @override
   @optionalTypeArgs
-  Result when<Result extends Object>({
-    @required Result loginWithGoogle(),
-    @required Result loginWithApple(),
-    @required Result loginWithTestUser(),
-    @required Result loginWithTestUserTwo(),
-    @required Result loginWithTestUserAdmin(),
-    @required Result loginWithTestUserMaster(),
+  TResult when<TResult extends Object>({
+    @required TResult loginWithGoogle(),
+    @required TResult loginWithApple(),
+    @required TResult loginWithTestUser(),
+    @required TResult loginWithTestUserTwo(),
+    @required TResult loginWithTestUserAdmin(),
+    @required TResult loginWithTestUserMaster(),
   }) {
     assert(loginWithGoogle != null);
     assert(loginWithApple != null);
@@ -414,14 +414,14 @@ class _$LoginWithTestUser
 
   @override
   @optionalTypeArgs
-  Result maybeWhen<Result extends Object>({
-    Result loginWithGoogle(),
-    Result loginWithApple(),
-    Result loginWithTestUser(),
-    Result loginWithTestUserTwo(),
-    Result loginWithTestUserAdmin(),
-    Result loginWithTestUserMaster(),
-    @required Result orElse(),
+  TResult maybeWhen<TResult extends Object>({
+    TResult loginWithGoogle(),
+    TResult loginWithApple(),
+    TResult loginWithTestUser(),
+    TResult loginWithTestUserTwo(),
+    TResult loginWithTestUserAdmin(),
+    TResult loginWithTestUserMaster(),
+    @required TResult orElse(),
   }) {
     assert(orElse != null);
     if (loginWithTestUser != null) {
@@ -432,13 +432,13 @@ class _$LoginWithTestUser
 
   @override
   @optionalTypeArgs
-  Result map<Result extends Object>({
-    @required Result loginWithGoogle(LoginWithGoogle value),
-    @required Result loginWithApple(LoginWithApple value),
-    @required Result loginWithTestUser(LoginWithTestUser value),
-    @required Result loginWithTestUserTwo(LoginWithTestUserTwo value),
-    @required Result loginWithTestUserAdmin(LoginWithTestUserAdmin value),
-    @required Result loginWithTestUserMaster(LoginWithTestUserMaster value),
+  TResult map<TResult extends Object>({
+    @required TResult loginWithGoogle(LoginWithGoogle value),
+    @required TResult loginWithApple(LoginWithApple value),
+    @required TResult loginWithTestUser(LoginWithTestUser value),
+    @required TResult loginWithTestUserTwo(LoginWithTestUserTwo value),
+    @required TResult loginWithTestUserAdmin(LoginWithTestUserAdmin value),
+    @required TResult loginWithTestUserMaster(LoginWithTestUserMaster value),
   }) {
     assert(loginWithGoogle != null);
     assert(loginWithApple != null);
@@ -451,14 +451,14 @@ class _$LoginWithTestUser
 
   @override
   @optionalTypeArgs
-  Result maybeMap<Result extends Object>({
-    Result loginWithGoogle(LoginWithGoogle value),
-    Result loginWithApple(LoginWithApple value),
-    Result loginWithTestUser(LoginWithTestUser value),
-    Result loginWithTestUserTwo(LoginWithTestUserTwo value),
-    Result loginWithTestUserAdmin(LoginWithTestUserAdmin value),
-    Result loginWithTestUserMaster(LoginWithTestUserMaster value),
-    @required Result orElse(),
+  TResult maybeMap<TResult extends Object>({
+    TResult loginWithGoogle(LoginWithGoogle value),
+    TResult loginWithApple(LoginWithApple value),
+    TResult loginWithTestUser(LoginWithTestUser value),
+    TResult loginWithTestUserTwo(LoginWithTestUserTwo value),
+    TResult loginWithTestUserAdmin(LoginWithTestUserAdmin value),
+    TResult loginWithTestUserMaster(LoginWithTestUserMaster value),
+    @required TResult orElse(),
   }) {
     assert(orElse != null);
     if (loginWithTestUser != null) {
@@ -519,13 +519,13 @@ class _$LoginWithTestUserTwo
 
   @override
   @optionalTypeArgs
-  Result when<Result extends Object>({
-    @required Result loginWithGoogle(),
-    @required Result loginWithApple(),
-    @required Result loginWithTestUser(),
-    @required Result loginWithTestUserTwo(),
-    @required Result loginWithTestUserAdmin(),
-    @required Result loginWithTestUserMaster(),
+  TResult when<TResult extends Object>({
+    @required TResult loginWithGoogle(),
+    @required TResult loginWithApple(),
+    @required TResult loginWithTestUser(),
+    @required TResult loginWithTestUserTwo(),
+    @required TResult loginWithTestUserAdmin(),
+    @required TResult loginWithTestUserMaster(),
   }) {
     assert(loginWithGoogle != null);
     assert(loginWithApple != null);
@@ -538,14 +538,14 @@ class _$LoginWithTestUserTwo
 
   @override
   @optionalTypeArgs
-  Result maybeWhen<Result extends Object>({
-    Result loginWithGoogle(),
-    Result loginWithApple(),
-    Result loginWithTestUser(),
-    Result loginWithTestUserTwo(),
-    Result loginWithTestUserAdmin(),
-    Result loginWithTestUserMaster(),
-    @required Result orElse(),
+  TResult maybeWhen<TResult extends Object>({
+    TResult loginWithGoogle(),
+    TResult loginWithApple(),
+    TResult loginWithTestUser(),
+    TResult loginWithTestUserTwo(),
+    TResult loginWithTestUserAdmin(),
+    TResult loginWithTestUserMaster(),
+    @required TResult orElse(),
   }) {
     assert(orElse != null);
     if (loginWithTestUserTwo != null) {
@@ -556,13 +556,13 @@ class _$LoginWithTestUserTwo
 
   @override
   @optionalTypeArgs
-  Result map<Result extends Object>({
-    @required Result loginWithGoogle(LoginWithGoogle value),
-    @required Result loginWithApple(LoginWithApple value),
-    @required Result loginWithTestUser(LoginWithTestUser value),
-    @required Result loginWithTestUserTwo(LoginWithTestUserTwo value),
-    @required Result loginWithTestUserAdmin(LoginWithTestUserAdmin value),
-    @required Result loginWithTestUserMaster(LoginWithTestUserMaster value),
+  TResult map<TResult extends Object>({
+    @required TResult loginWithGoogle(LoginWithGoogle value),
+    @required TResult loginWithApple(LoginWithApple value),
+    @required TResult loginWithTestUser(LoginWithTestUser value),
+    @required TResult loginWithTestUserTwo(LoginWithTestUserTwo value),
+    @required TResult loginWithTestUserAdmin(LoginWithTestUserAdmin value),
+    @required TResult loginWithTestUserMaster(LoginWithTestUserMaster value),
   }) {
     assert(loginWithGoogle != null);
     assert(loginWithApple != null);
@@ -575,14 +575,14 @@ class _$LoginWithTestUserTwo
 
   @override
   @optionalTypeArgs
-  Result maybeMap<Result extends Object>({
-    Result loginWithGoogle(LoginWithGoogle value),
-    Result loginWithApple(LoginWithApple value),
-    Result loginWithTestUser(LoginWithTestUser value),
-    Result loginWithTestUserTwo(LoginWithTestUserTwo value),
-    Result loginWithTestUserAdmin(LoginWithTestUserAdmin value),
-    Result loginWithTestUserMaster(LoginWithTestUserMaster value),
-    @required Result orElse(),
+  TResult maybeMap<TResult extends Object>({
+    TResult loginWithGoogle(LoginWithGoogle value),
+    TResult loginWithApple(LoginWithApple value),
+    TResult loginWithTestUser(LoginWithTestUser value),
+    TResult loginWithTestUserTwo(LoginWithTestUserTwo value),
+    TResult loginWithTestUserAdmin(LoginWithTestUserAdmin value),
+    TResult loginWithTestUserMaster(LoginWithTestUserMaster value),
+    @required TResult orElse(),
   }) {
     assert(orElse != null);
     if (loginWithTestUserTwo != null) {
@@ -643,13 +643,13 @@ class _$LoginWithTestUserAdmin
 
   @override
   @optionalTypeArgs
-  Result when<Result extends Object>({
-    @required Result loginWithGoogle(),
-    @required Result loginWithApple(),
-    @required Result loginWithTestUser(),
-    @required Result loginWithTestUserTwo(),
-    @required Result loginWithTestUserAdmin(),
-    @required Result loginWithTestUserMaster(),
+  TResult when<TResult extends Object>({
+    @required TResult loginWithGoogle(),
+    @required TResult loginWithApple(),
+    @required TResult loginWithTestUser(),
+    @required TResult loginWithTestUserTwo(),
+    @required TResult loginWithTestUserAdmin(),
+    @required TResult loginWithTestUserMaster(),
   }) {
     assert(loginWithGoogle != null);
     assert(loginWithApple != null);
@@ -662,14 +662,14 @@ class _$LoginWithTestUserAdmin
 
   @override
   @optionalTypeArgs
-  Result maybeWhen<Result extends Object>({
-    Result loginWithGoogle(),
-    Result loginWithApple(),
-    Result loginWithTestUser(),
-    Result loginWithTestUserTwo(),
-    Result loginWithTestUserAdmin(),
-    Result loginWithTestUserMaster(),
-    @required Result orElse(),
+  TResult maybeWhen<TResult extends Object>({
+    TResult loginWithGoogle(),
+    TResult loginWithApple(),
+    TResult loginWithTestUser(),
+    TResult loginWithTestUserTwo(),
+    TResult loginWithTestUserAdmin(),
+    TResult loginWithTestUserMaster(),
+    @required TResult orElse(),
   }) {
     assert(orElse != null);
     if (loginWithTestUserAdmin != null) {
@@ -680,13 +680,13 @@ class _$LoginWithTestUserAdmin
 
   @override
   @optionalTypeArgs
-  Result map<Result extends Object>({
-    @required Result loginWithGoogle(LoginWithGoogle value),
-    @required Result loginWithApple(LoginWithApple value),
-    @required Result loginWithTestUser(LoginWithTestUser value),
-    @required Result loginWithTestUserTwo(LoginWithTestUserTwo value),
-    @required Result loginWithTestUserAdmin(LoginWithTestUserAdmin value),
-    @required Result loginWithTestUserMaster(LoginWithTestUserMaster value),
+  TResult map<TResult extends Object>({
+    @required TResult loginWithGoogle(LoginWithGoogle value),
+    @required TResult loginWithApple(LoginWithApple value),
+    @required TResult loginWithTestUser(LoginWithTestUser value),
+    @required TResult loginWithTestUserTwo(LoginWithTestUserTwo value),
+    @required TResult loginWithTestUserAdmin(LoginWithTestUserAdmin value),
+    @required TResult loginWithTestUserMaster(LoginWithTestUserMaster value),
   }) {
     assert(loginWithGoogle != null);
     assert(loginWithApple != null);
@@ -699,14 +699,14 @@ class _$LoginWithTestUserAdmin
 
   @override
   @optionalTypeArgs
-  Result maybeMap<Result extends Object>({
-    Result loginWithGoogle(LoginWithGoogle value),
-    Result loginWithApple(LoginWithApple value),
-    Result loginWithTestUser(LoginWithTestUser value),
-    Result loginWithTestUserTwo(LoginWithTestUserTwo value),
-    Result loginWithTestUserAdmin(LoginWithTestUserAdmin value),
-    Result loginWithTestUserMaster(LoginWithTestUserMaster value),
-    @required Result orElse(),
+  TResult maybeMap<TResult extends Object>({
+    TResult loginWithGoogle(LoginWithGoogle value),
+    TResult loginWithApple(LoginWithApple value),
+    TResult loginWithTestUser(LoginWithTestUser value),
+    TResult loginWithTestUserTwo(LoginWithTestUserTwo value),
+    TResult loginWithTestUserAdmin(LoginWithTestUserAdmin value),
+    TResult loginWithTestUserMaster(LoginWithTestUserMaster value),
+    @required TResult orElse(),
   }) {
     assert(orElse != null);
     if (loginWithTestUserAdmin != null) {
@@ -767,13 +767,13 @@ class _$LoginWithTestUserMaster
 
   @override
   @optionalTypeArgs
-  Result when<Result extends Object>({
-    @required Result loginWithGoogle(),
-    @required Result loginWithApple(),
-    @required Result loginWithTestUser(),
-    @required Result loginWithTestUserTwo(),
-    @required Result loginWithTestUserAdmin(),
-    @required Result loginWithTestUserMaster(),
+  TResult when<TResult extends Object>({
+    @required TResult loginWithGoogle(),
+    @required TResult loginWithApple(),
+    @required TResult loginWithTestUser(),
+    @required TResult loginWithTestUserTwo(),
+    @required TResult loginWithTestUserAdmin(),
+    @required TResult loginWithTestUserMaster(),
   }) {
     assert(loginWithGoogle != null);
     assert(loginWithApple != null);
@@ -786,14 +786,14 @@ class _$LoginWithTestUserMaster
 
   @override
   @optionalTypeArgs
-  Result maybeWhen<Result extends Object>({
-    Result loginWithGoogle(),
-    Result loginWithApple(),
-    Result loginWithTestUser(),
-    Result loginWithTestUserTwo(),
-    Result loginWithTestUserAdmin(),
-    Result loginWithTestUserMaster(),
-    @required Result orElse(),
+  TResult maybeWhen<TResult extends Object>({
+    TResult loginWithGoogle(),
+    TResult loginWithApple(),
+    TResult loginWithTestUser(),
+    TResult loginWithTestUserTwo(),
+    TResult loginWithTestUserAdmin(),
+    TResult loginWithTestUserMaster(),
+    @required TResult orElse(),
   }) {
     assert(orElse != null);
     if (loginWithTestUserMaster != null) {
@@ -804,13 +804,13 @@ class _$LoginWithTestUserMaster
 
   @override
   @optionalTypeArgs
-  Result map<Result extends Object>({
-    @required Result loginWithGoogle(LoginWithGoogle value),
-    @required Result loginWithApple(LoginWithApple value),
-    @required Result loginWithTestUser(LoginWithTestUser value),
-    @required Result loginWithTestUserTwo(LoginWithTestUserTwo value),
-    @required Result loginWithTestUserAdmin(LoginWithTestUserAdmin value),
-    @required Result loginWithTestUserMaster(LoginWithTestUserMaster value),
+  TResult map<TResult extends Object>({
+    @required TResult loginWithGoogle(LoginWithGoogle value),
+    @required TResult loginWithApple(LoginWithApple value),
+    @required TResult loginWithTestUser(LoginWithTestUser value),
+    @required TResult loginWithTestUserTwo(LoginWithTestUserTwo value),
+    @required TResult loginWithTestUserAdmin(LoginWithTestUserAdmin value),
+    @required TResult loginWithTestUserMaster(LoginWithTestUserMaster value),
   }) {
     assert(loginWithGoogle != null);
     assert(loginWithApple != null);
@@ -823,14 +823,14 @@ class _$LoginWithTestUserMaster
 
   @override
   @optionalTypeArgs
-  Result maybeMap<Result extends Object>({
-    Result loginWithGoogle(LoginWithGoogle value),
-    Result loginWithApple(LoginWithApple value),
-    Result loginWithTestUser(LoginWithTestUser value),
-    Result loginWithTestUserTwo(LoginWithTestUserTwo value),
-    Result loginWithTestUserAdmin(LoginWithTestUserAdmin value),
-    Result loginWithTestUserMaster(LoginWithTestUserMaster value),
-    @required Result orElse(),
+  TResult maybeMap<TResult extends Object>({
+    TResult loginWithGoogle(LoginWithGoogle value),
+    TResult loginWithApple(LoginWithApple value),
+    TResult loginWithTestUser(LoginWithTestUser value),
+    TResult loginWithTestUserTwo(LoginWithTestUserTwo value),
+    TResult loginWithTestUserAdmin(LoginWithTestUserAdmin value),
+    TResult loginWithTestUserMaster(LoginWithTestUserMaster value),
+    @required TResult orElse(),
   }) {
     assert(orElse != null);
     if (loginWithTestUserMaster != null) {

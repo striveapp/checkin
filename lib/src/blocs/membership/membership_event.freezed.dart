@@ -35,27 +35,27 @@ const $MembershipEvent = _$MembershipEventTearOff();
 /// @nodoc
 mixin _$MembershipEvent {
   @optionalTypeArgs
-  Result when<Result extends Object>({
+  TResult when<TResult extends Object>({
     @required
-        Result membershipUpdated(String customerEmail, Membership membership),
-    @required Result unsubscribe(),
+        TResult membershipUpdated(String customerEmail, Membership membership),
+    @required TResult unsubscribe(),
   });
   @optionalTypeArgs
-  Result maybeWhen<Result extends Object>({
-    Result membershipUpdated(String customerEmail, Membership membership),
-    Result unsubscribe(),
-    @required Result orElse(),
+  TResult maybeWhen<TResult extends Object>({
+    TResult membershipUpdated(String customerEmail, Membership membership),
+    TResult unsubscribe(),
+    @required TResult orElse(),
   });
   @optionalTypeArgs
-  Result map<Result extends Object>({
-    @required Result membershipUpdated(MembershipUpdated value),
-    @required Result unsubscribe(Unsubscribe value),
+  TResult map<TResult extends Object>({
+    @required TResult membershipUpdated(MembershipUpdated value),
+    @required TResult unsubscribe(Unsubscribe value),
   });
   @optionalTypeArgs
-  Result maybeMap<Result extends Object>({
-    Result membershipUpdated(MembershipUpdated value),
-    Result unsubscribe(Unsubscribe value),
-    @required Result orElse(),
+  TResult maybeMap<TResult extends Object>({
+    TResult membershipUpdated(MembershipUpdated value),
+    TResult unsubscribe(Unsubscribe value),
+    @required TResult orElse(),
   });
 }
 
@@ -174,10 +174,10 @@ class _$MembershipUpdated
 
   @override
   @optionalTypeArgs
-  Result when<Result extends Object>({
+  TResult when<TResult extends Object>({
     @required
-        Result membershipUpdated(String customerEmail, Membership membership),
-    @required Result unsubscribe(),
+        TResult membershipUpdated(String customerEmail, Membership membership),
+    @required TResult unsubscribe(),
   }) {
     assert(membershipUpdated != null);
     assert(unsubscribe != null);
@@ -186,10 +186,10 @@ class _$MembershipUpdated
 
   @override
   @optionalTypeArgs
-  Result maybeWhen<Result extends Object>({
-    Result membershipUpdated(String customerEmail, Membership membership),
-    Result unsubscribe(),
-    @required Result orElse(),
+  TResult maybeWhen<TResult extends Object>({
+    TResult membershipUpdated(String customerEmail, Membership membership),
+    TResult unsubscribe(),
+    @required TResult orElse(),
   }) {
     assert(orElse != null);
     if (membershipUpdated != null) {
@@ -200,9 +200,9 @@ class _$MembershipUpdated
 
   @override
   @optionalTypeArgs
-  Result map<Result extends Object>({
-    @required Result membershipUpdated(MembershipUpdated value),
-    @required Result unsubscribe(Unsubscribe value),
+  TResult map<TResult extends Object>({
+    @required TResult membershipUpdated(MembershipUpdated value),
+    @required TResult unsubscribe(Unsubscribe value),
   }) {
     assert(membershipUpdated != null);
     assert(unsubscribe != null);
@@ -211,10 +211,10 @@ class _$MembershipUpdated
 
   @override
   @optionalTypeArgs
-  Result maybeMap<Result extends Object>({
-    Result membershipUpdated(MembershipUpdated value),
-    Result unsubscribe(Unsubscribe value),
-    @required Result orElse(),
+  TResult maybeMap<TResult extends Object>({
+    TResult membershipUpdated(MembershipUpdated value),
+    TResult unsubscribe(Unsubscribe value),
+    @required TResult orElse(),
   }) {
     assert(orElse != null);
     if (membershipUpdated != null) {
@@ -278,10 +278,10 @@ class _$Unsubscribe with DiagnosticableTreeMixin implements Unsubscribe {
 
   @override
   @optionalTypeArgs
-  Result when<Result extends Object>({
+  TResult when<TResult extends Object>({
     @required
-        Result membershipUpdated(String customerEmail, Membership membership),
-    @required Result unsubscribe(),
+        TResult membershipUpdated(String customerEmail, Membership membership),
+    @required TResult unsubscribe(),
   }) {
     assert(membershipUpdated != null);
     assert(unsubscribe != null);
@@ -290,10 +290,10 @@ class _$Unsubscribe with DiagnosticableTreeMixin implements Unsubscribe {
 
   @override
   @optionalTypeArgs
-  Result maybeWhen<Result extends Object>({
-    Result membershipUpdated(String customerEmail, Membership membership),
-    Result unsubscribe(),
-    @required Result orElse(),
+  TResult maybeWhen<TResult extends Object>({
+    TResult membershipUpdated(String customerEmail, Membership membership),
+    TResult unsubscribe(),
+    @required TResult orElse(),
   }) {
     assert(orElse != null);
     if (unsubscribe != null) {
@@ -304,9 +304,9 @@ class _$Unsubscribe with DiagnosticableTreeMixin implements Unsubscribe {
 
   @override
   @optionalTypeArgs
-  Result map<Result extends Object>({
-    @required Result membershipUpdated(MembershipUpdated value),
-    @required Result unsubscribe(Unsubscribe value),
+  TResult map<TResult extends Object>({
+    @required TResult membershipUpdated(MembershipUpdated value),
+    @required TResult unsubscribe(Unsubscribe value),
   }) {
     assert(membershipUpdated != null);
     assert(unsubscribe != null);
@@ -315,10 +315,10 @@ class _$Unsubscribe with DiagnosticableTreeMixin implements Unsubscribe {
 
   @override
   @optionalTypeArgs
-  Result maybeMap<Result extends Object>({
-    Result membershipUpdated(MembershipUpdated value),
-    Result unsubscribe(Unsubscribe value),
-    @required Result orElse(),
+  TResult maybeMap<TResult extends Object>({
+    TResult membershipUpdated(MembershipUpdated value),
+    TResult unsubscribe(Unsubscribe value),
+    @required TResult orElse(),
   }) {
     assert(orElse != null);
     if (unsubscribe != null) {

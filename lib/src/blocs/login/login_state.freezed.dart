@@ -45,34 +45,34 @@ const $LoginState = _$LoginStateTearOff();
 /// @nodoc
 mixin _$LoginState {
   @optionalTypeArgs
-  Result when<Result extends Object>({
-    @required Result loginInitial(),
-    @required Result loginLoading(),
-    @required Result loginSuccess(User loggedUser),
-    @required Result loginWithTestUserOwner(String errorMessage),
+  TResult when<TResult extends Object>({
+    @required TResult loginInitial(),
+    @required TResult loginLoading(),
+    @required TResult loginSuccess(User loggedUser),
+    @required TResult loginWithTestUserOwner(String errorMessage),
   });
   @optionalTypeArgs
-  Result maybeWhen<Result extends Object>({
-    Result loginInitial(),
-    Result loginLoading(),
-    Result loginSuccess(User loggedUser),
-    Result loginWithTestUserOwner(String errorMessage),
-    @required Result orElse(),
+  TResult maybeWhen<TResult extends Object>({
+    TResult loginInitial(),
+    TResult loginLoading(),
+    TResult loginSuccess(User loggedUser),
+    TResult loginWithTestUserOwner(String errorMessage),
+    @required TResult orElse(),
   });
   @optionalTypeArgs
-  Result map<Result extends Object>({
-    @required Result loginInitial(LoginInitial value),
-    @required Result loginLoading(LoginLoading value),
-    @required Result loginSuccess(LoginSuccess value),
-    @required Result loginWithTestUserOwner(LoginFailure value),
+  TResult map<TResult extends Object>({
+    @required TResult loginInitial(LoginInitial value),
+    @required TResult loginLoading(LoginLoading value),
+    @required TResult loginSuccess(LoginSuccess value),
+    @required TResult loginWithTestUserOwner(LoginFailure value),
   });
   @optionalTypeArgs
-  Result maybeMap<Result extends Object>({
-    Result loginInitial(LoginInitial value),
-    Result loginLoading(LoginLoading value),
-    Result loginSuccess(LoginSuccess value),
-    Result loginWithTestUserOwner(LoginFailure value),
-    @required Result orElse(),
+  TResult maybeMap<TResult extends Object>({
+    TResult loginInitial(LoginInitial value),
+    TResult loginLoading(LoginLoading value),
+    TResult loginSuccess(LoginSuccess value),
+    TResult loginWithTestUserOwner(LoginFailure value),
+    @required TResult orElse(),
   });
 }
 
@@ -135,11 +135,11 @@ class _$LoginInitial with DiagnosticableTreeMixin implements LoginInitial {
 
   @override
   @optionalTypeArgs
-  Result when<Result extends Object>({
-    @required Result loginInitial(),
-    @required Result loginLoading(),
-    @required Result loginSuccess(User loggedUser),
-    @required Result loginWithTestUserOwner(String errorMessage),
+  TResult when<TResult extends Object>({
+    @required TResult loginInitial(),
+    @required TResult loginLoading(),
+    @required TResult loginSuccess(User loggedUser),
+    @required TResult loginWithTestUserOwner(String errorMessage),
   }) {
     assert(loginInitial != null);
     assert(loginLoading != null);
@@ -150,12 +150,12 @@ class _$LoginInitial with DiagnosticableTreeMixin implements LoginInitial {
 
   @override
   @optionalTypeArgs
-  Result maybeWhen<Result extends Object>({
-    Result loginInitial(),
-    Result loginLoading(),
-    Result loginSuccess(User loggedUser),
-    Result loginWithTestUserOwner(String errorMessage),
-    @required Result orElse(),
+  TResult maybeWhen<TResult extends Object>({
+    TResult loginInitial(),
+    TResult loginLoading(),
+    TResult loginSuccess(User loggedUser),
+    TResult loginWithTestUserOwner(String errorMessage),
+    @required TResult orElse(),
   }) {
     assert(orElse != null);
     if (loginInitial != null) {
@@ -166,11 +166,11 @@ class _$LoginInitial with DiagnosticableTreeMixin implements LoginInitial {
 
   @override
   @optionalTypeArgs
-  Result map<Result extends Object>({
-    @required Result loginInitial(LoginInitial value),
-    @required Result loginLoading(LoginLoading value),
-    @required Result loginSuccess(LoginSuccess value),
-    @required Result loginWithTestUserOwner(LoginFailure value),
+  TResult map<TResult extends Object>({
+    @required TResult loginInitial(LoginInitial value),
+    @required TResult loginLoading(LoginLoading value),
+    @required TResult loginSuccess(LoginSuccess value),
+    @required TResult loginWithTestUserOwner(LoginFailure value),
   }) {
     assert(loginInitial != null);
     assert(loginLoading != null);
@@ -181,12 +181,12 @@ class _$LoginInitial with DiagnosticableTreeMixin implements LoginInitial {
 
   @override
   @optionalTypeArgs
-  Result maybeMap<Result extends Object>({
-    Result loginInitial(LoginInitial value),
-    Result loginLoading(LoginLoading value),
-    Result loginSuccess(LoginSuccess value),
-    Result loginWithTestUserOwner(LoginFailure value),
-    @required Result orElse(),
+  TResult maybeMap<TResult extends Object>({
+    TResult loginInitial(LoginInitial value),
+    TResult loginLoading(LoginLoading value),
+    TResult loginSuccess(LoginSuccess value),
+    TResult loginWithTestUserOwner(LoginFailure value),
+    @required TResult orElse(),
   }) {
     assert(orElse != null);
     if (loginInitial != null) {
@@ -243,11 +243,11 @@ class _$LoginLoading with DiagnosticableTreeMixin implements LoginLoading {
 
   @override
   @optionalTypeArgs
-  Result when<Result extends Object>({
-    @required Result loginInitial(),
-    @required Result loginLoading(),
-    @required Result loginSuccess(User loggedUser),
-    @required Result loginWithTestUserOwner(String errorMessage),
+  TResult when<TResult extends Object>({
+    @required TResult loginInitial(),
+    @required TResult loginLoading(),
+    @required TResult loginSuccess(User loggedUser),
+    @required TResult loginWithTestUserOwner(String errorMessage),
   }) {
     assert(loginInitial != null);
     assert(loginLoading != null);
@@ -258,12 +258,12 @@ class _$LoginLoading with DiagnosticableTreeMixin implements LoginLoading {
 
   @override
   @optionalTypeArgs
-  Result maybeWhen<Result extends Object>({
-    Result loginInitial(),
-    Result loginLoading(),
-    Result loginSuccess(User loggedUser),
-    Result loginWithTestUserOwner(String errorMessage),
-    @required Result orElse(),
+  TResult maybeWhen<TResult extends Object>({
+    TResult loginInitial(),
+    TResult loginLoading(),
+    TResult loginSuccess(User loggedUser),
+    TResult loginWithTestUserOwner(String errorMessage),
+    @required TResult orElse(),
   }) {
     assert(orElse != null);
     if (loginLoading != null) {
@@ -274,11 +274,11 @@ class _$LoginLoading with DiagnosticableTreeMixin implements LoginLoading {
 
   @override
   @optionalTypeArgs
-  Result map<Result extends Object>({
-    @required Result loginInitial(LoginInitial value),
-    @required Result loginLoading(LoginLoading value),
-    @required Result loginSuccess(LoginSuccess value),
-    @required Result loginWithTestUserOwner(LoginFailure value),
+  TResult map<TResult extends Object>({
+    @required TResult loginInitial(LoginInitial value),
+    @required TResult loginLoading(LoginLoading value),
+    @required TResult loginSuccess(LoginSuccess value),
+    @required TResult loginWithTestUserOwner(LoginFailure value),
   }) {
     assert(loginInitial != null);
     assert(loginLoading != null);
@@ -289,12 +289,12 @@ class _$LoginLoading with DiagnosticableTreeMixin implements LoginLoading {
 
   @override
   @optionalTypeArgs
-  Result maybeMap<Result extends Object>({
-    Result loginInitial(LoginInitial value),
-    Result loginLoading(LoginLoading value),
-    Result loginSuccess(LoginSuccess value),
-    Result loginWithTestUserOwner(LoginFailure value),
-    @required Result orElse(),
+  TResult maybeMap<TResult extends Object>({
+    TResult loginInitial(LoginInitial value),
+    TResult loginLoading(LoginLoading value),
+    TResult loginSuccess(LoginSuccess value),
+    TResult loginWithTestUserOwner(LoginFailure value),
+    @required TResult orElse(),
   }) {
     assert(orElse != null);
     if (loginLoading != null) {
@@ -376,11 +376,11 @@ class _$LoginSuccess with DiagnosticableTreeMixin implements LoginSuccess {
 
   @override
   @optionalTypeArgs
-  Result when<Result extends Object>({
-    @required Result loginInitial(),
-    @required Result loginLoading(),
-    @required Result loginSuccess(User loggedUser),
-    @required Result loginWithTestUserOwner(String errorMessage),
+  TResult when<TResult extends Object>({
+    @required TResult loginInitial(),
+    @required TResult loginLoading(),
+    @required TResult loginSuccess(User loggedUser),
+    @required TResult loginWithTestUserOwner(String errorMessage),
   }) {
     assert(loginInitial != null);
     assert(loginLoading != null);
@@ -391,12 +391,12 @@ class _$LoginSuccess with DiagnosticableTreeMixin implements LoginSuccess {
 
   @override
   @optionalTypeArgs
-  Result maybeWhen<Result extends Object>({
-    Result loginInitial(),
-    Result loginLoading(),
-    Result loginSuccess(User loggedUser),
-    Result loginWithTestUserOwner(String errorMessage),
-    @required Result orElse(),
+  TResult maybeWhen<TResult extends Object>({
+    TResult loginInitial(),
+    TResult loginLoading(),
+    TResult loginSuccess(User loggedUser),
+    TResult loginWithTestUserOwner(String errorMessage),
+    @required TResult orElse(),
   }) {
     assert(orElse != null);
     if (loginSuccess != null) {
@@ -407,11 +407,11 @@ class _$LoginSuccess with DiagnosticableTreeMixin implements LoginSuccess {
 
   @override
   @optionalTypeArgs
-  Result map<Result extends Object>({
-    @required Result loginInitial(LoginInitial value),
-    @required Result loginLoading(LoginLoading value),
-    @required Result loginSuccess(LoginSuccess value),
-    @required Result loginWithTestUserOwner(LoginFailure value),
+  TResult map<TResult extends Object>({
+    @required TResult loginInitial(LoginInitial value),
+    @required TResult loginLoading(LoginLoading value),
+    @required TResult loginSuccess(LoginSuccess value),
+    @required TResult loginWithTestUserOwner(LoginFailure value),
   }) {
     assert(loginInitial != null);
     assert(loginLoading != null);
@@ -422,12 +422,12 @@ class _$LoginSuccess with DiagnosticableTreeMixin implements LoginSuccess {
 
   @override
   @optionalTypeArgs
-  Result maybeMap<Result extends Object>({
-    Result loginInitial(LoginInitial value),
-    Result loginLoading(LoginLoading value),
-    Result loginSuccess(LoginSuccess value),
-    Result loginWithTestUserOwner(LoginFailure value),
-    @required Result orElse(),
+  TResult maybeMap<TResult extends Object>({
+    TResult loginInitial(LoginInitial value),
+    TResult loginLoading(LoginLoading value),
+    TResult loginSuccess(LoginSuccess value),
+    TResult loginWithTestUserOwner(LoginFailure value),
+    @required TResult orElse(),
   }) {
     assert(orElse != null);
     if (loginSuccess != null) {
@@ -513,11 +513,11 @@ class _$LoginFailure with DiagnosticableTreeMixin implements LoginFailure {
 
   @override
   @optionalTypeArgs
-  Result when<Result extends Object>({
-    @required Result loginInitial(),
-    @required Result loginLoading(),
-    @required Result loginSuccess(User loggedUser),
-    @required Result loginWithTestUserOwner(String errorMessage),
+  TResult when<TResult extends Object>({
+    @required TResult loginInitial(),
+    @required TResult loginLoading(),
+    @required TResult loginSuccess(User loggedUser),
+    @required TResult loginWithTestUserOwner(String errorMessage),
   }) {
     assert(loginInitial != null);
     assert(loginLoading != null);
@@ -528,12 +528,12 @@ class _$LoginFailure with DiagnosticableTreeMixin implements LoginFailure {
 
   @override
   @optionalTypeArgs
-  Result maybeWhen<Result extends Object>({
-    Result loginInitial(),
-    Result loginLoading(),
-    Result loginSuccess(User loggedUser),
-    Result loginWithTestUserOwner(String errorMessage),
-    @required Result orElse(),
+  TResult maybeWhen<TResult extends Object>({
+    TResult loginInitial(),
+    TResult loginLoading(),
+    TResult loginSuccess(User loggedUser),
+    TResult loginWithTestUserOwner(String errorMessage),
+    @required TResult orElse(),
   }) {
     assert(orElse != null);
     if (loginWithTestUserOwner != null) {
@@ -544,11 +544,11 @@ class _$LoginFailure with DiagnosticableTreeMixin implements LoginFailure {
 
   @override
   @optionalTypeArgs
-  Result map<Result extends Object>({
-    @required Result loginInitial(LoginInitial value),
-    @required Result loginLoading(LoginLoading value),
-    @required Result loginSuccess(LoginSuccess value),
-    @required Result loginWithTestUserOwner(LoginFailure value),
+  TResult map<TResult extends Object>({
+    @required TResult loginInitial(LoginInitial value),
+    @required TResult loginLoading(LoginLoading value),
+    @required TResult loginSuccess(LoginSuccess value),
+    @required TResult loginWithTestUserOwner(LoginFailure value),
   }) {
     assert(loginInitial != null);
     assert(loginLoading != null);
@@ -559,12 +559,12 @@ class _$LoginFailure with DiagnosticableTreeMixin implements LoginFailure {
 
   @override
   @optionalTypeArgs
-  Result maybeMap<Result extends Object>({
-    Result loginInitial(LoginInitial value),
-    Result loginLoading(LoginLoading value),
-    Result loginSuccess(LoginSuccess value),
-    Result loginWithTestUserOwner(LoginFailure value),
-    @required Result orElse(),
+  TResult maybeMap<TResult extends Object>({
+    TResult loginInitial(LoginInitial value),
+    TResult loginLoading(LoginLoading value),
+    TResult loginSuccess(LoginSuccess value),
+    TResult loginWithTestUserOwner(LoginFailure value),
+    @required TResult orElse(),
   }) {
     assert(orElse != null);
     if (loginWithTestUserOwner != null) {

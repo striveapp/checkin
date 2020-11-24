@@ -81,50 +81,51 @@ const $UserEvent = _$UserEventTearOff();
 /// @nodoc
 mixin _$UserEvent {
   @optionalTypeArgs
-  Result when<Result extends Object>({
-    @required Result userUpdated(User user),
-    @required Result updateName(String newName),
-    @required Result updateImageUrl(String userEmail),
-    @required Result updateGrade(Grade newGrade),
-    @required Result updateSelectedGym(String userEmail, String newSelectedGym),
-    @required Result updateReferredGym(String userEmail, String currentGymId),
-    @required Result updateFcmToken(String userEmail, String newToken),
-    @required Result updateVersion(String userEmail),
+  TResult when<TResult extends Object>({
+    @required TResult userUpdated(User user),
+    @required TResult updateName(String newName),
+    @required TResult updateImageUrl(String userEmail),
+    @required TResult updateGrade(Grade newGrade),
+    @required
+        TResult updateSelectedGym(String userEmail, String newSelectedGym),
+    @required TResult updateReferredGym(String userEmail, String currentGymId),
+    @required TResult updateFcmToken(String userEmail, String newToken),
+    @required TResult updateVersion(String userEmail),
   });
   @optionalTypeArgs
-  Result maybeWhen<Result extends Object>({
-    Result userUpdated(User user),
-    Result updateName(String newName),
-    Result updateImageUrl(String userEmail),
-    Result updateGrade(Grade newGrade),
-    Result updateSelectedGym(String userEmail, String newSelectedGym),
-    Result updateReferredGym(String userEmail, String currentGymId),
-    Result updateFcmToken(String userEmail, String newToken),
-    Result updateVersion(String userEmail),
-    @required Result orElse(),
+  TResult maybeWhen<TResult extends Object>({
+    TResult userUpdated(User user),
+    TResult updateName(String newName),
+    TResult updateImageUrl(String userEmail),
+    TResult updateGrade(Grade newGrade),
+    TResult updateSelectedGym(String userEmail, String newSelectedGym),
+    TResult updateReferredGym(String userEmail, String currentGymId),
+    TResult updateFcmToken(String userEmail, String newToken),
+    TResult updateVersion(String userEmail),
+    @required TResult orElse(),
   });
   @optionalTypeArgs
-  Result map<Result extends Object>({
-    @required Result userUpdated(UserUpdated value),
-    @required Result updateName(UpdateName value),
-    @required Result updateImageUrl(UpdateImageUrl value),
-    @required Result updateGrade(UpdateGrade value),
-    @required Result updateSelectedGym(UpdateSelectedGym value),
-    @required Result updateReferredGym(UpdateReferredGym value),
-    @required Result updateFcmToken(UpdateFcmToken value),
-    @required Result updateVersion(UpdateVersion value),
+  TResult map<TResult extends Object>({
+    @required TResult userUpdated(UserUpdated value),
+    @required TResult updateName(UpdateName value),
+    @required TResult updateImageUrl(UpdateImageUrl value),
+    @required TResult updateGrade(UpdateGrade value),
+    @required TResult updateSelectedGym(UpdateSelectedGym value),
+    @required TResult updateReferredGym(UpdateReferredGym value),
+    @required TResult updateFcmToken(UpdateFcmToken value),
+    @required TResult updateVersion(UpdateVersion value),
   });
   @optionalTypeArgs
-  Result maybeMap<Result extends Object>({
-    Result userUpdated(UserUpdated value),
-    Result updateName(UpdateName value),
-    Result updateImageUrl(UpdateImageUrl value),
-    Result updateGrade(UpdateGrade value),
-    Result updateSelectedGym(UpdateSelectedGym value),
-    Result updateReferredGym(UpdateReferredGym value),
-    Result updateFcmToken(UpdateFcmToken value),
-    Result updateVersion(UpdateVersion value),
-    @required Result orElse(),
+  TResult maybeMap<TResult extends Object>({
+    TResult userUpdated(UserUpdated value),
+    TResult updateName(UpdateName value),
+    TResult updateImageUrl(UpdateImageUrl value),
+    TResult updateGrade(UpdateGrade value),
+    TResult updateSelectedGym(UpdateSelectedGym value),
+    TResult updateReferredGym(UpdateReferredGym value),
+    TResult updateFcmToken(UpdateFcmToken value),
+    TResult updateVersion(UpdateVersion value),
+    @required TResult orElse(),
   });
 }
 
@@ -209,15 +210,16 @@ class _$UserUpdated with DiagnosticableTreeMixin implements UserUpdated {
 
   @override
   @optionalTypeArgs
-  Result when<Result extends Object>({
-    @required Result userUpdated(User user),
-    @required Result updateName(String newName),
-    @required Result updateImageUrl(String userEmail),
-    @required Result updateGrade(Grade newGrade),
-    @required Result updateSelectedGym(String userEmail, String newSelectedGym),
-    @required Result updateReferredGym(String userEmail, String currentGymId),
-    @required Result updateFcmToken(String userEmail, String newToken),
-    @required Result updateVersion(String userEmail),
+  TResult when<TResult extends Object>({
+    @required TResult userUpdated(User user),
+    @required TResult updateName(String newName),
+    @required TResult updateImageUrl(String userEmail),
+    @required TResult updateGrade(Grade newGrade),
+    @required
+        TResult updateSelectedGym(String userEmail, String newSelectedGym),
+    @required TResult updateReferredGym(String userEmail, String currentGymId),
+    @required TResult updateFcmToken(String userEmail, String newToken),
+    @required TResult updateVersion(String userEmail),
   }) {
     assert(userUpdated != null);
     assert(updateName != null);
@@ -232,16 +234,16 @@ class _$UserUpdated with DiagnosticableTreeMixin implements UserUpdated {
 
   @override
   @optionalTypeArgs
-  Result maybeWhen<Result extends Object>({
-    Result userUpdated(User user),
-    Result updateName(String newName),
-    Result updateImageUrl(String userEmail),
-    Result updateGrade(Grade newGrade),
-    Result updateSelectedGym(String userEmail, String newSelectedGym),
-    Result updateReferredGym(String userEmail, String currentGymId),
-    Result updateFcmToken(String userEmail, String newToken),
-    Result updateVersion(String userEmail),
-    @required Result orElse(),
+  TResult maybeWhen<TResult extends Object>({
+    TResult userUpdated(User user),
+    TResult updateName(String newName),
+    TResult updateImageUrl(String userEmail),
+    TResult updateGrade(Grade newGrade),
+    TResult updateSelectedGym(String userEmail, String newSelectedGym),
+    TResult updateReferredGym(String userEmail, String currentGymId),
+    TResult updateFcmToken(String userEmail, String newToken),
+    TResult updateVersion(String userEmail),
+    @required TResult orElse(),
   }) {
     assert(orElse != null);
     if (userUpdated != null) {
@@ -252,15 +254,15 @@ class _$UserUpdated with DiagnosticableTreeMixin implements UserUpdated {
 
   @override
   @optionalTypeArgs
-  Result map<Result extends Object>({
-    @required Result userUpdated(UserUpdated value),
-    @required Result updateName(UpdateName value),
-    @required Result updateImageUrl(UpdateImageUrl value),
-    @required Result updateGrade(UpdateGrade value),
-    @required Result updateSelectedGym(UpdateSelectedGym value),
-    @required Result updateReferredGym(UpdateReferredGym value),
-    @required Result updateFcmToken(UpdateFcmToken value),
-    @required Result updateVersion(UpdateVersion value),
+  TResult map<TResult extends Object>({
+    @required TResult userUpdated(UserUpdated value),
+    @required TResult updateName(UpdateName value),
+    @required TResult updateImageUrl(UpdateImageUrl value),
+    @required TResult updateGrade(UpdateGrade value),
+    @required TResult updateSelectedGym(UpdateSelectedGym value),
+    @required TResult updateReferredGym(UpdateReferredGym value),
+    @required TResult updateFcmToken(UpdateFcmToken value),
+    @required TResult updateVersion(UpdateVersion value),
   }) {
     assert(userUpdated != null);
     assert(updateName != null);
@@ -275,16 +277,16 @@ class _$UserUpdated with DiagnosticableTreeMixin implements UserUpdated {
 
   @override
   @optionalTypeArgs
-  Result maybeMap<Result extends Object>({
-    Result userUpdated(UserUpdated value),
-    Result updateName(UpdateName value),
-    Result updateImageUrl(UpdateImageUrl value),
-    Result updateGrade(UpdateGrade value),
-    Result updateSelectedGym(UpdateSelectedGym value),
-    Result updateReferredGym(UpdateReferredGym value),
-    Result updateFcmToken(UpdateFcmToken value),
-    Result updateVersion(UpdateVersion value),
-    @required Result orElse(),
+  TResult maybeMap<TResult extends Object>({
+    TResult userUpdated(UserUpdated value),
+    TResult updateName(UpdateName value),
+    TResult updateImageUrl(UpdateImageUrl value),
+    TResult updateGrade(UpdateGrade value),
+    TResult updateSelectedGym(UpdateSelectedGym value),
+    TResult updateReferredGym(UpdateReferredGym value),
+    TResult updateFcmToken(UpdateFcmToken value),
+    TResult updateVersion(UpdateVersion value),
+    @required TResult orElse(),
   }) {
     assert(orElse != null);
     if (userUpdated != null) {
@@ -366,15 +368,16 @@ class _$UpdateName with DiagnosticableTreeMixin implements UpdateName {
 
   @override
   @optionalTypeArgs
-  Result when<Result extends Object>({
-    @required Result userUpdated(User user),
-    @required Result updateName(String newName),
-    @required Result updateImageUrl(String userEmail),
-    @required Result updateGrade(Grade newGrade),
-    @required Result updateSelectedGym(String userEmail, String newSelectedGym),
-    @required Result updateReferredGym(String userEmail, String currentGymId),
-    @required Result updateFcmToken(String userEmail, String newToken),
-    @required Result updateVersion(String userEmail),
+  TResult when<TResult extends Object>({
+    @required TResult userUpdated(User user),
+    @required TResult updateName(String newName),
+    @required TResult updateImageUrl(String userEmail),
+    @required TResult updateGrade(Grade newGrade),
+    @required
+        TResult updateSelectedGym(String userEmail, String newSelectedGym),
+    @required TResult updateReferredGym(String userEmail, String currentGymId),
+    @required TResult updateFcmToken(String userEmail, String newToken),
+    @required TResult updateVersion(String userEmail),
   }) {
     assert(userUpdated != null);
     assert(updateName != null);
@@ -389,16 +392,16 @@ class _$UpdateName with DiagnosticableTreeMixin implements UpdateName {
 
   @override
   @optionalTypeArgs
-  Result maybeWhen<Result extends Object>({
-    Result userUpdated(User user),
-    Result updateName(String newName),
-    Result updateImageUrl(String userEmail),
-    Result updateGrade(Grade newGrade),
-    Result updateSelectedGym(String userEmail, String newSelectedGym),
-    Result updateReferredGym(String userEmail, String currentGymId),
-    Result updateFcmToken(String userEmail, String newToken),
-    Result updateVersion(String userEmail),
-    @required Result orElse(),
+  TResult maybeWhen<TResult extends Object>({
+    TResult userUpdated(User user),
+    TResult updateName(String newName),
+    TResult updateImageUrl(String userEmail),
+    TResult updateGrade(Grade newGrade),
+    TResult updateSelectedGym(String userEmail, String newSelectedGym),
+    TResult updateReferredGym(String userEmail, String currentGymId),
+    TResult updateFcmToken(String userEmail, String newToken),
+    TResult updateVersion(String userEmail),
+    @required TResult orElse(),
   }) {
     assert(orElse != null);
     if (updateName != null) {
@@ -409,15 +412,15 @@ class _$UpdateName with DiagnosticableTreeMixin implements UpdateName {
 
   @override
   @optionalTypeArgs
-  Result map<Result extends Object>({
-    @required Result userUpdated(UserUpdated value),
-    @required Result updateName(UpdateName value),
-    @required Result updateImageUrl(UpdateImageUrl value),
-    @required Result updateGrade(UpdateGrade value),
-    @required Result updateSelectedGym(UpdateSelectedGym value),
-    @required Result updateReferredGym(UpdateReferredGym value),
-    @required Result updateFcmToken(UpdateFcmToken value),
-    @required Result updateVersion(UpdateVersion value),
+  TResult map<TResult extends Object>({
+    @required TResult userUpdated(UserUpdated value),
+    @required TResult updateName(UpdateName value),
+    @required TResult updateImageUrl(UpdateImageUrl value),
+    @required TResult updateGrade(UpdateGrade value),
+    @required TResult updateSelectedGym(UpdateSelectedGym value),
+    @required TResult updateReferredGym(UpdateReferredGym value),
+    @required TResult updateFcmToken(UpdateFcmToken value),
+    @required TResult updateVersion(UpdateVersion value),
   }) {
     assert(userUpdated != null);
     assert(updateName != null);
@@ -432,16 +435,16 @@ class _$UpdateName with DiagnosticableTreeMixin implements UpdateName {
 
   @override
   @optionalTypeArgs
-  Result maybeMap<Result extends Object>({
-    Result userUpdated(UserUpdated value),
-    Result updateName(UpdateName value),
-    Result updateImageUrl(UpdateImageUrl value),
-    Result updateGrade(UpdateGrade value),
-    Result updateSelectedGym(UpdateSelectedGym value),
-    Result updateReferredGym(UpdateReferredGym value),
-    Result updateFcmToken(UpdateFcmToken value),
-    Result updateVersion(UpdateVersion value),
-    @required Result orElse(),
+  TResult maybeMap<TResult extends Object>({
+    TResult userUpdated(UserUpdated value),
+    TResult updateName(UpdateName value),
+    TResult updateImageUrl(UpdateImageUrl value),
+    TResult updateGrade(UpdateGrade value),
+    TResult updateSelectedGym(UpdateSelectedGym value),
+    TResult updateReferredGym(UpdateReferredGym value),
+    TResult updateFcmToken(UpdateFcmToken value),
+    TResult updateVersion(UpdateVersion value),
+    @required TResult orElse(),
   }) {
     assert(orElse != null);
     if (updateName != null) {
@@ -525,15 +528,16 @@ class _$UpdateImageUrl with DiagnosticableTreeMixin implements UpdateImageUrl {
 
   @override
   @optionalTypeArgs
-  Result when<Result extends Object>({
-    @required Result userUpdated(User user),
-    @required Result updateName(String newName),
-    @required Result updateImageUrl(String userEmail),
-    @required Result updateGrade(Grade newGrade),
-    @required Result updateSelectedGym(String userEmail, String newSelectedGym),
-    @required Result updateReferredGym(String userEmail, String currentGymId),
-    @required Result updateFcmToken(String userEmail, String newToken),
-    @required Result updateVersion(String userEmail),
+  TResult when<TResult extends Object>({
+    @required TResult userUpdated(User user),
+    @required TResult updateName(String newName),
+    @required TResult updateImageUrl(String userEmail),
+    @required TResult updateGrade(Grade newGrade),
+    @required
+        TResult updateSelectedGym(String userEmail, String newSelectedGym),
+    @required TResult updateReferredGym(String userEmail, String currentGymId),
+    @required TResult updateFcmToken(String userEmail, String newToken),
+    @required TResult updateVersion(String userEmail),
   }) {
     assert(userUpdated != null);
     assert(updateName != null);
@@ -548,16 +552,16 @@ class _$UpdateImageUrl with DiagnosticableTreeMixin implements UpdateImageUrl {
 
   @override
   @optionalTypeArgs
-  Result maybeWhen<Result extends Object>({
-    Result userUpdated(User user),
-    Result updateName(String newName),
-    Result updateImageUrl(String userEmail),
-    Result updateGrade(Grade newGrade),
-    Result updateSelectedGym(String userEmail, String newSelectedGym),
-    Result updateReferredGym(String userEmail, String currentGymId),
-    Result updateFcmToken(String userEmail, String newToken),
-    Result updateVersion(String userEmail),
-    @required Result orElse(),
+  TResult maybeWhen<TResult extends Object>({
+    TResult userUpdated(User user),
+    TResult updateName(String newName),
+    TResult updateImageUrl(String userEmail),
+    TResult updateGrade(Grade newGrade),
+    TResult updateSelectedGym(String userEmail, String newSelectedGym),
+    TResult updateReferredGym(String userEmail, String currentGymId),
+    TResult updateFcmToken(String userEmail, String newToken),
+    TResult updateVersion(String userEmail),
+    @required TResult orElse(),
   }) {
     assert(orElse != null);
     if (updateImageUrl != null) {
@@ -568,15 +572,15 @@ class _$UpdateImageUrl with DiagnosticableTreeMixin implements UpdateImageUrl {
 
   @override
   @optionalTypeArgs
-  Result map<Result extends Object>({
-    @required Result userUpdated(UserUpdated value),
-    @required Result updateName(UpdateName value),
-    @required Result updateImageUrl(UpdateImageUrl value),
-    @required Result updateGrade(UpdateGrade value),
-    @required Result updateSelectedGym(UpdateSelectedGym value),
-    @required Result updateReferredGym(UpdateReferredGym value),
-    @required Result updateFcmToken(UpdateFcmToken value),
-    @required Result updateVersion(UpdateVersion value),
+  TResult map<TResult extends Object>({
+    @required TResult userUpdated(UserUpdated value),
+    @required TResult updateName(UpdateName value),
+    @required TResult updateImageUrl(UpdateImageUrl value),
+    @required TResult updateGrade(UpdateGrade value),
+    @required TResult updateSelectedGym(UpdateSelectedGym value),
+    @required TResult updateReferredGym(UpdateReferredGym value),
+    @required TResult updateFcmToken(UpdateFcmToken value),
+    @required TResult updateVersion(UpdateVersion value),
   }) {
     assert(userUpdated != null);
     assert(updateName != null);
@@ -591,16 +595,16 @@ class _$UpdateImageUrl with DiagnosticableTreeMixin implements UpdateImageUrl {
 
   @override
   @optionalTypeArgs
-  Result maybeMap<Result extends Object>({
-    Result userUpdated(UserUpdated value),
-    Result updateName(UpdateName value),
-    Result updateImageUrl(UpdateImageUrl value),
-    Result updateGrade(UpdateGrade value),
-    Result updateSelectedGym(UpdateSelectedGym value),
-    Result updateReferredGym(UpdateReferredGym value),
-    Result updateFcmToken(UpdateFcmToken value),
-    Result updateVersion(UpdateVersion value),
-    @required Result orElse(),
+  TResult maybeMap<TResult extends Object>({
+    TResult userUpdated(UserUpdated value),
+    TResult updateName(UpdateName value),
+    TResult updateImageUrl(UpdateImageUrl value),
+    TResult updateGrade(UpdateGrade value),
+    TResult updateSelectedGym(UpdateSelectedGym value),
+    TResult updateReferredGym(UpdateReferredGym value),
+    TResult updateFcmToken(UpdateFcmToken value),
+    TResult updateVersion(UpdateVersion value),
+    @required TResult orElse(),
   }) {
     assert(orElse != null);
     if (updateImageUrl != null) {
@@ -684,15 +688,16 @@ class _$UpdateGrade with DiagnosticableTreeMixin implements UpdateGrade {
 
   @override
   @optionalTypeArgs
-  Result when<Result extends Object>({
-    @required Result userUpdated(User user),
-    @required Result updateName(String newName),
-    @required Result updateImageUrl(String userEmail),
-    @required Result updateGrade(Grade newGrade),
-    @required Result updateSelectedGym(String userEmail, String newSelectedGym),
-    @required Result updateReferredGym(String userEmail, String currentGymId),
-    @required Result updateFcmToken(String userEmail, String newToken),
-    @required Result updateVersion(String userEmail),
+  TResult when<TResult extends Object>({
+    @required TResult userUpdated(User user),
+    @required TResult updateName(String newName),
+    @required TResult updateImageUrl(String userEmail),
+    @required TResult updateGrade(Grade newGrade),
+    @required
+        TResult updateSelectedGym(String userEmail, String newSelectedGym),
+    @required TResult updateReferredGym(String userEmail, String currentGymId),
+    @required TResult updateFcmToken(String userEmail, String newToken),
+    @required TResult updateVersion(String userEmail),
   }) {
     assert(userUpdated != null);
     assert(updateName != null);
@@ -707,16 +712,16 @@ class _$UpdateGrade with DiagnosticableTreeMixin implements UpdateGrade {
 
   @override
   @optionalTypeArgs
-  Result maybeWhen<Result extends Object>({
-    Result userUpdated(User user),
-    Result updateName(String newName),
-    Result updateImageUrl(String userEmail),
-    Result updateGrade(Grade newGrade),
-    Result updateSelectedGym(String userEmail, String newSelectedGym),
-    Result updateReferredGym(String userEmail, String currentGymId),
-    Result updateFcmToken(String userEmail, String newToken),
-    Result updateVersion(String userEmail),
-    @required Result orElse(),
+  TResult maybeWhen<TResult extends Object>({
+    TResult userUpdated(User user),
+    TResult updateName(String newName),
+    TResult updateImageUrl(String userEmail),
+    TResult updateGrade(Grade newGrade),
+    TResult updateSelectedGym(String userEmail, String newSelectedGym),
+    TResult updateReferredGym(String userEmail, String currentGymId),
+    TResult updateFcmToken(String userEmail, String newToken),
+    TResult updateVersion(String userEmail),
+    @required TResult orElse(),
   }) {
     assert(orElse != null);
     if (updateGrade != null) {
@@ -727,15 +732,15 @@ class _$UpdateGrade with DiagnosticableTreeMixin implements UpdateGrade {
 
   @override
   @optionalTypeArgs
-  Result map<Result extends Object>({
-    @required Result userUpdated(UserUpdated value),
-    @required Result updateName(UpdateName value),
-    @required Result updateImageUrl(UpdateImageUrl value),
-    @required Result updateGrade(UpdateGrade value),
-    @required Result updateSelectedGym(UpdateSelectedGym value),
-    @required Result updateReferredGym(UpdateReferredGym value),
-    @required Result updateFcmToken(UpdateFcmToken value),
-    @required Result updateVersion(UpdateVersion value),
+  TResult map<TResult extends Object>({
+    @required TResult userUpdated(UserUpdated value),
+    @required TResult updateName(UpdateName value),
+    @required TResult updateImageUrl(UpdateImageUrl value),
+    @required TResult updateGrade(UpdateGrade value),
+    @required TResult updateSelectedGym(UpdateSelectedGym value),
+    @required TResult updateReferredGym(UpdateReferredGym value),
+    @required TResult updateFcmToken(UpdateFcmToken value),
+    @required TResult updateVersion(UpdateVersion value),
   }) {
     assert(userUpdated != null);
     assert(updateName != null);
@@ -750,16 +755,16 @@ class _$UpdateGrade with DiagnosticableTreeMixin implements UpdateGrade {
 
   @override
   @optionalTypeArgs
-  Result maybeMap<Result extends Object>({
-    Result userUpdated(UserUpdated value),
-    Result updateName(UpdateName value),
-    Result updateImageUrl(UpdateImageUrl value),
-    Result updateGrade(UpdateGrade value),
-    Result updateSelectedGym(UpdateSelectedGym value),
-    Result updateReferredGym(UpdateReferredGym value),
-    Result updateFcmToken(UpdateFcmToken value),
-    Result updateVersion(UpdateVersion value),
-    @required Result orElse(),
+  TResult maybeMap<TResult extends Object>({
+    TResult userUpdated(UserUpdated value),
+    TResult updateName(UpdateName value),
+    TResult updateImageUrl(UpdateImageUrl value),
+    TResult updateGrade(UpdateGrade value),
+    TResult updateSelectedGym(UpdateSelectedGym value),
+    TResult updateReferredGym(UpdateReferredGym value),
+    TResult updateFcmToken(UpdateFcmToken value),
+    TResult updateVersion(UpdateVersion value),
+    @required TResult orElse(),
   }) {
     assert(orElse != null);
     if (updateGrade != null) {
@@ -858,15 +863,16 @@ class _$UpdateSelectedGym
 
   @override
   @optionalTypeArgs
-  Result when<Result extends Object>({
-    @required Result userUpdated(User user),
-    @required Result updateName(String newName),
-    @required Result updateImageUrl(String userEmail),
-    @required Result updateGrade(Grade newGrade),
-    @required Result updateSelectedGym(String userEmail, String newSelectedGym),
-    @required Result updateReferredGym(String userEmail, String currentGymId),
-    @required Result updateFcmToken(String userEmail, String newToken),
-    @required Result updateVersion(String userEmail),
+  TResult when<TResult extends Object>({
+    @required TResult userUpdated(User user),
+    @required TResult updateName(String newName),
+    @required TResult updateImageUrl(String userEmail),
+    @required TResult updateGrade(Grade newGrade),
+    @required
+        TResult updateSelectedGym(String userEmail, String newSelectedGym),
+    @required TResult updateReferredGym(String userEmail, String currentGymId),
+    @required TResult updateFcmToken(String userEmail, String newToken),
+    @required TResult updateVersion(String userEmail),
   }) {
     assert(userUpdated != null);
     assert(updateName != null);
@@ -881,16 +887,16 @@ class _$UpdateSelectedGym
 
   @override
   @optionalTypeArgs
-  Result maybeWhen<Result extends Object>({
-    Result userUpdated(User user),
-    Result updateName(String newName),
-    Result updateImageUrl(String userEmail),
-    Result updateGrade(Grade newGrade),
-    Result updateSelectedGym(String userEmail, String newSelectedGym),
-    Result updateReferredGym(String userEmail, String currentGymId),
-    Result updateFcmToken(String userEmail, String newToken),
-    Result updateVersion(String userEmail),
-    @required Result orElse(),
+  TResult maybeWhen<TResult extends Object>({
+    TResult userUpdated(User user),
+    TResult updateName(String newName),
+    TResult updateImageUrl(String userEmail),
+    TResult updateGrade(Grade newGrade),
+    TResult updateSelectedGym(String userEmail, String newSelectedGym),
+    TResult updateReferredGym(String userEmail, String currentGymId),
+    TResult updateFcmToken(String userEmail, String newToken),
+    TResult updateVersion(String userEmail),
+    @required TResult orElse(),
   }) {
     assert(orElse != null);
     if (updateSelectedGym != null) {
@@ -901,15 +907,15 @@ class _$UpdateSelectedGym
 
   @override
   @optionalTypeArgs
-  Result map<Result extends Object>({
-    @required Result userUpdated(UserUpdated value),
-    @required Result updateName(UpdateName value),
-    @required Result updateImageUrl(UpdateImageUrl value),
-    @required Result updateGrade(UpdateGrade value),
-    @required Result updateSelectedGym(UpdateSelectedGym value),
-    @required Result updateReferredGym(UpdateReferredGym value),
-    @required Result updateFcmToken(UpdateFcmToken value),
-    @required Result updateVersion(UpdateVersion value),
+  TResult map<TResult extends Object>({
+    @required TResult userUpdated(UserUpdated value),
+    @required TResult updateName(UpdateName value),
+    @required TResult updateImageUrl(UpdateImageUrl value),
+    @required TResult updateGrade(UpdateGrade value),
+    @required TResult updateSelectedGym(UpdateSelectedGym value),
+    @required TResult updateReferredGym(UpdateReferredGym value),
+    @required TResult updateFcmToken(UpdateFcmToken value),
+    @required TResult updateVersion(UpdateVersion value),
   }) {
     assert(userUpdated != null);
     assert(updateName != null);
@@ -924,16 +930,16 @@ class _$UpdateSelectedGym
 
   @override
   @optionalTypeArgs
-  Result maybeMap<Result extends Object>({
-    Result userUpdated(UserUpdated value),
-    Result updateName(UpdateName value),
-    Result updateImageUrl(UpdateImageUrl value),
-    Result updateGrade(UpdateGrade value),
-    Result updateSelectedGym(UpdateSelectedGym value),
-    Result updateReferredGym(UpdateReferredGym value),
-    Result updateFcmToken(UpdateFcmToken value),
-    Result updateVersion(UpdateVersion value),
-    @required Result orElse(),
+  TResult maybeMap<TResult extends Object>({
+    TResult userUpdated(UserUpdated value),
+    TResult updateName(UpdateName value),
+    TResult updateImageUrl(UpdateImageUrl value),
+    TResult updateGrade(UpdateGrade value),
+    TResult updateSelectedGym(UpdateSelectedGym value),
+    TResult updateReferredGym(UpdateReferredGym value),
+    TResult updateFcmToken(UpdateFcmToken value),
+    TResult updateVersion(UpdateVersion value),
+    @required TResult orElse(),
   }) {
     assert(orElse != null);
     if (updateSelectedGym != null) {
@@ -1034,15 +1040,16 @@ class _$UpdateReferredGym
 
   @override
   @optionalTypeArgs
-  Result when<Result extends Object>({
-    @required Result userUpdated(User user),
-    @required Result updateName(String newName),
-    @required Result updateImageUrl(String userEmail),
-    @required Result updateGrade(Grade newGrade),
-    @required Result updateSelectedGym(String userEmail, String newSelectedGym),
-    @required Result updateReferredGym(String userEmail, String currentGymId),
-    @required Result updateFcmToken(String userEmail, String newToken),
-    @required Result updateVersion(String userEmail),
+  TResult when<TResult extends Object>({
+    @required TResult userUpdated(User user),
+    @required TResult updateName(String newName),
+    @required TResult updateImageUrl(String userEmail),
+    @required TResult updateGrade(Grade newGrade),
+    @required
+        TResult updateSelectedGym(String userEmail, String newSelectedGym),
+    @required TResult updateReferredGym(String userEmail, String currentGymId),
+    @required TResult updateFcmToken(String userEmail, String newToken),
+    @required TResult updateVersion(String userEmail),
   }) {
     assert(userUpdated != null);
     assert(updateName != null);
@@ -1057,16 +1064,16 @@ class _$UpdateReferredGym
 
   @override
   @optionalTypeArgs
-  Result maybeWhen<Result extends Object>({
-    Result userUpdated(User user),
-    Result updateName(String newName),
-    Result updateImageUrl(String userEmail),
-    Result updateGrade(Grade newGrade),
-    Result updateSelectedGym(String userEmail, String newSelectedGym),
-    Result updateReferredGym(String userEmail, String currentGymId),
-    Result updateFcmToken(String userEmail, String newToken),
-    Result updateVersion(String userEmail),
-    @required Result orElse(),
+  TResult maybeWhen<TResult extends Object>({
+    TResult userUpdated(User user),
+    TResult updateName(String newName),
+    TResult updateImageUrl(String userEmail),
+    TResult updateGrade(Grade newGrade),
+    TResult updateSelectedGym(String userEmail, String newSelectedGym),
+    TResult updateReferredGym(String userEmail, String currentGymId),
+    TResult updateFcmToken(String userEmail, String newToken),
+    TResult updateVersion(String userEmail),
+    @required TResult orElse(),
   }) {
     assert(orElse != null);
     if (updateReferredGym != null) {
@@ -1077,15 +1084,15 @@ class _$UpdateReferredGym
 
   @override
   @optionalTypeArgs
-  Result map<Result extends Object>({
-    @required Result userUpdated(UserUpdated value),
-    @required Result updateName(UpdateName value),
-    @required Result updateImageUrl(UpdateImageUrl value),
-    @required Result updateGrade(UpdateGrade value),
-    @required Result updateSelectedGym(UpdateSelectedGym value),
-    @required Result updateReferredGym(UpdateReferredGym value),
-    @required Result updateFcmToken(UpdateFcmToken value),
-    @required Result updateVersion(UpdateVersion value),
+  TResult map<TResult extends Object>({
+    @required TResult userUpdated(UserUpdated value),
+    @required TResult updateName(UpdateName value),
+    @required TResult updateImageUrl(UpdateImageUrl value),
+    @required TResult updateGrade(UpdateGrade value),
+    @required TResult updateSelectedGym(UpdateSelectedGym value),
+    @required TResult updateReferredGym(UpdateReferredGym value),
+    @required TResult updateFcmToken(UpdateFcmToken value),
+    @required TResult updateVersion(UpdateVersion value),
   }) {
     assert(userUpdated != null);
     assert(updateName != null);
@@ -1100,16 +1107,16 @@ class _$UpdateReferredGym
 
   @override
   @optionalTypeArgs
-  Result maybeMap<Result extends Object>({
-    Result userUpdated(UserUpdated value),
-    Result updateName(UpdateName value),
-    Result updateImageUrl(UpdateImageUrl value),
-    Result updateGrade(UpdateGrade value),
-    Result updateSelectedGym(UpdateSelectedGym value),
-    Result updateReferredGym(UpdateReferredGym value),
-    Result updateFcmToken(UpdateFcmToken value),
-    Result updateVersion(UpdateVersion value),
-    @required Result orElse(),
+  TResult maybeMap<TResult extends Object>({
+    TResult userUpdated(UserUpdated value),
+    TResult updateName(UpdateName value),
+    TResult updateImageUrl(UpdateImageUrl value),
+    TResult updateGrade(UpdateGrade value),
+    TResult updateSelectedGym(UpdateSelectedGym value),
+    TResult updateReferredGym(UpdateReferredGym value),
+    TResult updateFcmToken(UpdateFcmToken value),
+    TResult updateVersion(UpdateVersion value),
+    @required TResult orElse(),
   }) {
     assert(orElse != null);
     if (updateReferredGym != null) {
@@ -1205,15 +1212,16 @@ class _$UpdateFcmToken with DiagnosticableTreeMixin implements UpdateFcmToken {
 
   @override
   @optionalTypeArgs
-  Result when<Result extends Object>({
-    @required Result userUpdated(User user),
-    @required Result updateName(String newName),
-    @required Result updateImageUrl(String userEmail),
-    @required Result updateGrade(Grade newGrade),
-    @required Result updateSelectedGym(String userEmail, String newSelectedGym),
-    @required Result updateReferredGym(String userEmail, String currentGymId),
-    @required Result updateFcmToken(String userEmail, String newToken),
-    @required Result updateVersion(String userEmail),
+  TResult when<TResult extends Object>({
+    @required TResult userUpdated(User user),
+    @required TResult updateName(String newName),
+    @required TResult updateImageUrl(String userEmail),
+    @required TResult updateGrade(Grade newGrade),
+    @required
+        TResult updateSelectedGym(String userEmail, String newSelectedGym),
+    @required TResult updateReferredGym(String userEmail, String currentGymId),
+    @required TResult updateFcmToken(String userEmail, String newToken),
+    @required TResult updateVersion(String userEmail),
   }) {
     assert(userUpdated != null);
     assert(updateName != null);
@@ -1228,16 +1236,16 @@ class _$UpdateFcmToken with DiagnosticableTreeMixin implements UpdateFcmToken {
 
   @override
   @optionalTypeArgs
-  Result maybeWhen<Result extends Object>({
-    Result userUpdated(User user),
-    Result updateName(String newName),
-    Result updateImageUrl(String userEmail),
-    Result updateGrade(Grade newGrade),
-    Result updateSelectedGym(String userEmail, String newSelectedGym),
-    Result updateReferredGym(String userEmail, String currentGymId),
-    Result updateFcmToken(String userEmail, String newToken),
-    Result updateVersion(String userEmail),
-    @required Result orElse(),
+  TResult maybeWhen<TResult extends Object>({
+    TResult userUpdated(User user),
+    TResult updateName(String newName),
+    TResult updateImageUrl(String userEmail),
+    TResult updateGrade(Grade newGrade),
+    TResult updateSelectedGym(String userEmail, String newSelectedGym),
+    TResult updateReferredGym(String userEmail, String currentGymId),
+    TResult updateFcmToken(String userEmail, String newToken),
+    TResult updateVersion(String userEmail),
+    @required TResult orElse(),
   }) {
     assert(orElse != null);
     if (updateFcmToken != null) {
@@ -1248,15 +1256,15 @@ class _$UpdateFcmToken with DiagnosticableTreeMixin implements UpdateFcmToken {
 
   @override
   @optionalTypeArgs
-  Result map<Result extends Object>({
-    @required Result userUpdated(UserUpdated value),
-    @required Result updateName(UpdateName value),
-    @required Result updateImageUrl(UpdateImageUrl value),
-    @required Result updateGrade(UpdateGrade value),
-    @required Result updateSelectedGym(UpdateSelectedGym value),
-    @required Result updateReferredGym(UpdateReferredGym value),
-    @required Result updateFcmToken(UpdateFcmToken value),
-    @required Result updateVersion(UpdateVersion value),
+  TResult map<TResult extends Object>({
+    @required TResult userUpdated(UserUpdated value),
+    @required TResult updateName(UpdateName value),
+    @required TResult updateImageUrl(UpdateImageUrl value),
+    @required TResult updateGrade(UpdateGrade value),
+    @required TResult updateSelectedGym(UpdateSelectedGym value),
+    @required TResult updateReferredGym(UpdateReferredGym value),
+    @required TResult updateFcmToken(UpdateFcmToken value),
+    @required TResult updateVersion(UpdateVersion value),
   }) {
     assert(userUpdated != null);
     assert(updateName != null);
@@ -1271,16 +1279,16 @@ class _$UpdateFcmToken with DiagnosticableTreeMixin implements UpdateFcmToken {
 
   @override
   @optionalTypeArgs
-  Result maybeMap<Result extends Object>({
-    Result userUpdated(UserUpdated value),
-    Result updateName(UpdateName value),
-    Result updateImageUrl(UpdateImageUrl value),
-    Result updateGrade(UpdateGrade value),
-    Result updateSelectedGym(UpdateSelectedGym value),
-    Result updateReferredGym(UpdateReferredGym value),
-    Result updateFcmToken(UpdateFcmToken value),
-    Result updateVersion(UpdateVersion value),
-    @required Result orElse(),
+  TResult maybeMap<TResult extends Object>({
+    TResult userUpdated(UserUpdated value),
+    TResult updateName(UpdateName value),
+    TResult updateImageUrl(UpdateImageUrl value),
+    TResult updateGrade(UpdateGrade value),
+    TResult updateSelectedGym(UpdateSelectedGym value),
+    TResult updateReferredGym(UpdateReferredGym value),
+    TResult updateFcmToken(UpdateFcmToken value),
+    TResult updateVersion(UpdateVersion value),
+    @required TResult orElse(),
   }) {
     assert(orElse != null);
     if (updateFcmToken != null) {
@@ -1366,15 +1374,16 @@ class _$UpdateVersion with DiagnosticableTreeMixin implements UpdateVersion {
 
   @override
   @optionalTypeArgs
-  Result when<Result extends Object>({
-    @required Result userUpdated(User user),
-    @required Result updateName(String newName),
-    @required Result updateImageUrl(String userEmail),
-    @required Result updateGrade(Grade newGrade),
-    @required Result updateSelectedGym(String userEmail, String newSelectedGym),
-    @required Result updateReferredGym(String userEmail, String currentGymId),
-    @required Result updateFcmToken(String userEmail, String newToken),
-    @required Result updateVersion(String userEmail),
+  TResult when<TResult extends Object>({
+    @required TResult userUpdated(User user),
+    @required TResult updateName(String newName),
+    @required TResult updateImageUrl(String userEmail),
+    @required TResult updateGrade(Grade newGrade),
+    @required
+        TResult updateSelectedGym(String userEmail, String newSelectedGym),
+    @required TResult updateReferredGym(String userEmail, String currentGymId),
+    @required TResult updateFcmToken(String userEmail, String newToken),
+    @required TResult updateVersion(String userEmail),
   }) {
     assert(userUpdated != null);
     assert(updateName != null);
@@ -1389,16 +1398,16 @@ class _$UpdateVersion with DiagnosticableTreeMixin implements UpdateVersion {
 
   @override
   @optionalTypeArgs
-  Result maybeWhen<Result extends Object>({
-    Result userUpdated(User user),
-    Result updateName(String newName),
-    Result updateImageUrl(String userEmail),
-    Result updateGrade(Grade newGrade),
-    Result updateSelectedGym(String userEmail, String newSelectedGym),
-    Result updateReferredGym(String userEmail, String currentGymId),
-    Result updateFcmToken(String userEmail, String newToken),
-    Result updateVersion(String userEmail),
-    @required Result orElse(),
+  TResult maybeWhen<TResult extends Object>({
+    TResult userUpdated(User user),
+    TResult updateName(String newName),
+    TResult updateImageUrl(String userEmail),
+    TResult updateGrade(Grade newGrade),
+    TResult updateSelectedGym(String userEmail, String newSelectedGym),
+    TResult updateReferredGym(String userEmail, String currentGymId),
+    TResult updateFcmToken(String userEmail, String newToken),
+    TResult updateVersion(String userEmail),
+    @required TResult orElse(),
   }) {
     assert(orElse != null);
     if (updateVersion != null) {
@@ -1409,15 +1418,15 @@ class _$UpdateVersion with DiagnosticableTreeMixin implements UpdateVersion {
 
   @override
   @optionalTypeArgs
-  Result map<Result extends Object>({
-    @required Result userUpdated(UserUpdated value),
-    @required Result updateName(UpdateName value),
-    @required Result updateImageUrl(UpdateImageUrl value),
-    @required Result updateGrade(UpdateGrade value),
-    @required Result updateSelectedGym(UpdateSelectedGym value),
-    @required Result updateReferredGym(UpdateReferredGym value),
-    @required Result updateFcmToken(UpdateFcmToken value),
-    @required Result updateVersion(UpdateVersion value),
+  TResult map<TResult extends Object>({
+    @required TResult userUpdated(UserUpdated value),
+    @required TResult updateName(UpdateName value),
+    @required TResult updateImageUrl(UpdateImageUrl value),
+    @required TResult updateGrade(UpdateGrade value),
+    @required TResult updateSelectedGym(UpdateSelectedGym value),
+    @required TResult updateReferredGym(UpdateReferredGym value),
+    @required TResult updateFcmToken(UpdateFcmToken value),
+    @required TResult updateVersion(UpdateVersion value),
   }) {
     assert(userUpdated != null);
     assert(updateName != null);
@@ -1432,16 +1441,16 @@ class _$UpdateVersion with DiagnosticableTreeMixin implements UpdateVersion {
 
   @override
   @optionalTypeArgs
-  Result maybeMap<Result extends Object>({
-    Result userUpdated(UserUpdated value),
-    Result updateName(UpdateName value),
-    Result updateImageUrl(UpdateImageUrl value),
-    Result updateGrade(UpdateGrade value),
-    Result updateSelectedGym(UpdateSelectedGym value),
-    Result updateReferredGym(UpdateReferredGym value),
-    Result updateFcmToken(UpdateFcmToken value),
-    Result updateVersion(UpdateVersion value),
-    @required Result orElse(),
+  TResult maybeMap<TResult extends Object>({
+    TResult userUpdated(UserUpdated value),
+    TResult updateName(UpdateName value),
+    TResult updateImageUrl(UpdateImageUrl value),
+    TResult updateGrade(UpdateGrade value),
+    TResult updateSelectedGym(UpdateSelectedGym value),
+    TResult updateReferredGym(UpdateReferredGym value),
+    TResult updateFcmToken(UpdateFcmToken value),
+    TResult updateVersion(UpdateVersion value),
+    @required TResult orElse(),
   }) {
     assert(orElse != null);
     if (updateVersion != null) {

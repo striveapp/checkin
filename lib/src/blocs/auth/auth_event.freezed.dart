@@ -38,30 +38,30 @@ const $AuthEvent = _$AuthEventTearOff();
 /// @nodoc
 mixin _$AuthEvent {
   @optionalTypeArgs
-  Result when<Result extends Object>({
-    @required Result appStarted(),
-    @required Result authUpdated(User loggedUser),
-    @required Result logOut(),
+  TResult when<TResult extends Object>({
+    @required TResult appStarted(),
+    @required TResult authUpdated(User loggedUser),
+    @required TResult logOut(),
   });
   @optionalTypeArgs
-  Result maybeWhen<Result extends Object>({
-    Result appStarted(),
-    Result authUpdated(User loggedUser),
-    Result logOut(),
-    @required Result orElse(),
+  TResult maybeWhen<TResult extends Object>({
+    TResult appStarted(),
+    TResult authUpdated(User loggedUser),
+    TResult logOut(),
+    @required TResult orElse(),
   });
   @optionalTypeArgs
-  Result map<Result extends Object>({
-    @required Result appStarted(AppStarted value),
-    @required Result authUpdated(AuthUpdated value),
-    @required Result logOut(LogOut value),
+  TResult map<TResult extends Object>({
+    @required TResult appStarted(AppStarted value),
+    @required TResult authUpdated(AuthUpdated value),
+    @required TResult logOut(LogOut value),
   });
   @optionalTypeArgs
-  Result maybeMap<Result extends Object>({
-    Result appStarted(AppStarted value),
-    Result authUpdated(AuthUpdated value),
-    Result logOut(LogOut value),
-    @required Result orElse(),
+  TResult maybeMap<TResult extends Object>({
+    TResult appStarted(AppStarted value),
+    TResult authUpdated(AuthUpdated value),
+    TResult logOut(LogOut value),
+    @required TResult orElse(),
   });
 }
 
@@ -122,10 +122,10 @@ class _$AppStarted with DiagnosticableTreeMixin implements AppStarted {
 
   @override
   @optionalTypeArgs
-  Result when<Result extends Object>({
-    @required Result appStarted(),
-    @required Result authUpdated(User loggedUser),
-    @required Result logOut(),
+  TResult when<TResult extends Object>({
+    @required TResult appStarted(),
+    @required TResult authUpdated(User loggedUser),
+    @required TResult logOut(),
   }) {
     assert(appStarted != null);
     assert(authUpdated != null);
@@ -135,11 +135,11 @@ class _$AppStarted with DiagnosticableTreeMixin implements AppStarted {
 
   @override
   @optionalTypeArgs
-  Result maybeWhen<Result extends Object>({
-    Result appStarted(),
-    Result authUpdated(User loggedUser),
-    Result logOut(),
-    @required Result orElse(),
+  TResult maybeWhen<TResult extends Object>({
+    TResult appStarted(),
+    TResult authUpdated(User loggedUser),
+    TResult logOut(),
+    @required TResult orElse(),
   }) {
     assert(orElse != null);
     if (appStarted != null) {
@@ -150,10 +150,10 @@ class _$AppStarted with DiagnosticableTreeMixin implements AppStarted {
 
   @override
   @optionalTypeArgs
-  Result map<Result extends Object>({
-    @required Result appStarted(AppStarted value),
-    @required Result authUpdated(AuthUpdated value),
-    @required Result logOut(LogOut value),
+  TResult map<TResult extends Object>({
+    @required TResult appStarted(AppStarted value),
+    @required TResult authUpdated(AuthUpdated value),
+    @required TResult logOut(LogOut value),
   }) {
     assert(appStarted != null);
     assert(authUpdated != null);
@@ -163,11 +163,11 @@ class _$AppStarted with DiagnosticableTreeMixin implements AppStarted {
 
   @override
   @optionalTypeArgs
-  Result maybeMap<Result extends Object>({
-    Result appStarted(AppStarted value),
-    Result authUpdated(AuthUpdated value),
-    Result logOut(LogOut value),
-    @required Result orElse(),
+  TResult maybeMap<TResult extends Object>({
+    TResult appStarted(AppStarted value),
+    TResult authUpdated(AuthUpdated value),
+    TResult logOut(LogOut value),
+    @required TResult orElse(),
   }) {
     assert(orElse != null);
     if (appStarted != null) {
@@ -249,10 +249,10 @@ class _$AuthUpdated with DiagnosticableTreeMixin implements AuthUpdated {
 
   @override
   @optionalTypeArgs
-  Result when<Result extends Object>({
-    @required Result appStarted(),
-    @required Result authUpdated(User loggedUser),
-    @required Result logOut(),
+  TResult when<TResult extends Object>({
+    @required TResult appStarted(),
+    @required TResult authUpdated(User loggedUser),
+    @required TResult logOut(),
   }) {
     assert(appStarted != null);
     assert(authUpdated != null);
@@ -262,11 +262,11 @@ class _$AuthUpdated with DiagnosticableTreeMixin implements AuthUpdated {
 
   @override
   @optionalTypeArgs
-  Result maybeWhen<Result extends Object>({
-    Result appStarted(),
-    Result authUpdated(User loggedUser),
-    Result logOut(),
-    @required Result orElse(),
+  TResult maybeWhen<TResult extends Object>({
+    TResult appStarted(),
+    TResult authUpdated(User loggedUser),
+    TResult logOut(),
+    @required TResult orElse(),
   }) {
     assert(orElse != null);
     if (authUpdated != null) {
@@ -277,10 +277,10 @@ class _$AuthUpdated with DiagnosticableTreeMixin implements AuthUpdated {
 
   @override
   @optionalTypeArgs
-  Result map<Result extends Object>({
-    @required Result appStarted(AppStarted value),
-    @required Result authUpdated(AuthUpdated value),
-    @required Result logOut(LogOut value),
+  TResult map<TResult extends Object>({
+    @required TResult appStarted(AppStarted value),
+    @required TResult authUpdated(AuthUpdated value),
+    @required TResult logOut(LogOut value),
   }) {
     assert(appStarted != null);
     assert(authUpdated != null);
@@ -290,11 +290,11 @@ class _$AuthUpdated with DiagnosticableTreeMixin implements AuthUpdated {
 
   @override
   @optionalTypeArgs
-  Result maybeMap<Result extends Object>({
-    Result appStarted(AppStarted value),
-    Result authUpdated(AuthUpdated value),
-    Result logOut(LogOut value),
-    @required Result orElse(),
+  TResult maybeMap<TResult extends Object>({
+    TResult appStarted(AppStarted value),
+    TResult authUpdated(AuthUpdated value),
+    TResult logOut(LogOut value),
+    @required TResult orElse(),
   }) {
     assert(orElse != null);
     if (authUpdated != null) {
@@ -352,10 +352,10 @@ class _$LogOut with DiagnosticableTreeMixin implements LogOut {
 
   @override
   @optionalTypeArgs
-  Result when<Result extends Object>({
-    @required Result appStarted(),
-    @required Result authUpdated(User loggedUser),
-    @required Result logOut(),
+  TResult when<TResult extends Object>({
+    @required TResult appStarted(),
+    @required TResult authUpdated(User loggedUser),
+    @required TResult logOut(),
   }) {
     assert(appStarted != null);
     assert(authUpdated != null);
@@ -365,11 +365,11 @@ class _$LogOut with DiagnosticableTreeMixin implements LogOut {
 
   @override
   @optionalTypeArgs
-  Result maybeWhen<Result extends Object>({
-    Result appStarted(),
-    Result authUpdated(User loggedUser),
-    Result logOut(),
-    @required Result orElse(),
+  TResult maybeWhen<TResult extends Object>({
+    TResult appStarted(),
+    TResult authUpdated(User loggedUser),
+    TResult logOut(),
+    @required TResult orElse(),
   }) {
     assert(orElse != null);
     if (logOut != null) {
@@ -380,10 +380,10 @@ class _$LogOut with DiagnosticableTreeMixin implements LogOut {
 
   @override
   @optionalTypeArgs
-  Result map<Result extends Object>({
-    @required Result appStarted(AppStarted value),
-    @required Result authUpdated(AuthUpdated value),
-    @required Result logOut(LogOut value),
+  TResult map<TResult extends Object>({
+    @required TResult appStarted(AppStarted value),
+    @required TResult authUpdated(AuthUpdated value),
+    @required TResult logOut(LogOut value),
   }) {
     assert(appStarted != null);
     assert(authUpdated != null);
@@ -393,11 +393,11 @@ class _$LogOut with DiagnosticableTreeMixin implements LogOut {
 
   @override
   @optionalTypeArgs
-  Result maybeMap<Result extends Object>({
-    Result appStarted(AppStarted value),
-    Result authUpdated(AuthUpdated value),
-    Result logOut(LogOut value),
-    @required Result orElse(),
+  TResult maybeMap<TResult extends Object>({
+    TResult appStarted(AppStarted value),
+    TResult authUpdated(AuthUpdated value),
+    TResult logOut(LogOut value),
+    @required TResult orElse(),
   }) {
     assert(orElse != null);
     if (logOut != null) {

@@ -30,22 +30,22 @@ mixin _$ThemeState {
   ThemeData get themeData;
 
   @optionalTypeArgs
-  Result when<Result extends Object>({
-    @required Result appTheme(ThemeData themeData),
+  TResult when<TResult extends Object>({
+    @required TResult appTheme(ThemeData themeData),
   });
   @optionalTypeArgs
-  Result maybeWhen<Result extends Object>({
-    Result appTheme(ThemeData themeData),
-    @required Result orElse(),
+  TResult maybeWhen<TResult extends Object>({
+    TResult appTheme(ThemeData themeData),
+    @required TResult orElse(),
   });
   @optionalTypeArgs
-  Result map<Result extends Object>({
-    @required Result appTheme(AppTheme value),
+  TResult map<TResult extends Object>({
+    @required TResult appTheme(AppTheme value),
   });
   @optionalTypeArgs
-  Result maybeMap<Result extends Object>({
-    Result appTheme(AppTheme value),
-    @required Result orElse(),
+  TResult maybeMap<TResult extends Object>({
+    TResult appTheme(AppTheme value),
+    @required TResult orElse(),
   });
 
   $ThemeStateCopyWith<ThemeState> get copyWith;
@@ -145,8 +145,8 @@ class _$AppTheme with DiagnosticableTreeMixin implements AppTheme {
 
   @override
   @optionalTypeArgs
-  Result when<Result extends Object>({
-    @required Result appTheme(ThemeData themeData),
+  TResult when<TResult extends Object>({
+    @required TResult appTheme(ThemeData themeData),
   }) {
     assert(appTheme != null);
     return appTheme(themeData);
@@ -154,9 +154,9 @@ class _$AppTheme with DiagnosticableTreeMixin implements AppTheme {
 
   @override
   @optionalTypeArgs
-  Result maybeWhen<Result extends Object>({
-    Result appTheme(ThemeData themeData),
-    @required Result orElse(),
+  TResult maybeWhen<TResult extends Object>({
+    TResult appTheme(ThemeData themeData),
+    @required TResult orElse(),
   }) {
     assert(orElse != null);
     if (appTheme != null) {
@@ -167,8 +167,8 @@ class _$AppTheme with DiagnosticableTreeMixin implements AppTheme {
 
   @override
   @optionalTypeArgs
-  Result map<Result extends Object>({
-    @required Result appTheme(AppTheme value),
+  TResult map<TResult extends Object>({
+    @required TResult appTheme(AppTheme value),
   }) {
     assert(appTheme != null);
     return appTheme(this);
@@ -176,9 +176,9 @@ class _$AppTheme with DiagnosticableTreeMixin implements AppTheme {
 
   @override
   @optionalTypeArgs
-  Result maybeMap<Result extends Object>({
-    Result appTheme(AppTheme value),
-    @required Result orElse(),
+  TResult maybeMap<TResult extends Object>({
+    TResult appTheme(AppTheme value),
+    @required TResult orElse(),
   }) {
     assert(orElse != null);
     if (appTheme != null) {

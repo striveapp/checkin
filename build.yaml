@@ -1,7 +1,17 @@
 targets:
   $default:
     builders:
-      json_serializable:
+      freezed:freezed:
+        generate_for:
+          - lib/src/blocs/**/*.dart
+          - lib/src/models/*.dart
+          - test/freezed/*.dart
+          - test/freezed/**/*.dart
+      json_serializable:json_serializable:
+        generate_for:
+          - lib/src/models/*.dart
+          - test/freezed/*.dart
+          - test/freezed/**/*.dart
         options:
           # Options configure how source code is generated for every
           # `@JsonSerializable`-annotated class in the package.

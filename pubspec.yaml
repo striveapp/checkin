@@ -37,7 +37,7 @@ dependencies:
   cached_network_image: ^2.3.3
   fluro: ^1.6.1
   platform: ^3.0.0-nullsafety.4
-  json_annotation: ^3.0.0
+  json_annotation: ^3.1.1
   i18n_extension: ^1.4.2
   url_launcher: ^5.4.1
   table_calendar: ^2.2.2
@@ -56,14 +56,14 @@ dev_dependencies:
   bloc_test: ^7.1.0
   flutter_launcher_icons: ^0.7.5
   flutter_native_splash: ^0.1.9
-  freezed: ^0.12.2
   stack_trace: ^1.9.3
   flutter_test:
     sdk: flutter
   flutter_driver:
     sdk: flutter
-  build_runner: ^1.0.0
-  json_serializable: ^3.3.0
+  build_runner: ^1.10.6
+  freezed: ^0.12.3
+  json_serializable: ^3.5.0
 
 flutter_icons:
   image_path: "assets/images/main_logo.png"

@@ -39,30 +39,30 @@ mixin _$SessionsEvent {
   Membership get membership;
 
   @optionalTypeArgs
-  Result when<Result extends Object>({
-    @required Result sessionsUpdated(Membership membership),
+  TResult when<TResult extends Object>({
+    @required TResult sessionsUpdated(Membership membership),
     @required
-        Result sessionsUpdatedWithHistory(
+        TResult sessionsUpdatedWithHistory(
             Membership membership, UserHistory userHistory),
   });
   @optionalTypeArgs
-  Result maybeWhen<Result extends Object>({
-    Result sessionsUpdated(Membership membership),
-    Result sessionsUpdatedWithHistory(
+  TResult maybeWhen<TResult extends Object>({
+    TResult sessionsUpdated(Membership membership),
+    TResult sessionsUpdatedWithHistory(
         Membership membership, UserHistory userHistory),
-    @required Result orElse(),
+    @required TResult orElse(),
   });
   @optionalTypeArgs
-  Result map<Result extends Object>({
-    @required Result sessionsUpdated(SessionsUpdated value),
+  TResult map<TResult extends Object>({
+    @required TResult sessionsUpdated(SessionsUpdated value),
     @required
-        Result sessionsUpdatedWithHistory(SessionsUpdatedWithHistory value),
+        TResult sessionsUpdatedWithHistory(SessionsUpdatedWithHistory value),
   });
   @optionalTypeArgs
-  Result maybeMap<Result extends Object>({
-    Result sessionsUpdated(SessionsUpdated value),
-    Result sessionsUpdatedWithHistory(SessionsUpdatedWithHistory value),
-    @required Result orElse(),
+  TResult maybeMap<TResult extends Object>({
+    TResult sessionsUpdated(SessionsUpdated value),
+    TResult sessionsUpdatedWithHistory(SessionsUpdatedWithHistory value),
+    @required TResult orElse(),
   });
 
   $SessionsEventCopyWith<SessionsEvent> get copyWith;
@@ -185,10 +185,10 @@ class _$SessionsUpdated
 
   @override
   @optionalTypeArgs
-  Result when<Result extends Object>({
-    @required Result sessionsUpdated(Membership membership),
+  TResult when<TResult extends Object>({
+    @required TResult sessionsUpdated(Membership membership),
     @required
-        Result sessionsUpdatedWithHistory(
+        TResult sessionsUpdatedWithHistory(
             Membership membership, UserHistory userHistory),
   }) {
     assert(sessionsUpdated != null);
@@ -198,11 +198,11 @@ class _$SessionsUpdated
 
   @override
   @optionalTypeArgs
-  Result maybeWhen<Result extends Object>({
-    Result sessionsUpdated(Membership membership),
-    Result sessionsUpdatedWithHistory(
+  TResult maybeWhen<TResult extends Object>({
+    TResult sessionsUpdated(Membership membership),
+    TResult sessionsUpdatedWithHistory(
         Membership membership, UserHistory userHistory),
-    @required Result orElse(),
+    @required TResult orElse(),
   }) {
     assert(orElse != null);
     if (sessionsUpdated != null) {
@@ -213,10 +213,10 @@ class _$SessionsUpdated
 
   @override
   @optionalTypeArgs
-  Result map<Result extends Object>({
-    @required Result sessionsUpdated(SessionsUpdated value),
+  TResult map<TResult extends Object>({
+    @required TResult sessionsUpdated(SessionsUpdated value),
     @required
-        Result sessionsUpdatedWithHistory(SessionsUpdatedWithHistory value),
+        TResult sessionsUpdatedWithHistory(SessionsUpdatedWithHistory value),
   }) {
     assert(sessionsUpdated != null);
     assert(sessionsUpdatedWithHistory != null);
@@ -225,10 +225,10 @@ class _$SessionsUpdated
 
   @override
   @optionalTypeArgs
-  Result maybeMap<Result extends Object>({
-    Result sessionsUpdated(SessionsUpdated value),
-    Result sessionsUpdatedWithHistory(SessionsUpdatedWithHistory value),
-    @required Result orElse(),
+  TResult maybeMap<TResult extends Object>({
+    TResult sessionsUpdated(SessionsUpdated value),
+    TResult sessionsUpdatedWithHistory(SessionsUpdatedWithHistory value),
+    @required TResult orElse(),
   }) {
     assert(orElse != null);
     if (sessionsUpdated != null) {
@@ -343,10 +343,10 @@ class _$SessionsUpdatedWithHistory
 
   @override
   @optionalTypeArgs
-  Result when<Result extends Object>({
-    @required Result sessionsUpdated(Membership membership),
+  TResult when<TResult extends Object>({
+    @required TResult sessionsUpdated(Membership membership),
     @required
-        Result sessionsUpdatedWithHistory(
+        TResult sessionsUpdatedWithHistory(
             Membership membership, UserHistory userHistory),
   }) {
     assert(sessionsUpdated != null);
@@ -356,11 +356,11 @@ class _$SessionsUpdatedWithHistory
 
   @override
   @optionalTypeArgs
-  Result maybeWhen<Result extends Object>({
-    Result sessionsUpdated(Membership membership),
-    Result sessionsUpdatedWithHistory(
+  TResult maybeWhen<TResult extends Object>({
+    TResult sessionsUpdated(Membership membership),
+    TResult sessionsUpdatedWithHistory(
         Membership membership, UserHistory userHistory),
-    @required Result orElse(),
+    @required TResult orElse(),
   }) {
     assert(orElse != null);
     if (sessionsUpdatedWithHistory != null) {
@@ -371,10 +371,10 @@ class _$SessionsUpdatedWithHistory
 
   @override
   @optionalTypeArgs
-  Result map<Result extends Object>({
-    @required Result sessionsUpdated(SessionsUpdated value),
+  TResult map<TResult extends Object>({
+    @required TResult sessionsUpdated(SessionsUpdated value),
     @required
-        Result sessionsUpdatedWithHistory(SessionsUpdatedWithHistory value),
+        TResult sessionsUpdatedWithHistory(SessionsUpdatedWithHistory value),
   }) {
     assert(sessionsUpdated != null);
     assert(sessionsUpdatedWithHistory != null);
@@ -383,10 +383,10 @@ class _$SessionsUpdatedWithHistory
 
   @override
   @optionalTypeArgs
-  Result maybeMap<Result extends Object>({
-    Result sessionsUpdated(SessionsUpdated value),
-    Result sessionsUpdatedWithHistory(SessionsUpdatedWithHistory value),
-    @required Result orElse(),
+  TResult maybeMap<TResult extends Object>({
+    TResult sessionsUpdated(SessionsUpdated value),
+    TResult sessionsUpdatedWithHistory(SessionsUpdatedWithHistory value),
+    @required TResult orElse(),
   }) {
     assert(orElse != null);
     if (sessionsUpdatedWithHistory != null) {

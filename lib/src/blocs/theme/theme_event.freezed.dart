@@ -30,22 +30,22 @@ mixin _$ThemeEvent {
   ThemeType get themeType;
 
   @optionalTypeArgs
-  Result when<Result extends Object>({
-    @required Result themeUpdated(ThemeType themeType),
+  TResult when<TResult extends Object>({
+    @required TResult themeUpdated(ThemeType themeType),
   });
   @optionalTypeArgs
-  Result maybeWhen<Result extends Object>({
-    Result themeUpdated(ThemeType themeType),
-    @required Result orElse(),
+  TResult maybeWhen<TResult extends Object>({
+    TResult themeUpdated(ThemeType themeType),
+    @required TResult orElse(),
   });
   @optionalTypeArgs
-  Result map<Result extends Object>({
-    @required Result themeUpdated(ThemeUpdated value),
+  TResult map<TResult extends Object>({
+    @required TResult themeUpdated(ThemeUpdated value),
   });
   @optionalTypeArgs
-  Result maybeMap<Result extends Object>({
-    Result themeUpdated(ThemeUpdated value),
-    @required Result orElse(),
+  TResult maybeMap<TResult extends Object>({
+    TResult themeUpdated(ThemeUpdated value),
+    @required TResult orElse(),
   });
 
   $ThemeEventCopyWith<ThemeEvent> get copyWith;
@@ -148,8 +148,8 @@ class _$ThemeUpdated with DiagnosticableTreeMixin implements ThemeUpdated {
 
   @override
   @optionalTypeArgs
-  Result when<Result extends Object>({
-    @required Result themeUpdated(ThemeType themeType),
+  TResult when<TResult extends Object>({
+    @required TResult themeUpdated(ThemeType themeType),
   }) {
     assert(themeUpdated != null);
     return themeUpdated(themeType);
@@ -157,9 +157,9 @@ class _$ThemeUpdated with DiagnosticableTreeMixin implements ThemeUpdated {
 
   @override
   @optionalTypeArgs
-  Result maybeWhen<Result extends Object>({
-    Result themeUpdated(ThemeType themeType),
-    @required Result orElse(),
+  TResult maybeWhen<TResult extends Object>({
+    TResult themeUpdated(ThemeType themeType),
+    @required TResult orElse(),
   }) {
     assert(orElse != null);
     if (themeUpdated != null) {
@@ -170,8 +170,8 @@ class _$ThemeUpdated with DiagnosticableTreeMixin implements ThemeUpdated {
 
   @override
   @optionalTypeArgs
-  Result map<Result extends Object>({
-    @required Result themeUpdated(ThemeUpdated value),
+  TResult map<TResult extends Object>({
+    @required TResult themeUpdated(ThemeUpdated value),
   }) {
     assert(themeUpdated != null);
     return themeUpdated(this);
@@ -179,9 +179,9 @@ class _$ThemeUpdated with DiagnosticableTreeMixin implements ThemeUpdated {
 
   @override
   @optionalTypeArgs
-  Result maybeMap<Result extends Object>({
-    Result themeUpdated(ThemeUpdated value),
-    @required Result orElse(),
+  TResult maybeMap<TResult extends Object>({
+    TResult themeUpdated(ThemeUpdated value),
+    @required TResult orElse(),
   }) {
     assert(orElse != null);
     if (themeUpdated != null) {

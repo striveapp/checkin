@@ -44,36 +44,36 @@ const $SubscriptionPlansState = _$SubscriptionPlansStateTearOff();
 /// @nodoc
 mixin _$SubscriptionPlansState {
   @optionalTypeArgs
-  Result when<Result extends Object>({
-    @required Result subscriptionPlansInitial(),
-    @required Result subscriptionPlansLoading(),
+  TResult when<TResult extends Object>({
+    @required TResult subscriptionPlansInitial(),
+    @required TResult subscriptionPlansLoading(),
     @required
-        Result subscriptionPlansLoaded(
+        TResult subscriptionPlansLoaded(
             List<SubscriptionPlan> subscriptionPlans),
-    @required Result subscriptionPlansEmpty(),
+    @required TResult subscriptionPlansEmpty(),
   });
   @optionalTypeArgs
-  Result maybeWhen<Result extends Object>({
-    Result subscriptionPlansInitial(),
-    Result subscriptionPlansLoading(),
-    Result subscriptionPlansLoaded(List<SubscriptionPlan> subscriptionPlans),
-    Result subscriptionPlansEmpty(),
-    @required Result orElse(),
+  TResult maybeWhen<TResult extends Object>({
+    TResult subscriptionPlansInitial(),
+    TResult subscriptionPlansLoading(),
+    TResult subscriptionPlansLoaded(List<SubscriptionPlan> subscriptionPlans),
+    TResult subscriptionPlansEmpty(),
+    @required TResult orElse(),
   });
   @optionalTypeArgs
-  Result map<Result extends Object>({
-    @required Result subscriptionPlansInitial(SubscriptionPlansInitial value),
-    @required Result subscriptionPlansLoading(SubscriptionPlansLoading value),
-    @required Result subscriptionPlansLoaded(SubscriptionPlansLoaded value),
-    @required Result subscriptionPlansEmpty(SubscriptionPlansEmpty value),
+  TResult map<TResult extends Object>({
+    @required TResult subscriptionPlansInitial(SubscriptionPlansInitial value),
+    @required TResult subscriptionPlansLoading(SubscriptionPlansLoading value),
+    @required TResult subscriptionPlansLoaded(SubscriptionPlansLoaded value),
+    @required TResult subscriptionPlansEmpty(SubscriptionPlansEmpty value),
   });
   @optionalTypeArgs
-  Result maybeMap<Result extends Object>({
-    Result subscriptionPlansInitial(SubscriptionPlansInitial value),
-    Result subscriptionPlansLoading(SubscriptionPlansLoading value),
-    Result subscriptionPlansLoaded(SubscriptionPlansLoaded value),
-    Result subscriptionPlansEmpty(SubscriptionPlansEmpty value),
-    @required Result orElse(),
+  TResult maybeMap<TResult extends Object>({
+    TResult subscriptionPlansInitial(SubscriptionPlansInitial value),
+    TResult subscriptionPlansLoading(SubscriptionPlansLoading value),
+    TResult subscriptionPlansLoaded(SubscriptionPlansLoaded value),
+    TResult subscriptionPlansEmpty(SubscriptionPlansEmpty value),
+    @required TResult orElse(),
   });
 }
 
@@ -143,13 +143,13 @@ class _$SubscriptionPlansInitial
 
   @override
   @optionalTypeArgs
-  Result when<Result extends Object>({
-    @required Result subscriptionPlansInitial(),
-    @required Result subscriptionPlansLoading(),
+  TResult when<TResult extends Object>({
+    @required TResult subscriptionPlansInitial(),
+    @required TResult subscriptionPlansLoading(),
     @required
-        Result subscriptionPlansLoaded(
+        TResult subscriptionPlansLoaded(
             List<SubscriptionPlan> subscriptionPlans),
-    @required Result subscriptionPlansEmpty(),
+    @required TResult subscriptionPlansEmpty(),
   }) {
     assert(subscriptionPlansInitial != null);
     assert(subscriptionPlansLoading != null);
@@ -160,12 +160,12 @@ class _$SubscriptionPlansInitial
 
   @override
   @optionalTypeArgs
-  Result maybeWhen<Result extends Object>({
-    Result subscriptionPlansInitial(),
-    Result subscriptionPlansLoading(),
-    Result subscriptionPlansLoaded(List<SubscriptionPlan> subscriptionPlans),
-    Result subscriptionPlansEmpty(),
-    @required Result orElse(),
+  TResult maybeWhen<TResult extends Object>({
+    TResult subscriptionPlansInitial(),
+    TResult subscriptionPlansLoading(),
+    TResult subscriptionPlansLoaded(List<SubscriptionPlan> subscriptionPlans),
+    TResult subscriptionPlansEmpty(),
+    @required TResult orElse(),
   }) {
     assert(orElse != null);
     if (subscriptionPlansInitial != null) {
@@ -176,11 +176,11 @@ class _$SubscriptionPlansInitial
 
   @override
   @optionalTypeArgs
-  Result map<Result extends Object>({
-    @required Result subscriptionPlansInitial(SubscriptionPlansInitial value),
-    @required Result subscriptionPlansLoading(SubscriptionPlansLoading value),
-    @required Result subscriptionPlansLoaded(SubscriptionPlansLoaded value),
-    @required Result subscriptionPlansEmpty(SubscriptionPlansEmpty value),
+  TResult map<TResult extends Object>({
+    @required TResult subscriptionPlansInitial(SubscriptionPlansInitial value),
+    @required TResult subscriptionPlansLoading(SubscriptionPlansLoading value),
+    @required TResult subscriptionPlansLoaded(SubscriptionPlansLoaded value),
+    @required TResult subscriptionPlansEmpty(SubscriptionPlansEmpty value),
   }) {
     assert(subscriptionPlansInitial != null);
     assert(subscriptionPlansLoading != null);
@@ -191,12 +191,12 @@ class _$SubscriptionPlansInitial
 
   @override
   @optionalTypeArgs
-  Result maybeMap<Result extends Object>({
-    Result subscriptionPlansInitial(SubscriptionPlansInitial value),
-    Result subscriptionPlansLoading(SubscriptionPlansLoading value),
-    Result subscriptionPlansLoaded(SubscriptionPlansLoaded value),
-    Result subscriptionPlansEmpty(SubscriptionPlansEmpty value),
-    @required Result orElse(),
+  TResult maybeMap<TResult extends Object>({
+    TResult subscriptionPlansInitial(SubscriptionPlansInitial value),
+    TResult subscriptionPlansLoading(SubscriptionPlansLoading value),
+    TResult subscriptionPlansLoaded(SubscriptionPlansLoaded value),
+    TResult subscriptionPlansEmpty(SubscriptionPlansEmpty value),
+    @required TResult orElse(),
   }) {
     assert(orElse != null);
     if (subscriptionPlansInitial != null) {
@@ -259,13 +259,13 @@ class _$SubscriptionPlansLoading
 
   @override
   @optionalTypeArgs
-  Result when<Result extends Object>({
-    @required Result subscriptionPlansInitial(),
-    @required Result subscriptionPlansLoading(),
+  TResult when<TResult extends Object>({
+    @required TResult subscriptionPlansInitial(),
+    @required TResult subscriptionPlansLoading(),
     @required
-        Result subscriptionPlansLoaded(
+        TResult subscriptionPlansLoaded(
             List<SubscriptionPlan> subscriptionPlans),
-    @required Result subscriptionPlansEmpty(),
+    @required TResult subscriptionPlansEmpty(),
   }) {
     assert(subscriptionPlansInitial != null);
     assert(subscriptionPlansLoading != null);
@@ -276,12 +276,12 @@ class _$SubscriptionPlansLoading
 
   @override
   @optionalTypeArgs
-  Result maybeWhen<Result extends Object>({
-    Result subscriptionPlansInitial(),
-    Result subscriptionPlansLoading(),
-    Result subscriptionPlansLoaded(List<SubscriptionPlan> subscriptionPlans),
-    Result subscriptionPlansEmpty(),
-    @required Result orElse(),
+  TResult maybeWhen<TResult extends Object>({
+    TResult subscriptionPlansInitial(),
+    TResult subscriptionPlansLoading(),
+    TResult subscriptionPlansLoaded(List<SubscriptionPlan> subscriptionPlans),
+    TResult subscriptionPlansEmpty(),
+    @required TResult orElse(),
   }) {
     assert(orElse != null);
     if (subscriptionPlansLoading != null) {
@@ -292,11 +292,11 @@ class _$SubscriptionPlansLoading
 
   @override
   @optionalTypeArgs
-  Result map<Result extends Object>({
-    @required Result subscriptionPlansInitial(SubscriptionPlansInitial value),
-    @required Result subscriptionPlansLoading(SubscriptionPlansLoading value),
-    @required Result subscriptionPlansLoaded(SubscriptionPlansLoaded value),
-    @required Result subscriptionPlansEmpty(SubscriptionPlansEmpty value),
+  TResult map<TResult extends Object>({
+    @required TResult subscriptionPlansInitial(SubscriptionPlansInitial value),
+    @required TResult subscriptionPlansLoading(SubscriptionPlansLoading value),
+    @required TResult subscriptionPlansLoaded(SubscriptionPlansLoaded value),
+    @required TResult subscriptionPlansEmpty(SubscriptionPlansEmpty value),
   }) {
     assert(subscriptionPlansInitial != null);
     assert(subscriptionPlansLoading != null);
@@ -307,12 +307,12 @@ class _$SubscriptionPlansLoading
 
   @override
   @optionalTypeArgs
-  Result maybeMap<Result extends Object>({
-    Result subscriptionPlansInitial(SubscriptionPlansInitial value),
-    Result subscriptionPlansLoading(SubscriptionPlansLoading value),
-    Result subscriptionPlansLoaded(SubscriptionPlansLoaded value),
-    Result subscriptionPlansEmpty(SubscriptionPlansEmpty value),
-    @required Result orElse(),
+  TResult maybeMap<TResult extends Object>({
+    TResult subscriptionPlansInitial(SubscriptionPlansInitial value),
+    TResult subscriptionPlansLoading(SubscriptionPlansLoading value),
+    TResult subscriptionPlansLoaded(SubscriptionPlansLoaded value),
+    TResult subscriptionPlansEmpty(SubscriptionPlansEmpty value),
+    @required TResult orElse(),
   }) {
     assert(orElse != null);
     if (subscriptionPlansLoading != null) {
@@ -402,13 +402,13 @@ class _$SubscriptionPlansLoaded
 
   @override
   @optionalTypeArgs
-  Result when<Result extends Object>({
-    @required Result subscriptionPlansInitial(),
-    @required Result subscriptionPlansLoading(),
+  TResult when<TResult extends Object>({
+    @required TResult subscriptionPlansInitial(),
+    @required TResult subscriptionPlansLoading(),
     @required
-        Result subscriptionPlansLoaded(
+        TResult subscriptionPlansLoaded(
             List<SubscriptionPlan> subscriptionPlans),
-    @required Result subscriptionPlansEmpty(),
+    @required TResult subscriptionPlansEmpty(),
   }) {
     assert(subscriptionPlansInitial != null);
     assert(subscriptionPlansLoading != null);
@@ -419,12 +419,12 @@ class _$SubscriptionPlansLoaded
 
   @override
   @optionalTypeArgs
-  Result maybeWhen<Result extends Object>({
-    Result subscriptionPlansInitial(),
-    Result subscriptionPlansLoading(),
-    Result subscriptionPlansLoaded(List<SubscriptionPlan> subscriptionPlans),
-    Result subscriptionPlansEmpty(),
-    @required Result orElse(),
+  TResult maybeWhen<TResult extends Object>({
+    TResult subscriptionPlansInitial(),
+    TResult subscriptionPlansLoading(),
+    TResult subscriptionPlansLoaded(List<SubscriptionPlan> subscriptionPlans),
+    TResult subscriptionPlansEmpty(),
+    @required TResult orElse(),
   }) {
     assert(orElse != null);
     if (subscriptionPlansLoaded != null) {
@@ -435,11 +435,11 @@ class _$SubscriptionPlansLoaded
 
   @override
   @optionalTypeArgs
-  Result map<Result extends Object>({
-    @required Result subscriptionPlansInitial(SubscriptionPlansInitial value),
-    @required Result subscriptionPlansLoading(SubscriptionPlansLoading value),
-    @required Result subscriptionPlansLoaded(SubscriptionPlansLoaded value),
-    @required Result subscriptionPlansEmpty(SubscriptionPlansEmpty value),
+  TResult map<TResult extends Object>({
+    @required TResult subscriptionPlansInitial(SubscriptionPlansInitial value),
+    @required TResult subscriptionPlansLoading(SubscriptionPlansLoading value),
+    @required TResult subscriptionPlansLoaded(SubscriptionPlansLoaded value),
+    @required TResult subscriptionPlansEmpty(SubscriptionPlansEmpty value),
   }) {
     assert(subscriptionPlansInitial != null);
     assert(subscriptionPlansLoading != null);
@@ -450,12 +450,12 @@ class _$SubscriptionPlansLoaded
 
   @override
   @optionalTypeArgs
-  Result maybeMap<Result extends Object>({
-    Result subscriptionPlansInitial(SubscriptionPlansInitial value),
-    Result subscriptionPlansLoading(SubscriptionPlansLoading value),
-    Result subscriptionPlansLoaded(SubscriptionPlansLoaded value),
-    Result subscriptionPlansEmpty(SubscriptionPlansEmpty value),
-    @required Result orElse(),
+  TResult maybeMap<TResult extends Object>({
+    TResult subscriptionPlansInitial(SubscriptionPlansInitial value),
+    TResult subscriptionPlansLoading(SubscriptionPlansLoading value),
+    TResult subscriptionPlansLoaded(SubscriptionPlansLoaded value),
+    TResult subscriptionPlansEmpty(SubscriptionPlansEmpty value),
+    @required TResult orElse(),
   }) {
     assert(orElse != null);
     if (subscriptionPlansLoaded != null) {
@@ -522,13 +522,13 @@ class _$SubscriptionPlansEmpty
 
   @override
   @optionalTypeArgs
-  Result when<Result extends Object>({
-    @required Result subscriptionPlansInitial(),
-    @required Result subscriptionPlansLoading(),
+  TResult when<TResult extends Object>({
+    @required TResult subscriptionPlansInitial(),
+    @required TResult subscriptionPlansLoading(),
     @required
-        Result subscriptionPlansLoaded(
+        TResult subscriptionPlansLoaded(
             List<SubscriptionPlan> subscriptionPlans),
-    @required Result subscriptionPlansEmpty(),
+    @required TResult subscriptionPlansEmpty(),
   }) {
     assert(subscriptionPlansInitial != null);
     assert(subscriptionPlansLoading != null);
@@ -539,12 +539,12 @@ class _$SubscriptionPlansEmpty
 
   @override
   @optionalTypeArgs
-  Result maybeWhen<Result extends Object>({
-    Result subscriptionPlansInitial(),
-    Result subscriptionPlansLoading(),
-    Result subscriptionPlansLoaded(List<SubscriptionPlan> subscriptionPlans),
-    Result subscriptionPlansEmpty(),
-    @required Result orElse(),
+  TResult maybeWhen<TResult extends Object>({
+    TResult subscriptionPlansInitial(),
+    TResult subscriptionPlansLoading(),
+    TResult subscriptionPlansLoaded(List<SubscriptionPlan> subscriptionPlans),
+    TResult subscriptionPlansEmpty(),
+    @required TResult orElse(),
   }) {
     assert(orElse != null);
     if (subscriptionPlansEmpty != null) {
@@ -555,11 +555,11 @@ class _$SubscriptionPlansEmpty
 
   @override
   @optionalTypeArgs
-  Result map<Result extends Object>({
-    @required Result subscriptionPlansInitial(SubscriptionPlansInitial value),
-    @required Result subscriptionPlansLoading(SubscriptionPlansLoading value),
-    @required Result subscriptionPlansLoaded(SubscriptionPlansLoaded value),
-    @required Result subscriptionPlansEmpty(SubscriptionPlansEmpty value),
+  TResult map<TResult extends Object>({
+    @required TResult subscriptionPlansInitial(SubscriptionPlansInitial value),
+    @required TResult subscriptionPlansLoading(SubscriptionPlansLoading value),
+    @required TResult subscriptionPlansLoaded(SubscriptionPlansLoaded value),
+    @required TResult subscriptionPlansEmpty(SubscriptionPlansEmpty value),
   }) {
     assert(subscriptionPlansInitial != null);
     assert(subscriptionPlansLoading != null);
@@ -570,12 +570,12 @@ class _$SubscriptionPlansEmpty
 
   @override
   @optionalTypeArgs
-  Result maybeMap<Result extends Object>({
-    Result subscriptionPlansInitial(SubscriptionPlansInitial value),
-    Result subscriptionPlansLoading(SubscriptionPlansLoading value),
-    Result subscriptionPlansLoaded(SubscriptionPlansLoaded value),
-    Result subscriptionPlansEmpty(SubscriptionPlansEmpty value),
-    @required Result orElse(),
+  TResult maybeMap<TResult extends Object>({
+    TResult subscriptionPlansInitial(SubscriptionPlansInitial value),
+    TResult subscriptionPlansLoading(SubscriptionPlansLoading value),
+    TResult subscriptionPlansLoaded(SubscriptionPlansLoaded value),
+    TResult subscriptionPlansEmpty(SubscriptionPlansEmpty value),
+    @required TResult orElse(),
   }) {
     assert(orElse != null);
     if (subscriptionPlansEmpty != null) {

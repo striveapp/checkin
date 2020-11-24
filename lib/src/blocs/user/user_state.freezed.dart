@@ -38,30 +38,30 @@ const $UserState = _$UserStateTearOff();
 /// @nodoc
 mixin _$UserState {
   @optionalTypeArgs
-  Result when<Result extends Object>({
-    @required Result userLoading(),
-    @required Result userSuccess(User currentUser),
-    @required Result userError(),
+  TResult when<TResult extends Object>({
+    @required TResult userLoading(),
+    @required TResult userSuccess(User currentUser),
+    @required TResult userError(),
   });
   @optionalTypeArgs
-  Result maybeWhen<Result extends Object>({
-    Result userLoading(),
-    Result userSuccess(User currentUser),
-    Result userError(),
-    @required Result orElse(),
+  TResult maybeWhen<TResult extends Object>({
+    TResult userLoading(),
+    TResult userSuccess(User currentUser),
+    TResult userError(),
+    @required TResult orElse(),
   });
   @optionalTypeArgs
-  Result map<Result extends Object>({
-    @required Result userLoading(UserLoading value),
-    @required Result userSuccess(UserSuccess value),
-    @required Result userError(UserError value),
+  TResult map<TResult extends Object>({
+    @required TResult userLoading(UserLoading value),
+    @required TResult userSuccess(UserSuccess value),
+    @required TResult userError(UserError value),
   });
   @optionalTypeArgs
-  Result maybeMap<Result extends Object>({
-    Result userLoading(UserLoading value),
-    Result userSuccess(UserSuccess value),
-    Result userError(UserError value),
-    @required Result orElse(),
+  TResult maybeMap<TResult extends Object>({
+    TResult userLoading(UserLoading value),
+    TResult userSuccess(UserSuccess value),
+    TResult userError(UserError value),
+    @required TResult orElse(),
   });
 }
 
@@ -123,10 +123,10 @@ class _$UserLoading with DiagnosticableTreeMixin implements UserLoading {
 
   @override
   @optionalTypeArgs
-  Result when<Result extends Object>({
-    @required Result userLoading(),
-    @required Result userSuccess(User currentUser),
-    @required Result userError(),
+  TResult when<TResult extends Object>({
+    @required TResult userLoading(),
+    @required TResult userSuccess(User currentUser),
+    @required TResult userError(),
   }) {
     assert(userLoading != null);
     assert(userSuccess != null);
@@ -136,11 +136,11 @@ class _$UserLoading with DiagnosticableTreeMixin implements UserLoading {
 
   @override
   @optionalTypeArgs
-  Result maybeWhen<Result extends Object>({
-    Result userLoading(),
-    Result userSuccess(User currentUser),
-    Result userError(),
-    @required Result orElse(),
+  TResult maybeWhen<TResult extends Object>({
+    TResult userLoading(),
+    TResult userSuccess(User currentUser),
+    TResult userError(),
+    @required TResult orElse(),
   }) {
     assert(orElse != null);
     if (userLoading != null) {
@@ -151,10 +151,10 @@ class _$UserLoading with DiagnosticableTreeMixin implements UserLoading {
 
   @override
   @optionalTypeArgs
-  Result map<Result extends Object>({
-    @required Result userLoading(UserLoading value),
-    @required Result userSuccess(UserSuccess value),
-    @required Result userError(UserError value),
+  TResult map<TResult extends Object>({
+    @required TResult userLoading(UserLoading value),
+    @required TResult userSuccess(UserSuccess value),
+    @required TResult userError(UserError value),
   }) {
     assert(userLoading != null);
     assert(userSuccess != null);
@@ -164,11 +164,11 @@ class _$UserLoading with DiagnosticableTreeMixin implements UserLoading {
 
   @override
   @optionalTypeArgs
-  Result maybeMap<Result extends Object>({
-    Result userLoading(UserLoading value),
-    Result userSuccess(UserSuccess value),
-    Result userError(UserError value),
-    @required Result orElse(),
+  TResult maybeMap<TResult extends Object>({
+    TResult userLoading(UserLoading value),
+    TResult userSuccess(UserSuccess value),
+    TResult userError(UserError value),
+    @required TResult orElse(),
   }) {
     assert(orElse != null);
     if (userLoading != null) {
@@ -250,10 +250,10 @@ class _$UserSuccess with DiagnosticableTreeMixin implements UserSuccess {
 
   @override
   @optionalTypeArgs
-  Result when<Result extends Object>({
-    @required Result userLoading(),
-    @required Result userSuccess(User currentUser),
-    @required Result userError(),
+  TResult when<TResult extends Object>({
+    @required TResult userLoading(),
+    @required TResult userSuccess(User currentUser),
+    @required TResult userError(),
   }) {
     assert(userLoading != null);
     assert(userSuccess != null);
@@ -263,11 +263,11 @@ class _$UserSuccess with DiagnosticableTreeMixin implements UserSuccess {
 
   @override
   @optionalTypeArgs
-  Result maybeWhen<Result extends Object>({
-    Result userLoading(),
-    Result userSuccess(User currentUser),
-    Result userError(),
-    @required Result orElse(),
+  TResult maybeWhen<TResult extends Object>({
+    TResult userLoading(),
+    TResult userSuccess(User currentUser),
+    TResult userError(),
+    @required TResult orElse(),
   }) {
     assert(orElse != null);
     if (userSuccess != null) {
@@ -278,10 +278,10 @@ class _$UserSuccess with DiagnosticableTreeMixin implements UserSuccess {
 
   @override
   @optionalTypeArgs
-  Result map<Result extends Object>({
-    @required Result userLoading(UserLoading value),
-    @required Result userSuccess(UserSuccess value),
-    @required Result userError(UserError value),
+  TResult map<TResult extends Object>({
+    @required TResult userLoading(UserLoading value),
+    @required TResult userSuccess(UserSuccess value),
+    @required TResult userError(UserError value),
   }) {
     assert(userLoading != null);
     assert(userSuccess != null);
@@ -291,11 +291,11 @@ class _$UserSuccess with DiagnosticableTreeMixin implements UserSuccess {
 
   @override
   @optionalTypeArgs
-  Result maybeMap<Result extends Object>({
-    Result userLoading(UserLoading value),
-    Result userSuccess(UserSuccess value),
-    Result userError(UserError value),
-    @required Result orElse(),
+  TResult maybeMap<TResult extends Object>({
+    TResult userLoading(UserLoading value),
+    TResult userSuccess(UserSuccess value),
+    TResult userError(UserError value),
+    @required TResult orElse(),
   }) {
     assert(orElse != null);
     if (userSuccess != null) {
@@ -353,10 +353,10 @@ class _$UserError with DiagnosticableTreeMixin implements UserError {
 
   @override
   @optionalTypeArgs
-  Result when<Result extends Object>({
-    @required Result userLoading(),
-    @required Result userSuccess(User currentUser),
-    @required Result userError(),
+  TResult when<TResult extends Object>({
+    @required TResult userLoading(),
+    @required TResult userSuccess(User currentUser),
+    @required TResult userError(),
   }) {
     assert(userLoading != null);
     assert(userSuccess != null);
@@ -366,11 +366,11 @@ class _$UserError with DiagnosticableTreeMixin implements UserError {
 
   @override
   @optionalTypeArgs
-  Result maybeWhen<Result extends Object>({
-    Result userLoading(),
-    Result userSuccess(User currentUser),
-    Result userError(),
-    @required Result orElse(),
+  TResult maybeWhen<TResult extends Object>({
+    TResult userLoading(),
+    TResult userSuccess(User currentUser),
+    TResult userError(),
+    @required TResult orElse(),
   }) {
     assert(orElse != null);
     if (userError != null) {
@@ -381,10 +381,10 @@ class _$UserError with DiagnosticableTreeMixin implements UserError {
 
   @override
   @optionalTypeArgs
-  Result map<Result extends Object>({
-    @required Result userLoading(UserLoading value),
-    @required Result userSuccess(UserSuccess value),
-    @required Result userError(UserError value),
+  TResult map<TResult extends Object>({
+    @required TResult userLoading(UserLoading value),
+    @required TResult userSuccess(UserSuccess value),
+    @required TResult userError(UserError value),
   }) {
     assert(userLoading != null);
     assert(userSuccess != null);
@@ -394,11 +394,11 @@ class _$UserError with DiagnosticableTreeMixin implements UserError {
 
   @override
   @optionalTypeArgs
-  Result maybeMap<Result extends Object>({
-    Result userLoading(UserLoading value),
-    Result userSuccess(UserSuccess value),
-    Result userError(UserError value),
-    @required Result orElse(),
+  TResult maybeMap<TResult extends Object>({
+    TResult userLoading(UserLoading value),
+    TResult userSuccess(UserSuccess value),
+    TResult userError(UserError value),
+    @required TResult orElse(),
   }) {
     assert(orElse != null);
     if (userError != null) {

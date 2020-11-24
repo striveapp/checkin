@@ -59,32 +59,32 @@ mixin _$SubscriptionPlan {
   String get description;
 
   @optionalTypeArgs
-  Result when<Result extends Object>({
+  TResult when<TResult extends Object>({
     @required
-        Result simpleSubscription(String name, String code, String interval,
+        TResult simpleSubscription(String name, String code, String interval,
             String currency, int price, String description),
     @required
-        Result subscriptionWithPrices(String id, String name, String currency,
+        TResult subscriptionWithPrices(String id, String name, String currency,
             int startingPrice, String description),
   });
   @optionalTypeArgs
-  Result maybeWhen<Result extends Object>({
-    Result simpleSubscription(String name, String code, String interval,
+  TResult maybeWhen<TResult extends Object>({
+    TResult simpleSubscription(String name, String code, String interval,
         String currency, int price, String description),
-    Result subscriptionWithPrices(String id, String name, String currency,
+    TResult subscriptionWithPrices(String id, String name, String currency,
         int startingPrice, String description),
-    @required Result orElse(),
+    @required TResult orElse(),
   });
   @optionalTypeArgs
-  Result map<Result extends Object>({
-    @required Result simpleSubscription(SimpleSubscription value),
-    @required Result subscriptionWithPrices(SubscriptionWithPrices value),
+  TResult map<TResult extends Object>({
+    @required TResult simpleSubscription(SimpleSubscription value),
+    @required TResult subscriptionWithPrices(SubscriptionWithPrices value),
   });
   @optionalTypeArgs
-  Result maybeMap<Result extends Object>({
-    Result simpleSubscription(SimpleSubscription value),
-    Result subscriptionWithPrices(SubscriptionWithPrices value),
-    @required Result orElse(),
+  TResult maybeMap<TResult extends Object>({
+    TResult simpleSubscription(SimpleSubscription value),
+    TResult subscriptionWithPrices(SubscriptionWithPrices value),
+    @required TResult orElse(),
   });
 
   $SubscriptionPlanCopyWith<SubscriptionPlan> get copyWith;
@@ -255,12 +255,12 @@ class _$SimpleSubscription
 
   @override
   @optionalTypeArgs
-  Result when<Result extends Object>({
+  TResult when<TResult extends Object>({
     @required
-        Result simpleSubscription(String name, String code, String interval,
+        TResult simpleSubscription(String name, String code, String interval,
             String currency, int price, String description),
     @required
-        Result subscriptionWithPrices(String id, String name, String currency,
+        TResult subscriptionWithPrices(String id, String name, String currency,
             int startingPrice, String description),
   }) {
     assert(simpleSubscription != null);
@@ -271,12 +271,12 @@ class _$SimpleSubscription
 
   @override
   @optionalTypeArgs
-  Result maybeWhen<Result extends Object>({
-    Result simpleSubscription(String name, String code, String interval,
+  TResult maybeWhen<TResult extends Object>({
+    TResult simpleSubscription(String name, String code, String interval,
         String currency, int price, String description),
-    Result subscriptionWithPrices(String id, String name, String currency,
+    TResult subscriptionWithPrices(String id, String name, String currency,
         int startingPrice, String description),
-    @required Result orElse(),
+    @required TResult orElse(),
   }) {
     assert(orElse != null);
     if (simpleSubscription != null) {
@@ -288,9 +288,9 @@ class _$SimpleSubscription
 
   @override
   @optionalTypeArgs
-  Result map<Result extends Object>({
-    @required Result simpleSubscription(SimpleSubscription value),
-    @required Result subscriptionWithPrices(SubscriptionWithPrices value),
+  TResult map<TResult extends Object>({
+    @required TResult simpleSubscription(SimpleSubscription value),
+    @required TResult subscriptionWithPrices(SubscriptionWithPrices value),
   }) {
     assert(simpleSubscription != null);
     assert(subscriptionWithPrices != null);
@@ -299,10 +299,10 @@ class _$SimpleSubscription
 
   @override
   @optionalTypeArgs
-  Result maybeMap<Result extends Object>({
-    Result simpleSubscription(SimpleSubscription value),
-    Result subscriptionWithPrices(SubscriptionWithPrices value),
-    @required Result orElse(),
+  TResult maybeMap<TResult extends Object>({
+    TResult simpleSubscription(SimpleSubscription value),
+    TResult subscriptionWithPrices(SubscriptionWithPrices value),
+    @required TResult orElse(),
   }) {
     assert(orElse != null);
     if (simpleSubscription != null) {
@@ -460,12 +460,12 @@ class _$SubscriptionWithPrices
 
   @override
   @optionalTypeArgs
-  Result when<Result extends Object>({
+  TResult when<TResult extends Object>({
     @required
-        Result simpleSubscription(String name, String code, String interval,
+        TResult simpleSubscription(String name, String code, String interval,
             String currency, int price, String description),
     @required
-        Result subscriptionWithPrices(String id, String name, String currency,
+        TResult subscriptionWithPrices(String id, String name, String currency,
             int startingPrice, String description),
   }) {
     assert(simpleSubscription != null);
@@ -476,12 +476,12 @@ class _$SubscriptionWithPrices
 
   @override
   @optionalTypeArgs
-  Result maybeWhen<Result extends Object>({
-    Result simpleSubscription(String name, String code, String interval,
+  TResult maybeWhen<TResult extends Object>({
+    TResult simpleSubscription(String name, String code, String interval,
         String currency, int price, String description),
-    Result subscriptionWithPrices(String id, String name, String currency,
+    TResult subscriptionWithPrices(String id, String name, String currency,
         int startingPrice, String description),
-    @required Result orElse(),
+    @required TResult orElse(),
   }) {
     assert(orElse != null);
     if (subscriptionWithPrices != null) {
@@ -493,9 +493,9 @@ class _$SubscriptionWithPrices
 
   @override
   @optionalTypeArgs
-  Result map<Result extends Object>({
-    @required Result simpleSubscription(SimpleSubscription value),
-    @required Result subscriptionWithPrices(SubscriptionWithPrices value),
+  TResult map<TResult extends Object>({
+    @required TResult simpleSubscription(SimpleSubscription value),
+    @required TResult subscriptionWithPrices(SubscriptionWithPrices value),
   }) {
     assert(simpleSubscription != null);
     assert(subscriptionWithPrices != null);
@@ -504,10 +504,10 @@ class _$SubscriptionWithPrices
 
   @override
   @optionalTypeArgs
-  Result maybeMap<Result extends Object>({
-    Result simpleSubscription(SimpleSubscription value),
-    Result subscriptionWithPrices(SubscriptionWithPrices value),
-    @required Result orElse(),
+  TResult maybeMap<TResult extends Object>({
+    TResult simpleSubscription(SimpleSubscription value),
+    TResult subscriptionWithPrices(SubscriptionWithPrices value),
+    @required TResult orElse(),
   }) {
     assert(orElse != null);
     if (subscriptionWithPrices != null) {

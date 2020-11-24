@@ -36,28 +36,28 @@ const $SubscriptionPlansEvent = _$SubscriptionPlansEventTearOff();
 /// @nodoc
 mixin _$SubscriptionPlansEvent {
   @optionalTypeArgs
-  Result when<Result extends Object>({
+  TResult when<TResult extends Object>({
     @required
-        Result subscriptionPlansUpdated(
+        TResult subscriptionPlansUpdated(
             List<SubscriptionPlan> subscriptionPlans),
-    @required Result loadSubscriptionPlans(String planId),
+    @required TResult loadSubscriptionPlans(String planId),
   });
   @optionalTypeArgs
-  Result maybeWhen<Result extends Object>({
-    Result subscriptionPlansUpdated(List<SubscriptionPlan> subscriptionPlans),
-    Result loadSubscriptionPlans(String planId),
-    @required Result orElse(),
+  TResult maybeWhen<TResult extends Object>({
+    TResult subscriptionPlansUpdated(List<SubscriptionPlan> subscriptionPlans),
+    TResult loadSubscriptionPlans(String planId),
+    @required TResult orElse(),
   });
   @optionalTypeArgs
-  Result map<Result extends Object>({
-    @required Result subscriptionPlansUpdated(SubscriptionPlansUpdated value),
-    @required Result loadSubscriptionPlans(LoadSubscriptionPlans value),
+  TResult map<TResult extends Object>({
+    @required TResult subscriptionPlansUpdated(SubscriptionPlansUpdated value),
+    @required TResult loadSubscriptionPlans(LoadSubscriptionPlans value),
   });
   @optionalTypeArgs
-  Result maybeMap<Result extends Object>({
-    Result subscriptionPlansUpdated(SubscriptionPlansUpdated value),
-    Result loadSubscriptionPlans(LoadSubscriptionPlans value),
-    @required Result orElse(),
+  TResult maybeMap<TResult extends Object>({
+    TResult subscriptionPlansUpdated(SubscriptionPlansUpdated value),
+    TResult loadSubscriptionPlans(LoadSubscriptionPlans value),
+    @required TResult orElse(),
   });
 }
 
@@ -155,11 +155,11 @@ class _$SubscriptionPlansUpdated
 
   @override
   @optionalTypeArgs
-  Result when<Result extends Object>({
+  TResult when<TResult extends Object>({
     @required
-        Result subscriptionPlansUpdated(
+        TResult subscriptionPlansUpdated(
             List<SubscriptionPlan> subscriptionPlans),
-    @required Result loadSubscriptionPlans(String planId),
+    @required TResult loadSubscriptionPlans(String planId),
   }) {
     assert(subscriptionPlansUpdated != null);
     assert(loadSubscriptionPlans != null);
@@ -168,10 +168,10 @@ class _$SubscriptionPlansUpdated
 
   @override
   @optionalTypeArgs
-  Result maybeWhen<Result extends Object>({
-    Result subscriptionPlansUpdated(List<SubscriptionPlan> subscriptionPlans),
-    Result loadSubscriptionPlans(String planId),
-    @required Result orElse(),
+  TResult maybeWhen<TResult extends Object>({
+    TResult subscriptionPlansUpdated(List<SubscriptionPlan> subscriptionPlans),
+    TResult loadSubscriptionPlans(String planId),
+    @required TResult orElse(),
   }) {
     assert(orElse != null);
     if (subscriptionPlansUpdated != null) {
@@ -182,9 +182,9 @@ class _$SubscriptionPlansUpdated
 
   @override
   @optionalTypeArgs
-  Result map<Result extends Object>({
-    @required Result subscriptionPlansUpdated(SubscriptionPlansUpdated value),
-    @required Result loadSubscriptionPlans(LoadSubscriptionPlans value),
+  TResult map<TResult extends Object>({
+    @required TResult subscriptionPlansUpdated(SubscriptionPlansUpdated value),
+    @required TResult loadSubscriptionPlans(LoadSubscriptionPlans value),
   }) {
     assert(subscriptionPlansUpdated != null);
     assert(loadSubscriptionPlans != null);
@@ -193,10 +193,10 @@ class _$SubscriptionPlansUpdated
 
   @override
   @optionalTypeArgs
-  Result maybeMap<Result extends Object>({
-    Result subscriptionPlansUpdated(SubscriptionPlansUpdated value),
-    Result loadSubscriptionPlans(LoadSubscriptionPlans value),
-    @required Result orElse(),
+  TResult maybeMap<TResult extends Object>({
+    TResult subscriptionPlansUpdated(SubscriptionPlansUpdated value),
+    TResult loadSubscriptionPlans(LoadSubscriptionPlans value),
+    @required TResult orElse(),
   }) {
     assert(orElse != null);
     if (subscriptionPlansUpdated != null) {
@@ -287,11 +287,11 @@ class _$LoadSubscriptionPlans
 
   @override
   @optionalTypeArgs
-  Result when<Result extends Object>({
+  TResult when<TResult extends Object>({
     @required
-        Result subscriptionPlansUpdated(
+        TResult subscriptionPlansUpdated(
             List<SubscriptionPlan> subscriptionPlans),
-    @required Result loadSubscriptionPlans(String planId),
+    @required TResult loadSubscriptionPlans(String planId),
   }) {
     assert(subscriptionPlansUpdated != null);
     assert(loadSubscriptionPlans != null);
@@ -300,10 +300,10 @@ class _$LoadSubscriptionPlans
 
   @override
   @optionalTypeArgs
-  Result maybeWhen<Result extends Object>({
-    Result subscriptionPlansUpdated(List<SubscriptionPlan> subscriptionPlans),
-    Result loadSubscriptionPlans(String planId),
-    @required Result orElse(),
+  TResult maybeWhen<TResult extends Object>({
+    TResult subscriptionPlansUpdated(List<SubscriptionPlan> subscriptionPlans),
+    TResult loadSubscriptionPlans(String planId),
+    @required TResult orElse(),
   }) {
     assert(orElse != null);
     if (loadSubscriptionPlans != null) {
@@ -314,9 +314,9 @@ class _$LoadSubscriptionPlans
 
   @override
   @optionalTypeArgs
-  Result map<Result extends Object>({
-    @required Result subscriptionPlansUpdated(SubscriptionPlansUpdated value),
-    @required Result loadSubscriptionPlans(LoadSubscriptionPlans value),
+  TResult map<TResult extends Object>({
+    @required TResult subscriptionPlansUpdated(SubscriptionPlansUpdated value),
+    @required TResult loadSubscriptionPlans(LoadSubscriptionPlans value),
   }) {
     assert(subscriptionPlansUpdated != null);
     assert(loadSubscriptionPlans != null);
@@ -325,10 +325,10 @@ class _$LoadSubscriptionPlans
 
   @override
   @optionalTypeArgs
-  Result maybeMap<Result extends Object>({
-    Result subscriptionPlansUpdated(SubscriptionPlansUpdated value),
-    Result loadSubscriptionPlans(LoadSubscriptionPlans value),
-    @required Result orElse(),
+  TResult maybeMap<TResult extends Object>({
+    TResult subscriptionPlansUpdated(SubscriptionPlansUpdated value),
+    TResult loadSubscriptionPlans(LoadSubscriptionPlans value),
+    @required TResult orElse(),
   }) {
     assert(orElse != null);
     if (loadSubscriptionPlans != null) {
