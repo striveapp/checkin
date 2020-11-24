@@ -81,9 +81,6 @@ void main() {
           when(mockUserRepository.updateUserVersion(
                   testUser.email, "1.0.0+100"))
               .thenAnswer((realInvocation) => null);
-          when(mockUserRepository.updateReferredGymId(
-                  testUser.email, testUser.selectedGymId))
-              .thenAnswer((realInvocation) => null);
         });
 
         tearDown(() async {
@@ -91,8 +88,6 @@ void main() {
               testUser.email, "1.0.0+100"));
           verify(mockUserRepository.updateUserVersion(
               testUser.email, "1.0.0+100"));
-          verify(mockUserRepository.updateReferredGymId(
-              testUser.email, testUser.selectedGymId));
           verify(mockUserRepository.getUserByEmail(testUser.email));
         });
 

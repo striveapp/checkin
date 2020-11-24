@@ -10,7 +10,6 @@ class UserProvider implements UserRepository {
   FirebaseFirestore _firestore = FirebaseFirestore.instance;
   StatsProvider statsProvider = StatsProvider();
   static const String path = 'users';
-  String referredGymId;
 
   Stream<User> getUserByEmail(String email) => _firestore
       .collection(path)
@@ -77,17 +76,6 @@ class UserProvider implements UserRepository {
         .update({"selectedGymId": newSelectedGym});
   }
 
-  Future<void> updateReferredGymId(
-      String userEmail, String currentGymId) async {
-    if (userEmail != null && referredGymId != null && referredGymId != currentGymId) {
-      print("update $userEmail, $currentGymId -> $referredGymId");
-      await _firestore
-          .collection(path)
-          .doc(userEmail)
-          .update({"selectedGymId": referredGymId});
-    }
-  }
-
   Future<void> updateUserImageUrl(String userEmail, String newImageUrl) async {
     await _firestore
         .collection(path)
@@ -100,10 +88,5 @@ class UserProvider implements UserRepository {
         .collection(path)
         .doc(userEmail)
         .update({"appVersion": newVersion});
-  }
-
-  @override
-  void setReferredGymId(String defaultGym) {
-    this.referredGymId = defaultGym;
   }
 }

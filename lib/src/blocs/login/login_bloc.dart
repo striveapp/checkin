@@ -23,7 +23,8 @@ class LoginBloc extends Bloc<LoginEvent, LoginState> {
             authRepository != null),
         _authRepository = authRepository,
         _userRepository = userRepository,
-        _analyticsRepository = analyticsRepository, super(LoginInitial());
+        _analyticsRepository = analyticsRepository,
+        super(LoginInitial());
 
   @override
   Stream<LoginState> mapEventToState(LoginEvent event) async* {
@@ -33,7 +34,9 @@ class LoginBloc extends Bloc<LoginEvent, LoginState> {
         if (loggedUser != null) {
           await _analyticsRepository.setUserProperties(loggedUser.uid);
           await _analyticsRepository.logLoginWithGoogleSignIn();
-          await _userRepository.createUser(loggedUser);
+          await _userRepository.createUser(
+            loggedUser,
+          );
           yield LoginSuccess(loggedUser: loggedUser);
         } else {
           debugPrint("Unable to login, loggedUser: $loggedUser");
@@ -45,7 +48,8 @@ class LoginBloc extends Bloc<LoginEvent, LoginState> {
           err: err,
           stackTrace: stackTrace,
         );
-        yield LoginFailure(errorMessage: "Unexpected error! Please contact the gym owner");
+        yield LoginFailure(
+            errorMessage: "Unexpected error! Please contact the gym owner");
       }
     }
 
@@ -55,13 +59,15 @@ class LoginBloc extends Bloc<LoginEvent, LoginState> {
         if (loggedUser != null) {
           await _analyticsRepository.setUserProperties(loggedUser.uid);
           await _analyticsRepository.logLoginWithAppleSignIn();
-          await _userRepository.createUser(loggedUser);
+          await _userRepository.createUser(
+            loggedUser,
+          );
           yield LoginSuccess(loggedUser: loggedUser);
         } else {
           debugPrint("Unable to login, loggedUser: $loggedUser");
           yield LoginFailure(errorMessage: loginError);
         }
-      } on AppleSignInNotSupportedException catch(err) {
+      } on AppleSignInNotSupportedException catch (err) {
         await _analyticsRepository.loginError(
           err: err,
         );
@@ -72,7 +78,8 @@ class LoginBloc extends Bloc<LoginEvent, LoginState> {
           err: err,
           stackTrace: stackTrace,
         );
-        yield LoginFailure(errorMessage: "Unexpected error! Please contact the gym owner");
+        yield LoginFailure(
+            errorMessage: "Unexpected error! Please contact the gym owner");
       }
     }
 

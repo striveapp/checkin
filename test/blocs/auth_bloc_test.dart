@@ -3,6 +3,8 @@ import 'package:checkin/src/blocs/auth/bloc.dart';
 import 'package:checkin/src/models/user.dart';
 import 'package:checkin/src/repositories/analytics_repository.dart';
 import 'package:checkin/src/repositories/auth_repository.dart';
+import 'package:checkin/src/repositories/local_storage_repository.dart';
+import 'package:checkin/src/repositories/user_repository.dart';
 import 'package:mockito/mockito.dart';
 import 'package:test/test.dart';
 
@@ -12,10 +14,17 @@ class MockAuthRepository extends Mock implements AuthRepository {}
 
 class MockAnalyticsRepository extends Mock implements AnalyticsRepository {}
 
+class MockUserRepository extends Mock implements UserRepository {}
+
+class MockLocalStorageRepository extends Mock
+    implements LocalStorageRepository {}
+
 void main() {
   group('AuthBloc', () {
     MockAuthRepository mockAuthRepository;
     MockAnalyticsRepository mockAnalyticsRepository;
+    MockUserRepository mockUserRepository;
+    MockLocalStorageRepository mockLocalStorageRepository;
 
     User fakeUser = User(
       uid: "123",
@@ -27,11 +36,24 @@ void main() {
     setUp(() {
       mockAuthRepository = MockAuthRepository();
       mockAnalyticsRepository = MockAnalyticsRepository();
-      configureThrowOnMissingStub([mockAuthRepository, mockAnalyticsRepository]);
+      mockUserRepository = MockUserRepository();
+      mockLocalStorageRepository = MockLocalStorageRepository();
+
+      configureThrowOnMissingStub([
+        mockAuthRepository,
+        mockAnalyticsRepository,
+        mockUserRepository,
+        mockLocalStorageRepository,
+      ]);
     });
 
-    tearDown((){
-      logAndVerifyNoMoreInteractions([mockAuthRepository, mockAnalyticsRepository]);
+    tearDown(() {
+      logAndVerifyNoMoreInteractions([
+        mockAuthRepository,
+        mockAnalyticsRepository,
+        mockUserRepository,
+        mockLocalStorageRepository,
+      ]);
     });
 
     group("initial state", () {
@@ -41,6 +63,8 @@ void main() {
         authBloc = AuthBloc(
           authRepository: mockAuthRepository,
           analyticsRepository: mockAnalyticsRepository,
+          userRepository: mockUserRepository,
+          localStorageRepository: mockLocalStorageRepository,
         );
       });
 
@@ -59,29 +83,79 @@ void main() {
           when(mockAuthRepository.getAuthState()).thenAnswer((_) {
             return Stream<User>.value(fakeUser);
           });
-          when(mockAnalyticsRepository.setUserProperties(fakeUser.uid)).thenAnswer((realInvocation) => null);
-          when(mockAnalyticsRepository.logUserLocale()).thenAnswer((realInvocation) => null);
+          when(mockAnalyticsRepository.setUserProperties(fakeUser.uid))
+              .thenAnswer((realInvocation) => null);
+          when(mockAnalyticsRepository.logUserLocale())
+              .thenAnswer((realInvocation) => null);
         });
 
-        tearDown((){
+        tearDown(() {
           verify(mockAuthRepository.getAuthState());
+          verify(mockAnalyticsRepository.setUserProperties(fakeUser.uid));
+          verify(mockAnalyticsRepository.logUserLocale());
         });
 
-        blocTest(
-          "should emit AuthAuthenticated with logged user",
-          build: () => AuthBloc(
-            authRepository: mockAuthRepository,
-            analyticsRepository: mockAnalyticsRepository,
-          ),
-          act: (bloc) => bloc.add(AppStarted()),
-          expect: [
-            AuthAuthenticated(loggedUser: fakeUser),
-          ],
-          verify: (bloc) {
-            verify(mockAnalyticsRepository.setUserProperties(fakeUser.uid));
-            verify(mockAnalyticsRepository.logUserLocale());
-          },
-        );
+        group("and the local storage is empty", () {
+          setUp(() {
+            when(mockLocalStorageRepository.getReferredGymId())
+                .thenAnswer((_) => Stream.empty());
+          });
+
+          tearDown(() {
+            verify(mockLocalStorageRepository.getReferredGymId());
+          });
+
+          blocTest(
+            "should emit AuthAuthenticated with logged user",
+            build: () => AuthBloc(
+              authRepository: mockAuthRepository,
+              analyticsRepository: mockAnalyticsRepository,
+              userRepository: mockUserRepository,
+              localStorageRepository: mockLocalStorageRepository,
+            ),
+            act: (bloc) => bloc.add(AppStarted()),
+            expect: [
+              AuthAuthenticated(loggedUser: fakeUser),
+            ],
+          );
+        });
+
+        group("and the local storage has a referredGym", () {
+          var fakeReferredGym = "fakeGym";
+          setUp(() {
+            when(mockLocalStorageRepository.getReferredGymId())
+                .thenAnswer((_) => Stream.value(fakeReferredGym));
+            when(mockUserRepository.updateSelectedGymId(
+              fakeUser.email,
+              fakeReferredGym,
+            )).thenAnswer((realInvocation) => Future.value());
+            when(mockLocalStorageRepository.removeReferredGym())
+                .thenAnswer((_) => Future.value());
+          });
+
+          tearDown(() {
+            verify(mockLocalStorageRepository.getReferredGymId());
+            verify(mockUserRepository.updateSelectedGymId(
+              fakeUser.email,
+              fakeReferredGym,
+            ));
+            verify(mockLocalStorageRepository.removeReferredGym());
+          });
+
+          blocTest(
+            "should emit AuthAuthenticated with logged user",
+            build: () => AuthBloc(
+              authRepository: mockAuthRepository,
+              analyticsRepository: mockAnalyticsRepository,
+              userRepository: mockUserRepository,
+              localStorageRepository: mockLocalStorageRepository,
+            ),
+            act: (bloc) => bloc.add(AppStarted()),
+            expect: [
+              AuthAuthenticated(loggedUser: fakeUser),
+            ],
+          );
+        });
       });
 
       group("when user is NOT logged in", () {
@@ -91,7 +165,7 @@ void main() {
           });
         });
 
-        tearDown((){
+        tearDown(() {
           verify(mockAuthRepository.getAuthState());
         });
 
@@ -100,6 +174,8 @@ void main() {
           build: () => AuthBloc(
             authRepository: mockAuthRepository,
             analyticsRepository: mockAnalyticsRepository,
+            userRepository: mockUserRepository,
+            localStorageRepository: mockLocalStorageRepository,
           ),
           act: (bloc) => bloc.add(AppStarted()),
           expect: [
@@ -113,7 +189,7 @@ void main() {
           when(mockAuthRepository.getAuthState()).thenThrow("Kaboom!");
         });
 
-        tearDown((){
+        tearDown(() {
           verify(mockAuthRepository.getAuthState());
         });
 
@@ -122,6 +198,8 @@ void main() {
           build: () => AuthBloc(
             authRepository: mockAuthRepository,
             analyticsRepository: mockAnalyticsRepository,
+            userRepository: mockUserRepository,
+            localStorageRepository: mockLocalStorageRepository,
           ),
           act: (bloc) => bloc.add(AppStarted()),
           expect: [
@@ -132,19 +210,21 @@ void main() {
     });
 
     group('on LogOut event', () {
-      setUp((){
+      setUp(() {
         when(mockAuthRepository.signOut()).thenAnswer((realInvocation) => null);
       });
 
-      tearDown((){
+      tearDown(() {
         verify(mockAuthRepository.signOut());
       });
 
       blocTest(
-       "should perform logout",
+        "should perform logout",
         build: () => AuthBloc(
           authRepository: mockAuthRepository,
           analyticsRepository: mockAnalyticsRepository,
+          userRepository: mockUserRepository,
+          localStorageRepository: mockLocalStorageRepository,
         ),
         act: (bloc) => bloc.add(LogOut()),
         verify: (bloc) async {

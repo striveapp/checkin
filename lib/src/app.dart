@@ -48,14 +48,29 @@ class App extends StatefulWidget {
   _AppState createState() => _AppState();
 }
 
-class _AppState extends State<App> {
+class _AppState extends State<App> with WidgetsBindingObserver {
   @override
   void initState() {
     super.initState();
     _onPlatformBrightnessChanged();
 
-    final window = WidgetsBinding.instance.window;
-    window.onPlatformBrightnessChanged = _onPlatformBrightnessChanged;
+    var instance = WidgetsBinding.instance;
+    instance.addObserver(this);
+    instance.window.onPlatformBrightnessChanged = _onPlatformBrightnessChanged;
+  }
+
+  @override
+  void dispose() {
+    WidgetsBinding.instance.removeObserver(this);
+    super.dispose();
+  }
+
+  @override
+  void didChangeAppLifecycleState(final AppLifecycleState state) {
+    if (state == AppLifecycleState.resumed) {
+      var authBloc = context.read<AuthBloc>();
+      authBloc.add(AppStarted());
+    }
   }
 
   void _onPlatformBrightnessChanged() {
@@ -102,11 +117,6 @@ class _AppState extends State<App> {
                     .popUntil(ModalRoute.withName(Navigator.defaultRouteName));
 
                 Navigator.of(context).pushNamed(state.path);
-              }
-              if (state is DynamicLinkSetDefaultGym) {
-                debugPrint("setting default gym to ${state.defaultGym}");
-                RepositoryProvider.of<UserRepository>(context)
-                    .setReferredGymId(state.defaultGym);
               }
             }),
             BlocListener<VersionBloc, VersionState>(
