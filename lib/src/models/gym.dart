@@ -10,7 +10,6 @@ abstract class Gym with _$Gym {
   factory Gym({
     @required final String id,
     @required final String paymentAppDomain,
-    @required final String host,
     @required final String stripePublicKey,
     @Default(false) final bool hasActivePayments,
   }) = _Gym;

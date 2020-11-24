@@ -21,7 +21,6 @@ void main() {
 
     Gym fakeGym = Gym(
         id: "some_id",
-        host: "tha_host",
         paymentAppDomain: "test.com",
         stripePublicKey: "pk_kp",
         hasActivePayments: false);

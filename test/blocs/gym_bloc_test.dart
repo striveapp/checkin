@@ -24,7 +24,6 @@ void main() {
     String fakeGymId = "bjj";
     Gym fakeGym = Gym(
       id: fakeGymId,
-      host: "test",
       paymentAppDomain: "pepe",
       stripePublicKey: "pk_pk",
       hasActivePayments: false,

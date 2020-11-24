@@ -62,7 +62,6 @@ void main() {
                   gym: Gym(
                       id: "fake-gym",
                       paymentAppDomain: "test-domain",
-                      host: "test-host",
                       stripePublicKey: "test-key",
                       hasActivePayments: false))
             ]));

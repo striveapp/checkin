@@ -7,7 +7,7 @@ class DynamicLinkUtil {
 
   DynamicLinkParameters _getParameters(Uri link) {
     final DynamicLinkParameters parameters = DynamicLinkParameters(
-      uriPrefix: isInDebugMode ? 'https://arya.page.link' : 'https://aranha.page.link',  // todo take from gym.host
+      uriPrefix: isInDebugMode ? 'https://arya.page.link' : 'https://striveapp.page.link',
       link: link,
       androidParameters: AndroidParameters(
         packageName: appUniqueIdentifier,
