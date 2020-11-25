@@ -23,30 +23,33 @@ class AttendeesList extends StatelessWidget {
                   User currentUser = state.currentUser;
                   Lesson currentLesson = state.currentLesson;
 
-                  return Column(
-                    key: Key('attendeeList'),
-                    children: <Widget>[
-                      if (_isUserInClass(state))
-                        CurrentUserTile(
-                            acceptedAttendees: currentLesson.acceptedAttendees,
-                            currentUser: currentUser),
-                      Expanded(
-                        child: SingleChildScrollView(
-                          child: Column(
-                            children: <Widget>[
-                              AcceptedAttendees(
+                  return state.isEmptyRegistry
+                      ? EmptyRegistry()
+                      : Column(
+                          key: Key('attendeeList'),
+                          children: <Widget>[
+                            if (_isUserInClass(state))
+                              CurrentUserTile(
                                   acceptedAttendees:
                                       currentLesson.acceptedAttendees,
                                   currentUser: currentUser),
-                              Attendees(
-                                  attendees: currentLesson.attendees,
-                                  currentUser: currentUser),
-                            ],
-                          ),
-                        ),
-                      ),
-                    ],
-                  );
+                            Expanded(
+                              child: SingleChildScrollView(
+                                child: Column(
+                                  children: <Widget>[
+                                    AcceptedAttendees(
+                                        acceptedAttendees:
+                                            currentLesson.acceptedAttendees,
+                                        currentUser: currentUser),
+                                    Attendees(
+                                        attendees: currentLesson.attendees,
+                                        currentUser: currentUser),
+                                  ],
+                                ),
+                              ),
+                            ),
+                          ],
+                        );
                 },
                 orElse: () => EmptyRegistry());
           }),
