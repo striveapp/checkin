@@ -1,5 +1,6 @@
 import 'package:bloc_test/bloc_test.dart';
 import 'package:checkin/src/blocs/dynamic_link/bloc.dart';
+import 'package:checkin/src/repositories/auth_repository.dart';
 import 'package:checkin/src/repositories/dynamic_link_repository.dart';
 import 'package:checkin/src/resources/local_storage_provider.dart';
 import 'package:firebase_dynamic_links/firebase_dynamic_links.dart';
@@ -30,12 +31,15 @@ class MockLocalStorageRepository extends Mock implements LocalStorageProvider {}
 
 class MockDynamicLinkRepository extends Mock implements DynamicLinkRepository {}
 
+class MockAuthRepository extends Mock implements AuthRepository {}
+
 void main() {
   group("DynamicLinkBloc", () {
     MockFirebaseDynamicLinks mockFirebaseDynamicLinks;
     MockPendingDynamicLinkData fakeData;
     MockLocalStorageRepository mockLocalStorageRepository;
     MockDynamicLinkRepository mockDynamicLinkRepository;
+    MockAuthRepository mockAuthRepository;
 
     String fakeLessonId = "123456";
 
@@ -43,12 +47,15 @@ void main() {
       mockFirebaseDynamicLinks = MockFirebaseDynamicLinks();
       mockLocalStorageRepository = MockLocalStorageRepository();
       mockDynamicLinkRepository = MockDynamicLinkRepository();
+      mockAuthRepository = MockAuthRepository();
+
       fakeData = MockPendingDynamicLinkData();
       configureThrowOnMissingStub([
         mockFirebaseDynamicLinks,
         fakeData,
         mockLocalStorageRepository,
-        mockDynamicLinkRepository
+        mockDynamicLinkRepository,
+        mockAuthRepository,
       ]);
     });
 
@@ -57,7 +64,8 @@ void main() {
         mockFirebaseDynamicLinks,
         fakeData,
         mockLocalStorageRepository,
-        mockDynamicLinkRepository
+        mockDynamicLinkRepository,
+        mockAuthRepository,
       ]);
     });
 
@@ -66,9 +74,11 @@ void main() {
 
       setUp(() {
         dynamicLinkBloc = DynamicLinkBloc(
-            dynamicLinks: mockFirebaseDynamicLinks,
-            localStorageRepository: mockLocalStorageRepository,
-            dynamicLinkRepository: mockDynamicLinkRepository);
+          dynamicLinks: mockFirebaseDynamicLinks,
+          localStorageRepository: mockLocalStorageRepository,
+          dynamicLinkRepository: mockDynamicLinkRepository,
+          authRepository: mockAuthRepository,
+        );
       });
 
       test('is DynamicLinkInitial', () {
@@ -93,9 +103,11 @@ void main() {
         blocTest(
           "should add DeepLinkReceived event with the correct uri, and emit MyDynamicLinkToNavigate on the correct path",
           build: () => DynamicLinkBloc(
-              dynamicLinks: mockFirebaseDynamicLinks,
-              localStorageRepository: mockLocalStorageRepository,
-              dynamicLinkRepository: mockDynamicLinkRepository),
+            dynamicLinks: mockFirebaseDynamicLinks,
+            localStorageRepository: mockLocalStorageRepository,
+            dynamicLinkRepository: mockDynamicLinkRepository,
+            authRepository: mockAuthRepository,
+          ),
           act: (bloc) => bloc.add(DeepLinkSetup()),
           expect: [
             MyDynamicLinkToNavigate(path: "/path/$fakeLessonId"),
@@ -130,10 +142,42 @@ void main() {
         blocTest(
           "should save the referredGym in the local storage",
           build: () => DynamicLinkBloc(
-              dynamicLinks: mockFirebaseDynamicLinks,
-              localStorageRepository: mockLocalStorageRepository,
-              dynamicLinkRepository: mockDynamicLinkRepository),
+            dynamicLinks: mockFirebaseDynamicLinks,
+            localStorageRepository: mockLocalStorageRepository,
+            dynamicLinkRepository: mockDynamicLinkRepository,
+            authRepository: mockAuthRepository,
+          ),
           act: (DynamicLinkBloc bloc) => bloc.add(DeepLinkReceived(deepLink: fakeReferredDeepLink)),
+          expect: [],
+        );
+      });
+      group("when the deeplink is an authentication link", () {
+        final fakeAuthenticationLink = Uri(path: "/__/auth/super_safe_links_are_very_safe");
+        final String fakeUserEmail = "tobuto@nell.ano";
+
+        setUp(() {
+          when(mockLocalStorageRepository.getUserEmail())
+              .thenAnswer((realInvocation) => Future.value(fakeUserEmail));
+          when(mockAuthRepository.completeSignInPasswordless(fakeUserEmail, fakeAuthenticationLink))
+              .thenAnswer((realInvocation) => Future.value());
+        });
+
+        tearDown(() {
+          verify(mockLocalStorageRepository.getUserEmail());
+          verify(
+              mockAuthRepository.completeSignInPasswordless(fakeUserEmail, fakeAuthenticationLink));
+        });
+
+        blocTest(
+          "should complete passwordless signin",
+          build: () => DynamicLinkBloc(
+            dynamicLinks: mockFirebaseDynamicLinks,
+            localStorageRepository: mockLocalStorageRepository,
+            dynamicLinkRepository: mockDynamicLinkRepository,
+            authRepository: mockAuthRepository,
+          ),
+          act: (DynamicLinkBloc bloc) =>
+              bloc.add(DeepLinkReceived(deepLink: fakeAuthenticationLink)),
           expect: [],
         );
       });
@@ -156,9 +200,11 @@ void main() {
       blocTest(
         "should emit ShareLink with generated link",
         build: () => DynamicLinkBloc(
-            dynamicLinks: mockFirebaseDynamicLinks,
-            localStorageRepository: mockLocalStorageRepository,
-            dynamicLinkRepository: mockDynamicLinkRepository),
+          dynamicLinks: mockFirebaseDynamicLinks,
+          localStorageRepository: mockLocalStorageRepository,
+          dynamicLinkRepository: mockDynamicLinkRepository,
+          authRepository: mockAuthRepository,
+        ),
         act: (DynamicLinkBloc bloc) =>
             bloc.add(ShareRegistryLink(date: fakeDate, lessonId: fakeLessonId)),
         expect: [DynamicLinkToShare(link: fakeUri)],
@@ -175,9 +221,11 @@ void main() {
         blocTest(
             "should add DeepLinkReceived event with the correct uri, and emit MyDynamicLinkToNavigate on the correct path",
             build: () => DynamicLinkBloc(
-                dynamicLinks: mockFirebaseDynamicLinks,
-                localStorageRepository: mockLocalStorageRepository,
-                dynamicLinkRepository: mockDynamicLinkRepository),
+                  dynamicLinks: mockFirebaseDynamicLinks,
+                  localStorageRepository: mockLocalStorageRepository,
+                  dynamicLinkRepository: mockDynamicLinkRepository,
+                  authRepository: mockAuthRepository,
+                ),
             act: (bloc) => (bloc as DynamicLinkBloc).onSuccessLink(fakeData),
             expect: [
               MyDynamicLinkToNavigate(path: "/path/$fakeLessonId"),
@@ -190,9 +238,11 @@ void main() {
       group("onError", () {
         blocTest("shoud emit DynamicLinkError",
             build: () => DynamicLinkBloc(
-                dynamicLinks: mockFirebaseDynamicLinks,
-                localStorageRepository: mockLocalStorageRepository,
-                dynamicLinkRepository: mockDynamicLinkRepository),
+                  dynamicLinks: mockFirebaseDynamicLinks,
+                  localStorageRepository: mockLocalStorageRepository,
+                  dynamicLinkRepository: mockDynamicLinkRepository,
+                  authRepository: mockAuthRepository,
+                ),
             act: (bloc) => (bloc as DynamicLinkBloc).onErrorLink(MockOnLinkErrorException()),
             expect: [
               DynamicLinkError(),

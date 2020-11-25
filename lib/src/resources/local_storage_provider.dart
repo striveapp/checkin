@@ -4,6 +4,7 @@ import 'package:shared_preferences/shared_preferences.dart';
 
 class LocalStorageProvider implements LocalStorageRepository {
   static final String REFERRED_GYM_ID = "referredGym";
+  static final String USER_EMAIL = "userEmail";
   final rxPrefs = RxSharedPreferences(SharedPreferences.getInstance());
 
   Future<void> setReferredGymId(String gymId) async {
@@ -21,5 +22,23 @@ class LocalStorageProvider implements LocalStorageRepository {
 
   Future<void> removeReferredGym() async {
     await rxPrefs.remove(REFERRED_GYM_ID);
+  }
+
+  @override
+  Future<String> getUserEmail() async {
+    return rxPrefs.getString(USER_EMAIL);
+  }
+
+  @override
+  Future<void> removeUserEmail() async {
+    await rxPrefs.remove(USER_EMAIL);
+  }
+
+  @override
+  Future<void> setUserEmail(String userEmail) async {
+    await rxPrefs.setString(
+      USER_EMAIL,
+      userEmail,
+    );
   }
 }

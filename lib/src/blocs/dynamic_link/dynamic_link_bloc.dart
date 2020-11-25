@@ -1,4 +1,5 @@
 import 'package:bloc/bloc.dart';
+import 'package:checkin/src/repositories/auth_repository.dart';
 import 'package:checkin/src/repositories/dynamic_link_repository.dart';
 import 'package:checkin/src/repositories/local_storage_repository.dart';
 import 'package:firebase_dynamic_links/firebase_dynamic_links.dart';
@@ -11,11 +12,13 @@ class DynamicLinkBloc extends Bloc<DynamicLinkEvent, DynamicLinkState> {
   final FirebaseDynamicLinks dynamicLinks;
   final LocalStorageRepository localStorageRepository;
   final DynamicLinkRepository dynamicLinkRepository;
+  final AuthRepository authRepository;
 
   DynamicLinkBloc({
     @required FirebaseDynamicLinks this.dynamicLinks,
     @required LocalStorageRepository this.localStorageRepository,
-    @required this.dynamicLinkRepository,
+    @required AuthRepository this.authRepository,
+    @required DynamicLinkRepository this.dynamicLinkRepository,
   }) : super(DynamicLinkInitial());
 
   @override
@@ -37,6 +40,9 @@ class DynamicLinkBloc extends Bloc<DynamicLinkEvent, DynamicLinkState> {
       if (path.startsWith("/register/")) {
         final referredGymId = path.replaceAll("/register/", "");
         await localStorageRepository.setReferredGymId(referredGymId);
+      } else if (path.startsWith("/__/auth/")) {
+        var userEmail = await localStorageRepository.getUserEmail();
+        await authRepository.completeSignInPasswordless(userEmail, event.deepLink);
       } else {
         if (event.deepLink.hasQuery) {
           path = "$path?${event.deepLink.query}";

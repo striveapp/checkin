@@ -14,4 +14,6 @@ abstract class LoginState with _$LoginState {
 
   const factory LoginState.loginWithTestUserOwner({String errorMessage}) =
       LoginFailure;
+
+  const factory LoginState.loginWaitingForEmailLink({String userEmail}) = LoginWaitingForEmailLink;
 }

@@ -9,6 +9,10 @@ abstract class LoginEvent with _$LoginEvent {
 
   const factory LoginEvent.loginWithApple() = LoginWithApple;
 
+  const factory LoginEvent.loginPasswordless({
+    @required String userEmail,
+  }) = LoginPasswordless;
+
   const factory LoginEvent.loginWithTestUser() = LoginWithTestUser;
 
   const factory LoginEvent.loginWithTestUserTwo() = LoginWithTestUserTwo;

@@ -56,6 +56,7 @@ class AuthBloc extends Bloc<AuthEvent, AuthState> {
           await _analyticsRepository.logUserLocale();
           await _setReferredGymForUser(event.loggedUser.email);
         } finally {
+          await _localStorageRepository.removeUserEmail();
           yield AuthAuthenticated(loggedUser: event.loggedUser);
         }
       } else {

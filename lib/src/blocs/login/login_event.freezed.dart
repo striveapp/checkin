@@ -24,6 +24,13 @@ class _$LoginEventTearOff {
   }
 
 // ignore: unused_element
+  LoginPasswordless loginPasswordless({@required String userEmail}) {
+    return LoginPasswordless(
+      userEmail: userEmail,
+    );
+  }
+
+// ignore: unused_element
   LoginWithTestUser loginWithTestUser() {
     return const LoginWithTestUser();
   }
@@ -54,6 +61,7 @@ mixin _$LoginEvent {
   TResult when<TResult extends Object>({
     @required TResult loginWithGoogle(),
     @required TResult loginWithApple(),
+    @required TResult loginPasswordless(String userEmail),
     @required TResult loginWithTestUser(),
     @required TResult loginWithTestUserTwo(),
     @required TResult loginWithTestUserAdmin(),
@@ -63,6 +71,7 @@ mixin _$LoginEvent {
   TResult maybeWhen<TResult extends Object>({
     TResult loginWithGoogle(),
     TResult loginWithApple(),
+    TResult loginPasswordless(String userEmail),
     TResult loginWithTestUser(),
     TResult loginWithTestUserTwo(),
     TResult loginWithTestUserAdmin(),
@@ -73,6 +82,7 @@ mixin _$LoginEvent {
   TResult map<TResult extends Object>({
     @required TResult loginWithGoogle(LoginWithGoogle value),
     @required TResult loginWithApple(LoginWithApple value),
+    @required TResult loginPasswordless(LoginPasswordless value),
     @required TResult loginWithTestUser(LoginWithTestUser value),
     @required TResult loginWithTestUserTwo(LoginWithTestUserTwo value),
     @required TResult loginWithTestUserAdmin(LoginWithTestUserAdmin value),
@@ -82,6 +92,7 @@ mixin _$LoginEvent {
   TResult maybeMap<TResult extends Object>({
     TResult loginWithGoogle(LoginWithGoogle value),
     TResult loginWithApple(LoginWithApple value),
+    TResult loginPasswordless(LoginPasswordless value),
     TResult loginWithTestUser(LoginWithTestUser value),
     TResult loginWithTestUserTwo(LoginWithTestUserTwo value),
     TResult loginWithTestUserAdmin(LoginWithTestUserAdmin value),
@@ -154,6 +165,7 @@ class _$LoginWithGoogle
   TResult when<TResult extends Object>({
     @required TResult loginWithGoogle(),
     @required TResult loginWithApple(),
+    @required TResult loginPasswordless(String userEmail),
     @required TResult loginWithTestUser(),
     @required TResult loginWithTestUserTwo(),
     @required TResult loginWithTestUserAdmin(),
@@ -161,6 +173,7 @@ class _$LoginWithGoogle
   }) {
     assert(loginWithGoogle != null);
     assert(loginWithApple != null);
+    assert(loginPasswordless != null);
     assert(loginWithTestUser != null);
     assert(loginWithTestUserTwo != null);
     assert(loginWithTestUserAdmin != null);
@@ -173,6 +186,7 @@ class _$LoginWithGoogle
   TResult maybeWhen<TResult extends Object>({
     TResult loginWithGoogle(),
     TResult loginWithApple(),
+    TResult loginPasswordless(String userEmail),
     TResult loginWithTestUser(),
     TResult loginWithTestUserTwo(),
     TResult loginWithTestUserAdmin(),
@@ -191,6 +205,7 @@ class _$LoginWithGoogle
   TResult map<TResult extends Object>({
     @required TResult loginWithGoogle(LoginWithGoogle value),
     @required TResult loginWithApple(LoginWithApple value),
+    @required TResult loginPasswordless(LoginPasswordless value),
     @required TResult loginWithTestUser(LoginWithTestUser value),
     @required TResult loginWithTestUserTwo(LoginWithTestUserTwo value),
     @required TResult loginWithTestUserAdmin(LoginWithTestUserAdmin value),
@@ -198,6 +213,7 @@ class _$LoginWithGoogle
   }) {
     assert(loginWithGoogle != null);
     assert(loginWithApple != null);
+    assert(loginPasswordless != null);
     assert(loginWithTestUser != null);
     assert(loginWithTestUserTwo != null);
     assert(loginWithTestUserAdmin != null);
@@ -210,6 +226,7 @@ class _$LoginWithGoogle
   TResult maybeMap<TResult extends Object>({
     TResult loginWithGoogle(LoginWithGoogle value),
     TResult loginWithApple(LoginWithApple value),
+    TResult loginPasswordless(LoginPasswordless value),
     TResult loginWithTestUser(LoginWithTestUser value),
     TResult loginWithTestUserTwo(LoginWithTestUserTwo value),
     TResult loginWithTestUserAdmin(LoginWithTestUserAdmin value),
@@ -274,6 +291,7 @@ class _$LoginWithApple with DiagnosticableTreeMixin implements LoginWithApple {
   TResult when<TResult extends Object>({
     @required TResult loginWithGoogle(),
     @required TResult loginWithApple(),
+    @required TResult loginPasswordless(String userEmail),
     @required TResult loginWithTestUser(),
     @required TResult loginWithTestUserTwo(),
     @required TResult loginWithTestUserAdmin(),
@@ -281,6 +299,7 @@ class _$LoginWithApple with DiagnosticableTreeMixin implements LoginWithApple {
   }) {
     assert(loginWithGoogle != null);
     assert(loginWithApple != null);
+    assert(loginPasswordless != null);
     assert(loginWithTestUser != null);
     assert(loginWithTestUserTwo != null);
     assert(loginWithTestUserAdmin != null);
@@ -293,6 +312,7 @@ class _$LoginWithApple with DiagnosticableTreeMixin implements LoginWithApple {
   TResult maybeWhen<TResult extends Object>({
     TResult loginWithGoogle(),
     TResult loginWithApple(),
+    TResult loginPasswordless(String userEmail),
     TResult loginWithTestUser(),
     TResult loginWithTestUserTwo(),
     TResult loginWithTestUserAdmin(),
@@ -311,6 +331,7 @@ class _$LoginWithApple with DiagnosticableTreeMixin implements LoginWithApple {
   TResult map<TResult extends Object>({
     @required TResult loginWithGoogle(LoginWithGoogle value),
     @required TResult loginWithApple(LoginWithApple value),
+    @required TResult loginPasswordless(LoginPasswordless value),
     @required TResult loginWithTestUser(LoginWithTestUser value),
     @required TResult loginWithTestUserTwo(LoginWithTestUserTwo value),
     @required TResult loginWithTestUserAdmin(LoginWithTestUserAdmin value),
@@ -318,6 +339,7 @@ class _$LoginWithApple with DiagnosticableTreeMixin implements LoginWithApple {
   }) {
     assert(loginWithGoogle != null);
     assert(loginWithApple != null);
+    assert(loginPasswordless != null);
     assert(loginWithTestUser != null);
     assert(loginWithTestUserTwo != null);
     assert(loginWithTestUserAdmin != null);
@@ -330,6 +352,7 @@ class _$LoginWithApple with DiagnosticableTreeMixin implements LoginWithApple {
   TResult maybeMap<TResult extends Object>({
     TResult loginWithGoogle(LoginWithGoogle value),
     TResult loginWithApple(LoginWithApple value),
+    TResult loginPasswordless(LoginPasswordless value),
     TResult loginWithTestUser(LoginWithTestUser value),
     TResult loginWithTestUserTwo(LoginWithTestUserTwo value),
     TResult loginWithTestUserAdmin(LoginWithTestUserAdmin value),
@@ -346,6 +369,164 @@ class _$LoginWithApple with DiagnosticableTreeMixin implements LoginWithApple {
 
 abstract class LoginWithApple implements LoginEvent {
   const factory LoginWithApple() = _$LoginWithApple;
+}
+
+/// @nodoc
+abstract class $LoginPasswordlessCopyWith<$Res> {
+  factory $LoginPasswordlessCopyWith(
+          LoginPasswordless value, $Res Function(LoginPasswordless) then) =
+      _$LoginPasswordlessCopyWithImpl<$Res>;
+  $Res call({String userEmail});
+}
+
+/// @nodoc
+class _$LoginPasswordlessCopyWithImpl<$Res>
+    extends _$LoginEventCopyWithImpl<$Res>
+    implements $LoginPasswordlessCopyWith<$Res> {
+  _$LoginPasswordlessCopyWithImpl(
+      LoginPasswordless _value, $Res Function(LoginPasswordless) _then)
+      : super(_value, (v) => _then(v as LoginPasswordless));
+
+  @override
+  LoginPasswordless get _value => super._value as LoginPasswordless;
+
+  @override
+  $Res call({
+    Object userEmail = freezed,
+  }) {
+    return _then(LoginPasswordless(
+      userEmail: userEmail == freezed ? _value.userEmail : userEmail as String,
+    ));
+  }
+}
+
+/// @nodoc
+class _$LoginPasswordless
+    with DiagnosticableTreeMixin
+    implements LoginPasswordless {
+  const _$LoginPasswordless({@required this.userEmail})
+      : assert(userEmail != null);
+
+  @override
+  final String userEmail;
+
+  @override
+  String toString({DiagnosticLevel minLevel = DiagnosticLevel.info}) {
+    return 'LoginEvent.loginPasswordless(userEmail: $userEmail)';
+  }
+
+  @override
+  void debugFillProperties(DiagnosticPropertiesBuilder properties) {
+    super.debugFillProperties(properties);
+    properties
+      ..add(DiagnosticsProperty('type', 'LoginEvent.loginPasswordless'))
+      ..add(DiagnosticsProperty('userEmail', userEmail));
+  }
+
+  @override
+  bool operator ==(dynamic other) {
+    return identical(this, other) ||
+        (other is LoginPasswordless &&
+            (identical(other.userEmail, userEmail) ||
+                const DeepCollectionEquality()
+                    .equals(other.userEmail, userEmail)));
+  }
+
+  @override
+  int get hashCode =>
+      runtimeType.hashCode ^ const DeepCollectionEquality().hash(userEmail);
+
+  @override
+  $LoginPasswordlessCopyWith<LoginPasswordless> get copyWith =>
+      _$LoginPasswordlessCopyWithImpl<LoginPasswordless>(this, _$identity);
+
+  @override
+  @optionalTypeArgs
+  TResult when<TResult extends Object>({
+    @required TResult loginWithGoogle(),
+    @required TResult loginWithApple(),
+    @required TResult loginPasswordless(String userEmail),
+    @required TResult loginWithTestUser(),
+    @required TResult loginWithTestUserTwo(),
+    @required TResult loginWithTestUserAdmin(),
+    @required TResult loginWithTestUserMaster(),
+  }) {
+    assert(loginWithGoogle != null);
+    assert(loginWithApple != null);
+    assert(loginPasswordless != null);
+    assert(loginWithTestUser != null);
+    assert(loginWithTestUserTwo != null);
+    assert(loginWithTestUserAdmin != null);
+    assert(loginWithTestUserMaster != null);
+    return loginPasswordless(userEmail);
+  }
+
+  @override
+  @optionalTypeArgs
+  TResult maybeWhen<TResult extends Object>({
+    TResult loginWithGoogle(),
+    TResult loginWithApple(),
+    TResult loginPasswordless(String userEmail),
+    TResult loginWithTestUser(),
+    TResult loginWithTestUserTwo(),
+    TResult loginWithTestUserAdmin(),
+    TResult loginWithTestUserMaster(),
+    @required TResult orElse(),
+  }) {
+    assert(orElse != null);
+    if (loginPasswordless != null) {
+      return loginPasswordless(userEmail);
+    }
+    return orElse();
+  }
+
+  @override
+  @optionalTypeArgs
+  TResult map<TResult extends Object>({
+    @required TResult loginWithGoogle(LoginWithGoogle value),
+    @required TResult loginWithApple(LoginWithApple value),
+    @required TResult loginPasswordless(LoginPasswordless value),
+    @required TResult loginWithTestUser(LoginWithTestUser value),
+    @required TResult loginWithTestUserTwo(LoginWithTestUserTwo value),
+    @required TResult loginWithTestUserAdmin(LoginWithTestUserAdmin value),
+    @required TResult loginWithTestUserMaster(LoginWithTestUserMaster value),
+  }) {
+    assert(loginWithGoogle != null);
+    assert(loginWithApple != null);
+    assert(loginPasswordless != null);
+    assert(loginWithTestUser != null);
+    assert(loginWithTestUserTwo != null);
+    assert(loginWithTestUserAdmin != null);
+    assert(loginWithTestUserMaster != null);
+    return loginPasswordless(this);
+  }
+
+  @override
+  @optionalTypeArgs
+  TResult maybeMap<TResult extends Object>({
+    TResult loginWithGoogle(LoginWithGoogle value),
+    TResult loginWithApple(LoginWithApple value),
+    TResult loginPasswordless(LoginPasswordless value),
+    TResult loginWithTestUser(LoginWithTestUser value),
+    TResult loginWithTestUserTwo(LoginWithTestUserTwo value),
+    TResult loginWithTestUserAdmin(LoginWithTestUserAdmin value),
+    TResult loginWithTestUserMaster(LoginWithTestUserMaster value),
+    @required TResult orElse(),
+  }) {
+    assert(orElse != null);
+    if (loginPasswordless != null) {
+      return loginPasswordless(this);
+    }
+    return orElse();
+  }
+}
+
+abstract class LoginPasswordless implements LoginEvent {
+  const factory LoginPasswordless({@required String userEmail}) =
+      _$LoginPasswordless;
+
+  String get userEmail;
+  $LoginPasswordlessCopyWith<LoginPasswordless> get copyWith;
 }
 
 /// @nodoc
@@ -398,6 +579,7 @@ class _$LoginWithTestUser
   TResult when<TResult extends Object>({
     @required TResult loginWithGoogle(),
     @required TResult loginWithApple(),
+    @required TResult loginPasswordless(String userEmail),
     @required TResult loginWithTestUser(),
     @required TResult loginWithTestUserTwo(),
     @required TResult loginWithTestUserAdmin(),
@@ -405,6 +587,7 @@ class _$LoginWithTestUser
   }) {
     assert(loginWithGoogle != null);
     assert(loginWithApple != null);
+    assert(loginPasswordless != null);
     assert(loginWithTestUser != null);
     assert(loginWithTestUserTwo != null);
     assert(loginWithTestUserAdmin != null);
@@ -417,6 +600,7 @@ class _$LoginWithTestUser
   TResult maybeWhen<TResult extends Object>({
     TResult loginWithGoogle(),
     TResult loginWithApple(),
+    TResult loginPasswordless(String userEmail),
     TResult loginWithTestUser(),
     TResult loginWithTestUserTwo(),
     TResult loginWithTestUserAdmin(),
@@ -435,6 +619,7 @@ class _$LoginWithTestUser
   TResult map<TResult extends Object>({
     @required TResult loginWithGoogle(LoginWithGoogle value),
     @required TResult loginWithApple(LoginWithApple value),
+    @required TResult loginPasswordless(LoginPasswordless value),
     @required TResult loginWithTestUser(LoginWithTestUser value),
     @required TResult loginWithTestUserTwo(LoginWithTestUserTwo value),
     @required TResult loginWithTestUserAdmin(LoginWithTestUserAdmin value),
@@ -442,6 +627,7 @@ class _$LoginWithTestUser
   }) {
     assert(loginWithGoogle != null);
     assert(loginWithApple != null);
+    assert(loginPasswordless != null);
     assert(loginWithTestUser != null);
     assert(loginWithTestUserTwo != null);
     assert(loginWithTestUserAdmin != null);
@@ -454,6 +640,7 @@ class _$LoginWithTestUser
   TResult maybeMap<TResult extends Object>({
     TResult loginWithGoogle(LoginWithGoogle value),
     TResult loginWithApple(LoginWithApple value),
+    TResult loginPasswordless(LoginPasswordless value),
     TResult loginWithTestUser(LoginWithTestUser value),
     TResult loginWithTestUserTwo(LoginWithTestUserTwo value),
     TResult loginWithTestUserAdmin(LoginWithTestUserAdmin value),
@@ -522,6 +709,7 @@ class _$LoginWithTestUserTwo
   TResult when<TResult extends Object>({
     @required TResult loginWithGoogle(),
     @required TResult loginWithApple(),
+    @required TResult loginPasswordless(String userEmail),
     @required TResult loginWithTestUser(),
     @required TResult loginWithTestUserTwo(),
     @required TResult loginWithTestUserAdmin(),
@@ -529,6 +717,7 @@ class _$LoginWithTestUserTwo
   }) {
     assert(loginWithGoogle != null);
     assert(loginWithApple != null);
+    assert(loginPasswordless != null);
     assert(loginWithTestUser != null);
     assert(loginWithTestUserTwo != null);
     assert(loginWithTestUserAdmin != null);
@@ -541,6 +730,7 @@ class _$LoginWithTestUserTwo
   TResult maybeWhen<TResult extends Object>({
     TResult loginWithGoogle(),
     TResult loginWithApple(),
+    TResult loginPasswordless(String userEmail),
     TResult loginWithTestUser(),
     TResult loginWithTestUserTwo(),
     TResult loginWithTestUserAdmin(),
@@ -559,6 +749,7 @@ class _$LoginWithTestUserTwo
   TResult map<TResult extends Object>({
     @required TResult loginWithGoogle(LoginWithGoogle value),
     @required TResult loginWithApple(LoginWithApple value),
+    @required TResult loginPasswordless(LoginPasswordless value),
     @required TResult loginWithTestUser(LoginWithTestUser value),
     @required TResult loginWithTestUserTwo(LoginWithTestUserTwo value),
     @required TResult loginWithTestUserAdmin(LoginWithTestUserAdmin value),
@@ -566,6 +757,7 @@ class _$LoginWithTestUserTwo
   }) {
     assert(loginWithGoogle != null);
     assert(loginWithApple != null);
+    assert(loginPasswordless != null);
     assert(loginWithTestUser != null);
     assert(loginWithTestUserTwo != null);
     assert(loginWithTestUserAdmin != null);
@@ -578,6 +770,7 @@ class _$LoginWithTestUserTwo
   TResult maybeMap<TResult extends Object>({
     TResult loginWithGoogle(LoginWithGoogle value),
     TResult loginWithApple(LoginWithApple value),
+    TResult loginPasswordless(LoginPasswordless value),
     TResult loginWithTestUser(LoginWithTestUser value),
     TResult loginWithTestUserTwo(LoginWithTestUserTwo value),
     TResult loginWithTestUserAdmin(LoginWithTestUserAdmin value),
@@ -646,6 +839,7 @@ class _$LoginWithTestUserAdmin
   TResult when<TResult extends Object>({
     @required TResult loginWithGoogle(),
     @required TResult loginWithApple(),
+    @required TResult loginPasswordless(String userEmail),
     @required TResult loginWithTestUser(),
     @required TResult loginWithTestUserTwo(),
     @required TResult loginWithTestUserAdmin(),
@@ -653,6 +847,7 @@ class _$LoginWithTestUserAdmin
   }) {
     assert(loginWithGoogle != null);
     assert(loginWithApple != null);
+    assert(loginPasswordless != null);
     assert(loginWithTestUser != null);
     assert(loginWithTestUserTwo != null);
     assert(loginWithTestUserAdmin != null);
@@ -665,6 +860,7 @@ class _$LoginWithTestUserAdmin
   TResult maybeWhen<TResult extends Object>({
     TResult loginWithGoogle(),
     TResult loginWithApple(),
+    TResult loginPasswordless(String userEmail),
     TResult loginWithTestUser(),
     TResult loginWithTestUserTwo(),
     TResult loginWithTestUserAdmin(),
@@ -683,6 +879,7 @@ class _$LoginWithTestUserAdmin
   TResult map<TResult extends Object>({
     @required TResult loginWithGoogle(LoginWithGoogle value),
     @required TResult loginWithApple(LoginWithApple value),
+    @required TResult loginPasswordless(LoginPasswordless value),
     @required TResult loginWithTestUser(LoginWithTestUser value),
     @required TResult loginWithTestUserTwo(LoginWithTestUserTwo value),
     @required TResult loginWithTestUserAdmin(LoginWithTestUserAdmin value),
@@ -690,6 +887,7 @@ class _$LoginWithTestUserAdmin
   }) {
     assert(loginWithGoogle != null);
     assert(loginWithApple != null);
+    assert(loginPasswordless != null);
     assert(loginWithTestUser != null);
     assert(loginWithTestUserTwo != null);
     assert(loginWithTestUserAdmin != null);
@@ -702,6 +900,7 @@ class _$LoginWithTestUserAdmin
   TResult maybeMap<TResult extends Object>({
     TResult loginWithGoogle(LoginWithGoogle value),
     TResult loginWithApple(LoginWithApple value),
+    TResult loginPasswordless(LoginPasswordless value),
     TResult loginWithTestUser(LoginWithTestUser value),
     TResult loginWithTestUserTwo(LoginWithTestUserTwo value),
     TResult loginWithTestUserAdmin(LoginWithTestUserAdmin value),
@@ -770,6 +969,7 @@ class _$LoginWithTestUserMaster
   TResult when<TResult extends Object>({
     @required TResult loginWithGoogle(),
     @required TResult loginWithApple(),
+    @required TResult loginPasswordless(String userEmail),
     @required TResult loginWithTestUser(),
     @required TResult loginWithTestUserTwo(),
     @required TResult loginWithTestUserAdmin(),
@@ -777,6 +977,7 @@ class _$LoginWithTestUserMaster
   }) {
     assert(loginWithGoogle != null);
     assert(loginWithApple != null);
+    assert(loginPasswordless != null);
     assert(loginWithTestUser != null);
     assert(loginWithTestUserTwo != null);
     assert(loginWithTestUserAdmin != null);
@@ -789,6 +990,7 @@ class _$LoginWithTestUserMaster
   TResult maybeWhen<TResult extends Object>({
     TResult loginWithGoogle(),
     TResult loginWithApple(),
+    TResult loginPasswordless(String userEmail),
     TResult loginWithTestUser(),
     TResult loginWithTestUserTwo(),
     TResult loginWithTestUserAdmin(),
@@ -807,6 +1009,7 @@ class _$LoginWithTestUserMaster
   TResult map<TResult extends Object>({
     @required TResult loginWithGoogle(LoginWithGoogle value),
     @required TResult loginWithApple(LoginWithApple value),
+    @required TResult loginPasswordless(LoginPasswordless value),
     @required TResult loginWithTestUser(LoginWithTestUser value),
     @required TResult loginWithTestUserTwo(LoginWithTestUserTwo value),
     @required TResult loginWithTestUserAdmin(LoginWithTestUserAdmin value),
@@ -814,6 +1017,7 @@ class _$LoginWithTestUserMaster
   }) {
     assert(loginWithGoogle != null);
     assert(loginWithApple != null);
+    assert(loginPasswordless != null);
     assert(loginWithTestUser != null);
     assert(loginWithTestUserTwo != null);
     assert(loginWithTestUserAdmin != null);
@@ -826,6 +1030,7 @@ class _$LoginWithTestUserMaster
   TResult maybeMap<TResult extends Object>({
     TResult loginWithGoogle(LoginWithGoogle value),
     TResult loginWithApple(LoginWithApple value),
+    TResult loginPasswordless(LoginPasswordless value),
     TResult loginWithTestUser(LoginWithTestUser value),
     TResult loginWithTestUserTwo(LoginWithTestUserTwo value),
     TResult loginWithTestUserAdmin(LoginWithTestUserAdmin value),

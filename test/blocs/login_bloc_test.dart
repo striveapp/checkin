@@ -3,6 +3,7 @@ import 'package:checkin/src/blocs/login/bloc.dart';
 import 'package:checkin/src/models/user.dart';
 import 'package:checkin/src/repositories/analytics_repository.dart';
 import 'package:checkin/src/repositories/auth_repository.dart';
+import 'package:checkin/src/repositories/local_storage_repository.dart';
 import 'package:checkin/src/repositories/user_repository.dart';
 import 'package:checkin/src/resources/auth_provider.dart';
 import 'package:flutter_test/flutter_test.dart';
@@ -16,20 +17,33 @@ class MockAuthRepository extends Mock implements AuthRepository {}
 
 class MockAnalyticsRepository extends Mock implements AnalyticsRepository {}
 
+class MockLocalStorageRepository extends Mock implements LocalStorageRepository {}
+
 void main() {
   group("LoginBloc", () {
     MockUserRepository mockUserRepository;
     MockAuthRepository mockAuthRepository;
     MockAnalyticsRepository mockAnalyticsRepository;
+    MockLocalStorageRepository mockLocalStorageRepository;
+
+    var fakeUser = User(
+      uid: "1234",
+      name: "Batman",
+      email: "not@work.com",
+      imageUrl: "http://image.url",
+    );
 
     setUp(() {
       mockAuthRepository = MockAuthRepository();
       mockUserRepository = MockUserRepository();
       mockAnalyticsRepository = MockAnalyticsRepository();
+      mockLocalStorageRepository = MockLocalStorageRepository();
+
       configureThrowOnMissingStub([
         mockAuthRepository,
         mockUserRepository,
         mockAnalyticsRepository,
+        mockLocalStorageRepository,
       ]);
     });
 
@@ -38,6 +52,7 @@ void main() {
         mockAuthRepository,
         mockUserRepository,
         mockAnalyticsRepository,
+        mockLocalStorageRepository
       ]);
     });
 
@@ -49,6 +64,7 @@ void main() {
           authRepository: mockAuthRepository,
           userRepository: mockUserRepository,
           analyticsRepository: mockAnalyticsRepository,
+          localStorageRepository: mockLocalStorageRepository,
         );
       });
 
@@ -62,32 +78,23 @@ void main() {
     });
 
     group("on LoginWithGoogle event", () {
-      var fakeLoggedUser = User(
-        uid: "1234",
-        name: "Batman",
-        email: "not@work.com",
-        imageUrl: "http://image.url",
-      );
-
       group("when a logged user is returned", () {
         setUp(() {
           when(mockAuthRepository.signInWithGoogle())
-              .thenAnswer((_) => Future<User>.value(fakeLoggedUser));
-          when(mockAnalyticsRepository.setUserProperties(fakeLoggedUser.uid))
+              .thenAnswer((_) => Future<User>.value(fakeUser));
+          when(mockAnalyticsRepository.setUserProperties(fakeUser.uid))
               .thenAnswer((realInvocation) => null);
           when(mockAnalyticsRepository.logLoginWithGoogleSignIn())
               .thenAnswer((realInvocation) => null);
 
-          when(mockUserRepository.createUser(fakeLoggedUser))
-              .thenAnswer((realInvocation) => null);
+          when(mockUserRepository.createUser(fakeUser)).thenAnswer((realInvocation) => null);
         });
 
         tearDown(() {
           verify(mockAuthRepository.signInWithGoogle());
-          verify(
-              mockAnalyticsRepository.setUserProperties(fakeLoggedUser.uid));
+          verify(mockAnalyticsRepository.setUserProperties(fakeUser.uid));
           verify(mockAnalyticsRepository.logLoginWithGoogleSignIn());
-          verify(mockUserRepository.createUser(fakeLoggedUser));
+          verify(mockUserRepository.createUser(fakeUser));
         });
 
         blocTest(
@@ -96,16 +103,16 @@ void main() {
             authRepository: mockAuthRepository,
             userRepository: mockUserRepository,
             analyticsRepository: mockAnalyticsRepository,
+            localStorageRepository: mockLocalStorageRepository,
           ),
           act: (bloc) => bloc.add(LoginWithGoogle()),
-          expect: [LoginSuccess(loggedUser: fakeLoggedUser)],
+          expect: [LoginSuccess(loggedUser: fakeUser)],
         );
       });
 
       group("when no user is returned", () {
         setUp(() {
-          when(mockAuthRepository.signInWithGoogle())
-              .thenAnswer((_) => Future<User>.value(null));
+          when(mockAuthRepository.signInWithGoogle()).thenAnswer((_) => Future<User>.value(null));
         });
 
         tearDown(() {
@@ -118,6 +125,7 @@ void main() {
             authRepository: mockAuthRepository,
             userRepository: mockUserRepository,
             analyticsRepository: mockAnalyticsRepository,
+            localStorageRepository: mockLocalStorageRepository,
           ),
           act: (bloc) => bloc.add(LoginWithGoogle()),
           expect: [LoginFailure(errorMessage: 'Login failed')],
@@ -148,44 +156,32 @@ void main() {
                   authRepository: mockAuthRepository,
                   userRepository: mockUserRepository,
                   analyticsRepository: mockAnalyticsRepository,
+                  localStorageRepository: mockLocalStorageRepository,
                 ),
             act: (bloc) => bloc.add(LoginWithGoogle()),
-            expect: [
-              LoginFailure(
-                  errorMessage:
-                      "Unexpected error! Please contact the gym owner")
-            ],
+            expect: [LoginFailure(errorMessage: "Unexpected error! Please contact the gym owner")],
             verify: (bloc) {});
       });
     });
 
     group("on LoginWithApple event", () {
-      var fakeLoggedUser = User(
-        uid: "1234",
-        name: "Robin",
-        email: "almost@work.com",
-        imageUrl: "http://image.url",
-      );
-
       group("when a loggedUser is returned", () {
         setUp(() {
           when(mockAuthRepository.signInWithApple())
-              .thenAnswer((_) => Future<User>.value(fakeLoggedUser));
-          when(mockAnalyticsRepository.setUserProperties(fakeLoggedUser.uid))
+              .thenAnswer((_) => Future<User>.value(fakeUser));
+          when(mockAnalyticsRepository.setUserProperties(fakeUser.uid))
               .thenAnswer((realInvocation) => null);
           when(mockAnalyticsRepository.logLoginWithAppleSignIn())
               .thenAnswer((realInvocation) => null);
 
-          when(mockUserRepository.createUser(fakeLoggedUser))
-              .thenAnswer((realInvocation) => null);
+          when(mockUserRepository.createUser(fakeUser)).thenAnswer((realInvocation) => null);
         });
 
         tearDown(() {
           verify(mockAuthRepository.signInWithApple());
-          verify(
-              mockAnalyticsRepository.setUserProperties(fakeLoggedUser.uid));
+          verify(mockAnalyticsRepository.setUserProperties(fakeUser.uid));
           verify(mockAnalyticsRepository.logLoginWithAppleSignIn());
-          verify(mockUserRepository.createUser(fakeLoggedUser));
+          verify(mockUserRepository.createUser(fakeUser));
         });
 
         blocTest(
@@ -194,16 +190,16 @@ void main() {
             authRepository: mockAuthRepository,
             userRepository: mockUserRepository,
             analyticsRepository: mockAnalyticsRepository,
+            localStorageRepository: mockLocalStorageRepository,
           ),
           act: (bloc) => bloc.add(LoginWithApple()),
-          expect: [LoginSuccess(loggedUser: fakeLoggedUser)],
+          expect: [LoginSuccess(loggedUser: fakeUser)],
         );
       });
 
       group("when no user is returned", () {
         setUp(() {
-          when(mockAuthRepository.signInWithApple())
-              .thenAnswer((_) => Future<User>.value(null));
+          when(mockAuthRepository.signInWithApple()).thenAnswer((_) => Future<User>.value(null));
         });
 
         tearDown(() {
@@ -216,6 +212,7 @@ void main() {
             authRepository: mockAuthRepository,
             userRepository: mockUserRepository,
             analyticsRepository: mockAnalyticsRepository,
+            localStorageRepository: mockLocalStorageRepository,
           ),
           act: (bloc) => bloc.add(LoginWithApple()),
           expect: [LoginFailure(errorMessage: 'Login failed')],
@@ -246,12 +243,10 @@ void main() {
             authRepository: mockAuthRepository,
             userRepository: mockUserRepository,
             analyticsRepository: mockAnalyticsRepository,
+            localStorageRepository: mockLocalStorageRepository,
           ),
           act: (bloc) => bloc.add(LoginWithApple()),
-          expect: [
-            LoginFailure(
-                errorMessage: "Unexpected error! Please contact the gym owner")
-          ],
+          expect: [LoginFailure(errorMessage: "Unexpected error! Please contact the gym owner")],
         );
       });
 
@@ -278,15 +273,39 @@ void main() {
             authRepository: mockAuthRepository,
             userRepository: mockUserRepository,
             analyticsRepository: mockAnalyticsRepository,
+            localStorageRepository: mockLocalStorageRepository,
           ),
           act: (bloc) => bloc.add(LoginWithApple()),
           expect: [
             LoginFailure(
-                errorMessage:
-                    "Sign in with Apple is not supported for your version of IOS")
+                errorMessage: "Sign in with Apple is not supported for your version of IOS")
           ],
         );
       });
+    });
+
+    group("on LoginPasswordless event", () {
+      setUp((){
+        when(mockLocalStorageRepository.setUserEmail(fakeUser.email)).thenAnswer((realInvocation) => Future.value());
+        when(mockAuthRepository.signInPasswordless(fakeUser.email)).thenAnswer((realInvocation) => Future.value());
+      });
+
+      tearDown((){
+        verify(mockLocalStorageRepository.setUserEmail(fakeUser.email));
+        verify(mockAuthRepository.signInPasswordless(fakeUser.email));
+      });
+
+      blocTest(
+        "should emit LoginWaitingForEmailLink",
+        build: () => LoginBloc(
+          authRepository: mockAuthRepository,
+          userRepository: mockUserRepository,
+          analyticsRepository: mockAnalyticsRepository,
+          localStorageRepository: mockLocalStorageRepository,
+        ),
+        act: (bloc) => bloc.add(LoginPasswordless(userEmail: fakeUser.email)),
+        expect: [LoginWaitingForEmailLink(userEmail: fakeUser.email)],
+      );
     });
   });
 }

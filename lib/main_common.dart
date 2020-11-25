@@ -115,7 +115,8 @@ Future<void> mainCommon(AppConfig appConfig) async {
               create: (context) => DynamicLinkBloc(
                 dynamicLinks: FirebaseDynamicLinks.instance,
                 localStorageRepository: context.read<LocalStorageRepository>(),
-                dynamicLinkRepository: context.read<DynamicLinkRepository>()
+                dynamicLinkRepository: context.read<DynamicLinkRepository>(),
+                authRepository: context.read<AuthRepository>(),
               )..add(DeepLinkSetup()),
             ),
             BlocProvider<VersionBloc>(

@@ -16,8 +16,7 @@ class MockAnalyticsRepository extends Mock implements AnalyticsRepository {}
 
 class MockUserRepository extends Mock implements UserRepository {}
 
-class MockLocalStorageRepository extends Mock
-    implements LocalStorageRepository {}
+class MockLocalStorageRepository extends Mock implements LocalStorageRepository {}
 
 void main() {
   group('AuthBloc', () {
@@ -85,8 +84,7 @@ void main() {
           });
           when(mockAnalyticsRepository.setUserProperties(fakeUser.uid))
               .thenAnswer((realInvocation) => null);
-          when(mockAnalyticsRepository.logUserLocale())
-              .thenAnswer((realInvocation) => null);
+          when(mockAnalyticsRepository.logUserLocale()).thenAnswer((realInvocation) => null);
         });
 
         tearDown(() {
@@ -97,12 +95,14 @@ void main() {
 
         group("and the local storage is empty", () {
           setUp(() {
-            when(mockLocalStorageRepository.getReferredGymId())
-                .thenAnswer((_) => Stream.empty());
+            when(mockLocalStorageRepository.getReferredGymId()).thenAnswer((_) => Stream.empty());
+            when(mockLocalStorageRepository.removeUserEmail())
+                .thenAnswer((realInvocation) => Future.value());
           });
 
           tearDown(() {
             verify(mockLocalStorageRepository.getReferredGymId());
+            verify(mockLocalStorageRepository.removeUserEmail());
           });
 
           blocTest(
@@ -129,8 +129,9 @@ void main() {
               fakeUser.email,
               fakeReferredGym,
             )).thenAnswer((realInvocation) => Future.value());
-            when(mockLocalStorageRepository.removeReferredGym())
-                .thenAnswer((_) => Future.value());
+            when(mockLocalStorageRepository.removeReferredGym()).thenAnswer((_) => Future.value());
+            when(mockLocalStorageRepository.removeUserEmail())
+                .thenAnswer((realInvocation) => Future.value());
           });
 
           tearDown(() {
@@ -140,6 +141,7 @@ void main() {
               fakeReferredGym,
             ));
             verify(mockLocalStorageRepository.removeReferredGym());
+            verify(mockLocalStorageRepository.removeUserEmail());
           });
 
           blocTest(
