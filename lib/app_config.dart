@@ -1,8 +1,15 @@
+import 'package:flutter/material.dart';
 
 class AppConfig {
   final String flavor;
+  final String appUniqueIdentifier;
+  final String dynamicLinkDomain;
 
-  AppConfig(this.flavor) {
+  AppConfig({
+    @required this.flavor,
+    @required this.appUniqueIdentifier,
+    @required this.dynamicLinkDomain
+  }) {
     switch (flavor) {
       case 'dev':
         print("DEV app");
@@ -12,4 +19,6 @@ class AppConfig {
         break;
     }
   }
+
+
 }

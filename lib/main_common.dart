@@ -9,6 +9,7 @@ import 'package:checkin/src/blocs/theme/bloc.dart';
 import 'package:checkin/src/blocs/version/bloc.dart';
 import 'package:checkin/src/repositories/analytics_repository.dart';
 import 'package:checkin/src/repositories/auth_repository.dart';
+import 'package:checkin/src/repositories/dynamic_link_repository.dart';
 import 'package:checkin/src/repositories/graduation_system_repository.dart';
 import 'package:checkin/src/repositories/image_repository.dart';
 import 'package:checkin/src/repositories/lesson_repository.dart';
@@ -20,6 +21,7 @@ import 'package:checkin/src/repositories/user_repository.dart';
 import 'package:checkin/src/repositories/version_repository.dart';
 import 'package:checkin/src/resources/analytics_provider.dart';
 import 'package:checkin/src/resources/auth_provider.dart';
+import 'package:checkin/src/resources/dynamic_link_provider.dart';
 import 'package:checkin/src/resources/graduation_system_provider.dart';
 import 'package:checkin/src/resources/lesson_instances_provider.dart';
 import 'package:checkin/src/resources/local_storage_provider.dart';
@@ -39,7 +41,7 @@ import 'package:flutter_svg/flutter_svg.dart';
 import 'src/app.dart';
 import 'src/blocs/dynamic_link/dynamic_link_event.dart';
 
-Future<void> mainCommon(AppConfig _) async {
+Future<void> mainCommon(AppConfig appConfig) async {
   WidgetsFlutterBinding.ensureInitialized();
 
   await Firebase.initializeApp();
@@ -56,10 +58,8 @@ Future<void> mainCommon(AppConfig _) async {
   Routes.configureRoutes(Application.router);
 
   // init repositories
-  final AuthRepository authRepository = AuthProvider();
   final StorageRepository storageRepository = StorageRepository();
   final ImageRepository imageRepository = ImageRepository();
-  final FirebaseDynamicLinks dynamicLinks = FirebaseDynamicLinks.instance;
 
   await _precacheAssets();
 
@@ -69,6 +69,12 @@ Future<void> mainCommon(AppConfig _) async {
         providers: [
           RepositoryProvider<LessonRepository>(
             create: (context) => LessonInstancesProvider(),
+          ),
+          RepositoryProvider<AuthRepository>(
+            create: (context) => AuthProvider(appConfig: appConfig),
+          ),
+          RepositoryProvider<DynamicLinkRepository>(
+            create: (context) => DynamicLinkProvider(appConfig: appConfig),
           ),
           RepositoryProvider<LessonApi>(
             create: (context) => LessonApi(),
@@ -99,18 +105,17 @@ Future<void> mainCommon(AppConfig _) async {
             ),
             BlocProvider<AuthBloc>(
               create: (context) => AuthBloc(
-                authRepository: authRepository,
-                analyticsRepository:
-                    RepositoryProvider.of<AnalyticsRepository>(context),
+                authRepository: context.read<AuthRepository>(),
+                analyticsRepository: context.read<AnalyticsRepository>(),
                 userRepository: context.read<UserRepository>(),
                 localStorageRepository: context.read<LocalStorageRepository>()
               )..add(AppStarted()),
             ),
             BlocProvider<DynamicLinkBloc>(
               create: (context) => DynamicLinkBloc(
-                dynamicLinks: dynamicLinks,
-                localStorageRepository:
-                    RepositoryProvider.of<LocalStorageRepository>(context),
+                dynamicLinks: FirebaseDynamicLinks.instance,
+                localStorageRepository: context.read<LocalStorageRepository>(),
+                dynamicLinkRepository: context.read<DynamicLinkRepository>()
               )..add(DeepLinkSetup()),
             ),
             BlocProvider<VersionBloc>(
@@ -120,7 +125,6 @@ Future<void> mainCommon(AppConfig _) async {
           child: BlocBuilder<ThemeBloc, ThemeState>(
               builder: (BuildContext context, ThemeState state) => App(
                     themeData: state.themeData,
-                    authRepository: authRepository,
                     storageRepository: storageRepository,
                     imageRepository: imageRepository,
                   )),

@@ -13,10 +13,10 @@ import 'package:checkin/src/blocs/user_stats/bloc.dart';
 import 'package:checkin/src/constants.dart' as constants;
 import 'package:checkin/src/localization/localization.dart';
 import 'package:checkin/src/repositories/analytics_repository.dart';
+import 'package:checkin/src/repositories/auth_repository.dart';
 import 'package:checkin/src/repositories/membership_repository.dart';
 import 'package:checkin/src/repositories/stats_repository.dart';
 import 'package:checkin/src/repositories/user_repository.dart';
-import 'package:checkin/src/resources/auth_provider.dart';
 import 'package:checkin/src/resources/gym_provider.dart';
 import 'package:checkin/src/resources/payment_method_provider.dart';
 import 'package:checkin/src/ui/components/account/payment.dart';
@@ -73,10 +73,10 @@ class AccountPage extends StatelessWidget {
             BlocProvider<PaymentMethodsBloc>(
               create: (BuildContext context) => PaymentMethodsBloc(
                 urlLauncherUtil: UrlLauncherUtil(),
-                userBloc: BlocProvider.of<UserBloc>(context),
+                userBloc: context.read<UserBloc>(),
                 paymentMethodRepository: PaymentMethodProvider(),
                 paymentApi: PaymentApi(
-                    httpClient: HttpClient(authRepository: AuthProvider())),
+                    httpClient: HttpClient(authRepository: context.read<AuthRepository>())),
               ),
             ),
           ],
@@ -127,9 +127,9 @@ class AccountPage extends StatelessWidget {
                       BlocProvider<MembershipBloc>(
                         create: (BuildContext context) => MembershipBloc(
                           analyticsRepository:
-                          RepositoryProvider.of<AnalyticsRepository>(context),
+                          context.read<AnalyticsRepository>(),
                           membershipApi: MembershipApi(
-                              httpClient: HttpClient(authRepository: AuthProvider())),
+                              httpClient: HttpClient(authRepository: context.read<AuthRepository>())),
                           membershipRepository: RepositoryProvider.of<MembershipRepository>(context),
                           userEmail: state.user.email,
                           selectedGymId: state.user.selectedGymId

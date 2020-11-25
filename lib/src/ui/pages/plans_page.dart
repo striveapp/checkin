@@ -6,7 +6,7 @@ import 'package:checkin/src/blocs/subscription_plans/bloc.dart';
 import 'package:checkin/src/blocs/user/bloc.dart';
 import 'package:checkin/src/localization/localization.dart';
 import 'package:checkin/src/repositories/analytics_repository.dart';
-import 'package:checkin/src/resources/auth_provider.dart';
+import 'package:checkin/src/repositories/auth_repository.dart';
 import 'package:checkin/src/resources/gym_provider.dart';
 import 'package:checkin/src/resources/subscription_plans_provider.dart';
 import 'package:checkin/src/ui/components/base_app_bar.dart';
@@ -42,9 +42,9 @@ class PlansPage extends StatelessWidget {
           ),
           BlocProvider<SubscriptionBloc>(
             create: (BuildContext context) => SubscriptionBloc(
-                gymBloc: BlocProvider.of<GymBloc>(context),
+                gymBloc: context.read<GymBloc>(),
                 membershipApi: MembershipApi(
-                    httpClient: HttpClient(authRepository: AuthProvider())),
+                    httpClient: HttpClient(authRepository: context.read<AuthRepository>())),
                 analyticsRepository:
                     RepositoryProvider.of<AnalyticsRepository>(context)),
           ),

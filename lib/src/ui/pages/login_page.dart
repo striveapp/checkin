@@ -7,15 +7,6 @@ import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 
 class LoginPage extends StatelessWidget {
-  final AuthRepository _authRepository;
-
-  LoginPage({
-    Key key,
-    @required AuthRepository authRepository,
-  })  : assert(authRepository != null ),
-        _authRepository = authRepository,
-        super(key: key);
-
   @override
   Widget build(BuildContext context) {
     return Scaffold(
@@ -28,7 +19,7 @@ class LoginPage extends StatelessWidget {
       )),
       child: BlocProvider<LoginBloc>(
         create: (context) => LoginBloc(
-          authRepository: _authRepository,
+          authRepository: context.read<AuthRepository>(),
           userRepository: context.read<UserRepository>(),
           analyticsRepository: context.read<AnalyticsRepository>(),
         ),

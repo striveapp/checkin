@@ -1,4 +1,5 @@
 import 'package:bloc/bloc.dart';
+import 'package:checkin/src/repositories/dynamic_link_repository.dart';
 import 'package:checkin/src/repositories/local_storage_repository.dart';
 import 'package:firebase_dynamic_links/firebase_dynamic_links.dart';
 import 'package:flutter/material.dart';
@@ -7,25 +8,24 @@ import 'dynamic_link_event.dart';
 import 'dynamic_link_state.dart';
 
 class DynamicLinkBloc extends Bloc<DynamicLinkEvent, DynamicLinkState> {
-  final FirebaseDynamicLinks _dynamicLinks;
-  final LocalStorageRepository _localStorageRepository;
+  final FirebaseDynamicLinks dynamicLinks;
+  final LocalStorageRepository localStorageRepository;
+  final DynamicLinkRepository dynamicLinkRepository;
 
   DynamicLinkBloc({
-    @required FirebaseDynamicLinks dynamicLinks,
-    @required LocalStorageRepository localStorageRepository,
-  })  : assert(dynamicLinks != null && localStorageRepository != null),
-        _dynamicLinks = dynamicLinks,
-        _localStorageRepository = localStorageRepository,
-        super(DynamicLinkInitial());
+    @required FirebaseDynamicLinks this.dynamicLinks,
+    @required LocalStorageRepository this.localStorageRepository,
+    @required this.dynamicLinkRepository,
+  }) : super(DynamicLinkInitial());
 
   @override
   Stream<DynamicLinkState> mapEventToState(DynamicLinkEvent event) async* {
     if (event is DeepLinkSetup) {
-      final PendingDynamicLinkData data = await _dynamicLinks.getInitialLink();
+      final PendingDynamicLinkData data = await dynamicLinks.getInitialLink();
 
       onSuccessLink(data);
 
-      _dynamicLinks.onLink(
+      dynamicLinks.onLink(
         onSuccess: onSuccessLink,
         onError: onErrorLink,
       );
@@ -36,7 +36,7 @@ class DynamicLinkBloc extends Bloc<DynamicLinkEvent, DynamicLinkState> {
 
       if (path.startsWith("/register/")) {
         final referredGymId = path.replaceAll("/register/", "");
-        await _localStorageRepository.setReferredGymId(referredGymId);
+        await localStorageRepository.setReferredGymId(referredGymId);
       } else {
         if (event.deepLink.hasQuery) {
           path = "$path?${event.deepLink.query}";
@@ -49,6 +49,11 @@ class DynamicLinkBloc extends Bloc<DynamicLinkEvent, DynamicLinkState> {
     if (event is DeepLinkErrorEvent) {
       yield DynamicLinkError();
     }
+
+    if(event is ShareRegistryLink) {
+      var registryLink = await dynamicLinkRepository.getRegistryLink(event.date, event.lessonId);
+      yield DynamicLinkToShare(link: registryLink);
+    }
   }
 
   Future<dynamic> onSuccessLink(PendingDynamicLinkData dynamicLink) async {
@@ -60,6 +65,6 @@ class DynamicLinkBloc extends Bloc<DynamicLinkEvent, DynamicLinkState> {
   }
 
   Future<dynamic> onErrorLink(OnLinkErrorException e) async {
-    add(DeepLinkErrorEvent());
+    add(DeepLinkErrorEvent(error: e));
   }
 }

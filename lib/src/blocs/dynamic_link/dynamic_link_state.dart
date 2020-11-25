@@ -1,5 +1,6 @@
 import 'package:equatable/equatable.dart';
 
+// todo cannot migrate to freezed, DateTime.now() default value is not supported
 abstract class DynamicLinkState extends Equatable {
   const DynamicLinkState();
 
@@ -40,5 +41,17 @@ class DynamicLinkSetDefaultGym extends DynamicLinkState {
 class DynamicLinkError extends DynamicLinkState {
   @override
   String toString() => 'DynamicLinkError';
+}
+
+class DynamicLinkToShare extends DynamicLinkState {
+  final String link;
+
+  DynamicLinkToShare({this.link});
+
+  @override
+  List<Object> get props => [link];
+
+  @override
+  String toString() => 'ShareLink';
 }
 

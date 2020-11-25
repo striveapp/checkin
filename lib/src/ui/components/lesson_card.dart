@@ -1,10 +1,10 @@
+import 'package:checkin/src/blocs/dynamic_link/bloc.dart';
 import 'package:checkin/src/localization/localization.dart';
 import 'package:checkin/src/models/lesson.dart';
 import 'package:checkin/src/ui/components/attendees_preview.dart';
 import 'package:checkin/src/ui/components/user_image.dart';
-import 'package:checkin/src/util/dynamic_link_util.dart';
 import 'package:flutter/material.dart';
-import 'package:share/share.dart';
+import 'package:flutter_bloc/flutter_bloc.dart';
 
 class LessonCard extends StatelessWidget {
   static const String emptyClass = 'Nobody in class yet';
@@ -30,8 +30,7 @@ class LessonCard extends StatelessWidget {
                 Navigator.of(context).pushNamed("registry/${lesson.date}/${lesson.id}");
               },
               child: Padding(
-                padding:
-                    EdgeInsets.only(right: 20, left: 20, top: 16, bottom: 24),
+                padding: EdgeInsets.only(right: 20, left: 20, top: 16, bottom: 24),
                 child: Column(
                   mainAxisAlignment: MainAxisAlignment.spaceBetween,
                   children: <Widget>[
@@ -41,7 +40,9 @@ class LessonCard extends StatelessWidget {
                         UserImage(
                           userImage: lesson.masters.first.imageUrl,
                         ),
-                        SizedBox(width: 20,),
+                        SizedBox(
+                          width: 20,
+                        ),
                         Expanded(
                           flex: 4,
                           child: Column(
@@ -51,22 +52,25 @@ class LessonCard extends StatelessWidget {
                                 _capitalize(lesson.name),
                                 overflow: TextOverflow.fade,
                                 softWrap: false,
-                                style: Theme.of(context)
-                                    .textTheme
-                                    .headline1,
+                                style: Theme.of(context).textTheme.headline1,
                               ),
                               Text("${lesson.timeStart} - ${lesson.timeEnd}",
                                   style: Theme.of(context).textTheme.headline3)
                             ],
                           ),
                         ),
-                        SizedBox(width: 10,),
+                        SizedBox(
+                          width: 10,
+                        ),
                         Expanded(
                           flex: 1,
-                          child: IconButton(icon: Icon(Icons.share), onPressed: () async {
-                            var link = await DynamicLinkUtil().getLink(date: lesson.date, lessonId: lesson.id);
-                            Share.share(link);
-                          },),
+                          child: IconButton(
+                            icon: Icon(Icons.share),
+                            onPressed: () => context.read<DynamicLinkBloc>().add(ShareRegistryLink(
+                                  date: lesson.date,
+                                  lessonId: lesson.id,
+                                )),
+                          ),
                         )
                       ],
                     ),
@@ -88,14 +92,17 @@ class LessonCard extends StatelessWidget {
                         Expanded(
                           child: LinearProgressIndicator(
                             value: _getFullPercentage(allAttendees, lesson.classCapacity),
-                            valueColor: AlwaysStoppedAnimation<Color>(
-                                Theme.of(context).primaryColor),
+                            valueColor:
+                                AlwaysStoppedAnimation<Color>(Theme.of(context).primaryColor),
                             backgroundColor: Theme.of(context).primaryColor.withAlpha(70),
                           ),
                         ),
                         Padding(
                           padding: const EdgeInsets.only(right: 8, left: 10),
-                          child: Text("$allAttendees/${lesson.classCapacity}", style: Theme.of(context).textTheme.headline5,),
+                          child: Text(
+                            "$allAttendees/${lesson.classCapacity}",
+                            style: Theme.of(context).textTheme.headline5,
+                          ),
                         )
                       ],
                     )

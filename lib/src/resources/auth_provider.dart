@@ -6,14 +6,17 @@ import 'package:flutter/foundation.dart';
 import 'package:google_sign_in/google_sign_in.dart';
 import 'package:sign_in_with_apple/sign_in_with_apple.dart';
 
-class AuthProvider implements AuthRepository {
-  final FirebaseAuth _firebaseAuth;
-  final GoogleSignIn _googleSignIn;
-  final FirebaseCrashlytics _crashlytics = FirebaseCrashlytics.instance;
+import '../../app_config.dart';
 
-  AuthProvider({FirebaseAuth firebaseAuth, GoogleSignIn googleSignIn})
-      : _firebaseAuth = firebaseAuth ?? FirebaseAuth.instance,
-        _googleSignIn = googleSignIn ?? GoogleSignIn();
+class AuthProvider implements AuthRepository {
+  final FirebaseAuth _firebaseAuth = FirebaseAuth.instance;
+  final GoogleSignIn _googleSignIn = GoogleSignIn();
+  final FirebaseCrashlytics _crashlytics = FirebaseCrashlytics.instance;
+  final AppConfig appConfig;
+
+  AuthProvider({
+    @required AppConfig this.appConfig,
+  });
 
   Stream<User> getAuthState() {
     return _firebaseAuth
@@ -21,8 +24,7 @@ class AuthProvider implements AuthRepository {
         .map((firebaseUser) => User.fromFirebaseUser(firebaseUser));
   }
 
-  Future<String> getIdToken() async =>
-      await _firebaseAuth.currentUser.getIdToken();
+  Future<String> getIdToken() async => await _firebaseAuth.currentUser.getIdToken();
 
   Future<User> signInWithGoogle() async {
     GoogleSignInAccount googleUser;
@@ -32,8 +34,7 @@ class AuthProvider implements AuthRepository {
     try {
       googleUser = await _googleSignIn.signIn();
     } catch (err, stackTrace) {
-      await _crashlytics.recordError(err, stackTrace,
-          reason: "login error (signIn)");
+      await _crashlytics.recordError(err, stackTrace, reason: "login error (signIn)");
       throw err;
     }
 
@@ -45,8 +46,7 @@ class AuthProvider implements AuthRepository {
     try {
       googleAuth = await googleUser.authentication;
     } catch (err, stackTrace) {
-      await _crashlytics.recordError(err, stackTrace,
-          reason: "login error (authentication)");
+      await _crashlytics.recordError(err, stackTrace, reason: "login error (authentication)");
       throw err;
     }
 
@@ -56,8 +56,7 @@ class AuthProvider implements AuthRepository {
         idToken: googleAuth.idToken,
       );
     } catch (err, stackTrace) {
-      await _crashlytics.recordError(err, stackTrace,
-          reason: "login error (getCredential)");
+      await _crashlytics.recordError(err, stackTrace, reason: "login error (getCredential)");
       throw err;
     }
 
@@ -100,31 +99,56 @@ class AuthProvider implements AuthRepository {
     );
   }
 
+  @override
+  Future<void> signInPasswordless(String userEmail) {
+    ActionCodeSettings actionCodeSettings = ActionCodeSettings(
+        // URL you want to redirect back to. The domain (www.example.com) for this
+        // URL must be in the authorized domains list in the Firebase Console.
+        url: 'https://example.com',
+        handleCodeInApp: true,
+        iOSBundleId: appConfig.appUniqueIdentifier,
+        androidPackageName: appConfig.appUniqueIdentifier,
+        androidInstallApp: true,
+        // todo should be release version of passwordless auth
+        androidMinimumVersion: '1.0.0',
+        dynamicLinkDomain: appConfig.dynamicLinkDomain);
+    return _firebaseAuth.sendSignInLinkToEmail(
+        email: userEmail, actionCodeSettings: actionCodeSettings);
+  }
+
+  @override
+  Future<void> completeSignInPasswordless(String userEmail, Uri emailLink) {
+    return _firebaseAuth.signInWithEmailLink(email: userEmail, emailLink: emailLink.toString());
+  }
+
   Future<void> signOut() async {
     return Future.wait([
       _firebaseAuth.signOut(),
       _googleSignIn.disconnect(),
-
     ]);
   }
 
   @override
   Future<User> loginWithTestUser({test = 0, owner = false, master = false}) async {
     if (test == 1) {
-      await this._firebaseAuth.signInWithEmailAndPassword(
-          email: "test@test.com", password: "test123");
+      await this
+          ._firebaseAuth
+          .signInWithEmailAndPassword(email: "test@test.com", password: "test123");
     }
     if (test == 2) {
-      await this._firebaseAuth.signInWithEmailAndPassword(
-          email: "test-two@test.com", password: "test123");
+      await this
+          ._firebaseAuth
+          .signInWithEmailAndPassword(email: "test-two@test.com", password: "test123");
     }
     if (owner) {
-      await this._firebaseAuth.signInWithEmailAndPassword(
-          email: "test-owner@test.com", password: "test123");
+      await this
+          ._firebaseAuth
+          .signInWithEmailAndPassword(email: "test-owner@test.com", password: "test123");
     }
     if (master) {
-      await this._firebaseAuth.signInWithEmailAndPassword(
-          email: "test-master@test.com", password: "test123");
+      await this
+          ._firebaseAuth
+          .signInWithEmailAndPassword(email: "test-master@test.com", password: "test123");
     }
     var firebaseUser = _firebaseAuth.currentUser;
     debugPrint("test firebaseUser is [$firebaseUser]");
@@ -137,8 +161,7 @@ class AppleSignInNotSupportedException implements Exception {
   String _message;
 
   AppleSignInNotSupportedException(
-      [String message =
-          'Sign in with Apple is not supported for your version of IOS']) {
+      [String message = 'Sign in with Apple is not supported for your version of IOS']) {
     this._message = message;
   }
 

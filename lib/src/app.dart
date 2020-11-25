@@ -2,7 +2,6 @@ import 'package:checkin/src/blocs/auth/bloc.dart';
 import 'package:checkin/src/blocs/dynamic_link/bloc.dart';
 import 'package:checkin/src/blocs/theme/bloc.dart';
 import 'package:checkin/src/repositories/analytics_repository.dart';
-import 'package:checkin/src/repositories/auth_repository.dart';
 import 'package:checkin/src/repositories/image_repository.dart';
 import 'package:checkin/src/repositories/storage_repository.dart';
 import 'package:checkin/src/repositories/user_repository.dart';
@@ -18,28 +17,25 @@ import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:flutter_localizations/flutter_localizations.dart';
 import 'package:i18n_extension/i18n_widget.dart';
+import 'package:share/share.dart';
 
 import 'blocs/user/bloc.dart';
 import 'blocs/version/bloc.dart';
 
 class App extends StatefulWidget {
   final ThemeData _themeData;
-  final AuthRepository _authRepository;
   final StorageRepository _storageRepository;
   final ImageRepository _imageRepository;
 
   App({
     Key key,
     @required ThemeData themeData,
-    @required AuthRepository authRepository,
     @required StorageRepository storageRepository,
     @required ImageRepository imageRepository,
   })  : assert(themeData != null &&
-            authRepository != null &&
             storageRepository != null &&
             imageRepository != null),
         _themeData = themeData,
-        _authRepository = authRepository,
         _storageRepository = storageRepository,
         _imageRepository = imageRepository,
         super(key: key);
@@ -118,6 +114,10 @@ class _AppState extends State<App> with WidgetsBindingObserver {
 
                 Navigator.of(context).pushNamed(state.path);
               }
+
+              if(state is DynamicLinkToShare) {
+                Share.share(state.link);
+              }
             }),
             BlocListener<VersionBloc, VersionState>(
                 listener: (BuildContext context, VersionState state) {
@@ -131,9 +131,7 @@ class _AppState extends State<App> with WidgetsBindingObserver {
             debugPrint("auth state change detected in main app [$state]");
 
             if (state is AuthUnauthenticated) {
-              return LoginPage(
-                authRepository: widget._authRepository,
-              );
+              return LoginPage();
             }
 
             if (state is AuthAuthenticated) {
