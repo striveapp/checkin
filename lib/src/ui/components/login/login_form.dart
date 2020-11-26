@@ -1,7 +1,7 @@
 import 'package:checkin/src/blocs/login/bloc.dart';
 import 'package:checkin/src/localization/localization.dart';
-import 'package:checkin/src/ui/components/apple_sign_in_button.dart';
-import 'package:checkin/src/ui/components/google_sign_in_button.dart';
+import 'package:checkin/src/ui/components/login/apple_sign_in_button.dart';
+import 'package:checkin/src/ui/components/login/google_sign_in_button.dart';
 import 'package:checkin/src/util/debug_util.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
@@ -57,6 +57,13 @@ class _LoginFormState extends State<LoginForm> {
                   width: 200.0,
                 ),
               ),
+              if(isInDebugMode)
+                RaisedButton(
+                  key: Key('passwordlessButton'),
+                  onPressed: _onLoginPasswordless,
+                  child: Text('Email me a magic link'),
+                ),
+//              SizedBox(height: 20,),
               GoogleSignInButton(
                 key: Key('loginButton'),
                 onPressed: state is! LoginLoading
@@ -102,6 +109,14 @@ class _LoginFormState extends State<LoginForm> {
         },
       ),
     );
+  }
+
+  _onLoginPasswordless() {
+    // start navigation flow
+     // copy from slack :P
+     // retrieve email page
+     // check email page with current provided email
+    // on email dynamic link -> pop all routes
   }
 
   _onLoginWithGoogleButtonPressed() {
