@@ -13,6 +13,7 @@ class LoginForm extends StatefulWidget {
 }
 
 class _LoginFormState extends State<LoginForm> {
+  static const String emailMeMagicLink = 'Email me a magic link';
   LoginBloc _loginBloc;
 
   @override
@@ -61,7 +62,7 @@ class _LoginFormState extends State<LoginForm> {
                 RaisedButton(
                   key: Key('passwordlessButton'),
                   onPressed: _onLoginPasswordless,
-                  child: Text('Email me a magic link'),
+                  child: Text(emailMeMagicLink.i18n),
                 ),
 //              SizedBox(height: 20,),
               GoogleSignInButton(
@@ -112,11 +113,7 @@ class _LoginFormState extends State<LoginForm> {
   }
 
   _onLoginPasswordless() {
-    // start navigation flow
-     // copy from slack :P
-     // retrieve email page
-     // check email page with current provided email
-    // on email dynamic link -> pop all routes
+    Navigator.of(context).pushNamed("email-retrieve/");
   }
 
   _onLoginWithGoogleButtonPressed() {

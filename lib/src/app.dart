@@ -70,7 +70,8 @@ class _AppState extends State<App> with WidgetsBindingObserver {
   }
 
   void _onPlatformBrightnessChanged() {
-    final platformBrightness = WidgetsBinding.instance.window.platformBrightness;
+    final platformBrightness =
+        WidgetsBinding.instance.window.platformBrightness;
     var themeBloc = context.read<ThemeBloc>();
 
     if (platformBrightness == Brightness.dark) {
@@ -107,6 +108,7 @@ class _AppState extends State<App> with WidgetsBindingObserver {
           listeners: [
             BlocListener<DynamicLinkBloc, DynamicLinkState>(
                 listener: (BuildContext context, DynamicLinkState state) {
+              //TODO: on auth email dynamic link -> pop all routes
               if (state is DynamicLinkToNavigate) {
                 debugPrint("deep link received with path ${state.path}");
                 Navigator.of(context)
@@ -115,7 +117,7 @@ class _AppState extends State<App> with WidgetsBindingObserver {
                 Navigator.of(context).pushNamed(state.path);
               }
 
-              if(state is DynamicLinkToShare) {
+              if (state is DynamicLinkToShare) {
                 Share.share(state.link);
               }
             }),

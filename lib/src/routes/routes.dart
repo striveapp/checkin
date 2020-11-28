@@ -16,6 +16,7 @@ class Routes {
     SubPlanHandler(),
     PaymentSuccessHandler(),
     StatsHandler(),
+    EmailRetrieveHandler(),
   ];
 
 
