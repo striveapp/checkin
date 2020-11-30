@@ -1,5 +1,6 @@
-import 'package:flutter/material.dart';
 import 'package:checkin/src/localization/localization.dart';
+import 'package:checkin/src/util/intent_launcher_util.dart';
+import 'package:flutter/material.dart';
 
 class CheckEmailView extends StatelessWidget {
   final String email;
@@ -71,8 +72,8 @@ class CheckEmailView extends StatelessWidget {
                 openEmailApp.i18n.toUpperCase(),
                 style: Theme.of(context).textTheme.button,
               ),
-              onPressed: () {
-                //TODO: open inbox app
+              onPressed: () async {
+                IntentLauncherUtil().launchEmailApp();
               },
             ),
           ),
