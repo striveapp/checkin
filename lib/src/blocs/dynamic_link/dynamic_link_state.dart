@@ -55,3 +55,13 @@ class DynamicLinkToShare extends DynamicLinkState {
   String toString() => 'ShareLink';
 }
 
+class DynamicLinkAuthenticated extends DynamicLinkState {
+
+  const DynamicLinkAuthenticated();
+
+  @override
+  List<Object> get props => [];
+
+  @override
+  String toString() => 'DynamicLinkAuthenticated';
+}

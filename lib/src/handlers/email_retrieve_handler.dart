@@ -1,3 +1,4 @@
+import 'package:checkin/src/blocs/auth/bloc.dart';
 import 'package:checkin/src/blocs/login/bloc.dart';
 import 'package:checkin/src/handlers/registerable_handler.dart';
 import 'package:checkin/src/repositories/analytics_repository.dart';
@@ -20,15 +21,23 @@ class EmailRetrieveHandler extends Handler implements RegisterableHandler {
   @override
   HandlerFunc get handlerFunc =>
       (BuildContext context, Map<String, List<String>> params) {
-        return BlocProvider(
-            create: (BuildContext context) => LoginBloc(
-                  authRepository: context.read<AuthRepository>(),
-                  userRepository: context.read<UserRepository>(),
-                  analyticsRepository: context.read<AnalyticsRepository>(),
-                  localStorageRepository:
-                      context.read<LocalStorageRepository>(),
-                ),
-            child: EmailRetrievePage(email: params[email]?.first));
+        return BlocListener<AuthBloc, AuthState>(
+          listener: (BuildContext context, AuthState state) {
+            if(state is AuthAuthenticated) {
+              Navigator.of(context)
+                    .popUntil(ModalRoute.withName(Navigator.defaultRouteName));
+            }
+          },
+          child: BlocProvider(
+              create: (BuildContext context) => LoginBloc(
+                    authRepository: context.read<AuthRepository>(),
+                    userRepository: context.read<UserRepository>(),
+                    analyticsRepository: context.read<AnalyticsRepository>(),
+                    localStorageRepository:
+                        context.read<LocalStorageRepository>(),
+                  ),
+              child: EmailRetrievePage(email: params[email]?.first)),
+        );
       };
 
   String get route => "email-retrieve/:$email";

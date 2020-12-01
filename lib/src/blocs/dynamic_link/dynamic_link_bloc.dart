@@ -43,6 +43,7 @@ class DynamicLinkBloc extends Bloc<DynamicLinkEvent, DynamicLinkState> {
       } else if (path.startsWith("/__/auth/")) {
         var userEmail = await localStorageRepository.getUserEmail();
         await authRepository.completeSignInPasswordless(userEmail, event.deepLink);
+        yield DynamicLinkAuthenticated();
       } else {
         if (event.deepLink.hasQuery) {
           path = "$path?${event.deepLink.query}";

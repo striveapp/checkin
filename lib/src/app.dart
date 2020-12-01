@@ -63,6 +63,7 @@ class _AppState extends State<App> with WidgetsBindingObserver {
 
   @override
   void didChangeAppLifecycleState(final AppLifecycleState state) {
+    debugPrint("AppLifecycleState changed to [$state]");
     if (state == AppLifecycleState.resumed) {
       var authBloc = context.read<AuthBloc>();
       authBloc.add(AppStarted());
@@ -108,13 +109,19 @@ class _AppState extends State<App> with WidgetsBindingObserver {
           listeners: [
             BlocListener<DynamicLinkBloc, DynamicLinkState>(
                 listener: (BuildContext context, DynamicLinkState state) {
-              //TODO: on auth email dynamic link -> pop all routes
               if (state is DynamicLinkToNavigate) {
                 debugPrint("deep link received with path ${state.path}");
                 Navigator.of(context)
                     .popUntil(ModalRoute.withName(Navigator.defaultRouteName));
 
                 Navigator.of(context).pushNamed(state.path);
+              }
+
+
+              if(state is DynamicLinkAuthenticated) {
+                // must reload authbloc listener, when app is open in the same task stack of another app
+                var authBloc = context.read<AuthBloc>();
+                authBloc.add(AppStarted());
               }
 
               if (state is DynamicLinkToShare) {
