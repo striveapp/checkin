@@ -4,6 +4,12 @@ import 'package:checkin/src/localization/localization.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 
 class InsertEmailView extends StatefulWidget {
+  static const String insetEmailPlaceholder = "Your email address";
+  static const String next = "Next";
+  static const String invalidEmail = "Sorry, but that email is invalid.";
+  static const String sendEmailExplanation =
+      "We'll send you an email that'll instantly sign you in";
+
   @override
   _InsertEmailViewState createState() => _InsertEmailViewState();
 }
@@ -11,11 +17,6 @@ class InsertEmailView extends StatefulWidget {
 class _InsertEmailViewState extends State<InsertEmailView> {
   static const Pattern EMAIL_REGEX =
       r"^[a-zA-Z0-9.!#$%&'*+\/=?^_`{|}~-]+@[a-zA-Z0-9](?:[a-zA-Z0-9-]{0,61}[a-zA-Z0-9])?(?:\.[a-zA-Z0-9](?:[a-zA-Z0-9-]{0,61}[a-zA-Z0-9])?)*$";
-  static const String insetEmailPlaceholder = "Your email address";
-  static const String next = "Next";
-  static const String invalidEmail = "Sorry, but that email is invalid.";
-  static const String sendEmailExplanation =
-      "We'll send you an email that'll instantly sign you in";
 
   final GlobalKey<FormState> _formKey = GlobalKey<FormState>();
   AutovalidateMode _autoValidateMode = AutovalidateMode.disabled;
@@ -45,12 +46,13 @@ class _InsertEmailViewState extends State<InsertEmailView> {
                       focusedBorder: InputBorder.none,
                       enabledBorder: InputBorder.none,
                       errorBorder: InputBorder.none,
+                      errorMaxLines: 2,
                       errorStyle: Theme.of(context)
                           .textTheme
                           .bodyText1
                           .apply(color: Theme.of(context).errorColor),
                       disabledBorder: InputBorder.none,
-                      labelText: insetEmailPlaceholder.i18n,
+                      labelText: InsertEmailView.insetEmailPlaceholder.i18n,
                       labelStyle: Theme.of(context).textTheme.headline1,
                     ),
                     validator: _validateEmail,
@@ -63,7 +65,7 @@ class _InsertEmailViewState extends State<InsertEmailView> {
                   height: 5,
                 ),
                 Text(
-                  sendEmailExplanation.i18n,
+                  InsertEmailView.sendEmailExplanation.i18n,
                   style: Theme.of(context).textTheme.headline5,
                 ),
               ],
@@ -73,7 +75,7 @@ class _InsertEmailViewState extends State<InsertEmailView> {
             width: double.infinity,
             child: RaisedButton(
               child: Text(
-                next.i18n.toUpperCase(),
+                InsertEmailView.next.i18n.toUpperCase(),
                 style: Theme.of(context).textTheme.button,
               ),
               onPressed: () {
@@ -98,7 +100,7 @@ class _InsertEmailViewState extends State<InsertEmailView> {
   String _validateEmail(String value) {
     RegExp regex = new RegExp(EMAIL_REGEX);
     if (!regex.hasMatch(value))
-      return invalidEmail.i18n;
+      return InsertEmailView.invalidEmail.i18n;
     else
       return null;
   }

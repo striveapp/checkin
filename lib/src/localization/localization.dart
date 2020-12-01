@@ -2,8 +2,11 @@ import 'package:checkin/src/blocs/login/bloc.dart';
 import 'package:checkin/src/constants.dart' as constants;
 import 'package:checkin/src/models/grade.dart';
 import 'package:checkin/src/ui/components/account/payment.dart';
+import 'package:checkin/src/ui/components/email_retrieval/check_email_view.dart';
+import 'package:checkin/src/ui/components/email_retrieval/insert_email_view.dart';
 import 'package:checkin/src/ui/components/login/apple_sign_in_button.dart';
 import 'package:checkin/src/ui/components/lesson_card.dart';
+import 'package:checkin/src/ui/components/login/login_form.dart';
 import 'package:checkin/src/ui/components/payment_methods/active_payment_method.dart';
 import 'package:checkin/src/ui/components/payment_methods/empty_payment_method.dart';
 import 'package:checkin/src/ui/components/plans/plans_callout.dart';
@@ -468,6 +471,38 @@ extension Localization on String {
     'en': GraduateDialog.readyForGraduation,
     'es': 'Ya tiene todas las clases necesarias para graduarse',
     'it': 'Ha tutte le classi necessarie per essere promosso',
+  } + {
+    'en': LoginForm.emailMeMagicLink,
+    'es': 'Enviame un enlace mágico',
+    'it': 'Inviami un magic link',
+  } + {
+    'en': CheckEmailView.checkYourEmail,
+    'es': '¡Revisa tu correo!',
+    'it': 'Controlla la mail!',
+  } + {
+    'en': CheckEmailView.toConfirmEmail,
+    'es': 'Para confirmar tu dirección, toca el enlace en el correo que enviamos a',
+    'it': 'Per confermare la tua email fai tap su link nella mail che ti abbiamo inviato a',
+  } + {
+    'en': CheckEmailView.openEmailApp,
+    'es': 'Abrir correo electrónico',
+    'it': 'Apri posta elettronica',
+  } + {
+    'en': InsertEmailView.insetEmailPlaceholder,
+    'es': 'Tu dirección de correo',
+    'it': 'Il tuo indirizzo email',
+  } + {
+    'en': InsertEmailView.invalidEmail,
+    'es': 'Ha habido un problema con tu correo electrónico. Comprúebalo y inténtalo de nuevo',
+    'it': 'C\'è stato un problema con la tua email. Controllala e riprova',
+  } + {
+    'en': InsertEmailView.sendEmailExplanation,
+    'es': 'Te enviaremos un correo con el que te conectaras al instante',
+    'it': 'Ti invieremo una mail con la quale potrai connetterti instantaneamente',
+  } + {
+    'en': InsertEmailView.next,
+    'es': 'Siguiente',
+    'it': 'Continua',
   };
 
 String get i18n => localize(this, _t);

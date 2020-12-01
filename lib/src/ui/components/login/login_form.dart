@@ -8,12 +8,13 @@ import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:platform/platform.dart';
 
 class LoginForm extends StatefulWidget {
+  static const String emailMeMagicLink = 'Email me a magic link';
+
   @override
   State<LoginForm> createState() => _LoginFormState();
 }
 
 class _LoginFormState extends State<LoginForm> {
-  static const String emailMeMagicLink = 'Email me a magic link';
   LoginBloc _loginBloc;
 
   @override
@@ -58,11 +59,11 @@ class _LoginFormState extends State<LoginForm> {
                   width: 200.0,
                 ),
               ),
-              if(isInDebugMode)
+              if (isInDebugMode)
                 RaisedButton(
                   key: Key('passwordlessButton'),
                   onPressed: _onLoginPasswordless,
-                  child: Text(emailMeMagicLink.i18n),
+                  child: Text(LoginForm.emailMeMagicLink.i18n),
                 ),
 //              SizedBox(height: 20,),
               GoogleSignInButton(
