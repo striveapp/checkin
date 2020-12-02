@@ -178,7 +178,7 @@ void main() {
           ),
           act: (DynamicLinkBloc bloc) =>
               bloc.add(DeepLinkReceived(deepLink: fakeAuthenticationLink)),
-          expect: [],
+          expect: [DynamicLinkAuthenticated()],
         );
       });
     });
