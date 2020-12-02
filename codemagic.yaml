@@ -16,7 +16,6 @@ workflows:
       cache_paths:
         - $FCI_BUILD_DIR/build
         - $HOME/.gradle/caches
-        - $FLUTTER_ROOT/.pub-cache
     triggering:
       events:
         - push
