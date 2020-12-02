@@ -1,5 +1,6 @@
 import 'package:checkin/src/models/grade.dart';
 import 'package:checkin/src/models/user.dart';
+import 'package:pub_semver/pub_semver.dart';
 
 abstract class UserRepository {
   Stream<User> getUserByEmail(String email);
@@ -16,5 +17,5 @@ abstract class UserRepository {
 
   Future<void> updateSelectedGymId(String userEmail, String newSelectedGym);
 
-  Future<void> updateUserVersion(String userEmail, String newVersion);
+  Future<void> updateUserAppVersion(String userEmail, Version newVersion);
 }

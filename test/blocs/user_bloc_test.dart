@@ -9,7 +9,6 @@ import 'package:checkin/src/models/user.dart';
 import 'package:checkin/src/repositories/image_repository.dart';
 import 'package:checkin/src/repositories/storage_repository.dart';
 import 'package:checkin/src/repositories/user_repository.dart';
-import 'package:flutter/services.dart';
 import 'package:flutter_test/flutter_test.dart';
 import 'package:mockito/mockito.dart';
 
@@ -17,7 +16,7 @@ import 'helper/mock_helper.dart';
 
 class MockUserRepository extends Mock implements UserRepository {}
 
-class MockstorageRepository extends Mock implements StorageRepository {}
+class MockStorageRepository extends Mock implements StorageRepository {}
 
 class MockImageRepository extends Mock implements ImageRepository {}
 
@@ -26,7 +25,7 @@ class MockAuthBloc extends Mock implements AuthBloc {}
 void main() {
   group("UserBloc", () {
     MockUserRepository mockUserRepository;
-    MockstorageRepository mockstorageRepository;
+    MockStorageRepository mockStorageRepository;
     MockImageRepository mockImageRepository;
     AuthBloc mockAuthBloc;
     User testUser = User(
@@ -37,17 +36,17 @@ void main() {
 
     setUp(() {
       mockUserRepository = MockUserRepository();
-      mockstorageRepository = MockstorageRepository();
+      mockStorageRepository = MockStorageRepository();
       mockImageRepository = MockImageRepository();
       mockAuthBloc = MockAuthBloc();
 
       configureThrowOnMissingStub(
-          [mockUserRepository, mockstorageRepository, mockImageRepository]);
+          [mockUserRepository, mockStorageRepository, mockImageRepository]);
     });
 
     tearDown(() {
       logAndVerifyNoMoreInteractions(
-          [mockUserRepository, mockstorageRepository, mockImageRepository]);
+          [mockUserRepository, mockStorageRepository, mockImageRepository]);
     });
 
     // todo missing initial state test
@@ -64,30 +63,9 @@ void main() {
               .thenAnswer((_) {
             return Stream<User>.fromFuture(Future.value(testUser));
           });
-
-          // set current version to 1.0.0
-          TestWidgetsFlutterBinding.ensureInitialized();
-          const MethodChannel('plugins.flutter.io/package_info')
-              .setMockMethodCallHandler((MethodCall methodCall) async {
-            if (methodCall.method == 'getAll') {
-              return <String, dynamic>{
-                'version': '1.0.0',
-                'buildNumber': '100'
-              };
-            }
-            return null;
-          });
-
-          when(mockUserRepository.updateUserVersion(
-                  testUser.email, "1.0.0+100"))
-              .thenAnswer((realInvocation) => null);
         });
 
         tearDown(() async {
-          await untilCalled(mockUserRepository.updateUserVersion(
-              testUser.email, "1.0.0+100"));
-          verify(mockUserRepository.updateUserVersion(
-              testUser.email, "1.0.0+100"));
           verify(mockUserRepository.getUserByEmail(testUser.email));
         });
 
@@ -96,7 +74,7 @@ void main() {
           build: () => UserBloc(
             authBloc: mockAuthBloc,
             userRepository: mockUserRepository,
-            storageRepository: mockstorageRepository,
+            storageRepository: mockStorageRepository,
             imageRepository: mockImageRepository,
           ),
           expect: [UserSuccess(currentUser: testUser)],
@@ -120,7 +98,7 @@ void main() {
           build: () => UserBloc(
             authBloc: mockAuthBloc,
             userRepository: mockUserRepository,
-            storageRepository: mockstorageRepository,
+            storageRepository: mockStorageRepository,
             imageRepository: mockImageRepository,
           ),
           expect: [UserError()],
@@ -146,7 +124,7 @@ void main() {
           build: () => UserBloc(
                 authBloc: mockAuthBloc,
                 userRepository: mockUserRepository,
-                storageRepository: mockstorageRepository,
+                storageRepository: mockStorageRepository,
                 imageRepository: mockImageRepository,
               ),
           seed: UserState.userSuccess(currentUser: testUser),
@@ -174,7 +152,7 @@ void main() {
           build: () => UserBloc(
                 authBloc: mockAuthBloc,
                 userRepository: mockUserRepository,
-                storageRepository: mockstorageRepository,
+                storageRepository: mockStorageRepository,
                 imageRepository: mockImageRepository,
               ),
           seed: UserState.userSuccess(currentUser: testUser),
@@ -191,7 +169,7 @@ void main() {
           return Future.value(fakeImage);
         });
 
-        when(mockstorageRepository.uploadImage(
+        when(mockStorageRepository.uploadImage(
                 fakeImage, argThat(endsWith(".png"))))
             .thenAnswer((_) {
           return Future.value(newImageUrl);
@@ -205,12 +183,12 @@ void main() {
 
       tearDown(() async {
         await untilCalled(mockImageRepository.getCroppedImage());
-        await untilCalled(mockstorageRepository.uploadImage(
+        await untilCalled(mockStorageRepository.uploadImage(
             fakeImage, argThat(endsWith(".png"))));
         await untilCalled(
             mockUserRepository.updateUserImageUrl(testUser.email, newImageUrl));
         verify(mockImageRepository.getCroppedImage());
-        verify(mockstorageRepository.uploadImage(
+        verify(mockStorageRepository.uploadImage(
             fakeImage, argThat(endsWith(".png"))));
         verify(
             mockUserRepository.updateUserImageUrl(testUser.email, newImageUrl));
@@ -220,7 +198,7 @@ void main() {
           build: () => UserBloc(
                 authBloc: mockAuthBloc,
                 userRepository: mockUserRepository,
-                storageRepository: mockstorageRepository,
+                storageRepository: mockStorageRepository,
                 imageRepository: mockImageRepository,
               ),
           seed: UserState.userSuccess(currentUser: testUser),
@@ -252,7 +230,7 @@ void main() {
           build: () => UserBloc(
                 authBloc: mockAuthBloc,
                 userRepository: mockUserRepository,
-                storageRepository: mockstorageRepository,
+                storageRepository: mockStorageRepository,
                 imageRepository: mockImageRepository,
               ),
           seed: UserState.userSuccess(currentUser: testUser),
@@ -281,7 +259,7 @@ void main() {
           build: () => UserBloc(
                 authBloc: mockAuthBloc,
                 userRepository: mockUserRepository,
-                storageRepository: mockstorageRepository,
+                storageRepository: mockStorageRepository,
                 imageRepository: mockImageRepository,
               ),
           seed: UserState.userSuccess(currentUser: testUser),

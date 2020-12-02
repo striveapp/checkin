@@ -31,6 +31,7 @@ import 'package:checkin/src/resources/user_provider.dart';
 import 'package:checkin/src/routes/application.dart';
 import 'package:checkin/src/routes/routes.dart';
 import 'package:checkin/src/simple_bloc_observer.dart';
+import 'package:checkin/src/util/version_util.dart';
 import 'package:firebase_core/firebase_core.dart';
 import 'package:firebase_crashlytics/firebase_crashlytics.dart';
 import 'package:firebase_dynamic_links/firebase_dynamic_links.dart';
@@ -97,6 +98,9 @@ Future<void> mainCommon(AppConfig appConfig) async {
           RepositoryProvider<LocalStorageRepository>(
             create: (context) => LocalStorageProvider(),
           ),
+          RepositoryProvider<VersionRepository>(
+            create: (context) => VersionRepository(),
+          ),
         ],
         child: MultiBlocProvider(
           providers: [
@@ -105,11 +109,13 @@ Future<void> mainCommon(AppConfig appConfig) async {
             ),
             BlocProvider<AuthBloc>(
               create: (context) => AuthBloc(
-                authRepository: context.read<AuthRepository>(),
-                analyticsRepository: context.read<AnalyticsRepository>(),
-                userRepository: context.read<UserRepository>(),
-                localStorageRepository: context.read<LocalStorageRepository>()
-              )..add(AppStarted()),
+                  authRepository: context.read<AuthRepository>(),
+                  analyticsRepository: context.read<AnalyticsRepository>(),
+                  userRepository: context.read<UserRepository>(),
+                  localStorageRepository:
+                      context.read<LocalStorageRepository>(),
+                  versionUtil: VersionUtil())
+                ..add(AppStarted()),
             ),
             BlocProvider<DynamicLinkBloc>(
               create: (context) => DynamicLinkBloc(
@@ -120,8 +126,9 @@ Future<void> mainCommon(AppConfig appConfig) async {
               )..add(DeepLinkSetup()),
             ),
             BlocProvider<VersionBloc>(
-                create: (context) =>
-                    VersionBloc(versionRepository: VersionRepository())),
+                create: (context) => VersionBloc(
+                    versionRepository: context.read<VersionRepository>(),
+                    versionUtil: VersionUtil())),
           ],
           child: BlocBuilder<ThemeBloc, ThemeState>(
               builder: (BuildContext context, ThemeState state) => App(

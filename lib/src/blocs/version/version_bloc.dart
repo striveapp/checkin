@@ -2,19 +2,21 @@ import 'dart:async';
 
 import 'package:bloc/bloc.dart';
 import 'package:checkin/src/repositories/version_repository.dart';
+import 'package:checkin/src/util/version_util.dart';
 import 'package:flutter/foundation.dart';
-import 'package:package_info/package_info.dart';
 import 'package:pub_semver/pub_semver.dart';
 
 import 'bloc.dart';
 
 class VersionBloc extends Bloc<VersionEvent, VersionState> {
   final VersionRepository versionRepository;
+  final VersionUtil versionUtil;
 
   StreamSubscription<String> versionSub;
 
   VersionBloc({
     @required this.versionRepository,
+    @required this.versionUtil,
   })  : assert(versionRepository != null),
         super(VersionInitial()) {
     versionSub = this
@@ -30,21 +32,14 @@ class VersionBloc extends Bloc<VersionEvent, VersionState> {
   @override
   Stream<VersionState> mapEventToState(VersionEvent event) async* {
     if (event is VersionUpdated) {
-      final minimumVersionRequired =
-          VersionConstraint.parse('^${event.minimumVersionRequired}');
-
-      Version currentVersion = await _getCurrentVersion();
+      VersionConstraint minimumVersionRequired =
+          VersionConstraint.parse("^${event.minimumVersionRequired}");
+      Version currentVersion = await versionUtil.getCurrentVersion();
 
       if (!minimumVersionRequired.allows(currentVersion)) {
         yield UpdateRequired();
       }
     }
-  }
-
-  Future<Version> _getCurrentVersion() async {
-    PackageInfo packageInfo = await PackageInfo.fromPlatform();
-    Version currentVersion = Version.parse(packageInfo.version);
-    return currentVersion;
   }
 
   @override

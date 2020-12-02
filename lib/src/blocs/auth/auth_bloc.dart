@@ -7,38 +7,35 @@ import 'package:checkin/src/repositories/analytics_repository.dart';
 import 'package:checkin/src/repositories/auth_repository.dart';
 import 'package:checkin/src/repositories/local_storage_repository.dart';
 import 'package:checkin/src/repositories/user_repository.dart';
+import 'package:checkin/src/util/version_util.dart';
 import 'package:flutter/foundation.dart';
 import 'package:meta/meta.dart';
+import 'package:pub_semver/pub_semver.dart';
 
 class AuthBloc extends Bloc<AuthEvent, AuthState> {
-  final AuthRepository _authRepository;
-  final AnalyticsRepository _analyticsRepository;
-  final LocalStorageRepository _localStorageRepository;
-  final UserRepository _userRepository;
+  final AuthRepository authRepository;
+  final AnalyticsRepository analyticsRepository;
+  final LocalStorageRepository localStorageRepository;
+  final UserRepository userRepository;
+  final VersionUtil versionUtil;
+
   StreamSubscription _authSub;
   StreamSubscription _referredGymSub;
 
   AuthBloc({
-    @required AuthRepository authRepository,
-    @required AnalyticsRepository analyticsRepository,
-    @required LocalStorageRepository localStorageRepository,
-    @required UserRepository userRepository,
-  })  : assert(authRepository != null &&
-            analyticsRepository != null &&
-            localStorageRepository != null &&
-            userRepository != null),
-        _authRepository = authRepository,
-        _analyticsRepository = analyticsRepository,
-        _localStorageRepository = localStorageRepository,
-        _userRepository = userRepository,
-        super(AuthUninitialized());
+    @required this.authRepository,
+    @required this.analyticsRepository,
+    @required this.localStorageRepository,
+    @required this.userRepository,
+    @required this.versionUtil,
+  }) : super(AuthUninitialized());
 
   @override
   Stream<AuthState> mapEventToState(AuthEvent event) async* {
     if (event is AppStarted) {
       _authSub?.cancel();
       try {
-        _authSub = this._authRepository.getAuthState().listen(
+        _authSub = authRepository.getAuthState().listen(
             (loggedUser) async => add(AuthUpdated(loggedUser: loggedUser)));
       } catch (e) {
         debugPrint(
@@ -52,11 +49,12 @@ class AuthBloc extends Bloc<AuthEvent, AuthState> {
           'add AuthUpdated with user: ${event.loggedUser ?? "Unauthenticated"}');
       if (event.loggedUser != null) {
         try {
-          await _analyticsRepository.setUserProperties(event.loggedUser.uid);
-          await _analyticsRepository.logUserLocale();
+          await analyticsRepository.setUserProperties(event.loggedUser.uid);
+          await analyticsRepository.logUserLocale();
+          await _setCurrentVersionForUser(event.loggedUser.email);
           await _setReferredGymForUser(event.loggedUser.email);
         } finally {
-          await _localStorageRepository.removeUserEmail();
+          await localStorageRepository.removeUserEmail();
           yield AuthAuthenticated(loggedUser: event.loggedUser);
         }
       } else {
@@ -67,7 +65,7 @@ class AuthBloc extends Bloc<AuthEvent, AuthState> {
     if (event is LogOut) {
       try {
         debugPrint('Attempting to LogOut...');
-        await this._authRepository.signOut();
+        await authRepository.signOut();
       } catch (e) {
         debugPrint('Error occurred trying to signOut:' + e.toString());
       }
@@ -76,14 +74,18 @@ class AuthBloc extends Bloc<AuthEvent, AuthState> {
 
   Future<void> _setReferredGymForUser(String userEmail) async {
     await _referredGymSub?.cancel();
-    _referredGymSub = _localStorageRepository
-        .getReferredGymId()
-        .listen((referredGymId) async {
+    _referredGymSub =
+        localStorageRepository.getReferredGymId().listen((referredGymId) async {
       print("Setting referredGym [$referredGymId] for user [$userEmail]");
-      await _userRepository.updateSelectedGymId(userEmail, referredGymId);
-      await _localStorageRepository.removeReferredGym();
+      await userRepository.updateSelectedGymId(userEmail, referredGymId);
+      await localStorageRepository.removeReferredGym();
       await _referredGymSub.cancel();
     });
+  }
+
+  Future<void> _setCurrentVersionForUser(String userEmail) async {
+    Version currentVersion = await versionUtil.getCurrentVersion();
+    await userRepository.updateUserAppVersion(userEmail, currentVersion);
   }
 
   @override

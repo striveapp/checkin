@@ -11,7 +11,6 @@ import 'package:checkin/src/repositories/storage_repository.dart';
 import 'package:checkin/src/repositories/user_repository.dart';
 import 'package:flutter/foundation.dart';
 import 'package:meta/meta.dart';
-import 'package:package_info/package_info.dart';
 
 class UserBloc extends Bloc<UserEvent, UserState> {
   final UserRepository userRepository;
@@ -38,7 +37,6 @@ class UserBloc extends Bloc<UserEvent, UserState> {
           .getUserByEmail(authState.loggedUser.email)
           .listen((user) {
         add(UserUpdated(user: user));
-        add(UserEvent.updateVersion(userEmail: user?.email));
       });
     }
 
@@ -106,18 +104,6 @@ class UserBloc extends Bloc<UserEvent, UserState> {
               userEmail,
               newSelectedGym,
             ),
-        updateVersion: (String userEmail) async {
-          try {
-            PackageInfo packageInfo = await PackageInfo.fromPlatform();
-            String appVersion =
-                "${packageInfo.version}+${packageInfo.buildNumber}";
-            await userRepository.updateUserVersion(userEmail, appVersion);
-          } catch (err) {
-            debugPrint(
-                'Error ocurred when retrieving current installed version of the app:' +
-                    err.toString());
-          }
-        },
         orElse: () => UserState.userError());
   }
 

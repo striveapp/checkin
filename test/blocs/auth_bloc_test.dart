@@ -5,7 +5,9 @@ import 'package:checkin/src/repositories/analytics_repository.dart';
 import 'package:checkin/src/repositories/auth_repository.dart';
 import 'package:checkin/src/repositories/local_storage_repository.dart';
 import 'package:checkin/src/repositories/user_repository.dart';
+import 'package:checkin/src/util/version_util.dart';
 import 'package:mockito/mockito.dart';
+import 'package:pub_semver/pub_semver.dart';
 import 'package:test/test.dart';
 
 import 'helper/mock_helper.dart';
@@ -16,7 +18,10 @@ class MockAnalyticsRepository extends Mock implements AnalyticsRepository {}
 
 class MockUserRepository extends Mock implements UserRepository {}
 
-class MockLocalStorageRepository extends Mock implements LocalStorageRepository {}
+class MockLocalStorageRepository extends Mock
+    implements LocalStorageRepository {}
+
+class MockVersionUtil extends Mock implements VersionUtil {}
 
 void main() {
   group('AuthBloc', () {
@@ -24,6 +29,7 @@ void main() {
     MockAnalyticsRepository mockAnalyticsRepository;
     MockUserRepository mockUserRepository;
     MockLocalStorageRepository mockLocalStorageRepository;
+    MockVersionUtil mockVersionUtil;
 
     User fakeUser = User(
       uid: "123",
@@ -37,12 +43,14 @@ void main() {
       mockAnalyticsRepository = MockAnalyticsRepository();
       mockUserRepository = MockUserRepository();
       mockLocalStorageRepository = MockLocalStorageRepository();
+      mockVersionUtil = MockVersionUtil();
 
       configureThrowOnMissingStub([
         mockAuthRepository,
         mockAnalyticsRepository,
         mockUserRepository,
         mockLocalStorageRepository,
+        mockVersionUtil,
       ]);
     });
 
@@ -52,6 +60,7 @@ void main() {
         mockAnalyticsRepository,
         mockUserRepository,
         mockLocalStorageRepository,
+        mockVersionUtil,
       ]);
     });
 
@@ -64,6 +73,7 @@ void main() {
           analyticsRepository: mockAnalyticsRepository,
           userRepository: mockUserRepository,
           localStorageRepository: mockLocalStorageRepository,
+          versionUtil: mockVersionUtil,
         );
       });
 
@@ -78,13 +88,16 @@ void main() {
 
     group("on AppStarted event", () {
       group("when user is logged in", () {
+        var fakeAppVersion = Version.parse("1.0.0");
+
         setUp(() {
           when(mockAuthRepository.getAuthState()).thenAnswer((_) {
             return Stream<User>.value(fakeUser);
           });
           when(mockAnalyticsRepository.setUserProperties(fakeUser.uid))
               .thenAnswer((realInvocation) => null);
-          when(mockAnalyticsRepository.logUserLocale()).thenAnswer((realInvocation) => null);
+          when(mockAnalyticsRepository.logUserLocale())
+              .thenAnswer((realInvocation) => null);
         });
 
         tearDown(() {
@@ -95,12 +108,24 @@ void main() {
 
         group("and the local storage is empty", () {
           setUp(() {
-            when(mockLocalStorageRepository.getReferredGymId()).thenAnswer((_) => Stream.empty());
+            when(mockVersionUtil.getCurrentVersion())
+                .thenAnswer((_) => Future.value(fakeAppVersion));
+            when(mockUserRepository.updateUserAppVersion(
+              fakeUser.email,
+              fakeAppVersion,
+            )).thenAnswer((realInvocation) => Future.value());
+            when(mockLocalStorageRepository.getReferredGymId())
+                .thenAnswer((_) => Stream.empty());
             when(mockLocalStorageRepository.removeUserEmail())
                 .thenAnswer((realInvocation) => Future.value());
           });
 
           tearDown(() {
+            verify(mockVersionUtil.getCurrentVersion());
+            verify(mockUserRepository.updateUserAppVersion(
+              fakeUser.email,
+              Version.parse("1.0.0"),
+            ));
             verify(mockLocalStorageRepository.getReferredGymId());
             verify(mockLocalStorageRepository.removeUserEmail());
           });
@@ -112,6 +137,7 @@ void main() {
               analyticsRepository: mockAnalyticsRepository,
               userRepository: mockUserRepository,
               localStorageRepository: mockLocalStorageRepository,
+              versionUtil: mockVersionUtil,
             ),
             act: (bloc) => bloc.add(AppStarted()),
             expect: [
@@ -123,18 +149,30 @@ void main() {
         group("and the local storage has a referredGym", () {
           var fakeReferredGym = "fakeGym";
           setUp(() {
+            when(mockVersionUtil.getCurrentVersion())
+                .thenAnswer((_) => Future.value(fakeAppVersion));
+            when(mockUserRepository.updateUserAppVersion(
+              fakeUser.email,
+              fakeAppVersion,
+            )).thenAnswer((realInvocation) => Future.value());
             when(mockLocalStorageRepository.getReferredGymId())
                 .thenAnswer((_) => Stream.value(fakeReferredGym));
             when(mockUserRepository.updateSelectedGymId(
               fakeUser.email,
               fakeReferredGym,
             )).thenAnswer((realInvocation) => Future.value());
-            when(mockLocalStorageRepository.removeReferredGym()).thenAnswer((_) => Future.value());
+            when(mockLocalStorageRepository.removeReferredGym())
+                .thenAnswer((_) => Future.value());
             when(mockLocalStorageRepository.removeUserEmail())
                 .thenAnswer((realInvocation) => Future.value());
           });
 
           tearDown(() {
+            verify(mockVersionUtil.getCurrentVersion());
+            verify(mockUserRepository.updateUserAppVersion(
+              fakeUser.email,
+              Version.parse("1.0.0"),
+            ));
             verify(mockLocalStorageRepository.getReferredGymId());
             verify(mockUserRepository.updateSelectedGymId(
               fakeUser.email,
@@ -151,6 +189,7 @@ void main() {
               analyticsRepository: mockAnalyticsRepository,
               userRepository: mockUserRepository,
               localStorageRepository: mockLocalStorageRepository,
+              versionUtil: mockVersionUtil
             ),
             act: (bloc) => bloc.add(AppStarted()),
             expect: [
@@ -178,6 +217,7 @@ void main() {
             analyticsRepository: mockAnalyticsRepository,
             userRepository: mockUserRepository,
             localStorageRepository: mockLocalStorageRepository,
+            versionUtil: mockVersionUtil,
           ),
           act: (bloc) => bloc.add(AppStarted()),
           expect: [
@@ -202,6 +242,7 @@ void main() {
             analyticsRepository: mockAnalyticsRepository,
             userRepository: mockUserRepository,
             localStorageRepository: mockLocalStorageRepository,
+            versionUtil: mockVersionUtil,
           ),
           act: (bloc) => bloc.add(AppStarted()),
           expect: [
@@ -227,6 +268,7 @@ void main() {
           analyticsRepository: mockAnalyticsRepository,
           userRepository: mockUserRepository,
           localStorageRepository: mockLocalStorageRepository,
+          versionUtil: mockVersionUtil
         ),
         act: (bloc) => bloc.add(LogOut()),
         verify: (bloc) async {

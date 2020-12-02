@@ -5,6 +5,7 @@ import 'package:checkin/src/models/user.dart';
 import 'package:checkin/src/repositories/user_repository.dart';
 import 'package:checkin/src/resources/stats_provider.dart';
 import 'package:cloud_firestore/cloud_firestore.dart';
+import 'package:pub_semver/pub_semver.dart';
 
 class UserProvider implements UserRepository {
   FirebaseFirestore _firestore = FirebaseFirestore.instance;
@@ -83,10 +84,10 @@ class UserProvider implements UserRepository {
         .update({"imageUrl": newImageUrl});
   }
 
-  Future<void> updateUserVersion(String userEmail, String newVersion) async {
+  Future<void> updateUserAppVersion(String userEmail, Version newVersion) async {
     await _firestore
         .collection(path)
         .doc(userEmail)
-        .update({"appVersion": newVersion});
+        .update({"appVersion": newVersion.toString()});
   }
 }
