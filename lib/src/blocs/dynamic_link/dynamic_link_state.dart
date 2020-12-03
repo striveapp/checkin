@@ -39,6 +39,13 @@ class DynamicLinkSetDefaultGym extends DynamicLinkState {
 }
 
 class DynamicLinkError extends DynamicLinkState {
+  final String errorMessage;
+
+  DynamicLinkError({this.errorMessage});
+
+  @override
+  List<Object> get props => [errorMessage];
+
   @override
   String toString() => 'DynamicLinkError';
 }

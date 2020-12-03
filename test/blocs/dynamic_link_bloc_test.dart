@@ -1,8 +1,11 @@
 import 'package:bloc_test/bloc_test.dart';
 import 'package:checkin/src/blocs/dynamic_link/bloc.dart';
+import 'package:checkin/src/repositories/analytics_repository.dart';
 import 'package:checkin/src/repositories/auth_repository.dart';
 import 'package:checkin/src/repositories/dynamic_link_repository.dart';
+import 'package:checkin/src/resources/auth_provider.dart';
 import 'package:checkin/src/resources/local_storage_provider.dart';
+import 'package:firebase_auth/firebase_auth.dart';
 import 'package:firebase_dynamic_links/firebase_dynamic_links.dart';
 import 'package:flutter_test/flutter_test.dart';
 import 'package:mockito/mockito.dart';
@@ -14,6 +17,14 @@ class MockFirebaseDynamicLinks extends Mock implements FirebaseDynamicLinks {}
 class MockPendingDynamicLinkData extends Mock implements PendingDynamicLinkData {}
 
 class MockOnLinkErrorException extends Mock implements OnLinkErrorException {}
+
+class FakeOnLinkErrorException extends Fake implements OnLinkErrorException {
+
+  @override
+  String toString() {
+    return 'FakeOnLinkErrorException';
+  }
+}
 
 class MyDynamicLinkToNavigate extends DynamicLinkToNavigate {
   MyDynamicLinkToNavigate({String path}) : super(path: path);
@@ -33,6 +44,8 @@ class MockDynamicLinkRepository extends Mock implements DynamicLinkRepository {}
 
 class MockAuthRepository extends Mock implements AuthRepository {}
 
+class MockAnalyticsRepository extends Mock implements AnalyticsRepository {}
+
 void main() {
   group("DynamicLinkBloc", () {
     MockFirebaseDynamicLinks mockFirebaseDynamicLinks;
@@ -40,6 +53,7 @@ void main() {
     MockLocalStorageRepository mockLocalStorageRepository;
     MockDynamicLinkRepository mockDynamicLinkRepository;
     MockAuthRepository mockAuthRepository;
+    MockAnalyticsRepository mockAnalyticsRepository;
 
     String fakeLessonId = "123456";
 
@@ -48,7 +62,7 @@ void main() {
       mockLocalStorageRepository = MockLocalStorageRepository();
       mockDynamicLinkRepository = MockDynamicLinkRepository();
       mockAuthRepository = MockAuthRepository();
-
+      mockAnalyticsRepository = MockAnalyticsRepository();
       fakeData = MockPendingDynamicLinkData();
       configureThrowOnMissingStub([
         mockFirebaseDynamicLinks,
@@ -56,6 +70,7 @@ void main() {
         mockLocalStorageRepository,
         mockDynamicLinkRepository,
         mockAuthRepository,
+        mockAnalyticsRepository,
       ]);
     });
 
@@ -66,6 +81,7 @@ void main() {
         mockLocalStorageRepository,
         mockDynamicLinkRepository,
         mockAuthRepository,
+        mockAnalyticsRepository,
       ]);
     });
 
@@ -78,6 +94,7 @@ void main() {
           localStorageRepository: mockLocalStorageRepository,
           dynamicLinkRepository: mockDynamicLinkRepository,
           authRepository: mockAuthRepository,
+          analyticsRepository: mockAnalyticsRepository,
         );
       });
 
@@ -107,6 +124,7 @@ void main() {
             localStorageRepository: mockLocalStorageRepository,
             dynamicLinkRepository: mockDynamicLinkRepository,
             authRepository: mockAuthRepository,
+            analyticsRepository: mockAnalyticsRepository,
           ),
           act: (bloc) => bloc.add(DeepLinkSetup()),
           expect: [
@@ -146,40 +164,197 @@ void main() {
             localStorageRepository: mockLocalStorageRepository,
             dynamicLinkRepository: mockDynamicLinkRepository,
             authRepository: mockAuthRepository,
+            analyticsRepository: mockAnalyticsRepository,
           ),
           act: (DynamicLinkBloc bloc) => bloc.add(DeepLinkReceived(deepLink: fakeReferredDeepLink)),
           expect: [],
         );
       });
+      
       group("when the deeplink is an authentication link", () {
         final fakeAuthenticationLink = Uri(path: "/__/auth/super_safe_links_are_very_safe");
-        final String fakeUserEmail = "tobuto@nell.ano";
 
-        setUp(() {
-          when(mockLocalStorageRepository.getUserEmail())
-              .thenAnswer((realInvocation) => Future.value(fakeUserEmail));
-          when(mockAuthRepository.completeSignInPasswordless(fakeUserEmail, fakeAuthenticationLink))
-              .thenAnswer((realInvocation) => Future.value());
+        group("and the user email is found in local storage", () {
+          final String fakeUserEmail = "tobuto@nell.ano";
+          
+          setUp(() {
+            when(mockLocalStorageRepository.getUserEmail())
+                .thenAnswer((realInvocation) => Future.value(fakeUserEmail));
+          });
+
+          tearDown(() {
+            verify(mockLocalStorageRepository.getUserEmail());
+          });
+
+          group("and passwordless signin completes successfully", () {
+            setUp(() {
+              when(mockAuthRepository.completeSignInPasswordless(fakeUserEmail, fakeAuthenticationLink))
+                  .thenAnswer((realInvocation) => Future.value());
+            });
+            
+            tearDown(() {
+              verify(
+                  mockAuthRepository.completeSignInPasswordless(fakeUserEmail, fakeAuthenticationLink));
+            });
+            
+            blocTest(
+              "should complete passwordless signin",
+              build: () => DynamicLinkBloc(
+                dynamicLinks: mockFirebaseDynamicLinks,
+                localStorageRepository: mockLocalStorageRepository,
+                dynamicLinkRepository: mockDynamicLinkRepository,
+                authRepository: mockAuthRepository,
+                analyticsRepository: mockAnalyticsRepository,
+              ),
+              act: (DynamicLinkBloc bloc) =>
+                  bloc.add(DeepLinkReceived(deepLink: fakeAuthenticationLink)),
+              expect: [DynamicLinkAuthenticated()],
+            );
+          });
+
+          group("and passwordless signin throws a UserAlreadyLoggedInException", () {
+            setUp(() {
+              when(mockAuthRepository.completeSignInPasswordless(fakeUserEmail, fakeAuthenticationLink))
+                  .thenThrow(UserAlreadyLoggedInException("test message"));
+              when(mockAnalyticsRepository.logAuthLinkOpenWithUserAlreadyLoggedIn(fakeUserEmail)).thenAnswer((realInvocation) => Future.value());
+            });
+            
+            tearDown(() {
+              untilCalled(mockAnalyticsRepository.logAuthLinkOpenWithUserAlreadyLoggedIn(fakeUserEmail));
+              verify(mockAnalyticsRepository.logAuthLinkOpenWithUserAlreadyLoggedIn(fakeUserEmail));
+              verify(
+                  mockAuthRepository.completeSignInPasswordless(fakeUserEmail, fakeAuthenticationLink));
+            });
+            
+            blocTest(
+              "should log that on analytics",
+              build: () => DynamicLinkBloc(
+                dynamicLinks: mockFirebaseDynamicLinks,
+                localStorageRepository: mockLocalStorageRepository,
+                dynamicLinkRepository: mockDynamicLinkRepository,
+                authRepository: mockAuthRepository,
+                analyticsRepository: mockAnalyticsRepository,
+              ),
+              act: (DynamicLinkBloc bloc) =>
+                  bloc.add(DeepLinkReceived(deepLink: fakeAuthenticationLink)),
+              expect: [],
+            );
+            
+          });
+
+          group("and passwordless signin throws a PlatformException with invalid-action-code", () {
+            setUp(() {
+              when(mockAuthRepository.completeSignInPasswordless(fakeUserEmail, fakeAuthenticationLink))
+                  .thenThrow(FirebaseAuthException(code: 'invalid-action-code', message: 'test error message'));
+              when(mockAnalyticsRepository.passwordlessError(
+                err: DynamicLinkBloc.invalidActionError,
+                stackTrace: argThat(isA<StackTrace>(), named: 'stackTrace'),
+              )).thenAnswer((realInvocation) => null);
+            });
+
+            tearDown(() {
+              verify(mockAnalyticsRepository.passwordlessError(
+                err: DynamicLinkBloc.invalidActionError,
+                stackTrace: argThat(isA<StackTrace>(), named: 'stackTrace'),
+              ));
+              verify(
+                  mockAuthRepository.completeSignInPasswordless(fakeUserEmail, fakeAuthenticationLink));
+            });
+
+            blocTest(
+              "should log error and emit DynamicBloc error with invalidActionError",
+              build: () => DynamicLinkBloc(
+                dynamicLinks: mockFirebaseDynamicLinks,
+                localStorageRepository: mockLocalStorageRepository,
+                dynamicLinkRepository: mockDynamicLinkRepository,
+                authRepository: mockAuthRepository,
+                analyticsRepository: mockAnalyticsRepository,
+              ),
+              act: (DynamicLinkBloc bloc) =>
+                  bloc.add(DeepLinkReceived(deepLink: fakeAuthenticationLink)),
+              expect: [DynamicLinkError(errorMessage: DynamicLinkBloc.invalidActionError)],
+            );
+
+          });
+
+          group("and passwordless signin throws an unexpected error", () {
+            String unexpectedError = "unexpected error";
+
+            setUp(() {
+              when(mockAuthRepository.completeSignInPasswordless(fakeUserEmail, fakeAuthenticationLink))
+                  .thenThrow(unexpectedError);
+              when(mockAnalyticsRepository.passwordlessError(
+                err: unexpectedError,
+                stackTrace: argThat(isA<StackTrace>(), named: 'stackTrace'),
+              )).thenAnswer((realInvocation) => null);
+            });
+
+            tearDown(() {
+              verify(mockAnalyticsRepository.passwordlessError(
+                err: unexpectedError,
+                stackTrace: argThat(isA<StackTrace>(), named: 'stackTrace'),
+              ));
+              verify(
+                  mockAuthRepository.completeSignInPasswordless(fakeUserEmail, fakeAuthenticationLink));
+            });
+
+            blocTest(
+              "should log error on analytics and emit DynamicLinkError with message",
+              build: () => DynamicLinkBloc(
+                dynamicLinks: mockFirebaseDynamicLinks,
+                localStorageRepository: mockLocalStorageRepository,
+                dynamicLinkRepository: mockDynamicLinkRepository,
+                authRepository: mockAuthRepository,
+                analyticsRepository: mockAnalyticsRepository,
+              ),
+              act: (DynamicLinkBloc bloc) =>
+                  bloc.add(DeepLinkReceived(deepLink: fakeAuthenticationLink)),
+              expect: [DynamicLinkError(errorMessage: unexpectedError)],
+            );
+
+          });
+
         });
 
-        tearDown(() {
-          verify(mockLocalStorageRepository.getUserEmail());
-          verify(
-              mockAuthRepository.completeSignInPasswordless(fakeUserEmail, fakeAuthenticationLink));
+        group("and the user email is NOT found in local storage", () {
+          String error = "Failed assertion: line 511 pos 12: 'email != null': is not true.";
+
+          setUp(() {
+            when(mockLocalStorageRepository.getUserEmail())
+                .thenAnswer((realInvocation) => Future.value(null));
+            when(mockAuthRepository.completeSignInPasswordless(null, fakeAuthenticationLink))
+                .thenThrow(error);
+            when(mockAnalyticsRepository.passwordlessError(
+              err: DynamicLinkBloc.emailMissingError,
+              stackTrace: argThat(isA<StackTrace>(), named: 'stackTrace'),
+            )).thenAnswer((realInvocation) => null);
+          });
+
+          tearDown(() {
+            verify(mockLocalStorageRepository.getUserEmail());
+            verify(mockAuthRepository.completeSignInPasswordless(null, fakeAuthenticationLink));
+            verify(mockAnalyticsRepository.passwordlessError(
+              err: DynamicLinkBloc.emailMissingError,
+              stackTrace: argThat(isA<StackTrace>(), named: 'stackTrace'),
+            ));
+          });
+
+          blocTest(
+            "should log error on analytics and emit DynamicLinkError with emailMissingError",
+            build: () => DynamicLinkBloc(
+              dynamicLinks: mockFirebaseDynamicLinks,
+              localStorageRepository: mockLocalStorageRepository,
+              dynamicLinkRepository: mockDynamicLinkRepository,
+              authRepository: mockAuthRepository,
+              analyticsRepository: mockAnalyticsRepository,
+            ),
+            act: (DynamicLinkBloc bloc) =>
+                bloc.add(DeepLinkReceived(deepLink: fakeAuthenticationLink)),
+            expect: [DynamicLinkError(errorMessage: DynamicLinkBloc.emailMissingError)],
+          );
+
         });
 
-        blocTest(
-          "should complete passwordless signin",
-          build: () => DynamicLinkBloc(
-            dynamicLinks: mockFirebaseDynamicLinks,
-            localStorageRepository: mockLocalStorageRepository,
-            dynamicLinkRepository: mockDynamicLinkRepository,
-            authRepository: mockAuthRepository,
-          ),
-          act: (DynamicLinkBloc bloc) =>
-              bloc.add(DeepLinkReceived(deepLink: fakeAuthenticationLink)),
-          expect: [DynamicLinkAuthenticated()],
-        );
       });
     });
 
@@ -204,6 +379,7 @@ void main() {
           localStorageRepository: mockLocalStorageRepository,
           dynamicLinkRepository: mockDynamicLinkRepository,
           authRepository: mockAuthRepository,
+          analyticsRepository: mockAnalyticsRepository,
         ),
         act: (DynamicLinkBloc bloc) =>
             bloc.add(ShareRegistryLink(date: fakeDate, lessonId: fakeLessonId)),
@@ -225,6 +401,7 @@ void main() {
                   localStorageRepository: mockLocalStorageRepository,
                   dynamicLinkRepository: mockDynamicLinkRepository,
                   authRepository: mockAuthRepository,
+              analyticsRepository: mockAnalyticsRepository,
                 ),
             act: (bloc) => (bloc as DynamicLinkBloc).onSuccessLink(fakeData),
             expect: [
@@ -242,10 +419,11 @@ void main() {
                   localStorageRepository: mockLocalStorageRepository,
                   dynamicLinkRepository: mockDynamicLinkRepository,
                   authRepository: mockAuthRepository,
+                analyticsRepository: mockAnalyticsRepository,
                 ),
-            act: (bloc) => (bloc as DynamicLinkBloc).onErrorLink(MockOnLinkErrorException()),
+            act: (bloc) => (bloc as DynamicLinkBloc).onErrorLink(FakeOnLinkErrorException()),
             expect: [
-              DynamicLinkError(),
+              DynamicLinkError(errorMessage: "FakeOnLinkErrorException"),
             ]);
       });
     });

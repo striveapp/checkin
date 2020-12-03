@@ -18,6 +18,7 @@ import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:flutter_localizations/flutter_localizations.dart';
 import 'package:i18n_extension/i18n_widget.dart';
 import 'package:share/share.dart';
+import 'package:checkin/src/localization/localization.dart';
 
 import 'blocs/user/bloc.dart';
 import 'blocs/version/bloc.dart';
@@ -126,6 +127,23 @@ class _AppState extends State<App> with WidgetsBindingObserver {
 
               if (state is DynamicLinkToShare) {
                 Share.share(state.link);
+              }
+
+              if(state is DynamicLinkError) {
+                // todo refactor this logic is used in multiple places
+                ScaffoldMessenger.of(context)
+                  ..hideCurrentSnackBar()
+                  ..showSnackBar(
+                    SnackBar(
+                      content: Text(
+                        state.errorMessage.i18n,
+                        textAlign: TextAlign.center,
+                        style: Theme.of(context).textTheme.bodyText1,
+                      ),
+                      backgroundColor: Theme.of(context).accentColor.withAlpha(150),
+                      duration: Duration(seconds: 10),
+                    ),
+                  );
               }
             }),
             BlocListener<VersionBloc, VersionState>(

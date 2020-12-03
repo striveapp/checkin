@@ -13,6 +13,8 @@ abstract class AnalyticsRepository {
 
   Future<void> logUserLocale();
 
+  Future<void> logAuthLinkOpenWithUserAlreadyLoggedIn(String userEmail);
+
   Future<void> loginError({dynamic err, StackTrace stackTrace});
 
   Future<void> setupBankAccountError({String error});
@@ -22,4 +24,6 @@ abstract class AnalyticsRepository {
   Future<void> subscriptionError({dynamic err, StackTrace stackTrace});
 
   Future<void> unsubscribeError({dynamic err, StackTrace stackTrace});
+
+  Future<void> passwordlessError({dynamic err, StackTrace stackTrace});
 }

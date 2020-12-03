@@ -123,6 +123,7 @@ Future<void> mainCommon(AppConfig appConfig) async {
                 localStorageRepository: context.read<LocalStorageRepository>(),
                 dynamicLinkRepository: context.read<DynamicLinkRepository>(),
                 authRepository: context.read<AuthRepository>(),
+                analyticsRepository: context.read<AnalyticsRepository>()
               )..add(DeepLinkSetup()),
             ),
             BlocProvider<VersionBloc>(

@@ -1,3 +1,4 @@
+import 'package:checkin/src/blocs/dynamic_link/bloc.dart';
 import 'package:checkin/src/blocs/login/bloc.dart';
 import 'package:checkin/src/constants.dart' as constants;
 import 'package:checkin/src/models/grade.dart';
@@ -503,7 +504,17 @@ extension Localization on String {
     'en': InsertEmailView.next,
     'es': 'Siguiente',
     'it': 'Continua',
-  };
+  } + {
+    'en': DynamicLinkBloc.invalidActionError,
+    'es': 'El enlace mágico se caducó o ya ha sido utilizado',
+    'it': 'Il magic link é scaduto o é già stato utilizzato',
+  } + {
+    'en': DynamicLinkBloc.emailMissingError,
+    'es': 'Asegúrate de abrir el enlace mágico en el mismo device en que lo recibiste',
+    'it': 'Assicurati di aver aperto il magic link nello stesso dispositivo in cui l\'hai ricevuto',
+  }
+
+  ;
 
 String get i18n => localize(this, _t);
 
