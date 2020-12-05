@@ -18,6 +18,5 @@ abstract class PaymentMethodsEvent with _$PaymentMethodsEvent {
 
   const factory PaymentMethodsEvent.changeBankAccount(
       {@required Gym gym,
-      @required String billingEmail,
-      @required String customerId}) = ChangeBankAccount;
+      @required String billingEmail}) = ChangeBankAccount;
 }

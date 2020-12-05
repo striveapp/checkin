@@ -79,8 +79,7 @@ class PaymentMethodsBloc
 
         String clientSecret = await _paymentApi.setupIntent(
             customerEmail: event.billingEmail,
-            gymId: gym.id,
-            customerId: event.customerId);
+            gymId: gym.id);
 
         yield PaymentMethodLoading(show: false);
         await _urlLauncherUtil.launchUrl(

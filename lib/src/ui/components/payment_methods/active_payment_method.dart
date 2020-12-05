@@ -78,8 +78,7 @@ class ActivePaymentMethodView extends StatelessWidget {
                         BlocProvider.of<PaymentMethodsBloc>(context).add(
                             ChangeBankAccount(
                                 gym: gym,
-                                billingEmail: paymentMethod.billingEmail,
-                                customerId: paymentMethod.customerId));
+                                billingEmail: paymentMethod.billingEmail,));
                       },
                     ));
           }))
