@@ -31,6 +31,7 @@ import 'package:checkin/src/ui/components/no_lessons_banner.dart';
 import 'package:checkin/src/ui/components/profile_card.dart';
 import 'package:checkin/src/ui/components/profile_infos.dart';
 import 'package:checkin/src/ui/components/registry/registry_controls.dart';
+import 'package:checkin/src/ui/components/registry/registry_missing_dialog.dart';
 import 'package:checkin/src/ui/components/registry/student_button.dart';
 import 'package:checkin/src/ui/components/stats/graduate_dialog.dart';
 import 'package:checkin/src/ui/components/stats/graduate_fab.dart';
@@ -69,6 +70,14 @@ extension Localization on String {
     'en': RegistryPage.registry,
     'es': 'Registro',
     'it': 'Registro',
+  } + {
+    'en': RegistryMissingDialog.thisClassHasBeenCancelled,
+    'es': 'Esta clase ha sido cancelada',
+    'it': 'La classe é stata cancellata',
+  } + {
+    'en': RegistryMissingDialog.goToClasses,
+    'es': 'Vuelve a las clases',
+    'it': 'Torna alle classi',
   } + {
     'en': StatsPage.stats,
     'es': 'Estadísticas',
@@ -512,9 +521,7 @@ extension Localization on String {
     'en': DynamicLinkBloc.emailMissingError,
     'es': 'Asegúrate de abrir el enlace mágico en el mismo device en que lo recibiste',
     'it': 'Assicurati di aver aperto il magic link nello stesso dispositivo in cui l\'hai ricevuto',
-  }
-
-  ;
+  };
 
 String get i18n => localize(this, _t);
 
