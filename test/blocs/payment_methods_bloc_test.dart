@@ -191,7 +191,7 @@ void main() {
         setUp(() {
           whenListen(mockUserBloc, Stream.empty());
           when(mockPaymentApi.setupIntent(
-                  gymId: fakeGymId, customerEmail: fakeEmail, customerId: "cus_123"))
+                  gymId: fakeGymId, customerEmail: fakeEmail,))
               .thenAnswer((realInvocation) {
             return Future.value("some_secret");
           });
@@ -199,7 +199,7 @@ void main() {
 
         tearDown((){
           verify(mockPaymentApi.setupIntent(
-              customerEmail: fakeEmail, gymId: fakeGymId, customerId: "cus_123"));
+              customerEmail: fakeEmail, gymId: fakeGymId,));
           verify(mockUrlLauncherUtil.launchUrl(argThat(startsWith(
               "https://${testGym.paymentAppDomain}?pk=${testGym.stripePublicKey}&customerEmail=test@test.com&cs=some_secret&gymName=${testGym.id}"))));
         });
@@ -211,7 +211,7 @@ void main() {
               paymentApi: mockPaymentApi,
               paymentMethodRepository: mockPaymentMethodRepository,
               urlLauncherUtil: mockUrlLauncherUtil),
-          act: (bloc) => bloc.add(ChangeBankAccount(gym: testGym, billingEmail: fakeUser.email, customerId: "cus_123")),
+          act: (bloc) => bloc.add(ChangeBankAccount(gym: testGym, billingEmail: fakeUser.email,)),
           expect: [
             PaymentMethodLoading(show: true),
             PaymentMethodLoading(show: false),

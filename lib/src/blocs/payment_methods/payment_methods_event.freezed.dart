@@ -33,13 +33,10 @@ class _$PaymentMethodsEventTearOff {
 
 // ignore: unused_element
   ChangeBankAccount changeBankAccount(
-      {@required Gym gym,
-      @required String billingEmail,
-      @required String customerId}) {
+      {@required Gym gym, @required String billingEmail}) {
     return ChangeBankAccount(
       gym: gym,
       billingEmail: billingEmail,
-      customerId: customerId,
     );
   }
 }
@@ -56,15 +53,13 @@ mixin _$PaymentMethodsEvent {
         TResult paymentMethodUpdated(
             String userEmail, PaymentMethod paymentMethod),
     @required TResult registerBankAccount(Gym gym, String billingEmail),
-    @required
-        TResult changeBankAccount(
-            Gym gym, String billingEmail, String customerId),
+    @required TResult changeBankAccount(Gym gym, String billingEmail),
   });
   @optionalTypeArgs
   TResult maybeWhen<TResult extends Object>({
     TResult paymentMethodUpdated(String userEmail, PaymentMethod paymentMethod),
     TResult registerBankAccount(Gym gym, String billingEmail),
-    TResult changeBankAccount(Gym gym, String billingEmail, String customerId),
+    TResult changeBankAccount(Gym gym, String billingEmail),
     @required TResult orElse(),
   });
   @optionalTypeArgs
@@ -201,9 +196,7 @@ class _$PaymentMethodUpdated
         TResult paymentMethodUpdated(
             String userEmail, PaymentMethod paymentMethod),
     @required TResult registerBankAccount(Gym gym, String billingEmail),
-    @required
-        TResult changeBankAccount(
-            Gym gym, String billingEmail, String customerId),
+    @required TResult changeBankAccount(Gym gym, String billingEmail),
   }) {
     assert(paymentMethodUpdated != null);
     assert(registerBankAccount != null);
@@ -216,7 +209,7 @@ class _$PaymentMethodUpdated
   TResult maybeWhen<TResult extends Object>({
     TResult paymentMethodUpdated(String userEmail, PaymentMethod paymentMethod),
     TResult registerBankAccount(Gym gym, String billingEmail),
-    TResult changeBankAccount(Gym gym, String billingEmail, String customerId),
+    TResult changeBankAccount(Gym gym, String billingEmail),
     @required TResult orElse(),
   }) {
     assert(orElse != null);
@@ -366,9 +359,7 @@ class _$RegisterBankAccount
         TResult paymentMethodUpdated(
             String userEmail, PaymentMethod paymentMethod),
     @required TResult registerBankAccount(Gym gym, String billingEmail),
-    @required
-        TResult changeBankAccount(
-            Gym gym, String billingEmail, String customerId),
+    @required TResult changeBankAccount(Gym gym, String billingEmail),
   }) {
     assert(paymentMethodUpdated != null);
     assert(registerBankAccount != null);
@@ -381,7 +372,7 @@ class _$RegisterBankAccount
   TResult maybeWhen<TResult extends Object>({
     TResult paymentMethodUpdated(String userEmail, PaymentMethod paymentMethod),
     TResult registerBankAccount(Gym gym, String billingEmail),
-    TResult changeBankAccount(Gym gym, String billingEmail, String customerId),
+    TResult changeBankAccount(Gym gym, String billingEmail),
     @required TResult orElse(),
   }) {
     assert(orElse != null);
@@ -435,7 +426,7 @@ abstract class $ChangeBankAccountCopyWith<$Res> {
   factory $ChangeBankAccountCopyWith(
           ChangeBankAccount value, $Res Function(ChangeBankAccount) then) =
       _$ChangeBankAccountCopyWithImpl<$Res>;
-  $Res call({Gym gym, String billingEmail, String customerId});
+  $Res call({Gym gym, String billingEmail});
 
   $GymCopyWith<$Res> get gym;
 }
@@ -455,15 +446,12 @@ class _$ChangeBankAccountCopyWithImpl<$Res>
   $Res call({
     Object gym = freezed,
     Object billingEmail = freezed,
-    Object customerId = freezed,
   }) {
     return _then(ChangeBankAccount(
       gym: gym == freezed ? _value.gym : gym as Gym,
       billingEmail: billingEmail == freezed
           ? _value.billingEmail
           : billingEmail as String,
-      customerId:
-          customerId == freezed ? _value.customerId : customerId as String,
     ));
   }
 
@@ -482,24 +470,18 @@ class _$ChangeBankAccountCopyWithImpl<$Res>
 class _$ChangeBankAccount
     with DiagnosticableTreeMixin
     implements ChangeBankAccount {
-  const _$ChangeBankAccount(
-      {@required this.gym,
-      @required this.billingEmail,
-      @required this.customerId})
+  const _$ChangeBankAccount({@required this.gym, @required this.billingEmail})
       : assert(gym != null),
-        assert(billingEmail != null),
-        assert(customerId != null);
+        assert(billingEmail != null);
 
   @override
   final Gym gym;
   @override
   final String billingEmail;
-  @override
-  final String customerId;
 
   @override
   String toString({DiagnosticLevel minLevel = DiagnosticLevel.info}) {
-    return 'PaymentMethodsEvent.changeBankAccount(gym: $gym, billingEmail: $billingEmail, customerId: $customerId)';
+    return 'PaymentMethodsEvent.changeBankAccount(gym: $gym, billingEmail: $billingEmail)';
   }
 
   @override
@@ -509,8 +491,7 @@ class _$ChangeBankAccount
       ..add(
           DiagnosticsProperty('type', 'PaymentMethodsEvent.changeBankAccount'))
       ..add(DiagnosticsProperty('gym', gym))
-      ..add(DiagnosticsProperty('billingEmail', billingEmail))
-      ..add(DiagnosticsProperty('customerId', customerId));
+      ..add(DiagnosticsProperty('billingEmail', billingEmail));
   }
 
   @override
@@ -521,18 +502,14 @@ class _$ChangeBankAccount
                 const DeepCollectionEquality().equals(other.gym, gym)) &&
             (identical(other.billingEmail, billingEmail) ||
                 const DeepCollectionEquality()
-                    .equals(other.billingEmail, billingEmail)) &&
-            (identical(other.customerId, customerId) ||
-                const DeepCollectionEquality()
-                    .equals(other.customerId, customerId)));
+                    .equals(other.billingEmail, billingEmail)));
   }
 
   @override
   int get hashCode =>
       runtimeType.hashCode ^
       const DeepCollectionEquality().hash(gym) ^
-      const DeepCollectionEquality().hash(billingEmail) ^
-      const DeepCollectionEquality().hash(customerId);
+      const DeepCollectionEquality().hash(billingEmail);
 
   @override
   $ChangeBankAccountCopyWith<ChangeBankAccount> get copyWith =>
@@ -545,14 +522,12 @@ class _$ChangeBankAccount
         TResult paymentMethodUpdated(
             String userEmail, PaymentMethod paymentMethod),
     @required TResult registerBankAccount(Gym gym, String billingEmail),
-    @required
-        TResult changeBankAccount(
-            Gym gym, String billingEmail, String customerId),
+    @required TResult changeBankAccount(Gym gym, String billingEmail),
   }) {
     assert(paymentMethodUpdated != null);
     assert(registerBankAccount != null);
     assert(changeBankAccount != null);
-    return changeBankAccount(gym, billingEmail, customerId);
+    return changeBankAccount(gym, billingEmail);
   }
 
   @override
@@ -560,12 +535,12 @@ class _$ChangeBankAccount
   TResult maybeWhen<TResult extends Object>({
     TResult paymentMethodUpdated(String userEmail, PaymentMethod paymentMethod),
     TResult registerBankAccount(Gym gym, String billingEmail),
-    TResult changeBankAccount(Gym gym, String billingEmail, String customerId),
+    TResult changeBankAccount(Gym gym, String billingEmail),
     @required TResult orElse(),
   }) {
     assert(orElse != null);
     if (changeBankAccount != null) {
-      return changeBankAccount(gym, billingEmail, customerId);
+      return changeBankAccount(gym, billingEmail);
     }
     return orElse();
   }
@@ -601,12 +576,9 @@ class _$ChangeBankAccount
 
 abstract class ChangeBankAccount implements PaymentMethodsEvent {
   const factory ChangeBankAccount(
-      {@required Gym gym,
-      @required String billingEmail,
-      @required String customerId}) = _$ChangeBankAccount;
+      {@required Gym gym, @required String billingEmail}) = _$ChangeBankAccount;
 
   Gym get gym;
   String get billingEmail;
-  String get customerId;
   $ChangeBankAccountCopyWith<ChangeBankAccount> get copyWith;
 }
