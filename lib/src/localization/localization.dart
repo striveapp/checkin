@@ -8,6 +8,7 @@ import 'package:checkin/src/ui/components/email_retrieval/insert_email_view.dart
 import 'package:checkin/src/ui/components/login/apple_sign_in_button.dart';
 import 'package:checkin/src/ui/components/lesson_card.dart';
 import 'package:checkin/src/ui/components/login/login_form.dart';
+import 'package:checkin/src/ui/components/login/passwordless_sign_in_button.dart';
 import 'package:checkin/src/ui/components/payment_methods/active_payment_method.dart';
 import 'package:checkin/src/ui/components/payment_methods/empty_payment_method.dart';
 import 'package:checkin/src/ui/components/plans/plans_callout.dart';
@@ -482,7 +483,7 @@ extension Localization on String {
     'es': 'Ya tiene todas las clases necesarias para graduarse',
     'it': 'Ha tutte le classi necessarie per essere promosso',
   } + {
-    'en': LoginForm.emailMeMagicLink,
+    'en': PasswordlessSignInButton.emailMeMagicLink,
     'es': 'Enviame un enlace mágico',
     'it': 'Inviami un magic link',
   } + {

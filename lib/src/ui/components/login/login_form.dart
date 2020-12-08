@@ -2,14 +2,13 @@ import 'package:checkin/src/blocs/login/bloc.dart';
 import 'package:checkin/src/localization/localization.dart';
 import 'package:checkin/src/ui/components/login/apple_sign_in_button.dart';
 import 'package:checkin/src/ui/components/login/google_sign_in_button.dart';
+import 'package:checkin/src/ui/components/login/passwordless_sign_in_button.dart';
 import 'package:checkin/src/util/debug_util.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:platform/platform.dart';
 
 class LoginForm extends StatefulWidget {
-  static const String emailMeMagicLink = 'Email me a magic link';
-
   @override
   State<LoginForm> createState() => _LoginFormState();
 }
@@ -59,28 +58,41 @@ class _LoginFormState extends State<LoginForm> {
                   width: 200.0,
                 ),
               ),
-              if (isInDebugMode)
-                RaisedButton(
-                  key: Key('passwordlessButton'),
-                  onPressed: _onLoginPasswordless,
-                  child: Text(LoginForm.emailMeMagicLink.i18n),
-                ),
-//              SizedBox(height: 20,),
               GoogleSignInButton(
                 key: Key('loginButton'),
-                onPressed: state is! LoginLoading
-                    ? _onLoginWithGoogleButtonPressed
-                    : null,
+                onPressed: state is! LoginLoading ? _onLoginWithGoogleButtonPressed : null,
                 darkMode: true,
                 borderRadius: 50.0,
+              ),
+              if (LocalPlatform().isIOS)
+                Column(
+                  children: [
+                    SizedBox(
+                      height: 20,
+                    ),
+                    AppleSignInButton(),
+                  ],
+                ),
+              SizedBox(
+                height: 20,
+              ),
+              Text(
+                "or",
+                style: Theme.of(context).textTheme.headline2,
               ),
               SizedBox(
                 height: 20,
               ),
-              if (LocalPlatform().isIOS) AppleSignInButton(),
+              Padding(
+                padding: const EdgeInsets.symmetric(horizontal: 80),
+                child: PasswordlessSignInButton(),
+              ),
               if (isInDebugMode)
                 Column(
                   children: <Widget>[
+                    SizedBox(
+                      height: 20,
+                    ),
                     RaisedButton(
                       key: Key('backdoorButton'),
                       onPressed: _onLoginWithTestUser,
@@ -111,10 +123,6 @@ class _LoginFormState extends State<LoginForm> {
         },
       ),
     );
-  }
-
-  _onLoginPasswordless() {
-    Navigator.of(context).pushNamed("email-retrieve/");
   }
 
   _onLoginWithGoogleButtonPressed() {
