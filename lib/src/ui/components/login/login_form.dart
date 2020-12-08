@@ -9,6 +9,8 @@ import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:platform/platform.dart';
 
 class LoginForm extends StatefulWidget {
+  static const String or = 'or';
+
   @override
   State<LoginForm> createState() => _LoginFormState();
 }
@@ -77,7 +79,7 @@ class _LoginFormState extends State<LoginForm> {
                 height: 20,
               ),
               Text(
-                "or",
+                LoginForm.or.i18n,
                 style: Theme.of(context).textTheme.headline2,
               ),
               SizedBox(

@@ -3,34 +3,36 @@ import 'package:checkin/src/blocs/login/bloc.dart';
 import 'package:checkin/src/constants.dart' as constants;
 import 'package:checkin/src/models/grade.dart';
 import 'package:checkin/src/ui/components/account/payment.dart';
-import 'package:checkin/src/ui/components/attendees_preview.dart';
 import 'package:checkin/src/ui/components/email_retrieval/check_email_view.dart';
 import 'package:checkin/src/ui/components/email_retrieval/insert_email_view.dart';
-import 'package:checkin/src/ui/components/grade_card.dart';
-import 'package:checkin/src/ui/components/leaderboard/no_leaderboard_banner.dart';
-import 'package:checkin/src/ui/components/lesson_card.dart';
+import 'package:checkin/src/ui/components/email_retrieval/wrong_email_dialog.dart';
 import 'package:checkin/src/ui/components/login/apple_sign_in_button.dart';
-import 'package:checkin/src/ui/components/login/google_sign_in_button.dart';
+import 'package:checkin/src/ui/components/lesson_card.dart';
+import 'package:checkin/src/ui/components/login/login_form.dart';
 import 'package:checkin/src/ui/components/login/passwordless_sign_in_button.dart';
-import 'package:checkin/src/ui/components/membership/active_membership.dart';
-import 'package:checkin/src/ui/components/membership/inactive_membership.dart';
-import 'package:checkin/src/ui/components/membership/unsubscribe_dialog.dart';
-import 'package:checkin/src/ui/components/no_lessons_banner.dart';
 import 'package:checkin/src/ui/components/payment_methods/active_payment_method.dart';
 import 'package:checkin/src/ui/components/payment_methods/empty_payment_method.dart';
 import 'package:checkin/src/ui/components/plans/plans_callout.dart';
 import 'package:checkin/src/ui/components/plans/plans_footer.dart';
 import 'package:checkin/src/ui/components/plans/plans_list.dart';
 import 'package:checkin/src/ui/components/plans/price/price_footer.dart';
-import 'package:checkin/src/ui/components/profile_card.dart';
-import 'package:checkin/src/ui/components/profile_infos.dart';
 import 'package:checkin/src/ui/components/registry/accept_all_dialog.dart';
 import 'package:checkin/src/ui/components/registry/attendee_tile.dart';
+import 'package:checkin/src/ui/components/registry/register_dialog.dart';
+import 'package:checkin/src/ui/components/registry/registry_counter.dart';
+import 'package:checkin/src/ui/components/attendees_preview.dart';
+import 'package:checkin/src/ui/components/login/google_sign_in_button.dart';
+import 'package:checkin/src/ui/components/grade_card.dart';
+import 'package:checkin/src/ui/components/leaderboard/no_leaderboard_banner.dart';
 import 'package:checkin/src/ui/components/registry/empty_registry.dart';
 import 'package:checkin/src/ui/components/registry/lesson_infos.dart';
-import 'package:checkin/src/ui/components/registry/register_dialog.dart';
+import 'package:checkin/src/ui/components/membership/active_membership.dart';
+import 'package:checkin/src/ui/components/membership/inactive_membership.dart';
+import 'package:checkin/src/ui/components/membership/unsubscribe_dialog.dart';
+import 'package:checkin/src/ui/components/no_lessons_banner.dart';
+import 'package:checkin/src/ui/components/profile_card.dart';
+import 'package:checkin/src/ui/components/profile_infos.dart';
 import 'package:checkin/src/ui/components/registry/registry_controls.dart';
-import 'package:checkin/src/ui/components/registry/registry_counter.dart';
 import 'package:checkin/src/ui/components/registry/registry_missing_dialog.dart';
 import 'package:checkin/src/ui/components/registry/student_button.dart';
 import 'package:checkin/src/ui/components/stats/graduate_dialog.dart';
@@ -521,6 +523,18 @@ extension Localization on String {
     'en': DynamicLinkBloc.emailMissingError,
     'es': 'Asegúrate de abrir el enlace mágico en el mismo device en que lo recibiste',
     'it': 'Assicurati di aver aperto il magic link nello stesso dispositivo in cui l\'hai ricevuto',
+  } + {
+    'en': WrongEmailDialog.goBack,
+    'es': 'Volver atrás',
+    'it': 'Torna indietro',
+  } + {
+    'en': WrongEmailDialog.theEmailYouInsertedMightNotBeCorrect,
+    'es': 'Es posible que el correo electrónico que ingresó no sea correcto',
+    'it': 'La mail che hai inserito potrebbe non essere corretta',
+  } + {
+    'en': LoginForm.or,
+    'es': 'o',
+    'it': 'oppure',
   };
 
 String get i18n => localize(this, _t);

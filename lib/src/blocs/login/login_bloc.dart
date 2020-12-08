@@ -80,8 +80,17 @@ class LoginBloc extends Bloc<LoginEvent, LoginState> {
 
     if (event is LoginPasswordless) {
       await localStorageRepository.setUserEmail(event.userEmail);
-      await authRepository.signInPasswordless(event.userEmail);
-      yield LoginWaitingForEmailLink(userEmail: event.userEmail);
+      try {
+        await authRepository.signInPasswordless(event.userEmail);
+      } catch(err, stackTrace) {
+        await analyticsRepository.passwordlessError(
+          err: err,
+          stackTrace: stackTrace,
+        );
+        //TODO: we are doing this in order to avoid bloc to cache our state in case the user triggers again the error
+        yield LoginInitial();
+        yield WrongfullyInsertedEmail();
+      }
     }
 
     //TODO: We put this because we have no way to test google auth for now. https://trello.com/c/I4PenA6Y
