@@ -118,9 +118,14 @@ class AuthProvider implements AuthRepository {
   }
 
   @override
-  Future<void> completeSignInPasswordless(String userEmail, Uri emailLink) {
+  Future<User> completeSignInPasswordless(String userEmail, Uri emailLink) async {
     if(_firebaseAuth.currentUser == null) {
-      return _firebaseAuth.signInWithEmailLink(email: userEmail, emailLink: emailLink.toString());
+      var credentials = await _firebaseAuth.signInWithEmailLink(email: userEmail, emailLink: emailLink.toString());
+      final user = credentials.user;
+      return User.fromFirebaseUser(
+        user,
+        displayName: "${user.displayName}"
+      );
     } else {
       throw UserAlreadyLoggedInException("user [$userEmail] already logged in");
     }

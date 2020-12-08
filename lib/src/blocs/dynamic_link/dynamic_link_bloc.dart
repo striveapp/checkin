@@ -3,6 +3,7 @@ import 'package:checkin/src/repositories/analytics_repository.dart';
 import 'package:checkin/src/repositories/auth_repository.dart';
 import 'package:checkin/src/repositories/dynamic_link_repository.dart';
 import 'package:checkin/src/repositories/local_storage_repository.dart';
+import 'package:checkin/src/repositories/user_repository.dart';
 import 'package:checkin/src/resources/auth_provider.dart';
 import 'package:firebase_auth/firebase_auth.dart';
 import 'package:firebase_dynamic_links/firebase_dynamic_links.dart';
@@ -20,13 +21,15 @@ class DynamicLinkBloc extends Bloc<DynamicLinkEvent, DynamicLinkState> {
   final DynamicLinkRepository dynamicLinkRepository;
   final AuthRepository authRepository;
   final AnalyticsRepository analyticsRepository;
+  final UserRepository userRepository;
 
   DynamicLinkBloc({
     @required FirebaseDynamicLinks this.dynamicLinks,
     @required LocalStorageRepository this.localStorageRepository,
     @required AuthRepository this.authRepository,
     @required DynamicLinkRepository this.dynamicLinkRepository,
-    @required AnalyticsRepository this.analyticsRepository
+    @required AnalyticsRepository this.analyticsRepository,
+    @required UserRepository this.userRepository
   }) : super(DynamicLinkInitial());
 
   @override
@@ -68,7 +71,11 @@ class DynamicLinkBloc extends Bloc<DynamicLinkEvent, DynamicLinkState> {
     var userEmail = await localStorageRepository.getUserEmail();
 
     try {
-      await authRepository.completeSignInPasswordless(userEmail, event.deepLink);
+      var loggedUser = await authRepository.completeSignInPasswordless(userEmail, event.deepLink);
+      await analyticsRepository.setUserProperties(loggedUser.uid);
+      await userRepository.createUser(
+        loggedUser,
+      );
       yield DynamicLinkAuthenticated();
     } on UserAlreadyLoggedInException catch(_) {
       await analyticsRepository.logAuthLinkOpenWithUserAlreadyLoggedIn(userEmail);

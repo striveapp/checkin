@@ -13,7 +13,7 @@ abstract class AuthRepository {
 
   Future<void> signInPasswordless(String userEmail);
 
-  Future<void> completeSignInPasswordless(String userEmail, Uri emailLink);
+  Future<User> completeSignInPasswordless(String userEmail, Uri emailLink);
 
   Future<User> loginWithTestUser({test = 0, owner = false, master = false});
 }
