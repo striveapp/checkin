@@ -7,7 +7,6 @@ import 'package:checkin/src/ui/components/email_retrieval/check_email_view.dart'
 import 'package:checkin/src/ui/components/email_retrieval/insert_email_view.dart';
 import 'package:checkin/src/ui/components/login/apple_sign_in_button.dart';
 import 'package:checkin/src/ui/components/lesson_card.dart';
-import 'package:checkin/src/ui/components/login/login_form.dart';
 import 'package:checkin/src/ui/components/login/passwordless_sign_in_button.dart';
 import 'package:checkin/src/ui/components/payment_methods/active_payment_method.dart';
 import 'package:checkin/src/ui/components/payment_methods/empty_payment_method.dart';
