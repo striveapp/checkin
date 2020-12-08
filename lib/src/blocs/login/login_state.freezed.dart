@@ -31,17 +31,15 @@ class _$LoginStateTearOff {
   }
 
 // ignore: unused_element
-  LoginFailure loginWithTestUserOwner({String errorMessage}) {
+  LoginFailure loginFailure({String errorMessage}) {
     return LoginFailure(
       errorMessage: errorMessage,
     );
   }
 
 // ignore: unused_element
-  LoginWaitingForEmailLink loginWaitingForEmailLink({String userEmail}) {
-    return LoginWaitingForEmailLink(
-      userEmail: userEmail,
-    );
+  WrongfullyInsertedEmail wrongfullyInsertedEmail() {
+    return const WrongfullyInsertedEmail();
   }
 }
 
@@ -56,16 +54,16 @@ mixin _$LoginState {
     @required TResult loginInitial(),
     @required TResult loginLoading(),
     @required TResult loginSuccess(User loggedUser),
-    @required TResult loginWithTestUserOwner(String errorMessage),
-    @required TResult loginWaitingForEmailLink(String userEmail),
+    @required TResult loginFailure(String errorMessage),
+    @required TResult wrongfullyInsertedEmail(),
   });
   @optionalTypeArgs
   TResult maybeWhen<TResult extends Object>({
     TResult loginInitial(),
     TResult loginLoading(),
     TResult loginSuccess(User loggedUser),
-    TResult loginWithTestUserOwner(String errorMessage),
-    TResult loginWaitingForEmailLink(String userEmail),
+    TResult loginFailure(String errorMessage),
+    TResult wrongfullyInsertedEmail(),
     @required TResult orElse(),
   });
   @optionalTypeArgs
@@ -73,16 +71,16 @@ mixin _$LoginState {
     @required TResult loginInitial(LoginInitial value),
     @required TResult loginLoading(LoginLoading value),
     @required TResult loginSuccess(LoginSuccess value),
-    @required TResult loginWithTestUserOwner(LoginFailure value),
-    @required TResult loginWaitingForEmailLink(LoginWaitingForEmailLink value),
+    @required TResult loginFailure(LoginFailure value),
+    @required TResult wrongfullyInsertedEmail(WrongfullyInsertedEmail value),
   });
   @optionalTypeArgs
   TResult maybeMap<TResult extends Object>({
     TResult loginInitial(LoginInitial value),
     TResult loginLoading(LoginLoading value),
     TResult loginSuccess(LoginSuccess value),
-    TResult loginWithTestUserOwner(LoginFailure value),
-    TResult loginWaitingForEmailLink(LoginWaitingForEmailLink value),
+    TResult loginFailure(LoginFailure value),
+    TResult wrongfullyInsertedEmail(WrongfullyInsertedEmail value),
     @required TResult orElse(),
   });
 }
@@ -150,14 +148,14 @@ class _$LoginInitial with DiagnosticableTreeMixin implements LoginInitial {
     @required TResult loginInitial(),
     @required TResult loginLoading(),
     @required TResult loginSuccess(User loggedUser),
-    @required TResult loginWithTestUserOwner(String errorMessage),
-    @required TResult loginWaitingForEmailLink(String userEmail),
+    @required TResult loginFailure(String errorMessage),
+    @required TResult wrongfullyInsertedEmail(),
   }) {
     assert(loginInitial != null);
     assert(loginLoading != null);
     assert(loginSuccess != null);
-    assert(loginWithTestUserOwner != null);
-    assert(loginWaitingForEmailLink != null);
+    assert(loginFailure != null);
+    assert(wrongfullyInsertedEmail != null);
     return loginInitial();
   }
 
@@ -167,8 +165,8 @@ class _$LoginInitial with DiagnosticableTreeMixin implements LoginInitial {
     TResult loginInitial(),
     TResult loginLoading(),
     TResult loginSuccess(User loggedUser),
-    TResult loginWithTestUserOwner(String errorMessage),
-    TResult loginWaitingForEmailLink(String userEmail),
+    TResult loginFailure(String errorMessage),
+    TResult wrongfullyInsertedEmail(),
     @required TResult orElse(),
   }) {
     assert(orElse != null);
@@ -184,14 +182,14 @@ class _$LoginInitial with DiagnosticableTreeMixin implements LoginInitial {
     @required TResult loginInitial(LoginInitial value),
     @required TResult loginLoading(LoginLoading value),
     @required TResult loginSuccess(LoginSuccess value),
-    @required TResult loginWithTestUserOwner(LoginFailure value),
-    @required TResult loginWaitingForEmailLink(LoginWaitingForEmailLink value),
+    @required TResult loginFailure(LoginFailure value),
+    @required TResult wrongfullyInsertedEmail(WrongfullyInsertedEmail value),
   }) {
     assert(loginInitial != null);
     assert(loginLoading != null);
     assert(loginSuccess != null);
-    assert(loginWithTestUserOwner != null);
-    assert(loginWaitingForEmailLink != null);
+    assert(loginFailure != null);
+    assert(wrongfullyInsertedEmail != null);
     return loginInitial(this);
   }
 
@@ -201,8 +199,8 @@ class _$LoginInitial with DiagnosticableTreeMixin implements LoginInitial {
     TResult loginInitial(LoginInitial value),
     TResult loginLoading(LoginLoading value),
     TResult loginSuccess(LoginSuccess value),
-    TResult loginWithTestUserOwner(LoginFailure value),
-    TResult loginWaitingForEmailLink(LoginWaitingForEmailLink value),
+    TResult loginFailure(LoginFailure value),
+    TResult wrongfullyInsertedEmail(WrongfullyInsertedEmail value),
     @required TResult orElse(),
   }) {
     assert(orElse != null);
@@ -264,14 +262,14 @@ class _$LoginLoading with DiagnosticableTreeMixin implements LoginLoading {
     @required TResult loginInitial(),
     @required TResult loginLoading(),
     @required TResult loginSuccess(User loggedUser),
-    @required TResult loginWithTestUserOwner(String errorMessage),
-    @required TResult loginWaitingForEmailLink(String userEmail),
+    @required TResult loginFailure(String errorMessage),
+    @required TResult wrongfullyInsertedEmail(),
   }) {
     assert(loginInitial != null);
     assert(loginLoading != null);
     assert(loginSuccess != null);
-    assert(loginWithTestUserOwner != null);
-    assert(loginWaitingForEmailLink != null);
+    assert(loginFailure != null);
+    assert(wrongfullyInsertedEmail != null);
     return loginLoading();
   }
 
@@ -281,8 +279,8 @@ class _$LoginLoading with DiagnosticableTreeMixin implements LoginLoading {
     TResult loginInitial(),
     TResult loginLoading(),
     TResult loginSuccess(User loggedUser),
-    TResult loginWithTestUserOwner(String errorMessage),
-    TResult loginWaitingForEmailLink(String userEmail),
+    TResult loginFailure(String errorMessage),
+    TResult wrongfullyInsertedEmail(),
     @required TResult orElse(),
   }) {
     assert(orElse != null);
@@ -298,14 +296,14 @@ class _$LoginLoading with DiagnosticableTreeMixin implements LoginLoading {
     @required TResult loginInitial(LoginInitial value),
     @required TResult loginLoading(LoginLoading value),
     @required TResult loginSuccess(LoginSuccess value),
-    @required TResult loginWithTestUserOwner(LoginFailure value),
-    @required TResult loginWaitingForEmailLink(LoginWaitingForEmailLink value),
+    @required TResult loginFailure(LoginFailure value),
+    @required TResult wrongfullyInsertedEmail(WrongfullyInsertedEmail value),
   }) {
     assert(loginInitial != null);
     assert(loginLoading != null);
     assert(loginSuccess != null);
-    assert(loginWithTestUserOwner != null);
-    assert(loginWaitingForEmailLink != null);
+    assert(loginFailure != null);
+    assert(wrongfullyInsertedEmail != null);
     return loginLoading(this);
   }
 
@@ -315,8 +313,8 @@ class _$LoginLoading with DiagnosticableTreeMixin implements LoginLoading {
     TResult loginInitial(LoginInitial value),
     TResult loginLoading(LoginLoading value),
     TResult loginSuccess(LoginSuccess value),
-    TResult loginWithTestUserOwner(LoginFailure value),
-    TResult loginWaitingForEmailLink(LoginWaitingForEmailLink value),
+    TResult loginFailure(LoginFailure value),
+    TResult wrongfullyInsertedEmail(WrongfullyInsertedEmail value),
     @required TResult orElse(),
   }) {
     assert(orElse != null);
@@ -403,14 +401,14 @@ class _$LoginSuccess with DiagnosticableTreeMixin implements LoginSuccess {
     @required TResult loginInitial(),
     @required TResult loginLoading(),
     @required TResult loginSuccess(User loggedUser),
-    @required TResult loginWithTestUserOwner(String errorMessage),
-    @required TResult loginWaitingForEmailLink(String userEmail),
+    @required TResult loginFailure(String errorMessage),
+    @required TResult wrongfullyInsertedEmail(),
   }) {
     assert(loginInitial != null);
     assert(loginLoading != null);
     assert(loginSuccess != null);
-    assert(loginWithTestUserOwner != null);
-    assert(loginWaitingForEmailLink != null);
+    assert(loginFailure != null);
+    assert(wrongfullyInsertedEmail != null);
     return loginSuccess(loggedUser);
   }
 
@@ -420,8 +418,8 @@ class _$LoginSuccess with DiagnosticableTreeMixin implements LoginSuccess {
     TResult loginInitial(),
     TResult loginLoading(),
     TResult loginSuccess(User loggedUser),
-    TResult loginWithTestUserOwner(String errorMessage),
-    TResult loginWaitingForEmailLink(String userEmail),
+    TResult loginFailure(String errorMessage),
+    TResult wrongfullyInsertedEmail(),
     @required TResult orElse(),
   }) {
     assert(orElse != null);
@@ -437,14 +435,14 @@ class _$LoginSuccess with DiagnosticableTreeMixin implements LoginSuccess {
     @required TResult loginInitial(LoginInitial value),
     @required TResult loginLoading(LoginLoading value),
     @required TResult loginSuccess(LoginSuccess value),
-    @required TResult loginWithTestUserOwner(LoginFailure value),
-    @required TResult loginWaitingForEmailLink(LoginWaitingForEmailLink value),
+    @required TResult loginFailure(LoginFailure value),
+    @required TResult wrongfullyInsertedEmail(WrongfullyInsertedEmail value),
   }) {
     assert(loginInitial != null);
     assert(loginLoading != null);
     assert(loginSuccess != null);
-    assert(loginWithTestUserOwner != null);
-    assert(loginWaitingForEmailLink != null);
+    assert(loginFailure != null);
+    assert(wrongfullyInsertedEmail != null);
     return loginSuccess(this);
   }
 
@@ -454,8 +452,8 @@ class _$LoginSuccess with DiagnosticableTreeMixin implements LoginSuccess {
     TResult loginInitial(LoginInitial value),
     TResult loginLoading(LoginLoading value),
     TResult loginSuccess(LoginSuccess value),
-    TResult loginWithTestUserOwner(LoginFailure value),
-    TResult loginWaitingForEmailLink(LoginWaitingForEmailLink value),
+    TResult loginFailure(LoginFailure value),
+    TResult wrongfullyInsertedEmail(WrongfullyInsertedEmail value),
     @required TResult orElse(),
   }) {
     assert(orElse != null);
@@ -512,14 +510,14 @@ class _$LoginFailure with DiagnosticableTreeMixin implements LoginFailure {
 
   @override
   String toString({DiagnosticLevel minLevel = DiagnosticLevel.info}) {
-    return 'LoginState.loginWithTestUserOwner(errorMessage: $errorMessage)';
+    return 'LoginState.loginFailure(errorMessage: $errorMessage)';
   }
 
   @override
   void debugFillProperties(DiagnosticPropertiesBuilder properties) {
     super.debugFillProperties(properties);
     properties
-      ..add(DiagnosticsProperty('type', 'LoginState.loginWithTestUserOwner'))
+      ..add(DiagnosticsProperty('type', 'LoginState.loginFailure'))
       ..add(DiagnosticsProperty('errorMessage', errorMessage));
   }
 
@@ -546,15 +544,15 @@ class _$LoginFailure with DiagnosticableTreeMixin implements LoginFailure {
     @required TResult loginInitial(),
     @required TResult loginLoading(),
     @required TResult loginSuccess(User loggedUser),
-    @required TResult loginWithTestUserOwner(String errorMessage),
-    @required TResult loginWaitingForEmailLink(String userEmail),
+    @required TResult loginFailure(String errorMessage),
+    @required TResult wrongfullyInsertedEmail(),
   }) {
     assert(loginInitial != null);
     assert(loginLoading != null);
     assert(loginSuccess != null);
-    assert(loginWithTestUserOwner != null);
-    assert(loginWaitingForEmailLink != null);
-    return loginWithTestUserOwner(errorMessage);
+    assert(loginFailure != null);
+    assert(wrongfullyInsertedEmail != null);
+    return loginFailure(errorMessage);
   }
 
   @override
@@ -563,13 +561,13 @@ class _$LoginFailure with DiagnosticableTreeMixin implements LoginFailure {
     TResult loginInitial(),
     TResult loginLoading(),
     TResult loginSuccess(User loggedUser),
-    TResult loginWithTestUserOwner(String errorMessage),
-    TResult loginWaitingForEmailLink(String userEmail),
+    TResult loginFailure(String errorMessage),
+    TResult wrongfullyInsertedEmail(),
     @required TResult orElse(),
   }) {
     assert(orElse != null);
-    if (loginWithTestUserOwner != null) {
-      return loginWithTestUserOwner(errorMessage);
+    if (loginFailure != null) {
+      return loginFailure(errorMessage);
     }
     return orElse();
   }
@@ -580,15 +578,15 @@ class _$LoginFailure with DiagnosticableTreeMixin implements LoginFailure {
     @required TResult loginInitial(LoginInitial value),
     @required TResult loginLoading(LoginLoading value),
     @required TResult loginSuccess(LoginSuccess value),
-    @required TResult loginWithTestUserOwner(LoginFailure value),
-    @required TResult loginWaitingForEmailLink(LoginWaitingForEmailLink value),
+    @required TResult loginFailure(LoginFailure value),
+    @required TResult wrongfullyInsertedEmail(WrongfullyInsertedEmail value),
   }) {
     assert(loginInitial != null);
     assert(loginLoading != null);
     assert(loginSuccess != null);
-    assert(loginWithTestUserOwner != null);
-    assert(loginWaitingForEmailLink != null);
-    return loginWithTestUserOwner(this);
+    assert(loginFailure != null);
+    assert(wrongfullyInsertedEmail != null);
+    return loginFailure(this);
   }
 
   @override
@@ -597,13 +595,13 @@ class _$LoginFailure with DiagnosticableTreeMixin implements LoginFailure {
     TResult loginInitial(LoginInitial value),
     TResult loginLoading(LoginLoading value),
     TResult loginSuccess(LoginSuccess value),
-    TResult loginWithTestUserOwner(LoginFailure value),
-    TResult loginWaitingForEmailLink(LoginWaitingForEmailLink value),
+    TResult loginFailure(LoginFailure value),
+    TResult wrongfullyInsertedEmail(WrongfullyInsertedEmail value),
     @required TResult orElse(),
   }) {
     assert(orElse != null);
-    if (loginWithTestUserOwner != null) {
-      return loginWithTestUserOwner(this);
+    if (loginFailure != null) {
+      return loginFailure(this);
     }
     return orElse();
   }
@@ -617,74 +615,49 @@ abstract class LoginFailure implements LoginState {
 }
 
 /// @nodoc
-abstract class $LoginWaitingForEmailLinkCopyWith<$Res> {
-  factory $LoginWaitingForEmailLinkCopyWith(LoginWaitingForEmailLink value,
-          $Res Function(LoginWaitingForEmailLink) then) =
-      _$LoginWaitingForEmailLinkCopyWithImpl<$Res>;
-  $Res call({String userEmail});
+abstract class $WrongfullyInsertedEmailCopyWith<$Res> {
+  factory $WrongfullyInsertedEmailCopyWith(WrongfullyInsertedEmail value,
+          $Res Function(WrongfullyInsertedEmail) then) =
+      _$WrongfullyInsertedEmailCopyWithImpl<$Res>;
 }
 
 /// @nodoc
-class _$LoginWaitingForEmailLinkCopyWithImpl<$Res>
+class _$WrongfullyInsertedEmailCopyWithImpl<$Res>
     extends _$LoginStateCopyWithImpl<$Res>
-    implements $LoginWaitingForEmailLinkCopyWith<$Res> {
-  _$LoginWaitingForEmailLinkCopyWithImpl(LoginWaitingForEmailLink _value,
-      $Res Function(LoginWaitingForEmailLink) _then)
-      : super(_value, (v) => _then(v as LoginWaitingForEmailLink));
+    implements $WrongfullyInsertedEmailCopyWith<$Res> {
+  _$WrongfullyInsertedEmailCopyWithImpl(WrongfullyInsertedEmail _value,
+      $Res Function(WrongfullyInsertedEmail) _then)
+      : super(_value, (v) => _then(v as WrongfullyInsertedEmail));
 
   @override
-  LoginWaitingForEmailLink get _value =>
-      super._value as LoginWaitingForEmailLink;
-
-  @override
-  $Res call({
-    Object userEmail = freezed,
-  }) {
-    return _then(LoginWaitingForEmailLink(
-      userEmail: userEmail == freezed ? _value.userEmail : userEmail as String,
-    ));
-  }
+  WrongfullyInsertedEmail get _value => super._value as WrongfullyInsertedEmail;
 }
 
 /// @nodoc
-class _$LoginWaitingForEmailLink
+class _$WrongfullyInsertedEmail
     with DiagnosticableTreeMixin
-    implements LoginWaitingForEmailLink {
-  const _$LoginWaitingForEmailLink({this.userEmail});
-
-  @override
-  final String userEmail;
+    implements WrongfullyInsertedEmail {
+  const _$WrongfullyInsertedEmail();
 
   @override
   String toString({DiagnosticLevel minLevel = DiagnosticLevel.info}) {
-    return 'LoginState.loginWaitingForEmailLink(userEmail: $userEmail)';
+    return 'LoginState.wrongfullyInsertedEmail()';
   }
 
   @override
   void debugFillProperties(DiagnosticPropertiesBuilder properties) {
     super.debugFillProperties(properties);
     properties
-      ..add(DiagnosticsProperty('type', 'LoginState.loginWaitingForEmailLink'))
-      ..add(DiagnosticsProperty('userEmail', userEmail));
+      ..add(DiagnosticsProperty('type', 'LoginState.wrongfullyInsertedEmail'));
   }
 
   @override
   bool operator ==(dynamic other) {
-    return identical(this, other) ||
-        (other is LoginWaitingForEmailLink &&
-            (identical(other.userEmail, userEmail) ||
-                const DeepCollectionEquality()
-                    .equals(other.userEmail, userEmail)));
+    return identical(this, other) || (other is WrongfullyInsertedEmail);
   }
 
   @override
-  int get hashCode =>
-      runtimeType.hashCode ^ const DeepCollectionEquality().hash(userEmail);
-
-  @override
-  $LoginWaitingForEmailLinkCopyWith<LoginWaitingForEmailLink> get copyWith =>
-      _$LoginWaitingForEmailLinkCopyWithImpl<LoginWaitingForEmailLink>(
-          this, _$identity);
+  int get hashCode => runtimeType.hashCode;
 
   @override
   @optionalTypeArgs
@@ -692,15 +665,15 @@ class _$LoginWaitingForEmailLink
     @required TResult loginInitial(),
     @required TResult loginLoading(),
     @required TResult loginSuccess(User loggedUser),
-    @required TResult loginWithTestUserOwner(String errorMessage),
-    @required TResult loginWaitingForEmailLink(String userEmail),
+    @required TResult loginFailure(String errorMessage),
+    @required TResult wrongfullyInsertedEmail(),
   }) {
     assert(loginInitial != null);
     assert(loginLoading != null);
     assert(loginSuccess != null);
-    assert(loginWithTestUserOwner != null);
-    assert(loginWaitingForEmailLink != null);
-    return loginWaitingForEmailLink(userEmail);
+    assert(loginFailure != null);
+    assert(wrongfullyInsertedEmail != null);
+    return wrongfullyInsertedEmail();
   }
 
   @override
@@ -709,13 +682,13 @@ class _$LoginWaitingForEmailLink
     TResult loginInitial(),
     TResult loginLoading(),
     TResult loginSuccess(User loggedUser),
-    TResult loginWithTestUserOwner(String errorMessage),
-    TResult loginWaitingForEmailLink(String userEmail),
+    TResult loginFailure(String errorMessage),
+    TResult wrongfullyInsertedEmail(),
     @required TResult orElse(),
   }) {
     assert(orElse != null);
-    if (loginWaitingForEmailLink != null) {
-      return loginWaitingForEmailLink(userEmail);
+    if (wrongfullyInsertedEmail != null) {
+      return wrongfullyInsertedEmail();
     }
     return orElse();
   }
@@ -726,15 +699,15 @@ class _$LoginWaitingForEmailLink
     @required TResult loginInitial(LoginInitial value),
     @required TResult loginLoading(LoginLoading value),
     @required TResult loginSuccess(LoginSuccess value),
-    @required TResult loginWithTestUserOwner(LoginFailure value),
-    @required TResult loginWaitingForEmailLink(LoginWaitingForEmailLink value),
+    @required TResult loginFailure(LoginFailure value),
+    @required TResult wrongfullyInsertedEmail(WrongfullyInsertedEmail value),
   }) {
     assert(loginInitial != null);
     assert(loginLoading != null);
     assert(loginSuccess != null);
-    assert(loginWithTestUserOwner != null);
-    assert(loginWaitingForEmailLink != null);
-    return loginWaitingForEmailLink(this);
+    assert(loginFailure != null);
+    assert(wrongfullyInsertedEmail != null);
+    return wrongfullyInsertedEmail(this);
   }
 
   @override
@@ -743,22 +716,18 @@ class _$LoginWaitingForEmailLink
     TResult loginInitial(LoginInitial value),
     TResult loginLoading(LoginLoading value),
     TResult loginSuccess(LoginSuccess value),
-    TResult loginWithTestUserOwner(LoginFailure value),
-    TResult loginWaitingForEmailLink(LoginWaitingForEmailLink value),
+    TResult loginFailure(LoginFailure value),
+    TResult wrongfullyInsertedEmail(WrongfullyInsertedEmail value),
     @required TResult orElse(),
   }) {
     assert(orElse != null);
-    if (loginWaitingForEmailLink != null) {
-      return loginWaitingForEmailLink(this);
+    if (wrongfullyInsertedEmail != null) {
+      return wrongfullyInsertedEmail(this);
     }
     return orElse();
   }
 }
 
-abstract class LoginWaitingForEmailLink implements LoginState {
-  const factory LoginWaitingForEmailLink({String userEmail}) =
-      _$LoginWaitingForEmailLink;
-
-  String get userEmail;
-  $LoginWaitingForEmailLinkCopyWith<LoginWaitingForEmailLink> get copyWith;
+abstract class WrongfullyInsertedEmail implements LoginState {
+  const factory WrongfullyInsertedEmail() = _$WrongfullyInsertedEmail;
 }

@@ -104,7 +104,7 @@ class AuthProvider implements AuthRepository {
     ActionCodeSettings actionCodeSettings = ActionCodeSettings(
         // URL you want to redirect back to. The domain (www.example.com) for this
         // URL must be in the authorized domains list in the Firebase Console.
-      // todo https://trello.com/c/f01A8c2R
+        // todo https://trello.com/c/f01A8c2R
         url: 'https://checkin-test-fba3d.web.app',
         handleCodeInApp: true,
         iOSBundleId: appConfig.appUniqueIdentifier,
@@ -114,7 +114,9 @@ class AuthProvider implements AuthRepository {
         androidMinimumVersion: '1.0.0',
         dynamicLinkDomain: appConfig.dynamicLinkDomain);
     return _firebaseAuth.sendSignInLinkToEmail(
-        email: userEmail, actionCodeSettings: actionCodeSettings);
+      email: userEmail,
+      actionCodeSettings: actionCodeSettings,
+    );
   }
 
   @override
@@ -124,7 +126,6 @@ class AuthProvider implements AuthRepository {
     } else {
       throw UserAlreadyLoggedInException("user [$userEmail] already logged in");
     }
-
   }
 
   Future<void> signOut() async {

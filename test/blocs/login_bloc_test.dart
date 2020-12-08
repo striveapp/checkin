@@ -285,27 +285,65 @@ void main() {
     });
 
     group("on LoginPasswordless event", () {
-      setUp((){
-        when(mockLocalStorageRepository.setUserEmail(fakeUser.email)).thenAnswer((realInvocation) => Future.value());
-        when(mockAuthRepository.signInPasswordless(fakeUser.email)).thenAnswer((realInvocation) => Future.value());
-      });
+      group("when the inserted email is correct", () {
+        setUp((){
+          when(mockLocalStorageRepository.setUserEmail(fakeUser.email)).thenAnswer((realInvocation) => Future.value());
+          when(mockAuthRepository.signInPasswordless(fakeUser.email)).thenAnswer((realInvocation) => Future.value());
+        });
 
-      tearDown((){
-        verify(mockLocalStorageRepository.setUserEmail(fakeUser.email));
-        verify(mockAuthRepository.signInPasswordless(fakeUser.email));
-      });
+        tearDown((){
+          verify(mockLocalStorageRepository.setUserEmail(fakeUser.email));
+          verify(mockAuthRepository.signInPasswordless(fakeUser.email));
+        });
 
-      blocTest(
-        "should emit LoginWaitingForEmailLink",
-        build: () => LoginBloc(
-          authRepository: mockAuthRepository,
-          userRepository: mockUserRepository,
-          analyticsRepository: mockAnalyticsRepository,
-          localStorageRepository: mockLocalStorageRepository,
-        ),
-        act: (bloc) => bloc.add(LoginPasswordless(userEmail: fakeUser.email)),
-        expect: [LoginWaitingForEmailLink(userEmail: fakeUser.email)],
-      );
+        blocTest(
+          "should emit no new state",
+          build: () => LoginBloc(
+            authRepository: mockAuthRepository,
+            userRepository: mockUserRepository,
+            analyticsRepository: mockAnalyticsRepository,
+            localStorageRepository: mockLocalStorageRepository,
+          ),
+          act: (bloc) => bloc.add(LoginPasswordless(userEmail: fakeUser.email)),
+          expect: [],
+        );
+      });
+      group("when the inserted email is NOT correct", () {
+        final wrongEmail = "not.really@email";
+
+        setUp((){
+          when(mockLocalStorageRepository.setUserEmail(wrongEmail)).thenAnswer((realInvocation) => Future.value());
+          when(mockAuthRepository.signInPasswordless(wrongEmail)).thenThrow("Not really the correct email");
+          when(mockAnalyticsRepository.passwordlessError(
+            err: "Not really the correct email",
+            stackTrace: argThat(isA<StackTrace>(), named: 'stackTrace'),
+          )).thenAnswer((_) => Future.value());
+        });
+
+        tearDown((){
+          verify(mockLocalStorageRepository.setUserEmail(wrongEmail));
+          verify(mockAuthRepository.signInPasswordless(wrongEmail));
+          verify(mockAnalyticsRepository.passwordlessError(
+            err: "Not really the correct email",
+            stackTrace: argThat(isA<StackTrace>(), named: 'stackTrace'),
+          ));
+        });
+
+        blocTest(
+          "should emit WrongfullyInsertedEmail",
+          build: () => LoginBloc(
+            authRepository: mockAuthRepository,
+            userRepository: mockUserRepository,
+            analyticsRepository: mockAnalyticsRepository,
+            localStorageRepository: mockLocalStorageRepository,
+          ),
+          act: (bloc) => bloc.add(LoginPasswordless(userEmail: wrongEmail)),
+          expect: [
+            LoginInitial(),
+            WrongfullyInsertedEmail(),
+          ],
+        );
+      });
     });
   });
 }
