@@ -37,8 +37,8 @@ workflows:
       - name: Run unit tests
         script: flutter test
 # TODO: disabled for now, since the pipeline have some problems in running test in the driver for Android https://trello.com/c/9otF6j51
-      - name: Run integration tests
-        script: flutter drive --flavor=dev --target=test_driver/journeys/journeys.dart
+#      - name: Run integration tests
+#        script: flutter drive --flavor=dev --target=test_driver/journeys/journeys.dart
     artifacts:
       - build/**/outputs/**/*.apk
       - flutter_drive.log
