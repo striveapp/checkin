@@ -73,6 +73,7 @@ class DynamicLinkBloc extends Bloc<DynamicLinkEvent, DynamicLinkState> {
     try {
       var loggedUser = await authRepository.completeSignInPasswordless(userEmail, event.deepLink);
       await analyticsRepository.setUserProperties(loggedUser.uid);
+      await analyticsRepository.logLoginWithPasswordlessSignIn();
       await userRepository.createUser(
         loggedUser,
       );

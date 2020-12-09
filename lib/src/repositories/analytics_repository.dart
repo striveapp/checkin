@@ -9,6 +9,8 @@ abstract class AnalyticsRepository {
 
   Future<void> logLoginWithAppleSignIn();
 
+  Future<void> logLoginWithPasswordlessSignIn();
+
   Future<void> logUnsubscribe();
 
   Future<void> logUserLocale();

@@ -27,6 +27,11 @@ class AnalyticsProvider implements AnalyticsRepository {
   }
 
   @override
+  Future<void> logLoginWithPasswordlessSignIn() async {
+    await _firebaseAnalytics.logLogin(loginMethod: "passwordless_sign_in");
+  }
+
+  @override
   Future<void> logUnsubscribe() async {
     await _firebaseAnalytics.logEvent(name: "unsubscribe");
   }

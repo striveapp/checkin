@@ -210,6 +210,7 @@ void main() {
                       fakeUserEmail, fakeAuthenticationLink))
                   .thenAnswer((realInvocation) => Future.value(fakeUser));
               when(mockAnalyticsRepository.setUserProperties(fakeUser.uid)).thenAnswer((realInvocation) => null);
+              when(mockAnalyticsRepository.logLoginWithPasswordlessSignIn()).thenAnswer((realInvocation) => null);
               when(mockUserRepository.createUser(fakeUser)).thenAnswer((realInvocation) => null);
             });
 
@@ -217,6 +218,7 @@ void main() {
               verify(mockAuthRepository.completeSignInPasswordless(
                   fakeUserEmail, fakeAuthenticationLink));
               verify(mockAnalyticsRepository.setUserProperties(fakeUser.uid));
+              verify(mockAnalyticsRepository.logLoginWithPasswordlessSignIn());
               verify(mockUserRepository.createUser(fakeUser));
             });
 
