@@ -51,7 +51,11 @@ class AuthBloc extends Bloc<AuthEvent, AuthState> {
         try {
           await analyticsRepository.setUserProperties(event.loggedUser.uid);
           await analyticsRepository.logUserLocale();
-          await _setCurrentVersionForUser(event.loggedUser.email);
+          // we don't wait next call, because it introduces a delay in the emission of the
+          // AuthAuthenticated state that allows the splash page to be fully displayed
+          // better solution would be to refactor app.dart logic to remove the splash screen
+          // by filtering the initState (this is not supported by bloc for now)
+          _setCurrentVersionForUser(event.loggedUser.email);
           await _setReferredGymForUser(event.loggedUser.email);
         } finally {
           await localStorageRepository.removeUserEmail();
