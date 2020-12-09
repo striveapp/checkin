@@ -102,14 +102,12 @@ class AuthProvider implements AuthRepository {
   @override
   Future<void> signInPasswordless(String userEmail) {
     ActionCodeSettings actionCodeSettings = ActionCodeSettings(
-        // URL you want to redirect back to. The domain (www.example.com) for this
-        // URL must be in the authorized domains list in the Firebase Console.
         url: appConfig.deepLinkUrl,
         handleCodeInApp: true,
         iOSBundleId: appConfig.appUniqueIdentifier,
         androidPackageName: appConfig.appUniqueIdentifier,
         androidInstallApp: true,
-        // todo should be release version of passwordless auth
+        // if user gets here, he already has the correct version of the app
         androidMinimumVersion: '1.0.0',
         dynamicLinkDomain: appConfig.dynamicLinkDomain);
     return _firebaseAuth.sendSignInLinkToEmail(
