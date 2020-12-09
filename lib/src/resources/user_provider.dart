@@ -16,6 +16,7 @@ class UserProvider implements UserRepository {
       .collection(path)
       .doc(email)
       .snapshots()
+      .where((snapshot) => snapshot.exists)
       .map((user) => toUser(user));
 
   User toUser(DocumentSnapshot user) {
