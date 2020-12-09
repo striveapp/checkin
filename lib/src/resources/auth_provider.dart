@@ -104,8 +104,7 @@ class AuthProvider implements AuthRepository {
     ActionCodeSettings actionCodeSettings = ActionCodeSettings(
         // URL you want to redirect back to. The domain (www.example.com) for this
         // URL must be in the authorized domains list in the Firebase Console.
-        // todo https://trello.com/c/f01A8c2R
-        url: 'https://checkin-test-fba3d.web.app',
+        url: appConfig.deepLinkUrl,
         handleCodeInApp: true,
         iOSBundleId: appConfig.appUniqueIdentifier,
         androidPackageName: appConfig.appUniqueIdentifier,

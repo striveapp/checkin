@@ -7,7 +7,8 @@ Future<void> main() async {
   final config = AppConfig(
       flavor: 'dev',
       appUniqueIdentifier: 'com.arya.checkin.dev',
-      dynamicLinkDomain: 'arya.page.link'
+      dynamicLinkDomain: 'arya.page.link',
+      deepLinkUrl: 'https://checkin-test-fba3d.web.app',
   );
 
   mainCommon(config);

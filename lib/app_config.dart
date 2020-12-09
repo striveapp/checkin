@@ -4,11 +4,13 @@ class AppConfig {
   final String flavor;
   final String appUniqueIdentifier;
   final String dynamicLinkDomain;
+  final String deepLinkUrl;
 
   AppConfig({
     @required this.flavor,
     @required this.appUniqueIdentifier,
-    @required this.dynamicLinkDomain
+    @required this.dynamicLinkDomain,
+    @required this.deepLinkUrl,
   }) {
     switch (flavor) {
       case 'dev':
