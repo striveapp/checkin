@@ -1,11 +1,9 @@
-import 'package:checkin/src/constants.dart';
 import 'package:checkin/src/models/attendee.dart';
 import 'package:checkin/src/models/grade.dart';
 import 'package:checkin/src/models/lesson.dart';
 import 'package:checkin/src/models/master.dart';
 import 'package:checkin/src/repositories/lesson_repository.dart';
 import 'package:checkin/src/util/date_util.dart';
-import 'package:checkin/src/util/debug_util.dart';
 import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:flutter/foundation.dart';
 import 'package:intl/intl.dart';
@@ -32,16 +30,7 @@ class LessonInstancesProvider implements LessonRepository {
   }
 
   @override
-  Stream<List<Lesson>> getLessonsForToday(String gymId) {
-    if (isInDebugMode) {
-      return getLessonsForDay(gymId, testDate);
-    }
-
-    return getLessonsForDay(gymId, DateTime.now());
-  }
-
-  @override
-  Stream<List<Lesson>> getLessonsForDay(String gymId, DateTime day) {
+  Stream<List<Lesson>> getLessonsForDay(String gymId, DateTime day, [List<String> filterTypes = const []]) {
     var formattedDate = _formatDate(day);
     return _firestore
         .collection(gymPath)
@@ -49,11 +38,12 @@ class LessonInstancesProvider implements LessonRepository {
         .collection(path)
         .doc(formattedDate)
         .collection("instances")
+        .where("lessonConfig.type", whereIn: filterTypes.isNotEmpty ? filterTypes : null)
         .snapshots()
         .map((snapshot) => snapshot.docs
-            .where((doc) => doc.data()['masters'] != null)
-            .map((doc) => _toLesson(doc))
-            .toList());
+        .where((doc) => doc.data()['masters'] != null)
+        .map((doc) => _toLesson(doc))
+        .toList());
   }
 
   @override

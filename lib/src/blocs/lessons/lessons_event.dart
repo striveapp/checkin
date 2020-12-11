@@ -1,37 +1,13 @@
 import 'package:checkin/src/models/lesson.dart';
-import 'package:equatable/equatable.dart';
 
-abstract class LessonsEvent extends Equatable {
-  const LessonsEvent();
+import 'package:flutter/foundation.dart';
+import 'package:freezed_annotation/freezed_annotation.dart';
+import 'package:meta/meta.dart';
 
-  @override
-  List<Object> get props => [];
-}
+part 'lessons_event.freezed.dart';
 
-class LessonsUpdated extends LessonsEvent {
-  final List<Lesson> lessons;
-
-  const LessonsUpdated({
-    this.lessons,
-  });
-
-  @override
-  List<Object> get props => [lessons];
-
-  @override
-  String toString() => 'LessonsUpdated';
-}
-
-class LoadLessons extends LessonsEvent {
-  final DateTime selectedDay;
-
-  LoadLessons({
-    this.selectedDay,
-  });
-
-  @override
-  List<Object> get props => [selectedDay];
-
-  @override
-  String toString() => 'LoadLessons';
+@freezed
+abstract class LessonsEvent with _$LessonsEvent {
+  const factory LessonsEvent.lessonsUpdated({DateTime selectedDay, List<Lesson> lessons, @Default([]) List<String> selectedFilterList}) = LessonsUpdated;
+  const factory LessonsEvent.loadLessons({DateTime selectedDay, List<String> selectedFilterList}) = LoadLessons;
 }

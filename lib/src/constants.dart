@@ -9,4 +9,4 @@ const YEAR = "year";
 const ANDROID_APP_ID = "com.arya.checkin";
 const IOS_APP_ID = "1471462737";
 
-final testDate = DateTime(2020, 6, 22);
+final testDate = DateTime(2020, 12, 7);

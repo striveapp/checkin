@@ -18,7 +18,6 @@ class ChoiceChipWidget extends StatelessWidget {
     return Container(
       padding: const EdgeInsets.symmetric(horizontal: 10),
       child: ChoiceChip(
-        //TODO lessonConfig: we need to add a background color
         selectedColor: Theme.of(context).accentColor,
         label: Container(
           constraints: BoxConstraints(

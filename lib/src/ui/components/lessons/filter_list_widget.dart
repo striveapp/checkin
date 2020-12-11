@@ -1,15 +1,19 @@
+import 'package:checkin/src/blocs/lesson_filter/bloc.dart';
+import 'package:checkin/src/blocs/lessons/bloc.dart';
+import 'package:checkin/src/blocs/user/user_bloc.dart';
+import 'package:checkin/src/repositories/lesson_config_repository.dart';
+import 'package:checkin/src/ui/components/loading_indicator.dart';
 import 'package:flutter/material.dart';
+import 'package:flutter_bloc/flutter_bloc.dart';
 
 import 'choice_chip_widget.dart';
 
 class FilterListWidget extends StatefulWidget {
   final List<String> selectedFilterList;
-  final List<String> filterList;
 
   FilterListWidget({
     Key key,
     this.selectedFilterList,
-    this.filterList,
   }) : super(key: key);
 
   @override
@@ -17,31 +21,47 @@ class FilterListWidget extends StatefulWidget {
 }
 
 class _FilterListWidgetState extends State<FilterListWidget> {
-  List<String> _selectedTextList = List();
-  List<String> _allTextList;
+  List<String> _selectedFilterList;
+  ScrollController _scrollController;
 
   @override
   void initState() {
-    _allTextList =
-    widget.filterList == null ? [] : List.from(widget.filterList);
-    _selectedTextList = widget.selectedFilterList != null
-        ? List.from(widget.selectedFilterList)
-        : [];
+    _selectedFilterList = [];
+    _selectedFilterList = List.from(widget.selectedFilterList);
+    _scrollController = ScrollController();
     super.initState();
   }
 
-  Widget _body() {
-    return Container(
-      width: MediaQuery.of(context).size.width * 0.7,
-      constraints: BoxConstraints(
-        maxHeight: 200,
-      ),
-      child: SingleChildScrollView(
-        child: Padding(
-          padding: EdgeInsets.symmetric(horizontal: 5, vertical: 10),
-          child: Column(
-            crossAxisAlignment: CrossAxisAlignment.start,
-            children: _buildChoiceList(_allTextList),
+  @override
+  Widget build(BuildContext context) {
+    return Material(
+      borderRadius: BorderRadius.all(Radius.circular(8)),
+      child: Container(
+        width: MediaQuery.of(context).size.width * 0.7,
+        constraints: BoxConstraints(
+          maxHeight: 200,
+        ),
+        child: Scrollbar(
+          isAlwaysShown: true,
+          controller: _scrollController,
+          radius: Radius.circular(10),
+          child: SingleChildScrollView(
+            controller: _scrollController,
+            child: Padding(
+              padding: EdgeInsets.symmetric(horizontal: 5, vertical: 10),
+              child: BlocBuilder<LessonFilterBloc, LessonFilterState>(
+                cubit: LessonFilterBloc(
+                    lessonConfigRepository: context.watch<LessonConfigRepository>(),
+                    userBloc: context.watch<UserBloc>()),
+                builder: (BuildContext context, LessonFilterState state) => state.map(
+                    initialLessonFilterState: (_) => LoadingIndicator(),
+                    lessonFilterLoaded: (LessonFilterLoaded state) => Column(
+                      crossAxisAlignment: CrossAxisAlignment.start,
+                      children: _buildChoiceList(state.availableLessonTypes),
+                    ),
+                  ),
+              ),
+            ),
           ),
         ),
       ),
@@ -51,19 +71,18 @@ class _FilterListWidgetState extends State<FilterListWidget> {
   List<Widget> _buildChoiceList(List<String> list) {
     List<Widget> choices = List();
     list.forEach(
-          (item) {
-        var selectedText = _selectedTextList.contains(item);
+      (item) {
+        var selectedText = _selectedFilterList.contains(item);
         choices.add(
           ChoiceChipWidget(
             onSelected: (value) {
-              //TODO lessonConfig: this should invoke the callback to update the filters
               setState(
-                    () {
-                  selectedText
-                      ? _selectedTextList.remove(item)
-                      : _selectedTextList.add(item);
+                () {
+                  selectedText ? _selectedFilterList.remove(item) : _selectedFilterList.add(item);
                 },
               );
+
+              _onSelectedFiltersUpdate(_selectedFilterList);
             },
             selected: selectedText,
             text: item,
@@ -74,13 +93,17 @@ class _FilterListWidgetState extends State<FilterListWidget> {
     return choices;
   }
 
-  @override
-  Widget build(BuildContext context) {
-    return Material(
-      borderRadius: BorderRadius.all(Radius.circular(8)),
-      child: Container(
-        child: _body(),
-      ),
-    );
+  void _onSelectedFiltersUpdate(List<String> selectedFilterList) {
+    var lessonsBloc = context.read<LessonsBloc>();
+
+    lessonsBloc.state.maybeMap(lessonsLoaded: (LessonsLoaded lessonsState) {
+      lessonsBloc.add(LessonsEvent.loadLessons(
+          selectedDay: lessonsState.selectedDay, selectedFilterList: _selectedFilterList));
+    }, lessonsLoadedEmpty: (LessonsLoadedEmpty lessonsState) {
+      lessonsBloc.add(LessonsEvent.loadLessons(
+          selectedDay: lessonsState.selectedDay, selectedFilterList: _selectedFilterList));
+    }, orElse: () {
+      // ignore
+    });
   }
 }

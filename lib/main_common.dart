@@ -12,6 +12,7 @@ import 'package:checkin/src/repositories/auth_repository.dart';
 import 'package:checkin/src/repositories/dynamic_link_repository.dart';
 import 'package:checkin/src/repositories/graduation_system_repository.dart';
 import 'package:checkin/src/repositories/image_repository.dart';
+import 'package:checkin/src/repositories/lesson_config_repository.dart';
 import 'package:checkin/src/repositories/lesson_repository.dart';
 import 'package:checkin/src/repositories/local_storage_repository.dart';
 import 'package:checkin/src/repositories/membership_repository.dart';
@@ -23,6 +24,7 @@ import 'package:checkin/src/resources/analytics_provider.dart';
 import 'package:checkin/src/resources/auth_provider.dart';
 import 'package:checkin/src/resources/dynamic_link_provider.dart';
 import 'package:checkin/src/resources/graduation_system_provider.dart';
+import 'package:checkin/src/resources/lesson_config_provider.dart';
 import 'package:checkin/src/resources/lesson_instances_provider.dart';
 import 'package:checkin/src/resources/local_storage_provider.dart';
 import 'package:checkin/src/resources/membership_provider.dart';
@@ -101,6 +103,9 @@ Future<void> mainCommon(AppConfig appConfig) async {
           RepositoryProvider<VersionRepository>(
             create: (context) => VersionRepository(),
           ),
+          RepositoryProvider<LessonConfigRepository>(
+            create: (context) => LessonConfigProvider(),
+          )
         ],
         child: MultiBlocProvider(
           providers: [
@@ -112,20 +117,19 @@ Future<void> mainCommon(AppConfig appConfig) async {
                   authRepository: context.read<AuthRepository>(),
                   analyticsRepository: context.read<AnalyticsRepository>(),
                   userRepository: context.read<UserRepository>(),
-                  localStorageRepository:
-                      context.read<LocalStorageRepository>(),
+                  localStorageRepository: context.read<LocalStorageRepository>(),
                   versionUtil: VersionUtil())
                 ..add(AppStarted()),
             ),
             BlocProvider<DynamicLinkBloc>(
               create: (context) => DynamicLinkBloc(
-                dynamicLinks: FirebaseDynamicLinks.instance,
-                localStorageRepository: context.read<LocalStorageRepository>(),
-                dynamicLinkRepository: context.read<DynamicLinkRepository>(),
-                authRepository: context.read<AuthRepository>(),
-                analyticsRepository: context.read<AnalyticsRepository>(),
-                userRepository: context.read<UserRepository>()
-              )..add(DeepLinkSetup()),
+                  dynamicLinks: FirebaseDynamicLinks.instance,
+                  localStorageRepository: context.read<LocalStorageRepository>(),
+                  dynamicLinkRepository: context.read<DynamicLinkRepository>(),
+                  authRepository: context.read<AuthRepository>(),
+                  analyticsRepository: context.read<AnalyticsRepository>(),
+                  userRepository: context.read<UserRepository>())
+                ..add(DeepLinkSetup()),
             ),
             BlocProvider<VersionBloc>(
                 create: (context) => VersionBloc(

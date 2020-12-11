@@ -22,6 +22,12 @@ class LessonCard extends StatelessWidget {
     return Container(
         height: 180,
         padding: EdgeInsets.only(top: 15.0),
+        decoration: lesson.lessonConfig != null ? BoxDecoration(
+          border: Border.all(
+            color: toColor(lesson.lessonConfig.color),
+            width: 5.0,
+          )
+        ): null,
         child: Card(
             key: Key(lesson.name),
             margin: EdgeInsets.symmetric(horizontal: 20),
@@ -110,6 +116,20 @@ class LessonCard extends StatelessWidget {
                 ),
               ),
             )));
+  }
+}
+
+// todo improve this with our colors
+Color toColor(String color) {
+  switch( color ) {
+    case "yellow":
+      return Colors.yellow;
+    case "red":
+      return Colors.red;
+    case "purple":
+      return Colors.purple;
+    default:
+      return Colors.yellow;
   }
 }
 

@@ -6,6 +6,7 @@ import 'package:checkin/src/repositories/graduation_system_repository.dart';
 import 'package:checkin/src/repositories/membership_repository.dart';
 import 'package:checkin/src/repositories/stats_repository.dart';
 import 'package:checkin/src/repositories/user_repository.dart';
+import 'package:checkin/src/ui/components/empty_widget.dart';
 import 'package:checkin/src/ui/components/registry/attendee_thumbnail.dart';
 import 'package:checkin/src/util/graduation_util.dart';
 import 'package:flutter/material.dart';
@@ -92,9 +93,7 @@ class AttendeeTile extends StatelessWidget {
                                 message: message.i18n,
                                 child: Icon(Icons.warning_amber_rounded, color: Colors.amber),
                               ),
-                          orElse: () => SizedBox(
-                                width: 1,
-                              ));
+                          orElse: () => EmptyWidget());
                     }),
                   Icon(_getAcceptedStateIcon(), color: Theme.of(context).accentColor),
                 ],

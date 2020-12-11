@@ -5,9 +5,7 @@ import 'package:checkin/src/models/lesson.dart';
 import 'package:checkin/src/models/master.dart';
 
 abstract class LessonRepository {
-  Stream<List<Lesson>> getLessonsForToday(String gymId);
-
-  Stream<List<Lesson>> getLessonsForDay(String gymId, DateTime day);
+  Stream<List<Lesson>> getLessonsForDay(String gymId, DateTime day, [List<String> filterTypes]);
 
   Stream<List<Lesson>> getLessonsByMasterAndTimespan(Master master, String timespan);
 

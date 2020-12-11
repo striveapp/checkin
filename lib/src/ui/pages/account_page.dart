@@ -165,23 +165,26 @@ class AccountPage extends StatelessWidget {
                               Row(
                                 mainAxisAlignment: MainAxisAlignment.center,
                                 children: <Widget>[
-                                  RaisedButton(
-                                    key: Key('logoutButton'),
-                                    color: Colors.red,
-                                    child: Text("Logout",
-                                        style: TextStyle(
-                                            fontSize: 18,
-                                            color: Colors.white,
-                                            fontWeight: FontWeight.w600)),
-                                    onPressed: () {
-                                      Navigator.popUntil(
-                                        context,
-                                        ModalRoute.withName(
-                                            Navigator.defaultRouteName),
-                                      );
-                                      BlocProvider.of<AuthBloc>(context)
-                                          .add(LogOut());
-                                    },
+                                  Padding(
+                                    padding: const EdgeInsets.only(bottom: 20.0),
+                                    child: RaisedButton(
+                                      key: Key('logoutButton'),
+                                      color: Colors.red,
+                                      child: Text("Logout",
+                                          style: TextStyle(
+                                              fontSize: 18,
+                                              color: Colors.white,
+                                              fontWeight: FontWeight.w600)),
+                                      onPressed: () {
+                                        Navigator.popUntil(
+                                          context,
+                                          ModalRoute.withName(
+                                              Navigator.defaultRouteName),
+                                        );
+                                        BlocProvider.of<AuthBloc>(context)
+                                            .add(LogOut());
+                                      },
+                                    ),
                                   ),
                                 ],
                               ),

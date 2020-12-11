@@ -2,6 +2,7 @@ import 'package:checkin/src/blocs/profile/bloc.dart';
 import 'package:checkin/src/blocs/user/bloc.dart';
 import 'package:checkin/src/localization/localization.dart';
 import 'package:checkin/src/ui/components/add_photo_badge.dart';
+import 'package:checkin/src/ui/components/empty_widget.dart';
 import 'package:checkin/src/ui/components/loading_indicator.dart';
 import 'package:checkin/src/ui/components/user_image.dart';
 import 'package:flutter/material.dart';
@@ -80,7 +81,7 @@ class ProfileCard extends StatelessWidget {
                           suffixIcon: Icon(Icons.edit),
                           border: InputBorder.none,
                           focusedBorder: InputBorder.none,
-                          counter: SizedBox.shrink(),
+                          counter: EmptyWidget(),
                           hintText: enterYourName.i18n),
                       controller: TextEditingController.fromValue(
                           TextEditingValue(

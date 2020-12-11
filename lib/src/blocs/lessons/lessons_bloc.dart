@@ -4,10 +4,12 @@ import 'package:bloc/bloc.dart';
 import 'package:checkin/src/blocs/user/bloc.dart';
 import 'package:checkin/src/models/lesson.dart';
 import 'package:checkin/src/repositories/lesson_repository.dart';
+import 'package:checkin/src/util/debug_util.dart';
 import 'package:flutter/foundation.dart';
 import 'package:meta/meta.dart';
 import 'package:intl/intl.dart';
 
+import '../../constants.dart';
 import 'bloc.dart';
 
 class LessonsBloc extends Bloc<LessonsEvent, LessonsState> {
@@ -26,11 +28,14 @@ class LessonsBloc extends Bloc<LessonsEvent, LessonsState> {
   }
 
   void _onUserStateChanged(userState) {
-    if(userState is UserSuccess) {
+    if (userState is UserSuccess) {
       gymId = userState.currentUser.selectedGymId;
       lessonsSub?.cancel();
-      lessonsSub = this.lessonRepository.getLessonsForToday(gymId).listen((lessons) {
-        add(LessonsUpdated(lessons: lessons));
+
+      var day = isInDebugMode ? testDate : DateTime.now();
+
+      lessonsSub = this.lessonRepository.getLessonsForDay(gymId, day).listen((lessons) {
+        add(LessonsEvent.lessonsUpdated(lessons: lessons, selectedDay: day));
       });
     }
   }
@@ -38,27 +43,38 @@ class LessonsBloc extends Bloc<LessonsEvent, LessonsState> {
   @override
   Stream<LessonsState> mapEventToState(LessonsEvent event) async* {
     if (event is LessonsUpdated) {
-      try {
-        if (event.lessons.length > 0) {
-          yield LessonsLoaded(lessons: _sortLessonsByTime(event.lessons));
-        } else {
-          yield LessonsLoadedEmpty();
-        }
-      } catch (e) {
-        print(e);
+      if (event.lessons.length > 0) {
+        yield LessonsLoaded(
+            lessons: _sortLessonsByTime(event.lessons),
+            selectedDay: event.selectedDay,
+            selectedFilterList: event.selectedFilterList);
+      } else {
+        yield LessonsLoadedEmpty(
+            selectedDay: event.selectedDay, selectedFilterList: event.selectedFilterList);
       }
     }
 
     if (event is LoadLessons) {
+      List<String> selectedFilterList = event.selectedFilterList ?? state.maybeMap(
+              lessonsLoadedEmpty: (LessonsLoadedEmpty state) => state.selectedFilterList,
+              lessonsLoaded: (LessonsLoaded state) => state.selectedFilterList,
+              orElse: () => []);
+
       lessonsSub?.cancel();
-      lessonsSub = this.lessonRepository.getLessonsForDay(gymId, event.selectedDay).listen((lessons) {
-        add(LessonsUpdated(lessons: lessons));
+      lessonsSub = this
+          .lessonRepository
+          .getLessonsForDay(gymId, event.selectedDay, selectedFilterList)
+          .listen((lessons) {
+        add(LessonsUpdated(
+            selectedDay: event.selectedDay,
+            lessons: lessons,
+            selectedFilterList: selectedFilterList));
       });
     }
   }
 
-  _sortLessonsByTime(List<Lesson> lessons) => lessons
-    ..sort(((a, b) => _getDate(a.timeStart).compareTo(_getDate(b.timeStart))));
+  _sortLessonsByTime(List<Lesson> lessons) =>
+      lessons..sort(((a, b) => _getDate(a.timeStart).compareTo(_getDate(b.timeStart))));
 
   _getDate(String time) {
     DateTime now = DateTime.now();

@@ -1,3 +1,4 @@
+import 'package:checkin/src/models/lesson_config.dart';
 import 'package:freezed_annotation/freezed_annotation.dart';
 import 'package:checkin/src/config.dart' as config;
 
@@ -22,6 +23,7 @@ abstract class Lesson with _$Lesson {
     @Default([]) final List<Master> masters,
     @Default([]) final List<Attendee> attendees,
     @Default([]) final List<Attendee> acceptedAttendees,
+    final LessonConfig lessonConfig,
   }) = _Lesson;
 
   factory Lesson.fromJson(Map<String, dynamic> json) => _$LessonFromJson(json);

@@ -17,26 +17,27 @@ class LessonsPage extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    return Scaffold(
-        appBar: BaseAppBar(
-          title: classes.i18n,
-        ),
-        floatingActionButton: isInDebugMode ? LessonsFilterFab() : null,
-        body: BlocProvider<LessonsBloc>(
-          create: (BuildContext context) =>
-              LessonsBloc(
-                userBloc: BlocProvider.of<UserBloc>(context),
-                lessonRepository: RepositoryProvider.of<LessonRepository>(context),
+    return BlocProvider(
+      create: (BuildContext context) => LessonsBloc(
+        userBloc: BlocProvider.of<UserBloc>(context),
+        lessonRepository: RepositoryProvider.of<LessonRepository>(context),
+      ),
+      child: Builder(
+        builder: (BuildContext context) {
+          return Scaffold(
+              appBar: BaseAppBar(
+                title: classes.i18n,
               ),
-          child: Builder(
-            builder: (BuildContext context) =>
-                Padding(
+              floatingActionButton: isInDebugMode
+                  ? LessonsFilterFab()
+                  : null,
+              body: Builder(
+                builder: (BuildContext context) => Padding(
                   padding: const EdgeInsets.only(top: 15),
                   child: Container(
                     decoration: BoxDecoration(
                         borderRadius: BorderRadius.only(
-                            topLeft: Radius.circular(10.0),
-                            topRight: Radius.circular(10.0))),
+                            topLeft: Radius.circular(10.0), topRight: Radius.circular(10.0))),
                     child: Column(
                       crossAxisAlignment: CrossAxisAlignment.center,
                       children: <Widget>[
@@ -57,7 +58,9 @@ class LessonsPage extends StatelessWidget {
                     ),
                   ),
                 ),
-          ),
-        ));
+              ));
+        },
+      ),
+    );
   }
 }

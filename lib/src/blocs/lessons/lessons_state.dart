@@ -1,36 +1,15 @@
 import 'package:checkin/src/models/lesson.dart';
-import 'package:equatable/equatable.dart';
 
-abstract class LessonsState extends Equatable {
-  const LessonsState();
+import 'package:flutter/foundation.dart';
+import 'package:freezed_annotation/freezed_annotation.dart';
+import 'package:meta/meta.dart';
 
-  @override
-  List<Object> get props => [];
-}
+part 'lessons_state.freezed.dart';
 
-class LessonsUninitialized extends LessonsState {
-  @override
-  String toString() => 'LessonsUninitialized';
-}
-
-class LessonsError extends LessonsState {
-  @override
-  String toString() => 'LessonsError';
-}
-
-class LessonsLoaded extends LessonsState {
-  final List<Lesson> lessons;
-
-  const LessonsLoaded({this.lessons});
-
-  @override
-  List<Object> get props => [lessons];
-
-  @override
-  String toString() => 'LessonsLoaded';
-}
-
-class LessonsLoadedEmpty extends LessonsState {
-  @override
-  String toString() => 'LessonsLoadedEmpty';
+@freezed
+abstract class LessonsState with _$LessonsState {
+  const factory LessonsState.lessonsUninitialized() = LessonsUninitialized;
+  const factory LessonsState.lessonsError() = LessonsError;
+  const factory LessonsState.lessonsLoaded({List<Lesson> lessons, DateTime selectedDay, @Default([]) List<String> selectedFilterList}) = LessonsLoaded;
+  const factory LessonsState.lessonsLoadedEmpty({DateTime selectedDay, @Default([]) List<String> selectedFilterList}) = LessonsLoadedEmpty;
 }
