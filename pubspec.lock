@@ -406,7 +406,7 @@ packages:
       name: fluro
       url: "https://pub.dartlang.org"
     source: hosted
-    version: "1.7.7"
+    version: "1.7.8"
   flutter:
     dependency: "direct main"
     description: flutter
@@ -592,12 +592,12 @@ packages:
     source: hosted
     version: "1.1.1"
   intl:
-    dependency: transitive
+    dependency: "direct overridden"
     description:
       name: intl
       url: "https://pub.dartlang.org"
     source: hosted
-    version: "0.16.1"
+    version: "0.17.0-nullsafety.2"
   io:
     dependency: transitive
     description:
@@ -1057,7 +1057,7 @@ packages:
       name: table_calendar
       url: "https://pub.dartlang.org"
     source: hosted
-    version: "2.3.0"
+    version: "2.3.2"
   term_glyph:
     dependency: transitive
     description:
@@ -1162,7 +1162,7 @@ packages:
       name: vm_service
       url: "https://pub.dartlang.org"
     source: hosted
-    version: "5.2.0"
+    version: "5.5.0"
   watcher:
     dependency: transitive
     description:
@@ -1220,5 +1220,5 @@ packages:
     source: hosted
     version: "2.2.1"
 sdks:
-  dart: ">=2.12.0-0.0 <=2.12.0-29.10.beta"
+  dart: ">=2.12.0-0.0 <=2.12.0-133.2.beta"
   flutter: ">=1.22.2 <2.0.0"

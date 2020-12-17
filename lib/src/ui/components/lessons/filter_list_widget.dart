@@ -69,7 +69,7 @@ class _FilterListWidgetState extends State<FilterListWidget> {
   }
 
   List<Widget> _buildChoiceList(List<String> list) {
-    List<Widget> choices = List();
+    List<Widget> choices = [];
     list.forEach(
       (item) {
         var selectedText = _selectedFilterList.contains(item);
