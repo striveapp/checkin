@@ -1,7 +1,9 @@
 import 'package:checkin/src/blocs/registry/bloc.dart';
+import 'package:checkin/src/localization/localization.dart';
 import 'package:checkin/src/models/attendee.dart';
 import 'package:checkin/src/models/lesson.dart';
 import 'package:checkin/src/models/user.dart';
+import 'package:checkin/src/ui/components/registry/remove_student_dialog.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 
@@ -30,16 +32,14 @@ class AttendeesList extends StatelessWidget {
                           children: <Widget>[
                             if (_isUserInClass(state))
                               CurrentUserTile(
-                                  acceptedAttendees:
-                                      currentLesson.acceptedAttendees,
+                                  acceptedAttendees: currentLesson.acceptedAttendees,
                                   currentUser: currentUser),
                             Expanded(
                               child: SingleChildScrollView(
                                 child: Column(
                                   children: <Widget>[
                                     AcceptedAttendees(
-                                        acceptedAttendees:
-                                            currentLesson.acceptedAttendees,
+                                        acceptedAttendees: currentLesson.acceptedAttendees,
                                         currentUser: currentUser),
                                     Attendees(
                                         attendees: currentLesson.attendees,
@@ -62,6 +62,8 @@ class AttendeesList extends StatelessWidget {
 }
 
 class Attendees extends StatelessWidget {
+  static const String removeStudent = 'Remove';
+
   final User currentUser;
   final List<Attendee> attendees;
 
@@ -75,35 +77,58 @@ class Attendees extends StatelessWidget {
   Widget build(BuildContext context) {
     return Column(
       children: attendees
-          .where((attendee) => attendee.email != currentUser.email)
-          .map((attendee) => currentUser.isOwner
-              ? Dismissible(
-                  key: Key(attendee.email),
-                  direction: DismissDirection.endToStart,
-                  background: Container(
+          .asMap()
+          .entries
+          .where((attendeeEntry) => attendeeEntry.value.email != currentUser.email)
+          .map((attendeeEntry) {
+        var attendee = attendeeEntry.value;
+        int index = attendeeEntry.key;
+        return currentUser.isOwner
+            ? Dismissible(
+                key: Key(attendee.email),
+                direction: DismissDirection.endToStart,
+                confirmDismiss: (DismissDirection direction) async {
+                  return await showDialog(
+                    context: context,
+                    builder: (BuildContext context) {
+                      return RemoveStudentDialog();
+                    },
+                  );
+                },
+                background: Container(
                     color: Colors.red,
-                  ),
-                  onDismissed: (direction) {
-                    BlocProvider.of<RegistryBloc>(context)
-                      ..add(Unregister(
-                        gymId: currentUser.selectedGymId,
-                        attendee: attendee,
-                      ));
-                  },
-                  child: AttendeeTile(
+                    padding: EdgeInsets.symmetric(horizontal: 20),
+                    alignment: AlignmentDirectional.centerEnd,
+                    child: Row(
+                      mainAxisAlignment: MainAxisAlignment.end,
+                      children: [
+                        Icon(Icons.delete, color: Colors.white),
+                        Text(removeStudent.i18n,
+                            style: Theme.of(context).textTheme.bodyText1.apply(color: Colors.white))
+                      ],
+                    )),
+                onDismissed: (direction) {
+                  BlocProvider.of<RegistryBloc>(context)
+                    ..add(Unregister(
+                      gymId: currentUser.selectedGymId,
+                      attendee: attendee,
+                    ));
+                },
+                child: AttendeeTile(
                     attendee: attendee,
                     selectedGymId: currentUser.selectedGymId,
                     isAccepted: false,
                     showSessionsWarning: true,
                     showGraduationIndication: true,
-                  ),
-                )
-              : AttendeeTile(
-                  attendee: attendee,
-                  selectedGymId: currentUser.selectedGymId,
-                  isAccepted: false,
-                ))
-          .toList(),
+                    showDismissibleCue: index == 0 // only show on first element
+                    ),
+              )
+            : AttendeeTile(
+                attendee: attendee,
+                selectedGymId: currentUser.selectedGymId,
+                isAccepted: false,
+              );
+      }).toList(),
     );
   }
 }
