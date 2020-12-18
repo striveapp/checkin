@@ -8,6 +8,7 @@ import 'package:checkin/src/repositories/stats_repository.dart';
 import 'package:checkin/src/repositories/user_repository.dart';
 import 'package:checkin/src/ui/components/empty_widget.dart';
 import 'package:checkin/src/ui/components/registry/attendee_thumbnail.dart';
+import 'package:checkin/src/ui/components/registry/dismissible_cue.dart';
 import 'package:checkin/src/util/graduation_util.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
@@ -19,6 +20,7 @@ class AttendeeTile extends StatelessWidget {
   final bool isAccepted;
   final bool showSessionsWarning;
   final bool showGraduationIndication;
+  final bool showDismissibleCue;
 
   static const String you = 'You';
   static const String youHaveNoMoreAvailableSessions = 'You have no more available sessions';
@@ -32,6 +34,7 @@ class AttendeeTile extends StatelessWidget {
     this.isAccepted = false,
     this.showSessionsWarning = false,
     this.showGraduationIndication = false,
+    this.showDismissibleCue = false,
   }) : super(key: key);
 
   @override
@@ -80,22 +83,28 @@ class AttendeeTile extends StatelessWidget {
                         : Theme.of(context).textTheme.headline3),
               ),
               trailing: Wrap(
-                spacing: 10,
                 children: [
-                  if (showSessionsWarning && !isAccepted)
-                    BlocBuilder<SessionsBloc, SessionsState>(
-                        builder: (BuildContext context, SessionsState state) {
-                      final message = isCurrent
-                          ? youHaveNoMoreAvailableSessions
-                          : thisStudentIsInSessionOverdue;
-                      return state.maybeWhen(
-                          sessionsWarning: (_totalLessonsOfPlan, _attendedLessons) => Tooltip(
-                                message: message.i18n,
-                                child: Icon(Icons.warning_amber_rounded, color: Colors.amber),
-                              ),
-                          orElse: () => EmptyWidget());
-                    }),
-                  Icon(_getAcceptedStateIcon(), color: Theme.of(context).accentColor),
+                  Wrap(
+                    spacing: 10,
+                    children: [
+                      if (showSessionsWarning && !isAccepted)
+                        BlocBuilder<SessionsBloc, SessionsState>(
+                            builder: (BuildContext context, SessionsState state) {
+                          final message = isCurrent
+                              ? youHaveNoMoreAvailableSessions
+                              : thisStudentIsInSessionOverdue;
+                          return state.maybeWhen(
+                              sessionsWarning: (_totalLessonsOfPlan, _attendedLessons) => Tooltip(
+                                    message: message.i18n,
+                                    child: Icon(Icons.warning_amber_rounded, color: Colors.amber),
+                                  ),
+                              orElse: () => EmptyWidget());
+                        }),
+                      if (this.isAccepted)
+                        Icon(Icons.check_circle, color: Theme.of(context).accentColor),
+                    ],
+                  ),
+                  if (this.showDismissibleCue && !this.isAccepted) DismissibleCue()
                 ],
               ),
               onTap: () async {
@@ -107,13 +116,5 @@ class AttendeeTile extends StatelessWidget {
         ],
       ),
     );
-  }
-
-  _getAcceptedStateIcon() {
-    if (this.isAccepted) {
-      return Icons.check_circle;
-    }
-
-    return Icons.radio_button_unchecked;
   }
 }

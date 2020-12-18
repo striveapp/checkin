@@ -18,6 +18,7 @@ import 'package:checkin/src/ui/components/plans/plans_list.dart';
 import 'package:checkin/src/ui/components/plans/price/price_footer.dart';
 import 'package:checkin/src/ui/components/registry/accept_all_dialog.dart';
 import 'package:checkin/src/ui/components/registry/attendee_tile.dart';
+import 'package:checkin/src/ui/components/registry/attendees_list.dart';
 import 'package:checkin/src/ui/components/registry/register_dialog.dart';
 import 'package:checkin/src/ui/components/registry/registry_counter.dart';
 import 'package:checkin/src/ui/components/attendees_preview.dart';
@@ -34,6 +35,7 @@ import 'package:checkin/src/ui/components/profile_card.dart';
 import 'package:checkin/src/ui/components/profile_infos.dart';
 import 'package:checkin/src/ui/components/registry/registry_controls.dart';
 import 'package:checkin/src/ui/components/registry/registry_missing_dialog.dart';
+import 'package:checkin/src/ui/components/registry/remove_student_dialog.dart';
 import 'package:checkin/src/ui/components/registry/student_button.dart';
 import 'package:checkin/src/ui/components/stats/graduate_dialog.dart';
 import 'package:checkin/src/ui/components/stats/graduate_fab.dart';
@@ -535,6 +537,22 @@ extension Localization on String {
     'en': LoginForm.or,
     'es': 'o',
     'it': 'oppure',
+  } + {
+    'en': Attendees.removeStudent,
+    'es': 'Eliminar',
+    'it': 'Rimuovi'
+  } + {
+    'en': RemoveStudentDialog.remove,
+    'es': 'Eliminar',
+    'it': 'Rimuovi'
+  } + {
+    'en': RemoveStudentDialog.removeStudentDisclaimer,
+    'es': '¿Estás seguro que quieres eliminar este estudiente de la clase?',
+    'it': 'Sei sicuro di voler rimuovere questo studente dalla classe?'
+  } + {
+    'en': RemoveStudentDialog.keepStudentInClass,
+    'es': 'Mantener',
+    'it': 'Mantieni'
   };
 
 String get i18n => localize(this, _t);
