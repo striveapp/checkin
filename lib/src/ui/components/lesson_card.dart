@@ -1,7 +1,8 @@
 import 'package:checkin/src/blocs/dynamic_link/bloc.dart';
 import 'package:checkin/src/localization/localization.dart';
 import 'package:checkin/src/models/lesson.dart';
-import 'package:checkin/src/ui/components/attendees_preview.dart';
+import 'package:checkin/src/ui/components/lessons/attendees_preview.dart';
+import 'package:checkin/src/ui/components/lessons/lesson_type_badge.dart';
 import 'package:checkin/src/ui/components/user_image.dart';
 import 'package:checkin/src/util/debug_util.dart';
 import 'package:flutter/material.dart';
@@ -21,14 +22,10 @@ class LessonCard extends StatelessWidget {
   Widget build(BuildContext context) {
     var allAttendees = lesson.attendees.length + lesson.acceptedAttendees.length;
     return Container(
-        height: 180,
+        constraints: BoxConstraints(
+          minHeight: 180
+        ),
         padding: EdgeInsets.only(top: 15.0),
-        decoration: isInDebugMode && lesson.lessonConfig != null? BoxDecoration(
-          border: Border.all(
-            color: toColor(lesson.lessonConfig.color),
-            width: 5.0,
-          )
-        ): null,
         child: Card(
             key: Key(lesson.name),
             margin: EdgeInsets.symmetric(horizontal: 20),
@@ -44,8 +41,20 @@ class LessonCard extends StatelessWidget {
                     Row(
                       crossAxisAlignment: CrossAxisAlignment.start,
                       children: <Widget>[
-                        UserImage(
-                          userImage: lesson.masters.first.imageUrl,
+                        Column(
+                          children: [
+                            UserImage(
+                              userImage: lesson.masters.first.imageUrl,
+                            ),
+                            if (isInDebugMode && lesson.lessonConfig != null)
+                              Padding(
+                                padding: const EdgeInsets.only(top: 8.0),
+                                child: LessonTypeBadge(
+                                  lessonType: lesson.lessonConfig.type,
+                                  color: lesson.lessonConfig.color,
+                                ),
+                              ),
+                          ],
                         ),
                         SizedBox(
                           width: 20,
@@ -62,7 +71,7 @@ class LessonCard extends StatelessWidget {
                                 style: Theme.of(context).textTheme.headline1,
                               ),
                               Text("${lesson.timeStart} - ${lesson.timeEnd}",
-                                  style: Theme.of(context).textTheme.headline3)
+                                  style: Theme.of(context).textTheme.headline3),
                             ],
                           ),
                         ),
@@ -117,20 +126,6 @@ class LessonCard extends StatelessWidget {
                 ),
               ),
             )));
-  }
-}
-
-// todo improve this with our colors
-Color toColor(String color) {
-  switch( color ) {
-    case "yellow":
-      return Colors.yellow;
-    case "red":
-      return Colors.red;
-    case "purple":
-      return Colors.purple;
-    default:
-      return Colors.yellow;
   }
 }
 

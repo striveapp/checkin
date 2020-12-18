@@ -1,7 +1,7 @@
 import 'package:checkin/src/blocs/lessons/bloc.dart';
 import 'package:checkin/src/ui/components/lesson_card.dart';
 import 'package:checkin/src/ui/components/loading_indicator.dart';
-import 'package:checkin/src/ui/components/no_lessons_banner.dart';
+import 'package:checkin/src/ui/components/lessons/no_lessons_banner.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 

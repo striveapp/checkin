@@ -1,7 +1,7 @@
 import 'package:checkin/src/localization/localization.dart';
 import 'package:checkin/src/models/attendee.dart';
 import 'package:checkin/src/models/lesson.dart';
-import 'package:checkin/src/ui/components/accepted_badge.dart';
+import 'package:checkin/src/ui/components/lessons/accepted_badge.dart';
 import 'package:checkin/src/ui/components/user_image.dart';
 import 'package:flutter/material.dart';
 
