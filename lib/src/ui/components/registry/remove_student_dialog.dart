@@ -20,7 +20,6 @@ class RemoveStudentDialog extends StatelessWidget {
       actionsPadding: EdgeInsets.symmetric(horizontal: 10),
       actions: <Widget>[
         RaisedButton(
-          key: Key("confirmButton"),
           child: Padding(
             padding: EdgeInsets.symmetric(vertical: 10, horizontal: 10),
             child: Text(
@@ -33,6 +32,7 @@ class RemoveStudentDialog extends StatelessWidget {
           },
         ),
         RaisedButton(
+          key: Key("removeStudentButton"),
           color: Theme.of(context).buttonTheme.colorScheme.error,
           child: Padding(
             padding: EdgeInsets.symmetric(vertical: 10, horizontal: 10),

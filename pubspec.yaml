@@ -40,7 +40,7 @@ dependencies:
   json_annotation: ^3.1.1
   i18n_extension: ^1.4.2
   url_launcher: ^5.4.1
-  table_calendar: ^2.3.2
+  table_calendar: ^2.3.3
   flutter_svg: ^0.18.0
   package_info: ^0.4.0+14
   open_appstore: ^1.0.2

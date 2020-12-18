@@ -954,7 +954,7 @@ packages:
       name: simple_gesture_detector
       url: "https://pub.dartlang.org"
     source: hosted
-    version: "0.1.4"
+    version: "0.1.5"
   sky_engine:
     dependency: transitive
     description: flutter
@@ -1057,7 +1057,7 @@ packages:
       name: table_calendar
       url: "https://pub.dartlang.org"
     source: hosted
-    version: "2.3.2"
+    version: "2.3.3"
   term_glyph:
     dependency: transitive
     description:
