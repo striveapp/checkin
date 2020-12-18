@@ -3,6 +3,7 @@ import 'package:checkin/src/localization/localization.dart';
 import 'package:checkin/src/models/lesson.dart';
 import 'package:checkin/src/ui/components/attendees_preview.dart';
 import 'package:checkin/src/ui/components/user_image.dart';
+import 'package:checkin/src/util/debug_util.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 
@@ -22,7 +23,7 @@ class LessonCard extends StatelessWidget {
     return Container(
         height: 180,
         padding: EdgeInsets.only(top: 15.0),
-        decoration: lesson.lessonConfig != null ? BoxDecoration(
+        decoration: isInDebugMode && lesson.lessonConfig != null? BoxDecoration(
           border: Border.all(
             color: toColor(lesson.lessonConfig.color),
             width: 5.0,

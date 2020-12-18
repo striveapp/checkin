@@ -7,7 +7,6 @@ import 'package:checkin/src/ui/components/base_app_bar.dart';
 import 'package:checkin/src/ui/components/lessons/lesson_card_list.dart';
 import 'package:checkin/src/ui/components/lessons/lesson_filter_fab.dart';
 import 'package:checkin/src/ui/components/week_calendar.dart';
-import 'package:checkin/src/util/debug_util.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter/widgets.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
@@ -28,9 +27,7 @@ class LessonsPage extends StatelessWidget {
               appBar: BaseAppBar(
                 title: classes.i18n,
               ),
-              floatingActionButton: isInDebugMode
-                  ? LessonsFilterFab()
-                  : null,
+              floatingActionButton: LessonsFilterFab(),
               body: Builder(
                 builder: (BuildContext context) => Padding(
                   padding: const EdgeInsets.only(top: 15),
