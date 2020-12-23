@@ -1,12 +1,11 @@
 import 'package:flutter/material.dart';
 
-//TODO lessonConfig: find better name for this
-class ChoiceChipWidget extends StatelessWidget {
+class FilterChoiceChip extends StatelessWidget {
   final String text;
   final bool selected;
   final Function(bool) onSelected;
 
-  const ChoiceChipWidget({
+  const FilterChoiceChip({
     Key key,
     this.text,
     this.selected,

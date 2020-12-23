@@ -34,7 +34,8 @@ class LessonsBloc extends Bloc<LessonsEvent, LessonsState> {
 
       var day = isInDebugMode ? testDate : DateTime.now();
 
-      lessonsSub = this.lessonRepository.getLessonsForDay(gymId, day).listen((lessons) {
+      lessonsSub =
+          this.lessonRepository.getLessonsForDay(gymId, day).listen((lessons) {
         add(LessonsEvent.lessonsUpdated(lessons: lessons, selectedDay: day));
       });
     }
@@ -45,18 +46,23 @@ class LessonsBloc extends Bloc<LessonsEvent, LessonsState> {
     if (event is LessonsUpdated) {
       if (event.lessons.length > 0) {
         yield LessonsLoaded(
-            lessons: _sortLessonsByTime(event.lessons),
-            selectedDay: event.selectedDay,
-            selectedFilterList: event.selectedFilterList);
+          lessons: _sortLessonsByTime(event.lessons),
+          selectedDay: event.selectedDay,
+          selectedFilterList: event.selectedFilterList,
+          nocache: DateTime.now(),
+        );
       } else {
         yield LessonsLoadedEmpty(
-            selectedDay: event.selectedDay, selectedFilterList: event.selectedFilterList);
+            selectedDay: event.selectedDay,
+            selectedFilterList: event.selectedFilterList);
       }
     }
 
     if (event is LoadLessons) {
-      List<String> selectedFilterList = event.selectedFilterList ?? state.maybeMap(
-              lessonsLoadedEmpty: (LessonsLoadedEmpty state) => state.selectedFilterList,
+      List<String> selectedFilterList = event.selectedFilterList ??
+          state.maybeMap(
+              lessonsLoadedEmpty: (LessonsLoadedEmpty state) =>
+                  state.selectedFilterList,
               lessonsLoaded: (LessonsLoaded state) => state.selectedFilterList,
               orElse: () => []);
 
@@ -73,8 +79,8 @@ class LessonsBloc extends Bloc<LessonsEvent, LessonsState> {
     }
   }
 
-  _sortLessonsByTime(List<Lesson> lessons) =>
-      lessons..sort(((a, b) => _getDate(a.timeStart).compareTo(_getDate(b.timeStart))));
+  _sortLessonsByTime(List<Lesson> lessons) => lessons
+    ..sort(((a, b) => _getDate(a.timeStart).compareTo(_getDate(b.timeStart))));
 
   _getDate(String time) {
     DateTime now = DateTime.now();

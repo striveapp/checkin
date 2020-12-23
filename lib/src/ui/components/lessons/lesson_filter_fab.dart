@@ -1,5 +1,7 @@
+import 'package:checkin/src/blocs/lesson_filter/bloc.dart';
 import 'package:checkin/src/blocs/lessons/bloc.dart';
 import 'package:checkin/src/blocs/user/user_bloc.dart';
+import 'package:checkin/src/repositories/lesson_config_repository.dart';
 import 'package:checkin/src/ui/components/empty_widget.dart';
 import 'package:checkin/src/ui/components/lessons/filter_list_widget.dart';
 import 'package:flutter/material.dart';
@@ -12,7 +14,8 @@ class LessonsFilterFab extends StatelessWidget {
       builder: (BuildContext context, LessonsState state) {
         List<String> selectedFilterList = state.maybeMap(
             lessonsLoaded: (LessonsLoaded state) => state.selectedFilterList,
-            lessonsLoadedEmpty: (LessonsLoadedEmpty state) => state.selectedFilterList,
+            lessonsLoadedEmpty: (LessonsLoadedEmpty state) =>
+                state.selectedFilterList,
             orElse: () => []);
 
         if (state is LessonsLoaded || state is LessonsLoadedEmpty) {
@@ -23,7 +26,8 @@ class LessonsFilterFab extends StatelessWidget {
                   context: context,
                   barrierColor: Colors.black54,
                   barrierDismissible: true,
-                  barrierLabel: MaterialLocalizations.of(context).modalBarrierDismissLabel,
+                  barrierLabel: MaterialLocalizations.of(context)
+                      .modalBarrierDismissLabel,
                   pageBuilder: (_, __, ___) => MultiBlocProvider(
                         providers: [
                           BlocProvider.value(
@@ -32,6 +36,13 @@ class LessonsFilterFab extends StatelessWidget {
                           BlocProvider.value(
                             value: context.read<UserBloc>(),
                           ),
+                          BlocProvider(
+                              create: (BuildContext context) =>
+                                  LessonFilterBloc(
+                                    lessonConfigRepository:
+                                        context.read<LessonConfigRepository>(),
+                                    userBloc: context.read<UserBloc>(),
+                                  ))
                         ],
                         child: Align(
                           alignment: Alignment.bottomLeft,
@@ -40,7 +51,8 @@ class LessonsFilterFab extends StatelessWidget {
                               left: 15,
                               bottom: 60,
                             ),
-                            child: FilterListWidget(selectedFilterList: selectedFilterList),
+                            child: FilterListWidget(
+                                selectedFilterList: selectedFilterList),
                           ),
                         ),
                       ));

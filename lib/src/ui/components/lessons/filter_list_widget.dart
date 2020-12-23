@@ -7,7 +7,7 @@ import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:checkin/src/localization/localization.dart';
 
-import 'choice_chip_widget.dart';
+import 'filter_choice_chip.dart';
 
 class FilterListWidget extends StatefulWidget {
   static const String noFiltersAvailable = "There are no filters available";
@@ -52,11 +52,6 @@ class _FilterListWidgetState extends State<FilterListWidget> {
             child: Padding(
               padding: EdgeInsets.symmetric(horizontal: 5, vertical: 10),
               child: BlocBuilder<LessonFilterBloc, LessonFilterState>(
-                cubit: LessonFilterBloc(
-                  lessonConfigRepository:
-                      context.watch<LessonConfigRepository>(),
-                  userBloc: context.watch<UserBloc>(),
-                ),
                 builder: (BuildContext context, LessonFilterState state) =>
                     state.map(
                   initialLessonFilterState: (_) => LoadingIndicator(),
@@ -83,7 +78,7 @@ class _FilterListWidgetState extends State<FilterListWidget> {
       (item) {
         var selectedText = _selectedFilterList.contains(item);
         choices.add(
-          ChoiceChipWidget(
+          FilterChoiceChip(
             onSelected: (value) {
               setState(
                 () {
