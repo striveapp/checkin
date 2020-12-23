@@ -6,6 +6,7 @@ import 'package:checkin/src/ui/components/account/payment.dart';
 import 'package:checkin/src/ui/components/email_retrieval/check_email_view.dart';
 import 'package:checkin/src/ui/components/email_retrieval/insert_email_view.dart';
 import 'package:checkin/src/ui/components/email_retrieval/wrong_email_dialog.dart';
+import 'package:checkin/src/ui/components/lessons/filter_list_widget.dart';
 import 'package:checkin/src/ui/components/login/apple_sign_in_button.dart';
 import 'package:checkin/src/ui/components/lesson_card.dart';
 import 'package:checkin/src/ui/components/login/login_form.dart';
@@ -553,6 +554,10 @@ extension Localization on String {
     'en': RemoveStudentDialog.keepStudentInClass,
     'es': 'Mantener',
     'it': 'Mantieni'
+  } + {
+    'en': FilterListWidget.noFiltersAvailable,
+    'es': 'No hay filtros disponibles',
+    'it': 'Nessun filtro disponibile'
   };
 
 String get i18n => localize(this, _t);

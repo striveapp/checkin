@@ -5,10 +5,12 @@ import 'package:checkin/src/repositories/lesson_config_repository.dart';
 import 'package:checkin/src/ui/components/loading_indicator.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
+import 'package:checkin/src/localization/localization.dart';
 
 import 'choice_chip_widget.dart';
 
 class FilterListWidget extends StatefulWidget {
+  static const String noFiltersAvailable = "There are no filters available";
   final List<String> selectedFilterList;
 
   FilterListWidget({
@@ -51,15 +53,22 @@ class _FilterListWidgetState extends State<FilterListWidget> {
               padding: EdgeInsets.symmetric(horizontal: 5, vertical: 10),
               child: BlocBuilder<LessonFilterBloc, LessonFilterState>(
                 cubit: LessonFilterBloc(
-                    lessonConfigRepository: context.watch<LessonConfigRepository>(),
-                    userBloc: context.watch<UserBloc>()),
-                builder: (BuildContext context, LessonFilterState state) => state.map(
-                    initialLessonFilterState: (_) => LoadingIndicator(),
-                    lessonFilterLoaded: (LessonFilterLoaded state) => Column(
-                      crossAxisAlignment: CrossAxisAlignment.start,
-                      children: _buildChoiceList(state.availableLessonTypes),
-                    ),
+                  lessonConfigRepository:
+                      context.watch<LessonConfigRepository>(),
+                  userBloc: context.watch<UserBloc>(),
+                ),
+                builder: (BuildContext context, LessonFilterState state) =>
+                    state.map(
+                  initialLessonFilterState: (_) => LoadingIndicator(),
+                  lessonFilterLoaded: (LessonFilterLoaded state) => state.availableLessonTypes.length > 1 ? Column(
+                    crossAxisAlignment: CrossAxisAlignment.start,
+                    children: _buildChoiceList(state.availableLessonTypes),
+                  ) : Padding(
+                    padding: const EdgeInsets.symmetric(vertical: 20, horizontal: 10),
+                    child: Center(child: Text(
+                      FilterListWidget.noFiltersAvailable.i18n, textAlign: TextAlign.center, style: Theme.of(context).textTheme.headline3,)),
                   ),
+                ),
               ),
             ),
           ),
@@ -78,7 +87,9 @@ class _FilterListWidgetState extends State<FilterListWidget> {
             onSelected: (value) {
               setState(
                 () {
-                  selectedText ? _selectedFilterList.remove(item) : _selectedFilterList.add(item);
+                  selectedText
+                      ? _selectedFilterList.remove(item)
+                      : _selectedFilterList.add(item);
                 },
               );
 
@@ -98,10 +109,12 @@ class _FilterListWidgetState extends State<FilterListWidget> {
 
     lessonsBloc.state.maybeMap(lessonsLoaded: (LessonsLoaded lessonsState) {
       lessonsBloc.add(LessonsEvent.loadLessons(
-          selectedDay: lessonsState.selectedDay, selectedFilterList: _selectedFilterList));
+          selectedDay: lessonsState.selectedDay,
+          selectedFilterList: _selectedFilterList));
     }, lessonsLoadedEmpty: (LessonsLoadedEmpty lessonsState) {
       lessonsBloc.add(LessonsEvent.loadLessons(
-          selectedDay: lessonsState.selectedDay, selectedFilterList: _selectedFilterList));
+          selectedDay: lessonsState.selectedDay,
+          selectedFilterList: _selectedFilterList));
     }, orElse: () {
       // ignore
     });
