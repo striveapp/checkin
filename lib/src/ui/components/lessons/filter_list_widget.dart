@@ -1,7 +1,5 @@
 import 'package:checkin/src/blocs/lesson_filter/bloc.dart';
 import 'package:checkin/src/blocs/lessons/bloc.dart';
-import 'package:checkin/src/blocs/user/user_bloc.dart';
-import 'package:checkin/src/repositories/lesson_config_repository.dart';
 import 'package:checkin/src/ui/components/loading_indicator.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
