@@ -34,9 +34,17 @@ class LessonsBloc extends Bloc<LessonsEvent, LessonsState> {
       lessonsSub?.cancel();
       DateTime currentDay = dateUtil.getCurrentDateTime();
 
-      lessonsSub =
-          this.lessonRepository.getLessonsForDay(gymId, currentDay).listen((lessons) {
-        add(LessonsEvent.lessonsUpdated(lessons: lessons, selectedDay: currentDay));
+      lessonsSub = this
+          .lessonRepository
+          .getLessonsForDay(
+            gymId,
+            currentDay,
+          )
+          .listen((lessons) {
+        add(LessonsEvent.lessonsUpdated(
+          lessons: lessons,
+          selectedDay: currentDay,
+        ));
       });
     }
   }

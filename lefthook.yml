@@ -1,0 +1,14 @@
+pre-push:
+  parallel: true
+  commands:
+    tests:
+      run: flutter test
+    linter:
+      run: flutter analyze
+
+pre-commit:
+  commands:
+    pretty:
+      glob: '*.dart'
+      exclude: '*.freezed.dart|*.g.dart'
+      run: flutter format {staged_files} && git add {staged_files}
