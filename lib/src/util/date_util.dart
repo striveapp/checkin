@@ -1,6 +1,10 @@
 import 'package:checkin/src/constants.dart' as constants;
+import 'package:checkin/src/constants.dart';
+import 'package:checkin/src/util/debug_util.dart';
 
 class DateUtil {
+  DateTime getCurrentDateTime() => isInDebugMode ? testDate : DateTime.now();
+
   static DateTime _getFirstDayOfTheWeek() {
     DateTime now = DateTime.now();
     if(now.weekday == 1) {

@@ -21,6 +21,8 @@ void main() {
   group("LessonsBloc", () {
     MockLessonRepository mockLessonRepository;
     MockUserBloc mockUserBloc;
+    MockDateUtil mockDateUtil;
+
     User fakeUser = User(
       name: "Logged User",
       email: "test@test.com",
@@ -31,34 +33,75 @@ void main() {
     setUp(() {
       mockLessonRepository = MockLessonRepository();
       mockUserBloc = MockUserBloc();
-      whenListen(mockUserBloc, Stream.fromIterable([UserSuccess(currentUser: fakeUser)]));
-      configureThrowOnMissingStub([mockLessonRepository]);
+      mockDateUtil = MockDateUtil();
+
+      whenListen(mockUserBloc,
+          Stream.fromIterable([UserSuccess(currentUser: fakeUser)]));
+      when(mockDateUtil.getCurrentDateTime()).thenReturn(testDate);
+      configureThrowOnMissingStub([
+        mockLessonRepository,
+        mockDateUtil,
+      ]);
     });
 
-    tearDown((){
-      logAndVerifyNoMoreInteractions([mockLessonRepository]);
+    tearDown(() {
+      verify(mockDateUtil.getCurrentDateTime());
+      logAndVerifyNoMoreInteractions([
+        mockLessonRepository,
+        mockDateUtil,
+      ]);
     });
 
-    // todo missing initial state test
+    group("initial state", () {
+      LessonsBloc lessonsBloc;
+
+      setUp(() {
+        when(mockLessonRepository.getLessonsForDay(
+          fakeUser.selectedGymId, testDate,))
+            .thenAnswer((_) {
+          return Stream<List<Lesson>>.value([]);
+        });
+        lessonsBloc = LessonsBloc(
+          userBloc: mockUserBloc,
+          lessonRepository: mockLessonRepository,
+          dateUtil: mockDateUtil,
+        );
+      });
+
+      test('is LessonsUninitialized', () {
+        expect(lessonsBloc.state, LessonsUninitialized());
+      });
+
+      tearDown(() {
+        lessonsBloc?.close();
+        verify(mockLessonRepository.getLessonsForDay(
+          fakeUser.selectedGymId, testDate,));
+      });
+    });
 
     group("on LessonsUpdated event", () {
       group("when there are no lessons", () {
         setUp(() {
-          when(mockLessonRepository.getLessonsForDay(fakeUser.selectedGymId, testDate)).thenAnswer((_) {
+          when(mockLessonRepository.getLessonsForDay(
+              fakeUser.selectedGymId, testDate))
+              .thenAnswer((_) {
             return Stream<List<Lesson>>.value([]);
           });
         });
 
-        tearDown((){
-          verify(mockLessonRepository.getLessonsForDay(fakeUser.selectedGymId, testDate));
+        tearDown(() {
+          verify(mockLessonRepository.getLessonsForDay(
+              fakeUser.selectedGymId, testDate));
         });
 
         blocTest(
           "should emit LessonsLoadedEmpty",
-          build: () => LessonsBloc(
-            userBloc: mockUserBloc,
-            lessonRepository: mockLessonRepository,
-          ),
+          build: () =>
+              LessonsBloc(
+                userBloc: mockUserBloc,
+                lessonRepository: mockLessonRepository,
+                dateUtil: mockDateUtil,
+              ),
           expect: [LessonsLoadedEmpty(selectedDay: testDate)],
         );
       });
@@ -77,22 +120,32 @@ void main() {
         ];
 
         setUp(() {
-          when(mockLessonRepository.getLessonsForDay(fakeUser.selectedGymId, testDate)).thenAnswer((_) {
+          when(mockLessonRepository.getLessonsForDay(
+              fakeUser.selectedGymId, testDate))
+              .thenAnswer((_) {
             return Stream<List<Lesson>>.value(unsortedLessons);
           });
         });
 
-        tearDown((){
-          verify(mockLessonRepository.getLessonsForDay(fakeUser.selectedGymId, testDate));
+        tearDown(() {
+          verify(mockLessonRepository.getLessonsForDay(
+              fakeUser.selectedGymId, testDate));
         });
 
         blocTest(
           "should emit LessonLoaded with lessons sorted by time",
-          build: () => LessonsBloc(
-            userBloc: mockUserBloc,
-            lessonRepository: mockLessonRepository,
-          ),
-          expect: [LessonsLoaded(selectedDay: testDate, lessons: sortedLessons)],
+          build: () =>
+              LessonsBloc(
+                userBloc: mockUserBloc,
+                lessonRepository: mockLessonRepository,
+                dateUtil: mockDateUtil,
+              ),
+          expect: [
+            LessonsLoaded(
+                selectedDay: testDate,
+                lessons: sortedLessons,
+                nocache: testDate)
+          ],
         );
       });
     });
@@ -103,26 +156,35 @@ void main() {
       List<Lesson> newLessons = [Lesson(timeStart: "20:00", timeEnd: "21:00")];
 
       setUp(() {
-        when(mockLessonRepository.getLessonsForDay(fakeUser.selectedGymId, testDate)).thenAnswer((_) {
+        when(mockLessonRepository.getLessonsForDay(
+            fakeUser.selectedGymId, testDate))
+            .thenAnswer((_) {
           return Stream<List<Lesson>>.value(lessons);
         });
-        when(mockLessonRepository.getLessonsForDay(fakeUser.selectedGymId, selectedDay, []))
-            .thenAnswer((_) {
+        when(mockLessonRepository.getLessonsForDay(
+            fakeUser.selectedGymId, selectedDay, [])).thenAnswer((_) {
           return Stream<List<Lesson>>.value(newLessons);
         });
       });
 
       tearDown(() {
-        verify(mockLessonRepository.getLessonsForDay(fakeUser.selectedGymId, testDate));
-        verify(mockLessonRepository.getLessonsForDay(fakeUser.selectedGymId, selectedDay, []));
+        verify(mockLessonRepository.getLessonsForDay(
+            fakeUser.selectedGymId, testDate));
+        verify(mockLessonRepository
+            .getLessonsForDay(fakeUser.selectedGymId, selectedDay, []));
       });
 
       blocTest("should load new lessons for the selected day",
-          build: () => LessonsBloc(userBloc: mockUserBloc, lessonRepository: mockLessonRepository),
+          build: () =>
+              LessonsBloc(
+                userBloc: mockUserBloc,
+                lessonRepository: mockLessonRepository,
+                dateUtil: mockDateUtil,
+              ),
           act: (bloc) => bloc.add(LoadLessons(selectedDay: selectedDay)),
           expect: [
-            LessonsLoaded(selectedDay: testDate, lessons: lessons),
-            LessonsLoaded(selectedDay: selectedDay, lessons: newLessons),
+            LessonsLoaded(selectedDay: testDate, lessons: lessons, nocache: testDate),
+            LessonsLoaded(selectedDay: selectedDay, lessons: newLessons, nocache: testDate),
           ]);
     });
   });

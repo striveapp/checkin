@@ -7,6 +7,7 @@ import 'package:checkin/src/ui/components/base_app_bar.dart';
 import 'package:checkin/src/ui/components/lessons/lesson_card_list.dart';
 import 'package:checkin/src/ui/components/lessons/lesson_filter_fab.dart';
 import 'package:checkin/src/ui/components/lessons/week_calendar.dart';
+import 'package:checkin/src/util/date_util.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter/widgets.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
@@ -20,6 +21,7 @@ class LessonsPage extends StatelessWidget {
       create: (BuildContext context) => LessonsBloc(
         userBloc: BlocProvider.of<UserBloc>(context),
         lessonRepository: RepositoryProvider.of<LessonRepository>(context),
+        dateUtil: DateUtil()
       ),
       child: Builder(
         builder: (BuildContext context) {

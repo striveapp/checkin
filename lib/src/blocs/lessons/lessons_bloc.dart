@@ -4,17 +4,17 @@ import 'package:bloc/bloc.dart';
 import 'package:checkin/src/blocs/user/bloc.dart';
 import 'package:checkin/src/models/lesson.dart';
 import 'package:checkin/src/repositories/lesson_repository.dart';
-import 'package:checkin/src/util/debug_util.dart';
+import 'package:checkin/src/util/date_util.dart';
 import 'package:flutter/foundation.dart';
-import 'package:meta/meta.dart';
 import 'package:intl/intl.dart';
+import 'package:meta/meta.dart';
 
-import '../../constants.dart';
 import 'bloc.dart';
 
 class LessonsBloc extends Bloc<LessonsEvent, LessonsState> {
   final LessonRepository lessonRepository;
   final UserBloc userBloc;
+  final DateUtil dateUtil;
 
   StreamSubscription<List<Lesson>> lessonsSub;
   String gymId;
@@ -22,6 +22,7 @@ class LessonsBloc extends Bloc<LessonsEvent, LessonsState> {
   LessonsBloc({
     @required this.userBloc,
     @required this.lessonRepository,
+    @required this.dateUtil,
   }) : super(LessonsUninitialized()) {
     _onUserStateChanged(userBloc.state);
     userBloc.listen(_onUserStateChanged);
@@ -31,12 +32,11 @@ class LessonsBloc extends Bloc<LessonsEvent, LessonsState> {
     if (userState is UserSuccess) {
       gymId = userState.currentUser.selectedGymId;
       lessonsSub?.cancel();
-
-      var day = isInDebugMode ? testDate : DateTime.now();
+      DateTime currentDay = dateUtil.getCurrentDateTime();
 
       lessonsSub =
-          this.lessonRepository.getLessonsForDay(gymId, day).listen((lessons) {
-        add(LessonsEvent.lessonsUpdated(lessons: lessons, selectedDay: day));
+          this.lessonRepository.getLessonsForDay(gymId, currentDay).listen((lessons) {
+        add(LessonsEvent.lessonsUpdated(lessons: lessons, selectedDay: currentDay));
       });
     }
   }
@@ -49,7 +49,7 @@ class LessonsBloc extends Bloc<LessonsEvent, LessonsState> {
           lessons: _sortLessonsByTime(event.lessons),
           selectedDay: event.selectedDay,
           selectedFilterList: event.selectedFilterList,
-          nocache: DateTime.now(),
+          nocache: dateUtil.getCurrentDateTime(),
         );
       } else {
         yield LessonsLoadedEmpty(
