@@ -58,7 +58,7 @@ class AttendeeTile extends StatelessWidget {
             userEmail: attendee.email,
             userGrade: attendee.grade,
             gymId: selectedGymId,
-          ),
+          )..add(InitializeGraduation()),
         ),
       ],
       child: Column(

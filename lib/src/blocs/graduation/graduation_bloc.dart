@@ -33,25 +33,27 @@ class GraduationBloc extends Bloc<GraduationEvent, GraduationState> {
     @required this.gymId,
     @required this.userEmail,
     @required this.userGrade,
-  }) : super(InitialGraduationState()) {
-    graduationSystemSub?.cancel();
-
-    graduationSystemSub =
-        graduationSystemRepository.getGraduationSystem(gymId, userGrade).listen((graduationSystem) {
-      statsSub?.cancel();
-
-      statsSub = statsRepository.getUserStatsByGrade(gymId, userEmail, userGrade).listen((history) {
-        add(GraduationSystemUpdated(
-            attendedLessonsForGrade: history.attendedLessons.length,
-            graduationSystem: graduationSystem));
-      });
-    });
-  }
+  }) : super(InitialGraduationState());
 
   @override
   Stream<GraduationState> mapEventToState(
     GraduationEvent event,
   ) async* {
+    if( event is InitializeGraduation) {
+      graduationSystemSub?.cancel();
+
+      graduationSystemSub =
+          graduationSystemRepository.getGraduationSystem(gymId, userGrade).listen((graduationSystem) {
+            statsSub?.cancel();
+
+            statsSub = statsRepository.getUserStatsByGrade(gymId, userEmail, userGrade).listen((history) {
+              add(GraduationSystemUpdated(
+                  attendedLessonsForGrade: history.attendedLessons.length,
+                  graduationSystem: graduationSystem));
+            });
+          });
+    }
+
     if (event is GraduationSystemUpdated) {
       Grade nextGrade = graduationUtils.calculateNextGrade(this.userGrade);
       if (event.attendedLessonsForGrade >= event.graduationSystem.forNextLevel) {

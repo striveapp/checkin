@@ -56,7 +56,7 @@ class GraduateFabView extends StatelessWidget {
             userEmail: profileUser.email,
             userGrade: profileUser.grade,
             gymId: profileUser.selectedGymId,
-          ),
+          )..add(InitializeGraduation()),
           child: BlocBuilder<GraduationBloc, GraduationState>(
               builder: (BuildContext context, GraduationState state) {
             return FloatingActionButton.extended(

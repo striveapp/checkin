@@ -15,4 +15,6 @@ abstract class GraduationEvent with _$GraduationEvent {
 
   const factory GraduationEvent.graduate({@required Grade newGrade}) = Graduate;
 
+  const factory GraduationEvent.initializeGraduation() = InitializeGraduation;
+
 }

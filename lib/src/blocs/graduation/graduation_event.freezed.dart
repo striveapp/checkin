@@ -29,6 +29,11 @@ class _$GraduationEventTearOff {
       newGrade: newGrade,
     );
   }
+
+// ignore: unused_element
+  InitializeGraduation initializeGraduation() {
+    return const InitializeGraduation();
+  }
 }
 
 /// @nodoc
@@ -43,23 +48,27 @@ mixin _$GraduationEvent {
         TResult graduationSystemUpdated(
             GraduationSystem graduationSystem, int attendedLessonsForGrade),
     @required TResult graduate(Grade newGrade),
+    @required TResult initializeGraduation(),
   });
   @optionalTypeArgs
   TResult maybeWhen<TResult extends Object>({
     TResult graduationSystemUpdated(
         GraduationSystem graduationSystem, int attendedLessonsForGrade),
     TResult graduate(Grade newGrade),
+    TResult initializeGraduation(),
     @required TResult orElse(),
   });
   @optionalTypeArgs
   TResult map<TResult extends Object>({
     @required TResult graduationSystemUpdated(GraduationSystemUpdated value),
     @required TResult graduate(Graduate value),
+    @required TResult initializeGraduation(InitializeGraduation value),
   });
   @optionalTypeArgs
   TResult maybeMap<TResult extends Object>({
     TResult graduationSystemUpdated(GraduationSystemUpdated value),
     TResult graduate(Graduate value),
+    TResult initializeGraduation(InitializeGraduation value),
     @required TResult orElse(),
   });
 }
@@ -189,9 +198,11 @@ class _$GraduationSystemUpdated
         TResult graduationSystemUpdated(
             GraduationSystem graduationSystem, int attendedLessonsForGrade),
     @required TResult graduate(Grade newGrade),
+    @required TResult initializeGraduation(),
   }) {
     assert(graduationSystemUpdated != null);
     assert(graduate != null);
+    assert(initializeGraduation != null);
     return graduationSystemUpdated(graduationSystem, attendedLessonsForGrade);
   }
 
@@ -201,6 +212,7 @@ class _$GraduationSystemUpdated
     TResult graduationSystemUpdated(
         GraduationSystem graduationSystem, int attendedLessonsForGrade),
     TResult graduate(Grade newGrade),
+    TResult initializeGraduation(),
     @required TResult orElse(),
   }) {
     assert(orElse != null);
@@ -215,9 +227,11 @@ class _$GraduationSystemUpdated
   TResult map<TResult extends Object>({
     @required TResult graduationSystemUpdated(GraduationSystemUpdated value),
     @required TResult graduate(Graduate value),
+    @required TResult initializeGraduation(InitializeGraduation value),
   }) {
     assert(graduationSystemUpdated != null);
     assert(graduate != null);
+    assert(initializeGraduation != null);
     return graduationSystemUpdated(this);
   }
 
@@ -226,6 +240,7 @@ class _$GraduationSystemUpdated
   TResult maybeMap<TResult extends Object>({
     TResult graduationSystemUpdated(GraduationSystemUpdated value),
     TResult graduate(Graduate value),
+    TResult initializeGraduation(InitializeGraduation value),
     @required TResult orElse(),
   }) {
     assert(orElse != null);
@@ -316,9 +331,11 @@ class _$Graduate with DiagnosticableTreeMixin implements Graduate {
         TResult graduationSystemUpdated(
             GraduationSystem graduationSystem, int attendedLessonsForGrade),
     @required TResult graduate(Grade newGrade),
+    @required TResult initializeGraduation(),
   }) {
     assert(graduationSystemUpdated != null);
     assert(graduate != null);
+    assert(initializeGraduation != null);
     return graduate(newGrade);
   }
 
@@ -328,6 +345,7 @@ class _$Graduate with DiagnosticableTreeMixin implements Graduate {
     TResult graduationSystemUpdated(
         GraduationSystem graduationSystem, int attendedLessonsForGrade),
     TResult graduate(Grade newGrade),
+    TResult initializeGraduation(),
     @required TResult orElse(),
   }) {
     assert(orElse != null);
@@ -342,9 +360,11 @@ class _$Graduate with DiagnosticableTreeMixin implements Graduate {
   TResult map<TResult extends Object>({
     @required TResult graduationSystemUpdated(GraduationSystemUpdated value),
     @required TResult graduate(Graduate value),
+    @required TResult initializeGraduation(InitializeGraduation value),
   }) {
     assert(graduationSystemUpdated != null);
     assert(graduate != null);
+    assert(initializeGraduation != null);
     return graduate(this);
   }
 
@@ -353,6 +373,7 @@ class _$Graduate with DiagnosticableTreeMixin implements Graduate {
   TResult maybeMap<TResult extends Object>({
     TResult graduationSystemUpdated(GraduationSystemUpdated value),
     TResult graduate(Graduate value),
+    TResult initializeGraduation(InitializeGraduation value),
     @required TResult orElse(),
   }) {
     assert(orElse != null);
@@ -368,4 +389,114 @@ abstract class Graduate implements GraduationEvent {
 
   Grade get newGrade;
   $GraduateCopyWith<Graduate> get copyWith;
+}
+
+/// @nodoc
+abstract class $InitializeGraduationCopyWith<$Res> {
+  factory $InitializeGraduationCopyWith(InitializeGraduation value,
+          $Res Function(InitializeGraduation) then) =
+      _$InitializeGraduationCopyWithImpl<$Res>;
+}
+
+/// @nodoc
+class _$InitializeGraduationCopyWithImpl<$Res>
+    extends _$GraduationEventCopyWithImpl<$Res>
+    implements $InitializeGraduationCopyWith<$Res> {
+  _$InitializeGraduationCopyWithImpl(
+      InitializeGraduation _value, $Res Function(InitializeGraduation) _then)
+      : super(_value, (v) => _then(v as InitializeGraduation));
+
+  @override
+  InitializeGraduation get _value => super._value as InitializeGraduation;
+}
+
+/// @nodoc
+class _$InitializeGraduation
+    with DiagnosticableTreeMixin
+    implements InitializeGraduation {
+  const _$InitializeGraduation();
+
+  @override
+  String toString({DiagnosticLevel minLevel = DiagnosticLevel.info}) {
+    return 'GraduationEvent.initializeGraduation()';
+  }
+
+  @override
+  void debugFillProperties(DiagnosticPropertiesBuilder properties) {
+    super.debugFillProperties(properties);
+    properties
+      ..add(
+          DiagnosticsProperty('type', 'GraduationEvent.initializeGraduation'));
+  }
+
+  @override
+  bool operator ==(dynamic other) {
+    return identical(this, other) || (other is InitializeGraduation);
+  }
+
+  @override
+  int get hashCode => runtimeType.hashCode;
+
+  @override
+  @optionalTypeArgs
+  TResult when<TResult extends Object>({
+    @required
+        TResult graduationSystemUpdated(
+            GraduationSystem graduationSystem, int attendedLessonsForGrade),
+    @required TResult graduate(Grade newGrade),
+    @required TResult initializeGraduation(),
+  }) {
+    assert(graduationSystemUpdated != null);
+    assert(graduate != null);
+    assert(initializeGraduation != null);
+    return initializeGraduation();
+  }
+
+  @override
+  @optionalTypeArgs
+  TResult maybeWhen<TResult extends Object>({
+    TResult graduationSystemUpdated(
+        GraduationSystem graduationSystem, int attendedLessonsForGrade),
+    TResult graduate(Grade newGrade),
+    TResult initializeGraduation(),
+    @required TResult orElse(),
+  }) {
+    assert(orElse != null);
+    if (initializeGraduation != null) {
+      return initializeGraduation();
+    }
+    return orElse();
+  }
+
+  @override
+  @optionalTypeArgs
+  TResult map<TResult extends Object>({
+    @required TResult graduationSystemUpdated(GraduationSystemUpdated value),
+    @required TResult graduate(Graduate value),
+    @required TResult initializeGraduation(InitializeGraduation value),
+  }) {
+    assert(graduationSystemUpdated != null);
+    assert(graduate != null);
+    assert(initializeGraduation != null);
+    return initializeGraduation(this);
+  }
+
+  @override
+  @optionalTypeArgs
+  TResult maybeMap<TResult extends Object>({
+    TResult graduationSystemUpdated(GraduationSystemUpdated value),
+    TResult graduate(Graduate value),
+    TResult initializeGraduation(InitializeGraduation value),
+    @required TResult orElse(),
+  }) {
+    assert(orElse != null);
+    if (initializeGraduation != null) {
+      return initializeGraduation(this);
+    }
+    return orElse();
+  }
+}
+
+abstract class InitializeGraduation implements GraduationEvent {
+  const factory InitializeGraduation() = _$InitializeGraduation;
 }

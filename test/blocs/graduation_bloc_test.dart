@@ -46,7 +46,8 @@ void main() {
         mockStatsRepository,
         mockUserRepository,
         mockGraduationUtils,
-      ]);
+      ]
+      );
     });
 
     tearDown((){
@@ -62,11 +63,6 @@ void main() {
       GraduationBloc graduationBloc;
 
       setUp(() {
-        when(mockGraduationSystemRepository.getGraduationSystem(fakeGym, fakeUserGrade))
-            .thenAnswer((realInvocation) {
-          return Stream.empty();
-        });
-
         graduationBloc = GraduationBloc(
             graduationSystemRepository: mockGraduationSystemRepository,
             statsRepository: mockStatsRepository,
@@ -79,7 +75,6 @@ void main() {
 
       test('is InitialGraduationState', () {
         expect(graduationBloc.state, InitialGraduationState());
-        verify(mockGraduationSystemRepository.getGraduationSystem(fakeGym, fakeUserGrade));
       });
 
       tearDown(() {
@@ -121,6 +116,7 @@ void main() {
                 userGrade: fakeUserGrade,
                 userEmail: fakeUserEmail),
             expect: [NotReadyForGraduation(nextGrade: fakeNewGrade)],
+            act: (bloc) => bloc.add(InitializeGraduation()),
             verify: (bloc) {
               verify(mockGraduationSystemRepository.getGraduationSystem(fakeGym, fakeUserGrade));
               verify(
@@ -150,6 +146,7 @@ void main() {
                 userGrade: fakeUserGrade,
                 userEmail: fakeUserEmail),
             expect: [ReadyForGraduation(nextGrade: fakeNewGrade)],
+            act: (bloc) => bloc.add(InitializeGraduation()),
             verify: (bloc) {
               verify(mockGraduationSystemRepository.getGraduationSystem(fakeGym, fakeUserGrade));
               verify(
@@ -164,11 +161,6 @@ void main() {
     group("on Graduate event", () {
       var fakeAfterGraduationNextGrade = Grade.purple;
       setUp(() {
-        when(mockGraduationSystemRepository.getGraduationSystem(fakeGym, fakeUserGrade))
-            .thenAnswer((realInvocation) {
-          return Stream.empty();
-        });
-
         when(mockUserRepository.updateGrade(fakeUserEmail, fakeNewGrade))
             .thenAnswer((realInvocation) {
           return Future.value(null);
@@ -194,7 +186,6 @@ void main() {
           NotReadyForGraduation(nextGrade: fakeAfterGraduationNextGrade),
         ],
         verify: (bloc) {
-          verify(mockGraduationSystemRepository.getGraduationSystem(fakeGym, fakeUserGrade));
           verify(mockUserRepository.updateGrade(fakeUserEmail, fakeNewGrade));
           verify(mockGraduationUtils.calculateNextGrade(fakeNewGrade));
         },
