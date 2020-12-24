@@ -67,18 +67,46 @@ void main() {
     group("initial state", () {
       AuthBloc authBloc;
 
-      setUp(() {
-        authBloc = AuthBloc(
-          authRepository: mockAuthRepository,
-          analyticsRepository: mockAnalyticsRepository,
-          userRepository: mockUserRepository,
-          localStorageRepository: mockLocalStorageRepository,
-          versionUtil: mockVersionUtil,
-        );
+      group("when loggedUser is null", () {
+        setUp(() {
+          authBloc = AuthBloc(
+            authRepository: mockAuthRepository,
+            analyticsRepository: mockAnalyticsRepository,
+            userRepository: mockUserRepository,
+            localStorageRepository: mockLocalStorageRepository,
+            versionUtil: mockVersionUtil,
+            loggedUser: null
+          );
+        });
+        
+        tearDown(() {
+          authBloc?.close();
+        });
+
+        test('is AuthUnauthenticated', () {
+          expect(authBloc.state, AuthUnauthenticated());
+        });
       });
 
-      test('is AuthUninitialized', () {
-        expect(authBloc.state, AuthUninitialized());
+      group("when loggedUser is NOT null", () {
+        setUp(() {
+          authBloc = AuthBloc(
+            authRepository: mockAuthRepository,
+            analyticsRepository: mockAnalyticsRepository,
+            userRepository: mockUserRepository,
+            localStorageRepository: mockLocalStorageRepository,
+            versionUtil: mockVersionUtil,
+            loggedUser: fakeUser,
+          );
+        });
+
+        tearDown(() {
+          authBloc?.close();
+        });
+
+        test('is AuthAuthenticated with logged user', () {
+          expect(authBloc.state, AuthAuthenticated(loggedUser: fakeUser));
+        });
       });
 
       tearDown(() {

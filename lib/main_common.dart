@@ -7,6 +7,7 @@ import 'package:checkin/src/blocs/auth/bloc.dart';
 import 'package:checkin/src/blocs/dynamic_link/bloc.dart';
 import 'package:checkin/src/blocs/theme/bloc.dart';
 import 'package:checkin/src/blocs/version/bloc.dart';
+import 'package:checkin/src/models/user.dart';
 import 'package:checkin/src/repositories/analytics_repository.dart';
 import 'package:checkin/src/repositories/auth_repository.dart';
 import 'package:checkin/src/repositories/dynamic_link_repository.dart';
@@ -64,6 +65,9 @@ Future<void> mainCommon(AppConfig appConfig) async {
   final StorageRepository storageRepository = StorageRepository();
   final ImageRepository imageRepository = ImageRepository();
 
+  final AuthRepository authProvider = AuthProvider(appConfig: appConfig);
+
+  final user = await _getLoggedUser(authProvider);
   await _precacheAssets();
 
   runZonedGuarded<Future<void>>(() async {
@@ -74,7 +78,7 @@ Future<void> mainCommon(AppConfig appConfig) async {
             create: (context) => LessonInstancesProvider(),
           ),
           RepositoryProvider<AuthRepository>(
-            create: (context) => AuthProvider(appConfig: appConfig),
+            create: (context) => authProvider,
           ),
           RepositoryProvider<DynamicLinkRepository>(
             create: (context) => DynamicLinkProvider(appConfig: appConfig),
@@ -118,6 +122,7 @@ Future<void> mainCommon(AppConfig appConfig) async {
                   analyticsRepository: context.read<AnalyticsRepository>(),
                   userRepository: context.read<UserRepository>(),
                   localStorageRepository: context.read<LocalStorageRepository>(),
+                  loggedUser: user, // todo retrieve from storage cache
                   versionUtil: VersionUtil())
                 ..add(AppStarted()),
             ),
@@ -148,6 +153,10 @@ Future<void> mainCommon(AppConfig appConfig) async {
   }, (Object error, StackTrace stack) {
     FirebaseCrashlytics.instance.recordError(error, stack);
   });
+}
+
+Future<User> _getLoggedUser(AuthRepository authRepository) {
+  return authRepository.getAuthState().first;
 }
 
 Future _precacheAssets() async {

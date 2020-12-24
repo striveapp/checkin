@@ -3,6 +3,7 @@ import 'dart:async';
 import 'package:bloc/bloc.dart';
 import 'package:checkin/src/blocs/auth/auth_event.dart';
 import 'package:checkin/src/blocs/auth/auth_state.dart';
+import 'package:checkin/src/models/user.dart';
 import 'package:checkin/src/repositories/analytics_repository.dart';
 import 'package:checkin/src/repositories/auth_repository.dart';
 import 'package:checkin/src/repositories/local_storage_repository.dart';
@@ -28,7 +29,8 @@ class AuthBloc extends Bloc<AuthEvent, AuthState> {
     @required this.localStorageRepository,
     @required this.userRepository,
     @required this.versionUtil,
-  }) : super(AuthUninitialized());
+    User loggedUser
+  }) : super(loggedUser == null ? AuthState.authUnauthenticated() : AuthState.authAuthenticated(loggedUser: loggedUser));
 
   @override
   Stream<AuthState> mapEventToState(AuthEvent event) async* {
@@ -55,7 +57,7 @@ class AuthBloc extends Bloc<AuthEvent, AuthState> {
           // AuthAuthenticated state that allows the splash page to be fully displayed
           // better solution would be to refactor app.dart logic to remove the splash screen
           // by filtering the initState (this is not supported by bloc for now)
-          _setCurrentVersionForUser(event.loggedUser.email);
+          await _setCurrentVersionForUser(event.loggedUser.email);
           await _setReferredGymForUser(event.loggedUser.email);
         } finally {
           await localStorageRepository.removeUserEmail();

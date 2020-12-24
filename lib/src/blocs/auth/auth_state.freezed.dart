@@ -14,11 +14,6 @@ class _$AuthStateTearOff {
   const _$AuthStateTearOff();
 
 // ignore: unused_element
-  AuthUninitialized authUninitialized() {
-    return const AuthUninitialized();
-  }
-
-// ignore: unused_element
   AuthAuthenticated authAuthenticated({User loggedUser}) {
     return AuthAuthenticated(
       loggedUser: loggedUser,
@@ -41,26 +36,22 @@ const $AuthState = _$AuthStateTearOff();
 mixin _$AuthState {
   @optionalTypeArgs
   TResult when<TResult extends Object>({
-    @required TResult authUninitialized(),
     @required TResult authAuthenticated(User loggedUser),
     @required TResult authUnauthenticated(Error error),
   });
   @optionalTypeArgs
   TResult maybeWhen<TResult extends Object>({
-    TResult authUninitialized(),
     TResult authAuthenticated(User loggedUser),
     TResult authUnauthenticated(Error error),
     @required TResult orElse(),
   });
   @optionalTypeArgs
   TResult map<TResult extends Object>({
-    @required TResult authUninitialized(AuthUninitialized value),
     @required TResult authAuthenticated(AuthAuthenticated value),
     @required TResult authUnauthenticated(AuthUnauthenticated value),
   });
   @optionalTypeArgs
   TResult maybeMap<TResult extends Object>({
-    TResult authUninitialized(AuthUninitialized value),
     TResult authAuthenticated(AuthAuthenticated value),
     TResult authUnauthenticated(AuthUnauthenticated value),
     @required TResult orElse(),
@@ -80,111 +71,6 @@ class _$AuthStateCopyWithImpl<$Res> implements $AuthStateCopyWith<$Res> {
   final AuthState _value;
   // ignore: unused_field
   final $Res Function(AuthState) _then;
-}
-
-/// @nodoc
-abstract class $AuthUninitializedCopyWith<$Res> {
-  factory $AuthUninitializedCopyWith(
-          AuthUninitialized value, $Res Function(AuthUninitialized) then) =
-      _$AuthUninitializedCopyWithImpl<$Res>;
-}
-
-/// @nodoc
-class _$AuthUninitializedCopyWithImpl<$Res>
-    extends _$AuthStateCopyWithImpl<$Res>
-    implements $AuthUninitializedCopyWith<$Res> {
-  _$AuthUninitializedCopyWithImpl(
-      AuthUninitialized _value, $Res Function(AuthUninitialized) _then)
-      : super(_value, (v) => _then(v as AuthUninitialized));
-
-  @override
-  AuthUninitialized get _value => super._value as AuthUninitialized;
-}
-
-/// @nodoc
-class _$AuthUninitialized
-    with DiagnosticableTreeMixin
-    implements AuthUninitialized {
-  const _$AuthUninitialized();
-
-  @override
-  String toString({DiagnosticLevel minLevel = DiagnosticLevel.info}) {
-    return 'AuthState.authUninitialized()';
-  }
-
-  @override
-  void debugFillProperties(DiagnosticPropertiesBuilder properties) {
-    super.debugFillProperties(properties);
-    properties..add(DiagnosticsProperty('type', 'AuthState.authUninitialized'));
-  }
-
-  @override
-  bool operator ==(dynamic other) {
-    return identical(this, other) || (other is AuthUninitialized);
-  }
-
-  @override
-  int get hashCode => runtimeType.hashCode;
-
-  @override
-  @optionalTypeArgs
-  TResult when<TResult extends Object>({
-    @required TResult authUninitialized(),
-    @required TResult authAuthenticated(User loggedUser),
-    @required TResult authUnauthenticated(Error error),
-  }) {
-    assert(authUninitialized != null);
-    assert(authAuthenticated != null);
-    assert(authUnauthenticated != null);
-    return authUninitialized();
-  }
-
-  @override
-  @optionalTypeArgs
-  TResult maybeWhen<TResult extends Object>({
-    TResult authUninitialized(),
-    TResult authAuthenticated(User loggedUser),
-    TResult authUnauthenticated(Error error),
-    @required TResult orElse(),
-  }) {
-    assert(orElse != null);
-    if (authUninitialized != null) {
-      return authUninitialized();
-    }
-    return orElse();
-  }
-
-  @override
-  @optionalTypeArgs
-  TResult map<TResult extends Object>({
-    @required TResult authUninitialized(AuthUninitialized value),
-    @required TResult authAuthenticated(AuthAuthenticated value),
-    @required TResult authUnauthenticated(AuthUnauthenticated value),
-  }) {
-    assert(authUninitialized != null);
-    assert(authAuthenticated != null);
-    assert(authUnauthenticated != null);
-    return authUninitialized(this);
-  }
-
-  @override
-  @optionalTypeArgs
-  TResult maybeMap<TResult extends Object>({
-    TResult authUninitialized(AuthUninitialized value),
-    TResult authAuthenticated(AuthAuthenticated value),
-    TResult authUnauthenticated(AuthUnauthenticated value),
-    @required TResult orElse(),
-  }) {
-    assert(orElse != null);
-    if (authUninitialized != null) {
-      return authUninitialized(this);
-    }
-    return orElse();
-  }
-}
-
-abstract class AuthUninitialized implements AuthState {
-  const factory AuthUninitialized() = _$AuthUninitialized;
 }
 
 /// @nodoc
@@ -259,11 +145,9 @@ class _$AuthAuthenticated
   @override
   @optionalTypeArgs
   TResult when<TResult extends Object>({
-    @required TResult authUninitialized(),
     @required TResult authAuthenticated(User loggedUser),
     @required TResult authUnauthenticated(Error error),
   }) {
-    assert(authUninitialized != null);
     assert(authAuthenticated != null);
     assert(authUnauthenticated != null);
     return authAuthenticated(loggedUser);
@@ -272,7 +156,6 @@ class _$AuthAuthenticated
   @override
   @optionalTypeArgs
   TResult maybeWhen<TResult extends Object>({
-    TResult authUninitialized(),
     TResult authAuthenticated(User loggedUser),
     TResult authUnauthenticated(Error error),
     @required TResult orElse(),
@@ -287,11 +170,9 @@ class _$AuthAuthenticated
   @override
   @optionalTypeArgs
   TResult map<TResult extends Object>({
-    @required TResult authUninitialized(AuthUninitialized value),
     @required TResult authAuthenticated(AuthAuthenticated value),
     @required TResult authUnauthenticated(AuthUnauthenticated value),
   }) {
-    assert(authUninitialized != null);
     assert(authAuthenticated != null);
     assert(authUnauthenticated != null);
     return authAuthenticated(this);
@@ -300,7 +181,6 @@ class _$AuthAuthenticated
   @override
   @optionalTypeArgs
   TResult maybeMap<TResult extends Object>({
-    TResult authUninitialized(AuthUninitialized value),
     TResult authAuthenticated(AuthAuthenticated value),
     TResult authUnauthenticated(AuthUnauthenticated value),
     @required TResult orElse(),
@@ -390,11 +270,9 @@ class _$AuthUnauthenticated
   @override
   @optionalTypeArgs
   TResult when<TResult extends Object>({
-    @required TResult authUninitialized(),
     @required TResult authAuthenticated(User loggedUser),
     @required TResult authUnauthenticated(Error error),
   }) {
-    assert(authUninitialized != null);
     assert(authAuthenticated != null);
     assert(authUnauthenticated != null);
     return authUnauthenticated(error);
@@ -403,7 +281,6 @@ class _$AuthUnauthenticated
   @override
   @optionalTypeArgs
   TResult maybeWhen<TResult extends Object>({
-    TResult authUninitialized(),
     TResult authAuthenticated(User loggedUser),
     TResult authUnauthenticated(Error error),
     @required TResult orElse(),
@@ -418,11 +295,9 @@ class _$AuthUnauthenticated
   @override
   @optionalTypeArgs
   TResult map<TResult extends Object>({
-    @required TResult authUninitialized(AuthUninitialized value),
     @required TResult authAuthenticated(AuthAuthenticated value),
     @required TResult authUnauthenticated(AuthUnauthenticated value),
   }) {
-    assert(authUninitialized != null);
     assert(authAuthenticated != null);
     assert(authUnauthenticated != null);
     return authUnauthenticated(this);
@@ -431,7 +306,6 @@ class _$AuthUnauthenticated
   @override
   @optionalTypeArgs
   TResult maybeMap<TResult extends Object>({
-    TResult authUninitialized(AuthUninitialized value),
     TResult authAuthenticated(AuthAuthenticated value),
     TResult authUnauthenticated(AuthUnauthenticated value),
     @required TResult orElse(),

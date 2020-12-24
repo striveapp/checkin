@@ -8,6 +8,7 @@ import 'package:checkin/src/resources/lesson_instances_provider.dart';
 import 'package:checkin/src/resources/stats_provider.dart';
 import 'package:checkin/src/resources/user_provider.dart';
 import 'package:firebase_auth/firebase_auth.dart';
+import 'package:firebase_core/firebase_core.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_driver/driver_extension.dart';
 import 'package:intl/intl.dart';
@@ -38,6 +39,7 @@ Future<void> main() async {
 }
 
 Future<void> setup() async {
+  await Firebase.initializeApp();
   var firebaseAuth = FirebaseAuth.instance;
   await firebaseAuth.signOut();
   await firebaseAuth.signInWithEmailAndPassword(email: "test@test.com", password: "test123");

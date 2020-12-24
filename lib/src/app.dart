@@ -1,6 +1,7 @@
 import 'package:checkin/src/blocs/auth/bloc.dart';
 import 'package:checkin/src/blocs/dynamic_link/bloc.dart';
 import 'package:checkin/src/blocs/theme/bloc.dart';
+import 'package:checkin/src/localization/localization.dart';
 import 'package:checkin/src/repositories/analytics_repository.dart';
 import 'package:checkin/src/repositories/image_repository.dart';
 import 'package:checkin/src/repositories/storage_repository.dart';
@@ -11,14 +12,12 @@ import 'package:checkin/src/ui/components/upgrader_dialog.dart';
 import 'package:checkin/src/ui/pages/home_page.dart';
 import 'package:checkin/src/ui/pages/leaderboard_page.dart';
 import 'package:checkin/src/ui/pages/login_page.dart';
-import 'package:checkin/src/ui/pages/splash_page.dart';
 import 'package:checkin/src/ui/pages/stats_page.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:flutter_localizations/flutter_localizations.dart';
 import 'package:i18n_extension/i18n_widget.dart';
 import 'package:share/share.dart';
-import 'package:checkin/src/localization/localization.dart';
 
 import 'blocs/user/bloc.dart';
 import 'blocs/version/bloc.dart';
@@ -33,9 +32,7 @@ class App extends StatefulWidget {
     @required ThemeData themeData,
     @required StorageRepository storageRepository,
     @required ImageRepository imageRepository,
-  })  : assert(themeData != null &&
-            storageRepository != null &&
-            imageRepository != null),
+  })  : assert(themeData != null && storageRepository != null && imageRepository != null),
         _themeData = themeData,
         _storageRepository = storageRepository,
         _imageRepository = imageRepository,
@@ -72,8 +69,7 @@ class _AppState extends State<App> with WidgetsBindingObserver {
   }
 
   void _onPlatformBrightnessChanged() {
-    final platformBrightness =
-        WidgetsBinding.instance.window.platformBrightness;
+    final platformBrightness = WidgetsBinding.instance.window.platformBrightness;
     var themeBloc = context.read<ThemeBloc>();
 
     if (platformBrightness == Brightness.dark) {
@@ -99,8 +95,7 @@ class _AppState extends State<App> with WidgetsBindingObserver {
       onGenerateRoute: Application.router.generator,
       initialRoute: '/',
       navigatorObservers: [
-        RepositoryProvider.of<AnalyticsRepository>(context)
-            .getNavigationObserver(),
+        RepositoryProvider.of<AnalyticsRepository>(context).getNavigationObserver(),
       ],
       theme: widget._themeData,
       home: I18n(
@@ -112,14 +107,12 @@ class _AppState extends State<App> with WidgetsBindingObserver {
                 listener: (BuildContext context, DynamicLinkState state) {
               if (state is DynamicLinkToNavigate) {
                 debugPrint("deep link received with path ${state.path}");
-                Navigator.of(context)
-                    .popUntil(ModalRoute.withName(Navigator.defaultRouteName));
+                Navigator.of(context).popUntil(ModalRoute.withName(Navigator.defaultRouteName));
 
                 Navigator.of(context).pushNamed(state.path);
               }
 
-
-              if(state is DynamicLinkAuthenticated) {
+              if (state is DynamicLinkAuthenticated) {
                 // must reload authbloc listener, when app is open in the same task stack of another app
                 var authBloc = context.read<AuthBloc>();
                 authBloc.add(AppStarted());
@@ -129,7 +122,7 @@ class _AppState extends State<App> with WidgetsBindingObserver {
                 Share.share(state.link);
               }
 
-              if(state is DynamicLinkError) {
+              if (state is DynamicLinkError) {
                 // todo refactor this logic is used in multiple places
                 ScaffoldMessenger.of(context)
                   ..hideCurrentSnackBar()
@@ -153,22 +146,15 @@ class _AppState extends State<App> with WidgetsBindingObserver {
               }
             }),
           ],
-          child: BlocBuilder<AuthBloc, AuthState>(
-              builder: (BuildContext context, AuthState state) {
+          child: BlocBuilder<AuthBloc, AuthState>(builder: (BuildContext context, AuthState state) {
             debugPrint("auth state change detected in main app [$state]");
-
-            if (state is AuthUnauthenticated) {
-              return LoginPage();
-            }
-
             if (state is AuthAuthenticated) {
               debugPrint("User Authenticated: [${state.loggedUser}]");
               return MultiBlocProvider(
                 providers: [
                   BlocProvider<UserBloc>(
                       create: (BuildContext context) => UserBloc(
-                            userRepository:
-                                RepositoryProvider.of<UserRepository>(context),
+                            userRepository: RepositoryProvider.of<UserRepository>(context),
                             storageRepository: widget._storageRepository,
                             imageRepository: widget._imageRepository,
                             authBloc: BlocProvider.of<AuthBloc>(context),
@@ -183,12 +169,8 @@ class _AppState extends State<App> with WidgetsBindingObserver {
                           child: TabBar(
                             tabs: <Widget>[
                               Tab(icon: Icon(Icons.home)),
-                              Tab(
-                                  key: Key("statsTab"),
-                                  icon: Icon(Icons.insert_chart)),
-                              Tab(
-                                  key: Key("leaderboardTab"),
-                                  icon: Icon(Icons.star)),
+                              Tab(key: Key("statsTab"), icon: Icon(Icons.insert_chart)),
+                              Tab(key: Key("leaderboardTab"), icon: Icon(Icons.star)),
                             ],
                           ),
                         ),
@@ -207,7 +189,8 @@ class _AppState extends State<App> with WidgetsBindingObserver {
               );
             }
 
-            return SplashPage();
+//            state is AuthUnauthenticated
+            return LoginPage();
           }),
         ),
       ),
