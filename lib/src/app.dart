@@ -10,9 +10,7 @@ import 'package:checkin/src/routes/application.dart';
 import 'package:checkin/src/themes/theme.dart';
 import 'package:checkin/src/ui/components/upgrader_dialog.dart';
 import 'package:checkin/src/ui/pages/home_page.dart';
-import 'package:checkin/src/ui/pages/leaderboard_page.dart';
 import 'package:checkin/src/ui/pages/login_page.dart';
-import 'package:checkin/src/ui/pages/stats_page.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:flutter_localizations/flutter_localizations.dart';
@@ -32,7 +30,9 @@ class App extends StatefulWidget {
     @required ThemeData themeData,
     @required StorageRepository storageRepository,
     @required ImageRepository imageRepository,
-  })  : assert(themeData != null && storageRepository != null && imageRepository != null),
+  })  : assert(themeData != null &&
+            storageRepository != null &&
+            imageRepository != null),
         _themeData = themeData,
         _storageRepository = storageRepository,
         _imageRepository = imageRepository,
@@ -69,7 +69,8 @@ class _AppState extends State<App> with WidgetsBindingObserver {
   }
 
   void _onPlatformBrightnessChanged() {
-    final platformBrightness = WidgetsBinding.instance.window.platformBrightness;
+    final platformBrightness =
+        WidgetsBinding.instance.window.platformBrightness;
     var themeBloc = context.read<ThemeBloc>();
 
     if (platformBrightness == Brightness.dark) {
@@ -95,7 +96,8 @@ class _AppState extends State<App> with WidgetsBindingObserver {
       onGenerateRoute: Application.router.generator,
       initialRoute: '/',
       navigatorObservers: [
-        RepositoryProvider.of<AnalyticsRepository>(context).getNavigationObserver(),
+        RepositoryProvider.of<AnalyticsRepository>(context)
+            .getNavigationObserver(),
       ],
       theme: widget._themeData,
       home: I18n(
@@ -107,7 +109,8 @@ class _AppState extends State<App> with WidgetsBindingObserver {
                 listener: (BuildContext context, DynamicLinkState state) {
               if (state is DynamicLinkToNavigate) {
                 debugPrint("deep link received with path ${state.path}");
-                Navigator.of(context).popUntil(ModalRoute.withName(Navigator.defaultRouteName));
+                Navigator.of(context)
+                    .popUntil(ModalRoute.withName(Navigator.defaultRouteName));
 
                 Navigator.of(context).pushNamed(state.path);
               }
@@ -133,7 +136,8 @@ class _AppState extends State<App> with WidgetsBindingObserver {
                         textAlign: TextAlign.center,
                         style: Theme.of(context).textTheme.bodyText1,
                       ),
-                      backgroundColor: Theme.of(context).accentColor.withAlpha(150),
+                      backgroundColor:
+                          Theme.of(context).accentColor.withAlpha(150),
                       duration: Duration(seconds: 10),
                     ),
                   );
@@ -146,7 +150,8 @@ class _AppState extends State<App> with WidgetsBindingObserver {
               }
             }),
           ],
-          child: BlocBuilder<AuthBloc, AuthState>(builder: (BuildContext context, AuthState state) {
+          child: BlocBuilder<AuthBloc, AuthState>(
+              builder: (BuildContext context, AuthState state) {
             debugPrint("auth state change detected in main app [$state]");
             if (state is AuthAuthenticated) {
               debugPrint("User Authenticated: [${state.loggedUser}]");
@@ -154,38 +159,14 @@ class _AppState extends State<App> with WidgetsBindingObserver {
                 providers: [
                   BlocProvider<UserBloc>(
                       create: (BuildContext context) => UserBloc(
-                            userRepository: RepositoryProvider.of<UserRepository>(context),
+                            userRepository:
+                                RepositoryProvider.of<UserRepository>(context),
                             storageRepository: widget._storageRepository,
                             imageRepository: widget._imageRepository,
                             authBloc: BlocProvider.of<AuthBloc>(context),
                           )),
                 ],
-                child: DefaultTabController(
-                    length: 3,
-                    child: Scaffold(
-                      bottomNavigationBar: Material(
-                        color: Colors.black87,
-                        child: SafeArea(
-                          child: TabBar(
-                            tabs: <Widget>[
-                              Tab(icon: Icon(Icons.home)),
-                              Tab(key: Key("statsTab"), icon: Icon(Icons.insert_chart)),
-                              Tab(key: Key("leaderboardTab"), icon: Icon(Icons.star)),
-                            ],
-                          ),
-                        ),
-                      ),
-                      body: TabBarView(
-                        physics: NeverScrollableScrollPhysics(),
-                        children: [
-                          HomePage(),
-                          StatsPage(
-                            userEmail: state.loggedUser.email,
-                          ),
-                          LeaderboardPage(),
-                        ],
-                      ),
-                    )),
+                child: HomePage(),
               );
             }
 

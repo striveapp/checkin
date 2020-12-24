@@ -16,7 +16,7 @@ class GradePage extends StatelessWidget {
         body: SafeArea(
       child: Center(
         child: Padding(
-          padding: EdgeInsets.symmetric(vertical: 20),
+          padding: EdgeInsets.symmetric(vertical: 50),
           child: Column(
             mainAxisAlignment: MainAxisAlignment.center,
             children: <Widget>[

@@ -5,7 +5,8 @@ class UnselectedGymPage extends StatelessWidget {
   final String userName;
 
   static const String heyUser = "Welcome %s";
-  static const String contactYourGymOwner = "Please contact your gym owner to obtain the referral link";
+  static const String contactYourGymOwner =
+      "Please contact your gym owner to obtain the referral link";
 
   UnselectedGymPage({
     @required this.userName,
@@ -16,7 +17,7 @@ class UnselectedGymPage extends StatelessWidget {
     return Scaffold(
       body: SafeArea(
         child: Padding(
-          padding: EdgeInsets.symmetric(vertical: 70, horizontal: 30),
+          padding: EdgeInsets.symmetric(vertical: 100, horizontal: 30),
           child: Center(
             child: Column(
               mainAxisAlignment: MainAxisAlignment.start,

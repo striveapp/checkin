@@ -37,6 +37,10 @@ integration-test:
 	@sleep 2
 	$(envars) dart test_driver/journeys/journeys_test.dart
 
+.PHONY: driver-test
+driver-test:
+	flutter drive --flavor=dev --target=test_driver/journeys/journeys.dart
+
 .PHONY: codegen-runner
 codegen-runner:
 	flutter pub run build_runner watch --delete-conflicting-outputs
