@@ -1,7 +1,7 @@
 import 'package:bloc_test/bloc_test.dart';
 import 'package:checkin/src/blocs/theme/bloc.dart';
 import 'package:checkin/src/themes/theme.dart';
-import 'package:test/test.dart';
+import 'package:flutter_test/flutter_test.dart';
 
 void main() {
   group("ThemeBloc", () {
@@ -10,6 +10,8 @@ void main() {
       ThemeBloc themeBloc;
 
       setUp(() {
+        TestWidgetsFlutterBinding.ensureInitialized();
+
         themeBloc = ThemeBloc();
       });
 
@@ -28,7 +30,7 @@ void main() {
       blocTest(
         "should emit AppTheme setting the new theme",
         build: () => ThemeBloc(),
-        act: (bloc) => bloc.add(ThemeUpdated(themeType: newThemeType)),
+        act: (bloc) => bloc.add(UpdateTheme(themeType: newThemeType)),
         expect: [AppTheme(themeData: theme[newThemeType])],
       );
     });

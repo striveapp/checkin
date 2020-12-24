@@ -6,5 +6,6 @@ part 'theme_event.freezed.dart';
 
 @freezed
 abstract class ThemeEvent with _$ThemeEvent {
-  const factory ThemeEvent.themeUpdated({ThemeType themeType}) = ThemeUpdated;
+  // todo this should be renamed into UpdateBrightness, and if dark logic should be centralized into the bloc
+  const factory ThemeEvent.updateTheme({ThemeType themeType}) = UpdateTheme;
 }

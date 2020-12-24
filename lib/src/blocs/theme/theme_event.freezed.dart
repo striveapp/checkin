@@ -14,8 +14,8 @@ class _$ThemeEventTearOff {
   const _$ThemeEventTearOff();
 
 // ignore: unused_element
-  ThemeUpdated themeUpdated({ThemeType themeType}) {
-    return ThemeUpdated(
+  UpdateTheme updateTheme({ThemeType themeType}) {
+    return UpdateTheme(
       themeType: themeType,
     );
   }
@@ -31,20 +31,20 @@ mixin _$ThemeEvent {
 
   @optionalTypeArgs
   TResult when<TResult extends Object>({
-    @required TResult themeUpdated(ThemeType themeType),
+    @required TResult updateTheme(ThemeType themeType),
   });
   @optionalTypeArgs
   TResult maybeWhen<TResult extends Object>({
-    TResult themeUpdated(ThemeType themeType),
+    TResult updateTheme(ThemeType themeType),
     @required TResult orElse(),
   });
   @optionalTypeArgs
   TResult map<TResult extends Object>({
-    @required TResult themeUpdated(ThemeUpdated value),
+    @required TResult updateTheme(UpdateTheme value),
   });
   @optionalTypeArgs
   TResult maybeMap<TResult extends Object>({
-    TResult themeUpdated(ThemeUpdated value),
+    TResult updateTheme(UpdateTheme value),
     @required TResult orElse(),
   });
 
@@ -79,30 +79,29 @@ class _$ThemeEventCopyWithImpl<$Res> implements $ThemeEventCopyWith<$Res> {
 }
 
 /// @nodoc
-abstract class $ThemeUpdatedCopyWith<$Res>
-    implements $ThemeEventCopyWith<$Res> {
-  factory $ThemeUpdatedCopyWith(
-          ThemeUpdated value, $Res Function(ThemeUpdated) then) =
-      _$ThemeUpdatedCopyWithImpl<$Res>;
+abstract class $UpdateThemeCopyWith<$Res> implements $ThemeEventCopyWith<$Res> {
+  factory $UpdateThemeCopyWith(
+          UpdateTheme value, $Res Function(UpdateTheme) then) =
+      _$UpdateThemeCopyWithImpl<$Res>;
   @override
   $Res call({ThemeType themeType});
 }
 
 /// @nodoc
-class _$ThemeUpdatedCopyWithImpl<$Res> extends _$ThemeEventCopyWithImpl<$Res>
-    implements $ThemeUpdatedCopyWith<$Res> {
-  _$ThemeUpdatedCopyWithImpl(
-      ThemeUpdated _value, $Res Function(ThemeUpdated) _then)
-      : super(_value, (v) => _then(v as ThemeUpdated));
+class _$UpdateThemeCopyWithImpl<$Res> extends _$ThemeEventCopyWithImpl<$Res>
+    implements $UpdateThemeCopyWith<$Res> {
+  _$UpdateThemeCopyWithImpl(
+      UpdateTheme _value, $Res Function(UpdateTheme) _then)
+      : super(_value, (v) => _then(v as UpdateTheme));
 
   @override
-  ThemeUpdated get _value => super._value as ThemeUpdated;
+  UpdateTheme get _value => super._value as UpdateTheme;
 
   @override
   $Res call({
     Object themeType = freezed,
   }) {
-    return _then(ThemeUpdated(
+    return _then(UpdateTheme(
       themeType:
           themeType == freezed ? _value.themeType : themeType as ThemeType,
     ));
@@ -110,29 +109,29 @@ class _$ThemeUpdatedCopyWithImpl<$Res> extends _$ThemeEventCopyWithImpl<$Res>
 }
 
 /// @nodoc
-class _$ThemeUpdated with DiagnosticableTreeMixin implements ThemeUpdated {
-  const _$ThemeUpdated({this.themeType});
+class _$UpdateTheme with DiagnosticableTreeMixin implements UpdateTheme {
+  const _$UpdateTheme({this.themeType});
 
   @override
   final ThemeType themeType;
 
   @override
   String toString({DiagnosticLevel minLevel = DiagnosticLevel.info}) {
-    return 'ThemeEvent.themeUpdated(themeType: $themeType)';
+    return 'ThemeEvent.updateTheme(themeType: $themeType)';
   }
 
   @override
   void debugFillProperties(DiagnosticPropertiesBuilder properties) {
     super.debugFillProperties(properties);
     properties
-      ..add(DiagnosticsProperty('type', 'ThemeEvent.themeUpdated'))
+      ..add(DiagnosticsProperty('type', 'ThemeEvent.updateTheme'))
       ..add(DiagnosticsProperty('themeType', themeType));
   }
 
   @override
   bool operator ==(dynamic other) {
     return identical(this, other) ||
-        (other is ThemeUpdated &&
+        (other is UpdateTheme &&
             (identical(other.themeType, themeType) ||
                 const DeepCollectionEquality()
                     .equals(other.themeType, themeType)));
@@ -143,27 +142,27 @@ class _$ThemeUpdated with DiagnosticableTreeMixin implements ThemeUpdated {
       runtimeType.hashCode ^ const DeepCollectionEquality().hash(themeType);
 
   @override
-  $ThemeUpdatedCopyWith<ThemeUpdated> get copyWith =>
-      _$ThemeUpdatedCopyWithImpl<ThemeUpdated>(this, _$identity);
+  $UpdateThemeCopyWith<UpdateTheme> get copyWith =>
+      _$UpdateThemeCopyWithImpl<UpdateTheme>(this, _$identity);
 
   @override
   @optionalTypeArgs
   TResult when<TResult extends Object>({
-    @required TResult themeUpdated(ThemeType themeType),
+    @required TResult updateTheme(ThemeType themeType),
   }) {
-    assert(themeUpdated != null);
-    return themeUpdated(themeType);
+    assert(updateTheme != null);
+    return updateTheme(themeType);
   }
 
   @override
   @optionalTypeArgs
   TResult maybeWhen<TResult extends Object>({
-    TResult themeUpdated(ThemeType themeType),
+    TResult updateTheme(ThemeType themeType),
     @required TResult orElse(),
   }) {
     assert(orElse != null);
-    if (themeUpdated != null) {
-      return themeUpdated(themeType);
+    if (updateTheme != null) {
+      return updateTheme(themeType);
     }
     return orElse();
   }
@@ -171,31 +170,31 @@ class _$ThemeUpdated with DiagnosticableTreeMixin implements ThemeUpdated {
   @override
   @optionalTypeArgs
   TResult map<TResult extends Object>({
-    @required TResult themeUpdated(ThemeUpdated value),
+    @required TResult updateTheme(UpdateTheme value),
   }) {
-    assert(themeUpdated != null);
-    return themeUpdated(this);
+    assert(updateTheme != null);
+    return updateTheme(this);
   }
 
   @override
   @optionalTypeArgs
   TResult maybeMap<TResult extends Object>({
-    TResult themeUpdated(ThemeUpdated value),
+    TResult updateTheme(UpdateTheme value),
     @required TResult orElse(),
   }) {
     assert(orElse != null);
-    if (themeUpdated != null) {
-      return themeUpdated(this);
+    if (updateTheme != null) {
+      return updateTheme(this);
     }
     return orElse();
   }
 }
 
-abstract class ThemeUpdated implements ThemeEvent {
-  const factory ThemeUpdated({ThemeType themeType}) = _$ThemeUpdated;
+abstract class UpdateTheme implements ThemeEvent {
+  const factory UpdateTheme({ThemeType themeType}) = _$UpdateTheme;
 
   @override
   ThemeType get themeType;
   @override
-  $ThemeUpdatedCopyWith<ThemeUpdated> get copyWith;
+  $UpdateThemeCopyWith<UpdateTheme> get copyWith;
 }
