@@ -3,14 +3,15 @@ import 'package:checkin/src/blocs/user/bloc.dart';
 import 'package:checkin/src/repositories/notification_repository.dart';
 import 'package:checkin/src/ui/components/loading_indicator.dart';
 import 'package:checkin/src/ui/components/notification_toast.dart';
-import 'package:checkin/src/ui/pages/unselected_gym_page.dart';
+import 'package:checkin/src/ui/pages/onboarding/name_selection_page.dart';
+import 'package:checkin/src/ui/pages/onboarding/unselected_gym_page.dart';
 import 'package:checkin/src/ui/pages/leaderboard_page.dart';
 import 'package:checkin/src/ui/pages/stats_page.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter/widgets.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 
-import 'grade_page.dart';
+import 'onboarding/grade_page.dart';
 import 'lessons_page.dart';
 
 class HomePage extends StatelessWidget {
@@ -42,11 +43,17 @@ class HomePage extends StatelessWidget {
           }
 
           if (state is UserSuccess) {
+            if (state.currentUser.name == null ||
+                state.currentUser.name.isEmpty) {
+              return NameSelectionPage();
+            }
+
             if (state.currentUser.selectedGymId == null) {
               return UnselectedGymPage(
                 userName: state.currentUser.name,
               );
             }
+
             if (state.currentUser.grade == null) {
               return GradePage();
             }

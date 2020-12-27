@@ -45,8 +45,9 @@ import 'package:checkin/src/ui/components/stats/user/attended_lessons_list.dart'
 import 'package:checkin/src/ui/components/stats/user/mat_time_counter.dart';
 import 'package:checkin/src/ui/components/upgrader_dialog.dart';
 import 'package:checkin/src/ui/pages/account_page.dart';
-import 'package:checkin/src/ui/pages/grade_page.dart';
-import 'package:checkin/src/ui/pages/unselected_gym_page.dart';
+import 'package:checkin/src/ui/pages/onboarding/grade_page.dart';
+import 'package:checkin/src/ui/pages/onboarding/name_selection_page.dart';
+import 'package:checkin/src/ui/pages/onboarding/unselected_gym_page.dart';
 import 'package:checkin/src/ui/pages/leaderboard_page.dart';
 import 'package:checkin/src/ui/pages/lessons_page.dart';
 import 'package:checkin/src/ui/pages/lessons_stats_page.dart';
@@ -305,8 +306,7 @@ extension Localization on String {
       } +
       {
         'en': AcceptAllDialog.acceptingAllTheStudentsDisclaimer,
-        'You are going to confirm all the students in class'
-            'es': 'Estás a punto de aceptar todos los estudiantes',
+        'es': 'Estás a punto de aceptar todos los estudiantes',
         'it': 'Stai per accettare tutti gli studenti',
       } +
       {
@@ -380,6 +380,11 @@ extension Localization on String {
         'en': ProfileCard.enterYourName,
         'es': 'Escribe tu nombre',
         'it': 'Digita il tuo nome',
+      } +
+      {
+        'en': ProfileCard.thisDoesNotLookLikeAValidName,
+        'es': 'Esto no parece un nombre valido',
+        'it': 'Questo non sembra un nome valido',
       } +
       {
         'en': InactiveMembershipView.chooseYourSubscription,
@@ -643,22 +648,55 @@ extension Localization on String {
         'es': 'o',
         'it': 'oppure',
       } +
-      {'en': Attendees.removeStudent, 'es': 'Eliminar', 'it': 'Rimuovi'} +
-      {'en': RemoveStudentDialog.remove, 'es': 'Eliminar', 'it': 'Rimuovi'} +
+      {
+        'en': Attendees.removeStudent,
+        'es': 'Eliminar',
+        'it': 'Rimuovi',
+      } +
+      {
+        'en': RemoveStudentDialog.remove,
+        'es': 'Eliminar',
+        'it': 'Rimuovi',
+      } +
       {
         'en': RemoveStudentDialog.removeStudentDisclaimer,
         'es': '¿Estás seguro que quieres eliminar este estudiente de la clase?',
-        'it': 'Sei sicuro di voler rimuovere questo studente dalla classe?'
+        'it': 'Sei sicuro di voler rimuovere questo studente dalla classe?',
       } +
       {
         'en': RemoveStudentDialog.keepStudentInClass,
         'es': 'Mantener',
-        'it': 'Mantieni'
+        'it': 'Mantieni',
       } +
       {
         'en': FilterListWidget.noFiltersAvailable,
         'es': 'No hay filtros disponibles',
-        'it': 'Nessun filtro disponibile'
+        'it': 'Nessun filtro disponibile',
+      } +
+      {
+        'en': NameSelectionPage.insertYourName,
+        'es': 'Pon tu nombre',
+        'it': 'Inserisci il tuo nome',
+      } +
+      {
+        'en': NameSelectionPage.couldYouTellUsHowPeopleKnowYou,
+        'es': '¿Podrías decirnos tu nombre?',
+        'it': 'Potresti dirci come ti chiami?',
+      } +
+      {
+        'en': NameSelectionPage.thisDoesNotLookLikeAValidName,
+        'es': 'Esto no parece un nombre valido',
+        'it': 'Questo non sembra un nome valido',
+      } +
+      {
+        'en': NameSelectionPage.welcomeToTheFamily,
+        'es': '¡Ya eres parte de la familia!',
+        'it': 'Fai giá parte della famiglia!',
+      } +
+      {
+        'en': NameSelectionPage.whatsYourName,
+        'es': '¿Cuál es su nombre?',
+        'it': 'Come ti chiami?',
       };
 
   String get i18n => localize(this, _t);

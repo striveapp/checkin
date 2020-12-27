@@ -170,7 +170,7 @@ class _AppState extends State<App> with WidgetsBindingObserver {
               );
             }
 
-//            state is AuthUnauthenticated
+            //NOTE: state is AuthUnauthenticated
             return LoginPage();
           }),
         ),

@@ -24,7 +24,8 @@ class AuthProvider implements AuthRepository {
         .map((firebaseUser) => User.fromFirebaseUser(firebaseUser));
   }
 
-  Future<String> getIdToken() async => await _firebaseAuth.currentUser.getIdToken();
+  Future<String> getIdToken() async =>
+      await _firebaseAuth.currentUser.getIdToken();
 
   Future<User> signInWithGoogle() async {
     GoogleSignInAccount googleUser;
@@ -34,7 +35,8 @@ class AuthProvider implements AuthRepository {
     try {
       googleUser = await _googleSignIn.signIn();
     } catch (err, stackTrace) {
-      await _crashlytics.recordError(err, stackTrace, reason: "login error (signIn)");
+      await _crashlytics.recordError(err, stackTrace,
+          reason: "login error (signIn)");
       throw err;
     }
 
@@ -46,7 +48,8 @@ class AuthProvider implements AuthRepository {
     try {
       googleAuth = await googleUser.authentication;
     } catch (err, stackTrace) {
-      await _crashlytics.recordError(err, stackTrace, reason: "login error (authentication)");
+      await _crashlytics.recordError(err, stackTrace,
+          reason: "login error (authentication)");
       throw err;
     }
 
@@ -56,7 +59,8 @@ class AuthProvider implements AuthRepository {
         idToken: googleAuth.idToken,
       );
     } catch (err, stackTrace) {
-      await _crashlytics.recordError(err, stackTrace, reason: "login error (getCredential)");
+      await _crashlytics.recordError(err, stackTrace,
+          reason: "login error (getCredential)");
       throw err;
     }
 
@@ -95,7 +99,8 @@ class AuthProvider implements AuthRepository {
 
     return await _getAuthenticatedUserFromFirebase(
       credential,
-      displayName: "${appleAuth.givenName} ${appleAuth.familyName}",
+      displayName:
+          "${appleAuth.givenName ?? ''} ${appleAuth.familyName ?? ''}".trim(),
     );
   }
 
@@ -117,14 +122,13 @@ class AuthProvider implements AuthRepository {
   }
 
   @override
-  Future<User> completeSignInPasswordless(String userEmail, Uri emailLink) async {
-    if(_firebaseAuth.currentUser == null) {
-      var credentials = await _firebaseAuth.signInWithEmailLink(email: userEmail, emailLink: emailLink.toString());
+  Future<User> completeSignInPasswordless(
+      String userEmail, Uri emailLink) async {
+    if (_firebaseAuth.currentUser == null) {
+      var credentials = await _firebaseAuth.signInWithEmailLink(
+          email: userEmail, emailLink: emailLink.toString());
       final user = credentials.user;
-      return User.fromFirebaseUser(
-        user,
-        displayName: "${user.displayName}"
-      );
+      return User.fromFirebaseUser(user, displayName: user.displayName);
     } else {
       throw UserAlreadyLoggedInException("user [$userEmail] already logged in");
     }
@@ -138,26 +142,23 @@ class AuthProvider implements AuthRepository {
   }
 
   @override
-  Future<User> loginWithTestUser({test = 0, owner = false, master = false}) async {
+  Future<User> loginWithTestUser(
+      {test = 0, owner = false, master = false}) async {
     if (test == 1) {
-      await this
-          ._firebaseAuth
-          .signInWithEmailAndPassword(email: "test@test.com", password: "test123");
+      await this._firebaseAuth.signInWithEmailAndPassword(
+          email: "test@test.com", password: "test123");
     }
     if (test == 2) {
-      await this
-          ._firebaseAuth
-          .signInWithEmailAndPassword(email: "test-two@test.com", password: "test123");
+      await this._firebaseAuth.signInWithEmailAndPassword(
+          email: "test-two@test.com", password: "test123");
     }
     if (owner) {
-      await this
-          ._firebaseAuth
-          .signInWithEmailAndPassword(email: "test-owner@test.com", password: "test123");
+      await this._firebaseAuth.signInWithEmailAndPassword(
+          email: "test-owner@test.com", password: "test123");
     }
     if (master) {
-      await this
-          ._firebaseAuth
-          .signInWithEmailAndPassword(email: "test-master@test.com", password: "test123");
+      await this._firebaseAuth.signInWithEmailAndPassword(
+          email: "test-master@test.com", password: "test123");
     }
     var firebaseUser = _firebaseAuth.currentUser;
     debugPrint("test firebaseUser is [$firebaseUser]");
@@ -170,7 +171,8 @@ class AppleSignInNotSupportedException implements Exception {
   String _message;
 
   AppleSignInNotSupportedException(
-      [String message = 'Sign in with Apple is not supported for your version of IOS']) {
+      [String message =
+          'Sign in with Apple is not supported for your version of IOS']) {
     this._message = message;
   }
 

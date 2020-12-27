@@ -2,16 +2,20 @@ import 'package:checkin/src/blocs/profile/bloc.dart';
 import 'package:checkin/src/blocs/user/bloc.dart';
 import 'package:checkin/src/localization/localization.dart';
 import 'package:checkin/src/ui/components/add_photo_badge.dart';
-import 'package:checkin/src/ui/components/empty_widget.dart';
 import 'package:checkin/src/ui/components/loading_indicator.dart';
 import 'package:checkin/src/ui/components/user_image.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
+import 'package:checkin/src/util/string_extension.dart';
 
 class ProfileCard extends StatelessWidget {
+  static const String enterYourName = 'Enter your name';
+  static const String thisDoesNotLookLikeAValidName =
+      "This does not look like a valid name";
+
   final String userEmail;
   final bool isOwner;
-  static const String enterYourName = 'Enter your name';
+  final GlobalKey<FormState> _formKey = GlobalKey<FormState>();
 
   ProfileCard({
     @required this.userEmail,
@@ -40,12 +44,12 @@ class ProfileCard extends StatelessWidget {
                       alignment: AlignmentDirectional.bottomEnd,
                       clipBehavior: Clip.none,
                       children: [
-                        UserImage(
-                            userImage: state.profileUser.imageUrl),
+                        UserImage(userImage: state.profileUser.imageUrl),
                         Positioned(
-                            right: -8,
-                            bottom: -2,
-                            child: AddPhotoBadge())
+                          right: -8,
+                          bottom: -2,
+                          child: AddPhotoBadge(),
+                        ),
                       ],
                     ),
                     onTap: () {
@@ -65,31 +69,43 @@ class ProfileCard extends StatelessWidget {
                   ),
                 if (!isOwner)
                   Expanded(
-                    child: TextField(
-                      key: Key("editProfileButton"),
-                      onSubmitted: (name) {
-                        if (name.length > 3) {
-                          BlocProvider.of<UserBloc>(context)
-                              .add(UserEvent.updateName(newName: name));
-                        }
-                      },
-                      autocorrect: false,
-                      maxLength: 30,
-                      autofocus: false,
-                      style: Theme.of(context).textTheme.headline3,
-                      decoration: InputDecoration(
-                          suffixIcon: Icon(Icons.edit),
+                    child: Form(
+                      key: _formKey,
+                      autovalidateMode: AutovalidateMode.onUserInteraction,
+                      child: TextFormField(
+                        key: Key("editProfileButton"),
+                        keyboardType: TextInputType.name,
+                        cursorColor: Theme.of(context).accentColor,
+                        style: Theme.of(context).textTheme.headline2,
+                        decoration: new InputDecoration(
+                          hintText: enterYourName.i18n,
+                          hintStyle: Theme.of(context).textTheme.headline3,
                           border: InputBorder.none,
                           focusedBorder: InputBorder.none,
-                          counter: EmptyWidget(),
-                          hintText: enterYourName.i18n),
-                      controller: TextEditingController.fromValue(
-                          TextEditingValue(
-                              text: state.profileUser.name,
-                              selection: new TextSelection.collapsed(
-                                  offset: state.profileUser.name.length))),
+                          enabledBorder: InputBorder.none,
+                          errorBorder: InputBorder.none,
+                          errorMaxLines: 2,
+                          errorStyle: Theme.of(context)
+                              .textTheme
+                              .bodyText1
+                              .apply(color: Theme.of(context).errorColor),
+                          disabledBorder: InputBorder.none,
+                        ),
+                        controller: TextEditingController.fromValue(
+                            TextEditingValue(
+                                text: state.profileUser.name,
+                                selection: new TextSelection.collapsed(
+                                    offset: state.profileUser.name.length))),
+                        validator: _validateName,
+                        onFieldSubmitted: (String value) {
+                          if (_formKey.currentState.validate()) {
+                            UserBloc userBloc = context.read<UserBloc>();
+                            userBloc.add(UpdateName(newName: value.trim()));
+                          }
+                        },
+                      ),
                     ),
-                  ),
+                  )
               ],
             );
           }
@@ -98,5 +114,12 @@ class ProfileCard extends StatelessWidget {
         }),
       ),
     );
+  }
+
+  String _validateName(String value) {
+    if (value == null || value.isBlank)
+      return thisDoesNotLookLikeAValidName.i18n;
+    else
+      return null;
   }
 }
