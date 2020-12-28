@@ -599,6 +599,11 @@ extension Localization on String {
         'it': 'Apri posta elettronica',
       } +
       {
+        'en': CheckEmailView.whichEmailAppDoYouUseFor,
+        'es': '¿Que aplicacion de correo electrónico utilizas para %s?',
+        'it': 'Che app di e-mail utilizzi per %s?',
+      } +
+      {
         'en': InsertEmailView.insetEmailPlaceholder,
         'es': 'Tu dirección de correo',
         'it': 'Il tuo indirizzo email',
@@ -660,7 +665,7 @@ extension Localization on String {
       } +
       {
         'en': RemoveStudentDialog.removeStudentDisclaimer,
-        'es': '¿Estás seguro que quieres eliminar este estudiente de la clase?',
+        'es': 'Estás seguro que quieres eliminar este estudiente de la clase?',
         'it': 'Sei sicuro di voler rimuovere questo studente dalla classe?',
       } +
       {

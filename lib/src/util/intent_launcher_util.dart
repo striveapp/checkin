@@ -1,15 +1,11 @@
-import 'package:android_intent/android_intent.dart';
+import 'package:open_mail_app/open_mail_app.dart';
 import 'package:platform/platform.dart';
 import 'package:url_launcher/url_launcher.dart';
 
 class IntentLauncherUtil {
-  Future<void> launchEmailApp() async {
+  Future<void> launchEmailApp({String chooserTitle}) async {
     if (LocalPlatform().isAndroid) {
-      AndroidIntent intent = AndroidIntent(
-        action: 'android.intent.action.MAIN',
-        category: 'android.intent.category.APP_EMAIL',
-      );
-      await intent.launch();
+      await OpenMailApp.openMailApp(nativePickerTitle: chooserTitle);
     } else if (LocalPlatform().isIOS) {
       await launch("message://");
     }
