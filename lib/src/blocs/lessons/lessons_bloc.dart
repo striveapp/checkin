@@ -29,18 +29,18 @@ class LessonsBloc extends Bloc<LessonsEvent, LessonsState> {
     if (userState is UserSuccess) {
       gymId = userState.currentUser.selectedGymId;
       lessonsSub?.cancel();
-      DateTime currentDay = dateUtil.getCurrentDateTime();
+      DateTime initialSelectedDay = dateUtil.getInitialSelectedDayByGym(gymId);
 
       lessonsSub = this
           .lessonRepository
           .getLessonsForDay(
             gymId,
-            currentDay,
+            initialSelectedDay,
           )
           .listen((lessons) {
         add(LessonsEvent.lessonsUpdated(
           lessons: lessons,
-          selectedDay: currentDay,
+          selectedDay: initialSelectedDay,
         ));
       });
     }

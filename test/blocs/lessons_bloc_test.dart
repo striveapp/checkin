@@ -65,12 +65,14 @@ void main() {
       setUp(() {
         whenListen(mockUserBloc, Stream.fromIterable([UserSuccess(currentUser: fakeUser)]));
         when(mockDateUtil.getCurrentDateTime()).thenReturn(testDate);
+        when(mockDateUtil.getInitialSelectedDayByGym(fakeUser.selectedGymId)).thenReturn(testDate);
         when(mockLessonRepository.getLessonsForDay(fakeUser.selectedGymId, testDate))
             .thenAnswer((realInvocation) => Stream.value([]));
       });
 
       tearDown(() {
         verify(mockDateUtil.getCurrentDateTime());
+        verify(mockDateUtil.getInitialSelectedDayByGym(fakeUser.selectedGymId));
         verify(mockLessonRepository.getLessonsForDay(fakeUser.selectedGymId, testDate));
       });
 
@@ -171,6 +173,7 @@ void main() {
       setUp(() {
         whenListen(mockUserBloc, Stream.fromIterable([UserSuccess(currentUser: fakeUser)]));
         when(mockDateUtil.getCurrentDateTime()).thenReturn(testDate);
+        when(mockDateUtil.getInitialSelectedDayByGym(fakeUser.selectedGymId)).thenReturn(testDate);
 
         when(mockLessonRepository.getLessonsForDay(fakeUser.selectedGymId, testDate))
             .thenAnswer((_) {
@@ -184,6 +187,7 @@ void main() {
 
       tearDown(() {
         verify(mockDateUtil.getCurrentDateTime());
+        verify(mockDateUtil.getInitialSelectedDayByGym(fakeUser.selectedGymId));
         verify(mockLessonRepository.getLessonsForDay(fakeUser.selectedGymId, testDate));
         verify(mockLessonRepository.getLessonsForDay(fakeUser.selectedGymId, selectedDay, []));
       });

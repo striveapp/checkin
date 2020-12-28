@@ -22,7 +22,7 @@ class LessonsPage extends StatelessWidget {
         BlocProvider<LessonsBloc>(
           create: (BuildContext context) =>
           LessonsBloc(
-              userBloc: BlocProvider.of<UserBloc>(context),
+              userBloc: context.read<UserBloc>(),
               lessonRepository: context.read<LessonRepository>(),
               dateUtil: DateUtil()
           )
@@ -44,11 +44,6 @@ class LessonsPage extends StatelessWidget {
                 children: <Widget>[
                   WeekCalendar(
                     holidaysRepository: HolidaysRepository(),
-                    onDaySelected:
-                        (DateTime selectedDay, List<dynamic> event, List<dynamic> holidays) {
-                      BlocProvider.of<LessonsBloc>(context)
-                          .add(LoadLessons(selectedDay: selectedDay));
-                    },
                   ),
                   Container(
                     child: Expanded(

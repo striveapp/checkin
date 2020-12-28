@@ -1,10 +1,24 @@
 import 'package:checkin/src/constants.dart' as constants;
-import 'package:checkin/src/util/debug_util.dart';
 
 import '../constants.dart';
 
 class DateUtil {
-  DateTime getCurrentDateTime() => isInDebugMode ? testDate : DateTime.now();
+  DateTime getCurrentDateTime() => DateTime.now();
+
+  DateTime getInitialSelectedDayByGym(String selectedGymId) {
+    if(selectedGymId == 'test'){
+      return testDate;
+    }
+
+    if(selectedGymId == 'bjj_winter_week') {
+      DateTime eventStartDate = DateTime(2021, 3, 16);
+      DateTime eventEndDate = DateTime(2021, 3, 21);
+      final currentDateTime = getCurrentDateTime();
+      return eventStartDate.isAfter(currentDateTime) || eventEndDate.isBefore(currentDateTime) ? eventStartDate : currentDateTime;
+    }
+
+    return DateTime.now();
+  }
 
   static DateTime _getFirstDayOfTheWeek() {
     DateTime now = DateTime.now();

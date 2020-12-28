@@ -1,20 +1,21 @@
+import 'package:checkin/src/blocs/lessons/bloc.dart';
+import 'package:checkin/src/blocs/lessons/lessons_bloc.dart';
+import 'package:checkin/src/blocs/user/bloc.dart';
 import 'package:checkin/src/repositories/holidays_repository.dart';
-import 'package:checkin/src/util/debug_util.dart';
+import 'package:checkin/src/ui/components/loading_indicator.dart';
+import 'package:checkin/src/util/date_util.dart';
 import 'package:flutter/material.dart';
+import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:table_calendar/table_calendar.dart';
-
-import 'package:checkin/src/constants.dart';
 
 class WeekCalendar extends StatefulWidget {
   @override
   _WeekCalendarState createState() => _WeekCalendarState();
   final HolidaysRepository holidaysRepository;
-  final Function(DateTime, List<dynamic>, List<dynamic>) onDaySelected;
 
   const WeekCalendar({
     Key key,
     @required this.holidaysRepository,
-    @required this.onDaySelected,
   }) : super(key: key);
 }
 
@@ -29,20 +30,58 @@ class _WeekCalendarState extends State<WeekCalendar> {
 
   @override
   Widget build(BuildContext context) {
-    return TableCalendar(
-      calendarController: _calendarController,
-      locale: Localizations.localeOf(context).toLanguageTag(),
-      headerVisible: false,
-      initialSelectedDay: isInDebugMode ? testDate : DateTime.now(), //NOTE: this is used for the e2e tests
-      initialCalendarFormat: CalendarFormat.twoWeeks,
-      startingDayOfWeek: StartingDayOfWeek.monday,
-      availableGestures: AvailableGestures.none,
-      onDaySelected: widget.onDaySelected,
-      holidays: widget.holidaysRepository.getHolidays(),
-      calendarStyle: CalendarStyle(
-        selectedColor: Theme.of(context).accentColor,
-        todayColor: Theme.of(context).accentColor.withAlpha(100)
-      ),
+    return BlocBuilder<UserBloc, UserState>(
+      builder: (BuildContext context, UserState state) {
+        return state.maybeMap(
+          userSuccess: (UserSuccess state) {
+            var selectedGymId = state.currentUser.selectedGymId;
+            if(selectedGymId == 'test' || selectedGymId == 'bjj_winter_week'){
+              return TableCalendar(
+                calendarController: _calendarController,
+                locale: Localizations.localeOf(context).toLanguageTag(),
+                headerVisible: true,
+                headerStyle: HeaderStyle(
+                    rightChevronVisible: false,
+                    leftChevronVisible: false,
+                    formatButtonVisible: false,
+                    headerPadding: EdgeInsets.only(bottom: 10, left: 20),
+                    titleTextStyle: Theme.of(context).textTheme.headline3),
+                initialSelectedDay: DateUtil().getInitialSelectedDayByGym(selectedGymId),
+                initialCalendarFormat: CalendarFormat.week,
+                startingDayOfWeek: StartingDayOfWeek.monday,
+                availableGestures: AvailableGestures.none,
+                onDaySelected: (DateTime selectedDay, List<dynamic> event,
+                    List<dynamic> holidays) {
+                  context.read<LessonsBloc>().add(LoadLessons(selectedDay: selectedDay));
+                },
+                holidays: widget.holidaysRepository.getHolidays(),
+                calendarStyle: CalendarStyle(
+                    selectedColor: Theme.of(context).accentColor,
+                    todayColor: Theme.of(context).accentColor.withAlpha(100)),
+              );
+            }
+
+            return TableCalendar(
+              calendarController: _calendarController,
+              locale: Localizations.localeOf(context).toLanguageTag(),
+              headerVisible: false,
+              initialSelectedDay:
+                  DateUtil().getInitialSelectedDayByGym(selectedGymId),
+              initialCalendarFormat: CalendarFormat.twoWeeks,
+              startingDayOfWeek: StartingDayOfWeek.monday,
+              availableGestures: AvailableGestures.none,
+              onDaySelected: (DateTime selectedDay, List<dynamic> event, List<dynamic> holidays) {
+                context.read<LessonsBloc>().add(LoadLessons(selectedDay: selectedDay));
+              },
+              holidays: widget.holidaysRepository.getHolidays(),
+              calendarStyle: CalendarStyle(
+                  selectedColor: Theme.of(context).accentColor,
+                  todayColor: Theme.of(context).accentColor.withAlpha(100)),
+            );
+          },
+          orElse: () => LoadingIndicator(),
+        );
+      },
     );
   }
 
