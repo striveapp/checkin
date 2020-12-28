@@ -17,49 +17,48 @@ class LessonsPage extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    return BlocProvider(
-      create: (BuildContext context) => LessonsBloc(
-        userBloc: BlocProvider.of<UserBloc>(context),
-        lessonRepository: RepositoryProvider.of<LessonRepository>(context),
-        dateUtil: DateUtil()
-      ),
-      child: Builder(
-        builder: (BuildContext context) {
-          return Scaffold(
-              appBar: BaseAppBar(
-                title: classes.i18n,
-              ),
-              floatingActionButton: LessonsFilterFab(),
-              body: Builder(
-                builder: (BuildContext context) => Padding(
-                  padding: const EdgeInsets.only(top: 15),
-                  child: Container(
-                    decoration: BoxDecoration(
-                        borderRadius: BorderRadius.only(
-                            topLeft: Radius.circular(10.0), topRight: Radius.circular(10.0))),
-                    child: Column(
-                      crossAxisAlignment: CrossAxisAlignment.center,
-                      children: <Widget>[
-                        WeekCalendar(
-                          holidaysRepository: HolidaysRepository(),
-                          onDaySelected:
-                              (DateTime selectedDay, List<dynamic> event, List<dynamic> holidays) {
-                            BlocProvider.of<LessonsBloc>(context)
-                                .add(LoadLessons(selectedDay: selectedDay));
-                          },
-                        ),
-                        Container(
-                          child: Expanded(
-                            child: LessonCardList(),
-                          ),
-                        ),
-                      ],
+    return MultiBlocProvider(
+      providers: [
+        BlocProvider<LessonsBloc>(
+          create: (BuildContext context) =>
+          LessonsBloc(
+              userBloc: BlocProvider.of<UserBloc>(context),
+              lessonRepository: context.read<LessonRepository>(),
+              dateUtil: DateUtil()
+          )
+            ..add(InitializeLessons()),)
+      ],
+      child: Scaffold(
+          appBar: BaseAppBar(
+            title: classes.i18n,
+          ),
+          floatingActionButton: LessonsFilterFab(),
+          body: Padding(
+            padding: const EdgeInsets.only(top: 15),
+            child: Container(
+              decoration: BoxDecoration(
+                  borderRadius: BorderRadius.only(
+                      topLeft: Radius.circular(10.0), topRight: Radius.circular(10.0))),
+              child: Column(
+                crossAxisAlignment: CrossAxisAlignment.center,
+                children: <Widget>[
+                  WeekCalendar(
+                    holidaysRepository: HolidaysRepository(),
+                    onDaySelected:
+                        (DateTime selectedDay, List<dynamic> event, List<dynamic> holidays) {
+                      BlocProvider.of<LessonsBloc>(context)
+                          .add(LoadLessons(selectedDay: selectedDay));
+                    },
+                  ),
+                  Container(
+                    child: Expanded(
+                      child: LessonCardList(),
                     ),
                   ),
-                ),
-              ));
-        },
-      ),
+                ],
+              ),
+            ),
+          )),
     );
   }
 }

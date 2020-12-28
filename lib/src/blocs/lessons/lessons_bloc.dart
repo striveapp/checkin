@@ -23,10 +23,7 @@ class LessonsBloc extends Bloc<LessonsEvent, LessonsState> {
     @required this.userBloc,
     @required this.lessonRepository,
     @required this.dateUtil,
-  }) : super(LessonsUninitialized()) {
-    _onUserStateChanged(userBloc.state);
-    userBloc.listen(_onUserStateChanged);
-  }
+  }) : super(LessonsUninitialized());
 
   void _onUserStateChanged(userState) {
     if (userState is UserSuccess) {
@@ -51,6 +48,11 @@ class LessonsBloc extends Bloc<LessonsEvent, LessonsState> {
 
   @override
   Stream<LessonsState> mapEventToState(LessonsEvent event) async* {
+    if (event is InitializeLessons) {
+      _onUserStateChanged(userBloc.state);
+      userBloc.listen(_onUserStateChanged);
+    }
+
     if (event is LessonsUpdated) {
       if (event.lessons.length > 0) {
         yield LessonsLoaded(
@@ -61,8 +63,10 @@ class LessonsBloc extends Bloc<LessonsEvent, LessonsState> {
         );
       } else {
         yield LessonsLoadedEmpty(
-            selectedDay: event.selectedDay,
-            selectedFilterList: event.selectedFilterList);
+          selectedDay: event.selectedDay,
+          selectedFilterList: event.selectedFilterList,
+          nocache: dateUtil.getCurrentDateTime(),
+        );
       }
     }
 

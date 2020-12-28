@@ -12,6 +12,7 @@ import 'package:checkin/src/repositories/analytics_repository.dart';
 import 'package:checkin/src/repositories/auth_repository.dart';
 import 'package:checkin/src/repositories/dynamic_link_repository.dart';
 import 'package:checkin/src/repositories/graduation_system_repository.dart';
+import 'package:checkin/src/repositories/gym_repository.dart';
 import 'package:checkin/src/repositories/image_repository.dart';
 import 'package:checkin/src/repositories/lesson_config_repository.dart';
 import 'package:checkin/src/repositories/lesson_repository.dart';
@@ -25,6 +26,7 @@ import 'package:checkin/src/resources/analytics_provider.dart';
 import 'package:checkin/src/resources/auth_provider.dart';
 import 'package:checkin/src/resources/dynamic_link_provider.dart';
 import 'package:checkin/src/resources/graduation_system_provider.dart';
+import 'package:checkin/src/resources/gym_provider.dart';
 import 'package:checkin/src/resources/lesson_config_provider.dart';
 import 'package:checkin/src/resources/lesson_instances_provider.dart';
 import 'package:checkin/src/resources/local_storage_provider.dart';
@@ -109,7 +111,10 @@ Future<void> mainCommon(AppConfig appConfig) async {
           ),
           RepositoryProvider<LessonConfigRepository>(
             create: (context) => LessonConfigProvider(),
-          )
+          ),
+          RepositoryProvider<GymRepository>(
+            create: (context) => GymProvider(),
+          ),
         ],
         child: MultiBlocProvider(
           providers: [

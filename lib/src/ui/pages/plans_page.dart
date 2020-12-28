@@ -7,7 +7,7 @@ import 'package:checkin/src/blocs/user/bloc.dart';
 import 'package:checkin/src/localization/localization.dart';
 import 'package:checkin/src/repositories/analytics_repository.dart';
 import 'package:checkin/src/repositories/auth_repository.dart';
-import 'package:checkin/src/resources/gym_provider.dart';
+import 'package:checkin/src/repositories/gym_repository.dart';
 import 'package:checkin/src/resources/subscription_plans_provider.dart';
 import 'package:checkin/src/ui/components/base_app_bar.dart';
 import 'package:checkin/src/ui/components/plans/plans_callout.dart';
@@ -38,7 +38,7 @@ class PlansPage extends StatelessWidget {
           BlocProvider<GymBloc>(
             create: (BuildContext context) => GymBloc(
                 userBloc: BlocProvider.of<UserBloc>(context),
-                gymRepository: GymProvider()),
+                gymRepository: context.read<GymRepository>()),
           ),
           BlocProvider<SubscriptionBloc>(
             create: (BuildContext context) => SubscriptionBloc(

@@ -14,10 +14,10 @@ import 'package:checkin/src/constants.dart' as constants;
 import 'package:checkin/src/localization/localization.dart';
 import 'package:checkin/src/repositories/analytics_repository.dart';
 import 'package:checkin/src/repositories/auth_repository.dart';
+import 'package:checkin/src/repositories/gym_repository.dart';
 import 'package:checkin/src/repositories/membership_repository.dart';
 import 'package:checkin/src/repositories/stats_repository.dart';
 import 'package:checkin/src/repositories/user_repository.dart';
-import 'package:checkin/src/resources/gym_provider.dart';
 import 'package:checkin/src/resources/payment_method_provider.dart';
 import 'package:checkin/src/ui/components/account/payment.dart';
 import 'package:checkin/src/ui/components/base_app_bar.dart';
@@ -66,7 +66,7 @@ class AccountPage extends StatelessWidget {
             ),
             BlocProvider<GymBloc>(
               create: (BuildContext context) => GymBloc(
-                gymRepository: GymProvider(),
+                gymRepository: context.read<GymRepository>(),
                 userBloc: BlocProvider.of<UserBloc>(context),
               ),
             ),

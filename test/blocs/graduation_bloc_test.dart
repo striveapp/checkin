@@ -46,11 +46,10 @@ void main() {
         mockStatsRepository,
         mockUserRepository,
         mockGraduationUtils,
-      ]
-      );
+      ]);
     });
 
-    tearDown((){
+    tearDown(() {
       logAndVerifyNoMoreInteractions([
         mockGraduationSystemRepository,
         mockStatsRepository,
@@ -60,26 +59,21 @@ void main() {
     });
 
     group("initial state", () {
-      GraduationBloc graduationBloc;
-
-      setUp(() {
-        graduationBloc = GraduationBloc(
+      blocTest(
+        "is InitialGraduationState",
+        build: () => GraduationBloc(
             graduationSystemRepository: mockGraduationSystemRepository,
             statsRepository: mockStatsRepository,
             userRepository: mockUserRepository,
             graduationUtils: mockGraduationUtils,
             gymId: fakeGym,
             userGrade: fakeUserGrade,
-            userEmail: fakeUserEmail);
-      });
-
-      test('is InitialGraduationState', () {
-        expect(graduationBloc.state, InitialGraduationState());
-      });
-
-      tearDown(() {
-        graduationBloc?.close();
-      });
+            userEmail: fakeUserEmail),
+        expect: [],
+        verify: (bloc) {
+          expect(bloc.state, InitialGraduationState());
+        },
+      );
     });
 
     group("on GraduationUpdated event", () {
