@@ -4,7 +4,6 @@ import 'package:checkin/src/models/lesson.dart';
 import 'package:checkin/src/ui/components/lessons/attendees_preview.dart';
 import 'package:checkin/src/ui/components/lessons/lesson_type_badge.dart';
 import 'package:checkin/src/ui/components/user_image.dart';
-import 'package:checkin/src/util/debug_util.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 
@@ -46,7 +45,7 @@ class LessonCard extends StatelessWidget {
                             UserImage(
                               userImage: lesson.masters.first.imageUrl,
                             ),
-                            if (isInDebugMode && lesson.lessonConfig != null)
+                            if (lesson.lessonConfig != null)
                               Padding(
                                 padding: const EdgeInsets.only(top: 8.0),
                                 child: LessonTypeBadge(
