@@ -208,37 +208,6 @@ void main() {
           expect: []);
     });
 
-    group("on UpdateSelectedGym event", () {
-      var newSelectedGym = "pokemon gym";
-
-      setUp(() {
-        when(mockUserRepository.updateSelectedGymId(
-                testUser.email, newSelectedGym))
-            .thenAnswer((_) {
-          return Future.value(null);
-        });
-      });
-
-      tearDown(() async {
-        await untilCalled(mockUserRepository.updateSelectedGymId(
-            testUser.email, newSelectedGym));
-        verify(mockUserRepository.updateSelectedGymId(
-            testUser.email, newSelectedGym));
-      });
-
-      blocTest("should update the user selected gym",
-          build: () => UserBloc(
-                authBloc: mockAuthBloc,
-                userRepository: mockUserRepository,
-                storageRepository: mockStorageRepository,
-                imageRepository: mockImageRepository,
-              ),
-          seed: UserState.userSuccess(currentUser: testUser),
-          act: (bloc) => bloc.add(UserEvent.updateSelectedGym(
-              userEmail: testUser.email, newSelectedGym: newSelectedGym)),
-          expect: []);
-    });
-
     group("on UpdateFcmToken event", () {
       var newToken = "some token";
 

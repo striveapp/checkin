@@ -24,6 +24,7 @@ void main() {
     String fakeGymId = "bjj";
     Gym fakeGym = Gym(
       id: fakeGymId,
+      name: "Test gym",
       paymentAppDomain: "pepe",
       stripePublicKey: "pk_pk",
       hasActivePayments: false,
@@ -33,7 +34,7 @@ void main() {
       name: "Logged User",
       email: "test@test.com",
       imageUrl: "someImage",
-      selectedGymId: fakeGymId,
+      selectedGymId: fakeGym.id,
     );
 
     setUp(() {
@@ -42,30 +43,59 @@ void main() {
       configureThrowOnMissingStub([mockGymRepository]);
     });
 
-    tearDown((){
+    tearDown(() {
       logAndVerifyNoMoreInteractions([mockGymRepository]);
     });
 
-    // todo missing initial state test
-    group("on GymUpdated event", () {
-      setUp(() {
-        whenListen(mockUserBloc, Stream.fromIterable([UserSuccess(currentUser: fakeUser)]));
+    group("initial state", () {
+      blocTest("is InitialGymState",
+          build: () => GymBloc(
+                userBloc: mockUserBloc,
+                gymRepository: mockGymRepository,
+              ),
+          expect: [],
+          verify: (bloc) {
+            expect(bloc.state, InitialGymState());
+          });
+    });
 
+    //TODO: are this tests redundants?
+    group("on InitializeGym event", () {
+      setUp(() {
+        whenListen(mockUserBloc,
+            Stream.fromIterable([UserSuccess(currentUser: fakeUser)]));
         when(mockGymRepository.getGym(fakeGymId)).thenAnswer((_) {
           return Stream<Gym>.value(fakeGym);
         });
       });
 
-      tearDown((){
+      tearDown(() {
         verify(mockGymRepository.getGym(fakeGymId));
       });
 
+      blocTest(
+        "should listen on selected gym",
+        build: () => GymBloc(
+          userBloc: mockUserBloc,
+          gymRepository: mockGymRepository,
+        ),
+        act: (bloc) => bloc.add(InitializeGym()),
+        expect: [
+          GymLoaded(
+            gym: fakeGym,
+          )
+        ],
+      );
+    });
+
+    group("on GymUpdated event", () {
       blocTest(
         "should emit GymLoaded with the loaded gym",
         build: () => GymBloc(
           userBloc: mockUserBloc,
           gymRepository: mockGymRepository,
         ),
+        act: (bloc) => bloc.add(GymUpdated(gym: fakeGym)),
         expect: [GymLoaded(gym: fakeGym)],
       );
     });

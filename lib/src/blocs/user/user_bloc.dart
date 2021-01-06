@@ -99,11 +99,6 @@ class UserBloc extends Bloc<UserEvent, UserState> {
               userEmail,
               newToken,
             ),
-        updateSelectedGym: (String userEmail, String newSelectedGym) async =>
-            await userRepository.updateSelectedGymId(
-              userEmail,
-              newSelectedGym,
-            ),
         orElse: () => UserState.userError());
   }
 

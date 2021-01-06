@@ -37,14 +37,16 @@ class PlansPage extends StatelessWidget {
         providers: [
           BlocProvider<GymBloc>(
             create: (BuildContext context) => GymBloc(
-                userBloc: BlocProvider.of<UserBloc>(context),
-                gymRepository: context.read<GymRepository>()),
+              userBloc: BlocProvider.of<UserBloc>(context),
+              gymRepository: context.read<GymRepository>(),
+            )..add(InitializeGym()),
           ),
           BlocProvider<SubscriptionBloc>(
             create: (BuildContext context) => SubscriptionBloc(
                 gymBloc: context.read<GymBloc>(),
                 membershipApi: MembershipApi(
-                    httpClient: HttpClient(authRepository: context.read<AuthRepository>())),
+                    httpClient: HttpClient(
+                        authRepository: context.read<AuthRepository>())),
                 analyticsRepository:
                     RepositoryProvider.of<AnalyticsRepository>(context)),
           ),

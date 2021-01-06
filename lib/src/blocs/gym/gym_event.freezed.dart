@@ -19,6 +19,11 @@ class _$GymEventTearOff {
       gym: gym,
     );
   }
+
+// ignore: unused_element
+  InitializeGym initializeGym() {
+    return const InitializeGym();
+  }
 }
 
 /// @nodoc
@@ -27,37 +32,34 @@ const $GymEvent = _$GymEventTearOff();
 
 /// @nodoc
 mixin _$GymEvent {
-  Gym get gym;
-
   @optionalTypeArgs
   TResult when<TResult extends Object>({
     @required TResult gymUpdated(Gym gym),
+    @required TResult initializeGym(),
   });
   @optionalTypeArgs
   TResult maybeWhen<TResult extends Object>({
     TResult gymUpdated(Gym gym),
+    TResult initializeGym(),
     @required TResult orElse(),
   });
   @optionalTypeArgs
   TResult map<TResult extends Object>({
     @required TResult gymUpdated(GymUpdated value),
+    @required TResult initializeGym(InitializeGym value),
   });
   @optionalTypeArgs
   TResult maybeMap<TResult extends Object>({
     TResult gymUpdated(GymUpdated value),
+    TResult initializeGym(InitializeGym value),
     @required TResult orElse(),
   });
-
-  $GymEventCopyWith<GymEvent> get copyWith;
 }
 
 /// @nodoc
 abstract class $GymEventCopyWith<$Res> {
   factory $GymEventCopyWith(GymEvent value, $Res Function(GymEvent) then) =
       _$GymEventCopyWithImpl<$Res>;
-  $Res call({Gym gym});
-
-  $GymCopyWith<$Res> get gym;
 }
 
 /// @nodoc
@@ -67,36 +69,15 @@ class _$GymEventCopyWithImpl<$Res> implements $GymEventCopyWith<$Res> {
   final GymEvent _value;
   // ignore: unused_field
   final $Res Function(GymEvent) _then;
-
-  @override
-  $Res call({
-    Object gym = freezed,
-  }) {
-    return _then(_value.copyWith(
-      gym: gym == freezed ? _value.gym : gym as Gym,
-    ));
-  }
-
-  @override
-  $GymCopyWith<$Res> get gym {
-    if (_value.gym == null) {
-      return null;
-    }
-    return $GymCopyWith<$Res>(_value.gym, (value) {
-      return _then(_value.copyWith(gym: value));
-    });
-  }
 }
 
 /// @nodoc
-abstract class $GymUpdatedCopyWith<$Res> implements $GymEventCopyWith<$Res> {
+abstract class $GymUpdatedCopyWith<$Res> {
   factory $GymUpdatedCopyWith(
           GymUpdated value, $Res Function(GymUpdated) then) =
       _$GymUpdatedCopyWithImpl<$Res>;
-  @override
   $Res call({Gym gym});
 
-  @override
   $GymCopyWith<$Res> get gym;
 }
 
@@ -116,6 +97,16 @@ class _$GymUpdatedCopyWithImpl<$Res> extends _$GymEventCopyWithImpl<$Res>
     return _then(GymUpdated(
       gym: gym == freezed ? _value.gym : gym as Gym,
     ));
+  }
+
+  @override
+  $GymCopyWith<$Res> get gym {
+    if (_value.gym == null) {
+      return null;
+    }
+    return $GymCopyWith<$Res>(_value.gym, (value) {
+      return _then(_value.copyWith(gym: value));
+    });
   }
 }
 
@@ -159,8 +150,10 @@ class _$GymUpdated with DiagnosticableTreeMixin implements GymUpdated {
   @optionalTypeArgs
   TResult when<TResult extends Object>({
     @required TResult gymUpdated(Gym gym),
+    @required TResult initializeGym(),
   }) {
     assert(gymUpdated != null);
+    assert(initializeGym != null);
     return gymUpdated(gym);
   }
 
@@ -168,6 +161,7 @@ class _$GymUpdated with DiagnosticableTreeMixin implements GymUpdated {
   @optionalTypeArgs
   TResult maybeWhen<TResult extends Object>({
     TResult gymUpdated(Gym gym),
+    TResult initializeGym(),
     @required TResult orElse(),
   }) {
     assert(orElse != null);
@@ -181,8 +175,10 @@ class _$GymUpdated with DiagnosticableTreeMixin implements GymUpdated {
   @optionalTypeArgs
   TResult map<TResult extends Object>({
     @required TResult gymUpdated(GymUpdated value),
+    @required TResult initializeGym(InitializeGym value),
   }) {
     assert(gymUpdated != null);
+    assert(initializeGym != null);
     return gymUpdated(this);
   }
 
@@ -190,6 +186,7 @@ class _$GymUpdated with DiagnosticableTreeMixin implements GymUpdated {
   @optionalTypeArgs
   TResult maybeMap<TResult extends Object>({
     TResult gymUpdated(GymUpdated value),
+    TResult initializeGym(InitializeGym value),
     @required TResult orElse(),
   }) {
     assert(orElse != null);
@@ -203,8 +200,102 @@ class _$GymUpdated with DiagnosticableTreeMixin implements GymUpdated {
 abstract class GymUpdated implements GymEvent {
   const factory GymUpdated({@required Gym gym}) = _$GymUpdated;
 
-  @override
   Gym get gym;
-  @override
   $GymUpdatedCopyWith<GymUpdated> get copyWith;
+}
+
+/// @nodoc
+abstract class $InitializeGymCopyWith<$Res> {
+  factory $InitializeGymCopyWith(
+          InitializeGym value, $Res Function(InitializeGym) then) =
+      _$InitializeGymCopyWithImpl<$Res>;
+}
+
+/// @nodoc
+class _$InitializeGymCopyWithImpl<$Res> extends _$GymEventCopyWithImpl<$Res>
+    implements $InitializeGymCopyWith<$Res> {
+  _$InitializeGymCopyWithImpl(
+      InitializeGym _value, $Res Function(InitializeGym) _then)
+      : super(_value, (v) => _then(v as InitializeGym));
+
+  @override
+  InitializeGym get _value => super._value as InitializeGym;
+}
+
+/// @nodoc
+class _$InitializeGym with DiagnosticableTreeMixin implements InitializeGym {
+  const _$InitializeGym();
+
+  @override
+  String toString({DiagnosticLevel minLevel = DiagnosticLevel.info}) {
+    return 'GymEvent.initializeGym()';
+  }
+
+  @override
+  void debugFillProperties(DiagnosticPropertiesBuilder properties) {
+    super.debugFillProperties(properties);
+    properties..add(DiagnosticsProperty('type', 'GymEvent.initializeGym'));
+  }
+
+  @override
+  bool operator ==(dynamic other) {
+    return identical(this, other) || (other is InitializeGym);
+  }
+
+  @override
+  int get hashCode => runtimeType.hashCode;
+
+  @override
+  @optionalTypeArgs
+  TResult when<TResult extends Object>({
+    @required TResult gymUpdated(Gym gym),
+    @required TResult initializeGym(),
+  }) {
+    assert(gymUpdated != null);
+    assert(initializeGym != null);
+    return initializeGym();
+  }
+
+  @override
+  @optionalTypeArgs
+  TResult maybeWhen<TResult extends Object>({
+    TResult gymUpdated(Gym gym),
+    TResult initializeGym(),
+    @required TResult orElse(),
+  }) {
+    assert(orElse != null);
+    if (initializeGym != null) {
+      return initializeGym();
+    }
+    return orElse();
+  }
+
+  @override
+  @optionalTypeArgs
+  TResult map<TResult extends Object>({
+    @required TResult gymUpdated(GymUpdated value),
+    @required TResult initializeGym(InitializeGym value),
+  }) {
+    assert(gymUpdated != null);
+    assert(initializeGym != null);
+    return initializeGym(this);
+  }
+
+  @override
+  @optionalTypeArgs
+  TResult maybeMap<TResult extends Object>({
+    TResult gymUpdated(GymUpdated value),
+    TResult initializeGym(InitializeGym value),
+    @required TResult orElse(),
+  }) {
+    assert(orElse != null);
+    if (initializeGym != null) {
+      return initializeGym(this);
+    }
+    return orElse();
+  }
+}
+
+abstract class InitializeGym implements GymEvent {
+  const factory InitializeGym() = _$InitializeGym;
 }

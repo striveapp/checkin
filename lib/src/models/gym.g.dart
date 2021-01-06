@@ -9,6 +9,7 @@ part of 'gym.dart';
 _$_Gym _$_$_GymFromJson(Map<String, dynamic> json) {
   return _$_Gym(
     id: json['id'] as String,
+    name: json['name'] as String,
     paymentAppDomain: json['paymentAppDomain'] as String,
     stripePublicKey: json['stripePublicKey'] as String,
     hasActivePayments: json['hasActivePayments'] as bool ?? false,
@@ -17,6 +18,7 @@ _$_Gym _$_$_GymFromJson(Map<String, dynamic> json) {
 
 Map<String, dynamic> _$_$_GymToJson(_$_Gym instance) => <String, dynamic>{
       'id': instance.id,
+      'name': instance.name,
       'paymentAppDomain': instance.paymentAppDomain,
       'stripePublicKey': instance.stripePublicKey,
       'hasActivePayments': instance.hasActivePayments,

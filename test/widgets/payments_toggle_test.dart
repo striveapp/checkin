@@ -27,6 +27,7 @@ void main() {
         ).paymentsToggle(GymState.gymLoaded(
             gym: Gym(
                 id: "fake-gym",
+                name: "Test gym",
                 paymentAppDomain: "test-domain",
                 stripePublicKey: "test-key",
                 hasActivePayments: true)));
@@ -38,6 +39,7 @@ void main() {
         ).paymentsToggle(GymState.gymLoaded(
             gym: Gym(
                 id: "fake-gym",
+                name: "Test gym",
                 paymentAppDomain: "test-domain",
                 stripePublicKey: "test-key",
                 hasActivePayments: false)));

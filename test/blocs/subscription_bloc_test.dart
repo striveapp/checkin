@@ -30,7 +30,8 @@ void main() {
     });
 
     tearDown(() {
-      logAndVerifyNoMoreInteractions([mockAnalyticsRepository, mockMembershipApi]);
+      logAndVerifyNoMoreInteractions(
+          [mockAnalyticsRepository, mockMembershipApi]);
     });
 
     group("initial state", () {
@@ -61,6 +62,7 @@ void main() {
               GymLoaded(
                   gym: Gym(
                       id: "fake-gym",
+                      name: "Test gym",
                       paymentAppDomain: "test-domain",
                       stripePublicKey: "test-key",
                       hasActivePayments: false))
@@ -70,13 +72,17 @@ void main() {
       group("when api call is successful", () {
         setUp(() {
           when(mockMembershipApi.createSubscription(
-                  gymId: "fake-gym", priceId: "fake-price", customerId: "fake-customer"))
+                  gymId: "fake-gym",
+                  priceId: "fake-price",
+                  customerId: "fake-customer"))
               .thenAnswer((_) => Future.value(null));
         });
 
         tearDown(() {
           verify(mockMembershipApi.createSubscription(
-              gymId: "fake-gym", priceId: "fake-price", customerId: "fake-customer"));
+              gymId: "fake-gym",
+              priceId: "fake-price",
+              customerId: "fake-customer"));
         });
 
         blocTest(
@@ -86,7 +92,8 @@ void main() {
             membershipApi: mockMembershipApi,
             analyticsRepository: mockAnalyticsRepository,
           ),
-          act: (bloc) => bloc.add(Subscribe(priceId: "fake-price", customerId: "fake-customer")),
+          act: (bloc) => bloc.add(
+              Subscribe(priceId: "fake-price", customerId: "fake-customer")),
           expect: [
             SubscriptionLoading(),
             SubscriptionSuccess(),
@@ -94,21 +101,23 @@ void main() {
         );
       });
 
-      group("when api call blows up", (){
+      group("when api call blows up", () {
         setUp(() {
-          when(mockMembershipApi.createSubscription(gymId: "fake-gym",
-              priceId: "fake-price",
-              customerId: "fake-customer"))
+          when(mockMembershipApi.createSubscription(
+                  gymId: "fake-gym",
+                  priceId: "fake-price",
+                  customerId: "fake-customer"))
               .thenThrow("a little nice error");
 
           when(mockAnalyticsRepository.subscriptionError(
-              err: "a little nice error",
-              stackTrace: argThat(isA<StackTrace>(), named: 'stackTrace')))
+                  err: "a little nice error",
+                  stackTrace: argThat(isA<StackTrace>(), named: 'stackTrace')))
               .thenAnswer((_) => Future.value(null));
         });
 
         tearDown(() {
-          verify(mockMembershipApi.createSubscription(gymId: "fake-gym",
+          verify(mockMembershipApi.createSubscription(
+              gymId: "fake-gym",
               priceId: "fake-price",
               customerId: "fake-customer"));
           verify(mockAnalyticsRepository.subscriptionError(
@@ -123,24 +132,27 @@ void main() {
             membershipApi: mockMembershipApi,
             analyticsRepository: mockAnalyticsRepository,
           ),
-          act: (bloc) => bloc.add(Subscribe(
-              priceId: "fake-price",
-              customerId: "fake-customer")),
+          act: (bloc) => bloc.add(
+              Subscribe(priceId: "fake-price", customerId: "fake-customer")),
           expect: [
             SubscriptionLoading(),
             SubscriptionError(
-                errorMessage: "Something went wrong with subscription: [a little nice error]"),
+                errorMessage:
+                    "Something went wrong with subscription: [a little nice error]"),
           ],
         );
       });
 
-      group("when there is no customerId", (){
+      group("when there is no customerId", () {
         setUp(() {
-          when(mockAnalyticsRepository.logSubscriptionWithEmptyCustomer(priceId: "fake-price", gymId:"fake-gym")).thenAnswer((realInvocation) => null);
+          when(mockAnalyticsRepository.logSubscriptionWithEmptyCustomer(
+                  priceId: "fake-price", gymId: "fake-gym"))
+              .thenAnswer((realInvocation) => null);
         });
 
         tearDown(() {
-          verify(mockAnalyticsRepository.logSubscriptionWithEmptyCustomer(priceId: "fake-price", gymId:"fake-gym"));
+          verify(mockAnalyticsRepository.logSubscriptionWithEmptyCustomer(
+              priceId: "fake-price", gymId: "fake-gym"));
         });
 
         blocTest(
@@ -150,9 +162,8 @@ void main() {
             membershipApi: mockMembershipApi,
             analyticsRepository: mockAnalyticsRepository,
           ),
-          act: (bloc) => bloc.add(Subscribe(
-              priceId: "fake-price",
-              customerId: "null")),
+          act: (bloc) =>
+              bloc.add(Subscribe(priceId: "fake-price", customerId: "null")),
           expect: [
             SubscriptionLoading(),
             SubscriptionError(
