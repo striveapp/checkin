@@ -42,27 +42,26 @@ class SubPlanPage extends StatelessWidget {
       body: MultiBlocProvider(
         providers: [
           BlocProvider<GymBloc>(
-            create: (BuildContext context) =>
-                GymBloc(
-                    userBloc: BlocProvider.of<UserBloc>(context),
-                    gymRepository: context.read<GymRepository>()),
+            create: (BuildContext context) => GymBloc(
+              userBloc: BlocProvider.of<UserBloc>(context),
+              gymRepository: context.read<GymRepository>(),
+            )..add(InitializeGym()),
           ),
           BlocProvider<SubscriptionBloc>(
-            create: (BuildContext context) =>
-                SubscriptionBloc(
-                    gymBloc: context.read<GymBloc>(),
-                    membershipApi: MembershipApi(
-                        httpClient: HttpClient(authRepository: context.read<AuthRepository>())),
-                    analyticsRepository:
+            create: (BuildContext context) => SubscriptionBloc(
+                gymBloc: context.read<GymBloc>(),
+                membershipApi: MembershipApi(
+                    httpClient: HttpClient(
+                        authRepository: context.read<AuthRepository>())),
+                analyticsRepository:
                     RepositoryProvider.of<AnalyticsRepository>(context)),
           ),
           BlocProvider<SubscriptionPlansBloc>(
-            create: (BuildContext context) =>
-                SubscriptionPlansBloc(
-                  planId: planId,
-                  gymBloc: BlocProvider.of<GymBloc>(context),
-                  subscriptionPlansRepository: SubscriptionPlansProvider(),
-                ),
+            create: (BuildContext context) => SubscriptionPlansBloc(
+              planId: planId,
+              gymBloc: BlocProvider.of<GymBloc>(context),
+              subscriptionPlansRepository: SubscriptionPlansProvider(),
+            ),
           ),
         ],
         child: SafeArea(
@@ -72,8 +71,13 @@ class SubPlanPage extends StatelessWidget {
                 height: 20,
               ),
               PriceHeader(name: name, description: description),
-              SizedBox(height: 15,),
-              Expanded(child: PlansList(customerId: customerId,)),
+              SizedBox(
+                height: 15,
+              ),
+              Expanded(
+                  child: PlansList(
+                customerId: customerId,
+              )),
               Padding(
                 padding: const EdgeInsets.all(10),
                 child: PriceFooter(),

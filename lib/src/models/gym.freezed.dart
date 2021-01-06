@@ -19,11 +19,13 @@ class _$GymTearOff {
 // ignore: unused_element
   _Gym call(
       {@required String id,
+      @required String name,
       @required String paymentAppDomain,
       @required String stripePublicKey,
       bool hasActivePayments = false}) {
     return _Gym(
       id: id,
+      name: name,
       paymentAppDomain: paymentAppDomain,
       stripePublicKey: stripePublicKey,
       hasActivePayments: hasActivePayments,
@@ -43,6 +45,7 @@ const $Gym = _$GymTearOff();
 /// @nodoc
 mixin _$Gym {
   String get id;
+  String get name;
   String get paymentAppDomain;
   String get stripePublicKey;
   bool get hasActivePayments;
@@ -57,6 +60,7 @@ abstract class $GymCopyWith<$Res> {
       _$GymCopyWithImpl<$Res>;
   $Res call(
       {String id,
+      String name,
       String paymentAppDomain,
       String stripePublicKey,
       bool hasActivePayments});
@@ -73,12 +77,14 @@ class _$GymCopyWithImpl<$Res> implements $GymCopyWith<$Res> {
   @override
   $Res call({
     Object id = freezed,
+    Object name = freezed,
     Object paymentAppDomain = freezed,
     Object stripePublicKey = freezed,
     Object hasActivePayments = freezed,
   }) {
     return _then(_value.copyWith(
       id: id == freezed ? _value.id : id as String,
+      name: name == freezed ? _value.name : name as String,
       paymentAppDomain: paymentAppDomain == freezed
           ? _value.paymentAppDomain
           : paymentAppDomain as String,
@@ -99,6 +105,7 @@ abstract class _$GymCopyWith<$Res> implements $GymCopyWith<$Res> {
   @override
   $Res call(
       {String id,
+      String name,
       String paymentAppDomain,
       String stripePublicKey,
       bool hasActivePayments});
@@ -116,12 +123,14 @@ class __$GymCopyWithImpl<$Res> extends _$GymCopyWithImpl<$Res>
   @override
   $Res call({
     Object id = freezed,
+    Object name = freezed,
     Object paymentAppDomain = freezed,
     Object stripePublicKey = freezed,
     Object hasActivePayments = freezed,
   }) {
     return _then(_Gym(
       id: id == freezed ? _value.id : id as String,
+      name: name == freezed ? _value.name : name as String,
       paymentAppDomain: paymentAppDomain == freezed
           ? _value.paymentAppDomain
           : paymentAppDomain as String,
@@ -141,10 +150,12 @@ class __$GymCopyWithImpl<$Res> extends _$GymCopyWithImpl<$Res>
 class _$_Gym with DiagnosticableTreeMixin implements _Gym {
   _$_Gym(
       {@required this.id,
+      @required this.name,
       @required this.paymentAppDomain,
       @required this.stripePublicKey,
       this.hasActivePayments = false})
       : assert(id != null),
+        assert(name != null),
         assert(paymentAppDomain != null),
         assert(stripePublicKey != null),
         assert(hasActivePayments != null);
@@ -153,6 +164,8 @@ class _$_Gym with DiagnosticableTreeMixin implements _Gym {
 
   @override
   final String id;
+  @override
+  final String name;
   @override
   final String paymentAppDomain;
   @override
@@ -163,7 +176,7 @@ class _$_Gym with DiagnosticableTreeMixin implements _Gym {
 
   @override
   String toString({DiagnosticLevel minLevel = DiagnosticLevel.info}) {
-    return 'Gym(id: $id, paymentAppDomain: $paymentAppDomain, stripePublicKey: $stripePublicKey, hasActivePayments: $hasActivePayments)';
+    return 'Gym(id: $id, name: $name, paymentAppDomain: $paymentAppDomain, stripePublicKey: $stripePublicKey, hasActivePayments: $hasActivePayments)';
   }
 
   @override
@@ -172,6 +185,7 @@ class _$_Gym with DiagnosticableTreeMixin implements _Gym {
     properties
       ..add(DiagnosticsProperty('type', 'Gym'))
       ..add(DiagnosticsProperty('id', id))
+      ..add(DiagnosticsProperty('name', name))
       ..add(DiagnosticsProperty('paymentAppDomain', paymentAppDomain))
       ..add(DiagnosticsProperty('stripePublicKey', stripePublicKey))
       ..add(DiagnosticsProperty('hasActivePayments', hasActivePayments));
@@ -183,6 +197,8 @@ class _$_Gym with DiagnosticableTreeMixin implements _Gym {
         (other is _Gym &&
             (identical(other.id, id) ||
                 const DeepCollectionEquality().equals(other.id, id)) &&
+            (identical(other.name, name) ||
+                const DeepCollectionEquality().equals(other.name, name)) &&
             (identical(other.paymentAppDomain, paymentAppDomain) ||
                 const DeepCollectionEquality()
                     .equals(other.paymentAppDomain, paymentAppDomain)) &&
@@ -198,6 +214,7 @@ class _$_Gym with DiagnosticableTreeMixin implements _Gym {
   int get hashCode =>
       runtimeType.hashCode ^
       const DeepCollectionEquality().hash(id) ^
+      const DeepCollectionEquality().hash(name) ^
       const DeepCollectionEquality().hash(paymentAppDomain) ^
       const DeepCollectionEquality().hash(stripePublicKey) ^
       const DeepCollectionEquality().hash(hasActivePayments);
@@ -215,6 +232,7 @@ class _$_Gym with DiagnosticableTreeMixin implements _Gym {
 abstract class _Gym implements Gym {
   factory _Gym(
       {@required String id,
+      @required String name,
       @required String paymentAppDomain,
       @required String stripePublicKey,
       bool hasActivePayments}) = _$_Gym;
@@ -223,6 +241,8 @@ abstract class _Gym implements Gym {
 
   @override
   String get id;
+  @override
+  String get name;
   @override
   String get paymentAppDomain;
   @override

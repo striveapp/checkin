@@ -49,7 +49,6 @@ import 'package:checkin/src/ui/pages/onboarding/grade_page.dart';
 import 'package:checkin/src/ui/pages/onboarding/name_selection_page.dart';
 import 'package:checkin/src/ui/pages/onboarding/unselected_gym_page.dart';
 import 'package:checkin/src/ui/pages/leaderboard_page.dart';
-import 'package:checkin/src/ui/pages/lessons_page.dart';
 import 'package:checkin/src/ui/pages/lessons_stats_page.dart';
 import 'package:checkin/src/ui/pages/payment_success_page.dart';
 import 'package:checkin/src/ui/pages/plans_page.dart';
@@ -61,11 +60,6 @@ import 'package:i18n_extension/i18n_extension.dart';
 extension Localization on String {
   // ignore: unused_field
   static var _t = Translations('en') +
-      {
-        'en': LessonsPage.classes,
-        'es': 'Clases',
-        'it': 'Classi',
-      } +
       {
         'en': LessonCard.emptyClass,
         'es': 'Nadie en clase todavía',

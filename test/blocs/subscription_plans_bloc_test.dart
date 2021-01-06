@@ -21,6 +21,7 @@ void main() {
 
     Gym fakeGym = Gym(
         id: "some_id",
+        name: "Test gym",
         paymentAppDomain: "test.com",
         stripePublicKey: "pk_kp",
         hasActivePayments: false);
@@ -29,7 +30,6 @@ void main() {
       mockSubscriptionPlansRepository = MockSubscriptionPlansRepository();
       mockGymBloc = MockGymBloc();
       configureThrowOnMissingStub([mockSubscriptionPlansRepository]);
-
     });
 
     group("initial state", () {
@@ -51,11 +51,11 @@ void main() {
     });
 
     group("on SubscriptionPlansUpdated event", () {
-      setUp((){
+      setUp(() {
         whenListen(mockGymBloc, Stream.fromIterable([GymLoaded(gym: fakeGym)]));
       });
 
-      group("when there are plans", (){
+      group("when there are plans", () {
         List<SubscriptionPlan> testPlans = [
           SubscriptionPlan.simpleSubscription(
               name: "test1",
@@ -65,7 +65,7 @@ void main() {
               price: 1)
         ];
 
-        setUp((){
+        setUp(() {
           when(mockSubscriptionPlansRepository.getPlans(gymId: fakeGym.id))
               .thenAnswer((_) {
             return Stream<List<SubscriptionPlan>>.fromFuture(
@@ -73,7 +73,7 @@ void main() {
           });
         });
 
-        tearDown((){
+        tearDown(() {
           verify(mockSubscriptionPlansRepository.getPlans(gymId: fakeGym.id));
         });
 
@@ -81,11 +81,10 @@ void main() {
             build: () => SubscriptionPlansBloc(
                 gymBloc: mockGymBloc,
                 subscriptionPlansRepository: mockSubscriptionPlansRepository),
-            expect: [SubscriptionPlansLoaded(
-                subscriptionPlans: testPlans)]);
+            expect: [SubscriptionPlansLoaded(subscriptionPlans: testPlans)]);
       });
 
-      group("when there are unsorted plans", (){
+      group("when there are unsorted plans", () {
         List<SubscriptionPlan> testPlans = [
           SubscriptionPlan.simpleSubscription(
               name: "test1",
@@ -116,23 +115,23 @@ void main() {
               price: 2),
         ];
 
-        setUp((){
+        setUp(() {
           when(mockSubscriptionPlansRepository.getPlans(gymId: fakeGym.id))
               .thenAnswer((_) {
             return Stream<List<SubscriptionPlan>>.value(testPlans);
           });
         });
 
-        tearDown((){
+        tearDown(() {
           verify(mockSubscriptionPlansRepository.getPlans(gymId: fakeGym.id));
         });
 
-        blocTest("should emit SubscriptionPlansLoaded with plans sorted by price (asc)",
-            build: () => SubscriptionPlansBloc(
-                gymBloc: mockGymBloc,
-                subscriptionPlansRepository: mockSubscriptionPlansRepository),
-            expect: [SubscriptionPlansLoaded(
-                subscriptionPlans: sortedTestPlans)]);
+        blocTest(
+            "should emit SubscriptionPlansLoaded with plans sorted by price (asc)",
+            build: () => SubscriptionPlansBloc(gymBloc: mockGymBloc, subscriptionPlansRepository: mockSubscriptionPlansRepository),
+            expect: [
+              SubscriptionPlansLoaded(subscriptionPlans: sortedTestPlans)
+            ]);
       });
 
       group("when there are NO plans", () {
@@ -145,12 +144,10 @@ void main() {
             build: () => SubscriptionPlansBloc(
                 gymBloc: mockGymBloc,
                 subscriptionPlansRepository: mockSubscriptionPlansRepository),
-            act: (bloc) => bloc.add(SubscriptionPlansUpdated(
-                subscriptionPlans: [])),
+            act: (bloc) =>
+                bloc.add(SubscriptionPlansUpdated(subscriptionPlans: [])),
             expect: [SubscriptionPlansEmpty()]);
       });
     });
-
-
   });
 }

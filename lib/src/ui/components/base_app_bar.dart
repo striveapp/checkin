@@ -2,6 +2,7 @@ import 'package:checkin/src/blocs/user/bloc.dart';
 import 'package:checkin/src/ui/components/user_image.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
+import 'package:shimmer/shimmer.dart';
 
 class BaseAppBar extends StatelessWidget implements PreferredSizeWidget {
   final String title;
@@ -11,10 +12,10 @@ class BaseAppBar extends StatelessWidget implements PreferredSizeWidget {
 
   const BaseAppBar({
     Key key,
-    @required this.title,
+    this.title,
     this.actions,
     this.backgroundColor,
-    this.showUserImage=true,
+    this.showUserImage = true,
   }) : super(key: key);
 
   @override
@@ -22,15 +23,22 @@ class BaseAppBar extends StatelessWidget implements PreferredSizeWidget {
     return BlocBuilder<UserBloc, UserState>(
       builder: (BuildContext context, UserState state) {
         var currentUser;
-        if( state is UserSuccess ) {
+        if (state is UserSuccess) {
           currentUser = state.currentUser;
         }
         debugPrint("drawing AppBar with user [$currentUser]");
 
         return AppBar(
           centerTitle: true,
-          backgroundColor: this.backgroundColor ?? Theme.of(context).primaryColor,
-          title: Text(this.title, style: Theme.of(context).textTheme.headline1.apply(color: Colors.white)),
+          backgroundColor:
+              this.backgroundColor ?? Theme.of(context).primaryColor,
+          title: title == null || title.isEmpty
+              ? PlaceholderText()
+              : Text(this.title,
+                  style: Theme.of(context)
+                      .textTheme
+                      .headline1
+                      .apply(color: Colors.white)),
           actions: <Widget>[
             if (showUserImage && currentUser != null)
               Padding(
@@ -38,8 +46,7 @@ class BaseAppBar extends StatelessWidget implements PreferredSizeWidget {
                 child: IconButton(
                     key: Key('accountPageButton'),
                     onPressed: () {
-                      Navigator.of(context)
-                          .pushNamed('account');
+                      Navigator.of(context).pushNamed('account');
                     },
                     icon: UserImage(
                       userImage: currentUser.imageUrl,
@@ -50,11 +57,28 @@ class BaseAppBar extends StatelessWidget implements PreferredSizeWidget {
             if (actions != null) ...actions
           ],
         );
-
       },
     );
-      }
+  }
 
   @override
   Size get preferredSize => Size.fromHeight(56.0);
+}
+
+class PlaceholderText extends StatelessWidget {
+  const PlaceholderText({
+    Key key,
+  }) : super(key: key);
+
+  @override
+  Widget build(BuildContext context) {
+    return Shimmer.fromColors(
+        baseColor: Theme.of(context).accentColor,
+        highlightColor: Theme.of(context).accentColor.withAlpha(100),
+        child: Container(
+          color: Theme.of(context).accentColor,
+          height: 56 / 2,
+          width: MediaQuery.of(context).size.width / 2,
+        ));
+  }
 }

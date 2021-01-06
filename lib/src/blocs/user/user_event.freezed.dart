@@ -42,15 +42,6 @@ class _$UserEventTearOff {
   }
 
 // ignore: unused_element
-  UpdateSelectedGym updateSelectedGym(
-      {String userEmail, String newSelectedGym}) {
-    return UpdateSelectedGym(
-      userEmail: userEmail,
-      newSelectedGym: newSelectedGym,
-    );
-  }
-
-// ignore: unused_element
   UpdateReferredGym updateReferredGym({String userEmail, String currentGymId}) {
     return UpdateReferredGym(
       userEmail: userEmail,
@@ -79,8 +70,6 @@ mixin _$UserEvent {
     @required TResult updateName(String newName),
     @required TResult updateImageUrl(String userEmail),
     @required TResult updateGrade(Grade newGrade),
-    @required
-        TResult updateSelectedGym(String userEmail, String newSelectedGym),
     @required TResult updateReferredGym(String userEmail, String currentGymId),
     @required TResult updateFcmToken(String userEmail, String newToken),
   });
@@ -90,7 +79,6 @@ mixin _$UserEvent {
     TResult updateName(String newName),
     TResult updateImageUrl(String userEmail),
     TResult updateGrade(Grade newGrade),
-    TResult updateSelectedGym(String userEmail, String newSelectedGym),
     TResult updateReferredGym(String userEmail, String currentGymId),
     TResult updateFcmToken(String userEmail, String newToken),
     @required TResult orElse(),
@@ -101,7 +89,6 @@ mixin _$UserEvent {
     @required TResult updateName(UpdateName value),
     @required TResult updateImageUrl(UpdateImageUrl value),
     @required TResult updateGrade(UpdateGrade value),
-    @required TResult updateSelectedGym(UpdateSelectedGym value),
     @required TResult updateReferredGym(UpdateReferredGym value),
     @required TResult updateFcmToken(UpdateFcmToken value),
   });
@@ -111,7 +98,6 @@ mixin _$UserEvent {
     TResult updateName(UpdateName value),
     TResult updateImageUrl(UpdateImageUrl value),
     TResult updateGrade(UpdateGrade value),
-    TResult updateSelectedGym(UpdateSelectedGym value),
     TResult updateReferredGym(UpdateReferredGym value),
     TResult updateFcmToken(UpdateFcmToken value),
     @required TResult orElse(),
@@ -204,8 +190,6 @@ class _$UserUpdated with DiagnosticableTreeMixin implements UserUpdated {
     @required TResult updateName(String newName),
     @required TResult updateImageUrl(String userEmail),
     @required TResult updateGrade(Grade newGrade),
-    @required
-        TResult updateSelectedGym(String userEmail, String newSelectedGym),
     @required TResult updateReferredGym(String userEmail, String currentGymId),
     @required TResult updateFcmToken(String userEmail, String newToken),
   }) {
@@ -213,7 +197,6 @@ class _$UserUpdated with DiagnosticableTreeMixin implements UserUpdated {
     assert(updateName != null);
     assert(updateImageUrl != null);
     assert(updateGrade != null);
-    assert(updateSelectedGym != null);
     assert(updateReferredGym != null);
     assert(updateFcmToken != null);
     return userUpdated(user);
@@ -226,7 +209,6 @@ class _$UserUpdated with DiagnosticableTreeMixin implements UserUpdated {
     TResult updateName(String newName),
     TResult updateImageUrl(String userEmail),
     TResult updateGrade(Grade newGrade),
-    TResult updateSelectedGym(String userEmail, String newSelectedGym),
     TResult updateReferredGym(String userEmail, String currentGymId),
     TResult updateFcmToken(String userEmail, String newToken),
     @required TResult orElse(),
@@ -245,7 +227,6 @@ class _$UserUpdated with DiagnosticableTreeMixin implements UserUpdated {
     @required TResult updateName(UpdateName value),
     @required TResult updateImageUrl(UpdateImageUrl value),
     @required TResult updateGrade(UpdateGrade value),
-    @required TResult updateSelectedGym(UpdateSelectedGym value),
     @required TResult updateReferredGym(UpdateReferredGym value),
     @required TResult updateFcmToken(UpdateFcmToken value),
   }) {
@@ -253,7 +234,6 @@ class _$UserUpdated with DiagnosticableTreeMixin implements UserUpdated {
     assert(updateName != null);
     assert(updateImageUrl != null);
     assert(updateGrade != null);
-    assert(updateSelectedGym != null);
     assert(updateReferredGym != null);
     assert(updateFcmToken != null);
     return userUpdated(this);
@@ -266,7 +246,6 @@ class _$UserUpdated with DiagnosticableTreeMixin implements UserUpdated {
     TResult updateName(UpdateName value),
     TResult updateImageUrl(UpdateImageUrl value),
     TResult updateGrade(UpdateGrade value),
-    TResult updateSelectedGym(UpdateSelectedGym value),
     TResult updateReferredGym(UpdateReferredGym value),
     TResult updateFcmToken(UpdateFcmToken value),
     @required TResult orElse(),
@@ -356,8 +335,6 @@ class _$UpdateName with DiagnosticableTreeMixin implements UpdateName {
     @required TResult updateName(String newName),
     @required TResult updateImageUrl(String userEmail),
     @required TResult updateGrade(Grade newGrade),
-    @required
-        TResult updateSelectedGym(String userEmail, String newSelectedGym),
     @required TResult updateReferredGym(String userEmail, String currentGymId),
     @required TResult updateFcmToken(String userEmail, String newToken),
   }) {
@@ -365,7 +342,6 @@ class _$UpdateName with DiagnosticableTreeMixin implements UpdateName {
     assert(updateName != null);
     assert(updateImageUrl != null);
     assert(updateGrade != null);
-    assert(updateSelectedGym != null);
     assert(updateReferredGym != null);
     assert(updateFcmToken != null);
     return updateName(newName);
@@ -378,7 +354,6 @@ class _$UpdateName with DiagnosticableTreeMixin implements UpdateName {
     TResult updateName(String newName),
     TResult updateImageUrl(String userEmail),
     TResult updateGrade(Grade newGrade),
-    TResult updateSelectedGym(String userEmail, String newSelectedGym),
     TResult updateReferredGym(String userEmail, String currentGymId),
     TResult updateFcmToken(String userEmail, String newToken),
     @required TResult orElse(),
@@ -397,7 +372,6 @@ class _$UpdateName with DiagnosticableTreeMixin implements UpdateName {
     @required TResult updateName(UpdateName value),
     @required TResult updateImageUrl(UpdateImageUrl value),
     @required TResult updateGrade(UpdateGrade value),
-    @required TResult updateSelectedGym(UpdateSelectedGym value),
     @required TResult updateReferredGym(UpdateReferredGym value),
     @required TResult updateFcmToken(UpdateFcmToken value),
   }) {
@@ -405,7 +379,6 @@ class _$UpdateName with DiagnosticableTreeMixin implements UpdateName {
     assert(updateName != null);
     assert(updateImageUrl != null);
     assert(updateGrade != null);
-    assert(updateSelectedGym != null);
     assert(updateReferredGym != null);
     assert(updateFcmToken != null);
     return updateName(this);
@@ -418,7 +391,6 @@ class _$UpdateName with DiagnosticableTreeMixin implements UpdateName {
     TResult updateName(UpdateName value),
     TResult updateImageUrl(UpdateImageUrl value),
     TResult updateGrade(UpdateGrade value),
-    TResult updateSelectedGym(UpdateSelectedGym value),
     TResult updateReferredGym(UpdateReferredGym value),
     TResult updateFcmToken(UpdateFcmToken value),
     @required TResult orElse(),
@@ -510,8 +482,6 @@ class _$UpdateImageUrl with DiagnosticableTreeMixin implements UpdateImageUrl {
     @required TResult updateName(String newName),
     @required TResult updateImageUrl(String userEmail),
     @required TResult updateGrade(Grade newGrade),
-    @required
-        TResult updateSelectedGym(String userEmail, String newSelectedGym),
     @required TResult updateReferredGym(String userEmail, String currentGymId),
     @required TResult updateFcmToken(String userEmail, String newToken),
   }) {
@@ -519,7 +489,6 @@ class _$UpdateImageUrl with DiagnosticableTreeMixin implements UpdateImageUrl {
     assert(updateName != null);
     assert(updateImageUrl != null);
     assert(updateGrade != null);
-    assert(updateSelectedGym != null);
     assert(updateReferredGym != null);
     assert(updateFcmToken != null);
     return updateImageUrl(userEmail);
@@ -532,7 +501,6 @@ class _$UpdateImageUrl with DiagnosticableTreeMixin implements UpdateImageUrl {
     TResult updateName(String newName),
     TResult updateImageUrl(String userEmail),
     TResult updateGrade(Grade newGrade),
-    TResult updateSelectedGym(String userEmail, String newSelectedGym),
     TResult updateReferredGym(String userEmail, String currentGymId),
     TResult updateFcmToken(String userEmail, String newToken),
     @required TResult orElse(),
@@ -551,7 +519,6 @@ class _$UpdateImageUrl with DiagnosticableTreeMixin implements UpdateImageUrl {
     @required TResult updateName(UpdateName value),
     @required TResult updateImageUrl(UpdateImageUrl value),
     @required TResult updateGrade(UpdateGrade value),
-    @required TResult updateSelectedGym(UpdateSelectedGym value),
     @required TResult updateReferredGym(UpdateReferredGym value),
     @required TResult updateFcmToken(UpdateFcmToken value),
   }) {
@@ -559,7 +526,6 @@ class _$UpdateImageUrl with DiagnosticableTreeMixin implements UpdateImageUrl {
     assert(updateName != null);
     assert(updateImageUrl != null);
     assert(updateGrade != null);
-    assert(updateSelectedGym != null);
     assert(updateReferredGym != null);
     assert(updateFcmToken != null);
     return updateImageUrl(this);
@@ -572,7 +538,6 @@ class _$UpdateImageUrl with DiagnosticableTreeMixin implements UpdateImageUrl {
     TResult updateName(UpdateName value),
     TResult updateImageUrl(UpdateImageUrl value),
     TResult updateGrade(UpdateGrade value),
-    TResult updateSelectedGym(UpdateSelectedGym value),
     TResult updateReferredGym(UpdateReferredGym value),
     TResult updateFcmToken(UpdateFcmToken value),
     @required TResult orElse(),
@@ -664,8 +629,6 @@ class _$UpdateGrade with DiagnosticableTreeMixin implements UpdateGrade {
     @required TResult updateName(String newName),
     @required TResult updateImageUrl(String userEmail),
     @required TResult updateGrade(Grade newGrade),
-    @required
-        TResult updateSelectedGym(String userEmail, String newSelectedGym),
     @required TResult updateReferredGym(String userEmail, String currentGymId),
     @required TResult updateFcmToken(String userEmail, String newToken),
   }) {
@@ -673,7 +636,6 @@ class _$UpdateGrade with DiagnosticableTreeMixin implements UpdateGrade {
     assert(updateName != null);
     assert(updateImageUrl != null);
     assert(updateGrade != null);
-    assert(updateSelectedGym != null);
     assert(updateReferredGym != null);
     assert(updateFcmToken != null);
     return updateGrade(newGrade);
@@ -686,7 +648,6 @@ class _$UpdateGrade with DiagnosticableTreeMixin implements UpdateGrade {
     TResult updateName(String newName),
     TResult updateImageUrl(String userEmail),
     TResult updateGrade(Grade newGrade),
-    TResult updateSelectedGym(String userEmail, String newSelectedGym),
     TResult updateReferredGym(String userEmail, String currentGymId),
     TResult updateFcmToken(String userEmail, String newToken),
     @required TResult orElse(),
@@ -705,7 +666,6 @@ class _$UpdateGrade with DiagnosticableTreeMixin implements UpdateGrade {
     @required TResult updateName(UpdateName value),
     @required TResult updateImageUrl(UpdateImageUrl value),
     @required TResult updateGrade(UpdateGrade value),
-    @required TResult updateSelectedGym(UpdateSelectedGym value),
     @required TResult updateReferredGym(UpdateReferredGym value),
     @required TResult updateFcmToken(UpdateFcmToken value),
   }) {
@@ -713,7 +673,6 @@ class _$UpdateGrade with DiagnosticableTreeMixin implements UpdateGrade {
     assert(updateName != null);
     assert(updateImageUrl != null);
     assert(updateGrade != null);
-    assert(updateSelectedGym != null);
     assert(updateReferredGym != null);
     assert(updateFcmToken != null);
     return updateGrade(this);
@@ -726,7 +685,6 @@ class _$UpdateGrade with DiagnosticableTreeMixin implements UpdateGrade {
     TResult updateName(UpdateName value),
     TResult updateImageUrl(UpdateImageUrl value),
     TResult updateGrade(UpdateGrade value),
-    TResult updateSelectedGym(UpdateSelectedGym value),
     TResult updateReferredGym(UpdateReferredGym value),
     TResult updateFcmToken(UpdateFcmToken value),
     @required TResult orElse(),
@@ -744,177 +702,6 @@ abstract class UpdateGrade implements UserEvent {
 
   Grade get newGrade;
   $UpdateGradeCopyWith<UpdateGrade> get copyWith;
-}
-
-/// @nodoc
-abstract class $UpdateSelectedGymCopyWith<$Res> {
-  factory $UpdateSelectedGymCopyWith(
-          UpdateSelectedGym value, $Res Function(UpdateSelectedGym) then) =
-      _$UpdateSelectedGymCopyWithImpl<$Res>;
-  $Res call({String userEmail, String newSelectedGym});
-}
-
-/// @nodoc
-class _$UpdateSelectedGymCopyWithImpl<$Res>
-    extends _$UserEventCopyWithImpl<$Res>
-    implements $UpdateSelectedGymCopyWith<$Res> {
-  _$UpdateSelectedGymCopyWithImpl(
-      UpdateSelectedGym _value, $Res Function(UpdateSelectedGym) _then)
-      : super(_value, (v) => _then(v as UpdateSelectedGym));
-
-  @override
-  UpdateSelectedGym get _value => super._value as UpdateSelectedGym;
-
-  @override
-  $Res call({
-    Object userEmail = freezed,
-    Object newSelectedGym = freezed,
-  }) {
-    return _then(UpdateSelectedGym(
-      userEmail: userEmail == freezed ? _value.userEmail : userEmail as String,
-      newSelectedGym: newSelectedGym == freezed
-          ? _value.newSelectedGym
-          : newSelectedGym as String,
-    ));
-  }
-}
-
-/// @nodoc
-class _$UpdateSelectedGym
-    with DiagnosticableTreeMixin
-    implements UpdateSelectedGym {
-  const _$UpdateSelectedGym({this.userEmail, this.newSelectedGym});
-
-  @override
-  final String userEmail;
-  @override
-  final String newSelectedGym;
-
-  @override
-  String toString({DiagnosticLevel minLevel = DiagnosticLevel.info}) {
-    return 'UserEvent.updateSelectedGym(userEmail: $userEmail, newSelectedGym: $newSelectedGym)';
-  }
-
-  @override
-  void debugFillProperties(DiagnosticPropertiesBuilder properties) {
-    super.debugFillProperties(properties);
-    properties
-      ..add(DiagnosticsProperty('type', 'UserEvent.updateSelectedGym'))
-      ..add(DiagnosticsProperty('userEmail', userEmail))
-      ..add(DiagnosticsProperty('newSelectedGym', newSelectedGym));
-  }
-
-  @override
-  bool operator ==(dynamic other) {
-    return identical(this, other) ||
-        (other is UpdateSelectedGym &&
-            (identical(other.userEmail, userEmail) ||
-                const DeepCollectionEquality()
-                    .equals(other.userEmail, userEmail)) &&
-            (identical(other.newSelectedGym, newSelectedGym) ||
-                const DeepCollectionEquality()
-                    .equals(other.newSelectedGym, newSelectedGym)));
-  }
-
-  @override
-  int get hashCode =>
-      runtimeType.hashCode ^
-      const DeepCollectionEquality().hash(userEmail) ^
-      const DeepCollectionEquality().hash(newSelectedGym);
-
-  @override
-  $UpdateSelectedGymCopyWith<UpdateSelectedGym> get copyWith =>
-      _$UpdateSelectedGymCopyWithImpl<UpdateSelectedGym>(this, _$identity);
-
-  @override
-  @optionalTypeArgs
-  TResult when<TResult extends Object>({
-    @required TResult userUpdated(User user),
-    @required TResult updateName(String newName),
-    @required TResult updateImageUrl(String userEmail),
-    @required TResult updateGrade(Grade newGrade),
-    @required
-        TResult updateSelectedGym(String userEmail, String newSelectedGym),
-    @required TResult updateReferredGym(String userEmail, String currentGymId),
-    @required TResult updateFcmToken(String userEmail, String newToken),
-  }) {
-    assert(userUpdated != null);
-    assert(updateName != null);
-    assert(updateImageUrl != null);
-    assert(updateGrade != null);
-    assert(updateSelectedGym != null);
-    assert(updateReferredGym != null);
-    assert(updateFcmToken != null);
-    return updateSelectedGym(userEmail, newSelectedGym);
-  }
-
-  @override
-  @optionalTypeArgs
-  TResult maybeWhen<TResult extends Object>({
-    TResult userUpdated(User user),
-    TResult updateName(String newName),
-    TResult updateImageUrl(String userEmail),
-    TResult updateGrade(Grade newGrade),
-    TResult updateSelectedGym(String userEmail, String newSelectedGym),
-    TResult updateReferredGym(String userEmail, String currentGymId),
-    TResult updateFcmToken(String userEmail, String newToken),
-    @required TResult orElse(),
-  }) {
-    assert(orElse != null);
-    if (updateSelectedGym != null) {
-      return updateSelectedGym(userEmail, newSelectedGym);
-    }
-    return orElse();
-  }
-
-  @override
-  @optionalTypeArgs
-  TResult map<TResult extends Object>({
-    @required TResult userUpdated(UserUpdated value),
-    @required TResult updateName(UpdateName value),
-    @required TResult updateImageUrl(UpdateImageUrl value),
-    @required TResult updateGrade(UpdateGrade value),
-    @required TResult updateSelectedGym(UpdateSelectedGym value),
-    @required TResult updateReferredGym(UpdateReferredGym value),
-    @required TResult updateFcmToken(UpdateFcmToken value),
-  }) {
-    assert(userUpdated != null);
-    assert(updateName != null);
-    assert(updateImageUrl != null);
-    assert(updateGrade != null);
-    assert(updateSelectedGym != null);
-    assert(updateReferredGym != null);
-    assert(updateFcmToken != null);
-    return updateSelectedGym(this);
-  }
-
-  @override
-  @optionalTypeArgs
-  TResult maybeMap<TResult extends Object>({
-    TResult userUpdated(UserUpdated value),
-    TResult updateName(UpdateName value),
-    TResult updateImageUrl(UpdateImageUrl value),
-    TResult updateGrade(UpdateGrade value),
-    TResult updateSelectedGym(UpdateSelectedGym value),
-    TResult updateReferredGym(UpdateReferredGym value),
-    TResult updateFcmToken(UpdateFcmToken value),
-    @required TResult orElse(),
-  }) {
-    assert(orElse != null);
-    if (updateSelectedGym != null) {
-      return updateSelectedGym(this);
-    }
-    return orElse();
-  }
-}
-
-abstract class UpdateSelectedGym implements UserEvent {
-  const factory UpdateSelectedGym({String userEmail, String newSelectedGym}) =
-      _$UpdateSelectedGym;
-
-  String get userEmail;
-  String get newSelectedGym;
-  $UpdateSelectedGymCopyWith<UpdateSelectedGym> get copyWith;
 }
 
 /// @nodoc
@@ -1004,8 +791,6 @@ class _$UpdateReferredGym
     @required TResult updateName(String newName),
     @required TResult updateImageUrl(String userEmail),
     @required TResult updateGrade(Grade newGrade),
-    @required
-        TResult updateSelectedGym(String userEmail, String newSelectedGym),
     @required TResult updateReferredGym(String userEmail, String currentGymId),
     @required TResult updateFcmToken(String userEmail, String newToken),
   }) {
@@ -1013,7 +798,6 @@ class _$UpdateReferredGym
     assert(updateName != null);
     assert(updateImageUrl != null);
     assert(updateGrade != null);
-    assert(updateSelectedGym != null);
     assert(updateReferredGym != null);
     assert(updateFcmToken != null);
     return updateReferredGym(userEmail, currentGymId);
@@ -1026,7 +810,6 @@ class _$UpdateReferredGym
     TResult updateName(String newName),
     TResult updateImageUrl(String userEmail),
     TResult updateGrade(Grade newGrade),
-    TResult updateSelectedGym(String userEmail, String newSelectedGym),
     TResult updateReferredGym(String userEmail, String currentGymId),
     TResult updateFcmToken(String userEmail, String newToken),
     @required TResult orElse(),
@@ -1045,7 +828,6 @@ class _$UpdateReferredGym
     @required TResult updateName(UpdateName value),
     @required TResult updateImageUrl(UpdateImageUrl value),
     @required TResult updateGrade(UpdateGrade value),
-    @required TResult updateSelectedGym(UpdateSelectedGym value),
     @required TResult updateReferredGym(UpdateReferredGym value),
     @required TResult updateFcmToken(UpdateFcmToken value),
   }) {
@@ -1053,7 +835,6 @@ class _$UpdateReferredGym
     assert(updateName != null);
     assert(updateImageUrl != null);
     assert(updateGrade != null);
-    assert(updateSelectedGym != null);
     assert(updateReferredGym != null);
     assert(updateFcmToken != null);
     return updateReferredGym(this);
@@ -1066,7 +847,6 @@ class _$UpdateReferredGym
     TResult updateName(UpdateName value),
     TResult updateImageUrl(UpdateImageUrl value),
     TResult updateGrade(UpdateGrade value),
-    TResult updateSelectedGym(UpdateSelectedGym value),
     TResult updateReferredGym(UpdateReferredGym value),
     TResult updateFcmToken(UpdateFcmToken value),
     @required TResult orElse(),
@@ -1170,8 +950,6 @@ class _$UpdateFcmToken with DiagnosticableTreeMixin implements UpdateFcmToken {
     @required TResult updateName(String newName),
     @required TResult updateImageUrl(String userEmail),
     @required TResult updateGrade(Grade newGrade),
-    @required
-        TResult updateSelectedGym(String userEmail, String newSelectedGym),
     @required TResult updateReferredGym(String userEmail, String currentGymId),
     @required TResult updateFcmToken(String userEmail, String newToken),
   }) {
@@ -1179,7 +957,6 @@ class _$UpdateFcmToken with DiagnosticableTreeMixin implements UpdateFcmToken {
     assert(updateName != null);
     assert(updateImageUrl != null);
     assert(updateGrade != null);
-    assert(updateSelectedGym != null);
     assert(updateReferredGym != null);
     assert(updateFcmToken != null);
     return updateFcmToken(userEmail, newToken);
@@ -1192,7 +969,6 @@ class _$UpdateFcmToken with DiagnosticableTreeMixin implements UpdateFcmToken {
     TResult updateName(String newName),
     TResult updateImageUrl(String userEmail),
     TResult updateGrade(Grade newGrade),
-    TResult updateSelectedGym(String userEmail, String newSelectedGym),
     TResult updateReferredGym(String userEmail, String currentGymId),
     TResult updateFcmToken(String userEmail, String newToken),
     @required TResult orElse(),
@@ -1211,7 +987,6 @@ class _$UpdateFcmToken with DiagnosticableTreeMixin implements UpdateFcmToken {
     @required TResult updateName(UpdateName value),
     @required TResult updateImageUrl(UpdateImageUrl value),
     @required TResult updateGrade(UpdateGrade value),
-    @required TResult updateSelectedGym(UpdateSelectedGym value),
     @required TResult updateReferredGym(UpdateReferredGym value),
     @required TResult updateFcmToken(UpdateFcmToken value),
   }) {
@@ -1219,7 +994,6 @@ class _$UpdateFcmToken with DiagnosticableTreeMixin implements UpdateFcmToken {
     assert(updateName != null);
     assert(updateImageUrl != null);
     assert(updateGrade != null);
-    assert(updateSelectedGym != null);
     assert(updateReferredGym != null);
     assert(updateFcmToken != null);
     return updateFcmToken(this);
@@ -1232,7 +1006,6 @@ class _$UpdateFcmToken with DiagnosticableTreeMixin implements UpdateFcmToken {
     TResult updateName(UpdateName value),
     TResult updateImageUrl(UpdateImageUrl value),
     TResult updateGrade(UpdateGrade value),
-    TResult updateSelectedGym(UpdateSelectedGym value),
     TResult updateReferredGym(UpdateReferredGym value),
     TResult updateFcmToken(UpdateFcmToken value),
     @required TResult orElse(),
