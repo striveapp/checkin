@@ -3,6 +3,7 @@ import 'package:checkin/src/blocs/dynamic_link/bloc.dart';
 import 'package:checkin/src/blocs/theme/bloc.dart';
 import 'package:checkin/src/localization/localization.dart';
 import 'package:checkin/src/repositories/analytics_repository.dart';
+import 'package:checkin/src/repositories/gym_repository.dart';
 import 'package:checkin/src/repositories/image_repository.dart';
 import 'package:checkin/src/repositories/storage_repository.dart';
 import 'package:checkin/src/repositories/user_repository.dart';
@@ -17,6 +18,7 @@ import 'package:flutter_localizations/flutter_localizations.dart';
 import 'package:i18n_extension/i18n_widget.dart';
 import 'package:share/share.dart';
 
+import 'blocs/gym/bloc.dart';
 import 'blocs/user/bloc.dart';
 import 'blocs/version/bloc.dart';
 
@@ -165,6 +167,12 @@ class _AppState extends State<App> with WidgetsBindingObserver {
                             imageRepository: widget._imageRepository,
                             authBloc: BlocProvider.of<AuthBloc>(context),
                           )),
+                  BlocProvider<GymBloc>(
+                    create: (BuildContext context) => GymBloc(
+                      gymRepository: context.read<GymRepository>(),
+                      userBloc: context.read<UserBloc>(),
+                    )..add(InitializeGym()),
+                  ),
                 ],
                 child: HomePage(),
               );

@@ -1,8 +1,9 @@
 import 'package:checkin/src/blocs/user/bloc.dart';
+import 'package:checkin/src/ui/components/empty_widget.dart';
 import 'package:checkin/src/ui/components/user_image.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
-import 'package:shimmer/shimmer.dart';
+
 
 class BaseAppBar extends StatelessWidget implements PreferredSizeWidget {
   final String title;
@@ -33,7 +34,7 @@ class BaseAppBar extends StatelessWidget implements PreferredSizeWidget {
           backgroundColor:
               this.backgroundColor ?? Theme.of(context).primaryColor,
           title: title == null || title.isEmpty
-              ? PlaceholderText()
+              ? EmptyWidget()
               : Text(this.title,
                   style: Theme.of(context)
                       .textTheme
@@ -63,22 +64,4 @@ class BaseAppBar extends StatelessWidget implements PreferredSizeWidget {
 
   @override
   Size get preferredSize => Size.fromHeight(56.0);
-}
-
-class PlaceholderText extends StatelessWidget {
-  const PlaceholderText({
-    Key key,
-  }) : super(key: key);
-
-  @override
-  Widget build(BuildContext context) {
-    return Shimmer.fromColors(
-        baseColor: Theme.of(context).accentColor,
-        highlightColor: Theme.of(context).accentColor.withAlpha(100),
-        child: Container(
-          color: Theme.of(context).accentColor,
-          height: 56 / 2,
-          width: MediaQuery.of(context).size.width / 2,
-        ));
-  }
 }
