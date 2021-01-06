@@ -11,7 +11,7 @@ class GymAppBar extends BaseAppBar {
       if (prev is GymLoaded && curr is GymLoaded) {
         return prev.gym.name != curr.gym.name;
       }
-      return true;
+      return prev is InitialGymState;
     }, builder: (BuildContext context, GymState state) {
       return state.map(
         initialGymState: (InitialGymState state) => BaseAppBar(),
