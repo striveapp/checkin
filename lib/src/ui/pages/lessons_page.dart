@@ -1,7 +1,5 @@
-import 'package:checkin/src/blocs/gym/bloc.dart';
 import 'package:checkin/src/blocs/lessons/bloc.dart';
 import 'package:checkin/src/blocs/user/bloc.dart';
-import 'package:checkin/src/repositories/gym_repository.dart';
 import 'package:checkin/src/repositories/holidays_repository.dart';
 import 'package:checkin/src/repositories/lesson_repository.dart';
 import 'package:checkin/src/ui/components/lessons/gym_app_bar.dart';
@@ -20,12 +18,6 @@ class LessonsPage extends StatelessWidget {
   Widget build(BuildContext context) {
     return MultiBlocProvider(
       providers: [
-        BlocProvider<GymBloc>(
-          create: (BuildContext context) => GymBloc(
-            gymRepository: context.read<GymRepository>(),
-            userBloc: context.read<UserBloc>(),
-          )..add(InitializeGym()),
-        ),
         BlocProvider<LessonsBloc>(
           create: (BuildContext context) => LessonsBloc(
               userBloc: context.read<UserBloc>(),
