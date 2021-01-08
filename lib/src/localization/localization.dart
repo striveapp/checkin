@@ -14,7 +14,7 @@ import 'package:checkin/src/ui/components/lessons/lesson_card.dart';
 import 'package:checkin/src/ui/components/lessons/no_lessons_banner.dart';
 import 'package:checkin/src/ui/components/login/apple_sign_in_button.dart';
 import 'package:checkin/src/ui/components/login/google_sign_in_button.dart';
-import 'package:checkin/src/ui/components/login/login_form.dart';
+import 'package:checkin/src/ui/components/login/login_buttons.dart';
 import 'package:checkin/src/ui/components/login/passwordless_sign_in_button.dart';
 import 'package:checkin/src/ui/components/membership/active_membership.dart';
 import 'package:checkin/src/ui/components/membership/inactive_membership.dart';
@@ -642,7 +642,7 @@ extension Localization on String {
         'it': 'La mail che hai inserito potrebbe non essere corretta',
       } +
       {
-        'en': LoginForm.or,
+        'en': LoginButtons.or,
         'es': 'o',
         'it': 'oppure',
       } +

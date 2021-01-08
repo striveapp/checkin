@@ -8,10 +8,6 @@ part 'login_state.freezed.dart';
 abstract class LoginState with _$LoginState {
   const factory LoginState.loginInitial() = LoginInitial;
 
-  const factory LoginState.loginLoading() = LoginLoading;
-
-  const factory LoginState.loginSuccess({User loggedUser}) = LoginSuccess;
-
   const factory LoginState.loginFailure({String errorMessage}) = LoginFailure;
 
   const factory LoginState.wrongfullyInsertedEmail() = WrongfullyInsertedEmail;

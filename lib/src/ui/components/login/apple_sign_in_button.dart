@@ -6,14 +6,25 @@ import 'package:checkin/src/localization/localization.dart';
 
 class AppleSignInButton extends StatelessWidget {
   static const String appleSignIn = 'Sign in with Apple';
+
+  final bool darkMode;
+
+  const AppleSignInButton({Key key, this.darkMode}) : super(key: key);
+
   @override
   Widget build(BuildContext context) {
-    return Padding(
-      padding: const EdgeInsets.symmetric(horizontal: 65),
+    return Material(
+      elevation: 2,
+      borderRadius: BorderRadius.all(Radius.circular(8.0)),
       child: SignInWithAppleButton(
         text: appleSignIn.i18n,
+        iconAlignment: IconAlignment.left,
+        height: 46,
+        style: darkMode
+            ? SignInWithAppleButtonStyle.white
+            : SignInWithAppleButtonStyle.black,
         onPressed: () {
-          BlocProvider.of<LoginBloc>(context).add(LoginWithApple());
+          context.read<LoginBloc>().add(LoginWithApple());
         },
       ),
     );

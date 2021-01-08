@@ -1,45 +1,38 @@
+import 'package:checkin/src/blocs/login/bloc.dart';
 import 'package:checkin/src/localization/localization.dart';
 import 'package:flutter/material.dart';
+import 'package:flutter_bloc/flutter_bloc.dart';
+import 'package:google_fonts/google_fonts.dart';
 
 class GoogleSignInButton extends StatelessWidget {
   final bool darkMode;
   final double borderRadius;
-  final VoidCallback onPressed;
 
   static const String googleSignIn = 'Sign in with Google';
 
-  GoogleSignInButton(
-      {@required this.onPressed, this.darkMode = false, this.borderRadius = 3.0, Key key})
-      : super(key: key);
+  GoogleSignInButton({
+    this.darkMode = false,
+    this.borderRadius = 3.0,
+    Key key,
+  }) : super(key: key);
 
   @override
   Widget build(BuildContext context) {
     return ElevatedButton(
-      onPressed: onPressed,
+      onPressed: () => context.read<LoginBloc>().add(LoginWithGoogle()),
       style: ElevatedButton.styleFrom(
         primary: darkMode ? Color(0xFF4285F4) : Colors.white,
-        minimumSize: Size(88, 40),
+        minimumSize: Size(88, MediaQuery.of(context).size.height / 16),
         padding: const EdgeInsets.all(0.0),
         shape: RoundedRectangleBorder(
           borderRadius: BorderRadius.circular(this.borderRadius),
         ),
       ),
       child: Row(
-        mainAxisSize: MainAxisSize.min,
+        mainAxisAlignment: MainAxisAlignment.start,
         children: <Widget>[
-          // The Google design guidelines aren't consistent. The dark mode
-          // seems to have a perfect square of white around the logo, with a
-          // thin 1dp (ish) border. However, since the height of the button
-          // is 40dp and the logo is 18dp, it suggests the bottom and top
-          // padding is (40 - 18) * 0.5 = 11. That's 10dp once we account for
-          // the thin border.
-          //
-          // The design guidelines suggest 8dp padding to the left of the
-          // logo, which doesn't allow us to center the image (given the 10dp
-          // above). Something needs to give - either the 8dp is wrong or the
-          // 40dp should be 36dp. I've opted to increase left padding to 10dp.
           Padding(
-            padding: const EdgeInsets.all(1.0),
+            padding: EdgeInsets.only(left: 10),
             child: Container(
               height: 38.0, // 40dp - 2*1dp border
               width: 38.0, // matches above
@@ -52,24 +45,25 @@ class GoogleSignInButton extends StatelessWidget {
                   image: AssetImage(
                     "assets/images/google-logo.png",
                   ),
-                  height: 18.0,
-                  width: 18.0,
+                  height: 20.0,
+                  width: 20.0,
                 ),
               ),
             ),
           ),
-
-          SizedBox(width: 14.0 /* 24.0 - 10dp padding */),
-          Padding(
-            padding: const EdgeInsets.fromLTRB(0.0, 8.0, 14.0, 8.0),
+          Expanded(
             child: Text(
               googleSignIn.i18n,
-              style: TextStyle(
-                fontSize: 18.0,
-                fontWeight: FontWeight.w500,
+              textAlign: TextAlign.center,
+              style: GoogleFonts.roboto(
+                fontSize: 18,
+                fontWeight: FontWeight.normal,
                 color: darkMode ? Colors.white : Colors.black.withOpacity(0.54),
               ),
             ),
+          ),
+          SizedBox(
+            width: 30,
           ),
         ],
       ),

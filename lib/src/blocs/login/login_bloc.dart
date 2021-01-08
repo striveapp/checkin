@@ -36,7 +36,6 @@ class LoginBloc extends Bloc<LoginEvent, LoginState> {
           await userRepository.createUser(
             loggedUser,
           );
-          yield LoginSuccess(loggedUser: loggedUser);
         } else {
           Logger.log.w("Unable to login using [$event]");
           yield LoginFailure(errorMessage: loginError);
@@ -60,7 +59,6 @@ class LoginBloc extends Bloc<LoginEvent, LoginState> {
           await userRepository.createUser(
             loggedUser,
           );
-          yield LoginSuccess(loggedUser: loggedUser);
         } else {
           Logger.log.w("Unable to login using [$event]");
           yield LoginFailure(errorMessage: loginError);
@@ -99,31 +97,23 @@ class LoginBloc extends Bloc<LoginEvent, LoginState> {
 
     //TODO: We put this because we have no way to test google auth for now. https://trello.com/c/I4PenA6Y
     if (event is LoginWithTestUser) {
-      yield LoginLoading();
       final testUser1 = await authRepository.loginWithTestUser(test: 1);
       Logger.log.i('Logged with test user [$testUser1]');
-      yield LoginSuccess(loggedUser: testUser1);
     }
 
     if (event is LoginWithTestUserTwo) {
-      yield LoginLoading();
       final testUser2 = await authRepository.loginWithTestUser(test: 2);
       Logger.log.i('Logged with test user [$testUser2]');
-      yield LoginSuccess(loggedUser: testUser2);
     }
 
     if (event is LoginWithTestUserAdmin) {
-      yield LoginLoading();
       final testOwner = await authRepository.loginWithTestUser(owner: true);
       Logger.log.i('Logged with test user [$testOwner]');
-      yield LoginSuccess(loggedUser: testOwner);
     }
 
     if (event is LoginWithTestUserMaster) {
-      yield LoginLoading();
       final testMaster = await authRepository.loginWithTestUser(master: true);
       Logger.log.i('Logged with test user [$testMaster]');
-      yield LoginSuccess(loggedUser: testMaster);
     }
   }
 }

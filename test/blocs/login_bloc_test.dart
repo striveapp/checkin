@@ -100,7 +100,7 @@ void main() {
         });
 
         blocTest(
-          "should emit LoginSuccess and create the user without a gym",
+          "sign in and create the user without a gym",
           build: () => LoginBloc(
             authRepository: mockAuthRepository,
             userRepository: mockUserRepository,
@@ -108,7 +108,7 @@ void main() {
             localStorageRepository: mockLocalStorageRepository,
           ),
           act: (bloc) => bloc.add(LoginWithGoogle()),
-          expect: [LoginSuccess(loggedUser: fakeUser)],
+          expect: [],
         );
       });
 
@@ -193,7 +193,7 @@ void main() {
         });
 
         blocTest(
-          "should emit LoginSuccess and create the user without a gym",
+          "sign in and create the user without a gym",
           build: () => LoginBloc(
             authRepository: mockAuthRepository,
             userRepository: mockUserRepository,
@@ -201,7 +201,7 @@ void main() {
             localStorageRepository: mockLocalStorageRepository,
           ),
           act: (bloc) => bloc.add(LoginWithApple()),
-          expect: [LoginSuccess(loggedUser: fakeUser)],
+          expect: [],
         );
       });
 
