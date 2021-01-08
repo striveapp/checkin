@@ -54,7 +54,7 @@ create-app-icons:
 generate-splash-screen:
 	@flutter pub get
 	flutter clean
-	flutter pub pub run flutter_native_splash:create
+	dart run flutter_native_splash:create
 
 .PHONY: start-debug-view
 start-debug-view:
