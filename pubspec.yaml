@@ -74,8 +74,8 @@ dependency_overrides:
 
 
 flutter_icons:
-  image_path: "assets/images/main_logo.png"
-  adaptive_icon_foreground: "assets/images/foreground_logo.png"
+  image_path: "assets/launcher_icon/icon.png"
+  adaptive_icon_foreground: "assets/launcher_icon/adaptive_icon.png"
   adaptive_icon_background: "#EA3333"
   ios: true
   android: true
@@ -103,6 +103,7 @@ flutter:
     - assets/icons/
     - assets/logos/
     - assets/splash/
+    - assets/launcher_icon/
   fonts:
     - family: Raleway
       fonts:

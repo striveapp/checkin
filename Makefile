@@ -48,7 +48,7 @@ codegen-runner:
 .PHONY: create-app-icons
 create-app-icons:
 	@flutter pub get
-	flutter pub run flutter_launcher_icons:main
+	dart run flutter_launcher_icons:main
 
 .PHONY: generate-splash-screen
 generate-splash-screen:
