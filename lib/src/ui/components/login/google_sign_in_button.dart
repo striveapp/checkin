@@ -22,7 +22,7 @@ class GoogleSignInButton extends StatelessWidget {
       onPressed: () => context.read<LoginBloc>().add(LoginWithGoogle()),
       style: ElevatedButton.styleFrom(
         primary: darkMode ? Color(0xFF4285F4) : Colors.white,
-        minimumSize: Size(88, MediaQuery.of(context).size.height / 16),
+        minimumSize: Size(88, MediaQuery.of(context).size.height / 46),
         padding: const EdgeInsets.all(0.0),
         shape: RoundedRectangleBorder(
           borderRadius: BorderRadius.circular(this.borderRadius),

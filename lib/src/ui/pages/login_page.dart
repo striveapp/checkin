@@ -54,7 +54,7 @@ class LoginPage extends StatelessWidget {
                         child: Container(
                           child: SvgPicture.asset(
                             "assets/logos/logos.svg",
-                            color: Color(0xFFEA3333),
+                            color: Theme.of(context).primaryColor,
                           ),
                         ),
                       ),

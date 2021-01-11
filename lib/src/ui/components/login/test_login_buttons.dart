@@ -9,7 +9,7 @@ class TestLoginButtons extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    return Column(
+    return Wrap(
       children: <Widget>[
         SizedBox(
           height: 20,

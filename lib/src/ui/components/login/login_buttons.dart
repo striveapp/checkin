@@ -20,7 +20,7 @@ class LoginButtons extends StatelessWidget {
           darkMode: _isDarkMode(context),
           borderRadius: 8.0,
         ),
-        if (!LocalPlatform().isIOS)
+        if (LocalPlatform().isIOS)
           AppleSignInButton(
             darkMode: _isDarkMode(context),
           ),
@@ -31,7 +31,7 @@ class LoginButtons extends StatelessWidget {
               ),
         ),
         PasswordlessSignInButton(),
-        if (!isInDebugMode) TestLoginButtons()
+        if (isInDebugMode) TestLoginButtons()
       ],
     );
   }
