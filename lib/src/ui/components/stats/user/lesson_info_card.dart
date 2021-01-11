@@ -53,14 +53,11 @@ class LessonInfoCard extends StatelessWidget {
                         child: Column(
                           crossAxisAlignment: CrossAxisAlignment.start,
                           children: <Widget>[
-                            Text(
-                              "${_capitalize(lesson.name)}",
-                              style: Theme.of(context)
-                                  .textTheme
-                                  .headline1
-                            ),
-                            Text(lesson.masters.first.name,
-                                style: Theme.of(context).textTheme.headline3),
+                            Text("${_capitalize(lesson.name)}",
+                                style: Theme.of(context).textTheme.headline1),
+                            if (lesson.masters.isNotEmpty)
+                              Text(lesson.masters.first.name,
+                                  style: Theme.of(context).textTheme.headline3),
                             Text(
                                 "${lesson.weekDay} (${lesson.timeStart} - ${lesson.timeEnd})",
                                 style: Theme.of(context).textTheme.headline3)

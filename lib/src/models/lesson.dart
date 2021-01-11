@@ -10,7 +10,6 @@ part 'lesson.g.dart';
 
 @freezed
 abstract class Lesson with _$Lesson {
-
   factory Lesson({
     final String id,
     final String date,
@@ -19,6 +18,8 @@ abstract class Lesson with _$Lesson {
     final String timeEnd,
     final String weekDay,
     final int timestamp,
+    final String imageUrl,
+    // todo retrieve from Gym (config) https://trello.com/c/uIqJLgZL
     @Default(config.DEFAULT_CLASS_CAPACITY) final int classCapacity,
     @Default([]) final List<Master> masters,
     @Default([]) final List<Attendee> attendees,
@@ -27,5 +28,4 @@ abstract class Lesson with _$Lesson {
   }) = _Lesson;
 
   factory Lesson.fromJson(Map<String, dynamic> json) => _$LessonFromJson(json);
-
 }

@@ -18,19 +18,9 @@ class LessonInstancesProvider implements LessonRepository {
 
   String _formatDate(DateTime day) => DateFormat("yyyy-MM-dd").format(day);
 
-  // todo retrieve from Gym (config) https://trello.com/c/uIqJLgZL
-  Lesson _toLesson(DocumentSnapshot lesson) {
-    final data = lesson.data();
-
-    if(data == null || data['masters'] == null) {
-      return null;
-    }
-
-    return Lesson.fromJson(data);
-  }
-
   @override
-  Stream<List<Lesson>> getLessonsForDay(String gymId, DateTime day, [List<String> filterTypes = const []]) {
+  Stream<List<Lesson>> getLessonsForDay(String gymId, DateTime day,
+      [List<String> filterTypes = const []]) {
     var formattedDate = _formatDate(day);
     return _firestore
         .collection(gymPath)
@@ -38,48 +28,51 @@ class LessonInstancesProvider implements LessonRepository {
         .collection(path)
         .doc(formattedDate)
         .collection("instances")
-        .where("lessonConfig.type", whereIn: filterTypes.isNotEmpty ? filterTypes : null)
+        .where("lessonConfig.type",
+            whereIn: filterTypes.isNotEmpty ? filterTypes : null)
         .snapshots()
-        .map((snapshot) => snapshot.docs
-        .where((doc) => doc.data()['masters'] != null)
-        .map((doc) => _toLesson(doc))
-        .toList());
+        .map((snapshot) =>
+            snapshot.docs.map((doc) => Lesson.fromJson(doc.data())).toList());
   }
 
   @override
-  Stream<Lesson> getLesson(String gymId, String date, String lessonId) => _firestore
-      .collection(gymPath)
-      .doc(gymId)
-      .collection(path)
-      .doc(date)
-      .collection(sub_collection_path)
-      .doc(lessonId)
-      .snapshots()
-      .map((doc) => _toLesson(doc));
+  Stream<Lesson> getLesson(String gymId, String date, String lessonId) =>
+      _firestore
+          .collection(gymPath)
+          .doc(gymId)
+          .collection(path)
+          .doc(date)
+          .collection(sub_collection_path)
+          .doc(lessonId)
+          .snapshots()
+          .map((doc) => Lesson.fromJson(doc.data()));
 
   @override
   //TODO: collectionGroups are not currently supporting our multi gym model,
   // so in doing that we are running a query on all the instances in all the gyms
   // it's not causing any bug as of now, but might not be ideal in the long term (ie: query performance)
   // https://trello.com/c/Qz2hbweo
-  Stream<List<Lesson>> getLessonsByMasterAndTimespan(Master master, String timespan) => _firestore
-      .collectionGroup(sub_collection_path)
-      .where("masters", arrayContains: {
-        "name": master.name,
-        "email": master.email,
-        "imageUrl": master.imageUrl,
-      })
-      .where("date",
-          isGreaterThanOrEqualTo:
-              DateFormat('yyyy-MM-dd').format(DateUtil.getFirstDayOfTimespan(timespan)))
-      .snapshots()
-      .map((snapshot) => snapshot.docs
-          .where((doc) => doc.data()['masters'] != null)
-          .map((doc) => _toLesson(doc))
-          .toList());
+  Stream<List<Lesson>> getLessonsByMasterAndTimespan(
+          Master master, String timespan) =>
+      _firestore
+          .collectionGroup(sub_collection_path)
+          .where("masters", arrayContains: {
+            "name": master.name,
+            "email": master.email,
+            "imageUrl": master.imageUrl,
+          })
+          .where("date",
+              isGreaterThanOrEqualTo: DateFormat('yyyy-MM-dd')
+                  .format(DateUtil.getFirstDayOfTimespan(timespan)))
+          .snapshots()
+          .map((snapshot) => snapshot.docs
+              .where((doc) => doc.data()['masters'] != null)
+              .map((doc) => Lesson.fromJson(doc.data()))
+              .toList());
 
   @override
-  Future<void> register(String gymId, String date, String lessonId, Attendee attendee) async {
+  Future<void> register(
+      String gymId, String date, String lessonId, Attendee attendee) async {
     debugPrint("User [$attendee] attends lesson with id [$lessonId]");
     await _firestore
         .collection(gymPath)
@@ -101,7 +94,8 @@ class LessonInstancesProvider implements LessonRepository {
   }
 
   @override
-  Future<void> unregister(String gymId, String date, String lessonId, Attendee attendee) async {
+  Future<void> unregister(
+      String gymId, String date, String lessonId, Attendee attendee) async {
     debugPrint("User [$attendee] removed from lesson with id [$lessonId]");
     await _firestore
         .collection(gymPath)
@@ -122,7 +116,8 @@ class LessonInstancesProvider implements LessonRepository {
     });
   }
 
-  Future<void> cleanLessonAttendees(String gymId, String date, String lessonId) async {
+  Future<void> cleanLessonAttendees(
+      String gymId, String date, String lessonId) async {
     await _firestore
         .collection(gymPath)
         .doc(gymId)
@@ -130,6 +125,9 @@ class LessonInstancesProvider implements LessonRepository {
         .doc(date)
         .collection(sub_collection_path)
         .doc(lessonId)
-        .update({"attendees": FieldValue.delete(), "acceptedAttendees": FieldValue.delete()});
+        .update({
+      "attendees": FieldValue.delete(),
+      "acceptedAttendees": FieldValue.delete()
+    });
   }
 }
