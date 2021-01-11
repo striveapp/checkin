@@ -12,7 +12,8 @@ class LessonInfos extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return BlocBuilder<RegistryBloc, RegistryState>(
-      buildWhen: (RegistryState previous, RegistryState current) => !(current is RegistryLoading),
+      buildWhen: (RegistryState previous, RegistryState current) =>
+          !(current is RegistryLoading),
       builder: (BuildContext context, RegistryState state) {
         return state.maybeMap(
           registryLoaded: (RegistryLoaded registryLoaded) {
@@ -23,22 +24,35 @@ class LessonInfos extends StatelessWidget {
                 Padding(
                   padding: const EdgeInsets.only(right: 16),
                   child: UserImage(
-                    userImage: currentLesson.masters.first.imageUrl,
+                    userImage: currentLesson.masters.isNotEmpty
+                        ? currentLesson.masters.first.imageUrl
+                        : currentLesson.imageUrl,
                   ),
                 ),
                 Column(
                   crossAxisAlignment: CrossAxisAlignment.start,
                   children: <Widget>[
-                    Text(currentLesson.name, style: Theme.of(context).textTheme.headline5),
-                    Text("${currentLesson.timeStart} - ${currentLesson.timeEnd}",
-                        style: Theme.of(context).textTheme.headline2.apply(fontSizeDelta: 4)),
+                    Text(currentLesson.name,
+                        style: Theme.of(context).textTheme.headline5),
                     Text(
-                      currentLesson.masters.first.name,
-                      style: Theme.of(context).textTheme.headline3,
-                    ),
-                    if (currentLesson.masters.length > 1)
-                      Text("${and.i18n} ${_getOtherMasterNames(currentLesson.masters)}",
-                          style: Theme.of(context).textTheme.headline3),
+                        "${currentLesson.timeStart} - ${currentLesson.timeEnd}",
+                        style: Theme.of(context)
+                            .textTheme
+                            .headline2
+                            .apply(fontSizeDelta: 4)),
+                    if (currentLesson.masters.isNotEmpty)
+                      Column(
+                        children: [
+                          Text(
+                            currentLesson.masters.first.name,
+                            style: Theme.of(context).textTheme.headline3,
+                          ),
+                          if (currentLesson.masters.length > 1)
+                            Text(
+                                "${and.i18n} ${_getOtherMasterNames(currentLesson.masters)}",
+                                style: Theme.of(context).textTheme.headline3),
+                        ],
+                      ),
                   ],
                 )
               ],

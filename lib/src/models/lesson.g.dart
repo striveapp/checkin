@@ -15,6 +15,7 @@ _$_Lesson _$_$_LessonFromJson(Map<String, dynamic> json) {
     timeEnd: json['timeEnd'] as String,
     weekDay: json['weekDay'] as String,
     timestamp: json['timestamp'] as int,
+    imageUrl: json['imageUrl'] as String,
     classCapacity: json['classCapacity'] as int ?? 10,
     masters: (json['masters'] as List)
             ?.map((e) =>
@@ -45,6 +46,7 @@ Map<String, dynamic> _$_$_LessonToJson(_$_Lesson instance) => <String, dynamic>{
       'timeEnd': instance.timeEnd,
       'weekDay': instance.weekDay,
       'timestamp': instance.timestamp,
+      'imageUrl': instance.imageUrl,
       'classCapacity': instance.classCapacity,
       'masters': instance.masters?.map((e) => e?.toJson())?.toList(),
       'attendees': instance.attendees?.map((e) => e?.toJson())?.toList(),
