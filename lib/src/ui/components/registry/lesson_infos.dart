@@ -25,9 +25,7 @@ class LessonInfos extends StatelessWidget {
                 Padding(
                   padding: const EdgeInsets.only(right: 16),
                   child: UserImage(
-                    userImage: currentLesson.masters.isNotEmpty
-                        ? currentLesson.masters.first.imageUrl
-                        : currentLesson.imageUrl,
+                    userImage: currentLesson.imageUrl,
                   ),
                 ),
                 Column(
