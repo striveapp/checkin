@@ -45,9 +45,7 @@ class LessonCard extends StatelessWidget {
                         Column(
                           children: [
                             UserImage(
-                              userImage: lesson.masters.isNotEmpty
-                                  ? lesson.masters.first.imageUrl
-                                  : lesson.imageUrl,
+                              userImage: lesson.imageUrl,
                             ),
                             if (lesson.lessonConfig != null)
                               Padding(
