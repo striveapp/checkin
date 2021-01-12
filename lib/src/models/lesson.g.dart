@@ -12,7 +12,7 @@ _$_Lesson _$_$_LessonFromJson(Map<String, dynamic> json) {
     date: json['date'] as String,
     name: json['name'] as String,
     timeStart: json['timeStart'] as String,
-    timeEnd: json['timeEnd'] as String,
+    timeEnd: json['timeEnd'] as String ?? '',
     weekDay: json['weekDay'] as String,
     timestamp: json['timestamp'] as int,
     imageUrl: json['imageUrl'] as String,

@@ -8,6 +8,7 @@ import 'package:flutter_bloc/flutter_bloc.dart';
 
 class LessonInfos extends StatelessWidget {
   static const String and = 'and';
+  static const String startingAt = 'Starting at %s';
 
   @override
   Widget build(BuildContext context) {
@@ -35,7 +36,10 @@ class LessonInfos extends StatelessWidget {
                     Text(currentLesson.name,
                         style: Theme.of(context).textTheme.headline5),
                     Text(
-                        "${currentLesson.timeStart} - ${currentLesson.timeEnd}",
+                        _formattedLessonInformation(
+                          timeStart: currentLesson.timeStart,
+                          timeEnd: currentLesson.timeEnd,
+                        ),
                         style: Theme.of(context)
                             .textTheme
                             .headline2
@@ -62,6 +66,17 @@ class LessonInfos extends StatelessWidget {
         );
       },
     );
+  }
+
+  String _formattedLessonInformation({
+    String timeStart,
+    String timeEnd,
+  }) {
+    if (timeEnd.isEmpty) {
+      return startingAt.i18n.fill([timeStart]);
+    } else {
+      return "${timeStart} - ${timeEnd}";
+    }
   }
 
   String _getOtherMasterNames(List<Master> masters) =>

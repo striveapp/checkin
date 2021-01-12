@@ -9,6 +9,7 @@ import 'package:flutter_bloc/flutter_bloc.dart';
 
 class LessonCard extends StatelessWidget {
   static const String emptyClass = 'Nobody in class yet';
+  static const String startingAt = 'Starting at %s';
 
   final Lesson lesson;
 
@@ -72,7 +73,11 @@ class LessonCard extends StatelessWidget {
                                 softWrap: false,
                                 style: Theme.of(context).textTheme.headline1,
                               ),
-                              Text("${lesson.timeStart} - ${lesson.timeEnd}",
+                              Text(
+                                  _formattedLessonInformation(
+                                    timeStart: lesson.timeStart,
+                                    timeEnd: lesson.timeEnd,
+                                  ),
                                   style: Theme.of(context).textTheme.headline3),
                             ],
                           ),
@@ -133,9 +138,20 @@ class LessonCard extends StatelessWidget {
               ),
             )));
   }
+
+  String _formattedLessonInformation({
+    String timeStart,
+    String timeEnd,
+  }) {
+    if (timeEnd.isEmpty) {
+      return startingAt.i18n.fill([timeStart]);
+    } else {
+      return "${timeStart} - ${timeEnd}";
+    }
+  }
+
+  String _capitalize(String s) => s[0].toUpperCase() + s.substring(1);
+
+  double _getFullPercentage(int numberOfAttendees, int classCapacity) =>
+      (numberOfAttendees * 100 / classCapacity) / 100;
 }
-
-String _capitalize(String s) => s[0].toUpperCase() + s.substring(1);
-
-double _getFullPercentage(int numberOfAttendees, int classCapacity) =>
-    (numberOfAttendees * 100 / classCapacity) / 100;
