@@ -3,6 +3,7 @@ import 'dart:async';
 import 'package:bloc/bloc.dart';
 import 'package:checkin/src/blocs/leaderboard/bloc.dart';
 import 'package:checkin/src/blocs/user/bloc.dart';
+import 'package:checkin/src/constants.dart';
 import 'package:checkin/src/models/user_history.dart';
 import 'package:checkin/src/repositories/stats_repository.dart';
 import 'package:flutter/material.dart';
@@ -27,7 +28,7 @@ class LeaderboardBloc extends Bloc<LeaderboardEvent, LeaderboardState> {
     if (userState is UserSuccess) {
       userHistorySub?.cancel();
       userHistorySub = _statsRepository
-          .getAllUserStats(userState.currentUser.selectedGymId)
+          .getAllUserStats(userState.currentUser.selectedGymId, YEAR)
           .listen((usersHistory) {
         add(LeaderboardUpdated(usersHistory: usersHistory));
       });

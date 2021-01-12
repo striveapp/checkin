@@ -1,6 +1,7 @@
 import 'package:bloc_test/bloc_test.dart';
 import 'package:checkin/src/blocs/leaderboard/bloc.dart';
 import 'package:checkin/src/blocs/user/bloc.dart';
+import 'package:checkin/src/constants.dart';
 import 'package:checkin/src/models/lesson.dart';
 import 'package:checkin/src/models/user.dart';
 import 'package:checkin/src/models/user_history.dart';
@@ -67,14 +68,14 @@ void main() {
         setUp(() {
           whenListen(mockUserBloc,
               Stream.fromIterable([UserSuccess(currentUser: fakeUser)]));
-          when(mockStatsRepository.getAllUserStats(fakeUser.selectedGymId))
+          when(mockStatsRepository.getAllUserStats(fakeUser.selectedGymId, YEAR))
               .thenAnswer((_) {
             return Stream<List<UserHistory>>.value(userHistories);
           });
         });
 
         tearDown(() {
-          verify(mockStatsRepository.getAllUserStats(fakeUser.selectedGymId));
+          verify(mockStatsRepository.getAllUserStats(fakeUser.selectedGymId, YEAR));
         });
 
         blocTest(
@@ -122,7 +123,7 @@ void main() {
         ];
 
         setUp(() {
-          when(mockStatsRepository.getAllUserStats(fakeUser.selectedGymId))
+          when(mockStatsRepository.getAllUserStats(fakeUser.selectedGymId, YEAR))
               .thenAnswer((_) {
             return Stream<List<UserHistory>>.value(unsortedUsersHistory);
           });
@@ -155,7 +156,7 @@ void main() {
         ];
 
         setUp(() {
-          when(mockStatsRepository.getAllUserStats(fakeUser.selectedGymId))
+          when(mockStatsRepository.getAllUserStats(fakeUser.selectedGymId, YEAR))
               .thenAnswer((_) {
             return Stream<List<UserHistory>>.value(usersHistory);
           });

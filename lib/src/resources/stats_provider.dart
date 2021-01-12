@@ -34,7 +34,7 @@ class StatsProvider implements StatsRepository {
 
   Lesson getLesson(lesson) => Lesson.fromJson(lesson);
 
-  Stream<List<UserHistory>> getAllUserStats(String gymId) => _firestore
+  Stream<List<UserHistory>> getAllUserStats(String gymId, String timespan) => _firestore
       .collection(gymPath)
       .doc(gymId)
       .collection(path)
@@ -43,6 +43,10 @@ class StatsProvider implements StatsRepository {
           .map((doc) => UserHistory(
               email: doc.id,
               attendedLessons: (doc.data()['attendedLessons'] as List)
+                  .where((lesson) =>
+              lesson['timestamp'] >
+                  DateUtil.getFirstDayOfTimespan(timespan)
+                      .millisecondsSinceEpoch)
                   .map(getLesson)
                   .toList()))
           .toList());
