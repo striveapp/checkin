@@ -11,4 +11,4 @@ pre-commit:
     pretty:
       glob: '*.dart'
       exclude: '*.freezed.dart|*.g.dart'
-      run: flutter format {staged_files} && git add {staged_files}
+      run: flutter format -l 100 {staged_files} && git add {staged_files}
