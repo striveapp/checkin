@@ -27,7 +27,7 @@ class LoginButtons extends StatelessWidget {
         Text(
           or.i18n,
           style: Theme.of(context).textTheme.headline3.apply(
-                color: Theme.of(context).primaryColor,
+                color: Theme.of(context).splashColor,
               ),
         ),
         PasswordlessSignInButton(),
