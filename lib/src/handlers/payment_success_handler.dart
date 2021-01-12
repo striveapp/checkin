@@ -10,9 +10,10 @@ class PaymentSuccessHandler extends Handler implements RegisterableHandler {
   }
 
   @override
-  HandlerFunc get handlerFunc => (BuildContext context, Map<String, List<String>> params) {
-    return PaymentSuccessPage();
-  };
+  HandlerFunc get handlerFunc =>
+      (BuildContext context, Map<String, List<String>> params) {
+        return PaymentSuccessPage();
+      };
 
   String get route => "payment/success";
 }

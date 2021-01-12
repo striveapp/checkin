@@ -26,7 +26,8 @@ void main() {
     setUp(() {
       mockUserRepository = MockUserRepository();
       mockUserBloc = MockUserBloc();
-      whenListen(mockUserBloc, Stream.fromIterable([UserSuccess(currentUser: loggedUser)]));
+      whenListen(mockUserBloc,
+          Stream.fromIterable([UserSuccess(currentUser: loggedUser)]));
       configureThrowOnMissingStub([mockUserRepository]);
     });
 
@@ -39,7 +40,8 @@ void main() {
     group("when load profile of current user", () {
       blocTest(
         "should emit ProfileLoaded with the current user and isCurrent user as true",
-        build: () => ProfileBloc(userBloc: mockUserBloc, userRepository: mockUserRepository),
+        build: () => ProfileBloc(
+            userBloc: mockUserBloc, userRepository: mockUserRepository),
         expect: [ProfileLoaded(profileUser: loggedUser, isCurrentUser: true)],
       );
     });
@@ -51,13 +53,14 @@ void main() {
         imageUrl: "someImage",
       );
 
-      setUp((){
-        when(mockUserRepository.getUserByEmail(fakeOtherUser.email)).thenAnswer((_) {
+      setUp(() {
+        when(mockUserRepository.getUserByEmail(fakeOtherUser.email))
+            .thenAnswer((_) {
           return Stream<User>.value(fakeOtherUser);
         });
       });
 
-      tearDown((){
+      tearDown(() {
         verify(mockUserRepository.getUserByEmail(fakeOtherUser.email));
       });
 
@@ -68,7 +71,9 @@ void main() {
           userRepository: mockUserRepository,
           nonCurrentUserEmail: fakeOtherUser.email,
         ),
-        expect: [ProfileLoaded(profileUser: fakeOtherUser, isCurrentUser: false)],
+        expect: [
+          ProfileLoaded(profileUser: fakeOtherUser, isCurrentUser: false)
+        ],
       );
     });
   });

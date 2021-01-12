@@ -4,11 +4,9 @@ class PriceHeader extends StatelessWidget {
   final String name;
   final String description;
 
-  const PriceHeader({
-    Key key,
-    @required String this.name,
-    @required String this.description
-  }) : super(key: key);
+  const PriceHeader(
+      {Key key, @required String this.name, @required String this.description})
+      : super(key: key);
 
   @override
   Widget build(BuildContext context) {
@@ -23,9 +21,17 @@ class PriceHeader extends StatelessWidget {
         child: Column(
           mainAxisAlignment: MainAxisAlignment.spaceBetween,
           children: [
-            Text(name, style: Theme.of(context).textTheme.headline2,),
-            SizedBox(height: 5,),
-            Text(description, style: Theme.of(context).textTheme.subtitle1, )
+            Text(
+              name,
+              style: Theme.of(context).textTheme.headline2,
+            ),
+            SizedBox(
+              height: 5,
+            ),
+            Text(
+              description,
+              style: Theme.of(context).textTheme.subtitle1,
+            )
           ],
         ),
       ),

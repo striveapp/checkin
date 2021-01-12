@@ -18,22 +18,26 @@ class StatsHandler extends Handler implements RegisterableHandler {
   }
 
   @override
-  HandlerFunc get handlerFunc => (BuildContext context, Map<String, List<String>> params) {
-    UserRepository userRepository = RepositoryProvider.of<UserRepository>(context);
-    StorageRepository storageRepository = StorageRepository();
-    ImageRepository imageRepository = ImageRepository();
+  HandlerFunc get handlerFunc =>
+      (BuildContext context, Map<String, List<String>> params) {
+        UserRepository userRepository =
+            RepositoryProvider.of<UserRepository>(context);
+        StorageRepository storageRepository = StorageRepository();
+        ImageRepository imageRepository = ImageRepository();
 
-    return BlocProvider<UserBloc>(
-        create: (BuildContext context) {
-          return UserBloc(
-            userRepository: userRepository,
-            storageRepository: storageRepository,
-            imageRepository: imageRepository,
-            authBloc: BlocProvider.of<AuthBloc>(context),
-          );
-        },child: StatsPage(userEmail: params[userEmail][0],)
-    );
-  };
+        return BlocProvider<UserBloc>(
+            create: (BuildContext context) {
+              return UserBloc(
+                userRepository: userRepository,
+                storageRepository: storageRepository,
+                imageRepository: imageRepository,
+                authBloc: BlocProvider.of<AuthBloc>(context),
+              );
+            },
+            child: StatsPage(
+              userEmail: params[userEmail][0],
+            ));
+      };
 
   String get route => "stats/:$userEmail";
 }

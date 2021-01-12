@@ -21,6 +21,4 @@ class AppConfig {
         break;
     }
   }
-
-
 }

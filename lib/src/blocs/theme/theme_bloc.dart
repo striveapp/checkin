@@ -6,7 +6,8 @@ import './bloc.dart';
 class ThemeBloc extends Bloc<ThemeEvent, ThemeState> {
   ThemeBloc()
       : super(AppTheme(
-            themeData: WidgetsBinding.instance.window.platformBrightness == Brightness.dark
+            themeData: WidgetsBinding.instance.window.platformBrightness ==
+                    Brightness.dark
                 ? theme[ThemeType.Dark]
                 : theme[ThemeType.NewLight]));
 
@@ -18,5 +19,4 @@ class ThemeBloc extends Bloc<ThemeEvent, ThemeState> {
       yield AppTheme(themeData: theme[event.themeType]);
     }
   }
-
 }

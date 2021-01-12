@@ -21,8 +21,8 @@ class NotificationProvider {
     if (platform.isIOS) {
       iosSubscription =
           _firebaseMessaging.onIosSettingsRegistered.listen((data) async {
-            var token = await _firebaseMessaging.getToken();
-            onSuccess(token);
+        var token = await _firebaseMessaging.getToken();
+        onSuccess(token);
       });
 
       _firebaseMessaging

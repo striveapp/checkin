@@ -14,8 +14,7 @@ class GradeCard extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     void _onTap(Grade grade) {
-      BlocProvider.of<UserBloc>(context)
-        ..add(UpdateGrade(newGrade: grade));
+      BlocProvider.of<UserBloc>(context)..add(UpdateGrade(newGrade: grade));
     }
 
     return Card(
@@ -32,10 +31,8 @@ class GradeCard extends StatelessWidget {
                     child: Column(
                       crossAxisAlignment: CrossAxisAlignment.start,
                       children: <Widget>[
-                        Text(
-                          beltColor.i18n.fill([grade.name.i18n]),
-                          style: Theme.of(context).textTheme.headline2
-                        ),
+                        Text(beltColor.i18n.fill([grade.name.i18n]),
+                            style: Theme.of(context).textTheme.headline2),
                         SizedBox(
                           height: 5,
                         ),
@@ -46,7 +43,8 @@ class GradeCard extends StatelessWidget {
                                   .textTheme
                                   .headline2
                                   .color
-                                  .withAlpha(100), fontSizeFactor: 0.8),
+                                  .withAlpha(100),
+                              fontSizeFactor: 0.8),
                         ),
                       ],
                     ),

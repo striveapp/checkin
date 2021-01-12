@@ -44,5 +44,4 @@ class LeaderboardTest extends AbstractTest {
       });
     });
   }
-
 }

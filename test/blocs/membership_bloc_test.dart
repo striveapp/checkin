@@ -36,11 +36,19 @@ void main() {
       mockMembershipRepository = MockMembershipRepository();
       mockMembershipApi = MockMembershipApi();
       mockAnalyticsRepository = MockAnalyticsRepository();
-      configureThrowOnMissingStub([mockMembershipRepository,mockMembershipApi,mockAnalyticsRepository]);
+      configureThrowOnMissingStub([
+        mockMembershipRepository,
+        mockMembershipApi,
+        mockAnalyticsRepository
+      ]);
     });
 
-    tearDown((){
-      logAndVerifyNoMoreInteractions([mockMembershipRepository,mockMembershipApi,mockAnalyticsRepository]);
+    tearDown(() {
+      logAndVerifyNoMoreInteractions([
+        mockMembershipRepository,
+        mockMembershipApi,
+        mockAnalyticsRepository
+      ]);
     });
 
     group("initial state", () {
@@ -59,7 +67,7 @@ void main() {
         );
       });
 
-      tearDown((){
+      tearDown(() {
         verify(mockMembershipRepository.getMembership(
             email: fakeEmail, gymId: fakeGymId));
       });
@@ -141,10 +149,10 @@ void main() {
     });
 
     group("on Unsubscribe event", () {
-      group("when NO error occurred",(){
+      group("when NO error occurred", () {
         setUp(() {
           when(mockMembershipRepository.getMembership(
-              email: fakeEmail, gymId: fakeGymId))
+                  email: fakeEmail, gymId: fakeGymId))
               .thenAnswer((_) => Stream.empty());
           when(mockAnalyticsRepository.logUnsubscribe())
               .thenAnswer((realInvocation) => null);
@@ -164,12 +172,12 @@ void main() {
 
         blocTest("should unsubscribe the customer",
             build: () => MembershipBloc(
-              membershipRepository: mockMembershipRepository,
-              membershipApi: mockMembershipApi,
-              analyticsRepository: mockAnalyticsRepository,
-              userEmail: fakeUser.email,
-              selectedGymId: fakeUser.selectedGymId,
-            ),
+                  membershipRepository: mockMembershipRepository,
+                  membershipApi: mockMembershipApi,
+                  analyticsRepository: mockAnalyticsRepository,
+                  userEmail: fakeUser.email,
+                  selectedGymId: fakeUser.selectedGymId,
+                ),
             act: (bloc) => bloc.add(Unsubscribe()),
             expect: [MembershipLoading()],
             verify: (bloc) async {
@@ -181,8 +189,12 @@ void main() {
       });
 
       group("when en error occurred", () {
-        setUp((){
-          resetMocks([mockMembershipRepository,mockMembershipApi,mockAnalyticsRepository]);
+        setUp(() {
+          resetMocks([
+            mockMembershipRepository,
+            mockMembershipApi,
+            mockAnalyticsRepository
+          ]);
         });
 
         group("and the error is ApiException", () {
@@ -192,7 +204,7 @@ void main() {
           );
           setUp(() {
             when(mockMembershipRepository.getMembership(
-                email: fakeEmail, gymId: fakeGymId))
+                    email: fakeEmail, gymId: fakeGymId))
                 .thenAnswer((_) => Stream.empty());
 
             when(mockAnalyticsRepository.logUnsubscribe())
@@ -202,7 +214,7 @@ void main() {
             )).thenThrow(apiError);
           });
 
-          tearDown((){
+          tearDown(() {
             verify(mockMembershipRepository.getMembership(
                 email: fakeEmail, gymId: fakeGymId));
             verify(mockAnalyticsRepository.logUnsubscribe());
@@ -237,7 +249,7 @@ void main() {
 
           setUp(() {
             when(mockMembershipRepository.getMembership(
-                email: fakeEmail, gymId: fakeGymId))
+                    email: fakeEmail, gymId: fakeGymId))
                 .thenAnswer((_) => Stream.empty());
 
             when(mockAnalyticsRepository.logUnsubscribe())

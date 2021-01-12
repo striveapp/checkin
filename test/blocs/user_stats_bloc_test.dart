@@ -47,80 +47,93 @@ void main() {
 
     group("on StatsBloc TimespanUpdated event per week", () {
       setUp(() {
-        whenListen(mockStatsBloc, Stream.fromIterable([TimespanUpdated(timespan: WEEK)]));
-        when(mockStatsRepository.getUserStats(loggedUser.selectedGymId, loggedUser.email, WEEK))
+        whenListen(mockStatsBloc,
+            Stream.fromIterable([TimespanUpdated(timespan: WEEK)]));
+        when(mockStatsRepository.getUserStats(
+                loggedUser.selectedGymId, loggedUser.email, WEEK))
             .thenAnswer((_) {
-          return Stream<UserHistory>.value(
-              UserHistory(email: "test@test.com", attendedLessons: attendedLessons));
+          return Stream<UserHistory>.value(UserHistory(
+              email: "test@test.com", attendedLessons: attendedLessons));
         });
       });
 
       tearDown(() {
-        verify(mockStatsRepository.getUserStats(loggedUser.selectedGymId, loggedUser.email, WEEK));
+        verify(mockStatsRepository.getUserStats(
+            loggedUser.selectedGymId, loggedUser.email, WEEK));
       });
 
       blocTest(
         "should emit UserStatsLoaded",
-        build: () =>
-            UserStatsBloc(
-              statsRepository: mockStatsRepository,
-              userEmail: loggedUser.email,
-              selectedGymId: loggedUser.selectedGymId,
-              statsBloc: mockStatsBloc,
-            ),
-        expect: [UserStatsLoaded(attendedLessons: attendedLessons, timespan: WEEK)],
+        build: () => UserStatsBloc(
+          statsRepository: mockStatsRepository,
+          userEmail: loggedUser.email,
+          selectedGymId: loggedUser.selectedGymId,
+          statsBloc: mockStatsBloc,
+        ),
+        expect: [
+          UserStatsLoaded(attendedLessons: attendedLessons, timespan: WEEK)
+        ],
       );
     });
 
     group("on StatsBloc TimespanUpdated event per month", () {
       setUp(() {
-        whenListen(mockStatsBloc, Stream.fromIterable([TimespanUpdated(timespan: MONTH)]));
-        when(mockStatsRepository.getUserStats(loggedUser.selectedGymId, loggedUser.email, MONTH))
+        whenListen(mockStatsBloc,
+            Stream.fromIterable([TimespanUpdated(timespan: MONTH)]));
+        when(mockStatsRepository.getUserStats(
+                loggedUser.selectedGymId, loggedUser.email, MONTH))
             .thenAnswer((_) {
-          return Stream<UserHistory>.value(
-              UserHistory(email: "test@test.com", attendedLessons: attendedLessons));
+          return Stream<UserHistory>.value(UserHistory(
+              email: "test@test.com", attendedLessons: attendedLessons));
         });
       });
 
       tearDown(() {
-        verify(mockStatsRepository.getUserStats(loggedUser.selectedGymId, loggedUser.email, MONTH));
+        verify(mockStatsRepository.getUserStats(
+            loggedUser.selectedGymId, loggedUser.email, MONTH));
       });
 
       blocTest(
         "should emit StatsLoaded",
-        build: () =>
-            UserStatsBloc(
-              statsRepository: mockStatsRepository,
-              userEmail: loggedUser.email,
-              selectedGymId: loggedUser.selectedGymId,
-              statsBloc: mockStatsBloc,
-            ),
-        expect: [UserStatsLoaded(attendedLessons: attendedLessons, timespan: MONTH)],
+        build: () => UserStatsBloc(
+          statsRepository: mockStatsRepository,
+          userEmail: loggedUser.email,
+          selectedGymId: loggedUser.selectedGymId,
+          statsBloc: mockStatsBloc,
+        ),
+        expect: [
+          UserStatsLoaded(attendedLessons: attendedLessons, timespan: MONTH)
+        ],
       );
     });
 
     group("on StatsBloc TimespanUpdated event per year", () {
       setUp(() {
-        whenListen(mockStatsBloc, Stream.fromIterable([TimespanUpdated(timespan: YEAR)]));
-        when(mockStatsRepository.getUserStats(loggedUser.selectedGymId, loggedUser.email, YEAR))
+        whenListen(mockStatsBloc,
+            Stream.fromIterable([TimespanUpdated(timespan: YEAR)]));
+        when(mockStatsRepository.getUserStats(
+                loggedUser.selectedGymId, loggedUser.email, YEAR))
             .thenAnswer((_) {
-          return Stream<UserHistory>.value(
-              UserHistory(email: "test@test.com", attendedLessons: attendedLessons));
+          return Stream<UserHistory>.value(UserHistory(
+              email: "test@test.com", attendedLessons: attendedLessons));
         });
       });
 
       tearDown(() {
-        verify(mockStatsRepository.getUserStats(loggedUser.selectedGymId, loggedUser.email, YEAR));
+        verify(mockStatsRepository.getUserStats(
+            loggedUser.selectedGymId, loggedUser.email, YEAR));
       });
 
-      blocTest("should emit StatsLoaded", build: () =>
-          UserStatsBloc(
-            statsRepository: mockStatsRepository,
-            userEmail: loggedUser.email,
-            selectedGymId: loggedUser.selectedGymId,
-            statsBloc: mockStatsBloc,
-          ),
-          expect: [UserStatsLoaded(attendedLessons: attendedLessons, timespan: YEAR)]);
+      blocTest("should emit StatsLoaded",
+          build: () => UserStatsBloc(
+                statsRepository: mockStatsRepository,
+                userEmail: loggedUser.email,
+                selectedGymId: loggedUser.selectedGymId,
+                statsBloc: mockStatsBloc,
+              ),
+          expect: [
+            UserStatsLoaded(attendedLessons: attendedLessons, timespan: YEAR)
+          ]);
     });
   });
 }

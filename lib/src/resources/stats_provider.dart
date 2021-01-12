@@ -11,14 +11,23 @@ class StatsProvider implements StatsRepository {
 
   FirebaseFirestore _firestore = FirebaseFirestore.instance;
 
-  Stream<UserHistory> getUserStats(String gymId, String email, String timespan) {
-    return _firestore.collection(gymPath).doc(gymId).collection(path).doc(email).snapshots().map(
-        (doc) => UserHistory(
+  Stream<UserHistory> getUserStats(
+      String gymId, String email, String timespan) {
+    return _firestore
+        .collection(gymPath)
+        .doc(gymId)
+        .collection(path)
+        .doc(email)
+        .snapshots()
+        .map((doc) => UserHistory(
             email: doc.id,
-            attendedLessons: (doc.data() != null ? doc.data()['attendedLessons'] as List : [])
+            attendedLessons: (doc.data() != null
+                    ? doc.data()['attendedLessons'] as List
+                    : [])
                 ?.where((lesson) =>
                     lesson['timestamp'] >
-                    DateUtil.getFirstDayOfTimespan(timespan).millisecondsSinceEpoch)
+                    DateUtil.getFirstDayOfTimespan(timespan)
+                        .millisecondsSinceEpoch)
                 ?.map(getLesson)
                 ?.toList()));
   }
@@ -33,15 +42,26 @@ class StatsProvider implements StatsRepository {
       .map((snapshot) => snapshot.docs
           .map((doc) => UserHistory(
               email: doc.id,
-              attendedLessons: (doc.data()['attendedLessons'] as List).map(getLesson).toList()))
+              attendedLessons: (doc.data()['attendedLessons'] as List)
+                  .map(getLesson)
+                  .toList()))
           .toList());
 
-  Stream<UserHistory> getUserStatsByGrade(String gymId, String email, Grade grade) {
-    return _firestore.collection(gymPath).doc(gymId).collection(path).doc(email).snapshots().map(
-        (doc) => UserHistory(
+  Stream<UserHistory> getUserStatsByGrade(
+      String gymId, String email, Grade grade) {
+    return _firestore
+        .collection(gymPath)
+        .doc(gymId)
+        .collection(path)
+        .doc(email)
+        .snapshots()
+        .map((doc) => UserHistory(
             email: doc.id,
-            attendedLessons: (doc.data() != null ? doc.data()['attendedLessons'] as List : [])
-                ?.where((lesson) => lesson['attendedAsGrade'] == grade.name.toLowerCase())
+            attendedLessons: (doc.data() != null
+                    ? doc.data()['attendedLessons'] as List
+                    : [])
+                ?.where((lesson) =>
+                    lesson['attendedAsGrade'] == grade.name.toLowerCase())
                 ?.map(getLesson)
                 ?.toList()));
   }

@@ -17,7 +17,11 @@ class GraduationPreview extends StatelessWidget {
       mainAxisAlignment: MainAxisAlignment.center,
       children: [
         currentGrade.icon,
-        Icon(Icons.double_arrow_outlined, color: Theme.of(context).accentColor, size: 35,),
+        Icon(
+          Icons.double_arrow_outlined,
+          color: Theme.of(context).accentColor,
+          size: 35,
+        ),
         newGrade.icon,
       ],
     );

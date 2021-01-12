@@ -12,7 +12,6 @@ class ActiveMembershipView extends StatelessWidget {
   static const String yourSubscription = 'Your subscription';
   static const String remainingSessions = 'Remaining sessions';
 
-
   const ActiveMembershipView({Key key, this.membership}) : super(key: key);
 
   @override
@@ -27,8 +26,10 @@ class ActiveMembershipView extends StatelessWidget {
             children: <Widget>[
               Text(
                 yourSubscription.i18n,
-                style:
-                Theme.of(context).textTheme.headline3.apply(fontWeightDelta: 1),
+                style: Theme.of(context)
+                    .textTheme
+                    .headline3
+                    .apply(fontWeightDelta: 1),
               ),
               Padding(
                 padding: const EdgeInsets.symmetric(horizontal: 8),
@@ -38,17 +39,24 @@ class ActiveMembershipView extends StatelessWidget {
                   overflow: TextOverflow.ellipsis,
                 ),
               ),
-              SizedBox(height: 10,),
+              SizedBox(
+                height: 10,
+              ),
               Text(
                 remainingSessions.i18n,
-                style:
-                Theme.of(context).textTheme.headline3.apply(fontWeightDelta: 1),
+                style: Theme.of(context)
+                    .textTheme
+                    .headline3
+                    .apply(fontWeightDelta: 1),
               ),
               Padding(
-                padding: const EdgeInsets.only(left: 8, right: 8),
-                child: RemainingLessonsIndicator(totalLessonsOfPlan: membership.totalLessonsOfPlan,)
+                  padding: const EdgeInsets.only(left: 8, right: 8),
+                  child: RemainingLessonsIndicator(
+                    totalLessonsOfPlan: membership.totalLessonsOfPlan,
+                  )),
+              SizedBox(
+                height: 15,
               ),
-              SizedBox(height: 15,),
               Center(
                 child: RichText(
                   text: TextSpan(
@@ -68,7 +76,9 @@ class ActiveMembershipView extends StatelessWidget {
                   ),
                 ),
               ),
-              SizedBox(height: 5,),
+              SizedBox(
+                height: 5,
+              ),
               Center(
                 child: RaisedButton(
                   child: Text(
@@ -87,6 +97,5 @@ class ActiveMembershipView extends StatelessWidget {
             ],
           ),
         ));
-
   }
 }

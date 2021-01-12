@@ -8,12 +8,11 @@ import 'attendees_list.dart';
 import 'registry_counter.dart';
 
 class Registry extends StatelessWidget {
-
   @override
   Widget build(BuildContext context) {
     return BlocListener<RegistryBloc, RegistryState>(
       listener: (BuildContext context, RegistryState state) {
-        if(state is RegistryMissing) {
+        if (state is RegistryMissing) {
           showDialog(
             context: context,
             builder: (_) => RegistryMissingDialog().build(context),

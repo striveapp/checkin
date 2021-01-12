@@ -10,7 +10,7 @@ abstract class MembershipEvent with _$MembershipEvent {
   const factory MembershipEvent.membershipUpdated({
     @required String customerEmail,
     @required Membership membership,
-  }) =  MembershipUpdated;
+  }) = MembershipUpdated;
 
   const factory MembershipEvent.unsubscribe() = Unsubscribe;
 }

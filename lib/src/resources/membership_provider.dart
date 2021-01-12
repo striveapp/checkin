@@ -45,7 +45,9 @@ class MembershipProvider implements MembershipRepository {
       customerId: infos["id"],
       name: subscription["subscriptionPlanName"] ?? "Unknown Subscription",
       currentPeriodEnd: subscription['current_period_end'],
-      totalLessonsOfPlan: (subscription['totalLessonsOfPlan'] as int)?.toDouble() ?? double.infinity,
+      totalLessonsOfPlan:
+          (subscription['totalLessonsOfPlan'] as int)?.toDouble() ??
+              double.infinity,
     );
   }
 }

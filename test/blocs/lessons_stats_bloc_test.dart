@@ -61,26 +61,27 @@ void main() {
       configureThrowOnMissingStub([mockLessonRepository]);
     });
 
-    tearDown((){
+    tearDown(() {
       logAndVerifyNoMoreInteractions([mockLessonRepository]);
     });
 
     // todo missing initial state test
 
-    group("on UpdateLessonStats event",(){
-      group("when StatsBloc emits TimespanUpdated state",(){
-        setUp((){
+    group("on UpdateLessonStats event", () {
+      group("when StatsBloc emits TimespanUpdated state", () {
+        setUp(() {
           whenListen(mockStatsBloc,
               Stream.fromIterable([TimespanUpdated(timespan: WEEK)]));
 
-          when(mockLessonRepository.getLessonsByMasterAndTimespan(fakeMaster, WEEK))
+          when(mockLessonRepository.getLessonsByMasterAndTimespan(
+                  fakeMaster, WEEK))
               .thenAnswer((_) => Stream<List<Lesson>>.value(allLessons));
         });
 
-        tearDown((){
-          verify(mockLessonRepository.getLessonsByMasterAndTimespan(fakeMaster, WEEK));
+        tearDown(() {
+          verify(mockLessonRepository.getLessonsByMasterAndTimespan(
+              fakeMaster, WEEK));
         });
-
 
         //TODO: this should probably be a different data structure, maybe a map with attendee and counter
         blocTest(
@@ -101,7 +102,6 @@ void main() {
             ),
           ],
         );
-
       });
     });
   });

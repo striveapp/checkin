@@ -10,7 +10,8 @@ class RegisterDialog extends StatelessWidget {
 
   const RegisterDialog({Key key, @required this.currentUser}) : super(key: key);
 
-  static const String userFinishedAvailableSessions = 'You used all available sessions for your plan.';
+  static const String userFinishedAvailableSessions =
+      'You used all available sessions for your plan.';
   static const String cancel = 'Cancel';
   static const String continueAnyway = 'Register anyway';
 
@@ -18,27 +19,17 @@ class RegisterDialog extends StatelessWidget {
   Widget build(BuildContext context) {
     return AlertDialog(
       contentPadding: EdgeInsets.symmetric(horizontal: 15, vertical: 25),
-      content: Text(
-          userFinishedAvailableSessions.i18n,
-          textAlign:
-          TextAlign.center,
-          style:
-          Theme.of(context)
-              .textTheme
-              .headline3),
+      content: Text(userFinishedAvailableSessions.i18n,
+          textAlign: TextAlign.center,
+          style: Theme.of(context).textTheme.headline3),
       actionsPadding: EdgeInsets.symmetric(horizontal: 10),
       actions: <Widget>[
         RaisedButton(
           child: Padding(
-            padding:
-            EdgeInsets.symmetric(
-                vertical: 10,
-                horizontal: 10),
+            padding: EdgeInsets.symmetric(vertical: 10, horizontal: 10),
             child: Text(
               continueAnyway.i18n,
-              style: Theme.of(context)
-                  .textTheme
-                  .button,
+              style: Theme.of(context).textTheme.button,
             ),
           ),
           onPressed: () {
@@ -46,30 +37,20 @@ class RegisterDialog extends StatelessWidget {
               gymId: currentUser.selectedGymId,
               attendee: Attendee.fromUser(currentUser),
             ));
-            Navigator.of(context)
-                .pop();
+            Navigator.of(context).pop();
           },
         ),
         RaisedButton(
-          color: Theme.of(context)
-              .buttonTheme
-              .colorScheme
-              .error,
+          color: Theme.of(context).buttonTheme.colorScheme.error,
           child: Padding(
-            padding:
-            EdgeInsets.symmetric(
-                vertical: 10,
-                horizontal: 10),
+            padding: EdgeInsets.symmetric(vertical: 10, horizontal: 10),
             child: Text(
               cancel.i18n,
-              style: Theme.of(context)
-                  .textTheme
-                  .button,
+              style: Theme.of(context).textTheme.button,
             ),
           ),
           onPressed: () {
-            Navigator.of(context)
-                .pop();
+            Navigator.of(context).pop();
           },
         ),
       ],

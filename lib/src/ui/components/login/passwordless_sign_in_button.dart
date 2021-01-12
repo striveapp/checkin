@@ -17,10 +17,10 @@ class PasswordlessSignInButton extends StatelessWidget {
       child: Ink(
         decoration: const BoxDecoration(
           borderRadius: BorderRadius.all(Radius.circular(8.0)),
-          gradient: LinearGradient(colors: [
-            Color(0xFFF44336),
-            Colors.black
-          ], begin: Alignment.topLeft, end: Alignment.bottomRight),
+          gradient: LinearGradient(
+              colors: [Color(0xFFF44336), Colors.black],
+              begin: Alignment.topLeft,
+              end: Alignment.bottomRight),
         ),
         child: Container(
           alignment: Alignment.center,

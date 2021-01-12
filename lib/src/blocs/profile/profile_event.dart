@@ -7,5 +7,8 @@ part 'profile_event.freezed.dart';
 
 @freezed
 abstract class ProfileEvent with _$ProfileEvent {
-  const factory ProfileEvent.profileUpdated({@required User user, @required bool isCurrentUser,}) = ProfileUpdated;
+  const factory ProfileEvent.profileUpdated({
+    @required User user,
+    @required bool isCurrentUser,
+  }) = ProfileUpdated;
 }

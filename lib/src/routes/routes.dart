@@ -6,7 +6,6 @@ import 'package:checkin/src/handlers/registerable_handler.dart';
 import 'package:checkin/src/handlers/stats_handler.dart';
 import 'package:fluro/fluro.dart';
 
-
 class Routes {
   static List<RegisterableHandler> routeHandlers = [
     HomeHandler(),
@@ -19,8 +18,7 @@ class Routes {
     EmailRetrieveHandler(),
   ];
 
-
   static void configureRoutes(FluroRouter router) {
-    routeHandlers.forEach( (handler) => handler.registerRoute(router));
+    routeHandlers.forEach((handler) => handler.registerRoute(router));
   }
 }

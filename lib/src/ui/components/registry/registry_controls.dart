@@ -17,48 +17,51 @@ class RegistryControls extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return BlocBuilder<RegistryBloc, RegistryState>(
-        buildWhen: (RegistryState previous, RegistryState current) => !(current is RegistryLoading),
+        buildWhen: (RegistryState previous, RegistryState current) =>
+            !(current is RegistryLoading),
         builder: (BuildContext context, RegistryState state) {
-      return state.maybeMap(
-          registryLoaded: (RegistryLoaded state) {
-            var currentUser = state.currentUser;
+          return state.maybeMap(
+              registryLoaded: (RegistryLoaded state) {
+                var currentUser = state.currentUser;
 
-            VoidCallback showConfirmDialogOnPressAcceptAll = () {
-              showDialog(
-                context: context,
-                builder: (_) =>
-                    AcceptAllDialog(currentUser: state.currentUser)
-                        .build(context),
-              );
-            };
+                VoidCallback showConfirmDialogOnPressAcceptAll = () {
+                  showDialog(
+                    context: context,
+                    builder: (_) =>
+                        AcceptAllDialog(currentUser: state.currentUser)
+                            .build(context),
+                  );
+                };
 
-            if (currentUser.isOwner) {
-              return Column(
-                children: [
-                  if (!state.isMasterOfTheClass)
-                    Column(
-                      children: [
-                        StudentButton(registryState: state),
-                        SizedBox(height: 20,)
-                      ],
-                    ),
-                  RegistryButton(
-                    key: Key('acceptAll'),
-                    onPressed: state.currentLesson.attendees.length > 0
-                        ? showConfirmDialogOnPressAcceptAll
-                        : DISABLED_BUTTON,
-                    text: RegistryControls.acceptAll.i18n,
-                  ),
-                ],
-              );
-            }
+                if (currentUser.isOwner) {
+                  return Column(
+                    children: [
+                      if (!state.isMasterOfTheClass)
+                        Column(
+                          children: [
+                            StudentButton(registryState: state),
+                            SizedBox(
+                              height: 20,
+                            )
+                          ],
+                        ),
+                      RegistryButton(
+                        key: Key('acceptAll'),
+                        onPressed: state.currentLesson.attendees.length > 0
+                            ? showConfirmDialogOnPressAcceptAll
+                            : DISABLED_BUTTON,
+                        text: RegistryControls.acceptAll.i18n,
+                      ),
+                    ],
+                  );
+                }
 
-            return StudentButton(registryState: state);
-          },
-          orElse: () => RegistryButton(
-                isLoading: true,
-                onPressed: DISABLED_BUTTON,
-              ));
-    });
+                return StudentButton(registryState: state);
+              },
+              orElse: () => RegistryButton(
+                    isLoading: true,
+                    onPressed: DISABLED_BUTTON,
+                  ));
+        });
   }
 }

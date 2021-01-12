@@ -10,7 +10,6 @@ abstract class StatsState extends Equatable {
 }
 
 class InitialStatsState extends StatsState {
-
   @override
   String toString() => 'InitialStatsState';
 }

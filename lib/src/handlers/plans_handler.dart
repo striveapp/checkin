@@ -20,21 +20,23 @@ class PlansHandler extends Handler implements RegisterableHandler {
   @override
   HandlerFunc get handlerFunc =>
       (BuildContext context, Map<String, List<String>> params) {
-        UserRepository userRepository = RepositoryProvider.of<UserRepository>(context);
+        UserRepository userRepository =
+            RepositoryProvider.of<UserRepository>(context);
         StorageRepository storageRepository = StorageRepository();
         ImageRepository imageRepository = ImageRepository();
 
-        return MultiBlocProvider(providers: [
-          BlocProvider<UserBloc>(
-            create: (BuildContext context) => UserBloc(
-              userRepository: userRepository,
-              storageRepository: storageRepository,
-              imageRepository: imageRepository,
-              authBloc: BlocProvider.of<AuthBloc>(context),
+        return MultiBlocProvider(
+          providers: [
+            BlocProvider<UserBloc>(
+              create: (BuildContext context) => UserBloc(
+                userRepository: userRepository,
+                storageRepository: storageRepository,
+                imageRepository: imageRepository,
+                authBloc: BlocProvider.of<AuthBloc>(context),
+              ),
             ),
-          ),
-        ], child: PlansPage(
-            customerId: params[customerId][0]),
+          ],
+          child: PlansPage(customerId: params[customerId][0]),
         );
       };
 

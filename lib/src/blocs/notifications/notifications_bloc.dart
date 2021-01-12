@@ -29,14 +29,14 @@ class NotificationsBloc extends Bloc<NotificationsEvent, NotificationsState> {
       try {
         this.notificationRepository.setup(onSuccess: _saveUserToken);
         yield NotificationsInitialized();
-      } catch(err) {
+      } catch (err) {
         debugPrint(err);
       }
     }
     if (event is ShowDialog) {
       yield NotificationToDialog(notification: event.notification);
     }
-    if(event is NotificationOpened) {
+    if (event is NotificationOpened) {
       yield NotificationToNavigate(path: event.path);
     }
   }
@@ -64,7 +64,7 @@ class NotificationsBloc extends Bloc<NotificationsEvent, NotificationsState> {
   void _onLaunchOrOnResume(Map<String, dynamic> msg) {
     NavigationNotification notification = _mapMsgToNavigationNotification(msg);
 
-    switch( notification.type ) {
+    switch (notification.type) {
       case "master_reminder":
       case "class_attended":
       case "first_user_registered":
@@ -91,7 +91,8 @@ class NotificationsBloc extends Bloc<NotificationsEvent, NotificationsState> {
     );
   }
 
-  NavigationNotification _mapMsgToNavigationNotification(Map<String, dynamic> msg) {
+  NavigationNotification _mapMsgToNavigationNotification(
+      Map<String, dynamic> msg) {
     var data = msg['data'] ?? msg;
     return NavigationNotification(
       data['type'],

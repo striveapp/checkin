@@ -21,14 +21,14 @@ class Master extends Equatable {
   @override
   List<Object> get props => [name, imageUrl, email];
 
-  factory Master.fromUser( User user ) {
+  factory Master.fromUser(User user) {
     return Master(name: user.name, imageUrl: user.imageUrl, email: user.email);
   }
 
   @override
-  String toString() => 'Master{name: $name, imageUrl: $imageUrl, email: $email}';
+  String toString() =>
+      'Master{name: $name, imageUrl: $imageUrl, email: $email}';
 
   factory Master.fromJson(Map<String, dynamic> json) => _$MasterFromJson(json);
   Map<String, dynamic> toJson() => _$MasterToJson(this);
-
 }

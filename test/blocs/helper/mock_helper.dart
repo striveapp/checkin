@@ -1,7 +1,7 @@
 import 'package:mockito/mockito.dart';
 
 /// Throw every time that a mock method is called without a stub being matched:
-void configureThrowOnMissingStub(List<Mock> mocks){
+void configureThrowOnMissingStub(List<Mock> mocks) {
   mocks.forEach((mock) {
     throwOnMissingStub(mock);
   });
@@ -14,8 +14,7 @@ void logAndVerifyNoMoreInteractions(List<Mock> mocks) {
   _verifyNoMoreInteractions(mocks);
 }
 
-
-void _verifyNoMoreInteractions(List<Mock> mocks){
+void _verifyNoMoreInteractions(List<Mock> mocks) {
   mocks.forEach((mock) {
     verifyNoMoreInteractions(mock);
   });

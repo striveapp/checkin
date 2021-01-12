@@ -41,9 +41,11 @@ class LessonsStatsBloc extends Bloc<LessonsStatsEvent, LessonsStatsState> {
     LessonsStatsEvent event,
   ) async* {
     if (event is UpdateLessonStats) {
-      var acceptedAttendees = event.lessons.expand((lesson) => lesson.acceptedAttendees);
+      var acceptedAttendees =
+          event.lessons.expand((lesson) => lesson.acceptedAttendees);
       yield LessonStatsUpdated(
-          acceptedAttendeesWithCounter: _getAttendeesWithCounter(acceptedAttendees),
+          acceptedAttendeesWithCounter:
+              _getAttendeesWithCounter(acceptedAttendees),
           totalAttendees: acceptedAttendees.length);
     }
   }

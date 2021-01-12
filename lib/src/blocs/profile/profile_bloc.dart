@@ -37,8 +37,8 @@ class ProfileBloc extends Bloc<ProfileEvent, ProfileState> {
         });
 
         userSub.onError((error) => debugPrint(
-          "Error loading profile with mail [$nonCurrentUserEmail]: $error",
-        ));
+              "Error loading profile with mail [$nonCurrentUserEmail]: $error",
+            ));
       }
     }
   }

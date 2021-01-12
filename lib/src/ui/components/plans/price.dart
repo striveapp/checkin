@@ -21,8 +21,10 @@ class Price extends StatelessWidget {
       children: <Widget>[
         RichText(
           text: TextSpan(children: [
-            TextSpan(text: "€", style: Theme.of(context).textTheme.headline4.apply(
-                fontSizeFactor: 1.7, color: Theme.of(context).accentColor)),
+            TextSpan(
+                text: "€",
+                style: Theme.of(context).textTheme.headline4.apply(
+                    fontSizeFactor: 1.7, color: Theme.of(context).accentColor)),
             TextSpan(
                 text: _formatPrice(_price),
                 style: Theme.of(context).textTheme.headline1.apply(

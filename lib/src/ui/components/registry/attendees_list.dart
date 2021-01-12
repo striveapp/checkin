@@ -32,14 +32,16 @@ class AttendeesList extends StatelessWidget {
                           children: <Widget>[
                             if (_isUserInClass(state))
                               CurrentUserTile(
-                                  acceptedAttendees: currentLesson.acceptedAttendees,
+                                  acceptedAttendees:
+                                      currentLesson.acceptedAttendees,
                                   currentUser: currentUser),
                             Expanded(
                               child: SingleChildScrollView(
                                 child: Column(
                                   children: <Widget>[
                                     AcceptedAttendees(
-                                        acceptedAttendees: currentLesson.acceptedAttendees,
+                                        acceptedAttendees:
+                                            currentLesson.acceptedAttendees,
                                         currentUser: currentUser),
                                     Attendees(
                                         attendees: currentLesson.attendees,
@@ -79,7 +81,8 @@ class Attendees extends StatelessWidget {
       children: attendees
           .asMap()
           .entries
-          .where((attendeeEntry) => attendeeEntry.value.email != currentUser.email)
+          .where(
+              (attendeeEntry) => attendeeEntry.value.email != currentUser.email)
           .map((attendeeEntry) {
         var attendee = attendeeEntry.value;
         int index = attendeeEntry.key;
@@ -104,7 +107,10 @@ class Attendees extends StatelessWidget {
                       children: [
                         Icon(Icons.delete, color: Colors.white),
                         Text(removeStudent.i18n,
-                            style: Theme.of(context).textTheme.bodyText1.apply(color: Colors.white))
+                            style: Theme.of(context)
+                                .textTheme
+                                .bodyText1
+                                .apply(color: Colors.white))
                       ],
                     )),
                 onDismissed: (direction) {

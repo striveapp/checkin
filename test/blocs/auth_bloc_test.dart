@@ -70,15 +70,14 @@ void main() {
       group("when loggedUser is null", () {
         setUp(() {
           authBloc = AuthBloc(
-            authRepository: mockAuthRepository,
-            analyticsRepository: mockAnalyticsRepository,
-            userRepository: mockUserRepository,
-            localStorageRepository: mockLocalStorageRepository,
-            versionUtil: mockVersionUtil,
-            loggedUser: null
-          );
+              authRepository: mockAuthRepository,
+              analyticsRepository: mockAnalyticsRepository,
+              userRepository: mockUserRepository,
+              localStorageRepository: mockLocalStorageRepository,
+              versionUtil: mockVersionUtil,
+              loggedUser: null);
         });
-        
+
         tearDown(() {
           authBloc?.close();
         });
@@ -213,12 +212,11 @@ void main() {
           blocTest(
             "should emit AuthAuthenticated with logged user",
             build: () => AuthBloc(
-              authRepository: mockAuthRepository,
-              analyticsRepository: mockAnalyticsRepository,
-              userRepository: mockUserRepository,
-              localStorageRepository: mockLocalStorageRepository,
-              versionUtil: mockVersionUtil
-            ),
+                authRepository: mockAuthRepository,
+                analyticsRepository: mockAnalyticsRepository,
+                userRepository: mockUserRepository,
+                localStorageRepository: mockLocalStorageRepository,
+                versionUtil: mockVersionUtil),
             act: (bloc) => bloc.add(AppStarted()),
             expect: [
               AuthAuthenticated(loggedUser: fakeUser),
@@ -292,12 +290,11 @@ void main() {
       blocTest(
         "should perform logout",
         build: () => AuthBloc(
-          authRepository: mockAuthRepository,
-          analyticsRepository: mockAnalyticsRepository,
-          userRepository: mockUserRepository,
-          localStorageRepository: mockLocalStorageRepository,
-          versionUtil: mockVersionUtil
-        ),
+            authRepository: mockAuthRepository,
+            analyticsRepository: mockAnalyticsRepository,
+            userRepository: mockUserRepository,
+            localStorageRepository: mockLocalStorageRepository,
+            versionUtil: mockVersionUtil),
         act: (bloc) => bloc.add(LogOut()),
         verify: (bloc) async {
           await untilCalled(mockAuthRepository.signOut());

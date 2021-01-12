@@ -63,17 +63,21 @@ void main() {
 
     group("on InitializeLessons event", () {
       setUp(() {
-        whenListen(mockUserBloc, Stream.fromIterable([UserSuccess(currentUser: fakeUser)]));
+        whenListen(mockUserBloc,
+            Stream.fromIterable([UserSuccess(currentUser: fakeUser)]));
         when(mockDateUtil.getCurrentDateTime()).thenReturn(testDate);
-        when(mockDateUtil.getInitialSelectedDayByGym(fakeUser.selectedGymId)).thenReturn(testDate);
-        when(mockLessonRepository.getLessonsForDay(fakeUser.selectedGymId, testDate))
+        when(mockDateUtil.getInitialSelectedDayByGym(fakeUser.selectedGymId))
+            .thenReturn(testDate);
+        when(mockLessonRepository.getLessonsForDay(
+                fakeUser.selectedGymId, testDate))
             .thenAnswer((realInvocation) => Stream.value([]));
       });
 
       tearDown(() {
         verify(mockDateUtil.getCurrentDateTime());
         verify(mockDateUtil.getInitialSelectedDayByGym(fakeUser.selectedGymId));
-        verify(mockLessonRepository.getLessonsForDay(fakeUser.selectedGymId, testDate));
+        verify(mockLessonRepository.getLessonsForDay(
+            fakeUser.selectedGymId, testDate));
       });
 
       blocTest(
@@ -103,7 +107,6 @@ void main() {
         tearDown(() {
           verify(mockDateUtil.getCurrentDateTime());
         });
-
 
         blocTest(
           "should emit LessonsLoadedEmpty",
@@ -160,7 +163,12 @@ void main() {
             lessons: unsortedLessons,
             selectedFilterList: [],
           )),
-          expect: [LessonsLoaded(selectedDay: testDate, lessons: sortedLessons, nocache: testDate)],
+          expect: [
+            LessonsLoaded(
+                selectedDay: testDate,
+                lessons: sortedLessons,
+                nocache: testDate)
+          ],
         );
       });
     });
@@ -171,16 +179,19 @@ void main() {
       List<Lesson> newLessons = [Lesson(timeStart: "20:00", timeEnd: "21:00")];
 
       setUp(() {
-        whenListen(mockUserBloc, Stream.fromIterable([UserSuccess(currentUser: fakeUser)]));
+        whenListen(mockUserBloc,
+            Stream.fromIterable([UserSuccess(currentUser: fakeUser)]));
         when(mockDateUtil.getCurrentDateTime()).thenReturn(testDate);
-        when(mockDateUtil.getInitialSelectedDayByGym(fakeUser.selectedGymId)).thenReturn(testDate);
+        when(mockDateUtil.getInitialSelectedDayByGym(fakeUser.selectedGymId))
+            .thenReturn(testDate);
 
-        when(mockLessonRepository.getLessonsForDay(fakeUser.selectedGymId, testDate))
+        when(mockLessonRepository.getLessonsForDay(
+                fakeUser.selectedGymId, testDate))
             .thenAnswer((_) {
           return Stream<List<Lesson>>.value(lessons);
         });
-        when(mockLessonRepository.getLessonsForDay(fakeUser.selectedGymId, selectedDay, []))
-            .thenAnswer((_) {
+        when(mockLessonRepository.getLessonsForDay(
+            fakeUser.selectedGymId, selectedDay, [])).thenAnswer((_) {
           return Stream<List<Lesson>>.value(newLessons);
         });
       });
@@ -188,8 +199,10 @@ void main() {
       tearDown(() {
         verify(mockDateUtil.getCurrentDateTime());
         verify(mockDateUtil.getInitialSelectedDayByGym(fakeUser.selectedGymId));
-        verify(mockLessonRepository.getLessonsForDay(fakeUser.selectedGymId, testDate));
-        verify(mockLessonRepository.getLessonsForDay(fakeUser.selectedGymId, selectedDay, []));
+        verify(mockLessonRepository.getLessonsForDay(
+            fakeUser.selectedGymId, testDate));
+        verify(mockLessonRepository
+            .getLessonsForDay(fakeUser.selectedGymId, selectedDay, []));
       });
 
       blocTest("should load new lessons for the selected day",
@@ -203,8 +216,12 @@ void main() {
             bloc.add(LoadLessons(selectedDay: selectedDay));
           },
           expect: [
-            LessonsLoaded(selectedDay: testDate, lessons: lessons, nocache: testDate),
-            LessonsLoaded(selectedDay: selectedDay, lessons: newLessons, nocache: testDate),
+            LessonsLoaded(
+                selectedDay: testDate, lessons: lessons, nocache: testDate),
+            LessonsLoaded(
+                selectedDay: selectedDay,
+                lessons: newLessons,
+                nocache: testDate),
           ]);
     });
   });

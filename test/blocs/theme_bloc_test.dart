@@ -5,7 +5,6 @@ import 'package:flutter_test/flutter_test.dart';
 
 void main() {
   group("ThemeBloc", () {
-
     group("initial state", () {
       ThemeBloc themeBloc;
 

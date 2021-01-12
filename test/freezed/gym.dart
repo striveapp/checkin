@@ -8,11 +8,10 @@ class Gym extends Equatable {
   Gym({this.domain, this.host, this.stripePublicKey});
 
   @override
-  List<Object> get props  => [domain, host, stripePublicKey];
+  List<Object> get props => [domain, host, stripePublicKey];
 
   @override
   String toString() {
     return 'Gym{domain: $domain, host: $host, stripePublicKey: $stripePublicKey}';
   }
-
 }

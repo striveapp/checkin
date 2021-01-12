@@ -31,14 +31,16 @@ void main() {
       selectedGymId: fakeGymId,
     );
 
-    setUp((){
+    setUp(() {
       mockMembershipRepository = MockMembershipRepository();
       mockStatsRepository = MockStatsRepository();
-      configureThrowOnMissingStub([mockMembershipRepository, mockStatsRepository]);
+      configureThrowOnMissingStub(
+          [mockMembershipRepository, mockStatsRepository]);
     });
 
-    tearDown((){
-      logAndVerifyNoMoreInteractions([mockMembershipRepository, mockStatsRepository]);
+    tearDown(() {
+      logAndVerifyNoMoreInteractions(
+          [mockMembershipRepository, mockStatsRepository]);
     });
 
     // todo missing initial state test
@@ -62,8 +64,7 @@ void main() {
         });
 
         blocTest("should emit SessionsUnlimited",
-            build: () =>
-                SessionsBloc(
+            build: () => SessionsBloc(
                   userEmail: fakeEmail,
                   selectedGymId: fakeGymId,
                   statsRepository: mockStatsRepository,
@@ -72,10 +73,14 @@ void main() {
             expect: [SessionsUnlimited()]);
       });
 
-      group("when there is inactive membership with totalLessonsOfPlan from a previous active membership",(){
+      group(
+          "when there is inactive membership with totalLessonsOfPlan from a previous active membership",
+          () {
         setUp(() {
           Membership inactiveMembership = Membership(
-              status: Membership.INACTIVE_MEMBERSHIP, customerId: "cus_123", totalLessonsOfPlan: 3);
+              status: Membership.INACTIVE_MEMBERSHIP,
+              customerId: "cus_123",
+              totalLessonsOfPlan: 3);
 
           when(mockMembershipRepository.getMembership(
             gymId: fakeUser.selectedGymId,
@@ -91,8 +96,7 @@ void main() {
         });
 
         blocTest("should emit SessionsUnlimited",
-            build: () =>
-                SessionsBloc(
+            build: () => SessionsBloc(
                   userEmail: fakeEmail,
                   selectedGymId: fakeGymId,
                   statsRepository: mockStatsRepository,
@@ -102,7 +106,7 @@ void main() {
       });
 
       group("when there is an active membership with no sessions", () {
-        setUp((){
+        setUp(() {
           Membership activeMembership = Membership(
               status: Membership.ACTIVE_MEMBERSHIP, customerId: "cus_123");
 
@@ -112,7 +116,7 @@ void main() {
           )).thenAnswer((realInvocation) => Stream.value(activeMembership));
         });
 
-        tearDown((){
+        tearDown(() {
           verify(mockMembershipRepository.getMembership(
             gymId: fakeUser.selectedGymId,
             email: fakeEmail,
@@ -120,8 +124,7 @@ void main() {
         });
 
         blocTest("should emit SessionsUnlimited",
-            build: () =>
-                SessionsBloc(
+            build: () => SessionsBloc(
                   userEmail: fakeEmail,
                   selectedGymId: fakeGymId,
                   statsRepository: mockStatsRepository,
@@ -132,8 +135,10 @@ void main() {
     });
 
     group("SessionsUpdatedWithHistory", () {
-      group("when there is an active membership with 3 sessions in the user's plan", () {
-        setUp((){
+      group(
+          "when there is an active membership with 3 sessions in the user's plan",
+          () {
+        setUp(() {
           Membership activeMembership = Membership(
               status: Membership.ACTIVE_MEMBERSHIP,
               customerId: "cus_123",
@@ -145,7 +150,7 @@ void main() {
           )).thenAnswer((realInvocation) => Stream.value(activeMembership));
         });
 
-        tearDown((){
+        tearDown(() {
           verify(mockMembershipRepository.getMembership(
             gymId: fakeUser.selectedGymId,
             email: fakeEmail,
@@ -153,15 +158,15 @@ void main() {
         });
 
         group("and the user did 1 lesson this month", () {
-          setUp((){
+          setUp(() {
             var attendedOneLesson = [Lesson()];
             when(mockStatsRepository.getUserStats(
-                fakeUser.selectedGymId, fakeEmail, constants.MONTH))
+                    fakeUser.selectedGymId, fakeEmail, constants.MONTH))
                 .thenAnswer((realInvocation) => Stream.value(UserHistory(
-                email: fakeEmail, attendedLessons: attendedOneLesson)));
+                    email: fakeEmail, attendedLessons: attendedOneLesson)));
           });
 
-          tearDown((){
+          tearDown(() {
             verify(mockStatsRepository.getUserStats(
               fakeUser.selectedGymId,
               fakeEmail,
@@ -170,26 +175,27 @@ void main() {
           });
 
           blocTest("should emit SessionsLoaded",
-              build: () =>
-                  SessionsBloc(
+              build: () => SessionsBloc(
                     userEmail: fakeEmail,
                     selectedGymId: fakeGymId,
                     statsRepository: mockStatsRepository,
                     membershipRepository: mockMembershipRepository,
                   ),
-              expect: [SessionsLoaded(totalLessonsOfPlan: 3, attendedLessons: 1)]);
+              expect: [
+                SessionsLoaded(totalLessonsOfPlan: 3, attendedLessons: 1)
+              ]);
         });
 
-        group("and the user did 3 lessons this month", (){
-          setUp((){
+        group("and the user did 3 lessons this month", () {
+          setUp(() {
             var attendedOneLesson = [Lesson(), Lesson(), Lesson()];
             when(mockStatsRepository.getUserStats(
-                fakeUser.selectedGymId, fakeEmail, constants.MONTH))
+                    fakeUser.selectedGymId, fakeEmail, constants.MONTH))
                 .thenAnswer((realInvocation) => Stream.value(UserHistory(
-                email: fakeEmail, attendedLessons: attendedOneLesson)));
+                    email: fakeEmail, attendedLessons: attendedOneLesson)));
           });
 
-          tearDown((){
+          tearDown(() {
             verify(mockStatsRepository.getUserStats(
               fakeUser.selectedGymId,
               fakeEmail,
@@ -198,18 +204,17 @@ void main() {
           });
 
           blocTest("should emit SessionsWarning",
-              build: () =>
-                  SessionsBloc(
+              build: () => SessionsBloc(
                     userEmail: fakeEmail,
                     selectedGymId: fakeGymId,
                     statsRepository: mockStatsRepository,
                     membershipRepository: mockMembershipRepository,
                   ),
-              expect: [SessionsWarning(totalLessonsOfPlan: 3, attendedLessons: 3)]);
+              expect: [
+                SessionsWarning(totalLessonsOfPlan: 3, attendedLessons: 3)
+              ]);
         });
       });
-
-      });
-
+    });
   });
 }

@@ -33,7 +33,8 @@ class MembershipBloc extends Bloc<MembershipEvent, MembershipState> {
         _membershipApi = membershipApi,
         _analyticsRepository = analyticsRepository,
         _userEmail = userEmail,
-        _selectedGymId = selectedGymId, super(InitialMembershipState()) {
+        _selectedGymId = selectedGymId,
+        super(InitialMembershipState()) {
     _membershipSub?.cancel();
     _membershipSub = _membershipRepository
         .getMembership(

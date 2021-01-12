@@ -8,5 +8,8 @@ part 'profile_state.freezed.dart';
 @freezed
 abstract class ProfileState with _$ProfileState {
   const factory ProfileState.initialProfileState() = InitialProfileState;
-  const factory ProfileState.profileLoaded({@required User profileUser, @required bool isCurrentUser,}) = ProfileLoaded;
+  const factory ProfileState.profileLoaded({
+    @required User profileUser,
+    @required bool isCurrentUser,
+  }) = ProfileLoaded;
 }

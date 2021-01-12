@@ -17,7 +17,6 @@ class StatsTest extends AbstractTest {
         await super.teardown();
       });
 
-
       //TODO: this tests are not actually testing this feature e2e since we are not able to submit the TextField
       // More details about the issue here: https://github.com/flutter/flutter/issues/29450
       test("user should be able to change selected timespan", () async {
@@ -37,5 +36,4 @@ class StatsTest extends AbstractTest {
       });
     });
   }
-
 }

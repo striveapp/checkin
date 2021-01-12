@@ -5,13 +5,14 @@ import 'package:flutter_bloc/flutter_bloc.dart';
 class RemainingLessonsIndicator extends StatelessWidget {
   final double totalLessonsOfPlan;
 
-  const RemainingLessonsIndicator({Key key, this.totalLessonsOfPlan}) : super(key: key);
+  const RemainingLessonsIndicator({Key key, this.totalLessonsOfPlan})
+      : super(key: key);
 
   @override
   Widget build(BuildContext context) {
-    return BlocBuilder<UserStatsBloc,UserStatsState>(
+    return BlocBuilder<UserStatsBloc, UserStatsState>(
       builder: (BuildContext context, UserStatsState state) {
-        if( state is UserStatsLoaded ) {
+        if (state is UserStatsLoaded) {
           return Row(
             children: [
               Expanded(
@@ -25,7 +26,10 @@ class RemainingLessonsIndicator extends StatelessWidget {
               ),
               Padding(
                 padding: const EdgeInsets.only(right: 8, left: 10),
-                child: Text("${state.attendedLessons.length}/${totalLessonsOfPlan == double.infinity ? "∞": totalLessonsOfPlan.toStringAsFixed(0)}", style: Theme.of(context).textTheme.headline5,),
+                child: Text(
+                  "${state.attendedLessons.length}/${totalLessonsOfPlan == double.infinity ? "∞" : totalLessonsOfPlan.toStringAsFixed(0)}",
+                  style: Theme.of(context).textTheme.headline5,
+                ),
               )
             ],
           );
@@ -43,7 +47,10 @@ class RemainingLessonsIndicator extends StatelessWidget {
             ),
             Padding(
               padding: const EdgeInsets.only(right: 8, left: 10),
-              child: Text("3/${totalLessonsOfPlan == double.infinity ? "∞": totalLessonsOfPlan.toStringAsFixed(0)}", style: Theme.of(context).textTheme.headline5,),
+              child: Text(
+                "3/${totalLessonsOfPlan == double.infinity ? "∞" : totalLessonsOfPlan.toStringAsFixed(0)}",
+                style: Theme.of(context).textTheme.headline5,
+              ),
             )
           ],
         );

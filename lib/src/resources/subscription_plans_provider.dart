@@ -15,24 +15,22 @@ class SubscriptionPlansProvider implements SubscriptionPlansRepository {
       .doc(gymId)
       .collection(path)
       .snapshots()
-      .map((snap) => snap.docs
-          .map((doc) => toSubscriptionPlan(doc))
-          .toList());
+      .map((snap) => snap.docs.map((doc) => toSubscriptionPlan(doc)).toList());
 
-  Stream<List<SubscriptionPlan>> getSubPlans({String gymId, String planId}) => _firestore
-      .collection(gymPath)
-      .doc(gymId)
-      .collection(path)
-      .doc(planId)
-      .collection(subPlans)
-      .snapshots()
-      .map((snap) => snap.docs
-          .map((doc) => toSubscriptionPlan(doc))
-          .toList());
+  Stream<List<SubscriptionPlan>> getSubPlans({String gymId, String planId}) =>
+      _firestore
+          .collection(gymPath)
+          .doc(gymId)
+          .collection(path)
+          .doc(planId)
+          .collection(subPlans)
+          .snapshots()
+          .map((snap) =>
+              snap.docs.map((doc) => toSubscriptionPlan(doc)).toList());
 
   SubscriptionPlan toSubscriptionPlan(DocumentSnapshot doc) {
     final data = doc.data();
-    if( data['startingPrice'] != null ) {
+    if (data['startingPrice'] != null) {
       return SubscriptionPlan.subscriptionWithPrices(
           id: doc.id,
           name: data['name'],
@@ -42,12 +40,12 @@ class SubscriptionPlansProvider implements SubscriptionPlansRepository {
     }
 
     return SubscriptionPlan.simpleSubscription(
-              name: data['name'],
-              description: data['description'],
-              code: data['code'],
-              currency: data['currency'],
-              price: data['price'],
-              interval: data['interval'],
-            );
+      name: data['name'],
+      description: data['description'],
+      code: data['code'],
+      currency: data['currency'],
+      price: data['price'],
+      interval: data['interval'],
+    );
   }
 }

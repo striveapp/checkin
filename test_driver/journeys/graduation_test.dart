@@ -17,8 +17,7 @@ class GraduationTest extends AbstractTest {
         await super.teardown();
       });
 
-      test("master should be able to graduate a student",
-          () async {
+      test("master should be able to graduate a student", () async {
         prettyPrint("Login as user and register to class");
         await loginPage.loginAsTest();
         await lessonsPage.selectLessonOfTheDay(WeekDay.monday, 1);
@@ -33,7 +32,8 @@ class GraduationTest extends AbstractTest {
         await statsPage.openGraduationDialog();
         prettyPrint("Graduate the student and check it changed the grade");
         await graduationDialog.graduate();
-        await driver.waitForExpectedValue(() => statsPage.getUserGrade(), "Blue Belt");
+        await driver.waitForExpectedValue(
+            () => statsPage.getUserGrade(), "Blue Belt");
         prettyPrint("Then logout");
         await statsPage.logout();
       });

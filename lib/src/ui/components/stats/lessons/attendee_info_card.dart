@@ -47,12 +47,8 @@ class AttendeeInfoCard extends StatelessWidget {
                             .headline4
                             .apply(fontWeightDelta: 4),
                       ),
-                      Text(
-                        beltColor.i18n.fill([attendee.grade.name.i18n]),
-                        style: Theme.of(context)
-                            .textTheme
-                            .headline5
-                      ),
+                      Text(beltColor.i18n.fill([attendee.grade.name.i18n]),
+                          style: Theme.of(context).textTheme.headline5),
                     ],
                   ),
                 ),

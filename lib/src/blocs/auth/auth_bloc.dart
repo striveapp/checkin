@@ -23,14 +23,16 @@ class AuthBloc extends Bloc<AuthEvent, AuthState> {
   StreamSubscription _authSub;
   StreamSubscription _referredGymSub;
 
-  AuthBloc({
-    @required this.authRepository,
-    @required this.analyticsRepository,
-    @required this.localStorageRepository,
-    @required this.userRepository,
-    @required this.versionUtil,
-    User loggedUser
-  }) : super(loggedUser == null ? AuthState.authUnauthenticated() : AuthState.authAuthenticated(loggedUser: loggedUser));
+  AuthBloc(
+      {@required this.authRepository,
+      @required this.analyticsRepository,
+      @required this.localStorageRepository,
+      @required this.userRepository,
+      @required this.versionUtil,
+      User loggedUser})
+      : super(loggedUser == null
+            ? AuthState.authUnauthenticated()
+            : AuthState.authAuthenticated(loggedUser: loggedUser));
 
   @override
   Stream<AuthState> mapEventToState(AuthEvent event) async* {

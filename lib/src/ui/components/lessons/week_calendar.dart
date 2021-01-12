@@ -35,7 +35,7 @@ class _WeekCalendarState extends State<WeekCalendar> {
         return state.maybeMap(
           userSuccess: (UserSuccess state) {
             var selectedGymId = state.currentUser.selectedGymId;
-            if(selectedGymId == 'test' || selectedGymId == 'bjj_winter_week'){
+            if (selectedGymId == 'test' || selectedGymId == 'bjj_winter_week') {
               return TableCalendar(
                 calendarController: _calendarController,
                 locale: Localizations.localeOf(context).toLanguageTag(),
@@ -46,13 +46,16 @@ class _WeekCalendarState extends State<WeekCalendar> {
                     formatButtonVisible: false,
                     headerPadding: EdgeInsets.only(bottom: 10, left: 20),
                     titleTextStyle: Theme.of(context).textTheme.headline3),
-                initialSelectedDay: DateUtil().getInitialSelectedDayByGym(selectedGymId),
+                initialSelectedDay:
+                    DateUtil().getInitialSelectedDayByGym(selectedGymId),
                 initialCalendarFormat: CalendarFormat.week,
                 startingDayOfWeek: StartingDayOfWeek.monday,
                 availableGestures: AvailableGestures.none,
                 onDaySelected: (DateTime selectedDay, List<dynamic> event,
                     List<dynamic> holidays) {
-                  context.read<LessonsBloc>().add(LoadLessons(selectedDay: selectedDay));
+                  context
+                      .read<LessonsBloc>()
+                      .add(LoadLessons(selectedDay: selectedDay));
                 },
                 holidays: widget.holidaysRepository.getHolidays(),
                 calendarStyle: CalendarStyle(
@@ -70,8 +73,11 @@ class _WeekCalendarState extends State<WeekCalendar> {
               initialCalendarFormat: CalendarFormat.twoWeeks,
               startingDayOfWeek: StartingDayOfWeek.monday,
               availableGestures: AvailableGestures.none,
-              onDaySelected: (DateTime selectedDay, List<dynamic> event, List<dynamic> holidays) {
-                context.read<LessonsBloc>().add(LoadLessons(selectedDay: selectedDay));
+              onDaySelected: (DateTime selectedDay, List<dynamic> event,
+                  List<dynamic> holidays) {
+                context
+                    .read<LessonsBloc>()
+                    .add(LoadLessons(selectedDay: selectedDay));
               },
               holidays: widget.holidaysRepository.getHolidays(),
               calendarStyle: CalendarStyle(

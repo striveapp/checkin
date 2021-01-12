@@ -85,7 +85,8 @@ class UserProvider implements UserRepository {
         .update({"imageUrl": newImageUrl});
   }
 
-  Future<void> updateUserAppVersion(String userEmail, Version newVersion) async {
+  Future<void> updateUserAppVersion(
+      String userEmail, Version newVersion) async {
     await _firestore
         .collection(path)
         .doc(userEmail)

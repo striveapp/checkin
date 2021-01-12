@@ -49,10 +49,12 @@ class PodiumProfile extends StatelessWidget {
                         ),
                       ),
                       Positioned(
-                        right: 5,
-                        bottom: 3,
-                        child: PodiumBedge(color: color, text: "1st",)
-                      ),
+                          right: 5,
+                          bottom: 3,
+                          child: PodiumBedge(
+                            color: color,
+                            text: "1st",
+                          )),
                     ],
                   ),
                   SizedBox(
@@ -83,8 +85,10 @@ class PodiumProfile extends StatelessWidget {
                       Positioned(
                           right: 2,
                           bottom: 0,
-                          child: PodiumBedge(color: color, text: "${position == 2 ? "2nd" : "3rd"}",)
-                      ),
+                          child: PodiumBedge(
+                            color: color,
+                            text: "${position == 2 ? "2nd" : "3rd"}",
+                          )),
                     ],
                   ),
                   SizedBox(

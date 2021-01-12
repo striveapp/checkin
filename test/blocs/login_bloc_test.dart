@@ -17,7 +17,8 @@ class MockAuthRepository extends Mock implements AuthRepository {}
 
 class MockAnalyticsRepository extends Mock implements AnalyticsRepository {}
 
-class MockLocalStorageRepository extends Mock implements LocalStorageRepository {}
+class MockLocalStorageRepository extends Mock
+    implements LocalStorageRepository {}
 
 void main() {
   group("LoginBloc", () {
@@ -87,7 +88,8 @@ void main() {
           when(mockAnalyticsRepository.logLoginWithGoogleSignIn())
               .thenAnswer((realInvocation) => null);
 
-          when(mockUserRepository.createUser(fakeUser)).thenAnswer((realInvocation) => null);
+          when(mockUserRepository.createUser(fakeUser))
+              .thenAnswer((realInvocation) => null);
         });
 
         tearDown(() {
@@ -112,7 +114,8 @@ void main() {
 
       group("when no user is returned", () {
         setUp(() {
-          when(mockAuthRepository.signInWithGoogle()).thenAnswer((_) => Future<User>.value(null));
+          when(mockAuthRepository.signInWithGoogle())
+              .thenAnswer((_) => Future<User>.value(null));
         });
 
         tearDown(() {
@@ -159,7 +162,11 @@ void main() {
                   localStorageRepository: mockLocalStorageRepository,
                 ),
             act: (bloc) => bloc.add(LoginWithGoogle()),
-            expect: [LoginFailure(errorMessage: "Unexpected error! Please contact the gym owner")],
+            expect: [
+              LoginFailure(
+                  errorMessage:
+                      "Unexpected error! Please contact the gym owner")
+            ],
             verify: (bloc) {});
       });
     });
@@ -174,7 +181,8 @@ void main() {
           when(mockAnalyticsRepository.logLoginWithAppleSignIn())
               .thenAnswer((realInvocation) => null);
 
-          when(mockUserRepository.createUser(fakeUser)).thenAnswer((realInvocation) => null);
+          when(mockUserRepository.createUser(fakeUser))
+              .thenAnswer((realInvocation) => null);
         });
 
         tearDown(() {
@@ -199,7 +207,8 @@ void main() {
 
       group("when no user is returned", () {
         setUp(() {
-          when(mockAuthRepository.signInWithApple()).thenAnswer((_) => Future<User>.value(null));
+          when(mockAuthRepository.signInWithApple())
+              .thenAnswer((_) => Future<User>.value(null));
         });
 
         tearDown(() {
@@ -246,7 +255,10 @@ void main() {
             localStorageRepository: mockLocalStorageRepository,
           ),
           act: (bloc) => bloc.add(LoginWithApple()),
-          expect: [LoginFailure(errorMessage: "Unexpected error! Please contact the gym owner")],
+          expect: [
+            LoginFailure(
+                errorMessage: "Unexpected error! Please contact the gym owner")
+          ],
         );
       });
 
@@ -278,7 +290,8 @@ void main() {
           act: (bloc) => bloc.add(LoginWithApple()),
           expect: [
             LoginFailure(
-                errorMessage: "Sign in with Apple is not supported for your version of IOS")
+                errorMessage:
+                    "Sign in with Apple is not supported for your version of IOS")
           ],
         );
       });
@@ -286,12 +299,14 @@ void main() {
 
     group("on LoginPasswordless event", () {
       group("when the inserted email is correct", () {
-        setUp((){
-          when(mockLocalStorageRepository.setUserEmail(fakeUser.email)).thenAnswer((realInvocation) => Future.value());
-          when(mockAuthRepository.signInPasswordless(fakeUser.email)).thenAnswer((realInvocation) => Future.value());
+        setUp(() {
+          when(mockLocalStorageRepository.setUserEmail(fakeUser.email))
+              .thenAnswer((realInvocation) => Future.value());
+          when(mockAuthRepository.signInPasswordless(fakeUser.email))
+              .thenAnswer((realInvocation) => Future.value());
         });
 
-        tearDown((){
+        tearDown(() {
           verify(mockLocalStorageRepository.setUserEmail(fakeUser.email));
           verify(mockAuthRepository.signInPasswordless(fakeUser.email));
         });
@@ -311,16 +326,18 @@ void main() {
       group("when the inserted email is NOT correct", () {
         final wrongEmail = "not.really@email";
 
-        setUp((){
-          when(mockLocalStorageRepository.setUserEmail(wrongEmail)).thenAnswer((realInvocation) => Future.value());
-          when(mockAuthRepository.signInPasswordless(wrongEmail)).thenThrow("Not really the correct email");
+        setUp(() {
+          when(mockLocalStorageRepository.setUserEmail(wrongEmail))
+              .thenAnswer((realInvocation) => Future.value());
+          when(mockAuthRepository.signInPasswordless(wrongEmail))
+              .thenThrow("Not really the correct email");
           when(mockAnalyticsRepository.passwordlessError(
             err: "Not really the correct email",
             stackTrace: argThat(isA<StackTrace>(), named: 'stackTrace'),
           )).thenAnswer((_) => Future.value());
         });
 
-        tearDown((){
+        tearDown(() {
           verify(mockLocalStorageRepository.setUserEmail(wrongEmail));
           verify(mockAuthRepository.signInPasswordless(wrongEmail));
           verify(mockAnalyticsRepository.passwordlessError(

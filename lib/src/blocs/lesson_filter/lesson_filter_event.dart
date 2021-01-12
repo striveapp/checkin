@@ -6,5 +6,6 @@ part 'lesson_filter_event.freezed.dart';
 
 @freezed
 abstract class LessonFilterEvent with _$LessonFilterEvent {
-  const factory LessonFilterEvent.lessonFilterUpdated({@required Set<String> availableLessonTypes}) = LessonFilterUpdated;
+  const factory LessonFilterEvent.lessonFilterUpdated(
+      {@required Set<String> availableLessonTypes}) = LessonFilterUpdated;
 }

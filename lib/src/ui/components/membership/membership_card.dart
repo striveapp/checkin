@@ -15,7 +15,7 @@ class MembershipCard extends StatelessWidget {
         constraints: BoxConstraints(minHeight: 150),
         child: BlocListener<MembershipBloc, MembershipState>(
           listener: (BuildContext context, MembershipState state) {
-            if(state is MembershipError) {
+            if (state is MembershipError) {
               ScaffoldMessenger.of(context)
                 ..hideCurrentSnackBar()
                 ..showSnackBar(
@@ -25,31 +25,31 @@ class MembershipCard extends StatelessWidget {
                       textAlign: TextAlign.center,
                       style: Theme.of(context).textTheme.bodyText1,
                     ),
-                    backgroundColor: Theme.of(context).accentColor.withAlpha(150),
+                    backgroundColor:
+                        Theme.of(context).accentColor.withAlpha(150),
                     duration: Duration(seconds: 10),
                   ),
                 );
             }
           },
           child: BlocBuilder<MembershipBloc, MembershipState>(
-              buildWhen: (MembershipState previous,
-                  MembershipState current) =>
-              !(current is MembershipError),
+              buildWhen: (MembershipState previous, MembershipState current) =>
+                  !(current is MembershipError),
               builder: (BuildContext context, MembershipState state) {
-            return state.when(
-              initialMembershipState: () => LoadingIndicator(),
-              membershipActive: (membership) => ActiveMembershipView(
-                membership: membership,
-              ),
-              membershipInactive: (customerEmail, customerId) =>
-                  InactiveMembershipView(
-                email: customerEmail,
-                customerId: customerId,
-              ),
-              membershipLoading: () => LoadingIndicator(),
-              membershipError: (error) => EmptyWidget(),
-            );
-          }),
+                return state.when(
+                  initialMembershipState: () => LoadingIndicator(),
+                  membershipActive: (membership) => ActiveMembershipView(
+                    membership: membership,
+                  ),
+                  membershipInactive: (customerEmail, customerId) =>
+                      InactiveMembershipView(
+                    email: customerEmail,
+                    customerId: customerId,
+                  ),
+                  membershipLoading: () => LoadingIndicator(),
+                  membershipError: (error) => EmptyWidget(),
+                );
+              }),
         ),
       ),
     );

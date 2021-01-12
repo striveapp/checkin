@@ -8,7 +8,8 @@ class MembershipApi {
 
   MembershipApi({
     @required HttpClient httpClient,
-  }) : assert(httpClient != null), _httpClient = httpClient;
+  })  : assert(httpClient != null),
+        _httpClient = httpClient;
 
   Future<void> unsubscribe({@required String gymId}) async {
     var parameters = {
@@ -18,11 +19,10 @@ class MembershipApi {
         .then((_) => {debugPrint("User unsubscribed")});
   }
 
-  Future<void> createSubscription({String gymId, String customerId, String priceId}) async {
-    var data = {
-      "customerId": customerId,
-      "priceId":  priceId
-    };
-    await _httpClient.post(endpoint: "payments/$gymId/create-subscription", body: data);
+  Future<void> createSubscription(
+      {String gymId, String customerId, String priceId}) async {
+    var data = {"customerId": customerId, "priceId": priceId};
+    await _httpClient.post(
+        endpoint: "payments/$gymId/create-subscription", body: data);
   }
 }

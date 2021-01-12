@@ -10,25 +10,26 @@ class LessonCardList extends StatelessWidget {
   Widget build(BuildContext context) {
     return BlocBuilder<LessonsBloc, LessonsState>(
         builder: (BuildContext context, LessonsState state) {
-          if (state is LessonsLoaded) {
-            return ListView.builder(
-              padding: EdgeInsets.only(bottom: 50),
-                key: Key("lessonCardList"),
-                itemCount: state.lessons.length,
-                itemBuilder: (BuildContext context, int index) {
-                  var lesson = state.lessons[index];
-                  return LessonCard( key: Key("lesson_${lesson.weekDay}_$index"), lesson: lesson);
-                });
-          }
+      if (state is LessonsLoaded) {
+        return ListView.builder(
+            padding: EdgeInsets.only(bottom: 50),
+            key: Key("lessonCardList"),
+            itemCount: state.lessons.length,
+            itemBuilder: (BuildContext context, int index) {
+              var lesson = state.lessons[index];
+              return LessonCard(
+                  key: Key("lesson_${lesson.weekDay}_$index"), lesson: lesson);
+            });
+      }
 
-          if (state is LessonsUninitialized) {
-            return LoadingIndicator();
-          }
-          if (state is LessonsLoadedEmpty) {
-            return NoLessonsBanner();
-          }
-          return ErrorWidget(
-              'Unknown State [$state] received in: lesson_card_list');
-        });
+      if (state is LessonsUninitialized) {
+        return LoadingIndicator();
+      }
+      if (state is LessonsLoadedEmpty) {
+        return NoLessonsBanner();
+      }
+      return ErrorWidget(
+          'Unknown State [$state] received in: lesson_card_list');
+    });
   }
 }

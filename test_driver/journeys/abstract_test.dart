@@ -38,7 +38,8 @@ abstract class AbstractTest {
     leaderboardPage = LeaderboardPage(driver);
     graduationDialog = GraduationDialog(driver);
     await driver.requestData("setup");
-    await driver.waitForExpectedValue(() => driver.requestData("is_db_clean"), "true");
+    await driver.waitForExpectedValue(
+        () => driver.requestData("is_db_clean"), "true");
     print("setup finished");
   }
 
@@ -48,6 +49,5 @@ abstract class AbstractTest {
     print("teardown finished");
   }
 
-  
   void runTests();
 }

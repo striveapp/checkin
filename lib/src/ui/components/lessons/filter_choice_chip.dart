@@ -25,7 +25,10 @@ class FilterChoiceChip extends StatelessWidget {
           child: Text(
             text,
             textAlign: TextAlign.center,
-            style: Theme.of(context).textTheme.headline3.apply(color: selected ? Colors.white : null),
+            style: Theme.of(context)
+                .textTheme
+                .headline3
+                .apply(color: selected ? Colors.white : null),
           ),
         ),
         selected: selected,

@@ -3,7 +3,6 @@ import 'package:flutter/material.dart';
 import 'grade_card.dart';
 
 class GradeButtons extends StatelessWidget {
-
   @override
   Widget build(BuildContext context) {
     return ListView(

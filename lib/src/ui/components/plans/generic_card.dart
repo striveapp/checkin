@@ -19,13 +19,13 @@ class GenericCard extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return _plan.map(
-      simpleSubscription: (SimpleSubscription simpleSubscription) =>
-          PlanCard(
+      simpleSubscription: (SimpleSubscription simpleSubscription) => PlanCard(
         plan: simpleSubscription,
         customerId: _customerId,
       ),
       subscriptionWithPrices: (SubscriptionWithPrices subscriptionWithPrices) =>
-          PlanWithPricesCard(customerId: _customerId, plan: subscriptionWithPrices),
+          PlanWithPricesCard(
+              customerId: _customerId, plan: subscriptionWithPrices),
     );
   }
 }

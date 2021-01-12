@@ -17,8 +17,8 @@ void main() {
     test("should throw on unknown grade", () {
       GraduationUtil graduationUtil = GraduationUtil();
 
-      expect(() => graduationUtil.calculateNextGrade(null), throwsA('could not calculate next grade from [null]'));
+      expect(() => graduationUtil.calculateNextGrade(null),
+          throwsA('could not calculate next grade from [null]'));
     });
-
   });
 }

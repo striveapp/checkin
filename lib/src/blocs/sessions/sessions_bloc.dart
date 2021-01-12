@@ -27,20 +27,33 @@ class SessionsBloc extends Bloc<SessionsEvent, SessionsState> {
     @required this.userEmail,
   }) : super(InitialSessionsState()) {
     _membershipSub?.cancel();
-    _membershipSub = this.membershipRepository.getMembership(gymId: selectedGymId, email: userEmail,).listen((membership) {
-      if( membership.totalLessonsOfPlan == null || membership.status == Membership.INACTIVE_MEMBERSHIP) {
+    _membershipSub = this
+        .membershipRepository
+        .getMembership(
+          gymId: selectedGymId,
+          email: userEmail,
+        )
+        .listen((membership) {
+      if (membership.totalLessonsOfPlan == null ||
+          membership.status == Membership.INACTIVE_MEMBERSHIP) {
         add(SessionsUpdated(membership: membership));
       } else {
         _statsSub?.cancel();
-        _statsSub = this.statsRepository.getUserStats(selectedGymId, userEmail, constants.MONTH).listen((userHistory) {
-          add(SessionsUpdatedWithHistory(membership: membership, userHistory: userHistory));
+        _statsSub = this
+            .statsRepository
+            .getUserStats(selectedGymId, userEmail, constants.MONTH)
+            .listen((userHistory) {
+          add(SessionsUpdatedWithHistory(
+              membership: membership, userHistory: userHistory));
         });
       }
     });
   }
 
   @override
-  Stream<SessionsState> mapEventToState(SessionsEvent event,) async* {
+  Stream<SessionsState> mapEventToState(
+    SessionsEvent event,
+  ) async* {
     if (event is SessionsUpdated) {
       // todo handle cases where membership canceled
       yield SessionsState.sessionsUnlimited();
@@ -59,8 +72,6 @@ class SessionsBloc extends Bloc<SessionsEvent, SessionsState> {
             attendedLessons: attendedLessons);
       }
     }
-
-
   }
 
   @override

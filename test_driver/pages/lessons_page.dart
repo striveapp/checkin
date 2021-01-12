@@ -24,8 +24,10 @@ class LessonsPage {
     await _driver.tap(_accountPageButton);
   }
 
-  Future<SerializableFinder> _getLessonCard(WeekDay day, int lessonIndex) async {
-    final lessonCard = find.byValueKey("lesson_${describeEnum(day)}_$lessonIndex");
+  Future<SerializableFinder> _getLessonCard(
+      WeekDay day, int lessonIndex) async {
+    final lessonCard =
+        find.byValueKey("lesson_${describeEnum(day)}_$lessonIndex");
     if (lessonIndex >= 2) {
       await _driver.scrollIntoView(lessonCard);
     }
@@ -41,6 +43,4 @@ class LessonsPage {
     await _driver.waitFor(_leaderboardTab);
     await _driver.tap(_leaderboardTab);
   }
-
-
 }

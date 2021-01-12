@@ -32,7 +32,9 @@ class EmailRetrievePage extends StatelessWidget {
         },
         child: SafeArea(
           child: Center(
-            child: email.isEmpty ? InsertEmailView() : CheckEmailView(email: email),
+            child: email.isEmpty
+                ? InsertEmailView()
+                : CheckEmailView(email: email),
           ),
         ),
       ),

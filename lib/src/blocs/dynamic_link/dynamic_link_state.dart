@@ -63,7 +63,6 @@ class DynamicLinkToShare extends DynamicLinkState {
 }
 
 class DynamicLinkAuthenticated extends DynamicLinkState {
-
   const DynamicLinkAuthenticated();
 
   @override
