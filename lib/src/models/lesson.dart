@@ -15,7 +15,7 @@ abstract class Lesson with _$Lesson {
     final String date,
     final String name,
     final String timeStart,
-    final String timeEnd,
+    @Default("") final String timeEnd,
     final String weekDay,
     final int timestamp,
     final String imageUrl,

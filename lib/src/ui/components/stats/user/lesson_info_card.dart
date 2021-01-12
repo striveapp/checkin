@@ -59,7 +59,11 @@ class LessonInfoCard extends StatelessWidget {
                               Text(lesson.masters.first.name,
                                   style: Theme.of(context).textTheme.headline3),
                             Text(
-                                "${lesson.weekDay} (${lesson.timeStart} - ${lesson.timeEnd})",
+                                _formattedLessonInformation(
+                                  weekDay: lesson.weekDay,
+                                  timeStart: lesson.timeStart,
+                                  timeEnd: lesson.timeEnd,
+                                ),
                                 style: Theme.of(context).textTheme.headline3)
                           ],
                         ),
@@ -71,6 +75,13 @@ class LessonInfoCard extends StatelessWidget {
             )));
   }
 }
+
+String _formattedLessonInformation({
+  String weekDay,
+  String timeStart,
+  String timeEnd,
+}) =>
+    "${weekDay} (${timeStart}${timeEnd.isNotEmpty ? " - ${timeEnd}" : ""})";
 
 String _capitalize(String s) => s[0].toUpperCase() + s.substring(1);
 

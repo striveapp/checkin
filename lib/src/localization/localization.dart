@@ -66,6 +66,11 @@ extension Localization on String {
         'it': 'Ancora nessuno in classe',
       } +
       {
+        'en': LessonCard.startingAt,
+        'es': 'Empieza a las %s',
+        'it': 'Inizia alle %s',
+      } +
+      {
         'en': GradePage.selectYourBelt,
         'es': '¿Cuál es tu cinturón?',
         'it': 'Che cintura sei?',
@@ -190,6 +195,11 @@ extension Localization on String {
         'en': LessonInfos.and,
         'es': 'y',
         'it': 'e',
+      } +
+      {
+        'en': LessonInfos.startingAt,
+        'es': "Empieza a las %s",
+        'it': 'Inizia alle %s',
       } +
       {
         'en': AttendeesPreview.andOthers
