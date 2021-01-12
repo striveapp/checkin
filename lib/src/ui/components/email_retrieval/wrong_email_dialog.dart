@@ -11,7 +11,8 @@ class WrongEmailDialog extends StatelessWidget {
     return AlertDialog(
       contentPadding: EdgeInsets.symmetric(horizontal: 15, vertical: 25),
       content: Text(theEmailYouInsertedMightNotBeCorrect.i18n,
-          textAlign: TextAlign.center, style: Theme.of(context).textTheme.headline3),
+          textAlign: TextAlign.center,
+          style: Theme.of(context).textTheme.headline3),
       actionsPadding: EdgeInsets.symmetric(horizontal: 10),
       actions: <Widget>[
         RaisedButton(
@@ -24,7 +25,8 @@ class WrongEmailDialog extends StatelessWidget {
             ),
           ),
           onPressed: () {
-            Navigator.of(context).popUntil((route) => route.settings.name == "email-retrieve/");
+            Navigator.of(context)
+                .popUntil((route) => route.settings.name == "email-retrieve/");
           },
         ),
       ],

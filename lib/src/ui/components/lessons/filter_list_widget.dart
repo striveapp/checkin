@@ -53,14 +53,23 @@ class _FilterListWidgetState extends State<FilterListWidget> {
                 builder: (BuildContext context, LessonFilterState state) =>
                     state.map(
                   initialLessonFilterState: (_) => LoadingIndicator(),
-                  lessonFilterLoaded: (LessonFilterLoaded state) => state.availableLessonTypes.length > 1 ? Column(
-                    crossAxisAlignment: CrossAxisAlignment.start,
-                    children: _buildChoiceList(state.availableLessonTypes),
-                  ) : Padding(
-                    padding: const EdgeInsets.symmetric(vertical: 20, horizontal: 10),
-                    child: Center(child: Text(
-                      FilterListWidget.noFiltersAvailable.i18n, textAlign: TextAlign.center, style: Theme.of(context).textTheme.headline3,)),
-                  ),
+                  lessonFilterLoaded: (LessonFilterLoaded state) =>
+                      state.availableLessonTypes.length > 1
+                          ? Column(
+                              crossAxisAlignment: CrossAxisAlignment.start,
+                              children:
+                                  _buildChoiceList(state.availableLessonTypes),
+                            )
+                          : Padding(
+                              padding: const EdgeInsets.symmetric(
+                                  vertical: 20, horizontal: 10),
+                              child: Center(
+                                  child: Text(
+                                FilterListWidget.noFiltersAvailable.i18n,
+                                textAlign: TextAlign.center,
+                                style: Theme.of(context).textTheme.headline3,
+                              )),
+                            ),
                 ),
               ),
             ),

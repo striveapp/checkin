@@ -24,33 +24,33 @@ class UserStatsPage extends StatelessWidget {
   Widget build(BuildContext context) {
     return BlocBuilder<UserStatsBloc, UserStatsState>(
         cubit: UserStatsBloc(
-          statsRepository: RepositoryProvider.of<StatsRepository>(context),
-          userEmail: _user.email,
-          selectedGymId: _user.selectedGymId,
-          statsBloc: BlocProvider.of<StatsBloc>(context)
-        ),
+            statsRepository: RepositoryProvider.of<StatsRepository>(context),
+            userEmail: _user.email,
+            selectedGymId: _user.selectedGymId,
+            statsBloc: BlocProvider.of<StatsBloc>(context)),
         builder: (BuildContext context, UserStatsState state) {
-      if (state is UserStatsUninitialized) {
-        return LoadingIndicator();
-      }
-      if (state is UserStatsLoaded) {
-        return Column(
-          children: <Widget>[
-            Padding(
-              padding: EdgeInsets.symmetric(horizontal: 20),
-              child: MatTimeCounter(
-                timeSpan: state.timespan,
-                counter: state.attendedLessons.length,
-              ),
-            ),
-            SizedBox(
-              height: 30,
-            ),
-            AttendedLessonsList(attendedLessons: state.attendedLessons),
-          ],
-        );
-      }
-      return ErrorWidget("Unknown State [$state] received in: user_stats_page");
-    });
+          if (state is UserStatsUninitialized) {
+            return LoadingIndicator();
+          }
+          if (state is UserStatsLoaded) {
+            return Column(
+              children: <Widget>[
+                Padding(
+                  padding: EdgeInsets.symmetric(horizontal: 20),
+                  child: MatTimeCounter(
+                    timeSpan: state.timespan,
+                    counter: state.attendedLessons.length,
+                  ),
+                ),
+                SizedBox(
+                  height: 30,
+                ),
+                AttendedLessonsList(attendedLessons: state.attendedLessons),
+              ],
+            );
+          }
+          return ErrorWidget(
+              "Unknown State [$state] received in: user_stats_page");
+        });
   }
 }

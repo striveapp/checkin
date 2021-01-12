@@ -4,7 +4,6 @@ import 'package:checkin/src/constants.dart' as constants;
 import 'package:checkin/src/localization/localization.dart';
 import 'package:flutter/material.dart';
 
-
 class MatTimeCounter extends StatelessWidget {
   final int counter;
   final String timeSpan;
@@ -32,12 +31,13 @@ class MatTimeCounter extends StatelessWidget {
               counter.toString(),
               key: Key('matHours'),
               textAlign: TextAlign.center,
-              style: Theme.of(context)
-                  .textTheme
-                  .headline1
-                  .apply(fontSizeFactor: 3, color: Theme.of(context).accentColor),
+              style: Theme.of(context).textTheme.headline1.apply(
+                  fontSizeFactor: 3, color: Theme.of(context).accentColor),
             ),
-            Text(hours.plural(counter), style: Theme.of(context).textTheme.headline5,),
+            Text(
+              hours.plural(counter),
+              style: Theme.of(context).textTheme.headline5,
+            ),
           ],
         ),
         Column(
@@ -51,8 +51,7 @@ class MatTimeCounter extends StatelessWidget {
                     numHours.plural(0),
                     style: Theme.of(context).textTheme.headline5,
                   ),
-                  Text(
-                      numHours.plural(_getTotalMatTimeHours(timeSpan)),
+                  Text(numHours.plural(_getTotalMatTimeHours(timeSpan)),
                       style: Theme.of(context).textTheme.headline5),
                 ],
               ),
@@ -73,25 +72,26 @@ class MatTimeCounter extends StatelessWidget {
         ),
         Text(
           "${attendedClasses.plural(counter)} ${thisTimespan.gender(timeSpan)}",
-          style: Theme.of(context).textTheme.headline4.apply(fontWeightDelta: 2),
+          style:
+              Theme.of(context).textTheme.headline4.apply(fontWeightDelta: 2),
         )
       ],
     );
   }
 
   int _getTotalMatTimeHours(String timeSpan) {
-    if(timeSpan == constants.WEEK) {
+    if (timeSpan == constants.WEEK) {
       return config.TOTAL_MAT_TIME_WEEK;
-    } else if(timeSpan == constants.MONTH) {
+    } else if (timeSpan == constants.MONTH) {
       return config.TOTAL_MAT_TIME_MONTH;
     }
     return config.TOTAL_MAT_TIME_YEAR;
   }
 
   double _getAttendancePercentage(int counter, String timeSpan) {
-    if(timeSpan == constants.WEEK) {
+    if (timeSpan == constants.WEEK) {
       return ((counter * 1.5) * 100 / config.TOTAL_MAT_TIME_WEEK) / 100;
-    } else if(timeSpan == constants.MONTH) {
+    } else if (timeSpan == constants.MONTH) {
       return ((counter * 1.5) * 100 / config.TOTAL_MAT_TIME_MONTH) / 100;
     }
     return ((counter * 1.5) * 100 / config.TOTAL_MAT_TIME_YEAR) / 100;

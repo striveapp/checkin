@@ -39,24 +39,28 @@ class GraduationBloc extends Bloc<GraduationEvent, GraduationState> {
   Stream<GraduationState> mapEventToState(
     GraduationEvent event,
   ) async* {
-    if( event is InitializeGraduation) {
+    if (event is InitializeGraduation) {
       graduationSystemSub?.cancel();
 
-      graduationSystemSub =
-          graduationSystemRepository.getGraduationSystem(gymId, userGrade).listen((graduationSystem) {
-            statsSub?.cancel();
+      graduationSystemSub = graduationSystemRepository
+          .getGraduationSystem(gymId, userGrade)
+          .listen((graduationSystem) {
+        statsSub?.cancel();
 
-            statsSub = statsRepository.getUserStatsByGrade(gymId, userEmail, userGrade).listen((history) {
-              add(GraduationSystemUpdated(
-                  attendedLessonsForGrade: history.attendedLessons.length,
-                  graduationSystem: graduationSystem));
-            });
-          });
+        statsSub = statsRepository
+            .getUserStatsByGrade(gymId, userEmail, userGrade)
+            .listen((history) {
+          add(GraduationSystemUpdated(
+              attendedLessonsForGrade: history.attendedLessons.length,
+              graduationSystem: graduationSystem));
+        });
+      });
     }
 
     if (event is GraduationSystemUpdated) {
       Grade nextGrade = graduationUtils.calculateNextGrade(this.userGrade);
-      if (event.attendedLessonsForGrade >= event.graduationSystem.forNextLevel) {
+      if (event.attendedLessonsForGrade >=
+          event.graduationSystem.forNextLevel) {
         yield ReadyForGraduation(nextGrade: nextGrade);
       } else {
         yield NotReadyForGraduation(nextGrade: nextGrade);
@@ -67,7 +71,8 @@ class GraduationBloc extends Bloc<GraduationEvent, GraduationState> {
       yield GraduationLoading();
       await userRepository.updateGrade(userEmail, event.newGrade);
       // todo why we reload here? should receive the updates user and regenerate a GraduationSystemUpdated event
-      var calculateNextGrade = graduationUtils.calculateNextGrade(event.newGrade);
+      var calculateNextGrade =
+          graduationUtils.calculateNextGrade(event.newGrade);
       yield NotReadyForGraduation(
         nextGrade: calculateNextGrade,
       );

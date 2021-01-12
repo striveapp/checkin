@@ -22,9 +22,12 @@ class UserImage extends StatelessWidget {
     return Container(
       padding: this.withBorder ? EdgeInsets.all(1.5) : null,
       decoration: BoxDecoration(
-          border: Border.all(color: this.withBorder ? Theme.of(context).accentColor : Colors.transparent, width: 1.5),
-          borderRadius: BorderRadius.circular(circularRadius)
-      ),
+          border: Border.all(
+              color: this.withBorder
+                  ? Theme.of(context).accentColor
+                  : Colors.transparent,
+              width: 1.5),
+          borderRadius: BorderRadius.circular(circularRadius)),
       child: ClipRRect(
         borderRadius: BorderRadius.circular(circularRadius),
         child: CachedNetworkImage(

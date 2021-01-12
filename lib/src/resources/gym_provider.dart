@@ -13,8 +13,8 @@ class GymProvider implements GymRepository {
         .snapshots()
         .where((snapshot) => snapshot.exists)
         .map((gym) {
-          return _toGym(gymId, gym.data());
-        });
+      return _toGym(gymId, gym.data());
+    });
   }
 
   Gym _toGym(String gymId, Map<String, dynamic> gym) {

@@ -8,7 +8,8 @@ import 'package:mockito/mockito.dart';
 
 import 'helper/mock_helper.dart';
 
-class MockLessonConfigRepository extends Mock implements LessonConfigRepository {}
+class MockLessonConfigRepository extends Mock
+    implements LessonConfigRepository {}
 
 class MockUserBloc extends Mock implements UserBloc {}
 
@@ -59,23 +60,25 @@ void main() {
       const Set<String> testFilterTypes = {"cool-type", "cooler-type"};
 
       setUp(() {
-        whenListen(mockUserBloc, Stream.fromIterable([UserSuccess(currentUser: fakeUser)]));
+        whenListen(mockUserBloc,
+            Stream.fromIterable([UserSuccess(currentUser: fakeUser)]));
         when(mockLessonConfigRepository.getAvailableLessonTypes(fakeGymId))
-            .thenAnswer((realInvocation) => Stream<Set<String>>.value(testFilterTypes));
+            .thenAnswer(
+                (realInvocation) => Stream<Set<String>>.value(testFilterTypes));
       });
 
       tearDown(() {
         verify(mockLessonConfigRepository.getAvailableLessonTypes(fakeGymId));
       });
 
-      blocTest(
-        "should emit LessonFilterLoaded with available filters",
-        build: () => LessonFilterBloc(
-          lessonConfigRepository: mockLessonConfigRepository,
-          userBloc: mockUserBloc,
-        ),
-        expect: [LessonFilterLoaded(availableLessonTypes: testFilterTypes.toList())]
-      );
+      blocTest("should emit LessonFilterLoaded with available filters",
+          build: () => LessonFilterBloc(
+                lessonConfigRepository: mockLessonConfigRepository,
+                userBloc: mockUserBloc,
+              ),
+          expect: [
+            LessonFilterLoaded(availableLessonTypes: testFilterTypes.toList())
+          ]);
     });
   });
 }

@@ -7,9 +7,9 @@ import 'json_model.dart';
 
 void main() {
   group("json test group", () {
-
     test("json test", () {
-      JsonModel jsonModel = JsonModel(simpleField: "test", requiredField: "required");
+      JsonModel jsonModel =
+          JsonModel(simpleField: "test", requiredField: "required");
       Map<String, dynamic> serializedJsonModel = jsonModel.toJson();
 
       print("toJson: ${jsonEncode(serializedJsonModel)}");

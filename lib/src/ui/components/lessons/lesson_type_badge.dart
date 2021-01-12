@@ -16,10 +16,7 @@ class LessonTypeBadge extends StatelessWidget {
     return Container(
       width: 50,
       decoration: BoxDecoration(
-        border: Border.all(
-          width: 1.5,
-          color: _toColor(color)
-        ),
+        border: Border.all(width: 1.5, color: _toColor(color)),
         borderRadius: BorderRadius.circular(4),
       ),
       child: Padding(

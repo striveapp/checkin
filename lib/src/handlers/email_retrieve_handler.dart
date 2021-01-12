@@ -23,9 +23,9 @@ class EmailRetrieveHandler extends Handler implements RegisterableHandler {
       (BuildContext context, Map<String, List<String>> params) {
         return BlocListener<AuthBloc, AuthState>(
           listener: (BuildContext context, AuthState state) {
-            if(state is AuthAuthenticated) {
+            if (state is AuthAuthenticated) {
               Navigator.of(context)
-                    .popUntil(ModalRoute.withName(Navigator.defaultRouteName));
+                  .popUntil(ModalRoute.withName(Navigator.defaultRouteName));
             }
           },
           child: BlocProvider(

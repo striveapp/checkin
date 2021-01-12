@@ -9,14 +9,14 @@ abstract class AccountEvent extends Equatable {
 }
 
 class AccountUpdated extends AccountEvent {
-    final User user;
+  final User user;
 
-    AccountUpdated({this.user});
+  AccountUpdated({this.user});
 
-    @override
-    List<Object> get props => [user];
+  @override
+  List<Object> get props => [user];
 
-    String toString() => 'AccountUpdated';
+  String toString() => 'AccountUpdated';
 }
 
 class AccountDisplayError extends AccountEvent {

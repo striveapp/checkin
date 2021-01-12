@@ -6,10 +6,7 @@ class UserHistory extends Equatable {
   final String email;
   final List<Lesson> attendedLessons;
 
-  UserHistory({
-    @required this.email,
-    @required this.attendedLessons
-  });
+  UserHistory({@required this.email, @required this.attendedLessons});
 
   @override
   List<Object> get props => [attendedLessons];

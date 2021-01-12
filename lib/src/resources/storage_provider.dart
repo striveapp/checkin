@@ -4,7 +4,6 @@ import 'package:checkin/src/config.dart';
 import 'package:checkin/src/util/debug_util.dart';
 import 'package:firebase_storage/firebase_storage.dart';
 
-
 class StorageProvider {
   FirebaseStorage firebaseStorage = FirebaseStorage(
       storageBucket: isInDebugMode ? TEST_STORAGE_BUCKET : STORAGE_BUCKET);

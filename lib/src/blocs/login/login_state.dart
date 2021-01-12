@@ -12,9 +12,7 @@ abstract class LoginState with _$LoginState {
 
   const factory LoginState.loginSuccess({User loggedUser}) = LoginSuccess;
 
-  const factory LoginState.loginFailure({String errorMessage}) =
-      LoginFailure;
+  const factory LoginState.loginFailure({String errorMessage}) = LoginFailure;
 
   const factory LoginState.wrongfullyInsertedEmail() = WrongfullyInsertedEmail;
-
 }

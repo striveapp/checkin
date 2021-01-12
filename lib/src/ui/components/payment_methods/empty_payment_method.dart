@@ -8,7 +8,8 @@ import 'package:flutter_bloc/flutter_bloc.dart';
 
 class EmptyPaymentMethod extends StatelessWidget {
   static const String connectBankAccount = 'Connect your bank account';
-  static const String noRegisteredPaymentMethod = 'There are no registered payment methods';
+  static const String noRegisteredPaymentMethod =
+      'There are no registered payment methods';
 
   final String customerEmail;
 
@@ -25,7 +26,8 @@ class EmptyPaymentMethod extends StatelessWidget {
           Text(
             noRegisteredPaymentMethod.i18n,
             textAlign: TextAlign.center,
-            style: Theme.of(context).textTheme.headline3.apply(fontSizeDelta: 1),
+            style:
+                Theme.of(context).textTheme.headline3.apply(fontSizeDelta: 1),
           ),
           BlocBuilder<GymBloc, GymState>(
               builder: (BuildContext context, GymState state) => state.when(

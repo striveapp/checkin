@@ -6,7 +6,8 @@ import 'package:open_appstore/open_appstore.dart';
 
 class UpgraderDialog {
   static final String update = "Update";
-  static final String versionNotSupported = "Current version of this app is no longer supported\n\nPlease update now";
+  static final String versionNotSupported =
+      "Current version of this app is no longer supported\n\nPlease update now";
 
   static final UpgraderDialog _singleton = new UpgraderDialog._internal();
 
@@ -28,20 +29,20 @@ class UpgraderDialog {
     overlayState = Overlay.of(context);
 
     _containerEntry = new OverlayEntry(
-      builder: (BuildContext context) => Container(
-        constraints: BoxConstraints.expand(),
-        color: Colors.black54,
-      ));
+        builder: (BuildContext context) => Container(
+              constraints: BoxConstraints.expand(),
+              color: Colors.black54,
+            ));
     _dialogEntry = new OverlayEntry(
-        builder: (BuildContext context) => AlertDialog(
-          actions: <Widget>[RaisedButton(
-              child: Text(update.i18n),
-              onPressed: () {
-                OpenAppstore.launch(androidAppId: ANDROID_APP_ID, iOSAppId: IOS_APP_ID);
-              }
-              ,)],
-            title: Text(versionNotSupported.i18n))
-    );
-    overlayState.insertAll([_containerEntry ,_dialogEntry]);
+        builder: (BuildContext context) => AlertDialog(actions: <Widget>[
+              RaisedButton(
+                child: Text(update.i18n),
+                onPressed: () {
+                  OpenAppstore.launch(
+                      androidAppId: ANDROID_APP_ID, iOSAppId: IOS_APP_ID);
+                },
+              )
+            ], title: Text(versionNotSupported.i18n)));
+    overlayState.insertAll([_containerEntry, _dialogEntry]);
   }
 }

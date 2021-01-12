@@ -23,8 +23,10 @@ class AttendeeTile extends StatelessWidget {
   final bool showDismissibleCue;
 
   static const String you = 'You';
-  static const String youHaveNoMoreAvailableSessions = 'You have no more available sessions';
-  static const String thisStudentIsInSessionOverdue = 'This student is in session overdue';
+  static const String youHaveNoMoreAvailableSessions =
+      'You have no more available sessions';
+  static const String thisStudentIsInSessionOverdue =
+      'This student is in session overdue';
 
   const AttendeeTile({
     Key key,
@@ -43,7 +45,8 @@ class AttendeeTile extends StatelessWidget {
       providers: [
         BlocProvider<SessionsBloc>(
           create: (BuildContext context) => SessionsBloc(
-            membershipRepository: RepositoryProvider.of<MembershipRepository>(context),
+            membershipRepository:
+                RepositoryProvider.of<MembershipRepository>(context),
             statsRepository: RepositoryProvider.of<StatsRepository>(context),
             userEmail: attendee.email,
             selectedGymId: selectedGymId,
@@ -51,7 +54,8 @@ class AttendeeTile extends StatelessWidget {
         ),
         BlocProvider<GraduationBloc>(
           create: (BuildContext context) => GraduationBloc(
-            graduationSystemRepository: RepositoryProvider.of<GraduationSystemRepository>(context),
+            graduationSystemRepository:
+                RepositoryProvider.of<GraduationSystemRepository>(context),
             statsRepository: RepositoryProvider.of<StatsRepository>(context),
             userRepository: RepositoryProvider.of<UserRepository>(context),
             graduationUtils: GraduationUtil(),
@@ -74,12 +78,11 @@ class AttendeeTile extends StatelessWidget {
               ),
               title: Padding(
                 padding: const EdgeInsets.only(left: 6),
-                child: Text("${attendee.name}${this.isCurrent ? " (${you.i18n})" : ""}",
+                child: Text(
+                    "${attendee.name}${this.isCurrent ? " (${you.i18n})" : ""}",
                     style: this.isCurrent
-                        ? Theme.of(context)
-                            .textTheme
-                            .headline3
-                            .apply(color: Theme.of(context).accentColor.withAlpha(200))
+                        ? Theme.of(context).textTheme.headline3.apply(
+                            color: Theme.of(context).accentColor.withAlpha(200))
                         : Theme.of(context).textTheme.headline3),
               ),
               trailing: Wrap(
@@ -88,23 +91,28 @@ class AttendeeTile extends StatelessWidget {
                     spacing: 10,
                     children: [
                       if (showSessionsWarning && !isAccepted)
-                        BlocBuilder<SessionsBloc, SessionsState>(
-                            builder: (BuildContext context, SessionsState state) {
+                        BlocBuilder<SessionsBloc, SessionsState>(builder:
+                            (BuildContext context, SessionsState state) {
                           final message = isCurrent
                               ? youHaveNoMoreAvailableSessions
                               : thisStudentIsInSessionOverdue;
                           return state.maybeWhen(
-                              sessionsWarning: (_totalLessonsOfPlan, _attendedLessons) => Tooltip(
-                                    message: message.i18n,
-                                    child: Icon(Icons.warning_amber_rounded, color: Colors.amber),
-                                  ),
+                              sessionsWarning:
+                                  (_totalLessonsOfPlan, _attendedLessons) =>
+                                      Tooltip(
+                                        message: message.i18n,
+                                        child: Icon(Icons.warning_amber_rounded,
+                                            color: Colors.amber),
+                                      ),
                               orElse: () => EmptyWidget());
                         }),
                       if (this.isAccepted)
-                        Icon(Icons.check_circle, color: Theme.of(context).accentColor),
+                        Icon(Icons.check_circle,
+                            color: Theme.of(context).accentColor),
                     ],
                   ),
-                  if (this.showDismissibleCue && !this.isAccepted) DismissibleCue()
+                  if (this.showDismissibleCue && !this.isAccepted)
+                    DismissibleCue()
                 ],
               ),
               onTap: () async {

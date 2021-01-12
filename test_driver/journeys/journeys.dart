@@ -19,15 +19,15 @@ bool isHotRestarting = false;
 
 Future<void> main() async {
   enableFlutterDriverExtension(handler: (message) async {
-    if(message == "init_hot_restart") {
+    if (message == "init_hot_restart") {
       isHotRestarting = true;
     }
 
-    if( message == "is_hot_restarting") {
+    if (message == "is_hot_restarting") {
       return isHotRestarting.toString();
     }
 
-    if(message == "setup") {
+    if (message == "setup") {
       await setup();
     } else if (message == "is_db_clean") {
       return isDbClean.toString();
@@ -42,7 +42,8 @@ Future<void> setup() async {
   await Firebase.initializeApp();
   var firebaseAuth = FirebaseAuth.instance;
   await firebaseAuth.signOut();
-  await firebaseAuth.signInWithEmailAndPassword(email: "test@test.com", password: "test123");
+  await firebaseAuth.signInWithEmailAndPassword(
+      email: "test@test.com", password: "test123");
   await cleanDatabase();
   await firebaseAuth.signOut();
   debugPrint("Finished setup, db cleaned!");
@@ -55,12 +56,16 @@ Future<void> cleanDatabase() async {
   await StatsProvider().cleanUserHistory("test", "test-master@test.com");
   await StatsProvider().cleanUserHistory("test", "test-owner@test.com");
   await UserProvider().updateGrade("test@test.com", Grade.white);
-  await LessonInstancesProvider().cleanLessonAttendees("test", formattedTestDate, "3dbc1886-0c93-4eb3-a815-f4ed69306217");
-  await LessonInstancesProvider().cleanLessonAttendees("test", formattedTestDate, "50be7f9f-d8e4-424a-a4d8-2910dbaf68e3");
-  await LessonInstancesProvider().cleanLessonAttendees("test", formattedTestDate, "d70c08ba-82c9-47ab-99cc-49d7a890bef4");
-  lessonSub = LessonInstancesProvider().getLesson("test", formattedTestDate, "50be7f9f-d8e4-424a-a4d8-2910dbaf68e3").listen((event) {
+  await LessonInstancesProvider().cleanLessonAttendees(
+      "test", formattedTestDate, "3dbc1886-0c93-4eb3-a815-f4ed69306217");
+  await LessonInstancesProvider().cleanLessonAttendees(
+      "test", formattedTestDate, "50be7f9f-d8e4-424a-a4d8-2910dbaf68e3");
+  await LessonInstancesProvider().cleanLessonAttendees(
+      "test", formattedTestDate, "d70c08ba-82c9-47ab-99cc-49d7a890bef4");
+  lessonSub = LessonInstancesProvider()
+      .getLesson(
+          "test", formattedTestDate, "50be7f9f-d8e4-424a-a4d8-2910dbaf68e3")
+      .listen((event) {
     isDbClean = event?.attendees?.isEmpty;
   });
 }
-
-

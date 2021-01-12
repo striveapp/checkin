@@ -2,7 +2,8 @@ import 'package:flutter/material.dart';
 import 'package:checkin/src/localization/localization.dart';
 
 class PlansCallout extends StatelessWidget {
-  static final String chooseYourSubscription = "Choose the subscription that better fits your training needs";
+  static final String chooseYourSubscription =
+      "Choose the subscription that better fits your training needs";
 
   const PlansCallout({
     Key key,

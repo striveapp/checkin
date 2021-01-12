@@ -9,13 +9,13 @@ extension DriverExtension on FlutterDriver {
     await tap(find.pageBack());
   }
 
-  Future<String> waitForExpectedValue(Future<String> Function() f, String expectedValue,
-      {Duration timeout = defaultTimeout}) async =>
+  Future<String> waitForExpectedValue(
+          Future<String> Function() f, String expectedValue,
+          {Duration timeout = defaultTimeout}) async =>
       _getTextValueFromFuture(f, expectedValue).timeout(timeout);
 
   Future<void> closeAndHotRestart() async {
-    if(await pidFile.exists()) {
-
+    if (await pidFile.exists()) {
       await requestData("init_hot_restart");
       await close();
       String pid = await pidFile.readAsString();
@@ -28,11 +28,13 @@ extension DriverExtension on FlutterDriver {
 Future<FlutterDriver> getDriverAndWaitForHotRestartFinished() async {
   FlutterDriver driver = await FlutterDriver.connect();
 
-  if(await pidFile.exists()) {
+  if (await pidFile.exists()) {
     try {
       await driver.waitForExpectedValue(() async {
         try {
-          var result = await driver.requestData( "is_hot_restarting", timeout: Duration(seconds: 1)).timeout(Duration(seconds:1));
+          var result = await driver
+              .requestData("is_hot_restarting", timeout: Duration(seconds: 1))
+              .timeout(Duration(seconds: 1));
           return result;
         } catch (e) {
           print("reconnecting: $e");
@@ -40,7 +42,7 @@ Future<FlutterDriver> getDriverAndWaitForHotRestartFinished() async {
         }
         return "true";
       }, "false");
-    } catch( e ) {
+    } catch (e) {
       print("something went wrong: $e");
     }
   }
@@ -53,7 +55,7 @@ Future<String> _getTextValueFromFuture(
     if (await f.call() == expectedValue) {
       return expectedValue;
     }
-  } catch( e ) {
+  } catch (e) {
     print("function call failed: $e");
   }
   return _getTextValueFromFuture(f, expectedValue);

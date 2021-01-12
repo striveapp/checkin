@@ -27,12 +27,12 @@ class ShowDialog extends NotificationsEvent {
 
 class NotificationOpened extends NotificationsEvent {
   final String path;
-  
+
   const NotificationOpened({this.path});
-  
+
   @override
   List<Object> get props => [path];
-  
+
   @override
   String toString() => 'NotificationOpened';
 }

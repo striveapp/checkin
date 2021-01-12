@@ -8,7 +8,8 @@ class DismissibleCue extends StatefulWidget {
   _DismissibleCueState createState() => _DismissibleCueState();
 }
 
-class _DismissibleCueState extends State<DismissibleCue> with SingleTickerProviderStateMixin {
+class _DismissibleCueState extends State<DismissibleCue>
+    with SingleTickerProviderStateMixin {
   static const int duration = 600;
 
   AnimationController _controller;
@@ -32,14 +33,14 @@ class _DismissibleCueState extends State<DismissibleCue> with SingleTickerProvid
       );
 
       // only display it 3 times
-      tickerFuture.timeout(Duration(milliseconds: (duration * 3) - 200), onTimeout: () {
+      tickerFuture.timeout(Duration(milliseconds: (duration * 3) - 200),
+          onTimeout: () {
         _controller.stop(canceled: true);
         setState(() {
           // after 3 times display EmptyWidget
           running = false;
         });
       });
-
     });
   }
 
@@ -83,7 +84,10 @@ class _DismissibleCueState extends State<DismissibleCue> with SingleTickerProvid
           position: _offsetAnimation,
           child: Container(
             child: Wrap(
-              children: [Icon(Icons.arrow_back_ios), Icon(Icons.arrow_back_ios)],
+              children: [
+                Icon(Icons.arrow_back_ios),
+                Icon(Icons.arrow_back_ios)
+              ],
               spacing: -15,
             ),
           ),

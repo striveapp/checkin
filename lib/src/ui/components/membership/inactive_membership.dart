@@ -35,8 +35,7 @@ class InactiveMembershipView extends StatelessWidget {
                 style: Theme.of(context).textTheme.button,
               ),
               onPressed: () {
-                Navigator.of(context)
-                        .pushNamed("plans/$customerId");
+                Navigator.of(context).pushNamed("plans/$customerId");
               },
             ),
           ],

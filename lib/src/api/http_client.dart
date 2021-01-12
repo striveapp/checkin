@@ -30,7 +30,8 @@ class HttpClient {
         await http.post(functionUrl, body: body, headers: headers);
 
     if (response.statusCode != 201) {
-      throw Exception('Request failed with code [${response.statusCode}], Reason: [${response.body}]');
+      throw Exception(
+          'Request failed with code [${response.statusCode}], Reason: [${response.body}]');
     }
 
     return jsonDecode(response.body);

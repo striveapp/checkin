@@ -17,5 +17,6 @@ abstract class SubscriptionPlansState with _$SubscriptionPlansState {
     @required List<SubscriptionPlan> subscriptionPlans,
   }) = SubscriptionPlansLoaded;
 
-  const factory SubscriptionPlansState.subscriptionPlansEmpty() = SubscriptionPlansEmpty;
+  const factory SubscriptionPlansState.subscriptionPlansEmpty() =
+      SubscriptionPlansEmpty;
 }

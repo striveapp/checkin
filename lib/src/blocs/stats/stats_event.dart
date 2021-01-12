@@ -12,9 +12,7 @@ abstract class StatsEvent extends Equatable {
 class TimespanUpdate extends StatsEvent {
   final String timespan;
 
-  const TimespanUpdate({
-    this.timespan
-  });
+  const TimespanUpdate({this.timespan});
 
   @override
   List<Object> get props => [timespan];

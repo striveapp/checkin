@@ -3,7 +3,8 @@ import 'package:flutter/material.dart';
 
 class PlansFooter extends StatelessWidget {
   static const String note = 'note';
-  static const String subscriptionDisclaimer = 'the prices shown here represent the yearly subscription';
+  static const String subscriptionDisclaimer =
+      'the prices shown here represent the yearly subscription';
 
   const PlansFooter({
     Key key,
@@ -18,7 +19,10 @@ class PlansFooter extends StatelessWidget {
             text: TextSpan(children: [
               TextSpan(
                 text: "${note.i18n}: ",
-                style: Theme.of(context).textTheme.caption.apply(fontWeightDelta: 4),
+                style: Theme.of(context)
+                    .textTheme
+                    .caption
+                    .apply(fontWeightDelta: 4),
               ),
               TextSpan(
                 text: subscriptionDisclaimer.i18n,

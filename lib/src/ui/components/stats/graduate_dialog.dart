@@ -28,39 +28,42 @@ class GraduateDialog extends StatelessWidget {
   Widget build(BuildContext context) {
     return graduationState.maybeWhen(
         notReadyForGraduation: (Grade newGrade) => AlertDialog(
-          key: Key("graduationDialog"),
-          actionsPadding: EdgeInsets.symmetric(horizontal: 8),
-          title: Text(
-            notReadyYet.i18n,
-          ),
-          titleTextStyle: Theme.of(context).textTheme.headline3,
-          contentPadding: EdgeInsets.symmetric(vertical: 25),
-          content: GraduationPreview(currentGrade: currentUserGrade, newGrade: newGrade),
-          actions: <Widget>[
-            RaisedButton(
-              key: Key("graduateButton"),
-              child: Text(
-                graduateAnyway.i18n,
-                style: Theme.of(context).textTheme.button,
+              key: Key("graduationDialog"),
+              actionsPadding: EdgeInsets.symmetric(horizontal: 8),
+              title: Text(
+                notReadyYet.i18n,
               ),
-              onPressed: () {
-                context.read<GraduationBloc>().add(Graduate(newGrade: newGrade));
-                Navigator.of(context).pop();
-              },
+              titleTextStyle: Theme.of(context).textTheme.headline3,
+              contentPadding: EdgeInsets.symmetric(vertical: 25),
+              content: GraduationPreview(
+                  currentGrade: currentUserGrade, newGrade: newGrade),
+              actions: <Widget>[
+                RaisedButton(
+                  key: Key("graduateButton"),
+                  child: Text(
+                    graduateAnyway.i18n,
+                    style: Theme.of(context).textTheme.button,
+                  ),
+                  onPressed: () {
+                    context
+                        .read<GraduationBloc>()
+                        .add(Graduate(newGrade: newGrade));
+                    Navigator.of(context).pop();
+                  },
+                ),
+                RaisedButton(
+                  key: Key("cancelButton"),
+                  color: Theme.of(context).buttonTheme.colorScheme.error,
+                  child: Text(
+                    cancel.i18n,
+                    style: Theme.of(context).textTheme.button,
+                  ),
+                  onPressed: () {
+                    Navigator.of(context).pop();
+                  },
+                ),
+              ],
             ),
-            RaisedButton(
-              key: Key("cancelButton"),
-              color: Theme.of(context).buttonTheme.colorScheme.error,
-              child: Text(
-                cancel.i18n,
-                style: Theme.of(context).textTheme.button,
-              ),
-              onPressed: () {
-                Navigator.of(context).pop();
-              },
-            ),
-          ],
-        ),
         readyForGraduation: (Grade newGrade) => AlertDialog(
               key: Key("graduationDialog"),
               actionsPadding: EdgeInsets.symmetric(horizontal: 8),
@@ -69,7 +72,8 @@ class GraduateDialog extends StatelessWidget {
               ),
               titleTextStyle: Theme.of(context).textTheme.headline3,
               contentPadding: EdgeInsets.symmetric(vertical: 25),
-              content: GraduationPreview(currentGrade: currentUserGrade, newGrade: newGrade),
+              content: GraduationPreview(
+                  currentGrade: currentUserGrade, newGrade: newGrade),
               actions: <Widget>[
                 RaisedButton(
                   key: Key("graduateButton"),
@@ -78,7 +82,9 @@ class GraduateDialog extends StatelessWidget {
                     style: Theme.of(context).textTheme.button,
                   ),
                   onPressed: () {
-                    context.read<GraduationBloc>().add(Graduate(newGrade: newGrade));
+                    context
+                        .read<GraduationBloc>()
+                        .add(Graduate(newGrade: newGrade));
                     Navigator.of(context).pop();
                   },
                 ),

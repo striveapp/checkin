@@ -16,7 +16,8 @@ class AnalyticsProvider implements AnalyticsRepository {
       FirebaseAnalyticsObserver(analytics: _firebaseAnalytics);
 
   @override
-  Future<void> setUserProperties(String uid) async => await _firebaseAnalytics.setUserId(uid);
+  Future<void> setUserProperties(String uid) async =>
+      await _firebaseAnalytics.setUserId(uid);
 
   Future<void> logLoginWithGoogleSignIn() async =>
       await _firebaseAnalytics.logLogin(loginMethod: "google_sign_in");
@@ -62,15 +63,19 @@ class AnalyticsProvider implements AnalyticsRepository {
   }
 
   Future<void> setupBankAccountError({String error}) async {
-    await _crashlytics.recordError(error, null, reason: "setup bank account error");
-    await _firebaseAnalytics.logEvent(name: "setup_bank_account_error", parameters: {
+    await _crashlytics.recordError(error, null,
+        reason: "setup bank account error");
+    await _firebaseAnalytics
+        .logEvent(name: "setup_bank_account_error", parameters: {
       "hash": CryptoUtil.generateMd5(error),
       "message": error.length > 100 ? error.substring(0, 100) : error,
     });
   }
 
-  Future<void> logSubscriptionWithEmptyCustomer({String gymId, String priceId}) async =>
-      await _firebaseAnalytics.logEvent(name: "subscription_with_empty_customer", parameters: {
+  Future<void> logSubscriptionWithEmptyCustomer(
+          {String gymId, String priceId}) async =>
+      await _firebaseAnalytics
+          .logEvent(name: "subscription_with_empty_customer", parameters: {
         "gymId": gymId,
         "priceId": priceId,
       });
@@ -78,7 +83,8 @@ class AnalyticsProvider implements AnalyticsRepository {
   Future<void> subscriptionError({dynamic err, StackTrace stackTrace}) async {
     String message = err.toString();
 
-    await _crashlytics.recordError(err, stackTrace, reason: "subscription error");
+    await _crashlytics.recordError(err, stackTrace,
+        reason: "subscription error");
     await _firebaseAnalytics.logEvent(name: "subscription_error", parameters: {
       "hash": CryptoUtil.generateMd5(message),
       "message": message.length > 100 ? message.substring(0, 100) : message,
@@ -88,7 +94,8 @@ class AnalyticsProvider implements AnalyticsRepository {
   Future<void> unsubscribeError({dynamic err, StackTrace stackTrace}) async {
     String message = err.toString();
 
-    await _crashlytics.recordError(err, stackTrace, reason: "unsubscribe error");
+    await _crashlytics.recordError(err, stackTrace,
+        reason: "unsubscribe error");
     await _firebaseAnalytics.logEvent(name: "unsubscribe_error", parameters: {
       "hash": CryptoUtil.generateMd5(message),
       "message": message.length > 100 ? message.substring(0, 100) : message,
@@ -99,7 +106,8 @@ class AnalyticsProvider implements AnalyticsRepository {
   Future<void> passwordlessError({dynamic err, StackTrace stackTrace}) async {
     String message = err.toString();
 
-    await _crashlytics.recordError(err, stackTrace, reason: "passwordless error");
+    await _crashlytics.recordError(err, stackTrace,
+        reason: "passwordless error");
     await _firebaseAnalytics.logEvent(name: "passwordless_error", parameters: {
       "hash": CryptoUtil.generateMd5(message),
       "message": message.length > 100 ? message.substring(0, 100) : message,

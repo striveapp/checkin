@@ -126,7 +126,8 @@ Future<void> mainCommon(AppConfig appConfig) async {
                   authRepository: context.read<AuthRepository>(),
                   analyticsRepository: context.read<AnalyticsRepository>(),
                   userRepository: context.read<UserRepository>(),
-                  localStorageRepository: context.read<LocalStorageRepository>(),
+                  localStorageRepository:
+                      context.read<LocalStorageRepository>(),
                   loggedUser: user, // todo retrieve from storage cache
                   versionUtil: VersionUtil())
                 ..add(AppStarted()),
@@ -134,7 +135,8 @@ Future<void> mainCommon(AppConfig appConfig) async {
             BlocProvider<DynamicLinkBloc>(
               create: (context) => DynamicLinkBloc(
                   dynamicLinks: FirebaseDynamicLinks.instance,
-                  localStorageRepository: context.read<LocalStorageRepository>(),
+                  localStorageRepository:
+                      context.read<LocalStorageRepository>(),
                   dynamicLinkRepository: context.read<DynamicLinkRepository>(),
                   authRepository: context.read<AuthRepository>(),
                   analyticsRepository: context.read<AnalyticsRepository>(),

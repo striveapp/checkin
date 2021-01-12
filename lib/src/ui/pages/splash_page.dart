@@ -8,9 +8,9 @@ class SplashPage extends StatelessWidget {
           alignment: Alignment.center,
           decoration: BoxDecoration(
               image: DecorationImage(
-                image: AssetImage("assets/images/trianglify.png"),
-                fit: BoxFit.cover,
-              )),
+            image: AssetImage("assets/images/trianglify.png"),
+            fit: BoxFit.cover,
+          )),
           child: Column(
             mainAxisAlignment: MainAxisAlignment.center,
             crossAxisAlignment: CrossAxisAlignment.center,
@@ -23,8 +23,7 @@ class SplashPage extends StatelessWidget {
                 ),
               )
             ],
-          )
-      ),
+          )),
     );
   }
 }

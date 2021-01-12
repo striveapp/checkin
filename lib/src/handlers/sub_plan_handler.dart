@@ -23,7 +23,8 @@ class SubPlanHandler extends Handler implements RegisterableHandler {
   @override
   HandlerFunc get handlerFunc =>
       (BuildContext context, Map<String, List<String>> params) {
-        UserRepository userRepository = RepositoryProvider.of<UserRepository>(context);
+        UserRepository userRepository =
+            RepositoryProvider.of<UserRepository>(context);
         StorageRepository storageRepository = StorageRepository();
         ImageRepository imageRepository = ImageRepository();
 
@@ -43,7 +44,6 @@ class SubPlanHandler extends Handler implements RegisterableHandler {
               planId: params[planId][0],
               name: params[name][0],
               description: params[description][0]),
-
         );
       };
 

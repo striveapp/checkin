@@ -1,8 +1,8 @@
 import 'package:checkin/src/models/grade.dart';
 
 class GraduationUtil {
-  Grade calculateNextGrade(Grade currentGrade){
-    switch(currentGrade) {
+  Grade calculateNextGrade(Grade currentGrade) {
+    switch (currentGrade) {
       case Grade.white:
         return Grade.blue;
       case Grade.blue:

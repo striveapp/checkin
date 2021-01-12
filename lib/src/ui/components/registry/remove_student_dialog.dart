@@ -2,8 +2,9 @@ import 'package:checkin/src/localization/localization.dart';
 import 'package:flutter/material.dart';
 
 class RemoveStudentDialog extends StatelessWidget {
-
-  const RemoveStudentDialog({Key key,}) : super(key: key);
+  const RemoveStudentDialog({
+    Key key,
+  }) : super(key: key);
 
   static const String removeStudentDisclaimer =
       'Are you sure you wish to remove this student from class?';

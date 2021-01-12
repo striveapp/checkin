@@ -30,7 +30,8 @@ class PaymentMethodsBloc
         _paymentApi = paymentApi,
         _paymentMethodRepository = paymentMethodRepository,
         _urlLauncherUtil = urlLauncherUtil,
-        _userBloc = userBloc, super(InitialPaymentMethodsState()) {
+        _userBloc = userBloc,
+        super(InitialPaymentMethodsState()) {
     try {
       _onUserStateChanged(_userBloc.state);
       _userBloc.listen(_onUserStateChanged);
@@ -43,8 +44,8 @@ class PaymentMethodsBloc
     if (userState is UserSuccess) {
       _paymentMethodSub = _paymentMethodRepository
           .getPaymentMethod(
-          gymId: userState.currentUser.selectedGymId,
-          email: userState.currentUser.email)
+              gymId: userState.currentUser.selectedGymId,
+              email: userState.currentUser.email)
           .listen((paymentMethod) {
         add(PaymentMethodUpdated(
             paymentMethod: paymentMethod,
@@ -78,8 +79,7 @@ class PaymentMethodsBloc
         var gym = event.gym;
 
         String clientSecret = await _paymentApi.setupIntent(
-            customerEmail: event.billingEmail,
-            gymId: gym.id);
+            customerEmail: event.billingEmail, gymId: gym.id);
 
         yield PaymentMethodLoading(show: false);
         await _urlLauncherUtil.launchUrl(

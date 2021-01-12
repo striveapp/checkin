@@ -21,21 +21,23 @@ class LessonFilterBloc extends Bloc<LessonFilterEvent, LessonFilterState> {
   }
 
   void _onUserStateChanged(userState) {
-    if(userState is UserSuccess) {
+    if (userState is UserSuccess) {
       availableLessonTypesSub?.cancel();
-      availableLessonTypesSub = lessonConfigRepository.getAvailableLessonTypes(userState.currentUser.selectedGymId).listen((availableLessonTypes) {
+      availableLessonTypesSub = lessonConfigRepository
+          .getAvailableLessonTypes(userState.currentUser.selectedGymId)
+          .listen((availableLessonTypes) {
         add(LessonFilterUpdated(availableLessonTypes: availableLessonTypes));
       });
     }
   }
 
-
   @override
   Stream<LessonFilterState> mapEventToState(
     LessonFilterEvent event,
   ) async* {
-    if( event is LessonFilterUpdated ) {
-      yield LessonFilterState.lessonFilterLoaded(availableLessonTypes: event.availableLessonTypes.toList());
+    if (event is LessonFilterUpdated) {
+      yield LessonFilterState.lessonFilterLoaded(
+          availableLessonTypes: event.availableLessonTypes.toList());
     }
   }
 }

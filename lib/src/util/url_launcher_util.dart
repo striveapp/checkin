@@ -4,7 +4,7 @@ class UrlLauncherUtil {
   Future<bool> launchUrl(String url) async {
     final uri = Uri.encodeFull(url);
     if (await canLaunch(uri)) {
-      return await launch(uri, forceSafariVC: false );
+      return await launch(uri, forceSafariVC: false);
     } else {
       throw 'Could not launch $uri';
     }

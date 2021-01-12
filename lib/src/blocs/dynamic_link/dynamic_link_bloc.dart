@@ -13,8 +13,10 @@ import 'dynamic_link_event.dart';
 import 'dynamic_link_state.dart';
 
 class DynamicLinkBloc extends Bloc<DynamicLinkEvent, DynamicLinkState> {
-  static const emailMissingError = 'Make sure to open magic link on the same device used to send it';
-  static const invalidActionError = 'Magic link is expired or has already been used';
+  static const emailMissingError =
+      'Make sure to open magic link on the same device used to send it';
+  static const invalidActionError =
+      'Magic link is expired or has already been used';
 
   final FirebaseDynamicLinks dynamicLinks;
   final LocalStorageRepository localStorageRepository;
@@ -23,14 +25,14 @@ class DynamicLinkBloc extends Bloc<DynamicLinkEvent, DynamicLinkState> {
   final AnalyticsRepository analyticsRepository;
   final UserRepository userRepository;
 
-  DynamicLinkBloc({
-    @required FirebaseDynamicLinks this.dynamicLinks,
-    @required LocalStorageRepository this.localStorageRepository,
-    @required AuthRepository this.authRepository,
-    @required DynamicLinkRepository this.dynamicLinkRepository,
-    @required AnalyticsRepository this.analyticsRepository,
-    @required UserRepository this.userRepository
-  }) : super(DynamicLinkInitial());
+  DynamicLinkBloc(
+      {@required FirebaseDynamicLinks this.dynamicLinks,
+      @required LocalStorageRepository this.localStorageRepository,
+      @required AuthRepository this.authRepository,
+      @required DynamicLinkRepository this.dynamicLinkRepository,
+      @required AnalyticsRepository this.analyticsRepository,
+      @required UserRepository this.userRepository})
+      : super(DynamicLinkInitial());
 
   @override
   Stream<DynamicLinkState> mapEventToState(DynamicLinkEvent event) async* {
@@ -61,8 +63,9 @@ class DynamicLinkBloc extends Bloc<DynamicLinkEvent, DynamicLinkState> {
       yield DynamicLinkError(errorMessage: event.error.toString());
     }
 
-    if(event is ShareRegistryLink) {
-      var registryLink = await dynamicLinkRepository.getRegistryLink(event.date, event.lessonId);
+    if (event is ShareRegistryLink) {
+      var registryLink = await dynamicLinkRepository.getRegistryLink(
+          event.date, event.lessonId);
       yield DynamicLinkToShare(link: registryLink);
     }
   }
@@ -71,27 +74,29 @@ class DynamicLinkBloc extends Bloc<DynamicLinkEvent, DynamicLinkState> {
     var userEmail = await localStorageRepository.getUserEmail();
 
     try {
-      var loggedUser = await authRepository.completeSignInPasswordless(userEmail, event.deepLink);
+      var loggedUser = await authRepository.completeSignInPasswordless(
+          userEmail, event.deepLink);
       await analyticsRepository.setUserProperties(loggedUser.uid);
       await analyticsRepository.logLoginWithPasswordlessSignIn();
       await userRepository.createUser(
         loggedUser,
       );
       yield DynamicLinkAuthenticated();
-    } on UserAlreadyLoggedInException catch(_) {
-      await analyticsRepository.logAuthLinkOpenWithUserAlreadyLoggedIn(userEmail);
+    } on UserAlreadyLoggedInException catch (_) {
+      await analyticsRepository
+          .logAuthLinkOpenWithUserAlreadyLoggedIn(userEmail);
       // todo we should not expose firebase classes in bloc (FirebaseAuthException)
-    } on FirebaseAuthException catch(err, stackTrace) {
+    } on FirebaseAuthException catch (err, stackTrace) {
       String errorMessage = err.toString();
       // The out of band code is invalid. This can happen if the code is malformed, expired, or has already been used.
-      if( err.code == 'invalid-action-code') {
+      if (err.code == 'invalid-action-code') {
         errorMessage = invalidActionError;
       }
 
       yield* _handlePasswordlessError(errorMessage, stackTrace);
     } catch (err, stackTrace) {
       String errorMessage = err.toString();
-      if(userEmail == null) {
+      if (userEmail == null) {
         errorMessage = emailMissingError;
       }
 
@@ -99,8 +104,10 @@ class DynamicLinkBloc extends Bloc<DynamicLinkEvent, DynamicLinkState> {
     }
   }
 
-  Stream<DynamicLinkState> _handlePasswordlessError(String errorMessage, StackTrace stackTrace) async* {
-    await analyticsRepository.passwordlessError(err: errorMessage, stackTrace: stackTrace);
+  Stream<DynamicLinkState> _handlePasswordlessError(
+      String errorMessage, StackTrace stackTrace) async* {
+    await analyticsRepository.passwordlessError(
+        err: errorMessage, stackTrace: stackTrace);
     yield DynamicLinkError(errorMessage: errorMessage);
   }
 
@@ -109,7 +116,8 @@ class DynamicLinkBloc extends Bloc<DynamicLinkEvent, DynamicLinkState> {
     await localStorageRepository.setReferredGymId(referredGymId);
   }
 
-  Stream<DynamicLinkState> _handleNavigationLink(DeepLinkReceived event, String path) async* {
+  Stream<DynamicLinkState> _handleNavigationLink(
+      DeepLinkReceived event, String path) async* {
     if (event.deepLink.hasQuery) {
       path = "$path?${event.deepLink.query}";
     }
@@ -128,6 +136,4 @@ class DynamicLinkBloc extends Bloc<DynamicLinkEvent, DynamicLinkState> {
   Future<dynamic> onErrorLink(OnLinkErrorException e) async {
     add(DeepLinkErrorEvent(error: e));
   }
-
-
 }

@@ -8,7 +8,6 @@ import 'package:checkin/src/repositories/stats_repository.dart';
 import 'package:flutter/material.dart';
 
 class LeaderboardBloc extends Bloc<LeaderboardEvent, LeaderboardState> {
-
   final StatsRepository _statsRepository;
   final UserBloc _userBloc;
   StreamSubscription<List<UserHistory>> userHistorySub;
@@ -18,16 +17,18 @@ class LeaderboardBloc extends Bloc<LeaderboardEvent, LeaderboardState> {
     @required userBloc,
   })  : assert(statsRepository != null),
         _statsRepository = statsRepository,
-        _userBloc = userBloc, super(LeaderboardInitial())
-  {
+        _userBloc = userBloc,
+        super(LeaderboardInitial()) {
     _onUserStateChanged(_userBloc.state);
     _userBloc.listen(_onUserStateChanged);
   }
 
   void _onUserStateChanged(userState) {
-    if(userState is UserSuccess) {
+    if (userState is UserSuccess) {
       userHistorySub?.cancel();
-      userHistorySub = _statsRepository.getAllUserStats(userState.currentUser.selectedGymId).listen((usersHistory) {
+      userHistorySub = _statsRepository
+          .getAllUserStats(userState.currentUser.selectedGymId)
+          .listen((usersHistory) {
         add(LeaderboardUpdated(usersHistory: usersHistory));
       });
     }
@@ -36,8 +37,9 @@ class LeaderboardBloc extends Bloc<LeaderboardEvent, LeaderboardState> {
   @override
   Stream<LeaderboardState> mapEventToState(LeaderboardEvent event) async* {
     if (event is LeaderboardUpdated) {
-      if(event.usersHistory.length >= 3) {
-        yield LeaderboardLoaded(usersHistory: _getSortedUsers(event.usersHistory));
+      if (event.usersHistory.length >= 3) {
+        yield LeaderboardLoaded(
+            usersHistory: _getSortedUsers(event.usersHistory));
       } else {
         yield LeaderboardNotAvailable();
       }
@@ -54,8 +56,7 @@ class LeaderboardBloc extends Bloc<LeaderboardEvent, LeaderboardState> {
     List<UserHistory> sortedUsers = [...users];
 
     sortedUsers.sort((UserHistory userA, UserHistory userB) =>
-        userB.attendedLessons.length -
-        userA.attendedLessons.length);
+        userB.attendedLessons.length - userA.attendedLessons.length);
 
     return sortedUsers;
   }

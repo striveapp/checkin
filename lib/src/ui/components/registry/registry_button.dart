@@ -22,7 +22,10 @@ class RegistryButton extends StatelessWidget {
       child: RaisedButton(
         color: this.color,
         child: isLoading
-            ? LoadingIndicator(width: 20, height: 20,)
+            ? LoadingIndicator(
+                width: 20,
+                height: 20,
+              )
             : Text(
                 this.text.toUpperCase(),
                 style: Theme.of(context).textTheme.button,

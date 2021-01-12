@@ -75,10 +75,11 @@ class ActivePaymentMethodView extends StatelessWidget {
                       ),
                       color: Theme.of(context).buttonTheme.colorScheme.error,
                       onPressed: () {
-                        BlocProvider.of<PaymentMethodsBloc>(context).add(
-                            ChangeBankAccount(
-                                gym: gym,
-                                billingEmail: paymentMethod.billingEmail,));
+                        BlocProvider.of<PaymentMethodsBloc>(context)
+                            .add(ChangeBankAccount(
+                          gym: gym,
+                          billingEmail: paymentMethod.billingEmail,
+                        ));
                       },
                     ));
           }))

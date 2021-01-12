@@ -9,10 +9,10 @@ import 'package:mockito/mockito.dart';
 import 'helper/mock_helper.dart';
 
 class MockUserBloc extends MockBloc<UserState> implements UserBloc {}
+
 class MockAnalyticsRepository extends Mock implements AnalyticsRepository {}
 
 void main() {
-
   group("AccountBloc", () {
     MockUserBloc mockUserBloc;
     MockAnalyticsRepository mockAnalyticsRepository;
@@ -29,19 +29,20 @@ void main() {
       configureThrowOnMissingStub([mockAnalyticsRepository]);
     });
 
-    tearDown((){
+    tearDown(() {
       logAndVerifyNoMoreInteractions([mockAnalyticsRepository]);
     });
 
     group("initial state", () {
       AccountBloc accountBloc;
 
-      setUp((){
-        accountBloc =
-            AccountBloc(userBloc: mockUserBloc, analyticsRepository: mockAnalyticsRepository);
+      setUp(() {
+        accountBloc = AccountBloc(
+            userBloc: mockUserBloc,
+            analyticsRepository: mockAnalyticsRepository);
       });
 
-      tearDown((){
+      tearDown(() {
         accountBloc?.close();
       });
 
@@ -59,8 +60,9 @@ void main() {
       });
 
       blocTest("should emit AccountLoaded passing the user informations",
-          build: () =>
-              AccountBloc(userBloc: mockUserBloc, analyticsRepository: mockAnalyticsRepository),
+          build: () => AccountBloc(
+              userBloc: mockUserBloc,
+              analyticsRepository: mockAnalyticsRepository),
           expect: [
             AccountLoaded(user: fakeUser),
           ]);
@@ -75,14 +77,17 @@ void main() {
       });
 
       tearDown(() {
-        verify(mockAnalyticsRepository.setupBankAccountError(error: errorMessage));
+        verify(
+            mockAnalyticsRepository.setupBankAccountError(error: errorMessage));
       });
 
       blocTest(
         "should track the error and emit AccountError",
-        build: () =>
-            AccountBloc(userBloc: mockUserBloc, analyticsRepository: mockAnalyticsRepository),
-        act: (bloc) => bloc.add(AccountDisplayError(errorMessage: errorMessage)),
+        build: () => AccountBloc(
+            userBloc: mockUserBloc,
+            analyticsRepository: mockAnalyticsRepository),
+        act: (bloc) =>
+            bloc.add(AccountDisplayError(errorMessage: errorMessage)),
         expect: [
           AccountError(errorMessage: errorMessage),
         ],

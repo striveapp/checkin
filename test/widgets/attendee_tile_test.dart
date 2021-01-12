@@ -19,7 +19,7 @@ void main() {
       (WidgetTester tester) async {
     provideMockedNetworkImages(() async {
       await tester.pumpWidget(await buildTestApplication(AttendeeTile(
-      selectedGymId: "testGym",
+        selectedGymId: "testGym",
         attendee: Attendee(
             name: "testAttendee",
             grade: Grade.white,

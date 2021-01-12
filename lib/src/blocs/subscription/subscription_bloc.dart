@@ -19,7 +19,10 @@ class SubscriptionBloc extends Bloc<SubscriptionEvent, SubscriptionState> {
     @required this.gymBloc,
     @required this.membershipApi,
     @required this.analyticsRepository,
-  }) : assert(membershipApi != null && analyticsRepository != null && gymBloc != null), super(SubscriptionInitial()) {
+  })  : assert(membershipApi != null &&
+            analyticsRepository != null &&
+            gymBloc != null),
+        super(SubscriptionInitial()) {
     try {
       _onGymStateUpdated(gymBloc.state);
       gymBloc.listen(_onGymStateUpdated);

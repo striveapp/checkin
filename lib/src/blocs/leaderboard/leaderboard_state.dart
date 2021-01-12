@@ -27,7 +27,6 @@ class LeaderboardLoaded extends LeaderboardState {
 }
 
 class LeaderboardNotAvailable extends LeaderboardState {
-
   @override
   String toString() => 'LeaderboardNotAvailable';
 }

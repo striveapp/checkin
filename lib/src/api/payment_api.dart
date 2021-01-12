@@ -6,14 +6,17 @@ class PaymentApi {
 
   PaymentApi({
     @required HttpClient httpClient,
-  }) : assert(httpClient != null), _httpClient = httpClient;
+  })  : assert(httpClient != null),
+        _httpClient = httpClient;
 
-  Future<String> setupIntent({String gymId, String customerEmail,}) async {
-    Map<String, String> data = {
-      "email":  customerEmail
-    };
+  Future<String> setupIntent({
+    String gymId,
+    String customerEmail,
+  }) async {
+    Map<String, String> data = {"email": customerEmail};
 
-    var result = await _httpClient.post(endpoint: "payments/$gymId/create-setup-intent", body: data);
+    var result = await _httpClient.post(
+        endpoint: "payments/$gymId/create-setup-intent", body: data);
 
     String clientSecret = result["clientSecret"];
     print("clientSecret $clientSecret");

@@ -17,11 +17,12 @@ class SubscriptionPlansBloc
 
   StreamSubscription<List<SubscriptionPlan>> streamSubscription;
 
-  SubscriptionPlansBloc({
-    @required this.subscriptionPlansRepository,
-    @required this.gymBloc,
-    this.planId
-  }) : assert(subscriptionPlansRepository != null && gymBloc != null), super(SubscriptionPlansInitial()) {
+  SubscriptionPlansBloc(
+      {@required this.subscriptionPlansRepository,
+      @required this.gymBloc,
+      this.planId})
+      : assert(subscriptionPlansRepository != null && gymBloc != null),
+        super(SubscriptionPlansInitial()) {
     streamSubscription?.cancel();
     try {
       _onGymStateChanged(gymBloc.state);
@@ -33,14 +34,17 @@ class SubscriptionPlansBloc
   void _onGymStateChanged(GymState gymState) {
     if (gymState is GymLoaded) {
       Gym gym = gymState.gym;
-      if( planId == null ) {
+      if (planId == null) {
         streamSubscription =
             subscriptionPlansRepository.getPlans(gymId: gym.id).listen((plans) {
-              add(SubscriptionPlansUpdated(subscriptionPlans: _sortByPrice(plans),
-              ));
-            });
+          add(SubscriptionPlansUpdated(
+            subscriptionPlans: _sortByPrice(plans),
+          ));
+        });
       } else {
-        streamSubscription = subscriptionPlansRepository.getSubPlans(gymId: gym.id, planId: planId).listen((plans) {
+        streamSubscription = subscriptionPlansRepository
+            .getSubPlans(gymId: gym.id, planId: planId)
+            .listen((plans) {
           add(SubscriptionPlansUpdated(
             subscriptionPlans: _sortByPrice(plans),
           ));
@@ -76,12 +80,11 @@ class SubscriptionPlansBloc
   }
 
   int comparePlans(SubscriptionPlan planA, SubscriptionPlan planB) {
-    if( planA is SimpleSubscription && planB is SimpleSubscription ) {
+    if (planA is SimpleSubscription && planB is SimpleSubscription) {
       return planA.price.compareTo(planB.price);
     }
 
-
-    if( planA is SubscriptionWithPrices && planB is SubscriptionWithPrices ) {
+    if (planA is SubscriptionWithPrices && planB is SubscriptionWithPrices) {
       return planA.startingPrice.compareTo(planB.startingPrice);
     }
 

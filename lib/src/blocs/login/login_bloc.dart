@@ -45,7 +45,8 @@ class LoginBloc extends Bloc<LoginEvent, LoginState> {
           err: err,
           stackTrace: stackTrace,
         );
-        yield LoginFailure(errorMessage: "Unexpected error! Please contact the gym owner");
+        yield LoginFailure(
+            errorMessage: "Unexpected error! Please contact the gym owner");
       }
     }
 
@@ -74,7 +75,8 @@ class LoginBloc extends Bloc<LoginEvent, LoginState> {
           err: err,
           stackTrace: stackTrace,
         );
-        yield LoginFailure(errorMessage: "Unexpected error! Please contact the gym owner");
+        yield LoginFailure(
+            errorMessage: "Unexpected error! Please contact the gym owner");
       }
     }
 
@@ -82,7 +84,7 @@ class LoginBloc extends Bloc<LoginEvent, LoginState> {
       await localStorageRepository.setUserEmail(event.userEmail);
       try {
         await authRepository.signInPasswordless(event.userEmail);
-      } catch(err, stackTrace) {
+      } catch (err, stackTrace) {
         await analyticsRepository.passwordlessError(
           err: err,
           stackTrace: stackTrace,
