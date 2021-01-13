@@ -41,37 +41,33 @@ class _FilterListWidgetState extends State<FilterListWidget> {
         constraints: BoxConstraints(
           maxHeight: 200,
         ),
-        child: Scrollbar(
-          isAlwaysShown: true,
-          controller: _scrollController,
-          radius: Radius.circular(10),
-          child: SingleChildScrollView(
-            controller: _scrollController,
-            child: Padding(
-              padding: EdgeInsets.symmetric(horizontal: 5, vertical: 10),
-              child: BlocBuilder<LessonFilterBloc, LessonFilterState>(
-                builder: (BuildContext context, LessonFilterState state) =>
-                    state.map(
-                  initialLessonFilterState: (_) => LoadingIndicator(),
-                  lessonFilterLoaded: (LessonFilterLoaded state) =>
-                      state.availableLessonTypes.length > 1
-                          ? Column(
+        child: Padding(
+          padding: EdgeInsets.symmetric(horizontal: 5, vertical: 10),
+          child: BlocBuilder<LessonFilterBloc, LessonFilterState>(
+            builder: (BuildContext context, LessonFilterState state) => state.map(
+              initialLessonFilterState: (_) => LoadingIndicator(),
+              lessonFilterLoaded: (LessonFilterLoaded state) =>
+                  state.availableLessonTypes.length > 1
+                      ? Scrollbar(
+                          isAlwaysShown: true,
+                          controller: _scrollController,
+                          child: SingleChildScrollView(
+                            controller: _scrollController,
+                            child: Column(
                               crossAxisAlignment: CrossAxisAlignment.start,
-                              children:
-                                  _buildChoiceList(state.availableLessonTypes),
-                            )
-                          : Padding(
-                              padding: const EdgeInsets.symmetric(
-                                  vertical: 20, horizontal: 10),
-                              child: Center(
-                                  child: Text(
-                                FilterListWidget.noFiltersAvailable.i18n,
-                                textAlign: TextAlign.center,
-                                style: Theme.of(context).textTheme.headline3,
-                              )),
+                              children: _buildChoiceList(state.availableLessonTypes),
                             ),
-                ),
-              ),
+                          ),
+                        )
+                      : Padding(
+                          padding: const EdgeInsets.symmetric(vertical: 20, horizontal: 10),
+                          child: Center(
+                              child: Text(
+                            FilterListWidget.noFiltersAvailable.i18n,
+                            textAlign: TextAlign.center,
+                            style: Theme.of(context).textTheme.headline3,
+                          )),
+                        ),
             ),
           ),
         ),
@@ -89,9 +85,22 @@ class _FilterListWidgetState extends State<FilterListWidget> {
             onSelected: (value) {
               setState(
                 () {
-                  selectedText
-                      ? _selectedFilterList.remove(item)
-                      : _selectedFilterList.add(item);
+                  selectedText ? _selectedFilterList.remove(item) : _selectedFilterList.add(item);
+                },
+              );
+
+              _onSelectedFiltersUpdate(_selectedFilterList);
+            },
+            selected: selectedText,
+            text: item,
+          ),
+        );
+        choices.add(
+          FilterChoiceChip(
+            onSelected: (value) {
+              setState(
+                () {
+                  selectedText ? _selectedFilterList.remove(item) : _selectedFilterList.add(item);
                 },
               );
 
@@ -111,12 +120,10 @@ class _FilterListWidgetState extends State<FilterListWidget> {
 
     lessonsBloc.state.maybeMap(lessonsLoaded: (LessonsLoaded lessonsState) {
       lessonsBloc.add(LessonsEvent.loadLessons(
-          selectedDay: lessonsState.selectedDay,
-          selectedFilterList: _selectedFilterList));
+          selectedDay: lessonsState.selectedDay, selectedFilterList: _selectedFilterList));
     }, lessonsLoadedEmpty: (LessonsLoadedEmpty lessonsState) {
       lessonsBloc.add(LessonsEvent.loadLessons(
-          selectedDay: lessonsState.selectedDay,
-          selectedFilterList: _selectedFilterList));
+          selectedDay: lessonsState.selectedDay, selectedFilterList: _selectedFilterList));
     }, orElse: () {
       // ignore
     });
