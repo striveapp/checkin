@@ -35,11 +35,9 @@
 		<dict>
 			<key>CFBundleTypeRole</key>
 			<string>Editor</string>
-			<key>CFBundleURLName</key>
-			<string>Bundle ID</string>
 			<key>CFBundleURLSchemes</key>
 			<array>
-				<string>com.arya.checkin</string>
+				<string>com.googleusercontent.apps.343791697754-pscva95vjh6ebq37hjhgtgmshutugpjs</string>
 			</array>
 		</dict>
 		<dict>
@@ -47,7 +45,7 @@
 			<string>Editor</string>
 			<key>CFBundleURLSchemes</key>
 			<array>
-				<string>com.googleusercontent.apps.343791697754-pscva95vjh6ebq37hjhgtgmshutugpjs</string>
+				<string>$(PRODUCT_BUNDLE_IDENTIFIER)</string>
 			</array>
 		</dict>
 	</array>

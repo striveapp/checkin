@@ -40,6 +40,7 @@
 		2A4B421B253D064900762DB6 /* es */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = es; path = es.lproj/Main.strings; sourceTree = "<group>"; };
 		2A4B421C253D064900762DB6 /* es */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = es; path = es.lproj/LaunchScreen.strings; sourceTree = "<group>"; };
 		2A53B869254A551E00A5BA63 /* config */ = {isa = PBXFileReference; lastKnownFileType = folder; path = config; sourceTree = "<group>"; };
+		2A9FD20B25AE5E1E00BBC2E1 /* RunnerDebug-dev.entitlements */ = {isa = PBXFileReference; lastKnownFileType = text.plist.entitlements; path = "RunnerDebug-dev.entitlements"; sourceTree = "<group>"; };
 		2AA839F32340171000E500CF /* Runner.entitlements */ = {isa = PBXFileReference; lastKnownFileType = text.plist.entitlements; path = Runner.entitlements; sourceTree = "<group>"; };
 		2AFBA25D253D0A9500DCEDC5 /* Base */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = Base; path = Runner/Base.lproj/Localizable.strings; sourceTree = "<group>"; };
 		2AFBA25F253D0AB200DCEDC5 /* en */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = en; path = Runner/en.lproj/Localizable.strings; sourceTree = "<group>"; };
@@ -136,6 +137,7 @@
 		97C146F01CF9000F007C117D /* Runner */ = {
 			isa = PBXGroup;
 			children = (
+				2A9FD20B25AE5E1E00BBC2E1 /* RunnerDebug-dev.entitlements */,
 				2A53B869254A551E00A5BA63 /* config */,
 				2AA839F32340171000E500CF /* Runner.entitlements */,
 				7AFFD8ED1D35381100E5BB4D /* AppDelegate.h */,
@@ -616,7 +618,7 @@
 			buildSettings = {
 				APP_DISPLAY_NAME = "Strive Dev";
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
-				CODE_SIGN_ENTITLEMENTS = Runner/Runner.entitlements;
+				CODE_SIGN_ENTITLEMENTS = "Runner/RunnerDebug-dev.entitlements";
 				CURRENT_PROJECT_VERSION = "$(FLUTTER_BUILD_NUMBER)";
 				DEVELOPMENT_TEAM = RY74S6XPB3;
 				ENABLE_BITCODE = NO;
