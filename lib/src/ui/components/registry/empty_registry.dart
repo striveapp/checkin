@@ -6,10 +6,12 @@ class EmptyRegistry extends StatelessWidget {
   static const String emptyClass = 'Nobody in class yet';
 
   final bool isLoading;
+  final bool isDisabled;
 
   const EmptyRegistry({
     Key key,
     this.isLoading = false,
+    this.isDisabled = false,
   }) : super(key: key);
 
   @override
@@ -21,7 +23,10 @@ class EmptyRegistry extends StatelessWidget {
           ? LoadingIndicator()
           : Text(
               emptyClass.i18n,
-              style: Theme.of(context).textTheme.headline5,
+              style: Theme.of(context)
+                  .textTheme
+                  .headline5
+                  .apply(color: isDisabled ? Theme.of(context).disabledColor : null),
             ),
     );
   }

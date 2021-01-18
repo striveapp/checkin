@@ -7,6 +7,7 @@ class UserImage extends StatelessWidget {
   final double width;
   final double height;
   final bool withBorder;
+  final bool isGrayscale;
 
   UserImage({
     Key key,
@@ -15,6 +16,7 @@ class UserImage extends StatelessWidget {
     this.width = 50,
     this.height = 50,
     this.withBorder = false,
+    this.isGrayscale = false,
   }) : super(key: key);
 
   @override
@@ -28,12 +30,23 @@ class UserImage extends StatelessWidget {
           borderRadius: BorderRadius.circular(circularRadius)),
       child: ClipRRect(
         borderRadius: BorderRadius.circular(circularRadius),
-        child: CachedNetworkImage(
-          imageUrl: userImage,
-          width: width,
-          height: height,
-          fit: BoxFit.fill,
-          errorWidget: (context, url, error) => Icon(Icons.error),
+        child: Builder(
+          builder: (BuildContext context) {
+            var cachedNetworkImage = CachedNetworkImage(
+              imageUrl: userImage,
+              width: width,
+              height: height,
+              fit: BoxFit.fill,
+              errorWidget: (context, url, error) => Icon(Icons.error),
+            );
+
+            return isGrayscale
+                ? ColorFiltered(
+                    colorFilter: ColorFilter.mode(Colors.grey, BlendMode.saturation),
+                    child: cachedNetworkImage,
+                  )
+                : cachedNetworkImage;
+          },
         ),
       ),
     );

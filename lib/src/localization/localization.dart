@@ -6,7 +6,7 @@ import 'package:checkin/src/ui/components/account/payment.dart';
 import 'package:checkin/src/ui/components/email_retrieval/check_email_view.dart';
 import 'package:checkin/src/ui/components/email_retrieval/insert_email_view.dart';
 import 'package:checkin/src/ui/components/email_retrieval/wrong_email_dialog.dart';
-import 'package:checkin/src/ui/components/lesson_card.dart';
+import 'package:checkin/src/ui/components/lessons/lesson_card.dart';
 import 'package:checkin/src/ui/components/lessons/filter_list_widget.dart';
 import 'package:checkin/src/ui/components/login/apple_sign_in_button.dart';
 import 'package:checkin/src/ui/components/login/login_form.dart';
@@ -20,7 +20,10 @@ import 'package:checkin/src/ui/components/plans/price/price_footer.dart';
 import 'package:checkin/src/ui/components/registry/accept_all_dialog.dart';
 import 'package:checkin/src/ui/components/registry/attendee_tile.dart';
 import 'package:checkin/src/ui/components/registry/attendees_list.dart';
+import 'package:checkin/src/ui/components/registry/close_class_dialog.dart';
+import 'package:checkin/src/ui/components/registry/master_buttons.dart';
 import 'package:checkin/src/ui/components/registry/register_dialog.dart';
+import 'package:checkin/src/ui/components/registry/registry_controls.dart';
 import 'package:checkin/src/ui/components/registry/registry_counter.dart';
 import 'package:checkin/src/ui/components/lessons/attendees_preview.dart';
 import 'package:checkin/src/ui/components/login/google_sign_in_button.dart';
@@ -34,7 +37,6 @@ import 'package:checkin/src/ui/components/membership/unsubscribe_dialog.dart';
 import 'package:checkin/src/ui/components/lessons/no_lessons_banner.dart';
 import 'package:checkin/src/ui/components/profile_card.dart';
 import 'package:checkin/src/ui/components/profile_infos.dart';
-import 'package:checkin/src/ui/components/registry/registry_controls.dart';
 import 'package:checkin/src/ui/components/registry/registry_missing_dialog.dart';
 import 'package:checkin/src/ui/components/registry/remove_student_dialog.dart';
 import 'package:checkin/src/ui/components/registry/student_button.dart';
@@ -66,7 +68,7 @@ extension Localization on String {
         'it': 'Ancora nessuno in classe',
       } +
       {
-        'en': LessonCard.startingAt,
+        'en': LessonTime.startingAt,
         'es': 'Empieza a las %s',
         'it': 'Inizia alle %s',
       } +
@@ -259,24 +261,29 @@ extension Localization on String {
         'it': 'Rincominciare, insegnare e riflettere',
       } +
       {
-        'en': StudentButton.unregisterClass,
+        'en': StudentButtons.unregisterClass,
         'es': 'Desapuntate de la clase',
         'it': 'Cancellati dalla classe',
       } +
       {
-        'en': StudentButton.registerClass,
+        'en': StudentButtons.registerClass,
         'es': 'Apuntate a la clase',
         'it': 'Iscriviti alla classe',
       } +
       {
-        'en': StudentButton.registryFull,
+        'en': StudentButtons.registryFull,
         'es': 'Clase completa',
         'it': 'Classe piena',
       } +
       {
-        'en': RegistryControls.acceptAll,
+        'en': MasterButtons.acceptAll,
         'es': 'Aceptar todos',
         'it': 'Accetta tutti',
+      } +
+      {
+        'en': RegistryControls.classClosed,
+        'es': 'Cerrar clase',
+        'it': 'Chiudi classe',
       } +
       {
         'en': RegisterDialog.cancel,
@@ -307,6 +314,21 @@ extension Localization on String {
         'en': AcceptAllDialog.acceptingAllTheStudentsDisclaimer,
         'es': 'Estás a punto de aceptar todos los estudiantes',
         'it': 'Stai per accettare tutti gli studenti',
+      } +
+      {
+        'en': CloseClassDialog.goBack,
+        'es': 'Atrás',
+        'it': 'Indietro',
+      } +
+      {
+        'en': CloseClassDialog.closeClass,
+        'es': 'Cerrar clase',
+        'it': 'Chiudi classe',
+      } +
+      {
+        'en': CloseClassDialog.closingClassDisclaimer,
+        'es': '¿Quieres cerrar la clase?',
+        'it': 'Vuoi chiudere la classe?',
       } +
       {
         'en': GoogleSignInButton.googleSignIn,

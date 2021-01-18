@@ -18,10 +18,11 @@ abstract class RegistryState with _$RegistryState {
   const factory RegistryState.registryLoaded({
     @required User currentUser,
     @required Lesson currentLesson,
-    @required bool isAcceptedUser,
-    @required bool isRegisteredUser,
-    @required bool isFullRegistry,
-    @required bool isEmptyRegistry,
-    @required bool isMasterOfTheClass,
+    @Default(false) bool isAcceptedUser,
+    @Default(false) bool isRegisteredUser,
+    @Default(false) bool isFullRegistry,
+    @Default(false) bool isEmptyRegistry,
+    @Default(false) bool isMasterOfTheClass,
+    @Default(false) isClosedRegistry,
   }) = RegistryLoaded;
 }

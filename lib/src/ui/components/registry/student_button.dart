@@ -11,13 +11,13 @@ import 'package:checkin/src/ui/components/registry/registry_button.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 
-class StudentButton extends StatelessWidget {
+class StudentButtons extends StatelessWidget {
   final RegistryLoaded registryState;
   static const String unregisterClass = 'Cancel class';
   static const String registerClass = 'Register to class';
   static const String registryFull = 'Class full';
 
-  StudentButton({@required this.registryState});
+  StudentButtons({@required this.registryState});
 
   @override
   Widget build(BuildContext context) {
@@ -45,7 +45,7 @@ class StudentButton extends StatelessWidget {
     if (registryState.isAcceptedUser) {
       return RegistryButton(
         key: Key('acceptedInClass'),
-        text: StudentButton.registerClass.i18n,
+        text: registerClass.i18n,
         onPressed: DISABLED_BUTTON,
       );
     }
@@ -53,7 +53,7 @@ class StudentButton extends StatelessWidget {
     if (registryState.isRegisteredUser) {
       return RegistryButton(
         key: Key('unregisterClass'),
-        text: StudentButton.unregisterClass.i18n,
+        text: unregisterClass.i18n,
         color: Theme.of(context).buttonTheme.colorScheme.error,
         onPressed: onPressUnregisterClass,
       );
@@ -62,7 +62,7 @@ class StudentButton extends StatelessWidget {
     if (registryState.isFullRegistry) {
       return RegistryButton(
         key: Key('registryFull'),
-        text: StudentButton.registryFull.i18n,
+        text: registryFull.i18n,
         onPressed: DISABLED_BUTTON,
       );
     }
@@ -84,12 +84,12 @@ class StudentButton extends StatelessWidget {
             initialSessionsState: () => LoadingIndicator(),
             sessionsWarning: (_totalLessonsOfPlan, _attendedLessons) => RegistryButton(
                   key: Key('registerClass'),
-                  text: StudentButton.registerClass.i18n,
+                  text: registerClass.i18n,
                   onPressed: () => showRegisterDialogOnPressRegisterClass(),
                 ),
             orElse: () => RegistryButton(
                   key: Key('registerClass'),
-                  text: StudentButton.registerClass.i18n,
+                  text: registerClass.i18n,
                   onPressed: onPressRegisterClass,
                 ));
       }),

@@ -52,14 +52,14 @@ class RegistryBloc extends Bloc<RegistryEvent, RegistryState> {
         yield RegistryMissing();
       } else {
         yield RegistryLoaded(
-          currentUser: event.currentUser,
-          currentLesson: event.currentLesson,
-          isAcceptedUser: isAcceptedUser(event),
-          isRegisteredUser: isRegisteredUser(event),
-          isFullRegistry: isFullRegistry(event),
-          isEmptyRegistry: isEmptyRegistry(event),
-          isMasterOfTheClass: isMasterOfTheClass(event),
-        );
+            currentUser: event.currentUser,
+            currentLesson: event.currentLesson,
+            isAcceptedUser: isAcceptedUser(event),
+            isRegisteredUser: isRegisteredUser(event),
+            isFullRegistry: isFullRegistry(event),
+            isEmptyRegistry: isEmptyRegistry(event),
+            isMasterOfTheClass: isMasterOfTheClass(event),
+            isClosedRegistry: event.currentLesson.isClosed);
       }
     }
 
@@ -102,6 +102,15 @@ class RegistryBloc extends Bloc<RegistryEvent, RegistryState> {
       } catch (e) {
         yield RegistryError();
       }
+    }
+
+    if (event is CloseLesson) {
+      yield RegistryLoading();
+      await this.lessonRepository.closeLesson(
+            event.gymId,
+            lessonDate,
+            lessonId,
+          );
     }
   }
 

@@ -5,6 +5,7 @@ import 'package:checkin/src/blocs/user/bloc.dart';
 import 'package:checkin/src/repositories/lesson_repository.dart';
 import 'package:checkin/src/ui/components/base_app_bar.dart';
 import 'package:checkin/src/ui/components/loading_indicator.dart';
+import 'package:checkin/src/ui/components/registry/close_lesson_button.dart';
 import 'package:checkin/src/ui/components/registry/lesson_infos.dart';
 import 'package:checkin/src/ui/components/registry/registry.dart';
 import 'package:flutter/material.dart';
@@ -62,8 +63,11 @@ class RegistryPage extends StatelessWidget {
                   padding: EdgeInsets.symmetric(horizontal: 10),
                   child: Column(mainAxisAlignment: MainAxisAlignment.spaceAround, children: [
                     Padding(
-                      padding: const EdgeInsets.symmetric(vertical: 20),
-                      child: LessonInfos(),
+                      padding: const EdgeInsets.only(top: 20, bottom: 20, right: 10),
+                      child: Row(
+                        mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                        children: [LessonInfos(), CloseLessonButton()],
+                      ),
                     ),
                     Expanded(
                         child: Padding(

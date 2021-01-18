@@ -19,12 +19,13 @@ abstract class Lesson with _$Lesson {
     final String weekDay,
     final int timestamp,
     final String imageUrl,
+    final LessonConfig lessonConfig,
     // todo retrieve from Gym (config) https://trello.com/c/uIqJLgZL
     @Default(config.DEFAULT_CLASS_CAPACITY) final int classCapacity,
     @Default([]) final List<Master> masters,
     @Default([]) final List<Attendee> attendees,
     @Default([]) final List<Attendee> acceptedAttendees,
-    final LessonConfig lessonConfig,
+    @Default(false) final bool isClosed,
   }) = _Lesson;
 
   factory Lesson.fromJson(Map<String, dynamic> json) => _$LessonFromJson(json);

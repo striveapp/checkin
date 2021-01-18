@@ -20,18 +20,23 @@ class Registry extends StatelessWidget {
         }
       },
       child: Column(
-        mainAxisAlignment: MainAxisAlignment.spaceAround,
         children: <Widget>[
-          Padding(
-            padding: EdgeInsets.symmetric(horizontal: 5),
-            child: RegistryCounter(),
+          Expanded(
+            child: Column(
+              children: [
+                Padding(
+                  padding: EdgeInsets.symmetric(horizontal: 5),
+                  child: RegistryCounter(),
+                ),
+                SizedBox(
+                  height: 10,
+                ),
+                Expanded(child: AttendeesList()),
+              ],
+            ),
           ),
           SizedBox(
-            height: 10,
-          ),
-          Expanded(child: AttendeesList()),
-          SizedBox(
-            height: 20,
+            height: 15,
           ),
           RegistryControls()
         ],

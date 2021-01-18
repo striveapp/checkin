@@ -16,6 +16,9 @@ _$_Lesson _$_$_LessonFromJson(Map<String, dynamic> json) {
     weekDay: json['weekDay'] as String,
     timestamp: json['timestamp'] as int,
     imageUrl: json['imageUrl'] as String,
+    lessonConfig: json['lessonConfig'] == null
+        ? null
+        : LessonConfig.fromJson(json['lessonConfig'] as Map<String, dynamic>),
     classCapacity: json['classCapacity'] as int ?? 10,
     masters: (json['masters'] as List)
             ?.map((e) => e == null ? null : Master.fromJson(e as Map<String, dynamic>))
@@ -29,9 +32,7 @@ _$_Lesson _$_$_LessonFromJson(Map<String, dynamic> json) {
             ?.map((e) => e == null ? null : Attendee.fromJson(e as Map<String, dynamic>))
             ?.toList() ??
         [],
-    lessonConfig: json['lessonConfig'] == null
-        ? null
-        : LessonConfig.fromJson(json['lessonConfig'] as Map<String, dynamic>),
+    isClosed: json['isClosed'] as bool ?? false,
   );
 }
 
@@ -44,9 +45,10 @@ Map<String, dynamic> _$_$_LessonToJson(_$_Lesson instance) => <String, dynamic>{
       'weekDay': instance.weekDay,
       'timestamp': instance.timestamp,
       'imageUrl': instance.imageUrl,
+      'lessonConfig': instance.lessonConfig?.toJson(),
       'classCapacity': instance.classCapacity,
       'masters': instance.masters?.map((e) => e?.toJson())?.toList(),
       'attendees': instance.attendees?.map((e) => e?.toJson())?.toList(),
       'acceptedAttendees': instance.acceptedAttendees?.map((e) => e?.toJson())?.toList(),
-      'lessonConfig': instance.lessonConfig?.toJson(),
+      'isClosed': instance.isClosed,
     };

@@ -60,8 +60,13 @@ class AttendeesPreview extends StatelessWidget {
                 ))
             ?.toList(),
         if (allAttendees.length > 5)
-          Text("${andOthers.plural(otherAttendeesNumber)}",
-              style: Theme.of(context).textTheme.headline5)
+          Text(
+            "${andOthers.plural(otherAttendeesNumber)}",
+            style: Theme.of(context)
+                .textTheme
+                .headline5
+                .apply(color: lesson.isClosed ? Theme.of(context).disabledColor : null),
+          )
       ],
     );
   }

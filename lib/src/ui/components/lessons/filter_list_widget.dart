@@ -95,21 +95,6 @@ class _FilterListWidgetState extends State<FilterListWidget> {
             text: item,
           ),
         );
-        choices.add(
-          FilterChoiceChip(
-            onSelected: (value) {
-              setState(
-                () {
-                  selectedText ? _selectedFilterList.remove(item) : _selectedFilterList.add(item);
-                },
-              );
-
-              _onSelectedFiltersUpdate(_selectedFilterList);
-            },
-            selected: selectedText,
-            text: item,
-          ),
-        );
       },
     );
     return choices;

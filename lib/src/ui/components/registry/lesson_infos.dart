@@ -25,28 +25,42 @@ class LessonInfos extends StatelessWidget {
                   padding: const EdgeInsets.only(right: 16),
                   child: UserImage(
                     userImage: currentLesson.imageUrl ?? currentLesson.masters.first.imageUrl,
+                    isGrayscale: currentLesson.isClosed,
                   ),
                 ),
                 Column(
                   crossAxisAlignment: CrossAxisAlignment.start,
                   children: <Widget>[
-                    Text(currentLesson.name, style: Theme.of(context).textTheme.headline5),
+                    Text(
+                      currentLesson.name,
+                      style: Theme.of(context).textTheme.headline5.apply(
+                          color: currentLesson.isClosed ? Theme.of(context).disabledColor : null),
+                    ),
                     Text(
                         _formattedLessonInformation(
                           timeStart: currentLesson.timeStart,
                           timeEnd: currentLesson.timeEnd,
                         ),
-                        style: Theme.of(context).textTheme.headline2.apply(fontSizeDelta: 4)),
+                        style: Theme.of(context).textTheme.headline2.apply(
+                            fontSizeDelta: 4,
+                            color:
+                                currentLesson.isClosed ? Theme.of(context).disabledColor : null)),
                     if (currentLesson.masters.isNotEmpty)
                       Column(
                         children: [
                           Text(
                             currentLesson.masters.first.name,
-                            style: Theme.of(context).textTheme.headline3,
+                            style: Theme.of(context).textTheme.headline3.apply(
+                                color: currentLesson.isClosed
+                                    ? Theme.of(context).disabledColor
+                                    : null),
                           ),
                           if (currentLesson.masters.length > 1)
                             Text("${and.i18n} ${_getOtherMasterNames(currentLesson.masters)}",
-                                style: Theme.of(context).textTheme.headline3),
+                                style: Theme.of(context).textTheme.headline3.apply(
+                                    color: currentLesson.isClosed
+                                        ? Theme.of(context).disabledColor
+                                        : null)),
                         ],
                       ),
                   ],

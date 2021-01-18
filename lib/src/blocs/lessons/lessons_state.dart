@@ -9,7 +9,6 @@ part 'lessons_state.freezed.dart';
 @freezed
 abstract class LessonsState with _$LessonsState {
   const factory LessonsState.lessonsUninitialized() = LessonsUninitialized;
-  const factory LessonsState.lessonsError() = LessonsError;
   const factory LessonsState.lessonsLoaded(
       {List<Lesson> lessons,
       DateTime selectedDay,

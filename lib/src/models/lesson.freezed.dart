@@ -26,11 +26,12 @@ class _$LessonTearOff {
       String weekDay,
       int timestamp,
       String imageUrl,
+      LessonConfig lessonConfig,
       int classCapacity = config.DEFAULT_CLASS_CAPACITY,
       List<Master> masters = const [],
       List<Attendee> attendees = const [],
       List<Attendee> acceptedAttendees = const [],
-      LessonConfig lessonConfig}) {
+      bool isClosed = false}) {
     return _Lesson(
       id: id,
       date: date,
@@ -40,11 +41,12 @@ class _$LessonTearOff {
       weekDay: weekDay,
       timestamp: timestamp,
       imageUrl: imageUrl,
+      lessonConfig: lessonConfig,
       classCapacity: classCapacity,
       masters: masters,
       attendees: attendees,
       acceptedAttendees: acceptedAttendees,
-      lessonConfig: lessonConfig,
+      isClosed: isClosed,
     );
   }
 
@@ -67,12 +69,13 @@ mixin _$Lesson {
   String get timeEnd;
   String get weekDay;
   int get timestamp;
-  String get imageUrl; // todo retrieve from Gym (config) https://trello.com/c/uIqJLgZL
+  String get imageUrl;
+  LessonConfig get lessonConfig; // todo retrieve from Gym (config) https://trello.com/c/uIqJLgZL
   int get classCapacity;
   List<Master> get masters;
   List<Attendee> get attendees;
   List<Attendee> get acceptedAttendees;
-  LessonConfig get lessonConfig;
+  bool get isClosed;
 
   Map<String, dynamic> toJson();
   $LessonCopyWith<Lesson> get copyWith;
@@ -90,11 +93,12 @@ abstract class $LessonCopyWith<$Res> {
       String weekDay,
       int timestamp,
       String imageUrl,
+      LessonConfig lessonConfig,
       int classCapacity,
       List<Master> masters,
       List<Attendee> attendees,
       List<Attendee> acceptedAttendees,
-      LessonConfig lessonConfig});
+      bool isClosed});
 
   $LessonConfigCopyWith<$Res> get lessonConfig;
 }
@@ -117,11 +121,12 @@ class _$LessonCopyWithImpl<$Res> implements $LessonCopyWith<$Res> {
     Object weekDay = freezed,
     Object timestamp = freezed,
     Object imageUrl = freezed,
+    Object lessonConfig = freezed,
     Object classCapacity = freezed,
     Object masters = freezed,
     Object attendees = freezed,
     Object acceptedAttendees = freezed,
-    Object lessonConfig = freezed,
+    Object isClosed = freezed,
   }) {
     return _then(_value.copyWith(
       id: id == freezed ? _value.id : id as String,
@@ -132,13 +137,14 @@ class _$LessonCopyWithImpl<$Res> implements $LessonCopyWith<$Res> {
       weekDay: weekDay == freezed ? _value.weekDay : weekDay as String,
       timestamp: timestamp == freezed ? _value.timestamp : timestamp as int,
       imageUrl: imageUrl == freezed ? _value.imageUrl : imageUrl as String,
+      lessonConfig: lessonConfig == freezed ? _value.lessonConfig : lessonConfig as LessonConfig,
       classCapacity: classCapacity == freezed ? _value.classCapacity : classCapacity as int,
       masters: masters == freezed ? _value.masters : masters as List<Master>,
       attendees: attendees == freezed ? _value.attendees : attendees as List<Attendee>,
       acceptedAttendees: acceptedAttendees == freezed
           ? _value.acceptedAttendees
           : acceptedAttendees as List<Attendee>,
-      lessonConfig: lessonConfig == freezed ? _value.lessonConfig : lessonConfig as LessonConfig,
+      isClosed: isClosed == freezed ? _value.isClosed : isClosed as bool,
     ));
   }
 
@@ -167,11 +173,12 @@ abstract class _$LessonCopyWith<$Res> implements $LessonCopyWith<$Res> {
       String weekDay,
       int timestamp,
       String imageUrl,
+      LessonConfig lessonConfig,
       int classCapacity,
       List<Master> masters,
       List<Attendee> attendees,
       List<Attendee> acceptedAttendees,
-      LessonConfig lessonConfig});
+      bool isClosed});
 
   @override
   $LessonConfigCopyWith<$Res> get lessonConfig;
@@ -196,11 +203,12 @@ class __$LessonCopyWithImpl<$Res> extends _$LessonCopyWithImpl<$Res>
     Object weekDay = freezed,
     Object timestamp = freezed,
     Object imageUrl = freezed,
+    Object lessonConfig = freezed,
     Object classCapacity = freezed,
     Object masters = freezed,
     Object attendees = freezed,
     Object acceptedAttendees = freezed,
-    Object lessonConfig = freezed,
+    Object isClosed = freezed,
   }) {
     return _then(_Lesson(
       id: id == freezed ? _value.id : id as String,
@@ -211,13 +219,14 @@ class __$LessonCopyWithImpl<$Res> extends _$LessonCopyWithImpl<$Res>
       weekDay: weekDay == freezed ? _value.weekDay : weekDay as String,
       timestamp: timestamp == freezed ? _value.timestamp : timestamp as int,
       imageUrl: imageUrl == freezed ? _value.imageUrl : imageUrl as String,
+      lessonConfig: lessonConfig == freezed ? _value.lessonConfig : lessonConfig as LessonConfig,
       classCapacity: classCapacity == freezed ? _value.classCapacity : classCapacity as int,
       masters: masters == freezed ? _value.masters : masters as List<Master>,
       attendees: attendees == freezed ? _value.attendees : attendees as List<Attendee>,
       acceptedAttendees: acceptedAttendees == freezed
           ? _value.acceptedAttendees
           : acceptedAttendees as List<Attendee>,
-      lessonConfig: lessonConfig == freezed ? _value.lessonConfig : lessonConfig as LessonConfig,
+      isClosed: isClosed == freezed ? _value.isClosed : isClosed as bool,
     ));
   }
 }
@@ -235,16 +244,18 @@ class _$_Lesson implements _Lesson {
       this.weekDay,
       this.timestamp,
       this.imageUrl,
+      this.lessonConfig,
       this.classCapacity = config.DEFAULT_CLASS_CAPACITY,
       this.masters = const [],
       this.attendees = const [],
       this.acceptedAttendees = const [],
-      this.lessonConfig})
+      this.isClosed = false})
       : assert(timeEnd != null),
         assert(classCapacity != null),
         assert(masters != null),
         assert(attendees != null),
-        assert(acceptedAttendees != null);
+        assert(acceptedAttendees != null),
+        assert(isClosed != null);
 
   factory _$_Lesson.fromJson(Map<String, dynamic> json) => _$_$_LessonFromJson(json);
 
@@ -265,6 +276,8 @@ class _$_Lesson implements _Lesson {
   final int timestamp;
   @override
   final String imageUrl;
+  @override
+  final LessonConfig lessonConfig;
   @JsonKey(defaultValue: config.DEFAULT_CLASS_CAPACITY)
   @override // todo retrieve from Gym (config) https://trello.com/c/uIqJLgZL
   final int classCapacity;
@@ -277,12 +290,13 @@ class _$_Lesson implements _Lesson {
   @JsonKey(defaultValue: const [])
   @override
   final List<Attendee> acceptedAttendees;
+  @JsonKey(defaultValue: false)
   @override
-  final LessonConfig lessonConfig;
+  final bool isClosed;
 
   @override
   String toString() {
-    return 'Lesson(id: $id, date: $date, name: $name, timeStart: $timeStart, timeEnd: $timeEnd, weekDay: $weekDay, timestamp: $timestamp, imageUrl: $imageUrl, classCapacity: $classCapacity, masters: $masters, attendees: $attendees, acceptedAttendees: $acceptedAttendees, lessonConfig: $lessonConfig)';
+    return 'Lesson(id: $id, date: $date, name: $name, timeStart: $timeStart, timeEnd: $timeEnd, weekDay: $weekDay, timestamp: $timestamp, imageUrl: $imageUrl, lessonConfig: $lessonConfig, classCapacity: $classCapacity, masters: $masters, attendees: $attendees, acceptedAttendees: $acceptedAttendees, isClosed: $isClosed)';
   }
 
   @override
@@ -304,6 +318,8 @@ class _$_Lesson implements _Lesson {
                 const DeepCollectionEquality().equals(other.timestamp, timestamp)) &&
             (identical(other.imageUrl, imageUrl) ||
                 const DeepCollectionEquality().equals(other.imageUrl, imageUrl)) &&
+            (identical(other.lessonConfig, lessonConfig) ||
+                const DeepCollectionEquality().equals(other.lessonConfig, lessonConfig)) &&
             (identical(other.classCapacity, classCapacity) ||
                 const DeepCollectionEquality().equals(other.classCapacity, classCapacity)) &&
             (identical(other.masters, masters) ||
@@ -313,8 +329,8 @@ class _$_Lesson implements _Lesson {
             (identical(other.acceptedAttendees, acceptedAttendees) ||
                 const DeepCollectionEquality()
                     .equals(other.acceptedAttendees, acceptedAttendees)) &&
-            (identical(other.lessonConfig, lessonConfig) ||
-                const DeepCollectionEquality().equals(other.lessonConfig, lessonConfig)));
+            (identical(other.isClosed, isClosed) ||
+                const DeepCollectionEquality().equals(other.isClosed, isClosed)));
   }
 
   @override
@@ -328,11 +344,12 @@ class _$_Lesson implements _Lesson {
       const DeepCollectionEquality().hash(weekDay) ^
       const DeepCollectionEquality().hash(timestamp) ^
       const DeepCollectionEquality().hash(imageUrl) ^
+      const DeepCollectionEquality().hash(lessonConfig) ^
       const DeepCollectionEquality().hash(classCapacity) ^
       const DeepCollectionEquality().hash(masters) ^
       const DeepCollectionEquality().hash(attendees) ^
       const DeepCollectionEquality().hash(acceptedAttendees) ^
-      const DeepCollectionEquality().hash(lessonConfig);
+      const DeepCollectionEquality().hash(isClosed);
 
   @override
   _$LessonCopyWith<_Lesson> get copyWith => __$LessonCopyWithImpl<_Lesson>(this, _$identity);
@@ -353,11 +370,12 @@ abstract class _Lesson implements Lesson {
       String weekDay,
       int timestamp,
       String imageUrl,
+      LessonConfig lessonConfig,
       int classCapacity,
       List<Master> masters,
       List<Attendee> attendees,
       List<Attendee> acceptedAttendees,
-      LessonConfig lessonConfig}) = _$_Lesson;
+      bool isClosed}) = _$_Lesson;
 
   factory _Lesson.fromJson(Map<String, dynamic> json) = _$_Lesson.fromJson;
 
@@ -377,6 +395,8 @@ abstract class _Lesson implements Lesson {
   int get timestamp;
   @override
   String get imageUrl;
+  @override
+  LessonConfig get lessonConfig;
   @override // todo retrieve from Gym (config) https://trello.com/c/uIqJLgZL
   int get classCapacity;
   @override
@@ -386,7 +406,7 @@ abstract class _Lesson implements Lesson {
   @override
   List<Attendee> get acceptedAttendees;
   @override
-  LessonConfig get lessonConfig;
+  bool get isClosed;
   @override
   _$LessonCopyWith<_Lesson> get copyWith;
 }

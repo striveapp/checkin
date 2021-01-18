@@ -14,4 +14,6 @@ abstract class LessonRepository {
   Future<void> register(String gymId, String date, String lessonId, Attendee attendee);
 
   Future<void> unregister(String gymId, String date, String lessonId, Attendee attendee);
+
+  Future<void> closeLesson(String gymId, String date, String lessonId);
 }

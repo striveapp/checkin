@@ -22,4 +22,8 @@ abstract class RegistryEvent with _$RegistryEvent {
   }) = Unregister;
 
   const factory RegistryEvent.acceptAttendees({@required String gymId}) = AcceptAttendees;
+
+  const factory RegistryEvent.closeLesson({
+    @required String gymId,
+  }) = CloseLesson;
 }

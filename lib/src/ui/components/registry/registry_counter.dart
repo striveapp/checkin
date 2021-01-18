@@ -22,25 +22,31 @@ class RegistryCounter extends StatelessWidget {
               ...currentLesson.acceptedAttendees
             ];
 
-            return _getCounterWidget(allAttendees.length, currentLesson.classCapacity, context);
+            return _getCounterWidget(allAttendees.length, currentLesson.classCapacity, currentLesson.isClosed, context);
           },
-          orElse: () => _getCounterWidget(0, 1, context),
+          orElse: () => _getCounterWidget(0, 1, false, context),
         );
       },
     );
   }
 
-  Row _getCounterWidget(int counter, int classCapacity, BuildContext context) {
+  Row _getCounterWidget(int counter, int classCapacity, bool isClosed, BuildContext context) {
     return Row(
       mainAxisAlignment: MainAxisAlignment.spaceBetween,
       crossAxisAlignment: CrossAxisAlignment.center,
       children: <Widget>[
         Text(
           "${attendees.i18n} ($counter)",
-          style: Theme.of(context).textTheme.headline2,
+          style: Theme.of(context)
+              .textTheme
+              .headline2
+              .apply(color: isClosed ? Theme.of(context).disabledColor : null),
         ),
         Text("${_getFullPercentage(counter, classCapacity)} ${full.i18n}",
-            style: Theme.of(context).textTheme.headline5.apply(fontWeightDelta: 3))
+            style: Theme.of(context).textTheme.headline5.apply(
+                  fontWeightDelta: 3,
+                  color: isClosed ? Theme.of(context).disabledColor : null,
+                ))
       ],
     );
   }

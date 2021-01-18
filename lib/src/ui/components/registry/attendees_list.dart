@@ -25,31 +25,41 @@ class AttendeesList extends StatelessWidget {
                   User currentUser = state.currentUser;
                   Lesson currentLesson = state.currentLesson;
 
-                  return state.isEmptyRegistry
-                      ? EmptyRegistry()
-                      : Column(
-                          key: Key('attendeeList'),
-                          children: <Widget>[
-                            if (_isUserInClass(state))
-                              CurrentUserTile(
-                                  acceptedAttendees: currentLesson.acceptedAttendees,
-                                  currentUser: currentUser),
-                            Expanded(
-                              child: SingleChildScrollView(
-                                child: Column(
-                                  children: <Widget>[
-                                    AcceptedAttendees(
-                                        acceptedAttendees: currentLesson.acceptedAttendees,
-                                        currentUser: currentUser),
-                                    Attendees(
-                                        attendees: currentLesson.attendees,
-                                        currentUser: currentUser),
-                                  ],
+                  return Container(
+                    foregroundDecoration: currentLesson.isClosed
+                        ? BoxDecoration(
+                            color: Colors.grey,
+                            backgroundBlendMode: BlendMode.saturation,
+                          )
+                        : null,
+                    child: state.isEmptyRegistry
+                        ? EmptyRegistry(
+                            isDisabled: currentLesson.isClosed,
+                          )
+                        : Column(
+                            key: Key('attendeeList'),
+                            children: <Widget>[
+                              if (_isUserInClass(state))
+                                CurrentUserTile(
+                                    acceptedAttendees: currentLesson.acceptedAttendees,
+                                    currentUser: currentUser),
+                              Expanded(
+                                child: SingleChildScrollView(
+                                  child: Column(
+                                    children: <Widget>[
+                                      AcceptedAttendees(
+                                          acceptedAttendees: currentLesson.acceptedAttendees,
+                                          currentUser: currentUser),
+                                      Attendees(
+                                          attendees: currentLesson.attendees,
+                                          currentUser: currentUser),
+                                    ],
+                                  ),
                                 ),
                               ),
-                            ),
-                          ],
-                        );
+                            ],
+                          ),
+                  );
                 },
                 orElse: () => EmptyRegistry());
           }),

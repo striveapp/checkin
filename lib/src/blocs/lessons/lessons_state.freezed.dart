@@ -19,11 +19,6 @@ class _$LessonsStateTearOff {
   }
 
 // ignore: unused_element
-  LessonsError lessonsError() {
-    return const LessonsError();
-  }
-
-// ignore: unused_element
   LessonsLoaded lessonsLoaded(
       {List<Lesson> lessons,
       DateTime selectedDay,
@@ -57,7 +52,6 @@ mixin _$LessonsState {
   @optionalTypeArgs
   TResult when<TResult extends Object>({
     @required TResult lessonsUninitialized(),
-    @required TResult lessonsError(),
     @required
         TResult lessonsLoaded(List<Lesson> lessons, DateTime selectedDay,
             List<String> selectedFilterList, DateTime nocache),
@@ -68,7 +62,6 @@ mixin _$LessonsState {
   @optionalTypeArgs
   TResult maybeWhen<TResult extends Object>({
     TResult lessonsUninitialized(),
-    TResult lessonsError(),
     TResult lessonsLoaded(List<Lesson> lessons, DateTime selectedDay,
         List<String> selectedFilterList, DateTime nocache),
     TResult lessonsLoadedEmpty(
@@ -78,14 +71,12 @@ mixin _$LessonsState {
   @optionalTypeArgs
   TResult map<TResult extends Object>({
     @required TResult lessonsUninitialized(LessonsUninitialized value),
-    @required TResult lessonsError(LessonsError value),
     @required TResult lessonsLoaded(LessonsLoaded value),
     @required TResult lessonsLoadedEmpty(LessonsLoadedEmpty value),
   });
   @optionalTypeArgs
   TResult maybeMap<TResult extends Object>({
     TResult lessonsUninitialized(LessonsUninitialized value),
-    TResult lessonsError(LessonsError value),
     TResult lessonsLoaded(LessonsLoaded value),
     TResult lessonsLoadedEmpty(LessonsLoadedEmpty value),
     @required TResult orElse(),
@@ -152,7 +143,6 @@ class _$LessonsUninitialized with DiagnosticableTreeMixin implements LessonsUnin
   @optionalTypeArgs
   TResult when<TResult extends Object>({
     @required TResult lessonsUninitialized(),
-    @required TResult lessonsError(),
     @required
         TResult lessonsLoaded(List<Lesson> lessons, DateTime selectedDay,
             List<String> selectedFilterList, DateTime nocache),
@@ -161,7 +151,6 @@ class _$LessonsUninitialized with DiagnosticableTreeMixin implements LessonsUnin
             DateTime selectedDay, List<String> selectedFilterList, DateTime nocache),
   }) {
     assert(lessonsUninitialized != null);
-    assert(lessonsError != null);
     assert(lessonsLoaded != null);
     assert(lessonsLoadedEmpty != null);
     return lessonsUninitialized();
@@ -171,7 +160,6 @@ class _$LessonsUninitialized with DiagnosticableTreeMixin implements LessonsUnin
   @optionalTypeArgs
   TResult maybeWhen<TResult extends Object>({
     TResult lessonsUninitialized(),
-    TResult lessonsError(),
     TResult lessonsLoaded(List<Lesson> lessons, DateTime selectedDay,
         List<String> selectedFilterList, DateTime nocache),
     TResult lessonsLoadedEmpty(
@@ -189,12 +177,10 @@ class _$LessonsUninitialized with DiagnosticableTreeMixin implements LessonsUnin
   @optionalTypeArgs
   TResult map<TResult extends Object>({
     @required TResult lessonsUninitialized(LessonsUninitialized value),
-    @required TResult lessonsError(LessonsError value),
     @required TResult lessonsLoaded(LessonsLoaded value),
     @required TResult lessonsLoadedEmpty(LessonsLoadedEmpty value),
   }) {
     assert(lessonsUninitialized != null);
-    assert(lessonsError != null);
     assert(lessonsLoaded != null);
     assert(lessonsLoadedEmpty != null);
     return lessonsUninitialized(this);
@@ -204,7 +190,6 @@ class _$LessonsUninitialized with DiagnosticableTreeMixin implements LessonsUnin
   @optionalTypeArgs
   TResult maybeMap<TResult extends Object>({
     TResult lessonsUninitialized(LessonsUninitialized value),
-    TResult lessonsError(LessonsError value),
     TResult lessonsLoaded(LessonsLoaded value),
     TResult lessonsLoadedEmpty(LessonsLoadedEmpty value),
     @required TResult orElse(),
@@ -434,7 +419,6 @@ class _$LessonsLoaded with DiagnosticableTreeMixin implements LessonsLoaded {
   @optionalTypeArgs
   TResult when<TResult extends Object>({
     @required TResult lessonsUninitialized(),
-    @required TResult lessonsError(),
     @required
         TResult lessonsLoaded(List<Lesson> lessons, DateTime selectedDay,
             List<String> selectedFilterList, DateTime nocache),
@@ -443,7 +427,6 @@ class _$LessonsLoaded with DiagnosticableTreeMixin implements LessonsLoaded {
             DateTime selectedDay, List<String> selectedFilterList, DateTime nocache),
   }) {
     assert(lessonsUninitialized != null);
-    assert(lessonsError != null);
     assert(lessonsLoaded != null);
     assert(lessonsLoadedEmpty != null);
     return lessonsLoaded(lessons, selectedDay, selectedFilterList, nocache);
@@ -453,7 +436,6 @@ class _$LessonsLoaded with DiagnosticableTreeMixin implements LessonsLoaded {
   @optionalTypeArgs
   TResult maybeWhen<TResult extends Object>({
     TResult lessonsUninitialized(),
-    TResult lessonsError(),
     TResult lessonsLoaded(List<Lesson> lessons, DateTime selectedDay,
         List<String> selectedFilterList, DateTime nocache),
     TResult lessonsLoadedEmpty(
@@ -471,12 +453,10 @@ class _$LessonsLoaded with DiagnosticableTreeMixin implements LessonsLoaded {
   @optionalTypeArgs
   TResult map<TResult extends Object>({
     @required TResult lessonsUninitialized(LessonsUninitialized value),
-    @required TResult lessonsError(LessonsError value),
     @required TResult lessonsLoaded(LessonsLoaded value),
     @required TResult lessonsLoadedEmpty(LessonsLoadedEmpty value),
   }) {
     assert(lessonsUninitialized != null);
-    assert(lessonsError != null);
     assert(lessonsLoaded != null);
     assert(lessonsLoadedEmpty != null);
     return lessonsLoaded(this);
@@ -486,7 +466,6 @@ class _$LessonsLoaded with DiagnosticableTreeMixin implements LessonsLoaded {
   @optionalTypeArgs
   TResult maybeMap<TResult extends Object>({
     TResult lessonsUninitialized(LessonsUninitialized value),
-    TResult lessonsError(LessonsError value),
     TResult lessonsLoaded(LessonsLoaded value),
     TResult lessonsLoadedEmpty(LessonsLoadedEmpty value),
     @required TResult orElse(),
@@ -603,7 +582,6 @@ class _$LessonsLoadedEmpty with DiagnosticableTreeMixin implements LessonsLoaded
   @optionalTypeArgs
   TResult when<TResult extends Object>({
     @required TResult lessonsUninitialized(),
-    @required TResult lessonsError(),
     @required
         TResult lessonsLoaded(List<Lesson> lessons, DateTime selectedDay,
             List<String> selectedFilterList, DateTime nocache),
@@ -612,7 +590,6 @@ class _$LessonsLoadedEmpty with DiagnosticableTreeMixin implements LessonsLoaded
             DateTime selectedDay, List<String> selectedFilterList, DateTime nocache),
   }) {
     assert(lessonsUninitialized != null);
-    assert(lessonsError != null);
     assert(lessonsLoaded != null);
     assert(lessonsLoadedEmpty != null);
     return lessonsLoadedEmpty(selectedDay, selectedFilterList, nocache);
@@ -622,7 +599,6 @@ class _$LessonsLoadedEmpty with DiagnosticableTreeMixin implements LessonsLoaded
   @optionalTypeArgs
   TResult maybeWhen<TResult extends Object>({
     TResult lessonsUninitialized(),
-    TResult lessonsError(),
     TResult lessonsLoaded(List<Lesson> lessons, DateTime selectedDay,
         List<String> selectedFilterList, DateTime nocache),
     TResult lessonsLoadedEmpty(
@@ -640,12 +616,10 @@ class _$LessonsLoadedEmpty with DiagnosticableTreeMixin implements LessonsLoaded
   @optionalTypeArgs
   TResult map<TResult extends Object>({
     @required TResult lessonsUninitialized(LessonsUninitialized value),
-    @required TResult lessonsError(LessonsError value),
     @required TResult lessonsLoaded(LessonsLoaded value),
     @required TResult lessonsLoadedEmpty(LessonsLoadedEmpty value),
   }) {
     assert(lessonsUninitialized != null);
-    assert(lessonsError != null);
     assert(lessonsLoaded != null);
     assert(lessonsLoadedEmpty != null);
     return lessonsLoadedEmpty(this);
@@ -655,7 +629,6 @@ class _$LessonsLoadedEmpty with DiagnosticableTreeMixin implements LessonsLoaded
   @optionalTypeArgs
   TResult maybeMap<TResult extends Object>({
     TResult lessonsUninitialized(LessonsUninitialized value),
-    TResult lessonsError(LessonsError value),
     TResult lessonsLoaded(LessonsLoaded value),
     TResult lessonsLoadedEmpty(LessonsLoadedEmpty value),
     @required TResult orElse(),

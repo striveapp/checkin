@@ -43,6 +43,13 @@ class _$RegistryEventTearOff {
       gymId: gymId,
     );
   }
+
+// ignore: unused_element
+  CloseLesson closeLesson({@required String gymId}) {
+    return CloseLesson(
+      gymId: gymId,
+    );
+  }
 }
 
 /// @nodoc
@@ -57,6 +64,7 @@ mixin _$RegistryEvent {
     @required TResult register(String gymId, Attendee attendee),
     @required TResult unregister(String gymId, Attendee attendee),
     @required TResult acceptAttendees(String gymId),
+    @required TResult closeLesson(String gymId),
   });
   @optionalTypeArgs
   TResult maybeWhen<TResult extends Object>({
@@ -64,6 +72,7 @@ mixin _$RegistryEvent {
     TResult register(String gymId, Attendee attendee),
     TResult unregister(String gymId, Attendee attendee),
     TResult acceptAttendees(String gymId),
+    TResult closeLesson(String gymId),
     @required TResult orElse(),
   });
   @optionalTypeArgs
@@ -72,6 +81,7 @@ mixin _$RegistryEvent {
     @required TResult register(Register value),
     @required TResult unregister(Unregister value),
     @required TResult acceptAttendees(AcceptAttendees value),
+    @required TResult closeLesson(CloseLesson value),
   });
   @optionalTypeArgs
   TResult maybeMap<TResult extends Object>({
@@ -79,6 +89,7 @@ mixin _$RegistryEvent {
     TResult register(Register value),
     TResult unregister(Unregister value),
     TResult acceptAttendees(AcceptAttendees value),
+    TResult closeLesson(CloseLesson value),
     @required TResult orElse(),
   });
 }
@@ -189,11 +200,13 @@ class _$RegistryUpdated with DiagnosticableTreeMixin implements RegistryUpdated 
     @required TResult register(String gymId, Attendee attendee),
     @required TResult unregister(String gymId, Attendee attendee),
     @required TResult acceptAttendees(String gymId),
+    @required TResult closeLesson(String gymId),
   }) {
     assert(registryUpdated != null);
     assert(register != null);
     assert(unregister != null);
     assert(acceptAttendees != null);
+    assert(closeLesson != null);
     return registryUpdated(currentUser, currentLesson);
   }
 
@@ -204,6 +217,7 @@ class _$RegistryUpdated with DiagnosticableTreeMixin implements RegistryUpdated 
     TResult register(String gymId, Attendee attendee),
     TResult unregister(String gymId, Attendee attendee),
     TResult acceptAttendees(String gymId),
+    TResult closeLesson(String gymId),
     @required TResult orElse(),
   }) {
     assert(orElse != null);
@@ -220,11 +234,13 @@ class _$RegistryUpdated with DiagnosticableTreeMixin implements RegistryUpdated 
     @required TResult register(Register value),
     @required TResult unregister(Unregister value),
     @required TResult acceptAttendees(AcceptAttendees value),
+    @required TResult closeLesson(CloseLesson value),
   }) {
     assert(registryUpdated != null);
     assert(register != null);
     assert(unregister != null);
     assert(acceptAttendees != null);
+    assert(closeLesson != null);
     return registryUpdated(this);
   }
 
@@ -235,6 +251,7 @@ class _$RegistryUpdated with DiagnosticableTreeMixin implements RegistryUpdated 
     TResult register(Register value),
     TResult unregister(Unregister value),
     TResult acceptAttendees(AcceptAttendees value),
+    TResult closeLesson(CloseLesson value),
     @required TResult orElse(),
   }) {
     assert(orElse != null);
@@ -333,11 +350,13 @@ class _$Register with DiagnosticableTreeMixin implements Register {
     @required TResult register(String gymId, Attendee attendee),
     @required TResult unregister(String gymId, Attendee attendee),
     @required TResult acceptAttendees(String gymId),
+    @required TResult closeLesson(String gymId),
   }) {
     assert(registryUpdated != null);
     assert(register != null);
     assert(unregister != null);
     assert(acceptAttendees != null);
+    assert(closeLesson != null);
     return register(gymId, attendee);
   }
 
@@ -348,6 +367,7 @@ class _$Register with DiagnosticableTreeMixin implements Register {
     TResult register(String gymId, Attendee attendee),
     TResult unregister(String gymId, Attendee attendee),
     TResult acceptAttendees(String gymId),
+    TResult closeLesson(String gymId),
     @required TResult orElse(),
   }) {
     assert(orElse != null);
@@ -364,11 +384,13 @@ class _$Register with DiagnosticableTreeMixin implements Register {
     @required TResult register(Register value),
     @required TResult unregister(Unregister value),
     @required TResult acceptAttendees(AcceptAttendees value),
+    @required TResult closeLesson(CloseLesson value),
   }) {
     assert(registryUpdated != null);
     assert(register != null);
     assert(unregister != null);
     assert(acceptAttendees != null);
+    assert(closeLesson != null);
     return register(this);
   }
 
@@ -379,6 +401,7 @@ class _$Register with DiagnosticableTreeMixin implements Register {
     TResult register(Register value),
     TResult unregister(Unregister value),
     TResult acceptAttendees(AcceptAttendees value),
+    TResult closeLesson(CloseLesson value),
     @required TResult orElse(),
   }) {
     assert(orElse != null);
@@ -477,11 +500,13 @@ class _$Unregister with DiagnosticableTreeMixin implements Unregister {
     @required TResult register(String gymId, Attendee attendee),
     @required TResult unregister(String gymId, Attendee attendee),
     @required TResult acceptAttendees(String gymId),
+    @required TResult closeLesson(String gymId),
   }) {
     assert(registryUpdated != null);
     assert(register != null);
     assert(unregister != null);
     assert(acceptAttendees != null);
+    assert(closeLesson != null);
     return unregister(gymId, attendee);
   }
 
@@ -492,6 +517,7 @@ class _$Unregister with DiagnosticableTreeMixin implements Unregister {
     TResult register(String gymId, Attendee attendee),
     TResult unregister(String gymId, Attendee attendee),
     TResult acceptAttendees(String gymId),
+    TResult closeLesson(String gymId),
     @required TResult orElse(),
   }) {
     assert(orElse != null);
@@ -508,11 +534,13 @@ class _$Unregister with DiagnosticableTreeMixin implements Unregister {
     @required TResult register(Register value),
     @required TResult unregister(Unregister value),
     @required TResult acceptAttendees(AcceptAttendees value),
+    @required TResult closeLesson(CloseLesson value),
   }) {
     assert(registryUpdated != null);
     assert(register != null);
     assert(unregister != null);
     assert(acceptAttendees != null);
+    assert(closeLesson != null);
     return unregister(this);
   }
 
@@ -523,6 +551,7 @@ class _$Unregister with DiagnosticableTreeMixin implements Unregister {
     TResult register(Register value),
     TResult unregister(Unregister value),
     TResult acceptAttendees(AcceptAttendees value),
+    TResult closeLesson(CloseLesson value),
     @required TResult orElse(),
   }) {
     assert(orElse != null);
@@ -609,11 +638,13 @@ class _$AcceptAttendees with DiagnosticableTreeMixin implements AcceptAttendees 
     @required TResult register(String gymId, Attendee attendee),
     @required TResult unregister(String gymId, Attendee attendee),
     @required TResult acceptAttendees(String gymId),
+    @required TResult closeLesson(String gymId),
   }) {
     assert(registryUpdated != null);
     assert(register != null);
     assert(unregister != null);
     assert(acceptAttendees != null);
+    assert(closeLesson != null);
     return acceptAttendees(gymId);
   }
 
@@ -624,6 +655,7 @@ class _$AcceptAttendees with DiagnosticableTreeMixin implements AcceptAttendees 
     TResult register(String gymId, Attendee attendee),
     TResult unregister(String gymId, Attendee attendee),
     TResult acceptAttendees(String gymId),
+    TResult closeLesson(String gymId),
     @required TResult orElse(),
   }) {
     assert(orElse != null);
@@ -640,11 +672,13 @@ class _$AcceptAttendees with DiagnosticableTreeMixin implements AcceptAttendees 
     @required TResult register(Register value),
     @required TResult unregister(Unregister value),
     @required TResult acceptAttendees(AcceptAttendees value),
+    @required TResult closeLesson(CloseLesson value),
   }) {
     assert(registryUpdated != null);
     assert(register != null);
     assert(unregister != null);
     assert(acceptAttendees != null);
+    assert(closeLesson != null);
     return acceptAttendees(this);
   }
 
@@ -655,6 +689,7 @@ class _$AcceptAttendees with DiagnosticableTreeMixin implements AcceptAttendees 
     TResult register(Register value),
     TResult unregister(Unregister value),
     TResult acceptAttendees(AcceptAttendees value),
+    TResult closeLesson(CloseLesson value),
     @required TResult orElse(),
   }) {
     assert(orElse != null);
@@ -670,4 +705,141 @@ abstract class AcceptAttendees implements RegistryEvent {
 
   String get gymId;
   $AcceptAttendeesCopyWith<AcceptAttendees> get copyWith;
+}
+
+/// @nodoc
+abstract class $CloseLessonCopyWith<$Res> {
+  factory $CloseLessonCopyWith(CloseLesson value, $Res Function(CloseLesson) then) =
+      _$CloseLessonCopyWithImpl<$Res>;
+  $Res call({String gymId});
+}
+
+/// @nodoc
+class _$CloseLessonCopyWithImpl<$Res> extends _$RegistryEventCopyWithImpl<$Res>
+    implements $CloseLessonCopyWith<$Res> {
+  _$CloseLessonCopyWithImpl(CloseLesson _value, $Res Function(CloseLesson) _then)
+      : super(_value, (v) => _then(v as CloseLesson));
+
+  @override
+  CloseLesson get _value => super._value as CloseLesson;
+
+  @override
+  $Res call({
+    Object gymId = freezed,
+  }) {
+    return _then(CloseLesson(
+      gymId: gymId == freezed ? _value.gymId : gymId as String,
+    ));
+  }
+}
+
+/// @nodoc
+class _$CloseLesson with DiagnosticableTreeMixin implements CloseLesson {
+  const _$CloseLesson({@required this.gymId}) : assert(gymId != null);
+
+  @override
+  final String gymId;
+
+  @override
+  String toString({DiagnosticLevel minLevel = DiagnosticLevel.info}) {
+    return 'RegistryEvent.closeLesson(gymId: $gymId)';
+  }
+
+  @override
+  void debugFillProperties(DiagnosticPropertiesBuilder properties) {
+    super.debugFillProperties(properties);
+    properties
+      ..add(DiagnosticsProperty('type', 'RegistryEvent.closeLesson'))
+      ..add(DiagnosticsProperty('gymId', gymId));
+  }
+
+  @override
+  bool operator ==(dynamic other) {
+    return identical(this, other) ||
+        (other is CloseLesson &&
+            (identical(other.gymId, gymId) ||
+                const DeepCollectionEquality().equals(other.gymId, gymId)));
+  }
+
+  @override
+  int get hashCode => runtimeType.hashCode ^ const DeepCollectionEquality().hash(gymId);
+
+  @override
+  $CloseLessonCopyWith<CloseLesson> get copyWith =>
+      _$CloseLessonCopyWithImpl<CloseLesson>(this, _$identity);
+
+  @override
+  @optionalTypeArgs
+  TResult when<TResult extends Object>({
+    @required TResult registryUpdated(User currentUser, Lesson currentLesson),
+    @required TResult register(String gymId, Attendee attendee),
+    @required TResult unregister(String gymId, Attendee attendee),
+    @required TResult acceptAttendees(String gymId),
+    @required TResult closeLesson(String gymId),
+  }) {
+    assert(registryUpdated != null);
+    assert(register != null);
+    assert(unregister != null);
+    assert(acceptAttendees != null);
+    assert(closeLesson != null);
+    return closeLesson(gymId);
+  }
+
+  @override
+  @optionalTypeArgs
+  TResult maybeWhen<TResult extends Object>({
+    TResult registryUpdated(User currentUser, Lesson currentLesson),
+    TResult register(String gymId, Attendee attendee),
+    TResult unregister(String gymId, Attendee attendee),
+    TResult acceptAttendees(String gymId),
+    TResult closeLesson(String gymId),
+    @required TResult orElse(),
+  }) {
+    assert(orElse != null);
+    if (closeLesson != null) {
+      return closeLesson(gymId);
+    }
+    return orElse();
+  }
+
+  @override
+  @optionalTypeArgs
+  TResult map<TResult extends Object>({
+    @required TResult registryUpdated(RegistryUpdated value),
+    @required TResult register(Register value),
+    @required TResult unregister(Unregister value),
+    @required TResult acceptAttendees(AcceptAttendees value),
+    @required TResult closeLesson(CloseLesson value),
+  }) {
+    assert(registryUpdated != null);
+    assert(register != null);
+    assert(unregister != null);
+    assert(acceptAttendees != null);
+    assert(closeLesson != null);
+    return closeLesson(this);
+  }
+
+  @override
+  @optionalTypeArgs
+  TResult maybeMap<TResult extends Object>({
+    TResult registryUpdated(RegistryUpdated value),
+    TResult register(Register value),
+    TResult unregister(Unregister value),
+    TResult acceptAttendees(AcceptAttendees value),
+    TResult closeLesson(CloseLesson value),
+    @required TResult orElse(),
+  }) {
+    assert(orElse != null);
+    if (closeLesson != null) {
+      return closeLesson(this);
+    }
+    return orElse();
+  }
+}
+
+abstract class CloseLesson implements RegistryEvent {
+  const factory CloseLesson({@required String gymId}) = _$CloseLesson;
+
+  String get gymId;
+  $CloseLessonCopyWith<CloseLesson> get copyWith;
 }
