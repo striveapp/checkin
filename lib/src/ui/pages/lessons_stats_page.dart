@@ -32,8 +32,7 @@ class LessonsStatsPage extends StatelessWidget {
               child: Column(
                 crossAxisAlignment: CrossAxisAlignment.start,
                 children: <Widget>[
-                  Text(topStudents.i18n,
-                      style: Theme.of(context).textTheme.headline1),
+                  Text(topStudents.i18n, style: Theme.of(context).textTheme.headline1),
                   SizedBox(
                     height: 10,
                   ),

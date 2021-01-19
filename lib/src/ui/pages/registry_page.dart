@@ -37,8 +37,7 @@ class RegistryPage extends StatelessWidget {
                 lessonId: lessonId,
                 lessonDate: date,
                 lessonApi: RepositoryProvider.of<LessonApi>(context),
-                lessonRepository:
-                    RepositoryProvider.of<LessonRepository>(context),
+                lessonRepository: RepositoryProvider.of<LessonRepository>(context),
                 userBloc: BlocProvider.of<UserBloc>(context),
               ),
             ),
@@ -54,27 +53,24 @@ class RegistryPage extends StatelessWidget {
                     builder: (BuildContext context) => LoadingIndicator());
               }
               if (state is RegistryLoaded) {
-                Navigator.of(context)
-                    .popUntil((route) => route.settings.name != "dialog");
+                Navigator.of(context).popUntil((route) => route.settings.name != "dialog");
               }
             },
             child: SafeArea(
               child: Container(
                 child: Padding(
                   padding: EdgeInsets.symmetric(horizontal: 10),
-                  child: Column(
-                      mainAxisAlignment: MainAxisAlignment.spaceAround,
-                      children: [
-                        Padding(
-                          padding: const EdgeInsets.symmetric(vertical: 20),
-                          child: LessonInfos(),
-                        ),
-                        Expanded(
-                            child: Padding(
-                          padding: const EdgeInsets.only(bottom: 20.0),
-                          child: Registry(),
-                        )),
-                      ]),
+                  child: Column(mainAxisAlignment: MainAxisAlignment.spaceAround, children: [
+                    Padding(
+                      padding: const EdgeInsets.symmetric(vertical: 20),
+                      child: LessonInfos(),
+                    ),
+                    Expanded(
+                        child: Padding(
+                      padding: const EdgeInsets.only(bottom: 20.0),
+                      child: Registry(),
+                    )),
+                  ]),
                 ),
               ),
             ),

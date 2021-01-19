@@ -16,8 +16,7 @@ class Payment extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    return BlocBuilder<GymBloc, GymState>(
-        builder: (BuildContext context, GymState state) {
+    return BlocBuilder<GymBloc, GymState>(builder: (BuildContext context, GymState state) {
       if (paymentsToggle(state)) {
         return Column(
           crossAxisAlignment: CrossAxisAlignment.start,
@@ -27,8 +26,7 @@ class Payment extends StatelessWidget {
             ),
             Padding(
               padding: EdgeInsets.only(left: 10.0),
-              child: Text(membership.i18n,
-                  style: Theme.of(context).textTheme.headline1),
+              child: Text(membership.i18n, style: Theme.of(context).textTheme.headline1),
             ),
             Padding(
               padding: EdgeInsets.only(top: 10.0),
@@ -39,8 +37,7 @@ class Payment extends StatelessWidget {
             ),
             Padding(
               padding: EdgeInsets.only(left: 10.0),
-              child: Text(paymentMethods.i18n,
-                  style: Theme.of(context).textTheme.headline1),
+              child: Text(paymentMethods.i18n, style: Theme.of(context).textTheme.headline1),
             ),
             Padding(
               padding: EdgeInsets.only(top: 10.0),

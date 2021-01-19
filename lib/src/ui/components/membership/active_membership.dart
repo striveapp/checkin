@@ -26,10 +26,7 @@ class ActiveMembershipView extends StatelessWidget {
             children: <Widget>[
               Text(
                 yourSubscription.i18n,
-                style: Theme.of(context)
-                    .textTheme
-                    .headline3
-                    .apply(fontWeightDelta: 1),
+                style: Theme.of(context).textTheme.headline3.apply(fontWeightDelta: 1),
               ),
               Padding(
                 padding: const EdgeInsets.symmetric(horizontal: 8),
@@ -44,10 +41,7 @@ class ActiveMembershipView extends StatelessWidget {
               ),
               Text(
                 remainingSessions.i18n,
-                style: Theme.of(context)
-                    .textTheme
-                    .headline3
-                    .apply(fontWeightDelta: 1),
+                style: Theme.of(context).textTheme.headline3.apply(fontWeightDelta: 1),
               ),
               Padding(
                   padding: const EdgeInsets.only(left: 8, right: 8),
@@ -63,15 +57,14 @@ class ActiveMembershipView extends StatelessWidget {
                     style: DefaultTextStyle.of(context).style,
                     children: <TextSpan>[
                       TextSpan(
-                          text: nextBilling.i18n,
-                          style: Theme.of(context).textTheme.headline3),
+                          text: nextBilling.i18n, style: Theme.of(context).textTheme.headline3),
                       TextSpan(
-                          text: DateFormat('dd MMM y').format(
-                              DateTime.fromMillisecondsSinceEpoch(
-                                  membership.currentPeriodEnd * 1000)),
-                          style: Theme.of(context).textTheme.headline3.apply(
-                              fontWeightDelta: 1,
-                              color: Theme.of(context).accentColor)),
+                          text: DateFormat('dd MMM y').format(DateTime.fromMillisecondsSinceEpoch(
+                              membership.currentPeriodEnd * 1000)),
+                          style: Theme.of(context)
+                              .textTheme
+                              .headline3
+                              .apply(fontWeightDelta: 1, color: Theme.of(context).accentColor)),
                     ],
                   ),
                 ),

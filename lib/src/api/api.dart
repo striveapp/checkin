@@ -5,8 +5,7 @@ import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
 
 class Api {
-  static Future<HttpsCallableResult> call(
-          {functionName: String, dynamic parameters}) =>
+  static Future<HttpsCallableResult> call({functionName: String, dynamic parameters}) =>
       CloudFunctions.instance
           .getHttpsCallable(functionName: functionName)
           .call(parameters)

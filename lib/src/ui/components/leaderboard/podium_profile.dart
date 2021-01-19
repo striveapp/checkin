@@ -12,8 +12,7 @@ class PodiumProfile extends StatelessWidget {
   final int position;
   final Color color;
 
-  const PodiumProfile({Key key, this.profileEmail, this.position, this.color})
-      : super(key: key);
+  const PodiumProfile({Key key, this.profileEmail, this.position, this.color}) : super(key: key);
 
   @override
   Widget build(BuildContext context) {
@@ -27,8 +26,7 @@ class PodiumProfile extends StatelessWidget {
           //TODO: this should be simplified https://trello.com/c/EVfSfCQy
           return GestureDetector(
             onTap: () {
-              Navigator.of(context)
-                  .pushNamed('stats/${state.profileUser.email}');
+              Navigator.of(context).pushNamed('stats/${state.profileUser.email}');
             },
             child: Column(
               children: <Widget>[

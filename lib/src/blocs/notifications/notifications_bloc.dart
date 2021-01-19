@@ -49,8 +49,7 @@ class NotificationsBloc extends Bloc<NotificationsEvent, NotificationsState> {
   void _saveUserToken(String token) {
     userBloc.listen((userState) {
       if (userState is UserSuccess) {
-        userBloc.add(UpdateFcmToken(
-            userEmail: userState.currentUser.email, newToken: token));
+        userBloc.add(UpdateFcmToken(userEmail: userState.currentUser.email, newToken: token));
       }
     });
   }
@@ -91,8 +90,7 @@ class NotificationsBloc extends Bloc<NotificationsEvent, NotificationsState> {
     );
   }
 
-  NavigationNotification _mapMsgToNavigationNotification(
-      Map<String, dynamic> msg) {
+  NavigationNotification _mapMsgToNavigationNotification(Map<String, dynamic> msg) {
     var data = msg['data'] ?? msg;
     return NavigationNotification(
       data['type'],

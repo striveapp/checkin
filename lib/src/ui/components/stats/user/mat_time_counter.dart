@@ -31,8 +31,10 @@ class MatTimeCounter extends StatelessWidget {
               counter.toString(),
               key: Key('matHours'),
               textAlign: TextAlign.center,
-              style: Theme.of(context).textTheme.headline1.apply(
-                  fontSizeFactor: 3, color: Theme.of(context).accentColor),
+              style: Theme.of(context)
+                  .textTheme
+                  .headline1
+                  .apply(fontSizeFactor: 3, color: Theme.of(context).accentColor),
             ),
             Text(
               hours.plural(counter),
@@ -61,8 +63,7 @@ class MatTimeCounter extends StatelessWidget {
             ),
             LinearProgressIndicator(
               value: _getAttendancePercentage(counter, timeSpan),
-              valueColor:
-                  AlwaysStoppedAnimation<Color>(Theme.of(context).accentColor),
+              valueColor: AlwaysStoppedAnimation<Color>(Theme.of(context).accentColor),
               backgroundColor: Theme.of(context).primaryColor.withAlpha(70),
             ),
           ],
@@ -72,8 +73,7 @@ class MatTimeCounter extends StatelessWidget {
         ),
         Text(
           "${attendedClasses.plural(counter)} ${thisTimespan.gender(timeSpan)}",
-          style:
-              Theme.of(context).textTheme.headline4.apply(fontWeightDelta: 2),
+          style: Theme.of(context).textTheme.headline4.apply(fontWeightDelta: 2),
         )
       ],
     );

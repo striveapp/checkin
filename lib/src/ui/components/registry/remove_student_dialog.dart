@@ -16,8 +16,7 @@ class RemoveStudentDialog extends StatelessWidget {
     return AlertDialog(
       contentPadding: EdgeInsets.symmetric(horizontal: 15, vertical: 25),
       content: Text(removeStudentDisclaimer.i18n,
-          textAlign: TextAlign.center,
-          style: Theme.of(context).textTheme.headline3),
+          textAlign: TextAlign.center, style: Theme.of(context).textTheme.headline3),
       actionsPadding: EdgeInsets.symmetric(horizontal: 10),
       actions: <Widget>[
         RaisedButton(

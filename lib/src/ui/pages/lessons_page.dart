@@ -34,8 +34,7 @@ class LessonsPage extends StatelessWidget {
             child: Container(
               decoration: BoxDecoration(
                   borderRadius: BorderRadius.only(
-                      topLeft: Radius.circular(10.0),
-                      topRight: Radius.circular(10.0))),
+                      topLeft: Radius.circular(10.0), topRight: Radius.circular(10.0))),
               child: Column(
                 crossAxisAlignment: CrossAxisAlignment.center,
                 children: <Widget>[

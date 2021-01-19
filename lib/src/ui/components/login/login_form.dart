@@ -62,9 +62,7 @@ class _LoginFormState extends State<LoginForm> {
               ),
               GoogleSignInButton(
                 key: Key('loginButton'),
-                onPressed: state is! LoginLoading
-                    ? _onLoginWithGoogleButtonPressed
-                    : null,
+                onPressed: state is! LoginLoading ? _onLoginWithGoogleButtonPressed : null,
                 darkMode: true,
                 borderRadius: 50.0,
               ),

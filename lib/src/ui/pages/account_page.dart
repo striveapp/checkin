@@ -54,15 +54,13 @@ class AccountPage extends StatelessWidget {
           providers: [
             BlocProvider<ProfileBloc>(
               create: (BuildContext context) => ProfileBloc(
-                  userRepository:
-                      RepositoryProvider.of<UserRepository>(context),
+                  userRepository: RepositoryProvider.of<UserRepository>(context),
                   userBloc: BlocProvider.of<UserBloc>(context)),
             ),
             BlocProvider<AccountBloc>(
               create: (BuildContext context) => AccountBloc(
                 userBloc: BlocProvider.of<UserBloc>(context),
-                analyticsRepository:
-                    RepositoryProvider.of<AnalyticsRepository>(context),
+                analyticsRepository: RepositoryProvider.of<AnalyticsRepository>(context),
               ),
             ),
             BlocProvider<GymBloc>(
@@ -77,8 +75,7 @@ class AccountPage extends StatelessWidget {
                 userBloc: context.read<UserBloc>(),
                 paymentMethodRepository: PaymentMethodProvider(),
                 paymentApi: PaymentApi(
-                    httpClient: HttpClient(
-                        authRepository: context.read<AuthRepository>())),
+                    httpClient: HttpClient(authRepository: context.read<AuthRepository>())),
               ),
             ),
           ],
@@ -94,8 +91,7 @@ class AccountPage extends StatelessWidget {
                         textAlign: TextAlign.center,
                         style: Theme.of(context).textTheme.bodyText1,
                       ),
-                      backgroundColor:
-                          Theme.of(context).accentColor.withAlpha(150),
+                      backgroundColor: Theme.of(context).accentColor.withAlpha(150),
                       duration: Duration(seconds: 5),
                     ),
                   );
@@ -119,25 +115,20 @@ class AccountPage extends StatelessWidget {
                     providers: [
                       BlocProvider<UserStatsBloc>(
                         create: (BuildContext context) => UserStatsBloc(
-                          statsRepository:
-                              RepositoryProvider.of<StatsRepository>(context),
+                          statsRepository: RepositoryProvider.of<StatsRepository>(context),
                           userEmail: state.user.email,
                           selectedGymId: state.user.selectedGymId,
-                          statsBloc: StatsBloc()
-                            ..add(TimespanUpdate(timespan: constants.MONTH)),
+                          statsBloc: StatsBloc()..add(TimespanUpdate(timespan: constants.MONTH)),
                         ),
                       ),
                       BlocProvider<MembershipBloc>(
                         create: (BuildContext context) => MembershipBloc(
-                            analyticsRepository:
-                                context.read<AnalyticsRepository>(),
+                            analyticsRepository: context.read<AnalyticsRepository>(),
                             membershipApi: MembershipApi(
-                                httpClient: HttpClient(
-                                    authRepository:
-                                        context.read<AuthRepository>())),
+                                httpClient:
+                                    HttpClient(authRepository: context.read<AuthRepository>())),
                             membershipRepository:
-                                RepositoryProvider.of<MembershipRepository>(
-                                    context),
+                                RepositoryProvider.of<MembershipRepository>(context),
                             userEmail: state.user.email,
                             selectedGymId: state.user.selectedGymId),
                       )
@@ -148,22 +139,19 @@ class AccountPage extends StatelessWidget {
                         child: Column(
                           crossAxisAlignment: CrossAxisAlignment.start,
                           children: <Widget>[
-                            Payment(
-                                userHasActivePayments:
-                                    state.user.hasActivePayments),
+                            Payment(userHasActivePayments: state.user.hasActivePayments),
                             SizedBox(
                               height: 40,
                             ),
                             Padding(
                               padding: EdgeInsets.only(left: 10.0),
-                              child: Text(profile.i18n,
-                                  style: Theme.of(context).textTheme.headline1),
+                              child:
+                                  Text(profile.i18n, style: Theme.of(context).textTheme.headline1),
                             ),
                             Padding(
                               padding: EdgeInsets.only(top: 10.0),
                               child: ProfileCard(
-                                  userEmail: state.user.email,
-                                  isOwner: state.user.isOwner),
+                                  userEmail: state.user.email, isOwner: state.user.isOwner),
                             ),
                             if (state.user.selectedGymId == "test")
                               SizedBox(
@@ -174,8 +162,7 @@ class AccountPage extends StatelessWidget {
                                 mainAxisAlignment: MainAxisAlignment.center,
                                 children: <Widget>[
                                   Padding(
-                                    padding:
-                                        const EdgeInsets.only(bottom: 20.0),
+                                    padding: const EdgeInsets.only(bottom: 20.0),
                                     child: RaisedButton(
                                       key: Key('logoutButton'),
                                       color: Colors.red,
@@ -187,11 +174,9 @@ class AccountPage extends StatelessWidget {
                                       onPressed: () {
                                         Navigator.popUntil(
                                           context,
-                                          ModalRoute.withName(
-                                              Navigator.defaultRouteName),
+                                          ModalRoute.withName(Navigator.defaultRouteName),
                                         );
-                                        BlocProvider.of<AuthBloc>(context)
-                                            .add(LogOut());
+                                        BlocProvider.of<AuthBloc>(context).add(LogOut());
                                       },
                                     ),
                                   ),

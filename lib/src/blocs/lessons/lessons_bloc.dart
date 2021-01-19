@@ -73,8 +73,7 @@ class LessonsBloc extends Bloc<LessonsEvent, LessonsState> {
     if (event is LoadLessons) {
       List<String> selectedFilterList = event.selectedFilterList ??
           state.maybeMap(
-              lessonsLoadedEmpty: (LessonsLoadedEmpty state) =>
-                  state.selectedFilterList,
+              lessonsLoadedEmpty: (LessonsLoadedEmpty state) => state.selectedFilterList,
               lessonsLoaded: (LessonsLoaded state) => state.selectedFilterList,
               orElse: () => []);
 
@@ -91,8 +90,8 @@ class LessonsBloc extends Bloc<LessonsEvent, LessonsState> {
     }
   }
 
-  _sortLessonsByTime(List<Lesson> lessons) => lessons
-    ..sort(((a, b) => _getDate(a.timeStart).compareTo(_getDate(b.timeStart))));
+  _sortLessonsByTime(List<Lesson> lessons) =>
+      lessons..sort(((a, b) => _getDate(a.timeStart).compareTo(_getDate(b.timeStart))));
 
   _getDate(String time) {
     DateTime now = DateTime.now();

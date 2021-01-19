@@ -23,8 +23,7 @@ class CurrentUserTile extends StatelessWidget {
           selectedGymId: currentUser.selectedGymId,
           isCurrent: true,
           showSessionsWarning: true,
-          isAccepted: acceptedAttendees
-              .any((attendee) => attendee.email == currentUser.email),
+          isAccepted: acceptedAttendees.any((attendee) => attendee.email == currentUser.email),
         ),
         Divider()
       ],

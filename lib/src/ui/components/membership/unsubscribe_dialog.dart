@@ -19,17 +19,13 @@ class UnsubscribeDialog {
             child: Column(
               children: <Widget>[
                 Text(aboutToPermanentlyDeleteSubscription.i18n,
-                    textAlign: TextAlign.center,
-                    style: Theme.of(context).textTheme.headline4),
+                    textAlign: TextAlign.center, style: Theme.of(context).textTheme.headline4),
                 SizedBox(
                   height: 20,
                 ),
                 Text(
                   cannotBeUndone.i18n,
-                  style: Theme.of(context)
-                      .textTheme
-                      .headline4
-                      .apply(fontWeightDelta: 2),
+                  style: Theme.of(context).textTheme.headline4.apply(fontWeightDelta: 2),
                 ),
               ],
             ),

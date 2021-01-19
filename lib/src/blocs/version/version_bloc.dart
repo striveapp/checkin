@@ -19,10 +19,8 @@ class VersionBloc extends Bloc<VersionEvent, VersionState> {
     @required this.versionUtil,
   })  : assert(versionRepository != null),
         super(VersionInitial()) {
-    versionSub = this
-        .versionRepository
-        .getMinimumVersionRequired()
-        .listen((minimumVersionRequired) {
+    versionSub =
+        this.versionRepository.getMinimumVersionRequired().listen((minimumVersionRequired) {
       if (minimumVersionRequired != null) {
         add(VersionUpdated(minimumVersionRequired: minimumVersionRequired));
       }

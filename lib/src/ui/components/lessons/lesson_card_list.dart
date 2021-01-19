@@ -17,8 +17,7 @@ class LessonCardList extends StatelessWidget {
             itemCount: state.lessons.length,
             itemBuilder: (BuildContext context, int index) {
               var lesson = state.lessons[index];
-              return LessonCard(
-                  key: Key("lesson_${lesson.weekDay}_$index"), lesson: lesson);
+              return LessonCard(key: Key("lesson_${lesson.weekDay}_$index"), lesson: lesson);
             });
       }
 
@@ -28,8 +27,7 @@ class LessonCardList extends StatelessWidget {
       if (state is LessonsLoadedEmpty) {
         return NoLessonsBanner();
       }
-      return ErrorWidget(
-          'Unknown State [$state] received in: lesson_card_list');
+      return ErrorWidget('Unknown State [$state] received in: lesson_card_list');
     });
   }
 }

@@ -27,8 +27,7 @@ class StatsPage extends StatelessWidget {
     return MultiBlocProvider(
       providers: [
         BlocProvider<StatsBloc>(
-          create: (context) =>
-              StatsBloc()..add(TimespanUpdate(timespan: constants.WEEK)),
+          create: (context) => StatsBloc()..add(TimespanUpdate(timespan: constants.WEEK)),
         ),
         BlocProvider<ProfileBloc>(
           create: (context) => ProfileBloc(

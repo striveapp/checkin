@@ -19,10 +19,7 @@ class PriceFooter extends StatelessWidget {
             text: TextSpan(children: [
               TextSpan(
                 text: "${note.i18n}: ",
-                style: Theme.of(context)
-                    .textTheme
-                    .caption
-                    .apply(fontWeightDelta: 4),
+                style: Theme.of(context).textTheme.caption.apply(fontWeightDelta: 4),
               ),
               TextSpan(
                 text: pricesDisclaimer.i18n,

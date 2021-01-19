@@ -25,8 +25,7 @@ class MembershipCard extends StatelessWidget {
                       textAlign: TextAlign.center,
                       style: Theme.of(context).textTheme.bodyText1,
                     ),
-                    backgroundColor:
-                        Theme.of(context).accentColor.withAlpha(150),
+                    backgroundColor: Theme.of(context).accentColor.withAlpha(150),
                     duration: Duration(seconds: 10),
                   ),
                 );
@@ -41,8 +40,7 @@ class MembershipCard extends StatelessWidget {
                   membershipActive: (membership) => ActiveMembershipView(
                     membership: membership,
                   ),
-                  membershipInactive: (customerEmail, customerId) =>
-                      InactiveMembershipView(
+                  membershipInactive: (customerEmail, customerId) => InactiveMembershipView(
                     email: customerEmail,
                     customerId: customerId,
                   ),

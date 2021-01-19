@@ -7,8 +7,7 @@ abstract class SimpleHandler extends Handler implements RegisterableHandler {
 
   Widget getHandlerFunction(Map<String, List<String>> params);
 
-  Widget _getHandlerFunction(
-      BuildContext context, Map<String, List<String>> params) {
+  Widget _getHandlerFunction(BuildContext context, Map<String, List<String>> params) {
     return getHandlerFunction(params);
   }
 

@@ -38,8 +38,7 @@ class UpgraderDialog {
               RaisedButton(
                 child: Text(update.i18n),
                 onPressed: () {
-                  OpenAppstore.launch(
-                      androidAppId: ANDROID_APP_ID, iOSAppId: IOS_APP_ID);
+                  OpenAppstore.launch(androidAppId: ANDROID_APP_ID, iOSAppId: IOS_APP_ID);
                 },
               )
             ], title: Text(versionNotSupported.i18n)));

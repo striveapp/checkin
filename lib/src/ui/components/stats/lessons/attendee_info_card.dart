@@ -30,8 +30,7 @@ class AttendeeInfoCard extends StatelessWidget {
             Row(
               mainAxisAlignment: MainAxisAlignment.spaceBetween,
               children: <Widget>[
-                Flexible(
-                    flex: 1, child: UserImage(userImage: attendee.imageUrl)),
+                Flexible(flex: 1, child: UserImage(userImage: attendee.imageUrl)),
                 SizedBox(
                   width: 10,
                 ),
@@ -42,10 +41,7 @@ class AttendeeInfoCard extends StatelessWidget {
                     children: <Widget>[
                       Text(
                         attendee.name,
-                        style: Theme.of(context)
-                            .textTheme
-                            .headline4
-                            .apply(fontWeightDelta: 4),
+                        style: Theme.of(context).textTheme.headline4.apply(fontWeightDelta: 4),
                       ),
                       Text(beltColor.i18n.fill([attendee.grade.name.i18n]),
                           style: Theme.of(context).textTheme.headline5),

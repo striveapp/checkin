@@ -15,9 +15,7 @@ class LocalStorageProvider implements LocalStorageRepository {
   }
 
   Stream<String> getReferredGymId() {
-    return rxPrefs
-        .getStringStream(REFERRED_GYM_ID)
-        .skipWhile((element) => element == null);
+    return rxPrefs.getStringStream(REFERRED_GYM_ID).skipWhile((element) => element == null);
   }
 
   Future<void> removeReferredGym() async {

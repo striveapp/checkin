@@ -13,6 +13,6 @@ abstract class LessonsEvent with _$LessonsEvent {
       {DateTime selectedDay,
       List<Lesson> lessons,
       @Default([]) List<String> selectedFilterList}) = LessonsUpdated;
-  const factory LessonsEvent.loadLessons(
-      {DateTime selectedDay, List<String> selectedFilterList}) = LoadLessons;
+  const factory LessonsEvent.loadLessons({DateTime selectedDay, List<String> selectedFilterList}) =
+      LoadLessons;
 }

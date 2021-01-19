@@ -19,9 +19,7 @@ class SubscriptionBloc extends Bloc<SubscriptionEvent, SubscriptionState> {
     @required this.gymBloc,
     @required this.membershipApi,
     @required this.analyticsRepository,
-  })  : assert(membershipApi != null &&
-            analyticsRepository != null &&
-            gymBloc != null),
+  })  : assert(membershipApi != null && analyticsRepository != null && gymBloc != null),
         super(SubscriptionInitial()) {
     try {
       _onGymStateUpdated(gymBloc.state);
@@ -46,21 +44,16 @@ class SubscriptionBloc extends Bloc<SubscriptionEvent, SubscriptionState> {
         yield SubscriptionLoading();
         await analyticsRepository.logSubscriptionWithEmptyCustomer(
             gymId: gym.id, priceId: event.priceId);
-        yield SubscriptionError(
-            errorMessage: "You must first activate your bank account");
+        yield SubscriptionError(errorMessage: "You must first activate your bank account");
       } else {
         try {
           yield SubscriptionLoading();
           await membershipApi.createSubscription(
-              gymId: gym.id,
-              priceId: event.priceId,
-              customerId: event.customerId);
+              gymId: gym.id, priceId: event.priceId, customerId: event.customerId);
           yield SubscriptionSuccess();
         } catch (err, stackTrace) {
-          await analyticsRepository.subscriptionError(
-              err: err, stackTrace: stackTrace);
-          yield SubscriptionError(
-              errorMessage: "Something went wrong with subscription: [$err]");
+          await analyticsRepository.subscriptionError(err: err, stackTrace: stackTrace);
+          yield SubscriptionError(errorMessage: "Something went wrong with subscription: [$err]");
         }
       }
     }

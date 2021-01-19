@@ -6,12 +6,10 @@ import 'package:checkin/src/util/string_extension.dart';
 
 class NameSelectionPage extends StatelessWidget {
   static const String welcomeToTheFamily = "Welcome to the family!";
-  static const String couldYouTellUsHowPeopleKnowYou =
-      "Could you tell us how people know you?";
+  static const String couldYouTellUsHowPeopleKnowYou = "Could you tell us how people know you?";
   static const String insertYourName = "Insert your name";
   static const String whatsYourName = "What's your name?";
-  static const String thisDoesNotLookLikeAValidName =
-      "This does not look like a valid name";
+  static const String thisDoesNotLookLikeAValidName = "This does not look like a valid name";
 
   final GlobalKey<FormState> _formKey = GlobalKey<FormState>();
 
@@ -26,10 +24,7 @@ class NameSelectionPage extends StatelessWidget {
               mainAxisAlignment: MainAxisAlignment.start,
               children: <Widget>[
                 Text(NameSelectionPage.welcomeToTheFamily.i18n,
-                    style: Theme.of(context)
-                        .textTheme
-                        .headline1
-                        .apply(fontSizeDelta: 3)),
+                    style: Theme.of(context).textTheme.headline1.apply(fontSizeDelta: 3)),
                 SizedBox(height: 20),
                 Expanded(
                   child: Form(

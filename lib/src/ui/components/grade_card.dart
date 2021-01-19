@@ -39,11 +39,7 @@ class GradeCard extends StatelessWidget {
                         Text(
                           grade.description.i18n,
                           style: Theme.of(context).textTheme.headline3.apply(
-                              color: Theme.of(context)
-                                  .textTheme
-                                  .headline2
-                                  .color
-                                  .withAlpha(100),
+                              color: Theme.of(context).textTheme.headline2.color.withAlpha(100),
                               fontSizeFactor: 0.8),
                         ),
                       ],

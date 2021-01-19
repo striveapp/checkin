@@ -15,9 +15,7 @@ class LessonStatsUpdated extends LessonsStatsState {
   final Map<Attendee, int> acceptedAttendeesWithCounter;
   final int totalAttendees;
 
-  LessonStatsUpdated(
-      {@required this.acceptedAttendeesWithCounter,
-      @required this.totalAttendees});
+  LessonStatsUpdated({@required this.acceptedAttendeesWithCounter, @required this.totalAttendees});
 
   @override
   List<Object> get props => [acceptedAttendeesWithCounter, totalAttendees];

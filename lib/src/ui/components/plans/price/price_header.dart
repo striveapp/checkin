@@ -4,8 +4,7 @@ class PriceHeader extends StatelessWidget {
   final String name;
   final String description;
 
-  const PriceHeader(
-      {Key key, @required String this.name, @required String this.description})
+  const PriceHeader({Key key, @required String this.name, @required String this.description})
       : super(key: key);
 
   @override

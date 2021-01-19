@@ -13,8 +13,7 @@ class ProfileTile extends StatelessWidget {
   final int position;
   static const String beltColor = '%s Belt';
 
-  const ProfileTile(
-      {Key key, this.profileEmail, this.attendedClasses, this.position})
+  const ProfileTile({Key key, this.profileEmail, this.attendedClasses, this.position})
       : super(key: key);
 
   @override
@@ -31,8 +30,7 @@ class ProfileTile extends StatelessWidget {
                 children: <Widget>[
                   ListTile(
                     onTap: () {
-                      Navigator.of(context)
-                          .pushNamed('stats/${state.profileUser.email}');
+                      Navigator.of(context).pushNamed('stats/${state.profileUser.email}');
                     },
                     leading: Text(
                       _getOrdinal(position),
@@ -53,17 +51,14 @@ class ProfileTile extends StatelessWidget {
                           children: <Widget>[
                             Text(
                               state.profileUser.name,
-                              style: Theme.of(context)
-                                  .textTheme
-                                  .bodyText1
-                                  .apply(fontWeightDelta: 2),
+                              style:
+                                  Theme.of(context).textTheme.bodyText1.apply(fontWeightDelta: 2),
                             ),
                             SizedBox(
                               height: 2.5,
                             ),
                             Text(
-                              beltColor.i18n
-                                  .fill([state.profileUser.grade.name.i18n]),
+                              beltColor.i18n.fill([state.profileUser.grade.name.i18n]),
                               style: Theme.of(context).textTheme.bodyText1,
                             ),
                           ],

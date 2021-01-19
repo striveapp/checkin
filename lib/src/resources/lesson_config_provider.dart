@@ -17,12 +17,10 @@ class LessonConfigProvider implements LessonConfigRepository {
         .collection(path)
         .snapshots()
         .map((snapshots) => snapshots.docs)
-        .map((lessonConfigDocList) =>
-            _toAvailableLessonTypes(lessonConfigDocList));
+        .map((lessonConfigDocList) => _toAvailableLessonTypes(lessonConfigDocList));
   }
 
-  Set<String> _toAvailableLessonTypes(
-      List<QueryDocumentSnapshot> lessonConfigDocList) {
+  Set<String> _toAvailableLessonTypes(List<QueryDocumentSnapshot> lessonConfigDocList) {
     return lessonConfigDocList
         .where((lessonConfigDoc) => lessonConfigDoc.exists)
         .map((lessonConfigDoc) => LessonConfig.fromJson(lessonConfigDoc.data()))

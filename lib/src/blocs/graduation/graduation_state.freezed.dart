@@ -78,14 +78,12 @@ mixin _$GraduationState {
 
 /// @nodoc
 abstract class $GraduationStateCopyWith<$Res> {
-  factory $GraduationStateCopyWith(
-          GraduationState value, $Res Function(GraduationState) then) =
+  factory $GraduationStateCopyWith(GraduationState value, $Res Function(GraduationState) then) =
       _$GraduationStateCopyWithImpl<$Res>;
 }
 
 /// @nodoc
-class _$GraduationStateCopyWithImpl<$Res>
-    implements $GraduationStateCopyWith<$Res> {
+class _$GraduationStateCopyWithImpl<$Res> implements $GraduationStateCopyWith<$Res> {
   _$GraduationStateCopyWithImpl(this._value, this._then);
 
   final GraduationState _value;
@@ -95,17 +93,16 @@ class _$GraduationStateCopyWithImpl<$Res>
 
 /// @nodoc
 abstract class $InitialGraduationStateCopyWith<$Res> {
-  factory $InitialGraduationStateCopyWith(InitialGraduationState value,
-          $Res Function(InitialGraduationState) then) =
+  factory $InitialGraduationStateCopyWith(
+          InitialGraduationState value, $Res Function(InitialGraduationState) then) =
       _$InitialGraduationStateCopyWithImpl<$Res>;
 }
 
 /// @nodoc
-class _$InitialGraduationStateCopyWithImpl<$Res>
-    extends _$GraduationStateCopyWithImpl<$Res>
+class _$InitialGraduationStateCopyWithImpl<$Res> extends _$GraduationStateCopyWithImpl<$Res>
     implements $InitialGraduationStateCopyWith<$Res> {
-  _$InitialGraduationStateCopyWithImpl(InitialGraduationState _value,
-      $Res Function(InitialGraduationState) _then)
+  _$InitialGraduationStateCopyWithImpl(
+      InitialGraduationState _value, $Res Function(InitialGraduationState) _then)
       : super(_value, (v) => _then(v as InitialGraduationState));
 
   @override
@@ -113,9 +110,7 @@ class _$InitialGraduationStateCopyWithImpl<$Res>
 }
 
 /// @nodoc
-class _$InitialGraduationState
-    with DiagnosticableTreeMixin
-    implements InitialGraduationState {
+class _$InitialGraduationState with DiagnosticableTreeMixin implements InitialGraduationState {
   const _$InitialGraduationState();
 
   @override
@@ -126,9 +121,7 @@ class _$InitialGraduationState
   @override
   void debugFillProperties(DiagnosticPropertiesBuilder properties) {
     super.debugFillProperties(properties);
-    properties
-      ..add(DiagnosticsProperty(
-          'type', 'GraduationState.initialGraduationState'));
+    properties..add(DiagnosticsProperty('type', 'GraduationState.initialGraduationState'));
   }
 
   @override
@@ -208,15 +201,14 @@ abstract class InitialGraduationState implements GraduationState {
 
 /// @nodoc
 abstract class $NotReadyForGraduationCopyWith<$Res> {
-  factory $NotReadyForGraduationCopyWith(NotReadyForGraduation value,
-          $Res Function(NotReadyForGraduation) then) =
+  factory $NotReadyForGraduationCopyWith(
+          NotReadyForGraduation value, $Res Function(NotReadyForGraduation) then) =
       _$NotReadyForGraduationCopyWithImpl<$Res>;
   $Res call({Grade nextGrade});
 }
 
 /// @nodoc
-class _$NotReadyForGraduationCopyWithImpl<$Res>
-    extends _$GraduationStateCopyWithImpl<$Res>
+class _$NotReadyForGraduationCopyWithImpl<$Res> extends _$GraduationStateCopyWithImpl<$Res>
     implements $NotReadyForGraduationCopyWith<$Res> {
   _$NotReadyForGraduationCopyWithImpl(
       NotReadyForGraduation _value, $Res Function(NotReadyForGraduation) _then)
@@ -236,11 +228,8 @@ class _$NotReadyForGraduationCopyWithImpl<$Res>
 }
 
 /// @nodoc
-class _$NotReadyForGraduation
-    with DiagnosticableTreeMixin
-    implements NotReadyForGraduation {
-  const _$NotReadyForGraduation({@required this.nextGrade})
-      : assert(nextGrade != null);
+class _$NotReadyForGraduation with DiagnosticableTreeMixin implements NotReadyForGraduation {
+  const _$NotReadyForGraduation({@required this.nextGrade}) : assert(nextGrade != null);
 
   @override
   final Grade nextGrade;
@@ -254,8 +243,7 @@ class _$NotReadyForGraduation
   void debugFillProperties(DiagnosticPropertiesBuilder properties) {
     super.debugFillProperties(properties);
     properties
-      ..add(
-          DiagnosticsProperty('type', 'GraduationState.notReadyForGraduation'))
+      ..add(DiagnosticsProperty('type', 'GraduationState.notReadyForGraduation'))
       ..add(DiagnosticsProperty('nextGrade', nextGrade));
   }
 
@@ -264,18 +252,15 @@ class _$NotReadyForGraduation
     return identical(this, other) ||
         (other is NotReadyForGraduation &&
             (identical(other.nextGrade, nextGrade) ||
-                const DeepCollectionEquality()
-                    .equals(other.nextGrade, nextGrade)));
+                const DeepCollectionEquality().equals(other.nextGrade, nextGrade)));
   }
 
   @override
-  int get hashCode =>
-      runtimeType.hashCode ^ const DeepCollectionEquality().hash(nextGrade);
+  int get hashCode => runtimeType.hashCode ^ const DeepCollectionEquality().hash(nextGrade);
 
   @override
   $NotReadyForGraduationCopyWith<NotReadyForGraduation> get copyWith =>
-      _$NotReadyForGraduationCopyWithImpl<NotReadyForGraduation>(
-          this, _$identity);
+      _$NotReadyForGraduationCopyWithImpl<NotReadyForGraduation>(this, _$identity);
 
   @override
   @optionalTypeArgs
@@ -341,8 +326,7 @@ class _$NotReadyForGraduation
 }
 
 abstract class NotReadyForGraduation implements GraduationState {
-  const factory NotReadyForGraduation({@required Grade nextGrade}) =
-      _$NotReadyForGraduation;
+  const factory NotReadyForGraduation({@required Grade nextGrade}) = _$NotReadyForGraduation;
 
   Grade get nextGrade;
   $NotReadyForGraduationCopyWith<NotReadyForGraduation> get copyWith;
@@ -357,8 +341,7 @@ abstract class $ReadyForGraduationCopyWith<$Res> {
 }
 
 /// @nodoc
-class _$ReadyForGraduationCopyWithImpl<$Res>
-    extends _$GraduationStateCopyWithImpl<$Res>
+class _$ReadyForGraduationCopyWithImpl<$Res> extends _$GraduationStateCopyWithImpl<$Res>
     implements $ReadyForGraduationCopyWith<$Res> {
   _$ReadyForGraduationCopyWithImpl(
       ReadyForGraduation _value, $Res Function(ReadyForGraduation) _then)
@@ -378,11 +361,8 @@ class _$ReadyForGraduationCopyWithImpl<$Res>
 }
 
 /// @nodoc
-class _$ReadyForGraduation
-    with DiagnosticableTreeMixin
-    implements ReadyForGraduation {
-  const _$ReadyForGraduation({@required this.nextGrade})
-      : assert(nextGrade != null);
+class _$ReadyForGraduation with DiagnosticableTreeMixin implements ReadyForGraduation {
+  const _$ReadyForGraduation({@required this.nextGrade}) : assert(nextGrade != null);
 
   @override
   final Grade nextGrade;
@@ -405,13 +385,11 @@ class _$ReadyForGraduation
     return identical(this, other) ||
         (other is ReadyForGraduation &&
             (identical(other.nextGrade, nextGrade) ||
-                const DeepCollectionEquality()
-                    .equals(other.nextGrade, nextGrade)));
+                const DeepCollectionEquality().equals(other.nextGrade, nextGrade)));
   }
 
   @override
-  int get hashCode =>
-      runtimeType.hashCode ^ const DeepCollectionEquality().hash(nextGrade);
+  int get hashCode => runtimeType.hashCode ^ const DeepCollectionEquality().hash(nextGrade);
 
   @override
   $ReadyForGraduationCopyWith<ReadyForGraduation> get copyWith =>
@@ -481,8 +459,7 @@ class _$ReadyForGraduation
 }
 
 abstract class ReadyForGraduation implements GraduationState {
-  const factory ReadyForGraduation({@required Grade nextGrade}) =
-      _$ReadyForGraduation;
+  const factory ReadyForGraduation({@required Grade nextGrade}) = _$ReadyForGraduation;
 
   Grade get nextGrade;
   $ReadyForGraduationCopyWith<ReadyForGraduation> get copyWith;
@@ -496,11 +473,9 @@ abstract class $GraduationLoadingCopyWith<$Res> {
 }
 
 /// @nodoc
-class _$GraduationLoadingCopyWithImpl<$Res>
-    extends _$GraduationStateCopyWithImpl<$Res>
+class _$GraduationLoadingCopyWithImpl<$Res> extends _$GraduationStateCopyWithImpl<$Res>
     implements $GraduationLoadingCopyWith<$Res> {
-  _$GraduationLoadingCopyWithImpl(
-      GraduationLoading _value, $Res Function(GraduationLoading) _then)
+  _$GraduationLoadingCopyWithImpl(GraduationLoading _value, $Res Function(GraduationLoading) _then)
       : super(_value, (v) => _then(v as GraduationLoading));
 
   @override
@@ -508,9 +483,7 @@ class _$GraduationLoadingCopyWithImpl<$Res>
 }
 
 /// @nodoc
-class _$GraduationLoading
-    with DiagnosticableTreeMixin
-    implements GraduationLoading {
+class _$GraduationLoading with DiagnosticableTreeMixin implements GraduationLoading {
   const _$GraduationLoading();
 
   @override
@@ -521,8 +494,7 @@ class _$GraduationLoading
   @override
   void debugFillProperties(DiagnosticPropertiesBuilder properties) {
     super.debugFillProperties(properties);
-    properties
-      ..add(DiagnosticsProperty('type', 'GraduationState.graduationLoading'));
+    properties..add(DiagnosticsProperty('type', 'GraduationState.graduationLoading'));
   }
 
   @override

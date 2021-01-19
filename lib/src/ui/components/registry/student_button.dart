@@ -38,8 +38,7 @@ class StudentButton extends StatelessWidget {
     VoidCallback showRegisterDialogOnPressRegisterClass = () {
       showDialog(
         context: context,
-        builder: (_) => RegisterDialog(currentUser: registryState.currentUser)
-            .build(context),
+        builder: (_) => RegisterDialog(currentUser: registryState.currentUser).build(context),
       );
     };
 
@@ -75,8 +74,7 @@ class StudentButton extends StatelessWidget {
             statsRepository: RepositoryProvider.of<StatsRepository>(context),
             userEmail: registryState.currentUser.email,
             selectedGymId: registryState.currentUser.selectedGymId,
-            membershipRepository:
-                RepositoryProvider.of<MembershipRepository>(context),
+            membershipRepository: RepositoryProvider.of<MembershipRepository>(context),
           ),
         )
       ],
@@ -84,8 +82,7 @@ class StudentButton extends StatelessWidget {
           builder: (BuildContext context, SessionsState registryState) {
         return registryState.maybeWhen(
             initialSessionsState: () => LoadingIndicator(),
-            sessionsWarning: (_totalLessonsOfPlan, _attendedLessons) =>
-                RegistryButton(
+            sessionsWarning: (_totalLessonsOfPlan, _attendedLessons) => RegistryButton(
                   key: Key('registerClass'),
                   text: StudentButton.registerClass.i18n,
                   onPressed: () => showRegisterDialogOnPressRegisterClass(),

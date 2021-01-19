@@ -20,18 +20,17 @@ class AttendeesCounter extends StatelessWidget {
               state.totalAttendees.toString(),
               key: Key('matHours'),
               textAlign: TextAlign.center,
-              style: Theme.of(context).textTheme.headline1.apply(
-                  fontSizeFactor: 3, color: Theme.of(context).accentColor),
+              style: Theme.of(context)
+                  .textTheme
+                  .headline1
+                  .apply(fontSizeFactor: 3, color: Theme.of(context).accentColor),
             ),
             SizedBox(
               height: 10,
             ),
             Text(
               AttendeesCounter.studentsAccepted.i18n,
-              style: Theme.of(context)
-                  .textTheme
-                  .headline4
-                  .apply(fontWeightDelta: 2),
+              style: Theme.of(context).textTheme.headline4.apply(fontWeightDelta: 2),
             )
           ]);
         }

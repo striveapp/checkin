@@ -36,10 +36,8 @@ class Attendee extends Equatable {
   }
 
   @override
-  String toString() =>
-      'Attendee{name: $name, grade: $grade, imageUrl: $imageUrl, email: $email}';
+  String toString() => 'Attendee{name: $name, grade: $grade, imageUrl: $imageUrl, email: $email}';
 
-  factory Attendee.fromJson(Map<String, dynamic> json) =>
-      _$AttendeeFromJson(json);
+  factory Attendee.fromJson(Map<String, dynamic> json) => _$AttendeeFromJson(json);
   Map<String, dynamic> toJson() => _$AttendeeToJson(this);
 }

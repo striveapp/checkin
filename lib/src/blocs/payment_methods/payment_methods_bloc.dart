@@ -10,8 +10,7 @@ import 'package:flutter/material.dart';
 
 import './bloc.dart';
 
-class PaymentMethodsBloc
-    extends Bloc<PaymentMethodsEvent, PaymentMethodsState> {
+class PaymentMethodsBloc extends Bloc<PaymentMethodsEvent, PaymentMethodsState> {
   final PaymentApi _paymentApi;
   final PaymentMethodRepository _paymentMethodRepository;
   final UrlLauncherUtil _urlLauncherUtil;
@@ -44,12 +43,10 @@ class PaymentMethodsBloc
     if (userState is UserSuccess) {
       _paymentMethodSub = _paymentMethodRepository
           .getPaymentMethod(
-              gymId: userState.currentUser.selectedGymId,
-              email: userState.currentUser.email)
+              gymId: userState.currentUser.selectedGymId, email: userState.currentUser.email)
           .listen((paymentMethod) {
         add(PaymentMethodUpdated(
-            paymentMethod: paymentMethod,
-            userEmail: userState.currentUser.email));
+            paymentMethod: paymentMethod, userEmail: userState.currentUser.email));
       });
     }
   }
@@ -63,8 +60,8 @@ class PaymentMethodsBloc
       try {
         var gym = event.gym;
 
-        String clientSecret = await _paymentApi.setupIntent(
-            customerEmail: event.billingEmail, gymId: gym.id);
+        String clientSecret =
+            await _paymentApi.setupIntent(customerEmail: event.billingEmail, gymId: gym.id);
 
         yield PaymentMethodLoading(show: false);
         await _urlLauncherUtil.launchUrl(
@@ -78,8 +75,8 @@ class PaymentMethodsBloc
       try {
         var gym = event.gym;
 
-        String clientSecret = await _paymentApi.setupIntent(
-            customerEmail: event.billingEmail, gymId: gym.id);
+        String clientSecret =
+            await _paymentApi.setupIntent(customerEmail: event.billingEmail, gymId: gym.id);
 
         yield PaymentMethodLoading(show: false);
         await _urlLauncherUtil.launchUrl(

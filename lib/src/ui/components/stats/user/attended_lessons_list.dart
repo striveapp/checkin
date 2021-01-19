@@ -23,9 +23,7 @@ class AttendedLessonsList extends StatelessWidget {
             AttendedLessonsList.attendedClasses.i18n,
             style: Theme.of(context).textTheme.headline1,
           ),
-          ...attendedLessons
-              .map((lesson) => LessonInfoCard(lesson: lesson))
-              .toList(),
+          ...attendedLessons.map((lesson) => LessonInfoCard(lesson: lesson)).toList(),
         ],
       ),
     );

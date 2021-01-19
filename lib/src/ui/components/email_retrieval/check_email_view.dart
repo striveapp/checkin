@@ -8,8 +8,7 @@ class CheckEmailView extends StatelessWidget {
   static const String toConfirmEmail =
       "To confirm your email address, tap the link in the email we sent to";
   static const String openEmailApp = "open email app";
-  static const String whichEmailAppDoYouUseFor =
-      "Which email app do you use for %s?";
+  static const String whichEmailAppDoYouUseFor = "Which email app do you use for %s?";
 
   const CheckEmailView({Key key, this.email}) : super(key: key);
 
@@ -50,11 +49,7 @@ class CheckEmailView extends StatelessWidget {
                         TextSpan(
                           text: toConfirmEmail.i18n,
                           style: Theme.of(context).textTheme.headline3.apply(
-                              color: Theme.of(context)
-                                  .textTheme
-                                  .headline3
-                                  .color
-                                  .withAlpha(100)),
+                              color: Theme.of(context).textTheme.headline3.color.withAlpha(100)),
                         ),
                         TextSpan(
                           text: " ${email}",

@@ -19,10 +19,8 @@ class MembershipApi {
         .then((_) => {debugPrint("User unsubscribed")});
   }
 
-  Future<void> createSubscription(
-      {String gymId, String customerId, String priceId}) async {
+  Future<void> createSubscription({String gymId, String customerId, String priceId}) async {
     var data = {"customerId": customerId, "priceId": priceId};
-    await _httpClient.post(
-        endpoint: "payments/$gymId/create-subscription", body: data);
+    await _httpClient.post(endpoint: "payments/$gymId/create-subscription", body: data);
   }
 }

@@ -49,8 +49,7 @@ class UserStatsPage extends StatelessWidget {
               ],
             );
           }
-          return ErrorWidget(
-              "Unknown State [$state] received in: user_stats_page");
+          return ErrorWidget("Unknown State [$state] received in: user_stats_page");
         });
   }
 }

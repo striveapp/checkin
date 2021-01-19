@@ -22,9 +22,7 @@ class GymBloc extends Bloc<GymEvent, GymState> {
   void _onUserStateChanged(userState) {
     if (userState is UserSuccess) {
       gymSub?.cancel();
-      gymSub = gymRepository
-          .getGym(userState.currentUser.selectedGymId)
-          .listen((gym) {
+      gymSub = gymRepository.getGym(userState.currentUser.selectedGymId).listen((gym) {
         add(GymUpdated(gym: gym));
       });
     }

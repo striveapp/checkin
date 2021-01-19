@@ -29,10 +29,7 @@ class ProfileBloc extends Bloc<ProfileEvent, ProfileState> {
         add(ProfileUpdated(user: userState.currentUser, isCurrentUser: true));
       } else {
         userSub?.cancel();
-        userSub = this
-            .userRepository
-            .getUserByEmail(this.nonCurrentUserEmail)
-            .listen((user) {
+        userSub = this.userRepository.getUserByEmail(this.nonCurrentUserEmail).listen((user) {
           add(ProfileUpdated(user: user, isCurrentUser: false));
         });
 
@@ -46,8 +43,7 @@ class ProfileBloc extends Bloc<ProfileEvent, ProfileState> {
   @override
   Stream<ProfileState> mapEventToState(ProfileEvent event) async* {
     if (event is ProfileUpdated) {
-      yield ProfileLoaded(
-          profileUser: event.user, isCurrentUser: event.isCurrentUser);
+      yield ProfileLoaded(profileUser: event.user, isCurrentUser: event.isCurrentUser);
     }
   }
 

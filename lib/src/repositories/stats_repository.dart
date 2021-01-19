@@ -8,6 +8,5 @@ abstract class StatsRepository {
 
   Stream<List<UserHistory>> getAllUserStats(String gymId, String timespan);
 
-  Stream<UserHistory> getUserStatsByGrade(
-      String gymId, String email, Grade grade);
+  Stream<UserHistory> getUserStatsByGrade(String gymId, String email, Grade grade);
 }

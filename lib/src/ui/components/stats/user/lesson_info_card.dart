@@ -18,8 +18,7 @@ class LessonInfoCard extends StatelessWidget {
             key: Key(lesson.name),
             margin: EdgeInsets.symmetric(horizontal: 20),
             child: Padding(
-              padding:
-                  EdgeInsets.only(right: 20, left: 10, top: 16, bottom: 16),
+              padding: EdgeInsets.only(right: 20, left: 10, top: 16, bottom: 16),
               child: Column(
                 mainAxisAlignment: MainAxisAlignment.spaceBetween,
                 children: <Widget>[
@@ -88,5 +87,5 @@ String _capitalize(String s) => s[0].toUpperCase() + s.substring(1);
 String _getDayNumber(int timestamp) =>
     DateTime.fromMicrosecondsSinceEpoch(timestamp * 1000).day.toString();
 
-String _getMonthThreeLetter(int timestamp) => DateFormat('MMM')
-    .format(DateTime.fromMicrosecondsSinceEpoch(timestamp * 1000));
+String _getMonthThreeLetter(int timestamp) =>
+    DateFormat('MMM').format(DateTime.fromMicrosecondsSinceEpoch(timestamp * 1000));

@@ -36,8 +36,7 @@ class LeaderboardPage extends StatelessWidget {
             }
 
             if (state is LeaderboardLoaded) {
-              List<UserHistory> userHistoryWithoutPodium =
-                  state.usersHistory.sublist(3);
+              List<UserHistory> userHistoryWithoutPodium = state.usersHistory.sublist(3);
               return Column(
                 children: <Widget>[
                   Expanded(
@@ -56,12 +55,9 @@ class LeaderboardPage extends StatelessWidget {
                         itemCount: userHistoryWithoutPodium.length,
                         itemBuilder: (BuildContext context, int index) {
                           return ProfileTile(
-                            key: Key(
-                                'tile_${index + 4}_${userHistoryWithoutPodium[index].email}'),
+                            key: Key('tile_${index + 4}_${userHistoryWithoutPodium[index].email}'),
                             profileEmail: userHistoryWithoutPodium[index].email,
-                            attendedClasses: userHistoryWithoutPodium[index]
-                                .attendedLessons
-                                .length,
+                            attendedClasses: userHistoryWithoutPodium[index].attendedLessons.length,
                             position: index + 4,
                           );
                         }),

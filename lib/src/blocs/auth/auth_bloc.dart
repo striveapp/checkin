@@ -39,18 +39,17 @@ class AuthBloc extends Bloc<AuthEvent, AuthState> {
     if (event is AppStarted) {
       _authSub?.cancel();
       try {
-        _authSub = authRepository.getAuthState().listen(
-            (loggedUser) async => add(AuthUpdated(loggedUser: loggedUser)));
+        _authSub = authRepository
+            .getAuthState()
+            .listen((loggedUser) async => add(AuthUpdated(loggedUser: loggedUser)));
       } catch (e) {
-        debugPrint(
-            'Error occurred when checking for auth state:' + e.toString());
+        debugPrint('Error occurred when checking for auth state:' + e.toString());
         yield AuthUnauthenticated();
       }
     }
 
     if (event is AuthUpdated) {
-      debugPrint(
-          'add AuthUpdated with user: ${event.loggedUser ?? "Unauthenticated"}');
+      debugPrint('add AuthUpdated with user: ${event.loggedUser ?? "Unauthenticated"}');
       if (event.loggedUser != null) {
         try {
           await analyticsRepository.setUserProperties(event.loggedUser.uid);
@@ -82,8 +81,7 @@ class AuthBloc extends Bloc<AuthEvent, AuthState> {
 
   Future<void> _setReferredGymForUser(String userEmail) async {
     await _referredGymSub?.cancel();
-    _referredGymSub =
-        localStorageRepository.getReferredGymId().listen((referredGymId) async {
+    _referredGymSub = localStorageRepository.getReferredGymId().listen((referredGymId) async {
       print("Setting referredGym [$referredGymId] for user [$userEmail]");
       await userRepository.updateSelectedGymId(userEmail, referredGymId);
       await localStorageRepository.removeReferredGym();

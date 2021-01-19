@@ -15,8 +15,7 @@ import 'dynamic_link_state.dart';
 class DynamicLinkBloc extends Bloc<DynamicLinkEvent, DynamicLinkState> {
   static const emailMissingError =
       'Make sure to open magic link on the same device used to send it';
-  static const invalidActionError =
-      'Magic link is expired or has already been used';
+  static const invalidActionError = 'Magic link is expired or has already been used';
 
   final FirebaseDynamicLinks dynamicLinks;
   final LocalStorageRepository localStorageRepository;
@@ -64,8 +63,7 @@ class DynamicLinkBloc extends Bloc<DynamicLinkEvent, DynamicLinkState> {
     }
 
     if (event is ShareRegistryLink) {
-      var registryLink = await dynamicLinkRepository.getRegistryLink(
-          event.date, event.lessonId);
+      var registryLink = await dynamicLinkRepository.getRegistryLink(event.date, event.lessonId);
       yield DynamicLinkToShare(link: registryLink);
     }
   }
@@ -74,8 +72,7 @@ class DynamicLinkBloc extends Bloc<DynamicLinkEvent, DynamicLinkState> {
     var userEmail = await localStorageRepository.getUserEmail();
 
     try {
-      var loggedUser = await authRepository.completeSignInPasswordless(
-          userEmail, event.deepLink);
+      var loggedUser = await authRepository.completeSignInPasswordless(userEmail, event.deepLink);
       await analyticsRepository.setUserProperties(loggedUser.uid);
       await analyticsRepository.logLoginWithPasswordlessSignIn();
       await userRepository.createUser(
@@ -83,8 +80,7 @@ class DynamicLinkBloc extends Bloc<DynamicLinkEvent, DynamicLinkState> {
       );
       yield DynamicLinkAuthenticated();
     } on UserAlreadyLoggedInException catch (_) {
-      await analyticsRepository
-          .logAuthLinkOpenWithUserAlreadyLoggedIn(userEmail);
+      await analyticsRepository.logAuthLinkOpenWithUserAlreadyLoggedIn(userEmail);
       // todo we should not expose firebase classes in bloc (FirebaseAuthException)
     } on FirebaseAuthException catch (err, stackTrace) {
       String errorMessage = err.toString();
@@ -106,8 +102,7 @@ class DynamicLinkBloc extends Bloc<DynamicLinkEvent, DynamicLinkState> {
 
   Stream<DynamicLinkState> _handlePasswordlessError(
       String errorMessage, StackTrace stackTrace) async* {
-    await analyticsRepository.passwordlessError(
-        err: errorMessage, stackTrace: stackTrace);
+    await analyticsRepository.passwordlessError(err: errorMessage, stackTrace: stackTrace);
     yield DynamicLinkError(errorMessage: errorMessage);
   }
 
@@ -116,8 +111,7 @@ class DynamicLinkBloc extends Bloc<DynamicLinkEvent, DynamicLinkState> {
     await localStorageRepository.setReferredGymId(referredGymId);
   }
 
-  Stream<DynamicLinkState> _handleNavigationLink(
-      DeepLinkReceived event, String path) async* {
+  Stream<DynamicLinkState> _handleNavigationLink(DeepLinkReceived event, String path) async* {
     if (event.deepLink.hasQuery) {
       path = "$path?${event.deepLink.query}";
     }

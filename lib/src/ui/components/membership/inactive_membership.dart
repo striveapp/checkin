@@ -4,8 +4,7 @@ import 'package:flutter/material.dart';
 class InactiveMembershipView extends StatelessWidget {
   final String email;
   final String customerId;
-  static const String notActiveSubscription =
-      'Your subscription is not active yet';
+  static const String notActiveSubscription = 'Your subscription is not active yet';
   static const String chooseYourSubscription = 'Choose your subscription';
 
   const InactiveMembershipView({
@@ -26,8 +25,7 @@ class InactiveMembershipView extends StatelessWidget {
             Text(
               notActiveSubscription.i18n,
               textAlign: TextAlign.center,
-              style:
-                  Theme.of(context).textTheme.headline3.apply(fontSizeDelta: 1),
+              style: Theme.of(context).textTheme.headline3.apply(fontSizeDelta: 1),
             ),
             RaisedButton(
               child: Text(

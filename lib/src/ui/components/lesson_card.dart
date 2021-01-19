@@ -20,8 +20,7 @@ class LessonCard extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    var allAttendees =
-        lesson.attendees.length + lesson.acceptedAttendees.length;
+    var allAttendees = lesson.attendees.length + lesson.acceptedAttendees.length;
     return Container(
         constraints: BoxConstraints(minHeight: 180),
         padding: EdgeInsets.only(top: 15.0),
@@ -30,12 +29,10 @@ class LessonCard extends StatelessWidget {
             margin: EdgeInsets.symmetric(horizontal: 20),
             child: InkWell(
               onTap: () {
-                Navigator.of(context)
-                    .pushNamed("registry/${lesson.date}/${lesson.id}");
+                Navigator.of(context).pushNamed("registry/${lesson.date}/${lesson.id}");
               },
               child: Padding(
-                padding:
-                    EdgeInsets.only(right: 20, left: 20, top: 16, bottom: 24),
+                padding: EdgeInsets.only(right: 20, left: 20, top: 16, bottom: 24),
                 child: Column(
                   mainAxisAlignment: MainAxisAlignment.spaceBetween,
                   children: <Widget>[
@@ -87,9 +84,7 @@ class LessonCard extends StatelessWidget {
                           flex: 1,
                           child: IconButton(
                             icon: Icon(Icons.share),
-                            onPressed: () => context
-                                .read<DynamicLinkBloc>()
-                                .add(ShareRegistryLink(
+                            onPressed: () => context.read<DynamicLinkBloc>().add(ShareRegistryLink(
                                   date: lesson.date,
                                   lessonId: lesson.id,
                                 )),
@@ -114,12 +109,10 @@ class LessonCard extends StatelessWidget {
                       children: [
                         Expanded(
                           child: LinearProgressIndicator(
-                            value: _getFullPercentage(
-                                allAttendees, lesson.classCapacity),
-                            valueColor: AlwaysStoppedAnimation<Color>(
-                                Theme.of(context).primaryColor),
-                            backgroundColor:
-                                Theme.of(context).primaryColor.withAlpha(70),
+                            value: _getFullPercentage(allAttendees, lesson.classCapacity),
+                            valueColor:
+                                AlwaysStoppedAnimation<Color>(Theme.of(context).primaryColor),
+                            backgroundColor: Theme.of(context).primaryColor.withAlpha(70),
                           ),
                         ),
                         Padding(

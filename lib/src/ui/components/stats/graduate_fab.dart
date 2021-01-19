@@ -25,10 +25,9 @@ class GraduateFab extends StatelessWidget {
     return BlocBuilder<UserBloc, UserState>(
       builder: (BuildContext context, UserState state) {
         return state.maybeWhen(
-          userSuccess: (User currentUser) =>
-              currentUser.isOwner && userEmail != currentUser.email
-                  ? GraduateFabView()
-                  : EmptyWidget(),
+          userSuccess: (User currentUser) => currentUser.isOwner && userEmail != currentUser.email
+              ? GraduateFabView()
+              : EmptyWidget(),
           orElse: () => EmptyWidget(),
         );
       },
@@ -48,11 +47,9 @@ class GraduateFabView extends StatelessWidget {
     return BlocBuilder<ProfileBloc, ProfileState>(
       builder: (BuildContext context, ProfileState state) => state.when(
         initialProfileState: () => EmptyWidget(),
-        profileLoaded: (User profileUser, bool isCurrentUser) =>
-            BlocProvider<GraduationBloc>(
+        profileLoaded: (User profileUser, bool isCurrentUser) => BlocProvider<GraduationBloc>(
           create: (BuildContext context) => GraduationBloc(
-            graduationSystemRepository:
-                RepositoryProvider.of<GraduationSystemRepository>(context),
+            graduationSystemRepository: RepositoryProvider.of<GraduationSystemRepository>(context),
             userRepository: RepositoryProvider.of<UserRepository>(context),
             statsRepository: RepositoryProvider.of<StatsRepository>(context),
             graduationUtils: GraduationUtil(),

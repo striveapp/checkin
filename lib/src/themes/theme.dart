@@ -14,8 +14,7 @@ final theme = {
         disabledColor: Color(0xFFBBBBBB),
         colorScheme: ColorScheme.dark(error: Color(0xFFEF5350)),
         height: 48,
-        shape: RoundedRectangleBorder(
-            borderRadius: new BorderRadius.circular(4.0))),
+        shape: RoundedRectangleBorder(borderRadius: new BorderRadius.circular(4.0))),
     textTheme: TextTheme(
       headline1: TextStyle(
         fontSize: 24.0,
@@ -66,8 +65,7 @@ final theme = {
         disabledColor: Color(0xFFBBBBBB),
         colorScheme: ColorScheme.dark(error: Color(0xFFEF5350)),
         height: 48,
-        shape: RoundedRectangleBorder(
-            borderRadius: new BorderRadius.circular(4.0))),
+        shape: RoundedRectangleBorder(borderRadius: new BorderRadius.circular(4.0))),
     textTheme: TextTheme(
       headline1: TextStyle(
         fontSize: 24.0,
@@ -116,8 +114,7 @@ final theme = {
         disabledColor: Color(0xFFBBBBBB),
         colorScheme: ColorScheme.light(error: Color(0xFFEF5350)),
         height: 48,
-        shape: RoundedRectangleBorder(
-            borderRadius: new BorderRadius.circular(4.0))),
+        shape: RoundedRectangleBorder(borderRadius: new BorderRadius.circular(4.0))),
     textTheme: TextTheme(
       headline1: TextStyle(
         fontSize: 24.0,

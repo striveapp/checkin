@@ -51,9 +51,7 @@ class PlansList extends StatelessWidget {
         return state.when(
             subscriptionPlansInitial: () => LoadingIndicator(),
             subscriptionPlansLoading: () => LoadingIndicator(),
-            subscriptionPlansLoaded: (List<SubscriptionPlan>
-                    subscriptionPlans) =>
-                Container(
+            subscriptionPlansLoaded: (List<SubscriptionPlan> subscriptionPlans) => Container(
                   constraints: BoxConstraints(
                     maxHeight: MediaQuery.of(context).size.height,
                   ),
@@ -62,8 +60,7 @@ class PlansList extends StatelessWidget {
                     children: [
                       ...subscriptionPlans
                           .map(
-                            (plan) =>
-                                GenericCard(plan: plan, customerId: customerId),
+                            (plan) => GenericCard(plan: plan, customerId: customerId),
                           )
                           .toList(),
                     ],

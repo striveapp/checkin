@@ -17,16 +17,14 @@ class SubscriptionPlansProvider implements SubscriptionPlansRepository {
       .snapshots()
       .map((snap) => snap.docs.map((doc) => toSubscriptionPlan(doc)).toList());
 
-  Stream<List<SubscriptionPlan>> getSubPlans({String gymId, String planId}) =>
-      _firestore
-          .collection(gymPath)
-          .doc(gymId)
-          .collection(path)
-          .doc(planId)
-          .collection(subPlans)
-          .snapshots()
-          .map((snap) =>
-              snap.docs.map((doc) => toSubscriptionPlan(doc)).toList());
+  Stream<List<SubscriptionPlan>> getSubPlans({String gymId, String planId}) => _firestore
+      .collection(gymPath)
+      .doc(gymId)
+      .collection(path)
+      .doc(planId)
+      .collection(subPlans)
+      .snapshots()
+      .map((snap) => snap.docs.map((doc) => toSubscriptionPlan(doc)).toList());
 
   SubscriptionPlan toSubscriptionPlan(DocumentSnapshot doc) {
     final data = doc.data();

@@ -9,10 +9,7 @@ class GoogleSignInButton extends StatelessWidget {
   static const String googleSignIn = 'Sign in with Google';
 
   GoogleSignInButton(
-      {@required this.onPressed,
-      this.darkMode = false,
-      this.borderRadius = 3.0,
-      Key key})
+      {@required this.onPressed, this.darkMode = false, this.borderRadius = 3.0, Key key})
       : super(key: key);
 
   @override
@@ -69,8 +66,7 @@ class GoogleSignInButton extends StatelessWidget {
                 style: TextStyle(
                   fontSize: 18.0,
                   fontWeight: FontWeight.w500,
-                  color:
-                      darkMode ? Colors.white : Colors.black.withOpacity(0.54),
+                  color: darkMode ? Colors.white : Colors.black.withOpacity(0.54),
                 ),
               ),
             ),

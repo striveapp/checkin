@@ -63,11 +63,9 @@ class MembershipBloc extends Bloc<MembershipEvent, MembershipState> {
       } on ApiException catch (err) {
         yield MembershipState.membershipError(errorMessage: err.message);
       } catch (err, stackTrace) {
-        await _analyticsRepository.unsubscribeError(
-            err: err, stackTrace: stackTrace);
+        await _analyticsRepository.unsubscribeError(err: err, stackTrace: stackTrace);
         yield MembershipState.membershipError(
-            errorMessage:
-                "Something went wrong while with unsubscribe: [${err}]");
+            errorMessage: "Something went wrong while with unsubscribe: [${err}]");
       }
     }
 

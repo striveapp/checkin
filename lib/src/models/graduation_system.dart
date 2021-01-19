@@ -15,6 +15,5 @@ abstract class GraduationSystem with _$GraduationSystem {
     @required double forNextLevel,
   }) = _GraduationSystem;
 
-  factory GraduationSystem.fromJson(Map<String, dynamic> json) =>
-      _$GraduationSystemFromJson(json);
+  factory GraduationSystem.fromJson(Map<String, dynamic> json) => _$GraduationSystemFromJson(json);
 }

@@ -12,8 +12,7 @@ class NoLessonsBanner extends StatelessWidget {
           height: 150,
         ),
         Text(NoLessonsBanner.noClasses.i18n,
-            key: Key('noClassesText'),
-            style: Theme.of(context).textTheme.headline1),
+            key: Key('noClassesText'), style: Theme.of(context).textTheme.headline1),
       ],
     );
   }

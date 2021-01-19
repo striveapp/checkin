@@ -10,8 +10,7 @@ import 'package:checkin/src/util/string_extension.dart';
 
 class ProfileCard extends StatelessWidget {
   static const String enterYourName = 'Enter your name';
-  static const String thisDoesNotLookLikeAValidName =
-      "This does not look like a valid name";
+  static const String thisDoesNotLookLikeAValidName = "This does not look like a valid name";
 
   final String userEmail;
   final bool isOwner;
@@ -53,9 +52,8 @@ class ProfileCard extends StatelessWidget {
                       ],
                     ),
                     onTap: () {
-                      BlocProvider.of<UserBloc>(context).add(
-                          UserEvent.updateImageUrl(
-                              userEmail: state.profileUser.email));
+                      BlocProvider.of<UserBloc>(context)
+                          .add(UserEvent.updateImageUrl(userEmail: state.profileUser.email));
                     },
                   ),
                 SizedBox(
@@ -91,11 +89,10 @@ class ProfileCard extends StatelessWidget {
                               .apply(color: Theme.of(context).errorColor),
                           disabledBorder: InputBorder.none,
                         ),
-                        controller: TextEditingController.fromValue(
-                            TextEditingValue(
-                                text: state.profileUser.name,
-                                selection: new TextSelection.collapsed(
-                                    offset: state.profileUser.name.length))),
+                        controller: TextEditingController.fromValue(TextEditingValue(
+                            text: state.profileUser.name,
+                            selection: new TextSelection.collapsed(
+                                offset: state.profileUser.name.length))),
                         validator: _validateName,
                         onFieldSubmitted: (String value) {
                           if (_formKey.currentState.validate()) {

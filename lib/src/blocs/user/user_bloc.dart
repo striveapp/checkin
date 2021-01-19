@@ -32,10 +32,7 @@ class UserBloc extends Bloc<UserEvent, UserState> {
   void _onAuthStateChange(authState) {
     if (authState is AuthAuthenticated) {
       userSub?.cancel();
-      userSub = this
-          .userRepository
-          .getUserByEmail(authState.loggedUser.email)
-          .listen((user) {
+      userSub = this.userRepository.getUserByEmail(authState.loggedUser.email).listen((user) {
         add(UserUpdated(user: user));
       });
     }
@@ -57,8 +54,7 @@ class UserBloc extends Bloc<UserEvent, UserState> {
       try {
         //TODO: this should be refactored
         if (this.state is UserSuccess) {
-          _mapUpdateToState(
-              (this.state as UserSuccess).currentUser.email, event);
+          _mapUpdateToState((this.state as UserSuccess).currentUser.email, event);
         } else {
           debugPrint('Unable to update user [$event] from userState [$state]');
           yield UserError();
@@ -72,8 +68,7 @@ class UserBloc extends Bloc<UserEvent, UserState> {
 
   void _mapUpdateToState(String userEmail, UserEvent event) {
     event.maybeWhen(
-        updateName: (String newName) async =>
-            await userRepository.updateUserName(
+        updateName: (String newName) async => await userRepository.updateUserName(
               userEmail,
               newName,
             ),
@@ -81,8 +76,7 @@ class UserBloc extends Bloc<UserEvent, UserState> {
           File croppedFile = await imageRepository.getCroppedImage();
           if (croppedFile != null) {
             String fileName = "$userEmail-${DateTime.now()}.png";
-            String newImageUrl =
-                await storageRepository.uploadImage(croppedFile, fileName);
+            String newImageUrl = await storageRepository.uploadImage(croppedFile, fileName);
 
             await userRepository.updateUserImageUrl(
               userEmail,

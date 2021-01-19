@@ -45,8 +45,7 @@ class LoginBloc extends Bloc<LoginEvent, LoginState> {
           err: err,
           stackTrace: stackTrace,
         );
-        yield LoginFailure(
-            errorMessage: "Unexpected error! Please contact the gym owner");
+        yield LoginFailure(errorMessage: "Unexpected error! Please contact the gym owner");
       }
     }
 
@@ -75,8 +74,7 @@ class LoginBloc extends Bloc<LoginEvent, LoginState> {
           err: err,
           stackTrace: stackTrace,
         );
-        yield LoginFailure(
-            errorMessage: "Unexpected error! Please contact the gym owner");
+        yield LoginFailure(errorMessage: "Unexpected error! Please contact the gym owner");
       }
     }
 

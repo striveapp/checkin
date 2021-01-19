@@ -118,16 +118,13 @@ class RegistryBloc extends Bloc<RegistryEvent, RegistryState> {
 
   bool isFullRegistry(RegistryUpdated event) {
     var currentLesson = event.currentLesson;
-    return currentLesson.attendees.length +
-            currentLesson.acceptedAttendees.length >=
+    return currentLesson.attendees.length + currentLesson.acceptedAttendees.length >=
         currentLesson.classCapacity;
   }
 
   bool isEmptyRegistry(RegistryUpdated event) {
     var currentLesson = event.currentLesson;
-    return currentLesson.attendees.length +
-            currentLesson.acceptedAttendees.length ==
-        0;
+    return currentLesson.attendees.length + currentLesson.acceptedAttendees.length == 0;
   }
 
   bool isMasterOfTheClass(RegistryUpdated event) {

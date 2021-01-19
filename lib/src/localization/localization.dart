@@ -126,10 +126,7 @@ extension Localization on String {
         'it': 'Ore sul mat',
       } +
       {
-        'en': MatTimeCounter.numHours
-            .zero('0 hours')
-            .one('1 hour')
-            .many('%d hours'),
+        'en': MatTimeCounter.numHours.zero('0 hours').one('1 hour').many('%d hours'),
         'es': '%d horas'.zero('0 horas').one('1 hora').many('%d horas'),
         'it': '%d ore'.zero('0 ore').one('1 ora').many('%d ore'),
       } +
@@ -202,9 +199,7 @@ extension Localization on String {
         'it': 'Inizia alle %s',
       } +
       {
-        'en': AttendeesPreview.andOthers
-            .one('and another one')
-            .many('and %d others'),
+        'en': AttendeesPreview.andOthers.one('and another one').many('and %d others'),
         'es': 'y %d más'.one('y uno más').many('y %d más'),
         'it': 'e altri %d'.one('e un altro').many('e altri %d'),
       } +
@@ -355,10 +350,8 @@ extension Localization on String {
       } +
       {
         'en': PaymentSuccessPage.disclaimerSubscription30Min,
-        'es':
-            'Tu subscripción puede tardar hasta 30 minutos en aparecer en tu cuenta',
-        'it':
-            'Il tuo abbonamento può tardare fino a 30 minuti ad apparire nel tuo account',
+        'es': 'Tu subscripción puede tardar hasta 30 minutos en aparecer en tu cuenta',
+        'it': 'Il tuo abbonamento può tardare fino a 30 minuti ad apparire nel tuo account',
       } +
       {
         'en': ActiveMembershipView.unsubscribe,
@@ -442,10 +435,8 @@ extension Localization on String {
       } +
       {
         'en': UpgraderDialog.versionNotSupported,
-        'es':
-            'La versión actual de esta aplicación ya no es compatible\n\nPor favor, actualízala',
-        'it':
-            'Questa versione dell\'app non é piú supportata\n\nPer favore aggiornala',
+        'es': 'La versión actual de esta aplicación ya no es compatible\n\nPor favor, actualízala',
+        'it': 'Questa versione dell\'app non é piú supportata\n\nPer favore aggiornala',
       } +
       {
         'en': NoLeaderboardBanner.noLeaderboard,
@@ -474,10 +465,8 @@ extension Localization on String {
       } +
       {
         'en': UnselectedGymPage.contactYourGymOwner,
-        'es':
-            'Porfavor contacta el dueño del gym para obtener el enlace de referencia',
-        'it':
-            'Perfavore contatta il proprietario dell`\'accademia per ottenere il referral link',
+        'es': 'Porfavor contacta el dueño del gym para obtener el enlace de referencia',
+        'it': 'Perfavore contatta il proprietario dell`\'accademia per ottenere il referral link',
       } +
       {
         'en': LoginBloc.loginError,
@@ -516,8 +505,7 @@ extension Localization on String {
       } +
       {
         'en': PlansFooter.subscriptionDisclaimer,
-        'es':
-            'los precios mostrados aquí representan los de la subscripción anual',
+        'es': 'los precios mostrados aquí representan los de la subscripción anual',
         'it': 'i prezzi rappresentano l\'abbonamento annuale',
       } +
       {
@@ -592,10 +580,8 @@ extension Localization on String {
       } +
       {
         'en': CheckEmailView.toConfirmEmail,
-        'es':
-            'Para confirmar tu dirección, toca el enlace en el correo que enviamos a',
-        'it':
-            'Per confermare la tua email fai tap su link nella mail che ti abbiamo inviato a',
+        'es': 'Para confirmar tu dirección, toca el enlace en el correo que enviamos a',
+        'it': 'Per confermare la tua email fai tap su link nella mail che ti abbiamo inviato a',
       } +
       {
         'en': CheckEmailView.openEmailApp,
@@ -614,15 +600,13 @@ extension Localization on String {
       } +
       {
         'en': InsertEmailView.invalidEmail,
-        'es':
-            'Ha habido un problema con tu correo electrónico. Comprúebalo y inténtalo de nuevo',
+        'es': 'Ha habido un problema con tu correo electrónico. Comprúebalo y inténtalo de nuevo',
         'it': 'C\'è stato un problema con la tua email. Controllala e riprova',
       } +
       {
         'en': InsertEmailView.sendEmailExplanation,
         'es': 'Te enviaremos un correo con el que te conectaras al instante',
-        'it':
-            'Ti invieremo una mail con la quale potrai connetterti instantaneamente',
+        'it': 'Ti invieremo una mail con la quale potrai connetterti instantaneamente',
       } +
       {
         'en': InsertEmailView.next,
@@ -636,8 +620,7 @@ extension Localization on String {
       } +
       {
         'en': DynamicLinkBloc.emailMissingError,
-        'es':
-            'Asegúrate de abrir el enlace mágico en el mismo device en que lo recibiste',
+        'es': 'Asegúrate de abrir el enlace mágico en el mismo device en que lo recibiste',
         'it':
             'Assicurati di aver aperto il magic link nello stesso dispositivo in cui l\'hai ricevuto',
       } +
@@ -648,8 +631,7 @@ extension Localization on String {
       } +
       {
         'en': WrongEmailDialog.theEmailYouInsertedMightNotBeCorrect,
-        'es':
-            'Es posible que el correo electrónico que ingresó no sea correcto',
+        'es': 'Es posible que el correo electrónico que ingresó no sea correcto',
         'it': 'La mail che hai inserito potrebbe non essere corretta',
       } +
       {

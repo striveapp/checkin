@@ -11,6 +11,6 @@ abstract class SubscriptionPlansEvent with _$SubscriptionPlansEvent {
     @required List<SubscriptionPlan> subscriptionPlans,
   }) = SubscriptionPlansUpdated;
 
-  const factory SubscriptionPlansEvent.loadSubscriptionPlans(
-      {@required String planId}) = LoadSubscriptionPlans;
+  const factory SubscriptionPlansEvent.loadSubscriptionPlans({@required String planId}) =
+      LoadSubscriptionPlans;
 }

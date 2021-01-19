@@ -25,8 +25,7 @@ class _TimespanTogglesState extends State<TimespanToggles> {
           (String value) => Padding(
             padding: const EdgeInsets.symmetric(horizontal: 5),
             child: Text(_capitalize(value.i18n),
-                style: Theme.of(context).textTheme.bodyText1,
-                key: Key("timespan_$value")),
+                style: Theme.of(context).textTheme.bodyText1, key: Key("timespan_$value")),
           ),
         )
         .toList();

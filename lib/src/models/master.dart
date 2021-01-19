@@ -26,8 +26,7 @@ class Master extends Equatable {
   }
 
   @override
-  String toString() =>
-      'Master{name: $name, imageUrl: $imageUrl, email: $email}';
+  String toString() => 'Master{name: $name, imageUrl: $imageUrl, email: $email}';
 
   factory Master.fromJson(Map<String, dynamic> json) => _$MasterFromJson(json);
   Map<String, dynamic> toJson() => _$MasterToJson(this);

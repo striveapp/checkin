@@ -6,8 +6,7 @@ import 'package:flutter_bloc/flutter_bloc.dart';
 class GymAppBar extends BaseAppBar {
   @override
   Widget build(BuildContext context) {
-    return BlocBuilder<GymBloc, GymState>(
-        buildWhen: (GymState prev, GymState curr) {
+    return BlocBuilder<GymBloc, GymState>(buildWhen: (GymState prev, GymState curr) {
       if (prev is GymLoaded && curr is GymLoaded) {
         return prev.gym.name != curr.gym.name;
       }

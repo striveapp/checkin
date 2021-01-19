@@ -6,11 +6,7 @@ import 'package:checkin/src/constants.dart' as constants;
 import 'bloc.dart';
 
 class StatsBloc extends Bloc<StatsEvent, StatsState> {
-  static final List<String> timespans = <String>[
-    constants.WEEK,
-    constants.MONTH,
-    constants.YEAR
-  ];
+  static final List<String> timespans = <String>[constants.WEEK, constants.MONTH, constants.YEAR];
 
   StatsBloc() : super(InitialStatsState());
 

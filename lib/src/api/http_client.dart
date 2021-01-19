@@ -17,17 +17,13 @@ class HttpClient {
         _authRepository = authRepository;
 
   Future<dynamic> post({endpoint: String, dynamic body}) async {
-    String baseUrl =
-        isInDebugMode ? TEST_CLOUD_FUNCTIONS_DOMAIN : CLOUD_FUNCTIONS_DOMAIN;
+    String baseUrl = isInDebugMode ? TEST_CLOUD_FUNCTIONS_DOMAIN : CLOUD_FUNCTIONS_DOMAIN;
     String functionUrl = "$baseUrl/$endpoint";
     String token = await _authRepository.getIdToken();
 
-    Map<String, String> headers = {
-      HttpHeaders.authorizationHeader: "Bearer $token"
-    };
+    Map<String, String> headers = {HttpHeaders.authorizationHeader: "Bearer $token"};
 
-    Response response =
-        await http.post(functionUrl, body: body, headers: headers);
+    Response response = await http.post(functionUrl, body: body, headers: headers);
 
     if (response.statusCode != 201) {
       throw Exception(

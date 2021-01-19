@@ -8,8 +8,7 @@ class NoLeaderboardBanner extends StatelessWidget {
   Widget build(BuildContext context) {
     return Center(
       child: Text(NoLeaderboardBanner.noLeaderboard.i18n,
-          textAlign: TextAlign.center,
-          style: Theme.of(context).textTheme.headline1),
+          textAlign: TextAlign.center, style: Theme.of(context).textTheme.headline1),
     );
   }
 }

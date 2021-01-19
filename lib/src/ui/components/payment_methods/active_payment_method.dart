@@ -14,8 +14,7 @@ class ActivePaymentMethodView extends StatelessWidget {
   static const String bankAccount = 'Bank account';
   final PaymentMethod paymentMethod;
 
-  const ActivePaymentMethodView({Key key, this.paymentMethod})
-      : super(key: key);
+  const ActivePaymentMethodView({Key key, this.paymentMethod}) : super(key: key);
 
   @override
   Widget build(BuildContext context) => Column(
@@ -24,8 +23,7 @@ class ActivePaymentMethodView extends StatelessWidget {
         children: [
           Text(
             billingEmail.i18n,
-            style:
-                Theme.of(context).textTheme.headline3.apply(fontWeightDelta: 1),
+            style: Theme.of(context).textTheme.headline3.apply(fontWeightDelta: 1),
           ),
           Row(
             children: [
@@ -43,8 +41,7 @@ class ActivePaymentMethodView extends StatelessWidget {
           ),
           Text(
             bankAccount.i18n,
-            style:
-                Theme.of(context).textTheme.headline3.apply(fontWeightDelta: 1),
+            style: Theme.of(context).textTheme.headline3.apply(fontWeightDelta: 1),
           ),
           Row(
             children: [
@@ -55,17 +52,14 @@ class ActivePaymentMethodView extends StatelessWidget {
               Expanded(
                   child: Text(
                       "${paymentMethod.country.toUpperCase()} •• •••• •••• •••• •••• ${paymentMethod.lastFourDigits}",
-                      style: Theme.of(context)
-                          .textTheme
-                          .headline3
-                          .apply(letterSpacingDelta: 0.8))),
+                      style: Theme.of(context).textTheme.headline3.apply(letterSpacingDelta: 0.8))),
             ],
           ),
           SizedBox(
             height: 5,
           ),
-          Center(child: BlocBuilder<GymBloc, GymState>(
-              builder: (BuildContext context, GymState state) {
+          Center(child:
+              BlocBuilder<GymBloc, GymState>(builder: (BuildContext context, GymState state) {
             return state.when(
                 initialGymState: () => LoadingIndicator(),
                 gymLoaded: (Gym gym) => RaisedButton(
@@ -75,8 +69,7 @@ class ActivePaymentMethodView extends StatelessWidget {
                       ),
                       color: Theme.of(context).buttonTheme.colorScheme.error,
                       onPressed: () {
-                        BlocProvider.of<PaymentMethodsBloc>(context)
-                            .add(ChangeBankAccount(
+                        BlocProvider.of<PaymentMethodsBloc>(context).add(ChangeBankAccount(
                           gym: gym,
                           billingEmail: paymentMethod.billingEmail,
                         ));

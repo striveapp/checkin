@@ -7,8 +7,7 @@ class NotificationToast {
       Color textColor = Colors.white,
       double backgroundRadius = 18}) {
     NotificationView.dismiss();
-    NotificationView.createView(
-        title, body, context, backgroundColor, textColor, backgroundRadius);
+    NotificationView.createView(title, body, context, backgroundColor, textColor, backgroundRadius);
   }
 }
 
@@ -25,8 +24,8 @@ class NotificationView {
   static OverlayEntry _overlayEntry;
   static bool _isVisible = false;
 
-  static void createView(String title, String body, BuildContext context,
-      Color background, Color textColor, double backgroundRadius) async {
+  static void createView(String title, String body, BuildContext context, Color background,
+      Color textColor, double backgroundRadius) async {
     overlayState = Overlay.of(context);
 
     Paint paint = Paint();
@@ -50,13 +49,9 @@ class NotificationView {
               child: ListTile(
                 title: Text(title,
                     softWrap: true,
-                    style: TextStyle(
-                        fontSize: 16,
-                        color: textColor,
-                        fontWeight: FontWeight.bold)),
-                subtitle: Text(body,
-                    softWrap: true,
-                    style: TextStyle(fontSize: 15, color: textColor)),
+                    style: TextStyle(fontSize: 16, color: textColor, fontWeight: FontWeight.bold)),
+                subtitle:
+                    Text(body, softWrap: true, style: TextStyle(fontSize: 15, color: textColor)),
               ),
             )),
       )),

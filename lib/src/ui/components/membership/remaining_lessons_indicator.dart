@@ -5,8 +5,7 @@ import 'package:flutter_bloc/flutter_bloc.dart';
 class RemainingLessonsIndicator extends StatelessWidget {
   final double totalLessonsOfPlan;
 
-  const RemainingLessonsIndicator({Key key, this.totalLessonsOfPlan})
-      : super(key: key);
+  const RemainingLessonsIndicator({Key key, this.totalLessonsOfPlan}) : super(key: key);
 
   @override
   Widget build(BuildContext context) {
@@ -19,8 +18,7 @@ class RemainingLessonsIndicator extends StatelessWidget {
                 child: LinearProgressIndicator(
                   value: state.attendedLessons.length / totalLessonsOfPlan,
                   minHeight: 10,
-                  valueColor: AlwaysStoppedAnimation<Color>(
-                      Theme.of(context).accentColor),
+                  valueColor: AlwaysStoppedAnimation<Color>(Theme.of(context).accentColor),
                   backgroundColor: Theme.of(context).primaryColor.withAlpha(70),
                 ),
               ),
@@ -40,8 +38,7 @@ class RemainingLessonsIndicator extends StatelessWidget {
               child: LinearProgressIndicator(
                 value: 0.3,
                 minHeight: 10,
-                valueColor: AlwaysStoppedAnimation<Color>(
-                    Theme.of(context).accentColor),
+                valueColor: AlwaysStoppedAnimation<Color>(Theme.of(context).accentColor),
                 backgroundColor: Theme.of(context).primaryColor.withAlpha(70),
               ),
             ),

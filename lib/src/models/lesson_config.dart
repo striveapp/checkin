@@ -10,6 +10,5 @@ abstract class LessonConfig with _$LessonConfig {
     final String color,
   }) = _LessonConfig;
 
-  factory LessonConfig.fromJson(Map<String, dynamic> json) =>
-      _$LessonConfigFromJson(json);
+  factory LessonConfig.fromJson(Map<String, dynamic> json) => _$LessonConfigFromJson(json);
 }

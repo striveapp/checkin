@@ -35,8 +35,7 @@ class GraduateDialog extends StatelessWidget {
               ),
               titleTextStyle: Theme.of(context).textTheme.headline3,
               contentPadding: EdgeInsets.symmetric(vertical: 25),
-              content: GraduationPreview(
-                  currentGrade: currentUserGrade, newGrade: newGrade),
+              content: GraduationPreview(currentGrade: currentUserGrade, newGrade: newGrade),
               actions: <Widget>[
                 RaisedButton(
                   key: Key("graduateButton"),
@@ -45,9 +44,7 @@ class GraduateDialog extends StatelessWidget {
                     style: Theme.of(context).textTheme.button,
                   ),
                   onPressed: () {
-                    context
-                        .read<GraduationBloc>()
-                        .add(Graduate(newGrade: newGrade));
+                    context.read<GraduationBloc>().add(Graduate(newGrade: newGrade));
                     Navigator.of(context).pop();
                   },
                 ),
@@ -72,8 +69,7 @@ class GraduateDialog extends StatelessWidget {
               ),
               titleTextStyle: Theme.of(context).textTheme.headline3,
               contentPadding: EdgeInsets.symmetric(vertical: 25),
-              content: GraduationPreview(
-                  currentGrade: currentUserGrade, newGrade: newGrade),
+              content: GraduationPreview(currentGrade: currentUserGrade, newGrade: newGrade),
               actions: <Widget>[
                 RaisedButton(
                   key: Key("graduateButton"),
@@ -82,9 +78,7 @@ class GraduateDialog extends StatelessWidget {
                     style: Theme.of(context).textTheme.button,
                   ),
                   onPressed: () {
-                    context
-                        .read<GraduationBloc>()
-                        .add(Graduate(newGrade: newGrade));
+                    context.read<GraduationBloc>().add(Graduate(newGrade: newGrade));
                     Navigator.of(context).pop();
                   },
                 ),

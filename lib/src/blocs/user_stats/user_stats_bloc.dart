@@ -34,8 +34,7 @@ class UserStatsBloc extends Bloc<UserStatsEvent, UserStatsState> {
           .getUserStats(selectedGymId, userEmail, statsBlocState.timespan)
           .listen((userHistory) {
         add(UserStatsUpdated(
-            attendedLessons: userHistory.attendedLessons,
-            timeSpan: statsBlocState.timespan));
+            attendedLessons: userHistory.attendedLessons, timeSpan: statsBlocState.timespan));
       });
     }
   }
@@ -43,8 +42,7 @@ class UserStatsBloc extends Bloc<UserStatsEvent, UserStatsState> {
   @override
   Stream<UserStatsState> mapEventToState(UserStatsEvent event) async* {
     if (event is UserStatsUpdated) {
-      yield UserStatsLoaded(
-          attendedLessons: event.attendedLessons, timespan: event.timeSpan);
+      yield UserStatsLoaded(attendedLessons: event.attendedLessons, timespan: event.timeSpan);
     }
   }
 

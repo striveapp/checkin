@@ -14,8 +14,7 @@ class DateUtil {
       DateTime eventStartDate = DateTime(2021, 3, 16);
       DateTime eventEndDate = DateTime(2021, 3, 21);
       final currentDateTime = getCurrentDateTime();
-      return eventStartDate.isAfter(currentDateTime) ||
-              eventEndDate.isBefore(currentDateTime)
+      return eventStartDate.isAfter(currentDateTime) || eventEndDate.isBefore(currentDateTime)
           ? eventStartDate
           : currentDateTime;
     }

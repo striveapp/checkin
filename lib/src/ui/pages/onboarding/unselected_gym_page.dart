@@ -24,20 +24,13 @@ class UnselectedGymPage extends StatelessWidget {
               children: <Widget>[
                 Text(heyUser.i18n.fill([userName]),
                     textAlign: TextAlign.center,
-                    style: Theme.of(context)
-                        .textTheme
-                        .headline1
-                        .apply(fontSizeDelta: 3)),
+                    style: Theme.of(context).textTheme.headline1.apply(fontSizeDelta: 3)),
                 SizedBox(height: 50),
                 Text(
                   contactYourGymOwner.i18n,
                   textAlign: TextAlign.center,
                   style: Theme.of(context).textTheme.headline3.apply(
-                        color: Theme.of(context)
-                            .textTheme
-                            .headline2
-                            .color
-                            .withAlpha(100),
+                        color: Theme.of(context).textTheme.headline2.color.withAlpha(100),
                       ),
                 ),
               ],

@@ -33,9 +33,7 @@ class User extends Equatable {
             uid: firebaseUser.uid,
             name: firebaseUser.displayName ?? displayName,
             email: firebaseUser.email,
-            imageUrl: firebaseUser.photoURL ??
-                photoUrl ??
-                config.DEFAULT_USER_IMAGE_URL,
+            imageUrl: firebaseUser.photoURL ?? photoUrl ?? config.DEFAULT_USER_IMAGE_URL,
           )
         : null;
   }

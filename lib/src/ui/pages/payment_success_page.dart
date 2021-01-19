@@ -36,12 +36,10 @@ class PaymentSuccessPage extends StatelessWidget {
                   Text(
                     disclaimerSubscription30Min.i18n,
                     textAlign: TextAlign.center,
-                    style: Theme.of(context).textTheme.headline3.apply(
-                        color: Theme.of(context)
-                            .textTheme
-                            .headline3
-                            .color
-                            .withAlpha(100)),
+                    style: Theme.of(context)
+                        .textTheme
+                        .headline3
+                        .apply(color: Theme.of(context).textTheme.headline3.color.withAlpha(100)),
                   ),
                 ],
               ),
@@ -57,10 +55,7 @@ class PaymentSuccessPage extends StatelessWidget {
                   padding: const EdgeInsets.all(15.0),
                   child: Text(
                     goToAccount.i18n,
-                    style: Theme.of(context)
-                        .textTheme
-                        .button
-                        .apply(fontSizeDelta: 4),
+                    style: Theme.of(context).textTheme.button.apply(fontSizeDelta: 4),
                   ),
                 ),
               ),

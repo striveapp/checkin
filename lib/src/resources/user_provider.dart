@@ -39,17 +39,11 @@ class UserProvider implements UserRepository {
       'imageUrl': newUser.imageUrl,
     };
 
-    await _firestore
-        .collection(path)
-        .doc(newUser.email)
-        .set(userData, SetOptions(merge: true));
+    await _firestore.collection(path).doc(newUser.email).set(userData, SetOptions(merge: true));
   }
 
   Future<void> updateGrade(String userEmail, Grade newGrade) async {
-    await _firestore
-        .collection(path)
-        .doc(userEmail)
-        .update({"grade": newGrade.name.toLowerCase()});
+    await _firestore.collection(path).doc(userEmail).update({"grade": newGrade.name.toLowerCase()});
   }
 
   Future<void> updateUserName(String userEmail, String newName) async {
@@ -57,11 +51,7 @@ class UserProvider implements UserRepository {
   }
 
   Future<void> updateUserFcmToken(String userEmail, String newFcmToken) async {
-    var tokens = _firestore
-        .collection(path)
-        .doc(userEmail)
-        .collection("tokens")
-        .doc(newFcmToken);
+    var tokens = _firestore.collection(path).doc(userEmail).collection("tokens").doc(newFcmToken);
 
     await tokens.set({
       'token': newFcmToken,
@@ -70,26 +60,15 @@ class UserProvider implements UserRepository {
     });
   }
 
-  Future<void> updateSelectedGymId(
-      String userEmail, String newSelectedGym) async {
-    await _firestore
-        .collection(path)
-        .doc(userEmail)
-        .update({"selectedGymId": newSelectedGym});
+  Future<void> updateSelectedGymId(String userEmail, String newSelectedGym) async {
+    await _firestore.collection(path).doc(userEmail).update({"selectedGymId": newSelectedGym});
   }
 
   Future<void> updateUserImageUrl(String userEmail, String newImageUrl) async {
-    await _firestore
-        .collection(path)
-        .doc(userEmail)
-        .update({"imageUrl": newImageUrl});
+    await _firestore.collection(path).doc(userEmail).update({"imageUrl": newImageUrl});
   }
 
-  Future<void> updateUserAppVersion(
-      String userEmail, Version newVersion) async {
-    await _firestore
-        .collection(path)
-        .doc(userEmail)
-        .update({"appVersion": newVersion.toString()});
+  Future<void> updateUserAppVersion(String userEmail, Version newVersion) async {
+    await _firestore.collection(path).doc(userEmail).update({"appVersion": newVersion.toString()});
   }
 }

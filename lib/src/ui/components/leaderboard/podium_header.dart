@@ -7,10 +7,7 @@ class PodiumHeader extends StatelessWidget {
   final String thirdProfileEmail;
 
   const PodiumHeader(
-      {Key key,
-      this.firstProfileEmail,
-      this.secondProfileEmail,
-      this.thirdProfileEmail})
+      {Key key, this.firstProfileEmail, this.secondProfileEmail, this.thirdProfileEmail})
       : super(key: key);
 
   @override
@@ -47,9 +44,7 @@ class PodiumHeader extends StatelessWidget {
             child: Padding(
               padding: const EdgeInsets.only(top: 60),
               child: PodiumProfile(
-                  position: 3,
-                  profileEmail: thirdProfileEmail,
-                  color: Color(0xeecd7f32)),
+                  position: 3, profileEmail: thirdProfileEmail, color: Color(0xeecd7f32)),
             ),
           ),
         ],

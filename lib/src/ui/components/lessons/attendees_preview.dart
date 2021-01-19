@@ -19,10 +19,7 @@ class AttendeesPreview extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    List<Attendee> allAttendees = [
-      ...lesson.attendees,
-      ...lesson.acceptedAttendees
-    ];
+    List<Attendee> allAttendees = [...lesson.attendees, ...lesson.acceptedAttendees];
     final otherAttendeesNumber = allAttendees.length - maxAttendeesToDisplay;
     return Row(
       children: <Widget>[
@@ -39,17 +36,13 @@ class AttendeesPreview extends StatelessWidget {
                                 Container(
                                   decoration: BoxDecoration(
                                     border: Border.all(
-                                        width: 1.5,
-                                        color: Theme.of(context).accentColor),
-                                    borderRadius:
-                                        BorderRadius.all(Radius.circular(50)),
+                                        width: 1.5, color: Theme.of(context).accentColor),
+                                    borderRadius: BorderRadius.all(Radius.circular(50)),
                                   ),
                                   child: UserImage(
                                     userImage: attendee.imageUrl,
-                                    width: MediaQuery.of(context).size.width *
-                                        0.06,
-                                    height: MediaQuery.of(context).size.width *
-                                        0.06,
+                                    width: MediaQuery.of(context).size.width * 0.06,
+                                    height: MediaQuery.of(context).size.width * 0.06,
                                   ),
                                 ),
                                 Positioned(

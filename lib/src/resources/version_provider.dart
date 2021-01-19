@@ -5,7 +5,9 @@ class VersionProvider {
   static const String path = 'config/version';
 
   Stream<String> getMinimumVersionRequired() {
-    return _firestore.doc(path).snapshots().map(
-        (versionDocument) => versionDocument.data()["minimumVersionRequired"]);
+    return _firestore
+        .doc(path)
+        .snapshots()
+        .map((versionDocument) => versionDocument.data()["minimumVersionRequired"]);
   }
 }

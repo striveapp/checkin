@@ -7,6 +7,5 @@ abstract class SubscriptionState with _$SubscriptionState {
   const factory SubscriptionState.subscriptionInitial() = SubscriptionInitial;
   const factory SubscriptionState.subscriptionSuccess() = SubscriptionSuccess;
   const factory SubscriptionState.subscriptionLoading() = SubscriptionLoading;
-  const factory SubscriptionState.subscriptionError({String errorMessage}) =
-      SubscriptionError;
+  const factory SubscriptionState.subscriptionError({String errorMessage}) = SubscriptionError;
 }

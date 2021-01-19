@@ -12,8 +12,7 @@ class RegistryCounter extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return BlocBuilder<RegistryBloc, RegistryState>(
-      buildWhen: (RegistryState previous, RegistryState current) =>
-          !(current is RegistryLoading),
+      buildWhen: (RegistryState previous, RegistryState current) => !(current is RegistryLoading),
       builder: (BuildContext context, RegistryState state) {
         return state.maybeMap(
           registryLoaded: (RegistryLoaded registryLoaded) {
@@ -23,8 +22,7 @@ class RegistryCounter extends StatelessWidget {
               ...currentLesson.acceptedAttendees
             ];
 
-            return _getCounterWidget(
-                allAttendees.length, currentLesson.classCapacity, context);
+            return _getCounterWidget(allAttendees.length, currentLesson.classCapacity, context);
           },
           orElse: () => _getCounterWidget(0, 1, context),
         );
@@ -42,8 +40,7 @@ class RegistryCounter extends StatelessWidget {
           style: Theme.of(context).textTheme.headline2,
         ),
         Text("${_getFullPercentage(counter, classCapacity)} ${full.i18n}",
-            style:
-                Theme.of(context).textTheme.headline5.apply(fontWeightDelta: 3))
+            style: Theme.of(context).textTheme.headline5.apply(fontWeightDelta: 3))
       ],
     );
   }

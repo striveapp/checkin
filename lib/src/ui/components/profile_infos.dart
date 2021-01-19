@@ -43,10 +43,7 @@ class ProfileInfos extends StatelessWidget {
                   children: <Widget>[
                     Text(
                       state.profileUser.name,
-                      style: Theme.of(context)
-                          .textTheme
-                          .bodyText1
-                          .apply(fontWeightDelta: 2),
+                      style: Theme.of(context).textTheme.bodyText1.apply(fontWeightDelta: 2),
                     ),
                     SizedBox(
                       height: 2.5,

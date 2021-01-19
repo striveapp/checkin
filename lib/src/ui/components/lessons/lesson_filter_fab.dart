@@ -14,8 +14,7 @@ class LessonsFilterFab extends StatelessWidget {
       builder: (BuildContext context, LessonsState state) {
         List<String> selectedFilterList = state.maybeMap(
             lessonsLoaded: (LessonsLoaded state) => state.selectedFilterList,
-            lessonsLoadedEmpty: (LessonsLoadedEmpty state) =>
-                state.selectedFilterList,
+            lessonsLoadedEmpty: (LessonsLoadedEmpty state) => state.selectedFilterList,
             orElse: () => []);
 
         if (state is LessonsLoaded || state is LessonsLoadedEmpty) {
@@ -26,8 +25,7 @@ class LessonsFilterFab extends StatelessWidget {
                   context: context,
                   barrierColor: Colors.black54,
                   barrierDismissible: true,
-                  barrierLabel: MaterialLocalizations.of(context)
-                      .modalBarrierDismissLabel,
+                  barrierLabel: MaterialLocalizations.of(context).modalBarrierDismissLabel,
                   pageBuilder: (_, __, ___) => MultiBlocProvider(
                         providers: [
                           BlocProvider.value(
@@ -37,10 +35,8 @@ class LessonsFilterFab extends StatelessWidget {
                             value: context.read<UserBloc>(),
                           ),
                           BlocProvider(
-                              create: (BuildContext context) =>
-                                  LessonFilterBloc(
-                                    lessonConfigRepository:
-                                        context.read<LessonConfigRepository>(),
+                              create: (BuildContext context) => LessonFilterBloc(
+                                    lessonConfigRepository: context.read<LessonConfigRepository>(),
                                     userBloc: context.read<UserBloc>(),
                                   ))
                         ],
@@ -51,8 +47,7 @@ class LessonsFilterFab extends StatelessWidget {
                               left: 15,
                               bottom: 60,
                             ),
-                            child: FilterListWidget(
-                                selectedFilterList: selectedFilterList),
+                            child: FilterListWidget(selectedFilterList: selectedFilterList),
                           ),
                         ),
                       ));

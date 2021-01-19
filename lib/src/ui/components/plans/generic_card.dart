@@ -24,8 +24,7 @@ class GenericCard extends StatelessWidget {
         customerId: _customerId,
       ),
       subscriptionWithPrices: (SubscriptionWithPrices subscriptionWithPrices) =>
-          PlanWithPricesCard(
-              customerId: _customerId, plan: subscriptionWithPrices),
+          PlanWithPricesCard(customerId: _customerId, plan: subscriptionWithPrices),
     );
   }
 }

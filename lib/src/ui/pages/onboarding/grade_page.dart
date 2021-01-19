@@ -26,11 +26,7 @@ class GradePage extends StatelessWidget {
                   selectYourBelt.i18n,
                   style: Theme.of(context).textTheme.headline2.apply(
                         fontSizeDelta: 3,
-                        color: Theme.of(context)
-                            .textTheme
-                            .headline2
-                            .color
-                            .withAlpha(100),
+                        color: Theme.of(context).textTheme.headline2.color.withAlpha(100),
                       ),
                 ),
               ),

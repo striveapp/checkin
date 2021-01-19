@@ -18,18 +18,15 @@ _$_Lesson _$_$_LessonFromJson(Map<String, dynamic> json) {
     imageUrl: json['imageUrl'] as String,
     classCapacity: json['classCapacity'] as int ?? 10,
     masters: (json['masters'] as List)
-            ?.map((e) =>
-                e == null ? null : Master.fromJson(e as Map<String, dynamic>))
+            ?.map((e) => e == null ? null : Master.fromJson(e as Map<String, dynamic>))
             ?.toList() ??
         [],
     attendees: (json['attendees'] as List)
-            ?.map((e) =>
-                e == null ? null : Attendee.fromJson(e as Map<String, dynamic>))
+            ?.map((e) => e == null ? null : Attendee.fromJson(e as Map<String, dynamic>))
             ?.toList() ??
         [],
     acceptedAttendees: (json['acceptedAttendees'] as List)
-            ?.map((e) =>
-                e == null ? null : Attendee.fromJson(e as Map<String, dynamic>))
+            ?.map((e) => e == null ? null : Attendee.fromJson(e as Map<String, dynamic>))
             ?.toList() ??
         [],
     lessonConfig: json['lessonConfig'] == null
@@ -50,7 +47,6 @@ Map<String, dynamic> _$_$_LessonToJson(_$_Lesson instance) => <String, dynamic>{
       'classCapacity': instance.classCapacity,
       'masters': instance.masters?.map((e) => e?.toJson())?.toList(),
       'attendees': instance.attendees?.map((e) => e?.toJson())?.toList(),
-      'acceptedAttendees':
-          instance.acceptedAttendees?.map((e) => e?.toJson())?.toList(),
+      'acceptedAttendees': instance.acceptedAttendees?.map((e) => e?.toJson())?.toList(),
       'lessonConfig': instance.lessonConfig?.toJson(),
     };

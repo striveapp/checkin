@@ -17,8 +17,7 @@ class RegistryControls extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return BlocBuilder<RegistryBloc, RegistryState>(
-        buildWhen: (RegistryState previous, RegistryState current) =>
-            !(current is RegistryLoading),
+        buildWhen: (RegistryState previous, RegistryState current) => !(current is RegistryLoading),
         builder: (BuildContext context, RegistryState state) {
           return state.maybeMap(
               registryLoaded: (RegistryLoaded state) {
@@ -27,9 +26,7 @@ class RegistryControls extends StatelessWidget {
                 VoidCallback showConfirmDialogOnPressAcceptAll = () {
                   showDialog(
                     context: context,
-                    builder: (_) =>
-                        AcceptAllDialog(currentUser: state.currentUser)
-                            .build(context),
+                    builder: (_) => AcceptAllDialog(currentUser: state.currentUser).build(context),
                   );
                 };
 

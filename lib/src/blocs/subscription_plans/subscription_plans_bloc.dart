@@ -9,8 +9,7 @@ import 'package:flutter/foundation.dart';
 
 import 'bloc.dart';
 
-class SubscriptionPlansBloc
-    extends Bloc<SubscriptionPlansEvent, SubscriptionPlansState> {
+class SubscriptionPlansBloc extends Bloc<SubscriptionPlansEvent, SubscriptionPlansState> {
   final SubscriptionPlansRepository subscriptionPlansRepository;
   final GymBloc gymBloc;
   final String planId;
@@ -18,9 +17,7 @@ class SubscriptionPlansBloc
   StreamSubscription<List<SubscriptionPlan>> streamSubscription;
 
   SubscriptionPlansBloc(
-      {@required this.subscriptionPlansRepository,
-      @required this.gymBloc,
-      this.planId})
+      {@required this.subscriptionPlansRepository, @required this.gymBloc, this.planId})
       : assert(subscriptionPlansRepository != null && gymBloc != null),
         super(SubscriptionPlansInitial()) {
     streamSubscription?.cancel();
@@ -35,16 +32,14 @@ class SubscriptionPlansBloc
     if (gymState is GymLoaded) {
       Gym gym = gymState.gym;
       if (planId == null) {
-        streamSubscription =
-            subscriptionPlansRepository.getPlans(gymId: gym.id).listen((plans) {
+        streamSubscription = subscriptionPlansRepository.getPlans(gymId: gym.id).listen((plans) {
           add(SubscriptionPlansUpdated(
             subscriptionPlans: _sortByPrice(plans),
           ));
         });
       } else {
-        streamSubscription = subscriptionPlansRepository
-            .getSubPlans(gymId: gym.id, planId: planId)
-            .listen((plans) {
+        streamSubscription =
+            subscriptionPlansRepository.getSubPlans(gymId: gym.id, planId: planId).listen((plans) {
           add(SubscriptionPlansUpdated(
             subscriptionPlans: _sortByPrice(plans),
           ));
@@ -54,8 +49,7 @@ class SubscriptionPlansBloc
   }
 
   @override
-  Stream<SubscriptionPlansState> mapEventToState(
-      SubscriptionPlansEvent event) async* {
+  Stream<SubscriptionPlansState> mapEventToState(SubscriptionPlansEvent event) async* {
     if (event is SubscriptionPlansUpdated) {
       if (event.subscriptionPlans.isEmpty) {
         yield SubscriptionPlansEmpty();

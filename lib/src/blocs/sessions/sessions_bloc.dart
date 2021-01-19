@@ -43,8 +43,7 @@ class SessionsBloc extends Bloc<SessionsEvent, SessionsState> {
             .statsRepository
             .getUserStats(selectedGymId, userEmail, constants.MONTH)
             .listen((userHistory) {
-          add(SessionsUpdatedWithHistory(
-              membership: membership, userHistory: userHistory));
+          add(SessionsUpdatedWithHistory(membership: membership, userHistory: userHistory));
         });
       }
     });
@@ -64,12 +63,10 @@ class SessionsBloc extends Bloc<SessionsEvent, SessionsState> {
       var totalLessonsOfPlan = event.membership.totalLessonsOfPlan;
       if (attendedLessons >= totalLessonsOfPlan) {
         yield SessionsState.sessionsWarning(
-            totalLessonsOfPlan: totalLessonsOfPlan,
-            attendedLessons: attendedLessons);
+            totalLessonsOfPlan: totalLessonsOfPlan, attendedLessons: attendedLessons);
       } else {
         yield SessionsState.sessionsLoaded(
-            totalLessonsOfPlan: totalLessonsOfPlan,
-            attendedLessons: attendedLessons);
+            totalLessonsOfPlan: totalLessonsOfPlan, attendedLessons: attendedLessons);
       }
     }
   }

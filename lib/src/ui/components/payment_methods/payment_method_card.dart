@@ -30,18 +30,14 @@ class PaymentMethodsCard extends StatelessWidget {
                 }
               },
               child: BlocBuilder<PaymentMethodsBloc, PaymentMethodsState>(
-                buildWhen: (PaymentMethodsState previous,
-                        PaymentMethodsState current) =>
+                buildWhen: (PaymentMethodsState previous, PaymentMethodsState current) =>
                     !(current is PaymentMethodLoading),
-                builder: (BuildContext context, PaymentMethodsState state) =>
-                    state.maybeWhen(
+                builder: (BuildContext context, PaymentMethodsState state) => state.maybeWhen(
                   initialPaymentMethodsState: () => LoadingIndicator(),
-                  paymentMethodLoaded: (PaymentMethod paymentMethod) =>
-                      ActivePaymentMethodView(
+                  paymentMethodLoaded: (PaymentMethod paymentMethod) => ActivePaymentMethodView(
                     paymentMethod: paymentMethod,
                   ),
-                  paymentMethodEmpty: (String customerEmail) =>
-                      EmptyPaymentMethod(
+                  paymentMethodEmpty: (String customerEmail) => EmptyPaymentMethod(
                     customerEmail: customerEmail,
                   ),
                   orElse: () => LoadingIndicator(),

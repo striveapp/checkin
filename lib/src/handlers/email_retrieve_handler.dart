@@ -19,13 +19,11 @@ class EmailRetrieveHandler extends Handler implements RegisterableHandler {
   }
 
   @override
-  HandlerFunc get handlerFunc =>
-      (BuildContext context, Map<String, List<String>> params) {
+  HandlerFunc get handlerFunc => (BuildContext context, Map<String, List<String>> params) {
         return BlocListener<AuthBloc, AuthState>(
           listener: (BuildContext context, AuthState state) {
             if (state is AuthAuthenticated) {
-              Navigator.of(context)
-                  .popUntil(ModalRoute.withName(Navigator.defaultRouteName));
+              Navigator.of(context).popUntil(ModalRoute.withName(Navigator.defaultRouteName));
             }
           },
           child: BlocProvider(
@@ -33,8 +31,7 @@ class EmailRetrieveHandler extends Handler implements RegisterableHandler {
                     authRepository: context.read<AuthRepository>(),
                     userRepository: context.read<UserRepository>(),
                     analyticsRepository: context.read<AnalyticsRepository>(),
-                    localStorageRepository:
-                        context.read<LocalStorageRepository>(),
+                    localStorageRepository: context.read<LocalStorageRepository>(),
                   ),
               child: EmailRetrievePage(email: params[email]?.first)),
         );

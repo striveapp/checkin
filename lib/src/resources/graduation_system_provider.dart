@@ -21,8 +21,8 @@ class GraduationSystemProvider implements GraduationSystemRepository {
         .doc(gradeName)
         .snapshots()
         .where((snapshot) => snapshot.exists)
-        .map((graduationSystem) =>
-            toGraduationSystem(graduationSystem.id, graduationSystem.data()));
+        .map(
+            (graduationSystem) => toGraduationSystem(graduationSystem.id, graduationSystem.data()));
   }
 
   GraduationSystem toGraduationSystem(String grade, Map<String, dynamic> data) {

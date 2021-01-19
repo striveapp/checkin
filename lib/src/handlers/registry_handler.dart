@@ -18,10 +18,8 @@ class RegistryHandler extends Handler implements RegisterableHandler {
   }
 
   @override
-  HandlerFunc get handlerFunc =>
-      (BuildContext context, Map<String, List<String>> params) {
-        UserRepository userRepository =
-            RepositoryProvider.of<UserRepository>(context);
+  HandlerFunc get handlerFunc => (BuildContext context, Map<String, List<String>> params) {
+        UserRepository userRepository = RepositoryProvider.of<UserRepository>(context);
         StorageRepository storageRepository = StorageRepository();
         ImageRepository imageRepository = ImageRepository();
 
@@ -34,8 +32,7 @@ class RegistryHandler extends Handler implements RegisterableHandler {
               authBloc: BlocProvider.of<AuthBloc>(context),
             );
           },
-          child: RegistryPage(
-              lessonId: params[lessonId][0], date: params[date][0]),
+          child: RegistryPage(lessonId: params[lessonId][0], date: params[date][0]),
         );
       };
 
