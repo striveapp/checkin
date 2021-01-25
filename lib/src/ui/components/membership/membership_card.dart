@@ -13,42 +13,40 @@ class MembershipCard extends StatelessWidget {
     return Card(
       child: Container(
         constraints: BoxConstraints(minHeight: 150),
-        child: BlocListener<MembershipBloc, MembershipState>(
-          listener: (BuildContext context, MembershipState state) {
-            if (state is MembershipError) {
-              ScaffoldMessenger.of(context)
-                ..hideCurrentSnackBar()
-                ..showSnackBar(
-                  SnackBar(
-                    content: Text(
-                      state.errorMessage,
-                      textAlign: TextAlign.center,
-                      style: Theme.of(context).textTheme.bodyText1,
+        child: BlocConsumer<MembershipBloc, MembershipState>(
+            listener: (BuildContext context, MembershipState state) {
+              if (state is MembershipError) {
+                ScaffoldMessenger.of(context)
+                  ..hideCurrentSnackBar()
+                  ..showSnackBar(
+                    SnackBar(
+                      content: Text(
+                        state.errorMessage,
+                        textAlign: TextAlign.center,
+                        style: Theme.of(context).textTheme.bodyText1,
+                      ),
+                      backgroundColor: Theme.of(context).accentColor.withAlpha(150),
+                      duration: Duration(seconds: 10),
                     ),
-                    backgroundColor: Theme.of(context).accentColor.withAlpha(150),
-                    duration: Duration(seconds: 10),
-                  ),
-                );
-            }
-          },
-          child: BlocBuilder<MembershipBloc, MembershipState>(
-              buildWhen: (MembershipState previous, MembershipState current) =>
-                  !(current is MembershipError),
-              builder: (BuildContext context, MembershipState state) {
-                return state.when(
-                  initialMembershipState: () => LoadingIndicator(),
-                  membershipActive: (membership) => ActiveMembershipView(
-                    membership: membership,
-                  ),
-                  membershipInactive: (customerEmail, customerId) => InactiveMembershipView(
-                    email: customerEmail,
-                    customerId: customerId,
-                  ),
-                  membershipLoading: () => LoadingIndicator(),
-                  membershipError: (error) => EmptyWidget(),
-                );
-              }),
-        ),
+                  );
+              }
+            },
+            buildWhen: (MembershipState previous, MembershipState current) =>
+                !(current is MembershipError),
+            builder: (BuildContext context, MembershipState state) {
+              return state.when(
+                initialMembershipState: () => LoadingIndicator(),
+                membershipActive: (membership) => ActiveMembershipView(
+                  membership: membership,
+                ),
+                membershipInactive: (customerEmail, customerId) => InactiveMembershipView(
+                  email: customerEmail,
+                  customerId: customerId,
+                ),
+                membershipLoading: () => LoadingIndicator(),
+                membershipError: (error) => EmptyWidget(),
+              );
+            }),
       ),
     );
   }
