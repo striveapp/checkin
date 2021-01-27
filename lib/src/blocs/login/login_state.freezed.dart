@@ -87,8 +87,7 @@ mixin _$LoginState {
 
 /// @nodoc
 abstract class $LoginStateCopyWith<$Res> {
-  factory $LoginStateCopyWith(
-          LoginState value, $Res Function(LoginState) then) =
+  factory $LoginStateCopyWith(LoginState value, $Res Function(LoginState) then) =
       _$LoginStateCopyWithImpl<$Res>;
 }
 
@@ -103,16 +102,14 @@ class _$LoginStateCopyWithImpl<$Res> implements $LoginStateCopyWith<$Res> {
 
 /// @nodoc
 abstract class $LoginInitialCopyWith<$Res> {
-  factory $LoginInitialCopyWith(
-          LoginInitial value, $Res Function(LoginInitial) then) =
+  factory $LoginInitialCopyWith(LoginInitial value, $Res Function(LoginInitial) then) =
       _$LoginInitialCopyWithImpl<$Res>;
 }
 
 /// @nodoc
 class _$LoginInitialCopyWithImpl<$Res> extends _$LoginStateCopyWithImpl<$Res>
     implements $LoginInitialCopyWith<$Res> {
-  _$LoginInitialCopyWithImpl(
-      LoginInitial _value, $Res Function(LoginInitial) _then)
+  _$LoginInitialCopyWithImpl(LoginInitial _value, $Res Function(LoginInitial) _then)
       : super(_value, (v) => _then(v as LoginInitial));
 
   @override
@@ -217,16 +214,14 @@ abstract class LoginInitial implements LoginState {
 
 /// @nodoc
 abstract class $LoginLoadingCopyWith<$Res> {
-  factory $LoginLoadingCopyWith(
-          LoginLoading value, $Res Function(LoginLoading) then) =
+  factory $LoginLoadingCopyWith(LoginLoading value, $Res Function(LoginLoading) then) =
       _$LoginLoadingCopyWithImpl<$Res>;
 }
 
 /// @nodoc
 class _$LoginLoadingCopyWithImpl<$Res> extends _$LoginStateCopyWithImpl<$Res>
     implements $LoginLoadingCopyWith<$Res> {
-  _$LoginLoadingCopyWithImpl(
-      LoginLoading _value, $Res Function(LoginLoading) _then)
+  _$LoginLoadingCopyWithImpl(LoginLoading _value, $Res Function(LoginLoading) _then)
       : super(_value, (v) => _then(v as LoginLoading));
 
   @override
@@ -331,8 +326,7 @@ abstract class LoginLoading implements LoginState {
 
 /// @nodoc
 abstract class $LoginSuccessCopyWith<$Res> {
-  factory $LoginSuccessCopyWith(
-          LoginSuccess value, $Res Function(LoginSuccess) then) =
+  factory $LoginSuccessCopyWith(LoginSuccess value, $Res Function(LoginSuccess) then) =
       _$LoginSuccessCopyWithImpl<$Res>;
   $Res call({User loggedUser});
 }
@@ -340,8 +334,7 @@ abstract class $LoginSuccessCopyWith<$Res> {
 /// @nodoc
 class _$LoginSuccessCopyWithImpl<$Res> extends _$LoginStateCopyWithImpl<$Res>
     implements $LoginSuccessCopyWith<$Res> {
-  _$LoginSuccessCopyWithImpl(
-      LoginSuccess _value, $Res Function(LoginSuccess) _then)
+  _$LoginSuccessCopyWithImpl(LoginSuccess _value, $Res Function(LoginSuccess) _then)
       : super(_value, (v) => _then(v as LoginSuccess));
 
   @override
@@ -352,8 +345,7 @@ class _$LoginSuccessCopyWithImpl<$Res> extends _$LoginStateCopyWithImpl<$Res>
     Object loggedUser = freezed,
   }) {
     return _then(LoginSuccess(
-      loggedUser:
-          loggedUser == freezed ? _value.loggedUser : loggedUser as User,
+      loggedUser: loggedUser == freezed ? _value.loggedUser : loggedUser as User,
     ));
   }
 }
@@ -383,13 +375,11 @@ class _$LoginSuccess with DiagnosticableTreeMixin implements LoginSuccess {
     return identical(this, other) ||
         (other is LoginSuccess &&
             (identical(other.loggedUser, loggedUser) ||
-                const DeepCollectionEquality()
-                    .equals(other.loggedUser, loggedUser)));
+                const DeepCollectionEquality().equals(other.loggedUser, loggedUser)));
   }
 
   @override
-  int get hashCode =>
-      runtimeType.hashCode ^ const DeepCollectionEquality().hash(loggedUser);
+  int get hashCode => runtimeType.hashCode ^ const DeepCollectionEquality().hash(loggedUser);
 
   @override
   $LoginSuccessCopyWith<LoginSuccess> get copyWith =>
@@ -473,8 +463,7 @@ abstract class LoginSuccess implements LoginState {
 
 /// @nodoc
 abstract class $LoginFailureCopyWith<$Res> {
-  factory $LoginFailureCopyWith(
-          LoginFailure value, $Res Function(LoginFailure) then) =
+  factory $LoginFailureCopyWith(LoginFailure value, $Res Function(LoginFailure) then) =
       _$LoginFailureCopyWithImpl<$Res>;
   $Res call({String errorMessage});
 }
@@ -482,8 +471,7 @@ abstract class $LoginFailureCopyWith<$Res> {
 /// @nodoc
 class _$LoginFailureCopyWithImpl<$Res> extends _$LoginStateCopyWithImpl<$Res>
     implements $LoginFailureCopyWith<$Res> {
-  _$LoginFailureCopyWithImpl(
-      LoginFailure _value, $Res Function(LoginFailure) _then)
+  _$LoginFailureCopyWithImpl(LoginFailure _value, $Res Function(LoginFailure) _then)
       : super(_value, (v) => _then(v as LoginFailure));
 
   @override
@@ -494,9 +482,7 @@ class _$LoginFailureCopyWithImpl<$Res> extends _$LoginStateCopyWithImpl<$Res>
     Object errorMessage = freezed,
   }) {
     return _then(LoginFailure(
-      errorMessage: errorMessage == freezed
-          ? _value.errorMessage
-          : errorMessage as String,
+      errorMessage: errorMessage == freezed ? _value.errorMessage : errorMessage as String,
     ));
   }
 }
@@ -526,13 +512,11 @@ class _$LoginFailure with DiagnosticableTreeMixin implements LoginFailure {
     return identical(this, other) ||
         (other is LoginFailure &&
             (identical(other.errorMessage, errorMessage) ||
-                const DeepCollectionEquality()
-                    .equals(other.errorMessage, errorMessage)));
+                const DeepCollectionEquality().equals(other.errorMessage, errorMessage)));
   }
 
   @override
-  int get hashCode =>
-      runtimeType.hashCode ^ const DeepCollectionEquality().hash(errorMessage);
+  int get hashCode => runtimeType.hashCode ^ const DeepCollectionEquality().hash(errorMessage);
 
   @override
   $LoginFailureCopyWith<LoginFailure> get copyWith =>
@@ -616,17 +600,16 @@ abstract class LoginFailure implements LoginState {
 
 /// @nodoc
 abstract class $WrongfullyInsertedEmailCopyWith<$Res> {
-  factory $WrongfullyInsertedEmailCopyWith(WrongfullyInsertedEmail value,
-          $Res Function(WrongfullyInsertedEmail) then) =
+  factory $WrongfullyInsertedEmailCopyWith(
+          WrongfullyInsertedEmail value, $Res Function(WrongfullyInsertedEmail) then) =
       _$WrongfullyInsertedEmailCopyWithImpl<$Res>;
 }
 
 /// @nodoc
-class _$WrongfullyInsertedEmailCopyWithImpl<$Res>
-    extends _$LoginStateCopyWithImpl<$Res>
+class _$WrongfullyInsertedEmailCopyWithImpl<$Res> extends _$LoginStateCopyWithImpl<$Res>
     implements $WrongfullyInsertedEmailCopyWith<$Res> {
-  _$WrongfullyInsertedEmailCopyWithImpl(WrongfullyInsertedEmail _value,
-      $Res Function(WrongfullyInsertedEmail) _then)
+  _$WrongfullyInsertedEmailCopyWithImpl(
+      WrongfullyInsertedEmail _value, $Res Function(WrongfullyInsertedEmail) _then)
       : super(_value, (v) => _then(v as WrongfullyInsertedEmail));
 
   @override
@@ -634,9 +617,7 @@ class _$WrongfullyInsertedEmailCopyWithImpl<$Res>
 }
 
 /// @nodoc
-class _$WrongfullyInsertedEmail
-    with DiagnosticableTreeMixin
-    implements WrongfullyInsertedEmail {
+class _$WrongfullyInsertedEmail with DiagnosticableTreeMixin implements WrongfullyInsertedEmail {
   const _$WrongfullyInsertedEmail();
 
   @override
@@ -647,8 +628,7 @@ class _$WrongfullyInsertedEmail
   @override
   void debugFillProperties(DiagnosticPropertiesBuilder properties) {
     super.debugFillProperties(properties);
-    properties
-      ..add(DiagnosticsProperty('type', 'LoginState.wrongfullyInsertedEmail'));
+    properties..add(DiagnosticsProperty('type', 'LoginState.wrongfullyInsertedEmail'));
   }
 
   @override

@@ -15,23 +15,34 @@ class GymSelectionModal extends StatelessWidget {
       ),
       child: Column(
         children: [
-          Icon(Icons.remove_rounded, size: 50, color: Colors.grey,),
+          Icon(
+            Icons.remove_rounded,
+            size: 50,
+            color: Colors.grey,
+          ),
           Padding(
-            padding: const EdgeInsets.symmetric(horizontal: 12.0,),
-            child: GymSelectionTile( // on top selected gym
+            padding: const EdgeInsets.symmetric(
+              horizontal: 12.0,
+            ),
+            child: GymSelectionTile(
+              // on top selected gym
               gymId: currentUser.selectedGymId,
               currentUser: currentUser,
             ),
           ),
-          ...currentUser.knownGymIds.where((knownGymId) => currentUser.selectedGymId != knownGymId)
-              .map((knownGymId) =>
-              Padding(
-                padding: const EdgeInsets.symmetric(horizontal: 12.0,),
-                child: GymSelectionTile(
-                  gymId: knownGymId,
-                  currentUser: currentUser,
-            ),
-          ),)
+          ...currentUser.knownGymIds
+              .where((knownGymId) => currentUser.selectedGymId != knownGymId)
+              .map(
+                (knownGymId) => Padding(
+                  padding: const EdgeInsets.symmetric(
+                    horizontal: 12.0,
+                  ),
+                  child: GymSelectionTile(
+                    gymId: knownGymId,
+                    currentUser: currentUser,
+                  ),
+                ),
+              )
         ],
       ),
     );

@@ -130,6 +130,8 @@ class LessonInstancesProvider implements LessonRepository {
         .doc(date)
         .collection(sub_collection_path)
         .doc(lessonId)
-        .update({'isClosed': true,});
+        .update({
+      'isClosed': true,
+    });
   }
 }

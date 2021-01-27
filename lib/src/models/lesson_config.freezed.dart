@@ -45,8 +45,7 @@ mixin _$LessonConfig {
 
 /// @nodoc
 abstract class $LessonConfigCopyWith<$Res> {
-  factory $LessonConfigCopyWith(
-          LessonConfig value, $Res Function(LessonConfig) then) =
+  factory $LessonConfigCopyWith(LessonConfig value, $Res Function(LessonConfig) then) =
       _$LessonConfigCopyWithImpl<$Res>;
   $Res call({String type, String color});
 }
@@ -72,10 +71,8 @@ class _$LessonConfigCopyWithImpl<$Res> implements $LessonConfigCopyWith<$Res> {
 }
 
 /// @nodoc
-abstract class _$LessonConfigCopyWith<$Res>
-    implements $LessonConfigCopyWith<$Res> {
-  factory _$LessonConfigCopyWith(
-          _LessonConfig value, $Res Function(_LessonConfig) then) =
+abstract class _$LessonConfigCopyWith<$Res> implements $LessonConfigCopyWith<$Res> {
+  factory _$LessonConfigCopyWith(_LessonConfig value, $Res Function(_LessonConfig) then) =
       __$LessonConfigCopyWithImpl<$Res>;
   @override
   $Res call({String type, String color});
@@ -84,8 +81,7 @@ abstract class _$LessonConfigCopyWith<$Res>
 /// @nodoc
 class __$LessonConfigCopyWithImpl<$Res> extends _$LessonConfigCopyWithImpl<$Res>
     implements _$LessonConfigCopyWith<$Res> {
-  __$LessonConfigCopyWithImpl(
-      _LessonConfig _value, $Res Function(_LessonConfig) _then)
+  __$LessonConfigCopyWithImpl(_LessonConfig _value, $Res Function(_LessonConfig) _then)
       : super(_value, (v) => _then(v as _LessonConfig));
 
   @override
@@ -109,8 +105,7 @@ class __$LessonConfigCopyWithImpl<$Res> extends _$LessonConfigCopyWithImpl<$Res>
 class _$_LessonConfig implements _LessonConfig {
   _$_LessonConfig({this.type, this.color});
 
-  factory _$_LessonConfig.fromJson(Map<String, dynamic> json) =>
-      _$_$_LessonConfigFromJson(json);
+  factory _$_LessonConfig.fromJson(Map<String, dynamic> json) => _$_$_LessonConfigFromJson(json);
 
   @override
   final String type;
@@ -151,8 +146,7 @@ class _$_LessonConfig implements _LessonConfig {
 abstract class _LessonConfig implements LessonConfig {
   factory _LessonConfig({String type, String color}) = _$_LessonConfig;
 
-  factory _LessonConfig.fromJson(Map<String, dynamic> json) =
-      _$_LessonConfig.fromJson;
+  factory _LessonConfig.fromJson(Map<String, dynamic> json) = _$_LessonConfig.fromJson;
 
   @override
   String get type;

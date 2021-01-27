@@ -22,7 +22,8 @@ class RegistryCounter extends StatelessWidget {
               ...currentLesson.acceptedAttendees
             ];
 
-            return _getCounterWidget(allAttendees.length, currentLesson.classCapacity, currentLesson.isClosed, context);
+            return _getCounterWidget(
+                allAttendees.length, currentLesson.classCapacity, currentLesson.isClosed, context);
           },
           orElse: () => _getCounterWidget(0, 1, false, context),
         );

@@ -19,7 +19,8 @@ class GymSelectionTile extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return BlocBuilder<GymBloc, GymState>(
-      cubit: GymBloc(gymRepository: context.watch<GymRepository>(), gymId: gymId)..add(GymEvent.initializeGym()),
+      cubit: GymBloc(gymRepository: context.watch<GymRepository>(), gymId: gymId)
+        ..add(GymEvent.initializeGym()),
       builder: (BuildContext context, GymState state) {
         return state.map(
           initialGymState: (InitialGymState initialGymState) => LoadingIndicator(),
@@ -37,7 +38,7 @@ class GymSelectionTile extends StatelessWidget {
                 Row(
                   children: [
                     UserImage(
-                      userImage:gymLoaded.gym.imageUrl,
+                      userImage: gymLoaded.gym.imageUrl,
                     ),
                     SizedBox(
                       width: 10,

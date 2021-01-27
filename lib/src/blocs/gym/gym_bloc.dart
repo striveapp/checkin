@@ -35,11 +35,10 @@ class GymBloc extends Bloc<GymEvent, GymState> {
     GymEvent event,
   ) async* {
     if (event is InitializeGym) {
-      if(userBloc != null){
+      if (userBloc != null) {
         _onUserStateChanged(userBloc.state);
         userBloc.listen(_onUserStateChanged);
-      }
-      else {
+      } else {
         gymSub?.cancel();
         gymSub = gymRepository.getGym(gymId).listen((gym) {
           add(GymUpdated(gym: gym));

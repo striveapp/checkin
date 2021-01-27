@@ -10,7 +10,6 @@ import 'package:flutter_bloc/flutter_bloc.dart';
 import '../../../constants.dart';
 
 class GymAppBar extends StatelessWidget implements PreferredSizeWidget {
-
   @override
   Widget build(BuildContext context) {
     return BlocBuilder<UserBloc, UserState>(
@@ -25,7 +24,8 @@ class GymAppBar extends StatelessWidget implements PreferredSizeWidget {
           centerTitle: false,
           backgroundColor: Theme.of(context).primaryColor,
           title: GestureDetector(
-                  onTap: isInDebugMode ? () {
+            onTap: isInDebugMode
+                ? () {
                     showModalBottomSheet(
                         shape: RoundedRectangleBorder(
                             borderRadius: BorderRadius.vertical(top: Radius.circular(15))),
@@ -33,36 +33,37 @@ class GymAppBar extends StatelessWidget implements PreferredSizeWidget {
                         builder: (_) => BlocProvider.value(
                             value: context.read<UserBloc>(),
                             child: GymSelectionModal(currentUser: currentUser)));
-                  } : DISABLED_BUTTON,
-                  child: Row(
-                    mainAxisAlignment: MainAxisAlignment.start,
-                    crossAxisAlignment: CrossAxisAlignment.center,
-                    children: [
-                      BlocBuilder<GymBloc, GymState>(buildWhen: (GymState prev, GymState curr) {
-                        if (prev is GymLoaded && curr is GymLoaded) {
-                          return prev.gym.name != curr.gym.name;
-                        }
-                        return prev is InitialGymState;
-                      }, builder: (BuildContext context, GymState state) {
-                        return state.map(
-                          initialGymState: (InitialGymState state) => EmptyWidget(),
-                          gymLoaded: (GymLoaded gymLoaded) => Text(gymLoaded.gym.name,
-                              style:
-                                  Theme.of(context).textTheme.headline2.apply(color: Colors.white)),
-                        );
-                      }),
-                      SizedBox(
-                        width: 5,
-                      ),
-                      if(isInDebugMode) RotatedBox(
-                          quarterTurns: 3,
-                          child: Icon(
-                            Icons.arrow_back_ios_rounded,
-                            size: 20,
-                          ))
-                    ],
-                  ),
+                  }
+                : DISABLED_BUTTON,
+            child: Row(
+              mainAxisAlignment: MainAxisAlignment.start,
+              crossAxisAlignment: CrossAxisAlignment.center,
+              children: [
+                BlocBuilder<GymBloc, GymState>(buildWhen: (GymState prev, GymState curr) {
+                  if (prev is GymLoaded && curr is GymLoaded) {
+                    return prev.gym.name != curr.gym.name;
+                  }
+                  return prev is InitialGymState;
+                }, builder: (BuildContext context, GymState state) {
+                  return state.map(
+                    initialGymState: (InitialGymState state) => EmptyWidget(),
+                    gymLoaded: (GymLoaded gymLoaded) => Text(gymLoaded.gym.name,
+                        style: Theme.of(context).textTheme.headline2.apply(color: Colors.white)),
+                  );
+                }),
+                SizedBox(
+                  width: 5,
                 ),
+                if (isInDebugMode)
+                  RotatedBox(
+                      quarterTurns: 3,
+                      child: Icon(
+                        Icons.arrow_back_ios_rounded,
+                        size: 20,
+                      ))
+              ],
+            ),
+          ),
           actions: <Widget>[
             if (currentUser != null)
               Padding(
