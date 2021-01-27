@@ -27,9 +27,9 @@ class GymSelectionTile extends StatelessWidget {
           gymLoaded: (GymLoaded gymLoaded) => InkWell(
             onTap: () async {
               print('changing gym from [${currentUser.selectedGymId}] to [$gymId]');
-              await context
-                  .read<UserBloc>()
-                  .add(UserEvent.updateSelectedGym(newGymId: gymId, userEmail: currentUser.email));
+              await context.read<UserBloc>().add(UserEvent.updateSelectedGym(
+                    newGymId: gymId,
+                  ));
               await Navigator.pop(context);
             },
             child: Row(
