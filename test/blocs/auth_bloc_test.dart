@@ -18,8 +18,7 @@ class MockAnalyticsRepository extends Mock implements AnalyticsRepository {}
 
 class MockUserRepository extends Mock implements UserRepository {}
 
-class MockLocalStorageRepository extends Mock
-    implements LocalStorageRepository {}
+class MockLocalStorageRepository extends Mock implements LocalStorageRepository {}
 
 class MockVersionUtil extends Mock implements VersionUtil {}
 
@@ -123,8 +122,7 @@ void main() {
           });
           when(mockAnalyticsRepository.setUserProperties(fakeUser.uid))
               .thenAnswer((realInvocation) => null);
-          when(mockAnalyticsRepository.logUserLocale())
-              .thenAnswer((realInvocation) => null);
+          when(mockAnalyticsRepository.logUserLocale()).thenAnswer((realInvocation) => null);
         });
 
         tearDown(() {
@@ -141,8 +139,7 @@ void main() {
               fakeUser.email,
               fakeAppVersion,
             )).thenAnswer((realInvocation) => Future.value());
-            when(mockLocalStorageRepository.getReferredGymId())
-                .thenAnswer((_) => Stream.empty());
+            when(mockLocalStorageRepository.getReferredGymId()).thenAnswer((_) => Stream.empty());
             when(mockLocalStorageRepository.removeUserEmail())
                 .thenAnswer((realInvocation) => Future.value());
           });
@@ -188,8 +185,11 @@ void main() {
               fakeUser.email,
               fakeReferredGym,
             )).thenAnswer((realInvocation) => Future.value());
-            when(mockLocalStorageRepository.removeReferredGym())
-                .thenAnswer((_) => Future.value());
+            when(mockUserRepository.updateKnownGymIds(
+              fakeUser.email,
+              fakeReferredGym,
+            )).thenAnswer((realInvocation) => Future.value());
+            when(mockLocalStorageRepository.removeReferredGym()).thenAnswer((_) => Future.value());
             when(mockLocalStorageRepository.removeUserEmail())
                 .thenAnswer((realInvocation) => Future.value());
           });
@@ -202,6 +202,10 @@ void main() {
             ));
             verify(mockLocalStorageRepository.getReferredGymId());
             verify(mockUserRepository.updateSelectedGymId(
+              fakeUser.email,
+              fakeReferredGym,
+            ));
+            verify(mockUserRepository.updateKnownGymIds(
               fakeUser.email,
               fakeReferredGym,
             ));
