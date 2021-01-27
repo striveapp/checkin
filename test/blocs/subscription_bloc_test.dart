@@ -65,7 +65,9 @@ void main() {
                       name: "Test gym",
                       paymentAppDomain: "test-domain",
                       stripePublicKey: "test-key",
-                      hasActivePayments: false))
+                      hasActivePayments: false,
+                    imageUrl: "cool-gyms-have-cooler-images",
+                  ))
             ]));
       });
 

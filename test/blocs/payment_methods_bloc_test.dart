@@ -41,13 +41,17 @@ void main() {
         name: "Test gym",
         paymentAppDomain: "test-app",
         stripePublicKey: "test_key",
-        hasActivePayments: false);
+        hasActivePayments: false,
+        imageUrl: "cool-gyms-have-cooler-images",
+    );
     Gym prodGym = Gym(
         id: "prodGym",
         name: "Prod gym",
         paymentAppDomain: "prod-app",
         stripePublicKey: "prod_key",
-        hasActivePayments: false);
+      hasActivePayments: false,
+      imageUrl: "cool-gyms-have-cooler-images",
+    );
 
     User fakeUser = User(
         email: fakeEmail,

@@ -24,7 +24,9 @@ void main() {
         name: "Test gym",
         paymentAppDomain: "test.com",
         stripePublicKey: "pk_kp",
-        hasActivePayments: false);
+        hasActivePayments: false,
+      imageUrl: "cool-gyms-have-cooler-images",
+    );
 
     setUp(() {
       mockSubscriptionPlansRepository = MockSubscriptionPlansRepository();

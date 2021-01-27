@@ -17,5 +17,7 @@ abstract class UserRepository {
 
   Future<void> updateSelectedGymId(String userEmail, String newSelectedGym);
 
+  Future<void> updateKnownGymIds(String userEmail, String newGymId);
+
   Future<void> updateUserAppVersion(String userEmail, Version newVersion);
 }

@@ -19,7 +19,8 @@ class _$ProfileStateTearOff {
   }
 
 // ignore: unused_element
-  ProfileLoaded profileLoaded({@required User profileUser, @required bool isCurrentUser}) {
+  ProfileLoaded profileLoaded(
+      {@required User profileUser, @required bool isCurrentUser}) {
     return ProfileLoaded(
       profileUser: profileUser,
       isCurrentUser: isCurrentUser,
@@ -59,7 +60,8 @@ mixin _$ProfileState {
 
 /// @nodoc
 abstract class $ProfileStateCopyWith<$Res> {
-  factory $ProfileStateCopyWith(ProfileState value, $Res Function(ProfileState) then) =
+  factory $ProfileStateCopyWith(
+          ProfileState value, $Res Function(ProfileState) then) =
       _$ProfileStateCopyWithImpl<$Res>;
 }
 
@@ -80,7 +82,8 @@ abstract class $InitialProfileStateCopyWith<$Res> {
 }
 
 /// @nodoc
-class _$InitialProfileStateCopyWithImpl<$Res> extends _$ProfileStateCopyWithImpl<$Res>
+class _$InitialProfileStateCopyWithImpl<$Res>
+    extends _$ProfileStateCopyWithImpl<$Res>
     implements $InitialProfileStateCopyWith<$Res> {
   _$InitialProfileStateCopyWithImpl(
       InitialProfileState _value, $Res Function(InitialProfileState) _then)
@@ -91,7 +94,9 @@ class _$InitialProfileStateCopyWithImpl<$Res> extends _$ProfileStateCopyWithImpl
 }
 
 /// @nodoc
-class _$InitialProfileState with DiagnosticableTreeMixin implements InitialProfileState {
+class _$InitialProfileState
+    with DiagnosticableTreeMixin
+    implements InitialProfileState {
   const _$InitialProfileState();
 
   @override
@@ -102,7 +107,8 @@ class _$InitialProfileState with DiagnosticableTreeMixin implements InitialProfi
   @override
   void debugFillProperties(DiagnosticPropertiesBuilder properties) {
     super.debugFillProperties(properties);
-    properties..add(DiagnosticsProperty('type', 'ProfileState.initialProfileState'));
+    properties
+      ..add(DiagnosticsProperty('type', 'ProfileState.initialProfileState'));
   }
 
   @override
@@ -170,7 +176,8 @@ abstract class InitialProfileState implements ProfileState {
 
 /// @nodoc
 abstract class $ProfileLoadedCopyWith<$Res> {
-  factory $ProfileLoadedCopyWith(ProfileLoaded value, $Res Function(ProfileLoaded) then) =
+  factory $ProfileLoadedCopyWith(
+          ProfileLoaded value, $Res Function(ProfileLoaded) then) =
       _$ProfileLoadedCopyWithImpl<$Res>;
   $Res call({User profileUser, bool isCurrentUser});
 }
@@ -178,7 +185,8 @@ abstract class $ProfileLoadedCopyWith<$Res> {
 /// @nodoc
 class _$ProfileLoadedCopyWithImpl<$Res> extends _$ProfileStateCopyWithImpl<$Res>
     implements $ProfileLoadedCopyWith<$Res> {
-  _$ProfileLoadedCopyWithImpl(ProfileLoaded _value, $Res Function(ProfileLoaded) _then)
+  _$ProfileLoadedCopyWithImpl(
+      ProfileLoaded _value, $Res Function(ProfileLoaded) _then)
       : super(_value, (v) => _then(v as ProfileLoaded));
 
   @override
@@ -190,15 +198,19 @@ class _$ProfileLoadedCopyWithImpl<$Res> extends _$ProfileStateCopyWithImpl<$Res>
     Object isCurrentUser = freezed,
   }) {
     return _then(ProfileLoaded(
-      profileUser: profileUser == freezed ? _value.profileUser : profileUser as User,
-      isCurrentUser: isCurrentUser == freezed ? _value.isCurrentUser : isCurrentUser as bool,
+      profileUser:
+          profileUser == freezed ? _value.profileUser : profileUser as User,
+      isCurrentUser: isCurrentUser == freezed
+          ? _value.isCurrentUser
+          : isCurrentUser as bool,
     ));
   }
 }
 
 /// @nodoc
 class _$ProfileLoaded with DiagnosticableTreeMixin implements ProfileLoaded {
-  const _$ProfileLoaded({@required this.profileUser, @required this.isCurrentUser})
+  const _$ProfileLoaded(
+      {@required this.profileUser, @required this.isCurrentUser})
       : assert(profileUser != null),
         assert(isCurrentUser != null);
 
@@ -226,9 +238,11 @@ class _$ProfileLoaded with DiagnosticableTreeMixin implements ProfileLoaded {
     return identical(this, other) ||
         (other is ProfileLoaded &&
             (identical(other.profileUser, profileUser) ||
-                const DeepCollectionEquality().equals(other.profileUser, profileUser)) &&
+                const DeepCollectionEquality()
+                    .equals(other.profileUser, profileUser)) &&
             (identical(other.isCurrentUser, isCurrentUser) ||
-                const DeepCollectionEquality().equals(other.isCurrentUser, isCurrentUser)));
+                const DeepCollectionEquality()
+                    .equals(other.isCurrentUser, isCurrentUser)));
   }
 
   @override
@@ -293,8 +307,9 @@ class _$ProfileLoaded with DiagnosticableTreeMixin implements ProfileLoaded {
 }
 
 abstract class ProfileLoaded implements ProfileState {
-  const factory ProfileLoaded({@required User profileUser, @required bool isCurrentUser}) =
-      _$ProfileLoaded;
+  const factory ProfileLoaded(
+      {@required User profileUser,
+      @required bool isCurrentUser}) = _$ProfileLoaded;
 
   User get profileUser;
   bool get isCurrentUser;

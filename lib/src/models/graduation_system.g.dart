@@ -13,7 +13,9 @@ _$_GraduationSystem _$_$_GraduationSystemFromJson(Map<String, dynamic> json) {
   );
 }
 
-Map<String, dynamic> _$_$_GraduationSystemToJson(_$_GraduationSystem instance) => <String, dynamic>{
+Map<String, dynamic> _$_$_GraduationSystemToJson(
+        _$_GraduationSystem instance) =>
+    <String, dynamic>{
       'grade': const GradeConverter().toJson(instance.grade),
       'forNextLevel': instance.forNextLevel,
     };

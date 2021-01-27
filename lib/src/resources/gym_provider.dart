@@ -1,3 +1,4 @@
+import 'package:checkin/src/config.dart';
 import 'package:checkin/src/models/gym.dart';
 import 'package:checkin/src/repositories/gym_repository.dart';
 import 'package:cloud_firestore/cloud_firestore.dart';
@@ -19,6 +20,7 @@ class GymProvider implements GymRepository {
 
   Gym _toGym(String gymId, Map<String, dynamic> gym) {
     gym.putIfAbsent("id", () => gymId);
+    gym.putIfAbsent("imageUrl", () => DEFAULT_GYM_IMAGE_URL);
     return Gym.fromJson(gym);
   }
 }

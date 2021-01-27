@@ -30,7 +30,9 @@ void main() {
                 name: "Test gym",
                 paymentAppDomain: "test-domain",
                 stripePublicKey: "test-key",
-                hasActivePayments: true)));
+                hasActivePayments: true,
+              imageUrl: "cool-gyms-have-cooler-images",
+            )));
         expect(result, true);
       });
       test("When gym preference is false", () {
@@ -42,7 +44,9 @@ void main() {
                 name: "Test gym",
                 paymentAppDomain: "test-domain",
                 stripePublicKey: "test-key",
-                hasActivePayments: false)));
+                hasActivePayments: false,
+              imageUrl: "cool-gyms-have-cooler-images",
+            )));
         expect(result, false);
       });
       test("When you get here you should question your reality", () {

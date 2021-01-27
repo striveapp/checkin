@@ -26,6 +26,7 @@ class UserProvider implements UserRepository {
         email: data['email'],
         imageUrl: data['imageUrl'],
         // TODO: remove rank when all users have grade https://trello.com/c/d26R05mY
+        knownGymIds: List<String>.from(data['knownGymIds'] ?? []),
         grade: ((data['grade'] ?? data['rank']) as String)?.toGrade(),
         isOwner: data['isOwner'] ?? false,
         hasActivePayments: data['hasActivePayments'],
@@ -62,6 +63,10 @@ class UserProvider implements UserRepository {
 
   Future<void> updateSelectedGymId(String userEmail, String newSelectedGym) async {
     await _firestore.collection(path).doc(userEmail).update({"selectedGymId": newSelectedGym});
+  }
+
+  Future<void> updateKnownGymIds(String userEmail, String newGymId) async {
+    await _firestore.collection(path).doc(userEmail).update({"knownGymIds": FieldValue.arrayUnion([newGymId])});
   }
 
   Future<void> updateUserImageUrl(String userEmail, String newImageUrl) async {

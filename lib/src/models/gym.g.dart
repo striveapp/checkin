@@ -12,6 +12,7 @@ _$_Gym _$_$_GymFromJson(Map<String, dynamic> json) {
     name: json['name'] as String,
     paymentAppDomain: json['paymentAppDomain'] as String,
     stripePublicKey: json['stripePublicKey'] as String,
+    imageUrl: json['imageUrl'] as String,
     hasActivePayments: json['hasActivePayments'] as bool ?? false,
   );
 }
@@ -21,5 +22,6 @@ Map<String, dynamic> _$_$_GymToJson(_$_Gym instance) => <String, dynamic>{
       'name': instance.name,
       'paymentAppDomain': instance.paymentAppDomain,
       'stripePublicKey': instance.stripePublicKey,
+      'imageUrl': instance.imageUrl,
       'hasActivePayments': instance.hasActivePayments,
     };

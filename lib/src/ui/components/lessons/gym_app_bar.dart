@@ -30,7 +30,9 @@ class GymAppBar extends StatelessWidget implements PreferredSizeWidget {
                         shape: RoundedRectangleBorder(
                             borderRadius: BorderRadius.vertical(top: Radius.circular(15))),
                         context: context,
-                        builder: (BuildContext context) => GymSelectionModal());
+                        builder: (_) => BlocProvider.value(
+                            value: context.read<UserBloc>(),
+                            child: GymSelectionModal(currentUser: currentUser)));
                   } : DISABLED_BUTTON,
                   child: Row(
                     mainAxisAlignment: MainAxisAlignment.start,

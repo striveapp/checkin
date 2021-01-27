@@ -15,8 +15,7 @@ abstract class UserEvent with _$UserEvent {
 
   const factory UserEvent.updateGrade({Grade newGrade}) = UpdateGrade;
 
-  const factory UserEvent.updateReferredGym({String userEmail, String currentGymId}) =
-      UpdateReferredGym;
+  const factory UserEvent.updateSelectedGym({String userEmail, String newGymId}) = UpdateSelectedGym;
 
   const factory UserEvent.updateFcmToken({String userEmail, String newToken}) = UpdateFcmToken;
 }

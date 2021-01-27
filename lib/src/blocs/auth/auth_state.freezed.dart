@@ -82,9 +82,11 @@ abstract class $AuthAuthenticatedCopyWith<$Res> {
 }
 
 /// @nodoc
-class _$AuthAuthenticatedCopyWithImpl<$Res> extends _$AuthStateCopyWithImpl<$Res>
+class _$AuthAuthenticatedCopyWithImpl<$Res>
+    extends _$AuthStateCopyWithImpl<$Res>
     implements $AuthAuthenticatedCopyWith<$Res> {
-  _$AuthAuthenticatedCopyWithImpl(AuthAuthenticated _value, $Res Function(AuthAuthenticated) _then)
+  _$AuthAuthenticatedCopyWithImpl(
+      AuthAuthenticated _value, $Res Function(AuthAuthenticated) _then)
       : super(_value, (v) => _then(v as AuthAuthenticated));
 
   @override
@@ -95,13 +97,16 @@ class _$AuthAuthenticatedCopyWithImpl<$Res> extends _$AuthStateCopyWithImpl<$Res
     Object loggedUser = freezed,
   }) {
     return _then(AuthAuthenticated(
-      loggedUser: loggedUser == freezed ? _value.loggedUser : loggedUser as User,
+      loggedUser:
+          loggedUser == freezed ? _value.loggedUser : loggedUser as User,
     ));
   }
 }
 
 /// @nodoc
-class _$AuthAuthenticated with DiagnosticableTreeMixin implements AuthAuthenticated {
+class _$AuthAuthenticated
+    with DiagnosticableTreeMixin
+    implements AuthAuthenticated {
   const _$AuthAuthenticated({this.loggedUser});
 
   @override
@@ -125,11 +130,13 @@ class _$AuthAuthenticated with DiagnosticableTreeMixin implements AuthAuthentica
     return identical(this, other) ||
         (other is AuthAuthenticated &&
             (identical(other.loggedUser, loggedUser) ||
-                const DeepCollectionEquality().equals(other.loggedUser, loggedUser)));
+                const DeepCollectionEquality()
+                    .equals(other.loggedUser, loggedUser)));
   }
 
   @override
-  int get hashCode => runtimeType.hashCode ^ const DeepCollectionEquality().hash(loggedUser);
+  int get hashCode =>
+      runtimeType.hashCode ^ const DeepCollectionEquality().hash(loggedUser);
 
   @override
   $AuthAuthenticatedCopyWith<AuthAuthenticated> get copyWith =>
@@ -202,7 +209,8 @@ abstract class $AuthUnauthenticatedCopyWith<$Res> {
 }
 
 /// @nodoc
-class _$AuthUnauthenticatedCopyWithImpl<$Res> extends _$AuthStateCopyWithImpl<$Res>
+class _$AuthUnauthenticatedCopyWithImpl<$Res>
+    extends _$AuthStateCopyWithImpl<$Res>
     implements $AuthUnauthenticatedCopyWith<$Res> {
   _$AuthUnauthenticatedCopyWithImpl(
       AuthUnauthenticated _value, $Res Function(AuthUnauthenticated) _then)
@@ -222,7 +230,9 @@ class _$AuthUnauthenticatedCopyWithImpl<$Res> extends _$AuthStateCopyWithImpl<$R
 }
 
 /// @nodoc
-class _$AuthUnauthenticated with DiagnosticableTreeMixin implements AuthUnauthenticated {
+class _$AuthUnauthenticated
+    with DiagnosticableTreeMixin
+    implements AuthUnauthenticated {
   const _$AuthUnauthenticated({this.error});
 
   @override
@@ -250,7 +260,8 @@ class _$AuthUnauthenticated with DiagnosticableTreeMixin implements AuthUnauthen
   }
 
   @override
-  int get hashCode => runtimeType.hashCode ^ const DeepCollectionEquality().hash(error);
+  int get hashCode =>
+      runtimeType.hashCode ^ const DeepCollectionEquality().hash(error);
 
   @override
   $AuthUnauthenticatedCopyWith<AuthUnauthenticated> get copyWith =>

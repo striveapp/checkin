@@ -22,12 +22,14 @@ class _$GymTearOff {
       @required String name,
       @required String paymentAppDomain,
       @required String stripePublicKey,
+      @required String imageUrl,
       bool hasActivePayments = false}) {
     return _Gym(
       id: id,
       name: name,
       paymentAppDomain: paymentAppDomain,
       stripePublicKey: stripePublicKey,
+      imageUrl: imageUrl,
       hasActivePayments: hasActivePayments,
     );
   }
@@ -48,6 +50,7 @@ mixin _$Gym {
   String get name;
   String get paymentAppDomain;
   String get stripePublicKey;
+  String get imageUrl;
   bool get hasActivePayments;
 
   Map<String, dynamic> toJson();
@@ -56,12 +59,14 @@ mixin _$Gym {
 
 /// @nodoc
 abstract class $GymCopyWith<$Res> {
-  factory $GymCopyWith(Gym value, $Res Function(Gym) then) = _$GymCopyWithImpl<$Res>;
+  factory $GymCopyWith(Gym value, $Res Function(Gym) then) =
+      _$GymCopyWithImpl<$Res>;
   $Res call(
       {String id,
       String name,
       String paymentAppDomain,
       String stripePublicKey,
+      String imageUrl,
       bool hasActivePayments});
 }
 
@@ -79,35 +84,43 @@ class _$GymCopyWithImpl<$Res> implements $GymCopyWith<$Res> {
     Object name = freezed,
     Object paymentAppDomain = freezed,
     Object stripePublicKey = freezed,
+    Object imageUrl = freezed,
     Object hasActivePayments = freezed,
   }) {
     return _then(_value.copyWith(
       id: id == freezed ? _value.id : id as String,
       name: name == freezed ? _value.name : name as String,
-      paymentAppDomain:
-          paymentAppDomain == freezed ? _value.paymentAppDomain : paymentAppDomain as String,
-      stripePublicKey:
-          stripePublicKey == freezed ? _value.stripePublicKey : stripePublicKey as String,
-      hasActivePayments:
-          hasActivePayments == freezed ? _value.hasActivePayments : hasActivePayments as bool,
+      paymentAppDomain: paymentAppDomain == freezed
+          ? _value.paymentAppDomain
+          : paymentAppDomain as String,
+      stripePublicKey: stripePublicKey == freezed
+          ? _value.stripePublicKey
+          : stripePublicKey as String,
+      imageUrl: imageUrl == freezed ? _value.imageUrl : imageUrl as String,
+      hasActivePayments: hasActivePayments == freezed
+          ? _value.hasActivePayments
+          : hasActivePayments as bool,
     ));
   }
 }
 
 /// @nodoc
 abstract class _$GymCopyWith<$Res> implements $GymCopyWith<$Res> {
-  factory _$GymCopyWith(_Gym value, $Res Function(_Gym) then) = __$GymCopyWithImpl<$Res>;
+  factory _$GymCopyWith(_Gym value, $Res Function(_Gym) then) =
+      __$GymCopyWithImpl<$Res>;
   @override
   $Res call(
       {String id,
       String name,
       String paymentAppDomain,
       String stripePublicKey,
+      String imageUrl,
       bool hasActivePayments});
 }
 
 /// @nodoc
-class __$GymCopyWithImpl<$Res> extends _$GymCopyWithImpl<$Res> implements _$GymCopyWith<$Res> {
+class __$GymCopyWithImpl<$Res> extends _$GymCopyWithImpl<$Res>
+    implements _$GymCopyWith<$Res> {
   __$GymCopyWithImpl(_Gym _value, $Res Function(_Gym) _then)
       : super(_value, (v) => _then(v as _Gym));
 
@@ -120,17 +133,22 @@ class __$GymCopyWithImpl<$Res> extends _$GymCopyWithImpl<$Res> implements _$GymC
     Object name = freezed,
     Object paymentAppDomain = freezed,
     Object stripePublicKey = freezed,
+    Object imageUrl = freezed,
     Object hasActivePayments = freezed,
   }) {
     return _then(_Gym(
       id: id == freezed ? _value.id : id as String,
       name: name == freezed ? _value.name : name as String,
-      paymentAppDomain:
-          paymentAppDomain == freezed ? _value.paymentAppDomain : paymentAppDomain as String,
-      stripePublicKey:
-          stripePublicKey == freezed ? _value.stripePublicKey : stripePublicKey as String,
-      hasActivePayments:
-          hasActivePayments == freezed ? _value.hasActivePayments : hasActivePayments as bool,
+      paymentAppDomain: paymentAppDomain == freezed
+          ? _value.paymentAppDomain
+          : paymentAppDomain as String,
+      stripePublicKey: stripePublicKey == freezed
+          ? _value.stripePublicKey
+          : stripePublicKey as String,
+      imageUrl: imageUrl == freezed ? _value.imageUrl : imageUrl as String,
+      hasActivePayments: hasActivePayments == freezed
+          ? _value.hasActivePayments
+          : hasActivePayments as bool,
     ));
   }
 }
@@ -144,11 +162,13 @@ class _$_Gym with DiagnosticableTreeMixin implements _Gym {
       @required this.name,
       @required this.paymentAppDomain,
       @required this.stripePublicKey,
+      @required this.imageUrl,
       this.hasActivePayments = false})
       : assert(id != null),
         assert(name != null),
         assert(paymentAppDomain != null),
         assert(stripePublicKey != null),
+        assert(imageUrl != null),
         assert(hasActivePayments != null);
 
   factory _$_Gym.fromJson(Map<String, dynamic> json) => _$_$_GymFromJson(json);
@@ -161,13 +181,15 @@ class _$_Gym with DiagnosticableTreeMixin implements _Gym {
   final String paymentAppDomain;
   @override
   final String stripePublicKey;
+  @override
+  final String imageUrl;
   @JsonKey(defaultValue: false)
   @override
   final bool hasActivePayments;
 
   @override
   String toString({DiagnosticLevel minLevel = DiagnosticLevel.info}) {
-    return 'Gym(id: $id, name: $name, paymentAppDomain: $paymentAppDomain, stripePublicKey: $stripePublicKey, hasActivePayments: $hasActivePayments)';
+    return 'Gym(id: $id, name: $name, paymentAppDomain: $paymentAppDomain, stripePublicKey: $stripePublicKey, imageUrl: $imageUrl, hasActivePayments: $hasActivePayments)';
   }
 
   @override
@@ -179,6 +201,7 @@ class _$_Gym with DiagnosticableTreeMixin implements _Gym {
       ..add(DiagnosticsProperty('name', name))
       ..add(DiagnosticsProperty('paymentAppDomain', paymentAppDomain))
       ..add(DiagnosticsProperty('stripePublicKey', stripePublicKey))
+      ..add(DiagnosticsProperty('imageUrl', imageUrl))
       ..add(DiagnosticsProperty('hasActivePayments', hasActivePayments));
   }
 
@@ -186,15 +209,22 @@ class _$_Gym with DiagnosticableTreeMixin implements _Gym {
   bool operator ==(dynamic other) {
     return identical(this, other) ||
         (other is _Gym &&
-            (identical(other.id, id) || const DeepCollectionEquality().equals(other.id, id)) &&
+            (identical(other.id, id) ||
+                const DeepCollectionEquality().equals(other.id, id)) &&
             (identical(other.name, name) ||
                 const DeepCollectionEquality().equals(other.name, name)) &&
             (identical(other.paymentAppDomain, paymentAppDomain) ||
-                const DeepCollectionEquality().equals(other.paymentAppDomain, paymentAppDomain)) &&
+                const DeepCollectionEquality()
+                    .equals(other.paymentAppDomain, paymentAppDomain)) &&
             (identical(other.stripePublicKey, stripePublicKey) ||
-                const DeepCollectionEquality().equals(other.stripePublicKey, stripePublicKey)) &&
+                const DeepCollectionEquality()
+                    .equals(other.stripePublicKey, stripePublicKey)) &&
+            (identical(other.imageUrl, imageUrl) ||
+                const DeepCollectionEquality()
+                    .equals(other.imageUrl, imageUrl)) &&
             (identical(other.hasActivePayments, hasActivePayments) ||
-                const DeepCollectionEquality().equals(other.hasActivePayments, hasActivePayments)));
+                const DeepCollectionEquality()
+                    .equals(other.hasActivePayments, hasActivePayments)));
   }
 
   @override
@@ -204,10 +234,12 @@ class _$_Gym with DiagnosticableTreeMixin implements _Gym {
       const DeepCollectionEquality().hash(name) ^
       const DeepCollectionEquality().hash(paymentAppDomain) ^
       const DeepCollectionEquality().hash(stripePublicKey) ^
+      const DeepCollectionEquality().hash(imageUrl) ^
       const DeepCollectionEquality().hash(hasActivePayments);
 
   @override
-  _$GymCopyWith<_Gym> get copyWith => __$GymCopyWithImpl<_Gym>(this, _$identity);
+  _$GymCopyWith<_Gym> get copyWith =>
+      __$GymCopyWithImpl<_Gym>(this, _$identity);
 
   @override
   Map<String, dynamic> toJson() {
@@ -221,6 +253,7 @@ abstract class _Gym implements Gym {
       @required String name,
       @required String paymentAppDomain,
       @required String stripePublicKey,
+      @required String imageUrl,
       bool hasActivePayments}) = _$_Gym;
 
   factory _Gym.fromJson(Map<String, dynamic> json) = _$_Gym.fromJson;
@@ -233,6 +266,8 @@ abstract class _Gym implements Gym {
   String get paymentAppDomain;
   @override
   String get stripePublicKey;
+  @override
+  String get imageUrl;
   @override
   bool get hasActivePayments;
   @override

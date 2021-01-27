@@ -12,6 +12,7 @@ abstract class Gym with _$Gym {
     @required final String name,
     @required final String paymentAppDomain,
     @required final String stripePublicKey,
+    @required final String imageUrl,
     @Default(false) final bool hasActivePayments,
   }) = _Gym;
 

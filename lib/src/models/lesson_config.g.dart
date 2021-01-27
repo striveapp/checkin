@@ -13,7 +13,8 @@ _$_LessonConfig _$_$_LessonConfigFromJson(Map<String, dynamic> json) {
   );
 }
 
-Map<String, dynamic> _$_$_LessonConfigToJson(_$_LessonConfig instance) => <String, dynamic>{
+Map<String, dynamic> _$_$_LessonConfigToJson(_$_LessonConfig instance) =>
+    <String, dynamic>{
       'type': instance.type,
       'color': instance.color,
     };

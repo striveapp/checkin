@@ -84,6 +84,7 @@ class AuthBloc extends Bloc<AuthEvent, AuthState> {
     _referredGymSub = localStorageRepository.getReferredGymId().listen((referredGymId) async {
       print("Setting referredGym [$referredGymId] for user [$userEmail]");
       await userRepository.updateSelectedGymId(userEmail, referredGymId);
+      await userRepository.updateKnownGymIds(userEmail, referredGymId);
       await localStorageRepository.removeReferredGym();
       await _referredGymSub.cancel();
     });

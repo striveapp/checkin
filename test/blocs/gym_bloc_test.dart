@@ -28,6 +28,7 @@ void main() {
       paymentAppDomain: "pepe",
       stripePublicKey: "pk_pk",
       hasActivePayments: false,
+      imageUrl: "cool-gyms-have-cooler-images",
     );
 
     User fakeUser = User(

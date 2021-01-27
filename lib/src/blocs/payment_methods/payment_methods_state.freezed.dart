@@ -19,7 +19,8 @@ class _$PaymentMethodsStateTearOff {
   }
 
 // ignore: unused_element
-  PaymentMethodLoaded paymentMethodLoaded({@required PaymentMethod paymentMethod}) {
+  PaymentMethodLoaded paymentMethodLoaded(
+      {@required PaymentMethod paymentMethod}) {
     return PaymentMethodLoaded(
       paymentMethod: paymentMethod,
     );
@@ -63,7 +64,8 @@ mixin _$PaymentMethodsState {
   });
   @optionalTypeArgs
   TResult map<TResult extends Object>({
-    @required TResult initialPaymentMethodsState(InitialPaymentMethodsState value),
+    @required
+        TResult initialPaymentMethodsState(InitialPaymentMethodsState value),
     @required TResult paymentMethodLoaded(PaymentMethodLoaded value),
     @required TResult paymentMethodEmpty(PaymentMethodEmpty value),
     @required TResult paymentMethodLoading(PaymentMethodLoading value),
@@ -86,7 +88,8 @@ abstract class $PaymentMethodsStateCopyWith<$Res> {
 }
 
 /// @nodoc
-class _$PaymentMethodsStateCopyWithImpl<$Res> implements $PaymentMethodsStateCopyWith<$Res> {
+class _$PaymentMethodsStateCopyWithImpl<$Res>
+    implements $PaymentMethodsStateCopyWith<$Res> {
   _$PaymentMethodsStateCopyWithImpl(this._value, this._then);
 
   final PaymentMethodsState _value;
@@ -96,20 +99,22 @@ class _$PaymentMethodsStateCopyWithImpl<$Res> implements $PaymentMethodsStateCop
 
 /// @nodoc
 abstract class $InitialPaymentMethodsStateCopyWith<$Res> {
-  factory $InitialPaymentMethodsStateCopyWith(
-          InitialPaymentMethodsState value, $Res Function(InitialPaymentMethodsState) then) =
+  factory $InitialPaymentMethodsStateCopyWith(InitialPaymentMethodsState value,
+          $Res Function(InitialPaymentMethodsState) then) =
       _$InitialPaymentMethodsStateCopyWithImpl<$Res>;
 }
 
 /// @nodoc
-class _$InitialPaymentMethodsStateCopyWithImpl<$Res> extends _$PaymentMethodsStateCopyWithImpl<$Res>
+class _$InitialPaymentMethodsStateCopyWithImpl<$Res>
+    extends _$PaymentMethodsStateCopyWithImpl<$Res>
     implements $InitialPaymentMethodsStateCopyWith<$Res> {
-  _$InitialPaymentMethodsStateCopyWithImpl(
-      InitialPaymentMethodsState _value, $Res Function(InitialPaymentMethodsState) _then)
+  _$InitialPaymentMethodsStateCopyWithImpl(InitialPaymentMethodsState _value,
+      $Res Function(InitialPaymentMethodsState) _then)
       : super(_value, (v) => _then(v as InitialPaymentMethodsState));
 
   @override
-  InitialPaymentMethodsState get _value => super._value as InitialPaymentMethodsState;
+  InitialPaymentMethodsState get _value =>
+      super._value as InitialPaymentMethodsState;
 }
 
 /// @nodoc
@@ -126,7 +131,9 @@ class _$InitialPaymentMethodsState
   @override
   void debugFillProperties(DiagnosticPropertiesBuilder properties) {
     super.debugFillProperties(properties);
-    properties..add(DiagnosticsProperty('type', 'PaymentMethodsState.initialPaymentMethodsState'));
+    properties
+      ..add(DiagnosticsProperty(
+          'type', 'PaymentMethodsState.initialPaymentMethodsState'));
   }
 
   @override
@@ -171,7 +178,8 @@ class _$InitialPaymentMethodsState
   @override
   @optionalTypeArgs
   TResult map<TResult extends Object>({
-    @required TResult initialPaymentMethodsState(InitialPaymentMethodsState value),
+    @required
+        TResult initialPaymentMethodsState(InitialPaymentMethodsState value),
     @required TResult paymentMethodLoaded(PaymentMethodLoaded value),
     @required TResult paymentMethodEmpty(PaymentMethodEmpty value),
     @required TResult paymentMethodLoading(PaymentMethodLoading value),
@@ -215,7 +223,8 @@ abstract class $PaymentMethodLoadedCopyWith<$Res> {
 }
 
 /// @nodoc
-class _$PaymentMethodLoadedCopyWithImpl<$Res> extends _$PaymentMethodsStateCopyWithImpl<$Res>
+class _$PaymentMethodLoadedCopyWithImpl<$Res>
+    extends _$PaymentMethodsStateCopyWithImpl<$Res>
     implements $PaymentMethodLoadedCopyWith<$Res> {
   _$PaymentMethodLoadedCopyWithImpl(
       PaymentMethodLoaded _value, $Res Function(PaymentMethodLoaded) _then)
@@ -229,8 +238,9 @@ class _$PaymentMethodLoadedCopyWithImpl<$Res> extends _$PaymentMethodsStateCopyW
     Object paymentMethod = freezed,
   }) {
     return _then(PaymentMethodLoaded(
-      paymentMethod:
-          paymentMethod == freezed ? _value.paymentMethod : paymentMethod as PaymentMethod,
+      paymentMethod: paymentMethod == freezed
+          ? _value.paymentMethod
+          : paymentMethod as PaymentMethod,
     ));
   }
 
@@ -246,8 +256,11 @@ class _$PaymentMethodLoadedCopyWithImpl<$Res> extends _$PaymentMethodsStateCopyW
 }
 
 /// @nodoc
-class _$PaymentMethodLoaded with DiagnosticableTreeMixin implements PaymentMethodLoaded {
-  const _$PaymentMethodLoaded({@required this.paymentMethod}) : assert(paymentMethod != null);
+class _$PaymentMethodLoaded
+    with DiagnosticableTreeMixin
+    implements PaymentMethodLoaded {
+  const _$PaymentMethodLoaded({@required this.paymentMethod})
+      : assert(paymentMethod != null);
 
   @override
   final PaymentMethod paymentMethod;
@@ -261,7 +274,8 @@ class _$PaymentMethodLoaded with DiagnosticableTreeMixin implements PaymentMetho
   void debugFillProperties(DiagnosticPropertiesBuilder properties) {
     super.debugFillProperties(properties);
     properties
-      ..add(DiagnosticsProperty('type', 'PaymentMethodsState.paymentMethodLoaded'))
+      ..add(DiagnosticsProperty(
+          'type', 'PaymentMethodsState.paymentMethodLoaded'))
       ..add(DiagnosticsProperty('paymentMethod', paymentMethod));
   }
 
@@ -270,11 +284,13 @@ class _$PaymentMethodLoaded with DiagnosticableTreeMixin implements PaymentMetho
     return identical(this, other) ||
         (other is PaymentMethodLoaded &&
             (identical(other.paymentMethod, paymentMethod) ||
-                const DeepCollectionEquality().equals(other.paymentMethod, paymentMethod)));
+                const DeepCollectionEquality()
+                    .equals(other.paymentMethod, paymentMethod)));
   }
 
   @override
-  int get hashCode => runtimeType.hashCode ^ const DeepCollectionEquality().hash(paymentMethod);
+  int get hashCode =>
+      runtimeType.hashCode ^ const DeepCollectionEquality().hash(paymentMethod);
 
   @override
   $PaymentMethodLoadedCopyWith<PaymentMethodLoaded> get copyWith =>
@@ -314,7 +330,8 @@ class _$PaymentMethodLoaded with DiagnosticableTreeMixin implements PaymentMetho
   @override
   @optionalTypeArgs
   TResult map<TResult extends Object>({
-    @required TResult initialPaymentMethodsState(InitialPaymentMethodsState value),
+    @required
+        TResult initialPaymentMethodsState(InitialPaymentMethodsState value),
     @required TResult paymentMethodLoaded(PaymentMethodLoaded value),
     @required TResult paymentMethodEmpty(PaymentMethodEmpty value),
     @required TResult paymentMethodLoading(PaymentMethodLoading value),
@@ -360,7 +377,8 @@ abstract class $PaymentMethodEmptyCopyWith<$Res> {
 }
 
 /// @nodoc
-class _$PaymentMethodEmptyCopyWithImpl<$Res> extends _$PaymentMethodsStateCopyWithImpl<$Res>
+class _$PaymentMethodEmptyCopyWithImpl<$Res>
+    extends _$PaymentMethodsStateCopyWithImpl<$Res>
     implements $PaymentMethodEmptyCopyWith<$Res> {
   _$PaymentMethodEmptyCopyWithImpl(
       PaymentMethodEmpty _value, $Res Function(PaymentMethodEmpty) _then)
@@ -374,14 +392,19 @@ class _$PaymentMethodEmptyCopyWithImpl<$Res> extends _$PaymentMethodsStateCopyWi
     Object customerEmail = freezed,
   }) {
     return _then(PaymentMethodEmpty(
-      customerEmail: customerEmail == freezed ? _value.customerEmail : customerEmail as String,
+      customerEmail: customerEmail == freezed
+          ? _value.customerEmail
+          : customerEmail as String,
     ));
   }
 }
 
 /// @nodoc
-class _$PaymentMethodEmpty with DiagnosticableTreeMixin implements PaymentMethodEmpty {
-  const _$PaymentMethodEmpty({@required this.customerEmail}) : assert(customerEmail != null);
+class _$PaymentMethodEmpty
+    with DiagnosticableTreeMixin
+    implements PaymentMethodEmpty {
+  const _$PaymentMethodEmpty({@required this.customerEmail})
+      : assert(customerEmail != null);
 
   @override
   final String customerEmail;
@@ -395,7 +418,8 @@ class _$PaymentMethodEmpty with DiagnosticableTreeMixin implements PaymentMethod
   void debugFillProperties(DiagnosticPropertiesBuilder properties) {
     super.debugFillProperties(properties);
     properties
-      ..add(DiagnosticsProperty('type', 'PaymentMethodsState.paymentMethodEmpty'))
+      ..add(
+          DiagnosticsProperty('type', 'PaymentMethodsState.paymentMethodEmpty'))
       ..add(DiagnosticsProperty('customerEmail', customerEmail));
   }
 
@@ -404,11 +428,13 @@ class _$PaymentMethodEmpty with DiagnosticableTreeMixin implements PaymentMethod
     return identical(this, other) ||
         (other is PaymentMethodEmpty &&
             (identical(other.customerEmail, customerEmail) ||
-                const DeepCollectionEquality().equals(other.customerEmail, customerEmail)));
+                const DeepCollectionEquality()
+                    .equals(other.customerEmail, customerEmail)));
   }
 
   @override
-  int get hashCode => runtimeType.hashCode ^ const DeepCollectionEquality().hash(customerEmail);
+  int get hashCode =>
+      runtimeType.hashCode ^ const DeepCollectionEquality().hash(customerEmail);
 
   @override
   $PaymentMethodEmptyCopyWith<PaymentMethodEmpty> get copyWith =>
@@ -448,7 +474,8 @@ class _$PaymentMethodEmpty with DiagnosticableTreeMixin implements PaymentMethod
   @override
   @optionalTypeArgs
   TResult map<TResult extends Object>({
-    @required TResult initialPaymentMethodsState(InitialPaymentMethodsState value),
+    @required
+        TResult initialPaymentMethodsState(InitialPaymentMethodsState value),
     @required TResult paymentMethodLoaded(PaymentMethodLoaded value),
     @required TResult paymentMethodEmpty(PaymentMethodEmpty value),
     @required TResult paymentMethodLoading(PaymentMethodLoading value),
@@ -478,7 +505,8 @@ class _$PaymentMethodEmpty with DiagnosticableTreeMixin implements PaymentMethod
 }
 
 abstract class PaymentMethodEmpty implements PaymentMethodsState {
-  const factory PaymentMethodEmpty({@required String customerEmail}) = _$PaymentMethodEmpty;
+  const factory PaymentMethodEmpty({@required String customerEmail}) =
+      _$PaymentMethodEmpty;
 
   String get customerEmail;
   $PaymentMethodEmptyCopyWith<PaymentMethodEmpty> get copyWith;
@@ -486,14 +514,15 @@ abstract class PaymentMethodEmpty implements PaymentMethodsState {
 
 /// @nodoc
 abstract class $PaymentMethodLoadingCopyWith<$Res> {
-  factory $PaymentMethodLoadingCopyWith(
-          PaymentMethodLoading value, $Res Function(PaymentMethodLoading) then) =
+  factory $PaymentMethodLoadingCopyWith(PaymentMethodLoading value,
+          $Res Function(PaymentMethodLoading) then) =
       _$PaymentMethodLoadingCopyWithImpl<$Res>;
   $Res call({bool show});
 }
 
 /// @nodoc
-class _$PaymentMethodLoadingCopyWithImpl<$Res> extends _$PaymentMethodsStateCopyWithImpl<$Res>
+class _$PaymentMethodLoadingCopyWithImpl<$Res>
+    extends _$PaymentMethodsStateCopyWithImpl<$Res>
     implements $PaymentMethodLoadingCopyWith<$Res> {
   _$PaymentMethodLoadingCopyWithImpl(
       PaymentMethodLoading _value, $Res Function(PaymentMethodLoading) _then)
@@ -513,7 +542,9 @@ class _$PaymentMethodLoadingCopyWithImpl<$Res> extends _$PaymentMethodsStateCopy
 }
 
 /// @nodoc
-class _$PaymentMethodLoading with DiagnosticableTreeMixin implements PaymentMethodLoading {
+class _$PaymentMethodLoading
+    with DiagnosticableTreeMixin
+    implements PaymentMethodLoading {
   const _$PaymentMethodLoading({@required this.show}) : assert(show != null);
 
   @override
@@ -528,7 +559,8 @@ class _$PaymentMethodLoading with DiagnosticableTreeMixin implements PaymentMeth
   void debugFillProperties(DiagnosticPropertiesBuilder properties) {
     super.debugFillProperties(properties);
     properties
-      ..add(DiagnosticsProperty('type', 'PaymentMethodsState.paymentMethodLoading'))
+      ..add(DiagnosticsProperty(
+          'type', 'PaymentMethodsState.paymentMethodLoading'))
       ..add(DiagnosticsProperty('show', show));
   }
 
@@ -541,11 +573,13 @@ class _$PaymentMethodLoading with DiagnosticableTreeMixin implements PaymentMeth
   }
 
   @override
-  int get hashCode => runtimeType.hashCode ^ const DeepCollectionEquality().hash(show);
+  int get hashCode =>
+      runtimeType.hashCode ^ const DeepCollectionEquality().hash(show);
 
   @override
   $PaymentMethodLoadingCopyWith<PaymentMethodLoading> get copyWith =>
-      _$PaymentMethodLoadingCopyWithImpl<PaymentMethodLoading>(this, _$identity);
+      _$PaymentMethodLoadingCopyWithImpl<PaymentMethodLoading>(
+          this, _$identity);
 
   @override
   @optionalTypeArgs
@@ -581,7 +615,8 @@ class _$PaymentMethodLoading with DiagnosticableTreeMixin implements PaymentMeth
   @override
   @optionalTypeArgs
   TResult map<TResult extends Object>({
-    @required TResult initialPaymentMethodsState(InitialPaymentMethodsState value),
+    @required
+        TResult initialPaymentMethodsState(InitialPaymentMethodsState value),
     @required TResult paymentMethodLoaded(PaymentMethodLoaded value),
     @required TResult paymentMethodEmpty(PaymentMethodEmpty value),
     @required TResult paymentMethodLoading(PaymentMethodLoading value),
@@ -611,7 +646,8 @@ class _$PaymentMethodLoading with DiagnosticableTreeMixin implements PaymentMeth
 }
 
 abstract class PaymentMethodLoading implements PaymentMethodsState {
-  const factory PaymentMethodLoading({@required bool show}) = _$PaymentMethodLoading;
+  const factory PaymentMethodLoading({@required bool show}) =
+      _$PaymentMethodLoading;
 
   bool get show;
   $PaymentMethodLoadingCopyWith<PaymentMethodLoading> get copyWith;

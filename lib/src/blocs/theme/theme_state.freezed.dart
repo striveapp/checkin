@@ -53,7 +53,8 @@ mixin _$ThemeState {
 
 /// @nodoc
 abstract class $ThemeStateCopyWith<$Res> {
-  factory $ThemeStateCopyWith(ThemeState value, $Res Function(ThemeState) then) =
+  factory $ThemeStateCopyWith(
+          ThemeState value, $Res Function(ThemeState) then) =
       _$ThemeStateCopyWithImpl<$Res>;
   $Res call({ThemeData themeData});
 }
@@ -71,7 +72,8 @@ class _$ThemeStateCopyWithImpl<$Res> implements $ThemeStateCopyWith<$Res> {
     Object themeData = freezed,
   }) {
     return _then(_value.copyWith(
-      themeData: themeData == freezed ? _value.themeData : themeData as ThemeData,
+      themeData:
+          themeData == freezed ? _value.themeData : themeData as ThemeData,
     ));
   }
 }
@@ -98,7 +100,8 @@ class _$AppThemeCopyWithImpl<$Res> extends _$ThemeStateCopyWithImpl<$Res>
     Object themeData = freezed,
   }) {
     return _then(AppTheme(
-      themeData: themeData == freezed ? _value.themeData : themeData as ThemeData,
+      themeData:
+          themeData == freezed ? _value.themeData : themeData as ThemeData,
     ));
   }
 }
@@ -128,14 +131,17 @@ class _$AppTheme with DiagnosticableTreeMixin implements AppTheme {
     return identical(this, other) ||
         (other is AppTheme &&
             (identical(other.themeData, themeData) ||
-                const DeepCollectionEquality().equals(other.themeData, themeData)));
+                const DeepCollectionEquality()
+                    .equals(other.themeData, themeData)));
   }
 
   @override
-  int get hashCode => runtimeType.hashCode ^ const DeepCollectionEquality().hash(themeData);
+  int get hashCode =>
+      runtimeType.hashCode ^ const DeepCollectionEquality().hash(themeData);
 
   @override
-  $AppThemeCopyWith<AppTheme> get copyWith => _$AppThemeCopyWithImpl<AppTheme>(this, _$identity);
+  $AppThemeCopyWith<AppTheme> get copyWith =>
+      _$AppThemeCopyWithImpl<AppTheme>(this, _$identity);
 
   @override
   @optionalTypeArgs

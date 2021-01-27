@@ -14,7 +14,8 @@ class _$ProfileEventTearOff {
   const _$ProfileEventTearOff();
 
 // ignore: unused_element
-  ProfileUpdated profileUpdated({@required User user, @required bool isCurrentUser}) {
+  ProfileUpdated profileUpdated(
+      {@required User user, @required bool isCurrentUser}) {
     return ProfileUpdated(
       user: user,
       isCurrentUser: isCurrentUser,
@@ -55,7 +56,8 @@ mixin _$ProfileEvent {
 
 /// @nodoc
 abstract class $ProfileEventCopyWith<$Res> {
-  factory $ProfileEventCopyWith(ProfileEvent value, $Res Function(ProfileEvent) then) =
+  factory $ProfileEventCopyWith(
+          ProfileEvent value, $Res Function(ProfileEvent) then) =
       _$ProfileEventCopyWithImpl<$Res>;
   $Res call({User user, bool isCurrentUser});
 }
@@ -75,23 +77,29 @@ class _$ProfileEventCopyWithImpl<$Res> implements $ProfileEventCopyWith<$Res> {
   }) {
     return _then(_value.copyWith(
       user: user == freezed ? _value.user : user as User,
-      isCurrentUser: isCurrentUser == freezed ? _value.isCurrentUser : isCurrentUser as bool,
+      isCurrentUser: isCurrentUser == freezed
+          ? _value.isCurrentUser
+          : isCurrentUser as bool,
     ));
   }
 }
 
 /// @nodoc
-abstract class $ProfileUpdatedCopyWith<$Res> implements $ProfileEventCopyWith<$Res> {
-  factory $ProfileUpdatedCopyWith(ProfileUpdated value, $Res Function(ProfileUpdated) then) =
+abstract class $ProfileUpdatedCopyWith<$Res>
+    implements $ProfileEventCopyWith<$Res> {
+  factory $ProfileUpdatedCopyWith(
+          ProfileUpdated value, $Res Function(ProfileUpdated) then) =
       _$ProfileUpdatedCopyWithImpl<$Res>;
   @override
   $Res call({User user, bool isCurrentUser});
 }
 
 /// @nodoc
-class _$ProfileUpdatedCopyWithImpl<$Res> extends _$ProfileEventCopyWithImpl<$Res>
+class _$ProfileUpdatedCopyWithImpl<$Res>
+    extends _$ProfileEventCopyWithImpl<$Res>
     implements $ProfileUpdatedCopyWith<$Res> {
-  _$ProfileUpdatedCopyWithImpl(ProfileUpdated _value, $Res Function(ProfileUpdated) _then)
+  _$ProfileUpdatedCopyWithImpl(
+      ProfileUpdated _value, $Res Function(ProfileUpdated) _then)
       : super(_value, (v) => _then(v as ProfileUpdated));
 
   @override
@@ -104,7 +112,9 @@ class _$ProfileUpdatedCopyWithImpl<$Res> extends _$ProfileEventCopyWithImpl<$Res
   }) {
     return _then(ProfileUpdated(
       user: user == freezed ? _value.user : user as User,
-      isCurrentUser: isCurrentUser == freezed ? _value.isCurrentUser : isCurrentUser as bool,
+      isCurrentUser: isCurrentUser == freezed
+          ? _value.isCurrentUser
+          : isCurrentUser as bool,
     ));
   }
 }
@@ -141,7 +151,8 @@ class _$ProfileUpdated with DiagnosticableTreeMixin implements ProfileUpdated {
             (identical(other.user, user) ||
                 const DeepCollectionEquality().equals(other.user, user)) &&
             (identical(other.isCurrentUser, isCurrentUser) ||
-                const DeepCollectionEquality().equals(other.isCurrentUser, isCurrentUser)));
+                const DeepCollectionEquality()
+                    .equals(other.isCurrentUser, isCurrentUser)));
   }
 
   @override
@@ -200,8 +211,8 @@ class _$ProfileUpdated with DiagnosticableTreeMixin implements ProfileUpdated {
 }
 
 abstract class ProfileUpdated implements ProfileEvent {
-  const factory ProfileUpdated({@required User user, @required bool isCurrentUser}) =
-      _$ProfileUpdated;
+  const factory ProfileUpdated(
+      {@required User user, @required bool isCurrentUser}) = _$ProfileUpdated;
 
   @override
   User get user;

@@ -5,7 +5,6 @@ import 'package:bloc/bloc.dart';
 import 'package:checkin/src/blocs/auth/bloc.dart';
 import 'package:checkin/src/blocs/user/user_event.dart';
 import 'package:checkin/src/blocs/user/user_state.dart';
-import 'package:checkin/src/models/grade.dart';
 import 'package:checkin/src/repositories/image_repository.dart';
 import 'package:checkin/src/repositories/storage_repository.dart';
 import 'package:checkin/src/repositories/user_repository.dart';
@@ -67,12 +66,12 @@ class UserBloc extends Bloc<UserEvent, UserState> {
   }
 
   void _mapUpdateToState(String userEmail, UserEvent event) {
-    event.maybeWhen(
-        updateName: (String newName) async => await userRepository.updateUserName(
+    event.maybeMap(
+        updateName: (UpdateName updateName) async => await userRepository.updateUserName(
               userEmail,
-              newName,
+              updateName.newName,
             ),
-        updateImageUrl: (String userEmail) async {
+        updateImageUrl: (UpdateImageUrl updateImageUrl) async {
           File croppedFile = await imageRepository.getCroppedImage();
           if (croppedFile != null) {
             String fileName = "$userEmail-${DateTime.now()}.png";
@@ -84,15 +83,17 @@ class UserBloc extends Bloc<UserEvent, UserState> {
             );
           }
         },
-        updateGrade: (Grade newGrade) async => await userRepository.updateGrade(
+        updateGrade: (UpdateGrade updateGrade) async => await userRepository.updateGrade(
               userEmail,
-              newGrade,
+              updateGrade.newGrade,
             ),
-        updateFcmToken: (String userEmail, String newToken) async =>
+        updateFcmToken: (UpdateFcmToken updateFcmToken) async =>
             await userRepository.updateUserFcmToken(
               userEmail,
-              newToken,
+              updateFcmToken.newToken,
             ),
+        updateSelectedGym: (UpdateSelectedGym updateSelectedGym) async =>
+            await userRepository.updateSelectedGymId(userEmail, updateSelectedGym.newGymId),
         orElse: () => UserState.userError());
   }
 

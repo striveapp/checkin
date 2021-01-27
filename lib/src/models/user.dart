@@ -14,6 +14,7 @@ class User extends Equatable {
   final String selectedGymId;
   final bool isOwner;
   final bool hasActivePayments;
+  final List<String> knownGymIds;
 
   User({
     @required this.name,
@@ -24,6 +25,7 @@ class User extends Equatable {
     this.selectedGymId,
     this.isOwner = false,
     this.hasActivePayments,
+    this.knownGymIds,
   });
 
   factory User.fromFirebaseUser(FirebaseAuth.User firebaseUser,
@@ -40,10 +42,10 @@ class User extends Equatable {
 
   @override
   List<Object> get props =>
-      [name, email, imageUrl, grade, selectedGymId, isOwner, hasActivePayments];
+      [name, email, imageUrl, grade, selectedGymId, isOwner, hasActivePayments, knownGymIds];
 
   @override
   String toString() {
-    return 'User{name: $name, email: $email, imageUrl: $imageUrl, grade: $grade, isOwner: $isOwner, hasActivePayments: $hasActivePayments, selectedGymId: $selectedGymId}';
+    return 'User{uid: $uid, name: $name, email: $email, imageUrl: $imageUrl, grade: $grade, selectedGymId: $selectedGymId, isOwner: $isOwner, hasActivePayments: $hasActivePayments, knownGymIds: $knownGymIds}';
   }
 }

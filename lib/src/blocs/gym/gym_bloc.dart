@@ -11,12 +11,14 @@ import './bloc.dart';
 class GymBloc extends Bloc<GymEvent, GymState> {
   final GymRepository gymRepository;
   final UserBloc userBloc;
+  final String gymId;
 
   StreamSubscription<Gym> gymSub;
 
   GymBloc({
     @required this.gymRepository,
-    @required this.userBloc,
+    this.userBloc,
+    this.gymId,
   }) : super(InitialGymState());
 
   void _onUserStateChanged(userState) {
@@ -33,8 +35,16 @@ class GymBloc extends Bloc<GymEvent, GymState> {
     GymEvent event,
   ) async* {
     if (event is InitializeGym) {
-      _onUserStateChanged(userBloc.state);
-      userBloc.listen(_onUserStateChanged);
+      if(userBloc != null){
+        _onUserStateChanged(userBloc.state);
+        userBloc.listen(_onUserStateChanged);
+      }
+      else {
+        gymSub?.cancel();
+        gymSub = gymRepository.getGym(gymId).listen((gym) {
+          add(GymUpdated(gym: gym));
+        });
+      }
     }
 
     if (event is GymUpdated) {
