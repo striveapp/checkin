@@ -1,18 +1,19 @@
 import 'package:checkin/src/blocs/notifications/bloc.dart';
 import 'package:checkin/src/blocs/user/bloc.dart';
+import 'package:checkin/src/logging/logger.dart';
 import 'package:checkin/src/repositories/notification_repository.dart';
 import 'package:checkin/src/ui/components/loading_indicator.dart';
 import 'package:checkin/src/ui/components/notification_toast.dart';
+import 'package:checkin/src/ui/pages/leaderboard_page.dart';
 import 'package:checkin/src/ui/pages/onboarding/name_selection_page.dart';
 import 'package:checkin/src/ui/pages/onboarding/unselected_gym_page.dart';
-import 'package:checkin/src/ui/pages/leaderboard_page.dart';
 import 'package:checkin/src/ui/pages/stats_page.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter/widgets.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 
-import 'onboarding/grade_page.dart';
 import 'lessons_page.dart';
+import 'onboarding/grade_page.dart';
 
 class HomePage extends StatelessWidget {
   @override
@@ -28,7 +29,7 @@ class HomePage extends StatelessWidget {
             NotificationToast.show(context, state.notification.title, state.notification.body);
           }
           if (state is NotificationToNavigate) {
-            debugPrint("notification received with path ${state.path}");
+            Logger.log.i("Notification received! Path to navigate [${state.path}]");
             Navigator.of(context).pushNamed(state.path);
           }
         },

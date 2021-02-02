@@ -1,4 +1,5 @@
 import 'package:checkin/src/api/http_client.dart';
+import 'package:checkin/src/logging/logger.dart';
 import 'package:flutter/material.dart';
 
 import 'api.dart';
@@ -16,7 +17,8 @@ class MembershipApi {
       'gymId': gymId,
     };
     await Api.call(functionName: "unsubscribe", parameters: parameters)
-        .then((_) => {debugPrint("User unsubscribed")});
+        .then((_) => {Logger.log.i("User unsubscribed")})
+        .catchError((err, st) => {Logger.log.e("An error happened calling unsubscribe", err, st)});
   }
 
   Future<void> createSubscription({String gymId, String customerId, String priceId}) async {

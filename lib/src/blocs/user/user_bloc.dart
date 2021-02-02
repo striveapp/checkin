@@ -5,6 +5,7 @@ import 'package:bloc/bloc.dart';
 import 'package:checkin/src/blocs/auth/bloc.dart';
 import 'package:checkin/src/blocs/user/user_event.dart';
 import 'package:checkin/src/blocs/user/user_state.dart';
+import 'package:checkin/src/logging/logger.dart';
 import 'package:checkin/src/repositories/image_repository.dart';
 import 'package:checkin/src/repositories/storage_repository.dart';
 import 'package:checkin/src/repositories/user_repository.dart';
@@ -55,11 +56,11 @@ class UserBloc extends Bloc<UserEvent, UserState> {
         if (this.state is UserSuccess) {
           _mapUpdateToState((this.state as UserSuccess).currentUser.email, event);
         } else {
-          debugPrint('Unable to update user [$event] from userState [$state]');
+          Logger.log.w("Unable to update user [$event] from UserState [$state]");
           yield UserError();
         }
-      } catch (e) {
-        print('Error during user update: ' + e.toString());
+      } catch (e, st) {
+        Logger.log.e("Error during UserUpdate", e, st);
         yield UserError();
       }
     }

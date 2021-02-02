@@ -13,13 +13,15 @@ class PaymentApi {
     String gymId,
     String customerEmail,
   }) async {
-    Map<String, String> data = {"email": customerEmail};
+    Map<String, String> data = {
+      "email": customerEmail,
+    };
 
-    var result =
-        await _httpClient.post(endpoint: "payments/$gymId/create-setup-intent", body: data);
+    var result = await _httpClient.post(
+      endpoint: "payments/$gymId/create-setup-intent",
+      body: data,
+    );
 
-    String clientSecret = result["clientSecret"];
-    print("clientSecret $clientSecret");
-    return clientSecret;
+    return result["clientSecret"];
   }
 }

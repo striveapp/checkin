@@ -1,11 +1,13 @@
 import 'dart:async';
-import 'package:checkin/src/repositories/notification_repository.dart';
 
 import 'package:bloc/bloc.dart';
 import 'package:checkin/src/blocs/user/bloc.dart';
+import 'package:checkin/src/logging/logger.dart';
 import 'package:checkin/src/models/notification.dart';
+import 'package:checkin/src/repositories/notification_repository.dart';
 import 'package:flutter/foundation.dart';
 import 'package:meta/meta.dart';
+
 import 'bloc.dart';
 
 class NotificationsBloc extends Bloc<NotificationsEvent, NotificationsState> {
@@ -29,8 +31,8 @@ class NotificationsBloc extends Bloc<NotificationsEvent, NotificationsState> {
       try {
         this.notificationRepository.setup(onSuccess: _saveUserToken);
         yield NotificationsInitialized();
-      } catch (err) {
-        debugPrint(err);
+      } catch (err, st) {
+        Logger.log.e("Error in setup the notifications", err, st);
       }
     }
     if (event is ShowDialog) {
@@ -55,7 +57,7 @@ class NotificationsBloc extends Bloc<NotificationsEvent, NotificationsState> {
   }
 
   Future _onMessage(Map<String, dynamic> msg) async {
-    debugPrint("OnMessage");
+    Logger.log.i("called OnMessage");
     BasicNotification notification = _mapMsgToGeneralNotification(msg);
     add(ShowDialog(notification: notification));
   }
@@ -73,12 +75,12 @@ class NotificationsBloc extends Bloc<NotificationsEvent, NotificationsState> {
   }
 
   Future _onResume(Map<String, dynamic> msg) async {
-    debugPrint("OnResume");
+    Logger.log.i("called OnResume");
     _onLaunchOrOnResume(msg);
   }
 
   Future _onLaunch(Map<String, dynamic> msg) async {
-    debugPrint("OnLaunch");
+    Logger.log.i("called OnLaunch");
     _onLaunchOrOnResume(msg);
   }
 

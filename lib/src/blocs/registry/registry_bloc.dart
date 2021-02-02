@@ -3,6 +3,7 @@ import 'dart:async';
 import 'package:bloc/bloc.dart';
 import 'package:checkin/src/api/lesson_api.dart';
 import 'package:checkin/src/blocs/user/bloc.dart';
+import 'package:checkin/src/logging/logger.dart';
 import 'package:checkin/src/models/lesson.dart';
 import 'package:checkin/src/repositories/lesson_repository.dart';
 import 'package:flutter/foundation.dart';
@@ -92,7 +93,7 @@ class RegistryBloc extends Bloc<RegistryEvent, RegistryState> {
 
     if (event is Unregister) {
       try {
-        debugPrint("unregistering user ${event.attendee}");
+        Logger.log.i("Unregistering user ${event.attendee}");
         await this.lessonRepository.unregister(
               event.gymId,
               lessonDate,

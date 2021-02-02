@@ -4,6 +4,7 @@ import 'package:bloc/bloc.dart';
 import 'package:checkin/src/api/api.dart';
 import 'package:checkin/src/api/membership_api.dart';
 import 'package:checkin/src/blocs/membership/bloc.dart';
+import 'package:checkin/src/logging/logger.dart';
 import 'package:checkin/src/models/membership.dart';
 import 'package:checkin/src/repositories/analytics_repository.dart';
 import 'package:checkin/src/repositories/membership_repository.dart';
@@ -47,8 +48,8 @@ class MembershipBloc extends Bloc<MembershipEvent, MembershipState> {
         membership: membership,
       ));
     });
-    _membershipSub.onError((error) {
-      debugPrint("An error occurred while loading membership $error");
+    _membershipSub.onError((err, st) {
+      Logger.log.e("An error occurred while loading membership", err, st);
     });
   }
 
@@ -62,10 +63,11 @@ class MembershipBloc extends Bloc<MembershipEvent, MembershipState> {
         await _membershipApi.unsubscribe(gymId: _selectedGymId);
       } on ApiException catch (err) {
         yield MembershipState.membershipError(errorMessage: err.message);
-      } catch (err, stackTrace) {
-        await _analyticsRepository.unsubscribeError(err: err, stackTrace: stackTrace);
+      } catch (err, st) {
+        Logger.log.e("An error occurred while attempting to unsubscribe", err, st);
+        await _analyticsRepository.unsubscribeError(err: err, stackTrace: st);
         yield MembershipState.membershipError(
-            errorMessage: "Something went wrong while with unsubscribe: [${err}]");
+            errorMessage: "Something went wrong with unsubscribe: [${err}]");
       }
     }
 

@@ -2,6 +2,7 @@ import 'package:checkin/src/blocs/auth/bloc.dart';
 import 'package:checkin/src/blocs/dynamic_link/bloc.dart';
 import 'package:checkin/src/blocs/theme/bloc.dart';
 import 'package:checkin/src/localization/localization.dart';
+import 'package:checkin/src/logging/logger.dart';
 import 'package:checkin/src/repositories/analytics_repository.dart';
 import 'package:checkin/src/repositories/gym_repository.dart';
 import 'package:checkin/src/repositories/image_repository.dart';
@@ -61,7 +62,7 @@ class _AppState extends State<App> with WidgetsBindingObserver {
 
   @override
   void didChangeAppLifecycleState(final AppLifecycleState state) {
-    debugPrint("AppLifecycleState changed to [$state]");
+    Logger.log.i("AppLifecycleState changed to [$state]");
     if (state == AppLifecycleState.resumed) {
       var authBloc = context.read<AuthBloc>();
       authBloc.add(AppStarted());
@@ -106,7 +107,7 @@ class _AppState extends State<App> with WidgetsBindingObserver {
             BlocListener<DynamicLinkBloc, DynamicLinkState>(
                 listener: (BuildContext context, DynamicLinkState state) {
               if (state is DynamicLinkToNavigate) {
-                debugPrint("deep link received with path ${state.path}");
+                Logger.log.i("Deep link received! Path to navigate [${state.path}]");
                 Navigator.of(context).popUntil(ModalRoute.withName(Navigator.defaultRouteName));
 
                 Navigator.of(context).pushNamed(state.path);
@@ -147,9 +148,9 @@ class _AppState extends State<App> with WidgetsBindingObserver {
             }),
           ],
           child: BlocBuilder<AuthBloc, AuthState>(builder: (BuildContext context, AuthState state) {
-            debugPrint("auth state change detected in main app [$state]");
+            Logger.log.i("Auth state change detected [$state]");
             if (state is AuthAuthenticated) {
-              debugPrint("User Authenticated: [${state.loggedUser}]");
+              Logger.log.i("User authenticated: [${state.loggedUser}]");
               return MultiBlocProvider(
                 providers: [
                   BlocProvider<UserBloc>(

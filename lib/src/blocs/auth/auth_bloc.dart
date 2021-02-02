@@ -3,6 +3,7 @@ import 'dart:async';
 import 'package:bloc/bloc.dart';
 import 'package:checkin/src/blocs/auth/auth_event.dart';
 import 'package:checkin/src/blocs/auth/auth_state.dart';
+import 'package:checkin/src/logging/logger.dart';
 import 'package:checkin/src/models/user.dart';
 import 'package:checkin/src/repositories/analytics_repository.dart';
 import 'package:checkin/src/repositories/auth_repository.dart';
@@ -42,14 +43,14 @@ class AuthBloc extends Bloc<AuthEvent, AuthState> {
         _authSub = authRepository
             .getAuthState()
             .listen((loggedUser) async => add(AuthUpdated(loggedUser: loggedUser)));
-      } catch (e) {
-        debugPrint('Error occurred when checking for auth state:' + e.toString());
+      } catch (e, st) {
+        Logger.log.e('Error occurred when checking for auth state', e, st);
         yield AuthUnauthenticated();
       }
     }
 
     if (event is AuthUpdated) {
-      debugPrint('add AuthUpdated with user: ${event.loggedUser ?? "Unauthenticated"}');
+      Logger.log.i('add AuthUpdated with user: ${event.loggedUser ?? "Unauthenticated"}');
       if (event.loggedUser != null) {
         try {
           await analyticsRepository.setUserProperties(event.loggedUser.uid);
@@ -71,10 +72,10 @@ class AuthBloc extends Bloc<AuthEvent, AuthState> {
 
     if (event is LogOut) {
       try {
-        debugPrint('Attempting to LogOut...');
+        Logger.log.i('Attempting to logout...');
         await authRepository.signOut();
-      } catch (e) {
-        debugPrint('Error occurred trying to signOut:' + e.toString());
+      } catch (e, st) {
+        Logger.log.e('Error occurred trying to signOut', e, st);
       }
     }
   }
@@ -82,7 +83,7 @@ class AuthBloc extends Bloc<AuthEvent, AuthState> {
   Future<void> _setReferredGymForUser(String userEmail) async {
     await _referredGymSub?.cancel();
     _referredGymSub = localStorageRepository.getReferredGymId().listen((referredGymId) async {
-      print("Setting referredGym [$referredGymId] for user [$userEmail]");
+      Logger.log.i("Setting referredGym [$referredGymId] for user [$userEmail]");
       await userRepository.updateSelectedGymId(userEmail, referredGymId);
       await userRepository.updateKnownGymIds(userEmail, referredGymId);
       await localStorageRepository.removeReferredGym();

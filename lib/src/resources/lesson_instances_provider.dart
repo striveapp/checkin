@@ -1,3 +1,4 @@
+import 'package:checkin/src/logging/logger.dart';
 import 'package:checkin/src/models/attendee.dart';
 import 'package:checkin/src/models/grade.dart';
 import 'package:checkin/src/models/lesson.dart';
@@ -5,7 +6,6 @@ import 'package:checkin/src/models/master.dart';
 import 'package:checkin/src/repositories/lesson_repository.dart';
 import 'package:checkin/src/util/date_util.dart';
 import 'package:cloud_firestore/cloud_firestore.dart';
-import 'package:flutter/foundation.dart';
 import 'package:intl/intl.dart';
 
 class LessonInstancesProvider implements LessonRepository {
@@ -67,7 +67,7 @@ class LessonInstancesProvider implements LessonRepository {
 
   @override
   Future<void> register(String gymId, String date, String lessonId, Attendee attendee) async {
-    debugPrint("User [$attendee] attends lesson with id [$lessonId]");
+    Logger.log.i("User [$attendee] attends lesson with id [$lessonId]");
     await _firestore
         .collection(gymPath)
         .doc(gymId)
@@ -89,7 +89,7 @@ class LessonInstancesProvider implements LessonRepository {
 
   @override
   Future<void> unregister(String gymId, String date, String lessonId, Attendee attendee) async {
-    debugPrint("User [$attendee] removed from lesson with id [$lessonId]");
+    Logger.log.i("User [$attendee] removed from lesson with id [$lessonId]");
     await _firestore
         .collection(gymPath)
         .doc(gymId)
@@ -122,7 +122,7 @@ class LessonInstancesProvider implements LessonRepository {
 
   @override
   Future<void> closeLesson(String gymId, String date, String lessonId) async {
-    debugPrint("Close lesson with id [$lessonId]");
+    Logger.log.i("Close lesson with id [$lessonId]");
     await _firestore
         .collection(gymPath)
         .doc(gymId)

@@ -1,5 +1,6 @@
 import 'package:checkin/src/blocs/gym/bloc.dart';
 import 'package:checkin/src/blocs/user/bloc.dart';
+import 'package:checkin/src/logging/logger.dart';
 import 'package:checkin/src/models/user.dart';
 import 'package:checkin/src/repositories/gym_repository.dart';
 import 'package:checkin/src/ui/components/loading_indicator.dart';
@@ -26,7 +27,7 @@ class GymSelectionTile extends StatelessWidget {
           initialGymState: (InitialGymState initialGymState) => LoadingIndicator(),
           gymLoaded: (GymLoaded gymLoaded) => InkWell(
             onTap: () async {
-              print('changing gym from [${currentUser.selectedGymId}] to [$gymId]');
+              Logger.log.i("Switching gym! FROM [${currentUser.selectedGymId}] TO [$gymId]");
               await context.read<UserBloc>().add(UserEvent.updateSelectedGym(
                     newGymId: gymId,
                   ));

@@ -1,3 +1,4 @@
+import 'package:checkin/src/logging/logger.dart';
 import 'package:checkin/src/models/user.dart';
 import 'package:checkin/src/repositories/auth_repository.dart';
 import 'package:firebase_auth/firebase_auth.dart' hide User;
@@ -158,7 +159,7 @@ class AuthProvider implements AuthRepository {
           .signInWithEmailAndPassword(email: "test-master@test.com", password: "test123");
     }
     var firebaseUser = _firebaseAuth.currentUser;
-    debugPrint("test firebaseUser is [$firebaseUser]");
+    Logger.log.i("FirebaseUser for test is is [$firebaseUser]");
 
     return User.fromFirebaseUser(firebaseUser);
   }

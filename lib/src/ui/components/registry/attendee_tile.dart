@@ -108,7 +108,6 @@ class AttendeeTile extends StatelessWidget {
                 ],
               ),
               onTap: () async {
-                debugPrint("User tapped on ${attendee.name}");
                 Navigator.of(context).pushNamed('stats/${attendee.email}');
               },
             ),
