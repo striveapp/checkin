@@ -3,6 +3,7 @@ import 'dart:async';
 import 'package:bloc/bloc.dart';
 import 'package:checkin/src/api/membership_api.dart';
 import 'package:checkin/src/blocs/gym/bloc.dart';
+import 'package:checkin/src/logging/logger.dart';
 import 'package:checkin/src/models/gym.dart';
 import 'package:checkin/src/repositories/analytics_repository.dart';
 import 'package:flutter/material.dart';
@@ -24,8 +25,8 @@ class SubscriptionBloc extends Bloc<SubscriptionEvent, SubscriptionState> {
     try {
       _onGymStateUpdated(gymBloc.state);
       gymBloc.listen(_onGymStateUpdated);
-    } catch (err) {
-      debugPrint("Error while fetching the plans stream $err");
+    } catch (err, st) {
+      Logger.log.e("Error while fetching the plans stream!", err, st);
     }
   }
 

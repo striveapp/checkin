@@ -7,6 +7,7 @@ import 'package:checkin/src/blocs/auth/bloc.dart';
 import 'package:checkin/src/blocs/dynamic_link/bloc.dart';
 import 'package:checkin/src/blocs/theme/bloc.dart';
 import 'package:checkin/src/blocs/version/bloc.dart';
+import 'package:checkin/src/logging/logger.dart';
 import 'package:checkin/src/models/user.dart';
 import 'package:checkin/src/repositories/analytics_repository.dart';
 import 'package:checkin/src/repositories/auth_repository.dart';
@@ -62,6 +63,9 @@ Future<void> mainCommon(AppConfig appConfig) async {
 
   // init routes
   Routes.configureRoutes(Application.router);
+
+  // init logger
+  Logger.log = appConfig.logger;
 
   // init repositories
   final StorageRepository storageRepository = StorageRepository();
@@ -123,13 +127,14 @@ Future<void> mainCommon(AppConfig appConfig) async {
             ),
             BlocProvider<AuthBloc>(
               create: (context) => AuthBloc(
-                  authRepository: context.read<AuthRepository>(),
-                  analyticsRepository: context.read<AnalyticsRepository>(),
-                  userRepository: context.read<UserRepository>(),
-                  localStorageRepository: context.read<LocalStorageRepository>(),
-                  loggedUser: user, // todo retrieve from storage cache
-                  versionUtil: VersionUtil())
-                ..add(AppStarted()),
+                authRepository: context.read<AuthRepository>(),
+                analyticsRepository: context.read<AnalyticsRepository>(),
+                userRepository: context.read<UserRepository>(),
+                localStorageRepository: context.read<LocalStorageRepository>(),
+                loggedUser: user,
+                // todo retrieve from storage cache
+                versionUtil: VersionUtil(),
+              )..add(AppStarted()),
             ),
             BlocProvider<DynamicLinkBloc>(
               create: (context) => DynamicLinkBloc(

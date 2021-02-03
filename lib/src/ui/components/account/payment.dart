@@ -1,9 +1,10 @@
 import 'package:checkin/src/blocs/gym/bloc.dart';
+import 'package:checkin/src/localization/localization.dart';
+import 'package:checkin/src/logging/logger.dart';
 import 'package:checkin/src/ui/components/empty_widget.dart';
 import 'package:checkin/src/ui/components/membership/membership_card.dart';
 import 'package:checkin/src/ui/components/payment_methods/payment_method_card.dart';
 import 'package:flutter/material.dart';
-import 'package:checkin/src/localization/localization.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 
 class Payment extends StatelessWidget {
@@ -56,17 +57,17 @@ class Payment extends StatelessWidget {
    * */
   bool paymentsToggle(GymState state) {
     if (userHasActivePayments != null) {
-      debugPrint("User payments toggle is [$userHasActivePayments]!");
+      Logger.log.i("User payments toggle is [$userHasActivePayments]!");
       return userHasActivePayments;
     }
 
     if (state is GymLoaded) {
-      debugPrint("Gym payments toggle is [${state.gym.hasActivePayments}]!");
+      Logger.log.i("Gym payments toggle is [${state.gym.hasActivePayments}]!");
       return state.gym.hasActivePayments;
     }
 
     // should never get here
-    debugPrint("When you get here you should question your reality!");
+    Logger.log.wtf("When you get here you should question your reality!");
     return false;
   }
 }

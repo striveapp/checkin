@@ -2,6 +2,7 @@ import 'dart:async';
 
 import 'package:checkin/main_common.dart' as app;
 import 'package:checkin/src/constants.dart';
+import 'package:checkin/src/logging/logger.dart';
 import 'package:checkin/src/models/grade.dart';
 import 'package:checkin/src/models/lesson.dart';
 import 'package:checkin/src/resources/lesson_instances_provider.dart';
@@ -9,7 +10,6 @@ import 'package:checkin/src/resources/stats_provider.dart';
 import 'package:checkin/src/resources/user_provider.dart';
 import 'package:firebase_auth/firebase_auth.dart';
 import 'package:firebase_core/firebase_core.dart';
-import 'package:flutter/material.dart';
 import 'package:flutter_driver/driver_extension.dart';
 import 'package:intl/intl.dart';
 
@@ -45,7 +45,7 @@ Future<void> setup() async {
   await firebaseAuth.signInWithEmailAndPassword(email: "test@test.com", password: "test123");
   await cleanDatabase();
   await firebaseAuth.signOut();
-  debugPrint("Finished setup, db cleaned!");
+  Logger.log.i("Finished setup, db cleaned!");
 }
 
 Future<void> cleanDatabase() async {

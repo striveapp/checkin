@@ -36,26 +36,19 @@ void main() {
       mockMembershipRepository = MockMembershipRepository();
       mockMembershipApi = MockMembershipApi();
       mockAnalyticsRepository = MockAnalyticsRepository();
-      configureThrowOnMissingStub([
-        mockMembershipRepository,
-        mockMembershipApi,
-        mockAnalyticsRepository
-      ]);
+      configureThrowOnMissingStub(
+          [mockMembershipRepository, mockMembershipApi, mockAnalyticsRepository]);
     });
 
     tearDown(() {
-      logAndVerifyNoMoreInteractions([
-        mockMembershipRepository,
-        mockMembershipApi,
-        mockAnalyticsRepository
-      ]);
+      logAndVerifyNoMoreInteractions(
+          [mockMembershipRepository, mockMembershipApi, mockAnalyticsRepository]);
     });
 
     group("initial state", () {
       MembershipBloc membershipBloc;
       setUp(() {
-        when(mockMembershipRepository.getMembership(
-                email: fakeEmail, gymId: fakeGymId))
+        when(mockMembershipRepository.getMembership(email: fakeEmail, gymId: fakeGymId))
             .thenAnswer((_) => Stream.empty());
 
         membershipBloc = MembershipBloc(
@@ -68,8 +61,7 @@ void main() {
       });
 
       tearDown(() {
-        verify(mockMembershipRepository.getMembership(
-            email: fakeEmail, gymId: fakeGymId));
+        verify(mockMembershipRepository.getMembership(email: fakeEmail, gymId: fakeGymId));
       });
 
       test("is InitialMembershipState", () {
@@ -83,8 +75,8 @@ void main() {
 
     group("on MembershipUpdated event", () {
       group("when there is an inactive membership", () {
-        Membership inactiveMembership = Membership(
-            status: Membership.INACTIVE_MEMBERSHIP, customerId: "cus_123");
+        Membership inactiveMembership =
+            Membership(status: Membership.INACTIVE_MEMBERSHIP, customerId: "cus_123");
 
         setUp(() {
           when(mockMembershipRepository.getMembership(
@@ -116,8 +108,8 @@ void main() {
             ]);
       });
       group("when there is an active membership", () {
-        Membership activeMembership = Membership(
-            status: Membership.ACTIVE_MEMBERSHIP, customerId: "cus_123");
+        Membership activeMembership =
+            Membership(status: Membership.ACTIVE_MEMBERSHIP, customerId: "cus_123");
         setUp(() {
           when(mockMembershipRepository.getMembership(
             gymId: fakeUser.selectedGymId,
@@ -151,19 +143,16 @@ void main() {
     group("on Unsubscribe event", () {
       group("when NO error occurred", () {
         setUp(() {
-          when(mockMembershipRepository.getMembership(
-                  email: fakeEmail, gymId: fakeGymId))
+          when(mockMembershipRepository.getMembership(email: fakeEmail, gymId: fakeGymId))
               .thenAnswer((_) => Stream.empty());
-          when(mockAnalyticsRepository.logUnsubscribe())
-              .thenAnswer((realInvocation) => null);
+          when(mockAnalyticsRepository.logUnsubscribe()).thenAnswer((realInvocation) => null);
           when(mockMembershipApi.unsubscribe(
             gymId: fakeUser.selectedGymId,
           )).thenAnswer((_) => null);
         });
 
         tearDown(() {
-          verify(mockMembershipRepository.getMembership(
-              email: fakeEmail, gymId: fakeGymId));
+          verify(mockMembershipRepository.getMembership(email: fakeEmail, gymId: fakeGymId));
           verify(mockAnalyticsRepository.logUnsubscribe());
           verify(mockMembershipApi.unsubscribe(
             gymId: fakeUser.selectedGymId,
@@ -190,11 +179,7 @@ void main() {
 
       group("when en error occurred", () {
         setUp(() {
-          resetMocks([
-            mockMembershipRepository,
-            mockMembershipApi,
-            mockAnalyticsRepository
-          ]);
+          resetMocks([mockMembershipRepository, mockMembershipApi, mockAnalyticsRepository]);
         });
 
         group("and the error is ApiException", () {
@@ -203,8 +188,7 @@ void main() {
             "the_end_of_the_fuckin_world",
           );
           setUp(() {
-            when(mockMembershipRepository.getMembership(
-                    email: fakeEmail, gymId: fakeGymId))
+            when(mockMembershipRepository.getMembership(email: fakeEmail, gymId: fakeGymId))
                 .thenAnswer((_) => Stream.empty());
 
             when(mockAnalyticsRepository.logUnsubscribe())
@@ -215,8 +199,7 @@ void main() {
           });
 
           tearDown(() {
-            verify(mockMembershipRepository.getMembership(
-                email: fakeEmail, gymId: fakeGymId));
+            verify(mockMembershipRepository.getMembership(email: fakeEmail, gymId: fakeGymId));
             verify(mockAnalyticsRepository.logUnsubscribe());
             verify(mockMembershipApi.unsubscribe(
               gymId: fakeUser.selectedGymId,
@@ -248,8 +231,7 @@ void main() {
           final errorMessage = "a bad little error";
 
           setUp(() {
-            when(mockMembershipRepository.getMembership(
-                    email: fakeEmail, gymId: fakeGymId))
+            when(mockMembershipRepository.getMembership(email: fakeEmail, gymId: fakeGymId))
                 .thenAnswer((_) => Stream.empty());
 
             when(mockAnalyticsRepository.logUnsubscribe())
@@ -261,22 +243,19 @@ void main() {
 
             when(
               mockAnalyticsRepository.unsubscribeError(
-                  err: errorMessage,
-                  stackTrace: argThat(isA<StackTrace>(), named: 'stackTrace')),
+                  err: errorMessage, stackTrace: argThat(isA<StackTrace>(), named: 'stackTrace')),
             ).thenAnswer((_) => Future.value(null));
           });
 
           tearDown(() {
-            verify(mockMembershipRepository.getMembership(
-                email: fakeEmail, gymId: fakeGymId));
+            verify(mockMembershipRepository.getMembership(email: fakeEmail, gymId: fakeGymId));
             verify(mockAnalyticsRepository.logUnsubscribe());
             verify(mockMembershipApi.unsubscribe(
               gymId: fakeUser.selectedGymId,
             ));
             verify(
               mockAnalyticsRepository.unsubscribeError(
-                  err: errorMessage,
-                  stackTrace: argThat(isA<StackTrace>(), named: 'stackTrace')),
+                  err: errorMessage, stackTrace: argThat(isA<StackTrace>(), named: 'stackTrace')),
             );
           });
 
@@ -292,8 +271,7 @@ void main() {
               expect: [
                 MembershipLoading(),
                 MembershipError(
-                    errorMessage:
-                        "Something went wrong while with unsubscribe: [$errorMessage]"),
+                    errorMessage: "Something went wrong with unsubscribe: [$errorMessage]"),
               ],
               verify: (bloc) async {
                 await untilCalled(mockAnalyticsRepository.logUnsubscribe());

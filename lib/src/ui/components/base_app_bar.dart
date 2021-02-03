@@ -1,4 +1,5 @@
 import 'package:checkin/src/blocs/user/bloc.dart';
+import 'package:checkin/src/logging/logger.dart';
 import 'package:checkin/src/ui/components/empty_widget.dart';
 import 'package:checkin/src/ui/components/user_image.dart';
 import 'package:flutter/material.dart';
@@ -26,8 +27,7 @@ class BaseAppBar extends StatelessWidget implements PreferredSizeWidget {
         if (state is UserSuccess) {
           currentUser = state.currentUser;
         }
-        debugPrint("drawing AppBar with user [$currentUser]");
-
+        Logger.log.i("drawing AppBar with user [$currentUser]");
         return AppBar(
           centerTitle: true,
           backgroundColor: this.backgroundColor ?? Theme.of(context).primaryColor,

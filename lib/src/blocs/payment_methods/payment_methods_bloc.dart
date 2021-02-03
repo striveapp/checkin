@@ -3,6 +3,7 @@ import 'dart:async';
 import 'package:bloc/bloc.dart';
 import 'package:checkin/src/api/payment_api.dart';
 import 'package:checkin/src/blocs/user/bloc.dart';
+import 'package:checkin/src/logging/logger.dart';
 import 'package:checkin/src/models/payment_method.dart';
 import 'package:checkin/src/repositories/payment_method_repository.dart';
 import 'package:checkin/src/util/url_launcher_util.dart';
@@ -34,8 +35,8 @@ class PaymentMethodsBloc extends Bloc<PaymentMethodsEvent, PaymentMethodsState> 
     try {
       _onUserStateChanged(_userBloc.state);
       _userBloc.listen(_onUserStateChanged);
-    } catch (err) {
-      debugPrint("Error while fetching the gym stream $err");
+    } catch (err, st) {
+      Logger.log.e("Error while fetching the gym stream", err, st);
     }
   }
 
@@ -66,8 +67,8 @@ class PaymentMethodsBloc extends Bloc<PaymentMethodsEvent, PaymentMethodsState> 
         yield PaymentMethodLoading(show: false);
         await _urlLauncherUtil.launchUrl(
             "https://${gym.paymentAppDomain}?pk=${gym.stripePublicKey}&customerEmail=${event.billingEmail}&cs=$clientSecret&gymName=${gym.id}&nocache=${DateTime.now()}");
-      } catch (err) {
-        print(err);
+      } catch (err, st) {
+        Logger.log.e("Error in RegisterBankAccount", err, st);
       }
     }
     if (event is ChangeBankAccount) {
@@ -81,8 +82,8 @@ class PaymentMethodsBloc extends Bloc<PaymentMethodsEvent, PaymentMethodsState> 
         yield PaymentMethodLoading(show: false);
         await _urlLauncherUtil.launchUrl(
             "https://${gym.paymentAppDomain}?pk=${gym.stripePublicKey}&customerEmail=${event.billingEmail}&cs=$clientSecret&gymName=${gym.id}&nocache=${DateTime.now()}");
-      } catch (err) {
-        print(err);
+      } catch (err, st) {
+        Logger.log.e("Error with ChangeBankAccount", err, st);
       }
     }
     if (event is PaymentMethodUpdated) {

@@ -2,6 +2,7 @@ import 'dart:async';
 
 import 'package:bloc/bloc.dart';
 import 'package:checkin/src/blocs/user/bloc.dart';
+import 'package:checkin/src/logging/logger.dart';
 import 'package:checkin/src/repositories/user_repository.dart';
 import 'package:flutter/foundation.dart';
 import 'package:meta/meta.dart';
@@ -30,8 +31,10 @@ class ProfileBloc extends Bloc<ProfileEvent, ProfileState> {
           add(ProfileUpdated(user: user, isCurrentUser: false));
         });
 
-        userSub.onError((error) => debugPrint(
-              "Error loading profile with mail [$nonCurrentUserEmail]: $error",
+        userSub.onError((err, st) => Logger.log.e(
+              "Error loading profile for user [$nonCurrentUserEmail]",
+              err,
+              st,
             ));
       }
     }

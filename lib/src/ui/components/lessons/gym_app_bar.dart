@@ -18,7 +18,6 @@ class GymAppBar extends StatelessWidget implements PreferredSizeWidget {
         if (state is UserSuccess) {
           currentUser = state.currentUser;
         }
-        debugPrint("drawing AppBar with user [$currentUser]");
 
         return AppBar(
           centerTitle: false,
