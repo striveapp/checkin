@@ -14,6 +14,11 @@ class _$ProfileEventTearOff {
   const _$ProfileEventTearOff();
 
 // ignore: unused_element
+  InitializeProfile initializeProfile() {
+    return const InitializeProfile();
+  }
+
+// ignore: unused_element
   ProfileUpdated profileUpdated({@required User user, @required bool isCurrentUser}) {
     return ProfileUpdated(
       user: user,
@@ -28,36 +33,34 @@ const $ProfileEvent = _$ProfileEventTearOff();
 
 /// @nodoc
 mixin _$ProfileEvent {
-  User get user;
-  bool get isCurrentUser;
-
   @optionalTypeArgs
   TResult when<TResult extends Object>({
+    @required TResult initializeProfile(),
     @required TResult profileUpdated(User user, bool isCurrentUser),
   });
   @optionalTypeArgs
   TResult maybeWhen<TResult extends Object>({
+    TResult initializeProfile(),
     TResult profileUpdated(User user, bool isCurrentUser),
     @required TResult orElse(),
   });
   @optionalTypeArgs
   TResult map<TResult extends Object>({
+    @required TResult initializeProfile(InitializeProfile value),
     @required TResult profileUpdated(ProfileUpdated value),
   });
   @optionalTypeArgs
   TResult maybeMap<TResult extends Object>({
+    TResult initializeProfile(InitializeProfile value),
     TResult profileUpdated(ProfileUpdated value),
     @required TResult orElse(),
   });
-
-  $ProfileEventCopyWith<ProfileEvent> get copyWith;
 }
 
 /// @nodoc
 abstract class $ProfileEventCopyWith<$Res> {
   factory $ProfileEventCopyWith(ProfileEvent value, $Res Function(ProfileEvent) then) =
       _$ProfileEventCopyWithImpl<$Res>;
-  $Res call({User user, bool isCurrentUser});
 }
 
 /// @nodoc
@@ -67,24 +70,107 @@ class _$ProfileEventCopyWithImpl<$Res> implements $ProfileEventCopyWith<$Res> {
   final ProfileEvent _value;
   // ignore: unused_field
   final $Res Function(ProfileEvent) _then;
-
-  @override
-  $Res call({
-    Object user = freezed,
-    Object isCurrentUser = freezed,
-  }) {
-    return _then(_value.copyWith(
-      user: user == freezed ? _value.user : user as User,
-      isCurrentUser: isCurrentUser == freezed ? _value.isCurrentUser : isCurrentUser as bool,
-    ));
-  }
 }
 
 /// @nodoc
-abstract class $ProfileUpdatedCopyWith<$Res> implements $ProfileEventCopyWith<$Res> {
+abstract class $InitializeProfileCopyWith<$Res> {
+  factory $InitializeProfileCopyWith(
+          InitializeProfile value, $Res Function(InitializeProfile) then) =
+      _$InitializeProfileCopyWithImpl<$Res>;
+}
+
+/// @nodoc
+class _$InitializeProfileCopyWithImpl<$Res> extends _$ProfileEventCopyWithImpl<$Res>
+    implements $InitializeProfileCopyWith<$Res> {
+  _$InitializeProfileCopyWithImpl(InitializeProfile _value, $Res Function(InitializeProfile) _then)
+      : super(_value, (v) => _then(v as InitializeProfile));
+
+  @override
+  InitializeProfile get _value => super._value as InitializeProfile;
+}
+
+/// @nodoc
+class _$InitializeProfile with DiagnosticableTreeMixin implements InitializeProfile {
+  const _$InitializeProfile();
+
+  @override
+  String toString({DiagnosticLevel minLevel = DiagnosticLevel.info}) {
+    return 'ProfileEvent.initializeProfile()';
+  }
+
+  @override
+  void debugFillProperties(DiagnosticPropertiesBuilder properties) {
+    super.debugFillProperties(properties);
+    properties..add(DiagnosticsProperty('type', 'ProfileEvent.initializeProfile'));
+  }
+
+  @override
+  bool operator ==(dynamic other) {
+    return identical(this, other) || (other is InitializeProfile);
+  }
+
+  @override
+  int get hashCode => runtimeType.hashCode;
+
+  @override
+  @optionalTypeArgs
+  TResult when<TResult extends Object>({
+    @required TResult initializeProfile(),
+    @required TResult profileUpdated(User user, bool isCurrentUser),
+  }) {
+    assert(initializeProfile != null);
+    assert(profileUpdated != null);
+    return initializeProfile();
+  }
+
+  @override
+  @optionalTypeArgs
+  TResult maybeWhen<TResult extends Object>({
+    TResult initializeProfile(),
+    TResult profileUpdated(User user, bool isCurrentUser),
+    @required TResult orElse(),
+  }) {
+    assert(orElse != null);
+    if (initializeProfile != null) {
+      return initializeProfile();
+    }
+    return orElse();
+  }
+
+  @override
+  @optionalTypeArgs
+  TResult map<TResult extends Object>({
+    @required TResult initializeProfile(InitializeProfile value),
+    @required TResult profileUpdated(ProfileUpdated value),
+  }) {
+    assert(initializeProfile != null);
+    assert(profileUpdated != null);
+    return initializeProfile(this);
+  }
+
+  @override
+  @optionalTypeArgs
+  TResult maybeMap<TResult extends Object>({
+    TResult initializeProfile(InitializeProfile value),
+    TResult profileUpdated(ProfileUpdated value),
+    @required TResult orElse(),
+  }) {
+    assert(orElse != null);
+    if (initializeProfile != null) {
+      return initializeProfile(this);
+    }
+    return orElse();
+  }
+}
+
+abstract class InitializeProfile implements ProfileEvent {
+  const factory InitializeProfile() = _$InitializeProfile;
+}
+
+/// @nodoc
+abstract class $ProfileUpdatedCopyWith<$Res> {
   factory $ProfileUpdatedCopyWith(ProfileUpdated value, $Res Function(ProfileUpdated) then) =
       _$ProfileUpdatedCopyWithImpl<$Res>;
-  @override
   $Res call({User user, bool isCurrentUser});
 }
 
@@ -157,8 +243,10 @@ class _$ProfileUpdated with DiagnosticableTreeMixin implements ProfileUpdated {
   @override
   @optionalTypeArgs
   TResult when<TResult extends Object>({
+    @required TResult initializeProfile(),
     @required TResult profileUpdated(User user, bool isCurrentUser),
   }) {
+    assert(initializeProfile != null);
     assert(profileUpdated != null);
     return profileUpdated(user, isCurrentUser);
   }
@@ -166,6 +254,7 @@ class _$ProfileUpdated with DiagnosticableTreeMixin implements ProfileUpdated {
   @override
   @optionalTypeArgs
   TResult maybeWhen<TResult extends Object>({
+    TResult initializeProfile(),
     TResult profileUpdated(User user, bool isCurrentUser),
     @required TResult orElse(),
   }) {
@@ -179,8 +268,10 @@ class _$ProfileUpdated with DiagnosticableTreeMixin implements ProfileUpdated {
   @override
   @optionalTypeArgs
   TResult map<TResult extends Object>({
+    @required TResult initializeProfile(InitializeProfile value),
     @required TResult profileUpdated(ProfileUpdated value),
   }) {
+    assert(initializeProfile != null);
     assert(profileUpdated != null);
     return profileUpdated(this);
   }
@@ -188,6 +279,7 @@ class _$ProfileUpdated with DiagnosticableTreeMixin implements ProfileUpdated {
   @override
   @optionalTypeArgs
   TResult maybeMap<TResult extends Object>({
+    TResult initializeProfile(InitializeProfile value),
     TResult profileUpdated(ProfileUpdated value),
     @required TResult orElse(),
   }) {
@@ -203,10 +295,7 @@ abstract class ProfileUpdated implements ProfileEvent {
   const factory ProfileUpdated({@required User user, @required bool isCurrentUser}) =
       _$ProfileUpdated;
 
-  @override
   User get user;
-  @override
   bool get isCurrentUser;
-  @override
   $ProfileUpdatedCopyWith<ProfileUpdated> get copyWith;
 }

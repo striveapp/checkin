@@ -4,9 +4,9 @@ import 'package:checkin/src/localization/localization.dart';
 import 'package:checkin/src/ui/components/add_photo_badge.dart';
 import 'package:checkin/src/ui/components/loading_indicator.dart';
 import 'package:checkin/src/ui/components/user_image.dart';
+import 'package:checkin/src/util/string_extension.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
-import 'package:checkin/src/util/string_extension.dart';
 
 class ProfileCard extends StatelessWidget {
   static const String enterYourName = 'Enter your name';
@@ -27,88 +27,80 @@ class ProfileCard extends StatelessWidget {
       child: Padding(
         padding: EdgeInsets.symmetric(vertical: 25, horizontal: 20),
         child: BlocBuilder<ProfileBloc, ProfileState>(
-            builder: (BuildContext context, ProfileState state) {
-          if (state is InitialProfileState) {
-            return LoadingIndicator();
-          }
-
-          if (state is ProfileLoaded) {
-            return Row(
-              children: <Widget>[
-                //TODO: this is disabled temporarily for the owner to prevent other bugs to happen [https://trello.com/c/AsSz0amj]
-                if (isOwner) UserImage(userImage: state.profileUser.imageUrl),
-                if (!isOwner)
-                  GestureDetector(
-                    child: Stack(
-                      alignment: AlignmentDirectional.bottomEnd,
-                      clipBehavior: Clip.none,
-                      children: [
-                        UserImage(userImage: state.profileUser.imageUrl),
-                        Positioned(
-                          right: -8,
-                          bottom: -2,
-                          child: AddPhotoBadge(),
+            builder: (BuildContext context, ProfileState state) => state.map(
+                initialProfileState: (InitialProfileState _) => LoadingIndicator(),
+                profileLoaded: (ProfileLoaded state) => Row(
+                      children: <Widget>[
+                        //TODO: this is disabled temporarily for the owner to prevent other bugs to happen [https://trello.com/c/AsSz0amj]
+                        if (isOwner) UserImage(userImage: state.profileUser.imageUrl),
+                        if (!isOwner)
+                          GestureDetector(
+                            child: Stack(
+                              alignment: AlignmentDirectional.bottomEnd,
+                              clipBehavior: Clip.none,
+                              children: [
+                                UserImage(userImage: state.profileUser.imageUrl),
+                                Positioned(
+                                  right: -8,
+                                  bottom: -2,
+                                  child: AddPhotoBadge(),
+                                ),
+                              ],
+                            ),
+                            onTap: () {
+                              BlocProvider.of<UserBloc>(context).add(
+                                  UserEvent.updateImageUrl(userEmail: state.profileUser.email));
+                            },
+                          ),
+                        SizedBox(
+                          width: 15,
                         ),
+                        //TODO: this is disabled temporarily for the owner to prevent other bugs to happen [https://trello.com/c/AsSz0amj]
+                        if (isOwner)
+                          Text(
+                            state.profileUser.name,
+                            style: Theme.of(context).textTheme.headline3,
+                          ),
+                        if (!isOwner)
+                          Expanded(
+                            child: Form(
+                              key: _formKey,
+                              autovalidateMode: AutovalidateMode.onUserInteraction,
+                              child: TextFormField(
+                                key: Key("editProfileButton"),
+                                keyboardType: TextInputType.name,
+                                cursorColor: Theme.of(context).accentColor,
+                                style: Theme.of(context).textTheme.headline2,
+                                decoration: new InputDecoration(
+                                  hintText: enterYourName.i18n,
+                                  hintStyle: Theme.of(context).textTheme.headline3,
+                                  border: InputBorder.none,
+                                  focusedBorder: InputBorder.none,
+                                  enabledBorder: InputBorder.none,
+                                  errorBorder: InputBorder.none,
+                                  errorMaxLines: 2,
+                                  errorStyle: Theme.of(context)
+                                      .textTheme
+                                      .bodyText1
+                                      .apply(color: Theme.of(context).errorColor),
+                                  disabledBorder: InputBorder.none,
+                                ),
+                                controller: TextEditingController.fromValue(TextEditingValue(
+                                    text: state.profileUser.name,
+                                    selection: new TextSelection.collapsed(
+                                        offset: state.profileUser.name.length))),
+                                validator: _validateName,
+                                onFieldSubmitted: (String value) {
+                                  if (_formKey.currentState.validate()) {
+                                    UserBloc userBloc = context.read<UserBloc>();
+                                    userBloc.add(UpdateName(newName: value.trim()));
+                                  }
+                                },
+                              ),
+                            ),
+                          )
                       ],
-                    ),
-                    onTap: () {
-                      BlocProvider.of<UserBloc>(context)
-                          .add(UserEvent.updateImageUrl(userEmail: state.profileUser.email));
-                    },
-                  ),
-                SizedBox(
-                  width: 15,
-                ),
-                //TODO: this is disabled temporarily for the owner to prevent other bugs to happen [https://trello.com/c/AsSz0amj]
-                if (isOwner)
-                  Text(
-                    state.profileUser.name,
-                    style: Theme.of(context).textTheme.headline3,
-                  ),
-                if (!isOwner)
-                  Expanded(
-                    child: Form(
-                      key: _formKey,
-                      autovalidateMode: AutovalidateMode.onUserInteraction,
-                      child: TextFormField(
-                        key: Key("editProfileButton"),
-                        keyboardType: TextInputType.name,
-                        cursorColor: Theme.of(context).accentColor,
-                        style: Theme.of(context).textTheme.headline2,
-                        decoration: new InputDecoration(
-                          hintText: enterYourName.i18n,
-                          hintStyle: Theme.of(context).textTheme.headline3,
-                          border: InputBorder.none,
-                          focusedBorder: InputBorder.none,
-                          enabledBorder: InputBorder.none,
-                          errorBorder: InputBorder.none,
-                          errorMaxLines: 2,
-                          errorStyle: Theme.of(context)
-                              .textTheme
-                              .bodyText1
-                              .apply(color: Theme.of(context).errorColor),
-                          disabledBorder: InputBorder.none,
-                        ),
-                        controller: TextEditingController.fromValue(TextEditingValue(
-                            text: state.profileUser.name,
-                            selection: new TextSelection.collapsed(
-                                offset: state.profileUser.name.length))),
-                        validator: _validateName,
-                        onFieldSubmitted: (String value) {
-                          if (_formKey.currentState.validate()) {
-                            UserBloc userBloc = context.read<UserBloc>();
-                            userBloc.add(UpdateName(newName: value.trim()));
-                          }
-                        },
-                      ),
-                    ),
-                  )
-              ],
-            );
-          }
-
-          return ErrorWidget('Unknown state [$state] for profile_card');
-        }),
+                    ))),
       ),
     );
   }

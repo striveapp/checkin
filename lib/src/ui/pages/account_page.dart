@@ -54,19 +54,20 @@ class AccountPage extends StatelessWidget {
           providers: [
             BlocProvider<ProfileBloc>(
               create: (BuildContext context) => ProfileBloc(
-                  userRepository: RepositoryProvider.of<UserRepository>(context),
-                  userBloc: BlocProvider.of<UserBloc>(context)),
+                userRepository: context.read<UserRepository>(),
+                userBloc: context.read<UserBloc>(),
+              )..add(InitializeProfile()),
             ),
             BlocProvider<AccountBloc>(
               create: (BuildContext context) => AccountBloc(
-                userBloc: BlocProvider.of<UserBloc>(context),
-                analyticsRepository: RepositoryProvider.of<AnalyticsRepository>(context),
+                userBloc: context.read<UserBloc>(),
+                analyticsRepository: context.read<AnalyticsRepository>(),
               ),
             ),
             BlocProvider<GymBloc>(
               create: (BuildContext context) => GymBloc(
                 gymRepository: context.read<GymRepository>(),
-                userBloc: BlocProvider.of<UserBloc>(context),
+                userBloc: context.read<UserBloc>(),
               )..add(InitializeGym()),
             ),
             BlocProvider<PaymentMethodsBloc>(
@@ -75,7 +76,10 @@ class AccountPage extends StatelessWidget {
                 userBloc: context.read<UserBloc>(),
                 paymentMethodRepository: PaymentMethodProvider(),
                 paymentApi: PaymentApi(
-                    httpClient: HttpClient(authRepository: context.read<AuthRepository>())),
+                  httpClient: HttpClient(
+                    authRepository: context.read<AuthRepository>(),
+                  ),
+                ),
               ),
             ),
           ],

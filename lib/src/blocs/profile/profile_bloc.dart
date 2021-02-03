@@ -18,10 +18,7 @@ class ProfileBloc extends Bloc<ProfileEvent, ProfileState> {
     @required this.userBloc,
     @required this.userRepository,
     this.nonCurrentUserEmail,
-  }) : super(InitialProfileState()) {
-    _onUserStateChanged(userBloc.state);
-    this.userBloc.listen(_onUserStateChanged);
-  }
+  }) : super(InitialProfileState());
 
   void _onUserStateChanged(userState) {
     if (userState is UserSuccess) {
@@ -42,8 +39,16 @@ class ProfileBloc extends Bloc<ProfileEvent, ProfileState> {
 
   @override
   Stream<ProfileState> mapEventToState(ProfileEvent event) async* {
+    if (event is InitializeProfile) {
+      _onUserStateChanged(userBloc.state);
+      this.userBloc.listen(_onUserStateChanged);
+    }
+
     if (event is ProfileUpdated) {
-      yield ProfileLoaded(profileUser: event.user, isCurrentUser: event.isCurrentUser);
+      yield ProfileLoaded(
+        profileUser: event.user,
+        isCurrentUser: event.isCurrentUser,
+      );
     }
   }
 
