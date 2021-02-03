@@ -25,7 +25,7 @@ class ProfileBloc extends Bloc<ProfileEvent, ProfileState> {
 
   void _onUserStateChanged(userState) {
     if (userState is UserSuccess) {
-      if (nonCurrentUserEmail == null) {
+      if (nonCurrentUserEmail == null || nonCurrentUserEmail == userState.currentUser.email) {
         add(ProfileUpdated(user: userState.currentUser, isCurrentUser: true));
       } else {
         userSub?.cancel();

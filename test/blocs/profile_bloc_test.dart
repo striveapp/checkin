@@ -1,10 +1,10 @@
 import 'package:bloc_test/bloc_test.dart';
+import 'package:checkin/src/blocs/profile/bloc.dart';
 import 'package:checkin/src/blocs/user/bloc.dart';
 import 'package:checkin/src/models/user.dart';
 import 'package:checkin/src/repositories/user_repository.dart';
 import 'package:flutter_test/flutter_test.dart';
 import 'package:mockito/mockito.dart';
-import 'package:checkin/src/blocs/profile/bloc.dart';
 
 import 'helper/mock_helper.dart';
 
@@ -26,8 +26,7 @@ void main() {
     setUp(() {
       mockUserRepository = MockUserRepository();
       mockUserBloc = MockUserBloc();
-      whenListen(mockUserBloc,
-          Stream.fromIterable([UserSuccess(currentUser: loggedUser)]));
+      whenListen(mockUserBloc, Stream.fromIterable([UserSuccess(currentUser: loggedUser)]));
       configureThrowOnMissingStub([mockUserRepository]);
     });
 
@@ -38,12 +37,24 @@ void main() {
     // todo missing initial state test
 
     group("when load profile of current user", () {
-      blocTest(
-        "should emit ProfileLoaded with the current user and isCurrent user as true",
-        build: () => ProfileBloc(
-            userBloc: mockUserBloc, userRepository: mockUserRepository),
-        expect: [ProfileLoaded(profileUser: loggedUser, isCurrentUser: true)],
-      );
+      group("when there is no nonCurrentUserEmail", () {
+        blocTest(
+          "should emit ProfileLoaded with the current user and isCurrent user as true",
+          build: () => ProfileBloc(userBloc: mockUserBloc, userRepository: mockUserRepository),
+          expect: [ProfileLoaded(profileUser: loggedUser, isCurrentUser: true)],
+        );
+      });
+      group("when there is a nonCurrentUserEmail but the email is the same", () {
+        blocTest(
+          "should emit ProfileLoaded with the current user and isCurrent user as true",
+          build: () => ProfileBloc(
+            userBloc: mockUserBloc,
+            userRepository: mockUserRepository,
+            nonCurrentUserEmail: loggedUser.email,
+          ),
+          expect: [ProfileLoaded(profileUser: loggedUser, isCurrentUser: true)],
+        );
+      });
     });
 
     group("when load profile on another user", () {
@@ -54,8 +65,7 @@ void main() {
       );
 
       setUp(() {
-        when(mockUserRepository.getUserByEmail(fakeOtherUser.email))
-            .thenAnswer((_) {
+        when(mockUserRepository.getUserByEmail(fakeOtherUser.email)).thenAnswer((_) {
           return Stream<User>.value(fakeOtherUser);
         });
       });
@@ -71,9 +81,7 @@ void main() {
           userRepository: mockUserRepository,
           nonCurrentUserEmail: fakeOtherUser.email,
         ),
-        expect: [
-          ProfileLoaded(profileUser: fakeOtherUser, isCurrentUser: false)
-        ],
+        expect: [ProfileLoaded(profileUser: fakeOtherUser, isCurrentUser: false)],
       );
     });
   });

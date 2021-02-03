@@ -12,7 +12,7 @@ class StatsBody extends StatelessWidget {
     return BlocBuilder<ProfileBloc, ProfileState>(
       builder: (BuildContext context, ProfileState state) {
         if (state is ProfileLoaded) {
-          if (state.profileUser.isOwner) {
+          if (state.profileUser.isOwner && state.isCurrentUser) {
             return LessonsStatsPage(master: Master.fromUser(state.profileUser));
           }
 
