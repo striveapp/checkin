@@ -10,21 +10,12 @@ class StatsBody extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return BlocBuilder<ProfileBloc, ProfileState>(
-      builder: (BuildContext context, ProfileState state) {
-        if (state is ProfileLoaded) {
-          if (state.profileUser.isOwner) {
-            return LessonsStatsPage(master: Master.fromUser(state.profileUser));
-          }
-
-          return UserStatsPage(user: state.profileUser);
-        }
-
-        if (state is InitialProfileState) {
-          return LoadingIndicator();
-        }
-
-        return ErrorWidget('Unknow state in StatsPage $state');
-      },
+      builder: (BuildContext context, ProfileState state) => state.map(
+        initialProfileState: (InitialProfileState state) => LoadingIndicator(),
+        profileLoaded: (ProfileLoaded state) => state.profileUser.isOwner && state.isCurrentUser
+            ? LessonsStatsPage(master: Master.fromUser(state.profileUser))
+            : UserStatsPage(user: state.profileUser),
+      ),
     );
   }
 }

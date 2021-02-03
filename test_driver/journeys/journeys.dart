@@ -61,6 +61,8 @@ Future<void> cleanDatabase() async {
       .cleanLessonAttendees("test", formattedTestDate, "50be7f9f-d8e4-424a-a4d8-2910dbaf68e3");
   await LessonInstancesProvider()
       .cleanLessonAttendees("test", formattedTestDate, "d70c08ba-82c9-47ab-99cc-49d7a890bef4");
+  await LessonInstancesProvider()
+      .openLesson("test", formattedTestDate, "d70c08ba-82c9-47ab-99cc-49d7a890bef4");
   lessonSub = LessonInstancesProvider()
       .getLesson("test", formattedTestDate, "50be7f9f-d8e4-424a-a4d8-2910dbaf68e3")
       .listen((event) {

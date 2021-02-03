@@ -120,6 +120,20 @@ class LessonInstancesProvider implements LessonRepository {
         .update({"attendees": FieldValue.delete(), "acceptedAttendees": FieldValue.delete()});
   }
 
+  Future<void> openLesson(String gymId, String date, String lessonId) async {
+    Logger.log.i("Close lesson with id [$lessonId]");
+    await _firestore
+        .collection(gymPath)
+        .doc(gymId)
+        .collection(path)
+        .doc(date)
+        .collection(sub_collection_path)
+        .doc(lessonId)
+        .update({
+      'isClosed': false,
+    });
+  }
+
   @override
   Future<void> closeLesson(String gymId, String date, String lessonId) async {
     Logger.log.i("Close lesson with id [$lessonId]");

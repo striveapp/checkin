@@ -1,4 +1,5 @@
 import 'attend_test.dart';
+import 'close_class_test.dart';
 import 'graduation_test.dart';
 import 'leaderboard_test.dart';
 import 'stats_test.dart';
@@ -10,4 +11,5 @@ void main() {
   StatsTest().main();
   LeaderboardTest().main();
   GraduationTest().main();
+  CloseClassTest().main();
 }
