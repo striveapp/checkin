@@ -14,6 +14,7 @@ class CloseLessonButton extends StatelessWidget {
           registryLoaded: (RegistryLoaded registryState) {
             return !registryState.currentLesson.isClosed && registryState.isMasterOfTheClass
                 ? RawMaterialButton(
+                    key: Key('closeClassButton'),
                     constraints: BoxConstraints(minHeight: 0, minWidth: 0),
                     onPressed: () {
                       showDialog(

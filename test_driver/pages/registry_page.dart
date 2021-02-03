@@ -17,6 +17,8 @@ class RegistryPage {
   final _loadingIndicator = find.byValueKey('loadingIndicator');
   final _confirmButton = find.byValueKey('confirmButton');
   final _removeStudentButton = find.byValueKey('removeStudentButton');
+  final _closeClassButton = find.byValueKey('closeClassButton');
+  final _registryClosedButton = find.byValueKey('registryClosed');
 
   RegistryPage(FlutterDriver driver) {
     this._driver = driver;
@@ -57,6 +59,14 @@ class RegistryPage {
     await _driver.waitForAbsent(_loadingIndicator);
   }
 
+  Future<void> closeClass() async {
+    await _driver.waitFor(_closeClassButton);
+    await _driver.tap(_closeClassButton);
+    await _driver.waitFor(_confirmButton);
+    await _driver.tap(_confirmButton);
+    await _driver.waitFor(_registryClosedButton);
+  }
+
   Future<void> logout() async {
     await goToAccountPage();
     await _accountPage.logout();
@@ -69,8 +79,7 @@ class RegistryPage {
       await _driver.scroll(testUser, -400, 0, Duration(milliseconds: 500));
       await _driver.waitFor(_removeStudentButton);
       await _driver.tap(_removeStudentButton);
-      await _driver.waitForAbsent(find.byValueKey("tile-$userKey"),
-          timeout: Duration(seconds: 3));
+      await _driver.waitForAbsent(find.byValueKey("tile-$userKey"), timeout: Duration(seconds: 3));
       await _driver.waitUntilNoTransientCallbacks();
       return "ok";
     }, "ok");
