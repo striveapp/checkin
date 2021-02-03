@@ -1,5 +1,6 @@
 import 'package:checkin/src/blocs/gym/bloc.dart';
 import 'package:checkin/src/blocs/user/bloc.dart';
+import 'package:checkin/src/models/user.dart';
 import 'package:checkin/src/ui/components/empty_widget.dart';
 import 'package:checkin/src/ui/components/gym_selection_modal.dart';
 import 'package:checkin/src/ui/components/user_image.dart';
@@ -14,16 +15,21 @@ class GymAppBar extends StatelessWidget implements PreferredSizeWidget {
   Widget build(BuildContext context) {
     return BlocBuilder<UserBloc, UserState>(
       builder: (BuildContext context, UserState state) {
-        var currentUser;
+        User currentUser;
         if (state is UserSuccess) {
           currentUser = state.currentUser;
         }
+        
+        var knownGymIds = currentUser?.knownGymIds ?? [];
+        // todo remove isInDebugMode
+        // todo move this logic to a bloc?
+        var displayGymSelection = isInDebugMode && knownGymIds.length > 1 && currentUser != null;
 
         return AppBar(
           centerTitle: false,
           backgroundColor: Theme.of(context).primaryColor,
           title: GestureDetector(
-            onTap: isInDebugMode
+            onTap: displayGymSelection
                 ? () {
                     showModalBottomSheet(
                         shape: RoundedRectangleBorder(
@@ -46,20 +52,24 @@ class GymAppBar extends StatelessWidget implements PreferredSizeWidget {
                 }, builder: (BuildContext context, GymState state) {
                   return state.map(
                     initialGymState: (InitialGymState state) => EmptyWidget(),
-                    gymLoaded: (GymLoaded gymLoaded) => Text(gymLoaded.gym.name,
-                        style: Theme.of(context).textTheme.headline2.apply(color: Colors.white)),
+                    gymLoaded: (GymLoaded gymLoaded) => Row(
+                      children: [
+                        Text(gymLoaded.gym.name,
+                            style: Theme.of(context).textTheme.headline2.apply(color: Colors.white)),
+                        SizedBox(
+                          width: 5,
+                        ),
+                        if (displayGymSelection)
+                          RotatedBox(
+                              quarterTurns: 3,
+                              child: Icon(
+                                Icons.arrow_back_ios_rounded,
+                                size: 20,
+                              ))
+                      ],
+                    ),
                   );
                 }),
-                SizedBox(
-                  width: 5,
-                ),
-                if (isInDebugMode)
-                  RotatedBox(
-                      quarterTurns: 3,
-                      child: Icon(
-                        Icons.arrow_back_ios_rounded,
-                        size: 20,
-                      ))
               ],
             ),
           ),

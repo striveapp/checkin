@@ -6,6 +6,7 @@ import 'package:checkin/src/ui/components/lessons/gym_app_bar.dart';
 import 'package:checkin/src/ui/components/lessons/lesson_card_list.dart';
 import 'package:checkin/src/ui/components/lessons/lesson_filter_fab.dart';
 import 'package:checkin/src/ui/components/lessons/week_calendar.dart';
+import 'package:checkin/src/ui/components/loading_indicator.dart';
 import 'package:checkin/src/util/date_util.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter/widgets.dart';
@@ -38,9 +39,18 @@ class LessonsPage extends StatelessWidget {
               child: Column(
                 crossAxisAlignment: CrossAxisAlignment.center,
                 children: <Widget>[
-                  WeekCalendar(
-                    holidaysRepository: HolidaysRepository(),
-                  ),
+                  BlocBuilder<UserBloc, UserState>(
+                      builder: (BuildContext context, UserState state) {
+                    return state.maybeMap(
+                      userSuccess: (UserSuccess state) => WeekCalendar(
+                        holidaysRepository: HolidaysRepository(),
+                        currentUser: state.currentUser,
+                        // https://stackoverflow.com/a/62333855/4349619
+                        key: UniqueKey(),
+                      ),
+                      orElse: () => LoadingIndicator(),
+                    );
+                  }),
                   Container(
                     child: Expanded(
                       child: LessonCardList(),
