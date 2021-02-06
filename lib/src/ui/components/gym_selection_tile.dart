@@ -26,6 +26,7 @@ class GymSelectionTile extends StatelessWidget {
         return state.map(
           initialGymState: (InitialGymState initialGymState) => LoadingIndicator(),
           gymLoaded: (GymLoaded gymLoaded) => InkWell(
+            key: Key("gym_$gymId"),
             onTap: () async {
               Logger.log.i("Switching gym! FROM [${currentUser.selectedGymId}] TO [$gymId]");
               await context.read<UserBloc>().add(UserEvent.updateSelectedGym(

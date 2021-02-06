@@ -8,7 +8,9 @@ class LessonsPage {
   final mondayButton = find.text("16");
   final _accountPageButton = find.byValueKey('accountPageButton');
   final _statsTab = find.byValueKey('statsTab');
+  final _lessonsTab = find.byValueKey('lessonsTab');
   final _leaderboardTab = find.byValueKey('leaderboardTab');
+  final _gymSelectionDropdown = find.byValueKey('gymSelectionDropdown');
 
   LessonsPage(FlutterDriver driver) {
     this._driver = driver;
@@ -24,10 +26,8 @@ class LessonsPage {
     await _driver.tap(_accountPageButton);
   }
 
-  Future<SerializableFinder> _getLessonCard(
-      WeekDay day, int lessonIndex) async {
-    final lessonCard =
-        find.byValueKey("lesson_${describeEnum(day)}_$lessonIndex");
+  Future<SerializableFinder> _getLessonCard(WeekDay day, int lessonIndex) async {
+    final lessonCard = find.byValueKey("lesson_${describeEnum(day)}_$lessonIndex");
     if (lessonIndex >= 2) {
       await _driver.scrollIntoView(lessonCard);
     }
@@ -42,5 +42,15 @@ class LessonsPage {
   goToLeaderboardTab() async {
     await _driver.waitFor(_leaderboardTab);
     await _driver.tap(_leaderboardTab);
+  }
+
+  openGymSelectionDropdown() async {
+    await _driver.waitFor(_gymSelectionDropdown);
+    await _driver.tap(_gymSelectionDropdown);
+  }
+
+  goToLessonsTab() async {
+    await _driver.waitFor(_lessonsTab);
+    await _driver.tap(_lessonsTab);
   }
 }

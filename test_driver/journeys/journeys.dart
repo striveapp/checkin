@@ -1,6 +1,6 @@
 import 'dart:async';
 
-import 'package:checkin/main_common.dart' as app;
+import 'package:checkin/main_dev.dart' as app;
 import 'package:checkin/src/constants.dart';
 import 'package:checkin/src/logging/logger.dart';
 import 'package:checkin/src/models/grade.dart';
@@ -12,6 +12,8 @@ import 'package:firebase_auth/firebase_auth.dart';
 import 'package:firebase_core/firebase_core.dart';
 import 'package:flutter_driver/driver_extension.dart';
 import 'package:intl/intl.dart';
+
+import '../constants.dart';
 
 bool isDbClean = false;
 StreamSubscription<Lesson> lessonSub;
@@ -35,7 +37,7 @@ Future<void> main() async {
     return "ok";
   });
 
-  app.mainCommon(null);
+  app.main();
 }
 
 Future<void> setup() async {
@@ -55,6 +57,7 @@ Future<void> cleanDatabase() async {
   await StatsProvider().cleanUserHistory("test", "test-master@test.com");
   await StatsProvider().cleanUserHistory("test", "test-owner@test.com");
   await UserProvider().updateGrade("test@test.com", Grade.white);
+  await UserProvider().updateSelectedGymId("test@test.com", GYM_TEST);
   await LessonInstancesProvider()
       .cleanLessonAttendees("test", formattedTestDate, "3dbc1886-0c93-4eb3-a815-f4ed69306217");
   await LessonInstancesProvider()

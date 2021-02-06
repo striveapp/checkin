@@ -12,6 +12,7 @@ class GymSelectionModal extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return SafeArea(
+      key: Key("gymSelectionModal"),
       child: Container(
         constraints: BoxConstraints(
           maxHeight: max(currentUser.knownGymIds.length * 80.0, 200),

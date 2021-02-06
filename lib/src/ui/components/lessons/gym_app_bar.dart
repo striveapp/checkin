@@ -19,7 +19,7 @@ class GymAppBar extends StatelessWidget implements PreferredSizeWidget {
         if (state is UserSuccess) {
           currentUser = state.currentUser;
         }
-        
+
         var knownGymIds = currentUser?.knownGymIds ?? [];
         // todo remove isInDebugMode
         // todo move this logic to a bloc?
@@ -53,9 +53,11 @@ class GymAppBar extends StatelessWidget implements PreferredSizeWidget {
                   return state.map(
                     initialGymState: (InitialGymState state) => EmptyWidget(),
                     gymLoaded: (GymLoaded gymLoaded) => Row(
+                      key: Key("gymSelectionDropdown"),
                       children: [
                         Text(gymLoaded.gym.name,
-                            style: Theme.of(context).textTheme.headline2.apply(color: Colors.white)),
+                            style:
+                                Theme.of(context).textTheme.headline2.apply(color: Colors.white)),
                         SizedBox(
                           width: 5,
                         ),

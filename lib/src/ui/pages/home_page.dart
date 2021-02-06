@@ -64,7 +64,7 @@ class HomePage extends StatelessWidget {
                     child: SafeArea(
                       child: TabBar(
                         tabs: <Widget>[
-                          Tab(icon: Icon(Icons.home)),
+                          Tab(key: Key("lessonsTab"), icon: Icon(Icons.home)),
                           Tab(key: Key("statsTab"), icon: Icon(Icons.insert_chart)),
                           Tab(key: Key("leaderboardTab"), icon: Icon(Icons.star)),
                         ],
