@@ -52,7 +52,6 @@ class UserBloc extends Bloc<UserEvent, UserState> {
       }
     } else {
       try {
-        //TODO: this should be refactored
         if (this.state is UserSuccess) {
           _mapUpdateToState((this.state as UserSuccess).currentUser.email, event);
         } else {

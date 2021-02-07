@@ -49,7 +49,6 @@ class RegistryBloc extends Bloc<RegistryEvent, RegistryState> {
   Stream<RegistryState> mapEventToState(RegistryEvent event) async* {
     if (event is RegistryUpdated) {
       if (event.currentLesson == null) {
-        //TODO: this is not yet implemented in the UI https://trello.com/c/2C7Tn5Mj
         yield RegistryMissing();
       } else {
         yield RegistryLoaded(
@@ -67,7 +66,6 @@ class RegistryBloc extends Bloc<RegistryEvent, RegistryState> {
     if (event is AcceptAttendees) {
       yield RegistryLoading();
       try {
-        //TODO: refactor registry_bloc when calling acceptAll [https://trello.com/c/o7PBLnEQ]
         await this.lessonApi.acceptAll(
               event.gymId,
               lessonId,

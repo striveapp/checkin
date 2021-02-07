@@ -22,7 +22,6 @@ class GymAppBar extends StatelessWidget implements PreferredSizeWidget {
 
         var knownGymIds = currentUser?.knownGymIds ?? [];
         // todo remove isInDebugMode
-        // todo move this logic to a bloc?
         var displayGymSelection = isInDebugMode && knownGymIds.length > 1 && currentUser != null;
 
         return AppBar(
@@ -44,34 +43,37 @@ class GymAppBar extends StatelessWidget implements PreferredSizeWidget {
               mainAxisAlignment: MainAxisAlignment.start,
               crossAxisAlignment: CrossAxisAlignment.center,
               children: [
-                BlocBuilder<GymBloc, GymState>(buildWhen: (GymState prev, GymState curr) {
-                  if (prev is GymLoaded && curr is GymLoaded) {
-                    return prev.gym.name != curr.gym.name;
-                  }
-                  return prev is InitialGymState;
-                }, builder: (BuildContext context, GymState state) {
-                  return state.map(
-                    initialGymState: (InitialGymState state) => EmptyWidget(),
-                    gymLoaded: (GymLoaded gymLoaded) => Row(
-                      key: Key("gymSelectionDropdown"),
-                      children: [
-                        Text(gymLoaded.gym.name,
-                            style:
-                                Theme.of(context).textTheme.headline2.apply(color: Colors.white)),
-                        SizedBox(
-                          width: 5,
-                        ),
-                        if (displayGymSelection)
-                          RotatedBox(
-                              quarterTurns: 3,
-                              child: Icon(
-                                Icons.arrow_back_ios_rounded,
-                                size: 20,
-                              ))
-                      ],
-                    ),
-                  );
-                }),
+                BlocBuilder<GymBloc, GymState>(
+                  buildWhen: (GymState prev, GymState curr) {
+                    if (prev is GymLoaded && curr is GymLoaded) {
+                      return prev.gym.name != curr.gym.name;
+                    }
+                    return prev is InitialGymState;
+                  },
+                  builder: (BuildContext context, GymState state) {
+                    return state.map(
+                      initialGymState: (InitialGymState state) => EmptyWidget(),
+                      gymLoaded: (GymLoaded gymLoaded) => Row(
+                        key: Key("gymSelectionDropdown"),
+                        children: [
+                          Text(gymLoaded.gym.name,
+                              style:
+                                  Theme.of(context).textTheme.headline2.apply(color: Colors.white)),
+                          SizedBox(
+                            width: 5,
+                          ),
+                          if (displayGymSelection)
+                            RotatedBox(
+                                quarterTurns: 3,
+                                child: Icon(
+                                  Icons.arrow_back_ios_rounded,
+                                  size: 20,
+                                ))
+                        ],
+                      ),
+                    );
+                  },
+                ),
               ],
             ),
           ),

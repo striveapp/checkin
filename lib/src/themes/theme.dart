@@ -9,7 +9,6 @@ final theme = {
     accentColor: Color(0xFFd32f2f),
     brightness: Brightness.dark,
     buttonTheme: ButtonThemeData(
-        //TODO: this should change in the future
         buttonColor: Color(0xFF7C4DFF),
         disabledColor: Color(0xFFBBBBBB),
         colorScheme: ColorScheme.dark(error: Color(0xFFEF5350)),
@@ -60,7 +59,6 @@ final theme = {
     accentColor: Color(0xFFd32f2f),
     brightness: Brightness.light,
     buttonTheme: ButtonThemeData(
-        //TODO: this should change in the future
         buttonColor: Color(0xFF7C4DFF),
         disabledColor: Color(0xFFBBBBBB),
         colorScheme: ColorScheme.dark(error: Color(0xFFEF5350)),

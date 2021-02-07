@@ -45,7 +45,6 @@ class _TimespanTogglesState extends State<TimespanToggles> {
   }
 
   void _updateSelected(int selectedIndex) {
-    //TODO: this logic can be simplified
     final List<bool> newSelections = _selections.map((x) => false).toList();
     newSelections[selectedIndex] = true;
 
