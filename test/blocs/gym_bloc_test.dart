@@ -48,23 +48,9 @@ void main() {
       logAndVerifyNoMoreInteractions([mockGymRepository]);
     });
 
-    group("initial state", () {
-      blocTest("is InitialGymState",
-          build: () => GymBloc(
-                userBloc: mockUserBloc,
-                gymRepository: mockGymRepository,
-              ),
-          expect: [],
-          verify: (bloc) {
-            expect(bloc.state, InitialGymState());
-          });
-    });
-
-    //TODO: are this tests redundants?
     group("on InitializeGym event", () {
       setUp(() {
-        whenListen(mockUserBloc,
-            Stream.fromIterable([UserSuccess(currentUser: fakeUser)]));
+        whenListen(mockUserBloc, Stream.fromIterable([UserSuccess(currentUser: fakeUser)]));
         when(mockGymRepository.getGym(fakeGymId)).thenAnswer((_) {
           return Stream<Gym>.value(fakeGym);
         });

@@ -40,8 +40,7 @@ void main() {
       mockImageRepository = MockImageRepository();
       mockAuthBloc = MockAuthBloc();
 
-      configureThrowOnMissingStub(
-          [mockUserRepository, mockStorageRepository, mockImageRepository]);
+      configureThrowOnMissingStub([mockUserRepository, mockStorageRepository, mockImageRepository]);
     });
 
     tearDown(() {
@@ -53,14 +52,12 @@ void main() {
 
     group("on UserUpdated event", () {
       setUp(() {
-        whenListen(mockAuthBloc,
-            Stream.fromIterable([AuthAuthenticated(loggedUser: testUser)]));
+        whenListen(mockAuthBloc, Stream.fromIterable([AuthAuthenticated(loggedUser: testUser)]));
       });
 
       group("when user is not null", () {
         setUp(() {
-          when(mockUserRepository.getUserByEmail(testUser.email))
-              .thenAnswer((_) {
+          when(mockUserRepository.getUserByEmail(testUser.email)).thenAnswer((_) {
             return Stream<User>.fromFuture(Future.value(testUser));
           });
         });
@@ -83,8 +80,7 @@ void main() {
 
       group("when user is null", () {
         setUp(() {
-          when(mockUserRepository.getUserByEmail(testUser.email))
-              .thenAnswer((_) {
+          when(mockUserRepository.getUserByEmail(testUser.email)).thenAnswer((_) {
             return Stream<User>.fromFuture(Future.value(null));
           });
         });
@@ -108,15 +104,13 @@ void main() {
 
     group("on UpdateGrade event", () {
       setUp(() async {
-        when(mockUserRepository.updateGrade(testUser.email, Grade.black))
-            .thenAnswer((_) {
+        when(mockUserRepository.updateGrade(testUser.email, Grade.black)).thenAnswer((_) {
           return Future.value(null);
         });
       });
 
       tearDown(() async {
-        await untilCalled(
-            mockUserRepository.updateGrade(testUser.email, Grade.black));
+        await untilCalled(mockUserRepository.updateGrade(testUser.email, Grade.black));
         verify(mockUserRepository.updateGrade(testUser.email, Grade.black));
       });
 
@@ -136,15 +130,13 @@ void main() {
       var newName = "Porco";
 
       setUp(() {
-        when(mockUserRepository.updateUserName(testUser.email, newName))
-            .thenAnswer((_) {
+        when(mockUserRepository.updateUserName(testUser.email, newName)).thenAnswer((_) {
           return Future.value(null);
         });
       });
 
       tearDown(() async {
-        await untilCalled(
-            mockUserRepository.updateUserName(testUser.email, newName));
+        await untilCalled(mockUserRepository.updateUserName(testUser.email, newName));
         verify(mockUserRepository.updateUserName(testUser.email, newName));
       });
 
@@ -169,29 +161,23 @@ void main() {
           return Future.value(fakeImage);
         });
 
-        when(mockStorageRepository.uploadImage(
-                fakeImage, argThat(endsWith(".png"))))
+        when(mockStorageRepository.uploadImage(fakeImage, argThat(endsWith(".png"))))
             .thenAnswer((_) {
           return Future.value(newImageUrl);
         });
 
-        when(mockUserRepository.updateUserImageUrl(testUser.email, newImageUrl))
-            .thenAnswer((_) {
+        when(mockUserRepository.updateUserImageUrl(testUser.email, newImageUrl)).thenAnswer((_) {
           return Future.value(null);
         });
       });
 
       tearDown(() async {
         await untilCalled(mockImageRepository.getCroppedImage());
-        await untilCalled(mockStorageRepository.uploadImage(
-            fakeImage, argThat(endsWith(".png"))));
-        await untilCalled(
-            mockUserRepository.updateUserImageUrl(testUser.email, newImageUrl));
+        await untilCalled(mockStorageRepository.uploadImage(fakeImage, argThat(endsWith(".png"))));
+        await untilCalled(mockUserRepository.updateUserImageUrl(testUser.email, newImageUrl));
         verify(mockImageRepository.getCroppedImage());
-        verify(mockStorageRepository.uploadImage(
-            fakeImage, argThat(endsWith(".png"))));
-        verify(
-            mockUserRepository.updateUserImageUrl(testUser.email, newImageUrl));
+        verify(mockStorageRepository.uploadImage(fakeImage, argThat(endsWith(".png"))));
+        verify(mockUserRepository.updateUserImageUrl(testUser.email, newImageUrl));
       });
 
       blocTest("should update the user image url",
@@ -212,15 +198,13 @@ void main() {
       var newToken = "some token";
 
       setUp(() {
-        when(mockUserRepository.updateUserFcmToken(testUser.email, newToken))
-            .thenAnswer((_) {
+        when(mockUserRepository.updateUserFcmToken(testUser.email, newToken)).thenAnswer((_) {
           return Future.value(null);
         });
       });
 
       tearDown(() async {
-        await untilCalled(
-            mockUserRepository.updateUserFcmToken(testUser.email, newToken));
+        await untilCalled(mockUserRepository.updateUserFcmToken(testUser.email, newToken));
         verify(mockUserRepository.updateUserFcmToken(testUser.email, newToken));
       });
 
@@ -232,8 +216,36 @@ void main() {
                 imageRepository: mockImageRepository,
               ),
           seed: UserState.userSuccess(currentUser: testUser),
-          act: (bloc) => bloc.add(UserEvent.updateFcmToken(
-              userEmail: testUser.email, newToken: newToken)),
+          act: (bloc) =>
+              bloc.add(UserEvent.updateFcmToken(userEmail: testUser.email, newToken: newToken)),
+          expect: []);
+    });
+
+    group("on UpdateSelectedGym event", () {
+      var newSelectedGymId = "testGym";
+
+      setUp(() {
+        when(mockUserRepository.updateSelectedGymId(testUser.email, newSelectedGymId))
+            .thenAnswer((_) {
+          return Future.value(null);
+        });
+      });
+
+      tearDown(() async {
+        await untilCalled(mockUserRepository.updateSelectedGymId(testUser.email, newSelectedGymId));
+        verify(mockUserRepository.updateSelectedGymId(testUser.email, newSelectedGymId));
+      });
+
+      blocTest("should update the user selected gym",
+          build: () => UserBloc(
+                authBloc: mockAuthBloc,
+                userRepository: mockUserRepository,
+                storageRepository: mockStorageRepository,
+                imageRepository: mockImageRepository,
+              ),
+          seed: UserState.userSuccess(currentUser: testUser),
+          act: (bloc) => bloc.add(
+              UserEvent.updateSelectedGym(userEmail: testUser.email, newGymId: newSelectedGymId)),
           expect: []);
     });
   });
