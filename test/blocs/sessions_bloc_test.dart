@@ -3,13 +3,13 @@ import 'package:checkin/src/blocs/sessions/sessions_bloc.dart';
 import 'package:checkin/src/blocs/sessions/sessions_state.dart';
 import 'package:checkin/src/models/lesson.dart';
 import 'package:checkin/src/models/membership.dart';
+import 'package:checkin/src/models/timespan.dart';
 import 'package:checkin/src/models/user.dart';
 import 'package:checkin/src/models/user_history.dart';
 import 'package:checkin/src/repositories/membership_repository.dart';
 import 'package:checkin/src/repositories/stats_repository.dart';
 import 'package:mockito/mockito.dart';
 import 'package:test/test.dart';
-import 'package:checkin/src/constants.dart' as constants;
 
 import 'helper/mock_helper.dart';
 
@@ -34,13 +34,11 @@ void main() {
     setUp(() {
       mockMembershipRepository = MockMembershipRepository();
       mockStatsRepository = MockStatsRepository();
-      configureThrowOnMissingStub(
-          [mockMembershipRepository, mockStatsRepository]);
+      configureThrowOnMissingStub([mockMembershipRepository, mockStatsRepository]);
     });
 
     tearDown(() {
-      logAndVerifyNoMoreInteractions(
-          [mockMembershipRepository, mockStatsRepository]);
+      logAndVerifyNoMoreInteractions([mockMembershipRepository, mockStatsRepository]);
     });
 
     // todo missing initial state test
@@ -48,8 +46,8 @@ void main() {
     group("on SessionsUpdated event", () {
       group("when there is inactive membership", () {
         setUp(() {
-          Membership inactiveMembership = Membership(
-              status: Membership.INACTIVE_MEMBERSHIP, customerId: "cus_123");
+          Membership inactiveMembership =
+              Membership(status: Membership.INACTIVE_MEMBERSHIP, customerId: "cus_123");
           when(mockMembershipRepository.getMembership(
             gymId: fakeUser.selectedGymId,
             email: fakeEmail,
@@ -78,9 +76,7 @@ void main() {
           () {
         setUp(() {
           Membership inactiveMembership = Membership(
-              status: Membership.INACTIVE_MEMBERSHIP,
-              customerId: "cus_123",
-              totalLessonsOfPlan: 3);
+              status: Membership.INACTIVE_MEMBERSHIP, customerId: "cus_123", totalLessonsOfPlan: 3);
 
           when(mockMembershipRepository.getMembership(
             gymId: fakeUser.selectedGymId,
@@ -107,8 +103,8 @@ void main() {
 
       group("when there is an active membership with no sessions", () {
         setUp(() {
-          Membership activeMembership = Membership(
-              status: Membership.ACTIVE_MEMBERSHIP, customerId: "cus_123");
+          Membership activeMembership =
+              Membership(status: Membership.ACTIVE_MEMBERSHIP, customerId: "cus_123");
 
           when(mockMembershipRepository.getMembership(
             gymId: fakeUser.selectedGymId,
@@ -135,14 +131,10 @@ void main() {
     });
 
     group("SessionsUpdatedWithHistory", () {
-      group(
-          "when there is an active membership with 3 sessions in the user's plan",
-          () {
+      group("when there is an active membership with 3 sessions in the user's plan", () {
         setUp(() {
           Membership activeMembership = Membership(
-              status: Membership.ACTIVE_MEMBERSHIP,
-              customerId: "cus_123",
-              totalLessonsOfPlan: 3);
+              status: Membership.ACTIVE_MEMBERSHIP, customerId: "cus_123", totalLessonsOfPlan: 3);
 
           when(mockMembershipRepository.getMembership(
             gymId: fakeUser.selectedGymId,
@@ -161,16 +153,16 @@ void main() {
           setUp(() {
             var attendedOneLesson = [Lesson()];
             when(mockStatsRepository.getUserStats(
-                    fakeUser.selectedGymId, fakeEmail, constants.MONTH))
-                .thenAnswer((realInvocation) => Stream.value(UserHistory(
-                    email: fakeEmail, attendedLessons: attendedOneLesson)));
+                    fakeUser.selectedGymId, fakeEmail, Timespan.month))
+                .thenAnswer((realInvocation) => Stream.value(
+                    UserHistory(email: fakeEmail, attendedLessons: attendedOneLesson)));
           });
 
           tearDown(() {
             verify(mockStatsRepository.getUserStats(
               fakeUser.selectedGymId,
               fakeEmail,
-              constants.MONTH,
+              Timespan.month,
             ));
           });
 
@@ -181,25 +173,23 @@ void main() {
                     statsRepository: mockStatsRepository,
                     membershipRepository: mockMembershipRepository,
                   ),
-              expect: [
-                SessionsLoaded(totalLessonsOfPlan: 3, attendedLessons: 1)
-              ]);
+              expect: [SessionsLoaded(totalLessonsOfPlan: 3, attendedLessons: 1)]);
         });
 
         group("and the user did 3 lessons this month", () {
           setUp(() {
             var attendedOneLesson = [Lesson(), Lesson(), Lesson()];
             when(mockStatsRepository.getUserStats(
-                    fakeUser.selectedGymId, fakeEmail, constants.MONTH))
-                .thenAnswer((realInvocation) => Stream.value(UserHistory(
-                    email: fakeEmail, attendedLessons: attendedOneLesson)));
+                    fakeUser.selectedGymId, fakeEmail, Timespan.month))
+                .thenAnswer((realInvocation) => Stream.value(
+                    UserHistory(email: fakeEmail, attendedLessons: attendedOneLesson)));
           });
 
           tearDown(() {
             verify(mockStatsRepository.getUserStats(
               fakeUser.selectedGymId,
               fakeEmail,
-              constants.MONTH,
+              Timespan.month,
             ));
           });
 
@@ -210,9 +200,7 @@ void main() {
                     statsRepository: mockStatsRepository,
                     membershipRepository: mockMembershipRepository,
                   ),
-              expect: [
-                SessionsWarning(totalLessonsOfPlan: 3, attendedLessons: 3)
-              ]);
+              expect: [SessionsWarning(totalLessonsOfPlan: 3, attendedLessons: 3)]);
         });
       });
     });

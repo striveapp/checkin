@@ -1,8 +1,8 @@
 import 'package:bloc_test/bloc_test.dart';
 import 'package:checkin/src/blocs/leaderboard/bloc.dart';
 import 'package:checkin/src/blocs/user/bloc.dart';
-import 'package:checkin/src/constants.dart';
 import 'package:checkin/src/models/lesson.dart';
+import 'package:checkin/src/models/timespan.dart';
 import 'package:checkin/src/models/user.dart';
 import 'package:checkin/src/models/user_history.dart';
 import 'package:checkin/src/repositories/stats_repository.dart';
@@ -66,16 +66,15 @@ void main() {
         ];
 
         setUp(() {
-          whenListen(mockUserBloc,
-              Stream.fromIterable([UserSuccess(currentUser: fakeUser)]));
-          when(mockStatsRepository.getAllUserStats(fakeUser.selectedGymId, YEAR))
+          whenListen(mockUserBloc, Stream.fromIterable([UserSuccess(currentUser: fakeUser)]));
+          when(mockStatsRepository.getAllUserStats(fakeUser.selectedGymId, Timespan.year))
               .thenAnswer((_) {
             return Stream<List<UserHistory>>.value(userHistories);
           });
         });
 
         tearDown(() {
-          verify(mockStatsRepository.getAllUserStats(fakeUser.selectedGymId, YEAR));
+          verify(mockStatsRepository.getAllUserStats(fakeUser.selectedGymId, Timespan.year));
         });
 
         blocTest(
@@ -104,26 +103,18 @@ void main() {
         List<Lesson> attendedLessons3 = [
           Lesson(timeStart: "19:00", timeEnd: "20:00"),
         ];
-        UserHistory userHistory1 = UserHistory(
-            email: "test@test.com", attendedLessons: attendedLessons1);
-        UserHistory userHistory2 = UserHistory(
-            email: "test-two@test.com", attendedLessons: attendedLessons2);
-        UserHistory userHistory3 = UserHistory(
-            email: "test-two@test.com", attendedLessons: attendedLessons3);
+        UserHistory userHistory1 =
+            UserHistory(email: "test@test.com", attendedLessons: attendedLessons1);
+        UserHistory userHistory2 =
+            UserHistory(email: "test-two@test.com", attendedLessons: attendedLessons2);
+        UserHistory userHistory3 =
+            UserHistory(email: "test-two@test.com", attendedLessons: attendedLessons3);
 
-        List<UserHistory> unsortedUsersHistory = [
-          userHistory1,
-          userHistory2,
-          userHistory3
-        ];
-        List<UserHistory> sortedUsersHistory = [
-          userHistory2,
-          userHistory1,
-          userHistory3
-        ];
+        List<UserHistory> unsortedUsersHistory = [userHistory1, userHistory2, userHistory3];
+        List<UserHistory> sortedUsersHistory = [userHistory2, userHistory1, userHistory3];
 
         setUp(() {
-          when(mockStatsRepository.getAllUserStats(fakeUser.selectedGymId, YEAR))
+          when(mockStatsRepository.getAllUserStats(fakeUser.selectedGymId, Timespan.week))
               .thenAnswer((_) {
             return Stream<List<UserHistory>>.value(unsortedUsersHistory);
           });
@@ -131,10 +122,9 @@ void main() {
 
         blocTest(
           "should emit LeaderboardLoaded with sorted users by attendedLessons count [desc]",
-          build: () => LeaderboardBloc(
-              userBloc: mockUserBloc, statsRepository: mockStatsRepository),
-          act: (bloc) =>
-              bloc.add(LeaderboardUpdated(usersHistory: unsortedUsersHistory)),
+          build: () =>
+              LeaderboardBloc(userBloc: mockUserBloc, statsRepository: mockStatsRepository),
+          act: (bloc) => bloc.add(LeaderboardUpdated(usersHistory: unsortedUsersHistory)),
           expect: [
             LeaderboardLoaded(usersHistory: sortedUsersHistory),
           ],
@@ -156,7 +146,7 @@ void main() {
         ];
 
         setUp(() {
-          when(mockStatsRepository.getAllUserStats(fakeUser.selectedGymId, YEAR))
+          when(mockStatsRepository.getAllUserStats(fakeUser.selectedGymId, Timespan.week))
               .thenAnswer((_) {
             return Stream<List<UserHistory>>.value(usersHistory);
           });
@@ -164,8 +154,8 @@ void main() {
 
         blocTest(
           "should emit LeaderboardNotAvailable",
-          build: () => LeaderboardBloc(
-              userBloc: mockUserBloc, statsRepository: mockStatsRepository),
+          build: () =>
+              LeaderboardBloc(userBloc: mockUserBloc, statsRepository: mockStatsRepository),
           act: (bloc) => bloc.add(
             LeaderboardUpdated(usersHistory: usersHistory),
           ),

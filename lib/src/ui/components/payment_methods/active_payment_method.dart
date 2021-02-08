@@ -3,10 +3,10 @@ import 'package:checkin/src/blocs/payment_methods/bloc.dart';
 import 'package:checkin/src/localization/localization.dart';
 import 'package:checkin/src/models/gym.dart';
 import 'package:checkin/src/models/payment_method.dart';
+import 'package:checkin/src/ui/components/cancel_button.dart';
+import 'package:checkin/src/ui/components/loading_indicator.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
-
-import 'package:checkin/src/ui/components/loading_indicator.dart';
 
 class ActivePaymentMethodView extends StatelessWidget {
   static const String changePaymentInfo = 'Change payment infos';
@@ -61,20 +61,17 @@ class ActivePaymentMethodView extends StatelessWidget {
           Center(child:
               BlocBuilder<GymBloc, GymState>(builder: (BuildContext context, GymState state) {
             return state.when(
-                initialGymState: () => LoadingIndicator(),
-                gymLoaded: (Gym gym) => RaisedButton(
-                      child: Text(
-                        changePaymentInfo.i18n,
-                        style: Theme.of(context).textTheme.button,
-                      ),
-                      color: Theme.of(context).buttonTheme.colorScheme.error,
-                      onPressed: () {
-                        BlocProvider.of<PaymentMethodsBloc>(context).add(ChangeBankAccount(
-                          gym: gym,
-                          billingEmail: paymentMethod.billingEmail,
-                        ));
-                      },
-                    ));
+              initialGymState: () => LoadingIndicator(),
+              gymLoaded: (Gym gym) => CancelButton(
+                text: changePaymentInfo.i18n,
+                onPressed: () {
+                  BlocProvider.of<PaymentMethodsBloc>(context).add(ChangeBankAccount(
+                    gym: gym,
+                    billingEmail: paymentMethod.billingEmail,
+                  ));
+                },
+              ),
+            );
           }))
         ],
       );

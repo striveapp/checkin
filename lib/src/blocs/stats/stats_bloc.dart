@@ -1,12 +1,16 @@
 import 'dart:async';
 
 import 'package:bloc/bloc.dart';
-import 'package:checkin/src/constants.dart' as constants;
+import 'package:checkin/src/models/timespan.dart';
 
 import 'bloc.dart';
 
 class StatsBloc extends Bloc<StatsEvent, StatsState> {
-  static final List<String> timespans = <String>[constants.WEEK, constants.MONTH, constants.YEAR];
+  static final List<Timespan> availableTimespans = <Timespan>[
+    Timespan.week,
+    Timespan.month,
+    Timespan.all,
+  ];
 
   StatsBloc() : super(InitialStatsState());
 

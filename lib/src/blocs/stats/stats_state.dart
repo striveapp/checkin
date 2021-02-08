@@ -1,29 +1,13 @@
-import 'package:equatable/equatable.dart';
-import 'package:meta/meta.dart';
+import 'package:checkin/src/models/timespan.dart';
+import 'package:flutter/foundation.dart';
+import 'package:freezed_annotation/freezed_annotation.dart';
 
-@immutable
-abstract class StatsState extends Equatable {
-  const StatsState();
+part 'stats_state.freezed.dart';
 
-  @override
-  List<Object> get props => [];
-}
-
-class InitialStatsState extends StatsState {
-  @override
-  String toString() => 'InitialStatsState';
-}
-
-class TimespanUpdated extends StatsState {
-  final String timespan;
-
-  const TimespanUpdated({
-    this.timespan,
-  });
-
-  @override
-  List<Object> get props => [timespan];
-
-  @override
-  String toString() => 'TimespanUpdated';
+@freezed
+abstract class StatsState with _$StatsState {
+  const factory StatsState.initialStatsState() = InitialStatsState;
+  const factory StatsState.timespanUpdated({
+    @required Timespan timespan,
+  }) = TimespanUpdated;
 }

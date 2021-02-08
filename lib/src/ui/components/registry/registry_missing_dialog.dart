@@ -13,7 +13,7 @@ class RegistryMissingDialog extends StatelessWidget {
           textAlign: TextAlign.center, style: Theme.of(context).textTheme.headline3),
       actionsPadding: EdgeInsets.symmetric(horizontal: 10),
       actions: <Widget>[
-        RaisedButton(
+        ElevatedButton(
           key: Key("goBack"),
           child: Padding(
             padding: EdgeInsets.symmetric(vertical: 10, horizontal: 10),

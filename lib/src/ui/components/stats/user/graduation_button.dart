@@ -8,7 +8,7 @@ class GraduationButton extends StatelessWidget {
   Widget build(BuildContext context) {
     return SizedBox(
       width: double.infinity,
-      child: RaisedButton(
+      child: ElevatedButton(
         child: Text(
           graduateStudent.i18n.toUpperCase(),
           style: Theme.of(context).textTheme.button,

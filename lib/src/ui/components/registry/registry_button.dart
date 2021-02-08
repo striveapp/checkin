@@ -19,8 +19,8 @@ class RegistryButton extends StatelessWidget {
   Widget build(BuildContext context) {
     return SizedBox(
       width: double.infinity,
-      child: RaisedButton(
-        color: this.color,
+      child: ElevatedButton(
+        style: ElevatedButton.styleFrom(primary: color),
         child: isLoading
             ? LoadingIndicator(
                 width: 20,

@@ -1,5 +1,6 @@
 import 'package:checkin/src/localization/localization.dart';
 import 'package:checkin/src/models/membership.dart';
+import 'package:checkin/src/ui/components/cancel_button.dart';
 import 'package:checkin/src/ui/components/membership/remaining_lessons_indicator.dart';
 import 'package:checkin/src/ui/components/membership/unsubscribe_dialog.dart';
 import 'package:flutter/material.dart';
@@ -73,12 +74,8 @@ class ActiveMembershipView extends StatelessWidget {
                 height: 5,
               ),
               Center(
-                child: RaisedButton(
-                  child: Text(
-                    unsubscribe.i18n,
-                    style: Theme.of(context).textTheme.button,
-                  ),
-                  color: Theme.of(context).buttonTheme.colorScheme.error,
+                child: CancelButton(
+                  text: unsubscribe.i18n,
                   onPressed: () {
                     showDialog(
                       context: context,

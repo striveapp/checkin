@@ -8,6 +8,16 @@ final theme = {
     primaryColor: Color(0xFFF44336),
     accentColor: Color(0xFFd32f2f),
     brightness: Brightness.dark,
+    elevatedButtonTheme: ElevatedButtonThemeData(
+        style: ElevatedButton.styleFrom(
+      primary: Color(0xFF7C4DFF),
+      onSurface: Color(0xFFBBBBBB),
+      minimumSize: Size(88, 48),
+      padding: EdgeInsets.symmetric(horizontal: 16),
+      shape: RoundedRectangleBorder(
+        borderRadius: new BorderRadius.circular(4.0),
+      ),
+    )),
     buttonTheme: ButtonThemeData(
         buttonColor: Color(0xFF7C4DFF),
         disabledColor: Color(0xFFBBBBBB),
@@ -58,12 +68,24 @@ final theme = {
     primaryColor: Color(0xFFF44336),
     accentColor: Color(0xFFd32f2f),
     brightness: Brightness.light,
+    elevatedButtonTheme: ElevatedButtonThemeData(
+        style: ElevatedButton.styleFrom(
+      primary: Color(0xFF7C4DFF),
+      onSurface: Color(0xFFBBBBBB),
+      minimumSize: Size.fromHeight(48),
+      shape: RoundedRectangleBorder(
+        borderRadius: new BorderRadius.circular(4.0),
+      ),
+    )),
     buttonTheme: ButtonThemeData(
-        buttonColor: Color(0xFF7C4DFF),
-        disabledColor: Color(0xFFBBBBBB),
-        colorScheme: ColorScheme.dark(error: Color(0xFFEF5350)),
-        height: 48,
-        shape: RoundedRectangleBorder(borderRadius: new BorderRadius.circular(4.0))),
+      buttonColor: Color(0xFF7C4DFF),
+      disabledColor: Color(0xFFBBBBBB),
+      colorScheme: ColorScheme.dark(error: Color(0xFFEF5350)),
+      height: 48,
+      shape: RoundedRectangleBorder(
+        borderRadius: new BorderRadius.circular(4.0),
+      ),
+    ),
     textTheme: TextTheme(
       headline1: TextStyle(
         fontSize: 24.0,

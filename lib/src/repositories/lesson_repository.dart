@@ -3,11 +3,12 @@ import 'dart:async';
 import 'package:checkin/src/models/attendee.dart';
 import 'package:checkin/src/models/lesson.dart';
 import 'package:checkin/src/models/master.dart';
+import 'package:checkin/src/models/timespan.dart';
 
 abstract class LessonRepository {
   Stream<List<Lesson>> getLessonsForDay(String gymId, DateTime day, [List<String> filterTypes]);
 
-  Stream<List<Lesson>> getLessonsByMasterAndTimespan(Master master, String timespan);
+  Stream<List<Lesson>> getLessonsByMasterAndTimespan(Master master, Timespan timespan);
 
   Stream<Lesson> getLesson(String gymId, String date, String lessonId);
 

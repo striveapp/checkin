@@ -30,9 +30,7 @@ class LessonsStatsBloc extends Bloc<LessonsStatsEvent, LessonsStatsState> {
       lessonsSub = this
           .lessonsRepository
           .getLessonsByMasterAndTimespan(this.master, statsBlocState.timespan)
-          .listen((lessons) {
-        add(UpdateLessonStats(lessons: lessons));
-      });
+          .listen((lessons) => add(UpdateLessonsStats(lessons: lessons)));
     }
   }
 
@@ -40,11 +38,12 @@ class LessonsStatsBloc extends Bloc<LessonsStatsEvent, LessonsStatsState> {
   Stream<LessonsStatsState> mapEventToState(
     LessonsStatsEvent event,
   ) async* {
-    if (event is UpdateLessonStats) {
+    if (event is UpdateLessonsStats) {
       var acceptedAttendees = event.lessons.expand((lesson) => lesson.acceptedAttendees);
-      yield LessonStatsUpdated(
-          acceptedAttendeesWithCounter: _getAttendeesWithCounter(acceptedAttendees),
-          totalAttendees: acceptedAttendees.length);
+      yield LessonsStatsUpdated(
+        acceptedAttendeesWithCounter: _getAttendeesWithCounter(acceptedAttendees),
+        totalAttendees: acceptedAttendees.length,
+      );
     }
   }
 

@@ -45,18 +45,14 @@ void main() {
 
       expect(acceptAllButtonFinder, findsOneWidget);
 
-      expect(
-          tester.widget<RaisedButton>(acceptAllButtonFinder).enabled, isTrue);
+      expect(tester.widget<ElevatedButton>(acceptAllButtonFinder).enabled, isTrue);
     });
   });
 }
 
 Future<Widget> buildTestApplication(Widget testWidget) async {
   User masterUser = User(
-      name: "Gym Master",
-      email: "gym@master.com",
-      imageUrl: "masterPic",
-      selectedGymId: "testGym");
+      name: "Gym Master", email: "gym@master.com", imageUrl: "masterPic", selectedGymId: "testGym");
 
   Lesson fakeLessonWithRegisteredAttendee = Lesson(
       id: "test id",
@@ -71,8 +67,7 @@ Future<Widget> buildTestApplication(Widget testWidget) async {
     masterUser.selectedGymId,
     fakeLessonWithRegisteredAttendee.date,
     fakeLessonWithRegisteredAttendee.id,
-  )).thenAnswer(
-      (realInvocation) => Stream.value(fakeLessonWithRegisteredAttendee));
+  )).thenAnswer((realInvocation) => Stream.value(fakeLessonWithRegisteredAttendee));
 
   when(mockLessonApi.acceptAll(
     masterUser.selectedGymId,

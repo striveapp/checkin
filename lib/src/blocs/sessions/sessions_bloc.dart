@@ -3,8 +3,8 @@ import 'dart:async';
 import 'package:bloc/bloc.dart';
 import 'package:checkin/src/blocs/sessions/sessions_event.dart';
 import 'package:checkin/src/blocs/sessions/sessions_state.dart';
-import 'package:checkin/src/constants.dart' as constants;
 import 'package:checkin/src/models/membership.dart';
+import 'package:checkin/src/models/timespan.dart';
 import 'package:checkin/src/repositories/membership_repository.dart';
 import 'package:checkin/src/repositories/stats_repository.dart';
 import 'package:flutter/foundation.dart';
@@ -41,7 +41,7 @@ class SessionsBloc extends Bloc<SessionsEvent, SessionsState> {
         _statsSub?.cancel();
         _statsSub = this
             .statsRepository
-            .getUserStats(selectedGymId, userEmail, constants.MONTH)
+            .getUserStats(selectedGymId, userEmail, Timespan.month)
             .listen((userHistory) {
           add(SessionsUpdatedWithHistory(membership: membership, userHistory: userHistory));
         });

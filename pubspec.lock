@@ -211,13 +211,6 @@ packages:
       url: "https://pub.dartlang.org"
     source: hosted
     version: "1.15.0-nullsafety.5"
-  color:
-    dependency: transitive
-    description:
-      name: color
-      url: "https://pub.dartlang.org"
-    source: hosted
-    version: "2.1.1"
   convert:
     dependency: transitive
     description:
@@ -424,25 +417,11 @@ packages:
     description: flutter
     source: sdk
     version: "0.0.0"
-  flutter_launcher_icons:
-    dependency: "direct dev"
-    description:
-      name: flutter_launcher_icons
-      url: "https://pub.dartlang.org"
-    source: hosted
-    version: "0.7.5"
   flutter_localizations:
     dependency: "direct main"
     description: flutter
     source: sdk
     version: "0.0.0"
-  flutter_native_splash:
-    dependency: "direct dev"
-    description:
-      name: flutter_native_splash
-      url: "https://pub.dartlang.org"
-    source: hosted
-    version: "0.1.9"
   flutter_plugin_android_lifecycle:
     dependency: transitive
     description:
@@ -456,7 +435,7 @@ packages:
       name: flutter_svg
       url: "https://pub.dartlang.org"
     source: hosted
-    version: "0.18.1"
+    version: "0.20.0-nullsafety.3"
   flutter_test:
     dependency: "direct dev"
     description: flutter
@@ -486,6 +465,13 @@ packages:
     description: flutter
     source: sdk
     version: "0.0.0"
+  gettext_parser:
+    dependency: transitive
+    description:
+      name: gettext_parser
+      url: "https://pub.dartlang.org"
+    source: hosted
+    version: "0.1.0+1"
   glob:
     dependency: transitive
     description:
@@ -548,14 +534,7 @@ packages:
       name: i18n_extension
       url: "https://pub.dartlang.org"
     source: hosted
-    version: "1.4.5"
-  image:
-    dependency: transitive
-    description:
-      name: image
-      url: "https://pub.dartlang.org"
-    source: hosted
-    version: "2.1.18"
+    version: "3.0.0-dev.1"
   image_cropper:
     dependency: "direct main"
     description:
@@ -605,13 +584,6 @@ packages:
       url: "https://pub.dartlang.org"
     source: hosted
     version: "3.1.1"
-  json_rpc_2:
-    dependency: transitive
-    description:
-      name: json_rpc_2
-      url: "https://pub.dartlang.org"
-    source: hosted
-    version: "2.2.2"
   json_serializable:
     dependency: "direct dev"
     description:
@@ -737,14 +709,14 @@ packages:
       name: path_drawing
       url: "https://pub.dartlang.org"
     source: hosted
-    version: "0.4.1+1"
+    version: "0.5.0-nullsafety.0"
   path_parsing:
     dependency: transitive
     description:
       name: path_parsing
       url: "https://pub.dartlang.org"
     source: hosted
-    version: "0.1.4"
+    version: "0.2.0-nullsafety.0"
   path_provider:
     dependency: transitive
     description:
@@ -793,7 +765,7 @@ packages:
       name: petitparser
       url: "https://pub.dartlang.org"
     source: hosted
-    version: "3.1.0"
+    version: "4.0.0-nullsafety.1"
   platform:
     dependency: "direct main"
     description:
@@ -994,7 +966,7 @@ packages:
       name: sprintf
       url: "https://pub.dartlang.org"
     source: hosted
-    version: "4.1.0"
+    version: "5.0.0"
   sqflite:
     dependency: transitive
     description:
@@ -1211,7 +1183,7 @@ packages:
       name: xml
       url: "https://pub.dartlang.org"
     source: hosted
-    version: "4.5.1"
+    version: "5.0.0-nullsafety.1"
   yaml:
     dependency: transitive
     description:
@@ -1220,5 +1192,5 @@ packages:
     source: hosted
     version: "2.2.1"
 sdks:
-  dart: ">=2.12.0-0.0 <=2.12.0-133.2.beta"
-  flutter: ">=1.22.2 <2.0.0"
+  dart: ">=2.12.0-0.0 <=2.12.0-259.8.beta"
+  flutter: ">=1.24.0-7.0"

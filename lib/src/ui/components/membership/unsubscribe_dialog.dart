@@ -1,7 +1,8 @@
 import 'package:checkin/src/blocs/membership/bloc.dart';
+import 'package:checkin/src/localization/localization.dart';
+import 'package:checkin/src/ui/components/cancel_button.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
-import 'package:checkin/src/localization/localization.dart';
 
 class UnsubscribeDialog {
   static const String aboutToPermanentlyDeleteSubscription =
@@ -31,7 +32,7 @@ class UnsubscribeDialog {
             ),
           ),
           actions: <Widget>[
-            RaisedButton(
+            ElevatedButton(
               child: Padding(
                 padding: EdgeInsets.symmetric(vertical: 10, horizontal: 10),
                 child: Text(
@@ -43,15 +44,8 @@ class UnsubscribeDialog {
                 Navigator.of(context).pop();
               },
             ),
-            RaisedButton(
-              color: Theme.of(context).buttonTheme.colorScheme.error,
-              child: Padding(
-                padding: EdgeInsets.symmetric(vertical: 10, horizontal: 10),
-                child: Text(
-                  unsubscribe.i18n,
-                  style: Theme.of(context).textTheme.button,
-                ),
-              ),
+            CancelButton(
+              text: unsubscribe.i18n,
               onPressed: () {
                 BlocProvider.of<MembershipBloc>(context).add(Unsubscribe());
                 Navigator.of(context).pop();

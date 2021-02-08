@@ -1,8 +1,8 @@
 import 'package:checkin/src/blocs/lessons_stats/bloc.dart';
+import 'package:checkin/src/localization/localization.dart';
 import 'package:checkin/src/ui/components/loading_indicator.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
-import 'package:checkin/src/localization/localization.dart';
 
 class AttendeesCounter extends StatelessWidget {
   static const String studentsAccepted = 'students accepted';
@@ -14,7 +14,7 @@ class AttendeesCounter extends StatelessWidget {
         if (state is LessonsStatsInitial) {
           return LoadingIndicator();
         }
-        if (state is LessonStatsUpdated) {
+        if (state is LessonsStatsUpdated) {
           return Column(children: <Widget>[
             Text(
               state.totalAttendees.toString(),

@@ -1,57 +1,58 @@
 import 'package:checkin/src/blocs/dynamic_link/bloc.dart';
 import 'package:checkin/src/blocs/login/bloc.dart';
-import 'package:checkin/src/constants.dart' as constants;
 import 'package:checkin/src/models/grade.dart';
+import 'package:checkin/src/models/timespan.dart';
 import 'package:checkin/src/ui/components/account/payment.dart';
 import 'package:checkin/src/ui/components/email_retrieval/check_email_view.dart';
 import 'package:checkin/src/ui/components/email_retrieval/insert_email_view.dart';
 import 'package:checkin/src/ui/components/email_retrieval/wrong_email_dialog.dart';
-import 'package:checkin/src/ui/components/lessons/lesson_card.dart';
+import 'package:checkin/src/ui/components/grade_card.dart';
+import 'package:checkin/src/ui/components/leaderboard/no_leaderboard_banner.dart';
+import 'package:checkin/src/ui/components/lessons/attendees_preview.dart';
 import 'package:checkin/src/ui/components/lessons/filter_list_widget.dart';
+import 'package:checkin/src/ui/components/lessons/lesson_card.dart';
+import 'package:checkin/src/ui/components/lessons/no_lessons_banner.dart';
 import 'package:checkin/src/ui/components/login/apple_sign_in_button.dart';
+import 'package:checkin/src/ui/components/login/google_sign_in_button.dart';
 import 'package:checkin/src/ui/components/login/login_form.dart';
 import 'package:checkin/src/ui/components/login/passwordless_sign_in_button.dart';
+import 'package:checkin/src/ui/components/membership/active_membership.dart';
+import 'package:checkin/src/ui/components/membership/inactive_membership.dart';
+import 'package:checkin/src/ui/components/membership/unsubscribe_dialog.dart';
 import 'package:checkin/src/ui/components/payment_methods/active_payment_method.dart';
 import 'package:checkin/src/ui/components/payment_methods/empty_payment_method.dart';
 import 'package:checkin/src/ui/components/plans/plans_callout.dart';
 import 'package:checkin/src/ui/components/plans/plans_footer.dart';
 import 'package:checkin/src/ui/components/plans/plans_list.dart';
 import 'package:checkin/src/ui/components/plans/price/price_footer.dart';
+import 'package:checkin/src/ui/components/profile_card.dart';
+import 'package:checkin/src/ui/components/profile_infos.dart';
 import 'package:checkin/src/ui/components/registry/accept_all_dialog.dart';
 import 'package:checkin/src/ui/components/registry/attendee_tile.dart';
 import 'package:checkin/src/ui/components/registry/attendees_list.dart';
 import 'package:checkin/src/ui/components/registry/close_class_dialog.dart';
+import 'package:checkin/src/ui/components/registry/empty_registry.dart';
+import 'package:checkin/src/ui/components/registry/lesson_infos.dart';
 import 'package:checkin/src/ui/components/registry/master_buttons.dart';
 import 'package:checkin/src/ui/components/registry/register_dialog.dart';
 import 'package:checkin/src/ui/components/registry/registry_controls.dart';
 import 'package:checkin/src/ui/components/registry/registry_counter.dart';
-import 'package:checkin/src/ui/components/lessons/attendees_preview.dart';
-import 'package:checkin/src/ui/components/login/google_sign_in_button.dart';
-import 'package:checkin/src/ui/components/grade_card.dart';
-import 'package:checkin/src/ui/components/leaderboard/no_leaderboard_banner.dart';
-import 'package:checkin/src/ui/components/registry/empty_registry.dart';
-import 'package:checkin/src/ui/components/registry/lesson_infos.dart';
-import 'package:checkin/src/ui/components/membership/active_membership.dart';
-import 'package:checkin/src/ui/components/membership/inactive_membership.dart';
-import 'package:checkin/src/ui/components/membership/unsubscribe_dialog.dart';
-import 'package:checkin/src/ui/components/lessons/no_lessons_banner.dart';
-import 'package:checkin/src/ui/components/profile_card.dart';
-import 'package:checkin/src/ui/components/profile_infos.dart';
 import 'package:checkin/src/ui/components/registry/registry_missing_dialog.dart';
 import 'package:checkin/src/ui/components/registry/remove_student_dialog.dart';
 import 'package:checkin/src/ui/components/registry/student_button.dart';
 import 'package:checkin/src/ui/components/stats/graduate_dialog.dart';
 import 'package:checkin/src/ui/components/stats/graduate_fab.dart';
 import 'package:checkin/src/ui/components/stats/lessons/attendees_counter.dart';
+import 'package:checkin/src/ui/components/stats/user/attended_lessons_header.dart';
 import 'package:checkin/src/ui/components/stats/user/attended_lessons_list.dart';
-import 'package:checkin/src/ui/components/stats/user/mat_time_counter.dart';
+import 'package:checkin/src/ui/components/stats/user/class_progression_indicator.dart';
 import 'package:checkin/src/ui/components/upgrader_dialog.dart';
 import 'package:checkin/src/ui/pages/account_page.dart';
+import 'package:checkin/src/ui/pages/leaderboard_page.dart';
+import 'package:checkin/src/ui/pages/lessons_stats_page.dart';
 import 'package:checkin/src/ui/pages/onboarding/grade_page.dart';
 import 'package:checkin/src/ui/pages/onboarding/name_selection_page.dart';
 import 'package:checkin/src/ui/pages/onboarding/unselected_gym_page.dart';
-import 'package:checkin/src/ui/pages/leaderboard_page.dart';
-import 'package:checkin/src/ui/pages/lessons_stats_page.dart';
 import 'package:checkin/src/ui/pages/payment_success_page.dart';
 import 'package:checkin/src/ui/pages/plans_page.dart';
 import 'package:checkin/src/ui/pages/registry_page.dart';
@@ -98,19 +99,24 @@ extension Localization on String {
         'it': 'Statistiche',
       } +
       {
-        'en': constants.WEEK,
+        'en': Timespan.week.name,
         'es': 'semana',
         'it': 'settimana',
       } +
       {
-        'en': constants.MONTH,
+        'en': Timespan.month.name,
         'es': 'mes',
         'it': 'mese',
       } +
       {
-        'en': constants.YEAR,
+        'en': Timespan.year.name,
         'es': 'año',
         'it': 'anno',
+      } +
+      {
+        'en': Timespan.all.name,
+        'es': 'todo',
+        'it': 'tutto',
       } +
       {
         'en': EmptyRegistry.emptyClass,
@@ -118,52 +124,28 @@ extension Localization on String {
         'it': 'Classe ancora vuota',
       } +
       {
-        'en': AttendedLessonsList.attendedClasses,
-        'es': 'Clases atendidas',
-        'it': 'Classi confermate',
+        'en': ClassProgressIndicatorView.classes.zero('classes').one('class').many('classes'),
+        'es': 'clases'.zero('clases').one('clase').many('clases'),
+        'it': 'classi'.zero('classi').one('classe').many('classi'),
       } +
       {
-        'en': MatTimeCounter.matTime,
-        'es': 'Horas de mat',
-        'it': 'Ore sul mat',
+        'en': AttendedLessonsHeaderDelegate.yourClasses,
+        'es': 'Tus clases',
+        'it': 'Le tue classi',
       } +
       {
-        'en': MatTimeCounter.numHours.zero('0 hours').one('1 hour').many('%d hours'),
-        'es': '%d horas'.zero('0 horas').one('1 hora').many('%d horas'),
-        'it': '%d ore'.zero('0 ore').one('1 ora').many('%d ore'),
-      } +
-      {
-        'en': MatTimeCounter.hours.zero('hours').one('hour').many('hours'),
-        'es': 'horas'.zero('horas').one('hora').many('horas'),
-        'it': 'horas'.zero('ore').one('ora').many('horas'),
-      } +
-      {
-        'en': MatTimeCounter.attendedClasses
-            .zero('No classes attended')
-            .one('You attended one class')
-            .many('You attended %d classes'),
-        'es': 'Has atendido %d clases'
-            .zero('No has atendido ninguna clase')
-            .one('Has atendido una clase')
-            .many('Has atendido %d clases'),
-        'it': 'Hai frequentato %d classi'
-            .zero('Non hai frequentato nessuna classe')
-            .one('Hai frequentato una classe')
-            .many('Hai frequentato %d classi'),
-      } +
-      {
-        'en': MatTimeCounter.thisTimespan
-            .modifier(constants.WEEK, 'this week')
-            .modifier(constants.MONTH, 'this month')
-            .modifier(constants.YEAR, 'this year'),
-        'es': 'este %s'
-            .modifier(constants.WEEK, 'esta semana')
-            .modifier(constants.MONTH, 'este mes')
-            .modifier(constants.YEAR, 'este año'),
-        'it': 'questo %s'
-            .modifier(constants.WEEK, 'questa settimana')
-            .modifier(constants.MONTH, 'questo mese')
-            .modifier(constants.YEAR, 'quest\'anno'),
+        'en': AttendedLessonCards.noClassesAttended
+            .modifier(Timespan.week.name, 'No classes attended this week')
+            .modifier(Timespan.month.name, 'No classes attended this month')
+            .modifier(Timespan.all.name, 'No classes attended yet'),
+        'es': 'ignored'
+            .modifier(Timespan.week.name, 'No tienes clases esta semana')
+            .modifier(Timespan.month.name, 'No tienes clases este mes')
+            .modifier(Timespan.all.name, 'No tienes clases todavía'),
+        'it': 'ignored'
+            .modifier(Timespan.week.name, 'Non hai fatto nessuna classe questa settimana')
+            .modifier(Timespan.month.name, 'Non hai fatto nessuna classe questo mese')
+            .modifier(Timespan.all.name, 'Non hai fatto ancora nessuna classe'),
       } +
       {
         'en': RegistryCounter.full,

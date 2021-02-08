@@ -64,7 +64,7 @@ class CheckEmailView extends StatelessWidget {
           ),
           SizedBox(
             width: double.infinity,
-            child: RaisedButton(
+            child: ElevatedButton(
               child: Text(
                 openEmailApp.i18n.toUpperCase(),
                 style: Theme.of(context).textTheme.button,

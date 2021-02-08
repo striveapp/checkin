@@ -1,6 +1,6 @@
 import 'package:checkin/src/blocs/login/bloc.dart';
-import 'package:flutter/material.dart';
 import 'package:checkin/src/localization/localization.dart';
+import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 
 class InsertEmailView extends StatefulWidget {
@@ -73,7 +73,7 @@ class _InsertEmailViewState extends State<InsertEmailView> {
           ),
           SizedBox(
             width: double.infinity,
-            child: RaisedButton(
+            child: ElevatedButton(
               child: Text(
                 InsertEmailView.next.i18n.toUpperCase(),
                 style: Theme.of(context).textTheme.button,

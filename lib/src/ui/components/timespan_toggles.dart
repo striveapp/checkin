@@ -1,6 +1,6 @@
 import 'package:checkin/src/blocs/stats/bloc.dart';
-import 'package:checkin/src/constants.dart' as constants;
 import 'package:checkin/src/localization/localization.dart';
+import 'package:checkin/src/models/timespan.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 
@@ -12,20 +12,21 @@ class TimespanToggles extends StatefulWidget {
 }
 
 class _TimespanTogglesState extends State<TimespanToggles> {
-  List<bool> _selections = StatsBloc.timespans
+  List<bool> _selections = StatsBloc.availableTimespans
       .map(
-        (String value) => value == constants.WEEK,
+        (Timespan value) => value == Timespan.week,
       )
       .toList();
 
   @override
   Widget build(BuildContext context) {
-    List<Widget> _elements = StatsBloc.timespans
+    List<Widget> _elements = StatsBloc.availableTimespans
         .map(
-          (String value) => Padding(
+          (Timespan timespan) => Padding(
             padding: const EdgeInsets.symmetric(horizontal: 5),
-            child: Text(_capitalize(value.i18n),
-                style: Theme.of(context).textTheme.bodyText1, key: Key("timespan_$value")),
+            child: Text(_capitalize(timespan.name.i18n),
+                style: Theme.of(context).textTheme.bodyText1,
+                key: Key("timespan_${timespan.name}")),
           ),
         )
         .toList();
@@ -35,7 +36,7 @@ class _TimespanTogglesState extends State<TimespanToggles> {
       isSelected: _selections,
       onPressed: (int index) {
         BlocProvider.of<StatsBloc>(context)
-            .add(TimespanUpdate(timespan: StatsBloc.timespans[index]));
+            .add(TimespanUpdate(timespan: StatsBloc.availableTimespans[index]));
 
         _updateSelected(index);
       },

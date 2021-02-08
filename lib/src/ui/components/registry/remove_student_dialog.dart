@@ -1,4 +1,5 @@
 import 'package:checkin/src/localization/localization.dart';
+import 'package:checkin/src/ui/components/cancel_button.dart';
 import 'package:flutter/material.dart';
 
 class RemoveStudentDialog extends StatelessWidget {
@@ -19,7 +20,7 @@ class RemoveStudentDialog extends StatelessWidget {
           textAlign: TextAlign.center, style: Theme.of(context).textTheme.headline3),
       actionsPadding: EdgeInsets.symmetric(horizontal: 10),
       actions: <Widget>[
-        RaisedButton(
+        ElevatedButton(
           child: Padding(
             padding: EdgeInsets.symmetric(vertical: 10, horizontal: 10),
             child: Text(
@@ -31,20 +32,13 @@ class RemoveStudentDialog extends StatelessWidget {
             Navigator.of(context).pop(false);
           },
         ),
-        RaisedButton(
+        CancelButton(
           key: Key("removeStudentButton"),
-          color: Theme.of(context).buttonTheme.colorScheme.error,
-          child: Padding(
-            padding: EdgeInsets.symmetric(vertical: 10, horizontal: 10),
-            child: Text(
-              remove.i18n,
-              style: Theme.of(context).textTheme.button,
-            ),
-          ),
+          text: remove.i18n,
           onPressed: () {
             Navigator.of(context).pop(true);
           },
-        ),
+        )
       ],
     );
   }

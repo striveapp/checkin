@@ -1,26 +1,15 @@
 import 'package:checkin/src/models/lesson.dart';
-import 'package:equatable/equatable.dart';
-import 'package:flutter/material.dart';
+import 'package:checkin/src/models/timespan.dart';
+import 'package:flutter/foundation.dart';
+import 'package:freezed_annotation/freezed_annotation.dart';
 
-abstract class UserStatsEvent extends Equatable {
-  const UserStatsEvent();
+part 'user_stats_event.freezed.dart';
 
-  @override
-  List<Object> get props => [];
-}
-
-class UserStatsUpdated extends UserStatsEvent {
-  final List<Lesson> attendedLessons;
-  final String timeSpan;
-
-  UserStatsUpdated({
-    @required this.attendedLessons,
-    @required this.timeSpan,
-  });
-
-  @override
-  List<Object> get props => [attendedLessons];
-
-  @override
-  String toString() => 'UserStatsUpdated';
+@freezed
+abstract class UserStatsEvent with _$UserStatsEvent {
+  const factory UserStatsEvent.initializeUserStats() = InitializeUserStats;
+  const factory UserStatsEvent.userStatsUpdated({
+    @required List<Lesson> attendedLessons,
+    @required Timespan timespan,
+  }) = UserStatsUpdated;
 }

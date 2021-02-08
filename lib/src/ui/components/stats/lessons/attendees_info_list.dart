@@ -14,7 +14,7 @@ class AttendeesInfoList extends StatelessWidget {
           return LoadingIndicator();
         }
 
-        if (state is LessonStatsUpdated) {
+        if (state is LessonsStatsUpdated) {
           return Column(
             children: state.acceptedAttendeesWithCounter.entries
                 .map((MapEntry mapEntry) => AttendeeInfoCard(

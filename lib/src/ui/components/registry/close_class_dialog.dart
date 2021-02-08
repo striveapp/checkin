@@ -1,5 +1,6 @@
 import 'package:checkin/src/blocs/registry/bloc.dart';
 import 'package:checkin/src/localization/localization.dart';
+import 'package:checkin/src/ui/components/cancel_button.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 
@@ -20,16 +21,9 @@ class CloseClassDialog extends StatelessWidget {
           textAlign: TextAlign.center, style: Theme.of(context).textTheme.headline3),
       actionsPadding: EdgeInsets.symmetric(horizontal: 10),
       actions: <Widget>[
-        RaisedButton(
+        CancelButton(
           key: Key("confirmButton"),
-          child: Padding(
-            padding: EdgeInsets.symmetric(vertical: 10, horizontal: 10),
-            child: Text(
-              closeClass.i18n,
-              style: Theme.of(context).textTheme.button,
-            ),
-          ),
-          color: Theme.of(context).buttonTheme.colorScheme.error,
+          text: closeClass.i18n,
           onPressed: () {
             BlocProvider.of<RegistryBloc>(context).add(CloseLesson(
               gymId: selectedGymId,
@@ -37,7 +31,7 @@ class CloseClassDialog extends StatelessWidget {
             Navigator.of(context).pop();
           },
         ),
-        RaisedButton(
+        ElevatedButton(
           child: Padding(
             padding: EdgeInsets.symmetric(vertical: 10, horizontal: 10),
             child: Text(

@@ -27,7 +27,7 @@ class InactiveMembershipView extends StatelessWidget {
               textAlign: TextAlign.center,
               style: Theme.of(context).textTheme.headline3.apply(fontSizeDelta: 1),
             ),
-            RaisedButton(
+            ElevatedButton(
               child: Text(
                 chooseYourSubscription.i18n,
                 style: Theme.of(context).textTheme.button,

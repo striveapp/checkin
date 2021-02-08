@@ -1,30 +1,43 @@
+import 'package:checkin/src/blocs/user_stats/bloc.dart';
 import 'package:checkin/src/localization/localization.dart';
-import 'package:checkin/src/models/lesson.dart';
+import 'package:checkin/src/models/timespan.dart';
+import 'package:checkin/src/ui/components/empty_widget.dart';
 import 'package:checkin/src/ui/components/stats/user/lesson_info_card.dart';
 import 'package:flutter/material.dart';
+import 'package:flutter_bloc/flutter_bloc.dart';
 
-class AttendedLessonsList extends StatelessWidget {
-  final List<Lesson> attendedLessons;
+class AttendedLessonCards extends StatelessWidget {
+  static const String noClassesAttended = "No classes attended %s";
 
-  static const String attendedClasses = 'Attended Classes';
-
-  const AttendedLessonsList({
+  const AttendedLessonCards({
     Key key,
-    @required this.attendedLessons,
   }) : super(key: key);
 
   @override
   Widget build(BuildContext context) {
-    return Padding(
-      padding: const EdgeInsets.only(bottom: 25),
-      child: Column(
-        children: <Widget>[
-          Text(
-            AttendedLessonsList.attendedClasses.i18n,
-            style: Theme.of(context).textTheme.headline1,
-          ),
-          ...attendedLessons.map((lesson) => LessonInfoCard(lesson: lesson)).toList(),
-        ],
+    return BlocBuilder<UserStatsBloc, UserStatsState>(
+      builder: (BuildContext context, UserStatsState state) => state.map(
+        userStatsUninitialized: (UserStatsUninitialized state) =>
+            SliverToBoxAdapter(child: EmptyWidget()),
+        userStatsLoaded: (UserStatsLoaded state) {
+          return state.attendedLessons.length == 0
+              ? SliverToBoxAdapter(
+                  child: Center(
+                      child: Text(
+                    noClassesAttended.gender(state.timespan.name),
+                    textAlign: TextAlign.center,
+                    style: Theme.of(context).textTheme.headline2,
+                  )),
+                )
+              : SliverList(
+                  delegate: SliverChildBuilderDelegate(
+                    (context, index) => LessonInfoCard(
+                      lesson: state.attendedLessons[index],
+                    ),
+                    childCount: state.attendedLessons.length,
+                  ),
+                );
+        },
       ),
     );
   }

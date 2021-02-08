@@ -43,8 +43,10 @@ class PaymentSuccessPage extends StatelessWidget {
                   ),
                 ],
               ),
-              RaisedButton(
-                color: Theme.of(context).accentColor,
+              ElevatedButton(
+                style: ElevatedButton.styleFrom(
+                  primary: Theme.of(context).accentColor,
+                ),
                 onPressed: () {
                   Navigator.of(context).pushNamedAndRemoveUntil(
                     "account",

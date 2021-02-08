@@ -1,31 +1,15 @@
 import 'package:checkin/src/models/lesson.dart';
-import 'package:equatable/equatable.dart';
-import 'package:flutter/material.dart';
+import 'package:checkin/src/models/timespan.dart';
+import 'package:flutter/foundation.dart';
+import 'package:freezed_annotation/freezed_annotation.dart';
 
-abstract class UserStatsState extends Equatable {
-  const UserStatsState();
+part 'user_stats_state.freezed.dart';
 
-  @override
-  List<Object> get props => [];
-}
-
-class UserStatsUninitialized extends UserStatsState {
-  @override
-  String toString() => 'StatsInitial';
-}
-
-class UserStatsLoaded extends UserStatsState {
-  final List<Lesson> attendedLessons;
-  final String timespan;
-
-  UserStatsLoaded({
-    @required this.attendedLessons,
-    @required this.timespan,
-  });
-
-  @override
-  List<Object> get props => [attendedLessons, timespan];
-
-  @override
-  String toString() => 'UserStatsLoaded';
+@freezed
+abstract class UserStatsState with _$UserStatsState {
+  const factory UserStatsState.userStatsUninitialized() = UserStatsUninitialized;
+  const factory UserStatsState.userStatsLoaded({
+    @required List<Lesson> attendedLessons,
+    @required Timespan timespan,
+  }) = UserStatsLoaded;
 }

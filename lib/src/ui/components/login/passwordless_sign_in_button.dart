@@ -1,19 +1,23 @@
-import 'package:flutter/material.dart';
 import 'package:checkin/src/localization/localization.dart';
+import 'package:flutter/material.dart';
 
 class PasswordlessSignInButton extends StatelessWidget {
   static const String emailMeMagicLink = 'Email me a magic link';
+
   @override
   Widget build(BuildContext context) {
     _onLoginPasswordless() {
       Navigator.of(context).pushNamed("email-retrieve/");
     }
 
-    return RaisedButton(
+    return ElevatedButton(
       key: Key('passwordlessButton'),
       onPressed: _onLoginPasswordless,
-      padding: EdgeInsets.all(0),
-      shape: RoundedRectangleBorder(borderRadius: BorderRadius.circular(8.0)),
+      style: ElevatedButton.styleFrom(
+        primary: Color(0xFFF44336),
+        padding: EdgeInsets.all(0),
+        shape: RoundedRectangleBorder(borderRadius: BorderRadius.circular(8.0)),
+      ),
       child: Ink(
         decoration: const BoxDecoration(
           borderRadius: BorderRadius.all(Radius.circular(8.0)),
@@ -37,7 +41,6 @@ class PasswordlessSignInButton extends StatelessWidget {
           ),
         ),
       ),
-      color: Color(0xFFF44336),
     );
   }
 }

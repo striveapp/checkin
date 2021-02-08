@@ -1,5 +1,6 @@
 import 'package:checkin/src/blocs/registry/bloc.dart';
 import 'package:checkin/src/localization/localization.dart';
+import 'package:checkin/src/ui/components/cancel_button.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 
@@ -21,7 +22,7 @@ class AcceptAllDialog extends StatelessWidget {
           textAlign: TextAlign.center, style: Theme.of(context).textTheme.headline3),
       actionsPadding: EdgeInsets.symmetric(horizontal: 10),
       actions: <Widget>[
-        RaisedButton(
+        ElevatedButton(
           key: Key("confirmButton"),
           child: Padding(
             padding: EdgeInsets.symmetric(vertical: 10, horizontal: 10),
@@ -37,15 +38,8 @@ class AcceptAllDialog extends StatelessWidget {
             Navigator.of(context).pop();
           },
         ),
-        RaisedButton(
-          color: Theme.of(context).buttonTheme.colorScheme.error,
-          child: Padding(
-            padding: EdgeInsets.symmetric(vertical: 10, horizontal: 10),
-            child: Text(
-              cancel.i18n,
-              style: Theme.of(context).textTheme.button,
-            ),
-          ),
+        CancelButton(
+          text: cancel.i18n,
           onPressed: () {
             Navigator.of(context).pop();
           },

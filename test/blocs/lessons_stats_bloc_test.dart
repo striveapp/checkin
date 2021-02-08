@@ -1,11 +1,11 @@
 import 'package:bloc_test/bloc_test.dart';
 import 'package:checkin/src/blocs/lessons_stats/bloc.dart';
 import 'package:checkin/src/blocs/stats/bloc.dart';
-import 'package:checkin/src/constants.dart';
 import 'package:checkin/src/models/attendee.dart';
 import 'package:checkin/src/models/grade.dart';
 import 'package:checkin/src/models/lesson.dart';
 import 'package:checkin/src/models/master.dart';
+import 'package:checkin/src/models/timespan.dart';
 import 'package:checkin/src/repositories/lesson_repository.dart';
 import 'package:flutter_test/flutter_test.dart';
 import 'package:mockito/mockito.dart';
@@ -49,9 +49,7 @@ void main() {
     );
 
     List<Lesson> allLessons = [
-      Lesson(
-          acceptedAttendees: [attendee1, attendee2, attendee3],
-          masters: [fakeMaster]),
+      Lesson(acceptedAttendees: [attendee1, attendee2, attendee3], masters: [fakeMaster]),
       Lesson(acceptedAttendees: [attendee1, attendee2], masters: [fakeMaster]),
     ];
 
@@ -70,17 +68,15 @@ void main() {
     group("on UpdateLessonStats event", () {
       group("when StatsBloc emits TimespanUpdated state", () {
         setUp(() {
-          whenListen(mockStatsBloc,
-              Stream.fromIterable([TimespanUpdated(timespan: WEEK)]));
+          whenListen(
+              mockStatsBloc, Stream.fromIterable([TimespanUpdated(timespan: Timespan.week)]));
 
-          when(mockLessonRepository.getLessonsByMasterAndTimespan(
-                  fakeMaster, WEEK))
+          when(mockLessonRepository.getLessonsByMasterAndTimespan(fakeMaster, Timespan.week))
               .thenAnswer((_) => Stream<List<Lesson>>.value(allLessons));
         });
 
         tearDown(() {
-          verify(mockLessonRepository.getLessonsByMasterAndTimespan(
-              fakeMaster, WEEK));
+          verify(mockLessonRepository.getLessonsByMasterAndTimespan(fakeMaster, Timespan.week));
         });
 
         //TODO: this should probably be a different data structure, maybe a map with attendee and counter
@@ -92,7 +88,7 @@ void main() {
             statsBloc: mockStatsBloc,
           ),
           expect: [
-            LessonStatsUpdated(
+            LessonsStatsUpdated(
               acceptedAttendeesWithCounter: {
                 attendee1: 2,
                 attendee2: 2,

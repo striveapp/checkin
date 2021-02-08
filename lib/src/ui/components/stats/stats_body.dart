@@ -8,14 +8,12 @@ import 'package:flutter_bloc/flutter_bloc.dart';
 
 class StatsBody extends StatelessWidget {
   @override
-  Widget build(BuildContext context) {
-    return BlocBuilder<ProfileBloc, ProfileState>(
-      builder: (BuildContext context, ProfileState state) => state.map(
-        initialProfileState: (InitialProfileState state) => LoadingIndicator(),
-        profileLoaded: (ProfileLoaded state) => state.profileUser.isOwner && state.isCurrentUser
-            ? LessonsStatsPage(master: Master.fromUser(state.profileUser))
-            : UserStatsPage(user: state.profileUser),
-      ),
-    );
-  }
+  Widget build(BuildContext context) => BlocBuilder<ProfileBloc, ProfileState>(
+        builder: (BuildContext context, ProfileState state) => state.map(
+          initialProfileState: (InitialProfileState state) => LoadingIndicator(),
+          profileLoaded: (ProfileLoaded state) => state.profileUser.isOwner && state.isCurrentUser
+              ? LessonsStatsPage(master: Master.fromUser(state.profileUser))
+              : UserStatsPage(user: state.profileUser),
+        ),
+      );
 }

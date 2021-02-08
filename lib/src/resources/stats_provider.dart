@@ -1,5 +1,6 @@
 import 'package:checkin/src/models/grade.dart';
 import 'package:checkin/src/models/lesson.dart';
+import 'package:checkin/src/models/timespan.dart';
 import 'package:checkin/src/models/user_history.dart';
 import 'package:checkin/src/repositories/stats_repository.dart';
 import 'package:checkin/src/util/date_util.dart';
@@ -11,7 +12,10 @@ class StatsProvider implements StatsRepository {
 
   FirebaseFirestore _firestore = FirebaseFirestore.instance;
 
-  Stream<UserHistory> getUserStats(String gymId, String email, String timespan) {
+  Lesson getLesson(lesson) => Lesson.fromJson(lesson);
+
+  @override
+  Stream<UserHistory> getUserStats(String gymId, String email, Timespan timespan) {
     return _firestore.collection(gymPath).doc(gymId).collection(path).doc(email).snapshots().map(
         (doc) => UserHistory(
             email: doc.id,
@@ -23,9 +27,8 @@ class StatsProvider implements StatsRepository {
                 ?.toList()));
   }
 
-  Lesson getLesson(lesson) => Lesson.fromJson(lesson);
-
-  Stream<List<UserHistory>> getAllUserStats(String gymId, String timespan) => _firestore
+  @override
+  Stream<List<UserHistory>> getAllUserStats(String gymId, Timespan timespan) => _firestore
       .collection(gymPath)
       .doc(gymId)
       .collection(path)

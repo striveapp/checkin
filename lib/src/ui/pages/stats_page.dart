@@ -1,8 +1,8 @@
 import 'package:checkin/src/blocs/profile/bloc.dart';
 import 'package:checkin/src/blocs/stats/bloc.dart';
 import 'package:checkin/src/blocs/user/bloc.dart';
-import 'package:checkin/src/constants.dart' as constants;
 import 'package:checkin/src/localization/localization.dart';
+import 'package:checkin/src/models/timespan.dart';
 import 'package:checkin/src/repositories/user_repository.dart';
 import 'package:checkin/src/ui/components/base_app_bar.dart';
 import 'package:checkin/src/ui/components/stats/graduate_fab.dart';
@@ -27,7 +27,7 @@ class StatsPage extends StatelessWidget {
     return MultiBlocProvider(
       providers: [
         BlocProvider<StatsBloc>(
-          create: (context) => StatsBloc()..add(TimespanUpdate(timespan: constants.WEEK)),
+          create: (context) => StatsBloc()..add(TimespanUpdate(timespan: Timespan.week)),
         ),
         BlocProvider<ProfileBloc>(
           create: (context) => ProfileBloc(
@@ -44,16 +44,14 @@ class StatsPage extends StatelessWidget {
         ),
         floatingActionButton: GraduateFab(userEmail: userEmail),
         floatingActionButtonLocation: FloatingActionButtonLocation.centerFloat,
-        body: SingleChildScrollView(
-          child: Container(
-            child: Padding(
-              padding: EdgeInsets.symmetric(horizontal: 10, vertical: 10),
-              child: Column(
-                children: <Widget>[
-                  StatsHeader(userEmail: userEmail),
-                  StatsBody(),
-                ],
-              ),
+        body: Container(
+          child: Padding(
+            padding: EdgeInsets.symmetric(horizontal: 10, vertical: 10),
+            child: Column(
+              children: <Widget>[
+                StatsHeader(userEmail: userEmail),
+                Expanded(child: StatsBody()),
+              ],
             ),
           ),
         ),

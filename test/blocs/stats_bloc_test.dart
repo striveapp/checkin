@@ -1,5 +1,6 @@
 import 'package:bloc_test/bloc_test.dart';
 import 'package:checkin/src/blocs/stats/bloc.dart';
+import 'package:checkin/src/models/timespan.dart';
 import 'package:flutter_test/flutter_test.dart';
 
 void main() {
@@ -7,7 +8,7 @@ void main() {
     // todo missing initial state test
 
     group("on TimespanUpdate event", () {
-      var fakeTimespan = "week";
+      var fakeTimespan = Timespan.week;
 
       blocTest(
         "should emit TimespanUpdated",

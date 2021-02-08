@@ -29,7 +29,7 @@ class EmptyPaymentMethod extends StatelessWidget {
           BlocBuilder<GymBloc, GymState>(
               builder: (BuildContext context, GymState state) => state.when(
                   initialGymState: () => LoadingIndicator(),
-                  gymLoaded: (Gym gym) => RaisedButton(
+                  gymLoaded: (Gym gym) => ElevatedButton(
                         child: Text(
                           connectBankAccount.i18n,
                           style: Theme.of(context).textTheme.button,

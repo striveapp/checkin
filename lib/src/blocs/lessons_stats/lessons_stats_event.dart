@@ -1,19 +1,13 @@
 import 'package:checkin/src/models/lesson.dart';
-import 'package:equatable/equatable.dart';
-import 'package:flutter/material.dart';
+import 'package:flutter/foundation.dart';
+import 'package:freezed_annotation/freezed_annotation.dart';
 
-abstract class LessonsStatsEvent extends Equatable {
-  const LessonsStatsEvent();
-}
+part 'lessons_stats_event.freezed.dart';
 
-class UpdateLessonStats extends LessonsStatsEvent {
-  final List<Lesson> lessons;
-
-  UpdateLessonStats({@required this.lessons});
-
-  @override
-  String toString() => 'UpdateLessonStats';
-
-  @override
-  List<Object> get props => [lessons];
+@freezed
+abstract class LessonsStatsEvent with _$LessonsStatsEvent {
+  const factory LessonsStatsEvent.initializeLessonsStats() = InitializeLessonsStats;
+  const factory LessonsStatsEvent.updateLessonsStats({
+    @required List<Lesson> lessons,
+  }) = UpdateLessonsStats;
 }

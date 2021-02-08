@@ -1,6 +1,6 @@
 import 'package:checkin/src/constants.dart';
-import 'package:flutter/material.dart';
 import 'package:checkin/src/localization/localization.dart';
+import 'package:flutter/material.dart';
 import 'package:flutter/widgets.dart';
 import 'package:open_appstore/open_appstore.dart';
 
@@ -35,7 +35,7 @@ class UpgraderDialog {
             ));
     _dialogEntry = new OverlayEntry(
         builder: (BuildContext context) => AlertDialog(actions: <Widget>[
-              RaisedButton(
+              ElevatedButton(
                 child: Text(update.i18n),
                 onPressed: () {
                   OpenAppstore.launch(androidAppId: ANDROID_APP_ID, iOSAppId: IOS_APP_ID);

@@ -1,10 +1,11 @@
 import 'package:checkin/src/blocs/graduation/bloc.dart';
+import 'package:checkin/src/localization/localization.dart';
 import 'package:checkin/src/models/grade.dart';
+import 'package:checkin/src/ui/components/cancel_button.dart';
 import 'package:checkin/src/ui/components/loading_indicator.dart';
 import 'package:checkin/src/ui/components/stats/graduation_preview.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
-import 'package:checkin/src/localization/localization.dart';
 
 class GraduateDialog extends StatelessWidget {
   static const String notReadyYet =
@@ -37,7 +38,7 @@ class GraduateDialog extends StatelessWidget {
               contentPadding: EdgeInsets.symmetric(vertical: 25),
               content: GraduationPreview(currentGrade: currentUserGrade, newGrade: newGrade),
               actions: <Widget>[
-                RaisedButton(
+                ElevatedButton(
                   key: Key("graduateButton"),
                   child: Text(
                     graduateAnyway.i18n,
@@ -48,13 +49,9 @@ class GraduateDialog extends StatelessWidget {
                     Navigator.of(context).pop();
                   },
                 ),
-                RaisedButton(
+                CancelButton(
                   key: Key("cancelButton"),
-                  color: Theme.of(context).buttonTheme.colorScheme.error,
-                  child: Text(
-                    cancel.i18n,
-                    style: Theme.of(context).textTheme.button,
-                  ),
+                  text: cancel.i18n,
                   onPressed: () {
                     Navigator.of(context).pop();
                   },
@@ -71,7 +68,7 @@ class GraduateDialog extends StatelessWidget {
               contentPadding: EdgeInsets.symmetric(vertical: 25),
               content: GraduationPreview(currentGrade: currentUserGrade, newGrade: newGrade),
               actions: <Widget>[
-                RaisedButton(
+                ElevatedButton(
                   key: Key("graduateButton"),
                   child: Text(
                     graduate.i18n,
@@ -82,13 +79,9 @@ class GraduateDialog extends StatelessWidget {
                     Navigator.of(context).pop();
                   },
                 ),
-                RaisedButton(
+                CancelButton(
                   key: Key("cancelButton"),
-                  color: Theme.of(context).buttonTheme.colorScheme.error,
-                  child: Text(
-                    cancel.i18n,
-                    style: Theme.of(context).textTheme.button,
-                  ),
+                  text: cancel.i18n,
                   onPressed: () {
                     Navigator.of(context).pop();
                   },

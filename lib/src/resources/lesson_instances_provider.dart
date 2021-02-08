@@ -3,6 +3,7 @@ import 'package:checkin/src/models/attendee.dart';
 import 'package:checkin/src/models/grade.dart';
 import 'package:checkin/src/models/lesson.dart';
 import 'package:checkin/src/models/master.dart';
+import 'package:checkin/src/models/timespan.dart';
 import 'package:checkin/src/repositories/lesson_repository.dart';
 import 'package:checkin/src/util/date_util.dart';
 import 'package:cloud_firestore/cloud_firestore.dart';
@@ -49,7 +50,7 @@ class LessonInstancesProvider implements LessonRepository {
   // so in doing that we are running a query on all the instances in all the gyms
   // it's not causing any bug as of now, but might not be ideal in the long term (ie: query performance)
   // https://trello.com/c/Qz2hbweo
-  Stream<List<Lesson>> getLessonsByMasterAndTimespan(Master master, String timespan) => _firestore
+  Stream<List<Lesson>> getLessonsByMasterAndTimespan(Master master, Timespan timespan) => _firestore
       .collectionGroup(sub_collection_path)
       .where("masters", arrayContains: {
         "name": master.name,

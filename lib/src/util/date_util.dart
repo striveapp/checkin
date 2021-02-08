@@ -1,4 +1,4 @@
-import 'package:checkin/src/constants.dart' as constants;
+import 'package:checkin/src/models/timespan.dart';
 
 import '../constants.dart';
 
@@ -41,12 +41,19 @@ class DateUtil {
     return DateTime(now.year, 1, 1);
   }
 
-  static DateTime getFirstDayOfTimespan(String timespan) {
-    if (timespan == constants.WEEK) {
+  static DateTime _getFirstDaySinceTheBeginning() {
+    return DateTime(2019, 2, 20);
+  }
+
+  static DateTime getFirstDayOfTimespan(Timespan timespan) {
+    if (timespan == Timespan.week) {
       return _getFirstDayOfTheWeek();
-    } else if (timespan == constants.MONTH) {
+    } else if (timespan == Timespan.month) {
       return _getFirstDayOfTheMonth();
+    } else if (timespan == Timespan.year) {
+      return _getFirstDayOfTheYear();
+    } else {
+      return _getFirstDaySinceTheBeginning();
     }
-    return _getFirstDayOfTheYear();
   }
 }

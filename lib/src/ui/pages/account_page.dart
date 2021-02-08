@@ -10,8 +10,8 @@ import 'package:checkin/src/blocs/profile/bloc.dart';
 import 'package:checkin/src/blocs/stats/bloc.dart';
 import 'package:checkin/src/blocs/user/bloc.dart';
 import 'package:checkin/src/blocs/user_stats/bloc.dart';
-import 'package:checkin/src/constants.dart' as constants;
 import 'package:checkin/src/localization/localization.dart';
+import 'package:checkin/src/models/timespan.dart';
 import 'package:checkin/src/repositories/analytics_repository.dart';
 import 'package:checkin/src/repositories/auth_repository.dart';
 import 'package:checkin/src/repositories/gym_repository.dart';
@@ -21,6 +21,7 @@ import 'package:checkin/src/repositories/user_repository.dart';
 import 'package:checkin/src/resources/payment_method_provider.dart';
 import 'package:checkin/src/ui/components/account/payment.dart';
 import 'package:checkin/src/ui/components/base_app_bar.dart';
+import 'package:checkin/src/ui/components/cancel_button.dart';
 import 'package:checkin/src/ui/components/loading_indicator.dart';
 import 'package:checkin/src/ui/components/profile_card.dart';
 import 'package:checkin/src/util/url_launcher_util.dart';
@@ -122,7 +123,7 @@ class AccountPage extends StatelessWidget {
                           statsRepository: RepositoryProvider.of<StatsRepository>(context),
                           userEmail: state.user.email,
                           selectedGymId: state.user.selectedGymId,
-                          statsBloc: StatsBloc()..add(TimespanUpdate(timespan: constants.MONTH)),
+                          statsBloc: StatsBloc()..add(TimespanUpdate(timespan: Timespan.week)),
                         ),
                       ),
                       BlocProvider<MembershipBloc>(
@@ -167,14 +168,9 @@ class AccountPage extends StatelessWidget {
                                 children: <Widget>[
                                   Padding(
                                     padding: const EdgeInsets.only(bottom: 20.0),
-                                    child: RaisedButton(
+                                    child: CancelButton(
                                       key: Key('logoutButton'),
-                                      color: Colors.red,
-                                      child: Text("Logout",
-                                          style: TextStyle(
-                                              fontSize: 18,
-                                              color: Colors.white,
-                                              fontWeight: FontWeight.w600)),
+                                      text: "Logout",
                                       onPressed: () {
                                         Navigator.popUntil(
                                           context,
