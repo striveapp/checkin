@@ -4,7 +4,6 @@ import 'package:checkin/src/models/user.dart';
 import 'package:checkin/src/ui/components/empty_widget.dart';
 import 'package:checkin/src/ui/components/gym_selection_modal.dart';
 import 'package:checkin/src/ui/components/user_image.dart';
-import 'package:checkin/src/util/debug_util.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 
@@ -21,8 +20,7 @@ class GymAppBar extends StatelessWidget implements PreferredSizeWidget {
         }
 
         var knownGymIds = currentUser?.knownGymIds ?? [];
-        // todo remove isInDebugMode
-        var displayGymSelection = isInDebugMode && knownGymIds.length > 1 && currentUser != null;
+        var displayGymSelection = knownGymIds.length > 1 && currentUser != null;
 
         return AppBar(
           centerTitle: false,
