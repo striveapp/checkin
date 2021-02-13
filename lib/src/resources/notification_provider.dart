@@ -4,7 +4,7 @@ import 'package:firebase_messaging/firebase_messaging.dart';
 import 'package:platform/platform.dart';
 
 class NotificationProvider {
-  FirebaseMessaging _firebaseMessaging = FirebaseMessaging();
+  FirebaseMessaging _firebaseMessaging = FirebaseMessaging.instance;
   LocalPlatform platform = LocalPlatform();
   // ignore: cancel_subscriptions
   StreamSubscription iosSubscription;
@@ -23,7 +23,7 @@ class NotificationProvider {
         onSuccess(token);
       });
 
-      _firebaseMessaging.requestNotificationPermissions(IosNotificationSettings());
+      _firebaseMessaging.requestPermission(IosNotificationSettings());
     } else {
       var token = await _firebaseMessaging.getToken();
       onSuccess(token);

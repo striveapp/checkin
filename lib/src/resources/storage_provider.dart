@@ -5,14 +5,14 @@ import 'package:checkin/src/util/debug_util.dart';
 import 'package:firebase_storage/firebase_storage.dart';
 
 class StorageProvider {
-  FirebaseStorage firebaseStorage =
-      FirebaseStorage(storageBucket: isInDebugMode ? TEST_STORAGE_BUCKET : STORAGE_BUCKET);
+  FirebaseStorage firebaseStorage = FirebaseStorage.instanceFor(
+    bucket: isInDebugMode ? TEST_STORAGE_BUCKET : STORAGE_BUCKET,
+  );
 
   Future<String> uploadImage(File file, String fileName) async {
     String filePath = 'images/$fileName';
-    StorageReference storageRef = firebaseStorage.ref().child(filePath);
-    await storageRef.putFile(file).onComplete;
-
+    Reference storageRef = firebaseStorage.ref().child(filePath);
+    await storageRef.putFile(file);
     return await storageRef.getDownloadURL();
   }
 }

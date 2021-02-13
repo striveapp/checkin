@@ -5,11 +5,11 @@ import 'package:cloud_functions/cloud_functions.dart';
 import 'package:flutter/services.dart';
 
 class Api {
-  static Future<HttpsCallableResult> call({functionName: String, dynamic parameters}) {
-    return CloudFunctions.instance
-        .getHttpsCallable(functionName: functionName)
-        .call(parameters)
-        .then((result) {
+  static Future<HttpsCallableResult> call({
+    functionName: String,
+    dynamic parameters,
+  }) {
+    return FirebaseFunctions.instance.httpsCallable(functionName).call(parameters).then((result) {
       Logger.log.i("Successfully invoke Function ($functionName)");
     }).catchError((error, stacktrace) {
       Logger.log.e("Function ($functionName) got an error", error, stacktrace);
