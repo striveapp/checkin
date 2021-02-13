@@ -6,8 +6,10 @@ import 'package:checkin/src/repositories/lesson_repository.dart';
 import 'package:checkin/src/ui/components/base_app_bar.dart';
 import 'package:checkin/src/ui/components/loading_indicator.dart';
 import 'package:checkin/src/ui/components/registry/close_lesson_button.dart';
+import 'package:checkin/src/ui/components/registry/edit_lesson_button.dart';
 import 'package:checkin/src/ui/components/registry/lesson_infos.dart';
 import 'package:checkin/src/ui/components/registry/registry.dart';
+import 'package:checkin/src/util/debug_util.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter/widgets.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
@@ -66,7 +68,14 @@ class RegistryPage extends StatelessWidget {
                       padding: const EdgeInsets.only(top: 20, bottom: 20, right: 10),
                       child: Row(
                         mainAxisAlignment: MainAxisAlignment.spaceBetween,
-                        children: [LessonInfos(), CloseLessonButton()],
+                        children: [LessonInfos(),
+                          Row(
+                            children: [
+                              if(isInDebugMode) EditLessonButton(),
+                              SizedBox(width: 5,),
+                              CloseLessonButton(),
+                            ],
+                          )],
                       ),
                     ),
                     Expanded(

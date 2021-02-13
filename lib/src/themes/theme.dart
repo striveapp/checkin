@@ -8,6 +8,8 @@ final theme = {
     primaryColor: Color(0xFFF44336),
     accentColor: Color(0xFFd32f2f),
     brightness: Brightness.dark,
+    buttonColor: Color(0xFF7C4DFF),
+    errorColor: Color(0xFFEF5350),
     elevatedButtonTheme: ElevatedButtonThemeData(
         style: ElevatedButton.styleFrom(
       primary: Color(0xFF7C4DFF),
@@ -67,6 +69,8 @@ final theme = {
     fontFamily: 'Raleway',
     primaryColor: Color(0xFFF44336),
     accentColor: Color(0xFFd32f2f),
+    buttonColor: Color(0xFF7C4DFF),
+    errorColor: Color(0xFFEF5350),
     brightness: Brightness.light,
     elevatedButtonTheme: ElevatedButtonThemeData(
         style: ElevatedButton.styleFrom(
@@ -125,6 +129,7 @@ final theme = {
       ),
     ),
   ),
+  // todo remove light theme
   ThemeType.Light: ThemeData(
     fontFamily: 'Raleway',
     primaryColor: Color(0xFF242966),

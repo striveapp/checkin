@@ -12,7 +12,7 @@ class CloseLessonButton extends StatelessWidget {
         builder: (BuildContext context, RegistryState state) {
       return state.maybeMap(
           registryLoaded: (RegistryLoaded registryState) {
-            return !registryState.currentLesson.isClosed && registryState.isMasterOfTheClass
+            return !registryState.currentLesson.isClosed && registryState.currentUser.isOwner
                 ? RawMaterialButton(
                     key: Key('closeClassButton'),
                     constraints: BoxConstraints(minHeight: 0, minWidth: 0),
