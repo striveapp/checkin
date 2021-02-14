@@ -10,6 +10,61 @@ final theme = {
     brightness: Brightness.dark,
     buttonColor: Color(0xFF7C4DFF),
     errorColor: Color(0xFFEF5350),
+    textSelectionTheme: TextSelectionThemeData(
+      cursorColor: Color(0xFFd32f2f),
+      selectionHandleColor: Color(0xFFd32f2f).withOpacity(0.75),
+    ),
+    timePickerTheme: TimePickerThemeData(
+        dialHandColor: Color(0xFFd32f2f).withOpacity(0.60),
+        hourMinuteTextStyle: TextStyle(
+          fontSize: 26,
+          letterSpacing: 0.25,
+          fontWeight: FontWeight.w700,
+        ),
+        helpTextStyle: TextStyle(
+          fontSize: 12.0,
+          letterSpacing: 1.25,
+          fontWeight: FontWeight.w400,
+        ),
+        hourMinuteColor: MaterialStateColor.resolveWith((states) {
+          if (states.contains(MaterialState.selected)) {
+            return Color(0xFFd32f2f).withAlpha(100);
+          }
+          return ColorScheme.dark().onSurface.withOpacity(0.12);
+        }),
+        hourMinuteTextColor: MaterialStateColor.resolveWith(
+          (states) {
+            if (states.contains(MaterialState.selected)) {
+              return Color(0xFFd32f2f);
+            }
+            return ColorScheme.dark().onSurface;
+          },
+        ),
+        inputDecorationTheme: InputDecorationTheme(
+          filled: true,
+          enabledBorder: const OutlineInputBorder(
+            borderSide: BorderSide(color: Colors.transparent),
+          ),
+          errorBorder: OutlineInputBorder(
+            borderSide: BorderSide(color: Color(0xFFEF5350), width: 2.0),
+          ),
+          focusedBorder: OutlineInputBorder(
+            borderSide: BorderSide(color: Color(0xFFF44336), width: 2.0),
+          ),
+          focusedErrorBorder: OutlineInputBorder(
+            borderSide: BorderSide(color: Color(0xFFEF5350), width: 2.0),
+          ),
+        )),
+    textButtonTheme: TextButtonThemeData(
+      style: TextButton.styleFrom(
+          primary: Color(0xFFd32f2f),
+          textStyle: TextStyle(
+            fontSize: 15.0,
+            fontWeight: FontWeight.w600,
+            color: Colors.white,
+            letterSpacing: 1.25,
+          )),
+    ),
     elevatedButtonTheme: ElevatedButtonThemeData(
         style: ElevatedButton.styleFrom(
       primary: Color(0xFF7C4DFF),
@@ -72,6 +127,61 @@ final theme = {
     buttonColor: Color(0xFF7C4DFF),
     errorColor: Color(0xFFEF5350),
     brightness: Brightness.light,
+    textSelectionTheme: TextSelectionThemeData(
+      cursorColor: Color(0xFFd32f2f),
+      selectionHandleColor: Color(0xFFd32f2f).withOpacity(0.75),
+    ),
+    timePickerTheme: TimePickerThemeData(
+        dialHandColor: Color(0xFFd32f2f).withOpacity(0.60),
+        hourMinuteTextStyle: TextStyle(
+          fontSize: 26,
+          letterSpacing: 0.25,
+          fontWeight: FontWeight.w700,
+        ),
+        helpTextStyle: TextStyle(
+          fontSize: 12.0,
+          letterSpacing: 1.25,
+          fontWeight: FontWeight.w400,
+        ),
+        hourMinuteColor: MaterialStateColor.resolveWith((states) {
+          if (states.contains(MaterialState.selected)) {
+            return Color(0xFFd32f2f).withAlpha(100);
+          }
+          return ColorScheme.light().onSurface.withOpacity(0.12);
+        }),
+        hourMinuteTextColor: MaterialStateColor.resolveWith(
+          (states) {
+            if (states.contains(MaterialState.selected)) {
+              return Color(0xFFd32f2f);
+            }
+            return ColorScheme.light().onSurface;
+          },
+        ),
+        inputDecorationTheme: InputDecorationTheme(
+          filled: true,
+          enabledBorder: const OutlineInputBorder(
+            borderSide: BorderSide(color: Colors.transparent),
+          ),
+          errorBorder: OutlineInputBorder(
+            borderSide: BorderSide(color: Color(0xFFEF5350), width: 2.0),
+          ),
+          focusedBorder: OutlineInputBorder(
+            borderSide: BorderSide(color: Color(0xFFF44336), width: 2.0),
+          ),
+          focusedErrorBorder: OutlineInputBorder(
+            borderSide: BorderSide(color: Color(0xFFEF5350), width: 2.0),
+          ),
+        )),
+    textButtonTheme: TextButtonThemeData(
+      style: TextButton.styleFrom(
+          primary: Color(0xFFd32f2f),
+          textStyle: TextStyle(
+            fontSize: 15.0,
+            fontWeight: FontWeight.w600,
+            color: Colors.white,
+            letterSpacing: 1.25,
+          )),
+    ),
     elevatedButtonTheme: ElevatedButtonThemeData(
         style: ElevatedButton.styleFrom(
       primary: Color(0xFF7C4DFF),

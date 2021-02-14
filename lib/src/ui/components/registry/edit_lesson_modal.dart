@@ -17,7 +17,9 @@ class EditLessonModal extends StatelessWidget {
             child: Column(
               children: [
                 EditLessonTime(text: "Start", time: "17:00"),
-                SizedBox(height: 20,),
+                SizedBox(
+                  height: 20,
+                ),
                 EditLessonTime(text: "End", time: "18:00"),
               ],
             ),
@@ -41,20 +43,33 @@ class EditLessonTime extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return InkWell(
-      onTap: () => {
-        print("imacat")
+      onTap: () {
+        showTimePicker(
+          context: context,
+          initialTime: TimeOfDay(hour: 17, minute: 30),
+          initialEntryMode: TimePickerEntryMode.input,
+        );
       },
-      child: Row(
-        mainAxisAlignment: MainAxisAlignment.spaceBetween,
-        children: [
-          Text(text, style: Theme.of(context).textTheme.headline2),
-          Row(
-            children: [
-              Icon(Icons.unfold_more,),
-              Text(time, style: Theme.of(context).textTheme.headline1.apply(fontWeightDelta: -2, fontSizeDelta: 5)),
-            ],
-          )
-        ],
+      borderRadius: BorderRadius.all(Radius.circular(8)),
+      child: Padding(
+        padding: const EdgeInsets.symmetric(horizontal: 10),
+        child: Row(
+          mainAxisAlignment: MainAxisAlignment.spaceBetween,
+          children: [
+            Text(text, style: Theme.of(context).textTheme.headline3),
+            Row(
+              children: [
+                Text(time,
+                    style: Theme.of(context).textTheme.headline2.apply(
+                          fontSizeDelta: 3,
+                        )),
+                Icon(
+                  Icons.unfold_more,
+                ),
+              ],
+            )
+          ],
+        ),
       ),
     );
   }
