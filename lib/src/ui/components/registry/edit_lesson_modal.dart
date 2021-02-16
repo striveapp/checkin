@@ -47,7 +47,6 @@ class EditLessonTime extends StatelessWidget {
         showTimePicker(
           context: context,
           initialTime: TimeOfDay(hour: 17, minute: 30),
-          initialEntryMode: TimePickerEntryMode.input,
         );
       },
       borderRadius: BorderRadius.all(Radius.circular(8)),
