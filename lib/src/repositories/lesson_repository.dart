@@ -17,4 +17,8 @@ abstract class LessonRepository {
   Future<void> unregister(String gymId, String date, String lessonId, Attendee attendee);
 
   Future<void> closeLesson(String gymId, String date, String lessonId);
+
+  Future<void> updateLessonTimeStart(String gymId, String date, String lessonId, String newTimeStart);
+
+  Future<void> updateLessonTimeEnd(String gymId, String date, String lessonId, String newTimeEnd);
 }

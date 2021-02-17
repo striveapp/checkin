@@ -1,6 +1,19 @@
+import 'package:checkin/src/blocs/registry/bloc.dart';
+import 'package:checkin/src/localization/localization.dart';
+import 'package:checkin/src/models/lesson.dart';
+import 'package:checkin/src/ui/components/registry/edit_lesson_time.dart';
 import 'package:flutter/material.dart';
+import 'package:flutter_bloc/flutter_bloc.dart';
 
 class EditLessonModal extends StatelessWidget {
+  static const String start = "Start";
+  static const String end = "End";
+
+  final String gymId;
+  final Lesson lesson;
+
+  const EditLessonModal({@required String this.gymId, @required Lesson this.lesson});
+
   @override
   Widget build(BuildContext context) {
     return Container(
@@ -16,59 +29,28 @@ class EditLessonModal extends StatelessWidget {
             padding: const EdgeInsets.symmetric(horizontal: 30.0, vertical: 10),
             child: Column(
               children: [
-                EditLessonTime(text: "Start", time: "17:00"),
+                EditLessonTime(
+                    text: start.i18n,
+                    time: lesson.timeStart,
+                    onTimePicked: (timePicked) {
+                      context.read<RegistryBloc>().add(
+                          RegistryEvent.updateTimeStart(gymId: gymId, newTimeStart: timePicked));
+                    }),
                 SizedBox(
                   height: 20,
                 ),
-                EditLessonTime(text: "End", time: "18:00"),
+                EditLessonTime(
+                    text: end.i18n,
+                    time: lesson.timeEnd,
+                    onTimePicked: (timePicked) {
+                      context
+                          .read<RegistryBloc>()
+                          .add(RegistryEvent.updateTimeEnd(gymId: gymId, newTimeEnd: timePicked));
+                    }),
               ],
             ),
           ),
         ],
-      ),
-    );
-  }
-}
-
-class EditLessonTime extends StatelessWidget {
-  final String text;
-  final String time;
-
-  const EditLessonTime({
-    Key key,
-    @required this.text,
-    @required this.time,
-  }) : super(key: key);
-
-  @override
-  Widget build(BuildContext context) {
-    return InkWell(
-      onTap: () {
-        showTimePicker(
-          context: context,
-          initialTime: TimeOfDay(hour: 17, minute: 30),
-        );
-      },
-      borderRadius: BorderRadius.all(Radius.circular(8)),
-      child: Padding(
-        padding: const EdgeInsets.symmetric(horizontal: 10),
-        child: Row(
-          mainAxisAlignment: MainAxisAlignment.spaceBetween,
-          children: [
-            Text(text, style: Theme.of(context).textTheme.headline3),
-            Row(
-              children: [
-                Text(time,
-                    style: Theme.of(context).textTheme.headline2.apply(
-                          fontSizeDelta: 3,
-                        )),
-                Icon(
-                  Icons.unfold_more,
-                ),
-              ],
-            )
-          ],
-        ),
       ),
     );
   }

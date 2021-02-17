@@ -8,6 +8,8 @@ part 'registry_event.freezed.dart';
 
 @freezed
 abstract class RegistryEvent with _$RegistryEvent {
+  const factory RegistryEvent.initializeRegistry() = InitializeRegistry;
+
   const factory RegistryEvent.registryUpdated({@required User currentUser, Lesson currentLesson}) =
       RegistryUpdated;
 
@@ -26,4 +28,9 @@ abstract class RegistryEvent with _$RegistryEvent {
   const factory RegistryEvent.closeLesson({
     @required String gymId,
   }) = CloseLesson;
+
+  const factory RegistryEvent.updateTimeStart({@required String gymId, @required String newTimeStart,}) = UpdateTimeStart;
+
+  const factory RegistryEvent.updateTimeEnd({@required String gymId, @required String newTimeEnd,}) = UpdateTimeEnd;
+
 }

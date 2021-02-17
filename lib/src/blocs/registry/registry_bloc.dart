@@ -26,10 +26,7 @@ class RegistryBloc extends Bloc<RegistryEvent, RegistryState> {
     @required this.lessonRepository,
     @required this.lessonId,
     @required this.lessonDate,
-  }) : super(RegistryUninitialized()) {
-    _onUserStateChanged(userBloc.state);
-    userBloc.listen(_onUserStateChanged);
-  }
+  }) : super(RegistryUninitialized());
 
   void _onUserStateChanged(userState) {
     if (userState is UserSuccess) {
@@ -47,6 +44,11 @@ class RegistryBloc extends Bloc<RegistryEvent, RegistryState> {
 
   @override
   Stream<RegistryState> mapEventToState(RegistryEvent event) async* {
+    if(event is InitializeRegistry) {
+      _onUserStateChanged(userBloc.state);
+      userBloc.listen(_onUserStateChanged);
+    }
+
     if (event is RegistryUpdated) {
       if (event.currentLesson == null) {
         yield RegistryMissing();
@@ -110,6 +112,14 @@ class RegistryBloc extends Bloc<RegistryEvent, RegistryState> {
             lessonDate,
             lessonId,
           );
+    }
+
+    if(event is UpdateTimeStart) {
+      await this.lessonRepository.updateLessonTimeStart(event.gymId, lessonDate, lessonId, event.newTimeStart);
+    }
+
+    if(event is UpdateTimeEnd) {
+      await this.lessonRepository.updateLessonTimeEnd(event.gymId, lessonDate, lessonId, event.newTimeEnd);
     }
   }
 

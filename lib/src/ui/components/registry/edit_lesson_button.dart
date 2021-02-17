@@ -21,7 +21,9 @@ class EditLessonButton extends StatelessWidget {
                             borderRadius: BorderRadius.vertical(top: Radius.circular(15))),
                         context: context,
                         isScrollControlled: true,
-                        builder: (_) => EditLessonModal(),);
+                        builder: (_) => BlocProvider.value(
+                            value: context.read<RegistryBloc>(),
+                            child: EditLessonModal(gymId: registryState.currentUser.selectedGymId, lesson: registryState.currentLesson)));
                   },
                   elevation: 2.0,
                   fillColor: Theme

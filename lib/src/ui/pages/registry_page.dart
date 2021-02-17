@@ -9,7 +9,6 @@ import 'package:checkin/src/ui/components/registry/close_lesson_button.dart';
 import 'package:checkin/src/ui/components/registry/edit_lesson_button.dart';
 import 'package:checkin/src/ui/components/registry/lesson_infos.dart';
 import 'package:checkin/src/ui/components/registry/registry.dart';
-import 'package:checkin/src/util/debug_util.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter/widgets.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
@@ -42,7 +41,7 @@ class RegistryPage extends StatelessWidget {
                 lessonApi: RepositoryProvider.of<LessonApi>(context),
                 lessonRepository: RepositoryProvider.of<LessonRepository>(context),
                 userBloc: BlocProvider.of<UserBloc>(context),
-              ),
+              )..add(InitializeRegistry()),
             ),
           ],
           // todo this logic can be used when we extract a LoadingDialogBloc https://trello.com/c/YqSqs0tl
@@ -71,7 +70,7 @@ class RegistryPage extends StatelessWidget {
                         children: [LessonInfos(),
                           Row(
                             children: [
-                              if(isInDebugMode) EditLessonButton(),
+                              EditLessonButton(),
                               SizedBox(width: 5,),
                               CloseLessonButton(),
                             ],

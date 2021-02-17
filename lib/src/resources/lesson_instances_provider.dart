@@ -149,4 +149,32 @@ class LessonInstancesProvider implements LessonRepository {
       'isClosed': true,
     });
   }
+
+  @override
+  Future<void> updateLessonTimeStart(
+      String gymId, String date, String lessonId, String newTimeStart) async {
+    Logger.log.i("Updating timeStart to [$newTimeStart] for lesson with id [$lessonId]");
+    await _firestore
+        .collection(gymPath)
+        .doc(gymId)
+        .collection(path)
+        .doc(date)
+        .collection(sub_collection_path)
+        .doc(lessonId)
+        .update({'timeStart': newTimeStart});
+  }
+
+  @override
+  Future<void> updateLessonTimeEnd(
+      String gymId, String date, String lessonId, String newTimeEnd) async {
+    Logger.log.i("Updating timeEnd to [$newTimeEnd] for lesson with id [$lessonId]");
+    await _firestore
+        .collection(gymPath)
+        .doc(gymId)
+        .collection(path)
+        .doc(date)
+        .collection(sub_collection_path)
+        .doc(lessonId)
+        .update({'timeEnd': newTimeEnd});
+  }
 }

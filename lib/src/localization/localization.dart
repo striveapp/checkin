@@ -31,6 +31,8 @@ import 'package:checkin/src/ui/components/registry/accept_all_dialog.dart';
 import 'package:checkin/src/ui/components/registry/attendee_tile.dart';
 import 'package:checkin/src/ui/components/registry/attendees_list.dart';
 import 'package:checkin/src/ui/components/registry/close_class_dialog.dart';
+import 'package:checkin/src/ui/components/registry/edit_lesson_modal.dart';
+import 'package:checkin/src/ui/components/registry/edit_lesson_time.dart';
 import 'package:checkin/src/ui/components/registry/empty_registry.dart';
 import 'package:checkin/src/ui/components/registry/lesson_infos.dart';
 import 'package:checkin/src/ui/components/registry/master_buttons.dart';
@@ -692,6 +694,31 @@ extension Localization on String {
         'en': NameSelectionPage.whatsYourName,
         'es': '¿Cuál es su nombre?',
         'it': 'Come ti chiami?',
+      } +
+      {
+        'en': EditLessonTime.ok,
+        'es': 'Ok',
+        'it': 'Ok',
+      } +
+      {
+        'en': EditLessonTime.cancel,
+        'es': 'Cancelar',
+        'it': 'Cancella',
+      } +
+      {
+        'en': EditLessonTime.selectTime,
+        'es': 'Elige hora de %s',
+        'it': 'Seleziona ora di %s',
+      } +
+      {
+        'en': EditLessonModal.start,
+        'es': 'Inicio',
+        'it': 'Inizio',
+      }+
+      {
+        'en': EditLessonModal.end,
+        'es': 'Fin',
+        'it': 'Fine',
       };
 
   String get i18n => localize(this, _t);

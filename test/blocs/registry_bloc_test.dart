@@ -28,7 +28,11 @@ void main() {
     MockLessonRepository mockLessonRepository;
 
     var testAttendee1 = Attendee(
-        name: "Test1", email: "test1@test.com", imageUrl: "some image", grade: Grade.white);
+      name: "Test1",
+      email: "test1@test.com",
+      imageUrl: "some image",
+      grade: Grade.white,
+    );
 
     Lesson baseLesson = Lesson(
       id: "test id",
@@ -57,19 +61,24 @@ void main() {
     });
 
     group("initial state", () {
-      RegistryBloc registryBloc;
+      blocTest("is RegistryUninitialized",
+          build: () => RegistryBloc(
+              lessonId: baseLesson.id,
+              lessonDate: baseLesson.date,
+              lessonRepository: mockLessonRepository,
+              lessonApi: mockLessonApi,
+              userBloc: mockUserBloc),
+          expect: [],
+          verify: (bloc) {
+            expect(bloc.state, RegistryUninitialized());
+          });
+    });
 
+    group("on InitializeRegistry", () {
       setUp(() {
         whenListen(mockUserBloc, Stream.value(UserSuccess(currentUser: fakeUser)));
         when(mockLessonRepository.getLesson(fakeUser.selectedGymId, baseLesson.date, baseLesson.id))
             .thenAnswer((realInvocation) => Stream.value(baseLesson));
-
-        registryBloc = RegistryBloc(
-            lessonId: baseLesson.id,
-            lessonDate: baseLesson.date,
-            lessonRepository: mockLessonRepository,
-            lessonApi: mockLessonApi,
-            userBloc: mockUserBloc);
       });
 
       tearDown(() {
@@ -77,51 +86,49 @@ void main() {
             mockLessonRepository.getLesson(fakeUser.selectedGymId, baseLesson.date, baseLesson.id));
       });
 
-      test('is RegistryUninitialized', () {
-        expect(registryBloc.state, RegistryUninitialized());
-      });
-
-      tearDown(() {
-        registryBloc?.close();
-      });
+      blocTest(
+        "should retrieve the lesson for the date",
+        build: () => RegistryBloc(
+            lessonId: baseLesson.id,
+            lessonDate: baseLesson.date,
+            lessonRepository: mockLessonRepository,
+            lessonApi: mockLessonApi,
+            userBloc: mockUserBloc),
+        act: (bloc) => bloc.add(RegistryEvent.initializeRegistry()),
+        expect: [
+          RegistryLoaded(
+            currentUser: fakeUser,
+            currentLesson: baseLesson,
+            isEmptyRegistry: true,
+          )
+        ],
+      );
     });
 
     group("on RegistryUpdated event", () {
-      User acceptedUser = User(
-          name: testAttendee1.name,
-          email: testAttendee1.email,
-          imageUrl: testAttendee1.imageUrl,
-          selectedGymId: "testGym");
-
-      Lesson fakeLessonWithAcceptedAttendee =
-          baseLesson.copyWith(attendees: [], acceptedAttendees: [testAttendee1]);
-
       group("when currentUser is already accepted in lesson", () {
-        setUp(() {
-          whenListen(mockUserBloc, Stream.value(UserSuccess(currentUser: acceptedUser)));
-          when(mockLessonRepository.getLesson(
-            acceptedUser.selectedGymId,
-            fakeLessonWithAcceptedAttendee.date,
-            fakeLessonWithAcceptedAttendee.id,
-          )).thenAnswer((realInvocation) => Stream.value(fakeLessonWithAcceptedAttendee));
-        });
+        User acceptedUser = User(
+            name: testAttendee1.name,
+            email: testAttendee1.email,
+            imageUrl: testAttendee1.imageUrl,
+            selectedGymId: "testGym");
 
-        tearDown(() {
-          verify(mockLessonRepository.getLesson(
-            acceptedUser.selectedGymId,
-            fakeLessonWithAcceptedAttendee.date,
-            fakeLessonWithAcceptedAttendee.id,
-          ));
-        });
+        Lesson fakeLessonWithAcceptedAttendee =
+            baseLesson.copyWith(attendees: [], acceptedAttendees: [testAttendee1]);
 
         blocTest(
           "should emit RegistryLoaded with isAccepted = true",
           build: () => RegistryBloc(
-              lessonId: fakeLessonWithAcceptedAttendee.id,
-              lessonDate: fakeLessonWithAcceptedAttendee.date,
-              lessonRepository: mockLessonRepository,
-              lessonApi: mockLessonApi,
-              userBloc: mockUserBloc),
+            lessonId: fakeLessonWithAcceptedAttendee.id,
+            lessonDate: fakeLessonWithAcceptedAttendee.date,
+            lessonRepository: mockLessonRepository,
+            lessonApi: mockLessonApi,
+            userBloc: mockUserBloc,
+          ),
+          act: (bloc) => bloc.add(RegistryUpdated(
+            currentUser: acceptedUser,
+            currentLesson: fakeLessonWithAcceptedAttendee,
+          )),
           expect: [
             RegistryLoaded(
               currentUser: acceptedUser,
@@ -141,32 +148,18 @@ void main() {
 
         Lesson lessonWithRegisteredUser =
             baseLesson.copyWith(attendees: [testAttendee1], acceptedAttendees: []);
-
-        setUp(() {
-          whenListen(mockUserBloc, Stream.value(UserSuccess(currentUser: registeredUser)));
-          when(mockLessonRepository.getLesson(
-            registeredUser.selectedGymId,
-            lessonWithRegisteredUser.date,
-            lessonWithRegisteredUser.id,
-          )).thenAnswer((realInvocation) => Stream.value(lessonWithRegisteredUser));
-        });
-
-        tearDown(() {
-          verify(mockLessonRepository.getLesson(
-            registeredUser.selectedGymId,
-            lessonWithRegisteredUser.date,
-            lessonWithRegisteredUser.id,
-          ));
-        });
-
         blocTest(
           "should emit should emit RegistryLoaded with isRegisteredUser = true",
           build: () => RegistryBloc(
-              lessonId: fakeLessonWithAcceptedAttendee.id,
-              lessonDate: fakeLessonWithAcceptedAttendee.date,
+              lessonId: lessonWithRegisteredUser.id,
+              lessonDate: lessonWithRegisteredUser.date,
               lessonRepository: mockLessonRepository,
               lessonApi: mockLessonApi,
               userBloc: mockUserBloc),
+          act: (bloc) => bloc.add(RegistryUpdated(
+            currentUser: registeredUser,
+            currentLesson: lessonWithRegisteredUser,
+          )),
           expect: [
             RegistryLoaded(
               currentUser: registeredUser,
@@ -181,23 +174,6 @@ void main() {
         Lesson fakeLessonFull = baseLesson
             .copyWith(attendees: [], acceptedAttendees: [testAttendee1], classCapacity: 1);
 
-        setUp(() {
-          whenListen(mockUserBloc, Stream.value(UserSuccess(currentUser: fakeUser)));
-          when(mockLessonRepository.getLesson(
-            fakeUser.selectedGymId,
-            fakeLessonFull.date,
-            fakeLessonFull.id,
-          )).thenAnswer((realInvocation) => Stream.value(fakeLessonFull));
-        });
-
-        tearDown(() {
-          verify(mockLessonRepository.getLesson(
-            fakeUser.selectedGymId,
-            fakeLessonFull.date,
-            fakeLessonFull.id,
-          ));
-        });
-
         blocTest(
           "should emit RegistryLoaded with isFullRegistry = true",
           build: () => RegistryBloc(
@@ -206,6 +182,10 @@ void main() {
               lessonRepository: mockLessonRepository,
               lessonApi: mockLessonApi,
               userBloc: mockUserBloc),
+          act: (bloc) => bloc.add(RegistryUpdated(
+            currentUser: fakeUser,
+            currentLesson: fakeLessonFull,
+          )),
           expect: [
             RegistryLoaded(
               currentUser: fakeUser,
@@ -217,23 +197,6 @@ void main() {
       });
 
       group("when lesson is empty", () {
-        setUp(() {
-          whenListen(mockUserBloc, Stream.value(UserSuccess(currentUser: fakeUser)));
-          when(mockLessonRepository.getLesson(
-            fakeUser.selectedGymId,
-            baseLesson.date,
-            baseLesson.id,
-          )).thenAnswer((realInvocation) => Stream.value(baseLesson));
-        });
-
-        tearDown(() {
-          verify(mockLessonRepository.getLesson(
-            fakeUser.selectedGymId,
-            baseLesson.date,
-            baseLesson.id,
-          ));
-        });
-
         blocTest(
           "should emit RegistryLoaded with isEmptyRegistry = true",
           build: () => RegistryBloc(
@@ -242,6 +205,10 @@ void main() {
               lessonRepository: mockLessonRepository,
               lessonApi: mockLessonApi,
               userBloc: mockUserBloc),
+          act: (bloc) => bloc.add(RegistryUpdated(
+            currentUser: fakeUser,
+            currentLesson: baseLesson,
+          )),
           expect: [
             RegistryLoaded(
               currentUser: fakeUser,
@@ -258,23 +225,6 @@ void main() {
           isClosed: true,
         );
 
-        setUp(() {
-          whenListen(mockUserBloc, Stream.value(UserSuccess(currentUser: fakeUser)));
-          when(mockLessonRepository.getLesson(
-            fakeUser.selectedGymId,
-            fakeLessonClosed.date,
-            fakeLessonClosed.id,
-          )).thenAnswer((realInvocation) => Stream.value(fakeLessonClosed));
-        });
-
-        tearDown(() {
-          verify(mockLessonRepository.getLesson(
-            fakeUser.selectedGymId,
-            fakeLessonClosed.date,
-            fakeLessonClosed.id,
-          ));
-        });
-
         blocTest(
           "should emit RegistryLoaded with isClosedRegistry = true",
           build: () => RegistryBloc(
@@ -284,6 +234,10 @@ void main() {
             lessonApi: mockLessonApi,
             userBloc: mockUserBloc,
           ),
+          act: (bloc) => bloc.add(RegistryUpdated(
+            currentUser: fakeUser,
+            currentLesson: fakeLessonClosed,
+          )),
           expect: [
             RegistryLoaded(
               currentUser: fakeUser,
@@ -298,23 +252,6 @@ void main() {
         final notExistingDate = '2020-30-02';
         final notExistingLessonId = "not_really_there_anymore";
 
-        setUp(() {
-          whenListen(mockUserBloc, Stream.value(UserSuccess(currentUser: fakeUser)));
-          when(mockLessonRepository.getLesson(
-            fakeUser.selectedGymId,
-            notExistingDate,
-            notExistingLessonId,
-          )).thenAnswer((realInvocation) => Stream.value(null));
-        });
-
-        tearDown(() {
-          verify(mockLessonRepository.getLesson(
-            fakeUser.selectedGymId,
-            '2020-30-02',
-            "not_really_there_anymore",
-          ));
-        });
-
         blocTest(
           "should emit RegistryMissing",
           build: () => RegistryBloc(
@@ -323,6 +260,10 @@ void main() {
               lessonRepository: mockLessonRepository,
               lessonApi: mockLessonApi,
               userBloc: mockUserBloc),
+          act: (bloc) => bloc.add(RegistryUpdated(
+            currentUser: fakeUser,
+            currentLesson: null,
+          )),
           expect: [
             RegistryMissing(),
           ],
@@ -335,7 +276,6 @@ void main() {
           Attendee(name: "pepe", grade: Grade.white, imageUrl: "lol", email: "not@anemail");
 
       setUp(() {
-        whenListen(mockUserBloc, Stream.value(null));
         when(mockLessonRepository.register(
                 fakeUser.selectedGymId, baseLesson.date, baseLesson.id, fakeAttendee))
             .thenAnswer((realInvocation) => Future.value(null));
@@ -371,7 +311,6 @@ void main() {
       Lesson lessonWithRegisteredUser = baseLesson.copyWith(attendees: [testAttendee1]);
 
       setUp(() {
-        whenListen(mockUserBloc, Stream.value(null));
         when(mockLessonRepository.unregister(registeredUser.selectedGymId,
                 lessonWithRegisteredUser.date, lessonWithRegisteredUser.id, testAttendee1))
             .thenAnswer((realInvocation) => Future.value());
@@ -412,8 +351,6 @@ void main() {
       );
 
       setUp(() {
-        whenListen(mockUserBloc, Stream.value(null));
-
         when(mockLessonApi.acceptAll(
           masterUser.selectedGymId,
           fakeLessonWithRegisteredAttendee.id,
@@ -449,7 +386,6 @@ void main() {
 
     group("on CloseLesson event", () {
       setUp(() {
-        whenListen(mockUserBloc, Stream.value(null));
         when(mockLessonRepository.closeLesson(
                 fakeUser.selectedGymId, baseLesson.date, baseLesson.id))
             .thenAnswer((realInvocation) => Future.value(null));
@@ -474,6 +410,64 @@ void main() {
                 gymId: fakeUser.selectedGymId,
               )),
           expect: [RegistryLoading()]);
+    });
+
+    group("on UpdateTimeStart event", () {
+      setUp(() {
+        when(mockLessonRepository.updateLessonTimeStart(fakeUser.selectedGymId, baseLesson.date, baseLesson.id, "04:20")).thenAnswer((realInvocation) => Future.value(null));
+      });
+
+      tearDown(() {
+        untilCalled(mockLessonRepository.updateLessonTimeStart(fakeUser.selectedGymId, baseLesson.date, baseLesson.id, "04:20"));
+        verify(mockLessonRepository.updateLessonTimeStart(fakeUser.selectedGymId, baseLesson.date, baseLesson.id, "04:20"));
+      });
+
+      blocTest(
+        "should call repository with newTimeStart",
+        build: () => RegistryBloc(
+          lessonId: baseLesson.id,
+          lessonDate: baseLesson.date,
+          lessonRepository: mockLessonRepository,
+          lessonApi: mockLessonApi,
+          userBloc: mockUserBloc,
+        ),
+        act: (bloc) => bloc.add(
+          RegistryEvent.updateTimeStart(
+            gymId: fakeUser.selectedGymId,
+            newTimeStart: "04:20",
+          ),
+        ),
+        expect: [],
+      );
+    });
+
+    group("on UpdateTimeEnd event", () {
+      setUp(() {
+        when(mockLessonRepository.updateLessonTimeEnd(fakeUser.selectedGymId, baseLesson.date, baseLesson.id, "13:37")).thenAnswer((realInvocation) => Future.value(null));
+      });
+
+      tearDown(() {
+        untilCalled(mockLessonRepository.updateLessonTimeEnd(fakeUser.selectedGymId, baseLesson.date, baseLesson.id, "13:37"));
+        verify(mockLessonRepository.updateLessonTimeEnd(fakeUser.selectedGymId, baseLesson.date, baseLesson.id, "13:37"));
+      });
+
+      blocTest(
+        "should call repository with newTimeEnd",
+        build: () => RegistryBloc(
+          lessonId: baseLesson.id,
+          lessonDate: baseLesson.date,
+          lessonRepository: mockLessonRepository,
+          lessonApi: mockLessonApi,
+          userBloc: mockUserBloc,
+        ),
+        act: (bloc) => bloc.add(
+          RegistryEvent.updateTimeEnd(
+            gymId: fakeUser.selectedGymId,
+            newTimeEnd: "13:37",
+          ),
+        ),
+        expect: [],
+      );
     });
   });
 }
