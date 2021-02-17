@@ -58,8 +58,7 @@ mixin _$StatsState {
 
 /// @nodoc
 abstract class $StatsStateCopyWith<$Res> {
-  factory $StatsStateCopyWith(
-          StatsState value, $Res Function(StatsState) then) =
+  factory $StatsStateCopyWith(StatsState value, $Res Function(StatsState) then) =
       _$StatsStateCopyWithImpl<$Res>;
 }
 
@@ -80,11 +79,9 @@ abstract class $InitialStatsStateCopyWith<$Res> {
 }
 
 /// @nodoc
-class _$InitialStatsStateCopyWithImpl<$Res>
-    extends _$StatsStateCopyWithImpl<$Res>
+class _$InitialStatsStateCopyWithImpl<$Res> extends _$StatsStateCopyWithImpl<$Res>
     implements $InitialStatsStateCopyWith<$Res> {
-  _$InitialStatsStateCopyWithImpl(
-      InitialStatsState _value, $Res Function(InitialStatsState) _then)
+  _$InitialStatsStateCopyWithImpl(InitialStatsState _value, $Res Function(InitialStatsState) _then)
       : super(_value, (v) => _then(v as InitialStatsState));
 
   @override
@@ -92,9 +89,7 @@ class _$InitialStatsStateCopyWithImpl<$Res>
 }
 
 /// @nodoc
-class _$InitialStatsState
-    with DiagnosticableTreeMixin
-    implements InitialStatsState {
+class _$InitialStatsState with DiagnosticableTreeMixin implements InitialStatsState {
   const _$InitialStatsState();
 
   @override
@@ -105,8 +100,7 @@ class _$InitialStatsState
   @override
   void debugFillProperties(DiagnosticPropertiesBuilder properties) {
     super.debugFillProperties(properties);
-    properties
-      ..add(DiagnosticsProperty('type', 'StatsState.initialStatsState'));
+    properties..add(DiagnosticsProperty('type', 'StatsState.initialStatsState'));
   }
 
   @override
@@ -174,8 +168,7 @@ abstract class InitialStatsState implements StatsState {
 
 /// @nodoc
 abstract class $TimespanUpdatedCopyWith<$Res> {
-  factory $TimespanUpdatedCopyWith(
-          TimespanUpdated value, $Res Function(TimespanUpdated) then) =
+  factory $TimespanUpdatedCopyWith(TimespanUpdated value, $Res Function(TimespanUpdated) then) =
       _$TimespanUpdatedCopyWithImpl<$Res>;
   $Res call({Timespan timespan});
 }
@@ -183,8 +176,7 @@ abstract class $TimespanUpdatedCopyWith<$Res> {
 /// @nodoc
 class _$TimespanUpdatedCopyWithImpl<$Res> extends _$StatsStateCopyWithImpl<$Res>
     implements $TimespanUpdatedCopyWith<$Res> {
-  _$TimespanUpdatedCopyWithImpl(
-      TimespanUpdated _value, $Res Function(TimespanUpdated) _then)
+  _$TimespanUpdatedCopyWithImpl(TimespanUpdated _value, $Res Function(TimespanUpdated) _then)
       : super(_value, (v) => _then(v as TimespanUpdated));
 
   @override
@@ -201,9 +193,7 @@ class _$TimespanUpdatedCopyWithImpl<$Res> extends _$StatsStateCopyWithImpl<$Res>
 }
 
 /// @nodoc
-class _$TimespanUpdated
-    with DiagnosticableTreeMixin
-    implements TimespanUpdated {
+class _$TimespanUpdated with DiagnosticableTreeMixin implements TimespanUpdated {
   const _$TimespanUpdated({@required this.timespan}) : assert(timespan != null);
 
   @override
@@ -227,13 +217,11 @@ class _$TimespanUpdated
     return identical(this, other) ||
         (other is TimespanUpdated &&
             (identical(other.timespan, timespan) ||
-                const DeepCollectionEquality()
-                    .equals(other.timespan, timespan)));
+                const DeepCollectionEquality().equals(other.timespan, timespan)));
   }
 
   @override
-  int get hashCode =>
-      runtimeType.hashCode ^ const DeepCollectionEquality().hash(timespan);
+  int get hashCode => runtimeType.hashCode ^ const DeepCollectionEquality().hash(timespan);
 
   @override
   $TimespanUpdatedCopyWith<TimespanUpdated> get copyWith =>
@@ -291,8 +279,7 @@ class _$TimespanUpdated
 }
 
 abstract class TimespanUpdated implements StatsState {
-  const factory TimespanUpdated({@required Timespan timespan}) =
-      _$TimespanUpdated;
+  const factory TimespanUpdated({@required Timespan timespan}) = _$TimespanUpdated;
 
   Timespan get timespan;
   $TimespanUpdatedCopyWith<TimespanUpdated> get copyWith;

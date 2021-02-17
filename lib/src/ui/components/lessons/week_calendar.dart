@@ -7,7 +7,6 @@ import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:table_calendar/table_calendar.dart';
 
-
 class WeekCalendar extends StatefulWidget {
   @override
   _WeekCalendarState createState() => _WeekCalendarState();
@@ -24,7 +23,7 @@ class WeekCalendar extends StatefulWidget {
 class _WeekCalendarState extends State<WeekCalendar> {
   CalendarController _calendarController;
 
-  _WeekCalendarState(){
+  _WeekCalendarState() {
     _calendarController = CalendarController();
   }
 

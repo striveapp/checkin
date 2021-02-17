@@ -24,7 +24,6 @@ class EditLessonTime extends StatefulWidget {
 class _EditLessonTimeState extends State<EditLessonTime> {
   String currentTime;
 
-
   @override
   void initState() {
     super.initState();
@@ -62,8 +61,8 @@ class _EditLessonTimeState extends State<EditLessonTime> {
               children: [
                 Text(currentTime,
                     style: Theme.of(context).textTheme.headline2.apply(
-                      fontSizeDelta: 3,
-                    )),
+                          fontSizeDelta: 3,
+                        )),
                 Icon(
                   Icons.unfold_more,
                 ),

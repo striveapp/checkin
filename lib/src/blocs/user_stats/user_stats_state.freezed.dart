@@ -37,9 +37,7 @@ mixin _$UserStatsState {
   @optionalTypeArgs
   TResult when<TResult extends Object>({
     @required TResult userStatsUninitialized(),
-    @required
-        TResult userStatsLoaded(
-            List<Lesson> attendedLessons, Timespan timespan),
+    @required TResult userStatsLoaded(List<Lesson> attendedLessons, Timespan timespan),
   });
   @optionalTypeArgs
   TResult maybeWhen<TResult extends Object>({
@@ -62,14 +60,12 @@ mixin _$UserStatsState {
 
 /// @nodoc
 abstract class $UserStatsStateCopyWith<$Res> {
-  factory $UserStatsStateCopyWith(
-          UserStatsState value, $Res Function(UserStatsState) then) =
+  factory $UserStatsStateCopyWith(UserStatsState value, $Res Function(UserStatsState) then) =
       _$UserStatsStateCopyWithImpl<$Res>;
 }
 
 /// @nodoc
-class _$UserStatsStateCopyWithImpl<$Res>
-    implements $UserStatsStateCopyWith<$Res> {
+class _$UserStatsStateCopyWithImpl<$Res> implements $UserStatsStateCopyWith<$Res> {
   _$UserStatsStateCopyWithImpl(this._value, this._then);
 
   final UserStatsState _value;
@@ -79,17 +75,16 @@ class _$UserStatsStateCopyWithImpl<$Res>
 
 /// @nodoc
 abstract class $UserStatsUninitializedCopyWith<$Res> {
-  factory $UserStatsUninitializedCopyWith(UserStatsUninitialized value,
-          $Res Function(UserStatsUninitialized) then) =
+  factory $UserStatsUninitializedCopyWith(
+          UserStatsUninitialized value, $Res Function(UserStatsUninitialized) then) =
       _$UserStatsUninitializedCopyWithImpl<$Res>;
 }
 
 /// @nodoc
-class _$UserStatsUninitializedCopyWithImpl<$Res>
-    extends _$UserStatsStateCopyWithImpl<$Res>
+class _$UserStatsUninitializedCopyWithImpl<$Res> extends _$UserStatsStateCopyWithImpl<$Res>
     implements $UserStatsUninitializedCopyWith<$Res> {
-  _$UserStatsUninitializedCopyWithImpl(UserStatsUninitialized _value,
-      $Res Function(UserStatsUninitialized) _then)
+  _$UserStatsUninitializedCopyWithImpl(
+      UserStatsUninitialized _value, $Res Function(UserStatsUninitialized) _then)
       : super(_value, (v) => _then(v as UserStatsUninitialized));
 
   @override
@@ -97,9 +92,7 @@ class _$UserStatsUninitializedCopyWithImpl<$Res>
 }
 
 /// @nodoc
-class _$UserStatsUninitialized
-    with DiagnosticableTreeMixin
-    implements UserStatsUninitialized {
+class _$UserStatsUninitialized with DiagnosticableTreeMixin implements UserStatsUninitialized {
   const _$UserStatsUninitialized();
 
   @override
@@ -110,9 +103,7 @@ class _$UserStatsUninitialized
   @override
   void debugFillProperties(DiagnosticPropertiesBuilder properties) {
     super.debugFillProperties(properties);
-    properties
-      ..add(
-          DiagnosticsProperty('type', 'UserStatsState.userStatsUninitialized'));
+    properties..add(DiagnosticsProperty('type', 'UserStatsState.userStatsUninitialized'));
   }
 
   @override
@@ -127,9 +118,7 @@ class _$UserStatsUninitialized
   @optionalTypeArgs
   TResult when<TResult extends Object>({
     @required TResult userStatsUninitialized(),
-    @required
-        TResult userStatsLoaded(
-            List<Lesson> attendedLessons, Timespan timespan),
+    @required TResult userStatsLoaded(List<Lesson> attendedLessons, Timespan timespan),
   }) {
     assert(userStatsUninitialized != null);
     assert(userStatsLoaded != null);
@@ -182,18 +171,15 @@ abstract class UserStatsUninitialized implements UserStatsState {
 
 /// @nodoc
 abstract class $UserStatsLoadedCopyWith<$Res> {
-  factory $UserStatsLoadedCopyWith(
-          UserStatsLoaded value, $Res Function(UserStatsLoaded) then) =
+  factory $UserStatsLoadedCopyWith(UserStatsLoaded value, $Res Function(UserStatsLoaded) then) =
       _$UserStatsLoadedCopyWithImpl<$Res>;
   $Res call({List<Lesson> attendedLessons, Timespan timespan});
 }
 
 /// @nodoc
-class _$UserStatsLoadedCopyWithImpl<$Res>
-    extends _$UserStatsStateCopyWithImpl<$Res>
+class _$UserStatsLoadedCopyWithImpl<$Res> extends _$UserStatsStateCopyWithImpl<$Res>
     implements $UserStatsLoadedCopyWith<$Res> {
-  _$UserStatsLoadedCopyWithImpl(
-      UserStatsLoaded _value, $Res Function(UserStatsLoaded) _then)
+  _$UserStatsLoadedCopyWithImpl(UserStatsLoaded _value, $Res Function(UserStatsLoaded) _then)
       : super(_value, (v) => _then(v as UserStatsLoaded));
 
   @override
@@ -205,20 +191,16 @@ class _$UserStatsLoadedCopyWithImpl<$Res>
     Object timespan = freezed,
   }) {
     return _then(UserStatsLoaded(
-      attendedLessons: attendedLessons == freezed
-          ? _value.attendedLessons
-          : attendedLessons as List<Lesson>,
+      attendedLessons:
+          attendedLessons == freezed ? _value.attendedLessons : attendedLessons as List<Lesson>,
       timespan: timespan == freezed ? _value.timespan : timespan as Timespan,
     ));
   }
 }
 
 /// @nodoc
-class _$UserStatsLoaded
-    with DiagnosticableTreeMixin
-    implements UserStatsLoaded {
-  const _$UserStatsLoaded(
-      {@required this.attendedLessons, @required this.timespan})
+class _$UserStatsLoaded with DiagnosticableTreeMixin implements UserStatsLoaded {
+  const _$UserStatsLoaded({@required this.attendedLessons, @required this.timespan})
       : assert(attendedLessons != null),
         assert(timespan != null);
 
@@ -246,11 +228,9 @@ class _$UserStatsLoaded
     return identical(this, other) ||
         (other is UserStatsLoaded &&
             (identical(other.attendedLessons, attendedLessons) ||
-                const DeepCollectionEquality()
-                    .equals(other.attendedLessons, attendedLessons)) &&
+                const DeepCollectionEquality().equals(other.attendedLessons, attendedLessons)) &&
             (identical(other.timespan, timespan) ||
-                const DeepCollectionEquality()
-                    .equals(other.timespan, timespan)));
+                const DeepCollectionEquality().equals(other.timespan, timespan)));
   }
 
   @override
@@ -267,9 +247,7 @@ class _$UserStatsLoaded
   @optionalTypeArgs
   TResult when<TResult extends Object>({
     @required TResult userStatsUninitialized(),
-    @required
-        TResult userStatsLoaded(
-            List<Lesson> attendedLessons, Timespan timespan),
+    @required TResult userStatsLoaded(List<Lesson> attendedLessons, Timespan timespan),
   }) {
     assert(userStatsUninitialized != null);
     assert(userStatsLoaded != null);
@@ -318,8 +296,7 @@ class _$UserStatsLoaded
 
 abstract class UserStatsLoaded implements UserStatsState {
   const factory UserStatsLoaded(
-      {@required List<Lesson> attendedLessons,
-      @required Timespan timespan}) = _$UserStatsLoaded;
+      {@required List<Lesson> attendedLessons, @required Timespan timespan}) = _$UserStatsLoaded;
 
   List<Lesson> get attendedLessons;
   Timespan get timespan;

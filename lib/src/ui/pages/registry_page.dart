@@ -67,14 +67,18 @@ class RegistryPage extends StatelessWidget {
                       padding: const EdgeInsets.only(top: 20, bottom: 20, right: 10),
                       child: Row(
                         mainAxisAlignment: MainAxisAlignment.spaceBetween,
-                        children: [LessonInfos(),
+                        children: [
+                          LessonInfos(),
                           Row(
                             children: [
                               EditLessonButton(),
-                              SizedBox(width: 5,),
+                              SizedBox(
+                                width: 5,
+                              ),
                               CloseLessonButton(),
                             ],
-                          )],
+                          )
+                        ],
                       ),
                     ),
                     Expanded(

@@ -29,8 +29,13 @@ abstract class RegistryEvent with _$RegistryEvent {
     @required String gymId,
   }) = CloseLesson;
 
-  const factory RegistryEvent.updateTimeStart({@required String gymId, @required String newTimeStart,}) = UpdateTimeStart;
+  const factory RegistryEvent.updateTimeStart({
+    @required String gymId,
+    @required String newTimeStart,
+  }) = UpdateTimeStart;
 
-  const factory RegistryEvent.updateTimeEnd({@required String gymId, @required String newTimeEnd,}) = UpdateTimeEnd;
-
+  const factory RegistryEvent.updateTimeEnd({
+    @required String gymId,
+    @required String newTimeEnd,
+  }) = UpdateTimeEnd;
 }

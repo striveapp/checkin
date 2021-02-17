@@ -44,7 +44,7 @@ class RegistryBloc extends Bloc<RegistryEvent, RegistryState> {
 
   @override
   Stream<RegistryState> mapEventToState(RegistryEvent event) async* {
-    if(event is InitializeRegistry) {
+    if (event is InitializeRegistry) {
       _onUserStateChanged(userBloc.state);
       userBloc.listen(_onUserStateChanged);
     }
@@ -114,12 +114,16 @@ class RegistryBloc extends Bloc<RegistryEvent, RegistryState> {
           );
     }
 
-    if(event is UpdateTimeStart) {
-      await this.lessonRepository.updateLessonTimeStart(event.gymId, lessonDate, lessonId, event.newTimeStart);
+    if (event is UpdateTimeStart) {
+      await this
+          .lessonRepository
+          .updateLessonTimeStart(event.gymId, lessonDate, lessonId, event.newTimeStart);
     }
 
-    if(event is UpdateTimeEnd) {
-      await this.lessonRepository.updateLessonTimeEnd(event.gymId, lessonDate, lessonId, event.newTimeEnd);
+    if (event is UpdateTimeEnd) {
+      await this
+          .lessonRepository
+          .updateLessonTimeEnd(event.gymId, lessonDate, lessonId, event.newTimeEnd);
     }
   }
 

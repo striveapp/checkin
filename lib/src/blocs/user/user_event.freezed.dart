@@ -121,8 +121,7 @@ class _$UserEventCopyWithImpl<$Res> implements $UserEventCopyWith<$Res> {
 
 /// @nodoc
 abstract class $UserUpdatedCopyWith<$Res> {
-  factory $UserUpdatedCopyWith(
-          UserUpdated value, $Res Function(UserUpdated) then) =
+  factory $UserUpdatedCopyWith(UserUpdated value, $Res Function(UserUpdated) then) =
       _$UserUpdatedCopyWithImpl<$Res>;
   $Res call({User user});
 }
@@ -130,8 +129,7 @@ abstract class $UserUpdatedCopyWith<$Res> {
 /// @nodoc
 class _$UserUpdatedCopyWithImpl<$Res> extends _$UserEventCopyWithImpl<$Res>
     implements $UserUpdatedCopyWith<$Res> {
-  _$UserUpdatedCopyWithImpl(
-      UserUpdated _value, $Res Function(UserUpdated) _then)
+  _$UserUpdatedCopyWithImpl(UserUpdated _value, $Res Function(UserUpdated) _then)
       : super(_value, (v) => _then(v as UserUpdated));
 
   @override
@@ -176,8 +174,7 @@ class _$UserUpdated with DiagnosticableTreeMixin implements UserUpdated {
   }
 
   @override
-  int get hashCode =>
-      runtimeType.hashCode ^ const DeepCollectionEquality().hash(user);
+  int get hashCode => runtimeType.hashCode ^ const DeepCollectionEquality().hash(user);
 
   @override
   $UserUpdatedCopyWith<UserUpdated> get copyWith =>
@@ -267,8 +264,7 @@ abstract class UserUpdated implements UserEvent {
 
 /// @nodoc
 abstract class $UpdateNameCopyWith<$Res> {
-  factory $UpdateNameCopyWith(
-          UpdateName value, $Res Function(UpdateName) then) =
+  factory $UpdateNameCopyWith(UpdateName value, $Res Function(UpdateName) then) =
       _$UpdateNameCopyWithImpl<$Res>;
   $Res call({String newName});
 }
@@ -321,8 +317,7 @@ class _$UpdateName with DiagnosticableTreeMixin implements UpdateName {
   }
 
   @override
-  int get hashCode =>
-      runtimeType.hashCode ^ const DeepCollectionEquality().hash(newName);
+  int get hashCode => runtimeType.hashCode ^ const DeepCollectionEquality().hash(newName);
 
   @override
   $UpdateNameCopyWith<UpdateName> get copyWith =>
@@ -412,8 +407,7 @@ abstract class UpdateName implements UserEvent {
 
 /// @nodoc
 abstract class $UpdateImageUrlCopyWith<$Res> {
-  factory $UpdateImageUrlCopyWith(
-          UpdateImageUrl value, $Res Function(UpdateImageUrl) then) =
+  factory $UpdateImageUrlCopyWith(UpdateImageUrl value, $Res Function(UpdateImageUrl) then) =
       _$UpdateImageUrlCopyWithImpl<$Res>;
   $Res call({String userEmail});
 }
@@ -421,8 +415,7 @@ abstract class $UpdateImageUrlCopyWith<$Res> {
 /// @nodoc
 class _$UpdateImageUrlCopyWithImpl<$Res> extends _$UserEventCopyWithImpl<$Res>
     implements $UpdateImageUrlCopyWith<$Res> {
-  _$UpdateImageUrlCopyWithImpl(
-      UpdateImageUrl _value, $Res Function(UpdateImageUrl) _then)
+  _$UpdateImageUrlCopyWithImpl(UpdateImageUrl _value, $Res Function(UpdateImageUrl) _then)
       : super(_value, (v) => _then(v as UpdateImageUrl));
 
   @override
@@ -463,13 +456,11 @@ class _$UpdateImageUrl with DiagnosticableTreeMixin implements UpdateImageUrl {
     return identical(this, other) ||
         (other is UpdateImageUrl &&
             (identical(other.userEmail, userEmail) ||
-                const DeepCollectionEquality()
-                    .equals(other.userEmail, userEmail)));
+                const DeepCollectionEquality().equals(other.userEmail, userEmail)));
   }
 
   @override
-  int get hashCode =>
-      runtimeType.hashCode ^ const DeepCollectionEquality().hash(userEmail);
+  int get hashCode => runtimeType.hashCode ^ const DeepCollectionEquality().hash(userEmail);
 
   @override
   $UpdateImageUrlCopyWith<UpdateImageUrl> get copyWith =>
@@ -559,8 +550,7 @@ abstract class UpdateImageUrl implements UserEvent {
 
 /// @nodoc
 abstract class $UpdateGradeCopyWith<$Res> {
-  factory $UpdateGradeCopyWith(
-          UpdateGrade value, $Res Function(UpdateGrade) then) =
+  factory $UpdateGradeCopyWith(UpdateGrade value, $Res Function(UpdateGrade) then) =
       _$UpdateGradeCopyWithImpl<$Res>;
   $Res call({Grade newGrade});
 }
@@ -568,8 +558,7 @@ abstract class $UpdateGradeCopyWith<$Res> {
 /// @nodoc
 class _$UpdateGradeCopyWithImpl<$Res> extends _$UserEventCopyWithImpl<$Res>
     implements $UpdateGradeCopyWith<$Res> {
-  _$UpdateGradeCopyWithImpl(
-      UpdateGrade _value, $Res Function(UpdateGrade) _then)
+  _$UpdateGradeCopyWithImpl(UpdateGrade _value, $Res Function(UpdateGrade) _then)
       : super(_value, (v) => _then(v as UpdateGrade));
 
   @override
@@ -610,13 +599,11 @@ class _$UpdateGrade with DiagnosticableTreeMixin implements UpdateGrade {
     return identical(this, other) ||
         (other is UpdateGrade &&
             (identical(other.newGrade, newGrade) ||
-                const DeepCollectionEquality()
-                    .equals(other.newGrade, newGrade)));
+                const DeepCollectionEquality().equals(other.newGrade, newGrade)));
   }
 
   @override
-  int get hashCode =>
-      runtimeType.hashCode ^ const DeepCollectionEquality().hash(newGrade);
+  int get hashCode => runtimeType.hashCode ^ const DeepCollectionEquality().hash(newGrade);
 
   @override
   $UpdateGradeCopyWith<UpdateGrade> get copyWith =>
@@ -713,11 +700,9 @@ abstract class $UpdateSelectedGymCopyWith<$Res> {
 }
 
 /// @nodoc
-class _$UpdateSelectedGymCopyWithImpl<$Res>
-    extends _$UserEventCopyWithImpl<$Res>
+class _$UpdateSelectedGymCopyWithImpl<$Res> extends _$UserEventCopyWithImpl<$Res>
     implements $UpdateSelectedGymCopyWith<$Res> {
-  _$UpdateSelectedGymCopyWithImpl(
-      UpdateSelectedGym _value, $Res Function(UpdateSelectedGym) _then)
+  _$UpdateSelectedGymCopyWithImpl(UpdateSelectedGym _value, $Res Function(UpdateSelectedGym) _then)
       : super(_value, (v) => _then(v as UpdateSelectedGym));
 
   @override
@@ -736,9 +721,7 @@ class _$UpdateSelectedGymCopyWithImpl<$Res>
 }
 
 /// @nodoc
-class _$UpdateSelectedGym
-    with DiagnosticableTreeMixin
-    implements UpdateSelectedGym {
+class _$UpdateSelectedGym with DiagnosticableTreeMixin implements UpdateSelectedGym {
   const _$UpdateSelectedGym({this.userEmail, this.newGymId});
 
   @override
@@ -765,11 +748,9 @@ class _$UpdateSelectedGym
     return identical(this, other) ||
         (other is UpdateSelectedGym &&
             (identical(other.userEmail, userEmail) ||
-                const DeepCollectionEquality()
-                    .equals(other.userEmail, userEmail)) &&
+                const DeepCollectionEquality().equals(other.userEmail, userEmail)) &&
             (identical(other.newGymId, newGymId) ||
-                const DeepCollectionEquality()
-                    .equals(other.newGymId, newGymId)));
+                const DeepCollectionEquality().equals(other.newGymId, newGymId)));
   }
 
   @override
@@ -858,8 +839,7 @@ class _$UpdateSelectedGym
 }
 
 abstract class UpdateSelectedGym implements UserEvent {
-  const factory UpdateSelectedGym({String userEmail, String newGymId}) =
-      _$UpdateSelectedGym;
+  const factory UpdateSelectedGym({String userEmail, String newGymId}) = _$UpdateSelectedGym;
 
   String get userEmail;
   String get newGymId;
@@ -868,8 +848,7 @@ abstract class UpdateSelectedGym implements UserEvent {
 
 /// @nodoc
 abstract class $UpdateFcmTokenCopyWith<$Res> {
-  factory $UpdateFcmTokenCopyWith(
-          UpdateFcmToken value, $Res Function(UpdateFcmToken) then) =
+  factory $UpdateFcmTokenCopyWith(UpdateFcmToken value, $Res Function(UpdateFcmToken) then) =
       _$UpdateFcmTokenCopyWithImpl<$Res>;
   $Res call({String userEmail, String newToken});
 }
@@ -877,8 +856,7 @@ abstract class $UpdateFcmTokenCopyWith<$Res> {
 /// @nodoc
 class _$UpdateFcmTokenCopyWithImpl<$Res> extends _$UserEventCopyWithImpl<$Res>
     implements $UpdateFcmTokenCopyWith<$Res> {
-  _$UpdateFcmTokenCopyWithImpl(
-      UpdateFcmToken _value, $Res Function(UpdateFcmToken) _then)
+  _$UpdateFcmTokenCopyWithImpl(UpdateFcmToken _value, $Res Function(UpdateFcmToken) _then)
       : super(_value, (v) => _then(v as UpdateFcmToken));
 
   @override
@@ -924,11 +902,9 @@ class _$UpdateFcmToken with DiagnosticableTreeMixin implements UpdateFcmToken {
     return identical(this, other) ||
         (other is UpdateFcmToken &&
             (identical(other.userEmail, userEmail) ||
-                const DeepCollectionEquality()
-                    .equals(other.userEmail, userEmail)) &&
+                const DeepCollectionEquality().equals(other.userEmail, userEmail)) &&
             (identical(other.newToken, newToken) ||
-                const DeepCollectionEquality()
-                    .equals(other.newToken, newToken)));
+                const DeepCollectionEquality().equals(other.newToken, newToken)));
   }
 
   @override
@@ -1017,8 +993,7 @@ class _$UpdateFcmToken with DiagnosticableTreeMixin implements UpdateFcmToken {
 }
 
 abstract class UpdateFcmToken implements UserEvent {
-  const factory UpdateFcmToken({String userEmail, String newToken}) =
-      _$UpdateFcmToken;
+  const factory UpdateFcmToken({String userEmail, String newToken}) = _$UpdateFcmToken;
 
   String get userEmail;
   String get newToken;

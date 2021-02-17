@@ -714,7 +714,7 @@ extension Localization on String {
         'en': EditLessonModal.start,
         'es': 'Inicio',
         'it': 'Inizio',
-      }+
+      } +
       {
         'en': EditLessonModal.end,
         'es': 'Fin',

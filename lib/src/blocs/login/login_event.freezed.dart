@@ -103,8 +103,7 @@ mixin _$LoginEvent {
 
 /// @nodoc
 abstract class $LoginEventCopyWith<$Res> {
-  factory $LoginEventCopyWith(
-          LoginEvent value, $Res Function(LoginEvent) then) =
+  factory $LoginEventCopyWith(LoginEvent value, $Res Function(LoginEvent) then) =
       _$LoginEventCopyWithImpl<$Res>;
 }
 
@@ -119,16 +118,14 @@ class _$LoginEventCopyWithImpl<$Res> implements $LoginEventCopyWith<$Res> {
 
 /// @nodoc
 abstract class $LoginWithGoogleCopyWith<$Res> {
-  factory $LoginWithGoogleCopyWith(
-          LoginWithGoogle value, $Res Function(LoginWithGoogle) then) =
+  factory $LoginWithGoogleCopyWith(LoginWithGoogle value, $Res Function(LoginWithGoogle) then) =
       _$LoginWithGoogleCopyWithImpl<$Res>;
 }
 
 /// @nodoc
 class _$LoginWithGoogleCopyWithImpl<$Res> extends _$LoginEventCopyWithImpl<$Res>
     implements $LoginWithGoogleCopyWith<$Res> {
-  _$LoginWithGoogleCopyWithImpl(
-      LoginWithGoogle _value, $Res Function(LoginWithGoogle) _then)
+  _$LoginWithGoogleCopyWithImpl(LoginWithGoogle _value, $Res Function(LoginWithGoogle) _then)
       : super(_value, (v) => _then(v as LoginWithGoogle));
 
   @override
@@ -136,9 +133,7 @@ class _$LoginWithGoogleCopyWithImpl<$Res> extends _$LoginEventCopyWithImpl<$Res>
 }
 
 /// @nodoc
-class _$LoginWithGoogle
-    with DiagnosticableTreeMixin
-    implements LoginWithGoogle {
+class _$LoginWithGoogle with DiagnosticableTreeMixin implements LoginWithGoogle {
   const _$LoginWithGoogle();
 
   @override
@@ -247,16 +242,14 @@ abstract class LoginWithGoogle implements LoginEvent {
 
 /// @nodoc
 abstract class $LoginWithAppleCopyWith<$Res> {
-  factory $LoginWithAppleCopyWith(
-          LoginWithApple value, $Res Function(LoginWithApple) then) =
+  factory $LoginWithAppleCopyWith(LoginWithApple value, $Res Function(LoginWithApple) then) =
       _$LoginWithAppleCopyWithImpl<$Res>;
 }
 
 /// @nodoc
 class _$LoginWithAppleCopyWithImpl<$Res> extends _$LoginEventCopyWithImpl<$Res>
     implements $LoginWithAppleCopyWith<$Res> {
-  _$LoginWithAppleCopyWithImpl(
-      LoginWithApple _value, $Res Function(LoginWithApple) _then)
+  _$LoginWithAppleCopyWithImpl(LoginWithApple _value, $Res Function(LoginWithApple) _then)
       : super(_value, (v) => _then(v as LoginWithApple));
 
   @override
@@ -380,11 +373,9 @@ abstract class $LoginPasswordlessCopyWith<$Res> {
 }
 
 /// @nodoc
-class _$LoginPasswordlessCopyWithImpl<$Res>
-    extends _$LoginEventCopyWithImpl<$Res>
+class _$LoginPasswordlessCopyWithImpl<$Res> extends _$LoginEventCopyWithImpl<$Res>
     implements $LoginPasswordlessCopyWith<$Res> {
-  _$LoginPasswordlessCopyWithImpl(
-      LoginPasswordless _value, $Res Function(LoginPasswordless) _then)
+  _$LoginPasswordlessCopyWithImpl(LoginPasswordless _value, $Res Function(LoginPasswordless) _then)
       : super(_value, (v) => _then(v as LoginPasswordless));
 
   @override
@@ -401,11 +392,8 @@ class _$LoginPasswordlessCopyWithImpl<$Res>
 }
 
 /// @nodoc
-class _$LoginPasswordless
-    with DiagnosticableTreeMixin
-    implements LoginPasswordless {
-  const _$LoginPasswordless({@required this.userEmail})
-      : assert(userEmail != null);
+class _$LoginPasswordless with DiagnosticableTreeMixin implements LoginPasswordless {
+  const _$LoginPasswordless({@required this.userEmail}) : assert(userEmail != null);
 
   @override
   final String userEmail;
@@ -428,13 +416,11 @@ class _$LoginPasswordless
     return identical(this, other) ||
         (other is LoginPasswordless &&
             (identical(other.userEmail, userEmail) ||
-                const DeepCollectionEquality()
-                    .equals(other.userEmail, userEmail)));
+                const DeepCollectionEquality().equals(other.userEmail, userEmail)));
   }
 
   @override
-  int get hashCode =>
-      runtimeType.hashCode ^ const DeepCollectionEquality().hash(userEmail);
+  int get hashCode => runtimeType.hashCode ^ const DeepCollectionEquality().hash(userEmail);
 
   @override
   $LoginPasswordlessCopyWith<LoginPasswordless> get copyWith =>
@@ -522,8 +508,7 @@ class _$LoginPasswordless
 }
 
 abstract class LoginPasswordless implements LoginEvent {
-  const factory LoginPasswordless({@required String userEmail}) =
-      _$LoginPasswordless;
+  const factory LoginPasswordless({@required String userEmail}) = _$LoginPasswordless;
 
   String get userEmail;
   $LoginPasswordlessCopyWith<LoginPasswordless> get copyWith;
@@ -537,11 +522,9 @@ abstract class $LoginWithTestUserCopyWith<$Res> {
 }
 
 /// @nodoc
-class _$LoginWithTestUserCopyWithImpl<$Res>
-    extends _$LoginEventCopyWithImpl<$Res>
+class _$LoginWithTestUserCopyWithImpl<$Res> extends _$LoginEventCopyWithImpl<$Res>
     implements $LoginWithTestUserCopyWith<$Res> {
-  _$LoginWithTestUserCopyWithImpl(
-      LoginWithTestUser _value, $Res Function(LoginWithTestUser) _then)
+  _$LoginWithTestUserCopyWithImpl(LoginWithTestUser _value, $Res Function(LoginWithTestUser) _then)
       : super(_value, (v) => _then(v as LoginWithTestUser));
 
   @override
@@ -549,9 +532,7 @@ class _$LoginWithTestUserCopyWithImpl<$Res>
 }
 
 /// @nodoc
-class _$LoginWithTestUser
-    with DiagnosticableTreeMixin
-    implements LoginWithTestUser {
+class _$LoginWithTestUser with DiagnosticableTreeMixin implements LoginWithTestUser {
   const _$LoginWithTestUser();
 
   @override
@@ -562,8 +543,7 @@ class _$LoginWithTestUser
   @override
   void debugFillProperties(DiagnosticPropertiesBuilder properties) {
     super.debugFillProperties(properties);
-    properties
-      ..add(DiagnosticsProperty('type', 'LoginEvent.loginWithTestUser'));
+    properties..add(DiagnosticsProperty('type', 'LoginEvent.loginWithTestUser'));
   }
 
   @override
@@ -661,14 +641,13 @@ abstract class LoginWithTestUser implements LoginEvent {
 
 /// @nodoc
 abstract class $LoginWithTestUserTwoCopyWith<$Res> {
-  factory $LoginWithTestUserTwoCopyWith(LoginWithTestUserTwo value,
-          $Res Function(LoginWithTestUserTwo) then) =
+  factory $LoginWithTestUserTwoCopyWith(
+          LoginWithTestUserTwo value, $Res Function(LoginWithTestUserTwo) then) =
       _$LoginWithTestUserTwoCopyWithImpl<$Res>;
 }
 
 /// @nodoc
-class _$LoginWithTestUserTwoCopyWithImpl<$Res>
-    extends _$LoginEventCopyWithImpl<$Res>
+class _$LoginWithTestUserTwoCopyWithImpl<$Res> extends _$LoginEventCopyWithImpl<$Res>
     implements $LoginWithTestUserTwoCopyWith<$Res> {
   _$LoginWithTestUserTwoCopyWithImpl(
       LoginWithTestUserTwo _value, $Res Function(LoginWithTestUserTwo) _then)
@@ -679,9 +658,7 @@ class _$LoginWithTestUserTwoCopyWithImpl<$Res>
 }
 
 /// @nodoc
-class _$LoginWithTestUserTwo
-    with DiagnosticableTreeMixin
-    implements LoginWithTestUserTwo {
+class _$LoginWithTestUserTwo with DiagnosticableTreeMixin implements LoginWithTestUserTwo {
   const _$LoginWithTestUserTwo();
 
   @override
@@ -692,8 +669,7 @@ class _$LoginWithTestUserTwo
   @override
   void debugFillProperties(DiagnosticPropertiesBuilder properties) {
     super.debugFillProperties(properties);
-    properties
-      ..add(DiagnosticsProperty('type', 'LoginEvent.loginWithTestUserTwo'));
+    properties..add(DiagnosticsProperty('type', 'LoginEvent.loginWithTestUserTwo'));
   }
 
   @override
@@ -791,17 +767,16 @@ abstract class LoginWithTestUserTwo implements LoginEvent {
 
 /// @nodoc
 abstract class $LoginWithTestUserAdminCopyWith<$Res> {
-  factory $LoginWithTestUserAdminCopyWith(LoginWithTestUserAdmin value,
-          $Res Function(LoginWithTestUserAdmin) then) =
+  factory $LoginWithTestUserAdminCopyWith(
+          LoginWithTestUserAdmin value, $Res Function(LoginWithTestUserAdmin) then) =
       _$LoginWithTestUserAdminCopyWithImpl<$Res>;
 }
 
 /// @nodoc
-class _$LoginWithTestUserAdminCopyWithImpl<$Res>
-    extends _$LoginEventCopyWithImpl<$Res>
+class _$LoginWithTestUserAdminCopyWithImpl<$Res> extends _$LoginEventCopyWithImpl<$Res>
     implements $LoginWithTestUserAdminCopyWith<$Res> {
-  _$LoginWithTestUserAdminCopyWithImpl(LoginWithTestUserAdmin _value,
-      $Res Function(LoginWithTestUserAdmin) _then)
+  _$LoginWithTestUserAdminCopyWithImpl(
+      LoginWithTestUserAdmin _value, $Res Function(LoginWithTestUserAdmin) _then)
       : super(_value, (v) => _then(v as LoginWithTestUserAdmin));
 
   @override
@@ -809,9 +784,7 @@ class _$LoginWithTestUserAdminCopyWithImpl<$Res>
 }
 
 /// @nodoc
-class _$LoginWithTestUserAdmin
-    with DiagnosticableTreeMixin
-    implements LoginWithTestUserAdmin {
+class _$LoginWithTestUserAdmin with DiagnosticableTreeMixin implements LoginWithTestUserAdmin {
   const _$LoginWithTestUserAdmin();
 
   @override
@@ -822,8 +795,7 @@ class _$LoginWithTestUserAdmin
   @override
   void debugFillProperties(DiagnosticPropertiesBuilder properties) {
     super.debugFillProperties(properties);
-    properties
-      ..add(DiagnosticsProperty('type', 'LoginEvent.loginWithTestUserAdmin'));
+    properties..add(DiagnosticsProperty('type', 'LoginEvent.loginWithTestUserAdmin'));
   }
 
   @override
@@ -921,17 +893,16 @@ abstract class LoginWithTestUserAdmin implements LoginEvent {
 
 /// @nodoc
 abstract class $LoginWithTestUserMasterCopyWith<$Res> {
-  factory $LoginWithTestUserMasterCopyWith(LoginWithTestUserMaster value,
-          $Res Function(LoginWithTestUserMaster) then) =
+  factory $LoginWithTestUserMasterCopyWith(
+          LoginWithTestUserMaster value, $Res Function(LoginWithTestUserMaster) then) =
       _$LoginWithTestUserMasterCopyWithImpl<$Res>;
 }
 
 /// @nodoc
-class _$LoginWithTestUserMasterCopyWithImpl<$Res>
-    extends _$LoginEventCopyWithImpl<$Res>
+class _$LoginWithTestUserMasterCopyWithImpl<$Res> extends _$LoginEventCopyWithImpl<$Res>
     implements $LoginWithTestUserMasterCopyWith<$Res> {
-  _$LoginWithTestUserMasterCopyWithImpl(LoginWithTestUserMaster _value,
-      $Res Function(LoginWithTestUserMaster) _then)
+  _$LoginWithTestUserMasterCopyWithImpl(
+      LoginWithTestUserMaster _value, $Res Function(LoginWithTestUserMaster) _then)
       : super(_value, (v) => _then(v as LoginWithTestUserMaster));
 
   @override
@@ -939,9 +910,7 @@ class _$LoginWithTestUserMasterCopyWithImpl<$Res>
 }
 
 /// @nodoc
-class _$LoginWithTestUserMaster
-    with DiagnosticableTreeMixin
-    implements LoginWithTestUserMaster {
+class _$LoginWithTestUserMaster with DiagnosticableTreeMixin implements LoginWithTestUserMaster {
   const _$LoginWithTestUserMaster();
 
   @override
@@ -952,8 +921,7 @@ class _$LoginWithTestUserMaster
   @override
   void debugFillProperties(DiagnosticPropertiesBuilder properties) {
     super.debugFillProperties(properties);
-    properties
-      ..add(DiagnosticsProperty('type', 'LoginEvent.loginWithTestUserMaster'));
+    properties..add(DiagnosticsProperty('type', 'LoginEvent.loginWithTestUserMaster'));
   }
 
   @override

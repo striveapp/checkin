@@ -14,8 +14,7 @@ class _$LessonFilterEventTearOff {
   const _$LessonFilterEventTearOff();
 
 // ignore: unused_element
-  LessonFilterUpdated lessonFilterUpdated(
-      {@required Set<String> availableLessonTypes}) {
+  LessonFilterUpdated lessonFilterUpdated({@required Set<String> availableLessonTypes}) {
     return LessonFilterUpdated(
       availableLessonTypes: availableLessonTypes,
     );
@@ -61,8 +60,7 @@ abstract class $LessonFilterEventCopyWith<$Res> {
 }
 
 /// @nodoc
-class _$LessonFilterEventCopyWithImpl<$Res>
-    implements $LessonFilterEventCopyWith<$Res> {
+class _$LessonFilterEventCopyWithImpl<$Res> implements $LessonFilterEventCopyWith<$Res> {
   _$LessonFilterEventCopyWithImpl(this._value, this._then);
 
   final LessonFilterEvent _value;
@@ -82,8 +80,7 @@ class _$LessonFilterEventCopyWithImpl<$Res>
 }
 
 /// @nodoc
-abstract class $LessonFilterUpdatedCopyWith<$Res>
-    implements $LessonFilterEventCopyWith<$Res> {
+abstract class $LessonFilterUpdatedCopyWith<$Res> implements $LessonFilterEventCopyWith<$Res> {
   factory $LessonFilterUpdatedCopyWith(
           LessonFilterUpdated value, $Res Function(LessonFilterUpdated) then) =
       _$LessonFilterUpdatedCopyWithImpl<$Res>;
@@ -92,8 +89,7 @@ abstract class $LessonFilterUpdatedCopyWith<$Res>
 }
 
 /// @nodoc
-class _$LessonFilterUpdatedCopyWithImpl<$Res>
-    extends _$LessonFilterEventCopyWithImpl<$Res>
+class _$LessonFilterUpdatedCopyWithImpl<$Res> extends _$LessonFilterEventCopyWithImpl<$Res>
     implements $LessonFilterUpdatedCopyWith<$Res> {
   _$LessonFilterUpdatedCopyWithImpl(
       LessonFilterUpdated _value, $Res Function(LessonFilterUpdated) _then)
@@ -115,9 +111,7 @@ class _$LessonFilterUpdatedCopyWithImpl<$Res>
 }
 
 /// @nodoc
-class _$LessonFilterUpdated
-    with DiagnosticableTreeMixin
-    implements LessonFilterUpdated {
+class _$LessonFilterUpdated with DiagnosticableTreeMixin implements LessonFilterUpdated {
   const _$LessonFilterUpdated({@required this.availableLessonTypes})
       : assert(availableLessonTypes != null);
 
@@ -133,8 +127,7 @@ class _$LessonFilterUpdated
   void debugFillProperties(DiagnosticPropertiesBuilder properties) {
     super.debugFillProperties(properties);
     properties
-      ..add(
-          DiagnosticsProperty('type', 'LessonFilterEvent.lessonFilterUpdated'))
+      ..add(DiagnosticsProperty('type', 'LessonFilterEvent.lessonFilterUpdated'))
       ..add(DiagnosticsProperty('availableLessonTypes', availableLessonTypes));
   }
 
@@ -149,8 +142,7 @@ class _$LessonFilterUpdated
 
   @override
   int get hashCode =>
-      runtimeType.hashCode ^
-      const DeepCollectionEquality().hash(availableLessonTypes);
+      runtimeType.hashCode ^ const DeepCollectionEquality().hash(availableLessonTypes);
 
   @override
   $LessonFilterUpdatedCopyWith<LessonFilterUpdated> get copyWith =>
@@ -202,8 +194,8 @@ class _$LessonFilterUpdated
 }
 
 abstract class LessonFilterUpdated implements LessonFilterEvent {
-  const factory LessonFilterUpdated(
-      {@required Set<String> availableLessonTypes}) = _$LessonFilterUpdated;
+  const factory LessonFilterUpdated({@required Set<String> availableLessonTypes}) =
+      _$LessonFilterUpdated;
 
   @override
   Set<String> get availableLessonTypes;
