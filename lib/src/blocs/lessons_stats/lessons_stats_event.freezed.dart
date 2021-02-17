@@ -64,7 +64,8 @@ abstract class $LessonsStatsEventCopyWith<$Res> {
 }
 
 /// @nodoc
-class _$LessonsStatsEventCopyWithImpl<$Res> implements $LessonsStatsEventCopyWith<$Res> {
+class _$LessonsStatsEventCopyWithImpl<$Res>
+    implements $LessonsStatsEventCopyWith<$Res> {
   _$LessonsStatsEventCopyWithImpl(this._value, this._then);
 
   final LessonsStatsEvent _value;
@@ -74,16 +75,17 @@ class _$LessonsStatsEventCopyWithImpl<$Res> implements $LessonsStatsEventCopyWit
 
 /// @nodoc
 abstract class $InitializeLessonsStatsCopyWith<$Res> {
-  factory $InitializeLessonsStatsCopyWith(
-          InitializeLessonsStats value, $Res Function(InitializeLessonsStats) then) =
+  factory $InitializeLessonsStatsCopyWith(InitializeLessonsStats value,
+          $Res Function(InitializeLessonsStats) then) =
       _$InitializeLessonsStatsCopyWithImpl<$Res>;
 }
 
 /// @nodoc
-class _$InitializeLessonsStatsCopyWithImpl<$Res> extends _$LessonsStatsEventCopyWithImpl<$Res>
+class _$InitializeLessonsStatsCopyWithImpl<$Res>
+    extends _$LessonsStatsEventCopyWithImpl<$Res>
     implements $InitializeLessonsStatsCopyWith<$Res> {
-  _$InitializeLessonsStatsCopyWithImpl(
-      InitializeLessonsStats _value, $Res Function(InitializeLessonsStats) _then)
+  _$InitializeLessonsStatsCopyWithImpl(InitializeLessonsStats _value,
+      $Res Function(InitializeLessonsStats) _then)
       : super(_value, (v) => _then(v as InitializeLessonsStats));
 
   @override
@@ -91,7 +93,9 @@ class _$InitializeLessonsStatsCopyWithImpl<$Res> extends _$LessonsStatsEventCopy
 }
 
 /// @nodoc
-class _$InitializeLessonsStats with DiagnosticableTreeMixin implements InitializeLessonsStats {
+class _$InitializeLessonsStats
+    with DiagnosticableTreeMixin
+    implements InitializeLessonsStats {
   const _$InitializeLessonsStats();
 
   @override
@@ -102,7 +106,9 @@ class _$InitializeLessonsStats with DiagnosticableTreeMixin implements Initializ
   @override
   void debugFillProperties(DiagnosticPropertiesBuilder properties) {
     super.debugFillProperties(properties);
-    properties..add(DiagnosticsProperty('type', 'LessonsStatsEvent.initializeLessonsStats'));
+    properties
+      ..add(DiagnosticsProperty(
+          'type', 'LessonsStatsEvent.initializeLessonsStats'));
   }
 
   @override
@@ -177,7 +183,8 @@ abstract class $UpdateLessonsStatsCopyWith<$Res> {
 }
 
 /// @nodoc
-class _$UpdateLessonsStatsCopyWithImpl<$Res> extends _$LessonsStatsEventCopyWithImpl<$Res>
+class _$UpdateLessonsStatsCopyWithImpl<$Res>
+    extends _$LessonsStatsEventCopyWithImpl<$Res>
     implements $UpdateLessonsStatsCopyWith<$Res> {
   _$UpdateLessonsStatsCopyWithImpl(
       UpdateLessonsStats _value, $Res Function(UpdateLessonsStats) _then)
@@ -197,8 +204,11 @@ class _$UpdateLessonsStatsCopyWithImpl<$Res> extends _$LessonsStatsEventCopyWith
 }
 
 /// @nodoc
-class _$UpdateLessonsStats with DiagnosticableTreeMixin implements UpdateLessonsStats {
-  const _$UpdateLessonsStats({@required this.lessons}) : assert(lessons != null);
+class _$UpdateLessonsStats
+    with DiagnosticableTreeMixin
+    implements UpdateLessonsStats {
+  const _$UpdateLessonsStats({@required this.lessons})
+      : assert(lessons != null);
 
   @override
   final List<Lesson> lessons;
@@ -225,7 +235,8 @@ class _$UpdateLessonsStats with DiagnosticableTreeMixin implements UpdateLessons
   }
 
   @override
-  int get hashCode => runtimeType.hashCode ^ const DeepCollectionEquality().hash(lessons);
+  int get hashCode =>
+      runtimeType.hashCode ^ const DeepCollectionEquality().hash(lessons);
 
   @override
   $UpdateLessonsStatsCopyWith<UpdateLessonsStats> get copyWith =>
@@ -283,7 +294,8 @@ class _$UpdateLessonsStats with DiagnosticableTreeMixin implements UpdateLessons
 }
 
 abstract class UpdateLessonsStats implements LessonsStatsEvent {
-  const factory UpdateLessonsStats({@required List<Lesson> lessons}) = _$UpdateLessonsStats;
+  const factory UpdateLessonsStats({@required List<Lesson> lessons}) =
+      _$UpdateLessonsStats;
 
   List<Lesson> get lessons;
   $UpdateLessonsStatsCopyWith<UpdateLessonsStats> get copyWith;

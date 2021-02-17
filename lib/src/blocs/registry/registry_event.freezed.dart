@@ -14,7 +14,13 @@ class _$RegistryEventTearOff {
   const _$RegistryEventTearOff();
 
 // ignore: unused_element
-  RegistryUpdated registryUpdated({@required User currentUser, Lesson currentLesson}) {
+  InitializeRegistry initializeRegistry() {
+    return const InitializeRegistry();
+  }
+
+// ignore: unused_element
+  RegistryUpdated registryUpdated(
+      {@required User currentUser, Lesson currentLesson}) {
     return RegistryUpdated(
       currentUser: currentUser,
       currentLesson: currentLesson,
@@ -50,6 +56,24 @@ class _$RegistryEventTearOff {
       gymId: gymId,
     );
   }
+
+// ignore: unused_element
+  UpdateTimeStart updateTimeStart(
+      {@required String gymId, @required String newTimeStart}) {
+    return UpdateTimeStart(
+      gymId: gymId,
+      newTimeStart: newTimeStart,
+    );
+  }
+
+// ignore: unused_element
+  UpdateTimeEnd updateTimeEnd(
+      {@required String gymId, @required String newTimeEnd}) {
+    return UpdateTimeEnd(
+      gymId: gymId,
+      newTimeEnd: newTimeEnd,
+    );
+  }
 }
 
 /// @nodoc
@@ -60,48 +84,62 @@ const $RegistryEvent = _$RegistryEventTearOff();
 mixin _$RegistryEvent {
   @optionalTypeArgs
   TResult when<TResult extends Object>({
+    @required TResult initializeRegistry(),
     @required TResult registryUpdated(User currentUser, Lesson currentLesson),
     @required TResult register(String gymId, Attendee attendee),
     @required TResult unregister(String gymId, Attendee attendee),
     @required TResult acceptAttendees(String gymId),
     @required TResult closeLesson(String gymId),
+    @required TResult updateTimeStart(String gymId, String newTimeStart),
+    @required TResult updateTimeEnd(String gymId, String newTimeEnd),
   });
   @optionalTypeArgs
   TResult maybeWhen<TResult extends Object>({
+    TResult initializeRegistry(),
     TResult registryUpdated(User currentUser, Lesson currentLesson),
     TResult register(String gymId, Attendee attendee),
     TResult unregister(String gymId, Attendee attendee),
     TResult acceptAttendees(String gymId),
     TResult closeLesson(String gymId),
+    TResult updateTimeStart(String gymId, String newTimeStart),
+    TResult updateTimeEnd(String gymId, String newTimeEnd),
     @required TResult orElse(),
   });
   @optionalTypeArgs
   TResult map<TResult extends Object>({
+    @required TResult initializeRegistry(InitializeRegistry value),
     @required TResult registryUpdated(RegistryUpdated value),
     @required TResult register(Register value),
     @required TResult unregister(Unregister value),
     @required TResult acceptAttendees(AcceptAttendees value),
     @required TResult closeLesson(CloseLesson value),
+    @required TResult updateTimeStart(UpdateTimeStart value),
+    @required TResult updateTimeEnd(UpdateTimeEnd value),
   });
   @optionalTypeArgs
   TResult maybeMap<TResult extends Object>({
+    TResult initializeRegistry(InitializeRegistry value),
     TResult registryUpdated(RegistryUpdated value),
     TResult register(Register value),
     TResult unregister(Unregister value),
     TResult acceptAttendees(AcceptAttendees value),
     TResult closeLesson(CloseLesson value),
+    TResult updateTimeStart(UpdateTimeStart value),
+    TResult updateTimeEnd(UpdateTimeEnd value),
     @required TResult orElse(),
   });
 }
 
 /// @nodoc
 abstract class $RegistryEventCopyWith<$Res> {
-  factory $RegistryEventCopyWith(RegistryEvent value, $Res Function(RegistryEvent) then) =
+  factory $RegistryEventCopyWith(
+          RegistryEvent value, $Res Function(RegistryEvent) then) =
       _$RegistryEventCopyWithImpl<$Res>;
 }
 
 /// @nodoc
-class _$RegistryEventCopyWithImpl<$Res> implements $RegistryEventCopyWith<$Res> {
+class _$RegistryEventCopyWithImpl<$Res>
+    implements $RegistryEventCopyWith<$Res> {
   _$RegistryEventCopyWithImpl(this._value, this._then);
 
   final RegistryEvent _value;
@@ -110,8 +148,145 @@ class _$RegistryEventCopyWithImpl<$Res> implements $RegistryEventCopyWith<$Res> 
 }
 
 /// @nodoc
+abstract class $InitializeRegistryCopyWith<$Res> {
+  factory $InitializeRegistryCopyWith(
+          InitializeRegistry value, $Res Function(InitializeRegistry) then) =
+      _$InitializeRegistryCopyWithImpl<$Res>;
+}
+
+/// @nodoc
+class _$InitializeRegistryCopyWithImpl<$Res>
+    extends _$RegistryEventCopyWithImpl<$Res>
+    implements $InitializeRegistryCopyWith<$Res> {
+  _$InitializeRegistryCopyWithImpl(
+      InitializeRegistry _value, $Res Function(InitializeRegistry) _then)
+      : super(_value, (v) => _then(v as InitializeRegistry));
+
+  @override
+  InitializeRegistry get _value => super._value as InitializeRegistry;
+}
+
+/// @nodoc
+class _$InitializeRegistry
+    with DiagnosticableTreeMixin
+    implements InitializeRegistry {
+  const _$InitializeRegistry();
+
+  @override
+  String toString({DiagnosticLevel minLevel = DiagnosticLevel.info}) {
+    return 'RegistryEvent.initializeRegistry()';
+  }
+
+  @override
+  void debugFillProperties(DiagnosticPropertiesBuilder properties) {
+    super.debugFillProperties(properties);
+    properties
+      ..add(DiagnosticsProperty('type', 'RegistryEvent.initializeRegistry'));
+  }
+
+  @override
+  bool operator ==(dynamic other) {
+    return identical(this, other) || (other is InitializeRegistry);
+  }
+
+  @override
+  int get hashCode => runtimeType.hashCode;
+
+  @override
+  @optionalTypeArgs
+  TResult when<TResult extends Object>({
+    @required TResult initializeRegistry(),
+    @required TResult registryUpdated(User currentUser, Lesson currentLesson),
+    @required TResult register(String gymId, Attendee attendee),
+    @required TResult unregister(String gymId, Attendee attendee),
+    @required TResult acceptAttendees(String gymId),
+    @required TResult closeLesson(String gymId),
+    @required TResult updateTimeStart(String gymId, String newTimeStart),
+    @required TResult updateTimeEnd(String gymId, String newTimeEnd),
+  }) {
+    assert(initializeRegistry != null);
+    assert(registryUpdated != null);
+    assert(register != null);
+    assert(unregister != null);
+    assert(acceptAttendees != null);
+    assert(closeLesson != null);
+    assert(updateTimeStart != null);
+    assert(updateTimeEnd != null);
+    return initializeRegistry();
+  }
+
+  @override
+  @optionalTypeArgs
+  TResult maybeWhen<TResult extends Object>({
+    TResult initializeRegistry(),
+    TResult registryUpdated(User currentUser, Lesson currentLesson),
+    TResult register(String gymId, Attendee attendee),
+    TResult unregister(String gymId, Attendee attendee),
+    TResult acceptAttendees(String gymId),
+    TResult closeLesson(String gymId),
+    TResult updateTimeStart(String gymId, String newTimeStart),
+    TResult updateTimeEnd(String gymId, String newTimeEnd),
+    @required TResult orElse(),
+  }) {
+    assert(orElse != null);
+    if (initializeRegistry != null) {
+      return initializeRegistry();
+    }
+    return orElse();
+  }
+
+  @override
+  @optionalTypeArgs
+  TResult map<TResult extends Object>({
+    @required TResult initializeRegistry(InitializeRegistry value),
+    @required TResult registryUpdated(RegistryUpdated value),
+    @required TResult register(Register value),
+    @required TResult unregister(Unregister value),
+    @required TResult acceptAttendees(AcceptAttendees value),
+    @required TResult closeLesson(CloseLesson value),
+    @required TResult updateTimeStart(UpdateTimeStart value),
+    @required TResult updateTimeEnd(UpdateTimeEnd value),
+  }) {
+    assert(initializeRegistry != null);
+    assert(registryUpdated != null);
+    assert(register != null);
+    assert(unregister != null);
+    assert(acceptAttendees != null);
+    assert(closeLesson != null);
+    assert(updateTimeStart != null);
+    assert(updateTimeEnd != null);
+    return initializeRegistry(this);
+  }
+
+  @override
+  @optionalTypeArgs
+  TResult maybeMap<TResult extends Object>({
+    TResult initializeRegistry(InitializeRegistry value),
+    TResult registryUpdated(RegistryUpdated value),
+    TResult register(Register value),
+    TResult unregister(Unregister value),
+    TResult acceptAttendees(AcceptAttendees value),
+    TResult closeLesson(CloseLesson value),
+    TResult updateTimeStart(UpdateTimeStart value),
+    TResult updateTimeEnd(UpdateTimeEnd value),
+    @required TResult orElse(),
+  }) {
+    assert(orElse != null);
+    if (initializeRegistry != null) {
+      return initializeRegistry(this);
+    }
+    return orElse();
+  }
+}
+
+abstract class InitializeRegistry implements RegistryEvent {
+  const factory InitializeRegistry() = _$InitializeRegistry;
+}
+
+/// @nodoc
 abstract class $RegistryUpdatedCopyWith<$Res> {
-  factory $RegistryUpdatedCopyWith(RegistryUpdated value, $Res Function(RegistryUpdated) then) =
+  factory $RegistryUpdatedCopyWith(
+          RegistryUpdated value, $Res Function(RegistryUpdated) then) =
       _$RegistryUpdatedCopyWithImpl<$Res>;
   $Res call({User currentUser, Lesson currentLesson});
 
@@ -119,9 +294,11 @@ abstract class $RegistryUpdatedCopyWith<$Res> {
 }
 
 /// @nodoc
-class _$RegistryUpdatedCopyWithImpl<$Res> extends _$RegistryEventCopyWithImpl<$Res>
+class _$RegistryUpdatedCopyWithImpl<$Res>
+    extends _$RegistryEventCopyWithImpl<$Res>
     implements $RegistryUpdatedCopyWith<$Res> {
-  _$RegistryUpdatedCopyWithImpl(RegistryUpdated _value, $Res Function(RegistryUpdated) _then)
+  _$RegistryUpdatedCopyWithImpl(
+      RegistryUpdated _value, $Res Function(RegistryUpdated) _then)
       : super(_value, (v) => _then(v as RegistryUpdated));
 
   @override
@@ -133,8 +310,11 @@ class _$RegistryUpdatedCopyWithImpl<$Res> extends _$RegistryEventCopyWithImpl<$R
     Object currentLesson = freezed,
   }) {
     return _then(RegistryUpdated(
-      currentUser: currentUser == freezed ? _value.currentUser : currentUser as User,
-      currentLesson: currentLesson == freezed ? _value.currentLesson : currentLesson as Lesson,
+      currentUser:
+          currentUser == freezed ? _value.currentUser : currentUser as User,
+      currentLesson: currentLesson == freezed
+          ? _value.currentLesson
+          : currentLesson as Lesson,
     ));
   }
 
@@ -150,7 +330,9 @@ class _$RegistryUpdatedCopyWithImpl<$Res> extends _$RegistryEventCopyWithImpl<$R
 }
 
 /// @nodoc
-class _$RegistryUpdated with DiagnosticableTreeMixin implements RegistryUpdated {
+class _$RegistryUpdated
+    with DiagnosticableTreeMixin
+    implements RegistryUpdated {
   const _$RegistryUpdated({@required this.currentUser, this.currentLesson})
       : assert(currentUser != null);
 
@@ -178,9 +360,11 @@ class _$RegistryUpdated with DiagnosticableTreeMixin implements RegistryUpdated 
     return identical(this, other) ||
         (other is RegistryUpdated &&
             (identical(other.currentUser, currentUser) ||
-                const DeepCollectionEquality().equals(other.currentUser, currentUser)) &&
+                const DeepCollectionEquality()
+                    .equals(other.currentUser, currentUser)) &&
             (identical(other.currentLesson, currentLesson) ||
-                const DeepCollectionEquality().equals(other.currentLesson, currentLesson)));
+                const DeepCollectionEquality()
+                    .equals(other.currentLesson, currentLesson)));
   }
 
   @override
@@ -196,28 +380,37 @@ class _$RegistryUpdated with DiagnosticableTreeMixin implements RegistryUpdated 
   @override
   @optionalTypeArgs
   TResult when<TResult extends Object>({
+    @required TResult initializeRegistry(),
     @required TResult registryUpdated(User currentUser, Lesson currentLesson),
     @required TResult register(String gymId, Attendee attendee),
     @required TResult unregister(String gymId, Attendee attendee),
     @required TResult acceptAttendees(String gymId),
     @required TResult closeLesson(String gymId),
+    @required TResult updateTimeStart(String gymId, String newTimeStart),
+    @required TResult updateTimeEnd(String gymId, String newTimeEnd),
   }) {
+    assert(initializeRegistry != null);
     assert(registryUpdated != null);
     assert(register != null);
     assert(unregister != null);
     assert(acceptAttendees != null);
     assert(closeLesson != null);
+    assert(updateTimeStart != null);
+    assert(updateTimeEnd != null);
     return registryUpdated(currentUser, currentLesson);
   }
 
   @override
   @optionalTypeArgs
   TResult maybeWhen<TResult extends Object>({
+    TResult initializeRegistry(),
     TResult registryUpdated(User currentUser, Lesson currentLesson),
     TResult register(String gymId, Attendee attendee),
     TResult unregister(String gymId, Attendee attendee),
     TResult acceptAttendees(String gymId),
     TResult closeLesson(String gymId),
+    TResult updateTimeStart(String gymId, String newTimeStart),
+    TResult updateTimeEnd(String gymId, String newTimeEnd),
     @required TResult orElse(),
   }) {
     assert(orElse != null);
@@ -230,28 +423,37 @@ class _$RegistryUpdated with DiagnosticableTreeMixin implements RegistryUpdated 
   @override
   @optionalTypeArgs
   TResult map<TResult extends Object>({
+    @required TResult initializeRegistry(InitializeRegistry value),
     @required TResult registryUpdated(RegistryUpdated value),
     @required TResult register(Register value),
     @required TResult unregister(Unregister value),
     @required TResult acceptAttendees(AcceptAttendees value),
     @required TResult closeLesson(CloseLesson value),
+    @required TResult updateTimeStart(UpdateTimeStart value),
+    @required TResult updateTimeEnd(UpdateTimeEnd value),
   }) {
+    assert(initializeRegistry != null);
     assert(registryUpdated != null);
     assert(register != null);
     assert(unregister != null);
     assert(acceptAttendees != null);
     assert(closeLesson != null);
+    assert(updateTimeStart != null);
+    assert(updateTimeEnd != null);
     return registryUpdated(this);
   }
 
   @override
   @optionalTypeArgs
   TResult maybeMap<TResult extends Object>({
+    TResult initializeRegistry(InitializeRegistry value),
     TResult registryUpdated(RegistryUpdated value),
     TResult register(Register value),
     TResult unregister(Unregister value),
     TResult acceptAttendees(AcceptAttendees value),
     TResult closeLesson(CloseLesson value),
+    TResult updateTimeStart(UpdateTimeStart value),
+    TResult updateTimeEnd(UpdateTimeEnd value),
     @required TResult orElse(),
   }) {
     assert(orElse != null);
@@ -263,8 +465,8 @@ class _$RegistryUpdated with DiagnosticableTreeMixin implements RegistryUpdated 
 }
 
 abstract class RegistryUpdated implements RegistryEvent {
-  const factory RegistryUpdated({@required User currentUser, Lesson currentLesson}) =
-      _$RegistryUpdated;
+  const factory RegistryUpdated(
+      {@required User currentUser, Lesson currentLesson}) = _$RegistryUpdated;
 
   User get currentUser;
   Lesson get currentLesson;
@@ -331,7 +533,8 @@ class _$Register with DiagnosticableTreeMixin implements Register {
             (identical(other.gymId, gymId) ||
                 const DeepCollectionEquality().equals(other.gymId, gymId)) &&
             (identical(other.attendee, attendee) ||
-                const DeepCollectionEquality().equals(other.attendee, attendee)));
+                const DeepCollectionEquality()
+                    .equals(other.attendee, attendee)));
   }
 
   @override
@@ -341,33 +544,43 @@ class _$Register with DiagnosticableTreeMixin implements Register {
       const DeepCollectionEquality().hash(attendee);
 
   @override
-  $RegisterCopyWith<Register> get copyWith => _$RegisterCopyWithImpl<Register>(this, _$identity);
+  $RegisterCopyWith<Register> get copyWith =>
+      _$RegisterCopyWithImpl<Register>(this, _$identity);
 
   @override
   @optionalTypeArgs
   TResult when<TResult extends Object>({
+    @required TResult initializeRegistry(),
     @required TResult registryUpdated(User currentUser, Lesson currentLesson),
     @required TResult register(String gymId, Attendee attendee),
     @required TResult unregister(String gymId, Attendee attendee),
     @required TResult acceptAttendees(String gymId),
     @required TResult closeLesson(String gymId),
+    @required TResult updateTimeStart(String gymId, String newTimeStart),
+    @required TResult updateTimeEnd(String gymId, String newTimeEnd),
   }) {
+    assert(initializeRegistry != null);
     assert(registryUpdated != null);
     assert(register != null);
     assert(unregister != null);
     assert(acceptAttendees != null);
     assert(closeLesson != null);
+    assert(updateTimeStart != null);
+    assert(updateTimeEnd != null);
     return register(gymId, attendee);
   }
 
   @override
   @optionalTypeArgs
   TResult maybeWhen<TResult extends Object>({
+    TResult initializeRegistry(),
     TResult registryUpdated(User currentUser, Lesson currentLesson),
     TResult register(String gymId, Attendee attendee),
     TResult unregister(String gymId, Attendee attendee),
     TResult acceptAttendees(String gymId),
     TResult closeLesson(String gymId),
+    TResult updateTimeStart(String gymId, String newTimeStart),
+    TResult updateTimeEnd(String gymId, String newTimeEnd),
     @required TResult orElse(),
   }) {
     assert(orElse != null);
@@ -380,28 +593,37 @@ class _$Register with DiagnosticableTreeMixin implements Register {
   @override
   @optionalTypeArgs
   TResult map<TResult extends Object>({
+    @required TResult initializeRegistry(InitializeRegistry value),
     @required TResult registryUpdated(RegistryUpdated value),
     @required TResult register(Register value),
     @required TResult unregister(Unregister value),
     @required TResult acceptAttendees(AcceptAttendees value),
     @required TResult closeLesson(CloseLesson value),
+    @required TResult updateTimeStart(UpdateTimeStart value),
+    @required TResult updateTimeEnd(UpdateTimeEnd value),
   }) {
+    assert(initializeRegistry != null);
     assert(registryUpdated != null);
     assert(register != null);
     assert(unregister != null);
     assert(acceptAttendees != null);
     assert(closeLesson != null);
+    assert(updateTimeStart != null);
+    assert(updateTimeEnd != null);
     return register(this);
   }
 
   @override
   @optionalTypeArgs
   TResult maybeMap<TResult extends Object>({
+    TResult initializeRegistry(InitializeRegistry value),
     TResult registryUpdated(RegistryUpdated value),
     TResult register(Register value),
     TResult unregister(Unregister value),
     TResult acceptAttendees(AcceptAttendees value),
     TResult closeLesson(CloseLesson value),
+    TResult updateTimeStart(UpdateTimeStart value),
+    TResult updateTimeEnd(UpdateTimeEnd value),
     @required TResult orElse(),
   }) {
     assert(orElse != null);
@@ -413,7 +635,8 @@ class _$Register with DiagnosticableTreeMixin implements Register {
 }
 
 abstract class Register implements RegistryEvent {
-  const factory Register({@required String gymId, @required Attendee attendee}) = _$Register;
+  const factory Register(
+      {@required String gymId, @required Attendee attendee}) = _$Register;
 
   String get gymId;
   Attendee get attendee;
@@ -422,7 +645,8 @@ abstract class Register implements RegistryEvent {
 
 /// @nodoc
 abstract class $UnregisterCopyWith<$Res> {
-  factory $UnregisterCopyWith(Unregister value, $Res Function(Unregister) then) =
+  factory $UnregisterCopyWith(
+          Unregister value, $Res Function(Unregister) then) =
       _$UnregisterCopyWithImpl<$Res>;
   $Res call({String gymId, Attendee attendee});
 }
@@ -480,7 +704,8 @@ class _$Unregister with DiagnosticableTreeMixin implements Unregister {
             (identical(other.gymId, gymId) ||
                 const DeepCollectionEquality().equals(other.gymId, gymId)) &&
             (identical(other.attendee, attendee) ||
-                const DeepCollectionEquality().equals(other.attendee, attendee)));
+                const DeepCollectionEquality()
+                    .equals(other.attendee, attendee)));
   }
 
   @override
@@ -496,28 +721,37 @@ class _$Unregister with DiagnosticableTreeMixin implements Unregister {
   @override
   @optionalTypeArgs
   TResult when<TResult extends Object>({
+    @required TResult initializeRegistry(),
     @required TResult registryUpdated(User currentUser, Lesson currentLesson),
     @required TResult register(String gymId, Attendee attendee),
     @required TResult unregister(String gymId, Attendee attendee),
     @required TResult acceptAttendees(String gymId),
     @required TResult closeLesson(String gymId),
+    @required TResult updateTimeStart(String gymId, String newTimeStart),
+    @required TResult updateTimeEnd(String gymId, String newTimeEnd),
   }) {
+    assert(initializeRegistry != null);
     assert(registryUpdated != null);
     assert(register != null);
     assert(unregister != null);
     assert(acceptAttendees != null);
     assert(closeLesson != null);
+    assert(updateTimeStart != null);
+    assert(updateTimeEnd != null);
     return unregister(gymId, attendee);
   }
 
   @override
   @optionalTypeArgs
   TResult maybeWhen<TResult extends Object>({
+    TResult initializeRegistry(),
     TResult registryUpdated(User currentUser, Lesson currentLesson),
     TResult register(String gymId, Attendee attendee),
     TResult unregister(String gymId, Attendee attendee),
     TResult acceptAttendees(String gymId),
     TResult closeLesson(String gymId),
+    TResult updateTimeStart(String gymId, String newTimeStart),
+    TResult updateTimeEnd(String gymId, String newTimeEnd),
     @required TResult orElse(),
   }) {
     assert(orElse != null);
@@ -530,28 +764,37 @@ class _$Unregister with DiagnosticableTreeMixin implements Unregister {
   @override
   @optionalTypeArgs
   TResult map<TResult extends Object>({
+    @required TResult initializeRegistry(InitializeRegistry value),
     @required TResult registryUpdated(RegistryUpdated value),
     @required TResult register(Register value),
     @required TResult unregister(Unregister value),
     @required TResult acceptAttendees(AcceptAttendees value),
     @required TResult closeLesson(CloseLesson value),
+    @required TResult updateTimeStart(UpdateTimeStart value),
+    @required TResult updateTimeEnd(UpdateTimeEnd value),
   }) {
+    assert(initializeRegistry != null);
     assert(registryUpdated != null);
     assert(register != null);
     assert(unregister != null);
     assert(acceptAttendees != null);
     assert(closeLesson != null);
+    assert(updateTimeStart != null);
+    assert(updateTimeEnd != null);
     return unregister(this);
   }
 
   @override
   @optionalTypeArgs
   TResult maybeMap<TResult extends Object>({
+    TResult initializeRegistry(InitializeRegistry value),
     TResult registryUpdated(RegistryUpdated value),
     TResult register(Register value),
     TResult unregister(Unregister value),
     TResult acceptAttendees(AcceptAttendees value),
     TResult closeLesson(CloseLesson value),
+    TResult updateTimeStart(UpdateTimeStart value),
+    TResult updateTimeEnd(UpdateTimeEnd value),
     @required TResult orElse(),
   }) {
     assert(orElse != null);
@@ -563,7 +806,8 @@ class _$Unregister with DiagnosticableTreeMixin implements Unregister {
 }
 
 abstract class Unregister implements RegistryEvent {
-  const factory Unregister({@required String gymId, @required Attendee attendee}) = _$Unregister;
+  const factory Unregister(
+      {@required String gymId, @required Attendee attendee}) = _$Unregister;
 
   String get gymId;
   Attendee get attendee;
@@ -572,15 +816,18 @@ abstract class Unregister implements RegistryEvent {
 
 /// @nodoc
 abstract class $AcceptAttendeesCopyWith<$Res> {
-  factory $AcceptAttendeesCopyWith(AcceptAttendees value, $Res Function(AcceptAttendees) then) =
+  factory $AcceptAttendeesCopyWith(
+          AcceptAttendees value, $Res Function(AcceptAttendees) then) =
       _$AcceptAttendeesCopyWithImpl<$Res>;
   $Res call({String gymId});
 }
 
 /// @nodoc
-class _$AcceptAttendeesCopyWithImpl<$Res> extends _$RegistryEventCopyWithImpl<$Res>
+class _$AcceptAttendeesCopyWithImpl<$Res>
+    extends _$RegistryEventCopyWithImpl<$Res>
     implements $AcceptAttendeesCopyWith<$Res> {
-  _$AcceptAttendeesCopyWithImpl(AcceptAttendees _value, $Res Function(AcceptAttendees) _then)
+  _$AcceptAttendeesCopyWithImpl(
+      AcceptAttendees _value, $Res Function(AcceptAttendees) _then)
       : super(_value, (v) => _then(v as AcceptAttendees));
 
   @override
@@ -597,7 +844,9 @@ class _$AcceptAttendeesCopyWithImpl<$Res> extends _$RegistryEventCopyWithImpl<$R
 }
 
 /// @nodoc
-class _$AcceptAttendees with DiagnosticableTreeMixin implements AcceptAttendees {
+class _$AcceptAttendees
+    with DiagnosticableTreeMixin
+    implements AcceptAttendees {
   const _$AcceptAttendees({@required this.gymId}) : assert(gymId != null);
 
   @override
@@ -625,7 +874,8 @@ class _$AcceptAttendees with DiagnosticableTreeMixin implements AcceptAttendees 
   }
 
   @override
-  int get hashCode => runtimeType.hashCode ^ const DeepCollectionEquality().hash(gymId);
+  int get hashCode =>
+      runtimeType.hashCode ^ const DeepCollectionEquality().hash(gymId);
 
   @override
   $AcceptAttendeesCopyWith<AcceptAttendees> get copyWith =>
@@ -634,28 +884,37 @@ class _$AcceptAttendees with DiagnosticableTreeMixin implements AcceptAttendees 
   @override
   @optionalTypeArgs
   TResult when<TResult extends Object>({
+    @required TResult initializeRegistry(),
     @required TResult registryUpdated(User currentUser, Lesson currentLesson),
     @required TResult register(String gymId, Attendee attendee),
     @required TResult unregister(String gymId, Attendee attendee),
     @required TResult acceptAttendees(String gymId),
     @required TResult closeLesson(String gymId),
+    @required TResult updateTimeStart(String gymId, String newTimeStart),
+    @required TResult updateTimeEnd(String gymId, String newTimeEnd),
   }) {
+    assert(initializeRegistry != null);
     assert(registryUpdated != null);
     assert(register != null);
     assert(unregister != null);
     assert(acceptAttendees != null);
     assert(closeLesson != null);
+    assert(updateTimeStart != null);
+    assert(updateTimeEnd != null);
     return acceptAttendees(gymId);
   }
 
   @override
   @optionalTypeArgs
   TResult maybeWhen<TResult extends Object>({
+    TResult initializeRegistry(),
     TResult registryUpdated(User currentUser, Lesson currentLesson),
     TResult register(String gymId, Attendee attendee),
     TResult unregister(String gymId, Attendee attendee),
     TResult acceptAttendees(String gymId),
     TResult closeLesson(String gymId),
+    TResult updateTimeStart(String gymId, String newTimeStart),
+    TResult updateTimeEnd(String gymId, String newTimeEnd),
     @required TResult orElse(),
   }) {
     assert(orElse != null);
@@ -668,28 +927,37 @@ class _$AcceptAttendees with DiagnosticableTreeMixin implements AcceptAttendees 
   @override
   @optionalTypeArgs
   TResult map<TResult extends Object>({
+    @required TResult initializeRegistry(InitializeRegistry value),
     @required TResult registryUpdated(RegistryUpdated value),
     @required TResult register(Register value),
     @required TResult unregister(Unregister value),
     @required TResult acceptAttendees(AcceptAttendees value),
     @required TResult closeLesson(CloseLesson value),
+    @required TResult updateTimeStart(UpdateTimeStart value),
+    @required TResult updateTimeEnd(UpdateTimeEnd value),
   }) {
+    assert(initializeRegistry != null);
     assert(registryUpdated != null);
     assert(register != null);
     assert(unregister != null);
     assert(acceptAttendees != null);
     assert(closeLesson != null);
+    assert(updateTimeStart != null);
+    assert(updateTimeEnd != null);
     return acceptAttendees(this);
   }
 
   @override
   @optionalTypeArgs
   TResult maybeMap<TResult extends Object>({
+    TResult initializeRegistry(InitializeRegistry value),
     TResult registryUpdated(RegistryUpdated value),
     TResult register(Register value),
     TResult unregister(Unregister value),
     TResult acceptAttendees(AcceptAttendees value),
     TResult closeLesson(CloseLesson value),
+    TResult updateTimeStart(UpdateTimeStart value),
+    TResult updateTimeEnd(UpdateTimeEnd value),
     @required TResult orElse(),
   }) {
     assert(orElse != null);
@@ -709,7 +977,8 @@ abstract class AcceptAttendees implements RegistryEvent {
 
 /// @nodoc
 abstract class $CloseLessonCopyWith<$Res> {
-  factory $CloseLessonCopyWith(CloseLesson value, $Res Function(CloseLesson) then) =
+  factory $CloseLessonCopyWith(
+          CloseLesson value, $Res Function(CloseLesson) then) =
       _$CloseLessonCopyWithImpl<$Res>;
   $Res call({String gymId});
 }
@@ -717,7 +986,8 @@ abstract class $CloseLessonCopyWith<$Res> {
 /// @nodoc
 class _$CloseLessonCopyWithImpl<$Res> extends _$RegistryEventCopyWithImpl<$Res>
     implements $CloseLessonCopyWith<$Res> {
-  _$CloseLessonCopyWithImpl(CloseLesson _value, $Res Function(CloseLesson) _then)
+  _$CloseLessonCopyWithImpl(
+      CloseLesson _value, $Res Function(CloseLesson) _then)
       : super(_value, (v) => _then(v as CloseLesson));
 
   @override
@@ -762,7 +1032,8 @@ class _$CloseLesson with DiagnosticableTreeMixin implements CloseLesson {
   }
 
   @override
-  int get hashCode => runtimeType.hashCode ^ const DeepCollectionEquality().hash(gymId);
+  int get hashCode =>
+      runtimeType.hashCode ^ const DeepCollectionEquality().hash(gymId);
 
   @override
   $CloseLessonCopyWith<CloseLesson> get copyWith =>
@@ -771,28 +1042,37 @@ class _$CloseLesson with DiagnosticableTreeMixin implements CloseLesson {
   @override
   @optionalTypeArgs
   TResult when<TResult extends Object>({
+    @required TResult initializeRegistry(),
     @required TResult registryUpdated(User currentUser, Lesson currentLesson),
     @required TResult register(String gymId, Attendee attendee),
     @required TResult unregister(String gymId, Attendee attendee),
     @required TResult acceptAttendees(String gymId),
     @required TResult closeLesson(String gymId),
+    @required TResult updateTimeStart(String gymId, String newTimeStart),
+    @required TResult updateTimeEnd(String gymId, String newTimeEnd),
   }) {
+    assert(initializeRegistry != null);
     assert(registryUpdated != null);
     assert(register != null);
     assert(unregister != null);
     assert(acceptAttendees != null);
     assert(closeLesson != null);
+    assert(updateTimeStart != null);
+    assert(updateTimeEnd != null);
     return closeLesson(gymId);
   }
 
   @override
   @optionalTypeArgs
   TResult maybeWhen<TResult extends Object>({
+    TResult initializeRegistry(),
     TResult registryUpdated(User currentUser, Lesson currentLesson),
     TResult register(String gymId, Attendee attendee),
     TResult unregister(String gymId, Attendee attendee),
     TResult acceptAttendees(String gymId),
     TResult closeLesson(String gymId),
+    TResult updateTimeStart(String gymId, String newTimeStart),
+    TResult updateTimeEnd(String gymId, String newTimeEnd),
     @required TResult orElse(),
   }) {
     assert(orElse != null);
@@ -805,28 +1085,37 @@ class _$CloseLesson with DiagnosticableTreeMixin implements CloseLesson {
   @override
   @optionalTypeArgs
   TResult map<TResult extends Object>({
+    @required TResult initializeRegistry(InitializeRegistry value),
     @required TResult registryUpdated(RegistryUpdated value),
     @required TResult register(Register value),
     @required TResult unregister(Unregister value),
     @required TResult acceptAttendees(AcceptAttendees value),
     @required TResult closeLesson(CloseLesson value),
+    @required TResult updateTimeStart(UpdateTimeStart value),
+    @required TResult updateTimeEnd(UpdateTimeEnd value),
   }) {
+    assert(initializeRegistry != null);
     assert(registryUpdated != null);
     assert(register != null);
     assert(unregister != null);
     assert(acceptAttendees != null);
     assert(closeLesson != null);
+    assert(updateTimeStart != null);
+    assert(updateTimeEnd != null);
     return closeLesson(this);
   }
 
   @override
   @optionalTypeArgs
   TResult maybeMap<TResult extends Object>({
+    TResult initializeRegistry(InitializeRegistry value),
     TResult registryUpdated(RegistryUpdated value),
     TResult register(Register value),
     TResult unregister(Unregister value),
     TResult acceptAttendees(AcceptAttendees value),
     TResult closeLesson(CloseLesson value),
+    TResult updateTimeStart(UpdateTimeStart value),
+    TResult updateTimeEnd(UpdateTimeEnd value),
     @required TResult orElse(),
   }) {
     assert(orElse != null);
@@ -842,4 +1131,356 @@ abstract class CloseLesson implements RegistryEvent {
 
   String get gymId;
   $CloseLessonCopyWith<CloseLesson> get copyWith;
+}
+
+/// @nodoc
+abstract class $UpdateTimeStartCopyWith<$Res> {
+  factory $UpdateTimeStartCopyWith(
+          UpdateTimeStart value, $Res Function(UpdateTimeStart) then) =
+      _$UpdateTimeStartCopyWithImpl<$Res>;
+  $Res call({String gymId, String newTimeStart});
+}
+
+/// @nodoc
+class _$UpdateTimeStartCopyWithImpl<$Res>
+    extends _$RegistryEventCopyWithImpl<$Res>
+    implements $UpdateTimeStartCopyWith<$Res> {
+  _$UpdateTimeStartCopyWithImpl(
+      UpdateTimeStart _value, $Res Function(UpdateTimeStart) _then)
+      : super(_value, (v) => _then(v as UpdateTimeStart));
+
+  @override
+  UpdateTimeStart get _value => super._value as UpdateTimeStart;
+
+  @override
+  $Res call({
+    Object gymId = freezed,
+    Object newTimeStart = freezed,
+  }) {
+    return _then(UpdateTimeStart(
+      gymId: gymId == freezed ? _value.gymId : gymId as String,
+      newTimeStart: newTimeStart == freezed
+          ? _value.newTimeStart
+          : newTimeStart as String,
+    ));
+  }
+}
+
+/// @nodoc
+class _$UpdateTimeStart
+    with DiagnosticableTreeMixin
+    implements UpdateTimeStart {
+  const _$UpdateTimeStart({@required this.gymId, @required this.newTimeStart})
+      : assert(gymId != null),
+        assert(newTimeStart != null);
+
+  @override
+  final String gymId;
+  @override
+  final String newTimeStart;
+
+  @override
+  String toString({DiagnosticLevel minLevel = DiagnosticLevel.info}) {
+    return 'RegistryEvent.updateTimeStart(gymId: $gymId, newTimeStart: $newTimeStart)';
+  }
+
+  @override
+  void debugFillProperties(DiagnosticPropertiesBuilder properties) {
+    super.debugFillProperties(properties);
+    properties
+      ..add(DiagnosticsProperty('type', 'RegistryEvent.updateTimeStart'))
+      ..add(DiagnosticsProperty('gymId', gymId))
+      ..add(DiagnosticsProperty('newTimeStart', newTimeStart));
+  }
+
+  @override
+  bool operator ==(dynamic other) {
+    return identical(this, other) ||
+        (other is UpdateTimeStart &&
+            (identical(other.gymId, gymId) ||
+                const DeepCollectionEquality().equals(other.gymId, gymId)) &&
+            (identical(other.newTimeStart, newTimeStart) ||
+                const DeepCollectionEquality()
+                    .equals(other.newTimeStart, newTimeStart)));
+  }
+
+  @override
+  int get hashCode =>
+      runtimeType.hashCode ^
+      const DeepCollectionEquality().hash(gymId) ^
+      const DeepCollectionEquality().hash(newTimeStart);
+
+  @override
+  $UpdateTimeStartCopyWith<UpdateTimeStart> get copyWith =>
+      _$UpdateTimeStartCopyWithImpl<UpdateTimeStart>(this, _$identity);
+
+  @override
+  @optionalTypeArgs
+  TResult when<TResult extends Object>({
+    @required TResult initializeRegistry(),
+    @required TResult registryUpdated(User currentUser, Lesson currentLesson),
+    @required TResult register(String gymId, Attendee attendee),
+    @required TResult unregister(String gymId, Attendee attendee),
+    @required TResult acceptAttendees(String gymId),
+    @required TResult closeLesson(String gymId),
+    @required TResult updateTimeStart(String gymId, String newTimeStart),
+    @required TResult updateTimeEnd(String gymId, String newTimeEnd),
+  }) {
+    assert(initializeRegistry != null);
+    assert(registryUpdated != null);
+    assert(register != null);
+    assert(unregister != null);
+    assert(acceptAttendees != null);
+    assert(closeLesson != null);
+    assert(updateTimeStart != null);
+    assert(updateTimeEnd != null);
+    return updateTimeStart(gymId, newTimeStart);
+  }
+
+  @override
+  @optionalTypeArgs
+  TResult maybeWhen<TResult extends Object>({
+    TResult initializeRegistry(),
+    TResult registryUpdated(User currentUser, Lesson currentLesson),
+    TResult register(String gymId, Attendee attendee),
+    TResult unregister(String gymId, Attendee attendee),
+    TResult acceptAttendees(String gymId),
+    TResult closeLesson(String gymId),
+    TResult updateTimeStart(String gymId, String newTimeStart),
+    TResult updateTimeEnd(String gymId, String newTimeEnd),
+    @required TResult orElse(),
+  }) {
+    assert(orElse != null);
+    if (updateTimeStart != null) {
+      return updateTimeStart(gymId, newTimeStart);
+    }
+    return orElse();
+  }
+
+  @override
+  @optionalTypeArgs
+  TResult map<TResult extends Object>({
+    @required TResult initializeRegistry(InitializeRegistry value),
+    @required TResult registryUpdated(RegistryUpdated value),
+    @required TResult register(Register value),
+    @required TResult unregister(Unregister value),
+    @required TResult acceptAttendees(AcceptAttendees value),
+    @required TResult closeLesson(CloseLesson value),
+    @required TResult updateTimeStart(UpdateTimeStart value),
+    @required TResult updateTimeEnd(UpdateTimeEnd value),
+  }) {
+    assert(initializeRegistry != null);
+    assert(registryUpdated != null);
+    assert(register != null);
+    assert(unregister != null);
+    assert(acceptAttendees != null);
+    assert(closeLesson != null);
+    assert(updateTimeStart != null);
+    assert(updateTimeEnd != null);
+    return updateTimeStart(this);
+  }
+
+  @override
+  @optionalTypeArgs
+  TResult maybeMap<TResult extends Object>({
+    TResult initializeRegistry(InitializeRegistry value),
+    TResult registryUpdated(RegistryUpdated value),
+    TResult register(Register value),
+    TResult unregister(Unregister value),
+    TResult acceptAttendees(AcceptAttendees value),
+    TResult closeLesson(CloseLesson value),
+    TResult updateTimeStart(UpdateTimeStart value),
+    TResult updateTimeEnd(UpdateTimeEnd value),
+    @required TResult orElse(),
+  }) {
+    assert(orElse != null);
+    if (updateTimeStart != null) {
+      return updateTimeStart(this);
+    }
+    return orElse();
+  }
+}
+
+abstract class UpdateTimeStart implements RegistryEvent {
+  const factory UpdateTimeStart(
+      {@required String gymId,
+      @required String newTimeStart}) = _$UpdateTimeStart;
+
+  String get gymId;
+  String get newTimeStart;
+  $UpdateTimeStartCopyWith<UpdateTimeStart> get copyWith;
+}
+
+/// @nodoc
+abstract class $UpdateTimeEndCopyWith<$Res> {
+  factory $UpdateTimeEndCopyWith(
+          UpdateTimeEnd value, $Res Function(UpdateTimeEnd) then) =
+      _$UpdateTimeEndCopyWithImpl<$Res>;
+  $Res call({String gymId, String newTimeEnd});
+}
+
+/// @nodoc
+class _$UpdateTimeEndCopyWithImpl<$Res>
+    extends _$RegistryEventCopyWithImpl<$Res>
+    implements $UpdateTimeEndCopyWith<$Res> {
+  _$UpdateTimeEndCopyWithImpl(
+      UpdateTimeEnd _value, $Res Function(UpdateTimeEnd) _then)
+      : super(_value, (v) => _then(v as UpdateTimeEnd));
+
+  @override
+  UpdateTimeEnd get _value => super._value as UpdateTimeEnd;
+
+  @override
+  $Res call({
+    Object gymId = freezed,
+    Object newTimeEnd = freezed,
+  }) {
+    return _then(UpdateTimeEnd(
+      gymId: gymId == freezed ? _value.gymId : gymId as String,
+      newTimeEnd:
+          newTimeEnd == freezed ? _value.newTimeEnd : newTimeEnd as String,
+    ));
+  }
+}
+
+/// @nodoc
+class _$UpdateTimeEnd with DiagnosticableTreeMixin implements UpdateTimeEnd {
+  const _$UpdateTimeEnd({@required this.gymId, @required this.newTimeEnd})
+      : assert(gymId != null),
+        assert(newTimeEnd != null);
+
+  @override
+  final String gymId;
+  @override
+  final String newTimeEnd;
+
+  @override
+  String toString({DiagnosticLevel minLevel = DiagnosticLevel.info}) {
+    return 'RegistryEvent.updateTimeEnd(gymId: $gymId, newTimeEnd: $newTimeEnd)';
+  }
+
+  @override
+  void debugFillProperties(DiagnosticPropertiesBuilder properties) {
+    super.debugFillProperties(properties);
+    properties
+      ..add(DiagnosticsProperty('type', 'RegistryEvent.updateTimeEnd'))
+      ..add(DiagnosticsProperty('gymId', gymId))
+      ..add(DiagnosticsProperty('newTimeEnd', newTimeEnd));
+  }
+
+  @override
+  bool operator ==(dynamic other) {
+    return identical(this, other) ||
+        (other is UpdateTimeEnd &&
+            (identical(other.gymId, gymId) ||
+                const DeepCollectionEquality().equals(other.gymId, gymId)) &&
+            (identical(other.newTimeEnd, newTimeEnd) ||
+                const DeepCollectionEquality()
+                    .equals(other.newTimeEnd, newTimeEnd)));
+  }
+
+  @override
+  int get hashCode =>
+      runtimeType.hashCode ^
+      const DeepCollectionEquality().hash(gymId) ^
+      const DeepCollectionEquality().hash(newTimeEnd);
+
+  @override
+  $UpdateTimeEndCopyWith<UpdateTimeEnd> get copyWith =>
+      _$UpdateTimeEndCopyWithImpl<UpdateTimeEnd>(this, _$identity);
+
+  @override
+  @optionalTypeArgs
+  TResult when<TResult extends Object>({
+    @required TResult initializeRegistry(),
+    @required TResult registryUpdated(User currentUser, Lesson currentLesson),
+    @required TResult register(String gymId, Attendee attendee),
+    @required TResult unregister(String gymId, Attendee attendee),
+    @required TResult acceptAttendees(String gymId),
+    @required TResult closeLesson(String gymId),
+    @required TResult updateTimeStart(String gymId, String newTimeStart),
+    @required TResult updateTimeEnd(String gymId, String newTimeEnd),
+  }) {
+    assert(initializeRegistry != null);
+    assert(registryUpdated != null);
+    assert(register != null);
+    assert(unregister != null);
+    assert(acceptAttendees != null);
+    assert(closeLesson != null);
+    assert(updateTimeStart != null);
+    assert(updateTimeEnd != null);
+    return updateTimeEnd(gymId, newTimeEnd);
+  }
+
+  @override
+  @optionalTypeArgs
+  TResult maybeWhen<TResult extends Object>({
+    TResult initializeRegistry(),
+    TResult registryUpdated(User currentUser, Lesson currentLesson),
+    TResult register(String gymId, Attendee attendee),
+    TResult unregister(String gymId, Attendee attendee),
+    TResult acceptAttendees(String gymId),
+    TResult closeLesson(String gymId),
+    TResult updateTimeStart(String gymId, String newTimeStart),
+    TResult updateTimeEnd(String gymId, String newTimeEnd),
+    @required TResult orElse(),
+  }) {
+    assert(orElse != null);
+    if (updateTimeEnd != null) {
+      return updateTimeEnd(gymId, newTimeEnd);
+    }
+    return orElse();
+  }
+
+  @override
+  @optionalTypeArgs
+  TResult map<TResult extends Object>({
+    @required TResult initializeRegistry(InitializeRegistry value),
+    @required TResult registryUpdated(RegistryUpdated value),
+    @required TResult register(Register value),
+    @required TResult unregister(Unregister value),
+    @required TResult acceptAttendees(AcceptAttendees value),
+    @required TResult closeLesson(CloseLesson value),
+    @required TResult updateTimeStart(UpdateTimeStart value),
+    @required TResult updateTimeEnd(UpdateTimeEnd value),
+  }) {
+    assert(initializeRegistry != null);
+    assert(registryUpdated != null);
+    assert(register != null);
+    assert(unregister != null);
+    assert(acceptAttendees != null);
+    assert(closeLesson != null);
+    assert(updateTimeStart != null);
+    assert(updateTimeEnd != null);
+    return updateTimeEnd(this);
+  }
+
+  @override
+  @optionalTypeArgs
+  TResult maybeMap<TResult extends Object>({
+    TResult initializeRegistry(InitializeRegistry value),
+    TResult registryUpdated(RegistryUpdated value),
+    TResult register(Register value),
+    TResult unregister(Unregister value),
+    TResult acceptAttendees(AcceptAttendees value),
+    TResult closeLesson(CloseLesson value),
+    TResult updateTimeStart(UpdateTimeStart value),
+    TResult updateTimeEnd(UpdateTimeEnd value),
+    @required TResult orElse(),
+  }) {
+    assert(orElse != null);
+    if (updateTimeEnd != null) {
+      return updateTimeEnd(this);
+    }
+    return orElse();
+  }
+}
+
+abstract class UpdateTimeEnd implements RegistryEvent {
+  const factory UpdateTimeEnd(
+      {@required String gymId, @required String newTimeEnd}) = _$UpdateTimeEnd;
+
+  String get gymId;
+  String get newTimeEnd;
+  $UpdateTimeEndCopyWith<UpdateTimeEnd> get copyWith;
 }
