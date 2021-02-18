@@ -186,7 +186,8 @@ final theme = {
         style: ElevatedButton.styleFrom(
       primary: Color(0xFF7C4DFF),
       onSurface: Color(0xFFBBBBBB),
-      minimumSize: Size.fromHeight(48),
+      minimumSize: Size(88, 48),
+      padding: EdgeInsets.symmetric(horizontal: 16),
       shape: RoundedRectangleBorder(
         borderRadius: new BorderRadius.circular(4.0),
       ),
