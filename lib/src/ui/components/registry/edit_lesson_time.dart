@@ -34,7 +34,6 @@ class _EditLessonTimeState extends State<EditLessonTime> {
   Widget build(BuildContext context) {
     return InkWell(
       onTap: () async {
-        // todo i18n
         var timePicked = await showTimePicker(
           context: context,
           initialTime: TimeOfDay(hour: _getHour(currentTime), minute: _getMinute(currentTime)),
@@ -51,25 +50,22 @@ class _EditLessonTimeState extends State<EditLessonTime> {
         });
       },
       borderRadius: BorderRadius.all(Radius.circular(8)),
-      child: Padding(
-        padding: const EdgeInsets.symmetric(horizontal: 10),
-        child: Row(
-          mainAxisAlignment: MainAxisAlignment.spaceBetween,
-          children: [
-            Text(widget.text, style: Theme.of(context).textTheme.headline3),
-            Row(
-              children: [
-                Text(currentTime,
-                    style: Theme.of(context).textTheme.headline2.apply(
-                          fontSizeDelta: 3,
-                        )),
-                Icon(
-                  Icons.unfold_more,
-                ),
-              ],
-            )
-          ],
-        ),
+      child: Row(
+        mainAxisAlignment: MainAxisAlignment.spaceBetween,
+        children: [
+          Text(widget.text, style: Theme.of(context).textTheme.headline3),
+          Row(
+            children: [
+              Text(currentTime,
+                  style: Theme.of(context).textTheme.headline2.apply(
+                        fontSizeDelta: 3,
+                      )),
+              Icon(
+                Icons.unfold_more,
+              ),
+            ],
+          )
+        ],
       ),
     );
   }
