@@ -48,4 +48,8 @@ abstract class RegistryEvent with _$RegistryEvent {
     @required String gymId,
     @required int newCapacity,
   }) = UpdateCapacity;
+
+  const factory RegistryEvent.updateImageUrl({
+    @required String gymId,
+  }) = UpdateImageUrl;
 }

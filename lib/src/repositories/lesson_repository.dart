@@ -26,4 +26,6 @@ abstract class LessonRepository {
   Future<void> updateLessonName(String gymId, String date, String lessonId, String newName);
 
   Future<void> updateLessonCapacity(String gymId, String date, String lessonId, int newCapacity);
+
+  Future<void> updateLessonImage(String gymId, String date, String lessonId, String newImageUrl);
 }

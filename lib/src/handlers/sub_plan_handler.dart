@@ -23,16 +23,14 @@ class SubPlanHandler extends Handler implements RegisterableHandler {
   @override
   HandlerFunc get handlerFunc => (BuildContext context, Map<String, List<String>> params) {
         UserRepository userRepository = RepositoryProvider.of<UserRepository>(context);
-        StorageRepository storageRepository = StorageRepository();
-        ImageRepository imageRepository = ImageRepository();
 
         return MultiBlocProvider(
           providers: [
             BlocProvider<UserBloc>(
               create: (BuildContext context) => UserBloc(
                 userRepository: userRepository,
-                storageRepository: storageRepository,
-                imageRepository: imageRepository,
+                storageRepository: context.read<StorageRepository>(),
+                imageRepository: context.read<ImageRepository>(),
                 authBloc: BlocProvider.of<AuthBloc>(context),
               ),
             ),

@@ -1,4 +1,5 @@
 import 'dart:async';
+import 'dart:io';
 
 import 'package:bloc_test/bloc_test.dart';
 import 'package:checkin/src/api/lesson_api.dart';
@@ -9,7 +10,9 @@ import 'package:checkin/src/models/grade.dart';
 import 'package:checkin/src/models/lesson.dart';
 import 'package:checkin/src/models/master.dart';
 import 'package:checkin/src/models/user.dart';
+import 'package:checkin/src/repositories/image_repository.dart';
 import 'package:checkin/src/repositories/lesson_repository.dart';
+import 'package:checkin/src/repositories/storage_repository.dart';
 import 'package:flutter_test/flutter_test.dart';
 import 'package:mockito/mockito.dart';
 
@@ -21,11 +24,17 @@ class MockLessonApi extends Mock implements LessonApi {}
 
 class MockLessonRepository extends Mock implements LessonRepository {}
 
+class MockStorageRepository extends Mock implements StorageRepository {}
+
+class MockImageRepository extends Mock implements ImageRepository {}
+
 void main() {
   group("RegistryBloc", () {
     MockUserBloc mockUserBloc;
     MockLessonApi mockLessonApi;
     MockLessonRepository mockLessonRepository;
+    MockImageRepository mockImageRepository;
+    MockStorageRepository mockStorageRepository;
 
     var testAttendee1 = Attendee(
       name: "Test1",
@@ -52,22 +61,39 @@ void main() {
       mockUserBloc = MockUserBloc();
       mockLessonApi = MockLessonApi();
       mockLessonRepository = MockLessonRepository();
-      configureThrowOnMissingStub([mockLessonApi, mockLessonRepository]);
+      mockLessonRepository = MockLessonRepository();
+      mockImageRepository = MockImageRepository();
+      mockStorageRepository = MockStorageRepository();
+
+      configureThrowOnMissingStub([
+        mockLessonApi,
+        mockLessonRepository,
+        mockImageRepository,
+        mockStorageRepository,
+      ]);
     });
 
     tearDown(() {
       reset(mockUserBloc);
-      logAndVerifyNoMoreInteractions([mockLessonApi, mockLessonRepository]);
+      logAndVerifyNoMoreInteractions([
+        mockLessonApi,
+        mockLessonRepository,
+        mockImageRepository,
+        mockStorageRepository,
+      ]);
     });
 
     group("initial state", () {
       blocTest("is RegistryUninitialized",
           build: () => RegistryBloc(
-              lessonId: baseLesson.id,
-              lessonDate: baseLesson.date,
-              lessonRepository: mockLessonRepository,
-              lessonApi: mockLessonApi,
-              userBloc: mockUserBloc),
+                lessonId: baseLesson.id,
+                lessonDate: baseLesson.date,
+                lessonRepository: mockLessonRepository,
+                imageRepository: mockImageRepository,
+                storageRepository: mockStorageRepository,
+                lessonApi: mockLessonApi,
+                userBloc: mockUserBloc,
+              ),
           expect: [],
           verify: (bloc) {
             expect(bloc.state, RegistryUninitialized());
@@ -92,6 +118,8 @@ void main() {
             lessonId: baseLesson.id,
             lessonDate: baseLesson.date,
             lessonRepository: mockLessonRepository,
+            imageRepository: mockImageRepository,
+            storageRepository: mockStorageRepository,
             lessonApi: mockLessonApi,
             userBloc: mockUserBloc),
         act: (bloc) => bloc.add(RegistryEvent.initializeRegistry()),
@@ -122,6 +150,8 @@ void main() {
             lessonId: fakeLessonWithAcceptedAttendee.id,
             lessonDate: fakeLessonWithAcceptedAttendee.date,
             lessonRepository: mockLessonRepository,
+            imageRepository: mockImageRepository,
+            storageRepository: mockStorageRepository,
             lessonApi: mockLessonApi,
             userBloc: mockUserBloc,
           ),
@@ -154,6 +184,8 @@ void main() {
               lessonId: lessonWithRegisteredUser.id,
               lessonDate: lessonWithRegisteredUser.date,
               lessonRepository: mockLessonRepository,
+              imageRepository: mockImageRepository,
+              storageRepository: mockStorageRepository,
               lessonApi: mockLessonApi,
               userBloc: mockUserBloc),
           act: (bloc) => bloc.add(RegistryUpdated(
@@ -180,6 +212,8 @@ void main() {
               lessonId: fakeLessonFull.id,
               lessonDate: fakeLessonFull.date,
               lessonRepository: mockLessonRepository,
+              imageRepository: mockImageRepository,
+              storageRepository: mockStorageRepository,
               lessonApi: mockLessonApi,
               userBloc: mockUserBloc),
           act: (bloc) => bloc.add(RegistryUpdated(
@@ -203,6 +237,8 @@ void main() {
               lessonId: baseLesson.id,
               lessonDate: baseLesson.date,
               lessonRepository: mockLessonRepository,
+              imageRepository: mockImageRepository,
+              storageRepository: mockStorageRepository,
               lessonApi: mockLessonApi,
               userBloc: mockUserBloc),
           act: (bloc) => bloc.add(RegistryUpdated(
@@ -231,6 +267,8 @@ void main() {
             lessonId: fakeLessonClosed.id,
             lessonDate: fakeLessonClosed.date,
             lessonRepository: mockLessonRepository,
+            imageRepository: mockImageRepository,
+            storageRepository: mockStorageRepository,
             lessonApi: mockLessonApi,
             userBloc: mockUserBloc,
           ),
@@ -258,6 +296,8 @@ void main() {
               lessonDate: notExistingDate,
               lessonId: notExistingLessonId,
               lessonRepository: mockLessonRepository,
+              imageRepository: mockImageRepository,
+              storageRepository: mockStorageRepository,
               lessonApi: mockLessonApi,
               userBloc: mockUserBloc),
           act: (bloc) => bloc.add(RegistryUpdated(
@@ -291,6 +331,8 @@ void main() {
               lessonId: baseLesson.id,
               lessonDate: baseLesson.date,
               lessonRepository: mockLessonRepository,
+              imageRepository: mockImageRepository,
+              storageRepository: mockStorageRepository,
               lessonApi: mockLessonApi,
               userBloc: mockUserBloc),
           act: (bloc) => bloc.add(Register(gymId: fakeUser.selectedGymId, attendee: fakeAttendee)),
@@ -326,6 +368,8 @@ void main() {
               lessonId: lessonWithRegisteredUser.id,
               lessonDate: lessonWithRegisteredUser.date,
               lessonRepository: mockLessonRepository,
+              imageRepository: mockImageRepository,
+              storageRepository: mockStorageRepository,
               lessonApi: mockLessonApi,
               userBloc: mockUserBloc),
           act: (bloc) =>
@@ -371,6 +415,8 @@ void main() {
               lessonId: fakeLessonWithRegisteredAttendee.id,
               lessonDate: fakeLessonWithRegisteredAttendee.date,
               lessonRepository: mockLessonRepository,
+              imageRepository: mockImageRepository,
+              storageRepository: mockStorageRepository,
               lessonApi: mockLessonApi,
               userBloc: mockUserBloc),
           act: (bloc) => bloc.add(AcceptAttendees(gymId: masterUser.selectedGymId)),
@@ -404,6 +450,8 @@ void main() {
               lessonId: baseLesson.id,
               lessonDate: baseLesson.date,
               lessonRepository: mockLessonRepository,
+              imageRepository: mockImageRepository,
+              storageRepository: mockStorageRepository,
               lessonApi: mockLessonApi,
               userBloc: mockUserBloc),
           act: (bloc) => bloc.add(CloseLesson(
@@ -432,6 +480,8 @@ void main() {
           lessonId: baseLesson.id,
           lessonDate: baseLesson.date,
           lessonRepository: mockLessonRepository,
+          imageRepository: mockImageRepository,
+          storageRepository: mockStorageRepository,
           lessonApi: mockLessonApi,
           userBloc: mockUserBloc,
         ),
@@ -465,6 +515,8 @@ void main() {
           lessonId: baseLesson.id,
           lessonDate: baseLesson.date,
           lessonRepository: mockLessonRepository,
+          imageRepository: mockImageRepository,
+          storageRepository: mockStorageRepository,
           lessonApi: mockLessonApi,
           userBloc: mockUserBloc,
         ),
@@ -500,6 +552,8 @@ void main() {
           lessonId: baseLesson.id,
           lessonDate: baseLesson.date,
           lessonRepository: mockLessonRepository,
+          imageRepository: mockImageRepository,
+          storageRepository: mockStorageRepository,
           lessonApi: mockLessonApi,
           userBloc: mockUserBloc,
         ),
@@ -535,6 +589,8 @@ void main() {
           lessonId: baseLesson.id,
           lessonDate: baseLesson.date,
           lessonRepository: mockLessonRepository,
+          imageRepository: mockImageRepository,
+          storageRepository: mockStorageRepository,
           lessonApi: mockLessonApi,
           userBloc: mockUserBloc,
         ),
@@ -542,6 +598,70 @@ void main() {
           RegistryEvent.updateCapacity(
             gymId: fakeUser.selectedGymId,
             newCapacity: newCapacity,
+          ),
+        ),
+        expect: [],
+      );
+    });
+
+    group("on UpdateImageUrl event", () {
+      var newImageUrl = "http://1337.o/a.png";
+      File fakeImage = File("some_file");
+
+      setUp(() {
+        when(mockImageRepository.getCroppedImage()).thenAnswer((_) {
+          return Future.value(fakeImage);
+        });
+
+        when(mockStorageRepository.uploadImage(fakeImage, argThat(endsWith(".png"))))
+            .thenAnswer((_) {
+          return Future.value(newImageUrl);
+        });
+
+        when(mockLessonRepository.updateLessonImage(
+          fakeUser.selectedGymId,
+          baseLesson.date,
+          baseLesson.id,
+          newImageUrl,
+        )).thenAnswer((_) {
+          return Future.value(null);
+        });
+      });
+
+      tearDown(() async {
+        await untilCalled(mockImageRepository.getCroppedImage());
+        await untilCalled(mockStorageRepository.uploadImage(fakeImage, argThat(endsWith(".png"))));
+        await untilCalled(mockLessonRepository.updateLessonImage(
+          fakeUser.selectedGymId,
+          baseLesson.date,
+          baseLesson.id,
+          newImageUrl,
+        ));
+
+        verify(mockImageRepository.getCroppedImage());
+        verify(mockStorageRepository.uploadImage(fakeImage, argThat(endsWith(".png"))));
+        verify(mockLessonRepository.updateLessonImage(
+          fakeUser.selectedGymId,
+          baseLesson.date,
+          baseLesson.id,
+          newImageUrl,
+        ));
+      });
+
+      blocTest(
+        "should call repository with newImageUrl",
+        build: () => RegistryBloc(
+          lessonId: baseLesson.id,
+          lessonDate: baseLesson.date,
+          lessonRepository: mockLessonRepository,
+          imageRepository: mockImageRepository,
+          storageRepository: mockStorageRepository,
+          lessonApi: mockLessonApi,
+          userBloc: mockUserBloc,
+        ),
+        act: (bloc) => bloc.add(
+          RegistryEvent.updateImageUrl(
+            gymId: fakeUser.selectedGymId,
           ),
         ),
         expect: [],

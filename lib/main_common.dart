@@ -28,11 +28,13 @@ import 'package:checkin/src/resources/auth_provider.dart';
 import 'package:checkin/src/resources/dynamic_link_provider.dart';
 import 'package:checkin/src/resources/graduation_system_provider.dart';
 import 'package:checkin/src/resources/gym_provider.dart';
+import 'package:checkin/src/resources/image_provider.dart';
 import 'package:checkin/src/resources/lesson_config_provider.dart';
 import 'package:checkin/src/resources/lesson_instances_provider.dart';
 import 'package:checkin/src/resources/local_storage_provider.dart';
 import 'package:checkin/src/resources/membership_provider.dart';
 import 'package:checkin/src/resources/stats_provider.dart';
+import 'package:checkin/src/resources/storage_provider.dart';
 import 'package:checkin/src/resources/user_provider.dart';
 import 'package:checkin/src/routes/application.dart';
 import 'package:checkin/src/routes/routes.dart';
@@ -41,7 +43,7 @@ import 'package:checkin/src/util/version_util.dart';
 import 'package:firebase_core/firebase_core.dart';
 import 'package:firebase_crashlytics/firebase_crashlytics.dart';
 import 'package:firebase_dynamic_links/firebase_dynamic_links.dart';
-import 'package:flutter/material.dart';
+import 'package:flutter/material.dart' hide ImageProvider;
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:flutter_svg/flutter_svg.dart';
 
@@ -66,10 +68,6 @@ Future<void> mainCommon(AppConfig appConfig) async {
 
   // init logger
   Logger.log = appConfig.logger;
-
-  // init repositories
-  final StorageRepository storageRepository = StorageRepository();
-  final ImageRepository imageRepository = ImageRepository();
 
   final AuthRepository authProvider = AuthProvider(appConfig: appConfig);
 
@@ -119,6 +117,12 @@ Future<void> mainCommon(AppConfig appConfig) async {
           RepositoryProvider<GymRepository>(
             create: (context) => GymProvider(),
           ),
+          RepositoryProvider<ImageRepository>(
+            create: (context) => ImageProvider(),
+          ),
+          RepositoryProvider<StorageRepository>(
+            create: (context) => StorageProvider(),
+          ),
         ],
         child: MultiBlocProvider(
           providers: [
@@ -154,8 +158,8 @@ Future<void> mainCommon(AppConfig appConfig) async {
           child: BlocBuilder<ThemeBloc, ThemeState>(
               builder: (BuildContext context, ThemeState state) => App(
                     themeData: state.themeData,
-                    storageRepository: storageRepository,
-                    imageRepository: imageRepository,
+                    storageRepository: context.read<StorageRepository>(),
+                    imageRepository: context.read<ImageRepository>(),
                   )),
         ),
       ),

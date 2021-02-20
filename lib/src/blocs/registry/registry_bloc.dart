@@ -1,4 +1,5 @@
 import 'dart:async';
+import 'dart:io';
 
 import 'package:bloc/bloc.dart';
 import 'package:checkin/src/api/lesson_api.dart';
@@ -6,7 +7,9 @@ import 'package:checkin/src/blocs/user/user_bloc.dart';
 import 'package:checkin/src/blocs/user/user_state.dart';
 import 'package:checkin/src/logging/logger.dart';
 import 'package:checkin/src/models/lesson.dart';
+import 'package:checkin/src/repositories/image_repository.dart';
 import 'package:checkin/src/repositories/lesson_repository.dart';
+import 'package:checkin/src/repositories/storage_repository.dart';
 import 'package:flutter/foundation.dart';
 import 'package:meta/meta.dart';
 
@@ -16,6 +19,8 @@ class RegistryBloc extends Bloc<RegistryEvent, RegistryState> {
   final UserBloc userBloc;
   final LessonApi lessonApi;
   final LessonRepository lessonRepository;
+  final ImageRepository imageRepository;
+  final StorageRepository storageRepository;
   final String lessonId;
   final String lessonDate;
 
@@ -26,6 +31,8 @@ class RegistryBloc extends Bloc<RegistryEvent, RegistryState> {
     @required this.lessonApi,
     @required this.lessonRepository,
     @required this.lessonId,
+    @required this.imageRepository,
+    @required this.storageRepository,
     @required this.lessonDate,
   }) : super(RegistryUninitialized());
 
@@ -137,6 +144,22 @@ class RegistryBloc extends Bloc<RegistryEvent, RegistryState> {
       await this
           .lessonRepository
           .updateLessonCapacity(event.gymId, lessonDate, lessonId, event.newCapacity);
+    }
+
+    if (event is UpdateImageUrl) {
+      File croppedFile = await imageRepository.getCroppedImage();
+      if (croppedFile != null) {
+        //TODO: customName
+        String fileName = "$lessonId-${DateTime.now()}.png";
+        String newImageUrl = await storageRepository.uploadImage(croppedFile, fileName);
+
+        await lessonRepository.updateLessonImage(
+          event.gymId,
+          lessonDate,
+          lessonId,
+          newImageUrl,
+        );
+      }
     }
   }
 

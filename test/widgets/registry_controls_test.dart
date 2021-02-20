@@ -6,9 +6,11 @@ import 'package:checkin/src/blocs/user/bloc.dart';
 import 'package:checkin/src/models/lesson.dart';
 import 'package:checkin/src/models/master.dart';
 import 'package:checkin/src/models/user.dart';
+import 'package:checkin/src/repositories/image_repository.dart';
 import 'package:checkin/src/repositories/lesson_repository.dart';
 import 'package:checkin/src/repositories/membership_repository.dart';
 import 'package:checkin/src/repositories/stats_repository.dart';
+import 'package:checkin/src/repositories/storage_repository.dart';
 import 'package:checkin/src/ui/components/registry/registry_controls.dart';
 import 'package:flutter/foundation.dart';
 import 'package:flutter/material.dart';
@@ -27,11 +29,17 @@ class MockStatsRepository extends Mock implements StatsRepository {}
 
 class MockMembershipRepository extends Mock implements MembershipRepository {}
 
+class MockStorageRepository extends Mock implements StorageRepository {}
+
+class MockImageRepository extends Mock implements ImageRepository {}
+
 MockUserBloc mockUserBloc = MockUserBloc();
 MockLessonApi mockLessonApi = MockLessonApi();
 MockLessonRepository mockLessonRepository = MockLessonRepository();
 MockStatsRepository mockStatsRepository = MockStatsRepository();
 MockMembershipRepository mockMembershipRepository = MockMembershipRepository();
+MockStorageRepository mockStorageRepository = MockStorageRepository();
+MockImageRepository mockImageRepository = MockImageRepository();
 
 void main() {
   testWidgets(
@@ -90,6 +98,8 @@ Future<Widget> buildTestApplication(Widget testWidget) async {
         lessonId: fakeLessonWithRegisteredAttendee.id,
         lessonDate: fakeLessonWithRegisteredAttendee.date,
         lessonRepository: mockLessonRepository,
+        imageRepository: mockImageRepository,
+        storageRepository: mockStorageRepository,
         lessonApi: mockLessonApi,
         userBloc: mockUserBloc,
       ),

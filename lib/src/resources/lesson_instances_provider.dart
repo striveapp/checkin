@@ -204,4 +204,10 @@ class LessonInstancesProvider implements LessonRepository {
         .doc(lessonId)
         .update({'classCapacity': newCapacity});
   }
+
+  @override
+  Future<void> updateLessonImage(String gymId, String date, String lessonId, String newImageUrl) {
+    // TODO: implement updateUserImageUrl
+    throw UnimplementedError();
+  }
 }
