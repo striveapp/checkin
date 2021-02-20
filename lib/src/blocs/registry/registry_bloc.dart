@@ -2,7 +2,8 @@ import 'dart:async';
 
 import 'package:bloc/bloc.dart';
 import 'package:checkin/src/api/lesson_api.dart';
-import 'package:checkin/src/blocs/user/bloc.dart';
+import 'package:checkin/src/blocs/user/user_bloc.dart';
+import 'package:checkin/src/blocs/user/user_state.dart';
 import 'package:checkin/src/logging/logger.dart';
 import 'package:checkin/src/models/lesson.dart';
 import 'package:checkin/src/repositories/lesson_repository.dart';
@@ -124,6 +125,12 @@ class RegistryBloc extends Bloc<RegistryEvent, RegistryState> {
       await this
           .lessonRepository
           .updateLessonTimeEnd(event.gymId, lessonDate, lessonId, event.newTimeEnd);
+    }
+
+    if (event is UpdateName) {
+      await this
+          .lessonRepository
+          .updateLessonName(event.gymId, lessonDate, lessonId, event.newName);
     }
   }
 

@@ -414,12 +414,16 @@ void main() {
 
     group("on UpdateTimeStart event", () {
       setUp(() {
-        when(mockLessonRepository.updateLessonTimeStart(fakeUser.selectedGymId, baseLesson.date, baseLesson.id, "04:20")).thenAnswer((realInvocation) => Future.value(null));
+        when(mockLessonRepository.updateLessonTimeStart(
+                fakeUser.selectedGymId, baseLesson.date, baseLesson.id, "04:20"))
+            .thenAnswer((realInvocation) => Future.value(null));
       });
 
       tearDown(() {
-        untilCalled(mockLessonRepository.updateLessonTimeStart(fakeUser.selectedGymId, baseLesson.date, baseLesson.id, "04:20"));
-        verify(mockLessonRepository.updateLessonTimeStart(fakeUser.selectedGymId, baseLesson.date, baseLesson.id, "04:20"));
+        untilCalled(mockLessonRepository.updateLessonTimeStart(
+            fakeUser.selectedGymId, baseLesson.date, baseLesson.id, "04:20"));
+        verify(mockLessonRepository.updateLessonTimeStart(
+            fakeUser.selectedGymId, baseLesson.date, baseLesson.id, "04:20"));
       });
 
       blocTest(
@@ -443,12 +447,16 @@ void main() {
 
     group("on UpdateTimeEnd event", () {
       setUp(() {
-        when(mockLessonRepository.updateLessonTimeEnd(fakeUser.selectedGymId, baseLesson.date, baseLesson.id, "13:37")).thenAnswer((realInvocation) => Future.value(null));
+        when(mockLessonRepository.updateLessonTimeEnd(
+                fakeUser.selectedGymId, baseLesson.date, baseLesson.id, "13:37"))
+            .thenAnswer((realInvocation) => Future.value(null));
       });
 
       tearDown(() {
-        untilCalled(mockLessonRepository.updateLessonTimeEnd(fakeUser.selectedGymId, baseLesson.date, baseLesson.id, "13:37"));
-        verify(mockLessonRepository.updateLessonTimeEnd(fakeUser.selectedGymId, baseLesson.date, baseLesson.id, "13:37"));
+        untilCalled(mockLessonRepository.updateLessonTimeEnd(
+            fakeUser.selectedGymId, baseLesson.date, baseLesson.id, "13:37"));
+        verify(mockLessonRepository.updateLessonTimeEnd(
+            fakeUser.selectedGymId, baseLesson.date, baseLesson.id, "13:37"));
       });
 
       blocTest(
@@ -464,6 +472,41 @@ void main() {
           RegistryEvent.updateTimeEnd(
             gymId: fakeUser.selectedGymId,
             newTimeEnd: "13:37",
+          ),
+        ),
+        expect: [],
+      );
+    });
+
+    group("on UpdateName event", () {
+      var newName = "The class of death!";
+
+      setUp(() {
+        when(mockLessonRepository.updateLessonName(
+                fakeUser.selectedGymId, baseLesson.date, baseLesson.id, newName))
+            .thenAnswer((realInvocation) => Future.value(null));
+      });
+
+      tearDown(() {
+        untilCalled(mockLessonRepository.updateLessonName(
+            fakeUser.selectedGymId, baseLesson.date, baseLesson.id, newName));
+        verify(mockLessonRepository.updateLessonName(
+            fakeUser.selectedGymId, baseLesson.date, baseLesson.id, newName));
+      });
+
+      blocTest(
+        "should call repository with newName",
+        build: () => RegistryBloc(
+          lessonId: baseLesson.id,
+          lessonDate: baseLesson.date,
+          lessonRepository: mockLessonRepository,
+          lessonApi: mockLessonApi,
+          userBloc: mockUserBloc,
+        ),
+        act: (bloc) => bloc.add(
+          RegistryEvent.updateName(
+            gymId: fakeUser.selectedGymId,
+            newName: newName,
           ),
         ),
         expect: [],

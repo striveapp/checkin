@@ -177,4 +177,17 @@ class LessonInstancesProvider implements LessonRepository {
         .doc(lessonId)
         .update({'timeEnd': newTimeEnd});
   }
+
+  @override
+  Future<void> updateLessonName(String gymId, String date, String lessonId, String newName) async {
+    Logger.log.i("Updating name to [$newName] for lesson with id [$lessonId]");
+    await _firestore
+        .collection(gymPath)
+        .doc(gymId)
+        .collection(path)
+        .doc(date)
+        .collection(sub_collection_path)
+        .doc(lessonId)
+        .update({'name': newName});
+  }
 }

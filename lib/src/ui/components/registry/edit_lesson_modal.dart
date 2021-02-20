@@ -3,7 +3,6 @@ import 'package:checkin/src/localization/localization.dart';
 import 'package:checkin/src/models/lesson.dart';
 import 'package:checkin/src/ui/components/registry/edit_lesson_name.dart';
 import 'package:checkin/src/ui/components/registry/edit_lesson_time.dart';
-import 'package:checkin/src/util/debug_util.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 
@@ -52,7 +51,10 @@ class EditLessonModal extends StatelessWidget {
               SizedBox(
                 height: 20,
               ),
-              if (isInDebugMode) EditLessonName(),
+              EditLessonName(
+                gymId: gymId,
+                lessonName: lesson.name,
+              ),
             ],
           ),
         ),

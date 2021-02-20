@@ -38,4 +38,9 @@ abstract class RegistryEvent with _$RegistryEvent {
     @required String gymId,
     @required String newTimeEnd,
   }) = UpdateTimeEnd;
+
+  const factory RegistryEvent.updateName({
+    @required String gymId,
+    @required String newName,
+  }) = UpdateName;
 }

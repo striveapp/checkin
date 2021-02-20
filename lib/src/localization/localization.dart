@@ -32,6 +32,7 @@ import 'package:checkin/src/ui/components/registry/attendee_tile.dart';
 import 'package:checkin/src/ui/components/registry/attendees_list.dart';
 import 'package:checkin/src/ui/components/registry/close_class_dialog.dart';
 import 'package:checkin/src/ui/components/registry/edit_lesson_modal.dart';
+import 'package:checkin/src/ui/components/registry/edit_lesson_name.dart';
 import 'package:checkin/src/ui/components/registry/edit_lesson_time.dart';
 import 'package:checkin/src/ui/components/registry/empty_registry.dart';
 import 'package:checkin/src/ui/components/registry/lesson_infos.dart';
@@ -719,6 +720,11 @@ extension Localization on String {
         'en': EditLessonModal.end,
         'es': 'Fin',
         'it': 'Fine',
+      } +
+      {
+        'en': EditLessonName.name,
+        'es': 'Nombre',
+        'it': 'Nome',
       };
 
   String get i18n => localize(this, _t);

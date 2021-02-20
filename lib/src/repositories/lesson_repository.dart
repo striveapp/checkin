@@ -22,4 +22,6 @@ abstract class LessonRepository {
       String gymId, String date, String lessonId, String newTimeStart);
 
   Future<void> updateLessonTimeEnd(String gymId, String date, String lessonId, String newTimeEnd);
+
+  Future<void> updateLessonName(String gymId, String date, String lessonId, String newName);
 }
