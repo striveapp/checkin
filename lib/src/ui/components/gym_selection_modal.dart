@@ -19,10 +19,13 @@ class GymSelectionModal extends StatelessWidget {
         ),
         child: Column(
           children: [
-            Icon(
-              Icons.remove_rounded,
-              size: 50,
-              color: Colors.grey,
+            Padding(
+              padding: const EdgeInsets.only(top: 10.0),
+              child: Icon(
+                Icons.maximize_rounded,
+                size: 50,
+                color: Colors.grey,
+              ),
             ),
             Expanded(
               child: ListView(

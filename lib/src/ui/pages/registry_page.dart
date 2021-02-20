@@ -6,7 +6,7 @@ import 'package:checkin/src/repositories/lesson_repository.dart';
 import 'package:checkin/src/ui/components/base_app_bar.dart';
 import 'package:checkin/src/ui/components/loading_indicator.dart';
 import 'package:checkin/src/ui/components/registry/close_lesson_button.dart';
-import 'package:checkin/src/ui/components/registry/edit_lesson_button.dart';
+import 'package:checkin/src/ui/components/registry/edit_lesson/edit_lesson_button.dart';
 import 'package:checkin/src/ui/components/registry/lesson_infos.dart';
 import 'package:checkin/src/ui/components/registry/registry.dart';
 import 'package:flutter/material.dart';

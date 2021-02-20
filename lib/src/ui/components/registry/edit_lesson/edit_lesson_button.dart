@@ -1,6 +1,6 @@
 import 'package:checkin/src/blocs/registry/bloc.dart';
 import 'package:checkin/src/ui/components/empty_widget.dart';
-import 'package:checkin/src/ui/components/registry/edit_lesson_modal.dart';
+import 'package:checkin/src/ui/components/registry/edit_lesson/edit_lesson_modal.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 

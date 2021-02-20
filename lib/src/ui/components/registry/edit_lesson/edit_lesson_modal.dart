@@ -1,8 +1,9 @@
 import 'package:checkin/src/blocs/registry/bloc.dart';
 import 'package:checkin/src/localization/localization.dart';
 import 'package:checkin/src/models/lesson.dart';
-import 'package:checkin/src/ui/components/registry/edit_lesson_name.dart';
-import 'package:checkin/src/ui/components/registry/edit_lesson_time.dart';
+import 'package:checkin/src/ui/components/registry/edit_lesson/edit_lesson_capacity.dart';
+import 'package:checkin/src/ui/components/registry/edit_lesson/edit_lesson_name.dart';
+import 'package:checkin/src/ui/components/registry/edit_lesson/edit_lesson_time.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 
@@ -20,10 +21,13 @@ class EditLessonModal extends StatelessWidget {
     return Column(
       mainAxisSize: MainAxisSize.min,
       children: [
-        Icon(
-          Icons.remove_rounded,
-          size: 50,
-          color: Colors.grey,
+        Padding(
+          padding: const EdgeInsets.only(top: 10.0),
+          child: Icon(
+            Icons.maximize_rounded,
+            size: 50,
+            color: Colors.grey,
+          ),
         ),
         Padding(
           padding: const EdgeInsets.only(left: 40.0, right: 40, top: 10, bottom: 30),
@@ -54,6 +58,13 @@ class EditLessonModal extends StatelessWidget {
               EditLessonName(
                 gymId: gymId,
                 lessonName: lesson.name,
+              ),
+              SizedBox(
+                height: 20,
+              ),
+              EditLessonCapacity(
+                gymId: gymId,
+                classCapacity: lesson.classCapacity,
               ),
             ],
           ),
