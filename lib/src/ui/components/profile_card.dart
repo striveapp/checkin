@@ -1,9 +1,9 @@
 import 'package:checkin/src/blocs/profile/bloc.dart';
 import 'package:checkin/src/blocs/user/bloc.dart';
 import 'package:checkin/src/localization/localization.dart';
-import 'package:checkin/src/ui/components/add_photo_badge.dart';
+import 'package:checkin/src/ui/components/editable_image.dart';
 import 'package:checkin/src/ui/components/loading_indicator.dart';
-import 'package:checkin/src/ui/components/user_image.dart';
+import 'package:checkin/src/ui/components/rounded_image.dart';
 import 'package:checkin/src/util/string_extension.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
@@ -32,22 +32,11 @@ class ProfileCard extends StatelessWidget {
                 profileLoaded: (ProfileLoaded state) => Row(
                       children: <Widget>[
                         //TODO: this is disabled temporarily for the owner to prevent other bugs to happen [https://trello.com/c/AsSz0amj]
-                        if (isOwner) UserImage(userImage: state.profileUser.imageUrl),
+                        if (isOwner) RoundedImage(userImage: state.profileUser.imageUrl),
                         if (!isOwner)
-                          GestureDetector(
-                            child: Stack(
-                              alignment: AlignmentDirectional.bottomEnd,
-                              clipBehavior: Clip.none,
-                              children: [
-                                UserImage(userImage: state.profileUser.imageUrl),
-                                Positioned(
-                                  right: -8,
-                                  bottom: -2,
-                                  child: AddPhotoBadge(),
-                                ),
-                              ],
-                            ),
-                            onTap: () {
+                          EditableImage(
+                            imageUrl: state.profileUser.imageUrl,
+                            onEdit: () {
                               BlocProvider.of<UserBloc>(context).add(
                                   UserEvent.updateImageUrl(userEmail: state.profileUser.email));
                             },

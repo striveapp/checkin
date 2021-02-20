@@ -4,7 +4,7 @@ import 'package:checkin/src/logging/logger.dart';
 import 'package:checkin/src/models/user.dart';
 import 'package:checkin/src/repositories/gym_repository.dart';
 import 'package:checkin/src/ui/components/loading_indicator.dart';
-import 'package:checkin/src/ui/components/user_image.dart';
+import 'package:checkin/src/ui/components/rounded_image.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 
@@ -39,7 +39,7 @@ class GymSelectionTile extends StatelessWidget {
               children: [
                 Row(
                   children: [
-                    UserImage(
+                    RoundedImage(
                       userImage: gymLoaded.gym.imageUrl,
                     ),
                     SizedBox(

@@ -2,7 +2,7 @@ import 'package:checkin/src/localization/localization.dart';
 import 'package:checkin/src/models/attendee.dart';
 import 'package:checkin/src/models/lesson.dart';
 import 'package:checkin/src/ui/components/lessons/accepted_badge.dart';
-import 'package:checkin/src/ui/components/user_image.dart';
+import 'package:checkin/src/ui/components/rounded_image.dart';
 import 'package:flutter/material.dart';
 
 class AttendeesPreview extends StatelessWidget {
@@ -39,7 +39,7 @@ class AttendeesPreview extends StatelessWidget {
                                         width: 1.5, color: Theme.of(context).accentColor),
                                     borderRadius: BorderRadius.all(Radius.circular(50)),
                                   ),
-                                  child: UserImage(
+                                  child: RoundedImage(
                                     userImage: attendee.imageUrl,
                                     width: MediaQuery.of(context).size.width * 0.06,
                                     height: MediaQuery.of(context).size.width * 0.06,
@@ -51,7 +51,7 @@ class AttendeesPreview extends StatelessWidget {
                                   child: AcceptedBadge(),
                                 )
                               ])
-                        : UserImage(
+                        : RoundedImage(
                             userImage: attendee.imageUrl,
                             width: MediaQuery.of(context).size.width * 0.06,
                             height: MediaQuery.of(context).size.width * 0.06,

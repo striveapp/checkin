@@ -1,8 +1,9 @@
 import 'package:checkin/src/blocs/registry/bloc.dart';
 import 'package:checkin/src/localization/localization.dart';
 import 'package:checkin/src/models/master.dart';
+import 'package:checkin/src/ui/components/editable_image.dart';
 import 'package:checkin/src/ui/components/loading_indicator.dart';
-import 'package:checkin/src/ui/components/user_image.dart';
+import 'package:checkin/src/ui/components/rounded_image.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 
@@ -18,15 +19,24 @@ class LessonInfos extends StatelessWidget {
         return state.maybeMap(
           registryLoaded: (RegistryLoaded registryLoaded) {
             var currentLesson = registryLoaded.currentLesson;
+            var currentUser = registryLoaded.currentUser;
 
             return Row(
               children: <Widget>[
                 Padding(
                   padding: const EdgeInsets.only(right: 16),
-                  child: UserImage(
-                    userImage: currentLesson.imageUrl,
-                    isGrayscale: currentLesson.isClosed,
-                  ),
+                  child: currentUser.isOwner
+                      ? EditableImage(
+                          imageUrl: currentLesson.imageUrl,
+                          isGrayscale: currentLesson.isClosed,
+                          onEdit: () {
+                            print("aaa fuckkooooff!");
+                          },
+                        )
+                      : RoundedImage(
+                          userImage: currentLesson.imageUrl,
+                          isGrayscale: currentLesson.isClosed,
+                        ),
                 ),
                 Column(
                   crossAxisAlignment: CrossAxisAlignment.start,

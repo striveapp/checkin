@@ -1,7 +1,7 @@
 import 'package:checkin/src/localization/localization.dart';
 import 'package:checkin/src/models/attendee.dart';
 import 'package:checkin/src/models/grade.dart';
-import 'package:checkin/src/ui/components/user_image.dart';
+import 'package:checkin/src/ui/components/rounded_image.dart';
 import 'package:flutter/material.dart';
 
 class AttendeeInfoCard extends StatelessWidget {
@@ -30,7 +30,7 @@ class AttendeeInfoCard extends StatelessWidget {
             Row(
               mainAxisAlignment: MainAxisAlignment.spaceBetween,
               children: <Widget>[
-                Flexible(flex: 1, child: UserImage(userImage: attendee.imageUrl)),
+                Flexible(flex: 1, child: RoundedImage(userImage: attendee.imageUrl)),
                 SizedBox(
                   width: 10,
                 ),

@@ -2,7 +2,7 @@ import 'package:checkin/src/blocs/profile/bloc.dart';
 import 'package:checkin/src/localization/localization.dart';
 import 'package:checkin/src/models/grade.dart';
 import 'package:checkin/src/ui/components/empty_widget.dart';
-import 'package:checkin/src/ui/components/user_image.dart';
+import 'package:checkin/src/ui/components/rounded_image.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 
@@ -24,7 +24,7 @@ class ProfileInfos extends StatelessWidget {
               initialProfileState: (InitialProfileState _) => EmptyWidget(),
               profileLoaded: (ProfileLoaded state) => Row(
                     children: <Widget>[
-                      UserImage(
+                      RoundedImage(
                         userImage: state.profileUser.imageUrl,
                         width: 30,
                         height: 30,

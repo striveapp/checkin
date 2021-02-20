@@ -1,7 +1,7 @@
 import 'package:checkin/src/blocs/user/bloc.dart';
 import 'package:checkin/src/logging/logger.dart';
 import 'package:checkin/src/ui/components/empty_widget.dart';
-import 'package:checkin/src/ui/components/user_image.dart';
+import 'package:checkin/src/ui/components/rounded_image.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 
@@ -44,7 +44,7 @@ class BaseAppBar extends StatelessWidget implements PreferredSizeWidget {
                     onPressed: () {
                       Navigator.of(context).pushNamed('account');
                     },
-                    icon: UserImage(
+                    icon: RoundedImage(
                       userImage: currentUser.imageUrl,
                       width: 30,
                       height: 30,

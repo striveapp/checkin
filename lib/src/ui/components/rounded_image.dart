@@ -1,7 +1,7 @@
-import 'package:flutter/material.dart';
 import 'package:cached_network_image/cached_network_image.dart';
+import 'package:flutter/material.dart';
 
-class UserImage extends StatelessWidget {
+class RoundedImage extends StatelessWidget {
   final String userImage;
   final double circularRadius;
   final double width;
@@ -9,7 +9,7 @@ class UserImage extends StatelessWidget {
   final bool withBorder;
   final bool isGrayscale;
 
-  UserImage({
+  RoundedImage({
     Key key,
     @required this.userImage,
     this.circularRadius = 50,

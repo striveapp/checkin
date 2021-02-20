@@ -4,7 +4,7 @@ import 'package:checkin/src/localization/localization.dart';
 import 'package:checkin/src/models/grade.dart';
 import 'package:checkin/src/repositories/user_repository.dart';
 import 'package:checkin/src/ui/components/empty_widget.dart';
-import 'package:checkin/src/ui/components/user_image.dart';
+import 'package:checkin/src/ui/components/rounded_image.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 
@@ -40,7 +40,7 @@ class ProfileTile extends StatelessWidget {
                   ),
                   title: Row(
                     children: <Widget>[
-                      UserImage(
+                      RoundedImage(
                         userImage: state.profileUser.imageUrl,
                         width: 40,
                         height: 40,

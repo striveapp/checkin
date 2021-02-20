@@ -4,7 +4,7 @@ import 'package:checkin/src/localization/localization.dart';
 import 'package:checkin/src/models/lesson.dart';
 import 'package:checkin/src/ui/components/lessons/attendees_preview.dart';
 import 'package:checkin/src/ui/components/lessons/lesson_type_badge.dart';
-import 'package:checkin/src/ui/components/user_image.dart';
+import 'package:checkin/src/ui/components/rounded_image.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 
@@ -49,7 +49,7 @@ class LessonCard extends StatelessWidget {
                       children: <Widget>[
                         Column(
                           children: [
-                            UserImage(
+                            RoundedImage(
                               userImage: lesson.imageUrl,
                             ),
                             if (lesson.lessonConfig != null)

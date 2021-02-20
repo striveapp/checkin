@@ -3,7 +3,7 @@ import 'package:checkin/src/blocs/user/bloc.dart';
 import 'package:checkin/src/repositories/user_repository.dart';
 import 'package:checkin/src/ui/components/empty_widget.dart';
 import 'package:checkin/src/ui/components/leaderboard/podium_bedge.dart';
-import 'package:checkin/src/ui/components/user_image.dart';
+import 'package:checkin/src/ui/components/rounded_image.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 
@@ -39,7 +39,7 @@ class PodiumProfile extends StatelessWidget {
                         border: Border.all(width: 4, color: color),
                         borderRadius: BorderRadius.all(Radius.circular(50)),
                       ),
-                      child: UserImage(
+                      child: RoundedImage(
                         key: Key("podium_profile_${position}_$profileEmail"),
                         userImage: state.profileUser.imageUrl,
                         width: 90,
@@ -74,7 +74,7 @@ class PodiumProfile extends StatelessWidget {
                         border: Border.all(width: 4, color: color),
                         borderRadius: BorderRadius.all(Radius.circular(50)),
                       ),
-                      child: UserImage(
+                      child: RoundedImage(
                         userImage: state.profileUser.imageUrl,
                         width: 60,
                         height: 60,
