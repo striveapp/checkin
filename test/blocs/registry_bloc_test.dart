@@ -512,5 +512,40 @@ void main() {
         expect: [],
       );
     });
+
+    group("on UpdateCapacity event", () {
+      var newCapacity = 420;
+
+      setUp(() {
+        when(mockLessonRepository.updateLessonCapacity(
+                fakeUser.selectedGymId, baseLesson.date, baseLesson.id, newCapacity))
+            .thenAnswer((realInvocation) => Future.value(null));
+      });
+
+      tearDown(() {
+        untilCalled(mockLessonRepository.updateLessonCapacity(
+            fakeUser.selectedGymId, baseLesson.date, baseLesson.id, newCapacity));
+        verify(mockLessonRepository.updateLessonCapacity(
+            fakeUser.selectedGymId, baseLesson.date, baseLesson.id, newCapacity));
+      });
+
+      blocTest(
+        "should call repository with newCapacity",
+        build: () => RegistryBloc(
+          lessonId: baseLesson.id,
+          lessonDate: baseLesson.date,
+          lessonRepository: mockLessonRepository,
+          lessonApi: mockLessonApi,
+          userBloc: mockUserBloc,
+        ),
+        act: (bloc) => bloc.add(
+          RegistryEvent.updateCapacity(
+            gymId: fakeUser.selectedGymId,
+            newCapacity: newCapacity,
+          ),
+        ),
+        expect: [],
+      );
+    });
   });
 }

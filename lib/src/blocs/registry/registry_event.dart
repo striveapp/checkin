@@ -43,4 +43,9 @@ abstract class RegistryEvent with _$RegistryEvent {
     @required String gymId,
     @required String newName,
   }) = UpdateName;
+
+  const factory RegistryEvent.updateCapacity({
+    @required String gymId,
+    @required int newCapacity,
+  }) = UpdateCapacity;
 }

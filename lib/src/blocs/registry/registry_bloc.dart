@@ -132,6 +132,12 @@ class RegistryBloc extends Bloc<RegistryEvent, RegistryState> {
           .lessonRepository
           .updateLessonName(event.gymId, lessonDate, lessonId, event.newName);
     }
+
+    if (event is UpdateCapacity) {
+      await this
+          .lessonRepository
+          .updateLessonCapacity(event.gymId, lessonDate, lessonId, event.newCapacity);
+    }
   }
 
   bool isAcceptedUser(RegistryUpdated event) {

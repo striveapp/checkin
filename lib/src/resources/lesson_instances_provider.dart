@@ -190,4 +190,18 @@ class LessonInstancesProvider implements LessonRepository {
         .doc(lessonId)
         .update({'name': newName});
   }
+
+  @override
+  Future<void> updateLessonCapacity(
+      String gymId, String date, String lessonId, int newCapacity) async {
+    Logger.log.i("Updating capacity to [$newCapacity] for lesson with id [$lessonId]");
+    await _firestore
+        .collection(gymPath)
+        .doc(gymId)
+        .collection(path)
+        .doc(date)
+        .collection(sub_collection_path)
+        .doc(lessonId)
+        .update({'classCapacity': newCapacity});
+  }
 }

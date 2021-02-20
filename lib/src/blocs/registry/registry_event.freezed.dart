@@ -79,6 +79,14 @@ class _$RegistryEventTearOff {
       newName: newName,
     );
   }
+
+// ignore: unused_element
+  UpdateCapacity updateCapacity({@required String gymId, @required int newCapacity}) {
+    return UpdateCapacity(
+      gymId: gymId,
+      newCapacity: newCapacity,
+    );
+  }
 }
 
 /// @nodoc
@@ -98,6 +106,7 @@ mixin _$RegistryEvent {
     @required TResult updateTimeStart(String gymId, String newTimeStart),
     @required TResult updateTimeEnd(String gymId, String newTimeEnd),
     @required TResult updateName(String gymId, String newName),
+    @required TResult updateCapacity(String gymId, int newCapacity),
   });
   @optionalTypeArgs
   TResult maybeWhen<TResult extends Object>({
@@ -110,6 +119,7 @@ mixin _$RegistryEvent {
     TResult updateTimeStart(String gymId, String newTimeStart),
     TResult updateTimeEnd(String gymId, String newTimeEnd),
     TResult updateName(String gymId, String newName),
+    TResult updateCapacity(String gymId, int newCapacity),
     @required TResult orElse(),
   });
   @optionalTypeArgs
@@ -123,6 +133,7 @@ mixin _$RegistryEvent {
     @required TResult updateTimeStart(UpdateTimeStart value),
     @required TResult updateTimeEnd(UpdateTimeEnd value),
     @required TResult updateName(UpdateName value),
+    @required TResult updateCapacity(UpdateCapacity value),
   });
   @optionalTypeArgs
   TResult maybeMap<TResult extends Object>({
@@ -135,6 +146,7 @@ mixin _$RegistryEvent {
     TResult updateTimeStart(UpdateTimeStart value),
     TResult updateTimeEnd(UpdateTimeEnd value),
     TResult updateName(UpdateName value),
+    TResult updateCapacity(UpdateCapacity value),
     @required TResult orElse(),
   });
 }
@@ -207,6 +219,7 @@ class _$InitializeRegistry with DiagnosticableTreeMixin implements InitializeReg
     @required TResult updateTimeStart(String gymId, String newTimeStart),
     @required TResult updateTimeEnd(String gymId, String newTimeEnd),
     @required TResult updateName(String gymId, String newName),
+    @required TResult updateCapacity(String gymId, int newCapacity),
   }) {
     assert(initializeRegistry != null);
     assert(registryUpdated != null);
@@ -217,6 +230,7 @@ class _$InitializeRegistry with DiagnosticableTreeMixin implements InitializeReg
     assert(updateTimeStart != null);
     assert(updateTimeEnd != null);
     assert(updateName != null);
+    assert(updateCapacity != null);
     return initializeRegistry();
   }
 
@@ -232,6 +246,7 @@ class _$InitializeRegistry with DiagnosticableTreeMixin implements InitializeReg
     TResult updateTimeStart(String gymId, String newTimeStart),
     TResult updateTimeEnd(String gymId, String newTimeEnd),
     TResult updateName(String gymId, String newName),
+    TResult updateCapacity(String gymId, int newCapacity),
     @required TResult orElse(),
   }) {
     assert(orElse != null);
@@ -253,6 +268,7 @@ class _$InitializeRegistry with DiagnosticableTreeMixin implements InitializeReg
     @required TResult updateTimeStart(UpdateTimeStart value),
     @required TResult updateTimeEnd(UpdateTimeEnd value),
     @required TResult updateName(UpdateName value),
+    @required TResult updateCapacity(UpdateCapacity value),
   }) {
     assert(initializeRegistry != null);
     assert(registryUpdated != null);
@@ -263,6 +279,7 @@ class _$InitializeRegistry with DiagnosticableTreeMixin implements InitializeReg
     assert(updateTimeStart != null);
     assert(updateTimeEnd != null);
     assert(updateName != null);
+    assert(updateCapacity != null);
     return initializeRegistry(this);
   }
 
@@ -278,6 +295,7 @@ class _$InitializeRegistry with DiagnosticableTreeMixin implements InitializeReg
     TResult updateTimeStart(UpdateTimeStart value),
     TResult updateTimeEnd(UpdateTimeEnd value),
     TResult updateName(UpdateName value),
+    TResult updateCapacity(UpdateCapacity value),
     @required TResult orElse(),
   }) {
     assert(orElse != null);
@@ -388,6 +406,7 @@ class _$RegistryUpdated with DiagnosticableTreeMixin implements RegistryUpdated 
     @required TResult updateTimeStart(String gymId, String newTimeStart),
     @required TResult updateTimeEnd(String gymId, String newTimeEnd),
     @required TResult updateName(String gymId, String newName),
+    @required TResult updateCapacity(String gymId, int newCapacity),
   }) {
     assert(initializeRegistry != null);
     assert(registryUpdated != null);
@@ -398,6 +417,7 @@ class _$RegistryUpdated with DiagnosticableTreeMixin implements RegistryUpdated 
     assert(updateTimeStart != null);
     assert(updateTimeEnd != null);
     assert(updateName != null);
+    assert(updateCapacity != null);
     return registryUpdated(currentUser, currentLesson);
   }
 
@@ -413,6 +433,7 @@ class _$RegistryUpdated with DiagnosticableTreeMixin implements RegistryUpdated 
     TResult updateTimeStart(String gymId, String newTimeStart),
     TResult updateTimeEnd(String gymId, String newTimeEnd),
     TResult updateName(String gymId, String newName),
+    TResult updateCapacity(String gymId, int newCapacity),
     @required TResult orElse(),
   }) {
     assert(orElse != null);
@@ -434,6 +455,7 @@ class _$RegistryUpdated with DiagnosticableTreeMixin implements RegistryUpdated 
     @required TResult updateTimeStart(UpdateTimeStart value),
     @required TResult updateTimeEnd(UpdateTimeEnd value),
     @required TResult updateName(UpdateName value),
+    @required TResult updateCapacity(UpdateCapacity value),
   }) {
     assert(initializeRegistry != null);
     assert(registryUpdated != null);
@@ -444,6 +466,7 @@ class _$RegistryUpdated with DiagnosticableTreeMixin implements RegistryUpdated 
     assert(updateTimeStart != null);
     assert(updateTimeEnd != null);
     assert(updateName != null);
+    assert(updateCapacity != null);
     return registryUpdated(this);
   }
 
@@ -459,6 +482,7 @@ class _$RegistryUpdated with DiagnosticableTreeMixin implements RegistryUpdated 
     TResult updateTimeStart(UpdateTimeStart value),
     TResult updateTimeEnd(UpdateTimeEnd value),
     TResult updateName(UpdateName value),
+    TResult updateCapacity(UpdateCapacity value),
     @required TResult orElse(),
   }) {
     assert(orElse != null);
@@ -562,6 +586,7 @@ class _$Register with DiagnosticableTreeMixin implements Register {
     @required TResult updateTimeStart(String gymId, String newTimeStart),
     @required TResult updateTimeEnd(String gymId, String newTimeEnd),
     @required TResult updateName(String gymId, String newName),
+    @required TResult updateCapacity(String gymId, int newCapacity),
   }) {
     assert(initializeRegistry != null);
     assert(registryUpdated != null);
@@ -572,6 +597,7 @@ class _$Register with DiagnosticableTreeMixin implements Register {
     assert(updateTimeStart != null);
     assert(updateTimeEnd != null);
     assert(updateName != null);
+    assert(updateCapacity != null);
     return register(gymId, attendee);
   }
 
@@ -587,6 +613,7 @@ class _$Register with DiagnosticableTreeMixin implements Register {
     TResult updateTimeStart(String gymId, String newTimeStart),
     TResult updateTimeEnd(String gymId, String newTimeEnd),
     TResult updateName(String gymId, String newName),
+    TResult updateCapacity(String gymId, int newCapacity),
     @required TResult orElse(),
   }) {
     assert(orElse != null);
@@ -608,6 +635,7 @@ class _$Register with DiagnosticableTreeMixin implements Register {
     @required TResult updateTimeStart(UpdateTimeStart value),
     @required TResult updateTimeEnd(UpdateTimeEnd value),
     @required TResult updateName(UpdateName value),
+    @required TResult updateCapacity(UpdateCapacity value),
   }) {
     assert(initializeRegistry != null);
     assert(registryUpdated != null);
@@ -618,6 +646,7 @@ class _$Register with DiagnosticableTreeMixin implements Register {
     assert(updateTimeStart != null);
     assert(updateTimeEnd != null);
     assert(updateName != null);
+    assert(updateCapacity != null);
     return register(this);
   }
 
@@ -633,6 +662,7 @@ class _$Register with DiagnosticableTreeMixin implements Register {
     TResult updateTimeStart(UpdateTimeStart value),
     TResult updateTimeEnd(UpdateTimeEnd value),
     TResult updateName(UpdateName value),
+    TResult updateCapacity(UpdateCapacity value),
     @required TResult orElse(),
   }) {
     assert(orElse != null);
@@ -736,6 +766,7 @@ class _$Unregister with DiagnosticableTreeMixin implements Unregister {
     @required TResult updateTimeStart(String gymId, String newTimeStart),
     @required TResult updateTimeEnd(String gymId, String newTimeEnd),
     @required TResult updateName(String gymId, String newName),
+    @required TResult updateCapacity(String gymId, int newCapacity),
   }) {
     assert(initializeRegistry != null);
     assert(registryUpdated != null);
@@ -746,6 +777,7 @@ class _$Unregister with DiagnosticableTreeMixin implements Unregister {
     assert(updateTimeStart != null);
     assert(updateTimeEnd != null);
     assert(updateName != null);
+    assert(updateCapacity != null);
     return unregister(gymId, attendee);
   }
 
@@ -761,6 +793,7 @@ class _$Unregister with DiagnosticableTreeMixin implements Unregister {
     TResult updateTimeStart(String gymId, String newTimeStart),
     TResult updateTimeEnd(String gymId, String newTimeEnd),
     TResult updateName(String gymId, String newName),
+    TResult updateCapacity(String gymId, int newCapacity),
     @required TResult orElse(),
   }) {
     assert(orElse != null);
@@ -782,6 +815,7 @@ class _$Unregister with DiagnosticableTreeMixin implements Unregister {
     @required TResult updateTimeStart(UpdateTimeStart value),
     @required TResult updateTimeEnd(UpdateTimeEnd value),
     @required TResult updateName(UpdateName value),
+    @required TResult updateCapacity(UpdateCapacity value),
   }) {
     assert(initializeRegistry != null);
     assert(registryUpdated != null);
@@ -792,6 +826,7 @@ class _$Unregister with DiagnosticableTreeMixin implements Unregister {
     assert(updateTimeStart != null);
     assert(updateTimeEnd != null);
     assert(updateName != null);
+    assert(updateCapacity != null);
     return unregister(this);
   }
 
@@ -807,6 +842,7 @@ class _$Unregister with DiagnosticableTreeMixin implements Unregister {
     TResult updateTimeStart(UpdateTimeStart value),
     TResult updateTimeEnd(UpdateTimeEnd value),
     TResult updateName(UpdateName value),
+    TResult updateCapacity(UpdateCapacity value),
     @required TResult orElse(),
   }) {
     assert(orElse != null);
@@ -898,6 +934,7 @@ class _$AcceptAttendees with DiagnosticableTreeMixin implements AcceptAttendees 
     @required TResult updateTimeStart(String gymId, String newTimeStart),
     @required TResult updateTimeEnd(String gymId, String newTimeEnd),
     @required TResult updateName(String gymId, String newName),
+    @required TResult updateCapacity(String gymId, int newCapacity),
   }) {
     assert(initializeRegistry != null);
     assert(registryUpdated != null);
@@ -908,6 +945,7 @@ class _$AcceptAttendees with DiagnosticableTreeMixin implements AcceptAttendees 
     assert(updateTimeStart != null);
     assert(updateTimeEnd != null);
     assert(updateName != null);
+    assert(updateCapacity != null);
     return acceptAttendees(gymId);
   }
 
@@ -923,6 +961,7 @@ class _$AcceptAttendees with DiagnosticableTreeMixin implements AcceptAttendees 
     TResult updateTimeStart(String gymId, String newTimeStart),
     TResult updateTimeEnd(String gymId, String newTimeEnd),
     TResult updateName(String gymId, String newName),
+    TResult updateCapacity(String gymId, int newCapacity),
     @required TResult orElse(),
   }) {
     assert(orElse != null);
@@ -944,6 +983,7 @@ class _$AcceptAttendees with DiagnosticableTreeMixin implements AcceptAttendees 
     @required TResult updateTimeStart(UpdateTimeStart value),
     @required TResult updateTimeEnd(UpdateTimeEnd value),
     @required TResult updateName(UpdateName value),
+    @required TResult updateCapacity(UpdateCapacity value),
   }) {
     assert(initializeRegistry != null);
     assert(registryUpdated != null);
@@ -954,6 +994,7 @@ class _$AcceptAttendees with DiagnosticableTreeMixin implements AcceptAttendees 
     assert(updateTimeStart != null);
     assert(updateTimeEnd != null);
     assert(updateName != null);
+    assert(updateCapacity != null);
     return acceptAttendees(this);
   }
 
@@ -969,6 +1010,7 @@ class _$AcceptAttendees with DiagnosticableTreeMixin implements AcceptAttendees 
     TResult updateTimeStart(UpdateTimeStart value),
     TResult updateTimeEnd(UpdateTimeEnd value),
     TResult updateName(UpdateName value),
+    TResult updateCapacity(UpdateCapacity value),
     @required TResult orElse(),
   }) {
     assert(orElse != null);
@@ -1059,6 +1101,7 @@ class _$CloseLesson with DiagnosticableTreeMixin implements CloseLesson {
     @required TResult updateTimeStart(String gymId, String newTimeStart),
     @required TResult updateTimeEnd(String gymId, String newTimeEnd),
     @required TResult updateName(String gymId, String newName),
+    @required TResult updateCapacity(String gymId, int newCapacity),
   }) {
     assert(initializeRegistry != null);
     assert(registryUpdated != null);
@@ -1069,6 +1112,7 @@ class _$CloseLesson with DiagnosticableTreeMixin implements CloseLesson {
     assert(updateTimeStart != null);
     assert(updateTimeEnd != null);
     assert(updateName != null);
+    assert(updateCapacity != null);
     return closeLesson(gymId);
   }
 
@@ -1084,6 +1128,7 @@ class _$CloseLesson with DiagnosticableTreeMixin implements CloseLesson {
     TResult updateTimeStart(String gymId, String newTimeStart),
     TResult updateTimeEnd(String gymId, String newTimeEnd),
     TResult updateName(String gymId, String newName),
+    TResult updateCapacity(String gymId, int newCapacity),
     @required TResult orElse(),
   }) {
     assert(orElse != null);
@@ -1105,6 +1150,7 @@ class _$CloseLesson with DiagnosticableTreeMixin implements CloseLesson {
     @required TResult updateTimeStart(UpdateTimeStart value),
     @required TResult updateTimeEnd(UpdateTimeEnd value),
     @required TResult updateName(UpdateName value),
+    @required TResult updateCapacity(UpdateCapacity value),
   }) {
     assert(initializeRegistry != null);
     assert(registryUpdated != null);
@@ -1115,6 +1161,7 @@ class _$CloseLesson with DiagnosticableTreeMixin implements CloseLesson {
     assert(updateTimeStart != null);
     assert(updateTimeEnd != null);
     assert(updateName != null);
+    assert(updateCapacity != null);
     return closeLesson(this);
   }
 
@@ -1130,6 +1177,7 @@ class _$CloseLesson with DiagnosticableTreeMixin implements CloseLesson {
     TResult updateTimeStart(UpdateTimeStart value),
     TResult updateTimeEnd(UpdateTimeEnd value),
     TResult updateName(UpdateName value),
+    TResult updateCapacity(UpdateCapacity value),
     @required TResult orElse(),
   }) {
     assert(orElse != null);
@@ -1232,6 +1280,7 @@ class _$UpdateTimeStart with DiagnosticableTreeMixin implements UpdateTimeStart 
     @required TResult updateTimeStart(String gymId, String newTimeStart),
     @required TResult updateTimeEnd(String gymId, String newTimeEnd),
     @required TResult updateName(String gymId, String newName),
+    @required TResult updateCapacity(String gymId, int newCapacity),
   }) {
     assert(initializeRegistry != null);
     assert(registryUpdated != null);
@@ -1242,6 +1291,7 @@ class _$UpdateTimeStart with DiagnosticableTreeMixin implements UpdateTimeStart 
     assert(updateTimeStart != null);
     assert(updateTimeEnd != null);
     assert(updateName != null);
+    assert(updateCapacity != null);
     return updateTimeStart(gymId, newTimeStart);
   }
 
@@ -1257,6 +1307,7 @@ class _$UpdateTimeStart with DiagnosticableTreeMixin implements UpdateTimeStart 
     TResult updateTimeStart(String gymId, String newTimeStart),
     TResult updateTimeEnd(String gymId, String newTimeEnd),
     TResult updateName(String gymId, String newName),
+    TResult updateCapacity(String gymId, int newCapacity),
     @required TResult orElse(),
   }) {
     assert(orElse != null);
@@ -1278,6 +1329,7 @@ class _$UpdateTimeStart with DiagnosticableTreeMixin implements UpdateTimeStart 
     @required TResult updateTimeStart(UpdateTimeStart value),
     @required TResult updateTimeEnd(UpdateTimeEnd value),
     @required TResult updateName(UpdateName value),
+    @required TResult updateCapacity(UpdateCapacity value),
   }) {
     assert(initializeRegistry != null);
     assert(registryUpdated != null);
@@ -1288,6 +1340,7 @@ class _$UpdateTimeStart with DiagnosticableTreeMixin implements UpdateTimeStart 
     assert(updateTimeStart != null);
     assert(updateTimeEnd != null);
     assert(updateName != null);
+    assert(updateCapacity != null);
     return updateTimeStart(this);
   }
 
@@ -1303,6 +1356,7 @@ class _$UpdateTimeStart with DiagnosticableTreeMixin implements UpdateTimeStart 
     TResult updateTimeStart(UpdateTimeStart value),
     TResult updateTimeEnd(UpdateTimeEnd value),
     TResult updateName(UpdateName value),
+    TResult updateCapacity(UpdateCapacity value),
     @required TResult orElse(),
   }) {
     assert(orElse != null);
@@ -1407,6 +1461,7 @@ class _$UpdateTimeEnd with DiagnosticableTreeMixin implements UpdateTimeEnd {
     @required TResult updateTimeStart(String gymId, String newTimeStart),
     @required TResult updateTimeEnd(String gymId, String newTimeEnd),
     @required TResult updateName(String gymId, String newName),
+    @required TResult updateCapacity(String gymId, int newCapacity),
   }) {
     assert(initializeRegistry != null);
     assert(registryUpdated != null);
@@ -1417,6 +1472,7 @@ class _$UpdateTimeEnd with DiagnosticableTreeMixin implements UpdateTimeEnd {
     assert(updateTimeStart != null);
     assert(updateTimeEnd != null);
     assert(updateName != null);
+    assert(updateCapacity != null);
     return updateTimeEnd(gymId, newTimeEnd);
   }
 
@@ -1432,6 +1488,7 @@ class _$UpdateTimeEnd with DiagnosticableTreeMixin implements UpdateTimeEnd {
     TResult updateTimeStart(String gymId, String newTimeStart),
     TResult updateTimeEnd(String gymId, String newTimeEnd),
     TResult updateName(String gymId, String newName),
+    TResult updateCapacity(String gymId, int newCapacity),
     @required TResult orElse(),
   }) {
     assert(orElse != null);
@@ -1453,6 +1510,7 @@ class _$UpdateTimeEnd with DiagnosticableTreeMixin implements UpdateTimeEnd {
     @required TResult updateTimeStart(UpdateTimeStart value),
     @required TResult updateTimeEnd(UpdateTimeEnd value),
     @required TResult updateName(UpdateName value),
+    @required TResult updateCapacity(UpdateCapacity value),
   }) {
     assert(initializeRegistry != null);
     assert(registryUpdated != null);
@@ -1463,6 +1521,7 @@ class _$UpdateTimeEnd with DiagnosticableTreeMixin implements UpdateTimeEnd {
     assert(updateTimeStart != null);
     assert(updateTimeEnd != null);
     assert(updateName != null);
+    assert(updateCapacity != null);
     return updateTimeEnd(this);
   }
 
@@ -1478,6 +1537,7 @@ class _$UpdateTimeEnd with DiagnosticableTreeMixin implements UpdateTimeEnd {
     TResult updateTimeStart(UpdateTimeStart value),
     TResult updateTimeEnd(UpdateTimeEnd value),
     TResult updateName(UpdateName value),
+    TResult updateCapacity(UpdateCapacity value),
     @required TResult orElse(),
   }) {
     assert(orElse != null);
@@ -1582,6 +1642,7 @@ class _$UpdateName with DiagnosticableTreeMixin implements UpdateName {
     @required TResult updateTimeStart(String gymId, String newTimeStart),
     @required TResult updateTimeEnd(String gymId, String newTimeEnd),
     @required TResult updateName(String gymId, String newName),
+    @required TResult updateCapacity(String gymId, int newCapacity),
   }) {
     assert(initializeRegistry != null);
     assert(registryUpdated != null);
@@ -1592,6 +1653,7 @@ class _$UpdateName with DiagnosticableTreeMixin implements UpdateName {
     assert(updateTimeStart != null);
     assert(updateTimeEnd != null);
     assert(updateName != null);
+    assert(updateCapacity != null);
     return updateName(gymId, newName);
   }
 
@@ -1607,6 +1669,7 @@ class _$UpdateName with DiagnosticableTreeMixin implements UpdateName {
     TResult updateTimeStart(String gymId, String newTimeStart),
     TResult updateTimeEnd(String gymId, String newTimeEnd),
     TResult updateName(String gymId, String newName),
+    TResult updateCapacity(String gymId, int newCapacity),
     @required TResult orElse(),
   }) {
     assert(orElse != null);
@@ -1628,6 +1691,7 @@ class _$UpdateName with DiagnosticableTreeMixin implements UpdateName {
     @required TResult updateTimeStart(UpdateTimeStart value),
     @required TResult updateTimeEnd(UpdateTimeEnd value),
     @required TResult updateName(UpdateName value),
+    @required TResult updateCapacity(UpdateCapacity value),
   }) {
     assert(initializeRegistry != null);
     assert(registryUpdated != null);
@@ -1638,6 +1702,7 @@ class _$UpdateName with DiagnosticableTreeMixin implements UpdateName {
     assert(updateTimeStart != null);
     assert(updateTimeEnd != null);
     assert(updateName != null);
+    assert(updateCapacity != null);
     return updateName(this);
   }
 
@@ -1653,6 +1718,7 @@ class _$UpdateName with DiagnosticableTreeMixin implements UpdateName {
     TResult updateTimeStart(UpdateTimeStart value),
     TResult updateTimeEnd(UpdateTimeEnd value),
     TResult updateName(UpdateName value),
+    TResult updateCapacity(UpdateCapacity value),
     @required TResult orElse(),
   }) {
     assert(orElse != null);
@@ -1669,4 +1735,185 @@ abstract class UpdateName implements RegistryEvent {
   String get gymId;
   String get newName;
   $UpdateNameCopyWith<UpdateName> get copyWith;
+}
+
+/// @nodoc
+abstract class $UpdateCapacityCopyWith<$Res> {
+  factory $UpdateCapacityCopyWith(UpdateCapacity value, $Res Function(UpdateCapacity) then) =
+      _$UpdateCapacityCopyWithImpl<$Res>;
+  $Res call({String gymId, int newCapacity});
+}
+
+/// @nodoc
+class _$UpdateCapacityCopyWithImpl<$Res> extends _$RegistryEventCopyWithImpl<$Res>
+    implements $UpdateCapacityCopyWith<$Res> {
+  _$UpdateCapacityCopyWithImpl(UpdateCapacity _value, $Res Function(UpdateCapacity) _then)
+      : super(_value, (v) => _then(v as UpdateCapacity));
+
+  @override
+  UpdateCapacity get _value => super._value as UpdateCapacity;
+
+  @override
+  $Res call({
+    Object gymId = freezed,
+    Object newCapacity = freezed,
+  }) {
+    return _then(UpdateCapacity(
+      gymId: gymId == freezed ? _value.gymId : gymId as String,
+      newCapacity: newCapacity == freezed ? _value.newCapacity : newCapacity as int,
+    ));
+  }
+}
+
+/// @nodoc
+class _$UpdateCapacity with DiagnosticableTreeMixin implements UpdateCapacity {
+  const _$UpdateCapacity({@required this.gymId, @required this.newCapacity})
+      : assert(gymId != null),
+        assert(newCapacity != null);
+
+  @override
+  final String gymId;
+  @override
+  final int newCapacity;
+
+  @override
+  String toString({DiagnosticLevel minLevel = DiagnosticLevel.info}) {
+    return 'RegistryEvent.updateCapacity(gymId: $gymId, newCapacity: $newCapacity)';
+  }
+
+  @override
+  void debugFillProperties(DiagnosticPropertiesBuilder properties) {
+    super.debugFillProperties(properties);
+    properties
+      ..add(DiagnosticsProperty('type', 'RegistryEvent.updateCapacity'))
+      ..add(DiagnosticsProperty('gymId', gymId))
+      ..add(DiagnosticsProperty('newCapacity', newCapacity));
+  }
+
+  @override
+  bool operator ==(dynamic other) {
+    return identical(this, other) ||
+        (other is UpdateCapacity &&
+            (identical(other.gymId, gymId) ||
+                const DeepCollectionEquality().equals(other.gymId, gymId)) &&
+            (identical(other.newCapacity, newCapacity) ||
+                const DeepCollectionEquality().equals(other.newCapacity, newCapacity)));
+  }
+
+  @override
+  int get hashCode =>
+      runtimeType.hashCode ^
+      const DeepCollectionEquality().hash(gymId) ^
+      const DeepCollectionEquality().hash(newCapacity);
+
+  @override
+  $UpdateCapacityCopyWith<UpdateCapacity> get copyWith =>
+      _$UpdateCapacityCopyWithImpl<UpdateCapacity>(this, _$identity);
+
+  @override
+  @optionalTypeArgs
+  TResult when<TResult extends Object>({
+    @required TResult initializeRegistry(),
+    @required TResult registryUpdated(User currentUser, Lesson currentLesson),
+    @required TResult register(String gymId, Attendee attendee),
+    @required TResult unregister(String gymId, Attendee attendee),
+    @required TResult acceptAttendees(String gymId),
+    @required TResult closeLesson(String gymId),
+    @required TResult updateTimeStart(String gymId, String newTimeStart),
+    @required TResult updateTimeEnd(String gymId, String newTimeEnd),
+    @required TResult updateName(String gymId, String newName),
+    @required TResult updateCapacity(String gymId, int newCapacity),
+  }) {
+    assert(initializeRegistry != null);
+    assert(registryUpdated != null);
+    assert(register != null);
+    assert(unregister != null);
+    assert(acceptAttendees != null);
+    assert(closeLesson != null);
+    assert(updateTimeStart != null);
+    assert(updateTimeEnd != null);
+    assert(updateName != null);
+    assert(updateCapacity != null);
+    return updateCapacity(gymId, newCapacity);
+  }
+
+  @override
+  @optionalTypeArgs
+  TResult maybeWhen<TResult extends Object>({
+    TResult initializeRegistry(),
+    TResult registryUpdated(User currentUser, Lesson currentLesson),
+    TResult register(String gymId, Attendee attendee),
+    TResult unregister(String gymId, Attendee attendee),
+    TResult acceptAttendees(String gymId),
+    TResult closeLesson(String gymId),
+    TResult updateTimeStart(String gymId, String newTimeStart),
+    TResult updateTimeEnd(String gymId, String newTimeEnd),
+    TResult updateName(String gymId, String newName),
+    TResult updateCapacity(String gymId, int newCapacity),
+    @required TResult orElse(),
+  }) {
+    assert(orElse != null);
+    if (updateCapacity != null) {
+      return updateCapacity(gymId, newCapacity);
+    }
+    return orElse();
+  }
+
+  @override
+  @optionalTypeArgs
+  TResult map<TResult extends Object>({
+    @required TResult initializeRegistry(InitializeRegistry value),
+    @required TResult registryUpdated(RegistryUpdated value),
+    @required TResult register(Register value),
+    @required TResult unregister(Unregister value),
+    @required TResult acceptAttendees(AcceptAttendees value),
+    @required TResult closeLesson(CloseLesson value),
+    @required TResult updateTimeStart(UpdateTimeStart value),
+    @required TResult updateTimeEnd(UpdateTimeEnd value),
+    @required TResult updateName(UpdateName value),
+    @required TResult updateCapacity(UpdateCapacity value),
+  }) {
+    assert(initializeRegistry != null);
+    assert(registryUpdated != null);
+    assert(register != null);
+    assert(unregister != null);
+    assert(acceptAttendees != null);
+    assert(closeLesson != null);
+    assert(updateTimeStart != null);
+    assert(updateTimeEnd != null);
+    assert(updateName != null);
+    assert(updateCapacity != null);
+    return updateCapacity(this);
+  }
+
+  @override
+  @optionalTypeArgs
+  TResult maybeMap<TResult extends Object>({
+    TResult initializeRegistry(InitializeRegistry value),
+    TResult registryUpdated(RegistryUpdated value),
+    TResult register(Register value),
+    TResult unregister(Unregister value),
+    TResult acceptAttendees(AcceptAttendees value),
+    TResult closeLesson(CloseLesson value),
+    TResult updateTimeStart(UpdateTimeStart value),
+    TResult updateTimeEnd(UpdateTimeEnd value),
+    TResult updateName(UpdateName value),
+    TResult updateCapacity(UpdateCapacity value),
+    @required TResult orElse(),
+  }) {
+    assert(orElse != null);
+    if (updateCapacity != null) {
+      return updateCapacity(this);
+    }
+    return orElse();
+  }
+}
+
+abstract class UpdateCapacity implements RegistryEvent {
+  const factory UpdateCapacity({@required String gymId, @required int newCapacity}) =
+      _$UpdateCapacity;
+
+  String get gymId;
+  int get newCapacity;
+  $UpdateCapacityCopyWith<UpdateCapacity> get copyWith;
 }
