@@ -206,8 +206,16 @@ class LessonInstancesProvider implements LessonRepository {
   }
 
   @override
-  Future<void> updateLessonImage(String gymId, String date, String lessonId, String newImageUrl) {
-    // TODO: implement updateUserImageUrl
-    throw UnimplementedError();
+  Future<void> updateLessonImage(
+      String gymId, String date, String lessonId, String newImageUrl) async {
+    Logger.log.i("Updating image to [$newImageUrl] for lesson with id [$lessonId]");
+    await _firestore
+        .collection(gymPath)
+        .doc(gymId)
+        .collection(path)
+        .doc(date)
+        .collection(sub_collection_path)
+        .doc(lessonId)
+        .update({'imageUrl': newImageUrl});
   }
 }

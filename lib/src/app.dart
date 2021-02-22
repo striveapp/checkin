@@ -25,18 +25,12 @@ import 'blocs/version/bloc.dart';
 
 class App extends StatefulWidget {
   final ThemeData _themeData;
-  final StorageRepository _storageRepository;
-  final ImageRepository _imageRepository;
 
   App({
     Key key,
     @required ThemeData themeData,
-    @required StorageRepository storageRepository,
-    @required ImageRepository imageRepository,
-  })  : assert(themeData != null && storageRepository != null && imageRepository != null),
+  })  : assert(themeData != null),
         _themeData = themeData,
-        _storageRepository = storageRepository,
-        _imageRepository = imageRepository,
         super(key: key);
 
   @override
@@ -155,10 +149,10 @@ class _AppState extends State<App> with WidgetsBindingObserver {
                 providers: [
                   BlocProvider<UserBloc>(
                       create: (BuildContext context) => UserBloc(
-                            userRepository: RepositoryProvider.of<UserRepository>(context),
-                            storageRepository: widget._storageRepository,
-                            imageRepository: widget._imageRepository,
-                            authBloc: BlocProvider.of<AuthBloc>(context),
+                            userRepository: context.read<UserRepository>(),
+                            storageRepository: context.read<StorageRepository>(),
+                            imageRepository: context.read<ImageRepository>(),
+                            authBloc: context.read<AuthBloc>(),
                           )),
                   BlocProvider<GymBloc>(
                     create: (BuildContext context) => GymBloc(

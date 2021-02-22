@@ -8,7 +8,10 @@ class ImageProvider implements ImageRepository {
   @override
   Future<File> getCroppedImage() async {
     PickedFile selectedImage = await ImagePicker().getImage(source: ImageSource.gallery);
-    return await ImageCropper.cropImage(
-        cropStyle: CropStyle.circle, sourcePath: selectedImage.path);
+    if (selectedImage != null) {
+      return await ImageCropper.cropImage(
+          cropStyle: CropStyle.circle, sourcePath: selectedImage.path);
+    }
+    return null;
   }
 }

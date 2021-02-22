@@ -149,7 +149,6 @@ class RegistryBloc extends Bloc<RegistryEvent, RegistryState> {
     if (event is UpdateImageUrl) {
       File croppedFile = await imageRepository.getCroppedImage();
       if (croppedFile != null) {
-        //TODO: customName
         String fileName = "$lessonId-${DateTime.now()}.png";
         String newImageUrl = await storageRepository.uploadImage(croppedFile, fileName);
 

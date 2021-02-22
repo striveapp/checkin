@@ -4,7 +4,6 @@ import 'package:checkin/src/models/master.dart';
 import 'package:checkin/src/ui/components/editable_image.dart';
 import 'package:checkin/src/ui/components/loading_indicator.dart';
 import 'package:checkin/src/ui/components/rounded_image.dart';
-import 'package:checkin/src/util/debug_util.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 
@@ -26,12 +25,14 @@ class LessonInfos extends StatelessWidget {
               children: <Widget>[
                 Padding(
                   padding: const EdgeInsets.only(right: 16),
-                  child: currentUser.isOwner && isInDebugMode
+                  child: currentUser.isOwner
                       ? EditableImage(
                           imageUrl: currentLesson.imageUrl,
                           isGrayscale: currentLesson.isClosed,
                           onEdit: () {
-                            print("aaa fuckkooooff!");
+                            context
+                                .read<RegistryBloc>()
+                                .add(UpdateImageUrl(gymId: currentUser.selectedGymId));
                           },
                         )
                       : RoundedImage(

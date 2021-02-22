@@ -158,8 +158,6 @@ Future<void> mainCommon(AppConfig appConfig) async {
           child: BlocBuilder<ThemeBloc, ThemeState>(
               builder: (BuildContext context, ThemeState state) => App(
                     themeData: state.themeData,
-                    storageRepository: context.read<StorageRepository>(),
-                    imageRepository: context.read<ImageRepository>(),
                   )),
         ),
       ),
