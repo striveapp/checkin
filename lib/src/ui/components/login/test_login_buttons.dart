@@ -14,30 +14,27 @@ class TestLoginButtons extends StatelessWidget {
         SizedBox(
           height: 20,
         ),
-        RaisedButton(
+        ElevatedButton(
           key: Key('backdoorButton'),
           onPressed: () => context.read<LoginBloc>().add(LoginWithTestUser()),
           child: Text('Test'),
         ),
         SizedBox(height: 10),
-        RaisedButton(
+        ElevatedButton(
           key: Key('backdoorButtonTwo'),
-          onPressed: () =>
-              context.read<LoginBloc>().add(LoginWithTestUserTwo()),
+          onPressed: () => context.read<LoginBloc>().add(LoginWithTestUserTwo()),
           child: Text('Test 2'),
         ),
         SizedBox(height: 10),
-        RaisedButton(
+        ElevatedButton(
           key: Key('backdoorAdminButton'),
-          onPressed: () =>
-              context.read<LoginBloc>().add(LoginWithTestUserAdmin()),
+          onPressed: () => context.read<LoginBloc>().add(LoginWithTestUserAdmin()),
           child: Text('Test Admin'),
         ),
         SizedBox(height: 10),
-        RaisedButton(
+        ElevatedButton(
           key: Key('backdoorMasterButton'),
-          onPressed: () =>
-              context.read<LoginBloc>().add(LoginWithTestUserMaster()),
+          onPressed: () => context.read<LoginBloc>().add(LoginWithTestUserMaster()),
           child: Text('Test Master'),
         ),
       ],

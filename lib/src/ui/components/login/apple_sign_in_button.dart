@@ -1,8 +1,8 @@
 import 'package:checkin/src/blocs/login/bloc.dart';
+import 'package:checkin/src/localization/localization.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:sign_in_with_apple/sign_in_with_apple.dart';
-import 'package:checkin/src/localization/localization.dart';
 
 class AppleSignInButton extends StatelessWidget {
   static const String appleSignIn = 'Sign in with Apple';
@@ -19,10 +19,8 @@ class AppleSignInButton extends StatelessWidget {
       child: SignInWithAppleButton(
         text: appleSignIn.i18n,
         iconAlignment: IconAlignment.left,
-        height: 46,
-        style: darkMode
-            ? SignInWithAppleButtonStyle.white
-            : SignInWithAppleButtonStyle.black,
+        height: 44,
+        style: darkMode ? SignInWithAppleButtonStyle.white : SignInWithAppleButtonStyle.black,
         onPressed: () {
           context.read<LoginBloc>().add(LoginWithApple());
         },

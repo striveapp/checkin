@@ -10,7 +10,7 @@ class CancelButton extends StatelessWidget {
   Widget build(BuildContext context) {
     return ElevatedButton(
       style: ElevatedButton.styleFrom(
-        primary: Theme.of(context).buttonTheme.colorScheme.error,
+        primary: Theme.of(context).errorColor,
       ),
       child: Padding(
         padding: EdgeInsets.symmetric(vertical: 10, horizontal: 10),

@@ -36,6 +36,5 @@ class LoginButtons extends StatelessWidget {
     );
   }
 
-  bool _isDarkMode(BuildContext context) =>
-      Theme.of(context).brightness == Brightness.dark;
+  bool _isDarkMode(BuildContext context) => Theme.of(context).brightness == Brightness.dark;
 }

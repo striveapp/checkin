@@ -6,8 +6,8 @@ final theme = {
   ThemeType.Dark: ThemeData(
     fontFamily: 'Raleway',
     splashColor: Color(0xFFFF0024),
-    primaryColor: Color(0xFFEA3333),
-    accentColor: Color(0xFFd32f2f),
+    primaryColor: Color(0xFFF44336),
+    accentColor: Color(0xFFD32F2F),
     brightness: Brightness.dark,
     backgroundColor: Color(0xFF141414),
     buttonColor: Color(0xFF7C4DFF),
@@ -70,7 +70,7 @@ final theme = {
     elevatedButtonTheme: ElevatedButtonThemeData(
         style: ElevatedButton.styleFrom(
       primary: Color(0xFF7C4DFF),
-      onSurface: Color(0xFFBBBBBB),
+      onSurface: Color(0xFF7C4DFF),
       minimumSize: Size(88, 48),
       padding: EdgeInsets.symmetric(horizontal: 16),
       shape: RoundedRectangleBorder(
@@ -125,8 +125,8 @@ final theme = {
   ThemeType.NewLight: ThemeData(
     fontFamily: 'Raleway',
     splashColor: Color(0xFFFF0024),
-    primaryColor: Color(0xFFEA3333),
-    accentColor: Color(0xFFd32f2f),
+    primaryColor: Color(0xFFF44336),
+    accentColor: Color(0xFFD32F2F),
     backgroundColor: Color(0xFFEEEEEE),
     buttonColor: Color(0xFF7C4DFF),
     errorColor: Color(0xFFEF5350),
@@ -189,7 +189,7 @@ final theme = {
     elevatedButtonTheme: ElevatedButtonThemeData(
         style: ElevatedButton.styleFrom(
       primary: Color(0xFF7C4DFF),
-      onSurface: Color(0xFFBBBBBB),
+      onSurface: Color(0xFF7C4DFF),
       minimumSize: Size(88, 48),
       padding: EdgeInsets.symmetric(horizontal: 16),
       shape: RoundedRectangleBorder(

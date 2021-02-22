@@ -11,7 +11,7 @@ class EditableImage extends StatelessWidget {
     Key key,
     this.imageUrl,
     this.onEdit,
-    this.isGrayscale,
+    this.isGrayscale = false,
   }) : super(key: key);
 
   @override

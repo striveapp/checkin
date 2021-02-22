@@ -12,9 +12,14 @@ class EditLessonButton extends StatelessWidget {
       return state.maybeMap(
           registryLoaded: (RegistryLoaded registryState) {
             return !registryState.currentLesson.isClosed && registryState.currentUser.isOwner
-                ? RawMaterialButton(
+                ? ElevatedButton(
                     key: Key('editClassButton'),
-                    constraints: BoxConstraints(minHeight: 0, minWidth: 0),
+                    style: ElevatedButton.styleFrom(
+                      elevation: 2.0,
+                      padding: EdgeInsets.all(10.0),
+                      shape: CircleBorder(),
+                      minimumSize: Size(40, 40),
+                    ),
                     onPressed: () {
                       showModalBottomSheet(
                           shape: RoundedRectangleBorder(
@@ -27,15 +32,11 @@ class EditLessonButton extends StatelessWidget {
                                   gymId: registryState.currentUser.selectedGymId,
                                   lesson: registryState.currentLesson)));
                     },
-                    elevation: 2.0,
-                    fillColor: Theme.of(context).buttonColor,
                     child: Icon(
                       Icons.edit,
                       color: Colors.white,
                       size: 22,
                     ),
-                    padding: EdgeInsets.all(10.0),
-                    shape: CircleBorder(),
                   )
                 : EmptyWidget();
           },

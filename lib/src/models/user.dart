@@ -24,7 +24,7 @@ class User extends Equatable {
     this.grade,
     this.selectedGymId,
     this.isOwner = false,
-    this.hasActivePayments,
+    this.hasActivePayments = false,
     this.knownGymIds,
   });
 

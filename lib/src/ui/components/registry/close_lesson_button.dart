@@ -13,9 +13,15 @@ class CloseLessonButton extends StatelessWidget {
       return state.maybeMap(
           registryLoaded: (RegistryLoaded registryState) {
             return !registryState.currentLesson.isClosed && registryState.currentUser.isOwner
-                ? RawMaterialButton(
+                ? ElevatedButton(
                     key: Key('closeClassButton'),
-                    constraints: BoxConstraints(minHeight: 0, minWidth: 0),
+                    style: ElevatedButton.styleFrom(
+                      elevation: 2.0,
+                      padding: EdgeInsets.all(10.0),
+                      shape: CircleBorder(),
+                      primary: Theme.of(context).errorColor,
+                      minimumSize: Size(40, 40),
+                    ),
                     onPressed: () {
                       showDialog(
                         context: context,
@@ -24,15 +30,11 @@ class CloseLessonButton extends StatelessWidget {
                         ).build(context),
                       );
                     },
-                    elevation: 2.0,
-                    fillColor: Theme.of(context).accentColor,
                     child: Icon(
                       Icons.close,
                       color: Colors.white,
                       size: 22,
                     ),
-                    padding: EdgeInsets.all(10.0),
-                    shape: CircleBorder(),
                   )
                 : EmptyWidget();
           },
