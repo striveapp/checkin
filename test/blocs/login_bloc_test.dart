@@ -17,8 +17,7 @@ class MockAuthRepository extends Mock implements AuthRepository {}
 
 class MockAnalyticsRepository extends Mock implements AnalyticsRepository {}
 
-class MockLocalStorageRepository extends Mock
-    implements LocalStorageRepository {}
+class MockLocalStorageRepository extends Mock implements LocalStorageRepository {}
 
 void main() {
   group("LoginBloc", () {
@@ -80,42 +79,77 @@ void main() {
 
     group("on LoginWithGoogle event", () {
       group("when a logged user is returned", () {
-        setUp(() {
-          when(mockAuthRepository.signInWithGoogle())
-              .thenAnswer((_) => Future<User>.value(fakeUser));
-          when(mockAnalyticsRepository.setUserProperties(fakeUser.uid))
-              .thenAnswer((realInvocation) => null);
-          when(mockAnalyticsRepository.logLoginWithGoogleSignIn())
-              .thenAnswer((realInvocation) => null);
+        group("and when isFirstLogin", () {
+          setUp(() {
+            when(mockAuthRepository.signInWithGoogle())
+                .thenAnswer((_) => Future<User>.value(fakeUser));
+            when(mockAnalyticsRepository.setUserProperties(fakeUser.uid))
+                .thenAnswer((realInvocation) => null);
+            when(mockAnalyticsRepository.logLoginWithGoogleSignIn())
+                .thenAnswer((realInvocation) => null);
 
-          when(mockUserRepository.createUser(fakeUser))
-              .thenAnswer((realInvocation) => null);
+            when(mockUserRepository.isFirstLogin(fakeUser.email))
+                .thenAnswer((realInvocation) => Future.value(true));
+            when(mockUserRepository.createUser(fakeUser)).thenAnswer((realInvocation) => null);
+          });
+
+          tearDown(() {
+            verify(mockAuthRepository.signInWithGoogle());
+            verify(mockAnalyticsRepository.setUserProperties(fakeUser.uid));
+            verify(mockAnalyticsRepository.logLoginWithGoogleSignIn());
+            verify(mockUserRepository.isFirstLogin(fakeUser.email));
+            verify(mockUserRepository.createUser(fakeUser));
+          });
+
+          blocTest(
+            "sign in and create the user without a gym",
+            build: () => LoginBloc(
+              authRepository: mockAuthRepository,
+              userRepository: mockUserRepository,
+              analyticsRepository: mockAnalyticsRepository,
+              localStorageRepository: mockLocalStorageRepository,
+            ),
+            act: (bloc) => bloc.add(LoginWithGoogle()),
+            expect: [],
+          );
         });
+        group("and when NOT isFirstLogin", () {
+          setUp(() {
+            when(mockAuthRepository.signInWithGoogle())
+                .thenAnswer((_) => Future<User>.value(fakeUser));
+            when(mockAnalyticsRepository.setUserProperties(fakeUser.uid))
+                .thenAnswer((realInvocation) => null);
+            when(mockAnalyticsRepository.logLoginWithGoogleSignIn())
+                .thenAnswer((realInvocation) => null);
 
-        tearDown(() {
-          verify(mockAuthRepository.signInWithGoogle());
-          verify(mockAnalyticsRepository.setUserProperties(fakeUser.uid));
-          verify(mockAnalyticsRepository.logLoginWithGoogleSignIn());
-          verify(mockUserRepository.createUser(fakeUser));
+            when(mockUserRepository.isFirstLogin(fakeUser.email))
+                .thenAnswer((realInvocation) => Future.value(false));
+          });
+
+          tearDown(() {
+            verify(mockAuthRepository.signInWithGoogle());
+            verify(mockAnalyticsRepository.setUserProperties(fakeUser.uid));
+            verify(mockAnalyticsRepository.logLoginWithGoogleSignIn());
+            verify(mockUserRepository.isFirstLogin(fakeUser.email));
+          });
+
+          blocTest(
+            "sign in and create the user without a gym",
+            build: () => LoginBloc(
+              authRepository: mockAuthRepository,
+              userRepository: mockUserRepository,
+              analyticsRepository: mockAnalyticsRepository,
+              localStorageRepository: mockLocalStorageRepository,
+            ),
+            act: (bloc) => bloc.add(LoginWithGoogle()),
+            expect: [],
+          );
         });
-
-        blocTest(
-          "sign in and create the user without a gym",
-          build: () => LoginBloc(
-            authRepository: mockAuthRepository,
-            userRepository: mockUserRepository,
-            analyticsRepository: mockAnalyticsRepository,
-            localStorageRepository: mockLocalStorageRepository,
-          ),
-          act: (bloc) => bloc.add(LoginWithGoogle()),
-          expect: [],
-        );
       });
 
       group("when no user is returned", () {
         setUp(() {
-          when(mockAuthRepository.signInWithGoogle())
-              .thenAnswer((_) => Future<User>.value(null));
+          when(mockAuthRepository.signInWithGoogle()).thenAnswer((_) => Future<User>.value(null));
         });
 
         tearDown(() {
@@ -162,53 +196,84 @@ void main() {
                   localStorageRepository: mockLocalStorageRepository,
                 ),
             act: (bloc) => bloc.add(LoginWithGoogle()),
-            expect: [
-              LoginFailure(
-                  errorMessage:
-                      "Unexpected error! Please contact the gym owner")
-            ],
+            expect: [LoginFailure(errorMessage: "Unexpected error! Please contact the gym owner")],
             verify: (bloc) {});
       });
     });
 
     group("on LoginWithApple event", () {
       group("when a loggedUser is returned", () {
-        setUp(() {
-          when(mockAuthRepository.signInWithApple())
-              .thenAnswer((_) => Future<User>.value(fakeUser));
-          when(mockAnalyticsRepository.setUserProperties(fakeUser.uid))
-              .thenAnswer((realInvocation) => null);
-          when(mockAnalyticsRepository.logLoginWithAppleSignIn())
-              .thenAnswer((realInvocation) => null);
+        group("and when isFirstLogin", () {
+          setUp(() {
+            when(mockAuthRepository.signInWithApple())
+                .thenAnswer((_) => Future<User>.value(fakeUser));
+            when(mockAnalyticsRepository.setUserProperties(fakeUser.uid))
+                .thenAnswer((realInvocation) => null);
+            when(mockAnalyticsRepository.logLoginWithAppleSignIn())
+                .thenAnswer((realInvocation) => null);
 
-          when(mockUserRepository.createUser(fakeUser))
-              .thenAnswer((realInvocation) => null);
+            when(mockUserRepository.isFirstLogin(fakeUser.email))
+                .thenAnswer((realInvocation) => Future.value(true));
+            when(mockUserRepository.createUser(fakeUser)).thenAnswer((realInvocation) => null);
+          });
+
+          tearDown(() {
+            verify(mockAuthRepository.signInWithApple());
+            verify(mockAnalyticsRepository.setUserProperties(fakeUser.uid));
+            verify(mockAnalyticsRepository.logLoginWithAppleSignIn());
+            verify(mockUserRepository.isFirstLogin(fakeUser.email));
+            verify(mockUserRepository.createUser(fakeUser));
+          });
+
+          blocTest(
+            "sign in and create the user without a gym",
+            build: () => LoginBloc(
+              authRepository: mockAuthRepository,
+              userRepository: mockUserRepository,
+              analyticsRepository: mockAnalyticsRepository,
+              localStorageRepository: mockLocalStorageRepository,
+            ),
+            act: (bloc) => bloc.add(LoginWithApple()),
+            expect: [],
+          );
         });
+        group("and when NOT isFirstLogin", () {
+          setUp(() {
+            when(mockAuthRepository.signInWithApple())
+                .thenAnswer((_) => Future<User>.value(fakeUser));
+            when(mockAnalyticsRepository.setUserProperties(fakeUser.uid))
+                .thenAnswer((realInvocation) => null);
+            when(mockAnalyticsRepository.logLoginWithAppleSignIn())
+                .thenAnswer((realInvocation) => null);
 
-        tearDown(() {
-          verify(mockAuthRepository.signInWithApple());
-          verify(mockAnalyticsRepository.setUserProperties(fakeUser.uid));
-          verify(mockAnalyticsRepository.logLoginWithAppleSignIn());
-          verify(mockUserRepository.createUser(fakeUser));
+            when(mockUserRepository.isFirstLogin(fakeUser.email))
+                .thenAnswer((realInvocation) => Future.value(false));
+          });
+
+          tearDown(() {
+            verify(mockAuthRepository.signInWithApple());
+            verify(mockAnalyticsRepository.setUserProperties(fakeUser.uid));
+            verify(mockAnalyticsRepository.logLoginWithAppleSignIn());
+            verify(mockUserRepository.isFirstLogin(fakeUser.email));
+          });
+
+          blocTest(
+            "sign in but should NOT create the user",
+            build: () => LoginBloc(
+              authRepository: mockAuthRepository,
+              userRepository: mockUserRepository,
+              analyticsRepository: mockAnalyticsRepository,
+              localStorageRepository: mockLocalStorageRepository,
+            ),
+            act: (bloc) => bloc.add(LoginWithApple()),
+            expect: [],
+          );
         });
-
-        blocTest(
-          "sign in and create the user without a gym",
-          build: () => LoginBloc(
-            authRepository: mockAuthRepository,
-            userRepository: mockUserRepository,
-            analyticsRepository: mockAnalyticsRepository,
-            localStorageRepository: mockLocalStorageRepository,
-          ),
-          act: (bloc) => bloc.add(LoginWithApple()),
-          expect: [],
-        );
       });
 
       group("when no user is returned", () {
         setUp(() {
-          when(mockAuthRepository.signInWithApple())
-              .thenAnswer((_) => Future<User>.value(null));
+          when(mockAuthRepository.signInWithApple()).thenAnswer((_) => Future<User>.value(null));
         });
 
         tearDown(() {
@@ -255,10 +320,7 @@ void main() {
             localStorageRepository: mockLocalStorageRepository,
           ),
           act: (bloc) => bloc.add(LoginWithApple()),
-          expect: [
-            LoginFailure(
-                errorMessage: "Unexpected error! Please contact the gym owner")
-          ],
+          expect: [LoginFailure(errorMessage: "Unexpected error! Please contact the gym owner")],
         );
       });
 
@@ -290,8 +352,7 @@ void main() {
           act: (bloc) => bloc.add(LoginWithApple()),
           expect: [
             LoginFailure(
-                errorMessage:
-                    "Sign in with Apple is not supported for your version of IOS")
+                errorMessage: "Sign in with Apple is not supported for your version of IOS")
           ],
         );
       });

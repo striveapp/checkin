@@ -5,6 +5,8 @@ import 'package:pub_semver/pub_semver.dart';
 abstract class UserRepository {
   Stream<User> getUserByEmail(String email);
 
+  Future<bool> isFirstLogin(String email);
+
   Future<void> createUser(User newUser);
 
   Future<void> updateGrade(String userEmail, Grade newGrade);

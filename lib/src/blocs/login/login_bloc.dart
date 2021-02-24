@@ -33,9 +33,12 @@ class LoginBloc extends Bloc<LoginEvent, LoginState> {
         if (loggedUser != null) {
           await analyticsRepository.setUserProperties(loggedUser.uid);
           await analyticsRepository.logLoginWithGoogleSignIn();
-          await userRepository.createUser(
-            loggedUser,
-          );
+          if (await userRepository.isFirstLogin(loggedUser.email)) {
+            Logger.log.i("Creating new user with email: ${loggedUser.email}");
+            await userRepository.createUser(
+              loggedUser,
+            );
+          }
         } else {
           Logger.log.w("Unable to login using [$event]");
           yield LoginFailure(errorMessage: loginError);
@@ -56,9 +59,12 @@ class LoginBloc extends Bloc<LoginEvent, LoginState> {
         if (loggedUser != null) {
           await analyticsRepository.setUserProperties(loggedUser.uid);
           await analyticsRepository.logLoginWithAppleSignIn();
-          await userRepository.createUser(
-            loggedUser,
-          );
+          if (await userRepository.isFirstLogin(loggedUser.email)) {
+            Logger.log.i("Creating new user with email: ${loggedUser.email}");
+            await userRepository.createUser(
+              loggedUser,
+            );
+          }
         } else {
           Logger.log.w("Unable to login using [$event]");
           yield LoginFailure(errorMessage: loginError);

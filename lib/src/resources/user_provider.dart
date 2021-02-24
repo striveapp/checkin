@@ -78,4 +78,10 @@ class UserProvider implements UserRepository {
   Future<void> updateUserAppVersion(String userEmail, Version newVersion) async {
     await _firestore.collection(path).doc(userEmail).update({"appVersion": newVersion.toString()});
   }
+
+  @override
+  Future<bool> isFirstLogin(String email) async {
+    var documentSnapshot = await _firestore.collection(path).doc(email).get();
+    return !documentSnapshot.exists;
+  }
 }
