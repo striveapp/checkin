@@ -61,18 +61,18 @@ mixin _$SubscriptionPlan {
   @optionalTypeArgs
   TResult when<TResult extends Object>({
     @required
-        TResult simpleSubscription(String name, String code, String interval, String currency,
-            int price, String description),
+        TResult simpleSubscription(String name, String code, String interval,
+            String currency, int price, String description),
     @required
-        TResult subscriptionWithPrices(
-            String id, String name, String currency, int startingPrice, String description),
+        TResult subscriptionWithPrices(String id, String name, String currency,
+            int startingPrice, String description),
   });
   @optionalTypeArgs
   TResult maybeWhen<TResult extends Object>({
-    TResult simpleSubscription(
-        String name, String code, String interval, String currency, int price, String description),
-    TResult subscriptionWithPrices(
-        String id, String name, String currency, int startingPrice, String description),
+    TResult simpleSubscription(String name, String code, String interval,
+        String currency, int price, String description),
+    TResult subscriptionWithPrices(String id, String name, String currency,
+        int startingPrice, String description),
     @required TResult orElse(),
   });
   @optionalTypeArgs
@@ -92,13 +92,15 @@ mixin _$SubscriptionPlan {
 
 /// @nodoc
 abstract class $SubscriptionPlanCopyWith<$Res> {
-  factory $SubscriptionPlanCopyWith(SubscriptionPlan value, $Res Function(SubscriptionPlan) then) =
+  factory $SubscriptionPlanCopyWith(
+          SubscriptionPlan value, $Res Function(SubscriptionPlan) then) =
       _$SubscriptionPlanCopyWithImpl<$Res>;
   $Res call({String name, String currency, String description});
 }
 
 /// @nodoc
-class _$SubscriptionPlanCopyWithImpl<$Res> implements $SubscriptionPlanCopyWith<$Res> {
+class _$SubscriptionPlanCopyWithImpl<$Res>
+    implements $SubscriptionPlanCopyWith<$Res> {
   _$SubscriptionPlanCopyWithImpl(this._value, this._then);
 
   final SubscriptionPlan _value;
@@ -114,23 +116,31 @@ class _$SubscriptionPlanCopyWithImpl<$Res> implements $SubscriptionPlanCopyWith<
     return _then(_value.copyWith(
       name: name == freezed ? _value.name : name as String,
       currency: currency == freezed ? _value.currency : currency as String,
-      description: description == freezed ? _value.description : description as String,
+      description:
+          description == freezed ? _value.description : description as String,
     ));
   }
 }
 
 /// @nodoc
-abstract class $SimpleSubscriptionCopyWith<$Res> implements $SubscriptionPlanCopyWith<$Res> {
+abstract class $SimpleSubscriptionCopyWith<$Res>
+    implements $SubscriptionPlanCopyWith<$Res> {
   factory $SimpleSubscriptionCopyWith(
           SimpleSubscription value, $Res Function(SimpleSubscription) then) =
       _$SimpleSubscriptionCopyWithImpl<$Res>;
   @override
   $Res call(
-      {String name, String code, String interval, String currency, int price, String description});
+      {String name,
+      String code,
+      String interval,
+      String currency,
+      int price,
+      String description});
 }
 
 /// @nodoc
-class _$SimpleSubscriptionCopyWithImpl<$Res> extends _$SubscriptionPlanCopyWithImpl<$Res>
+class _$SimpleSubscriptionCopyWithImpl<$Res>
+    extends _$SubscriptionPlanCopyWithImpl<$Res>
     implements $SimpleSubscriptionCopyWith<$Res> {
   _$SimpleSubscriptionCopyWithImpl(
       SimpleSubscription _value, $Res Function(SimpleSubscription) _then)
@@ -154,13 +164,16 @@ class _$SimpleSubscriptionCopyWithImpl<$Res> extends _$SubscriptionPlanCopyWithI
       interval: interval == freezed ? _value.interval : interval as String,
       currency: currency == freezed ? _value.currency : currency as String,
       price: price == freezed ? _value.price : price as int,
-      description: description == freezed ? _value.description : description as String,
+      description:
+          description == freezed ? _value.description : description as String,
     ));
   }
 }
 
 /// @nodoc
-class _$SimpleSubscription with DiagnosticableTreeMixin implements SimpleSubscription {
+class _$SimpleSubscription
+    with DiagnosticableTreeMixin
+    implements SimpleSubscription {
   const _$SimpleSubscription(
       {@required this.name,
       @required this.code,
@@ -214,13 +227,16 @@ class _$SimpleSubscription with DiagnosticableTreeMixin implements SimpleSubscri
             (identical(other.code, code) ||
                 const DeepCollectionEquality().equals(other.code, code)) &&
             (identical(other.interval, interval) ||
-                const DeepCollectionEquality().equals(other.interval, interval)) &&
+                const DeepCollectionEquality()
+                    .equals(other.interval, interval)) &&
             (identical(other.currency, currency) ||
-                const DeepCollectionEquality().equals(other.currency, currency)) &&
+                const DeepCollectionEquality()
+                    .equals(other.currency, currency)) &&
             (identical(other.price, price) ||
                 const DeepCollectionEquality().equals(other.price, price)) &&
             (identical(other.description, description) ||
-                const DeepCollectionEquality().equals(other.description, description)));
+                const DeepCollectionEquality()
+                    .equals(other.description, description)));
   }
 
   @override
@@ -241,29 +257,31 @@ class _$SimpleSubscription with DiagnosticableTreeMixin implements SimpleSubscri
   @optionalTypeArgs
   TResult when<TResult extends Object>({
     @required
-        TResult simpleSubscription(String name, String code, String interval, String currency,
-            int price, String description),
+        TResult simpleSubscription(String name, String code, String interval,
+            String currency, int price, String description),
     @required
-        TResult subscriptionWithPrices(
-            String id, String name, String currency, int startingPrice, String description),
+        TResult subscriptionWithPrices(String id, String name, String currency,
+            int startingPrice, String description),
   }) {
     assert(simpleSubscription != null);
     assert(subscriptionWithPrices != null);
-    return simpleSubscription(name, code, interval, currency, price, description);
+    return simpleSubscription(
+        name, code, interval, currency, price, description);
   }
 
   @override
   @optionalTypeArgs
   TResult maybeWhen<TResult extends Object>({
-    TResult simpleSubscription(
-        String name, String code, String interval, String currency, int price, String description),
-    TResult subscriptionWithPrices(
-        String id, String name, String currency, int startingPrice, String description),
+    TResult simpleSubscription(String name, String code, String interval,
+        String currency, int price, String description),
+    TResult subscriptionWithPrices(String id, String name, String currency,
+        int startingPrice, String description),
     @required TResult orElse(),
   }) {
     assert(orElse != null);
     if (simpleSubscription != null) {
-      return simpleSubscription(name, code, interval, currency, price, description);
+      return simpleSubscription(
+          name, code, interval, currency, price, description);
     }
     return orElse();
   }
@@ -317,19 +335,26 @@ abstract class SimpleSubscription implements SubscriptionPlan {
 }
 
 /// @nodoc
-abstract class $SubscriptionWithPricesCopyWith<$Res> implements $SubscriptionPlanCopyWith<$Res> {
-  factory $SubscriptionWithPricesCopyWith(
-          SubscriptionWithPrices value, $Res Function(SubscriptionWithPrices) then) =
+abstract class $SubscriptionWithPricesCopyWith<$Res>
+    implements $SubscriptionPlanCopyWith<$Res> {
+  factory $SubscriptionWithPricesCopyWith(SubscriptionWithPrices value,
+          $Res Function(SubscriptionWithPrices) then) =
       _$SubscriptionWithPricesCopyWithImpl<$Res>;
   @override
-  $Res call({String id, String name, String currency, int startingPrice, String description});
+  $Res call(
+      {String id,
+      String name,
+      String currency,
+      int startingPrice,
+      String description});
 }
 
 /// @nodoc
-class _$SubscriptionWithPricesCopyWithImpl<$Res> extends _$SubscriptionPlanCopyWithImpl<$Res>
+class _$SubscriptionWithPricesCopyWithImpl<$Res>
+    extends _$SubscriptionPlanCopyWithImpl<$Res>
     implements $SubscriptionWithPricesCopyWith<$Res> {
-  _$SubscriptionWithPricesCopyWithImpl(
-      SubscriptionWithPrices _value, $Res Function(SubscriptionWithPrices) _then)
+  _$SubscriptionWithPricesCopyWithImpl(SubscriptionWithPrices _value,
+      $Res Function(SubscriptionWithPrices) _then)
       : super(_value, (v) => _then(v as SubscriptionWithPrices));
 
   @override
@@ -347,14 +372,19 @@ class _$SubscriptionWithPricesCopyWithImpl<$Res> extends _$SubscriptionPlanCopyW
       id: id == freezed ? _value.id : id as String,
       name: name == freezed ? _value.name : name as String,
       currency: currency == freezed ? _value.currency : currency as String,
-      startingPrice: startingPrice == freezed ? _value.startingPrice : startingPrice as int,
-      description: description == freezed ? _value.description : description as String,
+      startingPrice: startingPrice == freezed
+          ? _value.startingPrice
+          : startingPrice as int,
+      description:
+          description == freezed ? _value.description : description as String,
     ));
   }
 }
 
 /// @nodoc
-class _$SubscriptionWithPrices with DiagnosticableTreeMixin implements SubscriptionWithPrices {
+class _$SubscriptionWithPrices
+    with DiagnosticableTreeMixin
+    implements SubscriptionWithPrices {
   const _$SubscriptionWithPrices(
       {@required this.id,
       @required this.name,
@@ -386,7 +416,8 @@ class _$SubscriptionWithPrices with DiagnosticableTreeMixin implements Subscript
   void debugFillProperties(DiagnosticPropertiesBuilder properties) {
     super.debugFillProperties(properties);
     properties
-      ..add(DiagnosticsProperty('type', 'SubscriptionPlan.subscriptionWithPrices'))
+      ..add(DiagnosticsProperty(
+          'type', 'SubscriptionPlan.subscriptionWithPrices'))
       ..add(DiagnosticsProperty('id', id))
       ..add(DiagnosticsProperty('name', name))
       ..add(DiagnosticsProperty('currency', currency))
@@ -398,15 +429,19 @@ class _$SubscriptionWithPrices with DiagnosticableTreeMixin implements Subscript
   bool operator ==(dynamic other) {
     return identical(this, other) ||
         (other is SubscriptionWithPrices &&
-            (identical(other.id, id) || const DeepCollectionEquality().equals(other.id, id)) &&
+            (identical(other.id, id) ||
+                const DeepCollectionEquality().equals(other.id, id)) &&
             (identical(other.name, name) ||
                 const DeepCollectionEquality().equals(other.name, name)) &&
             (identical(other.currency, currency) ||
-                const DeepCollectionEquality().equals(other.currency, currency)) &&
+                const DeepCollectionEquality()
+                    .equals(other.currency, currency)) &&
             (identical(other.startingPrice, startingPrice) ||
-                const DeepCollectionEquality().equals(other.startingPrice, startingPrice)) &&
+                const DeepCollectionEquality()
+                    .equals(other.startingPrice, startingPrice)) &&
             (identical(other.description, description) ||
-                const DeepCollectionEquality().equals(other.description, description)));
+                const DeepCollectionEquality()
+                    .equals(other.description, description)));
   }
 
   @override
@@ -420,35 +455,38 @@ class _$SubscriptionWithPrices with DiagnosticableTreeMixin implements Subscript
 
   @override
   $SubscriptionWithPricesCopyWith<SubscriptionWithPrices> get copyWith =>
-      _$SubscriptionWithPricesCopyWithImpl<SubscriptionWithPrices>(this, _$identity);
+      _$SubscriptionWithPricesCopyWithImpl<SubscriptionWithPrices>(
+          this, _$identity);
 
   @override
   @optionalTypeArgs
   TResult when<TResult extends Object>({
     @required
-        TResult simpleSubscription(String name, String code, String interval, String currency,
-            int price, String description),
+        TResult simpleSubscription(String name, String code, String interval,
+            String currency, int price, String description),
     @required
-        TResult subscriptionWithPrices(
-            String id, String name, String currency, int startingPrice, String description),
+        TResult subscriptionWithPrices(String id, String name, String currency,
+            int startingPrice, String description),
   }) {
     assert(simpleSubscription != null);
     assert(subscriptionWithPrices != null);
-    return subscriptionWithPrices(id, name, currency, startingPrice, description);
+    return subscriptionWithPrices(
+        id, name, currency, startingPrice, description);
   }
 
   @override
   @optionalTypeArgs
   TResult maybeWhen<TResult extends Object>({
-    TResult simpleSubscription(
-        String name, String code, String interval, String currency, int price, String description),
-    TResult subscriptionWithPrices(
-        String id, String name, String currency, int startingPrice, String description),
+    TResult simpleSubscription(String name, String code, String interval,
+        String currency, int price, String description),
+    TResult subscriptionWithPrices(String id, String name, String currency,
+        int startingPrice, String description),
     @required TResult orElse(),
   }) {
     assert(orElse != null);
     if (subscriptionWithPrices != null) {
-      return subscriptionWithPrices(id, name, currency, startingPrice, description);
+      return subscriptionWithPrices(
+          id, name, currency, startingPrice, description);
     }
     return orElse();
   }

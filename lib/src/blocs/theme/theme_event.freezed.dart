@@ -53,7 +53,8 @@ mixin _$ThemeEvent {
 
 /// @nodoc
 abstract class $ThemeEventCopyWith<$Res> {
-  factory $ThemeEventCopyWith(ThemeEvent value, $Res Function(ThemeEvent) then) =
+  factory $ThemeEventCopyWith(
+          ThemeEvent value, $Res Function(ThemeEvent) then) =
       _$ThemeEventCopyWithImpl<$Res>;
   $Res call({ThemeType themeType});
 }
@@ -71,14 +72,16 @@ class _$ThemeEventCopyWithImpl<$Res> implements $ThemeEventCopyWith<$Res> {
     Object themeType = freezed,
   }) {
     return _then(_value.copyWith(
-      themeType: themeType == freezed ? _value.themeType : themeType as ThemeType,
+      themeType:
+          themeType == freezed ? _value.themeType : themeType as ThemeType,
     ));
   }
 }
 
 /// @nodoc
 abstract class $UpdateThemeCopyWith<$Res> implements $ThemeEventCopyWith<$Res> {
-  factory $UpdateThemeCopyWith(UpdateTheme value, $Res Function(UpdateTheme) then) =
+  factory $UpdateThemeCopyWith(
+          UpdateTheme value, $Res Function(UpdateTheme) then) =
       _$UpdateThemeCopyWithImpl<$Res>;
   @override
   $Res call({ThemeType themeType});
@@ -87,7 +90,8 @@ abstract class $UpdateThemeCopyWith<$Res> implements $ThemeEventCopyWith<$Res> {
 /// @nodoc
 class _$UpdateThemeCopyWithImpl<$Res> extends _$ThemeEventCopyWithImpl<$Res>
     implements $UpdateThemeCopyWith<$Res> {
-  _$UpdateThemeCopyWithImpl(UpdateTheme _value, $Res Function(UpdateTheme) _then)
+  _$UpdateThemeCopyWithImpl(
+      UpdateTheme _value, $Res Function(UpdateTheme) _then)
       : super(_value, (v) => _then(v as UpdateTheme));
 
   @override
@@ -98,7 +102,8 @@ class _$UpdateThemeCopyWithImpl<$Res> extends _$ThemeEventCopyWithImpl<$Res>
     Object themeType = freezed,
   }) {
     return _then(UpdateTheme(
-      themeType: themeType == freezed ? _value.themeType : themeType as ThemeType,
+      themeType:
+          themeType == freezed ? _value.themeType : themeType as ThemeType,
     ));
   }
 }
@@ -128,11 +133,13 @@ class _$UpdateTheme with DiagnosticableTreeMixin implements UpdateTheme {
     return identical(this, other) ||
         (other is UpdateTheme &&
             (identical(other.themeType, themeType) ||
-                const DeepCollectionEquality().equals(other.themeType, themeType)));
+                const DeepCollectionEquality()
+                    .equals(other.themeType, themeType)));
   }
 
   @override
-  int get hashCode => runtimeType.hashCode ^ const DeepCollectionEquality().hash(themeType);
+  int get hashCode =>
+      runtimeType.hashCode ^ const DeepCollectionEquality().hash(themeType);
 
   @override
   $UpdateThemeCopyWith<UpdateTheme> get copyWith =>

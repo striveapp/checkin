@@ -19,18 +19,6 @@ class _$LoginStateTearOff {
   }
 
 // ignore: unused_element
-  LoginLoading loginLoading() {
-    return const LoginLoading();
-  }
-
-// ignore: unused_element
-  LoginSuccess loginSuccess({User loggedUser}) {
-    return LoginSuccess(
-      loggedUser: loggedUser,
-    );
-  }
-
-// ignore: unused_element
   LoginFailure loginFailure({String errorMessage}) {
     return LoginFailure(
       errorMessage: errorMessage,
@@ -52,16 +40,12 @@ mixin _$LoginState {
   @optionalTypeArgs
   TResult when<TResult extends Object>({
     @required TResult loginInitial(),
-    @required TResult loginLoading(),
-    @required TResult loginSuccess(User loggedUser),
     @required TResult loginFailure(String errorMessage),
     @required TResult wrongfullyInsertedEmail(),
   });
   @optionalTypeArgs
   TResult maybeWhen<TResult extends Object>({
     TResult loginInitial(),
-    TResult loginLoading(),
-    TResult loginSuccess(User loggedUser),
     TResult loginFailure(String errorMessage),
     TResult wrongfullyInsertedEmail(),
     @required TResult orElse(),
@@ -69,16 +53,12 @@ mixin _$LoginState {
   @optionalTypeArgs
   TResult map<TResult extends Object>({
     @required TResult loginInitial(LoginInitial value),
-    @required TResult loginLoading(LoginLoading value),
-    @required TResult loginSuccess(LoginSuccess value),
     @required TResult loginFailure(LoginFailure value),
     @required TResult wrongfullyInsertedEmail(WrongfullyInsertedEmail value),
   });
   @optionalTypeArgs
   TResult maybeMap<TResult extends Object>({
     TResult loginInitial(LoginInitial value),
-    TResult loginLoading(LoginLoading value),
-    TResult loginSuccess(LoginSuccess value),
     TResult loginFailure(LoginFailure value),
     TResult wrongfullyInsertedEmail(WrongfullyInsertedEmail value),
     @required TResult orElse(),
@@ -87,7 +67,8 @@ mixin _$LoginState {
 
 /// @nodoc
 abstract class $LoginStateCopyWith<$Res> {
-  factory $LoginStateCopyWith(LoginState value, $Res Function(LoginState) then) =
+  factory $LoginStateCopyWith(
+          LoginState value, $Res Function(LoginState) then) =
       _$LoginStateCopyWithImpl<$Res>;
 }
 
@@ -102,14 +83,16 @@ class _$LoginStateCopyWithImpl<$Res> implements $LoginStateCopyWith<$Res> {
 
 /// @nodoc
 abstract class $LoginInitialCopyWith<$Res> {
-  factory $LoginInitialCopyWith(LoginInitial value, $Res Function(LoginInitial) then) =
+  factory $LoginInitialCopyWith(
+          LoginInitial value, $Res Function(LoginInitial) then) =
       _$LoginInitialCopyWithImpl<$Res>;
 }
 
 /// @nodoc
 class _$LoginInitialCopyWithImpl<$Res> extends _$LoginStateCopyWithImpl<$Res>
     implements $LoginInitialCopyWith<$Res> {
-  _$LoginInitialCopyWithImpl(LoginInitial _value, $Res Function(LoginInitial) _then)
+  _$LoginInitialCopyWithImpl(
+      LoginInitial _value, $Res Function(LoginInitial) _then)
       : super(_value, (v) => _then(v as LoginInitial));
 
   @override
@@ -143,14 +126,10 @@ class _$LoginInitial with DiagnosticableTreeMixin implements LoginInitial {
   @optionalTypeArgs
   TResult when<TResult extends Object>({
     @required TResult loginInitial(),
-    @required TResult loginLoading(),
-    @required TResult loginSuccess(User loggedUser),
     @required TResult loginFailure(String errorMessage),
     @required TResult wrongfullyInsertedEmail(),
   }) {
     assert(loginInitial != null);
-    assert(loginLoading != null);
-    assert(loginSuccess != null);
     assert(loginFailure != null);
     assert(wrongfullyInsertedEmail != null);
     return loginInitial();
@@ -160,8 +139,6 @@ class _$LoginInitial with DiagnosticableTreeMixin implements LoginInitial {
   @optionalTypeArgs
   TResult maybeWhen<TResult extends Object>({
     TResult loginInitial(),
-    TResult loginLoading(),
-    TResult loginSuccess(User loggedUser),
     TResult loginFailure(String errorMessage),
     TResult wrongfullyInsertedEmail(),
     @required TResult orElse(),
@@ -177,14 +154,10 @@ class _$LoginInitial with DiagnosticableTreeMixin implements LoginInitial {
   @optionalTypeArgs
   TResult map<TResult extends Object>({
     @required TResult loginInitial(LoginInitial value),
-    @required TResult loginLoading(LoginLoading value),
-    @required TResult loginSuccess(LoginSuccess value),
     @required TResult loginFailure(LoginFailure value),
     @required TResult wrongfullyInsertedEmail(WrongfullyInsertedEmail value),
   }) {
     assert(loginInitial != null);
-    assert(loginLoading != null);
-    assert(loginSuccess != null);
     assert(loginFailure != null);
     assert(wrongfullyInsertedEmail != null);
     return loginInitial(this);
@@ -194,8 +167,6 @@ class _$LoginInitial with DiagnosticableTreeMixin implements LoginInitial {
   @optionalTypeArgs
   TResult maybeMap<TResult extends Object>({
     TResult loginInitial(LoginInitial value),
-    TResult loginLoading(LoginLoading value),
-    TResult loginSuccess(LoginSuccess value),
     TResult loginFailure(LoginFailure value),
     TResult wrongfullyInsertedEmail(WrongfullyInsertedEmail value),
     @required TResult orElse(),
@@ -213,257 +184,9 @@ abstract class LoginInitial implements LoginState {
 }
 
 /// @nodoc
-abstract class $LoginLoadingCopyWith<$Res> {
-  factory $LoginLoadingCopyWith(LoginLoading value, $Res Function(LoginLoading) then) =
-      _$LoginLoadingCopyWithImpl<$Res>;
-}
-
-/// @nodoc
-class _$LoginLoadingCopyWithImpl<$Res> extends _$LoginStateCopyWithImpl<$Res>
-    implements $LoginLoadingCopyWith<$Res> {
-  _$LoginLoadingCopyWithImpl(LoginLoading _value, $Res Function(LoginLoading) _then)
-      : super(_value, (v) => _then(v as LoginLoading));
-
-  @override
-  LoginLoading get _value => super._value as LoginLoading;
-}
-
-/// @nodoc
-class _$LoginLoading with DiagnosticableTreeMixin implements LoginLoading {
-  const _$LoginLoading();
-
-  @override
-  String toString({DiagnosticLevel minLevel = DiagnosticLevel.info}) {
-    return 'LoginState.loginLoading()';
-  }
-
-  @override
-  void debugFillProperties(DiagnosticPropertiesBuilder properties) {
-    super.debugFillProperties(properties);
-    properties..add(DiagnosticsProperty('type', 'LoginState.loginLoading'));
-  }
-
-  @override
-  bool operator ==(dynamic other) {
-    return identical(this, other) || (other is LoginLoading);
-  }
-
-  @override
-  int get hashCode => runtimeType.hashCode;
-
-  @override
-  @optionalTypeArgs
-  TResult when<TResult extends Object>({
-    @required TResult loginInitial(),
-    @required TResult loginLoading(),
-    @required TResult loginSuccess(User loggedUser),
-    @required TResult loginFailure(String errorMessage),
-    @required TResult wrongfullyInsertedEmail(),
-  }) {
-    assert(loginInitial != null);
-    assert(loginLoading != null);
-    assert(loginSuccess != null);
-    assert(loginFailure != null);
-    assert(wrongfullyInsertedEmail != null);
-    return loginLoading();
-  }
-
-  @override
-  @optionalTypeArgs
-  TResult maybeWhen<TResult extends Object>({
-    TResult loginInitial(),
-    TResult loginLoading(),
-    TResult loginSuccess(User loggedUser),
-    TResult loginFailure(String errorMessage),
-    TResult wrongfullyInsertedEmail(),
-    @required TResult orElse(),
-  }) {
-    assert(orElse != null);
-    if (loginLoading != null) {
-      return loginLoading();
-    }
-    return orElse();
-  }
-
-  @override
-  @optionalTypeArgs
-  TResult map<TResult extends Object>({
-    @required TResult loginInitial(LoginInitial value),
-    @required TResult loginLoading(LoginLoading value),
-    @required TResult loginSuccess(LoginSuccess value),
-    @required TResult loginFailure(LoginFailure value),
-    @required TResult wrongfullyInsertedEmail(WrongfullyInsertedEmail value),
-  }) {
-    assert(loginInitial != null);
-    assert(loginLoading != null);
-    assert(loginSuccess != null);
-    assert(loginFailure != null);
-    assert(wrongfullyInsertedEmail != null);
-    return loginLoading(this);
-  }
-
-  @override
-  @optionalTypeArgs
-  TResult maybeMap<TResult extends Object>({
-    TResult loginInitial(LoginInitial value),
-    TResult loginLoading(LoginLoading value),
-    TResult loginSuccess(LoginSuccess value),
-    TResult loginFailure(LoginFailure value),
-    TResult wrongfullyInsertedEmail(WrongfullyInsertedEmail value),
-    @required TResult orElse(),
-  }) {
-    assert(orElse != null);
-    if (loginLoading != null) {
-      return loginLoading(this);
-    }
-    return orElse();
-  }
-}
-
-abstract class LoginLoading implements LoginState {
-  const factory LoginLoading() = _$LoginLoading;
-}
-
-/// @nodoc
-abstract class $LoginSuccessCopyWith<$Res> {
-  factory $LoginSuccessCopyWith(LoginSuccess value, $Res Function(LoginSuccess) then) =
-      _$LoginSuccessCopyWithImpl<$Res>;
-  $Res call({User loggedUser});
-}
-
-/// @nodoc
-class _$LoginSuccessCopyWithImpl<$Res> extends _$LoginStateCopyWithImpl<$Res>
-    implements $LoginSuccessCopyWith<$Res> {
-  _$LoginSuccessCopyWithImpl(LoginSuccess _value, $Res Function(LoginSuccess) _then)
-      : super(_value, (v) => _then(v as LoginSuccess));
-
-  @override
-  LoginSuccess get _value => super._value as LoginSuccess;
-
-  @override
-  $Res call({
-    Object loggedUser = freezed,
-  }) {
-    return _then(LoginSuccess(
-      loggedUser: loggedUser == freezed ? _value.loggedUser : loggedUser as User,
-    ));
-  }
-}
-
-/// @nodoc
-class _$LoginSuccess with DiagnosticableTreeMixin implements LoginSuccess {
-  const _$LoginSuccess({this.loggedUser});
-
-  @override
-  final User loggedUser;
-
-  @override
-  String toString({DiagnosticLevel minLevel = DiagnosticLevel.info}) {
-    return 'LoginState.loginSuccess(loggedUser: $loggedUser)';
-  }
-
-  @override
-  void debugFillProperties(DiagnosticPropertiesBuilder properties) {
-    super.debugFillProperties(properties);
-    properties
-      ..add(DiagnosticsProperty('type', 'LoginState.loginSuccess'))
-      ..add(DiagnosticsProperty('loggedUser', loggedUser));
-  }
-
-  @override
-  bool operator ==(dynamic other) {
-    return identical(this, other) ||
-        (other is LoginSuccess &&
-            (identical(other.loggedUser, loggedUser) ||
-                const DeepCollectionEquality().equals(other.loggedUser, loggedUser)));
-  }
-
-  @override
-  int get hashCode => runtimeType.hashCode ^ const DeepCollectionEquality().hash(loggedUser);
-
-  @override
-  $LoginSuccessCopyWith<LoginSuccess> get copyWith =>
-      _$LoginSuccessCopyWithImpl<LoginSuccess>(this, _$identity);
-
-  @override
-  @optionalTypeArgs
-  TResult when<TResult extends Object>({
-    @required TResult loginInitial(),
-    @required TResult loginLoading(),
-    @required TResult loginSuccess(User loggedUser),
-    @required TResult loginFailure(String errorMessage),
-    @required TResult wrongfullyInsertedEmail(),
-  }) {
-    assert(loginInitial != null);
-    assert(loginLoading != null);
-    assert(loginSuccess != null);
-    assert(loginFailure != null);
-    assert(wrongfullyInsertedEmail != null);
-    return loginSuccess(loggedUser);
-  }
-
-  @override
-  @optionalTypeArgs
-  TResult maybeWhen<TResult extends Object>({
-    TResult loginInitial(),
-    TResult loginLoading(),
-    TResult loginSuccess(User loggedUser),
-    TResult loginFailure(String errorMessage),
-    TResult wrongfullyInsertedEmail(),
-    @required TResult orElse(),
-  }) {
-    assert(orElse != null);
-    if (loginSuccess != null) {
-      return loginSuccess(loggedUser);
-    }
-    return orElse();
-  }
-
-  @override
-  @optionalTypeArgs
-  TResult map<TResult extends Object>({
-    @required TResult loginInitial(LoginInitial value),
-    @required TResult loginLoading(LoginLoading value),
-    @required TResult loginSuccess(LoginSuccess value),
-    @required TResult loginFailure(LoginFailure value),
-    @required TResult wrongfullyInsertedEmail(WrongfullyInsertedEmail value),
-  }) {
-    assert(loginInitial != null);
-    assert(loginLoading != null);
-    assert(loginSuccess != null);
-    assert(loginFailure != null);
-    assert(wrongfullyInsertedEmail != null);
-    return loginSuccess(this);
-  }
-
-  @override
-  @optionalTypeArgs
-  TResult maybeMap<TResult extends Object>({
-    TResult loginInitial(LoginInitial value),
-    TResult loginLoading(LoginLoading value),
-    TResult loginSuccess(LoginSuccess value),
-    TResult loginFailure(LoginFailure value),
-    TResult wrongfullyInsertedEmail(WrongfullyInsertedEmail value),
-    @required TResult orElse(),
-  }) {
-    assert(orElse != null);
-    if (loginSuccess != null) {
-      return loginSuccess(this);
-    }
-    return orElse();
-  }
-}
-
-abstract class LoginSuccess implements LoginState {
-  const factory LoginSuccess({User loggedUser}) = _$LoginSuccess;
-
-  User get loggedUser;
-  $LoginSuccessCopyWith<LoginSuccess> get copyWith;
-}
-
-/// @nodoc
 abstract class $LoginFailureCopyWith<$Res> {
-  factory $LoginFailureCopyWith(LoginFailure value, $Res Function(LoginFailure) then) =
+  factory $LoginFailureCopyWith(
+          LoginFailure value, $Res Function(LoginFailure) then) =
       _$LoginFailureCopyWithImpl<$Res>;
   $Res call({String errorMessage});
 }
@@ -471,7 +194,8 @@ abstract class $LoginFailureCopyWith<$Res> {
 /// @nodoc
 class _$LoginFailureCopyWithImpl<$Res> extends _$LoginStateCopyWithImpl<$Res>
     implements $LoginFailureCopyWith<$Res> {
-  _$LoginFailureCopyWithImpl(LoginFailure _value, $Res Function(LoginFailure) _then)
+  _$LoginFailureCopyWithImpl(
+      LoginFailure _value, $Res Function(LoginFailure) _then)
       : super(_value, (v) => _then(v as LoginFailure));
 
   @override
@@ -482,7 +206,9 @@ class _$LoginFailureCopyWithImpl<$Res> extends _$LoginStateCopyWithImpl<$Res>
     Object errorMessage = freezed,
   }) {
     return _then(LoginFailure(
-      errorMessage: errorMessage == freezed ? _value.errorMessage : errorMessage as String,
+      errorMessage: errorMessage == freezed
+          ? _value.errorMessage
+          : errorMessage as String,
     ));
   }
 }
@@ -512,11 +238,13 @@ class _$LoginFailure with DiagnosticableTreeMixin implements LoginFailure {
     return identical(this, other) ||
         (other is LoginFailure &&
             (identical(other.errorMessage, errorMessage) ||
-                const DeepCollectionEquality().equals(other.errorMessage, errorMessage)));
+                const DeepCollectionEquality()
+                    .equals(other.errorMessage, errorMessage)));
   }
 
   @override
-  int get hashCode => runtimeType.hashCode ^ const DeepCollectionEquality().hash(errorMessage);
+  int get hashCode =>
+      runtimeType.hashCode ^ const DeepCollectionEquality().hash(errorMessage);
 
   @override
   $LoginFailureCopyWith<LoginFailure> get copyWith =>
@@ -526,14 +254,10 @@ class _$LoginFailure with DiagnosticableTreeMixin implements LoginFailure {
   @optionalTypeArgs
   TResult when<TResult extends Object>({
     @required TResult loginInitial(),
-    @required TResult loginLoading(),
-    @required TResult loginSuccess(User loggedUser),
     @required TResult loginFailure(String errorMessage),
     @required TResult wrongfullyInsertedEmail(),
   }) {
     assert(loginInitial != null);
-    assert(loginLoading != null);
-    assert(loginSuccess != null);
     assert(loginFailure != null);
     assert(wrongfullyInsertedEmail != null);
     return loginFailure(errorMessage);
@@ -543,8 +267,6 @@ class _$LoginFailure with DiagnosticableTreeMixin implements LoginFailure {
   @optionalTypeArgs
   TResult maybeWhen<TResult extends Object>({
     TResult loginInitial(),
-    TResult loginLoading(),
-    TResult loginSuccess(User loggedUser),
     TResult loginFailure(String errorMessage),
     TResult wrongfullyInsertedEmail(),
     @required TResult orElse(),
@@ -560,14 +282,10 @@ class _$LoginFailure with DiagnosticableTreeMixin implements LoginFailure {
   @optionalTypeArgs
   TResult map<TResult extends Object>({
     @required TResult loginInitial(LoginInitial value),
-    @required TResult loginLoading(LoginLoading value),
-    @required TResult loginSuccess(LoginSuccess value),
     @required TResult loginFailure(LoginFailure value),
     @required TResult wrongfullyInsertedEmail(WrongfullyInsertedEmail value),
   }) {
     assert(loginInitial != null);
-    assert(loginLoading != null);
-    assert(loginSuccess != null);
     assert(loginFailure != null);
     assert(wrongfullyInsertedEmail != null);
     return loginFailure(this);
@@ -577,8 +295,6 @@ class _$LoginFailure with DiagnosticableTreeMixin implements LoginFailure {
   @optionalTypeArgs
   TResult maybeMap<TResult extends Object>({
     TResult loginInitial(LoginInitial value),
-    TResult loginLoading(LoginLoading value),
-    TResult loginSuccess(LoginSuccess value),
     TResult loginFailure(LoginFailure value),
     TResult wrongfullyInsertedEmail(WrongfullyInsertedEmail value),
     @required TResult orElse(),
@@ -600,16 +316,17 @@ abstract class LoginFailure implements LoginState {
 
 /// @nodoc
 abstract class $WrongfullyInsertedEmailCopyWith<$Res> {
-  factory $WrongfullyInsertedEmailCopyWith(
-          WrongfullyInsertedEmail value, $Res Function(WrongfullyInsertedEmail) then) =
+  factory $WrongfullyInsertedEmailCopyWith(WrongfullyInsertedEmail value,
+          $Res Function(WrongfullyInsertedEmail) then) =
       _$WrongfullyInsertedEmailCopyWithImpl<$Res>;
 }
 
 /// @nodoc
-class _$WrongfullyInsertedEmailCopyWithImpl<$Res> extends _$LoginStateCopyWithImpl<$Res>
+class _$WrongfullyInsertedEmailCopyWithImpl<$Res>
+    extends _$LoginStateCopyWithImpl<$Res>
     implements $WrongfullyInsertedEmailCopyWith<$Res> {
-  _$WrongfullyInsertedEmailCopyWithImpl(
-      WrongfullyInsertedEmail _value, $Res Function(WrongfullyInsertedEmail) _then)
+  _$WrongfullyInsertedEmailCopyWithImpl(WrongfullyInsertedEmail _value,
+      $Res Function(WrongfullyInsertedEmail) _then)
       : super(_value, (v) => _then(v as WrongfullyInsertedEmail));
 
   @override
@@ -617,7 +334,9 @@ class _$WrongfullyInsertedEmailCopyWithImpl<$Res> extends _$LoginStateCopyWithIm
 }
 
 /// @nodoc
-class _$WrongfullyInsertedEmail with DiagnosticableTreeMixin implements WrongfullyInsertedEmail {
+class _$WrongfullyInsertedEmail
+    with DiagnosticableTreeMixin
+    implements WrongfullyInsertedEmail {
   const _$WrongfullyInsertedEmail();
 
   @override
@@ -628,7 +347,8 @@ class _$WrongfullyInsertedEmail with DiagnosticableTreeMixin implements Wrongful
   @override
   void debugFillProperties(DiagnosticPropertiesBuilder properties) {
     super.debugFillProperties(properties);
-    properties..add(DiagnosticsProperty('type', 'LoginState.wrongfullyInsertedEmail'));
+    properties
+      ..add(DiagnosticsProperty('type', 'LoginState.wrongfullyInsertedEmail'));
   }
 
   @override
@@ -643,14 +363,10 @@ class _$WrongfullyInsertedEmail with DiagnosticableTreeMixin implements Wrongful
   @optionalTypeArgs
   TResult when<TResult extends Object>({
     @required TResult loginInitial(),
-    @required TResult loginLoading(),
-    @required TResult loginSuccess(User loggedUser),
     @required TResult loginFailure(String errorMessage),
     @required TResult wrongfullyInsertedEmail(),
   }) {
     assert(loginInitial != null);
-    assert(loginLoading != null);
-    assert(loginSuccess != null);
     assert(loginFailure != null);
     assert(wrongfullyInsertedEmail != null);
     return wrongfullyInsertedEmail();
@@ -660,8 +376,6 @@ class _$WrongfullyInsertedEmail with DiagnosticableTreeMixin implements Wrongful
   @optionalTypeArgs
   TResult maybeWhen<TResult extends Object>({
     TResult loginInitial(),
-    TResult loginLoading(),
-    TResult loginSuccess(User loggedUser),
     TResult loginFailure(String errorMessage),
     TResult wrongfullyInsertedEmail(),
     @required TResult orElse(),
@@ -677,14 +391,10 @@ class _$WrongfullyInsertedEmail with DiagnosticableTreeMixin implements Wrongful
   @optionalTypeArgs
   TResult map<TResult extends Object>({
     @required TResult loginInitial(LoginInitial value),
-    @required TResult loginLoading(LoginLoading value),
-    @required TResult loginSuccess(LoginSuccess value),
     @required TResult loginFailure(LoginFailure value),
     @required TResult wrongfullyInsertedEmail(WrongfullyInsertedEmail value),
   }) {
     assert(loginInitial != null);
-    assert(loginLoading != null);
-    assert(loginSuccess != null);
     assert(loginFailure != null);
     assert(wrongfullyInsertedEmail != null);
     return wrongfullyInsertedEmail(this);
@@ -694,8 +404,6 @@ class _$WrongfullyInsertedEmail with DiagnosticableTreeMixin implements Wrongful
   @optionalTypeArgs
   TResult maybeMap<TResult extends Object>({
     TResult loginInitial(LoginInitial value),
-    TResult loginLoading(LoginLoading value),
-    TResult loginSuccess(LoginSuccess value),
     TResult loginFailure(LoginFailure value),
     TResult wrongfullyInsertedEmail(WrongfullyInsertedEmail value),
     @required TResult orElse(),

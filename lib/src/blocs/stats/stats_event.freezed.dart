@@ -53,7 +53,8 @@ mixin _$StatsEvent {
 
 /// @nodoc
 abstract class $StatsEventCopyWith<$Res> {
-  factory $StatsEventCopyWith(StatsEvent value, $Res Function(StatsEvent) then) =
+  factory $StatsEventCopyWith(
+          StatsEvent value, $Res Function(StatsEvent) then) =
       _$StatsEventCopyWithImpl<$Res>;
   $Res call({Timespan timespan});
 }
@@ -77,8 +78,10 @@ class _$StatsEventCopyWithImpl<$Res> implements $StatsEventCopyWith<$Res> {
 }
 
 /// @nodoc
-abstract class $TimespanUpdateCopyWith<$Res> implements $StatsEventCopyWith<$Res> {
-  factory $TimespanUpdateCopyWith(TimespanUpdate value, $Res Function(TimespanUpdate) then) =
+abstract class $TimespanUpdateCopyWith<$Res>
+    implements $StatsEventCopyWith<$Res> {
+  factory $TimespanUpdateCopyWith(
+          TimespanUpdate value, $Res Function(TimespanUpdate) then) =
       _$TimespanUpdateCopyWithImpl<$Res>;
   @override
   $Res call({Timespan timespan});
@@ -87,7 +90,8 @@ abstract class $TimespanUpdateCopyWith<$Res> implements $StatsEventCopyWith<$Res
 /// @nodoc
 class _$TimespanUpdateCopyWithImpl<$Res> extends _$StatsEventCopyWithImpl<$Res>
     implements $TimespanUpdateCopyWith<$Res> {
-  _$TimespanUpdateCopyWithImpl(TimespanUpdate _value, $Res Function(TimespanUpdate) _then)
+  _$TimespanUpdateCopyWithImpl(
+      TimespanUpdate _value, $Res Function(TimespanUpdate) _then)
       : super(_value, (v) => _then(v as TimespanUpdate));
 
   @override
@@ -128,11 +132,13 @@ class _$TimespanUpdate with DiagnosticableTreeMixin implements TimespanUpdate {
     return identical(this, other) ||
         (other is TimespanUpdate &&
             (identical(other.timespan, timespan) ||
-                const DeepCollectionEquality().equals(other.timespan, timespan)));
+                const DeepCollectionEquality()
+                    .equals(other.timespan, timespan)));
   }
 
   @override
-  int get hashCode => runtimeType.hashCode ^ const DeepCollectionEquality().hash(timespan);
+  int get hashCode =>
+      runtimeType.hashCode ^ const DeepCollectionEquality().hash(timespan);
 
   @override
   $TimespanUpdateCopyWith<TimespanUpdate> get copyWith =>
@@ -184,7 +190,8 @@ class _$TimespanUpdate with DiagnosticableTreeMixin implements TimespanUpdate {
 }
 
 abstract class TimespanUpdate implements StatsEvent {
-  const factory TimespanUpdate({@required Timespan timespan}) = _$TimespanUpdate;
+  const factory TimespanUpdate({@required Timespan timespan}) =
+      _$TimespanUpdate;
 
   @override
   Timespan get timespan;
