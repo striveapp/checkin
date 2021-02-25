@@ -4,6 +4,7 @@ import 'package:bloc/bloc.dart';
 import 'package:checkin/src/blocs/stats/bloc.dart';
 import 'package:checkin/src/blocs/user_stats/user_stats_event.dart';
 import 'package:checkin/src/blocs/user_stats/user_stats_state.dart';
+import 'package:checkin/src/models/lesson.dart';
 import 'package:checkin/src/models/user_history.dart';
 import 'package:checkin/src/repositories/stats_repository.dart';
 import 'package:flutter/material.dart';
@@ -45,7 +46,7 @@ class UserStatsBloc extends Bloc<UserStatsEvent, UserStatsState> {
   Stream<UserStatsState> mapEventToState(UserStatsEvent event) async* {
     if (event is UserStatsUpdated) {
       yield UserStatsLoaded(
-        attendedLessons: event.attendedLessons,
+        attendedLessons: _sortByDateAndTime(event.attendedLessons),
         timespan: event.timespan,
       );
     }
@@ -55,5 +56,14 @@ class UserStatsBloc extends Bloc<UserStatsEvent, UserStatsState> {
   Future<void> close() {
     statsSub?.cancel();
     return super.close();
+  }
+
+  List<Lesson> _sortByDateAndTime(List<Lesson> lessons) {
+    return lessons
+      ..sort(((a, b) => _getDate(b.date, b.timeStart).compareTo(_getDate(a.date, a.timeStart))));
+  }
+
+  _getDate(String date, String time) {
+    return DateTime.parse('$date $time:00');
   }
 }
