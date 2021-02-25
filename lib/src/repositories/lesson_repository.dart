@@ -18,6 +18,8 @@ abstract class LessonRepository {
 
   Future<void> closeLesson(String gymId, String date, String lessonId);
 
+  Future<void> deleteLesson(String gymId, String date, String lessonId);
+
   Future<void> updateLessonTimeStart(
       String gymId, String date, String lessonId, String newTimeStart);
 

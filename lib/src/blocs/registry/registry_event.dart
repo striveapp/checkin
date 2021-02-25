@@ -29,6 +29,10 @@ abstract class RegistryEvent with _$RegistryEvent {
     @required String gymId,
   }) = CloseLesson;
 
+  const factory RegistryEvent.deleteLesson({
+    @required String gymId,
+  }) = DeleteLesson;
+
   const factory RegistryEvent.updateTimeStart({
     @required String gymId,
     @required String newTimeStart,

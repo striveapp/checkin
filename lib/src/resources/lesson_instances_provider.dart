@@ -151,6 +151,19 @@ class LessonInstancesProvider implements LessonRepository {
   }
 
   @override
+  Future<void> deleteLesson(String gymId, String date, String lessonId) async {
+    Logger.log.i("Delete lesson with id [$lessonId]");
+    await _firestore
+        .collection(gymPath)
+        .doc(gymId)
+        .collection(path)
+        .doc(date)
+        .collection(sub_collection_path)
+        .doc(lessonId)
+        .delete();
+  }
+
+  @override
   Future<void> updateLessonTimeStart(
       String gymId, String date, String lessonId, String newTimeStart) async {
     Logger.log.i("Updating timeStart to [$newTimeStart] for lesson with id [$lessonId]");

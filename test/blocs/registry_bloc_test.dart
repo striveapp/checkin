@@ -460,6 +460,41 @@ void main() {
           expect: [RegistryLoading()]);
     });
 
+    group("on DeleteLesson event", () {
+      setUp(() {
+        when(mockLessonRepository.deleteLesson(
+                fakeUser.selectedGymId, baseLesson.date, baseLesson.id))
+            .thenAnswer((realInvocation) => Future.value(null));
+      });
+
+      tearDown(() {
+        untilCalled(mockLessonRepository.deleteLesson(
+          fakeUser.selectedGymId,
+          baseLesson.date,
+          baseLesson.id,
+        ));
+        verify(mockLessonRepository.deleteLesson(
+          fakeUser.selectedGymId,
+          baseLesson.date,
+          baseLesson.id,
+        ));
+      });
+
+      blocTest("should delete the class",
+          build: () => RegistryBloc(
+              lessonId: baseLesson.id,
+              lessonDate: baseLesson.date,
+              lessonRepository: mockLessonRepository,
+              imageRepository: mockImageRepository,
+              storageRepository: mockStorageRepository,
+              lessonApi: mockLessonApi,
+              userBloc: mockUserBloc),
+          act: (bloc) => bloc.add(DeleteLesson(
+                gymId: fakeUser.selectedGymId,
+              )),
+          expect: []);
+    });
+
     group("on UpdateTimeStart event", () {
       setUp(() {
         when(mockLessonRepository.updateLessonTimeStart(

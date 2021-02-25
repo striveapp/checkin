@@ -122,6 +122,19 @@ class RegistryBloc extends Bloc<RegistryEvent, RegistryState> {
           );
     }
 
+    if (event is DeleteLesson) {
+      try {
+        await this.lessonSub?.cancel();
+        await this.lessonRepository.deleteLesson(
+          event.gymId,
+          lessonDate,
+          lessonId,
+        );
+      } catch (error, stacktrace) {
+        Logger.log.e(error, stacktrace);
+      }
+    }
+
     if (event is UpdateTimeStart) {
       await this
           .lessonRepository

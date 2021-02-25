@@ -4,10 +4,10 @@ import 'package:checkin/src/ui/components/cancel_button.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 
-class CloseClassDialog extends StatelessWidget {
+class CloseLessonDialog extends StatelessWidget {
   final String selectedGymId;
 
-  const CloseClassDialog({Key key, @required this.selectedGymId}) : super(key: key);
+  const CloseLessonDialog({Key key, @required this.selectedGymId}) : super(key: key);
 
   static const String closingClassDisclaimer = 'Are you sure you want to close this class?';
   static const String goBack = 'Go back';

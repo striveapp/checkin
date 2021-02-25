@@ -30,7 +30,8 @@ import 'package:checkin/src/ui/components/profile_infos.dart';
 import 'package:checkin/src/ui/components/registry/accept_all_dialog.dart';
 import 'package:checkin/src/ui/components/registry/attendee_tile.dart';
 import 'package:checkin/src/ui/components/registry/attendees_list.dart';
-import 'package:checkin/src/ui/components/registry/close_class_dialog.dart';
+import 'package:checkin/src/ui/components/registry/close_lesson_dialog.dart';
+import 'package:checkin/src/ui/components/registry/delete_lesson/delete_lesson_dialog.dart';
 import 'package:checkin/src/ui/components/registry/edit_lesson/edit_lesson_modal.dart';
 import 'package:checkin/src/ui/components/registry/edit_lesson/edit_lesson_name.dart';
 import 'package:checkin/src/ui/components/registry/edit_lesson/edit_lesson_time.dart';
@@ -301,17 +302,37 @@ extension Localization on String {
         'it': 'Stai per accettare tutti gli studenti',
       } +
       {
-        'en': CloseClassDialog.goBack,
+        'en': CloseLessonDialog.goBack,
         'es': 'Atrás',
         'it': 'Indietro',
       } +
       {
-        'en': CloseClassDialog.closeClass,
+        'en': CloseLessonDialog.closeClass,
         'es': 'Cerrar clase',
         'it': 'Chiudi classe',
       } +
       {
-        'en': CloseClassDialog.closingClassDisclaimer,
+        'en': DeleteLessonDialog.goBack,
+        'es': 'Atrás',
+        'it': 'Indietro',
+      } +
+      {
+        'en': DeleteLessonDialog.deleteClass,
+        'es': 'Cancelar clase',
+        'it': 'Elimina classe',
+      } +
+      {
+        'en': DeleteLessonDialog.cannotBeUndone,
+        'es': 'Esta operación no se puede deshacer',
+        'it': 'Questa operazione non puó essere annullata',
+      } +
+      {
+        'en': DeleteLessonDialog.deletingClassDisclaimer,
+        'es': '¿Quieres cancelar definitivamente la clase?',
+        'it': 'Vuoi eliminare permanentemente questa classe?',
+      } +
+      {
+        'en': CloseLessonDialog.closingClassDisclaimer,
         'es': '¿Quieres cerrar la clase?',
         'it': 'Vuoi chiudere la classe?',
       } +
