@@ -41,6 +41,10 @@ integration-test:
 driver-test:
 	flutter drive --flavor=dev --target=test_driver/journeys/journeys.dart
 
+.PHONY: new-integration-test
+new-integration-test:
+	flutter drive --flavor=dev --driver=test_driver/journeys-v2/init.dart --target=test_driver/journeys-v2/app_test.dart
+
 .PHONY: codegen-runner
 codegen-runner:
 	flutter pub run build_runner watch --delete-conflicting-outputs

@@ -70,8 +70,8 @@ Future<void> mainCommon(AppConfig appConfig) async {
   Logger.log = appConfig.logger;
 
   final AuthRepository authProvider = AuthProvider(appConfig: appConfig);
-
   final user = await _getLoggedUser(authProvider);
+
   await _precacheAssets();
 
   runZonedGuarded<Future<void>>(() async {
