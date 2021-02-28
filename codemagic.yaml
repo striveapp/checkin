@@ -38,7 +38,10 @@ workflows:
       - name: Run unit tests
         script: flutter test
       - name: Build test APK
-        script: ./android/gradlew app:assembleAndroidTest app:assembleDebug -Ptarget="$FCI_BUILD_DIR/test_driver/journeys-v2/app_test.dart"
+        script: |
+          pushd android
+          && ./gradlew app:assembleAndroidTest app:assembleDebug -Ptarget="$FCI_BUILD_DIR/test_driver/journeys-v2/app_test.dart"
+          && popd
       - name: Setup GCloud
         script: |
           echo $GCLOUD_KEY_FILE | base64 --decode > ./gcloud_key_file.json \
