@@ -25,10 +25,6 @@ workflows:
           include: true
           source: true
     scripts:
-      - name: Run doctor
-        script: flutter doctor -v
-      - name: Run emulator (Android)
-        script: flutter emulators --launch emulator
       - name: Setup environment (dev)
         script: make set-dev
       - name: Installing dependencies
