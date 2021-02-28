@@ -39,8 +39,8 @@ workflows:
         script: flutter test
       - name: Build test APK
         script: |
-          pushd android
-          && ./gradlew app:assembleAndroidTest app:assembleDebug -Ptarget="$FCI_BUILD_DIR/test_driver/journeys-v2/app_test.dart"
+          pushd android \
+          && ./gradlew app:assembleAndroidTest app:assembleDebug -Ptarget="$FCI_BUILD_DIR/test_driver/journeys-v2/app_test.dart" \
           && popd
       - name: Setup GCloud
         script: |
