@@ -47,8 +47,8 @@ workflows:
         script: |
           gcloud firebase test android run \
           --type instrumentation \
-          --app build/app/outputs/apk/debug/app-debug.apk \
-          --test build/app/outputs/apk/androidTest/debug/app-debug-androidTest.apk \
+          --app build/app/outputs/apk/dev/debug/app-dev-debug.apk \
+          --test build/app/outputs/apk/androidTest/dev/debug/app-dev-debug-androidTest.apk \
           --timeout 2m
     artifacts:
       - build/**/outputs/**/*.apk
