@@ -34,6 +34,7 @@
 **/GoogleService-Info.plist
 
 # Android related
+!gradle-wrapper.jar
 **/android/**/gradle-wrapper.jar
 **/android/.gradle
 **/android/captures/
