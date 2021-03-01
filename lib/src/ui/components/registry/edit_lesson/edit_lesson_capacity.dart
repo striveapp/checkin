@@ -1,5 +1,6 @@
 import 'package:checkin/src/blocs/registry/bloc.dart';
 import 'package:checkin/src/localization/localization.dart';
+import 'package:checkin/src/logging/logger.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 
@@ -40,7 +41,7 @@ class _EditLessonCapacityState extends State<EditLessonCapacity> {
           child: TextField(
             textAlign: TextAlign.end,
             controller: _getController(currentCapacity),
-            keyboardType: TextInputType.number,
+            keyboardType: TextInputType.numberWithOptions(signed: true, decimal: true),
             cursorColor: Theme.of(context).accentColor,
             style: Theme.of(context).textTheme.headline2.apply(fontSizeDelta: 3),
             decoration: InputDecoration(
@@ -56,13 +57,16 @@ class _EditLessonCapacityState extends State<EditLessonCapacity> {
                   Theme.of(context).textTheme.bodyText1.apply(color: Theme.of(context).errorColor),
             ),
             onSubmitted: (String newCapacityString) {
-              var newCapacity = int.parse(newCapacityString);
-              context
-                  .read<RegistryBloc>()
-                  .add(RegistryEvent.updateCapacity(gymId: widget.gymId, newCapacity: newCapacity));
-              setState(() {
-                currentCapacity = newCapacity;
-              });
+              try {
+                var newCapacity = int.parse(newCapacityString);
+                context.read<RegistryBloc>().add(
+                    RegistryEvent.updateCapacity(gymId: widget.gymId, newCapacity: newCapacity));
+                setState(() {
+                  currentCapacity = newCapacity;
+                });
+              } catch (e, st) {
+                Logger.log.e("Capacity is not parsable", e, st);
+              }
             },
           ),
         ),

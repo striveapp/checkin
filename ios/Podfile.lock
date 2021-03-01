@@ -178,6 +178,8 @@ PODS:
     - TOCropViewController (~> 2.5.4)
   - image_picker (0.0.1):
     - Flutter
+  - integration_test (0.0.1):
+    - Flutter
   - nanopb (1.30906.0):
     - nanopb/decode (= 1.30906.0)
     - nanopb/encode (= 1.30906.0)
@@ -221,6 +223,7 @@ DEPENDENCIES:
   - google_sign_in (from `.symlinks/plugins/google_sign_in/ios`)
   - image_cropper (from `.symlinks/plugins/image_cropper/ios`)
   - image_picker (from `.symlinks/plugins/image_picker/ios`)
+  - integration_test (from `.symlinks/plugins/integration_test/ios`)
   - open_appstore (from `.symlinks/plugins/open_appstore/ios`)
   - open_mail_app (from `.symlinks/plugins/open_mail_app/ios`)
   - package_info (from `.symlinks/plugins/package_info/ios`)
@@ -288,6 +291,8 @@ EXTERNAL SOURCES:
     :path: ".symlinks/plugins/image_cropper/ios"
   image_picker:
     :path: ".symlinks/plugins/image_picker/ios"
+  integration_test:
+    :path: ".symlinks/plugins/integration_test/ios"
   open_appstore:
     :path: ".symlinks/plugins/open_appstore/ios"
   open_mail_app:
@@ -347,6 +352,7 @@ SPEC CHECKSUMS:
   GTMSessionFetcher: b3503b20a988c4e20cc189aa798fd18220133f52
   image_cropper: c8f9b4157933c7bb965a66d1c5e6c8fd408c6eb4
   image_picker: 9c3312491f862b28d21ecd8fdf0ee14e601b3f09
+  integration_test: 5ed24a436eb7ec17b6a13046e9bf7ca4a404e59e
   nanopb: 59317e09cf1f1a0af72f12af412d54edf52603fc
   open_appstore: 4eddfae38848002fdde8d42e1734d16cb34439de
   open_mail_app: 794172f6a22cd16319d3ddaf45e945b2f74952b0

@@ -1,4 +1,5 @@
 import 'package:checkin/src/localization/localization.dart';
+import 'package:checkin/src/logging/logger.dart';
 import 'package:flutter/material.dart';
 
 class EditLessonTime extends StatefulWidget {
@@ -40,10 +41,16 @@ class _EditLessonTimeState extends State<EditLessonTime> {
           confirmText: EditLessonTime.ok.i18n.toUpperCase(),
           helpText: EditLessonTime.selectTime.fill([widget.text]).toUpperCase(),
           cancelText: EditLessonTime.cancel.i18n.toUpperCase(),
+          builder: (BuildContext context, Widget child) {
+            return MediaQuery(
+              data: MediaQuery.of(context).copyWith(alwaysUse24HourFormat: true),
+              child: child,
+            );
+          },
         );
-
+        Logger.log.i("TimeOfDay: ${timePicked}");
         var formattedTimePicked = timePicked.format(context);
-
+        Logger.log.i("TimeOfDay (formatted): ${formattedTimePicked}");
         widget.onTimePicked(formattedTimePicked);
         setState(() {
           currentTime = formattedTimePicked;
