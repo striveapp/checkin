@@ -3,58 +3,57 @@ import 'dart:io';
 
 import 'package:bloc/bloc.dart';
 import 'package:checkin/src/api/lesson_api.dart';
-import 'package:checkin/src/blocs/user/user_bloc.dart';
-import 'package:checkin/src/blocs/user/user_state.dart';
 import 'package:checkin/src/logging/logger.dart';
 import 'package:checkin/src/models/lesson.dart';
+import 'package:checkin/src/models/user.dart';
 import 'package:checkin/src/repositories/image_repository.dart';
 import 'package:checkin/src/repositories/lesson_repository.dart';
 import 'package:checkin/src/repositories/storage_repository.dart';
+import 'package:checkin/src/repositories/user_repository.dart';
 import 'package:flutter/foundation.dart';
 import 'package:meta/meta.dart';
 
 import 'bloc.dart';
 
 class RegistryBloc extends Bloc<RegistryEvent, RegistryState> {
-  final UserBloc userBloc;
+  final String lessonId;
+  final String lessonDate;
   final LessonApi lessonApi;
   final LessonRepository lessonRepository;
   final ImageRepository imageRepository;
+  final UserRepository userRepository;
   final StorageRepository storageRepository;
-  final String lessonId;
-  final String lessonDate;
 
-  StreamSubscription<Lesson> lessonSub;
+  StreamSubscription<Lesson> _lessonSub;
+  StreamSubscription<User> _userSub;
 
   RegistryBloc({
-    @required this.userBloc,
+    @required this.lessonId,
+    @required this.lessonDate,
     @required this.lessonApi,
     @required this.lessonRepository,
-    @required this.lessonId,
     @required this.imageRepository,
     @required this.storageRepository,
-    @required this.lessonDate,
+    @required this.userRepository,
   }) : super(RegistryUninitialized());
 
-  void _onUserStateChanged(userState) {
-    if (userState is UserSuccess) {
-      lessonSub?.cancel();
-      lessonSub = lessonRepository
-          .getLesson(userState.currentUser.selectedGymId, lessonDate, lessonId)
-          .listen((lesson) {
-        add(RegistryUpdated(
-          currentUser: userState.currentUser,
-          currentLesson: lesson,
-        ));
-      });
-    }
+  void _onUserChanged(User currentUser) {
+    _lessonSub?.cancel();
+    _lessonSub = lessonRepository
+        .getLesson(currentUser.selectedGymId, lessonDate, lessonId)
+        .listen((lesson) {
+      add(RegistryUpdated(
+        currentUser: currentUser,
+        currentLesson: lesson,
+      ));
+    });
   }
 
   @override
   Stream<RegistryState> mapEventToState(RegistryEvent event) async* {
     if (event is InitializeRegistry) {
-      _onUserStateChanged(userBloc.state);
-      userBloc.listen(_onUserStateChanged);
+      _userSub?.cancel();
+      _userSub = userRepository.getUser().listen(_onUserChanged);
     }
 
     if (event is RegistryUpdated) {
@@ -124,12 +123,12 @@ class RegistryBloc extends Bloc<RegistryEvent, RegistryState> {
 
     if (event is DeleteLesson) {
       try {
-        await this.lessonSub?.cancel();
+        _lessonSub?.cancel();
         await this.lessonRepository.deleteLesson(
-          event.gymId,
-          lessonDate,
-          lessonId,
-        );
+              event.gymId,
+              lessonDate,
+              lessonId,
+            );
       } catch (error, stacktrace) {
         Logger.log.e(error, stacktrace);
       }
@@ -205,7 +204,8 @@ class RegistryBloc extends Bloc<RegistryEvent, RegistryState> {
 
   @override
   Future<void> close() {
-    lessonSub?.cancel();
+    _userSub?.cancel();
+    _lessonSub?.cancel();
     return super.close();
   }
 }

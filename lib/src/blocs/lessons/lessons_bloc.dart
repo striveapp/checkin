@@ -1,9 +1,10 @@
 import 'dart:async';
 
 import 'package:bloc/bloc.dart';
-import 'package:checkin/src/blocs/user/bloc.dart';
 import 'package:checkin/src/models/lesson.dart';
+import 'package:checkin/src/models/user.dart';
 import 'package:checkin/src/repositories/lesson_repository.dart';
+import 'package:checkin/src/repositories/user_repository.dart';
 import 'package:checkin/src/util/date_util.dart';
 import 'package:flutter/foundation.dart';
 import 'package:intl/intl.dart';
@@ -13,44 +14,43 @@ import 'bloc.dart';
 
 class LessonsBloc extends Bloc<LessonsEvent, LessonsState> {
   final LessonRepository lessonRepository;
-  final UserBloc userBloc;
+  final UserRepository userRepository;
   final DateUtil dateUtil;
 
   StreamSubscription<List<Lesson>> lessonsSub;
+  StreamSubscription<User> _userSub;
   String gymId;
 
   LessonsBloc({
-    @required this.userBloc,
     @required this.lessonRepository,
+    @required this.userRepository,
     @required this.dateUtil,
   }) : super(LessonsUninitialized());
 
-  void _onUserStateChanged(userState) {
-    if (userState is UserSuccess) {
-      gymId = userState.currentUser.selectedGymId;
-      lessonsSub?.cancel();
-      DateTime initialSelectedDay = dateUtil.getInitialSelectedDayByGym(gymId);
+  void _onUserChanged(user) {
+    gymId = user.selectedGymId;
+    lessonsSub?.cancel();
+    DateTime initialSelectedDay = dateUtil.getInitialSelectedDayByGym(gymId);
 
-      lessonsSub = this
-          .lessonRepository
-          .getLessonsForDay(
-            gymId,
-            initialSelectedDay,
-          )
-          .listen((lessons) {
-        add(LessonsEvent.lessonsUpdated(
-          lessons: lessons,
-          selectedDay: initialSelectedDay,
-        ));
-      });
-    }
+    lessonsSub = this
+        .lessonRepository
+        .getLessonsForDay(
+          gymId,
+          initialSelectedDay,
+        )
+        .listen((lessons) {
+      add(LessonsEvent.lessonsUpdated(
+        lessons: lessons,
+        selectedDay: initialSelectedDay,
+      ));
+    });
   }
 
   @override
   Stream<LessonsState> mapEventToState(LessonsEvent event) async* {
     if (event is InitializeLessons) {
-      _onUserStateChanged(userBloc.state);
-      userBloc.listen(_onUserStateChanged);
+      _userSub?.cancel();
+      _userSub = userRepository.getUser().listen(_onUserChanged);
     }
 
     if (event is LessonsUpdated) {
@@ -103,6 +103,7 @@ class LessonsBloc extends Bloc<LessonsEvent, LessonsState> {
   @override
   Future<void> close() {
     lessonsSub?.cancel();
+    _userSub?.cancel();
     return super.close();
   }
 }

@@ -5,8 +5,6 @@ import 'package:checkin/src/localization/localization.dart';
 import 'package:checkin/src/logging/logger.dart';
 import 'package:checkin/src/repositories/analytics_repository.dart';
 import 'package:checkin/src/repositories/gym_repository.dart';
-import 'package:checkin/src/repositories/image_repository.dart';
-import 'package:checkin/src/repositories/storage_repository.dart';
 import 'package:checkin/src/repositories/user_repository.dart';
 import 'package:checkin/src/routes/application.dart';
 import 'package:checkin/src/themes/theme.dart';
@@ -150,14 +148,11 @@ class _AppState extends State<App> with WidgetsBindingObserver {
                   BlocProvider<UserBloc>(
                       create: (BuildContext context) => UserBloc(
                             userRepository: context.read<UserRepository>(),
-                            storageRepository: context.read<StorageRepository>(),
-                            imageRepository: context.read<ImageRepository>(),
                             authBloc: context.read<AuthBloc>(),
                           )),
                   BlocProvider<GymBloc>(
                     create: (BuildContext context) => GymBloc(
                       gymRepository: context.read<GymRepository>(),
-                      userBloc: context.read<UserBloc>(),
                     )..add(InitializeGym()),
                   ),
                 ],

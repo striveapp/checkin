@@ -2,37 +2,35 @@ import 'dart:async';
 
 import 'package:bloc/bloc.dart';
 import 'package:checkin/src/blocs/leaderboard/bloc.dart';
-import 'package:checkin/src/blocs/user/bloc.dart';
 import 'package:checkin/src/models/timespan.dart';
+import 'package:checkin/src/models/user.dart';
 import 'package:checkin/src/models/user_history.dart';
 import 'package:checkin/src/repositories/stats_repository.dart';
+import 'package:checkin/src/repositories/user_repository.dart';
 import 'package:flutter/material.dart';
 
 class LeaderboardBloc extends Bloc<LeaderboardEvent, LeaderboardState> {
-  final StatsRepository _statsRepository;
-  final UserBloc _userBloc;
-  StreamSubscription<List<UserHistory>> userHistorySub;
+  final StatsRepository statsRepository;
+  final UserRepository userRepository;
+  StreamSubscription<List<UserHistory>> _userHistorySub;
+  StreamSubscription<User> _userSub;
 
   LeaderboardBloc({
-    @required statsRepository,
-    @required userBloc,
-  })  : assert(statsRepository != null),
-        _statsRepository = statsRepository,
-        _userBloc = userBloc,
-        super(LeaderboardInitial()) {
-    _onUserStateChanged(_userBloc.state);
-    _userBloc.listen(_onUserStateChanged);
+    @required this.statsRepository,
+    @required this.userRepository,
+  }) : super(LeaderboardInitial()) {
+    _userSub?.cancel();
+    _userSub = userRepository.getUser().listen(_onUserChanged);
   }
 
-  void _onUserStateChanged(userState) {
-    if (userState is UserSuccess) {
-      userHistorySub?.cancel();
-      userHistorySub = _statsRepository
-          .getAllUserStats(userState.currentUser.selectedGymId, Timespan.year)
-          .listen((usersHistory) {
-        add(LeaderboardUpdated(usersHistory: usersHistory));
-      });
-    }
+  void _onUserChanged(User currentUser) {
+    _userHistorySub?.cancel();
+    _userHistorySub = statsRepository
+        .getAllUserStats(
+          currentUser.selectedGymId,
+          Timespan.year,
+        )
+        .listen((usersHistory) => add(LeaderboardUpdated(usersHistory: usersHistory)));
   }
 
   @override
@@ -48,7 +46,8 @@ class LeaderboardBloc extends Bloc<LeaderboardEvent, LeaderboardState> {
 
   @override
   Future<void> close() {
-    userHistorySub?.cancel();
+    _userSub?.cancel();
+    _userHistorySub?.cancel();
     return super.close();
   }
 

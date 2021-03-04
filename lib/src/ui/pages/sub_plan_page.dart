@@ -3,7 +3,6 @@ import 'package:checkin/src/api/membership_api.dart';
 import 'package:checkin/src/blocs/gym/bloc.dart';
 import 'package:checkin/src/blocs/subscription/bloc.dart';
 import 'package:checkin/src/blocs/subscription_plans/bloc.dart';
-import 'package:checkin/src/blocs/user/bloc.dart';
 import 'package:checkin/src/localization/localization.dart';
 import 'package:checkin/src/repositories/analytics_repository.dart';
 import 'package:checkin/src/repositories/auth_repository.dart';
@@ -43,13 +42,12 @@ class SubPlanPage extends StatelessWidget {
         providers: [
           BlocProvider<GymBloc>(
             create: (BuildContext context) => GymBloc(
-              userBloc: BlocProvider.of<UserBloc>(context),
               gymRepository: context.read<GymRepository>(),
             )..add(InitializeGym()),
           ),
           BlocProvider<SubscriptionBloc>(
             create: (BuildContext context) => SubscriptionBloc(
-                gymBloc: context.read<GymBloc>(),
+                gymRepository: context.read(),
                 membershipApi: MembershipApi(
                     httpClient: HttpClient(authRepository: context.read<AuthRepository>())),
                 analyticsRepository: RepositoryProvider.of<AnalyticsRepository>(context)),
@@ -57,7 +55,7 @@ class SubPlanPage extends StatelessWidget {
           BlocProvider<SubscriptionPlansBloc>(
             create: (BuildContext context) => SubscriptionPlansBloc(
               planId: planId,
-              gymBloc: BlocProvider.of<GymBloc>(context),
+              gymRepository: context.read(),
               subscriptionPlansRepository: SubscriptionPlansProvider(),
             ),
           ),

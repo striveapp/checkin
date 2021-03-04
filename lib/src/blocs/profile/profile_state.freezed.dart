@@ -180,6 +180,8 @@ abstract class $ProfileLoadedCopyWith<$Res> {
           ProfileLoaded value, $Res Function(ProfileLoaded) then) =
       _$ProfileLoadedCopyWithImpl<$Res>;
   $Res call({User profileUser, bool isCurrentUser});
+
+  $UserCopyWith<$Res> get profileUser;
 }
 
 /// @nodoc
@@ -204,6 +206,16 @@ class _$ProfileLoadedCopyWithImpl<$Res> extends _$ProfileStateCopyWithImpl<$Res>
           ? _value.isCurrentUser
           : isCurrentUser as bool,
     ));
+  }
+
+  @override
+  $UserCopyWith<$Res> get profileUser {
+    if (_value.profileUser == null) {
+      return null;
+    }
+    return $UserCopyWith<$Res>(_value.profileUser, (value) {
+      return _then(_value.copyWith(profileUser: value));
+    });
   }
 }
 

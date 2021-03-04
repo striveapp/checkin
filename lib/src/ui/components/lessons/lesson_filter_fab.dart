@@ -2,6 +2,7 @@ import 'package:checkin/src/blocs/lesson_filter/bloc.dart';
 import 'package:checkin/src/blocs/lessons/bloc.dart';
 import 'package:checkin/src/blocs/user/user_bloc.dart';
 import 'package:checkin/src/repositories/lesson_config_repository.dart';
+import 'package:checkin/src/repositories/user_repository.dart';
 import 'package:checkin/src/ui/components/empty_widget.dart';
 import 'package:checkin/src/ui/components/lessons/filter_list_widget.dart';
 import 'package:flutter/material.dart';
@@ -37,7 +38,7 @@ class LessonsFilterFab extends StatelessWidget {
                           BlocProvider(
                               create: (BuildContext context) => LessonFilterBloc(
                                     lessonConfigRepository: context.read<LessonConfigRepository>(),
-                                    userBloc: context.read<UserBloc>(),
+                                    userRepository: context.read<UserRepository>(),
                                   ))
                         ],
                         child: Align(

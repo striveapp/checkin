@@ -684,6 +684,7 @@ abstract class $RegistryLoadedCopyWith<$Res> {
       bool isMasterOfTheClass,
       dynamic isClosedRegistry});
 
+  $UserCopyWith<$Res> get currentUser;
   $LessonCopyWith<$Res> get currentLesson;
 }
 
@@ -734,6 +735,16 @@ class _$RegistryLoadedCopyWithImpl<$Res>
           ? _value.isClosedRegistry
           : isClosedRegistry,
     ));
+  }
+
+  @override
+  $UserCopyWith<$Res> get currentUser {
+    if (_value.currentUser == null) {
+      return null;
+    }
+    return $UserCopyWith<$Res>(_value.currentUser, (value) {
+      return _then(_value.copyWith(currentUser: value));
+    });
   }
 
   @override

@@ -1,6 +1,5 @@
 import 'package:checkin/src/blocs/profile/bloc.dart';
 import 'package:checkin/src/blocs/stats/bloc.dart';
-import 'package:checkin/src/blocs/user/bloc.dart';
 import 'package:checkin/src/localization/localization.dart';
 import 'package:checkin/src/models/timespan.dart';
 import 'package:checkin/src/repositories/user_repository.dart';
@@ -32,7 +31,8 @@ class StatsPage extends StatelessWidget {
         BlocProvider<ProfileBloc>(
           create: (context) => ProfileBloc(
             userRepository: context.read<UserRepository>(),
-            userBloc: context.read<UserBloc>(),
+            storageRepository: context.read(),
+            imageRepository: context.read(),
             nonCurrentUserEmail: userEmail,
           )..add(InitializeProfile()),
         ),

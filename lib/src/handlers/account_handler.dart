@@ -1,8 +1,6 @@
 import 'package:checkin/src/blocs/auth/auth_bloc.dart';
 import 'package:checkin/src/blocs/user/bloc.dart';
 import 'package:checkin/src/handlers/registerable_handler.dart';
-import 'package:checkin/src/repositories/image_repository.dart';
-import 'package:checkin/src/repositories/storage_repository.dart';
 import 'package:checkin/src/repositories/user_repository.dart';
 import 'package:checkin/src/ui/pages/account_page.dart';
 import 'package:fluro/fluro.dart';
@@ -25,8 +23,6 @@ class AccountHandler extends Handler implements RegisterableHandler {
             create: (BuildContext context) {
               return UserBloc(
                 userRepository: userRepository,
-                storageRepository: context.read<StorageRepository>(),
-                imageRepository: context.read<ImageRepository>(),
                 authBloc: BlocProvider.of<AuthBloc>(context),
               );
             },

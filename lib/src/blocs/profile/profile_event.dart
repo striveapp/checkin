@@ -12,4 +12,8 @@ abstract class ProfileEvent with _$ProfileEvent {
     @required User user,
     @required bool isCurrentUser,
   }) = ProfileUpdated;
+  const factory ProfileEvent.updateImageUrl({@required String userEmail}) = UpdateImageUrl;
+
+  const factory ProfileEvent.updateName({@required String userEmail, @required String newName}) =
+      UpdateName;
 }

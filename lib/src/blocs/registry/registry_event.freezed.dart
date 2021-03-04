@@ -361,6 +361,7 @@ abstract class $RegistryUpdatedCopyWith<$Res> {
       _$RegistryUpdatedCopyWithImpl<$Res>;
   $Res call({User currentUser, Lesson currentLesson});
 
+  $UserCopyWith<$Res> get currentUser;
   $LessonCopyWith<$Res> get currentLesson;
 }
 
@@ -387,6 +388,16 @@ class _$RegistryUpdatedCopyWithImpl<$Res>
           ? _value.currentLesson
           : currentLesson as Lesson,
     ));
+  }
+
+  @override
+  $UserCopyWith<$Res> get currentUser {
+    if (_value.currentUser == null) {
+      return null;
+    }
+    return $UserCopyWith<$Res>(_value.currentUser, (value) {
+      return _then(_value.copyWith(currentUser: value));
+    });
   }
 
   @override

@@ -1,11 +1,11 @@
 import 'package:bloc_test/bloc_test.dart';
 import 'package:checkin/src/blocs/leaderboard/bloc.dart';
-import 'package:checkin/src/blocs/user/bloc.dart';
 import 'package:checkin/src/models/lesson.dart';
 import 'package:checkin/src/models/timespan.dart';
 import 'package:checkin/src/models/user.dart';
 import 'package:checkin/src/models/user_history.dart';
 import 'package:checkin/src/repositories/stats_repository.dart';
+import 'package:checkin/src/repositories/user_repository.dart';
 import 'package:flutter_test/flutter_test.dart';
 import 'package:mockito/mockito.dart';
 
@@ -13,12 +13,12 @@ import 'helper/mock_helper.dart';
 
 class MockStatsRepository extends Mock implements StatsRepository {}
 
-class MockUserBloc extends Mock implements UserBloc {}
+class MockUserRepository extends Mock implements UserRepository {}
 
 void main() {
   group("LeaderboardBloc", () {
     MockStatsRepository mockStatsRepository;
-    MockUserBloc mockUserBloc;
+    MockUserRepository mockUserRepository;
 
     User fakeUser = User(
       email: "test@test.com",
@@ -29,19 +29,27 @@ void main() {
 
     setUp(() {
       mockStatsRepository = MockStatsRepository();
-      mockUserBloc = MockUserBloc();
-      configureThrowOnMissingStub([mockStatsRepository]);
+      mockUserRepository = MockUserRepository();
+
+      configureThrowOnMissingStub([
+        mockStatsRepository,
+        mockUserRepository,
+      ]);
     });
 
     tearDown(() {
-      logAndVerifyNoMoreInteractions([mockStatsRepository]);
+      logAndVerifyNoMoreInteractions([
+        mockStatsRepository,
+        mockUserRepository,
+      ]);
     });
 
     // todo missing initial state test
     group("on LeaderboardUpdated event", () {
-      setUp(() {
-        reset(mockStatsRepository);
-      });
+      // setUp(() {
+      //   reset(mockStatsRepository);
+      //   reset(mockUserRepository);
+      // });
 
       group("when 3 user histories are loaded", () {
         List<Lesson> attendedLessons = [
@@ -66,22 +74,21 @@ void main() {
         ];
 
         setUp(() {
-          whenListen(mockUserBloc, Stream.fromIterable([UserSuccess(currentUser: fakeUser)]));
+          when(mockUserRepository.getUser()).thenAnswer((realInvocation) => Stream.value(fakeUser));
           when(mockStatsRepository.getAllUserStats(fakeUser.selectedGymId, Timespan.year))
-              .thenAnswer((_) {
-            return Stream<List<UserHistory>>.value(userHistories);
-          });
+              .thenAnswer((_) => Stream<List<UserHistory>>.value(userHistories));
         });
 
         tearDown(() {
+          verify(mockUserRepository.getUser());
           verify(mockStatsRepository.getAllUserStats(fakeUser.selectedGymId, Timespan.year));
         });
 
         blocTest(
           "should emit LeaderboardLoaded with users",
           build: () => LeaderboardBloc(
-            userBloc: mockUserBloc,
             statsRepository: mockStatsRepository,
+            userRepository: mockUserRepository,
           ),
           expect: [LeaderboardLoaded(usersHistory: userHistories)],
         );
@@ -114,16 +121,22 @@ void main() {
         List<UserHistory> sortedUsersHistory = [userHistory2, userHistory1, userHistory3];
 
         setUp(() {
-          when(mockStatsRepository.getAllUserStats(fakeUser.selectedGymId, Timespan.week))
-              .thenAnswer((_) {
-            return Stream<List<UserHistory>>.value(unsortedUsersHistory);
-          });
+          when(mockUserRepository.getUser()).thenAnswer((realInvocation) => Stream.value(fakeUser));
+          when(mockStatsRepository.getAllUserStats(fakeUser.selectedGymId, Timespan.year))
+              .thenAnswer((_) => Stream<List<UserHistory>>.value(unsortedUsersHistory));
+        });
+
+        tearDown(() {
+          verify(mockUserRepository.getUser());
+          verify(mockStatsRepository.getAllUserStats(fakeUser.selectedGymId, Timespan.year));
         });
 
         blocTest(
           "should emit LeaderboardLoaded with sorted users by attendedLessons count [desc]",
-          build: () =>
-              LeaderboardBloc(userBloc: mockUserBloc, statsRepository: mockStatsRepository),
+          build: () => LeaderboardBloc(
+            statsRepository: mockStatsRepository,
+            userRepository: mockUserRepository,
+          ),
           act: (bloc) => bloc.add(LeaderboardUpdated(usersHistory: unsortedUsersHistory)),
           expect: [
             LeaderboardLoaded(usersHistory: sortedUsersHistory),
@@ -146,16 +159,22 @@ void main() {
         ];
 
         setUp(() {
-          when(mockStatsRepository.getAllUserStats(fakeUser.selectedGymId, Timespan.week))
-              .thenAnswer((_) {
-            return Stream<List<UserHistory>>.value(usersHistory);
-          });
+          when(mockUserRepository.getUser()).thenAnswer((realInvocation) => Stream.value(fakeUser));
+          when(mockStatsRepository.getAllUserStats(fakeUser.selectedGymId, Timespan.year))
+              .thenAnswer((_) => Stream<List<UserHistory>>.value(usersHistory));
+        });
+
+        tearDown(() {
+          verify(mockUserRepository.getUser());
+          verify(mockStatsRepository.getAllUserStats(fakeUser.selectedGymId, Timespan.year));
         });
 
         blocTest(
           "should emit LeaderboardNotAvailable",
-          build: () =>
-              LeaderboardBloc(userBloc: mockUserBloc, statsRepository: mockStatsRepository),
+          build: () => LeaderboardBloc(
+            statsRepository: mockStatsRepository,
+            userRepository: mockUserRepository,
+          ),
           act: (bloc) => bloc.add(
             LeaderboardUpdated(usersHistory: usersHistory),
           ),

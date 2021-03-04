@@ -21,20 +21,6 @@ class _$UserEventTearOff {
   }
 
 // ignore: unused_element
-  UpdateName updateName({String newName}) {
-    return UpdateName(
-      newName: newName,
-    );
-  }
-
-// ignore: unused_element
-  UpdateImageUrl updateImageUrl({String userEmail}) {
-    return UpdateImageUrl(
-      userEmail: userEmail,
-    );
-  }
-
-// ignore: unused_element
   UpdateGrade updateGrade({Grade newGrade}) {
     return UpdateGrade(
       newGrade: newGrade,
@@ -48,14 +34,6 @@ class _$UserEventTearOff {
       newGymId: newGymId,
     );
   }
-
-// ignore: unused_element
-  UpdateFcmToken updateFcmToken({String userEmail, String newToken}) {
-    return UpdateFcmToken(
-      userEmail: userEmail,
-      newToken: newToken,
-    );
-  }
 }
 
 /// @nodoc
@@ -67,39 +45,27 @@ mixin _$UserEvent {
   @optionalTypeArgs
   TResult when<TResult extends Object>({
     @required TResult userUpdated(User user),
-    @required TResult updateName(String newName),
-    @required TResult updateImageUrl(String userEmail),
     @required TResult updateGrade(Grade newGrade),
     @required TResult updateSelectedGym(String userEmail, String newGymId),
-    @required TResult updateFcmToken(String userEmail, String newToken),
   });
   @optionalTypeArgs
   TResult maybeWhen<TResult extends Object>({
     TResult userUpdated(User user),
-    TResult updateName(String newName),
-    TResult updateImageUrl(String userEmail),
     TResult updateGrade(Grade newGrade),
     TResult updateSelectedGym(String userEmail, String newGymId),
-    TResult updateFcmToken(String userEmail, String newToken),
     @required TResult orElse(),
   });
   @optionalTypeArgs
   TResult map<TResult extends Object>({
     @required TResult userUpdated(UserUpdated value),
-    @required TResult updateName(UpdateName value),
-    @required TResult updateImageUrl(UpdateImageUrl value),
     @required TResult updateGrade(UpdateGrade value),
     @required TResult updateSelectedGym(UpdateSelectedGym value),
-    @required TResult updateFcmToken(UpdateFcmToken value),
   });
   @optionalTypeArgs
   TResult maybeMap<TResult extends Object>({
     TResult userUpdated(UserUpdated value),
-    TResult updateName(UpdateName value),
-    TResult updateImageUrl(UpdateImageUrl value),
     TResult updateGrade(UpdateGrade value),
     TResult updateSelectedGym(UpdateSelectedGym value),
-    TResult updateFcmToken(UpdateFcmToken value),
     @required TResult orElse(),
   });
 }
@@ -125,6 +91,8 @@ abstract class $UserUpdatedCopyWith<$Res> {
           UserUpdated value, $Res Function(UserUpdated) then) =
       _$UserUpdatedCopyWithImpl<$Res>;
   $Res call({User user});
+
+  $UserCopyWith<$Res> get user;
 }
 
 /// @nodoc
@@ -144,6 +112,16 @@ class _$UserUpdatedCopyWithImpl<$Res> extends _$UserEventCopyWithImpl<$Res>
     return _then(UserUpdated(
       user: user == freezed ? _value.user : user as User,
     ));
+  }
+
+  @override
+  $UserCopyWith<$Res> get user {
+    if (_value.user == null) {
+      return null;
+    }
+    return $UserCopyWith<$Res>(_value.user, (value) {
+      return _then(_value.copyWith(user: value));
+    });
   }
 }
 
@@ -187,18 +165,12 @@ class _$UserUpdated with DiagnosticableTreeMixin implements UserUpdated {
   @optionalTypeArgs
   TResult when<TResult extends Object>({
     @required TResult userUpdated(User user),
-    @required TResult updateName(String newName),
-    @required TResult updateImageUrl(String userEmail),
     @required TResult updateGrade(Grade newGrade),
     @required TResult updateSelectedGym(String userEmail, String newGymId),
-    @required TResult updateFcmToken(String userEmail, String newToken),
   }) {
     assert(userUpdated != null);
-    assert(updateName != null);
-    assert(updateImageUrl != null);
     assert(updateGrade != null);
     assert(updateSelectedGym != null);
-    assert(updateFcmToken != null);
     return userUpdated(user);
   }
 
@@ -206,11 +178,8 @@ class _$UserUpdated with DiagnosticableTreeMixin implements UserUpdated {
   @optionalTypeArgs
   TResult maybeWhen<TResult extends Object>({
     TResult userUpdated(User user),
-    TResult updateName(String newName),
-    TResult updateImageUrl(String userEmail),
     TResult updateGrade(Grade newGrade),
     TResult updateSelectedGym(String userEmail, String newGymId),
-    TResult updateFcmToken(String userEmail, String newToken),
     @required TResult orElse(),
   }) {
     assert(orElse != null);
@@ -224,18 +193,12 @@ class _$UserUpdated with DiagnosticableTreeMixin implements UserUpdated {
   @optionalTypeArgs
   TResult map<TResult extends Object>({
     @required TResult userUpdated(UserUpdated value),
-    @required TResult updateName(UpdateName value),
-    @required TResult updateImageUrl(UpdateImageUrl value),
     @required TResult updateGrade(UpdateGrade value),
     @required TResult updateSelectedGym(UpdateSelectedGym value),
-    @required TResult updateFcmToken(UpdateFcmToken value),
   }) {
     assert(userUpdated != null);
-    assert(updateName != null);
-    assert(updateImageUrl != null);
     assert(updateGrade != null);
     assert(updateSelectedGym != null);
-    assert(updateFcmToken != null);
     return userUpdated(this);
   }
 
@@ -243,11 +206,8 @@ class _$UserUpdated with DiagnosticableTreeMixin implements UserUpdated {
   @optionalTypeArgs
   TResult maybeMap<TResult extends Object>({
     TResult userUpdated(UserUpdated value),
-    TResult updateName(UpdateName value),
-    TResult updateImageUrl(UpdateImageUrl value),
     TResult updateGrade(UpdateGrade value),
     TResult updateSelectedGym(UpdateSelectedGym value),
-    TResult updateFcmToken(UpdateFcmToken value),
     @required TResult orElse(),
   }) {
     assert(orElse != null);
@@ -263,298 +223,6 @@ abstract class UserUpdated implements UserEvent {
 
   User get user;
   $UserUpdatedCopyWith<UserUpdated> get copyWith;
-}
-
-/// @nodoc
-abstract class $UpdateNameCopyWith<$Res> {
-  factory $UpdateNameCopyWith(
-          UpdateName value, $Res Function(UpdateName) then) =
-      _$UpdateNameCopyWithImpl<$Res>;
-  $Res call({String newName});
-}
-
-/// @nodoc
-class _$UpdateNameCopyWithImpl<$Res> extends _$UserEventCopyWithImpl<$Res>
-    implements $UpdateNameCopyWith<$Res> {
-  _$UpdateNameCopyWithImpl(UpdateName _value, $Res Function(UpdateName) _then)
-      : super(_value, (v) => _then(v as UpdateName));
-
-  @override
-  UpdateName get _value => super._value as UpdateName;
-
-  @override
-  $Res call({
-    Object newName = freezed,
-  }) {
-    return _then(UpdateName(
-      newName: newName == freezed ? _value.newName : newName as String,
-    ));
-  }
-}
-
-/// @nodoc
-class _$UpdateName with DiagnosticableTreeMixin implements UpdateName {
-  const _$UpdateName({this.newName});
-
-  @override
-  final String newName;
-
-  @override
-  String toString({DiagnosticLevel minLevel = DiagnosticLevel.info}) {
-    return 'UserEvent.updateName(newName: $newName)';
-  }
-
-  @override
-  void debugFillProperties(DiagnosticPropertiesBuilder properties) {
-    super.debugFillProperties(properties);
-    properties
-      ..add(DiagnosticsProperty('type', 'UserEvent.updateName'))
-      ..add(DiagnosticsProperty('newName', newName));
-  }
-
-  @override
-  bool operator ==(dynamic other) {
-    return identical(this, other) ||
-        (other is UpdateName &&
-            (identical(other.newName, newName) ||
-                const DeepCollectionEquality().equals(other.newName, newName)));
-  }
-
-  @override
-  int get hashCode =>
-      runtimeType.hashCode ^ const DeepCollectionEquality().hash(newName);
-
-  @override
-  $UpdateNameCopyWith<UpdateName> get copyWith =>
-      _$UpdateNameCopyWithImpl<UpdateName>(this, _$identity);
-
-  @override
-  @optionalTypeArgs
-  TResult when<TResult extends Object>({
-    @required TResult userUpdated(User user),
-    @required TResult updateName(String newName),
-    @required TResult updateImageUrl(String userEmail),
-    @required TResult updateGrade(Grade newGrade),
-    @required TResult updateSelectedGym(String userEmail, String newGymId),
-    @required TResult updateFcmToken(String userEmail, String newToken),
-  }) {
-    assert(userUpdated != null);
-    assert(updateName != null);
-    assert(updateImageUrl != null);
-    assert(updateGrade != null);
-    assert(updateSelectedGym != null);
-    assert(updateFcmToken != null);
-    return updateName(newName);
-  }
-
-  @override
-  @optionalTypeArgs
-  TResult maybeWhen<TResult extends Object>({
-    TResult userUpdated(User user),
-    TResult updateName(String newName),
-    TResult updateImageUrl(String userEmail),
-    TResult updateGrade(Grade newGrade),
-    TResult updateSelectedGym(String userEmail, String newGymId),
-    TResult updateFcmToken(String userEmail, String newToken),
-    @required TResult orElse(),
-  }) {
-    assert(orElse != null);
-    if (updateName != null) {
-      return updateName(newName);
-    }
-    return orElse();
-  }
-
-  @override
-  @optionalTypeArgs
-  TResult map<TResult extends Object>({
-    @required TResult userUpdated(UserUpdated value),
-    @required TResult updateName(UpdateName value),
-    @required TResult updateImageUrl(UpdateImageUrl value),
-    @required TResult updateGrade(UpdateGrade value),
-    @required TResult updateSelectedGym(UpdateSelectedGym value),
-    @required TResult updateFcmToken(UpdateFcmToken value),
-  }) {
-    assert(userUpdated != null);
-    assert(updateName != null);
-    assert(updateImageUrl != null);
-    assert(updateGrade != null);
-    assert(updateSelectedGym != null);
-    assert(updateFcmToken != null);
-    return updateName(this);
-  }
-
-  @override
-  @optionalTypeArgs
-  TResult maybeMap<TResult extends Object>({
-    TResult userUpdated(UserUpdated value),
-    TResult updateName(UpdateName value),
-    TResult updateImageUrl(UpdateImageUrl value),
-    TResult updateGrade(UpdateGrade value),
-    TResult updateSelectedGym(UpdateSelectedGym value),
-    TResult updateFcmToken(UpdateFcmToken value),
-    @required TResult orElse(),
-  }) {
-    assert(orElse != null);
-    if (updateName != null) {
-      return updateName(this);
-    }
-    return orElse();
-  }
-}
-
-abstract class UpdateName implements UserEvent {
-  const factory UpdateName({String newName}) = _$UpdateName;
-
-  String get newName;
-  $UpdateNameCopyWith<UpdateName> get copyWith;
-}
-
-/// @nodoc
-abstract class $UpdateImageUrlCopyWith<$Res> {
-  factory $UpdateImageUrlCopyWith(
-          UpdateImageUrl value, $Res Function(UpdateImageUrl) then) =
-      _$UpdateImageUrlCopyWithImpl<$Res>;
-  $Res call({String userEmail});
-}
-
-/// @nodoc
-class _$UpdateImageUrlCopyWithImpl<$Res> extends _$UserEventCopyWithImpl<$Res>
-    implements $UpdateImageUrlCopyWith<$Res> {
-  _$UpdateImageUrlCopyWithImpl(
-      UpdateImageUrl _value, $Res Function(UpdateImageUrl) _then)
-      : super(_value, (v) => _then(v as UpdateImageUrl));
-
-  @override
-  UpdateImageUrl get _value => super._value as UpdateImageUrl;
-
-  @override
-  $Res call({
-    Object userEmail = freezed,
-  }) {
-    return _then(UpdateImageUrl(
-      userEmail: userEmail == freezed ? _value.userEmail : userEmail as String,
-    ));
-  }
-}
-
-/// @nodoc
-class _$UpdateImageUrl with DiagnosticableTreeMixin implements UpdateImageUrl {
-  const _$UpdateImageUrl({this.userEmail});
-
-  @override
-  final String userEmail;
-
-  @override
-  String toString({DiagnosticLevel minLevel = DiagnosticLevel.info}) {
-    return 'UserEvent.updateImageUrl(userEmail: $userEmail)';
-  }
-
-  @override
-  void debugFillProperties(DiagnosticPropertiesBuilder properties) {
-    super.debugFillProperties(properties);
-    properties
-      ..add(DiagnosticsProperty('type', 'UserEvent.updateImageUrl'))
-      ..add(DiagnosticsProperty('userEmail', userEmail));
-  }
-
-  @override
-  bool operator ==(dynamic other) {
-    return identical(this, other) ||
-        (other is UpdateImageUrl &&
-            (identical(other.userEmail, userEmail) ||
-                const DeepCollectionEquality()
-                    .equals(other.userEmail, userEmail)));
-  }
-
-  @override
-  int get hashCode =>
-      runtimeType.hashCode ^ const DeepCollectionEquality().hash(userEmail);
-
-  @override
-  $UpdateImageUrlCopyWith<UpdateImageUrl> get copyWith =>
-      _$UpdateImageUrlCopyWithImpl<UpdateImageUrl>(this, _$identity);
-
-  @override
-  @optionalTypeArgs
-  TResult when<TResult extends Object>({
-    @required TResult userUpdated(User user),
-    @required TResult updateName(String newName),
-    @required TResult updateImageUrl(String userEmail),
-    @required TResult updateGrade(Grade newGrade),
-    @required TResult updateSelectedGym(String userEmail, String newGymId),
-    @required TResult updateFcmToken(String userEmail, String newToken),
-  }) {
-    assert(userUpdated != null);
-    assert(updateName != null);
-    assert(updateImageUrl != null);
-    assert(updateGrade != null);
-    assert(updateSelectedGym != null);
-    assert(updateFcmToken != null);
-    return updateImageUrl(userEmail);
-  }
-
-  @override
-  @optionalTypeArgs
-  TResult maybeWhen<TResult extends Object>({
-    TResult userUpdated(User user),
-    TResult updateName(String newName),
-    TResult updateImageUrl(String userEmail),
-    TResult updateGrade(Grade newGrade),
-    TResult updateSelectedGym(String userEmail, String newGymId),
-    TResult updateFcmToken(String userEmail, String newToken),
-    @required TResult orElse(),
-  }) {
-    assert(orElse != null);
-    if (updateImageUrl != null) {
-      return updateImageUrl(userEmail);
-    }
-    return orElse();
-  }
-
-  @override
-  @optionalTypeArgs
-  TResult map<TResult extends Object>({
-    @required TResult userUpdated(UserUpdated value),
-    @required TResult updateName(UpdateName value),
-    @required TResult updateImageUrl(UpdateImageUrl value),
-    @required TResult updateGrade(UpdateGrade value),
-    @required TResult updateSelectedGym(UpdateSelectedGym value),
-    @required TResult updateFcmToken(UpdateFcmToken value),
-  }) {
-    assert(userUpdated != null);
-    assert(updateName != null);
-    assert(updateImageUrl != null);
-    assert(updateGrade != null);
-    assert(updateSelectedGym != null);
-    assert(updateFcmToken != null);
-    return updateImageUrl(this);
-  }
-
-  @override
-  @optionalTypeArgs
-  TResult maybeMap<TResult extends Object>({
-    TResult userUpdated(UserUpdated value),
-    TResult updateName(UpdateName value),
-    TResult updateImageUrl(UpdateImageUrl value),
-    TResult updateGrade(UpdateGrade value),
-    TResult updateSelectedGym(UpdateSelectedGym value),
-    TResult updateFcmToken(UpdateFcmToken value),
-    @required TResult orElse(),
-  }) {
-    assert(orElse != null);
-    if (updateImageUrl != null) {
-      return updateImageUrl(this);
-    }
-    return orElse();
-  }
-}
-
-abstract class UpdateImageUrl implements UserEvent {
-  const factory UpdateImageUrl({String userEmail}) = _$UpdateImageUrl;
-
-  String get userEmail;
-  $UpdateImageUrlCopyWith<UpdateImageUrl> get copyWith;
 }
 
 /// @nodoc
@@ -626,18 +294,12 @@ class _$UpdateGrade with DiagnosticableTreeMixin implements UpdateGrade {
   @optionalTypeArgs
   TResult when<TResult extends Object>({
     @required TResult userUpdated(User user),
-    @required TResult updateName(String newName),
-    @required TResult updateImageUrl(String userEmail),
     @required TResult updateGrade(Grade newGrade),
     @required TResult updateSelectedGym(String userEmail, String newGymId),
-    @required TResult updateFcmToken(String userEmail, String newToken),
   }) {
     assert(userUpdated != null);
-    assert(updateName != null);
-    assert(updateImageUrl != null);
     assert(updateGrade != null);
     assert(updateSelectedGym != null);
-    assert(updateFcmToken != null);
     return updateGrade(newGrade);
   }
 
@@ -645,11 +307,8 @@ class _$UpdateGrade with DiagnosticableTreeMixin implements UpdateGrade {
   @optionalTypeArgs
   TResult maybeWhen<TResult extends Object>({
     TResult userUpdated(User user),
-    TResult updateName(String newName),
-    TResult updateImageUrl(String userEmail),
     TResult updateGrade(Grade newGrade),
     TResult updateSelectedGym(String userEmail, String newGymId),
-    TResult updateFcmToken(String userEmail, String newToken),
     @required TResult orElse(),
   }) {
     assert(orElse != null);
@@ -663,18 +322,12 @@ class _$UpdateGrade with DiagnosticableTreeMixin implements UpdateGrade {
   @optionalTypeArgs
   TResult map<TResult extends Object>({
     @required TResult userUpdated(UserUpdated value),
-    @required TResult updateName(UpdateName value),
-    @required TResult updateImageUrl(UpdateImageUrl value),
     @required TResult updateGrade(UpdateGrade value),
     @required TResult updateSelectedGym(UpdateSelectedGym value),
-    @required TResult updateFcmToken(UpdateFcmToken value),
   }) {
     assert(userUpdated != null);
-    assert(updateName != null);
-    assert(updateImageUrl != null);
     assert(updateGrade != null);
     assert(updateSelectedGym != null);
-    assert(updateFcmToken != null);
     return updateGrade(this);
   }
 
@@ -682,11 +335,8 @@ class _$UpdateGrade with DiagnosticableTreeMixin implements UpdateGrade {
   @optionalTypeArgs
   TResult maybeMap<TResult extends Object>({
     TResult userUpdated(UserUpdated value),
-    TResult updateName(UpdateName value),
-    TResult updateImageUrl(UpdateImageUrl value),
     TResult updateGrade(UpdateGrade value),
     TResult updateSelectedGym(UpdateSelectedGym value),
-    TResult updateFcmToken(UpdateFcmToken value),
     @required TResult orElse(),
   }) {
     assert(orElse != null);
@@ -786,18 +436,12 @@ class _$UpdateSelectedGym
   @optionalTypeArgs
   TResult when<TResult extends Object>({
     @required TResult userUpdated(User user),
-    @required TResult updateName(String newName),
-    @required TResult updateImageUrl(String userEmail),
     @required TResult updateGrade(Grade newGrade),
     @required TResult updateSelectedGym(String userEmail, String newGymId),
-    @required TResult updateFcmToken(String userEmail, String newToken),
   }) {
     assert(userUpdated != null);
-    assert(updateName != null);
-    assert(updateImageUrl != null);
     assert(updateGrade != null);
     assert(updateSelectedGym != null);
-    assert(updateFcmToken != null);
     return updateSelectedGym(userEmail, newGymId);
   }
 
@@ -805,11 +449,8 @@ class _$UpdateSelectedGym
   @optionalTypeArgs
   TResult maybeWhen<TResult extends Object>({
     TResult userUpdated(User user),
-    TResult updateName(String newName),
-    TResult updateImageUrl(String userEmail),
     TResult updateGrade(Grade newGrade),
     TResult updateSelectedGym(String userEmail, String newGymId),
-    TResult updateFcmToken(String userEmail, String newToken),
     @required TResult orElse(),
   }) {
     assert(orElse != null);
@@ -823,18 +464,12 @@ class _$UpdateSelectedGym
   @optionalTypeArgs
   TResult map<TResult extends Object>({
     @required TResult userUpdated(UserUpdated value),
-    @required TResult updateName(UpdateName value),
-    @required TResult updateImageUrl(UpdateImageUrl value),
     @required TResult updateGrade(UpdateGrade value),
     @required TResult updateSelectedGym(UpdateSelectedGym value),
-    @required TResult updateFcmToken(UpdateFcmToken value),
   }) {
     assert(userUpdated != null);
-    assert(updateName != null);
-    assert(updateImageUrl != null);
     assert(updateGrade != null);
     assert(updateSelectedGym != null);
-    assert(updateFcmToken != null);
     return updateSelectedGym(this);
   }
 
@@ -842,11 +477,8 @@ class _$UpdateSelectedGym
   @optionalTypeArgs
   TResult maybeMap<TResult extends Object>({
     TResult userUpdated(UserUpdated value),
-    TResult updateName(UpdateName value),
-    TResult updateImageUrl(UpdateImageUrl value),
     TResult updateGrade(UpdateGrade value),
     TResult updateSelectedGym(UpdateSelectedGym value),
-    TResult updateFcmToken(UpdateFcmToken value),
     @required TResult orElse(),
   }) {
     assert(orElse != null);
@@ -864,163 +496,4 @@ abstract class UpdateSelectedGym implements UserEvent {
   String get userEmail;
   String get newGymId;
   $UpdateSelectedGymCopyWith<UpdateSelectedGym> get copyWith;
-}
-
-/// @nodoc
-abstract class $UpdateFcmTokenCopyWith<$Res> {
-  factory $UpdateFcmTokenCopyWith(
-          UpdateFcmToken value, $Res Function(UpdateFcmToken) then) =
-      _$UpdateFcmTokenCopyWithImpl<$Res>;
-  $Res call({String userEmail, String newToken});
-}
-
-/// @nodoc
-class _$UpdateFcmTokenCopyWithImpl<$Res> extends _$UserEventCopyWithImpl<$Res>
-    implements $UpdateFcmTokenCopyWith<$Res> {
-  _$UpdateFcmTokenCopyWithImpl(
-      UpdateFcmToken _value, $Res Function(UpdateFcmToken) _then)
-      : super(_value, (v) => _then(v as UpdateFcmToken));
-
-  @override
-  UpdateFcmToken get _value => super._value as UpdateFcmToken;
-
-  @override
-  $Res call({
-    Object userEmail = freezed,
-    Object newToken = freezed,
-  }) {
-    return _then(UpdateFcmToken(
-      userEmail: userEmail == freezed ? _value.userEmail : userEmail as String,
-      newToken: newToken == freezed ? _value.newToken : newToken as String,
-    ));
-  }
-}
-
-/// @nodoc
-class _$UpdateFcmToken with DiagnosticableTreeMixin implements UpdateFcmToken {
-  const _$UpdateFcmToken({this.userEmail, this.newToken});
-
-  @override
-  final String userEmail;
-  @override
-  final String newToken;
-
-  @override
-  String toString({DiagnosticLevel minLevel = DiagnosticLevel.info}) {
-    return 'UserEvent.updateFcmToken(userEmail: $userEmail, newToken: $newToken)';
-  }
-
-  @override
-  void debugFillProperties(DiagnosticPropertiesBuilder properties) {
-    super.debugFillProperties(properties);
-    properties
-      ..add(DiagnosticsProperty('type', 'UserEvent.updateFcmToken'))
-      ..add(DiagnosticsProperty('userEmail', userEmail))
-      ..add(DiagnosticsProperty('newToken', newToken));
-  }
-
-  @override
-  bool operator ==(dynamic other) {
-    return identical(this, other) ||
-        (other is UpdateFcmToken &&
-            (identical(other.userEmail, userEmail) ||
-                const DeepCollectionEquality()
-                    .equals(other.userEmail, userEmail)) &&
-            (identical(other.newToken, newToken) ||
-                const DeepCollectionEquality()
-                    .equals(other.newToken, newToken)));
-  }
-
-  @override
-  int get hashCode =>
-      runtimeType.hashCode ^
-      const DeepCollectionEquality().hash(userEmail) ^
-      const DeepCollectionEquality().hash(newToken);
-
-  @override
-  $UpdateFcmTokenCopyWith<UpdateFcmToken> get copyWith =>
-      _$UpdateFcmTokenCopyWithImpl<UpdateFcmToken>(this, _$identity);
-
-  @override
-  @optionalTypeArgs
-  TResult when<TResult extends Object>({
-    @required TResult userUpdated(User user),
-    @required TResult updateName(String newName),
-    @required TResult updateImageUrl(String userEmail),
-    @required TResult updateGrade(Grade newGrade),
-    @required TResult updateSelectedGym(String userEmail, String newGymId),
-    @required TResult updateFcmToken(String userEmail, String newToken),
-  }) {
-    assert(userUpdated != null);
-    assert(updateName != null);
-    assert(updateImageUrl != null);
-    assert(updateGrade != null);
-    assert(updateSelectedGym != null);
-    assert(updateFcmToken != null);
-    return updateFcmToken(userEmail, newToken);
-  }
-
-  @override
-  @optionalTypeArgs
-  TResult maybeWhen<TResult extends Object>({
-    TResult userUpdated(User user),
-    TResult updateName(String newName),
-    TResult updateImageUrl(String userEmail),
-    TResult updateGrade(Grade newGrade),
-    TResult updateSelectedGym(String userEmail, String newGymId),
-    TResult updateFcmToken(String userEmail, String newToken),
-    @required TResult orElse(),
-  }) {
-    assert(orElse != null);
-    if (updateFcmToken != null) {
-      return updateFcmToken(userEmail, newToken);
-    }
-    return orElse();
-  }
-
-  @override
-  @optionalTypeArgs
-  TResult map<TResult extends Object>({
-    @required TResult userUpdated(UserUpdated value),
-    @required TResult updateName(UpdateName value),
-    @required TResult updateImageUrl(UpdateImageUrl value),
-    @required TResult updateGrade(UpdateGrade value),
-    @required TResult updateSelectedGym(UpdateSelectedGym value),
-    @required TResult updateFcmToken(UpdateFcmToken value),
-  }) {
-    assert(userUpdated != null);
-    assert(updateName != null);
-    assert(updateImageUrl != null);
-    assert(updateGrade != null);
-    assert(updateSelectedGym != null);
-    assert(updateFcmToken != null);
-    return updateFcmToken(this);
-  }
-
-  @override
-  @optionalTypeArgs
-  TResult maybeMap<TResult extends Object>({
-    TResult userUpdated(UserUpdated value),
-    TResult updateName(UpdateName value),
-    TResult updateImageUrl(UpdateImageUrl value),
-    TResult updateGrade(UpdateGrade value),
-    TResult updateSelectedGym(UpdateSelectedGym value),
-    TResult updateFcmToken(UpdateFcmToken value),
-    @required TResult orElse(),
-  }) {
-    assert(orElse != null);
-    if (updateFcmToken != null) {
-      return updateFcmToken(this);
-    }
-    return orElse();
-  }
-}
-
-abstract class UpdateFcmToken implements UserEvent {
-  const factory UpdateFcmToken({String userEmail, String newToken}) =
-      _$UpdateFcmToken;
-
-  String get userEmail;
-  String get newToken;
-  $UpdateFcmTokenCopyWith<UpdateFcmToken> get copyWith;
 }

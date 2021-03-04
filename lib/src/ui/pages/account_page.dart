@@ -8,7 +8,6 @@ import 'package:checkin/src/blocs/membership/bloc.dart';
 import 'package:checkin/src/blocs/payment_methods/payment_methods_bloc.dart';
 import 'package:checkin/src/blocs/profile/bloc.dart';
 import 'package:checkin/src/blocs/stats/bloc.dart';
-import 'package:checkin/src/blocs/user/bloc.dart';
 import 'package:checkin/src/blocs/user_stats/bloc.dart';
 import 'package:checkin/src/localization/localization.dart';
 import 'package:checkin/src/models/timespan.dart';
@@ -56,26 +55,26 @@ class AccountPage extends StatelessWidget {
             BlocProvider<ProfileBloc>(
               create: (BuildContext context) => ProfileBloc(
                 userRepository: context.read<UserRepository>(),
-                userBloc: context.read<UserBloc>(),
+                storageRepository: context.read(),
+                imageRepository: context.read(),
               )..add(InitializeProfile()),
             ),
             BlocProvider<AccountBloc>(
               create: (BuildContext context) => AccountBloc(
-                userBloc: context.read<UserBloc>(),
                 analyticsRepository: context.read<AnalyticsRepository>(),
+                userRepository: context.read<UserRepository>(),
               ),
             ),
             BlocProvider<GymBloc>(
               create: (BuildContext context) => GymBloc(
                 gymRepository: context.read<GymRepository>(),
-                userBloc: context.read<UserBloc>(),
               )..add(InitializeGym()),
             ),
             BlocProvider<PaymentMethodsBloc>(
               create: (BuildContext context) => PaymentMethodsBloc(
                 urlLauncherUtil: UrlLauncherUtil(),
-                userBloc: context.read<UserBloc>(),
                 paymentMethodRepository: PaymentMethodProvider(),
+                userRepository: context.read<UserRepository>(),
                 paymentApi: PaymentApi(
                   httpClient: HttpClient(
                     authRepository: context.read<AuthRepository>(),

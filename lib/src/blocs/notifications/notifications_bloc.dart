@@ -1,21 +1,21 @@
 import 'dart:async';
 
 import 'package:bloc/bloc.dart';
-import 'package:checkin/src/blocs/user/bloc.dart';
 import 'package:checkin/src/logging/logger.dart';
 import 'package:checkin/src/models/notification.dart';
 import 'package:checkin/src/repositories/notification_repository.dart';
+import 'package:checkin/src/repositories/user_repository.dart';
 import 'package:flutter/foundation.dart';
 import 'package:meta/meta.dart';
 
 import 'bloc.dart';
 
 class NotificationsBloc extends Bloc<NotificationsEvent, NotificationsState> {
-  final UserBloc userBloc;
+  final UserRepository userRepository;
   final NotificationRepository notificationRepository;
 
   NotificationsBloc({
-    @required this.userBloc,
+    @required this.userRepository,
     @required this.notificationRepository,
   }) : super(NotificationsUninitialized()) {
     notificationRepository.config(
@@ -49,10 +49,11 @@ class NotificationsBloc extends Bloc<NotificationsEvent, NotificationsState> {
   }
 
   void _saveUserToken(String token) {
-    userBloc.listen((userState) {
-      if (userState is UserSuccess) {
-        userBloc.add(UpdateFcmToken(userEmail: userState.currentUser.email, newToken: token));
-      }
+    userRepository.getUser().skipWhile((user) => user == null).listen((currentUser) async {
+        await userRepository.updateUserFcmToken(
+          currentUser.email,
+          token,
+        );
     });
   }
 

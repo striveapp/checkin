@@ -134,6 +134,7 @@ Future<void> mainCommon(AppConfig appConfig) async {
                 authRepository: context.read<AuthRepository>(),
                 analyticsRepository: context.read<AnalyticsRepository>(),
                 userRepository: context.read<UserRepository>(),
+                gymRepository: context.read(),
                 localStorageRepository: context.read<LocalStorageRepository>(),
                 loggedUser: user,
                 // todo retrieve from storage cache

@@ -1,3 +1,4 @@
+import 'dart:async';
 import 'dart:io';
 
 import 'package:checkin/src/models/grade.dart';
@@ -7,8 +8,12 @@ import 'package:checkin/src/resources/stats_provider.dart';
 import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:pub_semver/pub_semver.dart';
 
+import 'local_storage_provider.dart';
+
 class UserProvider implements UserRepository {
   FirebaseFirestore _firestore = FirebaseFirestore.instance;
+  LocalStorageProvider _localStorageProvider = LocalStorageProvider();
+
   StatsProvider statsProvider = StatsProvider();
   static const String path = 'users';
 
@@ -18,6 +23,23 @@ class UserProvider implements UserRepository {
       .snapshots()
       .where((snapshot) => snapshot.exists)
       .map((user) => toUser(user));
+
+  @override
+  Stream<User> subscribeToUser(String email) {
+    return _firestore
+        .collection(path)
+        .doc(email)
+        .snapshots()
+        .where((snapshot) => snapshot.exists)
+        .map((user) => toUser(user))
+        .map((user) {
+          _localStorageProvider.setUser(user);
+          return user;
+        });
+  }
+
+  @override
+  Stream<User> getUser() => _localStorageProvider.getUser();
 
   User toUser(DocumentSnapshot user) {
     final data = user.data();
@@ -29,7 +51,7 @@ class UserProvider implements UserRepository {
         knownGymIds: List<String>.from(data['knownGymIds'] ?? []),
         grade: ((data['grade'] ?? data['rank']) as String)?.toGrade(),
         isOwner: data['isOwner'] ?? false,
-        hasActivePayments: data['hasActivePayments'],
+        hasActivePayments: data['hasActivePayments'] ?? false,
         selectedGymId: data['selectedGymId']);
   }
 

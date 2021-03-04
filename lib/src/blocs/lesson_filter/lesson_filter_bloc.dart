@@ -1,34 +1,36 @@
 import 'dart:async';
+
 import 'package:bloc/bloc.dart';
 import 'package:checkin/src/blocs/lesson_filter/lesson_filter_state.dart';
-import 'package:checkin/src/blocs/user/bloc.dart';
+import 'package:checkin/src/models/user.dart';
 import 'package:checkin/src/repositories/lesson_config_repository.dart';
+import 'package:checkin/src/repositories/user_repository.dart';
 import 'package:flutter/material.dart';
+
 import './bloc.dart';
 
 class LessonFilterBloc extends Bloc<LessonFilterEvent, LessonFilterState> {
   final LessonConfigRepository lessonConfigRepository;
-  final UserBloc userBloc;
+  final UserRepository userRepository;
 
-  StreamSubscription<Set<String>> availableLessonTypesSub;
+  StreamSubscription<Set<String>> _availableLessonTypesSub;
+  StreamSubscription<User> _userSub;
 
   LessonFilterBloc({
     @required this.lessonConfigRepository,
-    @required this.userBloc,
+    @required this.userRepository,
   }) : super(InitialLessonFilterState()) {
-    _onUserStateChanged(userBloc.state);
-    userBloc.listen(_onUserStateChanged);
+    _userSub?.cancel();
+    _userSub = userRepository.getUser().listen(_onUserChanged);
   }
 
-  void _onUserStateChanged(userState) {
-    if (userState is UserSuccess) {
-      availableLessonTypesSub?.cancel();
-      availableLessonTypesSub = lessonConfigRepository
-          .getAvailableLessonTypes(userState.currentUser.selectedGymId)
-          .listen((availableLessonTypes) {
-        add(LessonFilterUpdated(availableLessonTypes: availableLessonTypes));
-      });
-    }
+  void _onUserChanged(User currentUser) {
+    _availableLessonTypesSub?.cancel();
+    _availableLessonTypesSub = lessonConfigRepository
+        .getAvailableLessonTypes(currentUser.selectedGymId)
+        .listen((availableLessonTypes) {
+      add(LessonFilterUpdated(availableLessonTypes: availableLessonTypes));
+    });
   }
 
   @override
@@ -39,5 +41,12 @@ class LessonFilterBloc extends Bloc<LessonFilterEvent, LessonFilterState> {
       yield LessonFilterState.lessonFilterLoaded(
           availableLessonTypes: event.availableLessonTypes.toList());
     }
+  }
+
+  @override
+  Future<void> close() {
+    _userSub?.cancel();
+    _availableLessonTypesSub?.cancel();
+    return super.close();
   }
 }

@@ -20,7 +20,7 @@ class HomePage extends StatelessWidget {
   Widget build(BuildContext context) {
     return BlocProvider(
       create: (context) => NotificationsBloc(
-        userBloc: BlocProvider.of<UserBloc>(context),
+        userRepository: context.read(),
         notificationRepository: NotificationRepository(),
       )..add(Setup()),
       child: BlocListener<NotificationsBloc, NotificationsState>(
@@ -43,7 +43,7 @@ class HomePage extends StatelessWidget {
 
           if (state is UserSuccess) {
             if (state.currentUser.name == null || state.currentUser.name.isEmpty) {
-              return NameSelectionPage();
+              return NameSelectionPage(userEmail: state.currentUser.email);
             }
 
             if (state.currentUser.selectedGymId == null) {

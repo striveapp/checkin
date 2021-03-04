@@ -3,6 +3,7 @@ import 'package:checkin/src/blocs/auth/bloc.dart';
 import 'package:checkin/src/models/user.dart';
 import 'package:checkin/src/repositories/analytics_repository.dart';
 import 'package:checkin/src/repositories/auth_repository.dart';
+import 'package:checkin/src/repositories/gym_repository.dart';
 import 'package:checkin/src/repositories/local_storage_repository.dart';
 import 'package:checkin/src/repositories/user_repository.dart';
 import 'package:checkin/src/util/version_util.dart';
@@ -18,6 +19,8 @@ class MockAnalyticsRepository extends Mock implements AnalyticsRepository {}
 
 class MockUserRepository extends Mock implements UserRepository {}
 
+class MockGymRepository extends Mock implements GymRepository {}
+
 class MockLocalStorageRepository extends Mock implements LocalStorageRepository {}
 
 class MockVersionUtil extends Mock implements VersionUtil {}
@@ -27,6 +30,7 @@ void main() {
     MockAuthRepository mockAuthRepository;
     MockAnalyticsRepository mockAnalyticsRepository;
     MockUserRepository mockUserRepository;
+    MockGymRepository mockGymRepository;
     MockLocalStorageRepository mockLocalStorageRepository;
     MockVersionUtil mockVersionUtil;
 
@@ -43,11 +47,13 @@ void main() {
       mockUserRepository = MockUserRepository();
       mockLocalStorageRepository = MockLocalStorageRepository();
       mockVersionUtil = MockVersionUtil();
+      mockGymRepository = MockGymRepository();
 
       configureThrowOnMissingStub([
         mockAuthRepository,
         mockAnalyticsRepository,
         mockUserRepository,
+        mockGymRepository,
         mockLocalStorageRepository,
         mockVersionUtil,
       ]);
@@ -58,6 +64,7 @@ void main() {
         mockAuthRepository,
         mockAnalyticsRepository,
         mockUserRepository,
+        mockGymRepository,
         mockLocalStorageRepository,
         mockVersionUtil,
       ]);
@@ -72,6 +79,7 @@ void main() {
               authRepository: mockAuthRepository,
               analyticsRepository: mockAnalyticsRepository,
               userRepository: mockUserRepository,
+              gymRepository: mockGymRepository,
               localStorageRepository: mockLocalStorageRepository,
               versionUtil: mockVersionUtil,
               loggedUser: null);
@@ -92,6 +100,7 @@ void main() {
             authRepository: mockAuthRepository,
             analyticsRepository: mockAnalyticsRepository,
             userRepository: mockUserRepository,
+            gymRepository: mockGymRepository,
             localStorageRepository: mockLocalStorageRepository,
             versionUtil: mockVersionUtil,
             loggedUser: fakeUser,
@@ -117,6 +126,7 @@ void main() {
         var fakeAppVersion = Version.parse("1.0.0");
 
         setUp(() {
+          when(mockUserRepository.subscribeToUser(fakeUser.email)).thenAnswer((realInvocation) => Stream.empty());
           when(mockAuthRepository.getAuthState()).thenAnswer((_) {
             return Stream<User>.value(fakeUser);
           });
@@ -126,12 +136,13 @@ void main() {
         });
 
         tearDown(() {
+          verify(mockUserRepository.subscribeToUser(fakeUser.email));
           verify(mockAuthRepository.getAuthState());
           verify(mockAnalyticsRepository.setUserProperties(fakeUser.uid));
           verify(mockAnalyticsRepository.logUserLocale());
         });
 
-        group("and the local storage is empty", () {
+        group("and the local storage referredGymId is empty", () {
           setUp(() {
             when(mockVersionUtil.getCurrentVersion())
                 .thenAnswer((_) => Future.value(fakeAppVersion));
@@ -160,6 +171,7 @@ void main() {
               authRepository: mockAuthRepository,
               analyticsRepository: mockAnalyticsRepository,
               userRepository: mockUserRepository,
+              gymRepository: mockGymRepository,
               localStorageRepository: mockLocalStorageRepository,
               versionUtil: mockVersionUtil,
             ),
@@ -219,6 +231,7 @@ void main() {
                 authRepository: mockAuthRepository,
                 analyticsRepository: mockAnalyticsRepository,
                 userRepository: mockUserRepository,
+                gymRepository: mockGymRepository,
                 localStorageRepository: mockLocalStorageRepository,
                 versionUtil: mockVersionUtil),
             act: (bloc) => bloc.add(AppStarted()),
@@ -246,6 +259,7 @@ void main() {
             authRepository: mockAuthRepository,
             analyticsRepository: mockAnalyticsRepository,
             userRepository: mockUserRepository,
+            gymRepository: mockGymRepository,
             localStorageRepository: mockLocalStorageRepository,
             versionUtil: mockVersionUtil,
           ),
@@ -271,6 +285,7 @@ void main() {
             authRepository: mockAuthRepository,
             analyticsRepository: mockAnalyticsRepository,
             userRepository: mockUserRepository,
+            gymRepository: mockGymRepository,
             localStorageRepository: mockLocalStorageRepository,
             versionUtil: mockVersionUtil,
           ),
@@ -297,6 +312,7 @@ void main() {
             authRepository: mockAuthRepository,
             analyticsRepository: mockAnalyticsRepository,
             userRepository: mockUserRepository,
+            gymRepository: mockGymRepository,
             localStorageRepository: mockLocalStorageRepository,
             versionUtil: mockVersionUtil),
         act: (bloc) => bloc.add(LogOut()),

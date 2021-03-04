@@ -79,6 +79,8 @@ abstract class $AuthAuthenticatedCopyWith<$Res> {
           AuthAuthenticated value, $Res Function(AuthAuthenticated) then) =
       _$AuthAuthenticatedCopyWithImpl<$Res>;
   $Res call({User loggedUser});
+
+  $UserCopyWith<$Res> get loggedUser;
 }
 
 /// @nodoc
@@ -100,6 +102,16 @@ class _$AuthAuthenticatedCopyWithImpl<$Res>
       loggedUser:
           loggedUser == freezed ? _value.loggedUser : loggedUser as User,
     ));
+  }
+
+  @override
+  $UserCopyWith<$Res> get loggedUser {
+    if (_value.loggedUser == null) {
+      return null;
+    }
+    return $UserCopyWith<$Res>(_value.loggedUser, (value) {
+      return _then(_value.copyWith(loggedUser: value));
+    });
   }
 }
 

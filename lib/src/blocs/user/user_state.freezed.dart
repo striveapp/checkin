@@ -188,6 +188,8 @@ abstract class $UserSuccessCopyWith<$Res> {
           UserSuccess value, $Res Function(UserSuccess) then) =
       _$UserSuccessCopyWithImpl<$Res>;
   $Res call({User currentUser});
+
+  $UserCopyWith<$Res> get currentUser;
 }
 
 /// @nodoc
@@ -208,6 +210,16 @@ class _$UserSuccessCopyWithImpl<$Res> extends _$UserStateCopyWithImpl<$Res>
       currentUser:
           currentUser == freezed ? _value.currentUser : currentUser as User,
     ));
+  }
+
+  @override
+  $UserCopyWith<$Res> get currentUser {
+    if (_value.currentUser == null) {
+      return null;
+    }
+    return $UserCopyWith<$Res>(_value.currentUser, (value) {
+      return _then(_value.copyWith(currentUser: value));
+    });
   }
 }
 

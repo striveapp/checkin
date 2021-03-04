@@ -2,37 +2,35 @@ import 'dart:async';
 
 import 'package:bloc/bloc.dart';
 import 'package:checkin/src/api/membership_api.dart';
-import 'package:checkin/src/blocs/gym/bloc.dart';
 import 'package:checkin/src/logging/logger.dart';
 import 'package:checkin/src/models/gym.dart';
 import 'package:checkin/src/repositories/analytics_repository.dart';
+import 'package:checkin/src/repositories/gym_repository.dart';
 import 'package:flutter/material.dart';
 
 import './bloc.dart';
 
 class SubscriptionBloc extends Bloc<SubscriptionEvent, SubscriptionState> {
-  final GymBloc gymBloc;
+  final GymRepository gymRepository;
   final MembershipApi membershipApi;
   final AnalyticsRepository analyticsRepository;
   Gym gym;
 
   SubscriptionBloc({
-    @required this.gymBloc,
+    @required this.gymRepository,
     @required this.membershipApi,
     @required this.analyticsRepository,
-  })  : assert(membershipApi != null && analyticsRepository != null && gymBloc != null),
-        super(SubscriptionInitial()) {
+  }) : super(SubscriptionInitial()) {
     try {
-      _onGymStateUpdated(gymBloc.state);
-      gymBloc.listen(_onGymStateUpdated);
+      gymRepository.getGym().listen(_onGymUpdated);
     } catch (err, st) {
       Logger.log.e("Error while fetching the plans stream!", err, st);
     }
   }
 
-  void _onGymStateUpdated(GymState gymState) {
-    if (gymState is GymLoaded) {
-      gym = gymState.gym;
+  void _onGymUpdated(Gym gym) {
+    if (gym != null ) {
+      this.gym = gym;
     }
   }
 

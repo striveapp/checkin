@@ -1,7 +1,6 @@
 import 'dart:async';
 
 import 'package:bloc/bloc.dart';
-import 'package:checkin/src/blocs/user/bloc.dart';
 import 'package:checkin/src/models/gym.dart';
 import 'package:checkin/src/repositories/gym_repository.dart';
 import 'package:flutter/foundation.dart';
@@ -10,24 +9,17 @@ import './bloc.dart';
 
 class GymBloc extends Bloc<GymEvent, GymState> {
   final GymRepository gymRepository;
-  final UserBloc userBloc;
   final String gymId;
 
   StreamSubscription<Gym> gymSub;
 
   GymBloc({
     @required this.gymRepository,
-    this.userBloc,
     this.gymId,
   }) : super(InitialGymState());
 
-  void _onUserStateChanged(userState) {
-    if (userState is UserSuccess) {
-      gymSub?.cancel();
-      gymSub = gymRepository.getGym(userState.currentUser.selectedGymId).listen((gym) {
-        add(GymUpdated(gym: gym));
-      });
-    }
+  void _onGymUpdated(Gym gym) {
+    add(GymUpdated(gym: gym));
   }
 
   @override
@@ -35,14 +27,12 @@ class GymBloc extends Bloc<GymEvent, GymState> {
     GymEvent event,
   ) async* {
     if (event is InitializeGym) {
-      if (userBloc != null) {
-        _onUserStateChanged(userBloc.state);
-        userBloc.listen(_onUserStateChanged);
+      if (gymId != null) {
+        gymSub?.cancel();
+        gymSub = gymRepository.getGymById(gymId).listen(_onGymUpdated);
       } else {
         gymSub?.cancel();
-        gymSub = gymRepository.getGym(gymId).listen((gym) {
-          add(GymUpdated(gym: gym));
-        });
+        gymSub = gymRepository.getGym().listen(_onGymUpdated);
       }
     }
 

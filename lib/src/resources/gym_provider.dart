@@ -1,13 +1,33 @@
+import 'dart:async';
+
 import 'package:checkin/src/config.dart';
 import 'package:checkin/src/models/gym.dart';
 import 'package:checkin/src/repositories/gym_repository.dart';
+import 'package:checkin/src/resources/local_storage_provider.dart';
 import 'package:cloud_firestore/cloud_firestore.dart';
 
 class GymProvider implements GymRepository {
   FirebaseFirestore _firestore = FirebaseFirestore.instance;
+  LocalStorageProvider _localStorageProvider = LocalStorageProvider();
+
   static const String path = 'gyms';
 
-  Stream<Gym> getGym(String gymId) {
+  @override
+  StreamSubscription<Gym> subscribeToGym(String gymId) {
+    return _firestore
+        .collection(path)
+        .doc(gymId)
+        .snapshots()
+        .where((snapshot) => snapshot.exists)
+        .map((gym) => _toGym(gymId, gym.data()))
+        .listen((gym) => _localStorageProvider.setGym(gym));
+  }
+
+  Stream<Gym> getGym() {
+    return _localStorageProvider.getGym();
+  }
+
+  Stream<Gym> getGymById(String gymId) {
     return _firestore
         .collection(path)
         .doc(gymId)
