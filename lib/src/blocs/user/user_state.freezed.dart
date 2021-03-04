@@ -82,16 +82,14 @@ class _$UserStateCopyWithImpl<$Res> implements $UserStateCopyWith<$Res> {
 
 /// @nodoc
 abstract class $UserLoadingCopyWith<$Res> {
-  factory $UserLoadingCopyWith(
-          UserLoading value, $Res Function(UserLoading) then) =
+  factory $UserLoadingCopyWith(UserLoading value, $Res Function(UserLoading) then) =
       _$UserLoadingCopyWithImpl<$Res>;
 }
 
 /// @nodoc
 class _$UserLoadingCopyWithImpl<$Res> extends _$UserStateCopyWithImpl<$Res>
     implements $UserLoadingCopyWith<$Res> {
-  _$UserLoadingCopyWithImpl(
-      UserLoading _value, $Res Function(UserLoading) _then)
+  _$UserLoadingCopyWithImpl(UserLoading _value, $Res Function(UserLoading) _then)
       : super(_value, (v) => _then(v as UserLoading));
 
   @override
@@ -184,17 +182,17 @@ abstract class UserLoading implements UserState {
 
 /// @nodoc
 abstract class $UserSuccessCopyWith<$Res> {
-  factory $UserSuccessCopyWith(
-          UserSuccess value, $Res Function(UserSuccess) then) =
+  factory $UserSuccessCopyWith(UserSuccess value, $Res Function(UserSuccess) then) =
       _$UserSuccessCopyWithImpl<$Res>;
   $Res call({User currentUser});
+
+  $UserCopyWith<$Res> get currentUser;
 }
 
 /// @nodoc
 class _$UserSuccessCopyWithImpl<$Res> extends _$UserStateCopyWithImpl<$Res>
     implements $UserSuccessCopyWith<$Res> {
-  _$UserSuccessCopyWithImpl(
-      UserSuccess _value, $Res Function(UserSuccess) _then)
+  _$UserSuccessCopyWithImpl(UserSuccess _value, $Res Function(UserSuccess) _then)
       : super(_value, (v) => _then(v as UserSuccess));
 
   @override
@@ -205,9 +203,18 @@ class _$UserSuccessCopyWithImpl<$Res> extends _$UserStateCopyWithImpl<$Res>
     Object currentUser = freezed,
   }) {
     return _then(UserSuccess(
-      currentUser:
-          currentUser == freezed ? _value.currentUser : currentUser as User,
+      currentUser: currentUser == freezed ? _value.currentUser : currentUser as User,
     ));
+  }
+
+  @override
+  $UserCopyWith<$Res> get currentUser {
+    if (_value.currentUser == null) {
+      return null;
+    }
+    return $UserCopyWith<$Res>(_value.currentUser, (value) {
+      return _then(_value.copyWith(currentUser: value));
+    });
   }
 }
 
@@ -236,13 +243,11 @@ class _$UserSuccess with DiagnosticableTreeMixin implements UserSuccess {
     return identical(this, other) ||
         (other is UserSuccess &&
             (identical(other.currentUser, currentUser) ||
-                const DeepCollectionEquality()
-                    .equals(other.currentUser, currentUser)));
+                const DeepCollectionEquality().equals(other.currentUser, currentUser)));
   }
 
   @override
-  int get hashCode =>
-      runtimeType.hashCode ^ const DeepCollectionEquality().hash(currentUser);
+  int get hashCode => runtimeType.hashCode ^ const DeepCollectionEquality().hash(currentUser);
 
   @override
   $UserSuccessCopyWith<UserSuccess> get copyWith =>

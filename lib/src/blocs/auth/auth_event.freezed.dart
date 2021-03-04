@@ -82,8 +82,7 @@ class _$AuthEventCopyWithImpl<$Res> implements $AuthEventCopyWith<$Res> {
 
 /// @nodoc
 abstract class $AppStartedCopyWith<$Res> {
-  factory $AppStartedCopyWith(
-          AppStarted value, $Res Function(AppStarted) then) =
+  factory $AppStartedCopyWith(AppStarted value, $Res Function(AppStarted) then) =
       _$AppStartedCopyWithImpl<$Res>;
 }
 
@@ -183,17 +182,17 @@ abstract class AppStarted implements AuthEvent {
 
 /// @nodoc
 abstract class $AuthUpdatedCopyWith<$Res> {
-  factory $AuthUpdatedCopyWith(
-          AuthUpdated value, $Res Function(AuthUpdated) then) =
+  factory $AuthUpdatedCopyWith(AuthUpdated value, $Res Function(AuthUpdated) then) =
       _$AuthUpdatedCopyWithImpl<$Res>;
   $Res call({User loggedUser});
+
+  $UserCopyWith<$Res> get loggedUser;
 }
 
 /// @nodoc
 class _$AuthUpdatedCopyWithImpl<$Res> extends _$AuthEventCopyWithImpl<$Res>
     implements $AuthUpdatedCopyWith<$Res> {
-  _$AuthUpdatedCopyWithImpl(
-      AuthUpdated _value, $Res Function(AuthUpdated) _then)
+  _$AuthUpdatedCopyWithImpl(AuthUpdated _value, $Res Function(AuthUpdated) _then)
       : super(_value, (v) => _then(v as AuthUpdated));
 
   @override
@@ -204,9 +203,18 @@ class _$AuthUpdatedCopyWithImpl<$Res> extends _$AuthEventCopyWithImpl<$Res>
     Object loggedUser = freezed,
   }) {
     return _then(AuthUpdated(
-      loggedUser:
-          loggedUser == freezed ? _value.loggedUser : loggedUser as User,
+      loggedUser: loggedUser == freezed ? _value.loggedUser : loggedUser as User,
     ));
+  }
+
+  @override
+  $UserCopyWith<$Res> get loggedUser {
+    if (_value.loggedUser == null) {
+      return null;
+    }
+    return $UserCopyWith<$Res>(_value.loggedUser, (value) {
+      return _then(_value.copyWith(loggedUser: value));
+    });
   }
 }
 
@@ -235,13 +243,11 @@ class _$AuthUpdated with DiagnosticableTreeMixin implements AuthUpdated {
     return identical(this, other) ||
         (other is AuthUpdated &&
             (identical(other.loggedUser, loggedUser) ||
-                const DeepCollectionEquality()
-                    .equals(other.loggedUser, loggedUser)));
+                const DeepCollectionEquality().equals(other.loggedUser, loggedUser)));
   }
 
   @override
-  int get hashCode =>
-      runtimeType.hashCode ^ const DeepCollectionEquality().hash(loggedUser);
+  int get hashCode => runtimeType.hashCode ^ const DeepCollectionEquality().hash(loggedUser);
 
   @override
   $AuthUpdatedCopyWith<AuthUpdated> get copyWith =>
@@ -313,8 +319,7 @@ abstract class AuthUpdated implements AuthEvent {
 
 /// @nodoc
 abstract class $LogOutCopyWith<$Res> {
-  factory $LogOutCopyWith(LogOut value, $Res Function(LogOut) then) =
-      _$LogOutCopyWithImpl<$Res>;
+  factory $LogOutCopyWith(LogOut value, $Res Function(LogOut) then) = _$LogOutCopyWithImpl<$Res>;
 }
 
 /// @nodoc

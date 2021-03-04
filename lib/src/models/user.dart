@@ -1,32 +1,29 @@
 import 'package:checkin/src/models/grade.dart';
-import 'package:equatable/equatable.dart';
 import 'package:firebase_auth/firebase_auth.dart' as FirebaseAuth;
+import 'package:flutter/foundation.dart';
+import 'package:freezed_annotation/freezed_annotation.dart';
 import 'package:meta/meta.dart';
 
 import '../config.dart' as config;
+import 'converters/grade_converter.dart';
 
-class User extends Equatable {
-  final String uid;
-  final String name;
-  final String email;
-  final String imageUrl;
-  final Grade grade;
-  final String selectedGymId;
-  final bool isOwner;
-  final bool hasActivePayments;
-  final List<String> knownGymIds;
+part 'user.freezed.dart';
+part 'user.g.dart';
 
-  User({
-    @required this.name,
-    @required this.email,
-    @required this.imageUrl,
-    this.uid,
-    this.grade,
-    this.selectedGymId,
-    this.isOwner = false,
-    this.hasActivePayments = false,
-    this.knownGymIds,
-  });
+@freezed
+@GradeConverter()
+abstract class User with _$User {
+  factory User({
+    @required final String name,
+    @required final String email,
+    @required final String imageUrl,
+    final String uid,
+    final Grade grade,
+    final String selectedGymId,
+    final List<String> knownGymIds,
+    @Default(false) final bool isOwner,
+    @Default(false) final bool hasActivePayments,
+  }) = _User;
 
   factory User.fromFirebaseUser(FirebaseAuth.User firebaseUser,
       {String displayName, String photoUrl}) {
@@ -40,12 +37,5 @@ class User extends Equatable {
         : null;
   }
 
-  @override
-  List<Object> get props =>
-      [name, email, imageUrl, grade, selectedGymId, isOwner, hasActivePayments, knownGymIds];
-
-  @override
-  String toString() {
-    return 'User{uid: $uid, name: $name, email: $email, imageUrl: $imageUrl, grade: $grade, selectedGymId: $selectedGymId, isOwner: $isOwner, hasActivePayments: $hasActivePayments, knownGymIds: $knownGymIds}';
-  }
+  factory User.fromJson(Map<String, dynamic> json) => _$UserFromJson(json);
 }
