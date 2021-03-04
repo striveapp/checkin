@@ -2,6 +2,7 @@ import 'package:checkin/src/blocs/lessons/bloc.dart';
 import 'package:checkin/src/blocs/user/bloc.dart';
 import 'package:checkin/src/repositories/holidays_repository.dart';
 import 'package:checkin/src/repositories/lesson_repository.dart';
+import 'package:checkin/src/repositories/user_repository.dart';
 import 'package:checkin/src/ui/components/lessons/gym_app_bar.dart';
 import 'package:checkin/src/ui/components/lessons/lesson_card_list.dart';
 import 'package:checkin/src/ui/components/lessons/lesson_filter_fab.dart';
@@ -21,8 +22,8 @@ class LessonsPage extends StatelessWidget {
       providers: [
         BlocProvider<LessonsBloc>(
           create: (BuildContext context) => LessonsBloc(
-              userBloc: context.read<UserBloc>(),
               lessonRepository: context.read<LessonRepository>(),
+              userRepository: context.read<UserRepository>(),
               dateUtil: DateUtil())
             ..add(InitializeLessons()),
         )

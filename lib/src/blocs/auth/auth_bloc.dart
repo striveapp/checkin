@@ -23,6 +23,7 @@ class AuthBloc extends Bloc<AuthEvent, AuthState> {
 
   StreamSubscription _authSub;
   StreamSubscription _referredGymSub;
+  StreamSubscription<User> _userSub;
 
   AuthBloc(
       {@required this.authRepository,
@@ -53,6 +54,8 @@ class AuthBloc extends Bloc<AuthEvent, AuthState> {
       Logger.log.i('add AuthUpdated with user: ${event.loggedUser ?? "Unauthenticated"}');
       if (event.loggedUser != null) {
         try {
+          _userSub?.cancel();
+          _userSub = await userRepository.subscribeToUser(event.loggedUser.email);
           await analyticsRepository.setUserProperties(event.loggedUser.uid);
           await analyticsRepository.logUserLocale();
           // we don't wait next call, because it introduces a delay in the emission of the
@@ -100,6 +103,7 @@ class AuthBloc extends Bloc<AuthEvent, AuthState> {
   Future<void> close() {
     _authSub?.cancel();
     _referredGymSub?.cancel();
+    _userSub.cancel();
     return super.close();
   }
 }

@@ -1,9 +1,15 @@
+import 'dart:async';
+
 import 'package:checkin/src/models/grade.dart';
 import 'package:checkin/src/models/user.dart';
 import 'package:pub_semver/pub_semver.dart';
 
 abstract class UserRepository {
+  Stream<User> getUser();
+
   Stream<User> getUserByEmail(String email);
+
+  StreamSubscription<User> subscribeToUser(String email);
 
   Future<bool> isFirstLogin(String email);
 

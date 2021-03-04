@@ -1,8 +1,8 @@
 import 'dart:async';
 
 import 'package:bloc/bloc.dart';
-import 'package:checkin/src/blocs/user/bloc.dart';
 import 'package:checkin/src/logging/logger.dart';
+import 'package:checkin/src/models/user.dart';
 import 'package:checkin/src/repositories/user_repository.dart';
 import 'package:flutter/foundation.dart';
 import 'package:meta/meta.dart';
@@ -10,41 +10,38 @@ import 'package:meta/meta.dart';
 import 'bloc.dart';
 
 class ProfileBloc extends Bloc<ProfileEvent, ProfileState> {
-  final UserBloc userBloc;
   final UserRepository userRepository;
   String nonCurrentUserEmail;
-  StreamSubscription userSub;
+  StreamSubscription<User> _userSub;
+  StreamSubscription<User> _currentUserSub;
 
   ProfileBloc({
-    @required this.userBloc,
     @required this.userRepository,
     this.nonCurrentUserEmail,
   }) : super(InitialProfileState());
 
-  void _onUserStateChanged(userState) {
-    if (userState is UserSuccess) {
-      if (nonCurrentUserEmail == null || nonCurrentUserEmail == userState.currentUser.email) {
-        add(ProfileUpdated(user: userState.currentUser, isCurrentUser: true));
-      } else {
-        userSub?.cancel();
-        userSub = this.userRepository.getUserByEmail(this.nonCurrentUserEmail).listen((user) {
-          add(ProfileUpdated(user: user, isCurrentUser: false));
-        });
+  void _onUserChanged(currentUser) {
+    if (nonCurrentUserEmail == null || nonCurrentUserEmail == currentUser.email) {
+      add(ProfileUpdated(user: currentUser, isCurrentUser: true));
+    } else {
+      _userSub?.cancel();
+      _userSub = this.userRepository.getUserByEmail(this.nonCurrentUserEmail).listen((user) {
+        add(ProfileUpdated(user: user, isCurrentUser: false));
+      });
 
-        userSub.onError((err, st) => Logger.log.e(
-              "Error loading profile for user [$nonCurrentUserEmail]",
-              err,
-              st,
-            ));
-      }
+      _userSub.onError((err, st) => Logger.log.e(
+            "Error loading profile for user [$nonCurrentUserEmail]",
+            err,
+            st,
+          ));
     }
   }
 
   @override
   Stream<ProfileState> mapEventToState(ProfileEvent event) async* {
     if (event is InitializeProfile) {
-      _onUserStateChanged(userBloc.state);
-      this.userBloc.listen(_onUserStateChanged);
+      _currentUserSub?.cancel();
+      _currentUserSub = userRepository.getUser().listen(_onUserChanged);
     }
 
     if (event is ProfileUpdated) {
@@ -57,7 +54,8 @@ class ProfileBloc extends Bloc<ProfileEvent, ProfileState> {
 
   @override
   Future<void> close() {
-    userSub?.cancel();
+    _userSub?.cancel();
+    _currentUserSub?.cancel();
     return super.close();
   }
 }
