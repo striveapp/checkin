@@ -1,5 +1,4 @@
 import 'package:checkin/src/blocs/profile/bloc.dart';
-import 'package:checkin/src/blocs/user/bloc.dart';
 import 'package:checkin/src/repositories/user_repository.dart';
 import 'package:checkin/src/ui/components/empty_widget.dart';
 import 'package:checkin/src/ui/components/leaderboard/podium_bedge.dart';
@@ -19,7 +18,6 @@ class PodiumProfile extends StatelessWidget {
     return BlocBuilder<ProfileBloc, ProfileState>(
       cubit: ProfileBloc(
         userRepository: context.watch<UserRepository>(),
-        userBloc: context.watch<UserBloc>(),
         nonCurrentUserEmail: profileEmail,
       )..add(InitializeProfile()),
       builder: (BuildContext context, ProfileState state) => state.map(

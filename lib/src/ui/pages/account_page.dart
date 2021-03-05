@@ -56,7 +56,6 @@ class AccountPage extends StatelessWidget {
             BlocProvider<ProfileBloc>(
               create: (BuildContext context) => ProfileBloc(
                 userRepository: context.read<UserRepository>(),
-                userBloc: context.read<UserBloc>(),
               )..add(InitializeProfile()),
             ),
             BlocProvider<AccountBloc>(

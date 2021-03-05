@@ -42,7 +42,6 @@ void main() {
       blocTest("is InitialProfileState",
           build: () => ProfileBloc(
                 userRepository: mockUserRepository,
-                userBloc: mockUserBloc,
               ),
           expect: [],
           verify: (bloc) {
@@ -59,7 +58,6 @@ void main() {
           "should load the current user profile",
           build: () => ProfileBloc(
             userRepository: mockUserRepository,
-            userBloc: mockUserBloc,
           ),
           act: (bloc) => bloc.add(InitializeProfile()),
           expect: [ProfileLoaded(profileUser: loggedUser, isCurrentUser: true)],
@@ -81,7 +79,6 @@ void main() {
           "should load the current user profile",
           build: () => ProfileBloc(
             userRepository: mockUserRepository,
-            userBloc: mockUserBloc,
             nonCurrentUserEmail: fakeOtherUser.email,
           ),
           act: (bloc) => bloc.add(InitializeProfile()),
@@ -95,7 +92,9 @@ void main() {
         group("when there is no nonCurrentUserEmail", () {
           blocTest(
             "should emit ProfileLoaded with the current user and isCurrent user as true",
-            build: () => ProfileBloc(userBloc: mockUserBloc, userRepository: mockUserRepository),
+            build: () => ProfileBloc(
+              userRepository: mockUserRepository,
+            ),
             act: (bloc) => bloc.add(ProfileUpdated(user: loggedUser, isCurrentUser: true)),
             expect: [ProfileLoaded(profileUser: loggedUser, isCurrentUser: true)],
           );
@@ -104,7 +103,6 @@ void main() {
           blocTest(
             "should emit ProfileLoaded with the current user and isCurrent user as true",
             build: () => ProfileBloc(
-              userBloc: mockUserBloc,
               userRepository: mockUserRepository,
               nonCurrentUserEmail: loggedUser.email,
             ),
@@ -118,7 +116,6 @@ void main() {
         blocTest(
           "should emit ProfileLoaded with another user and isCurrent user as false",
           build: () => ProfileBloc(
-            userBloc: mockUserBloc,
             userRepository: mockUserRepository,
             nonCurrentUserEmail: fakeOtherUser.email,
           ),

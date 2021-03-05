@@ -1,5 +1,4 @@
 import 'package:checkin/src/blocs/profile/bloc.dart';
-import 'package:checkin/src/blocs/user/bloc.dart';
 import 'package:checkin/src/localization/localization.dart';
 import 'package:checkin/src/models/grade.dart';
 import 'package:checkin/src/repositories/user_repository.dart';
@@ -21,7 +20,6 @@ class ProfileTile extends StatelessWidget {
   Widget build(BuildContext context) => BlocBuilder<ProfileBloc, ProfileState>(
         cubit: ProfileBloc(
           userRepository: context.watch<UserRepository>(),
-          userBloc: context.watch<UserBloc>(),
           nonCurrentUserEmail: profileEmail,
         )..add(InitializeProfile()),
         builder: (BuildContext context, ProfileState state) => state.map(
