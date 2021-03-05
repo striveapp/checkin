@@ -1,10 +1,10 @@
 import 'package:checkin/src/api/lesson_api.dart';
 import 'package:checkin/src/blocs/registry/bloc.dart';
 import 'package:checkin/src/blocs/registry/registry_bloc.dart';
-import 'package:checkin/src/blocs/user/bloc.dart';
 import 'package:checkin/src/repositories/image_repository.dart';
 import 'package:checkin/src/repositories/lesson_repository.dart';
 import 'package:checkin/src/repositories/storage_repository.dart';
+import 'package:checkin/src/repositories/user_repository.dart';
 import 'package:checkin/src/ui/components/base_app_bar.dart';
 import 'package:checkin/src/ui/components/loading_indicator.dart';
 import 'package:checkin/src/ui/components/registry/close_lesson_button.dart';
@@ -45,7 +45,7 @@ class RegistryPage extends StatelessWidget {
                 lessonRepository: context.read<LessonRepository>(),
                 imageRepository: context.read<ImageRepository>(),
                 storageRepository: context.read<StorageRepository>(),
-                userBloc: context.read<UserBloc>(),
+                userRepository: context.read<UserRepository>(),
               )..add(InitializeRegistry()),
             ),
           ],

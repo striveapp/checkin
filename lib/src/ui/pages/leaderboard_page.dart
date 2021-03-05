@@ -1,7 +1,8 @@
 import 'package:checkin/src/blocs/leaderboard/bloc.dart';
-import 'package:checkin/src/blocs/user/bloc.dart';
+import 'package:checkin/src/localization/localization.dart';
 import 'package:checkin/src/models/user_history.dart';
 import 'package:checkin/src/repositories/stats_repository.dart';
+import 'package:checkin/src/repositories/user_repository.dart';
 import 'package:checkin/src/ui/components/base_app_bar.dart';
 import 'package:checkin/src/ui/components/leaderboard/no_leaderboard_banner.dart';
 import 'package:checkin/src/ui/components/leaderboard/podium_header.dart';
@@ -9,7 +10,6 @@ import 'package:checkin/src/ui/components/leaderboard/profile_tile.dart';
 import 'package:checkin/src/ui/components/loading_indicator.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
-import 'package:checkin/src/localization/localization.dart';
 
 class LeaderboardPage extends StatelessWidget {
   static const String leaderboard = 'Leaderboard';
@@ -23,7 +23,7 @@ class LeaderboardPage extends StatelessWidget {
       ),
       body: BlocProvider(
         create: (BuildContext context) => LeaderboardBloc(
-            userBloc: BlocProvider.of<UserBloc>(context),
+            userRepository: context.read<UserRepository>(),
             statsRepository: RepositoryProvider.of<StatsRepository>(context)),
         child: BlocBuilder<LeaderboardBloc, LeaderboardState>(
           builder: (BuildContext context, LeaderboardState state) {

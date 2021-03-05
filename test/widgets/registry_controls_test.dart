@@ -11,6 +11,7 @@ import 'package:checkin/src/repositories/lesson_repository.dart';
 import 'package:checkin/src/repositories/membership_repository.dart';
 import 'package:checkin/src/repositories/stats_repository.dart';
 import 'package:checkin/src/repositories/storage_repository.dart';
+import 'package:checkin/src/repositories/user_repository.dart';
 import 'package:checkin/src/ui/components/registry/registry_controls.dart';
 import 'package:flutter/foundation.dart';
 import 'package:flutter/material.dart';
@@ -101,7 +102,7 @@ Future<Widget> buildTestApplication(Widget testWidget) async {
         imageRepository: mockImageRepository,
         storageRepository: mockStorageRepository,
         lessonApi: mockLessonApi,
-        userBloc: mockUserBloc,
+        userRepository: context.read<UserRepository>(),
       ),
       child: Scaffold(
         body: testWidget,

@@ -1,25 +1,29 @@
+import 'dart:async';
+
 import 'package:bloc/bloc.dart';
 import 'package:checkin/src/blocs/account/account_event.dart';
 import 'package:checkin/src/blocs/account/account_state.dart';
-import 'package:checkin/src/blocs/user/bloc.dart';
+import 'package:checkin/src/models/user.dart';
 import 'package:checkin/src/repositories/analytics_repository.dart';
+import 'package:checkin/src/repositories/user_repository.dart';
 import 'package:flutter/material.dart';
 
 class AccountBloc extends Bloc<AccountEvent, AccountState> {
   final AnalyticsRepository analyticsRepository;
-  final UserBloc userBloc;
+  final UserRepository userRepository;
 
-  AccountBloc({@required this.userBloc, @required this.analyticsRepository})
-      : assert(userBloc != null && analyticsRepository != null),
-        super(AccountInitial()) {
-    _onUserStateChanged(userBloc.state);
-    userBloc.listen(_onUserStateChanged);
+  StreamSubscription<User> _userSub;
+
+  AccountBloc({
+    @required this.analyticsRepository,
+    @required this.userRepository,
+  }) : super(AccountInitial()) {
+    _userSub?.cancel();
+    _userSub = userRepository.getUser().listen(_onUserStateChanged);
   }
 
-  void _onUserStateChanged(userState) {
-    if (userState is UserSuccess) {
-      add(AccountUpdated(user: userState.currentUser));
-    }
+  void _onUserStateChanged(User currentUser) {
+    add(AccountUpdated(user: currentUser));
   }
 
   @override
@@ -32,5 +36,11 @@ class AccountBloc extends Bloc<AccountEvent, AccountState> {
       analyticsRepository.setupBankAccountError(error: event.errorMessage);
       yield AccountError(errorMessage: event.errorMessage);
     }
+  }
+
+  @override
+  Future<void> close() {
+    _userSub?.cancel();
+    return super.close();
   }
 }
