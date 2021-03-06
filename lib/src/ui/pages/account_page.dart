@@ -73,8 +73,8 @@ class AccountPage extends StatelessWidget {
             BlocProvider<PaymentMethodsBloc>(
               create: (BuildContext context) => PaymentMethodsBloc(
                 urlLauncherUtil: UrlLauncherUtil(),
-                userBloc: context.read<UserBloc>(),
                 paymentMethodRepository: PaymentMethodProvider(),
+                userRepository: context.read<UserRepository>(),
                 paymentApi: PaymentApi(
                   httpClient: HttpClient(
                     authRepository: context.read<AuthRepository>(),

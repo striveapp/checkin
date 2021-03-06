@@ -2,10 +2,11 @@ import 'dart:async';
 
 import 'package:bloc/bloc.dart';
 import 'package:checkin/src/api/payment_api.dart';
-import 'package:checkin/src/blocs/user/bloc.dart';
 import 'package:checkin/src/logging/logger.dart';
 import 'package:checkin/src/models/payment_method.dart';
+import 'package:checkin/src/models/user.dart';
 import 'package:checkin/src/repositories/payment_method_repository.dart';
+import 'package:checkin/src/repositories/user_repository.dart';
 import 'package:checkin/src/util/url_launcher_util.dart';
 import 'package:flutter/material.dart';
 
@@ -14,42 +15,40 @@ import './bloc.dart';
 class PaymentMethodsBloc extends Bloc<PaymentMethodsEvent, PaymentMethodsState> {
   final PaymentApi _paymentApi;
   final PaymentMethodRepository _paymentMethodRepository;
+  final UserRepository _userRepository;
   final UrlLauncherUtil _urlLauncherUtil;
-  final UserBloc _userBloc;
   StreamSubscription<PaymentMethod> _paymentMethodSub;
 
   PaymentMethodsBloc({
     @required PaymentApi paymentApi,
     @required PaymentMethodRepository paymentMethodRepository,
     @required UrlLauncherUtil urlLauncherUtil,
-    @required UserBloc userBloc,
-  })  : assert(paymentApi != null &&
-            paymentMethodRepository != null &&
-            urlLauncherUtil != null &&
-            userBloc != null),
+    @required UserRepository userRepository,
+  })  : assert(paymentApi != null && paymentMethodRepository != null && urlLauncherUtil != null),
         _paymentApi = paymentApi,
         _paymentMethodRepository = paymentMethodRepository,
+        _userRepository = userRepository,
         _urlLauncherUtil = urlLauncherUtil,
-        _userBloc = userBloc,
         super(InitialPaymentMethodsState()) {
     try {
-      _onUserStateChanged(_userBloc.state);
-      _userBloc.listen(_onUserStateChanged);
+      _userRepository.getUser().listen(_onUserChanged);
     } catch (err, st) {
       Logger.log.e("Error while fetching the gym stream", err, st);
     }
   }
 
-  void _onUserStateChanged(UserState userState) {
-    if (userState is UserSuccess) {
-      _paymentMethodSub = _paymentMethodRepository
-          .getPaymentMethod(
-              gymId: userState.currentUser.selectedGymId, email: userState.currentUser.email)
-          .listen((paymentMethod) {
-        add(PaymentMethodUpdated(
-            paymentMethod: paymentMethod, userEmail: userState.currentUser.email));
-      });
-    }
+  void _onUserChanged(User currentUser) {
+    _paymentMethodSub = _paymentMethodRepository
+        .getPaymentMethod(
+      gymId: currentUser.selectedGymId,
+      email: currentUser.email,
+    )
+        .listen((paymentMethod) {
+      add(PaymentMethodUpdated(
+        paymentMethod: paymentMethod,
+        userEmail: currentUser.email,
+      ));
+    });
   }
 
   @override
