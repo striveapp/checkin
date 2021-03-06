@@ -194,33 +194,6 @@ void main() {
           expect: []);
     });
 
-    group("on UpdateFcmToken event", () {
-      var newToken = "some token";
-
-      setUp(() {
-        when(mockUserRepository.updateUserFcmToken(testUser.email, newToken)).thenAnswer((_) {
-          return Future.value(null);
-        });
-      });
-
-      tearDown(() async {
-        await untilCalled(mockUserRepository.updateUserFcmToken(testUser.email, newToken));
-        verify(mockUserRepository.updateUserFcmToken(testUser.email, newToken));
-      });
-
-      blocTest("should update the user fcm token",
-          build: () => UserBloc(
-                authBloc: mockAuthBloc,
-                userRepository: mockUserRepository,
-                storageRepository: mockStorageRepository,
-                imageRepository: mockImageRepository,
-              ),
-          seed: UserState.userSuccess(currentUser: testUser),
-          act: (bloc) =>
-              bloc.add(UserEvent.updateFcmToken(userEmail: testUser.email, newToken: newToken)),
-          expect: []);
-    });
-
     group("on UpdateSelectedGym event", () {
       var newSelectedGymId = "testGym";
 

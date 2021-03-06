@@ -1,5 +1,6 @@
 import 'dart:convert';
 
+import 'package:checkin/src/models/gym.dart';
 import 'package:checkin/src/models/user.dart';
 import 'package:checkin/src/repositories/local_storage_repository.dart';
 import 'package:rx_shared_preferences/rx_shared_preferences.dart';
@@ -7,9 +8,9 @@ import 'package:shared_preferences/shared_preferences.dart';
 
 class LocalStorageProvider implements LocalStorageRepository {
   static final String REFERRED_GYM_ID = "referredGym";
-  //TODO: still makes sense?
   static final String USER_EMAIL = "userEmail";
   static final String USER = "user";
+  static final String GYM = "gym";
 
   final rxPrefs = RxSharedPreferences(SharedPreferences.getInstance());
 
@@ -56,6 +57,19 @@ class LocalStorageProvider implements LocalStorageRepository {
     await rxPrefs.setString(
       USER,
       json.encode(user.toJson()),
+    );
+  }
+
+  @override
+  Stream<Gym> getGym() {
+    return rxPrefs.getStringStream(GYM).map((gymJson) => Gym.fromJson(json.decode(gymJson)));
+  }
+
+  @override
+  Future<void> setGym(Gym gym) async {
+    await rxPrefs.setString(
+      GYM,
+      json.encode(gym.toJson()),
     );
   }
 }

@@ -145,13 +145,14 @@ void main() {
         });
 
         tearDown(() {
+          verify(mockUserRepository.getUser());
           verify(mockPaymentApi.setupIntent(customerEmail: fakeEmail, gymId: fakeGymId));
           verify(mockUrlLauncherUtil.launchUrl(argThat(startsWith(
               "https://${testGym.paymentAppDomain}?pk=${testGym.stripePublicKey}&customerEmail=test@test.com&cs=some_secret&gymName=${testGym.id}"))));
         });
 
         blocTest(
-          "should call the payment api to setup intent of register a payment method",
+          "should call the payment api to setup intent of register a payment method - 1",
           build: () => PaymentMethodsBloc(
               userRepository: mockUserRepository,
               paymentApi: mockPaymentApi,

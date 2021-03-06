@@ -44,23 +44,26 @@ void main() {
     });
 
     group("initial state", () {
-      LessonFilterBloc lessonFilterBloc;
-
       setUp(() {
-        lessonFilterBloc = LessonFilterBloc(
-          lessonConfigRepository: mockLessonConfigRepository,
-          userRepository: mockUserRepository,
-        );
-      });
-
-      test('is InitialLessonFilterState', () {
-        expect(lessonFilterBloc.state, InitialLessonFilterState());
+        when(mockUserRepository.getUser()).thenAnswer((realInvocation) => Stream.empty());
       });
 
       tearDown(() {
-        lessonFilterBloc?.close();
+        verify(mockUserRepository.getUser());
       });
-    }, skip: "This needs to be refactored");
+
+      blocTest(
+        "is InitialLessonFilterState",
+        build: () => LessonFilterBloc(
+          lessonConfigRepository: mockLessonConfigRepository,
+          userRepository: mockUserRepository,
+        ),
+        expect: [],
+        verify: (bloc) {
+          expect(bloc.state, InitialLessonFilterState());
+        },
+      );
+    });
 
     group("on LessonFilterUpdated event", () {
       const Set<String> testFilterTypes = {"cool-type", "cooler-type"};

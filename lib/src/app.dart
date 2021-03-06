@@ -157,7 +157,7 @@ class _AppState extends State<App> with WidgetsBindingObserver {
                   BlocProvider<GymBloc>(
                     create: (BuildContext context) => GymBloc(
                       gymRepository: context.read<GymRepository>(),
-                      userBloc: context.read<UserBloc>(),
+                      userRepository: context.read(),
                     )..add(InitializeGym()),
                   ),
                 ],

@@ -20,7 +20,7 @@ class HomePage extends StatelessWidget {
   Widget build(BuildContext context) {
     return BlocProvider(
       create: (context) => NotificationsBloc(
-        userBloc: BlocProvider.of<UserBloc>(context),
+        userRepository: context.read(),
         notificationRepository: NotificationRepository(),
       )..add(Setup()),
       child: BlocListener<NotificationsBloc, NotificationsState>(

@@ -68,7 +68,8 @@ mixin _$User {
 
 /// @nodoc
 abstract class $UserCopyWith<$Res> {
-  factory $UserCopyWith(User value, $Res Function(User) then) = _$UserCopyWithImpl<$Res>;
+  factory $UserCopyWith(User value, $Res Function(User) then) =
+      _$UserCopyWithImpl<$Res>;
   $Res call(
       {String name,
       String email,
@@ -107,18 +108,24 @@ class _$UserCopyWithImpl<$Res> implements $UserCopyWith<$Res> {
       imageUrl: imageUrl == freezed ? _value.imageUrl : imageUrl as String,
       uid: uid == freezed ? _value.uid : uid as String,
       grade: grade == freezed ? _value.grade : grade as Grade,
-      selectedGymId: selectedGymId == freezed ? _value.selectedGymId : selectedGymId as String,
-      knownGymIds: knownGymIds == freezed ? _value.knownGymIds : knownGymIds as List<String>,
+      selectedGymId: selectedGymId == freezed
+          ? _value.selectedGymId
+          : selectedGymId as String,
+      knownGymIds: knownGymIds == freezed
+          ? _value.knownGymIds
+          : knownGymIds as List<String>,
       isOwner: isOwner == freezed ? _value.isOwner : isOwner as bool,
-      hasActivePayments:
-          hasActivePayments == freezed ? _value.hasActivePayments : hasActivePayments as bool,
+      hasActivePayments: hasActivePayments == freezed
+          ? _value.hasActivePayments
+          : hasActivePayments as bool,
     ));
   }
 }
 
 /// @nodoc
 abstract class _$UserCopyWith<$Res> implements $UserCopyWith<$Res> {
-  factory _$UserCopyWith(_User value, $Res Function(_User) then) = __$UserCopyWithImpl<$Res>;
+  factory _$UserCopyWith(_User value, $Res Function(_User) then) =
+      __$UserCopyWithImpl<$Res>;
   @override
   $Res call(
       {String name,
@@ -133,7 +140,8 @@ abstract class _$UserCopyWith<$Res> implements $UserCopyWith<$Res> {
 }
 
 /// @nodoc
-class __$UserCopyWithImpl<$Res> extends _$UserCopyWithImpl<$Res> implements _$UserCopyWith<$Res> {
+class __$UserCopyWithImpl<$Res> extends _$UserCopyWithImpl<$Res>
+    implements _$UserCopyWith<$Res> {
   __$UserCopyWithImpl(_User _value, $Res Function(_User) _then)
       : super(_value, (v) => _then(v as _User));
 
@@ -158,11 +166,16 @@ class __$UserCopyWithImpl<$Res> extends _$UserCopyWithImpl<$Res> implements _$Us
       imageUrl: imageUrl == freezed ? _value.imageUrl : imageUrl as String,
       uid: uid == freezed ? _value.uid : uid as String,
       grade: grade == freezed ? _value.grade : grade as Grade,
-      selectedGymId: selectedGymId == freezed ? _value.selectedGymId : selectedGymId as String,
-      knownGymIds: knownGymIds == freezed ? _value.knownGymIds : knownGymIds as List<String>,
+      selectedGymId: selectedGymId == freezed
+          ? _value.selectedGymId
+          : selectedGymId as String,
+      knownGymIds: knownGymIds == freezed
+          ? _value.knownGymIds
+          : knownGymIds as List<String>,
       isOwner: isOwner == freezed ? _value.isOwner : isOwner as bool,
-      hasActivePayments:
-          hasActivePayments == freezed ? _value.hasActivePayments : hasActivePayments as bool,
+      hasActivePayments: hasActivePayments == freezed
+          ? _value.hasActivePayments
+          : hasActivePayments as bool,
     ));
   }
 }
@@ -187,7 +200,8 @@ class _$_User with DiagnosticableTreeMixin implements _User {
         assert(isOwner != null),
         assert(hasActivePayments != null);
 
-  factory _$_User.fromJson(Map<String, dynamic> json) => _$_$_UserFromJson(json);
+  factory _$_User.fromJson(Map<String, dynamic> json) =>
+      _$_$_UserFromJson(json);
 
   @override
   final String name;
@@ -240,18 +254,24 @@ class _$_User with DiagnosticableTreeMixin implements _User {
             (identical(other.email, email) ||
                 const DeepCollectionEquality().equals(other.email, email)) &&
             (identical(other.imageUrl, imageUrl) ||
-                const DeepCollectionEquality().equals(other.imageUrl, imageUrl)) &&
-            (identical(other.uid, uid) || const DeepCollectionEquality().equals(other.uid, uid)) &&
+                const DeepCollectionEquality()
+                    .equals(other.imageUrl, imageUrl)) &&
+            (identical(other.uid, uid) ||
+                const DeepCollectionEquality().equals(other.uid, uid)) &&
             (identical(other.grade, grade) ||
                 const DeepCollectionEquality().equals(other.grade, grade)) &&
             (identical(other.selectedGymId, selectedGymId) ||
-                const DeepCollectionEquality().equals(other.selectedGymId, selectedGymId)) &&
+                const DeepCollectionEquality()
+                    .equals(other.selectedGymId, selectedGymId)) &&
             (identical(other.knownGymIds, knownGymIds) ||
-                const DeepCollectionEquality().equals(other.knownGymIds, knownGymIds)) &&
+                const DeepCollectionEquality()
+                    .equals(other.knownGymIds, knownGymIds)) &&
             (identical(other.isOwner, isOwner) ||
-                const DeepCollectionEquality().equals(other.isOwner, isOwner)) &&
+                const DeepCollectionEquality()
+                    .equals(other.isOwner, isOwner)) &&
             (identical(other.hasActivePayments, hasActivePayments) ||
-                const DeepCollectionEquality().equals(other.hasActivePayments, hasActivePayments)));
+                const DeepCollectionEquality()
+                    .equals(other.hasActivePayments, hasActivePayments)));
   }
 
   @override
@@ -268,7 +288,8 @@ class _$_User with DiagnosticableTreeMixin implements _User {
       const DeepCollectionEquality().hash(hasActivePayments);
 
   @override
-  _$UserCopyWith<_User> get copyWith => __$UserCopyWithImpl<_User>(this, _$identity);
+  _$UserCopyWith<_User> get copyWith =>
+      __$UserCopyWithImpl<_User>(this, _$identity);
 
   @override
   Map<String, dynamic> toJson() {

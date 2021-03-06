@@ -8,7 +8,6 @@ import 'package:checkin/src/blocs/membership/bloc.dart';
 import 'package:checkin/src/blocs/payment_methods/payment_methods_bloc.dart';
 import 'package:checkin/src/blocs/profile/bloc.dart';
 import 'package:checkin/src/blocs/stats/bloc.dart';
-import 'package:checkin/src/blocs/user/bloc.dart';
 import 'package:checkin/src/blocs/user_stats/bloc.dart';
 import 'package:checkin/src/localization/localization.dart';
 import 'package:checkin/src/models/timespan.dart';
@@ -67,7 +66,7 @@ class AccountPage extends StatelessWidget {
             BlocProvider<GymBloc>(
               create: (BuildContext context) => GymBloc(
                 gymRepository: context.read<GymRepository>(),
-                userBloc: context.read<UserBloc>(),
+                userRepository: context.read(),
               )..add(InitializeGym()),
             ),
             BlocProvider<PaymentMethodsBloc>(

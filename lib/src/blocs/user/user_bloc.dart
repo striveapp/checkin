@@ -87,11 +87,6 @@ class UserBloc extends Bloc<UserEvent, UserState> {
               userEmail,
               updateGrade.newGrade,
             ),
-        updateFcmToken: (UpdateFcmToken updateFcmToken) async =>
-            await userRepository.updateUserFcmToken(
-              userEmail,
-              updateFcmToken.newToken,
-            ),
         updateSelectedGym: (UpdateSelectedGym updateSelectedGym) async =>
             await userRepository.updateSelectedGymId(userEmail, updateSelectedGym.newGymId),
         orElse: () => UserState.userError());

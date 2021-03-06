@@ -17,6 +17,7 @@ class PaymentMethodsBloc extends Bloc<PaymentMethodsEvent, PaymentMethodsState> 
   final PaymentMethodRepository _paymentMethodRepository;
   final UserRepository _userRepository;
   final UrlLauncherUtil _urlLauncherUtil;
+  StreamSubscription<User> _userSub;
   StreamSubscription<PaymentMethod> _paymentMethodSub;
 
   PaymentMethodsBloc({
@@ -31,7 +32,7 @@ class PaymentMethodsBloc extends Bloc<PaymentMethodsEvent, PaymentMethodsState> 
         _urlLauncherUtil = urlLauncherUtil,
         super(InitialPaymentMethodsState()) {
     try {
-      _userRepository.getUser().listen(_onUserChanged);
+      _userSub = _userRepository.getUser().listen(_onUserChanged);
     } catch (err, st) {
       Logger.log.e("Error while fetching the gym stream", err, st);
     }
@@ -99,6 +100,7 @@ class PaymentMethodsBloc extends Bloc<PaymentMethodsEvent, PaymentMethodsState> 
   @override
   Future<void> close() {
     _paymentMethodSub?.cancel();
+    _userSub?.cancel();
     return super.close();
   }
 }

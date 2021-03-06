@@ -1,3 +1,4 @@
+import 'package:checkin/src/models/gym.dart';
 import 'package:checkin/src/models/user.dart';
 
 abstract class LocalStorageRepository {
@@ -16,4 +17,8 @@ abstract class LocalStorageRepository {
   Future<void> setUser(User user);
 
   Stream<User> getUser();
+
+  Future<void> setGym(Gym gym);
+
+  Stream<Gym> getGym();
 }

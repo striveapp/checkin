@@ -102,6 +102,7 @@ void main() {
               authRepository: context.read<AuthRepository>(),
               analyticsRepository: context.read<AnalyticsRepository>(),
               userRepository: context.read<UserRepository>(),
+              gymRepository: context.read(),
               localStorageRepository: context.read<LocalStorageRepository>(),
               // todo retrieve from storage cache
               versionUtil: VersionUtil(),

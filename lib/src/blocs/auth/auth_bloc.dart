@@ -4,9 +4,11 @@ import 'package:bloc/bloc.dart';
 import 'package:checkin/src/blocs/auth/auth_event.dart';
 import 'package:checkin/src/blocs/auth/auth_state.dart';
 import 'package:checkin/src/logging/logger.dart';
+import 'package:checkin/src/models/gym.dart';
 import 'package:checkin/src/models/user.dart';
 import 'package:checkin/src/repositories/analytics_repository.dart';
 import 'package:checkin/src/repositories/auth_repository.dart';
+import 'package:checkin/src/repositories/gym_repository.dart';
 import 'package:checkin/src/repositories/local_storage_repository.dart';
 import 'package:checkin/src/repositories/user_repository.dart';
 import 'package:checkin/src/util/version_util.dart';
@@ -19,20 +21,23 @@ class AuthBloc extends Bloc<AuthEvent, AuthState> {
   final AnalyticsRepository analyticsRepository;
   final LocalStorageRepository localStorageRepository;
   final UserRepository userRepository;
+  final GymRepository gymRepository;
   final VersionUtil versionUtil;
 
   StreamSubscription _authSub;
   StreamSubscription _referredGymSub;
   StreamSubscription<User> _userSub;
+  StreamSubscription<Gym> _gymSub;
 
-  AuthBloc(
-      {@required this.authRepository,
-      @required this.analyticsRepository,
-      @required this.localStorageRepository,
-      @required this.userRepository,
-      @required this.versionUtil,
-      User loggedUser})
-      : super(loggedUser == null
+  AuthBloc({
+    @required this.authRepository,
+    @required this.analyticsRepository,
+    @required this.localStorageRepository,
+    @required this.userRepository,
+    @required this.gymRepository,
+    @required this.versionUtil,
+    User loggedUser,
+  }) : super(loggedUser == null
             ? AuthState.authUnauthenticated()
             : AuthState.authAuthenticated(loggedUser: loggedUser));
 
@@ -56,6 +61,13 @@ class AuthBloc extends Bloc<AuthEvent, AuthState> {
         try {
           _userSub?.cancel();
           _userSub = await userRepository.subscribeToUser(event.loggedUser.email);
+          _userSub?.onData((user) async {
+            if (user.selectedGymId != null) {
+              _gymSub?.cancel();
+              _gymSub = await gymRepository.subscribeToGym(user.selectedGymId);
+            }
+          });
+
           await analyticsRepository.setUserProperties(event.loggedUser.uid);
           await analyticsRepository.logUserLocale();
           // we don't wait next call, because it introduces a delay in the emission of the
@@ -103,7 +115,8 @@ class AuthBloc extends Bloc<AuthEvent, AuthState> {
   Future<void> close() {
     _authSub?.cancel();
     _referredGymSub?.cancel();
-    _userSub.cancel();
+    _userSub?.cancel();
+    _gymSub?.cancel();
     return super.close();
   }
 }

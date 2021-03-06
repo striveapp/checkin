@@ -14,7 +14,8 @@ _$_User _$_$_UserFromJson(Map<String, dynamic> json) {
     uid: json['uid'] as String,
     grade: _$enumDecodeNullable(_$GradeEnumMap, json['grade']),
     selectedGymId: json['selectedGymId'] as String,
-    knownGymIds: (json['knownGymIds'] as List)?.map((e) => e as String)?.toList(),
+    knownGymIds:
+        (json['knownGymIds'] as List)?.map((e) => e as String)?.toList(),
     isOwner: json['isOwner'] as bool ?? false,
     hasActivePayments: json['hasActivePayments'] as bool ?? false,
   );
@@ -42,7 +43,9 @@ T _$enumDecode<T>(
         '${enumValues.values.join(', ')}');
   }
 
-  final value = enumValues.entries.singleWhere((e) => e.value == source, orElse: () => null)?.key;
+  final value = enumValues.entries
+      .singleWhere((e) => e.value == source, orElse: () => null)
+      ?.key;
 
   if (value == null && unknownValue == null) {
     throw ArgumentError('`$source` is not one of the supported values: '

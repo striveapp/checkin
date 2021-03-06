@@ -51,19 +51,19 @@ void main() {
     group("on InitializeGym event", () {
       setUp(() {
         whenListen(mockUserBloc, Stream.fromIterable([UserSuccess(currentUser: fakeUser)]));
-        when(mockGymRepository.getGym(fakeGymId)).thenAnswer((_) {
+        when(mockGymRepository.getGym()).thenAnswer((_) {
           return Stream<Gym>.value(fakeGym);
         });
       });
 
       tearDown(() {
-        verify(mockGymRepository.getGym(fakeGymId));
+        verify(mockGymRepository.getGym());
       });
 
       blocTest(
         "should listen on selected gym",
         build: () => GymBloc(
-          userBloc: mockUserBloc,
+          userRepository: mockUserBloc,
           gymRepository: mockGymRepository,
         ),
         act: (bloc) => bloc.add(InitializeGym()),
@@ -79,7 +79,7 @@ void main() {
       blocTest(
         "should emit GymLoaded with the loaded gym",
         build: () => GymBloc(
-          userBloc: mockUserBloc,
+          userRepository: mockUserRepository,
           gymRepository: mockGymRepository,
         ),
         act: (bloc) => bloc.add(GymUpdated(gym: fakeGym)),

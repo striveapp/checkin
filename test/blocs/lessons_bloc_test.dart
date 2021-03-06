@@ -173,6 +173,7 @@ void main() {
       List<Lesson> newLessons = [Lesson(timeStart: "20:00", timeEnd: "21:00")];
 
       setUp(() {
+        when(mockUserRepository.getUser()).thenAnswer((realInvocation) => Stream.value(fakeUser));
         when(mockDateUtil.getCurrentDateTime()).thenReturn(testDate);
         when(mockDateUtil.getInitialSelectedDayByGym(fakeUser.selectedGymId)).thenReturn(testDate);
 
@@ -187,6 +188,7 @@ void main() {
       });
 
       tearDown(() {
+        verify(mockUserRepository.getUser());
         verify(mockDateUtil.getCurrentDateTime());
         verify(mockDateUtil.getInitialSelectedDayByGym(fakeUser.selectedGymId));
         verify(mockLessonRepository.getLessonsForDay(fakeUser.selectedGymId, testDate));
@@ -211,6 +213,6 @@ void main() {
             ),
             LessonsLoaded(selectedDay: selectedDay, lessons: newLessons, nocache: testDate),
           ]);
-    }, skip: "Not sure on how we should fix this");
+    },);
   });
 }

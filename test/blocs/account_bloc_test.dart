@@ -40,23 +40,27 @@ void main() {
     });
 
     group("initial state", () {
-      AccountBloc accountBloc;
-
       setUp(() {
-        accountBloc = AccountBloc(
+        when(mockUserRepository.getUser()).thenAnswer((realInvocation) => Stream.empty());
+      });
+
+      tearDown(() async {
+        await untilCalled(mockUserRepository.getUser());
+        verify(mockUserRepository.getUser());
+      });
+
+      blocTest(
+        "is AccountInitial",
+        build: () => AccountBloc(
           userRepository: mockUserRepository,
           analyticsRepository: mockAnalyticsRepository,
-        );
-      });
-
-      tearDown(() {
-        accountBloc?.close();
-      });
-
-      test("is AccountInitial", () {
-        expect(accountBloc.state, AccountInitial());
-      });
-    }, skip: "This needs to be refactored");
+        ),
+        expect: [],
+        verify: (bloc) {
+          expect(bloc.state, AccountInitial());
+        },
+      );
+    });
 
     group("on AccountUpdated event", () {
       setUp(() {
