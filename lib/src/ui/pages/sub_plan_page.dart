@@ -56,7 +56,7 @@ class SubPlanPage extends StatelessWidget {
           BlocProvider<SubscriptionPlansBloc>(
             create: (BuildContext context) => SubscriptionPlansBloc(
               planId: planId,
-              gymBloc: BlocProvider.of<GymBloc>(context),
+              gymRepository: context.read(),
               subscriptionPlansRepository: SubscriptionPlansProvider(),
             ),
           ),

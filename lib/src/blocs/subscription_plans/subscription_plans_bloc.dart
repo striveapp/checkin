@@ -1,10 +1,10 @@
 import 'dart:async';
 
 import 'package:bloc/bloc.dart';
-import 'package:checkin/src/blocs/gym/bloc.dart';
 import 'package:checkin/src/logging/logger.dart';
 import 'package:checkin/src/models/gym.dart';
 import 'package:checkin/src/models/subscription_plan.dart';
+import 'package:checkin/src/repositories/gym_repository.dart';
 import 'package:checkin/src/repositories/subscription_plans_repository.dart';
 import 'package:flutter/foundation.dart';
 
@@ -12,40 +12,38 @@ import 'bloc.dart';
 
 class SubscriptionPlansBloc extends Bloc<SubscriptionPlansEvent, SubscriptionPlansState> {
   final SubscriptionPlansRepository subscriptionPlansRepository;
-  final GymBloc gymBloc;
+  final GymRepository gymRepository;
   final String planId;
 
   StreamSubscription<List<SubscriptionPlan>> streamSubscription;
 
-  SubscriptionPlansBloc(
-      {@required this.subscriptionPlansRepository, @required this.gymBloc, this.planId})
-      : assert(subscriptionPlansRepository != null && gymBloc != null),
-        super(SubscriptionPlansInitial()) {
+  SubscriptionPlansBloc({
+    @required this.subscriptionPlansRepository,
+    @required this.gymRepository,
+    this.planId,
+  }) : super(SubscriptionPlansInitial()) {
     streamSubscription?.cancel();
     try {
-      _onGymStateChanged(gymBloc.state);
-      gymBloc.listen(_onGymStateChanged);
+      gymRepository.getGym().listen(_onGymChanged);
     } catch (err, st) {
       Logger.log.e("Error while fetching the plans stream", err, st);
     }
   }
-  void _onGymStateChanged(GymState gymState) {
-    if (gymState is GymLoaded) {
-      Gym gym = gymState.gym;
-      if (planId == null) {
-        streamSubscription = subscriptionPlansRepository.getPlans(gymId: gym.id).listen((plans) {
-          add(SubscriptionPlansUpdated(
-            subscriptionPlans: _sortByPrice(plans),
-          ));
-        });
-      } else {
-        streamSubscription =
-            subscriptionPlansRepository.getSubPlans(gymId: gym.id, planId: planId).listen((plans) {
-          add(SubscriptionPlansUpdated(
-            subscriptionPlans: _sortByPrice(plans),
-          ));
-        });
-      }
+
+  void _onGymChanged(Gym gym) {
+    if (planId == null) {
+      streamSubscription = subscriptionPlansRepository.getPlans(gymId: gym.id).listen((plans) {
+        add(SubscriptionPlansUpdated(
+          subscriptionPlans: _sortByPrice(plans),
+        ));
+      });
+    } else {
+      streamSubscription =
+          subscriptionPlansRepository.getSubPlans(gymId: gym.id, planId: planId).listen((plans) {
+        add(SubscriptionPlansUpdated(
+          subscriptionPlans: _sortByPrice(plans),
+        ));
+      });
     }
   }
 

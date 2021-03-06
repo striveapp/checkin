@@ -49,7 +49,7 @@ class PlansPage extends StatelessWidget {
           ),
           BlocProvider<SubscriptionPlansBloc>(
             create: (BuildContext context) => SubscriptionPlansBloc(
-              gymBloc: BlocProvider.of<GymBloc>(context),
+              gymRepository: context.read(),
               subscriptionPlansRepository: SubscriptionPlansProvider(),
             ),
           ),
