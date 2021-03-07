@@ -66,7 +66,6 @@ class AccountPage extends StatelessWidget {
             BlocProvider<GymBloc>(
               create: (BuildContext context) => GymBloc(
                 gymRepository: context.read<GymRepository>(),
-                userRepository: context.read(),
               )..add(InitializeGym()),
             ),
             BlocProvider<PaymentMethodsBloc>(

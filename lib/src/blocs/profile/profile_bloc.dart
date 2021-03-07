@@ -12,6 +12,7 @@ import 'bloc.dart';
 class ProfileBloc extends Bloc<ProfileEvent, ProfileState> {
   final UserRepository userRepository;
   String nonCurrentUserEmail;
+
   StreamSubscription<User> _userSub;
   StreamSubscription<User> _currentUserSub;
 

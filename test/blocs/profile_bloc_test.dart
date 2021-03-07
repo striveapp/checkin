@@ -14,7 +14,6 @@ class MockUserBloc extends Mock implements UserBloc {}
 
 void main() {
   group("ProfileBloc", () {
-    MockUserBloc mockUserBloc;
     MockUserRepository mockUserRepository;
 
     User loggedUser = User(
@@ -30,7 +29,6 @@ void main() {
 
     setUp(() {
       mockUserRepository = MockUserRepository();
-      mockUserBloc = MockUserBloc();
       configureThrowOnMissingStub([mockUserRepository]);
     });
 
@@ -51,8 +49,13 @@ void main() {
 
     group("on InitialProfileState", () {
       setUp(() {
-        whenListen(mockUserBloc, Stream.fromIterable([UserSuccess(currentUser: loggedUser)]));
+        when(mockUserRepository.getUser()).thenAnswer((realInvocation) => Stream.value(loggedUser));
       });
+
+      tearDown(() {
+        verify(mockUserRepository.getUser());
+      });
+
       group("when the user to load is the current one", () {
         blocTest(
           "should load the current user profile",

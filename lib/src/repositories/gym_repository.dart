@@ -6,4 +6,6 @@ abstract class GymRepository {
   StreamSubscription<Gym> subscribeToGym(String gymId);
 
   Stream<Gym> getGym();
+
+  Stream<Gym> getGymById(String gymId);
 }

@@ -27,6 +27,17 @@ class GymProvider implements GymRepository {
     return _localStorageProvider.getGym();
   }
 
+  Stream<Gym> getGymById(String gymId) {
+    return _firestore
+        .collection(path)
+        .doc(gymId)
+        .snapshots()
+        .where((snapshot) => snapshot.exists)
+        .map((gym) {
+      return _toGym(gymId, gym.data());
+    });
+  }
+
   Gym _toGym(String gymId, Map<String, dynamic> gym) {
     gym.putIfAbsent("id", () => gymId);
     gym.putIfAbsent("imageUrl", () => DEFAULT_GYM_IMAGE_URL);
