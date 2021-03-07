@@ -1,5 +1,4 @@
 import 'package:checkin/src/blocs/profile/bloc.dart';
-import 'package:checkin/src/blocs/user/bloc.dart';
 import 'package:checkin/src/localization/localization.dart';
 import 'package:checkin/src/ui/components/editable_image.dart';
 import 'package:checkin/src/ui/components/loading_indicator.dart';
@@ -37,8 +36,9 @@ class ProfileCard extends StatelessWidget {
                           EditableImage(
                             imageUrl: state.profileUser.imageUrl,
                             onEdit: () {
-                              BlocProvider.of<UserBloc>(context).add(
-                                  UserEvent.updateImageUrl(userEmail: state.profileUser.email));
+                              context
+                                  .read<ProfileBloc>()
+                                  .add(UpdateImageUrl(userEmail: state.profileUser.email));
                             },
                           ),
                         SizedBox(
@@ -81,8 +81,9 @@ class ProfileCard extends StatelessWidget {
                                 validator: _validateName,
                                 onFieldSubmitted: (String value) {
                                   if (_formKey.currentState.validate()) {
-                                    UserBloc userBloc = context.read<UserBloc>();
-                                    userBloc.add(UpdateName(newName: value.trim()));
+                                    context
+                                        .read<ProfileBloc>()
+                                        .add(UpdateName(newName: value.trim()));
                                   }
                                 },
                               ),

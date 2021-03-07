@@ -1,28 +1,21 @@
 import 'dart:async';
-import 'dart:io';
 
 import 'package:bloc/bloc.dart';
 import 'package:checkin/src/blocs/auth/bloc.dart';
 import 'package:checkin/src/blocs/user/user_event.dart';
 import 'package:checkin/src/blocs/user/user_state.dart';
 import 'package:checkin/src/logging/logger.dart';
-import 'package:checkin/src/repositories/image_repository.dart';
-import 'package:checkin/src/repositories/storage_repository.dart';
 import 'package:checkin/src/repositories/user_repository.dart';
 import 'package:flutter/foundation.dart';
 import 'package:meta/meta.dart';
 
 class UserBloc extends Bloc<UserEvent, UserState> {
   final UserRepository userRepository;
-  final StorageRepository storageRepository;
-  final ImageRepository imageRepository;
   final AuthBloc authBloc;
   StreamSubscription userSub;
 
   UserBloc({
     @required this.userRepository,
-    @required this.storageRepository,
-    @required this.imageRepository,
     @required this.authBloc,
   }) : super(UserLoading()) {
     _onAuthStateChange(authBloc.state);
@@ -67,22 +60,6 @@ class UserBloc extends Bloc<UserEvent, UserState> {
 
   void _mapUpdateToState(String userEmail, UserEvent event) {
     event.maybeMap(
-        updateName: (UpdateName updateName) async => await userRepository.updateUserName(
-              userEmail,
-              updateName.newName,
-            ),
-        updateImageUrl: (UpdateImageUrl updateImageUrl) async {
-          File croppedFile = await imageRepository.getCroppedImage();
-          if (croppedFile != null) {
-            String fileName = "$userEmail-${DateTime.now()}.png";
-            String newImageUrl = await storageRepository.uploadImage(croppedFile, fileName);
-
-            await userRepository.updateUserImageUrl(
-              userEmail,
-              newImageUrl,
-            );
-          }
-        },
         updateGrade: (UpdateGrade updateGrade) async => await userRepository.updateGrade(
               userEmail,
               updateGrade.newGrade,

@@ -1,8 +1,11 @@
 import 'dart:async';
+import 'dart:io';
 
 import 'package:bloc/bloc.dart';
 import 'package:checkin/src/logging/logger.dart';
 import 'package:checkin/src/models/user.dart';
+import 'package:checkin/src/repositories/image_repository.dart';
+import 'package:checkin/src/repositories/storage_repository.dart';
 import 'package:checkin/src/repositories/user_repository.dart';
 import 'package:flutter/foundation.dart';
 import 'package:meta/meta.dart';
@@ -11,6 +14,8 @@ import 'bloc.dart';
 
 class ProfileBloc extends Bloc<ProfileEvent, ProfileState> {
   final UserRepository userRepository;
+  final StorageRepository storageRepository;
+  final ImageRepository imageRepository;
   String nonCurrentUserEmail;
 
   StreamSubscription<User> _userSub;
@@ -18,6 +23,8 @@ class ProfileBloc extends Bloc<ProfileEvent, ProfileState> {
 
   ProfileBloc({
     @required this.userRepository,
+    @required this.imageRepository,
+    @required this.storageRepository,
     this.nonCurrentUserEmail,
   }) : super(InitialProfileState());
 
@@ -50,6 +57,26 @@ class ProfileBloc extends Bloc<ProfileEvent, ProfileState> {
         profileUser: event.user,
         isCurrentUser: event.isCurrentUser,
       );
+    }
+
+    if (event is UpdateName) {
+      await userRepository.updateUserName(
+        event.userEmail,
+        event.newName,
+      );
+    }
+
+    if (event is UpdateImageUrl) {
+      File croppedFile = await imageRepository.getCroppedImage();
+      if (croppedFile != null) {
+        String fileName = "${event.userEmail}-${DateTime.now()}.png";
+        String newImageUrl = await storageRepository.uploadImage(croppedFile, fileName);
+
+        await userRepository.updateUserImageUrl(
+          event.userEmail,
+          newImageUrl,
+        );
+      }
     }
   }
 

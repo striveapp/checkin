@@ -18,6 +18,8 @@ class PodiumProfile extends StatelessWidget {
     return BlocBuilder<ProfileBloc, ProfileState>(
       cubit: ProfileBloc(
         userRepository: context.watch<UserRepository>(),
+        storageRepository: context.watch(),
+        imageRepository: context.watch(),
         nonCurrentUserEmail: profileEmail,
       )..add(InitializeProfile()),
       builder: (BuildContext context, ProfileState state) => state.map(

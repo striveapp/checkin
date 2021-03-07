@@ -20,6 +20,8 @@ class ProfileTile extends StatelessWidget {
   Widget build(BuildContext context) => BlocBuilder<ProfileBloc, ProfileState>(
         cubit: ProfileBloc(
           userRepository: context.watch<UserRepository>(),
+          storageRepository: context.watch(),
+          imageRepository: context.watch(),
           nonCurrentUserEmail: profileEmail,
         )..add(InitializeProfile()),
         builder: (BuildContext context, ProfileState state) => state.map(

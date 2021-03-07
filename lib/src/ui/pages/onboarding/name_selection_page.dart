@@ -1,8 +1,8 @@
-import 'package:checkin/src/blocs/user/bloc.dart';
-import 'package:flutter/material.dart';
+import 'package:checkin/src/blocs/profile/bloc.dart';
 import 'package:checkin/src/localization/localization.dart';
-import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:checkin/src/util/string_extension.dart';
+import 'package:flutter/material.dart';
+import 'package:flutter_bloc/flutter_bloc.dart';
 
 class NameSelectionPage extends StatelessWidget {
   static const String welcomeToTheFamily = "Welcome to the family!";
@@ -54,8 +54,7 @@ class NameSelectionPage extends StatelessWidget {
                       validator: _validateName,
                       onFieldSubmitted: (String value) {
                         if (_formKey.currentState.validate()) {
-                          UserBloc userBloc = context.read<UserBloc>();
-                          userBloc.add(UpdateName(newName: value.trim()));
+                          context.read<ProfileBloc>().add(UpdateName(newName: value.trim()));
                         }
                       },
                     ),
