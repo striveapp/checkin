@@ -1,6 +1,7 @@
 import 'dart:async';
 import 'dart:io';
 
+import 'package:checkin/src/config.dart';
 import 'package:checkin/src/models/grade.dart';
 import 'package:checkin/src/models/user.dart';
 import 'package:checkin/src/repositories/user_repository.dart';
@@ -22,7 +23,7 @@ class UserProvider implements UserRepository {
       .doc(email)
       .snapshots()
       .where((snapshot) => snapshot.exists)
-      .map((user) => toUser(user));
+      .map((user) => _toUser(user.data()));
 
   @override
   StreamSubscription<User> subscribeToUser(String email) {
@@ -50,6 +51,11 @@ class UserProvider implements UserRepository {
         isOwner: data['isOwner'] ?? false,
         hasActivePayments: data['hasActivePayments'],
         selectedGymId: data['selectedGymId']);
+  }
+
+  User _toUser(Map<String, dynamic> user) {
+    user.putIfAbsent("imageUrl", () => DEFAULT_USER_IMAGE_URL);
+    return User.fromJson(user);
   }
 
   Future<void> createUser(User newUser) async {
