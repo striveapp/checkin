@@ -126,7 +126,7 @@ void main() {
         var fakeAppVersion = Version.parse("1.0.0");
 
         setUp(() {
-          when(mockUserRepository.subscribeToUser(fakeUser.email)).thenAnswer((realInvocation) => null);
+          when(mockUserRepository.subscribeToUser(fakeUser.email)).thenAnswer((realInvocation) => Stream.empty());
           when(mockAuthRepository.getAuthState()).thenAnswer((_) {
             return Stream<User>.value(fakeUser);
           });
