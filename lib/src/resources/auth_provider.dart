@@ -20,13 +20,9 @@ class AuthProvider implements AuthRepository {
   });
 
   Stream<User> getAuthState() {
-    return _firebaseAuth.authStateChanges().map((firebaseUser) {
-      Logger.log.i("Firebase User: $firebaseUser");
-      if (firebaseUser?.displayName == null) {
-        return User.fromFirebaseUser(firebaseUser, displayName: "");
-      }
-      return User.fromFirebaseUser(firebaseUser);
-    });
+    return _firebaseAuth
+        .authStateChanges()
+        .map((firebaseUser) => User.fromFirebaseUser(firebaseUser));
   }
 
   Future<String> getIdToken() async => await _firebaseAuth.currentUser.getIdToken();
@@ -165,7 +161,7 @@ class AuthProvider implements AuthRepository {
     var firebaseUser = _firebaseAuth.currentUser;
     Logger.log.i("FirebaseUser for test is is [$firebaseUser]");
 
-    return User.fromFirebaseUser(firebaseUser, displayName: "test");
+    return User.fromFirebaseUser(firebaseUser);
   }
 }
 

@@ -3,7 +3,6 @@ import 'dart:async';
 import 'package:bloc/bloc.dart';
 import 'package:checkin/src/blocs/account/account_event.dart';
 import 'package:checkin/src/blocs/account/account_state.dart';
-import 'package:checkin/src/logging/logger.dart';
 import 'package:checkin/src/models/user.dart';
 import 'package:checkin/src/repositories/analytics_repository.dart';
 import 'package:checkin/src/repositories/user_repository.dart';
@@ -20,11 +19,10 @@ class AccountBloc extends Bloc<AccountEvent, AccountState> {
     @required this.userRepository,
   }) : super(AccountInitial()) {
     _userSub?.cancel();
-    _userSub = userRepository.getUser().listen(_onUserChanged);
+    _userSub = userRepository.getUser().listen(_onUserStateChanged);
   }
 
-  void _onUserChanged(User currentUser) {
-    Logger.log.d("currentUser: ${currentUser.email}");
+  void _onUserStateChanged(User currentUser) {
     add(AccountUpdated(user: currentUser));
   }
 
