@@ -43,7 +43,7 @@ class HomePage extends StatelessWidget {
 
           if (state is UserSuccess) {
             if (state.currentUser.name == null || state.currentUser.name.isEmpty) {
-              return NameSelectionPage();
+              return NameSelectionPage(userEmail: state.currentUser.email);
             }
 
             if (state.currentUser.selectedGymId == null) {

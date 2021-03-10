@@ -60,9 +60,10 @@ class AuthBloc extends Bloc<AuthEvent, AuthState> {
       if (event.loggedUser != null) {
         try {
           _userSub?.cancel();
-          _userSub = await userRepository.subscribeToUser(event.loggedUser.email);
-          _userSub?.onData((user) async {
+          _userSub = await userRepository.subscribeToUser(event.loggedUser.email).listen((user) async {
+            Logger.log.d("Received user update [$user]");
             if (user.selectedGymId != null) {
+              Logger.log.d("Subscribing gym [${user.selectedGymId}]");
               _gymSub?.cancel();
               _gymSub = await gymRepository.subscribeToGym(user.selectedGymId);
             }

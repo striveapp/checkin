@@ -26,14 +26,17 @@ class UserProvider implements UserRepository {
       .map((user) => _toUser(user.data()));
 
   @override
-  StreamSubscription<User> subscribeToUser(String email) {
+  Stream<User> subscribeToUser(String email) {
     return _firestore
         .collection(path)
         .doc(email)
         .snapshots()
         .where((snapshot) => snapshot.exists)
         .map((user) => toUser(user))
-        .listen((user) => _localStorageProvider.setUser(user));
+        .map((user) {
+          _localStorageProvider.setUser(user);
+          return user;
+        });
   }
 
   @override
@@ -49,7 +52,7 @@ class UserProvider implements UserRepository {
         knownGymIds: List<String>.from(data['knownGymIds'] ?? []),
         grade: ((data['grade'] ?? data['rank']) as String)?.toGrade(),
         isOwner: data['isOwner'] ?? false,
-        hasActivePayments: data['hasActivePayments'],
+        hasActivePayments: data['hasActivePayments'] ?? false,
         selectedGymId: data['selectedGymId']);
   }
 

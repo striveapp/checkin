@@ -11,6 +11,10 @@ class NameSelectionPage extends StatelessWidget {
   static const String whatsYourName = "What's your name?";
   static const String thisDoesNotLookLikeAValidName = "This does not look like a valid name";
 
+  final String userEmail;
+
+  NameSelectionPage({@required this.userEmail});
+
   final GlobalKey<FormState> _formKey = GlobalKey<FormState>();
 
   @override
@@ -54,7 +58,7 @@ class NameSelectionPage extends StatelessWidget {
                       validator: _validateName,
                       onFieldSubmitted: (String value) {
                         if (_formKey.currentState.validate()) {
-                          context.read<ProfileBloc>().add(UpdateName(newName: value.trim()));
+                          context.read<ProfileBloc>().add(UpdateName(userEmail: userEmail, newName: value.trim()));
                         }
                       },
                     ),

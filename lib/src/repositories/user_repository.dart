@@ -9,7 +9,7 @@ abstract class UserRepository {
 
   Stream<User> getUserByEmail(String email);
 
-  StreamSubscription<User> subscribeToUser(String email);
+  Stream<User> subscribeToUser(String email);
 
   Future<bool> isFirstLogin(String email);
 

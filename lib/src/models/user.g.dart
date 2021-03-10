@@ -8,9 +8,9 @@ part of 'user.dart';
 
 _$_User _$_$_UserFromJson(Map<String, dynamic> json) {
   return _$_User(
-    name: json['name'] as String,
     email: json['email'] as String,
     imageUrl: json['imageUrl'] as String,
+    name: json['name'] as String,
     uid: json['uid'] as String,
     grade: _$enumDecodeNullable(_$GradeEnumMap, json['grade']),
     selectedGymId: json['selectedGymId'] as String,
@@ -22,9 +22,9 @@ _$_User _$_$_UserFromJson(Map<String, dynamic> json) {
 }
 
 Map<String, dynamic> _$_$_UserToJson(_$_User instance) => <String, dynamic>{
-      'name': instance.name,
       'email': instance.email,
       'imageUrl': instance.imageUrl,
+      'name': instance.name,
       'uid': instance.uid,
       'grade': _$GradeEnumMap[instance.grade],
       'selectedGymId': instance.selectedGymId,

@@ -83,7 +83,7 @@ class ProfileCard extends StatelessWidget {
                                   if (_formKey.currentState.validate()) {
                                     context
                                         .read<ProfileBloc>()
-                                        .add(UpdateName(newName: value.trim()));
+                                        .add(UpdateName(userEmail: state.profileUser.email, newName: value.trim()));
                                   }
                                 },
                               ),
