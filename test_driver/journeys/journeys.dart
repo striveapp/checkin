@@ -16,7 +16,7 @@ import 'package:intl/intl.dart';
 import '../constants.dart';
 
 bool isDbClean = false;
-StreamSubscription<Lesson> lessonSub;
+StreamSubscription<List<Lesson>> lessonSub;
 bool isHotRestarting = false;
 
 Future<void> main() async {
@@ -58,17 +58,9 @@ Future<void> cleanDatabase() async {
   await StatsProvider().cleanUserHistory("test", "test-owner@test.com");
   await UserProvider().updateGrade("test@test.com", Grade.white);
   await UserProvider().updateSelectedGymId("test@test.com", GYM_TEST);
-  await LessonInstancesProvider()
-      .cleanLessonAttendees("test", formattedTestDate, "3dbc1886-0c93-4eb3-a815-f4ed69306217");
-  await LessonInstancesProvider()
-      .cleanLessonAttendees("test", formattedTestDate, "50be7f9f-d8e4-424a-a4d8-2910dbaf68e3");
-  await LessonInstancesProvider()
-      .cleanLessonAttendees("test", formattedTestDate, "d70c08ba-82c9-47ab-99cc-49d7a890bef4");
-  await LessonInstancesProvider()
-      .openLesson("test", formattedTestDate, "d70c08ba-82c9-47ab-99cc-49d7a890bef4");
-  lessonSub = LessonInstancesProvider()
-      .getLesson("test", formattedTestDate, "50be7f9f-d8e4-424a-a4d8-2910dbaf68e3")
-      .listen((event) {
-    isDbClean = event?.attendees?.isEmpty;
+  await LessonInstancesProvider().cleanLessonAttendees("test", formattedTestDate);
+
+  lessonSub = LessonInstancesProvider().getLessonsForDay("test", testDate).listen((lessons) {
+    isDbClean = lessons.every((lesson) => lesson?.attendees?.isEmpty);
   });
 }

@@ -110,28 +110,21 @@ class LessonInstancesProvider implements LessonRepository {
     });
   }
 
-  Future<void> cleanLessonAttendees(String gymId, String date, String lessonId) async {
+  Future<void> cleanLessonAttendees(String gymId, String date) async {
     await _firestore
         .collection(gymPath)
         .doc(gymId)
         .collection(path)
         .doc(date)
         .collection(sub_collection_path)
-        .doc(lessonId)
-        .update({"attendees": FieldValue.delete(), "acceptedAttendees": FieldValue.delete()});
-  }
-
-  Future<void> openLesson(String gymId, String date, String lessonId) async {
-    Logger.log.i("Close lesson with id [$lessonId]");
-    await _firestore
-        .collection(gymPath)
-        .doc(gymId)
-        .collection(path)
-        .doc(date)
-        .collection(sub_collection_path)
-        .doc(lessonId)
-        .update({
-      'isClosed': false,
+        .get()
+        .asStream()
+        .forEach((snapshot) async {
+      await snapshot.docs.forEach((lesson) async {
+        bool isYoga = lesson.data()['name'] == 'Yoga';
+        await lesson.reference
+            .update({"attendees": FieldValue.delete(), "acceptedAttendees": FieldValue.delete(), 'isClosed': false, 'classCapacity': isYoga ? 1 : 10});
+      });
     });
   }
 

@@ -55,6 +55,7 @@ class ClassProgressIndicatorView extends StatelessWidget {
             children: [
               Text(
                 "$numberOfAttendedClasses",
+                key: Key("matHours"),
                 style: Theme.of(context)
                     .textTheme
                     .headline1
