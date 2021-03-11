@@ -1,6 +1,5 @@
 import 'dart:convert';
 
-import 'package:checkin/src/logging/logger.dart';
 import 'package:checkin/src/models/gym.dart';
 import 'package:checkin/src/models/user.dart';
 import 'package:checkin/src/repositories/local_storage_repository.dart';
@@ -49,16 +48,11 @@ class LocalStorageProvider implements LocalStorageRepository {
   }
 
   @override
-  Stream<User> getUser() {
-    return rxPrefs.getStringStream(USER).map((userJson) {
-      Logger.log.d("Loaded user from local storage [$userJson]");
-      return User.fromJson(json.decode(userJson));
-    });
-  }
+  Stream<User> getUser() =>
+      rxPrefs.getStringStream(USER).map((userJson) => User.fromJson(json.decode(userJson)));
 
   @override
   Future<void> setUser(User user) async {
-    Logger.log.d("Update local storage user [$user]");
     await rxPrefs.setString(
       USER,
       json.encode(user.toJson()),

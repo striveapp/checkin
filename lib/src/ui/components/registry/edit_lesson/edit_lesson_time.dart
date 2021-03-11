@@ -47,11 +47,13 @@ class _EditLessonTimeState extends State<EditLessonTime> {
             );
           },
         );
-        var formattedTimePicked = timePicked.format(context);
-        widget.onTimePicked(formattedTimePicked);
-        setState(() {
-          currentTime = formattedTimePicked;
-        });
+        if (timePicked != null) {
+          var formattedTimePicked = timePicked.format(context);
+          widget.onTimePicked(formattedTimePicked);
+          setState(() {
+            currentTime = formattedTimePicked;
+          });
+        }
       },
       borderRadius: BorderRadius.all(Radius.circular(8)),
       child: Row(
