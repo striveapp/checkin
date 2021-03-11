@@ -7,6 +7,7 @@ import 'package:checkin/src/ui/components/lessons/lesson_type_badge.dart';
 import 'package:checkin/src/ui/components/rounded_image.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
+import 'package:flutter_gen/gen_l10n/app_localizations.dart';
 
 class LessonCard extends StatelessWidget {
   static const String emptyClass = 'Nobody in class yet';
@@ -105,7 +106,7 @@ class LessonCard extends StatelessWidget {
                       ),
                     if (allAttendees == 0)
                       Text(
-                        emptyClass.i18n,
+                        AppLocalizations.of(context).helloWorld,
                         style: Theme.of(context)
                             .textTheme
                             .headline5
