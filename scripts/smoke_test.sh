@@ -1,4 +1,5 @@
 #!/usr/bin/env bash
+set -e
 
 POSITIONAL=()
 while [[ $# -gt 0 ]]
