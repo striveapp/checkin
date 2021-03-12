@@ -112,12 +112,8 @@ workflows:
                   --ks-key-alias $CM_KEY_ALIAS_USERNAME \
                   --key-pass $CM_KEY_ALIAS_PASSWORD
             - name: Smoke test
-              script: |
-                adb logcat -c \
-                && adb install build/**/outputs/**/*.apk \
-                && adb shell am start -n com.arya.checkin/com.arya.checkin.MainActivity \
-                && APP_PID=$(adb shell pidof com.arya.checkin) \
-                && adb logcat -d --buffer=crash --pid=$(APP_PID) >&2
+              script: make smoke-test-android
+
           artifacts:
             - build/**/outputs/**/*.apk
             - build/**/outputs/**/*.aab

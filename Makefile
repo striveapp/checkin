@@ -1,6 +1,7 @@
 PID_FILE ?= /tmp/flutter-hot-reload.pid
 VM_PORT ?= 8888
 envars = VM_SERVICE_URL=http://127.0.0.1:$(VM_PORT)
+APK ?= ./build/app/outputs/bundle/prodRelease/app-prod-release-universal.apk
 
 .PHONY: set-dev
 set-dev: export FLAVOR = dev
@@ -21,6 +22,10 @@ set-key-properties:
 .PHONY: unit-test
 unit-test:
 	flutter test
+
+.PHONY: smoke-test-android
+smoke-test-android:
+	sh scripts/smoke_test.sh --apk $(APK)
 
 .PHONY: run-fast
 run-fast:
