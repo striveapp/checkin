@@ -1,5 +1,4 @@
 #!/usr/bin/env bash
-set -e
 
 POSITIONAL=()
 while [[ $# -gt 0 ]]
@@ -19,17 +18,26 @@ set -- "${POSITIONAL[@]}" # restore positional parameters
 echo "APK LOCATION = ${APK}"
 
 adb logcat -c
+if [[ ! -z "$(adb shell pm list packages | grep -E com.arya.checkin$)" ]]; then
+  adb uninstall com.arya.checkin
+fi
 adb install $APK
 adb shell am start -n com.arya.checkin/com.arya.checkin.MainActivity
 sleep 1
 APP_PID=$(adb shell pidof com.arya.checkin)
 echo "$APP_PID"
-OUTPUT=$(adb logcat -d --buffer=crash --pid="$APP_PID")
 
-if [[ ! -z $OUTPUT ]]; then
-    echo "$OUTPUT" 1>&2
+while true;
+do
+  sleep 1
+  MAIN_OUTPUT=$(adb logcat -d --buffer=main --pid="$APP_PID" | grep "AuthEvent.appStarted()")
+  CRASH_OUTPUT=$(adb logcat -d --buffer=crash --pid="$APP_PID")
+  if [[ ! -z "$CRASH_OUTPUT" ]]; then
+    echo "$CRASH_OUTPUT"
     exit 1
-else
+  fi
+  if [[ ! -z "$MAIN_OUTPUT" ]]; then
     echo "PASSED"
-fi
-
+    exit 0
+  fi
+done

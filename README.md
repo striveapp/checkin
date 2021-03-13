@@ -71,3 +71,10 @@ You should setup you dev environment in the following way:
 ENV=dev ./scripts/set_env.sh
 ```
 
+## How to Build a prod apk
+```
+flutter build appbundle \
+  --flavor prod \
+  --release -t lib/main_prod.dart \
+&& android-app-bundle build-universal-apk
+```
