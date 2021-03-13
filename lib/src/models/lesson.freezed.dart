@@ -22,7 +22,7 @@ class _$LessonTearOff {
       String date,
       String name,
       String timeStart,
-      String timeEnd = "",
+      String timeEnd = '',
       String weekDay,
       int timestamp,
       String imageUrl,
@@ -252,7 +252,7 @@ class _$_Lesson implements _Lesson {
       this.date,
       this.name,
       this.timeStart,
-      this.timeEnd = "",
+      this.timeEnd = '',
       this.weekDay,
       this.timestamp,
       this.imageUrl,
@@ -280,7 +280,7 @@ class _$_Lesson implements _Lesson {
   final String name;
   @override
   final String timeStart;
-  @JsonKey(defaultValue: "")
+  @JsonKey(defaultValue: '')
   @override
   final String timeEnd;
   @override

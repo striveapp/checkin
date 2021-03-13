@@ -172,6 +172,15 @@ class RegistryBloc extends Bloc<RegistryEvent, RegistryState> {
         );
       }
     }
+
+    if (event is UpdateMasters) {
+      await lessonRepository.updateLessonMasters(
+          event.gymId,
+          lessonDate,
+          lessonId,
+          event.newMasters,
+        );
+      }
   }
 
   bool isAcceptedUser(RegistryUpdated event) {

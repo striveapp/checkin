@@ -31,7 +31,10 @@ class LessonInstancesProvider implements LessonRepository {
         .collection("instances")
         .where("lessonConfig.type", whereIn: filterTypes.isNotEmpty ? filterTypes : null)
         .snapshots()
-        .map((snapshot) => snapshot.docs.map((doc) => Lesson.fromJson(doc.data())).toList());
+        .map((snapshot) => snapshot.docs.map((doc) {
+          Logger.log.d("aaaa fuckoff [${doc.data()}]");
+          return Lesson.fromJson(doc.data());
+        }).toList());
   }
 
   @override
@@ -223,5 +226,19 @@ class LessonInstancesProvider implements LessonRepository {
         .collection(sub_collection_path)
         .doc(lessonId)
         .update({'imageUrl': newImageUrl});
+  }
+
+  @override
+  Future<void> updateLessonMasters(
+      String gymId, String date, String lessonId, List<Master> newMasters) async {
+    Logger.log.i("Updating masters to [$newMasters] for lesson with id [$lessonId]");
+    await _firestore
+        .collection(gymPath)
+        .doc(gymId)
+        .collection(path)
+        .doc(date)
+        .collection(sub_collection_path)
+        .doc(lessonId)
+        .update({'masters': newMasters.map((master) => master.toJson()).toList()});
   }
 }
