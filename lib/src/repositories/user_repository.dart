@@ -1,15 +1,18 @@
 import 'dart:async';
 
 import 'package:checkin/src/models/grade.dart';
+import 'package:checkin/src/models/master.dart';
 import 'package:checkin/src/models/user.dart';
 import 'package:pub_semver/pub_semver.dart';
 
 abstract class UserRepository {
   Stream<User> getUser();
 
+  Stream<User> subscribeToUser(String email);
+
   Stream<User> getUserByEmail(String email);
 
-  Stream<User> subscribeToUser(String email);
+  Stream<List<Master>> retrieveAvailableMasters(String gymId);
 
   Future<bool> isFirstLogin(String email);
 

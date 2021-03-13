@@ -2,6 +2,7 @@ import 'dart:async';
 import 'dart:io';
 
 import 'package:checkin/src/models/grade.dart';
+import 'package:checkin/src/models/master.dart';
 import 'package:checkin/src/models/user.dart';
 import 'package:checkin/src/repositories/user_repository.dart';
 import 'package:checkin/src/resources/stats_provider.dart';
@@ -17,12 +18,8 @@ class UserProvider implements UserRepository {
   StatsProvider statsProvider = StatsProvider();
   static const String path = 'users';
 
-  Stream<User> getUserByEmail(String email) => _firestore
-      .collection(path)
-      .doc(email)
-      .snapshots()
-      .where((snapshot) => snapshot.exists)
-      .map((user) => toUser(user));
+  @override
+  Stream<User> getUser() => _localStorageProvider.getUser();
 
   @override
   Stream<User> subscribeToUser(String email) {
@@ -33,13 +30,24 @@ class UserProvider implements UserRepository {
         .where((snapshot) => snapshot.exists)
         .map((user) => toUser(user))
         .map((user) {
-          _localStorageProvider.setUser(user);
-          return user;
-        });
+      _localStorageProvider.setUser(user);
+      return user;
+    });
   }
 
-  @override
-  Stream<User> getUser() => _localStorageProvider.getUser();
+  Stream<User> getUserByEmail(String email) => _firestore
+      .collection(path)
+      .doc(email)
+      .snapshots()
+      .where((snapshot) => snapshot.exists)
+      .map((user) => toUser(user));
+
+  Stream<List<Master>> retrieveAvailableMasters(String gymId) => _firestore
+      .collection(path)
+      .where("isOwner", isEqualTo: true)
+      .where("selectedGymId", isEqualTo: gymId)
+      .snapshots()
+      .map((snapshot) => snapshot.docs.map((doc) => Master.fromJson(doc.data())).toList());
 
   User toUser(DocumentSnapshot user) {
     final data = user.data();

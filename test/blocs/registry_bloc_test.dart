@@ -717,5 +717,60 @@ void main() {
         expect: [],
       );
     });
+
+    group("on UpdateMasters event", () {
+      var newMasters = [
+        Master(
+            name: "felicio",
+            imageUrl: "http://felicio.mastronzo.jpg",
+            email: "felicio@mastronzo.com")
+      ];
+
+      setUp(() {
+        when(mockLessonRepository.updateLessonMasters(
+          fakeUser.selectedGymId,
+          baseLesson.date,
+          baseLesson.id,
+          newMasters,
+        )).thenAnswer((_) {
+          return Future.value(null);
+        });
+      });
+
+      tearDown(() async {
+        await untilCalled(mockLessonRepository.updateLessonMasters(
+          fakeUser.selectedGymId,
+          baseLesson.date,
+          baseLesson.id,
+          newMasters,
+        ));
+        verify(mockLessonRepository.updateLessonMasters(
+          fakeUser.selectedGymId,
+          baseLesson.date,
+          baseLesson.id,
+          newMasters,
+        ));
+      });
+
+      blocTest(
+        "should call repository with newMasters",
+        build: () => RegistryBloc(
+          lessonId: baseLesson.id,
+          lessonDate: baseLesson.date,
+          lessonRepository: mockLessonRepository,
+          imageRepository: mockImageRepository,
+          storageRepository: mockStorageRepository,
+          lessonApi: mockLessonApi,
+          userRepository: mockUserRepository,
+        ),
+        act: (bloc) => bloc.add(
+          RegistryEvent.updateMasters(
+            gymId: fakeUser.selectedGymId,
+            newMasters: newMasters,
+          ),
+        ),
+        expect: [],
+      );
+    });
   });
 }

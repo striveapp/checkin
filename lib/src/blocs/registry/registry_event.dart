@@ -1,5 +1,6 @@
 import 'package:checkin/src/models/attendee.dart';
 import 'package:checkin/src/models/lesson.dart';
+import 'package:checkin/src/models/master.dart';
 import 'package:checkin/src/models/user.dart';
 import 'package:flutter/foundation.dart';
 import 'package:freezed_annotation/freezed_annotation.dart';
@@ -56,4 +57,9 @@ abstract class RegistryEvent with _$RegistryEvent {
   const factory RegistryEvent.updateImageUrl({
     @required String gymId,
   }) = UpdateImageUrl;
+
+  const factory RegistryEvent.updateMasters({
+    @required String gymId,
+    @required List<Master> newMasters,
+  }) = UpdateMasters;
 }
