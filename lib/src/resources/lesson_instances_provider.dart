@@ -31,10 +31,7 @@ class LessonInstancesProvider implements LessonRepository {
         .collection("instances")
         .where("lessonConfig.type", whereIn: filterTypes.isNotEmpty ? filterTypes : null)
         .snapshots()
-        .map((snapshot) => snapshot.docs.map((doc) {
-          Logger.log.d("aaaa fuckoff [${doc.data()}]");
-          return Lesson.fromJson(doc.data());
-        }).toList());
+        .map((snapshot) => snapshot.docs.map((doc) => Lesson.fromJson(doc.data())).toList());
   }
 
   @override
@@ -125,8 +122,12 @@ class LessonInstancesProvider implements LessonRepository {
         .forEach((snapshot) async {
       await snapshot.docs.forEach((lesson) async {
         bool isYoga = lesson.data()['name'] == 'Yoga';
-        await lesson.reference
-            .update({"attendees": FieldValue.delete(), "acceptedAttendees": FieldValue.delete(), 'isClosed': false, 'classCapacity': isYoga ? 1 : 10});
+        await lesson.reference.update({
+          "attendees": FieldValue.delete(),
+          "acceptedAttendees": FieldValue.delete(),
+          'isClosed': false,
+          'classCapacity': isYoga ? 1 : 10
+        });
       });
     });
   }
