@@ -22,7 +22,7 @@ class _$LessonTearOff {
       String date,
       String name,
       String timeStart,
-      String timeEnd = '',
+      String timeEnd = "",
       String weekDay,
       int timestamp,
       String imageUrl,
@@ -70,8 +70,7 @@ mixin _$Lesson {
   String get weekDay;
   int get timestamp;
   String get imageUrl;
-  LessonConfig
-      get lessonConfig; // todo retrieve from Gym (config) https://trello.com/c/uIqJLgZL
+  LessonConfig get lessonConfig; // todo retrieve from Gym (config) https://trello.com/c/uIqJLgZL
   int get classCapacity;
   List<Master> get masters;
   List<Attendee> get attendees;
@@ -84,8 +83,7 @@ mixin _$Lesson {
 
 /// @nodoc
 abstract class $LessonCopyWith<$Res> {
-  factory $LessonCopyWith(Lesson value, $Res Function(Lesson) then) =
-      _$LessonCopyWithImpl<$Res>;
+  factory $LessonCopyWith(Lesson value, $Res Function(Lesson) then) = _$LessonCopyWithImpl<$Res>;
   $Res call(
       {String id,
       String date,
@@ -139,15 +137,10 @@ class _$LessonCopyWithImpl<$Res> implements $LessonCopyWith<$Res> {
       weekDay: weekDay == freezed ? _value.weekDay : weekDay as String,
       timestamp: timestamp == freezed ? _value.timestamp : timestamp as int,
       imageUrl: imageUrl == freezed ? _value.imageUrl : imageUrl as String,
-      lessonConfig: lessonConfig == freezed
-          ? _value.lessonConfig
-          : lessonConfig as LessonConfig,
-      classCapacity: classCapacity == freezed
-          ? _value.classCapacity
-          : classCapacity as int,
+      lessonConfig: lessonConfig == freezed ? _value.lessonConfig : lessonConfig as LessonConfig,
+      classCapacity: classCapacity == freezed ? _value.classCapacity : classCapacity as int,
       masters: masters == freezed ? _value.masters : masters as List<Master>,
-      attendees:
-          attendees == freezed ? _value.attendees : attendees as List<Attendee>,
+      attendees: attendees == freezed ? _value.attendees : attendees as List<Attendee>,
       acceptedAttendees: acceptedAttendees == freezed
           ? _value.acceptedAttendees
           : acceptedAttendees as List<Attendee>,
@@ -226,15 +219,10 @@ class __$LessonCopyWithImpl<$Res> extends _$LessonCopyWithImpl<$Res>
       weekDay: weekDay == freezed ? _value.weekDay : weekDay as String,
       timestamp: timestamp == freezed ? _value.timestamp : timestamp as int,
       imageUrl: imageUrl == freezed ? _value.imageUrl : imageUrl as String,
-      lessonConfig: lessonConfig == freezed
-          ? _value.lessonConfig
-          : lessonConfig as LessonConfig,
-      classCapacity: classCapacity == freezed
-          ? _value.classCapacity
-          : classCapacity as int,
+      lessonConfig: lessonConfig == freezed ? _value.lessonConfig : lessonConfig as LessonConfig,
+      classCapacity: classCapacity == freezed ? _value.classCapacity : classCapacity as int,
       masters: masters == freezed ? _value.masters : masters as List<Master>,
-      attendees:
-          attendees == freezed ? _value.attendees : attendees as List<Attendee>,
+      attendees: attendees == freezed ? _value.attendees : attendees as List<Attendee>,
       acceptedAttendees: acceptedAttendees == freezed
           ? _value.acceptedAttendees
           : acceptedAttendees as List<Attendee>,
@@ -252,7 +240,7 @@ class _$_Lesson implements _Lesson {
       this.date,
       this.name,
       this.timeStart,
-      this.timeEnd = '',
+      this.timeEnd = "",
       this.weekDay,
       this.timestamp,
       this.imageUrl,
@@ -269,8 +257,7 @@ class _$_Lesson implements _Lesson {
         assert(acceptedAttendees != null),
         assert(isClosed != null);
 
-  factory _$_Lesson.fromJson(Map<String, dynamic> json) =>
-      _$_$_LessonFromJson(json);
+  factory _$_Lesson.fromJson(Map<String, dynamic> json) => _$_$_LessonFromJson(json);
 
   @override
   final String id;
@@ -280,7 +267,7 @@ class _$_Lesson implements _Lesson {
   final String name;
   @override
   final String timeStart;
-  @JsonKey(defaultValue: '')
+  @JsonKey(defaultValue: "")
   @override
   final String timeEnd;
   @override
@@ -316,45 +303,34 @@ class _$_Lesson implements _Lesson {
   bool operator ==(dynamic other) {
     return identical(this, other) ||
         (other is _Lesson &&
-            (identical(other.id, id) ||
-                const DeepCollectionEquality().equals(other.id, id)) &&
+            (identical(other.id, id) || const DeepCollectionEquality().equals(other.id, id)) &&
             (identical(other.date, date) ||
                 const DeepCollectionEquality().equals(other.date, date)) &&
             (identical(other.name, name) ||
                 const DeepCollectionEquality().equals(other.name, name)) &&
             (identical(other.timeStart, timeStart) ||
-                const DeepCollectionEquality()
-                    .equals(other.timeStart, timeStart)) &&
+                const DeepCollectionEquality().equals(other.timeStart, timeStart)) &&
             (identical(other.timeEnd, timeEnd) ||
-                const DeepCollectionEquality()
-                    .equals(other.timeEnd, timeEnd)) &&
+                const DeepCollectionEquality().equals(other.timeEnd, timeEnd)) &&
             (identical(other.weekDay, weekDay) ||
-                const DeepCollectionEquality()
-                    .equals(other.weekDay, weekDay)) &&
+                const DeepCollectionEquality().equals(other.weekDay, weekDay)) &&
             (identical(other.timestamp, timestamp) ||
-                const DeepCollectionEquality()
-                    .equals(other.timestamp, timestamp)) &&
+                const DeepCollectionEquality().equals(other.timestamp, timestamp)) &&
             (identical(other.imageUrl, imageUrl) ||
-                const DeepCollectionEquality()
-                    .equals(other.imageUrl, imageUrl)) &&
+                const DeepCollectionEquality().equals(other.imageUrl, imageUrl)) &&
             (identical(other.lessonConfig, lessonConfig) ||
-                const DeepCollectionEquality()
-                    .equals(other.lessonConfig, lessonConfig)) &&
+                const DeepCollectionEquality().equals(other.lessonConfig, lessonConfig)) &&
             (identical(other.classCapacity, classCapacity) ||
-                const DeepCollectionEquality()
-                    .equals(other.classCapacity, classCapacity)) &&
+                const DeepCollectionEquality().equals(other.classCapacity, classCapacity)) &&
             (identical(other.masters, masters) ||
-                const DeepCollectionEquality()
-                    .equals(other.masters, masters)) &&
+                const DeepCollectionEquality().equals(other.masters, masters)) &&
             (identical(other.attendees, attendees) ||
-                const DeepCollectionEquality()
-                    .equals(other.attendees, attendees)) &&
+                const DeepCollectionEquality().equals(other.attendees, attendees)) &&
             (identical(other.acceptedAttendees, acceptedAttendees) ||
                 const DeepCollectionEquality()
                     .equals(other.acceptedAttendees, acceptedAttendees)) &&
             (identical(other.isClosed, isClosed) ||
-                const DeepCollectionEquality()
-                    .equals(other.isClosed, isClosed)));
+                const DeepCollectionEquality().equals(other.isClosed, isClosed)));
   }
 
   @override
@@ -376,8 +352,7 @@ class _$_Lesson implements _Lesson {
       const DeepCollectionEquality().hash(isClosed);
 
   @override
-  _$LessonCopyWith<_Lesson> get copyWith =>
-      __$LessonCopyWithImpl<_Lesson>(this, _$identity);
+  _$LessonCopyWith<_Lesson> get copyWith => __$LessonCopyWithImpl<_Lesson>(this, _$identity);
 
   @override
   Map<String, dynamic> toJson() {

@@ -17,7 +17,7 @@ class _$MasterTearOff {
   const _$MasterTearOff();
 
 // ignore: unused_element
-  _Master call({dynamic name, dynamic email, dynamic imageUrl}) {
+  _Master call({@required String name, @required String email, String imageUrl}) {
     return _Master(
       name: name,
       email: email,
@@ -37,9 +37,9 @@ const $Master = _$MasterTearOff();
 
 /// @nodoc
 mixin _$Master {
-  dynamic get name;
-  dynamic get email;
-  dynamic get imageUrl;
+  String get name;
+  String get email;
+  String get imageUrl;
 
   Map<String, dynamic> toJson();
   $MasterCopyWith<Master> get copyWith;
@@ -47,9 +47,8 @@ mixin _$Master {
 
 /// @nodoc
 abstract class $MasterCopyWith<$Res> {
-  factory $MasterCopyWith(Master value, $Res Function(Master) then) =
-      _$MasterCopyWithImpl<$Res>;
-  $Res call({dynamic name, dynamic email, dynamic imageUrl});
+  factory $MasterCopyWith(Master value, $Res Function(Master) then) = _$MasterCopyWithImpl<$Res>;
+  $Res call({String name, String email, String imageUrl});
 }
 
 /// @nodoc
@@ -67,9 +66,9 @@ class _$MasterCopyWithImpl<$Res> implements $MasterCopyWith<$Res> {
     Object imageUrl = freezed,
   }) {
     return _then(_value.copyWith(
-      name: name == freezed ? _value.name : name as dynamic,
-      email: email == freezed ? _value.email : email as dynamic,
-      imageUrl: imageUrl == freezed ? _value.imageUrl : imageUrl as dynamic,
+      name: name == freezed ? _value.name : name as String,
+      email: email == freezed ? _value.email : email as String,
+      imageUrl: imageUrl == freezed ? _value.imageUrl : imageUrl as String,
     ));
   }
 }
@@ -79,7 +78,7 @@ abstract class _$MasterCopyWith<$Res> implements $MasterCopyWith<$Res> {
   factory _$MasterCopyWith(_Master value, $Res Function(_Master) then) =
       __$MasterCopyWithImpl<$Res>;
   @override
-  $Res call({dynamic name, dynamic email, dynamic imageUrl});
+  $Res call({String name, String email, String imageUrl});
 }
 
 /// @nodoc
@@ -98,9 +97,9 @@ class __$MasterCopyWithImpl<$Res> extends _$MasterCopyWithImpl<$Res>
     Object imageUrl = freezed,
   }) {
     return _then(_Master(
-      name: name == freezed ? _value.name : name,
-      email: email == freezed ? _value.email : email,
-      imageUrl: imageUrl == freezed ? _value.imageUrl : imageUrl,
+      name: name == freezed ? _value.name : name as String,
+      email: email == freezed ? _value.email : email as String,
+      imageUrl: imageUrl == freezed ? _value.imageUrl : imageUrl as String,
     ));
   }
 }
@@ -109,17 +108,18 @@ class __$MasterCopyWithImpl<$Res> extends _$MasterCopyWithImpl<$Res>
 
 /// @nodoc
 class _$_Master implements _Master {
-  _$_Master({this.name, this.email, this.imageUrl});
+  _$_Master({@required this.name, @required this.email, this.imageUrl})
+      : assert(name != null),
+        assert(email != null);
 
-  factory _$_Master.fromJson(Map<String, dynamic> json) =>
-      _$_$_MasterFromJson(json);
+  factory _$_Master.fromJson(Map<String, dynamic> json) => _$_$_MasterFromJson(json);
 
   @override
-  final dynamic name;
+  final String name;
   @override
-  final dynamic email;
+  final String email;
   @override
-  final dynamic imageUrl;
+  final String imageUrl;
 
   @override
   String toString() {
@@ -135,8 +135,7 @@ class _$_Master implements _Master {
             (identical(other.email, email) ||
                 const DeepCollectionEquality().equals(other.email, email)) &&
             (identical(other.imageUrl, imageUrl) ||
-                const DeepCollectionEquality()
-                    .equals(other.imageUrl, imageUrl)));
+                const DeepCollectionEquality().equals(other.imageUrl, imageUrl)));
   }
 
   @override
@@ -147,8 +146,7 @@ class _$_Master implements _Master {
       const DeepCollectionEquality().hash(imageUrl);
 
   @override
-  _$MasterCopyWith<_Master> get copyWith =>
-      __$MasterCopyWithImpl<_Master>(this, _$identity);
+  _$MasterCopyWith<_Master> get copyWith => __$MasterCopyWithImpl<_Master>(this, _$identity);
 
   @override
   Map<String, dynamic> toJson() {
@@ -157,16 +155,16 @@ class _$_Master implements _Master {
 }
 
 abstract class _Master implements Master {
-  factory _Master({dynamic name, dynamic email, dynamic imageUrl}) = _$_Master;
+  factory _Master({@required String name, @required String email, String imageUrl}) = _$_Master;
 
   factory _Master.fromJson(Map<String, dynamic> json) = _$_Master.fromJson;
 
   @override
-  dynamic get name;
+  String get name;
   @override
-  dynamic get email;
+  String get email;
   @override
-  dynamic get imageUrl;
+  String get imageUrl;
   @override
   _$MasterCopyWith<_Master> get copyWith;
 }

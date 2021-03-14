@@ -744,6 +744,12 @@ void main() {
           baseLesson.id,
           newMasters,
         ));
+        verify(mockLessonRepository.updateLessonMasters(
+          fakeUser.selectedGymId,
+          baseLesson.date,
+          baseLesson.id,
+          newMasters,
+        ));
       });
 
       blocTest(
