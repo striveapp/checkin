@@ -34,6 +34,10 @@ abstract class RegistryEvent with _$RegistryEvent {
     @required String gymId,
   }) = DeleteLesson;
 
+  const factory RegistryEvent.retrieveMasters({
+    @required String gymId,
+  }) = RetrieveMasters;
+
   const factory RegistryEvent.updateTimeStart({
     @required String gymId,
     @required String newTimeStart,

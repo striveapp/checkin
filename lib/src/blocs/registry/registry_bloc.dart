@@ -134,6 +134,10 @@ class RegistryBloc extends Bloc<RegistryEvent, RegistryState> {
       }
     }
 
+    if (event is RetrieveMasters) {
+      await userRepository.retrieveAvailableMasters(event.gymId);
+    }
+
     if (event is UpdateTimeStart) {
       await this
           .lessonRepository
@@ -175,12 +179,12 @@ class RegistryBloc extends Bloc<RegistryEvent, RegistryState> {
 
     if (event is UpdateMasters) {
       await lessonRepository.updateLessonMasters(
-          event.gymId,
-          lessonDate,
-          lessonId,
-          event.newMasters,
-        );
-      }
+        event.gymId,
+        lessonDate,
+        lessonId,
+        event.newMasters,
+      );
+    }
   }
 
   bool isAcceptedUser(RegistryUpdated event) {
