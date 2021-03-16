@@ -1,4 +1,4 @@
-import 'package:checkin/src/blocs/registry/bloc.dart';
+import 'package:checkin/src/blocs/edit_lesson/bloc.dart';
 import 'package:checkin/src/localization/localization.dart';
 import 'package:checkin/src/logging/logger.dart';
 import 'package:flutter/material.dart';
@@ -59,8 +59,9 @@ class _EditLessonCapacityState extends State<EditLessonCapacity> {
             onSubmitted: (String newCapacityString) {
               try {
                 var newCapacity = int.parse(newCapacityString);
-                context.read<RegistryBloc>().add(
-                    RegistryEvent.updateCapacity(gymId: widget.gymId, newCapacity: newCapacity));
+                context
+                    .read<EditLessonBloc>()
+                    .add(EditLessonEvent.updateCapacity(newCapacity: newCapacity));
                 setState(() {
                   currentCapacity = newCapacity;
                 });

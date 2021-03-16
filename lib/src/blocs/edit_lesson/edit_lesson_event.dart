@@ -13,31 +13,24 @@ abstract class EditLessonEvent with _$EditLessonEvent {
   }) = RetrieveMasters;
 
   const factory EditLessonEvent.updateTimeStart({
-    @required String gymId,
     @required String newTimeStart,
   }) = UpdateTimeStart;
 
   const factory EditLessonEvent.updateTimeEnd({
-    @required String gymId,
     @required String newTimeEnd,
   }) = UpdateTimeEnd;
 
   const factory EditLessonEvent.updateName({
-    @required String gymId,
     @required String newName,
   }) = UpdateName;
 
   const factory EditLessonEvent.updateCapacity({
-    @required String gymId,
     @required int newCapacity,
   }) = UpdateCapacity;
 
-  const factory EditLessonEvent.updateImageUrl({
-    @required String gymId,
-  }) = UpdateImageUrl;
+  const factory EditLessonEvent.updateImageUrl() = UpdateImageUrl;
 
   const factory EditLessonEvent.updateMasters({
-    @required String gymId,
     @required List<Master> newMasters,
   }) = UpdateMasters;
 }

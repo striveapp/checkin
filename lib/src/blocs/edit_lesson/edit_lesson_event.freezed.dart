@@ -26,48 +26,41 @@ class _$EditLessonEventTearOff {
   }
 
 // ignore: unused_element
-  UpdateTimeStart updateTimeStart({@required String gymId, @required String newTimeStart}) {
+  UpdateTimeStart updateTimeStart({@required String newTimeStart}) {
     return UpdateTimeStart(
-      gymId: gymId,
       newTimeStart: newTimeStart,
     );
   }
 
 // ignore: unused_element
-  UpdateTimeEnd updateTimeEnd({@required String gymId, @required String newTimeEnd}) {
+  UpdateTimeEnd updateTimeEnd({@required String newTimeEnd}) {
     return UpdateTimeEnd(
-      gymId: gymId,
       newTimeEnd: newTimeEnd,
     );
   }
 
 // ignore: unused_element
-  UpdateName updateName({@required String gymId, @required String newName}) {
+  UpdateName updateName({@required String newName}) {
     return UpdateName(
-      gymId: gymId,
       newName: newName,
     );
   }
 
 // ignore: unused_element
-  UpdateCapacity updateCapacity({@required String gymId, @required int newCapacity}) {
+  UpdateCapacity updateCapacity({@required int newCapacity}) {
     return UpdateCapacity(
-      gymId: gymId,
       newCapacity: newCapacity,
     );
   }
 
 // ignore: unused_element
-  UpdateImageUrl updateImageUrl({@required String gymId}) {
-    return UpdateImageUrl(
-      gymId: gymId,
-    );
+  UpdateImageUrl updateImageUrl() {
+    return const UpdateImageUrl();
   }
 
 // ignore: unused_element
-  UpdateMasters updateMasters({@required String gymId, @required List<Master> newMasters}) {
+  UpdateMasters updateMasters({@required List<Master> newMasters}) {
     return UpdateMasters(
-      gymId: gymId,
       newMasters: newMasters,
     );
   }
@@ -83,23 +76,23 @@ mixin _$EditLessonEvent {
   TResult when<TResult extends Object>({
     @required TResult initializeEditLesson(),
     @required TResult retrieveMasters(String gymId),
-    @required TResult updateTimeStart(String gymId, String newTimeStart),
-    @required TResult updateTimeEnd(String gymId, String newTimeEnd),
-    @required TResult updateName(String gymId, String newName),
-    @required TResult updateCapacity(String gymId, int newCapacity),
-    @required TResult updateImageUrl(String gymId),
-    @required TResult updateMasters(String gymId, List<Master> newMasters),
+    @required TResult updateTimeStart(String newTimeStart),
+    @required TResult updateTimeEnd(String newTimeEnd),
+    @required TResult updateName(String newName),
+    @required TResult updateCapacity(int newCapacity),
+    @required TResult updateImageUrl(),
+    @required TResult updateMasters(List<Master> newMasters),
   });
   @optionalTypeArgs
   TResult maybeWhen<TResult extends Object>({
     TResult initializeEditLesson(),
     TResult retrieveMasters(String gymId),
-    TResult updateTimeStart(String gymId, String newTimeStart),
-    TResult updateTimeEnd(String gymId, String newTimeEnd),
-    TResult updateName(String gymId, String newName),
-    TResult updateCapacity(String gymId, int newCapacity),
-    TResult updateImageUrl(String gymId),
-    TResult updateMasters(String gymId, List<Master> newMasters),
+    TResult updateTimeStart(String newTimeStart),
+    TResult updateTimeEnd(String newTimeEnd),
+    TResult updateName(String newName),
+    TResult updateCapacity(int newCapacity),
+    TResult updateImageUrl(),
+    TResult updateMasters(List<Master> newMasters),
     @required TResult orElse(),
   });
   @optionalTypeArgs
@@ -188,12 +181,12 @@ class _$InitializeEditLesson with DiagnosticableTreeMixin implements InitializeE
   TResult when<TResult extends Object>({
     @required TResult initializeEditLesson(),
     @required TResult retrieveMasters(String gymId),
-    @required TResult updateTimeStart(String gymId, String newTimeStart),
-    @required TResult updateTimeEnd(String gymId, String newTimeEnd),
-    @required TResult updateName(String gymId, String newName),
-    @required TResult updateCapacity(String gymId, int newCapacity),
-    @required TResult updateImageUrl(String gymId),
-    @required TResult updateMasters(String gymId, List<Master> newMasters),
+    @required TResult updateTimeStart(String newTimeStart),
+    @required TResult updateTimeEnd(String newTimeEnd),
+    @required TResult updateName(String newName),
+    @required TResult updateCapacity(int newCapacity),
+    @required TResult updateImageUrl(),
+    @required TResult updateMasters(List<Master> newMasters),
   }) {
     assert(initializeEditLesson != null);
     assert(retrieveMasters != null);
@@ -211,12 +204,12 @@ class _$InitializeEditLesson with DiagnosticableTreeMixin implements InitializeE
   TResult maybeWhen<TResult extends Object>({
     TResult initializeEditLesson(),
     TResult retrieveMasters(String gymId),
-    TResult updateTimeStart(String gymId, String newTimeStart),
-    TResult updateTimeEnd(String gymId, String newTimeEnd),
-    TResult updateName(String gymId, String newName),
-    TResult updateCapacity(String gymId, int newCapacity),
-    TResult updateImageUrl(String gymId),
-    TResult updateMasters(String gymId, List<Master> newMasters),
+    TResult updateTimeStart(String newTimeStart),
+    TResult updateTimeEnd(String newTimeEnd),
+    TResult updateName(String newName),
+    TResult updateCapacity(int newCapacity),
+    TResult updateImageUrl(),
+    TResult updateMasters(List<Master> newMasters),
     @required TResult orElse(),
   }) {
     assert(orElse != null);
@@ -340,12 +333,12 @@ class _$RetrieveMasters with DiagnosticableTreeMixin implements RetrieveMasters 
   TResult when<TResult extends Object>({
     @required TResult initializeEditLesson(),
     @required TResult retrieveMasters(String gymId),
-    @required TResult updateTimeStart(String gymId, String newTimeStart),
-    @required TResult updateTimeEnd(String gymId, String newTimeEnd),
-    @required TResult updateName(String gymId, String newName),
-    @required TResult updateCapacity(String gymId, int newCapacity),
-    @required TResult updateImageUrl(String gymId),
-    @required TResult updateMasters(String gymId, List<Master> newMasters),
+    @required TResult updateTimeStart(String newTimeStart),
+    @required TResult updateTimeEnd(String newTimeEnd),
+    @required TResult updateName(String newName),
+    @required TResult updateCapacity(int newCapacity),
+    @required TResult updateImageUrl(),
+    @required TResult updateMasters(List<Master> newMasters),
   }) {
     assert(initializeEditLesson != null);
     assert(retrieveMasters != null);
@@ -363,12 +356,12 @@ class _$RetrieveMasters with DiagnosticableTreeMixin implements RetrieveMasters 
   TResult maybeWhen<TResult extends Object>({
     TResult initializeEditLesson(),
     TResult retrieveMasters(String gymId),
-    TResult updateTimeStart(String gymId, String newTimeStart),
-    TResult updateTimeEnd(String gymId, String newTimeEnd),
-    TResult updateName(String gymId, String newName),
-    TResult updateCapacity(String gymId, int newCapacity),
-    TResult updateImageUrl(String gymId),
-    TResult updateMasters(String gymId, List<Master> newMasters),
+    TResult updateTimeStart(String newTimeStart),
+    TResult updateTimeEnd(String newTimeEnd),
+    TResult updateName(String newName),
+    TResult updateCapacity(int newCapacity),
+    TResult updateImageUrl(),
+    TResult updateMasters(List<Master> newMasters),
     @required TResult orElse(),
   }) {
     assert(orElse != null);
@@ -433,7 +426,7 @@ abstract class RetrieveMasters implements EditLessonEvent {
 abstract class $UpdateTimeStartCopyWith<$Res> {
   factory $UpdateTimeStartCopyWith(UpdateTimeStart value, $Res Function(UpdateTimeStart) then) =
       _$UpdateTimeStartCopyWithImpl<$Res>;
-  $Res call({String gymId, String newTimeStart});
+  $Res call({String newTimeStart});
 }
 
 /// @nodoc
@@ -447,11 +440,9 @@ class _$UpdateTimeStartCopyWithImpl<$Res> extends _$EditLessonEventCopyWithImpl<
 
   @override
   $Res call({
-    Object gymId = freezed,
     Object newTimeStart = freezed,
   }) {
     return _then(UpdateTimeStart(
-      gymId: gymId == freezed ? _value.gymId : gymId as String,
       newTimeStart: newTimeStart == freezed ? _value.newTimeStart : newTimeStart as String,
     ));
   }
@@ -459,18 +450,14 @@ class _$UpdateTimeStartCopyWithImpl<$Res> extends _$EditLessonEventCopyWithImpl<
 
 /// @nodoc
 class _$UpdateTimeStart with DiagnosticableTreeMixin implements UpdateTimeStart {
-  const _$UpdateTimeStart({@required this.gymId, @required this.newTimeStart})
-      : assert(gymId != null),
-        assert(newTimeStart != null);
+  const _$UpdateTimeStart({@required this.newTimeStart}) : assert(newTimeStart != null);
 
-  @override
-  final String gymId;
   @override
   final String newTimeStart;
 
   @override
   String toString({DiagnosticLevel minLevel = DiagnosticLevel.info}) {
-    return 'EditLessonEvent.updateTimeStart(gymId: $gymId, newTimeStart: $newTimeStart)';
+    return 'EditLessonEvent.updateTimeStart(newTimeStart: $newTimeStart)';
   }
 
   @override
@@ -478,7 +465,6 @@ class _$UpdateTimeStart with DiagnosticableTreeMixin implements UpdateTimeStart 
     super.debugFillProperties(properties);
     properties
       ..add(DiagnosticsProperty('type', 'EditLessonEvent.updateTimeStart'))
-      ..add(DiagnosticsProperty('gymId', gymId))
       ..add(DiagnosticsProperty('newTimeStart', newTimeStart));
   }
 
@@ -486,17 +472,12 @@ class _$UpdateTimeStart with DiagnosticableTreeMixin implements UpdateTimeStart 
   bool operator ==(dynamic other) {
     return identical(this, other) ||
         (other is UpdateTimeStart &&
-            (identical(other.gymId, gymId) ||
-                const DeepCollectionEquality().equals(other.gymId, gymId)) &&
             (identical(other.newTimeStart, newTimeStart) ||
                 const DeepCollectionEquality().equals(other.newTimeStart, newTimeStart)));
   }
 
   @override
-  int get hashCode =>
-      runtimeType.hashCode ^
-      const DeepCollectionEquality().hash(gymId) ^
-      const DeepCollectionEquality().hash(newTimeStart);
+  int get hashCode => runtimeType.hashCode ^ const DeepCollectionEquality().hash(newTimeStart);
 
   @override
   $UpdateTimeStartCopyWith<UpdateTimeStart> get copyWith =>
@@ -507,12 +488,12 @@ class _$UpdateTimeStart with DiagnosticableTreeMixin implements UpdateTimeStart 
   TResult when<TResult extends Object>({
     @required TResult initializeEditLesson(),
     @required TResult retrieveMasters(String gymId),
-    @required TResult updateTimeStart(String gymId, String newTimeStart),
-    @required TResult updateTimeEnd(String gymId, String newTimeEnd),
-    @required TResult updateName(String gymId, String newName),
-    @required TResult updateCapacity(String gymId, int newCapacity),
-    @required TResult updateImageUrl(String gymId),
-    @required TResult updateMasters(String gymId, List<Master> newMasters),
+    @required TResult updateTimeStart(String newTimeStart),
+    @required TResult updateTimeEnd(String newTimeEnd),
+    @required TResult updateName(String newName),
+    @required TResult updateCapacity(int newCapacity),
+    @required TResult updateImageUrl(),
+    @required TResult updateMasters(List<Master> newMasters),
   }) {
     assert(initializeEditLesson != null);
     assert(retrieveMasters != null);
@@ -522,7 +503,7 @@ class _$UpdateTimeStart with DiagnosticableTreeMixin implements UpdateTimeStart 
     assert(updateCapacity != null);
     assert(updateImageUrl != null);
     assert(updateMasters != null);
-    return updateTimeStart(gymId, newTimeStart);
+    return updateTimeStart(newTimeStart);
   }
 
   @override
@@ -530,17 +511,17 @@ class _$UpdateTimeStart with DiagnosticableTreeMixin implements UpdateTimeStart 
   TResult maybeWhen<TResult extends Object>({
     TResult initializeEditLesson(),
     TResult retrieveMasters(String gymId),
-    TResult updateTimeStart(String gymId, String newTimeStart),
-    TResult updateTimeEnd(String gymId, String newTimeEnd),
-    TResult updateName(String gymId, String newName),
-    TResult updateCapacity(String gymId, int newCapacity),
-    TResult updateImageUrl(String gymId),
-    TResult updateMasters(String gymId, List<Master> newMasters),
+    TResult updateTimeStart(String newTimeStart),
+    TResult updateTimeEnd(String newTimeEnd),
+    TResult updateName(String newName),
+    TResult updateCapacity(int newCapacity),
+    TResult updateImageUrl(),
+    TResult updateMasters(List<Master> newMasters),
     @required TResult orElse(),
   }) {
     assert(orElse != null);
     if (updateTimeStart != null) {
-      return updateTimeStart(gymId, newTimeStart);
+      return updateTimeStart(newTimeStart);
     }
     return orElse();
   }
@@ -590,10 +571,8 @@ class _$UpdateTimeStart with DiagnosticableTreeMixin implements UpdateTimeStart 
 }
 
 abstract class UpdateTimeStart implements EditLessonEvent {
-  const factory UpdateTimeStart({@required String gymId, @required String newTimeStart}) =
-      _$UpdateTimeStart;
+  const factory UpdateTimeStart({@required String newTimeStart}) = _$UpdateTimeStart;
 
-  String get gymId;
   String get newTimeStart;
   $UpdateTimeStartCopyWith<UpdateTimeStart> get copyWith;
 }
@@ -602,7 +581,7 @@ abstract class UpdateTimeStart implements EditLessonEvent {
 abstract class $UpdateTimeEndCopyWith<$Res> {
   factory $UpdateTimeEndCopyWith(UpdateTimeEnd value, $Res Function(UpdateTimeEnd) then) =
       _$UpdateTimeEndCopyWithImpl<$Res>;
-  $Res call({String gymId, String newTimeEnd});
+  $Res call({String newTimeEnd});
 }
 
 /// @nodoc
@@ -616,11 +595,9 @@ class _$UpdateTimeEndCopyWithImpl<$Res> extends _$EditLessonEventCopyWithImpl<$R
 
   @override
   $Res call({
-    Object gymId = freezed,
     Object newTimeEnd = freezed,
   }) {
     return _then(UpdateTimeEnd(
-      gymId: gymId == freezed ? _value.gymId : gymId as String,
       newTimeEnd: newTimeEnd == freezed ? _value.newTimeEnd : newTimeEnd as String,
     ));
   }
@@ -628,18 +605,14 @@ class _$UpdateTimeEndCopyWithImpl<$Res> extends _$EditLessonEventCopyWithImpl<$R
 
 /// @nodoc
 class _$UpdateTimeEnd with DiagnosticableTreeMixin implements UpdateTimeEnd {
-  const _$UpdateTimeEnd({@required this.gymId, @required this.newTimeEnd})
-      : assert(gymId != null),
-        assert(newTimeEnd != null);
+  const _$UpdateTimeEnd({@required this.newTimeEnd}) : assert(newTimeEnd != null);
 
-  @override
-  final String gymId;
   @override
   final String newTimeEnd;
 
   @override
   String toString({DiagnosticLevel minLevel = DiagnosticLevel.info}) {
-    return 'EditLessonEvent.updateTimeEnd(gymId: $gymId, newTimeEnd: $newTimeEnd)';
+    return 'EditLessonEvent.updateTimeEnd(newTimeEnd: $newTimeEnd)';
   }
 
   @override
@@ -647,7 +620,6 @@ class _$UpdateTimeEnd with DiagnosticableTreeMixin implements UpdateTimeEnd {
     super.debugFillProperties(properties);
     properties
       ..add(DiagnosticsProperty('type', 'EditLessonEvent.updateTimeEnd'))
-      ..add(DiagnosticsProperty('gymId', gymId))
       ..add(DiagnosticsProperty('newTimeEnd', newTimeEnd));
   }
 
@@ -655,17 +627,12 @@ class _$UpdateTimeEnd with DiagnosticableTreeMixin implements UpdateTimeEnd {
   bool operator ==(dynamic other) {
     return identical(this, other) ||
         (other is UpdateTimeEnd &&
-            (identical(other.gymId, gymId) ||
-                const DeepCollectionEquality().equals(other.gymId, gymId)) &&
             (identical(other.newTimeEnd, newTimeEnd) ||
                 const DeepCollectionEquality().equals(other.newTimeEnd, newTimeEnd)));
   }
 
   @override
-  int get hashCode =>
-      runtimeType.hashCode ^
-      const DeepCollectionEquality().hash(gymId) ^
-      const DeepCollectionEquality().hash(newTimeEnd);
+  int get hashCode => runtimeType.hashCode ^ const DeepCollectionEquality().hash(newTimeEnd);
 
   @override
   $UpdateTimeEndCopyWith<UpdateTimeEnd> get copyWith =>
@@ -676,12 +643,12 @@ class _$UpdateTimeEnd with DiagnosticableTreeMixin implements UpdateTimeEnd {
   TResult when<TResult extends Object>({
     @required TResult initializeEditLesson(),
     @required TResult retrieveMasters(String gymId),
-    @required TResult updateTimeStart(String gymId, String newTimeStart),
-    @required TResult updateTimeEnd(String gymId, String newTimeEnd),
-    @required TResult updateName(String gymId, String newName),
-    @required TResult updateCapacity(String gymId, int newCapacity),
-    @required TResult updateImageUrl(String gymId),
-    @required TResult updateMasters(String gymId, List<Master> newMasters),
+    @required TResult updateTimeStart(String newTimeStart),
+    @required TResult updateTimeEnd(String newTimeEnd),
+    @required TResult updateName(String newName),
+    @required TResult updateCapacity(int newCapacity),
+    @required TResult updateImageUrl(),
+    @required TResult updateMasters(List<Master> newMasters),
   }) {
     assert(initializeEditLesson != null);
     assert(retrieveMasters != null);
@@ -691,7 +658,7 @@ class _$UpdateTimeEnd with DiagnosticableTreeMixin implements UpdateTimeEnd {
     assert(updateCapacity != null);
     assert(updateImageUrl != null);
     assert(updateMasters != null);
-    return updateTimeEnd(gymId, newTimeEnd);
+    return updateTimeEnd(newTimeEnd);
   }
 
   @override
@@ -699,17 +666,17 @@ class _$UpdateTimeEnd with DiagnosticableTreeMixin implements UpdateTimeEnd {
   TResult maybeWhen<TResult extends Object>({
     TResult initializeEditLesson(),
     TResult retrieveMasters(String gymId),
-    TResult updateTimeStart(String gymId, String newTimeStart),
-    TResult updateTimeEnd(String gymId, String newTimeEnd),
-    TResult updateName(String gymId, String newName),
-    TResult updateCapacity(String gymId, int newCapacity),
-    TResult updateImageUrl(String gymId),
-    TResult updateMasters(String gymId, List<Master> newMasters),
+    TResult updateTimeStart(String newTimeStart),
+    TResult updateTimeEnd(String newTimeEnd),
+    TResult updateName(String newName),
+    TResult updateCapacity(int newCapacity),
+    TResult updateImageUrl(),
+    TResult updateMasters(List<Master> newMasters),
     @required TResult orElse(),
   }) {
     assert(orElse != null);
     if (updateTimeEnd != null) {
-      return updateTimeEnd(gymId, newTimeEnd);
+      return updateTimeEnd(newTimeEnd);
     }
     return orElse();
   }
@@ -759,10 +726,8 @@ class _$UpdateTimeEnd with DiagnosticableTreeMixin implements UpdateTimeEnd {
 }
 
 abstract class UpdateTimeEnd implements EditLessonEvent {
-  const factory UpdateTimeEnd({@required String gymId, @required String newTimeEnd}) =
-      _$UpdateTimeEnd;
+  const factory UpdateTimeEnd({@required String newTimeEnd}) = _$UpdateTimeEnd;
 
-  String get gymId;
   String get newTimeEnd;
   $UpdateTimeEndCopyWith<UpdateTimeEnd> get copyWith;
 }
@@ -771,7 +736,7 @@ abstract class UpdateTimeEnd implements EditLessonEvent {
 abstract class $UpdateNameCopyWith<$Res> {
   factory $UpdateNameCopyWith(UpdateName value, $Res Function(UpdateName) then) =
       _$UpdateNameCopyWithImpl<$Res>;
-  $Res call({String gymId, String newName});
+  $Res call({String newName});
 }
 
 /// @nodoc
@@ -785,11 +750,9 @@ class _$UpdateNameCopyWithImpl<$Res> extends _$EditLessonEventCopyWithImpl<$Res>
 
   @override
   $Res call({
-    Object gymId = freezed,
     Object newName = freezed,
   }) {
     return _then(UpdateName(
-      gymId: gymId == freezed ? _value.gymId : gymId as String,
       newName: newName == freezed ? _value.newName : newName as String,
     ));
   }
@@ -797,18 +760,14 @@ class _$UpdateNameCopyWithImpl<$Res> extends _$EditLessonEventCopyWithImpl<$Res>
 
 /// @nodoc
 class _$UpdateName with DiagnosticableTreeMixin implements UpdateName {
-  const _$UpdateName({@required this.gymId, @required this.newName})
-      : assert(gymId != null),
-        assert(newName != null);
+  const _$UpdateName({@required this.newName}) : assert(newName != null);
 
-  @override
-  final String gymId;
   @override
   final String newName;
 
   @override
   String toString({DiagnosticLevel minLevel = DiagnosticLevel.info}) {
-    return 'EditLessonEvent.updateName(gymId: $gymId, newName: $newName)';
+    return 'EditLessonEvent.updateName(newName: $newName)';
   }
 
   @override
@@ -816,7 +775,6 @@ class _$UpdateName with DiagnosticableTreeMixin implements UpdateName {
     super.debugFillProperties(properties);
     properties
       ..add(DiagnosticsProperty('type', 'EditLessonEvent.updateName'))
-      ..add(DiagnosticsProperty('gymId', gymId))
       ..add(DiagnosticsProperty('newName', newName));
   }
 
@@ -824,17 +782,12 @@ class _$UpdateName with DiagnosticableTreeMixin implements UpdateName {
   bool operator ==(dynamic other) {
     return identical(this, other) ||
         (other is UpdateName &&
-            (identical(other.gymId, gymId) ||
-                const DeepCollectionEquality().equals(other.gymId, gymId)) &&
             (identical(other.newName, newName) ||
                 const DeepCollectionEquality().equals(other.newName, newName)));
   }
 
   @override
-  int get hashCode =>
-      runtimeType.hashCode ^
-      const DeepCollectionEquality().hash(gymId) ^
-      const DeepCollectionEquality().hash(newName);
+  int get hashCode => runtimeType.hashCode ^ const DeepCollectionEquality().hash(newName);
 
   @override
   $UpdateNameCopyWith<UpdateName> get copyWith =>
@@ -845,12 +798,12 @@ class _$UpdateName with DiagnosticableTreeMixin implements UpdateName {
   TResult when<TResult extends Object>({
     @required TResult initializeEditLesson(),
     @required TResult retrieveMasters(String gymId),
-    @required TResult updateTimeStart(String gymId, String newTimeStart),
-    @required TResult updateTimeEnd(String gymId, String newTimeEnd),
-    @required TResult updateName(String gymId, String newName),
-    @required TResult updateCapacity(String gymId, int newCapacity),
-    @required TResult updateImageUrl(String gymId),
-    @required TResult updateMasters(String gymId, List<Master> newMasters),
+    @required TResult updateTimeStart(String newTimeStart),
+    @required TResult updateTimeEnd(String newTimeEnd),
+    @required TResult updateName(String newName),
+    @required TResult updateCapacity(int newCapacity),
+    @required TResult updateImageUrl(),
+    @required TResult updateMasters(List<Master> newMasters),
   }) {
     assert(initializeEditLesson != null);
     assert(retrieveMasters != null);
@@ -860,7 +813,7 @@ class _$UpdateName with DiagnosticableTreeMixin implements UpdateName {
     assert(updateCapacity != null);
     assert(updateImageUrl != null);
     assert(updateMasters != null);
-    return updateName(gymId, newName);
+    return updateName(newName);
   }
 
   @override
@@ -868,17 +821,17 @@ class _$UpdateName with DiagnosticableTreeMixin implements UpdateName {
   TResult maybeWhen<TResult extends Object>({
     TResult initializeEditLesson(),
     TResult retrieveMasters(String gymId),
-    TResult updateTimeStart(String gymId, String newTimeStart),
-    TResult updateTimeEnd(String gymId, String newTimeEnd),
-    TResult updateName(String gymId, String newName),
-    TResult updateCapacity(String gymId, int newCapacity),
-    TResult updateImageUrl(String gymId),
-    TResult updateMasters(String gymId, List<Master> newMasters),
+    TResult updateTimeStart(String newTimeStart),
+    TResult updateTimeEnd(String newTimeEnd),
+    TResult updateName(String newName),
+    TResult updateCapacity(int newCapacity),
+    TResult updateImageUrl(),
+    TResult updateMasters(List<Master> newMasters),
     @required TResult orElse(),
   }) {
     assert(orElse != null);
     if (updateName != null) {
-      return updateName(gymId, newName);
+      return updateName(newName);
     }
     return orElse();
   }
@@ -928,9 +881,8 @@ class _$UpdateName with DiagnosticableTreeMixin implements UpdateName {
 }
 
 abstract class UpdateName implements EditLessonEvent {
-  const factory UpdateName({@required String gymId, @required String newName}) = _$UpdateName;
+  const factory UpdateName({@required String newName}) = _$UpdateName;
 
-  String get gymId;
   String get newName;
   $UpdateNameCopyWith<UpdateName> get copyWith;
 }
@@ -939,7 +891,7 @@ abstract class UpdateName implements EditLessonEvent {
 abstract class $UpdateCapacityCopyWith<$Res> {
   factory $UpdateCapacityCopyWith(UpdateCapacity value, $Res Function(UpdateCapacity) then) =
       _$UpdateCapacityCopyWithImpl<$Res>;
-  $Res call({String gymId, int newCapacity});
+  $Res call({int newCapacity});
 }
 
 /// @nodoc
@@ -953,11 +905,9 @@ class _$UpdateCapacityCopyWithImpl<$Res> extends _$EditLessonEventCopyWithImpl<$
 
   @override
   $Res call({
-    Object gymId = freezed,
     Object newCapacity = freezed,
   }) {
     return _then(UpdateCapacity(
-      gymId: gymId == freezed ? _value.gymId : gymId as String,
       newCapacity: newCapacity == freezed ? _value.newCapacity : newCapacity as int,
     ));
   }
@@ -965,18 +915,14 @@ class _$UpdateCapacityCopyWithImpl<$Res> extends _$EditLessonEventCopyWithImpl<$
 
 /// @nodoc
 class _$UpdateCapacity with DiagnosticableTreeMixin implements UpdateCapacity {
-  const _$UpdateCapacity({@required this.gymId, @required this.newCapacity})
-      : assert(gymId != null),
-        assert(newCapacity != null);
+  const _$UpdateCapacity({@required this.newCapacity}) : assert(newCapacity != null);
 
-  @override
-  final String gymId;
   @override
   final int newCapacity;
 
   @override
   String toString({DiagnosticLevel minLevel = DiagnosticLevel.info}) {
-    return 'EditLessonEvent.updateCapacity(gymId: $gymId, newCapacity: $newCapacity)';
+    return 'EditLessonEvent.updateCapacity(newCapacity: $newCapacity)';
   }
 
   @override
@@ -984,7 +930,6 @@ class _$UpdateCapacity with DiagnosticableTreeMixin implements UpdateCapacity {
     super.debugFillProperties(properties);
     properties
       ..add(DiagnosticsProperty('type', 'EditLessonEvent.updateCapacity'))
-      ..add(DiagnosticsProperty('gymId', gymId))
       ..add(DiagnosticsProperty('newCapacity', newCapacity));
   }
 
@@ -992,17 +937,12 @@ class _$UpdateCapacity with DiagnosticableTreeMixin implements UpdateCapacity {
   bool operator ==(dynamic other) {
     return identical(this, other) ||
         (other is UpdateCapacity &&
-            (identical(other.gymId, gymId) ||
-                const DeepCollectionEquality().equals(other.gymId, gymId)) &&
             (identical(other.newCapacity, newCapacity) ||
                 const DeepCollectionEquality().equals(other.newCapacity, newCapacity)));
   }
 
   @override
-  int get hashCode =>
-      runtimeType.hashCode ^
-      const DeepCollectionEquality().hash(gymId) ^
-      const DeepCollectionEquality().hash(newCapacity);
+  int get hashCode => runtimeType.hashCode ^ const DeepCollectionEquality().hash(newCapacity);
 
   @override
   $UpdateCapacityCopyWith<UpdateCapacity> get copyWith =>
@@ -1013,12 +953,12 @@ class _$UpdateCapacity with DiagnosticableTreeMixin implements UpdateCapacity {
   TResult when<TResult extends Object>({
     @required TResult initializeEditLesson(),
     @required TResult retrieveMasters(String gymId),
-    @required TResult updateTimeStart(String gymId, String newTimeStart),
-    @required TResult updateTimeEnd(String gymId, String newTimeEnd),
-    @required TResult updateName(String gymId, String newName),
-    @required TResult updateCapacity(String gymId, int newCapacity),
-    @required TResult updateImageUrl(String gymId),
-    @required TResult updateMasters(String gymId, List<Master> newMasters),
+    @required TResult updateTimeStart(String newTimeStart),
+    @required TResult updateTimeEnd(String newTimeEnd),
+    @required TResult updateName(String newName),
+    @required TResult updateCapacity(int newCapacity),
+    @required TResult updateImageUrl(),
+    @required TResult updateMasters(List<Master> newMasters),
   }) {
     assert(initializeEditLesson != null);
     assert(retrieveMasters != null);
@@ -1028,7 +968,7 @@ class _$UpdateCapacity with DiagnosticableTreeMixin implements UpdateCapacity {
     assert(updateCapacity != null);
     assert(updateImageUrl != null);
     assert(updateMasters != null);
-    return updateCapacity(gymId, newCapacity);
+    return updateCapacity(newCapacity);
   }
 
   @override
@@ -1036,17 +976,17 @@ class _$UpdateCapacity with DiagnosticableTreeMixin implements UpdateCapacity {
   TResult maybeWhen<TResult extends Object>({
     TResult initializeEditLesson(),
     TResult retrieveMasters(String gymId),
-    TResult updateTimeStart(String gymId, String newTimeStart),
-    TResult updateTimeEnd(String gymId, String newTimeEnd),
-    TResult updateName(String gymId, String newName),
-    TResult updateCapacity(String gymId, int newCapacity),
-    TResult updateImageUrl(String gymId),
-    TResult updateMasters(String gymId, List<Master> newMasters),
+    TResult updateTimeStart(String newTimeStart),
+    TResult updateTimeEnd(String newTimeEnd),
+    TResult updateName(String newName),
+    TResult updateCapacity(int newCapacity),
+    TResult updateImageUrl(),
+    TResult updateMasters(List<Master> newMasters),
     @required TResult orElse(),
   }) {
     assert(orElse != null);
     if (updateCapacity != null) {
-      return updateCapacity(gymId, newCapacity);
+      return updateCapacity(newCapacity);
     }
     return orElse();
   }
@@ -1096,10 +1036,8 @@ class _$UpdateCapacity with DiagnosticableTreeMixin implements UpdateCapacity {
 }
 
 abstract class UpdateCapacity implements EditLessonEvent {
-  const factory UpdateCapacity({@required String gymId, @required int newCapacity}) =
-      _$UpdateCapacity;
+  const factory UpdateCapacity({@required int newCapacity}) = _$UpdateCapacity;
 
-  String get gymId;
   int get newCapacity;
   $UpdateCapacityCopyWith<UpdateCapacity> get copyWith;
 }
@@ -1108,7 +1046,6 @@ abstract class UpdateCapacity implements EditLessonEvent {
 abstract class $UpdateImageUrlCopyWith<$Res> {
   factory $UpdateImageUrlCopyWith(UpdateImageUrl value, $Res Function(UpdateImageUrl) then) =
       _$UpdateImageUrlCopyWithImpl<$Res>;
-  $Res call({String gymId});
 }
 
 /// @nodoc
@@ -1119,63 +1056,42 @@ class _$UpdateImageUrlCopyWithImpl<$Res> extends _$EditLessonEventCopyWithImpl<$
 
   @override
   UpdateImageUrl get _value => super._value as UpdateImageUrl;
-
-  @override
-  $Res call({
-    Object gymId = freezed,
-  }) {
-    return _then(UpdateImageUrl(
-      gymId: gymId == freezed ? _value.gymId : gymId as String,
-    ));
-  }
 }
 
 /// @nodoc
 class _$UpdateImageUrl with DiagnosticableTreeMixin implements UpdateImageUrl {
-  const _$UpdateImageUrl({@required this.gymId}) : assert(gymId != null);
-
-  @override
-  final String gymId;
+  const _$UpdateImageUrl();
 
   @override
   String toString({DiagnosticLevel minLevel = DiagnosticLevel.info}) {
-    return 'EditLessonEvent.updateImageUrl(gymId: $gymId)';
+    return 'EditLessonEvent.updateImageUrl()';
   }
 
   @override
   void debugFillProperties(DiagnosticPropertiesBuilder properties) {
     super.debugFillProperties(properties);
-    properties
-      ..add(DiagnosticsProperty('type', 'EditLessonEvent.updateImageUrl'))
-      ..add(DiagnosticsProperty('gymId', gymId));
+    properties..add(DiagnosticsProperty('type', 'EditLessonEvent.updateImageUrl'));
   }
 
   @override
   bool operator ==(dynamic other) {
-    return identical(this, other) ||
-        (other is UpdateImageUrl &&
-            (identical(other.gymId, gymId) ||
-                const DeepCollectionEquality().equals(other.gymId, gymId)));
+    return identical(this, other) || (other is UpdateImageUrl);
   }
 
   @override
-  int get hashCode => runtimeType.hashCode ^ const DeepCollectionEquality().hash(gymId);
-
-  @override
-  $UpdateImageUrlCopyWith<UpdateImageUrl> get copyWith =>
-      _$UpdateImageUrlCopyWithImpl<UpdateImageUrl>(this, _$identity);
+  int get hashCode => runtimeType.hashCode;
 
   @override
   @optionalTypeArgs
   TResult when<TResult extends Object>({
     @required TResult initializeEditLesson(),
     @required TResult retrieveMasters(String gymId),
-    @required TResult updateTimeStart(String gymId, String newTimeStart),
-    @required TResult updateTimeEnd(String gymId, String newTimeEnd),
-    @required TResult updateName(String gymId, String newName),
-    @required TResult updateCapacity(String gymId, int newCapacity),
-    @required TResult updateImageUrl(String gymId),
-    @required TResult updateMasters(String gymId, List<Master> newMasters),
+    @required TResult updateTimeStart(String newTimeStart),
+    @required TResult updateTimeEnd(String newTimeEnd),
+    @required TResult updateName(String newName),
+    @required TResult updateCapacity(int newCapacity),
+    @required TResult updateImageUrl(),
+    @required TResult updateMasters(List<Master> newMasters),
   }) {
     assert(initializeEditLesson != null);
     assert(retrieveMasters != null);
@@ -1185,7 +1101,7 @@ class _$UpdateImageUrl with DiagnosticableTreeMixin implements UpdateImageUrl {
     assert(updateCapacity != null);
     assert(updateImageUrl != null);
     assert(updateMasters != null);
-    return updateImageUrl(gymId);
+    return updateImageUrl();
   }
 
   @override
@@ -1193,17 +1109,17 @@ class _$UpdateImageUrl with DiagnosticableTreeMixin implements UpdateImageUrl {
   TResult maybeWhen<TResult extends Object>({
     TResult initializeEditLesson(),
     TResult retrieveMasters(String gymId),
-    TResult updateTimeStart(String gymId, String newTimeStart),
-    TResult updateTimeEnd(String gymId, String newTimeEnd),
-    TResult updateName(String gymId, String newName),
-    TResult updateCapacity(String gymId, int newCapacity),
-    TResult updateImageUrl(String gymId),
-    TResult updateMasters(String gymId, List<Master> newMasters),
+    TResult updateTimeStart(String newTimeStart),
+    TResult updateTimeEnd(String newTimeEnd),
+    TResult updateName(String newName),
+    TResult updateCapacity(int newCapacity),
+    TResult updateImageUrl(),
+    TResult updateMasters(List<Master> newMasters),
     @required TResult orElse(),
   }) {
     assert(orElse != null);
     if (updateImageUrl != null) {
-      return updateImageUrl(gymId);
+      return updateImageUrl();
     }
     return orElse();
   }
@@ -1253,17 +1169,14 @@ class _$UpdateImageUrl with DiagnosticableTreeMixin implements UpdateImageUrl {
 }
 
 abstract class UpdateImageUrl implements EditLessonEvent {
-  const factory UpdateImageUrl({@required String gymId}) = _$UpdateImageUrl;
-
-  String get gymId;
-  $UpdateImageUrlCopyWith<UpdateImageUrl> get copyWith;
+  const factory UpdateImageUrl() = _$UpdateImageUrl;
 }
 
 /// @nodoc
 abstract class $UpdateMastersCopyWith<$Res> {
   factory $UpdateMastersCopyWith(UpdateMasters value, $Res Function(UpdateMasters) then) =
       _$UpdateMastersCopyWithImpl<$Res>;
-  $Res call({String gymId, List<Master> newMasters});
+  $Res call({List<Master> newMasters});
 }
 
 /// @nodoc
@@ -1277,11 +1190,9 @@ class _$UpdateMastersCopyWithImpl<$Res> extends _$EditLessonEventCopyWithImpl<$R
 
   @override
   $Res call({
-    Object gymId = freezed,
     Object newMasters = freezed,
   }) {
     return _then(UpdateMasters(
-      gymId: gymId == freezed ? _value.gymId : gymId as String,
       newMasters: newMasters == freezed ? _value.newMasters : newMasters as List<Master>,
     ));
   }
@@ -1289,18 +1200,14 @@ class _$UpdateMastersCopyWithImpl<$Res> extends _$EditLessonEventCopyWithImpl<$R
 
 /// @nodoc
 class _$UpdateMasters with DiagnosticableTreeMixin implements UpdateMasters {
-  const _$UpdateMasters({@required this.gymId, @required this.newMasters})
-      : assert(gymId != null),
-        assert(newMasters != null);
+  const _$UpdateMasters({@required this.newMasters}) : assert(newMasters != null);
 
-  @override
-  final String gymId;
   @override
   final List<Master> newMasters;
 
   @override
   String toString({DiagnosticLevel minLevel = DiagnosticLevel.info}) {
-    return 'EditLessonEvent.updateMasters(gymId: $gymId, newMasters: $newMasters)';
+    return 'EditLessonEvent.updateMasters(newMasters: $newMasters)';
   }
 
   @override
@@ -1308,7 +1215,6 @@ class _$UpdateMasters with DiagnosticableTreeMixin implements UpdateMasters {
     super.debugFillProperties(properties);
     properties
       ..add(DiagnosticsProperty('type', 'EditLessonEvent.updateMasters'))
-      ..add(DiagnosticsProperty('gymId', gymId))
       ..add(DiagnosticsProperty('newMasters', newMasters));
   }
 
@@ -1316,17 +1222,12 @@ class _$UpdateMasters with DiagnosticableTreeMixin implements UpdateMasters {
   bool operator ==(dynamic other) {
     return identical(this, other) ||
         (other is UpdateMasters &&
-            (identical(other.gymId, gymId) ||
-                const DeepCollectionEquality().equals(other.gymId, gymId)) &&
             (identical(other.newMasters, newMasters) ||
                 const DeepCollectionEquality().equals(other.newMasters, newMasters)));
   }
 
   @override
-  int get hashCode =>
-      runtimeType.hashCode ^
-      const DeepCollectionEquality().hash(gymId) ^
-      const DeepCollectionEquality().hash(newMasters);
+  int get hashCode => runtimeType.hashCode ^ const DeepCollectionEquality().hash(newMasters);
 
   @override
   $UpdateMastersCopyWith<UpdateMasters> get copyWith =>
@@ -1337,12 +1238,12 @@ class _$UpdateMasters with DiagnosticableTreeMixin implements UpdateMasters {
   TResult when<TResult extends Object>({
     @required TResult initializeEditLesson(),
     @required TResult retrieveMasters(String gymId),
-    @required TResult updateTimeStart(String gymId, String newTimeStart),
-    @required TResult updateTimeEnd(String gymId, String newTimeEnd),
-    @required TResult updateName(String gymId, String newName),
-    @required TResult updateCapacity(String gymId, int newCapacity),
-    @required TResult updateImageUrl(String gymId),
-    @required TResult updateMasters(String gymId, List<Master> newMasters),
+    @required TResult updateTimeStart(String newTimeStart),
+    @required TResult updateTimeEnd(String newTimeEnd),
+    @required TResult updateName(String newName),
+    @required TResult updateCapacity(int newCapacity),
+    @required TResult updateImageUrl(),
+    @required TResult updateMasters(List<Master> newMasters),
   }) {
     assert(initializeEditLesson != null);
     assert(retrieveMasters != null);
@@ -1352,7 +1253,7 @@ class _$UpdateMasters with DiagnosticableTreeMixin implements UpdateMasters {
     assert(updateCapacity != null);
     assert(updateImageUrl != null);
     assert(updateMasters != null);
-    return updateMasters(gymId, newMasters);
+    return updateMasters(newMasters);
   }
 
   @override
@@ -1360,17 +1261,17 @@ class _$UpdateMasters with DiagnosticableTreeMixin implements UpdateMasters {
   TResult maybeWhen<TResult extends Object>({
     TResult initializeEditLesson(),
     TResult retrieveMasters(String gymId),
-    TResult updateTimeStart(String gymId, String newTimeStart),
-    TResult updateTimeEnd(String gymId, String newTimeEnd),
-    TResult updateName(String gymId, String newName),
-    TResult updateCapacity(String gymId, int newCapacity),
-    TResult updateImageUrl(String gymId),
-    TResult updateMasters(String gymId, List<Master> newMasters),
+    TResult updateTimeStart(String newTimeStart),
+    TResult updateTimeEnd(String newTimeEnd),
+    TResult updateName(String newName),
+    TResult updateCapacity(int newCapacity),
+    TResult updateImageUrl(),
+    TResult updateMasters(List<Master> newMasters),
     @required TResult orElse(),
   }) {
     assert(orElse != null);
     if (updateMasters != null) {
-      return updateMasters(gymId, newMasters);
+      return updateMasters(newMasters);
     }
     return orElse();
   }
@@ -1420,10 +1321,8 @@ class _$UpdateMasters with DiagnosticableTreeMixin implements UpdateMasters {
 }
 
 abstract class UpdateMasters implements EditLessonEvent {
-  const factory UpdateMasters({@required String gymId, @required List<Master> newMasters}) =
-      _$UpdateMasters;
+  const factory UpdateMasters({@required List<Master> newMasters}) = _$UpdateMasters;
 
-  String get gymId;
   List<Master> get newMasters;
   $UpdateMastersCopyWith<UpdateMasters> get copyWith;
 }

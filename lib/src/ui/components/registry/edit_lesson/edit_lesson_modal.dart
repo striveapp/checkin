@@ -1,8 +1,7 @@
-import 'package:checkin/src/blocs/registry/bloc.dart';
+import 'package:checkin/src/blocs/edit_lesson/bloc.dart';
 import 'package:checkin/src/localization/localization.dart';
 import 'package:checkin/src/models/lesson.dart';
 import 'package:checkin/src/models/master.dart';
-import 'package:checkin/src/resources/lesson_instances_provider.dart';
 import 'package:checkin/src/ui/components/registry/edit_lesson/edit_lesson_capacity.dart';
 import 'package:checkin/src/ui/components/registry/edit_lesson/edit_lesson_name.dart';
 import 'package:checkin/src/ui/components/registry/edit_lesson/edit_lesson_time.dart';
@@ -41,8 +40,8 @@ class EditLessonModal extends StatelessWidget {
                   time: lesson.timeStart,
                   onTimePicked: (timePicked) {
                     context
-                        .read<RegistryBloc>()
-                        .add(RegistryEvent.updateTimeStart(gymId: gymId, newTimeStart: timePicked));
+                        .read<EditLessonBloc>()
+                        .add(EditLessonEvent.updateTimeStart(newTimeStart: timePicked));
                   }),
               SizedBox(
                 height: 20,
@@ -52,8 +51,8 @@ class EditLessonModal extends StatelessWidget {
                   time: lesson.timeEnd,
                   onTimePicked: (timePicked) {
                     context
-                        .read<RegistryBloc>()
-                        .add(RegistryEvent.updateTimeEnd(gymId: gymId, newTimeEnd: timePicked));
+                        .read<EditLessonBloc>()
+                        .add(EditLessonEvent.updateTimeEnd(newTimeEnd: timePicked));
                   }),
               SizedBox(
                 height: 20,
@@ -75,14 +74,17 @@ class EditLessonModal extends StatelessWidget {
               if (isInDebugMode)
                 ElevatedButton(
                     onPressed: () {
-                      LessonInstancesProvider().updateLessonMasters(gymId, lesson.date, lesson.id, [
+                      var newMasters = [
                         Master(
                           name: "stoc",
                           imageUrl:
                               "https://cdn.shopify.com/s/files/1/0476/1541/0334/products/coeurderoserouge_720x.jpg?v=1603622253",
                           email: "stoc@zzo.com",
                         )
-                      ]);
+                      ];
+                      context
+                          .read<EditLessonBloc>()
+                          .add(EditLessonEvent.updateMasters(newMasters: newMasters));
                     },
                     child: Text("update masters"))
             ],

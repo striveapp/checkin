@@ -1,4 +1,4 @@
-import 'package:checkin/src/blocs/registry/bloc.dart';
+import 'package:checkin/src/blocs/edit_lesson/bloc.dart';
 import 'package:checkin/src/localization/localization.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
@@ -57,9 +57,7 @@ class _EditLessonNameState extends State<EditLessonName> {
                   Theme.of(context).textTheme.bodyText1.apply(color: Theme.of(context).errorColor),
             ),
             onSubmitted: (String newName) {
-              context
-                  .read<RegistryBloc>()
-                  .add(RegistryEvent.updateName(gymId: widget.gymId, newName: newName));
+              context.read<EditLessonBloc>().add(EditLessonEvent.updateName(newName: newName));
               setState(() {
                 currentName = newName;
               });

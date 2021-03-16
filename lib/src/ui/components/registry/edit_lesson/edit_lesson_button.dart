@@ -1,4 +1,8 @@
+import 'package:checkin/src/blocs/edit_lesson/bloc.dart';
 import 'package:checkin/src/blocs/registry/bloc.dart';
+import 'package:checkin/src/repositories/image_repository.dart';
+import 'package:checkin/src/repositories/lesson_repository.dart';
+import 'package:checkin/src/repositories/storage_repository.dart';
 import 'package:checkin/src/ui/components/empty_widget.dart';
 import 'package:checkin/src/ui/components/registry/edit_lesson/edit_lesson_modal.dart';
 import 'package:flutter/material.dart';
@@ -27,7 +31,13 @@ class EditLessonButton extends StatelessWidget {
                           context: context,
                           isScrollControlled: true,
                           builder: (_) => BlocProvider.value(
-                              value: context.read<RegistryBloc>(),
+                              value: EditLessonBloc(
+                                gymId: registryState.currentUser.selectedGymId,
+                                lesson: registryState.currentLesson,
+                                lessonRepository: context.read<LessonRepository>(),
+                                imageRepository: context.read<ImageRepository>(),
+                                storageRepository: context.read<StorageRepository>(),
+                              ),
                               child: EditLessonModal(
                                   gymId: registryState.currentUser.selectedGymId,
                                   lesson: registryState.currentLesson)));

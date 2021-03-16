@@ -1,5 +1,4 @@
 import 'dart:async';
-import 'dart:io';
 
 import 'package:bloc/bloc.dart';
 import 'package:checkin/src/api/lesson_api.dart';
@@ -20,8 +19,8 @@ class RegistryBloc extends Bloc<RegistryEvent, RegistryState> {
   final String lessonDate;
   final LessonApi lessonApi;
   final LessonRepository lessonRepository;
-  final ImageRepository imageRepository;
   final UserRepository userRepository;
+  final ImageRepository imageRepository;
   final StorageRepository storageRepository;
 
   StreamSubscription<Lesson> _lessonSub;
@@ -136,54 +135,6 @@ class RegistryBloc extends Bloc<RegistryEvent, RegistryState> {
 
     if (event is RetrieveMasters) {
       await userRepository.retrieveAvailableMasters(event.gymId);
-    }
-
-    if (event is UpdateTimeStart) {
-      await this
-          .lessonRepository
-          .updateLessonTimeStart(event.gymId, lessonDate, lessonId, event.newTimeStart);
-    }
-
-    if (event is UpdateTimeEnd) {
-      await this
-          .lessonRepository
-          .updateLessonTimeEnd(event.gymId, lessonDate, lessonId, event.newTimeEnd);
-    }
-
-    if (event is UpdateName) {
-      await this
-          .lessonRepository
-          .updateLessonName(event.gymId, lessonDate, lessonId, event.newName);
-    }
-
-    if (event is UpdateCapacity) {
-      await this
-          .lessonRepository
-          .updateLessonCapacity(event.gymId, lessonDate, lessonId, event.newCapacity);
-    }
-
-    if (event is UpdateImageUrl) {
-      File croppedFile = await imageRepository.getCroppedImage();
-      if (croppedFile != null) {
-        String fileName = "$lessonId-${DateTime.now()}.png";
-        String newImageUrl = await storageRepository.uploadImage(croppedFile, fileName);
-
-        await lessonRepository.updateLessonImage(
-          event.gymId,
-          lessonDate,
-          lessonId,
-          newImageUrl,
-        );
-      }
-    }
-
-    if (event is UpdateMasters) {
-      await lessonRepository.updateLessonMasters(
-        event.gymId,
-        lessonDate,
-        lessonId,
-        event.newMasters,
-      );
     }
   }
 
