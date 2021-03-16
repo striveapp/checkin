@@ -5,7 +5,6 @@ import 'package:bloc_test/bloc_test.dart';
 import 'package:checkin/src/blocs/edit_lesson/bloc.dart';
 import 'package:checkin/src/models/lesson.dart';
 import 'package:checkin/src/models/master.dart';
-import 'package:checkin/src/models/user.dart';
 import 'package:checkin/src/repositories/image_repository.dart';
 import 'package:checkin/src/repositories/lesson_repository.dart';
 import 'package:checkin/src/repositories/storage_repository.dart';
@@ -30,6 +29,7 @@ void main() {
     MockStorageRepository mockStorageRepository;
     MockUserRepository mockUserRepository;
 
+    String fakeGymId = "testGym";
     Lesson baseLesson = Lesson(
       id: "test id",
       date: "test date",
@@ -38,12 +38,18 @@ void main() {
       attendees: [],
       acceptedAttendees: [],
     );
-    User fakeUser = User(
-      name: "Logged User",
-      email: "test@test.com",
-      imageUrl: "someImage",
-      selectedGymId: "testGym",
-    );
+    List<Master> availableMasters = [
+      Master(
+        name: "master1",
+        imageUrl: "http://the.jpg",
+        email: "master1@master.com",
+      ),
+      Master(
+        name: "master2",
+        imageUrl: "http://the.png",
+        email: "master2@master.com",
+      ),
+    ];
 
     setUp(() {
       mockLessonRepository = MockLessonRepository();
@@ -71,9 +77,10 @@ void main() {
     group("initial state", () {
       blocTest("is EditLessonUninitialized",
           build: () => EditLessonBloc(
-                gymId: fakeUser.selectedGymId,
+                gymId: fakeGymId,
                 lesson: baseLesson,
                 lessonRepository: mockLessonRepository,
+                userRepository: mockUserRepository,
                 imageRepository: mockImageRepository,
                 storageRepository: mockStorageRepository,
               ),
@@ -83,26 +90,61 @@ void main() {
           });
     });
 
+    group("on RetrieveMasters event", () {
+      setUp(() {
+        when(mockUserRepository.retrieveAvailableMasters(
+          fakeGymId,
+        )).thenAnswer((realInvocation) => Stream.value(availableMasters));
+      });
+
+      tearDown(() {
+        verify(mockUserRepository.retrieveAvailableMasters(
+          fakeGymId,
+        ));
+      });
+
+      blocTest(
+        "fetch the available masters",
+        build: () => EditLessonBloc(
+          gymId: fakeGymId,
+          lesson: baseLesson,
+          lessonRepository: mockLessonRepository,
+          userRepository: mockUserRepository,
+          imageRepository: mockImageRepository,
+          storageRepository: mockStorageRepository,
+        ),
+        act: (bloc) => bloc.add(
+          EditLessonEvent.retrieveMasters(),
+        ),
+        expect: [
+          EditLessonState.mastersLoaded(
+            masters: availableMasters,
+          )
+        ],
+      );
+    });
+
     group("on UpdateTimeStart event", () {
       setUp(() {
         when(mockLessonRepository.updateLessonTimeStart(
-                fakeUser.selectedGymId, baseLesson.date, baseLesson.id, "04:20"))
+                fakeGymId, baseLesson.date, baseLesson.id, "04:20"))
             .thenAnswer((realInvocation) => Future.value(null));
       });
 
       tearDown(() {
         untilCalled(mockLessonRepository.updateLessonTimeStart(
-            fakeUser.selectedGymId, baseLesson.date, baseLesson.id, "04:20"));
+            fakeGymId, baseLesson.date, baseLesson.id, "04:20"));
         verify(mockLessonRepository.updateLessonTimeStart(
-            fakeUser.selectedGymId, baseLesson.date, baseLesson.id, "04:20"));
+            fakeGymId, baseLesson.date, baseLesson.id, "04:20"));
       });
 
       blocTest(
         "should call repository with newTimeStart",
         build: () => EditLessonBloc(
-          gymId: fakeUser.selectedGymId,
+          gymId: fakeGymId,
           lesson: baseLesson,
           lessonRepository: mockLessonRepository,
+          userRepository: mockUserRepository,
           imageRepository: mockImageRepository,
           storageRepository: mockStorageRepository,
         ),
@@ -118,23 +160,24 @@ void main() {
     group("on UpdateTimeEnd event", () {
       setUp(() {
         when(mockLessonRepository.updateLessonTimeEnd(
-                fakeUser.selectedGymId, baseLesson.date, baseLesson.id, "13:37"))
+                fakeGymId, baseLesson.date, baseLesson.id, "13:37"))
             .thenAnswer((realInvocation) => Future.value(null));
       });
 
       tearDown(() {
         untilCalled(mockLessonRepository.updateLessonTimeEnd(
-            fakeUser.selectedGymId, baseLesson.date, baseLesson.id, "13:37"));
+            fakeGymId, baseLesson.date, baseLesson.id, "13:37"));
         verify(mockLessonRepository.updateLessonTimeEnd(
-            fakeUser.selectedGymId, baseLesson.date, baseLesson.id, "13:37"));
+            fakeGymId, baseLesson.date, baseLesson.id, "13:37"));
       });
 
       blocTest(
         "should call repository with newTimeEnd",
         build: () => EditLessonBloc(
-          gymId: fakeUser.selectedGymId,
+          gymId: fakeGymId,
           lesson: baseLesson,
           lessonRepository: mockLessonRepository,
+          userRepository: mockUserRepository,
           imageRepository: mockImageRepository,
           storageRepository: mockStorageRepository,
         ),
@@ -152,23 +195,24 @@ void main() {
 
       setUp(() {
         when(mockLessonRepository.updateLessonName(
-                fakeUser.selectedGymId, baseLesson.date, baseLesson.id, newName))
+                fakeGymId, baseLesson.date, baseLesson.id, newName))
             .thenAnswer((realInvocation) => Future.value(null));
       });
 
       tearDown(() {
         untilCalled(mockLessonRepository.updateLessonName(
-            fakeUser.selectedGymId, baseLesson.date, baseLesson.id, newName));
+            fakeGymId, baseLesson.date, baseLesson.id, newName));
         verify(mockLessonRepository.updateLessonName(
-            fakeUser.selectedGymId, baseLesson.date, baseLesson.id, newName));
+            fakeGymId, baseLesson.date, baseLesson.id, newName));
       });
 
       blocTest(
         "should call repository with newName",
         build: () => EditLessonBloc(
-          gymId: fakeUser.selectedGymId,
+          gymId: fakeGymId,
           lesson: baseLesson,
           lessonRepository: mockLessonRepository,
+          userRepository: mockUserRepository,
           imageRepository: mockImageRepository,
           storageRepository: mockStorageRepository,
         ),
@@ -186,23 +230,24 @@ void main() {
 
       setUp(() {
         when(mockLessonRepository.updateLessonCapacity(
-                fakeUser.selectedGymId, baseLesson.date, baseLesson.id, newCapacity))
+                fakeGymId, baseLesson.date, baseLesson.id, newCapacity))
             .thenAnswer((realInvocation) => Future.value(null));
       });
 
       tearDown(() {
         untilCalled(mockLessonRepository.updateLessonCapacity(
-            fakeUser.selectedGymId, baseLesson.date, baseLesson.id, newCapacity));
+            fakeGymId, baseLesson.date, baseLesson.id, newCapacity));
         verify(mockLessonRepository.updateLessonCapacity(
-            fakeUser.selectedGymId, baseLesson.date, baseLesson.id, newCapacity));
+            fakeGymId, baseLesson.date, baseLesson.id, newCapacity));
       });
 
       blocTest(
         "should call repository with newCapacity",
         build: () => EditLessonBloc(
-          gymId: fakeUser.selectedGymId,
+          gymId: fakeGymId,
           lesson: baseLesson,
           lessonRepository: mockLessonRepository,
+          userRepository: mockUserRepository,
           imageRepository: mockImageRepository,
           storageRepository: mockStorageRepository,
         ),
@@ -230,7 +275,7 @@ void main() {
         });
 
         when(mockLessonRepository.updateLessonImage(
-          fakeUser.selectedGymId,
+          fakeGymId,
           baseLesson.date,
           baseLesson.id,
           newImageUrl,
@@ -243,7 +288,7 @@ void main() {
         await untilCalled(mockImageRepository.getCroppedImage());
         await untilCalled(mockStorageRepository.uploadImage(fakeImage, argThat(endsWith(".png"))));
         await untilCalled(mockLessonRepository.updateLessonImage(
-          fakeUser.selectedGymId,
+          fakeGymId,
           baseLesson.date,
           baseLesson.id,
           newImageUrl,
@@ -252,7 +297,7 @@ void main() {
         verify(mockImageRepository.getCroppedImage());
         verify(mockStorageRepository.uploadImage(fakeImage, argThat(endsWith(".png"))));
         verify(mockLessonRepository.updateLessonImage(
-          fakeUser.selectedGymId,
+          fakeGymId,
           baseLesson.date,
           baseLesson.id,
           newImageUrl,
@@ -262,9 +307,10 @@ void main() {
       blocTest(
         "should call repository with newImageUrl",
         build: () => EditLessonBloc(
-          gymId: fakeUser.selectedGymId,
+          gymId: fakeGymId,
           lesson: baseLesson,
           lessonRepository: mockLessonRepository,
+          userRepository: mockUserRepository,
           imageRepository: mockImageRepository,
           storageRepository: mockStorageRepository,
         ),
@@ -286,7 +332,7 @@ void main() {
 
       setUp(() {
         when(mockLessonRepository.updateLessonMasters(
-          fakeUser.selectedGymId,
+          fakeGymId,
           baseLesson.date,
           baseLesson.id,
           newMasters,
@@ -297,13 +343,13 @@ void main() {
 
       tearDown(() async {
         await untilCalled(mockLessonRepository.updateLessonMasters(
-          fakeUser.selectedGymId,
+          fakeGymId,
           baseLesson.date,
           baseLesson.id,
           newMasters,
         ));
         verify(mockLessonRepository.updateLessonMasters(
-          fakeUser.selectedGymId,
+          fakeGymId,
           baseLesson.date,
           baseLesson.id,
           newMasters,
@@ -313,9 +359,10 @@ void main() {
       blocTest(
         "should call repository with newMasters",
         build: () => EditLessonBloc(
-          gymId: fakeUser.selectedGymId,
+          gymId: fakeGymId,
           lesson: baseLesson,
           lessonRepository: mockLessonRepository,
+          userRepository: mockUserRepository,
           imageRepository: mockImageRepository,
           storageRepository: mockStorageRepository,
         ),

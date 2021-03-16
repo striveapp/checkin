@@ -3,6 +3,7 @@ import 'package:checkin/src/blocs/registry/bloc.dart';
 import 'package:checkin/src/repositories/image_repository.dart';
 import 'package:checkin/src/repositories/lesson_repository.dart';
 import 'package:checkin/src/repositories/storage_repository.dart';
+import 'package:checkin/src/repositories/user_repository.dart';
 import 'package:checkin/src/ui/components/empty_widget.dart';
 import 'package:checkin/src/ui/components/registry/edit_lesson/edit_lesson_modal.dart';
 import 'package:flutter/material.dart';
@@ -37,7 +38,8 @@ class EditLessonButton extends StatelessWidget {
                                 lessonRepository: context.read<LessonRepository>(),
                                 imageRepository: context.read<ImageRepository>(),
                                 storageRepository: context.read<StorageRepository>(),
-                              ),
+                                userRepository: context.read<UserRepository>(),
+                              )..add(RetrieveMasters()),
                               child: EditLessonModal(
                                   gymId: registryState.currentUser.selectedGymId,
                                   lesson: registryState.currentLesson)));

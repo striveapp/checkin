@@ -1,6 +1,13 @@
+import 'package:checkin/src/blocs/edit_lesson/bloc.dart';
 import 'package:checkin/src/blocs/registry/bloc.dart';
 import 'package:checkin/src/localization/localization.dart';
+import 'package:checkin/src/models/lesson.dart';
 import 'package:checkin/src/models/master.dart';
+import 'package:checkin/src/models/user.dart';
+import 'package:checkin/src/repositories/image_repository.dart';
+import 'package:checkin/src/repositories/lesson_repository.dart';
+import 'package:checkin/src/repositories/storage_repository.dart';
+import 'package:checkin/src/repositories/user_repository.dart';
 import 'package:checkin/src/ui/components/editable_image.dart';
 import 'package:checkin/src/ui/components/loading_indicator.dart';
 import 'package:checkin/src/ui/components/rounded_image.dart';
@@ -26,14 +33,9 @@ class LessonInfos extends StatelessWidget {
                 Padding(
                   padding: const EdgeInsets.only(right: 16),
                   child: currentUser.isOwner
-                      ? EditableImage(
-                          imageUrl: currentLesson.imageUrl,
-                          isGrayscale: currentLesson.isClosed,
-                          onEdit: () {
-                            context
-                                .read<RegistryBloc>()
-                                .add(UpdateImageUrl(gymId: currentUser.selectedGymId));
-                          },
+                      ? EditableLessonImage(
+                          currentUser: currentUser,
+                          currentLesson: currentLesson,
                         )
                       : RoundedImage(
                           userImage: currentLesson.imageUrl,
@@ -99,4 +101,37 @@ class LessonInfos extends StatelessWidget {
 
   String _getOtherMasterNames(List<Master> masters) =>
       masters.skip(1).map((master) => master.name).join(", ");
+}
+
+class EditableLessonImage extends StatelessWidget {
+  const EditableLessonImage({
+    Key key,
+    @required this.currentUser,
+    @required this.currentLesson,
+  }) : super(key: key);
+
+  final User currentUser;
+  final Lesson currentLesson;
+
+  @override
+  Widget build(BuildContext context) {
+    return BlocProvider<EditLessonBloc>(
+      create: (context) => EditLessonBloc(
+        gymId: currentUser.selectedGymId,
+        lesson: currentLesson,
+        lessonRepository: context.read<LessonRepository>(),
+        imageRepository: context.read<ImageRepository>(),
+        storageRepository: context.read<StorageRepository>(),
+        userRepository: context.read<UserRepository>(),
+      ),
+      child: Builder(
+          builder: (context) => EditableImage(
+                imageUrl: currentLesson.imageUrl,
+                isGrayscale: currentLesson.isClosed,
+                onEdit: () {
+                  context.read<EditLessonBloc>().add(UpdateImageUrl());
+                },
+              )),
+    );
+  }
 }

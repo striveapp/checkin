@@ -19,10 +19,15 @@ class _$EditLessonEventTearOff {
   }
 
 // ignore: unused_element
-  RetrieveMasters retrieveMasters({@required String gymId}) {
-    return RetrieveMasters(
-      gymId: gymId,
+  MastersUpdated mastersUpdated({@required List<Master> masters}) {
+    return MastersUpdated(
+      masters: masters,
     );
+  }
+
+// ignore: unused_element
+  RetrieveMasters retrieveMasters() {
+    return const RetrieveMasters();
   }
 
 // ignore: unused_element
@@ -75,7 +80,8 @@ mixin _$EditLessonEvent {
   @optionalTypeArgs
   TResult when<TResult extends Object>({
     @required TResult initializeEditLesson(),
-    @required TResult retrieveMasters(String gymId),
+    @required TResult mastersUpdated(List<Master> masters),
+    @required TResult retrieveMasters(),
     @required TResult updateTimeStart(String newTimeStart),
     @required TResult updateTimeEnd(String newTimeEnd),
     @required TResult updateName(String newName),
@@ -86,7 +92,8 @@ mixin _$EditLessonEvent {
   @optionalTypeArgs
   TResult maybeWhen<TResult extends Object>({
     TResult initializeEditLesson(),
-    TResult retrieveMasters(String gymId),
+    TResult mastersUpdated(List<Master> masters),
+    TResult retrieveMasters(),
     TResult updateTimeStart(String newTimeStart),
     TResult updateTimeEnd(String newTimeEnd),
     TResult updateName(String newName),
@@ -98,6 +105,7 @@ mixin _$EditLessonEvent {
   @optionalTypeArgs
   TResult map<TResult extends Object>({
     @required TResult initializeEditLesson(InitializeEditLesson value),
+    @required TResult mastersUpdated(MastersUpdated value),
     @required TResult retrieveMasters(RetrieveMasters value),
     @required TResult updateTimeStart(UpdateTimeStart value),
     @required TResult updateTimeEnd(UpdateTimeEnd value),
@@ -109,6 +117,7 @@ mixin _$EditLessonEvent {
   @optionalTypeArgs
   TResult maybeMap<TResult extends Object>({
     TResult initializeEditLesson(InitializeEditLesson value),
+    TResult mastersUpdated(MastersUpdated value),
     TResult retrieveMasters(RetrieveMasters value),
     TResult updateTimeStart(UpdateTimeStart value),
     TResult updateTimeEnd(UpdateTimeEnd value),
@@ -180,7 +189,8 @@ class _$InitializeEditLesson with DiagnosticableTreeMixin implements InitializeE
   @optionalTypeArgs
   TResult when<TResult extends Object>({
     @required TResult initializeEditLesson(),
-    @required TResult retrieveMasters(String gymId),
+    @required TResult mastersUpdated(List<Master> masters),
+    @required TResult retrieveMasters(),
     @required TResult updateTimeStart(String newTimeStart),
     @required TResult updateTimeEnd(String newTimeEnd),
     @required TResult updateName(String newName),
@@ -189,6 +199,7 @@ class _$InitializeEditLesson with DiagnosticableTreeMixin implements InitializeE
     @required TResult updateMasters(List<Master> newMasters),
   }) {
     assert(initializeEditLesson != null);
+    assert(mastersUpdated != null);
     assert(retrieveMasters != null);
     assert(updateTimeStart != null);
     assert(updateTimeEnd != null);
@@ -203,7 +214,8 @@ class _$InitializeEditLesson with DiagnosticableTreeMixin implements InitializeE
   @optionalTypeArgs
   TResult maybeWhen<TResult extends Object>({
     TResult initializeEditLesson(),
-    TResult retrieveMasters(String gymId),
+    TResult mastersUpdated(List<Master> masters),
+    TResult retrieveMasters(),
     TResult updateTimeStart(String newTimeStart),
     TResult updateTimeEnd(String newTimeEnd),
     TResult updateName(String newName),
@@ -223,6 +235,7 @@ class _$InitializeEditLesson with DiagnosticableTreeMixin implements InitializeE
   @optionalTypeArgs
   TResult map<TResult extends Object>({
     @required TResult initializeEditLesson(InitializeEditLesson value),
+    @required TResult mastersUpdated(MastersUpdated value),
     @required TResult retrieveMasters(RetrieveMasters value),
     @required TResult updateTimeStart(UpdateTimeStart value),
     @required TResult updateTimeEnd(UpdateTimeEnd value),
@@ -232,6 +245,7 @@ class _$InitializeEditLesson with DiagnosticableTreeMixin implements InitializeE
     @required TResult updateMasters(UpdateMasters value),
   }) {
     assert(initializeEditLesson != null);
+    assert(mastersUpdated != null);
     assert(retrieveMasters != null);
     assert(updateTimeStart != null);
     assert(updateTimeEnd != null);
@@ -246,6 +260,7 @@ class _$InitializeEditLesson with DiagnosticableTreeMixin implements InitializeE
   @optionalTypeArgs
   TResult maybeMap<TResult extends Object>({
     TResult initializeEditLesson(InitializeEditLesson value),
+    TResult mastersUpdated(MastersUpdated value),
     TResult retrieveMasters(RetrieveMasters value),
     TResult updateTimeStart(UpdateTimeStart value),
     TResult updateTimeEnd(UpdateTimeEnd value),
@@ -268,10 +283,170 @@ abstract class InitializeEditLesson implements EditLessonEvent {
 }
 
 /// @nodoc
+abstract class $MastersUpdatedCopyWith<$Res> {
+  factory $MastersUpdatedCopyWith(MastersUpdated value, $Res Function(MastersUpdated) then) =
+      _$MastersUpdatedCopyWithImpl<$Res>;
+  $Res call({List<Master> masters});
+}
+
+/// @nodoc
+class _$MastersUpdatedCopyWithImpl<$Res> extends _$EditLessonEventCopyWithImpl<$Res>
+    implements $MastersUpdatedCopyWith<$Res> {
+  _$MastersUpdatedCopyWithImpl(MastersUpdated _value, $Res Function(MastersUpdated) _then)
+      : super(_value, (v) => _then(v as MastersUpdated));
+
+  @override
+  MastersUpdated get _value => super._value as MastersUpdated;
+
+  @override
+  $Res call({
+    Object masters = freezed,
+  }) {
+    return _then(MastersUpdated(
+      masters: masters == freezed ? _value.masters : masters as List<Master>,
+    ));
+  }
+}
+
+/// @nodoc
+class _$MastersUpdated with DiagnosticableTreeMixin implements MastersUpdated {
+  const _$MastersUpdated({@required this.masters}) : assert(masters != null);
+
+  @override
+  final List<Master> masters;
+
+  @override
+  String toString({DiagnosticLevel minLevel = DiagnosticLevel.info}) {
+    return 'EditLessonEvent.mastersUpdated(masters: $masters)';
+  }
+
+  @override
+  void debugFillProperties(DiagnosticPropertiesBuilder properties) {
+    super.debugFillProperties(properties);
+    properties
+      ..add(DiagnosticsProperty('type', 'EditLessonEvent.mastersUpdated'))
+      ..add(DiagnosticsProperty('masters', masters));
+  }
+
+  @override
+  bool operator ==(dynamic other) {
+    return identical(this, other) ||
+        (other is MastersUpdated &&
+            (identical(other.masters, masters) ||
+                const DeepCollectionEquality().equals(other.masters, masters)));
+  }
+
+  @override
+  int get hashCode => runtimeType.hashCode ^ const DeepCollectionEquality().hash(masters);
+
+  @override
+  $MastersUpdatedCopyWith<MastersUpdated> get copyWith =>
+      _$MastersUpdatedCopyWithImpl<MastersUpdated>(this, _$identity);
+
+  @override
+  @optionalTypeArgs
+  TResult when<TResult extends Object>({
+    @required TResult initializeEditLesson(),
+    @required TResult mastersUpdated(List<Master> masters),
+    @required TResult retrieveMasters(),
+    @required TResult updateTimeStart(String newTimeStart),
+    @required TResult updateTimeEnd(String newTimeEnd),
+    @required TResult updateName(String newName),
+    @required TResult updateCapacity(int newCapacity),
+    @required TResult updateImageUrl(),
+    @required TResult updateMasters(List<Master> newMasters),
+  }) {
+    assert(initializeEditLesson != null);
+    assert(mastersUpdated != null);
+    assert(retrieveMasters != null);
+    assert(updateTimeStart != null);
+    assert(updateTimeEnd != null);
+    assert(updateName != null);
+    assert(updateCapacity != null);
+    assert(updateImageUrl != null);
+    assert(updateMasters != null);
+    return mastersUpdated(masters);
+  }
+
+  @override
+  @optionalTypeArgs
+  TResult maybeWhen<TResult extends Object>({
+    TResult initializeEditLesson(),
+    TResult mastersUpdated(List<Master> masters),
+    TResult retrieveMasters(),
+    TResult updateTimeStart(String newTimeStart),
+    TResult updateTimeEnd(String newTimeEnd),
+    TResult updateName(String newName),
+    TResult updateCapacity(int newCapacity),
+    TResult updateImageUrl(),
+    TResult updateMasters(List<Master> newMasters),
+    @required TResult orElse(),
+  }) {
+    assert(orElse != null);
+    if (mastersUpdated != null) {
+      return mastersUpdated(masters);
+    }
+    return orElse();
+  }
+
+  @override
+  @optionalTypeArgs
+  TResult map<TResult extends Object>({
+    @required TResult initializeEditLesson(InitializeEditLesson value),
+    @required TResult mastersUpdated(MastersUpdated value),
+    @required TResult retrieveMasters(RetrieveMasters value),
+    @required TResult updateTimeStart(UpdateTimeStart value),
+    @required TResult updateTimeEnd(UpdateTimeEnd value),
+    @required TResult updateName(UpdateName value),
+    @required TResult updateCapacity(UpdateCapacity value),
+    @required TResult updateImageUrl(UpdateImageUrl value),
+    @required TResult updateMasters(UpdateMasters value),
+  }) {
+    assert(initializeEditLesson != null);
+    assert(mastersUpdated != null);
+    assert(retrieveMasters != null);
+    assert(updateTimeStart != null);
+    assert(updateTimeEnd != null);
+    assert(updateName != null);
+    assert(updateCapacity != null);
+    assert(updateImageUrl != null);
+    assert(updateMasters != null);
+    return mastersUpdated(this);
+  }
+
+  @override
+  @optionalTypeArgs
+  TResult maybeMap<TResult extends Object>({
+    TResult initializeEditLesson(InitializeEditLesson value),
+    TResult mastersUpdated(MastersUpdated value),
+    TResult retrieveMasters(RetrieveMasters value),
+    TResult updateTimeStart(UpdateTimeStart value),
+    TResult updateTimeEnd(UpdateTimeEnd value),
+    TResult updateName(UpdateName value),
+    TResult updateCapacity(UpdateCapacity value),
+    TResult updateImageUrl(UpdateImageUrl value),
+    TResult updateMasters(UpdateMasters value),
+    @required TResult orElse(),
+  }) {
+    assert(orElse != null);
+    if (mastersUpdated != null) {
+      return mastersUpdated(this);
+    }
+    return orElse();
+  }
+}
+
+abstract class MastersUpdated implements EditLessonEvent {
+  const factory MastersUpdated({@required List<Master> masters}) = _$MastersUpdated;
+
+  List<Master> get masters;
+  $MastersUpdatedCopyWith<MastersUpdated> get copyWith;
+}
+
+/// @nodoc
 abstract class $RetrieveMastersCopyWith<$Res> {
   factory $RetrieveMastersCopyWith(RetrieveMasters value, $Res Function(RetrieveMasters) then) =
       _$RetrieveMastersCopyWithImpl<$Res>;
-  $Res call({String gymId});
 }
 
 /// @nodoc
@@ -282,57 +457,37 @@ class _$RetrieveMastersCopyWithImpl<$Res> extends _$EditLessonEventCopyWithImpl<
 
   @override
   RetrieveMasters get _value => super._value as RetrieveMasters;
-
-  @override
-  $Res call({
-    Object gymId = freezed,
-  }) {
-    return _then(RetrieveMasters(
-      gymId: gymId == freezed ? _value.gymId : gymId as String,
-    ));
-  }
 }
 
 /// @nodoc
 class _$RetrieveMasters with DiagnosticableTreeMixin implements RetrieveMasters {
-  const _$RetrieveMasters({@required this.gymId}) : assert(gymId != null);
-
-  @override
-  final String gymId;
+  const _$RetrieveMasters();
 
   @override
   String toString({DiagnosticLevel minLevel = DiagnosticLevel.info}) {
-    return 'EditLessonEvent.retrieveMasters(gymId: $gymId)';
+    return 'EditLessonEvent.retrieveMasters()';
   }
 
   @override
   void debugFillProperties(DiagnosticPropertiesBuilder properties) {
     super.debugFillProperties(properties);
-    properties
-      ..add(DiagnosticsProperty('type', 'EditLessonEvent.retrieveMasters'))
-      ..add(DiagnosticsProperty('gymId', gymId));
+    properties..add(DiagnosticsProperty('type', 'EditLessonEvent.retrieveMasters'));
   }
 
   @override
   bool operator ==(dynamic other) {
-    return identical(this, other) ||
-        (other is RetrieveMasters &&
-            (identical(other.gymId, gymId) ||
-                const DeepCollectionEquality().equals(other.gymId, gymId)));
+    return identical(this, other) || (other is RetrieveMasters);
   }
 
   @override
-  int get hashCode => runtimeType.hashCode ^ const DeepCollectionEquality().hash(gymId);
-
-  @override
-  $RetrieveMastersCopyWith<RetrieveMasters> get copyWith =>
-      _$RetrieveMastersCopyWithImpl<RetrieveMasters>(this, _$identity);
+  int get hashCode => runtimeType.hashCode;
 
   @override
   @optionalTypeArgs
   TResult when<TResult extends Object>({
     @required TResult initializeEditLesson(),
-    @required TResult retrieveMasters(String gymId),
+    @required TResult mastersUpdated(List<Master> masters),
+    @required TResult retrieveMasters(),
     @required TResult updateTimeStart(String newTimeStart),
     @required TResult updateTimeEnd(String newTimeEnd),
     @required TResult updateName(String newName),
@@ -341,6 +496,7 @@ class _$RetrieveMasters with DiagnosticableTreeMixin implements RetrieveMasters 
     @required TResult updateMasters(List<Master> newMasters),
   }) {
     assert(initializeEditLesson != null);
+    assert(mastersUpdated != null);
     assert(retrieveMasters != null);
     assert(updateTimeStart != null);
     assert(updateTimeEnd != null);
@@ -348,14 +504,15 @@ class _$RetrieveMasters with DiagnosticableTreeMixin implements RetrieveMasters 
     assert(updateCapacity != null);
     assert(updateImageUrl != null);
     assert(updateMasters != null);
-    return retrieveMasters(gymId);
+    return retrieveMasters();
   }
 
   @override
   @optionalTypeArgs
   TResult maybeWhen<TResult extends Object>({
     TResult initializeEditLesson(),
-    TResult retrieveMasters(String gymId),
+    TResult mastersUpdated(List<Master> masters),
+    TResult retrieveMasters(),
     TResult updateTimeStart(String newTimeStart),
     TResult updateTimeEnd(String newTimeEnd),
     TResult updateName(String newName),
@@ -366,7 +523,7 @@ class _$RetrieveMasters with DiagnosticableTreeMixin implements RetrieveMasters 
   }) {
     assert(orElse != null);
     if (retrieveMasters != null) {
-      return retrieveMasters(gymId);
+      return retrieveMasters();
     }
     return orElse();
   }
@@ -375,6 +532,7 @@ class _$RetrieveMasters with DiagnosticableTreeMixin implements RetrieveMasters 
   @optionalTypeArgs
   TResult map<TResult extends Object>({
     @required TResult initializeEditLesson(InitializeEditLesson value),
+    @required TResult mastersUpdated(MastersUpdated value),
     @required TResult retrieveMasters(RetrieveMasters value),
     @required TResult updateTimeStart(UpdateTimeStart value),
     @required TResult updateTimeEnd(UpdateTimeEnd value),
@@ -384,6 +542,7 @@ class _$RetrieveMasters with DiagnosticableTreeMixin implements RetrieveMasters 
     @required TResult updateMasters(UpdateMasters value),
   }) {
     assert(initializeEditLesson != null);
+    assert(mastersUpdated != null);
     assert(retrieveMasters != null);
     assert(updateTimeStart != null);
     assert(updateTimeEnd != null);
@@ -398,6 +557,7 @@ class _$RetrieveMasters with DiagnosticableTreeMixin implements RetrieveMasters 
   @optionalTypeArgs
   TResult maybeMap<TResult extends Object>({
     TResult initializeEditLesson(InitializeEditLesson value),
+    TResult mastersUpdated(MastersUpdated value),
     TResult retrieveMasters(RetrieveMasters value),
     TResult updateTimeStart(UpdateTimeStart value),
     TResult updateTimeEnd(UpdateTimeEnd value),
@@ -416,10 +576,7 @@ class _$RetrieveMasters with DiagnosticableTreeMixin implements RetrieveMasters 
 }
 
 abstract class RetrieveMasters implements EditLessonEvent {
-  const factory RetrieveMasters({@required String gymId}) = _$RetrieveMasters;
-
-  String get gymId;
-  $RetrieveMastersCopyWith<RetrieveMasters> get copyWith;
+  const factory RetrieveMasters() = _$RetrieveMasters;
 }
 
 /// @nodoc
@@ -487,7 +644,8 @@ class _$UpdateTimeStart with DiagnosticableTreeMixin implements UpdateTimeStart 
   @optionalTypeArgs
   TResult when<TResult extends Object>({
     @required TResult initializeEditLesson(),
-    @required TResult retrieveMasters(String gymId),
+    @required TResult mastersUpdated(List<Master> masters),
+    @required TResult retrieveMasters(),
     @required TResult updateTimeStart(String newTimeStart),
     @required TResult updateTimeEnd(String newTimeEnd),
     @required TResult updateName(String newName),
@@ -496,6 +654,7 @@ class _$UpdateTimeStart with DiagnosticableTreeMixin implements UpdateTimeStart 
     @required TResult updateMasters(List<Master> newMasters),
   }) {
     assert(initializeEditLesson != null);
+    assert(mastersUpdated != null);
     assert(retrieveMasters != null);
     assert(updateTimeStart != null);
     assert(updateTimeEnd != null);
@@ -510,7 +669,8 @@ class _$UpdateTimeStart with DiagnosticableTreeMixin implements UpdateTimeStart 
   @optionalTypeArgs
   TResult maybeWhen<TResult extends Object>({
     TResult initializeEditLesson(),
-    TResult retrieveMasters(String gymId),
+    TResult mastersUpdated(List<Master> masters),
+    TResult retrieveMasters(),
     TResult updateTimeStart(String newTimeStart),
     TResult updateTimeEnd(String newTimeEnd),
     TResult updateName(String newName),
@@ -530,6 +690,7 @@ class _$UpdateTimeStart with DiagnosticableTreeMixin implements UpdateTimeStart 
   @optionalTypeArgs
   TResult map<TResult extends Object>({
     @required TResult initializeEditLesson(InitializeEditLesson value),
+    @required TResult mastersUpdated(MastersUpdated value),
     @required TResult retrieveMasters(RetrieveMasters value),
     @required TResult updateTimeStart(UpdateTimeStart value),
     @required TResult updateTimeEnd(UpdateTimeEnd value),
@@ -539,6 +700,7 @@ class _$UpdateTimeStart with DiagnosticableTreeMixin implements UpdateTimeStart 
     @required TResult updateMasters(UpdateMasters value),
   }) {
     assert(initializeEditLesson != null);
+    assert(mastersUpdated != null);
     assert(retrieveMasters != null);
     assert(updateTimeStart != null);
     assert(updateTimeEnd != null);
@@ -553,6 +715,7 @@ class _$UpdateTimeStart with DiagnosticableTreeMixin implements UpdateTimeStart 
   @optionalTypeArgs
   TResult maybeMap<TResult extends Object>({
     TResult initializeEditLesson(InitializeEditLesson value),
+    TResult mastersUpdated(MastersUpdated value),
     TResult retrieveMasters(RetrieveMasters value),
     TResult updateTimeStart(UpdateTimeStart value),
     TResult updateTimeEnd(UpdateTimeEnd value),
@@ -642,7 +805,8 @@ class _$UpdateTimeEnd with DiagnosticableTreeMixin implements UpdateTimeEnd {
   @optionalTypeArgs
   TResult when<TResult extends Object>({
     @required TResult initializeEditLesson(),
-    @required TResult retrieveMasters(String gymId),
+    @required TResult mastersUpdated(List<Master> masters),
+    @required TResult retrieveMasters(),
     @required TResult updateTimeStart(String newTimeStart),
     @required TResult updateTimeEnd(String newTimeEnd),
     @required TResult updateName(String newName),
@@ -651,6 +815,7 @@ class _$UpdateTimeEnd with DiagnosticableTreeMixin implements UpdateTimeEnd {
     @required TResult updateMasters(List<Master> newMasters),
   }) {
     assert(initializeEditLesson != null);
+    assert(mastersUpdated != null);
     assert(retrieveMasters != null);
     assert(updateTimeStart != null);
     assert(updateTimeEnd != null);
@@ -665,7 +830,8 @@ class _$UpdateTimeEnd with DiagnosticableTreeMixin implements UpdateTimeEnd {
   @optionalTypeArgs
   TResult maybeWhen<TResult extends Object>({
     TResult initializeEditLesson(),
-    TResult retrieveMasters(String gymId),
+    TResult mastersUpdated(List<Master> masters),
+    TResult retrieveMasters(),
     TResult updateTimeStart(String newTimeStart),
     TResult updateTimeEnd(String newTimeEnd),
     TResult updateName(String newName),
@@ -685,6 +851,7 @@ class _$UpdateTimeEnd with DiagnosticableTreeMixin implements UpdateTimeEnd {
   @optionalTypeArgs
   TResult map<TResult extends Object>({
     @required TResult initializeEditLesson(InitializeEditLesson value),
+    @required TResult mastersUpdated(MastersUpdated value),
     @required TResult retrieveMasters(RetrieveMasters value),
     @required TResult updateTimeStart(UpdateTimeStart value),
     @required TResult updateTimeEnd(UpdateTimeEnd value),
@@ -694,6 +861,7 @@ class _$UpdateTimeEnd with DiagnosticableTreeMixin implements UpdateTimeEnd {
     @required TResult updateMasters(UpdateMasters value),
   }) {
     assert(initializeEditLesson != null);
+    assert(mastersUpdated != null);
     assert(retrieveMasters != null);
     assert(updateTimeStart != null);
     assert(updateTimeEnd != null);
@@ -708,6 +876,7 @@ class _$UpdateTimeEnd with DiagnosticableTreeMixin implements UpdateTimeEnd {
   @optionalTypeArgs
   TResult maybeMap<TResult extends Object>({
     TResult initializeEditLesson(InitializeEditLesson value),
+    TResult mastersUpdated(MastersUpdated value),
     TResult retrieveMasters(RetrieveMasters value),
     TResult updateTimeStart(UpdateTimeStart value),
     TResult updateTimeEnd(UpdateTimeEnd value),
@@ -797,7 +966,8 @@ class _$UpdateName with DiagnosticableTreeMixin implements UpdateName {
   @optionalTypeArgs
   TResult when<TResult extends Object>({
     @required TResult initializeEditLesson(),
-    @required TResult retrieveMasters(String gymId),
+    @required TResult mastersUpdated(List<Master> masters),
+    @required TResult retrieveMasters(),
     @required TResult updateTimeStart(String newTimeStart),
     @required TResult updateTimeEnd(String newTimeEnd),
     @required TResult updateName(String newName),
@@ -806,6 +976,7 @@ class _$UpdateName with DiagnosticableTreeMixin implements UpdateName {
     @required TResult updateMasters(List<Master> newMasters),
   }) {
     assert(initializeEditLesson != null);
+    assert(mastersUpdated != null);
     assert(retrieveMasters != null);
     assert(updateTimeStart != null);
     assert(updateTimeEnd != null);
@@ -820,7 +991,8 @@ class _$UpdateName with DiagnosticableTreeMixin implements UpdateName {
   @optionalTypeArgs
   TResult maybeWhen<TResult extends Object>({
     TResult initializeEditLesson(),
-    TResult retrieveMasters(String gymId),
+    TResult mastersUpdated(List<Master> masters),
+    TResult retrieveMasters(),
     TResult updateTimeStart(String newTimeStart),
     TResult updateTimeEnd(String newTimeEnd),
     TResult updateName(String newName),
@@ -840,6 +1012,7 @@ class _$UpdateName with DiagnosticableTreeMixin implements UpdateName {
   @optionalTypeArgs
   TResult map<TResult extends Object>({
     @required TResult initializeEditLesson(InitializeEditLesson value),
+    @required TResult mastersUpdated(MastersUpdated value),
     @required TResult retrieveMasters(RetrieveMasters value),
     @required TResult updateTimeStart(UpdateTimeStart value),
     @required TResult updateTimeEnd(UpdateTimeEnd value),
@@ -849,6 +1022,7 @@ class _$UpdateName with DiagnosticableTreeMixin implements UpdateName {
     @required TResult updateMasters(UpdateMasters value),
   }) {
     assert(initializeEditLesson != null);
+    assert(mastersUpdated != null);
     assert(retrieveMasters != null);
     assert(updateTimeStart != null);
     assert(updateTimeEnd != null);
@@ -863,6 +1037,7 @@ class _$UpdateName with DiagnosticableTreeMixin implements UpdateName {
   @optionalTypeArgs
   TResult maybeMap<TResult extends Object>({
     TResult initializeEditLesson(InitializeEditLesson value),
+    TResult mastersUpdated(MastersUpdated value),
     TResult retrieveMasters(RetrieveMasters value),
     TResult updateTimeStart(UpdateTimeStart value),
     TResult updateTimeEnd(UpdateTimeEnd value),
@@ -952,7 +1127,8 @@ class _$UpdateCapacity with DiagnosticableTreeMixin implements UpdateCapacity {
   @optionalTypeArgs
   TResult when<TResult extends Object>({
     @required TResult initializeEditLesson(),
-    @required TResult retrieveMasters(String gymId),
+    @required TResult mastersUpdated(List<Master> masters),
+    @required TResult retrieveMasters(),
     @required TResult updateTimeStart(String newTimeStart),
     @required TResult updateTimeEnd(String newTimeEnd),
     @required TResult updateName(String newName),
@@ -961,6 +1137,7 @@ class _$UpdateCapacity with DiagnosticableTreeMixin implements UpdateCapacity {
     @required TResult updateMasters(List<Master> newMasters),
   }) {
     assert(initializeEditLesson != null);
+    assert(mastersUpdated != null);
     assert(retrieveMasters != null);
     assert(updateTimeStart != null);
     assert(updateTimeEnd != null);
@@ -975,7 +1152,8 @@ class _$UpdateCapacity with DiagnosticableTreeMixin implements UpdateCapacity {
   @optionalTypeArgs
   TResult maybeWhen<TResult extends Object>({
     TResult initializeEditLesson(),
-    TResult retrieveMasters(String gymId),
+    TResult mastersUpdated(List<Master> masters),
+    TResult retrieveMasters(),
     TResult updateTimeStart(String newTimeStart),
     TResult updateTimeEnd(String newTimeEnd),
     TResult updateName(String newName),
@@ -995,6 +1173,7 @@ class _$UpdateCapacity with DiagnosticableTreeMixin implements UpdateCapacity {
   @optionalTypeArgs
   TResult map<TResult extends Object>({
     @required TResult initializeEditLesson(InitializeEditLesson value),
+    @required TResult mastersUpdated(MastersUpdated value),
     @required TResult retrieveMasters(RetrieveMasters value),
     @required TResult updateTimeStart(UpdateTimeStart value),
     @required TResult updateTimeEnd(UpdateTimeEnd value),
@@ -1004,6 +1183,7 @@ class _$UpdateCapacity with DiagnosticableTreeMixin implements UpdateCapacity {
     @required TResult updateMasters(UpdateMasters value),
   }) {
     assert(initializeEditLesson != null);
+    assert(mastersUpdated != null);
     assert(retrieveMasters != null);
     assert(updateTimeStart != null);
     assert(updateTimeEnd != null);
@@ -1018,6 +1198,7 @@ class _$UpdateCapacity with DiagnosticableTreeMixin implements UpdateCapacity {
   @optionalTypeArgs
   TResult maybeMap<TResult extends Object>({
     TResult initializeEditLesson(InitializeEditLesson value),
+    TResult mastersUpdated(MastersUpdated value),
     TResult retrieveMasters(RetrieveMasters value),
     TResult updateTimeStart(UpdateTimeStart value),
     TResult updateTimeEnd(UpdateTimeEnd value),
@@ -1085,7 +1266,8 @@ class _$UpdateImageUrl with DiagnosticableTreeMixin implements UpdateImageUrl {
   @optionalTypeArgs
   TResult when<TResult extends Object>({
     @required TResult initializeEditLesson(),
-    @required TResult retrieveMasters(String gymId),
+    @required TResult mastersUpdated(List<Master> masters),
+    @required TResult retrieveMasters(),
     @required TResult updateTimeStart(String newTimeStart),
     @required TResult updateTimeEnd(String newTimeEnd),
     @required TResult updateName(String newName),
@@ -1094,6 +1276,7 @@ class _$UpdateImageUrl with DiagnosticableTreeMixin implements UpdateImageUrl {
     @required TResult updateMasters(List<Master> newMasters),
   }) {
     assert(initializeEditLesson != null);
+    assert(mastersUpdated != null);
     assert(retrieveMasters != null);
     assert(updateTimeStart != null);
     assert(updateTimeEnd != null);
@@ -1108,7 +1291,8 @@ class _$UpdateImageUrl with DiagnosticableTreeMixin implements UpdateImageUrl {
   @optionalTypeArgs
   TResult maybeWhen<TResult extends Object>({
     TResult initializeEditLesson(),
-    TResult retrieveMasters(String gymId),
+    TResult mastersUpdated(List<Master> masters),
+    TResult retrieveMasters(),
     TResult updateTimeStart(String newTimeStart),
     TResult updateTimeEnd(String newTimeEnd),
     TResult updateName(String newName),
@@ -1128,6 +1312,7 @@ class _$UpdateImageUrl with DiagnosticableTreeMixin implements UpdateImageUrl {
   @optionalTypeArgs
   TResult map<TResult extends Object>({
     @required TResult initializeEditLesson(InitializeEditLesson value),
+    @required TResult mastersUpdated(MastersUpdated value),
     @required TResult retrieveMasters(RetrieveMasters value),
     @required TResult updateTimeStart(UpdateTimeStart value),
     @required TResult updateTimeEnd(UpdateTimeEnd value),
@@ -1137,6 +1322,7 @@ class _$UpdateImageUrl with DiagnosticableTreeMixin implements UpdateImageUrl {
     @required TResult updateMasters(UpdateMasters value),
   }) {
     assert(initializeEditLesson != null);
+    assert(mastersUpdated != null);
     assert(retrieveMasters != null);
     assert(updateTimeStart != null);
     assert(updateTimeEnd != null);
@@ -1151,6 +1337,7 @@ class _$UpdateImageUrl with DiagnosticableTreeMixin implements UpdateImageUrl {
   @optionalTypeArgs
   TResult maybeMap<TResult extends Object>({
     TResult initializeEditLesson(InitializeEditLesson value),
+    TResult mastersUpdated(MastersUpdated value),
     TResult retrieveMasters(RetrieveMasters value),
     TResult updateTimeStart(UpdateTimeStart value),
     TResult updateTimeEnd(UpdateTimeEnd value),
@@ -1237,7 +1424,8 @@ class _$UpdateMasters with DiagnosticableTreeMixin implements UpdateMasters {
   @optionalTypeArgs
   TResult when<TResult extends Object>({
     @required TResult initializeEditLesson(),
-    @required TResult retrieveMasters(String gymId),
+    @required TResult mastersUpdated(List<Master> masters),
+    @required TResult retrieveMasters(),
     @required TResult updateTimeStart(String newTimeStart),
     @required TResult updateTimeEnd(String newTimeEnd),
     @required TResult updateName(String newName),
@@ -1246,6 +1434,7 @@ class _$UpdateMasters with DiagnosticableTreeMixin implements UpdateMasters {
     @required TResult updateMasters(List<Master> newMasters),
   }) {
     assert(initializeEditLesson != null);
+    assert(mastersUpdated != null);
     assert(retrieveMasters != null);
     assert(updateTimeStart != null);
     assert(updateTimeEnd != null);
@@ -1260,7 +1449,8 @@ class _$UpdateMasters with DiagnosticableTreeMixin implements UpdateMasters {
   @optionalTypeArgs
   TResult maybeWhen<TResult extends Object>({
     TResult initializeEditLesson(),
-    TResult retrieveMasters(String gymId),
+    TResult mastersUpdated(List<Master> masters),
+    TResult retrieveMasters(),
     TResult updateTimeStart(String newTimeStart),
     TResult updateTimeEnd(String newTimeEnd),
     TResult updateName(String newName),
@@ -1280,6 +1470,7 @@ class _$UpdateMasters with DiagnosticableTreeMixin implements UpdateMasters {
   @optionalTypeArgs
   TResult map<TResult extends Object>({
     @required TResult initializeEditLesson(InitializeEditLesson value),
+    @required TResult mastersUpdated(MastersUpdated value),
     @required TResult retrieveMasters(RetrieveMasters value),
     @required TResult updateTimeStart(UpdateTimeStart value),
     @required TResult updateTimeEnd(UpdateTimeEnd value),
@@ -1289,6 +1480,7 @@ class _$UpdateMasters with DiagnosticableTreeMixin implements UpdateMasters {
     @required TResult updateMasters(UpdateMasters value),
   }) {
     assert(initializeEditLesson != null);
+    assert(mastersUpdated != null);
     assert(retrieveMasters != null);
     assert(updateTimeStart != null);
     assert(updateTimeEnd != null);
@@ -1303,6 +1495,7 @@ class _$UpdateMasters with DiagnosticableTreeMixin implements UpdateMasters {
   @optionalTypeArgs
   TResult maybeMap<TResult extends Object>({
     TResult initializeEditLesson(InitializeEditLesson value),
+    TResult mastersUpdated(MastersUpdated value),
     TResult retrieveMasters(RetrieveMasters value),
     TResult updateTimeStart(UpdateTimeStart value),
     TResult updateTimeEnd(UpdateTimeEnd value),

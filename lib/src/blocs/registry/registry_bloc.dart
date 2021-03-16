@@ -132,10 +132,6 @@ class RegistryBloc extends Bloc<RegistryEvent, RegistryState> {
         Logger.log.e(error, stacktrace);
       }
     }
-
-    if (event is RetrieveMasters) {
-      await userRepository.retrieveAvailableMasters(event.gymId);
-    }
   }
 
   bool isAcceptedUser(RegistryUpdated event) {

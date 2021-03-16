@@ -8,9 +8,11 @@ part 'edit_lesson_event.freezed.dart';
 abstract class EditLessonEvent with _$EditLessonEvent {
   const factory EditLessonEvent.initializeEditLesson() = InitializeEditLesson;
 
-  const factory EditLessonEvent.retrieveMasters({
-    @required String gymId,
-  }) = RetrieveMasters;
+  const factory EditLessonEvent.mastersUpdated({
+    @required List<Master> masters,
+  }) = MastersUpdated;
+
+  const factory EditLessonEvent.retrieveMasters() = RetrieveMasters;
 
   const factory EditLessonEvent.updateTimeStart({
     @required String newTimeStart,

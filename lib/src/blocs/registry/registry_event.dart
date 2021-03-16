@@ -1,6 +1,5 @@
 import 'package:checkin/src/models/attendee.dart';
 import 'package:checkin/src/models/lesson.dart';
-import 'package:checkin/src/models/master.dart';
 import 'package:checkin/src/models/user.dart';
 import 'package:flutter/foundation.dart';
 import 'package:freezed_annotation/freezed_annotation.dart';
@@ -33,37 +32,4 @@ abstract class RegistryEvent with _$RegistryEvent {
   const factory RegistryEvent.deleteLesson({
     @required String gymId,
   }) = DeleteLesson;
-
-  const factory RegistryEvent.retrieveMasters({
-    @required String gymId,
-  }) = RetrieveMasters;
-
-  const factory RegistryEvent.updateTimeStart({
-    @required String gymId,
-    @required String newTimeStart,
-  }) = UpdateTimeStart;
-
-  const factory RegistryEvent.updateTimeEnd({
-    @required String gymId,
-    @required String newTimeEnd,
-  }) = UpdateTimeEnd;
-
-  const factory RegistryEvent.updateName({
-    @required String gymId,
-    @required String newName,
-  }) = UpdateName;
-
-  const factory RegistryEvent.updateCapacity({
-    @required String gymId,
-    @required int newCapacity,
-  }) = UpdateCapacity;
-
-  const factory RegistryEvent.updateImageUrl({
-    @required String gymId,
-  }) = UpdateImageUrl;
-
-  const factory RegistryEvent.updateMasters({
-    @required String gymId,
-    @required List<Master> newMasters,
-  }) = UpdateMasters;
 }

@@ -1,7 +1,9 @@
 import 'package:checkin/src/blocs/edit_lesson/bloc.dart';
 import 'package:checkin/src/localization/localization.dart';
+import 'package:checkin/src/logging/logger.dart';
 import 'package:checkin/src/models/lesson.dart';
 import 'package:checkin/src/models/master.dart';
+import 'package:checkin/src/ui/components/empty_widget.dart';
 import 'package:checkin/src/ui/components/registry/edit_lesson/edit_lesson_capacity.dart';
 import 'package:checkin/src/ui/components/registry/edit_lesson/edit_lesson_name.dart';
 import 'package:checkin/src/ui/components/registry/edit_lesson/edit_lesson_time.dart';
@@ -72,21 +74,34 @@ class EditLessonModal extends StatelessWidget {
                 height: 20,
               ),
               if (isInDebugMode)
-                ElevatedButton(
-                    onPressed: () {
-                      var newMasters = [
-                        Master(
-                          name: "stoc",
-                          imageUrl:
-                              "https://cdn.shopify.com/s/files/1/0476/1541/0334/products/coeurderoserouge_720x.jpg?v=1603622253",
-                          email: "stoc@zzo.com",
-                        )
-                      ];
-                      context
-                          .read<EditLessonBloc>()
-                          .add(EditLessonEvent.updateMasters(newMasters: newMasters));
+                BlocBuilder<EditLessonBloc, EditLessonState>(
+                    builder: (BuildContext context, EditLessonState state) {
+                  Logger.log.i("EditLessonState: $state");
+                  return state.maybeWhen(
+                    mastersLoaded: (List<Master> masters) {
+                      Logger.log.i("Showing masters: $masters");
+                      return Column(
+                        children: masters.map((master) => Text(master.name)).toList(),
+                      );
                     },
-                    child: Text("update masters"))
+                    orElse: () => EmptyWidget(),
+                  );
+                }),
+              ElevatedButton(
+                  onPressed: () {
+                    var newMasters = [
+                      Master(
+                        name: "stoc",
+                        imageUrl:
+                            "https://cdn.shopify.com/s/files/1/0476/1541/0334/products/coeurderoserouge_720x.jpg?v=1603622253",
+                        email: "stoc@zzo.com",
+                      )
+                    ];
+                    context
+                        .read<EditLessonBloc>()
+                        .add(EditLessonEvent.updateMasters(newMasters: newMasters));
+                  },
+                  child: Text("update masters"))
             ],
           ),
         ),
