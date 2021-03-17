@@ -20,6 +20,8 @@ abstract class LessonRepository {
 
   Future<void> deleteLesson(String gymId, String date, String lessonId);
 
+  Future<void> createLesson(String gymId, String date);
+
   Future<void> updateLessonTimeStart(
       String gymId, String date, String lessonId, String newTimeStart);
 
@@ -31,5 +33,6 @@ abstract class LessonRepository {
 
   Future<void> updateLessonImage(String gymId, String date, String lessonId, String newImageUrl);
 
-  Future<void> updateLessonMasters(String gymId, String date, String lessonId, List<Master> newMasters);
+  Future<void> updateLessonMasters(
+      String gymId, String date, String lessonId, List<Master> newMasters);
 }

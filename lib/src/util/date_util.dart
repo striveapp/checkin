@@ -1,4 +1,5 @@
 import 'package:checkin/src/models/timespan.dart';
+import 'package:intl/intl.dart';
 
 import '../constants.dart';
 
@@ -45,5 +46,10 @@ class DateUtil {
     } else {
       return _getFirstDaySinceTheBeginning();
     }
+  }
+
+  static String retrieveWeekDay(String date) {
+    var parsedDate = DateTime.parse(date);
+    return DateFormat('EEEE').format(parsedDate).toLowerCase();
   }
 }

@@ -21,14 +21,20 @@ class LessonsPage extends StatelessWidget {
       providers: [
         BlocProvider<LessonsBloc>(
           create: (BuildContext context) => LessonsBloc(
-              lessonRepository: context.read<LessonRepository>(),
-              userRepository: context.read<UserRepository>(),
-              dateUtil: context.read(),)
-            ..add(InitializeLessons()),
+            lessonRepository: context.read<LessonRepository>(),
+            userRepository: context.read<UserRepository>(),
+            dateUtil: context.read(),
+          )..add(InitializeLessons()),
         )
       ],
       child: Scaffold(
           appBar: GymAppBar(),
+          // floatingActionButton: FloatingActionButton(
+          //   child: Icon(Icons.add),
+          //   onPressed: () {
+          //     LessonInstancesProvider().createLesson("test", "2021-01-11");
+          //   },
+          // ),
           floatingActionButton: LessonsFilterFab(),
           body: Padding(
             padding: const EdgeInsets.only(top: 15),

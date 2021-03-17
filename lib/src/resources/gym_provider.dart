@@ -40,7 +40,7 @@ class GymProvider implements GymRepository {
 
   Gym _toGym(String gymId, Map<String, dynamic> gym) {
     gym.putIfAbsent("id", () => gymId);
-    gym.putIfAbsent("imageUrl", () => DEFAULT_GYM_IMAGE_URL);
+    gym.putIfAbsent("imageUrl", () => STRIVE_LOGO);
     return Gym.fromJson(gym);
   }
 }

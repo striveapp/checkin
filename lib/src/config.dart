@@ -14,5 +14,5 @@ const DEFAULT_USER_IMAGE_URL =
     "https://firebasestorage.googleapis.com/v0/b/checkin-b7e8d.appspot.com/o/default_pic.png?alt=media&token=3028f80c-8009-478e-a631-ff9e39f1b48a";
 
 //TODO: Is better to place this in the backend
-const DEFAULT_GYM_IMAGE_URL =
+const STRIVE_LOGO =
     "https://firebasestorage.googleapis.com/v0/b/checkin-b7e8d.appspot.com/o/adaptive_icon.png?alt=media&token=3094b170-c21c-4940-9e61-6f3b14434752";

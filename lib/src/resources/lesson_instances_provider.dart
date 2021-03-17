@@ -242,4 +242,17 @@ class LessonInstancesProvider implements LessonRepository {
         .doc(lessonId)
         .update({'masters': newMasters.map((master) => master.toJson()).toList()});
   }
+
+  @override
+  Future<void> createLesson(String gymId, String date) async {
+    var defaultLesson = Lesson.createDefault(date);
+    await _firestore
+        .collection(gymPath)
+        .doc(gymId)
+        .collection(path)
+        .doc(date)
+        .collection(sub_collection_path)
+        .doc(defaultLesson.id)
+        .set(defaultLesson.toJson());
+  }
 }

@@ -1,6 +1,8 @@
+import 'package:checkin/src/config.dart';
 import 'package:checkin/src/models/lesson_config.dart';
+import 'package:checkin/src/util/crypto_util.dart';
+import 'package:checkin/src/util/date_util.dart';
 import 'package:freezed_annotation/freezed_annotation.dart';
-import 'package:checkin/src/config.dart' as config;
 
 import 'attendee.dart';
 import 'master.dart';
@@ -21,12 +23,24 @@ abstract class Lesson with _$Lesson {
     final String imageUrl,
     final LessonConfig lessonConfig,
     // todo retrieve from Gym (config) https://trello.com/c/uIqJLgZL
-    @Default(config.DEFAULT_CLASS_CAPACITY) final int classCapacity,
+    @Default(DEFAULT_CLASS_CAPACITY) final int classCapacity,
     @Default([]) final List<Master> masters,
     @Default([]) final List<Attendee> attendees,
     @Default([]) final List<Attendee> acceptedAttendees,
     @Default(false) final bool isClosed,
   }) = _Lesson;
+
+  factory Lesson.createDefault(String date) {
+    return Lesson(
+      id: CryptoUtil.generateUUID(),
+      date: date,
+      name: "BJJ",
+      imageUrl: STRIVE_LOGO,
+      timeStart: "00:00",
+      timeEnd: "00:00",
+      weekDay: DateUtil.retrieveWeekDay(date),
+    );
+  }
 
   factory Lesson.fromJson(Map<String, dynamic> json) => _$LessonFromJson(json);
 }
