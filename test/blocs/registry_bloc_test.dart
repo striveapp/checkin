@@ -3,6 +3,7 @@ import 'dart:async';
 import 'package:bloc_test/bloc_test.dart';
 import 'package:checkin/src/api/lesson_api.dart';
 import 'package:checkin/src/blocs/registry/bloc.dart';
+import 'package:checkin/src/constants.dart';
 import 'package:checkin/src/models/attendee.dart';
 import 'package:checkin/src/models/grade.dart';
 import 'package:checkin/src/models/lesson.dart';
@@ -12,6 +13,7 @@ import 'package:checkin/src/repositories/image_repository.dart';
 import 'package:checkin/src/repositories/lesson_repository.dart';
 import 'package:checkin/src/repositories/storage_repository.dart';
 import 'package:checkin/src/repositories/user_repository.dart';
+import 'package:checkin/src/util/date_util.dart';
 import 'package:flutter_test/flutter_test.dart';
 import 'package:mockito/mockito.dart';
 
@@ -27,6 +29,8 @@ class MockImageRepository extends Mock implements ImageRepository {}
 
 class MockUserRepository extends Mock implements UserRepository {}
 
+class MockDateUtil extends Mock implements DateUtil {}
+
 void main() {
   group("RegistryBloc", () {
     MockLessonApi mockLessonApi;
@@ -34,6 +38,7 @@ void main() {
     MockImageRepository mockImageRepository;
     MockStorageRepository mockStorageRepository;
     MockUserRepository mockUserRepository;
+    MockDateUtil mockDateUtil;
 
     var testAttendee1 = Attendee(
       name: "Test1",
@@ -63,6 +68,7 @@ void main() {
       mockImageRepository = MockImageRepository();
       mockStorageRepository = MockStorageRepository();
       mockUserRepository = MockUserRepository();
+      mockDateUtil = MockDateUtil();
 
       configureThrowOnMissingStub([
         mockLessonApi,
@@ -70,6 +76,7 @@ void main() {
         mockImageRepository,
         mockStorageRepository,
         mockUserRepository,
+        mockDateUtil,
       ]);
     });
 
@@ -80,6 +87,7 @@ void main() {
         mockImageRepository,
         mockStorageRepository,
         mockUserRepository,
+        mockDateUtil,
       ]);
     });
 
@@ -93,6 +101,7 @@ void main() {
                 storageRepository: mockStorageRepository,
                 lessonApi: mockLessonApi,
                 userRepository: mockUserRepository,
+                dateUtil: mockDateUtil,
               ),
           expect: [],
           verify: (bloc) {
@@ -105,6 +114,7 @@ void main() {
         when(mockUserRepository.getUser()).thenAnswer((realInvocation) => Stream.value(fakeUser));
         when(mockLessonRepository.getLesson(fakeUser.selectedGymId, baseLesson.date, baseLesson.id))
             .thenAnswer((realInvocation) => Stream.value(baseLesson));
+        when(mockDateUtil.getCurrentDateTime()).thenReturn(testDate);
       });
 
       tearDown(() {
@@ -114,6 +124,7 @@ void main() {
           baseLesson.date,
           baseLesson.id,
         ));
+        verify(mockDateUtil.getCurrentDateTime());
       });
 
       blocTest(
@@ -126,6 +137,7 @@ void main() {
           storageRepository: mockStorageRepository,
           lessonApi: mockLessonApi,
           userRepository: mockUserRepository,
+          dateUtil: mockDateUtil,
         ),
         act: (bloc) => bloc.add(RegistryEvent.initializeRegistry()),
         expect: [
@@ -133,6 +145,7 @@ void main() {
             currentUser: fakeUser,
             currentLesson: baseLesson,
             isEmptyRegistry: true,
+            nocache: testDate,
           )
         ],
       );
@@ -149,6 +162,15 @@ void main() {
         Lesson fakeLessonWithAcceptedAttendee =
             baseLesson.copyWith(attendees: [], acceptedAttendees: [testAttendee1]);
 
+        setUp((){
+          when(mockDateUtil.getCurrentDateTime()).thenReturn(testDate);
+        });
+
+        tearDown((){
+          verify(mockDateUtil.getCurrentDateTime());
+        });
+
+
         blocTest(
           "should emit RegistryLoaded with isAccepted = true",
           build: () => RegistryBloc(
@@ -159,6 +181,7 @@ void main() {
             storageRepository: mockStorageRepository,
             lessonApi: mockLessonApi,
             userRepository: mockUserRepository,
+            dateUtil: mockDateUtil,
           ),
           act: (bloc) => bloc.add(RegistryUpdated(
             currentUser: acceptedUser,
@@ -169,6 +192,7 @@ void main() {
               currentUser: acceptedUser,
               currentLesson: fakeLessonWithAcceptedAttendee,
               isAcceptedUser: true,
+              nocache: testDate,
             ),
           ],
         );
@@ -183,6 +207,15 @@ void main() {
 
         Lesson lessonWithRegisteredUser =
             baseLesson.copyWith(attendees: [testAttendee1], acceptedAttendees: []);
+
+        setUp((){
+          when(mockDateUtil.getCurrentDateTime()).thenReturn(testDate);
+        });
+
+        tearDown((){
+          verify(mockDateUtil.getCurrentDateTime());
+        });
+
         blocTest(
           "should emit should emit RegistryLoaded with isRegisteredUser = true",
           build: () => RegistryBloc(
@@ -193,6 +226,7 @@ void main() {
             storageRepository: mockStorageRepository,
             lessonApi: mockLessonApi,
             userRepository: mockUserRepository,
+            dateUtil: mockDateUtil,
           ),
           act: (bloc) => bloc.add(RegistryUpdated(
             currentUser: registeredUser,
@@ -203,6 +237,7 @@ void main() {
               currentUser: registeredUser,
               currentLesson: lessonWithRegisteredUser,
               isRegisteredUser: true,
+              nocache: testDate,
             ),
           ],
         );
@@ -211,6 +246,14 @@ void main() {
       group("when lesson is full", () {
         Lesson fakeLessonFull = baseLesson
             .copyWith(attendees: [], acceptedAttendees: [testAttendee1], classCapacity: 1);
+
+        setUp((){
+          when(mockDateUtil.getCurrentDateTime()).thenReturn(testDate);
+        });
+
+        tearDown((){
+          verify(mockDateUtil.getCurrentDateTime());
+        });
 
         blocTest(
           "should emit RegistryLoaded with isFullRegistry = true",
@@ -222,6 +265,7 @@ void main() {
             storageRepository: mockStorageRepository,
             lessonApi: mockLessonApi,
             userRepository: mockUserRepository,
+            dateUtil: mockDateUtil,
           ),
           act: (bloc) => bloc.add(RegistryUpdated(
             currentUser: fakeUser,
@@ -232,12 +276,21 @@ void main() {
               currentUser: fakeUser,
               currentLesson: fakeLessonFull,
               isFullRegistry: true,
+              nocache: testDate,
             ),
           ],
         );
       });
 
       group("when lesson is empty", () {
+        setUp((){
+          when(mockDateUtil.getCurrentDateTime()).thenReturn(testDate);
+        });
+
+        tearDown((){
+          verify(mockDateUtil.getCurrentDateTime());
+        });
+
         blocTest(
           "should emit RegistryLoaded with isEmptyRegistry = true",
           build: () => RegistryBloc(
@@ -248,6 +301,7 @@ void main() {
             storageRepository: mockStorageRepository,
             lessonApi: mockLessonApi,
             userRepository: mockUserRepository,
+            dateUtil: mockDateUtil,
           ),
           act: (bloc) => bloc.add(RegistryUpdated(
             currentUser: fakeUser,
@@ -258,6 +312,7 @@ void main() {
               currentUser: fakeUser,
               currentLesson: baseLesson,
               isEmptyRegistry: true,
+              nocache: testDate,
             ),
           ],
         );
@@ -269,6 +324,14 @@ void main() {
           isClosed: true,
         );
 
+        setUp((){
+          when(mockDateUtil.getCurrentDateTime()).thenReturn(testDate);
+        });
+
+        tearDown((){
+          verify(mockDateUtil.getCurrentDateTime());
+        });
+
         blocTest(
           "should emit RegistryLoaded with isClosedRegistry = true",
           build: () => RegistryBloc(
@@ -279,6 +342,7 @@ void main() {
             storageRepository: mockStorageRepository,
             lessonApi: mockLessonApi,
             userRepository: mockUserRepository,
+            dateUtil: mockDateUtil,
           ),
           act: (bloc) => bloc.add(RegistryUpdated(
             currentUser: fakeUser,
@@ -289,6 +353,7 @@ void main() {
               currentUser: fakeUser,
               currentLesson: fakeLessonClosed,
               isClosedRegistry: true,
+              nocache: testDate,
             ),
           ],
         );
@@ -308,6 +373,7 @@ void main() {
             storageRepository: mockStorageRepository,
             lessonApi: mockLessonApi,
             userRepository: mockUserRepository,
+            dateUtil: mockDateUtil,
           ),
           act: (bloc) => bloc.add(RegistryUpdated(
             currentUser: fakeUser,
@@ -344,6 +410,7 @@ void main() {
                 storageRepository: mockStorageRepository,
                 lessonApi: mockLessonApi,
                 userRepository: mockUserRepository,
+                dateUtil: mockDateUtil,
               ),
           act: (bloc) => bloc.add(Register(gymId: fakeUser.selectedGymId, attendee: fakeAttendee)),
           expect: [],
@@ -382,6 +449,7 @@ void main() {
                 storageRepository: mockStorageRepository,
                 lessonApi: mockLessonApi,
                 userRepository: mockUserRepository,
+                dateUtil: mockDateUtil,
               ),
           act: (bloc) =>
               bloc.add(Unregister(gymId: registeredUser.selectedGymId, attendee: testAttendee1)),
@@ -430,6 +498,7 @@ void main() {
                 storageRepository: mockStorageRepository,
                 lessonApi: mockLessonApi,
                 userRepository: mockUserRepository,
+                dateUtil: mockDateUtil,
               ),
           act: (bloc) => bloc.add(AcceptAttendees(gymId: masterUser.selectedGymId)),
           expect: [RegistryLoading()],
@@ -466,6 +535,7 @@ void main() {
                 storageRepository: mockStorageRepository,
                 lessonApi: mockLessonApi,
                 userRepository: mockUserRepository,
+                dateUtil: mockDateUtil,
               ),
           act: (bloc) => bloc.add(CloseLesson(
                 gymId: fakeUser.selectedGymId,
@@ -502,6 +572,7 @@ void main() {
                 storageRepository: mockStorageRepository,
                 lessonApi: mockLessonApi,
                 userRepository: mockUserRepository,
+                dateUtil: mockDateUtil,
               ),
           act: (bloc) => bloc.add(DeleteLesson(
                 gymId: fakeUser.selectedGymId,

@@ -8,7 +8,6 @@ import 'package:checkin/src/ui/components/lessons/lesson_card_list.dart';
 import 'package:checkin/src/ui/components/lessons/lesson_filter_fab.dart';
 import 'package:checkin/src/ui/components/lessons/week_calendar.dart';
 import 'package:checkin/src/ui/components/loading_indicator.dart';
-import 'package:checkin/src/util/date_util.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter/widgets.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
@@ -24,7 +23,7 @@ class LessonsPage extends StatelessWidget {
           create: (BuildContext context) => LessonsBloc(
               lessonRepository: context.read<LessonRepository>(),
               userRepository: context.read<UserRepository>(),
-              dateUtil: DateUtil())
+              dateUtil: context.read(),)
             ..add(InitializeLessons()),
         )
       ],

@@ -17,7 +17,8 @@ class _$MasterTearOff {
   const _$MasterTearOff();
 
 // ignore: unused_element
-  _Master call({@required String name, @required String email, String imageUrl}) {
+  _Master call(
+      {@required String name, @required String email, String imageUrl}) {
     return _Master(
       name: name,
       email: email,
@@ -47,7 +48,8 @@ mixin _$Master {
 
 /// @nodoc
 abstract class $MasterCopyWith<$Res> {
-  factory $MasterCopyWith(Master value, $Res Function(Master) then) = _$MasterCopyWithImpl<$Res>;
+  factory $MasterCopyWith(Master value, $Res Function(Master) then) =
+      _$MasterCopyWithImpl<$Res>;
   $Res call({String name, String email, String imageUrl});
 }
 
@@ -112,7 +114,8 @@ class _$_Master implements _Master {
       : assert(name != null),
         assert(email != null);
 
-  factory _$_Master.fromJson(Map<String, dynamic> json) => _$_$_MasterFromJson(json);
+  factory _$_Master.fromJson(Map<String, dynamic> json) =>
+      _$_$_MasterFromJson(json);
 
   @override
   final String name;
@@ -135,7 +138,8 @@ class _$_Master implements _Master {
             (identical(other.email, email) ||
                 const DeepCollectionEquality().equals(other.email, email)) &&
             (identical(other.imageUrl, imageUrl) ||
-                const DeepCollectionEquality().equals(other.imageUrl, imageUrl)));
+                const DeepCollectionEquality()
+                    .equals(other.imageUrl, imageUrl)));
   }
 
   @override
@@ -146,7 +150,8 @@ class _$_Master implements _Master {
       const DeepCollectionEquality().hash(imageUrl);
 
   @override
-  _$MasterCopyWith<_Master> get copyWith => __$MasterCopyWithImpl<_Master>(this, _$identity);
+  _$MasterCopyWith<_Master> get copyWith =>
+      __$MasterCopyWithImpl<_Master>(this, _$identity);
 
   @override
   Map<String, dynamic> toJson() {
@@ -155,7 +160,10 @@ class _$_Master implements _Master {
 }
 
 abstract class _Master implements Master {
-  factory _Master({@required String name, @required String email, String imageUrl}) = _$_Master;
+  factory _Master(
+      {@required String name,
+      @required String email,
+      String imageUrl}) = _$_Master;
 
   factory _Master.fromJson(Map<String, dynamic> json) = _$_Master.fromJson;
 

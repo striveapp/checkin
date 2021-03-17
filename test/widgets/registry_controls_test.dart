@@ -103,6 +103,7 @@ Future<Widget> buildTestApplication(Widget testWidget) async {
         storageRepository: mockStorageRepository,
         lessonApi: mockLessonApi,
         userRepository: context.read<UserRepository>(),
+        dateUtil: context.read(),
       ),
       child: Scaffold(
         body: testWidget,

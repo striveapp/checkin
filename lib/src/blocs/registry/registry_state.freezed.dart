@@ -42,7 +42,8 @@ class _$RegistryStateTearOff {
       bool isFullRegistry = false,
       bool isEmptyRegistry = false,
       bool isMasterOfTheClass = false,
-      dynamic isClosedRegistry = false}) {
+      dynamic isClosedRegistry = false,
+      DateTime nocache}) {
     return RegistryLoaded(
       currentUser: currentUser,
       currentLesson: currentLesson,
@@ -52,6 +53,7 @@ class _$RegistryStateTearOff {
       isEmptyRegistry: isEmptyRegistry,
       isMasterOfTheClass: isMasterOfTheClass,
       isClosedRegistry: isClosedRegistry,
+      nocache: nocache,
     );
   }
 }
@@ -77,7 +79,8 @@ mixin _$RegistryState {
             bool isFullRegistry,
             bool isEmptyRegistry,
             bool isMasterOfTheClass,
-            dynamic isClosedRegistry),
+            dynamic isClosedRegistry,
+            DateTime nocache),
   });
   @optionalTypeArgs
   TResult maybeWhen<TResult extends Object>({
@@ -93,7 +96,8 @@ mixin _$RegistryState {
         bool isFullRegistry,
         bool isEmptyRegistry,
         bool isMasterOfTheClass,
-        dynamic isClosedRegistry),
+        dynamic isClosedRegistry,
+        DateTime nocache),
     @required TResult orElse(),
   });
   @optionalTypeArgs
@@ -193,7 +197,8 @@ class _$RegistryUninitialized
             bool isFullRegistry,
             bool isEmptyRegistry,
             bool isMasterOfTheClass,
-            dynamic isClosedRegistry),
+            dynamic isClosedRegistry,
+            DateTime nocache),
   }) {
     assert(registryUninitialized != null);
     assert(registryLoading != null);
@@ -218,7 +223,8 @@ class _$RegistryUninitialized
         bool isFullRegistry,
         bool isEmptyRegistry,
         bool isMasterOfTheClass,
-        dynamic isClosedRegistry),
+        dynamic isClosedRegistry,
+        DateTime nocache),
     @required TResult orElse(),
   }) {
     assert(orElse != null);
@@ -328,7 +334,8 @@ class _$RegistryLoading
             bool isFullRegistry,
             bool isEmptyRegistry,
             bool isMasterOfTheClass,
-            dynamic isClosedRegistry),
+            dynamic isClosedRegistry,
+            DateTime nocache),
   }) {
     assert(registryUninitialized != null);
     assert(registryLoading != null);
@@ -353,7 +360,8 @@ class _$RegistryLoading
         bool isFullRegistry,
         bool isEmptyRegistry,
         bool isMasterOfTheClass,
-        dynamic isClosedRegistry),
+        dynamic isClosedRegistry,
+        DateTime nocache),
     @required TResult orElse(),
   }) {
     assert(orElse != null);
@@ -460,7 +468,8 @@ class _$RegistryError with DiagnosticableTreeMixin implements RegistryError {
             bool isFullRegistry,
             bool isEmptyRegistry,
             bool isMasterOfTheClass,
-            dynamic isClosedRegistry),
+            dynamic isClosedRegistry,
+            DateTime nocache),
   }) {
     assert(registryUninitialized != null);
     assert(registryLoading != null);
@@ -485,7 +494,8 @@ class _$RegistryError with DiagnosticableTreeMixin implements RegistryError {
         bool isFullRegistry,
         bool isEmptyRegistry,
         bool isMasterOfTheClass,
-        dynamic isClosedRegistry),
+        dynamic isClosedRegistry,
+        DateTime nocache),
     @required TResult orElse(),
   }) {
     assert(orElse != null);
@@ -595,7 +605,8 @@ class _$RegistryMissing
             bool isFullRegistry,
             bool isEmptyRegistry,
             bool isMasterOfTheClass,
-            dynamic isClosedRegistry),
+            dynamic isClosedRegistry,
+            DateTime nocache),
   }) {
     assert(registryUninitialized != null);
     assert(registryLoading != null);
@@ -620,7 +631,8 @@ class _$RegistryMissing
         bool isFullRegistry,
         bool isEmptyRegistry,
         bool isMasterOfTheClass,
-        dynamic isClosedRegistry),
+        dynamic isClosedRegistry,
+        DateTime nocache),
     @required TResult orElse(),
   }) {
     assert(orElse != null);
@@ -682,7 +694,8 @@ abstract class $RegistryLoadedCopyWith<$Res> {
       bool isFullRegistry,
       bool isEmptyRegistry,
       bool isMasterOfTheClass,
-      dynamic isClosedRegistry});
+      dynamic isClosedRegistry,
+      DateTime nocache});
 
   $UserCopyWith<$Res> get currentUser;
   $LessonCopyWith<$Res> get currentLesson;
@@ -709,6 +722,7 @@ class _$RegistryLoadedCopyWithImpl<$Res>
     Object isEmptyRegistry = freezed,
     Object isMasterOfTheClass = freezed,
     Object isClosedRegistry = freezed,
+    Object nocache = freezed,
   }) {
     return _then(RegistryLoaded(
       currentUser:
@@ -734,6 +748,7 @@ class _$RegistryLoadedCopyWithImpl<$Res>
       isClosedRegistry: isClosedRegistry == freezed
           ? _value.isClosedRegistry
           : isClosedRegistry,
+      nocache: nocache == freezed ? _value.nocache : nocache as DateTime,
     ));
   }
 
@@ -768,7 +783,8 @@ class _$RegistryLoaded with DiagnosticableTreeMixin implements RegistryLoaded {
       this.isFullRegistry = false,
       this.isEmptyRegistry = false,
       this.isMasterOfTheClass = false,
-      this.isClosedRegistry = false})
+      this.isClosedRegistry = false,
+      this.nocache})
       : assert(currentUser != null),
         assert(currentLesson != null),
         assert(isAcceptedUser != null),
@@ -800,10 +816,12 @@ class _$RegistryLoaded with DiagnosticableTreeMixin implements RegistryLoaded {
   @JsonKey(defaultValue: false)
   @override
   final dynamic isClosedRegistry;
+  @override
+  final DateTime nocache;
 
   @override
   String toString({DiagnosticLevel minLevel = DiagnosticLevel.info}) {
-    return 'RegistryState.registryLoaded(currentUser: $currentUser, currentLesson: $currentLesson, isAcceptedUser: $isAcceptedUser, isRegisteredUser: $isRegisteredUser, isFullRegistry: $isFullRegistry, isEmptyRegistry: $isEmptyRegistry, isMasterOfTheClass: $isMasterOfTheClass, isClosedRegistry: $isClosedRegistry)';
+    return 'RegistryState.registryLoaded(currentUser: $currentUser, currentLesson: $currentLesson, isAcceptedUser: $isAcceptedUser, isRegisteredUser: $isRegisteredUser, isFullRegistry: $isFullRegistry, isEmptyRegistry: $isEmptyRegistry, isMasterOfTheClass: $isMasterOfTheClass, isClosedRegistry: $isClosedRegistry, nocache: $nocache)';
   }
 
   @override
@@ -818,7 +836,8 @@ class _$RegistryLoaded with DiagnosticableTreeMixin implements RegistryLoaded {
       ..add(DiagnosticsProperty('isFullRegistry', isFullRegistry))
       ..add(DiagnosticsProperty('isEmptyRegistry', isEmptyRegistry))
       ..add(DiagnosticsProperty('isMasterOfTheClass', isMasterOfTheClass))
-      ..add(DiagnosticsProperty('isClosedRegistry', isClosedRegistry));
+      ..add(DiagnosticsProperty('isClosedRegistry', isClosedRegistry))
+      ..add(DiagnosticsProperty('nocache', nocache));
   }
 
   @override
@@ -848,7 +867,9 @@ class _$RegistryLoaded with DiagnosticableTreeMixin implements RegistryLoaded {
                     .equals(other.isMasterOfTheClass, isMasterOfTheClass)) &&
             (identical(other.isClosedRegistry, isClosedRegistry) ||
                 const DeepCollectionEquality()
-                    .equals(other.isClosedRegistry, isClosedRegistry)));
+                    .equals(other.isClosedRegistry, isClosedRegistry)) &&
+            (identical(other.nocache, nocache) ||
+                const DeepCollectionEquality().equals(other.nocache, nocache)));
   }
 
   @override
@@ -861,7 +882,8 @@ class _$RegistryLoaded with DiagnosticableTreeMixin implements RegistryLoaded {
       const DeepCollectionEquality().hash(isFullRegistry) ^
       const DeepCollectionEquality().hash(isEmptyRegistry) ^
       const DeepCollectionEquality().hash(isMasterOfTheClass) ^
-      const DeepCollectionEquality().hash(isClosedRegistry);
+      const DeepCollectionEquality().hash(isClosedRegistry) ^
+      const DeepCollectionEquality().hash(nocache);
 
   @override
   $RegistryLoadedCopyWith<RegistryLoaded> get copyWith =>
@@ -883,7 +905,8 @@ class _$RegistryLoaded with DiagnosticableTreeMixin implements RegistryLoaded {
             bool isFullRegistry,
             bool isEmptyRegistry,
             bool isMasterOfTheClass,
-            dynamic isClosedRegistry),
+            dynamic isClosedRegistry,
+            DateTime nocache),
   }) {
     assert(registryUninitialized != null);
     assert(registryLoading != null);
@@ -898,7 +921,8 @@ class _$RegistryLoaded with DiagnosticableTreeMixin implements RegistryLoaded {
         isFullRegistry,
         isEmptyRegistry,
         isMasterOfTheClass,
-        isClosedRegistry);
+        isClosedRegistry,
+        nocache);
   }
 
   @override
@@ -916,7 +940,8 @@ class _$RegistryLoaded with DiagnosticableTreeMixin implements RegistryLoaded {
         bool isFullRegistry,
         bool isEmptyRegistry,
         bool isMasterOfTheClass,
-        dynamic isClosedRegistry),
+        dynamic isClosedRegistry,
+        DateTime nocache),
     @required TResult orElse(),
   }) {
     assert(orElse != null);
@@ -929,7 +954,8 @@ class _$RegistryLoaded with DiagnosticableTreeMixin implements RegistryLoaded {
           isFullRegistry,
           isEmptyRegistry,
           isMasterOfTheClass,
-          isClosedRegistry);
+          isClosedRegistry,
+          nocache);
     }
     return orElse();
   }
@@ -978,7 +1004,8 @@ abstract class RegistryLoaded implements RegistryState {
       bool isFullRegistry,
       bool isEmptyRegistry,
       bool isMasterOfTheClass,
-      dynamic isClosedRegistry}) = _$RegistryLoaded;
+      dynamic isClosedRegistry,
+      DateTime nocache}) = _$RegistryLoaded;
 
   User get currentUser;
   Lesson get currentLesson;
@@ -988,5 +1015,6 @@ abstract class RegistryLoaded implements RegistryState {
   bool get isEmptyRegistry;
   bool get isMasterOfTheClass;
   dynamic get isClosedRegistry;
+  DateTime get nocache;
   $RegistryLoadedCopyWith<RegistryLoaded> get copyWith;
 }

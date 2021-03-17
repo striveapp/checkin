@@ -9,6 +9,7 @@ import 'package:checkin/src/repositories/image_repository.dart';
 import 'package:checkin/src/repositories/lesson_repository.dart';
 import 'package:checkin/src/repositories/storage_repository.dart';
 import 'package:checkin/src/repositories/user_repository.dart';
+import 'package:checkin/src/util/date_util.dart';
 import 'package:flutter/foundation.dart';
 import 'package:meta/meta.dart';
 
@@ -22,6 +23,8 @@ class RegistryBloc extends Bloc<RegistryEvent, RegistryState> {
   final UserRepository userRepository;
   final ImageRepository imageRepository;
   final StorageRepository storageRepository;
+  final DateUtil dateUtil;
+
 
   StreamSubscription<Lesson> _lessonSub;
   StreamSubscription<User> _userSub;
@@ -34,6 +37,7 @@ class RegistryBloc extends Bloc<RegistryEvent, RegistryState> {
     @required this.imageRepository,
     @required this.storageRepository,
     @required this.userRepository,
+    @required this.dateUtil,
   }) : super(RegistryUninitialized());
 
   void _onUserChanged(User currentUser) {
@@ -59,15 +63,17 @@ class RegistryBloc extends Bloc<RegistryEvent, RegistryState> {
       if (event.currentLesson == null) {
         yield RegistryMissing();
       } else {
-        yield RegistryLoaded(
-            currentUser: event.currentUser,
-            currentLesson: event.currentLesson,
-            isAcceptedUser: isAcceptedUser(event),
-            isRegisteredUser: isRegisteredUser(event),
-            isFullRegistry: isFullRegistry(event),
-            isEmptyRegistry: isEmptyRegistry(event),
-            isMasterOfTheClass: isMasterOfTheClass(event),
-            isClosedRegistry: event.currentLesson.isClosed);
+        yield RegistryState.registryLoaded(
+          currentUser: event.currentUser,
+          currentLesson: event.currentLesson,
+          isAcceptedUser: isAcceptedUser(event),
+          isRegisteredUser: isRegisteredUser(event),
+          isFullRegistry: isFullRegistry(event),
+          isEmptyRegistry: isEmptyRegistry(event),
+          isMasterOfTheClass: isMasterOfTheClass(event),
+          isClosedRegistry: event.currentLesson.isClosed,
+          nocache: dateUtil.getCurrentDateTime(),
+        );
       }
     }
 

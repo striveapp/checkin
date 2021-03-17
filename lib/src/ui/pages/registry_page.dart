@@ -46,6 +46,7 @@ class RegistryPage extends StatelessWidget {
                 imageRepository: context.read<ImageRepository>(),
                 storageRepository: context.read<StorageRepository>(),
                 userRepository: context.read<UserRepository>(),
+                dateUtil: context.read(),
               )..add(InitializeRegistry()),
             ),
           ],

@@ -39,6 +39,7 @@ import 'package:checkin/src/resources/user_provider.dart';
 import 'package:checkin/src/routes/application.dart';
 import 'package:checkin/src/routes/routes.dart';
 import 'package:checkin/src/simple_bloc_observer.dart';
+import 'package:checkin/src/util/date_util.dart';
 import 'package:checkin/src/util/version_util.dart';
 import 'package:firebase_core/firebase_core.dart';
 import 'package:firebase_crashlytics/firebase_crashlytics.dart';
@@ -122,6 +123,9 @@ Future<void> mainCommon(AppConfig appConfig) async {
           ),
           RepositoryProvider<StorageRepository>(
             create: (context) => StorageProvider(),
+          ),
+          RepositoryProvider<DateUtil>(
+            create: (context) => DateUtil(),
           ),
         ],
         child: MultiBlocProvider(

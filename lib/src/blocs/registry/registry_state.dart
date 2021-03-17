@@ -24,5 +24,6 @@ abstract class RegistryState with _$RegistryState {
     @Default(false) bool isEmptyRegistry,
     @Default(false) bool isMasterOfTheClass,
     @Default(false) isClosedRegistry,
+    DateTime nocache,
   }) = RegistryLoaded;
 }

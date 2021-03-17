@@ -131,12 +131,14 @@ mixin _$EditLessonEvent {
 
 /// @nodoc
 abstract class $EditLessonEventCopyWith<$Res> {
-  factory $EditLessonEventCopyWith(EditLessonEvent value, $Res Function(EditLessonEvent) then) =
+  factory $EditLessonEventCopyWith(
+          EditLessonEvent value, $Res Function(EditLessonEvent) then) =
       _$EditLessonEventCopyWithImpl<$Res>;
 }
 
 /// @nodoc
-class _$EditLessonEventCopyWithImpl<$Res> implements $EditLessonEventCopyWith<$Res> {
+class _$EditLessonEventCopyWithImpl<$Res>
+    implements $EditLessonEventCopyWith<$Res> {
   _$EditLessonEventCopyWithImpl(this._value, this._then);
 
   final EditLessonEvent _value;
@@ -146,13 +148,14 @@ class _$EditLessonEventCopyWithImpl<$Res> implements $EditLessonEventCopyWith<$R
 
 /// @nodoc
 abstract class $InitializeEditLessonCopyWith<$Res> {
-  factory $InitializeEditLessonCopyWith(
-          InitializeEditLesson value, $Res Function(InitializeEditLesson) then) =
+  factory $InitializeEditLessonCopyWith(InitializeEditLesson value,
+          $Res Function(InitializeEditLesson) then) =
       _$InitializeEditLessonCopyWithImpl<$Res>;
 }
 
 /// @nodoc
-class _$InitializeEditLessonCopyWithImpl<$Res> extends _$EditLessonEventCopyWithImpl<$Res>
+class _$InitializeEditLessonCopyWithImpl<$Res>
+    extends _$EditLessonEventCopyWithImpl<$Res>
     implements $InitializeEditLessonCopyWith<$Res> {
   _$InitializeEditLessonCopyWithImpl(
       InitializeEditLesson _value, $Res Function(InitializeEditLesson) _then)
@@ -163,7 +166,9 @@ class _$InitializeEditLessonCopyWithImpl<$Res> extends _$EditLessonEventCopyWith
 }
 
 /// @nodoc
-class _$InitializeEditLesson with DiagnosticableTreeMixin implements InitializeEditLesson {
+class _$InitializeEditLesson
+    with DiagnosticableTreeMixin
+    implements InitializeEditLesson {
   const _$InitializeEditLesson();
 
   @override
@@ -174,7 +179,9 @@ class _$InitializeEditLesson with DiagnosticableTreeMixin implements InitializeE
   @override
   void debugFillProperties(DiagnosticPropertiesBuilder properties) {
     super.debugFillProperties(properties);
-    properties..add(DiagnosticsProperty('type', 'EditLessonEvent.initializeEditLesson'));
+    properties
+      ..add(
+          DiagnosticsProperty('type', 'EditLessonEvent.initializeEditLesson'));
   }
 
   @override
@@ -284,15 +291,18 @@ abstract class InitializeEditLesson implements EditLessonEvent {
 
 /// @nodoc
 abstract class $MastersUpdatedCopyWith<$Res> {
-  factory $MastersUpdatedCopyWith(MastersUpdated value, $Res Function(MastersUpdated) then) =
+  factory $MastersUpdatedCopyWith(
+          MastersUpdated value, $Res Function(MastersUpdated) then) =
       _$MastersUpdatedCopyWithImpl<$Res>;
   $Res call({List<Master> masters});
 }
 
 /// @nodoc
-class _$MastersUpdatedCopyWithImpl<$Res> extends _$EditLessonEventCopyWithImpl<$Res>
+class _$MastersUpdatedCopyWithImpl<$Res>
+    extends _$EditLessonEventCopyWithImpl<$Res>
     implements $MastersUpdatedCopyWith<$Res> {
-  _$MastersUpdatedCopyWithImpl(MastersUpdated _value, $Res Function(MastersUpdated) _then)
+  _$MastersUpdatedCopyWithImpl(
+      MastersUpdated _value, $Res Function(MastersUpdated) _then)
       : super(_value, (v) => _then(v as MastersUpdated));
 
   @override
@@ -337,7 +347,8 @@ class _$MastersUpdated with DiagnosticableTreeMixin implements MastersUpdated {
   }
 
   @override
-  int get hashCode => runtimeType.hashCode ^ const DeepCollectionEquality().hash(masters);
+  int get hashCode =>
+      runtimeType.hashCode ^ const DeepCollectionEquality().hash(masters);
 
   @override
   $MastersUpdatedCopyWith<MastersUpdated> get copyWith =>
@@ -437,7 +448,8 @@ class _$MastersUpdated with DiagnosticableTreeMixin implements MastersUpdated {
 }
 
 abstract class MastersUpdated implements EditLessonEvent {
-  const factory MastersUpdated({@required List<Master> masters}) = _$MastersUpdated;
+  const factory MastersUpdated({@required List<Master> masters}) =
+      _$MastersUpdated;
 
   List<Master> get masters;
   $MastersUpdatedCopyWith<MastersUpdated> get copyWith;
@@ -445,14 +457,17 @@ abstract class MastersUpdated implements EditLessonEvent {
 
 /// @nodoc
 abstract class $RetrieveMastersCopyWith<$Res> {
-  factory $RetrieveMastersCopyWith(RetrieveMasters value, $Res Function(RetrieveMasters) then) =
+  factory $RetrieveMastersCopyWith(
+          RetrieveMasters value, $Res Function(RetrieveMasters) then) =
       _$RetrieveMastersCopyWithImpl<$Res>;
 }
 
 /// @nodoc
-class _$RetrieveMastersCopyWithImpl<$Res> extends _$EditLessonEventCopyWithImpl<$Res>
+class _$RetrieveMastersCopyWithImpl<$Res>
+    extends _$EditLessonEventCopyWithImpl<$Res>
     implements $RetrieveMastersCopyWith<$Res> {
-  _$RetrieveMastersCopyWithImpl(RetrieveMasters _value, $Res Function(RetrieveMasters) _then)
+  _$RetrieveMastersCopyWithImpl(
+      RetrieveMasters _value, $Res Function(RetrieveMasters) _then)
       : super(_value, (v) => _then(v as RetrieveMasters));
 
   @override
@@ -460,7 +475,9 @@ class _$RetrieveMastersCopyWithImpl<$Res> extends _$EditLessonEventCopyWithImpl<
 }
 
 /// @nodoc
-class _$RetrieveMasters with DiagnosticableTreeMixin implements RetrieveMasters {
+class _$RetrieveMasters
+    with DiagnosticableTreeMixin
+    implements RetrieveMasters {
   const _$RetrieveMasters();
 
   @override
@@ -471,7 +488,8 @@ class _$RetrieveMasters with DiagnosticableTreeMixin implements RetrieveMasters 
   @override
   void debugFillProperties(DiagnosticPropertiesBuilder properties) {
     super.debugFillProperties(properties);
-    properties..add(DiagnosticsProperty('type', 'EditLessonEvent.retrieveMasters'));
+    properties
+      ..add(DiagnosticsProperty('type', 'EditLessonEvent.retrieveMasters'));
   }
 
   @override
@@ -581,15 +599,18 @@ abstract class RetrieveMasters implements EditLessonEvent {
 
 /// @nodoc
 abstract class $UpdateTimeStartCopyWith<$Res> {
-  factory $UpdateTimeStartCopyWith(UpdateTimeStart value, $Res Function(UpdateTimeStart) then) =
+  factory $UpdateTimeStartCopyWith(
+          UpdateTimeStart value, $Res Function(UpdateTimeStart) then) =
       _$UpdateTimeStartCopyWithImpl<$Res>;
   $Res call({String newTimeStart});
 }
 
 /// @nodoc
-class _$UpdateTimeStartCopyWithImpl<$Res> extends _$EditLessonEventCopyWithImpl<$Res>
+class _$UpdateTimeStartCopyWithImpl<$Res>
+    extends _$EditLessonEventCopyWithImpl<$Res>
     implements $UpdateTimeStartCopyWith<$Res> {
-  _$UpdateTimeStartCopyWithImpl(UpdateTimeStart _value, $Res Function(UpdateTimeStart) _then)
+  _$UpdateTimeStartCopyWithImpl(
+      UpdateTimeStart _value, $Res Function(UpdateTimeStart) _then)
       : super(_value, (v) => _then(v as UpdateTimeStart));
 
   @override
@@ -600,14 +621,19 @@ class _$UpdateTimeStartCopyWithImpl<$Res> extends _$EditLessonEventCopyWithImpl<
     Object newTimeStart = freezed,
   }) {
     return _then(UpdateTimeStart(
-      newTimeStart: newTimeStart == freezed ? _value.newTimeStart : newTimeStart as String,
+      newTimeStart: newTimeStart == freezed
+          ? _value.newTimeStart
+          : newTimeStart as String,
     ));
   }
 }
 
 /// @nodoc
-class _$UpdateTimeStart with DiagnosticableTreeMixin implements UpdateTimeStart {
-  const _$UpdateTimeStart({@required this.newTimeStart}) : assert(newTimeStart != null);
+class _$UpdateTimeStart
+    with DiagnosticableTreeMixin
+    implements UpdateTimeStart {
+  const _$UpdateTimeStart({@required this.newTimeStart})
+      : assert(newTimeStart != null);
 
   @override
   final String newTimeStart;
@@ -630,11 +656,13 @@ class _$UpdateTimeStart with DiagnosticableTreeMixin implements UpdateTimeStart 
     return identical(this, other) ||
         (other is UpdateTimeStart &&
             (identical(other.newTimeStart, newTimeStart) ||
-                const DeepCollectionEquality().equals(other.newTimeStart, newTimeStart)));
+                const DeepCollectionEquality()
+                    .equals(other.newTimeStart, newTimeStart)));
   }
 
   @override
-  int get hashCode => runtimeType.hashCode ^ const DeepCollectionEquality().hash(newTimeStart);
+  int get hashCode =>
+      runtimeType.hashCode ^ const DeepCollectionEquality().hash(newTimeStart);
 
   @override
   $UpdateTimeStartCopyWith<UpdateTimeStart> get copyWith =>
@@ -734,7 +762,8 @@ class _$UpdateTimeStart with DiagnosticableTreeMixin implements UpdateTimeStart 
 }
 
 abstract class UpdateTimeStart implements EditLessonEvent {
-  const factory UpdateTimeStart({@required String newTimeStart}) = _$UpdateTimeStart;
+  const factory UpdateTimeStart({@required String newTimeStart}) =
+      _$UpdateTimeStart;
 
   String get newTimeStart;
   $UpdateTimeStartCopyWith<UpdateTimeStart> get copyWith;
@@ -742,15 +771,18 @@ abstract class UpdateTimeStart implements EditLessonEvent {
 
 /// @nodoc
 abstract class $UpdateTimeEndCopyWith<$Res> {
-  factory $UpdateTimeEndCopyWith(UpdateTimeEnd value, $Res Function(UpdateTimeEnd) then) =
+  factory $UpdateTimeEndCopyWith(
+          UpdateTimeEnd value, $Res Function(UpdateTimeEnd) then) =
       _$UpdateTimeEndCopyWithImpl<$Res>;
   $Res call({String newTimeEnd});
 }
 
 /// @nodoc
-class _$UpdateTimeEndCopyWithImpl<$Res> extends _$EditLessonEventCopyWithImpl<$Res>
+class _$UpdateTimeEndCopyWithImpl<$Res>
+    extends _$EditLessonEventCopyWithImpl<$Res>
     implements $UpdateTimeEndCopyWith<$Res> {
-  _$UpdateTimeEndCopyWithImpl(UpdateTimeEnd _value, $Res Function(UpdateTimeEnd) _then)
+  _$UpdateTimeEndCopyWithImpl(
+      UpdateTimeEnd _value, $Res Function(UpdateTimeEnd) _then)
       : super(_value, (v) => _then(v as UpdateTimeEnd));
 
   @override
@@ -761,14 +793,16 @@ class _$UpdateTimeEndCopyWithImpl<$Res> extends _$EditLessonEventCopyWithImpl<$R
     Object newTimeEnd = freezed,
   }) {
     return _then(UpdateTimeEnd(
-      newTimeEnd: newTimeEnd == freezed ? _value.newTimeEnd : newTimeEnd as String,
+      newTimeEnd:
+          newTimeEnd == freezed ? _value.newTimeEnd : newTimeEnd as String,
     ));
   }
 }
 
 /// @nodoc
 class _$UpdateTimeEnd with DiagnosticableTreeMixin implements UpdateTimeEnd {
-  const _$UpdateTimeEnd({@required this.newTimeEnd}) : assert(newTimeEnd != null);
+  const _$UpdateTimeEnd({@required this.newTimeEnd})
+      : assert(newTimeEnd != null);
 
   @override
   final String newTimeEnd;
@@ -791,11 +825,13 @@ class _$UpdateTimeEnd with DiagnosticableTreeMixin implements UpdateTimeEnd {
     return identical(this, other) ||
         (other is UpdateTimeEnd &&
             (identical(other.newTimeEnd, newTimeEnd) ||
-                const DeepCollectionEquality().equals(other.newTimeEnd, newTimeEnd)));
+                const DeepCollectionEquality()
+                    .equals(other.newTimeEnd, newTimeEnd)));
   }
 
   @override
-  int get hashCode => runtimeType.hashCode ^ const DeepCollectionEquality().hash(newTimeEnd);
+  int get hashCode =>
+      runtimeType.hashCode ^ const DeepCollectionEquality().hash(newTimeEnd);
 
   @override
   $UpdateTimeEndCopyWith<UpdateTimeEnd> get copyWith =>
@@ -903,7 +939,8 @@ abstract class UpdateTimeEnd implements EditLessonEvent {
 
 /// @nodoc
 abstract class $UpdateNameCopyWith<$Res> {
-  factory $UpdateNameCopyWith(UpdateName value, $Res Function(UpdateName) then) =
+  factory $UpdateNameCopyWith(
+          UpdateName value, $Res Function(UpdateName) then) =
       _$UpdateNameCopyWithImpl<$Res>;
   $Res call({String newName});
 }
@@ -956,7 +993,8 @@ class _$UpdateName with DiagnosticableTreeMixin implements UpdateName {
   }
 
   @override
-  int get hashCode => runtimeType.hashCode ^ const DeepCollectionEquality().hash(newName);
+  int get hashCode =>
+      runtimeType.hashCode ^ const DeepCollectionEquality().hash(newName);
 
   @override
   $UpdateNameCopyWith<UpdateName> get copyWith =>
@@ -1064,15 +1102,18 @@ abstract class UpdateName implements EditLessonEvent {
 
 /// @nodoc
 abstract class $UpdateCapacityCopyWith<$Res> {
-  factory $UpdateCapacityCopyWith(UpdateCapacity value, $Res Function(UpdateCapacity) then) =
+  factory $UpdateCapacityCopyWith(
+          UpdateCapacity value, $Res Function(UpdateCapacity) then) =
       _$UpdateCapacityCopyWithImpl<$Res>;
   $Res call({int newCapacity});
 }
 
 /// @nodoc
-class _$UpdateCapacityCopyWithImpl<$Res> extends _$EditLessonEventCopyWithImpl<$Res>
+class _$UpdateCapacityCopyWithImpl<$Res>
+    extends _$EditLessonEventCopyWithImpl<$Res>
     implements $UpdateCapacityCopyWith<$Res> {
-  _$UpdateCapacityCopyWithImpl(UpdateCapacity _value, $Res Function(UpdateCapacity) _then)
+  _$UpdateCapacityCopyWithImpl(
+      UpdateCapacity _value, $Res Function(UpdateCapacity) _then)
       : super(_value, (v) => _then(v as UpdateCapacity));
 
   @override
@@ -1083,14 +1124,16 @@ class _$UpdateCapacityCopyWithImpl<$Res> extends _$EditLessonEventCopyWithImpl<$
     Object newCapacity = freezed,
   }) {
     return _then(UpdateCapacity(
-      newCapacity: newCapacity == freezed ? _value.newCapacity : newCapacity as int,
+      newCapacity:
+          newCapacity == freezed ? _value.newCapacity : newCapacity as int,
     ));
   }
 }
 
 /// @nodoc
 class _$UpdateCapacity with DiagnosticableTreeMixin implements UpdateCapacity {
-  const _$UpdateCapacity({@required this.newCapacity}) : assert(newCapacity != null);
+  const _$UpdateCapacity({@required this.newCapacity})
+      : assert(newCapacity != null);
 
   @override
   final int newCapacity;
@@ -1113,11 +1156,13 @@ class _$UpdateCapacity with DiagnosticableTreeMixin implements UpdateCapacity {
     return identical(this, other) ||
         (other is UpdateCapacity &&
             (identical(other.newCapacity, newCapacity) ||
-                const DeepCollectionEquality().equals(other.newCapacity, newCapacity)));
+                const DeepCollectionEquality()
+                    .equals(other.newCapacity, newCapacity)));
   }
 
   @override
-  int get hashCode => runtimeType.hashCode ^ const DeepCollectionEquality().hash(newCapacity);
+  int get hashCode =>
+      runtimeType.hashCode ^ const DeepCollectionEquality().hash(newCapacity);
 
   @override
   $UpdateCapacityCopyWith<UpdateCapacity> get copyWith =>
@@ -1225,14 +1270,17 @@ abstract class UpdateCapacity implements EditLessonEvent {
 
 /// @nodoc
 abstract class $UpdateImageUrlCopyWith<$Res> {
-  factory $UpdateImageUrlCopyWith(UpdateImageUrl value, $Res Function(UpdateImageUrl) then) =
+  factory $UpdateImageUrlCopyWith(
+          UpdateImageUrl value, $Res Function(UpdateImageUrl) then) =
       _$UpdateImageUrlCopyWithImpl<$Res>;
 }
 
 /// @nodoc
-class _$UpdateImageUrlCopyWithImpl<$Res> extends _$EditLessonEventCopyWithImpl<$Res>
+class _$UpdateImageUrlCopyWithImpl<$Res>
+    extends _$EditLessonEventCopyWithImpl<$Res>
     implements $UpdateImageUrlCopyWith<$Res> {
-  _$UpdateImageUrlCopyWithImpl(UpdateImageUrl _value, $Res Function(UpdateImageUrl) _then)
+  _$UpdateImageUrlCopyWithImpl(
+      UpdateImageUrl _value, $Res Function(UpdateImageUrl) _then)
       : super(_value, (v) => _then(v as UpdateImageUrl));
 
   @override
@@ -1251,7 +1299,8 @@ class _$UpdateImageUrl with DiagnosticableTreeMixin implements UpdateImageUrl {
   @override
   void debugFillProperties(DiagnosticPropertiesBuilder properties) {
     super.debugFillProperties(properties);
-    properties..add(DiagnosticsProperty('type', 'EditLessonEvent.updateImageUrl'));
+    properties
+      ..add(DiagnosticsProperty('type', 'EditLessonEvent.updateImageUrl'));
   }
 
   @override
@@ -1361,15 +1410,18 @@ abstract class UpdateImageUrl implements EditLessonEvent {
 
 /// @nodoc
 abstract class $UpdateMastersCopyWith<$Res> {
-  factory $UpdateMastersCopyWith(UpdateMasters value, $Res Function(UpdateMasters) then) =
+  factory $UpdateMastersCopyWith(
+          UpdateMasters value, $Res Function(UpdateMasters) then) =
       _$UpdateMastersCopyWithImpl<$Res>;
   $Res call({List<Master> newMasters});
 }
 
 /// @nodoc
-class _$UpdateMastersCopyWithImpl<$Res> extends _$EditLessonEventCopyWithImpl<$Res>
+class _$UpdateMastersCopyWithImpl<$Res>
+    extends _$EditLessonEventCopyWithImpl<$Res>
     implements $UpdateMastersCopyWith<$Res> {
-  _$UpdateMastersCopyWithImpl(UpdateMasters _value, $Res Function(UpdateMasters) _then)
+  _$UpdateMastersCopyWithImpl(
+      UpdateMasters _value, $Res Function(UpdateMasters) _then)
       : super(_value, (v) => _then(v as UpdateMasters));
 
   @override
@@ -1380,14 +1432,17 @@ class _$UpdateMastersCopyWithImpl<$Res> extends _$EditLessonEventCopyWithImpl<$R
     Object newMasters = freezed,
   }) {
     return _then(UpdateMasters(
-      newMasters: newMasters == freezed ? _value.newMasters : newMasters as List<Master>,
+      newMasters: newMasters == freezed
+          ? _value.newMasters
+          : newMasters as List<Master>,
     ));
   }
 }
 
 /// @nodoc
 class _$UpdateMasters with DiagnosticableTreeMixin implements UpdateMasters {
-  const _$UpdateMasters({@required this.newMasters}) : assert(newMasters != null);
+  const _$UpdateMasters({@required this.newMasters})
+      : assert(newMasters != null);
 
   @override
   final List<Master> newMasters;
@@ -1410,11 +1465,13 @@ class _$UpdateMasters with DiagnosticableTreeMixin implements UpdateMasters {
     return identical(this, other) ||
         (other is UpdateMasters &&
             (identical(other.newMasters, newMasters) ||
-                const DeepCollectionEquality().equals(other.newMasters, newMasters)));
+                const DeepCollectionEquality()
+                    .equals(other.newMasters, newMasters)));
   }
 
   @override
-  int get hashCode => runtimeType.hashCode ^ const DeepCollectionEquality().hash(newMasters);
+  int get hashCode =>
+      runtimeType.hashCode ^ const DeepCollectionEquality().hash(newMasters);
 
   @override
   $UpdateMastersCopyWith<UpdateMasters> get copyWith =>
@@ -1514,7 +1571,8 @@ class _$UpdateMasters with DiagnosticableTreeMixin implements UpdateMasters {
 }
 
 abstract class UpdateMasters implements EditLessonEvent {
-  const factory UpdateMasters({@required List<Master> newMasters}) = _$UpdateMasters;
+  const factory UpdateMasters({@required List<Master> newMasters}) =
+      _$UpdateMasters;
 
   List<Master> get newMasters;
   $UpdateMastersCopyWith<UpdateMasters> get copyWith;
