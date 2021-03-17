@@ -42,7 +42,7 @@ class GymSelectionTile extends StatelessWidget {
                 Row(
                   children: [
                     RoundedImage(
-                      userImage: gymLoaded.gym.imageUrl,
+                      url: gymLoaded.gym.imageUrl,
                     ),
                     SizedBox(
                       width: 10,

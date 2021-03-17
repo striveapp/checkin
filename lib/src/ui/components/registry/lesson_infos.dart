@@ -38,7 +38,7 @@ class LessonInfos extends StatelessWidget {
                           currentLesson: currentLesson,
                         )
                       : RoundedImage(
-                          userImage: currentLesson.imageUrl,
+                          url: currentLesson.imageUrl,
                           isGrayscale: currentLesson.isClosed,
                         ),
                 ),

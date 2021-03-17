@@ -25,7 +25,7 @@ class ProfileInfos extends StatelessWidget {
               profileLoaded: (ProfileLoaded state) => Row(
                     children: <Widget>[
                       RoundedImage(
-                        userImage: state.profileUser.imageUrl,
+                        url: state.profileUser.imageUrl,
                         width: 30,
                         height: 30,
                       ),

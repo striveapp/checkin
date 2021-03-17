@@ -41,7 +41,7 @@ class PodiumProfile extends StatelessWidget {
                       ),
                       child: RoundedImage(
                         key: Key("podium_profile_${position}_$profileEmail"),
-                        userImage: state.profileUser.imageUrl,
+                        url: state.profileUser.imageUrl,
                         width: 90,
                         height: 90,
                       ),
@@ -75,7 +75,7 @@ class PodiumProfile extends StatelessWidget {
                         borderRadius: BorderRadius.all(Radius.circular(50)),
                       ),
                       child: RoundedImage(
-                        userImage: state.profileUser.imageUrl,
+                        url: state.profileUser.imageUrl,
                         width: 60,
                         height: 60,
                       ),

@@ -45,7 +45,7 @@ class BaseAppBar extends StatelessWidget implements PreferredSizeWidget {
                       Navigator.of(context).pushNamed('account');
                     },
                     icon: RoundedImage(
-                      userImage: currentUser.imageUrl,
+                      url: currentUser.imageUrl,
                       width: 30,
                       height: 30,
                     )),

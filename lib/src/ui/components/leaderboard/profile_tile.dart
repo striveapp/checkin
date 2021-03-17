@@ -41,7 +41,7 @@ class ProfileTile extends StatelessWidget {
                   title: Row(
                     children: <Widget>[
                       RoundedImage(
-                        userImage: state.profileUser.imageUrl,
+                        url: state.profileUser.imageUrl,
                         width: 40,
                         height: 40,
                       ),

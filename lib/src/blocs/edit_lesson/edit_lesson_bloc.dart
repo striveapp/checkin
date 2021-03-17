@@ -2,7 +2,6 @@ import 'dart:async';
 import 'dart:io';
 
 import 'package:bloc/bloc.dart';
-import 'package:checkin/src/logging/logger.dart';
 import 'package:checkin/src/models/lesson.dart';
 import 'package:checkin/src/repositories/image_repository.dart';
 import 'package:checkin/src/repositories/lesson_repository.dart';
@@ -33,21 +32,14 @@ class EditLessonBloc extends Bloc<EditLessonEvent, EditLessonState> {
   Stream<EditLessonState> mapEventToState(
     EditLessonEvent event,
   ) async* {
-    // TODO:
-    // 1. reimplement all the update methods for the lesson here + tests [DONE]
-    // 4. replace in the UI the update methods using the ones from this bloc instead [DONE]
-    // 2. implement retrieve masters event and MastersLoaded state + tests [DONE]
-    // 3. handle errors from the repository
-    // 5. use in the UI the new method to retrieve masters [DONE]
-
     if (event is RetrieveMasters) {
-      try {
-        yield* await userRepository
-            .retrieveAvailableMasters(gymId)
-            .map((masters) => EditLessonState.mastersLoaded(masters: masters));
-      } catch (e, st) {
-        Logger.log.d("Error out", e, st);
-      }
+      userRepository.retrieveAvailableMasters(gymId).listen((masters) {
+        add(MastersUpdated(masters: masters));
+      });
+    }
+
+    if (event is MastersUpdated) {
+      yield EditLessonState.mastersLoaded(masters: event.masters);
     }
 
     if (event is UpdateTimeStart) {

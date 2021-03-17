@@ -40,7 +40,7 @@ class AttendeesPreview extends StatelessWidget {
                                     borderRadius: BorderRadius.all(Radius.circular(50)),
                                   ),
                                   child: RoundedImage(
-                                    userImage: attendee.imageUrl,
+                                    url: attendee.imageUrl,
                                     width: MediaQuery.of(context).size.width * 0.06,
                                     height: MediaQuery.of(context).size.width * 0.06,
                                   ),
@@ -52,7 +52,7 @@ class AttendeesPreview extends StatelessWidget {
                                 )
                               ])
                         : RoundedImage(
-                            userImage: attendee.imageUrl,
+                            url: attendee.imageUrl,
                             width: MediaQuery.of(context).size.width * 0.06,
                             height: MediaQuery.of(context).size.width * 0.06,
                           ),

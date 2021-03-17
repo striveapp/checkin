@@ -2,7 +2,7 @@ import 'package:cached_network_image/cached_network_image.dart';
 import 'package:flutter/material.dart';
 
 class RoundedImage extends StatelessWidget {
-  final String userImage;
+  final String url;
   final double circularRadius;
   final double width;
   final double height;
@@ -11,7 +11,7 @@ class RoundedImage extends StatelessWidget {
 
   RoundedImage({
     Key key,
-    @required this.userImage,
+    @required this.url,
     this.circularRadius = 50,
     this.width = 50,
     this.height = 50,
@@ -33,7 +33,7 @@ class RoundedImage extends StatelessWidget {
         child: Builder(
           builder: (BuildContext context) {
             var cachedNetworkImage = CachedNetworkImage(
-              imageUrl: userImage,
+              imageUrl: url,
               width: width,
               height: height,
               fit: BoxFit.fill,

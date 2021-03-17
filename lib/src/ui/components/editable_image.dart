@@ -22,7 +22,7 @@ class EditableImage extends StatelessWidget {
           clipBehavior: Clip.none,
           children: [
             RoundedImage(
-              userImage: imageUrl,
+              url: imageUrl,
               isGrayscale: isGrayscale,
             ),
             if (!isGrayscale)

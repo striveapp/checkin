@@ -19,10 +19,10 @@ class AttendeeThumbnail extends StatelessWidget {
         builder: (BuildContext context, GraduationState state) {
       return state.maybeWhen(
         readyForGraduation: (_) => RoundedImage(
-          userImage: attendeeImage,
+          url: attendeeImage,
           withBorder: showGraduationIndication,
         ),
-        orElse: () => RoundedImage(userImage: attendeeImage),
+        orElse: () => RoundedImage(url: attendeeImage),
       );
     });
   }

@@ -30,7 +30,7 @@ class AttendeeInfoCard extends StatelessWidget {
             Row(
               mainAxisAlignment: MainAxisAlignment.spaceBetween,
               children: <Widget>[
-                Flexible(flex: 1, child: RoundedImage(userImage: attendee.imageUrl)),
+                Flexible(flex: 1, child: RoundedImage(url: attendee.imageUrl)),
                 SizedBox(
                   width: 10,
                 ),

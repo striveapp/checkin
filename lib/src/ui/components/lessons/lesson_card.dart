@@ -50,7 +50,7 @@ class LessonCard extends StatelessWidget {
                         Column(
                           children: [
                             RoundedImage(
-                              userImage: lesson.imageUrl,
+                              url: lesson.imageUrl,
                             ),
                             if (lesson.lessonConfig != null)
                               Padding(

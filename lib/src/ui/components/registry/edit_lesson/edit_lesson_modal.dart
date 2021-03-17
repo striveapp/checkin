@@ -1,12 +1,10 @@
 import 'package:checkin/src/blocs/edit_lesson/bloc.dart';
 import 'package:checkin/src/localization/localization.dart';
-import 'package:checkin/src/logging/logger.dart';
 import 'package:checkin/src/models/lesson.dart';
-import 'package:checkin/src/models/master.dart';
-import 'package:checkin/src/ui/components/empty_widget.dart';
 import 'package:checkin/src/ui/components/registry/edit_lesson/edit_lesson_capacity.dart';
 import 'package:checkin/src/ui/components/registry/edit_lesson/edit_lesson_name.dart';
 import 'package:checkin/src/ui/components/registry/edit_lesson/edit_lesson_time.dart';
+import 'package:checkin/src/ui/components/registry/edit_lesson/masters_selection.dart';
 import 'package:checkin/src/util/debug_util.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
@@ -34,8 +32,9 @@ class EditLessonModal extends StatelessWidget {
           ),
         ),
         Padding(
-          padding: const EdgeInsets.only(left: 40.0, right: 40, top: 10, bottom: 30),
+          padding: const EdgeInsets.only(left: 40.0, right: 40, bottom: 30),
           child: Column(
+            crossAxisAlignment: CrossAxisAlignment.start,
             children: [
               EditLessonTime(
                   text: start.i18n,
@@ -73,35 +72,7 @@ class EditLessonModal extends StatelessWidget {
               SizedBox(
                 height: 20,
               ),
-              if (isInDebugMode)
-                BlocBuilder<EditLessonBloc, EditLessonState>(
-                    builder: (BuildContext context, EditLessonState state) {
-                  Logger.log.i("EditLessonState: $state");
-                  return state.maybeWhen(
-                    mastersLoaded: (List<Master> masters) {
-                      Logger.log.i("Showing masters: $masters");
-                      return Column(
-                        children: masters.map((master) => Text(master.name)).toList(),
-                      );
-                    },
-                    orElse: () => EmptyWidget(),
-                  );
-                }),
-              ElevatedButton(
-                  onPressed: () {
-                    var newMasters = [
-                      Master(
-                        name: "stoc",
-                        imageUrl:
-                            "https://cdn.shopify.com/s/files/1/0476/1541/0334/products/coeurderoserouge_720x.jpg?v=1603622253",
-                        email: "stoc@zzo.com",
-                      )
-                    ];
-                    context
-                        .read<EditLessonBloc>()
-                        .add(EditLessonEvent.updateMasters(newMasters: newMasters));
-                  },
-                  child: Text("update masters"))
+              if (isInDebugMode) MastersSelection(masters: lesson.masters),
             ],
           ),
         ),

@@ -31,7 +31,7 @@ class ProfileCard extends StatelessWidget {
                 profileLoaded: (ProfileLoaded state) => Row(
                       children: <Widget>[
                         //TODO: this is disabled temporarily for the owner to prevent other bugs to happen [https://trello.com/c/AsSz0amj]
-                        if (isOwner) RoundedImage(userImage: state.profileUser.imageUrl),
+                        if (isOwner) RoundedImage(url: state.profileUser.imageUrl),
                         if (!isOwner)
                           EditableImage(
                             imageUrl: state.profileUser.imageUrl,
@@ -81,9 +81,8 @@ class ProfileCard extends StatelessWidget {
                                 validator: _validateName,
                                 onFieldSubmitted: (String value) {
                                   if (_formKey.currentState.validate()) {
-                                    context
-                                        .read<ProfileBloc>()
-                                        .add(UpdateName(userEmail: state.profileUser.email, newName: value.trim()));
+                                    context.read<ProfileBloc>().add(UpdateName(
+                                        userEmail: state.profileUser.email, newName: value.trim()));
                                   }
                                 },
                               ),
