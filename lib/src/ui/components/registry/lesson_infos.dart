@@ -2,7 +2,6 @@ import 'package:checkin/src/blocs/edit_lesson/bloc.dart';
 import 'package:checkin/src/blocs/registry/bloc.dart';
 import 'package:checkin/src/localization/localization.dart';
 import 'package:checkin/src/models/lesson.dart';
-import 'package:checkin/src/models/master.dart';
 import 'package:checkin/src/models/user.dart';
 import 'package:checkin/src/repositories/image_repository.dart';
 import 'package:checkin/src/repositories/lesson_repository.dart';
@@ -61,6 +60,7 @@ class LessonInfos extends StatelessWidget {
                                 currentLesson.isClosed ? Theme.of(context).disabledColor : null)),
                     if (currentLesson.masters.isNotEmpty)
                       Column(
+                        crossAxisAlignment: CrossAxisAlignment.start,
                         children: [
                           Text(
                             currentLesson.masters.first.name,
@@ -69,12 +69,6 @@ class LessonInfos extends StatelessWidget {
                                     ? Theme.of(context).disabledColor
                                     : null),
                           ),
-                          if (currentLesson.masters.length > 1)
-                            Text("${and.i18n} ${_getOtherMasterNames(currentLesson.masters)}",
-                                style: Theme.of(context).textTheme.headline3.apply(
-                                    color: currentLesson.isClosed
-                                        ? Theme.of(context).disabledColor
-                                        : null)),
                         ],
                       ),
                   ],
@@ -98,9 +92,6 @@ class LessonInfos extends StatelessWidget {
       return "${timeStart} - ${timeEnd}";
     }
   }
-
-  String _getOtherMasterNames(List<Master> masters) =>
-      masters.skip(1).map((master) => master.name).join(", ");
 }
 
 class EditableLessonImage extends StatelessWidget {
