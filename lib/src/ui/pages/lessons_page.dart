@@ -1,8 +1,10 @@
 import 'package:checkin/src/blocs/lessons/bloc.dart';
 import 'package:checkin/src/blocs/user/bloc.dart';
+import 'package:checkin/src/models/user.dart';
 import 'package:checkin/src/repositories/holidays_repository.dart';
 import 'package:checkin/src/repositories/lesson_repository.dart';
 import 'package:checkin/src/repositories/user_repository.dart';
+import 'package:checkin/src/ui/components/lessons/add_lesson_fab.dart';
 import 'package:checkin/src/ui/components/lessons/gym_app_bar.dart';
 import 'package:checkin/src/ui/components/lessons/lesson_card_list.dart';
 import 'package:checkin/src/ui/components/lessons/lesson_filter_fab.dart';
@@ -13,10 +15,10 @@ import 'package:flutter/widgets.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 
 class LessonsPage extends StatelessWidget {
-  final String gymId;
+  final User currentUser;
   static const String classes = 'Classes';
 
-  const LessonsPage({Key key, this.gymId}) : super(key: key);
+  const LessonsPage({Key key, this.currentUser}) : super(key: key);
 
   @override
   Widget build(BuildContext context) {
@@ -24,22 +26,16 @@ class LessonsPage extends StatelessWidget {
       providers: [
         BlocProvider<LessonsBloc>(
           create: (BuildContext context) => LessonsBloc(
-              lessonRepository: context.read<LessonRepository>(),
-              userRepository: context.read<UserRepository>(),
-              dateUtil: context.read(),
-              gymId: gymId)
-            ..add(InitializeLessons()),
+            lessonRepository: context.read<LessonRepository>(),
+            userRepository: context.read<UserRepository>(),
+            dateUtil: context.read(),
+            gymId: currentUser.selectedGymId,
+          )..add(InitializeLessons()),
         )
       ],
       child: Scaffold(
           appBar: GymAppBar(),
-          // floatingActionButton: FloatingActionButton(
-          //   child: Icon(Icons.add),
-          //   onPressed: () {
-          //     LessonInstancesProvider().createLesson("test", "2021-01-11");
-          //   },
-          // ),
-          floatingActionButton: LessonsFilterFab(),
+          floatingActionButton: currentUser.isOwner ? AddLessonFab() : LessonsFilterFab(),
           body: Padding(
             padding: const EdgeInsets.only(top: 15),
             child: Container(

@@ -75,7 +75,7 @@ class HomePage extends StatelessWidget {
                     physics: NeverScrollableScrollPhysics(),
                     children: [
                       LessonsPage(
-                        gymId: state.currentUser.selectedGymId,
+                        currentUser: state.currentUser,
                       ),
                       StatsPage(
                         userEmail: state.currentUser.email,
