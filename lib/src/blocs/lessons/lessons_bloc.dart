@@ -13,22 +13,22 @@ import 'package:meta/meta.dart';
 import 'bloc.dart';
 
 class LessonsBloc extends Bloc<LessonsEvent, LessonsState> {
+  final String gymId;
   final LessonRepository lessonRepository;
   final UserRepository userRepository;
   final DateUtil dateUtil;
 
   StreamSubscription<List<Lesson>> lessonsSub;
   StreamSubscription<User> _userSub;
-  String gymId;
 
   LessonsBloc({
+    @required this.gymId,
     @required this.lessonRepository,
     @required this.userRepository,
     @required this.dateUtil,
   }) : super(LessonsUninitialized());
 
   void _onUserChanged(user) {
-    gymId = user.selectedGymId;
     lessonsSub?.cancel();
     DateTime initialSelectedDay = dateUtil.getInitialSelectedDayByGym(gymId);
 
@@ -87,6 +87,11 @@ class LessonsBloc extends Bloc<LessonsEvent, LessonsState> {
             lessons: lessons,
             selectedFilterList: selectedFilterList));
       });
+    }
+
+    if (event is CreateLesson) {
+      var formattedDate = DateFormat('yyyy-MM-dd').format(event.selectedDay);
+      await lessonRepository.createLesson(gymId, formattedDate);
     }
   }
 

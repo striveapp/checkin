@@ -74,7 +74,9 @@ class HomePage extends StatelessWidget {
                   body: TabBarView(
                     physics: NeverScrollableScrollPhysics(),
                     children: [
-                      LessonsPage(),
+                      LessonsPage(
+                        gymId: state.currentUser.selectedGymId,
+                      ),
                       StatsPage(
                         userEmail: state.currentUser.email,
                       ),

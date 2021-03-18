@@ -1,5 +1,4 @@
 import 'package:checkin/src/models/lesson.dart';
-
 import 'package:flutter/foundation.dart';
 import 'package:freezed_annotation/freezed_annotation.dart';
 import 'package:meta/meta.dart';
@@ -15,4 +14,5 @@ abstract class LessonsEvent with _$LessonsEvent {
       @Default([]) List<String> selectedFilterList}) = LessonsUpdated;
   const factory LessonsEvent.loadLessons({DateTime selectedDay, List<String> selectedFilterList}) =
       LoadLessons;
+  const factory LessonsEvent.createLesson({DateTime selectedDay}) = CreateLesson;
 }

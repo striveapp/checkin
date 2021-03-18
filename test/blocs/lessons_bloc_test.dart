@@ -53,6 +53,7 @@ void main() {
     group("initial state", () {
       blocTest("is LessonsUninitialized",
           build: () => LessonsBloc(
+                gymId: fakeUser.selectedGymId,
                 userRepository: mockUserRepository,
                 lessonRepository: mockLessonRepository,
                 dateUtil: mockDateUtil,
@@ -82,6 +83,7 @@ void main() {
       blocTest(
         "should listen on lessons for current day",
         build: () => LessonsBloc(
+          gymId: fakeUser.selectedGymId,
           userRepository: mockUserRepository,
           lessonRepository: mockLessonRepository,
           dateUtil: mockDateUtil,
@@ -110,6 +112,7 @@ void main() {
         blocTest(
           "should emit LessonsLoadedEmpty",
           build: () => LessonsBloc(
+            gymId: fakeUser.selectedGymId,
             userRepository: mockUserRepository,
             lessonRepository: mockLessonRepository,
             dateUtil: mockDateUtil,
@@ -153,6 +156,7 @@ void main() {
         blocTest(
           "should emit LessonLoaded with lessons sorted by time",
           build: () => LessonsBloc(
+            gymId: fakeUser.selectedGymId,
             userRepository: mockUserRepository,
             lessonRepository: mockLessonRepository,
             dateUtil: mockDateUtil,
@@ -167,52 +171,81 @@ void main() {
       });
     });
 
-    group("on LoadLessons event", () {
-      DateTime selectedDay = DateTime(2020, 1, 1);
-      List<Lesson> lessons = [Lesson(timeStart: "19:00", timeEnd: "20:00")];
-      List<Lesson> newLessons = [Lesson(timeStart: "20:00", timeEnd: "21:00")];
+    group(
+      "on LoadLessons event",
+      () {
+        DateTime selectedDay = DateTime(2020, 1, 1);
+        List<Lesson> lessons = [Lesson(timeStart: "19:00", timeEnd: "20:00")];
+        List<Lesson> newLessons = [Lesson(timeStart: "20:00", timeEnd: "21:00")];
 
-      setUp(() {
-        when(mockUserRepository.getUser()).thenAnswer((realInvocation) => Stream.value(fakeUser));
-        when(mockDateUtil.getCurrentDateTime()).thenReturn(testDate);
-        when(mockDateUtil.getInitialSelectedDayByGym(fakeUser.selectedGymId)).thenReturn(testDate);
+        setUp(() {
+          when(mockUserRepository.getUser()).thenAnswer((realInvocation) => Stream.value(fakeUser));
+          when(mockDateUtil.getCurrentDateTime()).thenReturn(testDate);
+          when(mockDateUtil.getInitialSelectedDayByGym(fakeUser.selectedGymId))
+              .thenReturn(testDate);
 
-        when(mockLessonRepository.getLessonsForDay(fakeUser.selectedGymId, testDate))
-            .thenAnswer((_) {
-          return Stream<List<Lesson>>.value(lessons);
+          when(mockLessonRepository.getLessonsForDay(fakeUser.selectedGymId, testDate))
+              .thenAnswer((_) {
+            return Stream<List<Lesson>>.value(lessons);
+          });
+          when(mockLessonRepository.getLessonsForDay(fakeUser.selectedGymId, selectedDay, []))
+              .thenAnswer((_) {
+            return Stream<List<Lesson>>.value(newLessons);
+          });
         });
-        when(mockLessonRepository.getLessonsForDay(fakeUser.selectedGymId, selectedDay, []))
-            .thenAnswer((_) {
-          return Stream<List<Lesson>>.value(newLessons);
+
+        tearDown(() {
+          verify(mockUserRepository.getUser());
+          verify(mockDateUtil.getCurrentDateTime());
+          verify(mockDateUtil.getInitialSelectedDayByGym(fakeUser.selectedGymId));
+          verify(mockLessonRepository.getLessonsForDay(fakeUser.selectedGymId, testDate));
+          verify(mockLessonRepository.getLessonsForDay(fakeUser.selectedGymId, selectedDay, []));
         });
-      });
 
-      tearDown(() {
-        verify(mockUserRepository.getUser());
-        verify(mockDateUtil.getCurrentDateTime());
-        verify(mockDateUtil.getInitialSelectedDayByGym(fakeUser.selectedGymId));
-        verify(mockLessonRepository.getLessonsForDay(fakeUser.selectedGymId, testDate));
-        verify(mockLessonRepository.getLessonsForDay(fakeUser.selectedGymId, selectedDay, []));
-      });
-
-      blocTest("should load new lessons for the selected day",
-          build: () => LessonsBloc(
-                userRepository: mockUserRepository,
-                lessonRepository: mockLessonRepository,
-                dateUtil: mockDateUtil,
+        blocTest("should load new lessons for the selected day",
+            build: () => LessonsBloc(
+                  gymId: fakeUser.selectedGymId,
+                  userRepository: mockUserRepository,
+                  lessonRepository: mockLessonRepository,
+                  dateUtil: mockDateUtil,
+                ),
+            act: (bloc) {
+              bloc.add(InitializeLessons());
+              bloc.add(LoadLessons(selectedDay: selectedDay));
+            },
+            expect: [
+              LessonsLoaded(
+                selectedDay: testDate,
+                lessons: lessons,
+                nocache: testDate,
               ),
-          act: (bloc) {
-            bloc.add(InitializeLessons());
-            bloc.add(LoadLessons(selectedDay: selectedDay));
-          },
-          expect: [
-            LessonsLoaded(
-              selectedDay: testDate,
-              lessons: lessons,
-              nocache: testDate,
-            ),
-            LessonsLoaded(selectedDay: selectedDay, lessons: newLessons, nocache: testDate),
-          ]);
-    },);
+              LessonsLoaded(selectedDay: selectedDay, lessons: newLessons, nocache: testDate),
+            ]);
+      },
+    );
+
+    group("on CreateLesson event", () {
+      setUp(() {
+        when(mockLessonRepository.createLesson(fakeUser.selectedGymId, "2021-01-01"))
+            .thenAnswer((realInvocation) => null);
+      });
+
+      tearDown(() async {
+        await untilCalled(mockLessonRepository.createLesson(fakeUser.selectedGymId, "2021-01-01"));
+        verify(mockLessonRepository.createLesson(fakeUser.selectedGymId, "2021-01-01"));
+      });
+
+      blocTest(
+        "create new lesson",
+        build: () => LessonsBloc(
+          gymId: fakeUser.selectedGymId,
+          userRepository: mockUserRepository,
+          lessonRepository: mockLessonRepository,
+          dateUtil: mockDateUtil,
+        ),
+        act: (bloc) => bloc.add(CreateLesson(selectedDay: DateTime(2021, 1, 1))),
+        expect: [],
+      );
+    });
   });
 }

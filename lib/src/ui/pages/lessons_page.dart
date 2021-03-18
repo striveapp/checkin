@@ -13,7 +13,10 @@ import 'package:flutter/widgets.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 
 class LessonsPage extends StatelessWidget {
+  final String gymId;
   static const String classes = 'Classes';
+
+  const LessonsPage({Key key, this.gymId}) : super(key: key);
 
   @override
   Widget build(BuildContext context) {
@@ -21,10 +24,11 @@ class LessonsPage extends StatelessWidget {
       providers: [
         BlocProvider<LessonsBloc>(
           create: (BuildContext context) => LessonsBloc(
-            lessonRepository: context.read<LessonRepository>(),
-            userRepository: context.read<UserRepository>(),
-            dateUtil: context.read(),
-          )..add(InitializeLessons()),
+              lessonRepository: context.read<LessonRepository>(),
+              userRepository: context.read<UserRepository>(),
+              dateUtil: context.read(),
+              gymId: gymId)
+            ..add(InitializeLessons()),
         )
       ],
       child: Scaffold(
