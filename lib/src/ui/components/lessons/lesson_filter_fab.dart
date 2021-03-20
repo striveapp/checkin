@@ -15,10 +15,9 @@ class LessonsFilterFab extends StatelessWidget {
       builder: (BuildContext context, LessonsState state) {
         List<String> selectedFilterList = state.maybeMap(
             lessonsLoaded: (LessonsLoaded state) => state.selectedFilterList,
-            lessonsLoadedEmpty: (LessonsLoadedEmpty state) => state.selectedFilterList,
             orElse: () => []);
 
-        if (state is LessonsLoaded || state is LessonsLoadedEmpty) {
+        if (state is LessonsLoaded) {
           return FloatingActionButton(
             key: Key("lessonFilterFab"),
             onPressed: () async {

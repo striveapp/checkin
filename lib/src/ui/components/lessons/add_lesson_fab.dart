@@ -8,15 +8,11 @@ class AddLessonFab extends StatelessWidget {
   Widget build(BuildContext context) {
     return BlocBuilder<LessonsBloc, LessonsState>(
       builder: (BuildContext context, LessonsState state) {
-        if (state is LessonsLoaded || state is LessonsLoadedEmpty) {
+        if (state is LessonsLoaded) {
           return FloatingActionButton(
               key: Key("addLessonFab"),
               onPressed: () async {
-                if (state is LessonsLoaded) {
                   context.read<LessonsBloc>().add(CreateLesson(selectedDay: state.selectedDay));
-                } else if (state is LessonsLoadedEmpty) {
-                  context.read<LessonsBloc>().add(CreateLesson(selectedDay: state.selectedDay));
-                }
               },
               child: Icon(Icons.add));
         }

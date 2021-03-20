@@ -54,28 +54,18 @@ class LessonsBloc extends Bloc<LessonsEvent, LessonsState> {
     }
 
     if (event is LessonsUpdated) {
-      if (event.lessons.length > 0) {
-        yield LessonsLoaded(
-          lessons: _sortLessonsByTime(event.lessons),
-          selectedDay: event.selectedDay,
-          selectedFilterList: event.selectedFilterList,
-          nocache: dateUtil.getCurrentDateTime(),
-        );
-      } else {
-        yield LessonsLoadedEmpty(
-          selectedDay: event.selectedDay,
-          selectedFilterList: event.selectedFilterList,
-          nocache: dateUtil.getCurrentDateTime(),
-        );
-      }
+      yield LessonsLoaded(
+        lessons: _sortLessonsByTime(event.lessons),
+        selectedDay: event.selectedDay,
+        selectedFilterList: event.selectedFilterList,
+        nocache: dateUtil.getCurrentDateTime(),
+      );
     }
 
     if (event is LoadLessons) {
       List<String> selectedFilterList = event.selectedFilterList ??
           state.maybeMap(
-              lessonsLoadedEmpty: (LessonsLoadedEmpty state) => state.selectedFilterList,
-              lessonsLoaded: (LessonsLoaded state) => state.selectedFilterList,
-              orElse: () => []);
+              lessonsLoaded: (LessonsLoaded state) => state.selectedFilterList, orElse: () => []);
 
       lessonsSub?.cancel();
       lessonsSub = this

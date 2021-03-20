@@ -106,9 +106,6 @@ class _FilterListWidgetState extends State<FilterListWidget> {
     lessonsBloc.state.maybeMap(lessonsLoaded: (LessonsLoaded lessonsState) {
       lessonsBloc.add(LessonsEvent.loadLessons(
           selectedDay: lessonsState.selectedDay, selectedFilterList: _selectedFilterList));
-    }, lessonsLoadedEmpty: (LessonsLoadedEmpty lessonsState) {
-      lessonsBloc.add(LessonsEvent.loadLessons(
-          selectedDay: lessonsState.selectedDay, selectedFilterList: _selectedFilterList));
     }, orElse: () {
       // ignore
     });

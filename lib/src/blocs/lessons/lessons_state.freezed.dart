@@ -31,18 +31,6 @@ class _$LessonsStateTearOff {
       nocache: nocache,
     );
   }
-
-// ignore: unused_element
-  LessonsLoadedEmpty lessonsLoadedEmpty(
-      {DateTime selectedDay,
-      List<String> selectedFilterList = const [],
-      DateTime nocache}) {
-    return LessonsLoadedEmpty(
-      selectedDay: selectedDay,
-      selectedFilterList: selectedFilterList,
-      nocache: nocache,
-    );
-  }
 }
 
 /// @nodoc
@@ -57,16 +45,11 @@ mixin _$LessonsState {
     @required
         TResult lessonsLoaded(List<Lesson> lessons, DateTime selectedDay,
             List<String> selectedFilterList, DateTime nocache),
-    @required
-        TResult lessonsLoadedEmpty(DateTime selectedDay,
-            List<String> selectedFilterList, DateTime nocache),
   });
   @optionalTypeArgs
   TResult maybeWhen<TResult extends Object>({
     TResult lessonsUninitialized(),
     TResult lessonsLoaded(List<Lesson> lessons, DateTime selectedDay,
-        List<String> selectedFilterList, DateTime nocache),
-    TResult lessonsLoadedEmpty(DateTime selectedDay,
         List<String> selectedFilterList, DateTime nocache),
     @required TResult orElse(),
   });
@@ -74,13 +57,11 @@ mixin _$LessonsState {
   TResult map<TResult extends Object>({
     @required TResult lessonsUninitialized(LessonsUninitialized value),
     @required TResult lessonsLoaded(LessonsLoaded value),
-    @required TResult lessonsLoadedEmpty(LessonsLoadedEmpty value),
   });
   @optionalTypeArgs
   TResult maybeMap<TResult extends Object>({
     TResult lessonsUninitialized(LessonsUninitialized value),
     TResult lessonsLoaded(LessonsLoaded value),
-    TResult lessonsLoadedEmpty(LessonsLoadedEmpty value),
     @required TResult orElse(),
   });
 }
@@ -153,13 +134,9 @@ class _$LessonsUninitialized
     @required
         TResult lessonsLoaded(List<Lesson> lessons, DateTime selectedDay,
             List<String> selectedFilterList, DateTime nocache),
-    @required
-        TResult lessonsLoadedEmpty(DateTime selectedDay,
-            List<String> selectedFilterList, DateTime nocache),
   }) {
     assert(lessonsUninitialized != null);
     assert(lessonsLoaded != null);
-    assert(lessonsLoadedEmpty != null);
     return lessonsUninitialized();
   }
 
@@ -168,8 +145,6 @@ class _$LessonsUninitialized
   TResult maybeWhen<TResult extends Object>({
     TResult lessonsUninitialized(),
     TResult lessonsLoaded(List<Lesson> lessons, DateTime selectedDay,
-        List<String> selectedFilterList, DateTime nocache),
-    TResult lessonsLoadedEmpty(DateTime selectedDay,
         List<String> selectedFilterList, DateTime nocache),
     @required TResult orElse(),
   }) {
@@ -185,11 +160,9 @@ class _$LessonsUninitialized
   TResult map<TResult extends Object>({
     @required TResult lessonsUninitialized(LessonsUninitialized value),
     @required TResult lessonsLoaded(LessonsLoaded value),
-    @required TResult lessonsLoadedEmpty(LessonsLoadedEmpty value),
   }) {
     assert(lessonsUninitialized != null);
     assert(lessonsLoaded != null);
-    assert(lessonsLoadedEmpty != null);
     return lessonsUninitialized(this);
   }
 
@@ -198,7 +171,6 @@ class _$LessonsUninitialized
   TResult maybeMap<TResult extends Object>({
     TResult lessonsUninitialized(LessonsUninitialized value),
     TResult lessonsLoaded(LessonsLoaded value),
-    TResult lessonsLoadedEmpty(LessonsLoadedEmpty value),
     @required TResult orElse(),
   }) {
     assert(orElse != null);
@@ -325,13 +297,9 @@ class _$LessonsLoaded with DiagnosticableTreeMixin implements LessonsLoaded {
     @required
         TResult lessonsLoaded(List<Lesson> lessons, DateTime selectedDay,
             List<String> selectedFilterList, DateTime nocache),
-    @required
-        TResult lessonsLoadedEmpty(DateTime selectedDay,
-            List<String> selectedFilterList, DateTime nocache),
   }) {
     assert(lessonsUninitialized != null);
     assert(lessonsLoaded != null);
-    assert(lessonsLoadedEmpty != null);
     return lessonsLoaded(lessons, selectedDay, selectedFilterList, nocache);
   }
 
@@ -340,8 +308,6 @@ class _$LessonsLoaded with DiagnosticableTreeMixin implements LessonsLoaded {
   TResult maybeWhen<TResult extends Object>({
     TResult lessonsUninitialized(),
     TResult lessonsLoaded(List<Lesson> lessons, DateTime selectedDay,
-        List<String> selectedFilterList, DateTime nocache),
-    TResult lessonsLoadedEmpty(DateTime selectedDay,
         List<String> selectedFilterList, DateTime nocache),
     @required TResult orElse(),
   }) {
@@ -357,11 +323,9 @@ class _$LessonsLoaded with DiagnosticableTreeMixin implements LessonsLoaded {
   TResult map<TResult extends Object>({
     @required TResult lessonsUninitialized(LessonsUninitialized value),
     @required TResult lessonsLoaded(LessonsLoaded value),
-    @required TResult lessonsLoadedEmpty(LessonsLoadedEmpty value),
   }) {
     assert(lessonsUninitialized != null);
     assert(lessonsLoaded != null);
-    assert(lessonsLoadedEmpty != null);
     return lessonsLoaded(this);
   }
 
@@ -370,7 +334,6 @@ class _$LessonsLoaded with DiagnosticableTreeMixin implements LessonsLoaded {
   TResult maybeMap<TResult extends Object>({
     TResult lessonsUninitialized(LessonsUninitialized value),
     TResult lessonsLoaded(LessonsLoaded value),
-    TResult lessonsLoadedEmpty(LessonsLoadedEmpty value),
     @required TResult orElse(),
   }) {
     assert(orElse != null);
@@ -393,174 +356,4 @@ abstract class LessonsLoaded implements LessonsState {
   List<String> get selectedFilterList;
   DateTime get nocache;
   $LessonsLoadedCopyWith<LessonsLoaded> get copyWith;
-}
-
-/// @nodoc
-abstract class $LessonsLoadedEmptyCopyWith<$Res> {
-  factory $LessonsLoadedEmptyCopyWith(
-          LessonsLoadedEmpty value, $Res Function(LessonsLoadedEmpty) then) =
-      _$LessonsLoadedEmptyCopyWithImpl<$Res>;
-  $Res call(
-      {DateTime selectedDay,
-      List<String> selectedFilterList,
-      DateTime nocache});
-}
-
-/// @nodoc
-class _$LessonsLoadedEmptyCopyWithImpl<$Res>
-    extends _$LessonsStateCopyWithImpl<$Res>
-    implements $LessonsLoadedEmptyCopyWith<$Res> {
-  _$LessonsLoadedEmptyCopyWithImpl(
-      LessonsLoadedEmpty _value, $Res Function(LessonsLoadedEmpty) _then)
-      : super(_value, (v) => _then(v as LessonsLoadedEmpty));
-
-  @override
-  LessonsLoadedEmpty get _value => super._value as LessonsLoadedEmpty;
-
-  @override
-  $Res call({
-    Object selectedDay = freezed,
-    Object selectedFilterList = freezed,
-    Object nocache = freezed,
-  }) {
-    return _then(LessonsLoadedEmpty(
-      selectedDay:
-          selectedDay == freezed ? _value.selectedDay : selectedDay as DateTime,
-      selectedFilterList: selectedFilterList == freezed
-          ? _value.selectedFilterList
-          : selectedFilterList as List<String>,
-      nocache: nocache == freezed ? _value.nocache : nocache as DateTime,
-    ));
-  }
-}
-
-/// @nodoc
-class _$LessonsLoadedEmpty
-    with DiagnosticableTreeMixin
-    implements LessonsLoadedEmpty {
-  const _$LessonsLoadedEmpty(
-      {this.selectedDay, this.selectedFilterList = const [], this.nocache})
-      : assert(selectedFilterList != null);
-
-  @override
-  final DateTime selectedDay;
-  @JsonKey(defaultValue: const [])
-  @override
-  final List<String> selectedFilterList;
-  @override
-  final DateTime nocache;
-
-  @override
-  String toString({DiagnosticLevel minLevel = DiagnosticLevel.info}) {
-    return 'LessonsState.lessonsLoadedEmpty(selectedDay: $selectedDay, selectedFilterList: $selectedFilterList, nocache: $nocache)';
-  }
-
-  @override
-  void debugFillProperties(DiagnosticPropertiesBuilder properties) {
-    super.debugFillProperties(properties);
-    properties
-      ..add(DiagnosticsProperty('type', 'LessonsState.lessonsLoadedEmpty'))
-      ..add(DiagnosticsProperty('selectedDay', selectedDay))
-      ..add(DiagnosticsProperty('selectedFilterList', selectedFilterList))
-      ..add(DiagnosticsProperty('nocache', nocache));
-  }
-
-  @override
-  bool operator ==(dynamic other) {
-    return identical(this, other) ||
-        (other is LessonsLoadedEmpty &&
-            (identical(other.selectedDay, selectedDay) ||
-                const DeepCollectionEquality()
-                    .equals(other.selectedDay, selectedDay)) &&
-            (identical(other.selectedFilterList, selectedFilterList) ||
-                const DeepCollectionEquality()
-                    .equals(other.selectedFilterList, selectedFilterList)) &&
-            (identical(other.nocache, nocache) ||
-                const DeepCollectionEquality().equals(other.nocache, nocache)));
-  }
-
-  @override
-  int get hashCode =>
-      runtimeType.hashCode ^
-      const DeepCollectionEquality().hash(selectedDay) ^
-      const DeepCollectionEquality().hash(selectedFilterList) ^
-      const DeepCollectionEquality().hash(nocache);
-
-  @override
-  $LessonsLoadedEmptyCopyWith<LessonsLoadedEmpty> get copyWith =>
-      _$LessonsLoadedEmptyCopyWithImpl<LessonsLoadedEmpty>(this, _$identity);
-
-  @override
-  @optionalTypeArgs
-  TResult when<TResult extends Object>({
-    @required TResult lessonsUninitialized(),
-    @required
-        TResult lessonsLoaded(List<Lesson> lessons, DateTime selectedDay,
-            List<String> selectedFilterList, DateTime nocache),
-    @required
-        TResult lessonsLoadedEmpty(DateTime selectedDay,
-            List<String> selectedFilterList, DateTime nocache),
-  }) {
-    assert(lessonsUninitialized != null);
-    assert(lessonsLoaded != null);
-    assert(lessonsLoadedEmpty != null);
-    return lessonsLoadedEmpty(selectedDay, selectedFilterList, nocache);
-  }
-
-  @override
-  @optionalTypeArgs
-  TResult maybeWhen<TResult extends Object>({
-    TResult lessonsUninitialized(),
-    TResult lessonsLoaded(List<Lesson> lessons, DateTime selectedDay,
-        List<String> selectedFilterList, DateTime nocache),
-    TResult lessonsLoadedEmpty(DateTime selectedDay,
-        List<String> selectedFilterList, DateTime nocache),
-    @required TResult orElse(),
-  }) {
-    assert(orElse != null);
-    if (lessonsLoadedEmpty != null) {
-      return lessonsLoadedEmpty(selectedDay, selectedFilterList, nocache);
-    }
-    return orElse();
-  }
-
-  @override
-  @optionalTypeArgs
-  TResult map<TResult extends Object>({
-    @required TResult lessonsUninitialized(LessonsUninitialized value),
-    @required TResult lessonsLoaded(LessonsLoaded value),
-    @required TResult lessonsLoadedEmpty(LessonsLoadedEmpty value),
-  }) {
-    assert(lessonsUninitialized != null);
-    assert(lessonsLoaded != null);
-    assert(lessonsLoadedEmpty != null);
-    return lessonsLoadedEmpty(this);
-  }
-
-  @override
-  @optionalTypeArgs
-  TResult maybeMap<TResult extends Object>({
-    TResult lessonsUninitialized(LessonsUninitialized value),
-    TResult lessonsLoaded(LessonsLoaded value),
-    TResult lessonsLoadedEmpty(LessonsLoadedEmpty value),
-    @required TResult orElse(),
-  }) {
-    assert(orElse != null);
-    if (lessonsLoadedEmpty != null) {
-      return lessonsLoadedEmpty(this);
-    }
-    return orElse();
-  }
-}
-
-abstract class LessonsLoadedEmpty implements LessonsState {
-  const factory LessonsLoadedEmpty(
-      {DateTime selectedDay,
-      List<String> selectedFilterList,
-      DateTime nocache}) = _$LessonsLoadedEmpty;
-
-  DateTime get selectedDay;
-  List<String> get selectedFilterList;
-  DateTime get nocache;
-  $LessonsLoadedEmptyCopyWith<LessonsLoadedEmpty> get copyWith;
 }

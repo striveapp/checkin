@@ -90,7 +90,7 @@ void main() {
         ),
         act: (bloc) => bloc.add(InitializeLessons()),
         expect: [
-          LessonsLoadedEmpty(
+          LessonsLoaded(
             selectedDay: testDate,
             selectedFilterList: [],
             nocache: testDate,
@@ -100,38 +100,6 @@ void main() {
     });
 
     group("on LessonsUpdated event", () {
-      group("when there are no lessons", () {
-        setUp(() {
-          when(mockDateUtil.getCurrentDateTime()).thenReturn(testDate);
-        });
-
-        tearDown(() {
-          verify(mockDateUtil.getCurrentDateTime());
-        });
-
-        blocTest(
-          "should emit LessonsLoadedEmpty",
-          build: () => LessonsBloc(
-            gymId: fakeUser.selectedGymId,
-            userRepository: mockUserRepository,
-            lessonRepository: mockLessonRepository,
-            dateUtil: mockDateUtil,
-          ),
-          act: (bloc) => bloc.add(LessonsUpdated(
-            selectedDay: testDate,
-            lessons: [],
-            selectedFilterList: [],
-          )),
-          expect: [
-            LessonsLoadedEmpty(
-              selectedDay: testDate,
-              selectedFilterList: [],
-              nocache: testDate,
-            )
-          ],
-        );
-      });
-
       group("when there are unordered lessons", () {
         List<Lesson> unsortedLessons = [
           Lesson(timeStart: "19:00", timeEnd: "20:00"),

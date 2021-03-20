@@ -14,8 +14,4 @@ abstract class LessonsState with _$LessonsState {
       DateTime selectedDay,
       @Default([]) List<String> selectedFilterList,
       DateTime nocache}) = LessonsLoaded;
-  const factory LessonsState.lessonsLoadedEmpty(
-      {DateTime selectedDay,
-      @Default([]) List<String> selectedFilterList,
-      DateTime nocache}) = LessonsLoadedEmpty;
 }
