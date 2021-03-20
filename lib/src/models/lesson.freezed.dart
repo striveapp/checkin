@@ -23,7 +23,7 @@ class _$LessonTearOff {
       String name,
       String timeStart,
       String timeEnd = "",
-      String weekDay,
+      Weekday weekDay,
       int timestamp,
       String imageUrl,
       LessonConfig lessonConfig,
@@ -67,7 +67,7 @@ mixin _$Lesson {
   String get name;
   String get timeStart;
   String get timeEnd;
-  String get weekDay;
+  Weekday get weekDay;
   int get timestamp;
   String get imageUrl;
   LessonConfig get lessonConfig; // todo retrieve from Gym (config) https://trello.com/c/uIqJLgZL
@@ -90,7 +90,7 @@ abstract class $LessonCopyWith<$Res> {
       String name,
       String timeStart,
       String timeEnd,
-      String weekDay,
+      Weekday weekDay,
       int timestamp,
       String imageUrl,
       LessonConfig lessonConfig,
@@ -134,7 +134,7 @@ class _$LessonCopyWithImpl<$Res> implements $LessonCopyWith<$Res> {
       name: name == freezed ? _value.name : name as String,
       timeStart: timeStart == freezed ? _value.timeStart : timeStart as String,
       timeEnd: timeEnd == freezed ? _value.timeEnd : timeEnd as String,
-      weekDay: weekDay == freezed ? _value.weekDay : weekDay as String,
+      weekDay: weekDay == freezed ? _value.weekDay : weekDay as Weekday,
       timestamp: timestamp == freezed ? _value.timestamp : timestamp as int,
       imageUrl: imageUrl == freezed ? _value.imageUrl : imageUrl as String,
       lessonConfig: lessonConfig == freezed ? _value.lessonConfig : lessonConfig as LessonConfig,
@@ -170,7 +170,7 @@ abstract class _$LessonCopyWith<$Res> implements $LessonCopyWith<$Res> {
       String name,
       String timeStart,
       String timeEnd,
-      String weekDay,
+      Weekday weekDay,
       int timestamp,
       String imageUrl,
       LessonConfig lessonConfig,
@@ -216,7 +216,7 @@ class __$LessonCopyWithImpl<$Res> extends _$LessonCopyWithImpl<$Res>
       name: name == freezed ? _value.name : name as String,
       timeStart: timeStart == freezed ? _value.timeStart : timeStart as String,
       timeEnd: timeEnd == freezed ? _value.timeEnd : timeEnd as String,
-      weekDay: weekDay == freezed ? _value.weekDay : weekDay as String,
+      weekDay: weekDay == freezed ? _value.weekDay : weekDay as Weekday,
       timestamp: timestamp == freezed ? _value.timestamp : timestamp as int,
       imageUrl: imageUrl == freezed ? _value.imageUrl : imageUrl as String,
       lessonConfig: lessonConfig == freezed ? _value.lessonConfig : lessonConfig as LessonConfig,
@@ -271,7 +271,7 @@ class _$_Lesson implements _Lesson {
   @override
   final String timeEnd;
   @override
-  final String weekDay;
+  final Weekday weekDay;
   @override
   final int timestamp;
   @override
@@ -367,7 +367,7 @@ abstract class _Lesson implements Lesson {
       String name,
       String timeStart,
       String timeEnd,
-      String weekDay,
+      Weekday weekDay,
       int timestamp,
       String imageUrl,
       LessonConfig lessonConfig,
@@ -390,7 +390,7 @@ abstract class _Lesson implements Lesson {
   @override
   String get timeEnd;
   @override
-  String get weekDay;
+  Weekday get weekDay;
   @override
   int get timestamp;
   @override

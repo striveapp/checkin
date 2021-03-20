@@ -1,7 +1,8 @@
 import 'package:checkin/src/blocs/lessons/bloc.dart';
+import 'package:checkin/src/models/weekday.dart';
 import 'package:checkin/src/ui/components/lessons/lesson_card.dart';
-import 'package:checkin/src/ui/components/loading_indicator.dart';
 import 'package:checkin/src/ui/components/lessons/no_lessons_banner.dart';
+import 'package:checkin/src/ui/components/loading_indicator.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 
@@ -16,7 +17,8 @@ class LessonCardList extends StatelessWidget {
                   itemCount: state.lessons.length,
                   itemBuilder: (BuildContext context, int index) {
                     var lesson = state.lessons[index];
-                    return LessonCard(key: Key("lesson_${lesson.weekDay}_$index"), lesson: lesson);
+                    return LessonCard(
+                        key: Key("lesson_${lesson.weekDay.name}_$index"), lesson: lesson);
                   }),
               lessonsLoadedEmpty: (LessonsLoadedEmpty) => NoLessonsBanner(),
               orElse: () => LoadingIndicator(),

@@ -1,4 +1,5 @@
 import 'package:checkin/src/models/lesson.dart';
+import 'package:checkin/src/models/weekday.dart';
 import 'package:flutter/material.dart';
 import 'package:intl/intl.dart';
 
@@ -76,11 +77,11 @@ class LessonInfoCard extends StatelessWidget {
 }
 
 String _formattedLessonInformation({
-  String weekDay,
+  Weekday weekDay,
   String timeStart,
   String timeEnd,
 }) =>
-    "${weekDay} (${timeStart}${timeEnd.isNotEmpty ? " - ${timeEnd}" : ""})";
+    "${weekDay.name} (${timeStart}${timeEnd.isNotEmpty ? " - ${timeEnd}" : ""})";
 
 String _capitalize(String s) => s[0].toUpperCase() + s.substring(1);
 

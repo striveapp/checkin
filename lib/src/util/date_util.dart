@@ -1,4 +1,5 @@
 import 'package:checkin/src/models/timespan.dart';
+import 'package:checkin/src/models/weekday.dart';
 import 'package:intl/intl.dart';
 
 import '../constants.dart';
@@ -48,8 +49,8 @@ class DateUtil {
     }
   }
 
-  static String retrieveWeekDay(String date) {
+  static Weekday retrieveWeekDay(String date) {
     var parsedDate = DateTime.parse(date);
-    return DateFormat('EEEE').format(parsedDate).toLowerCase();
+    return DateFormat('EEEE').format(parsedDate).toWeekday();
   }
 }

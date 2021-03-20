@@ -1,5 +1,6 @@
 import 'package:checkin/src/config.dart';
 import 'package:checkin/src/models/lesson_config.dart';
+import 'package:checkin/src/models/weekday.dart';
 import 'package:checkin/src/util/crypto_util.dart';
 import 'package:checkin/src/util/date_util.dart';
 import 'package:freezed_annotation/freezed_annotation.dart';
@@ -18,7 +19,7 @@ abstract class Lesson with _$Lesson {
     final String name,
     final String timeStart,
     @Default("") final String timeEnd,
-    final String weekDay,
+    final Weekday weekDay,
     final int timestamp,
     final String imageUrl,
     final LessonConfig lessonConfig,
