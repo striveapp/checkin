@@ -29,7 +29,7 @@ dependencies:
   cloud_functions: ^0.6.0+1
   google_sign_in: ^4.5.1
   sign_in_with_apple: ^2.5.4
-  share: ^0.6.3+5
+  share: ^2.0.1
   bloc: ^7.0.0
   flutter_bloc: ^7.0.0
   equatable: ^1.1.1
