@@ -20,7 +20,7 @@ import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:flutter_test/flutter_test.dart';
 import 'package:mockito/mockito.dart';
 
-class MockUserBloc extends MockBloc<UserState> implements UserBloc {}
+class MockUserBloc extends MockBloc<UserEvent, UserState> implements UserBloc {}
 
 class MockLessonApi extends Mock implements LessonApi {}
 

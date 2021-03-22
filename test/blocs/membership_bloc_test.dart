@@ -100,12 +100,12 @@ void main() {
                   userEmail: fakeUser.email,
                   selectedGymId: fakeUser.selectedGymId,
                 ),
-            expect: [
-              MembershipInactive(
-                customerId: "cus_123",
-                customerEmail: fakeUser.email,
-              ),
-            ]);
+            expect: () => [
+                  MembershipInactive(
+                    customerId: "cus_123",
+                    customerEmail: fakeUser.email,
+                  ),
+                ]);
       });
       group("when there is an active membership", () {
         Membership activeMembership =
@@ -132,11 +132,11 @@ void main() {
                   userEmail: fakeUser.email,
                   selectedGymId: fakeUser.selectedGymId,
                 ),
-            expect: [
-              MembershipActive(
-                membership: activeMembership,
-              ),
-            ]);
+            expect: () => [
+                  MembershipActive(
+                    membership: activeMembership,
+                  ),
+                ]);
       });
     });
 
@@ -168,7 +168,7 @@ void main() {
                   selectedGymId: fakeUser.selectedGymId,
                 ),
             act: (bloc) => bloc.add(Unsubscribe()),
-            expect: [MembershipLoading()],
+            expect: () => [MembershipLoading()],
             verify: (bloc) async {
               await untilCalled(mockAnalyticsRepository.logUnsubscribe());
               await untilCalled(mockMembershipApi.unsubscribe(
@@ -215,10 +215,10 @@ void main() {
                     selectedGymId: fakeUser.selectedGymId,
                   ),
               act: (bloc) => bloc.add(Unsubscribe()),
-              expect: [
-                MembershipLoading(),
-                MembershipError(errorMessage: "kaboom!"),
-              ],
+              expect: () => [
+                    MembershipLoading(),
+                    MembershipError(errorMessage: "kaboom!"),
+                  ],
               verify: (bloc) async {
                 await untilCalled(mockAnalyticsRepository.logUnsubscribe());
                 await untilCalled(mockMembershipApi.unsubscribe(
@@ -268,11 +268,11 @@ void main() {
                     selectedGymId: fakeUser.selectedGymId,
                   ),
               act: (bloc) => bloc.add(Unsubscribe()),
-              expect: [
-                MembershipLoading(),
-                MembershipError(
-                    errorMessage: "Something went wrong with unsubscribe: [$errorMessage]"),
-              ],
+              expect: () => [
+                    MembershipLoading(),
+                    MembershipError(
+                        errorMessage: "Something went wrong with unsubscribe: [$errorMessage]"),
+                  ],
               verify: (bloc) async {
                 await untilCalled(mockAnalyticsRepository.logUnsubscribe());
                 await untilCalled(mockMembershipApi.unsubscribe(

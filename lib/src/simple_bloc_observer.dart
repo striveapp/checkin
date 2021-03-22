@@ -11,9 +11,9 @@ class SimpleBlocObserver extends BlocObserver {
   }
 
   @override
-  void onError(Cubit cubit, Object error, StackTrace stacktrace) {
-    super.onError(cubit, error, stacktrace);
-    Logger.log.e("Error in bloc [$cubit]", error, stacktrace);
+  void onError(BlocBase bloc, Object error, StackTrace stackTrace) {
+    super.onError(bloc, error, stackTrace);
+    Logger.log.e("Error in bloc [$bloc]", error, stackTrace);
   }
 
   @override

@@ -61,7 +61,7 @@ void main() {
                 storageRepository: mockStorageRepository,
                 imageRepository: mockImageRepository,
               ),
-          expect: [],
+          expect: () => [],
           verify: (bloc) {
             expect(bloc.state, InitialProfileState());
           });
@@ -85,7 +85,7 @@ void main() {
             imageRepository: mockImageRepository,
           ),
           act: (bloc) => bloc.add(InitializeProfile()),
-          expect: [ProfileLoaded(profileUser: loggedUser, isCurrentUser: true)],
+          expect: () => [ProfileLoaded(profileUser: loggedUser, isCurrentUser: true)],
         );
       });
 
@@ -109,7 +109,7 @@ void main() {
             nonCurrentUserEmail: fakeOtherUser.email,
           ),
           act: (bloc) => bloc.add(InitializeProfile()),
-          expect: [ProfileLoaded(profileUser: fakeOtherUser, isCurrentUser: false)],
+          expect: () => [ProfileLoaded(profileUser: fakeOtherUser, isCurrentUser: false)],
         );
       });
     });
@@ -125,7 +125,7 @@ void main() {
               imageRepository: mockImageRepository,
             ),
             act: (bloc) => bloc.add(ProfileUpdated(user: loggedUser, isCurrentUser: true)),
-            expect: [ProfileLoaded(profileUser: loggedUser, isCurrentUser: true)],
+            expect: () => [ProfileLoaded(profileUser: loggedUser, isCurrentUser: true)],
           );
         });
         group("when there is a nonCurrentUserEmail but the email is the same", () {
@@ -138,7 +138,7 @@ void main() {
               nonCurrentUserEmail: loggedUser.email,
             ),
             act: (bloc) => bloc.add(ProfileUpdated(user: loggedUser, isCurrentUser: true)),
-            expect: [ProfileLoaded(profileUser: loggedUser, isCurrentUser: true)],
+            expect: () => [ProfileLoaded(profileUser: loggedUser, isCurrentUser: true)],
           );
         });
       });
@@ -153,7 +153,7 @@ void main() {
             nonCurrentUserEmail: fakeOtherUser.email,
           ),
           act: (bloc) => bloc.add(ProfileUpdated(user: fakeOtherUser, isCurrentUser: false)),
-          expect: [ProfileLoaded(profileUser: fakeOtherUser, isCurrentUser: false)],
+          expect: () => [ProfileLoaded(profileUser: fakeOtherUser, isCurrentUser: false)],
         );
       });
     });
@@ -182,7 +182,7 @@ void main() {
                 userEmail: loggedUser.email,
                 newName: newName,
               )),
-          expect: []);
+          expect: () => []);
     });
 
     group("on UpdateImageUrl event", () {
@@ -215,7 +215,7 @@ void main() {
           act: (bloc) => bloc.add(UpdateImageUrl(
                 userEmail: loggedUser.email,
               )),
-          expect: []);
+          expect: () => []);
     });
   });
 }

@@ -66,7 +66,7 @@ void main() {
             gymRepository: mockGymRepository,
           ),
           act: (bloc) => bloc.add(InitializeGym()),
-          expect: [
+          expect: () => [
             GymLoaded(
               gym: fakeGym,
             )
@@ -90,7 +90,7 @@ void main() {
             return GymBloc(gymRepository: mockGymRepository, gymId: anotherFakeGym.id);
           },
           act: (bloc) => bloc.add(InitializeGym()),
-          expect: [
+          expect: () => [
             GymLoaded(
               gym: anotherFakeGym,
             )
@@ -106,7 +106,7 @@ void main() {
           gymRepository: mockGymRepository,
         ),
         act: (bloc) => bloc.add(GymUpdated(gym: fakeGym)),
-        expect: [GymLoaded(gym: fakeGym)],
+        expect: () => [GymLoaded(gym: fakeGym)],
       );
     });
   });

@@ -100,7 +100,8 @@ void main() {
           selectedGymId: loggedUser.selectedGymId,
           statsBloc: mockStatsBloc,
         ),
-        expect: [UserStatsLoaded(attendedLessons: orderedAttendedLessons, timespan: Timespan.week)],
+        expect: () =>
+            [UserStatsLoaded(attendedLessons: orderedAttendedLessons, timespan: Timespan.week)],
       );
     });
 
@@ -132,7 +133,7 @@ void main() {
           selectedGymId: loggedUser.selectedGymId,
           statsBloc: mockStatsBloc,
         ),
-        expect: [
+        expect: () => [
           UserStatsLoaded(
             attendedLessons: orderedAttendedLessons,
             timespan: Timespan.month,
@@ -166,12 +167,12 @@ void main() {
                 selectedGymId: loggedUser.selectedGymId,
                 statsBloc: mockStatsBloc,
               ),
-          expect: [
-            UserStatsLoaded(
-              attendedLessons: orderedAttendedLessons,
-              timespan: Timespan.all,
-            )
-          ]);
+          expect: () => [
+                UserStatsLoaded(
+                  attendedLessons: orderedAttendedLessons,
+                  timespan: Timespan.all,
+                )
+              ]);
     });
   });
 }

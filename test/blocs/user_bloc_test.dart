@@ -63,7 +63,7 @@ void main() {
             authBloc: mockAuthBloc,
             userRepository: mockUserRepository,
           ),
-          expect: [UserSuccess(currentUser: testUser)],
+          expect: () => [UserSuccess(currentUser: testUser)],
         );
       });
 
@@ -84,7 +84,7 @@ void main() {
             authBloc: mockAuthBloc,
             userRepository: mockUserRepository,
           ),
-          expect: [UserError()],
+          expect: () => [UserError()],
         );
       });
     });
@@ -106,9 +106,9 @@ void main() {
                 authBloc: mockAuthBloc,
                 userRepository: mockUserRepository,
               ),
-          seed: UserState.userSuccess(currentUser: testUser),
+          seed: () => UserState.userSuccess(currentUser: testUser),
           act: (bloc) => bloc.add(UpdateGrade(newGrade: Grade.black)),
-          expect: []);
+          expect: () => []);
     });
 
     group("on UpdateSelectedGym event", () {
@@ -131,10 +131,10 @@ void main() {
                 authBloc: mockAuthBloc,
                 userRepository: mockUserRepository,
               ),
-          seed: UserState.userSuccess(currentUser: testUser),
+          seed: () => UserState.userSuccess(currentUser: testUser),
           act: (bloc) => bloc.add(
               UserEvent.updateSelectedGym(userEmail: testUser.email, newGymId: newSelectedGymId)),
-          expect: []);
+          expect: () => []);
     });
   });
 }

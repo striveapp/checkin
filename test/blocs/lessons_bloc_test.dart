@@ -58,7 +58,7 @@ void main() {
                 lessonRepository: mockLessonRepository,
                 dateUtil: mockDateUtil,
               ),
-          expect: [],
+          expect: () => [],
           verify: (bloc) {
             expect(bloc.state, LessonsUninitialized());
           });
@@ -89,7 +89,7 @@ void main() {
           dateUtil: mockDateUtil,
         ),
         act: (bloc) => bloc.add(InitializeLessons()),
-        expect: [
+        expect: () => [
           LessonsLoaded(
             lessons: [],
             selectedDay: testDate,
@@ -135,7 +135,8 @@ void main() {
             lessons: unsortedLessons,
             selectedFilterList: [],
           )),
-          expect: [LessonsLoaded(selectedDay: testDate, lessons: sortedLessons, nocache: testDate)],
+          expect: () =>
+              [LessonsLoaded(selectedDay: testDate, lessons: sortedLessons, nocache: testDate)],
         );
       });
     });
@@ -182,14 +183,14 @@ void main() {
               bloc.add(InitializeLessons());
               bloc.add(LoadLessons(selectedDay: selectedDay));
             },
-            expect: [
-              LessonsLoaded(
-                selectedDay: testDate,
-                lessons: lessons,
-                nocache: testDate,
-              ),
-              LessonsLoaded(selectedDay: selectedDay, lessons: newLessons, nocache: testDate),
-            ]);
+            expect: () => [
+                  LessonsLoaded(
+                    selectedDay: testDate,
+                    lessons: lessons,
+                    nocache: testDate,
+                  ),
+                  LessonsLoaded(selectedDay: selectedDay, lessons: newLessons, nocache: testDate),
+                ]);
       },
     );
 
@@ -213,7 +214,7 @@ void main() {
           dateUtil: mockDateUtil,
         ),
         act: (bloc) => bloc.add(CreateLesson(selectedDay: DateTime(2021, 1, 1))),
-        expect: [],
+        expect: () => [],
       );
     });
   });

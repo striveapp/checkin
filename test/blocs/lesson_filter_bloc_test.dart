@@ -58,7 +58,7 @@ void main() {
           lessonConfigRepository: mockLessonConfigRepository,
           userRepository: mockUserRepository,
         ),
-        expect: [],
+        expect: () => [],
         verify: (bloc) {
           expect(bloc.state, InitialLessonFilterState());
         },
@@ -85,7 +85,7 @@ void main() {
           lessonConfigRepository: mockLessonConfigRepository,
           userRepository: mockUserRepository,
         ),
-        expect: [LessonFilterLoaded(availableLessonTypes: testFilterTypes.toList())],
+        expect: () => [LessonFilterLoaded(availableLessonTypes: testFilterTypes.toList())],
       );
     });
   });

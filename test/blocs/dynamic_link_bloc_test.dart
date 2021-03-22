@@ -136,7 +136,7 @@ void main() {
             userRepository: mockUserRepository,
           ),
           act: (bloc) => bloc.add(DeepLinkSetup()),
-          expect: [
+          expect: () => [
             MyDynamicLinkToNavigate(path: "/path/$fakeLessonId"),
           ],
           verify: (bloc) {
@@ -177,7 +177,7 @@ void main() {
             userRepository: mockUserRepository,
           ),
           act: (DynamicLinkBloc bloc) => bloc.add(DeepLinkReceived(deepLink: fakeReferredDeepLink)),
-          expect: [],
+          expect: () => [],
         );
       });
 
@@ -235,7 +235,7 @@ void main() {
               ),
               act: (DynamicLinkBloc bloc) =>
                   bloc.add(DeepLinkReceived(deepLink: fakeAuthenticationLink)),
-              expect: [DynamicLinkAuthenticated()],
+              expect: () => [DynamicLinkAuthenticated()],
             );
           });
 
@@ -268,7 +268,7 @@ void main() {
               ),
               act: (DynamicLinkBloc bloc) =>
                   bloc.add(DeepLinkReceived(deepLink: fakeAuthenticationLink)),
-              expect: [],
+              expect: () => [],
             );
           });
 
@@ -305,7 +305,7 @@ void main() {
               ),
               act: (DynamicLinkBloc bloc) =>
                   bloc.add(DeepLinkReceived(deepLink: fakeAuthenticationLink)),
-              expect: [DynamicLinkError(errorMessage: DynamicLinkBloc.invalidActionError)],
+              expect: () => [DynamicLinkError(errorMessage: DynamicLinkBloc.invalidActionError)],
             );
           });
 
@@ -343,7 +343,7 @@ void main() {
               ),
               act: (DynamicLinkBloc bloc) =>
                   bloc.add(DeepLinkReceived(deepLink: fakeAuthenticationLink)),
-              expect: [DynamicLinkError(errorMessage: unexpectedError)],
+              expect: () => [DynamicLinkError(errorMessage: unexpectedError)],
             );
           });
         });
@@ -383,7 +383,7 @@ void main() {
             ),
             act: (DynamicLinkBloc bloc) =>
                 bloc.add(DeepLinkReceived(deepLink: fakeAuthenticationLink)),
-            expect: [DynamicLinkError(errorMessage: DynamicLinkBloc.emailMissingError)],
+            expect: () => [DynamicLinkError(errorMessage: DynamicLinkBloc.emailMissingError)],
           );
         });
       });
@@ -415,7 +415,7 @@ void main() {
         ),
         act: (DynamicLinkBloc bloc) =>
             bloc.add(ShareRegistryLink(date: fakeDate, lessonId: fakeLessonId)),
-        expect: [DynamicLinkToShare(link: fakeUri)],
+        expect: () => [DynamicLinkToShare(link: fakeUri)],
       );
     });
 
@@ -436,9 +436,9 @@ void main() {
                   userRepository: mockUserRepository,
                 ),
             act: (bloc) => (bloc as DynamicLinkBloc).onSuccessLink(fakeData),
-            expect: [
-              MyDynamicLinkToNavigate(path: "/path/$fakeLessonId"),
-            ],
+            expect: () => [
+                  MyDynamicLinkToNavigate(path: "/path/$fakeLessonId"),
+                ],
             verify: (bloc) {
               verify(fakeData.link);
             });
@@ -455,9 +455,9 @@ void main() {
                   userRepository: mockUserRepository,
                 ),
             act: (bloc) => (bloc as DynamicLinkBloc).onErrorLink(FakeOnLinkErrorException()),
-            expect: [
-              DynamicLinkError(errorMessage: "FakeOnLinkErrorException"),
-            ]);
+            expect: () => [
+                  DynamicLinkError(errorMessage: "FakeOnLinkErrorException"),
+                ]);
       });
     });
   });

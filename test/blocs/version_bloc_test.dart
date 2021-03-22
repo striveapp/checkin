@@ -58,8 +58,7 @@ void main() {
     group("on VersionUpdated event", () {
       group("when no version", () {
         setUp(() {
-          when(mockVersionRepository.getMinimumVersionRequired())
-              .thenAnswer((_) {
+          when(mockVersionRepository.getMinimumVersionRequired()).thenAnswer((_) {
             return Stream<String>.value(null);
           });
         });
@@ -70,24 +69,21 @@ void main() {
         });
 
         blocTest("should emit no states",
-            build: () => VersionBloc(
-                versionRepository: mockVersionRepository,
-                versionUtil: mockVersionUtil),
-            expect: []);
+            build: () =>
+                VersionBloc(versionRepository: mockVersionRepository, versionUtil: mockVersionUtil),
+            expect: () => []);
       });
 
       group("when minimum is lower than currentVersion[1.0.1]", () {
         String fakeCurrentVersion = "1.0.1";
 
         setUp(() {
-          when(mockVersionRepository.getMinimumVersionRequired())
-              .thenAnswer((_) {
+          when(mockVersionRepository.getMinimumVersionRequired()).thenAnswer((_) {
             return Stream<String>.value("1.0.0");
           });
 
-          when(mockVersionUtil.getCurrentVersion()).thenAnswer(
-              (realInvocation) =>
-                  Future.value(Version.parse(fakeCurrentVersion)));
+          when(mockVersionUtil.getCurrentVersion())
+              .thenAnswer((realInvocation) => Future.value(Version.parse(fakeCurrentVersion)));
         });
 
         tearDown(() async {
@@ -101,21 +97,19 @@ void main() {
                   versionRepository: mockVersionRepository,
                   versionUtil: mockVersionUtil,
                 ),
-            expect: []);
+            expect: () => []);
       });
 
       group("when minimum is equal to currentVersion[1.0.1]", () {
         String fakeCurrentVersion = "1.0.1";
 
         setUp(() {
-          when(mockVersionRepository.getMinimumVersionRequired())
-              .thenAnswer((_) {
+          when(mockVersionRepository.getMinimumVersionRequired()).thenAnswer((_) {
             return Stream<String>.value("1.0.1");
           });
 
-          when(mockVersionUtil.getCurrentVersion()).thenAnswer(
-              (realInvocation) =>
-                  Future.value(Version.parse(fakeCurrentVersion)));
+          when(mockVersionUtil.getCurrentVersion())
+              .thenAnswer((realInvocation) => Future.value(Version.parse(fakeCurrentVersion)));
         });
 
         tearDown(() async {
@@ -129,21 +123,19 @@ void main() {
                   versionRepository: mockVersionRepository,
                   versionUtil: mockVersionUtil,
                 ),
-            expect: []);
+            expect: () => []);
       });
 
       group("when minimum is higher than currentVersion[1.0.1]", () {
         String fakeCurrentVersion = "1.0.1";
 
         setUp(() {
-          when(mockVersionRepository.getMinimumVersionRequired())
-              .thenAnswer((_) {
+          when(mockVersionRepository.getMinimumVersionRequired()).thenAnswer((_) {
             return Stream<String>.value("2.0.0");
           });
 
-          when(mockVersionUtil.getCurrentVersion()).thenAnswer(
-              (realInvocation) =>
-                  Future.value(Version.parse(fakeCurrentVersion)));
+          when(mockVersionUtil.getCurrentVersion())
+              .thenAnswer((realInvocation) => Future.value(Version.parse(fakeCurrentVersion)));
         });
 
         tearDown(() async {
@@ -157,7 +149,7 @@ void main() {
                   versionRepository: mockVersionRepository,
                   versionUtil: mockVersionUtil,
                 ),
-            expect: [UpdateRequired()]);
+            expect: () => [UpdateRequired()]);
       });
     });
   });

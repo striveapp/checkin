@@ -90,7 +90,7 @@ void main() {
             statsRepository: mockStatsRepository,
             userRepository: mockUserRepository,
           ),
-          expect: [LeaderboardLoaded(usersHistory: userHistories)],
+          expect: () => [LeaderboardLoaded(usersHistory: userHistories)],
         );
       });
 
@@ -138,7 +138,7 @@ void main() {
             userRepository: mockUserRepository,
           ),
           act: (bloc) => bloc.add(LeaderboardUpdated(usersHistory: unsortedUsersHistory)),
-          expect: [
+          expect: () => [
             LeaderboardLoaded(usersHistory: sortedUsersHistory),
           ],
         );
@@ -178,7 +178,7 @@ void main() {
           act: (bloc) => bloc.add(
             LeaderboardUpdated(usersHistory: usersHistory),
           ),
-          expect: [LeaderboardNotAvailable()],
+          expect: () => [LeaderboardNotAvailable()],
         );
       });
     });

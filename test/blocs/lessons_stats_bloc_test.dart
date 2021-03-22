@@ -87,7 +87,7 @@ void main() {
             lessonsRepository: mockLessonRepository,
             statsBloc: mockStatsBloc,
           ),
-          expect: [
+          expect: () => [
             LessonsStatsUpdated(
               acceptedAttendeesWithCounter: {
                 attendee1: 2,

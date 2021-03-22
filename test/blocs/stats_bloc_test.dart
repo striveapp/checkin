@@ -14,7 +14,7 @@ void main() {
         "should emit TimespanUpdated",
         build: () => StatsBloc(),
         act: (bloc) => bloc.add(TimespanUpdate(timespan: fakeTimespan)),
-        expect: [TimespanUpdated(timespan: fakeTimespan)],
+        expect: () => [TimespanUpdated(timespan: fakeTimespan)],
       );
     });
   });

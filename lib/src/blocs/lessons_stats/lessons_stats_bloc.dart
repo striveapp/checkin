@@ -21,7 +21,7 @@ class LessonsStatsBloc extends Bloc<LessonsStatsEvent, LessonsStatsState> {
     this.master,
   }) : super(LessonsStatsInitial()) {
     _onStatsStateChanged(statsBloc.state);
-    statsBloc.listen(_onStatsStateChanged);
+    statsBloc.stream.listen(_onStatsStateChanged);
   }
 
   void _onStatsStateChanged(statsBlocState) {

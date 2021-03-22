@@ -14,8 +14,7 @@ import 'package:mockito/mockito.dart';
 
 import 'helper/mock_helper.dart';
 
-class MockGraduationSystemRepository extends Mock
-    implements GraduationSystemRepository {}
+class MockGraduationSystemRepository extends Mock implements GraduationSystemRepository {}
 
 class MockStatsRepository extends Mock implements StatsRepository {}
 
@@ -70,7 +69,7 @@ void main() {
             gymId: fakeGym,
             userGrade: fakeUserGrade,
             userEmail: fakeUserEmail),
-        expect: [],
+        expect: () => [],
         verify: (bloc) {
           expect(bloc.state, InitialGraduationState());
         },
@@ -83,20 +82,17 @@ void main() {
           final GraduationSystem graduationSystemRequiresOneLesson =
               GraduationSystem(grade: fakeUserGrade, forNextLevel: 1.0);
 
-          when(mockGraduationSystemRepository.getGraduationSystem(
-                  fakeGym, fakeUserGrade))
+          when(mockGraduationSystemRepository.getGraduationSystem(fakeGym, fakeUserGrade))
               .thenAnswer((realInvocation) {
             return Stream.value(graduationSystemRequiresOneLesson);
           });
 
-          when(mockGraduationUtils.calculateNextGrade(fakeUserGrade))
-              .thenReturn(fakeNewGrade);
+          when(mockGraduationUtils.calculateNextGrade(fakeUserGrade)).thenReturn(fakeNewGrade);
         });
 
         group("and user attended 0 lessons", () {
           setUp(() {
-            when(mockStatsRepository.getUserStatsByGrade(
-                    fakeGym, fakeUserEmail, fakeUserGrade))
+            when(mockStatsRepository.getUserStatsByGrade(fakeGym, fakeUserEmail, fakeUserGrade))
                 .thenAnswer((realInvocation) => Stream.value(UserHistory(
                       email: fakeUserEmail,
                       attendedLessons: [],
@@ -113,13 +109,12 @@ void main() {
                 gymId: fakeGym,
                 userGrade: fakeUserGrade,
                 userEmail: fakeUserEmail),
-            expect: [NotReadyForGraduation(nextGrade: fakeNewGrade)],
+            expect: () => [NotReadyForGraduation(nextGrade: fakeNewGrade)],
             act: (bloc) => bloc.add(InitializeGraduation()),
             verify: (bloc) {
-              verify(mockGraduationSystemRepository.getGraduationSystem(
-                  fakeGym, fakeUserGrade));
-              verify(mockStatsRepository.getUserStatsByGrade(
-                  fakeGym, fakeUserEmail, fakeUserGrade));
+              verify(mockGraduationSystemRepository.getGraduationSystem(fakeGym, fakeUserGrade));
+              verify(
+                  mockStatsRepository.getUserStatsByGrade(fakeGym, fakeUserEmail, fakeUserGrade));
               verify(mockGraduationUtils.calculateNextGrade(fakeUserGrade));
             },
           );
@@ -127,8 +122,7 @@ void main() {
 
         group("and user attended 1 lesson", () {
           setUp(() {
-            when(mockStatsRepository.getUserStatsByGrade(
-                    fakeGym, fakeUserEmail, fakeUserGrade))
+            when(mockStatsRepository.getUserStatsByGrade(fakeGym, fakeUserEmail, fakeUserGrade))
                 .thenAnswer((realInvocation) => Stream.value(UserHistory(
                       email: fakeUserEmail,
                       attendedLessons: [Lesson()],
@@ -145,13 +139,12 @@ void main() {
                 gymId: fakeGym,
                 userGrade: fakeUserGrade,
                 userEmail: fakeUserEmail),
-            expect: [ReadyForGraduation(nextGrade: fakeNewGrade)],
+            expect: () => [ReadyForGraduation(nextGrade: fakeNewGrade)],
             act: (bloc) => bloc.add(InitializeGraduation()),
             verify: (bloc) {
-              verify(mockGraduationSystemRepository.getGraduationSystem(
-                  fakeGym, fakeUserGrade));
-              verify(mockStatsRepository.getUserStatsByGrade(
-                  fakeGym, fakeUserEmail, fakeUserGrade));
+              verify(mockGraduationSystemRepository.getGraduationSystem(fakeGym, fakeUserGrade));
+              verify(
+                  mockStatsRepository.getUserStatsByGrade(fakeGym, fakeUserEmail, fakeUserGrade));
               verify(mockGraduationUtils.calculateNextGrade(fakeUserGrade));
             },
           );
@@ -182,7 +175,7 @@ void main() {
             userGrade: fakeUserGrade,
             userEmail: fakeUserEmail),
         act: (bloc) => bloc.add(Graduate(newGrade: fakeNewGrade)),
-        expect: [
+        expect: () => [
           GraduationLoading(),
           NotReadyForGraduation(nextGrade: fakeAfterGraduationNextGrade),
         ],

@@ -104,7 +104,7 @@ void main() {
                 paymentApi: mockPaymentApi,
                 paymentMethodRepository: mockPaymentMethodRepository,
                 urlLauncherUtil: mockUrlLauncherUtil),
-            expect: [PaymentMethodEmpty(customerEmail: fakeUser.email)]);
+            expect: () => [PaymentMethodEmpty(customerEmail: fakeUser.email)]);
       });
 
       group("when there are payment methods", () {
@@ -127,7 +127,7 @@ void main() {
                 paymentApi: mockPaymentApi,
                 paymentMethodRepository: mockPaymentMethodRepository,
                 urlLauncherUtil: mockUrlLauncherUtil),
-            expect: [PaymentMethodLoaded(paymentMethod: fakePaymentMethod)]);
+            expect: () => [PaymentMethodLoaded(paymentMethod: fakePaymentMethod)]);
       });
     });
 
@@ -159,7 +159,7 @@ void main() {
               paymentMethodRepository: mockPaymentMethodRepository,
               urlLauncherUtil: mockUrlLauncherUtil),
           act: (bloc) => bloc.add(RegisterBankAccount(gym: testGym, billingEmail: fakeUser.email)),
-          expect: [
+          expect: () => [
             PaymentMethodLoading(show: true),
             PaymentMethodLoading(show: false),
           ],
@@ -190,7 +190,7 @@ void main() {
               paymentMethodRepository: mockPaymentMethodRepository,
               urlLauncherUtil: mockUrlLauncherUtil),
           act: (bloc) => bloc.add(RegisterBankAccount(gym: prodGym, billingEmail: prodUser.email)),
-          expect: [
+          expect: () => [
             PaymentMethodLoading(show: true),
             PaymentMethodLoading(show: false),
           ],
@@ -231,7 +231,7 @@ void main() {
             gym: testGym,
             billingEmail: fakeUser.email,
           )),
-          expect: [
+          expect: () => [
             PaymentMethodLoading(show: true),
             PaymentMethodLoading(show: false),
           ],

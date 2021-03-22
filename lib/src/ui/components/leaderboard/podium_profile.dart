@@ -16,7 +16,7 @@ class PodiumProfile extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return BlocBuilder<ProfileBloc, ProfileState>(
-      cubit: ProfileBloc(
+      bloc: ProfileBloc(
         userRepository: context.watch<UserRepository>(),
         storageRepository: context.watch(),
         imageRepository: context.watch(),

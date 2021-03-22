@@ -20,7 +20,7 @@ class GymSelectionTile extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return BlocBuilder<GymBloc, GymState>(
-      cubit: GymBloc(
+      bloc: GymBloc(
         gymRepository: context.watch<GymRepository>(),
         gymId: gymId,
       )..add(GymEvent.initializeGym()),

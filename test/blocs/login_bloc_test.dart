@@ -110,7 +110,7 @@ void main() {
               localStorageRepository: mockLocalStorageRepository,
             ),
             act: (bloc) => bloc.add(LoginWithGoogle()),
-            expect: [],
+            expect: () => [],
           );
         });
         group("and when NOT isFirstLogin", () {
@@ -142,7 +142,7 @@ void main() {
               localStorageRepository: mockLocalStorageRepository,
             ),
             act: (bloc) => bloc.add(LoginWithGoogle()),
-            expect: [],
+            expect: () => [],
           );
         });
       });
@@ -165,7 +165,7 @@ void main() {
             localStorageRepository: mockLocalStorageRepository,
           ),
           act: (bloc) => bloc.add(LoginWithGoogle()),
-          expect: [LoginFailure(errorMessage: 'Login failed')],
+          expect: () => [LoginFailure(errorMessage: 'Login failed')],
         );
       });
 
@@ -196,7 +196,8 @@ void main() {
                   localStorageRepository: mockLocalStorageRepository,
                 ),
             act: (bloc) => bloc.add(LoginWithGoogle()),
-            expect: [LoginFailure(errorMessage: "Unexpected error! Please contact the gym owner")],
+            expect: () =>
+                [LoginFailure(errorMessage: "Unexpected error! Please contact the gym owner")],
             verify: (bloc) {});
       });
     });
@@ -234,7 +235,7 @@ void main() {
               localStorageRepository: mockLocalStorageRepository,
             ),
             act: (bloc) => bloc.add(LoginWithApple()),
-            expect: [],
+            expect: () => [],
           );
         });
         group("and when NOT isFirstLogin", () {
@@ -266,7 +267,7 @@ void main() {
               localStorageRepository: mockLocalStorageRepository,
             ),
             act: (bloc) => bloc.add(LoginWithApple()),
-            expect: [],
+            expect: () => [],
           );
         });
       });
@@ -289,7 +290,7 @@ void main() {
             localStorageRepository: mockLocalStorageRepository,
           ),
           act: (bloc) => bloc.add(LoginWithApple()),
-          expect: [LoginFailure(errorMessage: 'Login failed')],
+          expect: () => [LoginFailure(errorMessage: 'Login failed')],
         );
       });
 
@@ -320,7 +321,8 @@ void main() {
             localStorageRepository: mockLocalStorageRepository,
           ),
           act: (bloc) => bloc.add(LoginWithApple()),
-          expect: [LoginFailure(errorMessage: "Unexpected error! Please contact the gym owner")],
+          expect: () =>
+              [LoginFailure(errorMessage: "Unexpected error! Please contact the gym owner")],
         );
       });
 
@@ -350,7 +352,7 @@ void main() {
             localStorageRepository: mockLocalStorageRepository,
           ),
           act: (bloc) => bloc.add(LoginWithApple()),
-          expect: [
+          expect: () => [
             LoginFailure(
                 errorMessage: "Sign in with Apple is not supported for your version of IOS")
           ],
@@ -381,7 +383,7 @@ void main() {
             localStorageRepository: mockLocalStorageRepository,
           ),
           act: (bloc) => bloc.add(LoginPasswordless(userEmail: fakeUser.email)),
-          expect: [],
+          expect: () => [],
         );
       });
       group("when the inserted email is NOT correct", () {
@@ -416,7 +418,7 @@ void main() {
             localStorageRepository: mockLocalStorageRepository,
           ),
           act: (bloc) => bloc.add(LoginPasswordless(userEmail: wrongEmail)),
-          expect: [
+          expect: () => [
             LoginInitial(),
             WrongfullyInsertedEmail(),
           ],

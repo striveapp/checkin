@@ -19,7 +19,7 @@ class UserBloc extends Bloc<UserEvent, UserState> {
     @required this.authBloc,
   }) : super(UserLoading()) {
     _onAuthStateChange(authBloc.state);
-    this.authBloc.listen(_onAuthStateChange);
+    this.authBloc.stream.listen(_onAuthStateChange);
   }
 
   void _onAuthStateChange(authState) {

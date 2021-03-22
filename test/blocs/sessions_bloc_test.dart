@@ -68,7 +68,7 @@ void main() {
                   statsRepository: mockStatsRepository,
                   membershipRepository: mockMembershipRepository,
                 ),
-            expect: [SessionsUnlimited()]);
+            expect: () => [SessionsUnlimited()]);
       });
 
       group(
@@ -98,7 +98,7 @@ void main() {
                   statsRepository: mockStatsRepository,
                   membershipRepository: mockMembershipRepository,
                 ),
-            expect: [SessionsUnlimited()]);
+            expect: () => [SessionsUnlimited()]);
       });
 
       group("when there is an active membership with no sessions", () {
@@ -126,7 +126,7 @@ void main() {
                   statsRepository: mockStatsRepository,
                   membershipRepository: mockMembershipRepository,
                 ),
-            expect: [SessionsUnlimited()]);
+            expect: () => [SessionsUnlimited()]);
       });
     });
 
@@ -173,7 +173,7 @@ void main() {
                     statsRepository: mockStatsRepository,
                     membershipRepository: mockMembershipRepository,
                   ),
-              expect: [SessionsLoaded(totalLessonsOfPlan: 3, attendedLessons: 1)]);
+              expect: () => [SessionsLoaded(totalLessonsOfPlan: 3, attendedLessons: 1)]);
         });
 
         group("and the user did 3 lessons this month", () {
@@ -200,7 +200,7 @@ void main() {
                     statsRepository: mockStatsRepository,
                     membershipRepository: mockMembershipRepository,
                   ),
-              expect: [SessionsWarning(totalLessonsOfPlan: 3, attendedLessons: 3)]);
+              expect: () => [SessionsWarning(totalLessonsOfPlan: 3, attendedLessons: 3)]);
         });
       });
     });

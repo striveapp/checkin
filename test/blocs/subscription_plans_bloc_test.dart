@@ -93,7 +93,7 @@ void main() {
             build: () => SubscriptionPlansBloc(
                 gymRepository: mockGymRepository,
                 subscriptionPlansRepository: mockSubscriptionPlansRepository),
-            expect: [SubscriptionPlansLoaded(subscriptionPlans: testPlans)]);
+            expect: () => [SubscriptionPlansLoaded(subscriptionPlans: testPlans)]);
       });
 
       group("when there are unsorted plans", () {
@@ -126,7 +126,7 @@ void main() {
                   gymRepository: mockGymRepository,
                   subscriptionPlansRepository: mockSubscriptionPlansRepository,
                 ),
-            expect: [SubscriptionPlansLoaded(subscriptionPlans: sortedTestPlans)]);
+            expect: () => [SubscriptionPlansLoaded(subscriptionPlans: sortedTestPlans)]);
       });
 
       group("when there are NO plans", () {
@@ -144,7 +144,7 @@ void main() {
                 gymRepository: mockGymRepository,
                 subscriptionPlansRepository: mockSubscriptionPlansRepository),
             act: (bloc) => bloc.add(SubscriptionPlansUpdated(subscriptionPlans: [])),
-            expect: [SubscriptionPlansEmpty()]);
+            expect: () => [SubscriptionPlansEmpty()]);
       });
     });
   });

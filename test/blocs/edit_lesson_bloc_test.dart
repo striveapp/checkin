@@ -84,7 +84,7 @@ void main() {
                 imageRepository: mockImageRepository,
                 storageRepository: mockStorageRepository,
               ),
-          expect: [],
+          expect: () => [],
           verify: (bloc) {
             expect(bloc.state, EditLessonState.editLessonUninitialized());
           });
@@ -116,7 +116,7 @@ void main() {
         act: (bloc) => bloc.add(
           EditLessonEvent.retrieveMasters(),
         ),
-        expect: [
+        expect: () => [
           EditLessonState.mastersLoaded(
             masters: availableMasters,
           )
@@ -153,7 +153,7 @@ void main() {
             newTimeStart: "04:20",
           ),
         ),
-        expect: [],
+        expect: () => [],
       );
     });
 
@@ -186,7 +186,7 @@ void main() {
             newTimeEnd: "13:37",
           ),
         ),
-        expect: [],
+        expect: () => [],
       );
     });
 
@@ -221,7 +221,7 @@ void main() {
             newName: newName,
           ),
         ),
-        expect: [],
+        expect: () => [],
       );
     });
 
@@ -256,7 +256,7 @@ void main() {
             newCapacity: newCapacity,
           ),
         ),
-        expect: [],
+        expect: () => [],
       );
     });
 
@@ -317,7 +317,7 @@ void main() {
         act: (bloc) => bloc.add(
           EditLessonEvent.updateImageUrl(),
         ),
-        expect: [],
+        expect: () => [],
       );
     });
 
@@ -371,7 +371,7 @@ void main() {
             newMasters: newMasters,
           ),
         ),
-        expect: [],
+        expect: () => [],
       );
     });
   });

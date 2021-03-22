@@ -30,7 +30,7 @@ void main() {
         "should emit AppTheme setting the new theme",
         build: () => ThemeBloc(),
         act: (bloc) => bloc.add(UpdateTheme(themeType: newThemeType)),
-        expect: [AppTheme(themeData: theme[newThemeType])],
+        expect: () => [AppTheme(themeData: theme[newThemeType])],
       );
     });
   });

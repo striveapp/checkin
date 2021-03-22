@@ -87,7 +87,7 @@ void main() {
             analyticsRepository: mockAnalyticsRepository,
           ),
           act: (bloc) => bloc.add(Subscribe(priceId: "fake-price", customerId: "fake-customer")),
-          expect: [
+          expect: () => [
             SubscriptionLoading(),
             SubscriptionSuccess(),
           ],
@@ -122,7 +122,7 @@ void main() {
             analyticsRepository: mockAnalyticsRepository,
           ),
           act: (bloc) => bloc.add(Subscribe(priceId: "fake-price", customerId: "fake-customer")),
-          expect: [
+          expect: () => [
             SubscriptionLoading(),
             SubscriptionError(
                 errorMessage: "Something went wrong with subscription: [a little nice error]"),
@@ -150,7 +150,7 @@ void main() {
             analyticsRepository: mockAnalyticsRepository,
           ),
           act: (bloc) => bloc.add(Subscribe(priceId: "fake-price", customerId: "null")),
-          expect: [
+          expect: () => [
             SubscriptionLoading(),
             SubscriptionError(errorMessage: "You must first activate your bank account"),
           ],

@@ -24,7 +24,7 @@ class UserStatsBloc extends Bloc<UserStatsEvent, UserStatsState> {
     @required this.statsBloc,
   }) : super(UserStatsUninitialized()) {
     _onStatsStateChanged(statsBloc.state);
-    statsBloc.listen(_onStatsStateChanged);
+    statsBloc.stream.listen(_onStatsStateChanged);
   }
 
   void _onStatsStateChanged(statsBlocState) {

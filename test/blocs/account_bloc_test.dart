@@ -55,7 +55,7 @@ void main() {
           userRepository: mockUserRepository,
           analyticsRepository: mockAnalyticsRepository,
         ),
-        expect: [],
+        expect: () => [],
         verify: (bloc) {
           expect(bloc.state, AccountInitial());
         },
@@ -76,9 +76,9 @@ void main() {
                 analyticsRepository: mockAnalyticsRepository,
                 userRepository: mockUserRepository,
               ),
-          expect: [
-            AccountLoaded(user: fakeUser),
-          ]);
+          expect: () => [
+                AccountLoaded(user: fakeUser),
+              ]);
     });
 
     group("on AccountDisplayError event", () {
@@ -102,7 +102,7 @@ void main() {
           userRepository: mockUserRepository,
         ),
         act: (bloc) => bloc.add(AccountDisplayError(errorMessage: errorMessage)),
-        expect: [
+        expect: () => [
           AccountError(errorMessage: errorMessage),
           AccountLoaded(user: fakeUser),
         ],

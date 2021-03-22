@@ -126,7 +126,8 @@ void main() {
         var fakeAppVersion = Version.parse("1.0.0");
 
         setUp(() {
-          when(mockUserRepository.subscribeToUser(fakeUser.email)).thenAnswer((realInvocation) => Stream.empty());
+          when(mockUserRepository.subscribeToUser(fakeUser.email))
+              .thenAnswer((realInvocation) => Stream.empty());
           when(mockAuthRepository.getAuthState()).thenAnswer((_) {
             return Stream<User>.value(fakeUser);
           });
@@ -176,7 +177,7 @@ void main() {
               versionUtil: mockVersionUtil,
             ),
             act: (bloc) => bloc.add(AppStarted()),
-            expect: [
+            expect: () => [
               AuthAuthenticated(loggedUser: fakeUser),
             ],
           );
@@ -235,7 +236,7 @@ void main() {
                 localStorageRepository: mockLocalStorageRepository,
                 versionUtil: mockVersionUtil),
             act: (bloc) => bloc.add(AppStarted()),
-            expect: [
+            expect: () => [
               AuthAuthenticated(loggedUser: fakeUser),
             ],
           );
@@ -264,7 +265,7 @@ void main() {
             versionUtil: mockVersionUtil,
           ),
           act: (bloc) => bloc.add(AppStarted()),
-          expect: [
+          expect: () => [
             AuthUnauthenticated(),
           ],
         );
@@ -290,7 +291,7 @@ void main() {
             versionUtil: mockVersionUtil,
           ),
           act: (bloc) => bloc.add(AppStarted()),
-          expect: [
+          expect: () => [
             AuthUnauthenticated(),
           ],
         );

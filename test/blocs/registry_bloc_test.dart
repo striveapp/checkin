@@ -103,7 +103,7 @@ void main() {
                 userRepository: mockUserRepository,
                 dateUtil: mockDateUtil,
               ),
-          expect: [],
+          expect: () => [],
           verify: (bloc) {
             expect(bloc.state, RegistryUninitialized());
           });
@@ -140,7 +140,7 @@ void main() {
           dateUtil: mockDateUtil,
         ),
         act: (bloc) => bloc.add(RegistryEvent.initializeRegistry()),
-        expect: [
+        expect: () => [
           RegistryLoaded(
             currentUser: fakeUser,
             currentLesson: baseLesson,
@@ -162,14 +162,13 @@ void main() {
         Lesson fakeLessonWithAcceptedAttendee =
             baseLesson.copyWith(attendees: [], acceptedAttendees: [testAttendee1]);
 
-        setUp((){
+        setUp(() {
           when(mockDateUtil.getCurrentDateTime()).thenReturn(testDate);
         });
 
-        tearDown((){
+        tearDown(() {
           verify(mockDateUtil.getCurrentDateTime());
         });
-
 
         blocTest(
           "should emit RegistryLoaded with isAccepted = true",
@@ -187,7 +186,7 @@ void main() {
             currentUser: acceptedUser,
             currentLesson: fakeLessonWithAcceptedAttendee,
           )),
-          expect: [
+          expect: () => [
             RegistryLoaded(
               currentUser: acceptedUser,
               currentLesson: fakeLessonWithAcceptedAttendee,
@@ -208,11 +207,11 @@ void main() {
         Lesson lessonWithRegisteredUser =
             baseLesson.copyWith(attendees: [testAttendee1], acceptedAttendees: []);
 
-        setUp((){
+        setUp(() {
           when(mockDateUtil.getCurrentDateTime()).thenReturn(testDate);
         });
 
-        tearDown((){
+        tearDown(() {
           verify(mockDateUtil.getCurrentDateTime());
         });
 
@@ -232,7 +231,7 @@ void main() {
             currentUser: registeredUser,
             currentLesson: lessonWithRegisteredUser,
           )),
-          expect: [
+          expect: () => [
             RegistryLoaded(
               currentUser: registeredUser,
               currentLesson: lessonWithRegisteredUser,
@@ -247,11 +246,11 @@ void main() {
         Lesson fakeLessonFull = baseLesson
             .copyWith(attendees: [], acceptedAttendees: [testAttendee1], classCapacity: 1);
 
-        setUp((){
+        setUp(() {
           when(mockDateUtil.getCurrentDateTime()).thenReturn(testDate);
         });
 
-        tearDown((){
+        tearDown(() {
           verify(mockDateUtil.getCurrentDateTime());
         });
 
@@ -271,7 +270,7 @@ void main() {
             currentUser: fakeUser,
             currentLesson: fakeLessonFull,
           )),
-          expect: [
+          expect: () => [
             RegistryLoaded(
               currentUser: fakeUser,
               currentLesson: fakeLessonFull,
@@ -283,11 +282,11 @@ void main() {
       });
 
       group("when lesson is empty", () {
-        setUp((){
+        setUp(() {
           when(mockDateUtil.getCurrentDateTime()).thenReturn(testDate);
         });
 
-        tearDown((){
+        tearDown(() {
           verify(mockDateUtil.getCurrentDateTime());
         });
 
@@ -307,7 +306,7 @@ void main() {
             currentUser: fakeUser,
             currentLesson: baseLesson,
           )),
-          expect: [
+          expect: () => [
             RegistryLoaded(
               currentUser: fakeUser,
               currentLesson: baseLesson,
@@ -324,11 +323,11 @@ void main() {
           isClosed: true,
         );
 
-        setUp((){
+        setUp(() {
           when(mockDateUtil.getCurrentDateTime()).thenReturn(testDate);
         });
 
-        tearDown((){
+        tearDown(() {
           verify(mockDateUtil.getCurrentDateTime());
         });
 
@@ -348,7 +347,7 @@ void main() {
             currentUser: fakeUser,
             currentLesson: fakeLessonClosed,
           )),
-          expect: [
+          expect: () => [
             RegistryLoaded(
               currentUser: fakeUser,
               currentLesson: fakeLessonClosed,
@@ -379,7 +378,7 @@ void main() {
             currentUser: fakeUser,
             currentLesson: null,
           )),
-          expect: [
+          expect: () => [
             RegistryMissing(),
           ],
         );
@@ -413,7 +412,7 @@ void main() {
                 dateUtil: mockDateUtil,
               ),
           act: (bloc) => bloc.add(Register(gymId: fakeUser.selectedGymId, attendee: fakeAttendee)),
-          expect: [],
+          expect: () => [],
           verify: (bloc) async {
             await untilCalled(mockLessonRepository.register(
                 fakeUser.selectedGymId, baseLesson.date, baseLesson.id, fakeAttendee));
@@ -453,7 +452,7 @@ void main() {
               ),
           act: (bloc) =>
               bloc.add(Unregister(gymId: registeredUser.selectedGymId, attendee: testAttendee1)),
-          expect: [],
+          expect: () => [],
           verify: (bloc) async {
             await untilCalled(mockLessonRepository.unregister(
                 fakeUser.selectedGymId, baseLesson.date, baseLesson.id, testAttendee1));
@@ -501,7 +500,7 @@ void main() {
                 dateUtil: mockDateUtil,
               ),
           act: (bloc) => bloc.add(AcceptAttendees(gymId: masterUser.selectedGymId)),
-          expect: [RegistryLoading()],
+          expect: () => [RegistryLoading()],
           verify: (bloc) async {
             await untilCalled(mockLessonApi.acceptAll(
               masterUser.selectedGymId,
@@ -540,7 +539,7 @@ void main() {
           act: (bloc) => bloc.add(CloseLesson(
                 gymId: fakeUser.selectedGymId,
               )),
-          expect: [RegistryLoading()]);
+          expect: () => [RegistryLoading()]);
     });
 
     group("on DeleteLesson event", () {
@@ -577,7 +576,7 @@ void main() {
           act: (bloc) => bloc.add(DeleteLesson(
                 gymId: fakeUser.selectedGymId,
               )),
-          expect: []);
+          expect: () => []);
     });
   });
 }
