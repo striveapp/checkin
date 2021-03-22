@@ -91,6 +91,7 @@ void main() {
         act: (bloc) => bloc.add(InitializeLessons()),
         expect: [
           LessonsLoaded(
+            lessons: [],
             selectedDay: testDate,
             selectedFilterList: [],
             nocache: testDate,
