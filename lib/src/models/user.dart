@@ -11,14 +11,13 @@ part 'user.freezed.dart';
 part 'user.g.dart';
 
 @freezed
-@GradeConverter()
 abstract class User with _$User {
   factory User({
     @required final String email,
     @required final String imageUrl,
     final String name,
     final String uid,
-    final Grade grade,
+    @GradeConverter() final Grade grade,
     final String selectedGymId,
     final List<String> knownGymIds,
     final bool hasActivePayments,
