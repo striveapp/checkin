@@ -245,7 +245,7 @@ packages:
       name: equatable
       url: "https://pub.dartlang.org"
     source: hosted
-    version: "1.2.6"
+    version: "2.0.0"
   fake_async:
     dependency: transitive
     description:
@@ -385,7 +385,7 @@ packages:
       name: fluro
       url: "https://pub.dartlang.org"
     source: hosted
-    version: "1.7.8"
+    version: "2.0.3"
   flutter:
     dependency: "direct main"
     description: flutter
@@ -954,7 +954,7 @@ packages:
       name: sign_in_with_apple
       url: "https://pub.dartlang.org"
     source: hosted
-    version: "2.5.4"
+    version: "3.0.0"
   simple_gesture_detector:
     dependency: transitive
     description:
@@ -1228,4 +1228,4 @@ packages:
     version: "3.1.0"
 sdks:
   dart: ">=2.12.0 <3.0.0"
-  flutter: ">=1.24.0-10"
+  flutter: ">=2.0.0"
