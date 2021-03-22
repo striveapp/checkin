@@ -12,7 +12,7 @@ _$_User _$_$_UserFromJson(Map<String, dynamic> json) {
     imageUrl: json['imageUrl'] as String,
     name: json['name'] as String,
     uid: json['uid'] as String,
-    grade: _$enumDecodeNullable(_$GradeEnumMap, json['grade']),
+    grade: const GradeConverter().fromJson(json['grade'] as String),
     selectedGymId: json['selectedGymId'] as String,
     knownGymIds: (json['knownGymIds'] as List)?.map((e) => e as String)?.toList(),
     hasActivePayments: json['hasActivePayments'] as bool,
@@ -25,47 +25,9 @@ Map<String, dynamic> _$_$_UserToJson(_$_User instance) => <String, dynamic>{
       'imageUrl': instance.imageUrl,
       'name': instance.name,
       'uid': instance.uid,
-      'grade': _$GradeEnumMap[instance.grade],
+      'grade': const GradeConverter().toJson(instance.grade),
       'selectedGymId': instance.selectedGymId,
       'knownGymIds': instance.knownGymIds,
       'hasActivePayments': instance.hasActivePayments,
       'isOwner': instance.isOwner,
     };
-
-T _$enumDecode<T>(
-  Map<T, dynamic> enumValues,
-  dynamic source, {
-  T unknownValue,
-}) {
-  if (source == null) {
-    throw ArgumentError('A value must be provided. Supported values: '
-        '${enumValues.values.join(', ')}');
-  }
-
-  final value = enumValues.entries.singleWhere((e) => e.value == source, orElse: () => null)?.key;
-
-  if (value == null && unknownValue == null) {
-    throw ArgumentError('`$source` is not one of the supported values: '
-        '${enumValues.values.join(', ')}');
-  }
-  return value ?? unknownValue;
-}
-
-T _$enumDecodeNullable<T>(
-  Map<T, dynamic> enumValues,
-  dynamic source, {
-  T unknownValue,
-}) {
-  if (source == null) {
-    return null;
-  }
-  return _$enumDecode<T>(enumValues, source, unknownValue: unknownValue);
-}
-
-const _$GradeEnumMap = {
-  Grade.white: 'white',
-  Grade.blue: 'blue',
-  Grade.purple: 'purple',
-  Grade.brown: 'brown',
-  Grade.black: 'black',
-};

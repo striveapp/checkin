@@ -84,11 +84,9 @@ abstract class $AuthAuthenticatedCopyWith<$Res> {
 }
 
 /// @nodoc
-class _$AuthAuthenticatedCopyWithImpl<$Res>
-    extends _$AuthStateCopyWithImpl<$Res>
+class _$AuthAuthenticatedCopyWithImpl<$Res> extends _$AuthStateCopyWithImpl<$Res>
     implements $AuthAuthenticatedCopyWith<$Res> {
-  _$AuthAuthenticatedCopyWithImpl(
-      AuthAuthenticated _value, $Res Function(AuthAuthenticated) _then)
+  _$AuthAuthenticatedCopyWithImpl(AuthAuthenticated _value, $Res Function(AuthAuthenticated) _then)
       : super(_value, (v) => _then(v as AuthAuthenticated));
 
   @override
@@ -99,8 +97,7 @@ class _$AuthAuthenticatedCopyWithImpl<$Res>
     Object loggedUser = freezed,
   }) {
     return _then(AuthAuthenticated(
-      loggedUser:
-          loggedUser == freezed ? _value.loggedUser : loggedUser as User,
+      loggedUser: loggedUser == freezed ? _value.loggedUser : loggedUser as User,
     ));
   }
 
@@ -116,9 +113,7 @@ class _$AuthAuthenticatedCopyWithImpl<$Res>
 }
 
 /// @nodoc
-class _$AuthAuthenticated
-    with DiagnosticableTreeMixin
-    implements AuthAuthenticated {
+class _$AuthAuthenticated with DiagnosticableTreeMixin implements AuthAuthenticated {
   const _$AuthAuthenticated({this.loggedUser});
 
   @override
@@ -142,14 +137,13 @@ class _$AuthAuthenticated
     return identical(this, other) ||
         (other is AuthAuthenticated &&
             (identical(other.loggedUser, loggedUser) ||
-                const DeepCollectionEquality()
-                    .equals(other.loggedUser, loggedUser)));
+                const DeepCollectionEquality().equals(other.loggedUser, loggedUser)));
   }
 
   @override
-  int get hashCode =>
-      runtimeType.hashCode ^ const DeepCollectionEquality().hash(loggedUser);
+  int get hashCode => runtimeType.hashCode ^ const DeepCollectionEquality().hash(loggedUser);
 
+  @JsonKey(ignore: true)
   @override
   $AuthAuthenticatedCopyWith<AuthAuthenticated> get copyWith =>
       _$AuthAuthenticatedCopyWithImpl<AuthAuthenticated>(this, _$identity);
@@ -209,6 +203,7 @@ abstract class AuthAuthenticated implements AuthState {
   const factory AuthAuthenticated({User loggedUser}) = _$AuthAuthenticated;
 
   User get loggedUser;
+  @JsonKey(ignore: true)
   $AuthAuthenticatedCopyWith<AuthAuthenticated> get copyWith;
 }
 
@@ -221,8 +216,7 @@ abstract class $AuthUnauthenticatedCopyWith<$Res> {
 }
 
 /// @nodoc
-class _$AuthUnauthenticatedCopyWithImpl<$Res>
-    extends _$AuthStateCopyWithImpl<$Res>
+class _$AuthUnauthenticatedCopyWithImpl<$Res> extends _$AuthStateCopyWithImpl<$Res>
     implements $AuthUnauthenticatedCopyWith<$Res> {
   _$AuthUnauthenticatedCopyWithImpl(
       AuthUnauthenticated _value, $Res Function(AuthUnauthenticated) _then)
@@ -242,9 +236,7 @@ class _$AuthUnauthenticatedCopyWithImpl<$Res>
 }
 
 /// @nodoc
-class _$AuthUnauthenticated
-    with DiagnosticableTreeMixin
-    implements AuthUnauthenticated {
+class _$AuthUnauthenticated with DiagnosticableTreeMixin implements AuthUnauthenticated {
   const _$AuthUnauthenticated({this.error});
 
   @override
@@ -272,9 +264,9 @@ class _$AuthUnauthenticated
   }
 
   @override
-  int get hashCode =>
-      runtimeType.hashCode ^ const DeepCollectionEquality().hash(error);
+  int get hashCode => runtimeType.hashCode ^ const DeepCollectionEquality().hash(error);
 
+  @JsonKey(ignore: true)
   @override
   $AuthUnauthenticatedCopyWith<AuthUnauthenticated> get copyWith =>
       _$AuthUnauthenticatedCopyWithImpl<AuthUnauthenticated>(this, _$identity);
@@ -334,5 +326,6 @@ abstract class AuthUnauthenticated implements AuthState {
   const factory AuthUnauthenticated({Error error}) = _$AuthUnauthenticated;
 
   Error get error;
+  @JsonKey(ignore: true)
   $AuthUnauthenticatedCopyWith<AuthUnauthenticated> get copyWith;
 }

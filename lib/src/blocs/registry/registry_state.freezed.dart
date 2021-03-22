@@ -121,14 +121,12 @@ mixin _$RegistryState {
 
 /// @nodoc
 abstract class $RegistryStateCopyWith<$Res> {
-  factory $RegistryStateCopyWith(
-          RegistryState value, $Res Function(RegistryState) then) =
+  factory $RegistryStateCopyWith(RegistryState value, $Res Function(RegistryState) then) =
       _$RegistryStateCopyWithImpl<$Res>;
 }
 
 /// @nodoc
-class _$RegistryStateCopyWithImpl<$Res>
-    implements $RegistryStateCopyWith<$Res> {
+class _$RegistryStateCopyWithImpl<$Res> implements $RegistryStateCopyWith<$Res> {
   _$RegistryStateCopyWithImpl(this._value, this._then);
 
   final RegistryState _value;
@@ -138,14 +136,13 @@ class _$RegistryStateCopyWithImpl<$Res>
 
 /// @nodoc
 abstract class $RegistryUninitializedCopyWith<$Res> {
-  factory $RegistryUninitializedCopyWith(RegistryUninitialized value,
-          $Res Function(RegistryUninitialized) then) =
+  factory $RegistryUninitializedCopyWith(
+          RegistryUninitialized value, $Res Function(RegistryUninitialized) then) =
       _$RegistryUninitializedCopyWithImpl<$Res>;
 }
 
 /// @nodoc
-class _$RegistryUninitializedCopyWithImpl<$Res>
-    extends _$RegistryStateCopyWithImpl<$Res>
+class _$RegistryUninitializedCopyWithImpl<$Res> extends _$RegistryStateCopyWithImpl<$Res>
     implements $RegistryUninitializedCopyWith<$Res> {
   _$RegistryUninitializedCopyWithImpl(
       RegistryUninitialized _value, $Res Function(RegistryUninitialized) _then)
@@ -156,9 +153,7 @@ class _$RegistryUninitializedCopyWithImpl<$Res>
 }
 
 /// @nodoc
-class _$RegistryUninitialized
-    with DiagnosticableTreeMixin
-    implements RegistryUninitialized {
+class _$RegistryUninitialized with DiagnosticableTreeMixin implements RegistryUninitialized {
   const _$RegistryUninitialized();
 
   @override
@@ -169,8 +164,7 @@ class _$RegistryUninitialized
   @override
   void debugFillProperties(DiagnosticPropertiesBuilder properties) {
     super.debugFillProperties(properties);
-    properties
-      ..add(DiagnosticsProperty('type', 'RegistryState.registryUninitialized'));
+    properties..add(DiagnosticsProperty('type', 'RegistryState.registryUninitialized'));
   }
 
   @override
@@ -275,17 +269,14 @@ abstract class RegistryUninitialized implements RegistryState {
 
 /// @nodoc
 abstract class $RegistryLoadingCopyWith<$Res> {
-  factory $RegistryLoadingCopyWith(
-          RegistryLoading value, $Res Function(RegistryLoading) then) =
+  factory $RegistryLoadingCopyWith(RegistryLoading value, $Res Function(RegistryLoading) then) =
       _$RegistryLoadingCopyWithImpl<$Res>;
 }
 
 /// @nodoc
-class _$RegistryLoadingCopyWithImpl<$Res>
-    extends _$RegistryStateCopyWithImpl<$Res>
+class _$RegistryLoadingCopyWithImpl<$Res> extends _$RegistryStateCopyWithImpl<$Res>
     implements $RegistryLoadingCopyWith<$Res> {
-  _$RegistryLoadingCopyWithImpl(
-      RegistryLoading _value, $Res Function(RegistryLoading) _then)
+  _$RegistryLoadingCopyWithImpl(RegistryLoading _value, $Res Function(RegistryLoading) _then)
       : super(_value, (v) => _then(v as RegistryLoading));
 
   @override
@@ -293,9 +284,7 @@ class _$RegistryLoadingCopyWithImpl<$Res>
 }
 
 /// @nodoc
-class _$RegistryLoading
-    with DiagnosticableTreeMixin
-    implements RegistryLoading {
+class _$RegistryLoading with DiagnosticableTreeMixin implements RegistryLoading {
   const _$RegistryLoading();
 
   @override
@@ -306,8 +295,7 @@ class _$RegistryLoading
   @override
   void debugFillProperties(DiagnosticPropertiesBuilder properties) {
     super.debugFillProperties(properties);
-    properties
-      ..add(DiagnosticsProperty('type', 'RegistryState.registryLoading'));
+    properties..add(DiagnosticsProperty('type', 'RegistryState.registryLoading'));
   }
 
   @override
@@ -412,17 +400,14 @@ abstract class RegistryLoading implements RegistryState {
 
 /// @nodoc
 abstract class $RegistryErrorCopyWith<$Res> {
-  factory $RegistryErrorCopyWith(
-          RegistryError value, $Res Function(RegistryError) then) =
+  factory $RegistryErrorCopyWith(RegistryError value, $Res Function(RegistryError) then) =
       _$RegistryErrorCopyWithImpl<$Res>;
 }
 
 /// @nodoc
-class _$RegistryErrorCopyWithImpl<$Res>
-    extends _$RegistryStateCopyWithImpl<$Res>
+class _$RegistryErrorCopyWithImpl<$Res> extends _$RegistryStateCopyWithImpl<$Res>
     implements $RegistryErrorCopyWith<$Res> {
-  _$RegistryErrorCopyWithImpl(
-      RegistryError _value, $Res Function(RegistryError) _then)
+  _$RegistryErrorCopyWithImpl(RegistryError _value, $Res Function(RegistryError) _then)
       : super(_value, (v) => _then(v as RegistryError));
 
   @override
@@ -546,17 +531,14 @@ abstract class RegistryError implements RegistryState {
 
 /// @nodoc
 abstract class $RegistryMissingCopyWith<$Res> {
-  factory $RegistryMissingCopyWith(
-          RegistryMissing value, $Res Function(RegistryMissing) then) =
+  factory $RegistryMissingCopyWith(RegistryMissing value, $Res Function(RegistryMissing) then) =
       _$RegistryMissingCopyWithImpl<$Res>;
 }
 
 /// @nodoc
-class _$RegistryMissingCopyWithImpl<$Res>
-    extends _$RegistryStateCopyWithImpl<$Res>
+class _$RegistryMissingCopyWithImpl<$Res> extends _$RegistryStateCopyWithImpl<$Res>
     implements $RegistryMissingCopyWith<$Res> {
-  _$RegistryMissingCopyWithImpl(
-      RegistryMissing _value, $Res Function(RegistryMissing) _then)
+  _$RegistryMissingCopyWithImpl(RegistryMissing _value, $Res Function(RegistryMissing) _then)
       : super(_value, (v) => _then(v as RegistryMissing));
 
   @override
@@ -564,9 +546,7 @@ class _$RegistryMissingCopyWithImpl<$Res>
 }
 
 /// @nodoc
-class _$RegistryMissing
-    with DiagnosticableTreeMixin
-    implements RegistryMissing {
+class _$RegistryMissing with DiagnosticableTreeMixin implements RegistryMissing {
   const _$RegistryMissing();
 
   @override
@@ -577,8 +557,7 @@ class _$RegistryMissing
   @override
   void debugFillProperties(DiagnosticPropertiesBuilder properties) {
     super.debugFillProperties(properties);
-    properties
-      ..add(DiagnosticsProperty('type', 'RegistryState.registryMissing'));
+    properties..add(DiagnosticsProperty('type', 'RegistryState.registryMissing'));
   }
 
   @override
@@ -683,8 +662,7 @@ abstract class RegistryMissing implements RegistryState {
 
 /// @nodoc
 abstract class $RegistryLoadedCopyWith<$Res> {
-  factory $RegistryLoadedCopyWith(
-          RegistryLoaded value, $Res Function(RegistryLoaded) then) =
+  factory $RegistryLoadedCopyWith(RegistryLoaded value, $Res Function(RegistryLoaded) then) =
       _$RegistryLoadedCopyWithImpl<$Res>;
   $Res call(
       {User currentUser,
@@ -702,11 +680,9 @@ abstract class $RegistryLoadedCopyWith<$Res> {
 }
 
 /// @nodoc
-class _$RegistryLoadedCopyWithImpl<$Res>
-    extends _$RegistryStateCopyWithImpl<$Res>
+class _$RegistryLoadedCopyWithImpl<$Res> extends _$RegistryStateCopyWithImpl<$Res>
     implements $RegistryLoadedCopyWith<$Res> {
-  _$RegistryLoadedCopyWithImpl(
-      RegistryLoaded _value, $Res Function(RegistryLoaded) _then)
+  _$RegistryLoadedCopyWithImpl(RegistryLoaded _value, $Res Function(RegistryLoaded) _then)
       : super(_value, (v) => _then(v as RegistryLoaded));
 
   @override
@@ -725,29 +701,17 @@ class _$RegistryLoadedCopyWithImpl<$Res>
     Object nocache = freezed,
   }) {
     return _then(RegistryLoaded(
-      currentUser:
-          currentUser == freezed ? _value.currentUser : currentUser as User,
-      currentLesson: currentLesson == freezed
-          ? _value.currentLesson
-          : currentLesson as Lesson,
-      isAcceptedUser: isAcceptedUser == freezed
-          ? _value.isAcceptedUser
-          : isAcceptedUser as bool,
-      isRegisteredUser: isRegisteredUser == freezed
-          ? _value.isRegisteredUser
-          : isRegisteredUser as bool,
-      isFullRegistry: isFullRegistry == freezed
-          ? _value.isFullRegistry
-          : isFullRegistry as bool,
-      isEmptyRegistry: isEmptyRegistry == freezed
-          ? _value.isEmptyRegistry
-          : isEmptyRegistry as bool,
-      isMasterOfTheClass: isMasterOfTheClass == freezed
-          ? _value.isMasterOfTheClass
-          : isMasterOfTheClass as bool,
-      isClosedRegistry: isClosedRegistry == freezed
-          ? _value.isClosedRegistry
-          : isClosedRegistry,
+      currentUser: currentUser == freezed ? _value.currentUser : currentUser as User,
+      currentLesson: currentLesson == freezed ? _value.currentLesson : currentLesson as Lesson,
+      isAcceptedUser: isAcceptedUser == freezed ? _value.isAcceptedUser : isAcceptedUser as bool,
+      isRegisteredUser:
+          isRegisteredUser == freezed ? _value.isRegisteredUser : isRegisteredUser as bool,
+      isFullRegistry: isFullRegistry == freezed ? _value.isFullRegistry : isFullRegistry as bool,
+      isEmptyRegistry:
+          isEmptyRegistry == freezed ? _value.isEmptyRegistry : isEmptyRegistry as bool,
+      isMasterOfTheClass:
+          isMasterOfTheClass == freezed ? _value.isMasterOfTheClass : isMasterOfTheClass as bool,
+      isClosedRegistry: isClosedRegistry == freezed ? _value.isClosedRegistry : isClosedRegistry,
       nocache: nocache == freezed ? _value.nocache : nocache as DateTime,
     ));
   }
@@ -845,29 +809,22 @@ class _$RegistryLoaded with DiagnosticableTreeMixin implements RegistryLoaded {
     return identical(this, other) ||
         (other is RegistryLoaded &&
             (identical(other.currentUser, currentUser) ||
-                const DeepCollectionEquality()
-                    .equals(other.currentUser, currentUser)) &&
+                const DeepCollectionEquality().equals(other.currentUser, currentUser)) &&
             (identical(other.currentLesson, currentLesson) ||
-                const DeepCollectionEquality()
-                    .equals(other.currentLesson, currentLesson)) &&
+                const DeepCollectionEquality().equals(other.currentLesson, currentLesson)) &&
             (identical(other.isAcceptedUser, isAcceptedUser) ||
-                const DeepCollectionEquality()
-                    .equals(other.isAcceptedUser, isAcceptedUser)) &&
+                const DeepCollectionEquality().equals(other.isAcceptedUser, isAcceptedUser)) &&
             (identical(other.isRegisteredUser, isRegisteredUser) ||
-                const DeepCollectionEquality()
-                    .equals(other.isRegisteredUser, isRegisteredUser)) &&
+                const DeepCollectionEquality().equals(other.isRegisteredUser, isRegisteredUser)) &&
             (identical(other.isFullRegistry, isFullRegistry) ||
-                const DeepCollectionEquality()
-                    .equals(other.isFullRegistry, isFullRegistry)) &&
+                const DeepCollectionEquality().equals(other.isFullRegistry, isFullRegistry)) &&
             (identical(other.isEmptyRegistry, isEmptyRegistry) ||
-                const DeepCollectionEquality()
-                    .equals(other.isEmptyRegistry, isEmptyRegistry)) &&
+                const DeepCollectionEquality().equals(other.isEmptyRegistry, isEmptyRegistry)) &&
             (identical(other.isMasterOfTheClass, isMasterOfTheClass) ||
                 const DeepCollectionEquality()
                     .equals(other.isMasterOfTheClass, isMasterOfTheClass)) &&
             (identical(other.isClosedRegistry, isClosedRegistry) ||
-                const DeepCollectionEquality()
-                    .equals(other.isClosedRegistry, isClosedRegistry)) &&
+                const DeepCollectionEquality().equals(other.isClosedRegistry, isClosedRegistry)) &&
             (identical(other.nocache, nocache) ||
                 const DeepCollectionEquality().equals(other.nocache, nocache)));
   }
@@ -885,6 +842,7 @@ class _$RegistryLoaded with DiagnosticableTreeMixin implements RegistryLoaded {
       const DeepCollectionEquality().hash(isClosedRegistry) ^
       const DeepCollectionEquality().hash(nocache);
 
+  @JsonKey(ignore: true)
   @override
   $RegistryLoadedCopyWith<RegistryLoaded> get copyWith =>
       _$RegistryLoadedCopyWithImpl<RegistryLoaded>(this, _$identity);
@@ -913,16 +871,8 @@ class _$RegistryLoaded with DiagnosticableTreeMixin implements RegistryLoaded {
     assert(registryError != null);
     assert(registryMissing != null);
     assert(registryLoaded != null);
-    return registryLoaded(
-        currentUser,
-        currentLesson,
-        isAcceptedUser,
-        isRegisteredUser,
-        isFullRegistry,
-        isEmptyRegistry,
-        isMasterOfTheClass,
-        isClosedRegistry,
-        nocache);
+    return registryLoaded(currentUser, currentLesson, isAcceptedUser, isRegisteredUser,
+        isFullRegistry, isEmptyRegistry, isMasterOfTheClass, isClosedRegistry, nocache);
   }
 
   @override
@@ -946,16 +896,8 @@ class _$RegistryLoaded with DiagnosticableTreeMixin implements RegistryLoaded {
   }) {
     assert(orElse != null);
     if (registryLoaded != null) {
-      return registryLoaded(
-          currentUser,
-          currentLesson,
-          isAcceptedUser,
-          isRegisteredUser,
-          isFullRegistry,
-          isEmptyRegistry,
-          isMasterOfTheClass,
-          isClosedRegistry,
-          nocache);
+      return registryLoaded(currentUser, currentLesson, isAcceptedUser, isRegisteredUser,
+          isFullRegistry, isEmptyRegistry, isMasterOfTheClass, isClosedRegistry, nocache);
     }
     return orElse();
   }
@@ -1016,5 +958,6 @@ abstract class RegistryLoaded implements RegistryState {
   bool get isMasterOfTheClass;
   dynamic get isClosedRegistry;
   DateTime get nocache;
+  @JsonKey(ignore: true)
   $RegistryLoadedCopyWith<RegistryLoaded> get copyWith;
 }

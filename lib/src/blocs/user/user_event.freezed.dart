@@ -87,8 +87,7 @@ class _$UserEventCopyWithImpl<$Res> implements $UserEventCopyWith<$Res> {
 
 /// @nodoc
 abstract class $UserUpdatedCopyWith<$Res> {
-  factory $UserUpdatedCopyWith(
-          UserUpdated value, $Res Function(UserUpdated) then) =
+  factory $UserUpdatedCopyWith(UserUpdated value, $Res Function(UserUpdated) then) =
       _$UserUpdatedCopyWithImpl<$Res>;
   $Res call({User user});
 
@@ -98,8 +97,7 @@ abstract class $UserUpdatedCopyWith<$Res> {
 /// @nodoc
 class _$UserUpdatedCopyWithImpl<$Res> extends _$UserEventCopyWithImpl<$Res>
     implements $UserUpdatedCopyWith<$Res> {
-  _$UserUpdatedCopyWithImpl(
-      UserUpdated _value, $Res Function(UserUpdated) _then)
+  _$UserUpdatedCopyWithImpl(UserUpdated _value, $Res Function(UserUpdated) _then)
       : super(_value, (v) => _then(v as UserUpdated));
 
   @override
@@ -154,9 +152,9 @@ class _$UserUpdated with DiagnosticableTreeMixin implements UserUpdated {
   }
 
   @override
-  int get hashCode =>
-      runtimeType.hashCode ^ const DeepCollectionEquality().hash(user);
+  int get hashCode => runtimeType.hashCode ^ const DeepCollectionEquality().hash(user);
 
+  @JsonKey(ignore: true)
   @override
   $UserUpdatedCopyWith<UserUpdated> get copyWith =>
       _$UserUpdatedCopyWithImpl<UserUpdated>(this, _$identity);
@@ -222,13 +220,13 @@ abstract class UserUpdated implements UserEvent {
   const factory UserUpdated({User user}) = _$UserUpdated;
 
   User get user;
+  @JsonKey(ignore: true)
   $UserUpdatedCopyWith<UserUpdated> get copyWith;
 }
 
 /// @nodoc
 abstract class $UpdateGradeCopyWith<$Res> {
-  factory $UpdateGradeCopyWith(
-          UpdateGrade value, $Res Function(UpdateGrade) then) =
+  factory $UpdateGradeCopyWith(UpdateGrade value, $Res Function(UpdateGrade) then) =
       _$UpdateGradeCopyWithImpl<$Res>;
   $Res call({Grade newGrade});
 }
@@ -236,8 +234,7 @@ abstract class $UpdateGradeCopyWith<$Res> {
 /// @nodoc
 class _$UpdateGradeCopyWithImpl<$Res> extends _$UserEventCopyWithImpl<$Res>
     implements $UpdateGradeCopyWith<$Res> {
-  _$UpdateGradeCopyWithImpl(
-      UpdateGrade _value, $Res Function(UpdateGrade) _then)
+  _$UpdateGradeCopyWithImpl(UpdateGrade _value, $Res Function(UpdateGrade) _then)
       : super(_value, (v) => _then(v as UpdateGrade));
 
   @override
@@ -278,14 +275,13 @@ class _$UpdateGrade with DiagnosticableTreeMixin implements UpdateGrade {
     return identical(this, other) ||
         (other is UpdateGrade &&
             (identical(other.newGrade, newGrade) ||
-                const DeepCollectionEquality()
-                    .equals(other.newGrade, newGrade)));
+                const DeepCollectionEquality().equals(other.newGrade, newGrade)));
   }
 
   @override
-  int get hashCode =>
-      runtimeType.hashCode ^ const DeepCollectionEquality().hash(newGrade);
+  int get hashCode => runtimeType.hashCode ^ const DeepCollectionEquality().hash(newGrade);
 
+  @JsonKey(ignore: true)
   @override
   $UpdateGradeCopyWith<UpdateGrade> get copyWith =>
       _$UpdateGradeCopyWithImpl<UpdateGrade>(this, _$identity);
@@ -351,6 +347,7 @@ abstract class UpdateGrade implements UserEvent {
   const factory UpdateGrade({Grade newGrade}) = _$UpdateGrade;
 
   Grade get newGrade;
+  @JsonKey(ignore: true)
   $UpdateGradeCopyWith<UpdateGrade> get copyWith;
 }
 
@@ -363,11 +360,9 @@ abstract class $UpdateSelectedGymCopyWith<$Res> {
 }
 
 /// @nodoc
-class _$UpdateSelectedGymCopyWithImpl<$Res>
-    extends _$UserEventCopyWithImpl<$Res>
+class _$UpdateSelectedGymCopyWithImpl<$Res> extends _$UserEventCopyWithImpl<$Res>
     implements $UpdateSelectedGymCopyWith<$Res> {
-  _$UpdateSelectedGymCopyWithImpl(
-      UpdateSelectedGym _value, $Res Function(UpdateSelectedGym) _then)
+  _$UpdateSelectedGymCopyWithImpl(UpdateSelectedGym _value, $Res Function(UpdateSelectedGym) _then)
       : super(_value, (v) => _then(v as UpdateSelectedGym));
 
   @override
@@ -386,9 +381,7 @@ class _$UpdateSelectedGymCopyWithImpl<$Res>
 }
 
 /// @nodoc
-class _$UpdateSelectedGym
-    with DiagnosticableTreeMixin
-    implements UpdateSelectedGym {
+class _$UpdateSelectedGym with DiagnosticableTreeMixin implements UpdateSelectedGym {
   const _$UpdateSelectedGym({this.userEmail, this.newGymId});
 
   @override
@@ -415,11 +408,9 @@ class _$UpdateSelectedGym
     return identical(this, other) ||
         (other is UpdateSelectedGym &&
             (identical(other.userEmail, userEmail) ||
-                const DeepCollectionEquality()
-                    .equals(other.userEmail, userEmail)) &&
+                const DeepCollectionEquality().equals(other.userEmail, userEmail)) &&
             (identical(other.newGymId, newGymId) ||
-                const DeepCollectionEquality()
-                    .equals(other.newGymId, newGymId)));
+                const DeepCollectionEquality().equals(other.newGymId, newGymId)));
   }
 
   @override
@@ -428,6 +419,7 @@ class _$UpdateSelectedGym
       const DeepCollectionEquality().hash(userEmail) ^
       const DeepCollectionEquality().hash(newGymId);
 
+  @JsonKey(ignore: true)
   @override
   $UpdateSelectedGymCopyWith<UpdateSelectedGym> get copyWith =>
       _$UpdateSelectedGymCopyWithImpl<UpdateSelectedGym>(this, _$identity);
@@ -490,10 +482,10 @@ class _$UpdateSelectedGym
 }
 
 abstract class UpdateSelectedGym implements UserEvent {
-  const factory UpdateSelectedGym({String userEmail, String newGymId}) =
-      _$UpdateSelectedGym;
+  const factory UpdateSelectedGym({String userEmail, String newGymId}) = _$UpdateSelectedGym;
 
   String get userEmail;
   String get newGymId;
+  @JsonKey(ignore: true)
   $UpdateSelectedGymCopyWith<UpdateSelectedGym> get copyWith;
 }

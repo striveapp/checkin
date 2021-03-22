@@ -39,24 +39,19 @@ mixin _$PaymentMethod {
   String get lastFourDigits;
   String get country;
 
+  @JsonKey(ignore: true)
   $PaymentMethodCopyWith<PaymentMethod> get copyWith;
 }
 
 /// @nodoc
 abstract class $PaymentMethodCopyWith<$Res> {
-  factory $PaymentMethodCopyWith(
-          PaymentMethod value, $Res Function(PaymentMethod) then) =
+  factory $PaymentMethodCopyWith(PaymentMethod value, $Res Function(PaymentMethod) then) =
       _$PaymentMethodCopyWithImpl<$Res>;
-  $Res call(
-      {String customerId,
-      String billingEmail,
-      String lastFourDigits,
-      String country});
+  $Res call({String customerId, String billingEmail, String lastFourDigits, String country});
 }
 
 /// @nodoc
-class _$PaymentMethodCopyWithImpl<$Res>
-    implements $PaymentMethodCopyWith<$Res> {
+class _$PaymentMethodCopyWithImpl<$Res> implements $PaymentMethodCopyWith<$Res> {
   _$PaymentMethodCopyWithImpl(this._value, this._then);
 
   final PaymentMethod _value;
@@ -71,39 +66,26 @@ class _$PaymentMethodCopyWithImpl<$Res>
     Object country = freezed,
   }) {
     return _then(_value.copyWith(
-      customerId:
-          customerId == freezed ? _value.customerId : customerId as String,
-      billingEmail: billingEmail == freezed
-          ? _value.billingEmail
-          : billingEmail as String,
-      lastFourDigits: lastFourDigits == freezed
-          ? _value.lastFourDigits
-          : lastFourDigits as String,
+      customerId: customerId == freezed ? _value.customerId : customerId as String,
+      billingEmail: billingEmail == freezed ? _value.billingEmail : billingEmail as String,
+      lastFourDigits: lastFourDigits == freezed ? _value.lastFourDigits : lastFourDigits as String,
       country: country == freezed ? _value.country : country as String,
     ));
   }
 }
 
 /// @nodoc
-abstract class _$PaymentMethodCopyWith<$Res>
-    implements $PaymentMethodCopyWith<$Res> {
-  factory _$PaymentMethodCopyWith(
-          _PaymentMethod value, $Res Function(_PaymentMethod) then) =
+abstract class _$PaymentMethodCopyWith<$Res> implements $PaymentMethodCopyWith<$Res> {
+  factory _$PaymentMethodCopyWith(_PaymentMethod value, $Res Function(_PaymentMethod) then) =
       __$PaymentMethodCopyWithImpl<$Res>;
   @override
-  $Res call(
-      {String customerId,
-      String billingEmail,
-      String lastFourDigits,
-      String country});
+  $Res call({String customerId, String billingEmail, String lastFourDigits, String country});
 }
 
 /// @nodoc
-class __$PaymentMethodCopyWithImpl<$Res>
-    extends _$PaymentMethodCopyWithImpl<$Res>
+class __$PaymentMethodCopyWithImpl<$Res> extends _$PaymentMethodCopyWithImpl<$Res>
     implements _$PaymentMethodCopyWith<$Res> {
-  __$PaymentMethodCopyWithImpl(
-      _PaymentMethod _value, $Res Function(_PaymentMethod) _then)
+  __$PaymentMethodCopyWithImpl(_PaymentMethod _value, $Res Function(_PaymentMethod) _then)
       : super(_value, (v) => _then(v as _PaymentMethod));
 
   @override
@@ -117,14 +99,9 @@ class __$PaymentMethodCopyWithImpl<$Res>
     Object country = freezed,
   }) {
     return _then(_PaymentMethod(
-      customerId:
-          customerId == freezed ? _value.customerId : customerId as String,
-      billingEmail: billingEmail == freezed
-          ? _value.billingEmail
-          : billingEmail as String,
-      lastFourDigits: lastFourDigits == freezed
-          ? _value.lastFourDigits
-          : lastFourDigits as String,
+      customerId: customerId == freezed ? _value.customerId : customerId as String,
+      billingEmail: billingEmail == freezed ? _value.billingEmail : billingEmail as String,
+      lastFourDigits: lastFourDigits == freezed ? _value.lastFourDigits : lastFourDigits as String,
       country: country == freezed ? _value.country : country as String,
     ));
   }
@@ -172,14 +149,11 @@ class _$_PaymentMethod with DiagnosticableTreeMixin implements _PaymentMethod {
     return identical(this, other) ||
         (other is _PaymentMethod &&
             (identical(other.customerId, customerId) ||
-                const DeepCollectionEquality()
-                    .equals(other.customerId, customerId)) &&
+                const DeepCollectionEquality().equals(other.customerId, customerId)) &&
             (identical(other.billingEmail, billingEmail) ||
-                const DeepCollectionEquality()
-                    .equals(other.billingEmail, billingEmail)) &&
+                const DeepCollectionEquality().equals(other.billingEmail, billingEmail)) &&
             (identical(other.lastFourDigits, lastFourDigits) ||
-                const DeepCollectionEquality()
-                    .equals(other.lastFourDigits, lastFourDigits)) &&
+                const DeepCollectionEquality().equals(other.lastFourDigits, lastFourDigits)) &&
             (identical(other.country, country) ||
                 const DeepCollectionEquality().equals(other.country, country)));
   }
@@ -192,6 +166,7 @@ class _$_PaymentMethod with DiagnosticableTreeMixin implements _PaymentMethod {
       const DeepCollectionEquality().hash(lastFourDigits) ^
       const DeepCollectionEquality().hash(country);
 
+  @JsonKey(ignore: true)
   @override
   _$PaymentMethodCopyWith<_PaymentMethod> get copyWith =>
       __$PaymentMethodCopyWithImpl<_PaymentMethod>(this, _$identity);
@@ -213,5 +188,6 @@ abstract class _PaymentMethod implements PaymentMethod {
   @override
   String get country;
   @override
+  @JsonKey(ignore: true)
   _$PaymentMethodCopyWith<_PaymentMethod> get copyWith;
 }

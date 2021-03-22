@@ -37,9 +37,7 @@ const $SubscriptionPlansEvent = _$SubscriptionPlansEventTearOff();
 mixin _$SubscriptionPlansEvent {
   @optionalTypeArgs
   TResult when<TResult extends Object>({
-    @required
-        TResult subscriptionPlansUpdated(
-            List<SubscriptionPlan> subscriptionPlans),
+    @required TResult subscriptionPlansUpdated(List<SubscriptionPlan> subscriptionPlans),
     @required TResult loadSubscriptionPlans(String planId),
   });
   @optionalTypeArgs
@@ -63,14 +61,13 @@ mixin _$SubscriptionPlansEvent {
 
 /// @nodoc
 abstract class $SubscriptionPlansEventCopyWith<$Res> {
-  factory $SubscriptionPlansEventCopyWith(SubscriptionPlansEvent value,
-          $Res Function(SubscriptionPlansEvent) then) =
+  factory $SubscriptionPlansEventCopyWith(
+          SubscriptionPlansEvent value, $Res Function(SubscriptionPlansEvent) then) =
       _$SubscriptionPlansEventCopyWithImpl<$Res>;
 }
 
 /// @nodoc
-class _$SubscriptionPlansEventCopyWithImpl<$Res>
-    implements $SubscriptionPlansEventCopyWith<$Res> {
+class _$SubscriptionPlansEventCopyWithImpl<$Res> implements $SubscriptionPlansEventCopyWith<$Res> {
   _$SubscriptionPlansEventCopyWithImpl(this._value, this._then);
 
   final SubscriptionPlansEvent _value;
@@ -80,8 +77,8 @@ class _$SubscriptionPlansEventCopyWithImpl<$Res>
 
 /// @nodoc
 abstract class $SubscriptionPlansUpdatedCopyWith<$Res> {
-  factory $SubscriptionPlansUpdatedCopyWith(SubscriptionPlansUpdated value,
-          $Res Function(SubscriptionPlansUpdated) then) =
+  factory $SubscriptionPlansUpdatedCopyWith(
+          SubscriptionPlansUpdated value, $Res Function(SubscriptionPlansUpdated) then) =
       _$SubscriptionPlansUpdatedCopyWithImpl<$Res>;
   $Res call({List<SubscriptionPlan> subscriptionPlans});
 }
@@ -90,13 +87,12 @@ abstract class $SubscriptionPlansUpdatedCopyWith<$Res> {
 class _$SubscriptionPlansUpdatedCopyWithImpl<$Res>
     extends _$SubscriptionPlansEventCopyWithImpl<$Res>
     implements $SubscriptionPlansUpdatedCopyWith<$Res> {
-  _$SubscriptionPlansUpdatedCopyWithImpl(SubscriptionPlansUpdated _value,
-      $Res Function(SubscriptionPlansUpdated) _then)
+  _$SubscriptionPlansUpdatedCopyWithImpl(
+      SubscriptionPlansUpdated _value, $Res Function(SubscriptionPlansUpdated) _then)
       : super(_value, (v) => _then(v as SubscriptionPlansUpdated));
 
   @override
-  SubscriptionPlansUpdated get _value =>
-      super._value as SubscriptionPlansUpdated;
+  SubscriptionPlansUpdated get _value => super._value as SubscriptionPlansUpdated;
 
   @override
   $Res call({
@@ -111,9 +107,7 @@ class _$SubscriptionPlansUpdatedCopyWithImpl<$Res>
 }
 
 /// @nodoc
-class _$SubscriptionPlansUpdated
-    with DiagnosticableTreeMixin
-    implements SubscriptionPlansUpdated {
+class _$SubscriptionPlansUpdated with DiagnosticableTreeMixin implements SubscriptionPlansUpdated {
   const _$SubscriptionPlansUpdated({@required this.subscriptionPlans})
       : assert(subscriptionPlans != null);
 
@@ -129,8 +123,7 @@ class _$SubscriptionPlansUpdated
   void debugFillProperties(DiagnosticPropertiesBuilder properties) {
     super.debugFillProperties(properties);
     properties
-      ..add(DiagnosticsProperty(
-          'type', 'SubscriptionPlansEvent.subscriptionPlansUpdated'))
+      ..add(DiagnosticsProperty('type', 'SubscriptionPlansEvent.subscriptionPlansUpdated'))
       ..add(DiagnosticsProperty('subscriptionPlans', subscriptionPlans));
   }
 
@@ -139,26 +132,21 @@ class _$SubscriptionPlansUpdated
     return identical(this, other) ||
         (other is SubscriptionPlansUpdated &&
             (identical(other.subscriptionPlans, subscriptionPlans) ||
-                const DeepCollectionEquality()
-                    .equals(other.subscriptionPlans, subscriptionPlans)));
+                const DeepCollectionEquality().equals(other.subscriptionPlans, subscriptionPlans)));
   }
 
   @override
-  int get hashCode =>
-      runtimeType.hashCode ^
-      const DeepCollectionEquality().hash(subscriptionPlans);
+  int get hashCode => runtimeType.hashCode ^ const DeepCollectionEquality().hash(subscriptionPlans);
 
+  @JsonKey(ignore: true)
   @override
   $SubscriptionPlansUpdatedCopyWith<SubscriptionPlansUpdated> get copyWith =>
-      _$SubscriptionPlansUpdatedCopyWithImpl<SubscriptionPlansUpdated>(
-          this, _$identity);
+      _$SubscriptionPlansUpdatedCopyWithImpl<SubscriptionPlansUpdated>(this, _$identity);
 
   @override
   @optionalTypeArgs
   TResult when<TResult extends Object>({
-    @required
-        TResult subscriptionPlansUpdated(
-            List<SubscriptionPlan> subscriptionPlans),
+    @required TResult subscriptionPlansUpdated(List<SubscriptionPlan> subscriptionPlans),
     @required TResult loadSubscriptionPlans(String planId),
   }) {
     assert(subscriptionPlansUpdated != null);
@@ -207,25 +195,24 @@ class _$SubscriptionPlansUpdated
 }
 
 abstract class SubscriptionPlansUpdated implements SubscriptionPlansEvent {
-  const factory SubscriptionPlansUpdated(
-          {@required List<SubscriptionPlan> subscriptionPlans}) =
+  const factory SubscriptionPlansUpdated({@required List<SubscriptionPlan> subscriptionPlans}) =
       _$SubscriptionPlansUpdated;
 
   List<SubscriptionPlan> get subscriptionPlans;
+  @JsonKey(ignore: true)
   $SubscriptionPlansUpdatedCopyWith<SubscriptionPlansUpdated> get copyWith;
 }
 
 /// @nodoc
 abstract class $LoadSubscriptionPlansCopyWith<$Res> {
-  factory $LoadSubscriptionPlansCopyWith(LoadSubscriptionPlans value,
-          $Res Function(LoadSubscriptionPlans) then) =
+  factory $LoadSubscriptionPlansCopyWith(
+          LoadSubscriptionPlans value, $Res Function(LoadSubscriptionPlans) then) =
       _$LoadSubscriptionPlansCopyWithImpl<$Res>;
   $Res call({String planId});
 }
 
 /// @nodoc
-class _$LoadSubscriptionPlansCopyWithImpl<$Res>
-    extends _$SubscriptionPlansEventCopyWithImpl<$Res>
+class _$LoadSubscriptionPlansCopyWithImpl<$Res> extends _$SubscriptionPlansEventCopyWithImpl<$Res>
     implements $LoadSubscriptionPlansCopyWith<$Res> {
   _$LoadSubscriptionPlansCopyWithImpl(
       LoadSubscriptionPlans _value, $Res Function(LoadSubscriptionPlans) _then)
@@ -245,11 +232,8 @@ class _$LoadSubscriptionPlansCopyWithImpl<$Res>
 }
 
 /// @nodoc
-class _$LoadSubscriptionPlans
-    with DiagnosticableTreeMixin
-    implements LoadSubscriptionPlans {
-  const _$LoadSubscriptionPlans({@required this.planId})
-      : assert(planId != null);
+class _$LoadSubscriptionPlans with DiagnosticableTreeMixin implements LoadSubscriptionPlans {
+  const _$LoadSubscriptionPlans({@required this.planId}) : assert(planId != null);
 
   @override
   final String planId;
@@ -263,8 +247,7 @@ class _$LoadSubscriptionPlans
   void debugFillProperties(DiagnosticPropertiesBuilder properties) {
     super.debugFillProperties(properties);
     properties
-      ..add(DiagnosticsProperty(
-          'type', 'SubscriptionPlansEvent.loadSubscriptionPlans'))
+      ..add(DiagnosticsProperty('type', 'SubscriptionPlansEvent.loadSubscriptionPlans'))
       ..add(DiagnosticsProperty('planId', planId));
   }
 
@@ -277,20 +260,17 @@ class _$LoadSubscriptionPlans
   }
 
   @override
-  int get hashCode =>
-      runtimeType.hashCode ^ const DeepCollectionEquality().hash(planId);
+  int get hashCode => runtimeType.hashCode ^ const DeepCollectionEquality().hash(planId);
 
+  @JsonKey(ignore: true)
   @override
   $LoadSubscriptionPlansCopyWith<LoadSubscriptionPlans> get copyWith =>
-      _$LoadSubscriptionPlansCopyWithImpl<LoadSubscriptionPlans>(
-          this, _$identity);
+      _$LoadSubscriptionPlansCopyWithImpl<LoadSubscriptionPlans>(this, _$identity);
 
   @override
   @optionalTypeArgs
   TResult when<TResult extends Object>({
-    @required
-        TResult subscriptionPlansUpdated(
-            List<SubscriptionPlan> subscriptionPlans),
+    @required TResult subscriptionPlansUpdated(List<SubscriptionPlan> subscriptionPlans),
     @required TResult loadSubscriptionPlans(String planId),
   }) {
     assert(subscriptionPlansUpdated != null);
@@ -339,9 +319,9 @@ class _$LoadSubscriptionPlans
 }
 
 abstract class LoadSubscriptionPlans implements SubscriptionPlansEvent {
-  const factory LoadSubscriptionPlans({@required String planId}) =
-      _$LoadSubscriptionPlans;
+  const factory LoadSubscriptionPlans({@required String planId}) = _$LoadSubscriptionPlans;
 
   String get planId;
+  @JsonKey(ignore: true)
   $LoadSubscriptionPlansCopyWith<LoadSubscriptionPlans> get copyWith;
 }

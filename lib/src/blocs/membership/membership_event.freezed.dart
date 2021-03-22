@@ -36,8 +36,7 @@ const $MembershipEvent = _$MembershipEventTearOff();
 mixin _$MembershipEvent {
   @optionalTypeArgs
   TResult when<TResult extends Object>({
-    @required
-        TResult membershipUpdated(String customerEmail, Membership membership),
+    @required TResult membershipUpdated(String customerEmail, Membership membership),
     @required TResult unsubscribe(),
   });
   @optionalTypeArgs
@@ -61,14 +60,12 @@ mixin _$MembershipEvent {
 
 /// @nodoc
 abstract class $MembershipEventCopyWith<$Res> {
-  factory $MembershipEventCopyWith(
-          MembershipEvent value, $Res Function(MembershipEvent) then) =
+  factory $MembershipEventCopyWith(MembershipEvent value, $Res Function(MembershipEvent) then) =
       _$MembershipEventCopyWithImpl<$Res>;
 }
 
 /// @nodoc
-class _$MembershipEventCopyWithImpl<$Res>
-    implements $MembershipEventCopyWith<$Res> {
+class _$MembershipEventCopyWithImpl<$Res> implements $MembershipEventCopyWith<$Res> {
   _$MembershipEventCopyWithImpl(this._value, this._then);
 
   final MembershipEvent _value;
@@ -87,11 +84,9 @@ abstract class $MembershipUpdatedCopyWith<$Res> {
 }
 
 /// @nodoc
-class _$MembershipUpdatedCopyWithImpl<$Res>
-    extends _$MembershipEventCopyWithImpl<$Res>
+class _$MembershipUpdatedCopyWithImpl<$Res> extends _$MembershipEventCopyWithImpl<$Res>
     implements $MembershipUpdatedCopyWith<$Res> {
-  _$MembershipUpdatedCopyWithImpl(
-      MembershipUpdated _value, $Res Function(MembershipUpdated) _then)
+  _$MembershipUpdatedCopyWithImpl(MembershipUpdated _value, $Res Function(MembershipUpdated) _then)
       : super(_value, (v) => _then(v as MembershipUpdated));
 
   @override
@@ -103,11 +98,8 @@ class _$MembershipUpdatedCopyWithImpl<$Res>
     Object membership = freezed,
   }) {
     return _then(MembershipUpdated(
-      customerEmail: customerEmail == freezed
-          ? _value.customerEmail
-          : customerEmail as String,
-      membership:
-          membership == freezed ? _value.membership : membership as Membership,
+      customerEmail: customerEmail == freezed ? _value.customerEmail : customerEmail as String,
+      membership: membership == freezed ? _value.membership : membership as Membership,
     ));
   }
 
@@ -123,11 +115,8 @@ class _$MembershipUpdatedCopyWithImpl<$Res>
 }
 
 /// @nodoc
-class _$MembershipUpdated
-    with DiagnosticableTreeMixin
-    implements MembershipUpdated {
-  const _$MembershipUpdated(
-      {@required this.customerEmail, @required this.membership})
+class _$MembershipUpdated with DiagnosticableTreeMixin implements MembershipUpdated {
+  const _$MembershipUpdated({@required this.customerEmail, @required this.membership})
       : assert(customerEmail != null),
         assert(membership != null);
 
@@ -155,11 +144,9 @@ class _$MembershipUpdated
     return identical(this, other) ||
         (other is MembershipUpdated &&
             (identical(other.customerEmail, customerEmail) ||
-                const DeepCollectionEquality()
-                    .equals(other.customerEmail, customerEmail)) &&
+                const DeepCollectionEquality().equals(other.customerEmail, customerEmail)) &&
             (identical(other.membership, membership) ||
-                const DeepCollectionEquality()
-                    .equals(other.membership, membership)));
+                const DeepCollectionEquality().equals(other.membership, membership)));
   }
 
   @override
@@ -168,6 +155,7 @@ class _$MembershipUpdated
       const DeepCollectionEquality().hash(customerEmail) ^
       const DeepCollectionEquality().hash(membership);
 
+  @JsonKey(ignore: true)
   @override
   $MembershipUpdatedCopyWith<MembershipUpdated> get copyWith =>
       _$MembershipUpdatedCopyWithImpl<MembershipUpdated>(this, _$identity);
@@ -175,8 +163,7 @@ class _$MembershipUpdated
   @override
   @optionalTypeArgs
   TResult when<TResult extends Object>({
-    @required
-        TResult membershipUpdated(String customerEmail, Membership membership),
+    @required TResult membershipUpdated(String customerEmail, Membership membership),
     @required TResult unsubscribe(),
   }) {
     assert(membershipUpdated != null);
@@ -226,27 +213,24 @@ class _$MembershipUpdated
 
 abstract class MembershipUpdated implements MembershipEvent {
   const factory MembershipUpdated(
-      {@required String customerEmail,
-      @required Membership membership}) = _$MembershipUpdated;
+      {@required String customerEmail, @required Membership membership}) = _$MembershipUpdated;
 
   String get customerEmail;
   Membership get membership;
+  @JsonKey(ignore: true)
   $MembershipUpdatedCopyWith<MembershipUpdated> get copyWith;
 }
 
 /// @nodoc
 abstract class $UnsubscribeCopyWith<$Res> {
-  factory $UnsubscribeCopyWith(
-          Unsubscribe value, $Res Function(Unsubscribe) then) =
+  factory $UnsubscribeCopyWith(Unsubscribe value, $Res Function(Unsubscribe) then) =
       _$UnsubscribeCopyWithImpl<$Res>;
 }
 
 /// @nodoc
-class _$UnsubscribeCopyWithImpl<$Res>
-    extends _$MembershipEventCopyWithImpl<$Res>
+class _$UnsubscribeCopyWithImpl<$Res> extends _$MembershipEventCopyWithImpl<$Res>
     implements $UnsubscribeCopyWith<$Res> {
-  _$UnsubscribeCopyWithImpl(
-      Unsubscribe _value, $Res Function(Unsubscribe) _then)
+  _$UnsubscribeCopyWithImpl(Unsubscribe _value, $Res Function(Unsubscribe) _then)
       : super(_value, (v) => _then(v as Unsubscribe));
 
   @override
@@ -279,8 +263,7 @@ class _$Unsubscribe with DiagnosticableTreeMixin implements Unsubscribe {
   @override
   @optionalTypeArgs
   TResult when<TResult extends Object>({
-    @required
-        TResult membershipUpdated(String customerEmail, Membership membership),
+    @required TResult membershipUpdated(String customerEmail, Membership membership),
     @required TResult unsubscribe(),
   }) {
     assert(membershipUpdated != null);

@@ -54,13 +54,13 @@ mixin _$Gym {
   bool get hasActivePayments;
 
   Map<String, dynamic> toJson();
+  @JsonKey(ignore: true)
   $GymCopyWith<Gym> get copyWith;
 }
 
 /// @nodoc
 abstract class $GymCopyWith<$Res> {
-  factory $GymCopyWith(Gym value, $Res Function(Gym) then) =
-      _$GymCopyWithImpl<$Res>;
+  factory $GymCopyWith(Gym value, $Res Function(Gym) then) = _$GymCopyWithImpl<$Res>;
   $Res call(
       {String id,
       String name,
@@ -90,24 +90,20 @@ class _$GymCopyWithImpl<$Res> implements $GymCopyWith<$Res> {
     return _then(_value.copyWith(
       id: id == freezed ? _value.id : id as String,
       name: name == freezed ? _value.name : name as String,
-      paymentAppDomain: paymentAppDomain == freezed
-          ? _value.paymentAppDomain
-          : paymentAppDomain as String,
-      stripePublicKey: stripePublicKey == freezed
-          ? _value.stripePublicKey
-          : stripePublicKey as String,
+      paymentAppDomain:
+          paymentAppDomain == freezed ? _value.paymentAppDomain : paymentAppDomain as String,
+      stripePublicKey:
+          stripePublicKey == freezed ? _value.stripePublicKey : stripePublicKey as String,
       imageUrl: imageUrl == freezed ? _value.imageUrl : imageUrl as String,
-      hasActivePayments: hasActivePayments == freezed
-          ? _value.hasActivePayments
-          : hasActivePayments as bool,
+      hasActivePayments:
+          hasActivePayments == freezed ? _value.hasActivePayments : hasActivePayments as bool,
     ));
   }
 }
 
 /// @nodoc
 abstract class _$GymCopyWith<$Res> implements $GymCopyWith<$Res> {
-  factory _$GymCopyWith(_Gym value, $Res Function(_Gym) then) =
-      __$GymCopyWithImpl<$Res>;
+  factory _$GymCopyWith(_Gym value, $Res Function(_Gym) then) = __$GymCopyWithImpl<$Res>;
   @override
   $Res call(
       {String id,
@@ -119,8 +115,7 @@ abstract class _$GymCopyWith<$Res> implements $GymCopyWith<$Res> {
 }
 
 /// @nodoc
-class __$GymCopyWithImpl<$Res> extends _$GymCopyWithImpl<$Res>
-    implements _$GymCopyWith<$Res> {
+class __$GymCopyWithImpl<$Res> extends _$GymCopyWithImpl<$Res> implements _$GymCopyWith<$Res> {
   __$GymCopyWithImpl(_Gym _value, $Res Function(_Gym) _then)
       : super(_value, (v) => _then(v as _Gym));
 
@@ -139,16 +134,13 @@ class __$GymCopyWithImpl<$Res> extends _$GymCopyWithImpl<$Res>
     return _then(_Gym(
       id: id == freezed ? _value.id : id as String,
       name: name == freezed ? _value.name : name as String,
-      paymentAppDomain: paymentAppDomain == freezed
-          ? _value.paymentAppDomain
-          : paymentAppDomain as String,
-      stripePublicKey: stripePublicKey == freezed
-          ? _value.stripePublicKey
-          : stripePublicKey as String,
+      paymentAppDomain:
+          paymentAppDomain == freezed ? _value.paymentAppDomain : paymentAppDomain as String,
+      stripePublicKey:
+          stripePublicKey == freezed ? _value.stripePublicKey : stripePublicKey as String,
       imageUrl: imageUrl == freezed ? _value.imageUrl : imageUrl as String,
-      hasActivePayments: hasActivePayments == freezed
-          ? _value.hasActivePayments
-          : hasActivePayments as bool,
+      hasActivePayments:
+          hasActivePayments == freezed ? _value.hasActivePayments : hasActivePayments as bool,
     ));
   }
 }
@@ -209,22 +201,17 @@ class _$_Gym with DiagnosticableTreeMixin implements _Gym {
   bool operator ==(dynamic other) {
     return identical(this, other) ||
         (other is _Gym &&
-            (identical(other.id, id) ||
-                const DeepCollectionEquality().equals(other.id, id)) &&
+            (identical(other.id, id) || const DeepCollectionEquality().equals(other.id, id)) &&
             (identical(other.name, name) ||
                 const DeepCollectionEquality().equals(other.name, name)) &&
             (identical(other.paymentAppDomain, paymentAppDomain) ||
-                const DeepCollectionEquality()
-                    .equals(other.paymentAppDomain, paymentAppDomain)) &&
+                const DeepCollectionEquality().equals(other.paymentAppDomain, paymentAppDomain)) &&
             (identical(other.stripePublicKey, stripePublicKey) ||
-                const DeepCollectionEquality()
-                    .equals(other.stripePublicKey, stripePublicKey)) &&
+                const DeepCollectionEquality().equals(other.stripePublicKey, stripePublicKey)) &&
             (identical(other.imageUrl, imageUrl) ||
-                const DeepCollectionEquality()
-                    .equals(other.imageUrl, imageUrl)) &&
+                const DeepCollectionEquality().equals(other.imageUrl, imageUrl)) &&
             (identical(other.hasActivePayments, hasActivePayments) ||
-                const DeepCollectionEquality()
-                    .equals(other.hasActivePayments, hasActivePayments)));
+                const DeepCollectionEquality().equals(other.hasActivePayments, hasActivePayments)));
   }
 
   @override
@@ -237,9 +224,9 @@ class _$_Gym with DiagnosticableTreeMixin implements _Gym {
       const DeepCollectionEquality().hash(imageUrl) ^
       const DeepCollectionEquality().hash(hasActivePayments);
 
+  @JsonKey(ignore: true)
   @override
-  _$GymCopyWith<_Gym> get copyWith =>
-      __$GymCopyWithImpl<_Gym>(this, _$identity);
+  _$GymCopyWith<_Gym> get copyWith => __$GymCopyWithImpl<_Gym>(this, _$identity);
 
   @override
   Map<String, dynamic> toJson() {
@@ -271,5 +258,6 @@ abstract class _Gym implements Gym {
   @override
   bool get hasActivePayments;
   @override
+  @JsonKey(ignore: true)
   _$GymCopyWith<_Gym> get copyWith;
 }

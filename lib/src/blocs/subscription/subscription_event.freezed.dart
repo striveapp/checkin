@@ -50,6 +50,7 @@ mixin _$SubscriptionEvent {
     @required TResult orElse(),
   });
 
+  @JsonKey(ignore: true)
   $SubscriptionEventCopyWith<SubscriptionEvent> get copyWith;
 }
 
@@ -62,8 +63,7 @@ abstract class $SubscriptionEventCopyWith<$Res> {
 }
 
 /// @nodoc
-class _$SubscriptionEventCopyWithImpl<$Res>
-    implements $SubscriptionEventCopyWith<$Res> {
+class _$SubscriptionEventCopyWithImpl<$Res> implements $SubscriptionEventCopyWith<$Res> {
   _$SubscriptionEventCopyWithImpl(this._value, this._then);
 
   final SubscriptionEvent _value;
@@ -77,15 +77,13 @@ class _$SubscriptionEventCopyWithImpl<$Res>
   }) {
     return _then(_value.copyWith(
       priceId: priceId == freezed ? _value.priceId : priceId as String,
-      customerId:
-          customerId == freezed ? _value.customerId : customerId as String,
+      customerId: customerId == freezed ? _value.customerId : customerId as String,
     ));
   }
 }
 
 /// @nodoc
-abstract class $SubscribeCopyWith<$Res>
-    implements $SubscriptionEventCopyWith<$Res> {
+abstract class $SubscribeCopyWith<$Res> implements $SubscriptionEventCopyWith<$Res> {
   factory $SubscribeCopyWith(Subscribe value, $Res Function(Subscribe) then) =
       _$SubscribeCopyWithImpl<$Res>;
   @override
@@ -93,8 +91,7 @@ abstract class $SubscribeCopyWith<$Res>
 }
 
 /// @nodoc
-class _$SubscribeCopyWithImpl<$Res>
-    extends _$SubscriptionEventCopyWithImpl<$Res>
+class _$SubscribeCopyWithImpl<$Res> extends _$SubscriptionEventCopyWithImpl<$Res>
     implements $SubscribeCopyWith<$Res> {
   _$SubscribeCopyWithImpl(Subscribe _value, $Res Function(Subscribe) _then)
       : super(_value, (v) => _then(v as Subscribe));
@@ -109,8 +106,7 @@ class _$SubscribeCopyWithImpl<$Res>
   }) {
     return _then(Subscribe(
       priceId: priceId == freezed ? _value.priceId : priceId as String,
-      customerId:
-          customerId == freezed ? _value.customerId : customerId as String,
+      customerId: customerId == freezed ? _value.customerId : customerId as String,
     ));
   }
 }
@@ -145,11 +141,9 @@ class _$Subscribe with DiagnosticableTreeMixin implements Subscribe {
     return identical(this, other) ||
         (other is Subscribe &&
             (identical(other.priceId, priceId) ||
-                const DeepCollectionEquality()
-                    .equals(other.priceId, priceId)) &&
+                const DeepCollectionEquality().equals(other.priceId, priceId)) &&
             (identical(other.customerId, customerId) ||
-                const DeepCollectionEquality()
-                    .equals(other.customerId, customerId)));
+                const DeepCollectionEquality().equals(other.customerId, customerId)));
   }
 
   @override
@@ -158,6 +152,7 @@ class _$Subscribe with DiagnosticableTreeMixin implements Subscribe {
       const DeepCollectionEquality().hash(priceId) ^
       const DeepCollectionEquality().hash(customerId);
 
+  @JsonKey(ignore: true)
   @override
   $SubscribeCopyWith<Subscribe> get copyWith =>
       _$SubscribeCopyWithImpl<Subscribe>(this, _$identity);
@@ -208,13 +203,13 @@ class _$Subscribe with DiagnosticableTreeMixin implements Subscribe {
 }
 
 abstract class Subscribe implements SubscriptionEvent {
-  const factory Subscribe(
-      {@required String priceId, @required String customerId}) = _$Subscribe;
+  const factory Subscribe({@required String priceId, @required String customerId}) = _$Subscribe;
 
   @override
   String get priceId;
   @override
   String get customerId;
   @override
+  @JsonKey(ignore: true)
   $SubscribeCopyWith<Subscribe> get copyWith;
 }

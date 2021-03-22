@@ -17,9 +17,7 @@ class _$GraduationSystemTearOff {
   const _$GraduationSystemTearOff();
 
 // ignore: unused_element
-  _GraduationSystem call(
-      {@required @GradeConverter() Grade grade,
-      @required double forNextLevel}) {
+  _GraduationSystem call({@required @GradeConverter() Grade grade, @required double forNextLevel}) {
     return _GraduationSystem(
       grade: grade,
       forNextLevel: forNextLevel,
@@ -43,20 +41,19 @@ mixin _$GraduationSystem {
   double get forNextLevel;
 
   Map<String, dynamic> toJson();
+  @JsonKey(ignore: true)
   $GraduationSystemCopyWith<GraduationSystem> get copyWith;
 }
 
 /// @nodoc
 abstract class $GraduationSystemCopyWith<$Res> {
-  factory $GraduationSystemCopyWith(
-          GraduationSystem value, $Res Function(GraduationSystem) then) =
+  factory $GraduationSystemCopyWith(GraduationSystem value, $Res Function(GraduationSystem) then) =
       _$GraduationSystemCopyWithImpl<$Res>;
   $Res call({@GradeConverter() Grade grade, double forNextLevel});
 }
 
 /// @nodoc
-class _$GraduationSystemCopyWithImpl<$Res>
-    implements $GraduationSystemCopyWith<$Res> {
+class _$GraduationSystemCopyWithImpl<$Res> implements $GraduationSystemCopyWith<$Res> {
   _$GraduationSystemCopyWithImpl(this._value, this._then);
 
   final GraduationSystem _value;
@@ -70,16 +67,13 @@ class _$GraduationSystemCopyWithImpl<$Res>
   }) {
     return _then(_value.copyWith(
       grade: grade == freezed ? _value.grade : grade as Grade,
-      forNextLevel: forNextLevel == freezed
-          ? _value.forNextLevel
-          : forNextLevel as double,
+      forNextLevel: forNextLevel == freezed ? _value.forNextLevel : forNextLevel as double,
     ));
   }
 }
 
 /// @nodoc
-abstract class _$GraduationSystemCopyWith<$Res>
-    implements $GraduationSystemCopyWith<$Res> {
+abstract class _$GraduationSystemCopyWith<$Res> implements $GraduationSystemCopyWith<$Res> {
   factory _$GraduationSystemCopyWith(
           _GraduationSystem value, $Res Function(_GraduationSystem) then) =
       __$GraduationSystemCopyWithImpl<$Res>;
@@ -88,11 +82,9 @@ abstract class _$GraduationSystemCopyWith<$Res>
 }
 
 /// @nodoc
-class __$GraduationSystemCopyWithImpl<$Res>
-    extends _$GraduationSystemCopyWithImpl<$Res>
+class __$GraduationSystemCopyWithImpl<$Res> extends _$GraduationSystemCopyWithImpl<$Res>
     implements _$GraduationSystemCopyWith<$Res> {
-  __$GraduationSystemCopyWithImpl(
-      _GraduationSystem _value, $Res Function(_GraduationSystem) _then)
+  __$GraduationSystemCopyWithImpl(_GraduationSystem _value, $Res Function(_GraduationSystem) _then)
       : super(_value, (v) => _then(v as _GraduationSystem));
 
   @override
@@ -105,9 +97,7 @@ class __$GraduationSystemCopyWithImpl<$Res>
   }) {
     return _then(_GraduationSystem(
       grade: grade == freezed ? _value.grade : grade as Grade,
-      forNextLevel: forNextLevel == freezed
-          ? _value.forNextLevel
-          : forNextLevel as double,
+      forNextLevel: forNextLevel == freezed ? _value.forNextLevel : forNextLevel as double,
     ));
   }
 }
@@ -115,11 +105,8 @@ class __$GraduationSystemCopyWithImpl<$Res>
 @JsonSerializable()
 
 /// @nodoc
-class _$_GraduationSystem
-    with DiagnosticableTreeMixin
-    implements _GraduationSystem {
-  _$_GraduationSystem(
-      {@required @GradeConverter() this.grade, @required this.forNextLevel})
+class _$_GraduationSystem with DiagnosticableTreeMixin implements _GraduationSystem {
+  _$_GraduationSystem({@required @GradeConverter() this.grade, @required this.forNextLevel})
       : assert(grade != null),
         assert(forNextLevel != null);
 
@@ -153,8 +140,7 @@ class _$_GraduationSystem
             (identical(other.grade, grade) ||
                 const DeepCollectionEquality().equals(other.grade, grade)) &&
             (identical(other.forNextLevel, forNextLevel) ||
-                const DeepCollectionEquality()
-                    .equals(other.forNextLevel, forNextLevel)));
+                const DeepCollectionEquality().equals(other.forNextLevel, forNextLevel)));
   }
 
   @override
@@ -163,6 +149,7 @@ class _$_GraduationSystem
       const DeepCollectionEquality().hash(grade) ^
       const DeepCollectionEquality().hash(forNextLevel);
 
+  @JsonKey(ignore: true)
   @override
   _$GraduationSystemCopyWith<_GraduationSystem> get copyWith =>
       __$GraduationSystemCopyWithImpl<_GraduationSystem>(this, _$identity);
@@ -178,8 +165,7 @@ abstract class _GraduationSystem implements GraduationSystem {
       {@required @GradeConverter() Grade grade,
       @required double forNextLevel}) = _$_GraduationSystem;
 
-  factory _GraduationSystem.fromJson(Map<String, dynamic> json) =
-      _$_GraduationSystem.fromJson;
+  factory _GraduationSystem.fromJson(Map<String, dynamic> json) = _$_GraduationSystem.fromJson;
 
   @override
   @GradeConverter()
@@ -187,5 +173,6 @@ abstract class _GraduationSystem implements GraduationSystem {
   @override
   double get forNextLevel;
   @override
+  @JsonKey(ignore: true)
   _$GraduationSystemCopyWith<_GraduationSystem> get copyWith;
 }

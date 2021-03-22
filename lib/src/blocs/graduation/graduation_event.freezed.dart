@@ -15,8 +15,7 @@ class _$GraduationEventTearOff {
 
 // ignore: unused_element
   GraduationSystemUpdated graduationSystemUpdated(
-      {@required GraduationSystem graduationSystem,
-      @required int attendedLessonsForGrade}) {
+      {@required GraduationSystem graduationSystem, @required int attendedLessonsForGrade}) {
     return GraduationSystemUpdated(
       graduationSystem: graduationSystem,
       attendedLessonsForGrade: attendedLessonsForGrade,
@@ -52,8 +51,7 @@ mixin _$GraduationEvent {
   });
   @optionalTypeArgs
   TResult maybeWhen<TResult extends Object>({
-    TResult graduationSystemUpdated(
-        GraduationSystem graduationSystem, int attendedLessonsForGrade),
+    TResult graduationSystemUpdated(GraduationSystem graduationSystem, int attendedLessonsForGrade),
     TResult graduate(Grade newGrade),
     TResult initializeGraduation(),
     @required TResult orElse(),
@@ -75,14 +73,12 @@ mixin _$GraduationEvent {
 
 /// @nodoc
 abstract class $GraduationEventCopyWith<$Res> {
-  factory $GraduationEventCopyWith(
-          GraduationEvent value, $Res Function(GraduationEvent) then) =
+  factory $GraduationEventCopyWith(GraduationEvent value, $Res Function(GraduationEvent) then) =
       _$GraduationEventCopyWithImpl<$Res>;
 }
 
 /// @nodoc
-class _$GraduationEventCopyWithImpl<$Res>
-    implements $GraduationEventCopyWith<$Res> {
+class _$GraduationEventCopyWithImpl<$Res> implements $GraduationEventCopyWith<$Res> {
   _$GraduationEventCopyWithImpl(this._value, this._then);
 
   final GraduationEvent _value;
@@ -92,8 +88,8 @@ class _$GraduationEventCopyWithImpl<$Res>
 
 /// @nodoc
 abstract class $GraduationSystemUpdatedCopyWith<$Res> {
-  factory $GraduationSystemUpdatedCopyWith(GraduationSystemUpdated value,
-          $Res Function(GraduationSystemUpdated) then) =
+  factory $GraduationSystemUpdatedCopyWith(
+          GraduationSystemUpdated value, $Res Function(GraduationSystemUpdated) then) =
       _$GraduationSystemUpdatedCopyWithImpl<$Res>;
   $Res call({GraduationSystem graduationSystem, int attendedLessonsForGrade});
 
@@ -101,11 +97,10 @@ abstract class $GraduationSystemUpdatedCopyWith<$Res> {
 }
 
 /// @nodoc
-class _$GraduationSystemUpdatedCopyWithImpl<$Res>
-    extends _$GraduationEventCopyWithImpl<$Res>
+class _$GraduationSystemUpdatedCopyWithImpl<$Res> extends _$GraduationEventCopyWithImpl<$Res>
     implements $GraduationSystemUpdatedCopyWith<$Res> {
-  _$GraduationSystemUpdatedCopyWithImpl(GraduationSystemUpdated _value,
-      $Res Function(GraduationSystemUpdated) _then)
+  _$GraduationSystemUpdatedCopyWithImpl(
+      GraduationSystemUpdated _value, $Res Function(GraduationSystemUpdated) _then)
       : super(_value, (v) => _then(v as GraduationSystemUpdated));
 
   @override
@@ -138,9 +133,7 @@ class _$GraduationSystemUpdatedCopyWithImpl<$Res>
 }
 
 /// @nodoc
-class _$GraduationSystemUpdated
-    with DiagnosticableTreeMixin
-    implements GraduationSystemUpdated {
+class _$GraduationSystemUpdated with DiagnosticableTreeMixin implements GraduationSystemUpdated {
   const _$GraduationSystemUpdated(
       {@required this.graduationSystem, @required this.attendedLessonsForGrade})
       : assert(graduationSystem != null),
@@ -160,11 +153,9 @@ class _$GraduationSystemUpdated
   void debugFillProperties(DiagnosticPropertiesBuilder properties) {
     super.debugFillProperties(properties);
     properties
-      ..add(DiagnosticsProperty(
-          'type', 'GraduationEvent.graduationSystemUpdated'))
+      ..add(DiagnosticsProperty('type', 'GraduationEvent.graduationSystemUpdated'))
       ..add(DiagnosticsProperty('graduationSystem', graduationSystem))
-      ..add(DiagnosticsProperty(
-          'attendedLessonsForGrade', attendedLessonsForGrade));
+      ..add(DiagnosticsProperty('attendedLessonsForGrade', attendedLessonsForGrade));
   }
 
   @override
@@ -172,12 +163,10 @@ class _$GraduationSystemUpdated
     return identical(this, other) ||
         (other is GraduationSystemUpdated &&
             (identical(other.graduationSystem, graduationSystem) ||
+                const DeepCollectionEquality().equals(other.graduationSystem, graduationSystem)) &&
+            (identical(other.attendedLessonsForGrade, attendedLessonsForGrade) ||
                 const DeepCollectionEquality()
-                    .equals(other.graduationSystem, graduationSystem)) &&
-            (identical(
-                    other.attendedLessonsForGrade, attendedLessonsForGrade) ||
-                const DeepCollectionEquality().equals(
-                    other.attendedLessonsForGrade, attendedLessonsForGrade)));
+                    .equals(other.attendedLessonsForGrade, attendedLessonsForGrade)));
   }
 
   @override
@@ -186,10 +175,10 @@ class _$GraduationSystemUpdated
       const DeepCollectionEquality().hash(graduationSystem) ^
       const DeepCollectionEquality().hash(attendedLessonsForGrade);
 
+  @JsonKey(ignore: true)
   @override
   $GraduationSystemUpdatedCopyWith<GraduationSystemUpdated> get copyWith =>
-      _$GraduationSystemUpdatedCopyWithImpl<GraduationSystemUpdated>(
-          this, _$identity);
+      _$GraduationSystemUpdatedCopyWithImpl<GraduationSystemUpdated>(this, _$identity);
 
   @override
   @optionalTypeArgs
@@ -209,8 +198,7 @@ class _$GraduationSystemUpdated
   @override
   @optionalTypeArgs
   TResult maybeWhen<TResult extends Object>({
-    TResult graduationSystemUpdated(
-        GraduationSystem graduationSystem, int attendedLessonsForGrade),
+    TResult graduationSystemUpdated(GraduationSystem graduationSystem, int attendedLessonsForGrade),
     TResult graduate(Grade newGrade),
     TResult initializeGraduation(),
     @required TResult orElse(),
@@ -258,6 +246,7 @@ abstract class GraduationSystemUpdated implements GraduationEvent {
 
   GraduationSystem get graduationSystem;
   int get attendedLessonsForGrade;
+  @JsonKey(ignore: true)
   $GraduationSystemUpdatedCopyWith<GraduationSystemUpdated> get copyWith;
 }
 
@@ -312,17 +301,15 @@ class _$Graduate with DiagnosticableTreeMixin implements Graduate {
     return identical(this, other) ||
         (other is Graduate &&
             (identical(other.newGrade, newGrade) ||
-                const DeepCollectionEquality()
-                    .equals(other.newGrade, newGrade)));
+                const DeepCollectionEquality().equals(other.newGrade, newGrade)));
   }
 
   @override
-  int get hashCode =>
-      runtimeType.hashCode ^ const DeepCollectionEquality().hash(newGrade);
+  int get hashCode => runtimeType.hashCode ^ const DeepCollectionEquality().hash(newGrade);
 
+  @JsonKey(ignore: true)
   @override
-  $GraduateCopyWith<Graduate> get copyWith =>
-      _$GraduateCopyWithImpl<Graduate>(this, _$identity);
+  $GraduateCopyWith<Graduate> get copyWith => _$GraduateCopyWithImpl<Graduate>(this, _$identity);
 
   @override
   @optionalTypeArgs
@@ -342,8 +329,7 @@ class _$Graduate with DiagnosticableTreeMixin implements Graduate {
   @override
   @optionalTypeArgs
   TResult maybeWhen<TResult extends Object>({
-    TResult graduationSystemUpdated(
-        GraduationSystem graduationSystem, int attendedLessonsForGrade),
+    TResult graduationSystemUpdated(GraduationSystem graduationSystem, int attendedLessonsForGrade),
     TResult graduate(Grade newGrade),
     TResult initializeGraduation(),
     @required TResult orElse(),
@@ -388,19 +374,19 @@ abstract class Graduate implements GraduationEvent {
   const factory Graduate({@required Grade newGrade}) = _$Graduate;
 
   Grade get newGrade;
+  @JsonKey(ignore: true)
   $GraduateCopyWith<Graduate> get copyWith;
 }
 
 /// @nodoc
 abstract class $InitializeGraduationCopyWith<$Res> {
-  factory $InitializeGraduationCopyWith(InitializeGraduation value,
-          $Res Function(InitializeGraduation) then) =
+  factory $InitializeGraduationCopyWith(
+          InitializeGraduation value, $Res Function(InitializeGraduation) then) =
       _$InitializeGraduationCopyWithImpl<$Res>;
 }
 
 /// @nodoc
-class _$InitializeGraduationCopyWithImpl<$Res>
-    extends _$GraduationEventCopyWithImpl<$Res>
+class _$InitializeGraduationCopyWithImpl<$Res> extends _$GraduationEventCopyWithImpl<$Res>
     implements $InitializeGraduationCopyWith<$Res> {
   _$InitializeGraduationCopyWithImpl(
       InitializeGraduation _value, $Res Function(InitializeGraduation) _then)
@@ -411,9 +397,7 @@ class _$InitializeGraduationCopyWithImpl<$Res>
 }
 
 /// @nodoc
-class _$InitializeGraduation
-    with DiagnosticableTreeMixin
-    implements InitializeGraduation {
+class _$InitializeGraduation with DiagnosticableTreeMixin implements InitializeGraduation {
   const _$InitializeGraduation();
 
   @override
@@ -424,9 +408,7 @@ class _$InitializeGraduation
   @override
   void debugFillProperties(DiagnosticPropertiesBuilder properties) {
     super.debugFillProperties(properties);
-    properties
-      ..add(
-          DiagnosticsProperty('type', 'GraduationEvent.initializeGraduation'));
+    properties..add(DiagnosticsProperty('type', 'GraduationEvent.initializeGraduation'));
   }
 
   @override
@@ -455,8 +437,7 @@ class _$InitializeGraduation
   @override
   @optionalTypeArgs
   TResult maybeWhen<TResult extends Object>({
-    TResult graduationSystemUpdated(
-        GraduationSystem graduationSystem, int attendedLessonsForGrade),
+    TResult graduationSystemUpdated(GraduationSystem graduationSystem, int attendedLessonsForGrade),
     TResult graduate(Grade newGrade),
     TResult initializeGraduation(),
     @required TResult orElse(),

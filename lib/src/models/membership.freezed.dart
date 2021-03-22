@@ -42,13 +42,13 @@ mixin _$Membership {
   int get currentPeriodEnd;
   double get totalLessonsOfPlan;
 
+  @JsonKey(ignore: true)
   $MembershipCopyWith<Membership> get copyWith;
 }
 
 /// @nodoc
 abstract class $MembershipCopyWith<$Res> {
-  factory $MembershipCopyWith(
-          Membership value, $Res Function(Membership) then) =
+  factory $MembershipCopyWith(Membership value, $Res Function(Membership) then) =
       _$MembershipCopyWithImpl<$Res>;
   $Res call(
       {String status,
@@ -76,23 +76,19 @@ class _$MembershipCopyWithImpl<$Res> implements $MembershipCopyWith<$Res> {
   }) {
     return _then(_value.copyWith(
       status: status == freezed ? _value.status : status as String,
-      customerId:
-          customerId == freezed ? _value.customerId : customerId as String,
+      customerId: customerId == freezed ? _value.customerId : customerId as String,
       name: name == freezed ? _value.name : name as String,
-      currentPeriodEnd: currentPeriodEnd == freezed
-          ? _value.currentPeriodEnd
-          : currentPeriodEnd as int,
-      totalLessonsOfPlan: totalLessonsOfPlan == freezed
-          ? _value.totalLessonsOfPlan
-          : totalLessonsOfPlan as double,
+      currentPeriodEnd:
+          currentPeriodEnd == freezed ? _value.currentPeriodEnd : currentPeriodEnd as int,
+      totalLessonsOfPlan:
+          totalLessonsOfPlan == freezed ? _value.totalLessonsOfPlan : totalLessonsOfPlan as double,
     ));
   }
 }
 
 /// @nodoc
 abstract class _$MembershipCopyWith<$Res> implements $MembershipCopyWith<$Res> {
-  factory _$MembershipCopyWith(
-          _Membership value, $Res Function(_Membership) then) =
+  factory _$MembershipCopyWith(_Membership value, $Res Function(_Membership) then) =
       __$MembershipCopyWithImpl<$Res>;
   @override
   $Res call(
@@ -106,8 +102,7 @@ abstract class _$MembershipCopyWith<$Res> implements $MembershipCopyWith<$Res> {
 /// @nodoc
 class __$MembershipCopyWithImpl<$Res> extends _$MembershipCopyWithImpl<$Res>
     implements _$MembershipCopyWith<$Res> {
-  __$MembershipCopyWithImpl(
-      _Membership _value, $Res Function(_Membership) _then)
+  __$MembershipCopyWithImpl(_Membership _value, $Res Function(_Membership) _then)
       : super(_value, (v) => _then(v as _Membership));
 
   @override
@@ -123,15 +118,12 @@ class __$MembershipCopyWithImpl<$Res> extends _$MembershipCopyWithImpl<$Res>
   }) {
     return _then(_Membership(
       status: status == freezed ? _value.status : status as String,
-      customerId:
-          customerId == freezed ? _value.customerId : customerId as String,
+      customerId: customerId == freezed ? _value.customerId : customerId as String,
       name: name == freezed ? _value.name : name as String,
-      currentPeriodEnd: currentPeriodEnd == freezed
-          ? _value.currentPeriodEnd
-          : currentPeriodEnd as int,
-      totalLessonsOfPlan: totalLessonsOfPlan == freezed
-          ? _value.totalLessonsOfPlan
-          : totalLessonsOfPlan as double,
+      currentPeriodEnd:
+          currentPeriodEnd == freezed ? _value.currentPeriodEnd : currentPeriodEnd as int,
+      totalLessonsOfPlan:
+          totalLessonsOfPlan == freezed ? _value.totalLessonsOfPlan : totalLessonsOfPlan as double,
     ));
   }
 }
@@ -181,13 +173,11 @@ class _$_Membership with DiagnosticableTreeMixin implements _Membership {
             (identical(other.status, status) ||
                 const DeepCollectionEquality().equals(other.status, status)) &&
             (identical(other.customerId, customerId) ||
-                const DeepCollectionEquality()
-                    .equals(other.customerId, customerId)) &&
+                const DeepCollectionEquality().equals(other.customerId, customerId)) &&
             (identical(other.name, name) ||
                 const DeepCollectionEquality().equals(other.name, name)) &&
             (identical(other.currentPeriodEnd, currentPeriodEnd) ||
-                const DeepCollectionEquality()
-                    .equals(other.currentPeriodEnd, currentPeriodEnd)) &&
+                const DeepCollectionEquality().equals(other.currentPeriodEnd, currentPeriodEnd)) &&
             (identical(other.totalLessonsOfPlan, totalLessonsOfPlan) ||
                 const DeepCollectionEquality()
                     .equals(other.totalLessonsOfPlan, totalLessonsOfPlan)));
@@ -202,6 +192,7 @@ class _$_Membership with DiagnosticableTreeMixin implements _Membership {
       const DeepCollectionEquality().hash(currentPeriodEnd) ^
       const DeepCollectionEquality().hash(totalLessonsOfPlan);
 
+  @JsonKey(ignore: true)
   @override
   _$MembershipCopyWith<_Membership> get copyWith =>
       __$MembershipCopyWithImpl<_Membership>(this, _$identity);
@@ -226,5 +217,6 @@ abstract class _Membership implements Membership {
   @override
   double get totalLessonsOfPlan;
   @override
+  @JsonKey(ignore: true)
   _$MembershipCopyWith<_Membership> get copyWith;
 }

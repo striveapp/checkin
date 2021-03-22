@@ -22,7 +22,7 @@ class _$LessonTearOff {
       String date,
       String name,
       String timeStart,
-      String timeEnd = '',
+      String timeEnd = "",
       Weekday weekDay,
       int timestamp,
       String imageUrl,
@@ -78,6 +78,7 @@ mixin _$Lesson {
   bool get isClosed;
 
   Map<String, dynamic> toJson();
+  @JsonKey(ignore: true)
   $LessonCopyWith<Lesson> get copyWith;
 }
 
@@ -240,7 +241,7 @@ class _$_Lesson implements _Lesson {
       this.date,
       this.name,
       this.timeStart,
-      this.timeEnd = '',
+      this.timeEnd = "",
       this.weekDay,
       this.timestamp,
       this.imageUrl,
@@ -267,7 +268,7 @@ class _$_Lesson implements _Lesson {
   final String name;
   @override
   final String timeStart;
-  @JsonKey(defaultValue: '')
+  @JsonKey(defaultValue: "")
   @override
   final String timeEnd;
   @override
@@ -351,6 +352,7 @@ class _$_Lesson implements _Lesson {
       const DeepCollectionEquality().hash(acceptedAttendees) ^
       const DeepCollectionEquality().hash(isClosed);
 
+  @JsonKey(ignore: true)
   @override
   _$LessonCopyWith<_Lesson> get copyWith => __$LessonCopyWithImpl<_Lesson>(this, _$identity);
 
@@ -408,5 +410,6 @@ abstract class _Lesson implements Lesson {
   @override
   bool get isClosed;
   @override
+  @JsonKey(ignore: true)
   _$LessonCopyWith<_Lesson> get copyWith;
 }

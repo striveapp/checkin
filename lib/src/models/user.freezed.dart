@@ -22,7 +22,7 @@ class _$UserTearOff {
       @required String imageUrl,
       String name,
       String uid,
-      Grade grade,
+      @GradeConverter() Grade grade,
       String selectedGymId,
       List<String> knownGymIds,
       bool hasActivePayments,
@@ -56,6 +56,7 @@ mixin _$User {
   String get imageUrl;
   String get name;
   String get uid;
+  @GradeConverter()
   Grade get grade;
   String get selectedGymId;
   List<String> get knownGymIds;
@@ -63,6 +64,7 @@ mixin _$User {
   bool get isOwner;
 
   Map<String, dynamic> toJson();
+  @JsonKey(ignore: true)
   $UserCopyWith<User> get copyWith;
 }
 
@@ -74,7 +76,7 @@ abstract class $UserCopyWith<$Res> {
       String imageUrl,
       String name,
       String uid,
-      Grade grade,
+      @GradeConverter() Grade grade,
       String selectedGymId,
       List<String> knownGymIds,
       bool hasActivePayments,
@@ -125,7 +127,7 @@ abstract class _$UserCopyWith<$Res> implements $UserCopyWith<$Res> {
       String imageUrl,
       String name,
       String uid,
-      Grade grade,
+      @GradeConverter() Grade grade,
       String selectedGymId,
       List<String> knownGymIds,
       bool hasActivePayments,
@@ -176,7 +178,7 @@ class _$_User with DiagnosticableTreeMixin implements _User {
       @required this.imageUrl,
       this.name,
       this.uid,
-      this.grade,
+      @GradeConverter() this.grade,
       this.selectedGymId,
       this.knownGymIds,
       this.hasActivePayments,
@@ -196,6 +198,7 @@ class _$_User with DiagnosticableTreeMixin implements _User {
   @override
   final String uid;
   @override
+  @GradeConverter()
   final Grade grade;
   @override
   final String selectedGymId;
@@ -265,6 +268,7 @@ class _$_User with DiagnosticableTreeMixin implements _User {
       const DeepCollectionEquality().hash(hasActivePayments) ^
       const DeepCollectionEquality().hash(isOwner);
 
+  @JsonKey(ignore: true)
   @override
   _$UserCopyWith<_User> get copyWith => __$UserCopyWithImpl<_User>(this, _$identity);
 
@@ -280,7 +284,7 @@ abstract class _User implements User {
       @required String imageUrl,
       String name,
       String uid,
-      Grade grade,
+      @GradeConverter() Grade grade,
       String selectedGymId,
       List<String> knownGymIds,
       bool hasActivePayments,
@@ -297,6 +301,7 @@ abstract class _User implements User {
   @override
   String get uid;
   @override
+  @GradeConverter()
   Grade get grade;
   @override
   String get selectedGymId;
@@ -307,5 +312,6 @@ abstract class _User implements User {
   @override
   bool get isOwner;
   @override
+  @JsonKey(ignore: true)
   _$UserCopyWith<_User> get copyWith;
 }

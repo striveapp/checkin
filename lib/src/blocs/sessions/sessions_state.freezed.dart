@@ -52,12 +52,8 @@ mixin _$SessionsState {
   TResult when<TResult extends Object>({
     @required TResult initialSessionsState(),
     @required TResult sessionsUnlimited(),
-    @required
-        TResult sessionsLoaded(
-            double totalLessonsOfPlan, double attendedLessons),
-    @required
-        TResult sessionsWarning(
-            double totalLessonsOfPlan, double attendedLessons),
+    @required TResult sessionsLoaded(double totalLessonsOfPlan, double attendedLessons),
+    @required TResult sessionsWarning(double totalLessonsOfPlan, double attendedLessons),
   });
   @optionalTypeArgs
   TResult maybeWhen<TResult extends Object>({
@@ -86,14 +82,12 @@ mixin _$SessionsState {
 
 /// @nodoc
 abstract class $SessionsStateCopyWith<$Res> {
-  factory $SessionsStateCopyWith(
-          SessionsState value, $Res Function(SessionsState) then) =
+  factory $SessionsStateCopyWith(SessionsState value, $Res Function(SessionsState) then) =
       _$SessionsStateCopyWithImpl<$Res>;
 }
 
 /// @nodoc
-class _$SessionsStateCopyWithImpl<$Res>
-    implements $SessionsStateCopyWith<$Res> {
+class _$SessionsStateCopyWithImpl<$Res> implements $SessionsStateCopyWith<$Res> {
   _$SessionsStateCopyWithImpl(this._value, this._then);
 
   final SessionsState _value;
@@ -103,14 +97,13 @@ class _$SessionsStateCopyWithImpl<$Res>
 
 /// @nodoc
 abstract class $InitialSessionsStateCopyWith<$Res> {
-  factory $InitialSessionsStateCopyWith(InitialSessionsState value,
-          $Res Function(InitialSessionsState) then) =
+  factory $InitialSessionsStateCopyWith(
+          InitialSessionsState value, $Res Function(InitialSessionsState) then) =
       _$InitialSessionsStateCopyWithImpl<$Res>;
 }
 
 /// @nodoc
-class _$InitialSessionsStateCopyWithImpl<$Res>
-    extends _$SessionsStateCopyWithImpl<$Res>
+class _$InitialSessionsStateCopyWithImpl<$Res> extends _$SessionsStateCopyWithImpl<$Res>
     implements $InitialSessionsStateCopyWith<$Res> {
   _$InitialSessionsStateCopyWithImpl(
       InitialSessionsState _value, $Res Function(InitialSessionsState) _then)
@@ -121,9 +114,7 @@ class _$InitialSessionsStateCopyWithImpl<$Res>
 }
 
 /// @nodoc
-class _$InitialSessionsState
-    with DiagnosticableTreeMixin
-    implements InitialSessionsState {
+class _$InitialSessionsState with DiagnosticableTreeMixin implements InitialSessionsState {
   const _$InitialSessionsState();
 
   @override
@@ -134,8 +125,7 @@ class _$InitialSessionsState
   @override
   void debugFillProperties(DiagnosticPropertiesBuilder properties) {
     super.debugFillProperties(properties);
-    properties
-      ..add(DiagnosticsProperty('type', 'SessionsState.initialSessionsState'));
+    properties..add(DiagnosticsProperty('type', 'SessionsState.initialSessionsState'));
   }
 
   @override
@@ -151,12 +141,8 @@ class _$InitialSessionsState
   TResult when<TResult extends Object>({
     @required TResult initialSessionsState(),
     @required TResult sessionsUnlimited(),
-    @required
-        TResult sessionsLoaded(
-            double totalLessonsOfPlan, double attendedLessons),
-    @required
-        TResult sessionsWarning(
-            double totalLessonsOfPlan, double attendedLessons),
+    @required TResult sessionsLoaded(double totalLessonsOfPlan, double attendedLessons),
+    @required TResult sessionsWarning(double totalLessonsOfPlan, double attendedLessons),
   }) {
     assert(initialSessionsState != null);
     assert(sessionsUnlimited != null);
@@ -225,11 +211,9 @@ abstract class $SessionsUnlimitedCopyWith<$Res> {
 }
 
 /// @nodoc
-class _$SessionsUnlimitedCopyWithImpl<$Res>
-    extends _$SessionsStateCopyWithImpl<$Res>
+class _$SessionsUnlimitedCopyWithImpl<$Res> extends _$SessionsStateCopyWithImpl<$Res>
     implements $SessionsUnlimitedCopyWith<$Res> {
-  _$SessionsUnlimitedCopyWithImpl(
-      SessionsUnlimited _value, $Res Function(SessionsUnlimited) _then)
+  _$SessionsUnlimitedCopyWithImpl(SessionsUnlimited _value, $Res Function(SessionsUnlimited) _then)
       : super(_value, (v) => _then(v as SessionsUnlimited));
 
   @override
@@ -237,9 +221,7 @@ class _$SessionsUnlimitedCopyWithImpl<$Res>
 }
 
 /// @nodoc
-class _$SessionsUnlimited
-    with DiagnosticableTreeMixin
-    implements SessionsUnlimited {
+class _$SessionsUnlimited with DiagnosticableTreeMixin implements SessionsUnlimited {
   const _$SessionsUnlimited();
 
   @override
@@ -250,8 +232,7 @@ class _$SessionsUnlimited
   @override
   void debugFillProperties(DiagnosticPropertiesBuilder properties) {
     super.debugFillProperties(properties);
-    properties
-      ..add(DiagnosticsProperty('type', 'SessionsState.sessionsUnlimited'));
+    properties..add(DiagnosticsProperty('type', 'SessionsState.sessionsUnlimited'));
   }
 
   @override
@@ -267,12 +248,8 @@ class _$SessionsUnlimited
   TResult when<TResult extends Object>({
     @required TResult initialSessionsState(),
     @required TResult sessionsUnlimited(),
-    @required
-        TResult sessionsLoaded(
-            double totalLessonsOfPlan, double attendedLessons),
-    @required
-        TResult sessionsWarning(
-            double totalLessonsOfPlan, double attendedLessons),
+    @required TResult sessionsLoaded(double totalLessonsOfPlan, double attendedLessons),
+    @required TResult sessionsWarning(double totalLessonsOfPlan, double attendedLessons),
   }) {
     assert(initialSessionsState != null);
     assert(sessionsUnlimited != null);
@@ -335,18 +312,15 @@ abstract class SessionsUnlimited implements SessionsState {
 
 /// @nodoc
 abstract class $SessionsLoadedCopyWith<$Res> {
-  factory $SessionsLoadedCopyWith(
-          SessionsLoaded value, $Res Function(SessionsLoaded) then) =
+  factory $SessionsLoadedCopyWith(SessionsLoaded value, $Res Function(SessionsLoaded) then) =
       _$SessionsLoadedCopyWithImpl<$Res>;
   $Res call({double totalLessonsOfPlan, double attendedLessons});
 }
 
 /// @nodoc
-class _$SessionsLoadedCopyWithImpl<$Res>
-    extends _$SessionsStateCopyWithImpl<$Res>
+class _$SessionsLoadedCopyWithImpl<$Res> extends _$SessionsStateCopyWithImpl<$Res>
     implements $SessionsLoadedCopyWith<$Res> {
-  _$SessionsLoadedCopyWithImpl(
-      SessionsLoaded _value, $Res Function(SessionsLoaded) _then)
+  _$SessionsLoadedCopyWithImpl(SessionsLoaded _value, $Res Function(SessionsLoaded) _then)
       : super(_value, (v) => _then(v as SessionsLoaded));
 
   @override
@@ -358,20 +332,17 @@ class _$SessionsLoadedCopyWithImpl<$Res>
     Object attendedLessons = freezed,
   }) {
     return _then(SessionsLoaded(
-      totalLessonsOfPlan: totalLessonsOfPlan == freezed
-          ? _value.totalLessonsOfPlan
-          : totalLessonsOfPlan as double,
-      attendedLessons: attendedLessons == freezed
-          ? _value.attendedLessons
-          : attendedLessons as double,
+      totalLessonsOfPlan:
+          totalLessonsOfPlan == freezed ? _value.totalLessonsOfPlan : totalLessonsOfPlan as double,
+      attendedLessons:
+          attendedLessons == freezed ? _value.attendedLessons : attendedLessons as double,
     ));
   }
 }
 
 /// @nodoc
 class _$SessionsLoaded with DiagnosticableTreeMixin implements SessionsLoaded {
-  const _$SessionsLoaded(
-      {@required this.totalLessonsOfPlan, @required this.attendedLessons})
+  const _$SessionsLoaded({@required this.totalLessonsOfPlan, @required this.attendedLessons})
       : assert(totalLessonsOfPlan != null),
         assert(attendedLessons != null);
 
@@ -402,8 +373,7 @@ class _$SessionsLoaded with DiagnosticableTreeMixin implements SessionsLoaded {
                 const DeepCollectionEquality()
                     .equals(other.totalLessonsOfPlan, totalLessonsOfPlan)) &&
             (identical(other.attendedLessons, attendedLessons) ||
-                const DeepCollectionEquality()
-                    .equals(other.attendedLessons, attendedLessons)));
+                const DeepCollectionEquality().equals(other.attendedLessons, attendedLessons)));
   }
 
   @override
@@ -412,6 +382,7 @@ class _$SessionsLoaded with DiagnosticableTreeMixin implements SessionsLoaded {
       const DeepCollectionEquality().hash(totalLessonsOfPlan) ^
       const DeepCollectionEquality().hash(attendedLessons);
 
+  @JsonKey(ignore: true)
   @override
   $SessionsLoadedCopyWith<SessionsLoaded> get copyWith =>
       _$SessionsLoadedCopyWithImpl<SessionsLoaded>(this, _$identity);
@@ -421,12 +392,8 @@ class _$SessionsLoaded with DiagnosticableTreeMixin implements SessionsLoaded {
   TResult when<TResult extends Object>({
     @required TResult initialSessionsState(),
     @required TResult sessionsUnlimited(),
-    @required
-        TResult sessionsLoaded(
-            double totalLessonsOfPlan, double attendedLessons),
-    @required
-        TResult sessionsWarning(
-            double totalLessonsOfPlan, double attendedLessons),
+    @required TResult sessionsLoaded(double totalLessonsOfPlan, double attendedLessons),
+    @required TResult sessionsWarning(double totalLessonsOfPlan, double attendedLessons),
   }) {
     assert(initialSessionsState != null);
     assert(sessionsUnlimited != null);
@@ -485,28 +452,25 @@ class _$SessionsLoaded with DiagnosticableTreeMixin implements SessionsLoaded {
 
 abstract class SessionsLoaded implements SessionsState {
   const factory SessionsLoaded(
-      {@required double totalLessonsOfPlan,
-      @required double attendedLessons}) = _$SessionsLoaded;
+      {@required double totalLessonsOfPlan, @required double attendedLessons}) = _$SessionsLoaded;
 
   double get totalLessonsOfPlan;
   double get attendedLessons;
+  @JsonKey(ignore: true)
   $SessionsLoadedCopyWith<SessionsLoaded> get copyWith;
 }
 
 /// @nodoc
 abstract class $SessionsWarningCopyWith<$Res> {
-  factory $SessionsWarningCopyWith(
-          SessionsWarning value, $Res Function(SessionsWarning) then) =
+  factory $SessionsWarningCopyWith(SessionsWarning value, $Res Function(SessionsWarning) then) =
       _$SessionsWarningCopyWithImpl<$Res>;
   $Res call({double totalLessonsOfPlan, double attendedLessons});
 }
 
 /// @nodoc
-class _$SessionsWarningCopyWithImpl<$Res>
-    extends _$SessionsStateCopyWithImpl<$Res>
+class _$SessionsWarningCopyWithImpl<$Res> extends _$SessionsStateCopyWithImpl<$Res>
     implements $SessionsWarningCopyWith<$Res> {
-  _$SessionsWarningCopyWithImpl(
-      SessionsWarning _value, $Res Function(SessionsWarning) _then)
+  _$SessionsWarningCopyWithImpl(SessionsWarning _value, $Res Function(SessionsWarning) _then)
       : super(_value, (v) => _then(v as SessionsWarning));
 
   @override
@@ -518,22 +482,17 @@ class _$SessionsWarningCopyWithImpl<$Res>
     Object attendedLessons = freezed,
   }) {
     return _then(SessionsWarning(
-      totalLessonsOfPlan: totalLessonsOfPlan == freezed
-          ? _value.totalLessonsOfPlan
-          : totalLessonsOfPlan as double,
-      attendedLessons: attendedLessons == freezed
-          ? _value.attendedLessons
-          : attendedLessons as double,
+      totalLessonsOfPlan:
+          totalLessonsOfPlan == freezed ? _value.totalLessonsOfPlan : totalLessonsOfPlan as double,
+      attendedLessons:
+          attendedLessons == freezed ? _value.attendedLessons : attendedLessons as double,
     ));
   }
 }
 
 /// @nodoc
-class _$SessionsWarning
-    with DiagnosticableTreeMixin
-    implements SessionsWarning {
-  const _$SessionsWarning(
-      {@required this.totalLessonsOfPlan, @required this.attendedLessons})
+class _$SessionsWarning with DiagnosticableTreeMixin implements SessionsWarning {
+  const _$SessionsWarning({@required this.totalLessonsOfPlan, @required this.attendedLessons})
       : assert(totalLessonsOfPlan != null),
         assert(attendedLessons != null);
 
@@ -564,8 +523,7 @@ class _$SessionsWarning
                 const DeepCollectionEquality()
                     .equals(other.totalLessonsOfPlan, totalLessonsOfPlan)) &&
             (identical(other.attendedLessons, attendedLessons) ||
-                const DeepCollectionEquality()
-                    .equals(other.attendedLessons, attendedLessons)));
+                const DeepCollectionEquality().equals(other.attendedLessons, attendedLessons)));
   }
 
   @override
@@ -574,6 +532,7 @@ class _$SessionsWarning
       const DeepCollectionEquality().hash(totalLessonsOfPlan) ^
       const DeepCollectionEquality().hash(attendedLessons);
 
+  @JsonKey(ignore: true)
   @override
   $SessionsWarningCopyWith<SessionsWarning> get copyWith =>
       _$SessionsWarningCopyWithImpl<SessionsWarning>(this, _$identity);
@@ -583,12 +542,8 @@ class _$SessionsWarning
   TResult when<TResult extends Object>({
     @required TResult initialSessionsState(),
     @required TResult sessionsUnlimited(),
-    @required
-        TResult sessionsLoaded(
-            double totalLessonsOfPlan, double attendedLessons),
-    @required
-        TResult sessionsWarning(
-            double totalLessonsOfPlan, double attendedLessons),
+    @required TResult sessionsLoaded(double totalLessonsOfPlan, double attendedLessons),
+    @required TResult sessionsWarning(double totalLessonsOfPlan, double attendedLessons),
   }) {
     assert(initialSessionsState != null);
     assert(sessionsUnlimited != null);
@@ -647,10 +602,10 @@ class _$SessionsWarning
 
 abstract class SessionsWarning implements SessionsState {
   const factory SessionsWarning(
-      {@required double totalLessonsOfPlan,
-      @required double attendedLessons}) = _$SessionsWarning;
+      {@required double totalLessonsOfPlan, @required double attendedLessons}) = _$SessionsWarning;
 
   double get totalLessonsOfPlan;
   double get attendedLessons;
+  @JsonKey(ignore: true)
   $SessionsWarningCopyWith<SessionsWarning> get copyWith;
 }

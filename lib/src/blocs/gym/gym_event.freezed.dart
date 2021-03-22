@@ -73,8 +73,7 @@ class _$GymEventCopyWithImpl<$Res> implements $GymEventCopyWith<$Res> {
 
 /// @nodoc
 abstract class $GymUpdatedCopyWith<$Res> {
-  factory $GymUpdatedCopyWith(
-          GymUpdated value, $Res Function(GymUpdated) then) =
+  factory $GymUpdatedCopyWith(GymUpdated value, $Res Function(GymUpdated) then) =
       _$GymUpdatedCopyWithImpl<$Res>;
   $Res call({Gym gym});
 
@@ -134,14 +133,13 @@ class _$GymUpdated with DiagnosticableTreeMixin implements GymUpdated {
   bool operator ==(dynamic other) {
     return identical(this, other) ||
         (other is GymUpdated &&
-            (identical(other.gym, gym) ||
-                const DeepCollectionEquality().equals(other.gym, gym)));
+            (identical(other.gym, gym) || const DeepCollectionEquality().equals(other.gym, gym)));
   }
 
   @override
-  int get hashCode =>
-      runtimeType.hashCode ^ const DeepCollectionEquality().hash(gym);
+  int get hashCode => runtimeType.hashCode ^ const DeepCollectionEquality().hash(gym);
 
+  @JsonKey(ignore: true)
   @override
   $GymUpdatedCopyWith<GymUpdated> get copyWith =>
       _$GymUpdatedCopyWithImpl<GymUpdated>(this, _$identity);
@@ -201,21 +199,20 @@ abstract class GymUpdated implements GymEvent {
   const factory GymUpdated({@required Gym gym}) = _$GymUpdated;
 
   Gym get gym;
+  @JsonKey(ignore: true)
   $GymUpdatedCopyWith<GymUpdated> get copyWith;
 }
 
 /// @nodoc
 abstract class $InitializeGymCopyWith<$Res> {
-  factory $InitializeGymCopyWith(
-          InitializeGym value, $Res Function(InitializeGym) then) =
+  factory $InitializeGymCopyWith(InitializeGym value, $Res Function(InitializeGym) then) =
       _$InitializeGymCopyWithImpl<$Res>;
 }
 
 /// @nodoc
 class _$InitializeGymCopyWithImpl<$Res> extends _$GymEventCopyWithImpl<$Res>
     implements $InitializeGymCopyWith<$Res> {
-  _$InitializeGymCopyWithImpl(
-      InitializeGym _value, $Res Function(InitializeGym) _then)
+  _$InitializeGymCopyWithImpl(InitializeGym _value, $Res Function(InitializeGym) _then)
       : super(_value, (v) => _then(v as InitializeGym));
 
   @override
