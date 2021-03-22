@@ -28,7 +28,7 @@ class UserProvider implements UserRepository {
         .doc(email)
         .snapshots()
         .where((snapshot) => snapshot.exists)
-        .map((user) => toUser(user))
+        .map((user) => User.fromJson(user.data()))
         .map((user) {
       _localStorageProvider.setUser(user);
       return user;
@@ -40,7 +40,7 @@ class UserProvider implements UserRepository {
       .doc(email)
       .snapshots()
       .where((snapshot) => snapshot.exists)
-      .map((user) => toUser(user));
+      .map((user) => User.fromJson(user.data()));
 
   Stream<List<Master>> retrieveAvailableMasters(String gymId) => _firestore
       .collection(path)
@@ -48,20 +48,6 @@ class UserProvider implements UserRepository {
       .where("selectedGymId", isEqualTo: gymId)
       .snapshots()
       .map((snapshot) => snapshot.docs.map((doc) => Master.fromJson(doc.data())).toList());
-
-  User toUser(DocumentSnapshot user) {
-    final data = user.data();
-    return User(
-        name: data['name'],
-        email: data['email'],
-        imageUrl: data['imageUrl'],
-        // TODO: remove rank when all users have grade https://trello.com/c/d26R05mY
-        knownGymIds: List<String>.from(data['knownGymIds'] ?? []),
-        grade: ((data['grade'] ?? data['rank']) as String)?.toGrade(),
-        isOwner: data['isOwner'] ?? false,
-        hasActivePayments: data['hasActivePayments'],
-        selectedGymId: data['selectedGymId']);
-  }
 
   Future<void> createUser(User newUser) async {
     var userData = {
