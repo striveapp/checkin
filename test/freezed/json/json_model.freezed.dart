@@ -49,6 +49,7 @@ mixin _$JsonModel {
   Grade get grade;
 
   Map<String, dynamic> toJson();
+  @JsonKey(ignore: true)
   $JsonModelCopyWith<JsonModel> get copyWith;
 }
 
@@ -57,10 +58,7 @@ abstract class $JsonModelCopyWith<$Res> {
   factory $JsonModelCopyWith(JsonModel value, $Res Function(JsonModel) then) =
       _$JsonModelCopyWithImpl<$Res>;
   $Res call(
-      {String simpleField,
-      String requiredField,
-      bool defaultField,
-      @GradeConverter() Grade grade});
+      {String simpleField, String requiredField, bool defaultField, @GradeConverter() Grade grade});
 }
 
 /// @nodoc
@@ -79,13 +77,9 @@ class _$JsonModelCopyWithImpl<$Res> implements $JsonModelCopyWith<$Res> {
     Object grade = freezed,
   }) {
     return _then(_value.copyWith(
-      simpleField:
-          simpleField == freezed ? _value.simpleField : simpleField as String,
-      requiredField: requiredField == freezed
-          ? _value.requiredField
-          : requiredField as String,
-      defaultField:
-          defaultField == freezed ? _value.defaultField : defaultField as bool,
+      simpleField: simpleField == freezed ? _value.simpleField : simpleField as String,
+      requiredField: requiredField == freezed ? _value.requiredField : requiredField as String,
+      defaultField: defaultField == freezed ? _value.defaultField : defaultField as bool,
       grade: grade == freezed ? _value.grade : grade as Grade,
     ));
   }
@@ -93,15 +87,11 @@ class _$JsonModelCopyWithImpl<$Res> implements $JsonModelCopyWith<$Res> {
 
 /// @nodoc
 abstract class _$JsonModelCopyWith<$Res> implements $JsonModelCopyWith<$Res> {
-  factory _$JsonModelCopyWith(
-          _JsonModel value, $Res Function(_JsonModel) then) =
+  factory _$JsonModelCopyWith(_JsonModel value, $Res Function(_JsonModel) then) =
       __$JsonModelCopyWithImpl<$Res>;
   @override
   $Res call(
-      {String simpleField,
-      String requiredField,
-      bool defaultField,
-      @GradeConverter() Grade grade});
+      {String simpleField, String requiredField, bool defaultField, @GradeConverter() Grade grade});
 }
 
 /// @nodoc
@@ -121,13 +111,9 @@ class __$JsonModelCopyWithImpl<$Res> extends _$JsonModelCopyWithImpl<$Res>
     Object grade = freezed,
   }) {
     return _then(_JsonModel(
-      simpleField:
-          simpleField == freezed ? _value.simpleField : simpleField as String,
-      requiredField: requiredField == freezed
-          ? _value.requiredField
-          : requiredField as String,
-      defaultField:
-          defaultField == freezed ? _value.defaultField : defaultField as bool,
+      simpleField: simpleField == freezed ? _value.simpleField : simpleField as String,
+      requiredField: requiredField == freezed ? _value.requiredField : requiredField as String,
+      defaultField: defaultField == freezed ? _value.defaultField : defaultField as bool,
       grade: grade == freezed ? _value.grade : grade as Grade,
     ));
   }
@@ -145,8 +131,7 @@ class _$_JsonModel with DiagnosticableTreeMixin implements _JsonModel {
       : assert(requiredField != null),
         assert(defaultField != null);
 
-  factory _$_JsonModel.fromJson(Map<String, dynamic> json) =>
-      _$_$_JsonModelFromJson(json);
+  factory _$_JsonModel.fromJson(Map<String, dynamic> json) => _$_$_JsonModelFromJson(json);
 
   @override
   final String simpleField;
@@ -180,14 +165,11 @@ class _$_JsonModel with DiagnosticableTreeMixin implements _JsonModel {
     return identical(this, other) ||
         (other is _JsonModel &&
             (identical(other.simpleField, simpleField) ||
-                const DeepCollectionEquality()
-                    .equals(other.simpleField, simpleField)) &&
+                const DeepCollectionEquality().equals(other.simpleField, simpleField)) &&
             (identical(other.requiredField, requiredField) ||
-                const DeepCollectionEquality()
-                    .equals(other.requiredField, requiredField)) &&
+                const DeepCollectionEquality().equals(other.requiredField, requiredField)) &&
             (identical(other.defaultField, defaultField) ||
-                const DeepCollectionEquality()
-                    .equals(other.defaultField, defaultField)) &&
+                const DeepCollectionEquality().equals(other.defaultField, defaultField)) &&
             (identical(other.grade, grade) ||
                 const DeepCollectionEquality().equals(other.grade, grade)));
   }
@@ -200,6 +182,7 @@ class _$_JsonModel with DiagnosticableTreeMixin implements _JsonModel {
       const DeepCollectionEquality().hash(defaultField) ^
       const DeepCollectionEquality().hash(grade);
 
+  @JsonKey(ignore: true)
   @override
   _$JsonModelCopyWith<_JsonModel> get copyWith =>
       __$JsonModelCopyWithImpl<_JsonModel>(this, _$identity);
@@ -217,8 +200,7 @@ abstract class _JsonModel implements JsonModel {
       bool defaultField,
       @GradeConverter() Grade grade}) = _$_JsonModel;
 
-  factory _JsonModel.fromJson(Map<String, dynamic> json) =
-      _$_JsonModel.fromJson;
+  factory _JsonModel.fromJson(Map<String, dynamic> json) = _$_JsonModel.fromJson;
 
   @override
   String get simpleField;
@@ -230,5 +212,6 @@ abstract class _JsonModel implements JsonModel {
   @GradeConverter()
   Grade get grade;
   @override
+  @JsonKey(ignore: true)
   _$JsonModelCopyWith<_JsonModel> get copyWith;
 }

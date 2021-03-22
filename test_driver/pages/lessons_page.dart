@@ -1,7 +1,5 @@
+import 'package:checkin/src/models/weekday.dart';
 import 'package:flutter_driver/flutter_driver.dart';
-
-import '../constants.dart';
-import '../util.dart';
 
 class LessonsPage {
   FlutterDriver _driver;
@@ -16,7 +14,7 @@ class LessonsPage {
     this._driver = driver;
   }
 
-  Future<void> selectLessonOfTheDay(WeekDay day, int lessonIndex) async {
+  Future<void> selectLessonOfTheDay(Weekday day, int lessonIndex) async {
     final lessonCard = await _getLessonCard(day, lessonIndex);
     await _driver.waitFor(lessonCard);
     await _driver.tap(lessonCard);
@@ -26,8 +24,8 @@ class LessonsPage {
     await _driver.tap(_accountPageButton);
   }
 
-  Future<SerializableFinder> _getLessonCard(WeekDay day, int lessonIndex) async {
-    final lessonCard = find.byValueKey("lesson_${describeEnum(day)}_$lessonIndex");
+  Future<SerializableFinder> _getLessonCard(Weekday day, int lessonIndex) async {
+    final lessonCard = find.byValueKey("lesson_${day.name}_$lessonIndex");
     if (lessonIndex >= 2) {
       await _driver.scrollIntoView(lessonCard);
     }

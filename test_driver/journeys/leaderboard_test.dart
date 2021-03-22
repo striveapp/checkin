@@ -1,6 +1,6 @@
+import 'package:checkin/src/models/weekday.dart';
 import 'package:test/test.dart';
 
-import '../constants.dart';
 import '../driver_extension.dart';
 import '../util.dart';
 import 'abstract_test.dart';
@@ -20,7 +20,7 @@ class LeaderboardTest extends AbstractTest {
       test("user should be able to view the leaderboard", () async {
         prettyPrint("Login as user and register to class");
         await loginPage.loginAsTest();
-        await lessonsPage.selectLessonOfTheDay(WeekDay.monday, 1);
+        await lessonsPage.selectLessonOfTheDay(Weekday.monday, 1);
         await registryPage.registerToClass();
 
         prettyPrint("Then logout");
@@ -28,7 +28,7 @@ class LeaderboardTest extends AbstractTest {
 
         prettyPrint("Then login as owner and accept all");
         await loginPage.loginAsAdmin();
-        await lessonsPage.selectLessonOfTheDay(WeekDay.monday, 1);
+        await lessonsPage.selectLessonOfTheDay(Weekday.monday, 1);
         await registryPage.acceptAll();
 
         prettyPrint("Then logout");

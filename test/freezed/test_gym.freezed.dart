@@ -42,7 +42,7 @@ class _$TestGymTearOff {
   }
 
 // ignore: unused_element
-  _CaseOne caseOne([String caseOne = 'caseOne']) {
+  _CaseOne caseOne([String caseOne = "caseOne"]) {
     return _CaseOne(
       caseOne,
     );
@@ -222,6 +222,7 @@ class _$_TestGym with DiagnosticableTreeMixin implements _TestGym {
       const DeepCollectionEquality().hash(stripePublicKey) ^
       const DeepCollectionEquality().hash(requiredField);
 
+  @JsonKey(ignore: true)
   @override
   _$TestGymCopyWith<_TestGym> get copyWith => __$TestGymCopyWithImpl<_TestGym>(this, _$identity);
 
@@ -312,6 +313,7 @@ abstract class _TestGym implements TestGym {
   String get host;
   String get stripePublicKey;
   String get requiredField;
+  @JsonKey(ignore: true)
   _$TestGymCopyWith<_TestGym> get copyWith;
 }
 
@@ -345,11 +347,11 @@ class __$CaseOneCopyWithImpl<$Res> extends _$TestGymCopyWithImpl<$Res>
 
 /// @nodoc
 class _$_CaseOne with DiagnosticableTreeMixin implements _CaseOne {
-  const _$_CaseOne([this.caseOne = 'caseOne']) : assert(caseOne != null);
+  const _$_CaseOne([this.caseOne = "caseOne"]) : assert(caseOne != null);
 
   factory _$_CaseOne.fromJson(Map<String, dynamic> json) => _$_$_CaseOneFromJson(json);
 
-  @JsonKey(defaultValue: 'caseOne')
+  @JsonKey(defaultValue: "caseOne")
   @override
   final String caseOne;
 
@@ -377,6 +379,7 @@ class _$_CaseOne with DiagnosticableTreeMixin implements _CaseOne {
   @override
   int get hashCode => runtimeType.hashCode ^ const DeepCollectionEquality().hash(caseOne);
 
+  @JsonKey(ignore: true)
   @override
   _$CaseOneCopyWith<_CaseOne> get copyWith => __$CaseOneCopyWithImpl<_CaseOne>(this, _$identity);
 
@@ -460,6 +463,7 @@ abstract class _CaseOne implements TestGym {
   factory _CaseOne.fromJson(Map<String, dynamic> json) = _$_CaseOne.fromJson;
 
   String get caseOne;
+  @JsonKey(ignore: true)
   _$CaseOneCopyWith<_CaseOne> get copyWith;
 }
 
@@ -524,6 +528,7 @@ class _$_CaseTwo with DiagnosticableTreeMixin implements _CaseTwo {
   @override
   int get hashCode => runtimeType.hashCode ^ const DeepCollectionEquality().hash(caseTwo);
 
+  @JsonKey(ignore: true)
   @override
   _$CaseTwoCopyWith<_CaseTwo> get copyWith => __$CaseTwoCopyWithImpl<_CaseTwo>(this, _$identity);
 
@@ -607,6 +612,7 @@ abstract class _CaseTwo implements TestGym {
   factory _CaseTwo.fromJson(Map<String, dynamic> json) = _$_CaseTwo.fromJson;
 
   String get caseTwo;
+  @JsonKey(ignore: true)
   _$CaseTwoCopyWith<_CaseTwo> get copyWith;
 }
 
@@ -671,6 +677,7 @@ class _$CaseThree with DiagnosticableTreeMixin implements CaseThree {
   @override
   int get hashCode => runtimeType.hashCode ^ const DeepCollectionEquality().hash(caseThree);
 
+  @JsonKey(ignore: true)
   @override
   $CaseThreeCopyWith<CaseThree> get copyWith =>
       _$CaseThreeCopyWithImpl<CaseThree>(this, _$identity);
@@ -755,6 +762,7 @@ abstract class CaseThree implements TestGym {
   factory CaseThree.fromJson(Map<String, dynamic> json) = _$CaseThree.fromJson;
 
   String get caseThree;
+  @JsonKey(ignore: true)
   $CaseThreeCopyWith<CaseThree> get copyWith;
 }
 
@@ -819,6 +827,7 @@ class _$CaseFour with DiagnosticableTreeMixin implements CaseFour {
   @override
   int get hashCode => runtimeType.hashCode ^ const DeepCollectionEquality().hash(caseFour);
 
+  @JsonKey(ignore: true)
   @override
   $CaseFourCopyWith<CaseFour> get copyWith => _$CaseFourCopyWithImpl<CaseFour>(this, _$identity);
 
@@ -902,5 +911,6 @@ abstract class CaseFour implements TestGym {
   factory CaseFour.fromJson(Map<String, dynamic> json) = _$CaseFour.fromJson;
 
   String get caseFour;
+  @JsonKey(ignore: true)
   $CaseFourCopyWith<CaseFour> get copyWith;
 }

@@ -1,6 +1,6 @@
+import 'package:checkin/src/models/weekday.dart';
 import 'package:test/test.dart';
 
-import '../constants.dart';
 import '../driver_extension.dart';
 import '../util.dart';
 import 'abstract_test.dart';
@@ -20,7 +20,7 @@ class AttendTest extends AbstractTest {
         test("user should be able to remove himself from class", () async {
           prettyPrint("Login as user and attend class");
           await loginPage.loginAsTest();
-          await lessonsPage.selectLessonOfTheDay(WeekDay.monday, 1);
+          await lessonsPage.selectLessonOfTheDay(Weekday.monday, 1);
           await registryPage.registerToClass();
           prettyPrint("Then unregister himself from class");
           await registryPage.unregisterFromClass();
@@ -31,22 +31,21 @@ class AttendTest extends AbstractTest {
         test("owner should be able to remove users from class", () async {
           prettyPrint("Login as user and attend class");
           await loginPage.loginAsTest();
-          await lessonsPage.selectLessonOfTheDay(WeekDay.monday, 1);
+          await lessonsPage.selectLessonOfTheDay(Weekday.monday, 1);
           await registryPage.registerToClass();
           prettyPrint("Then logout");
           await registryPage.logout();
 
           prettyPrint("Then login as TestTwo and attend class");
           await loginPage.loginAsTestTwo();
-          await lessonsPage.selectLessonOfTheDay(WeekDay.monday, 1);
+          await lessonsPage.selectLessonOfTheDay(Weekday.monday, 1);
           await registryPage.registerToClass();
           prettyPrint("Then logout");
           await registryPage.logout();
 
-          prettyPrint(
-              "Then login as owner, and remove Test user & Test Two from class");
+          prettyPrint("Then login as owner, and remove Test user & Test Two from class");
           await loginPage.loginAsAdmin();
-          await lessonsPage.selectLessonOfTheDay(WeekDay.monday, 1);
+          await lessonsPage.selectLessonOfTheDay(Weekday.monday, 1);
           await registryPage.swipeToRemoveUser("test@test.com");
           await registryPage.swipeToRemoveUser("test-two@test.com");
           prettyPrint("Then logout");
@@ -58,7 +57,7 @@ class AttendTest extends AbstractTest {
         test("increase the counter when master approves the class", () async {
           prettyPrint("Login as user and attend class");
           await loginPage.loginAsTest();
-          await lessonsPage.selectLessonOfTheDay(WeekDay.monday, 0);
+          await lessonsPage.selectLessonOfTheDay(Weekday.monday, 0);
           await registryPage.registerToClass();
 
           prettyPrint("Then get the amount of classes attended and logout");
@@ -70,7 +69,7 @@ class AttendTest extends AbstractTest {
 
           prettyPrint("Then login as owner and accept all");
           await loginPage.loginAsAdmin();
-          await lessonsPage.selectLessonOfTheDay(WeekDay.monday, 0);
+          await lessonsPage.selectLessonOfTheDay(Weekday.monday, 0);
           await registryPage.acceptAll();
 
           prettyPrint("Then check notification has been sent");
@@ -78,11 +77,10 @@ class AttendTest extends AbstractTest {
 //        await driver.runUnsynchronized(() async => await driver.waitFor(find.text("You attended 1 classes this year"), timeout: Duration(seconds: 120)));
 //        await driver.waitFor(find.text("You attended 1 classes this year"), timeout: Duration(seconds: 120));
 
-          prettyPrint(
-              "Then get the amount of classes attended and check it increased");
+          prettyPrint("Then get the amount of classes attended and check it increased");
           await registryPage.tapTestAttendee();
-          await driver.waitForExpectedValue(() => statsPage.getMathHours(),
-              (int.parse(initialMatHours) + 1).toString());
+          await driver.waitForExpectedValue(
+              () => statsPage.getMathHours(), (int.parse(initialMatHours) + 1).toString());
 
           prettyPrint("Then logout");
           await statsPage.logout();
@@ -93,7 +91,7 @@ class AttendTest extends AbstractTest {
             () async {
           prettyPrint("Login as user Test and attend class");
           await loginPage.loginAsTest();
-          await lessonsPage.selectLessonOfTheDay(WeekDay.monday, 1);
+          await lessonsPage.selectLessonOfTheDay(Weekday.monday, 1);
           await registryPage.registerToClass();
 
           prettyPrint("Then get the amount of classes attended and logout");
@@ -105,7 +103,7 @@ class AttendTest extends AbstractTest {
 
           prettyPrint("Login as user TestTwo and attend class");
           await loginPage.loginAsTestTwo();
-          await lessonsPage.selectLessonOfTheDay(WeekDay.monday, 1);
+          await lessonsPage.selectLessonOfTheDay(Weekday.monday, 1);
           await registryPage.registerToClass();
 
           prettyPrint("Then get the amount of classes attended and logout");
@@ -117,14 +115,14 @@ class AttendTest extends AbstractTest {
 
           prettyPrint("Then login as owner and accept all");
           await loginPage.loginAsAdmin();
-          await lessonsPage.selectLessonOfTheDay(WeekDay.monday, 1);
+          await lessonsPage.selectLessonOfTheDay(Weekday.monday, 1);
           await registryPage.acceptAll();
 
           prettyPrint(
               "Then get the amount of classes attended by Test and check they have increased");
           await registryPage.tapTestAttendee();
-          await driver.waitForExpectedValue(() => statsPage.getMathHours(),
-              (int.parse(initialMatHoursTest) + 1).toString());
+          await driver.waitForExpectedValue(
+              () => statsPage.getMathHours(), (int.parse(initialMatHoursTest) + 1).toString());
 
           prettyPrint("Then go back");
           await driver.goBack();
@@ -132,8 +130,8 @@ class AttendTest extends AbstractTest {
           prettyPrint(
               "Then get the amount of classes attended by TestTwo and check they have increased");
           await registryPage.tapTestAttendee();
-          await driver.waitForExpectedValue(() => statsPage.getMathHours(),
-              (int.parse(initialMatHoursTestTwo) + 1).toString());
+          await driver.waitForExpectedValue(
+              () => statsPage.getMathHours(), (int.parse(initialMatHoursTestTwo) + 1).toString());
 
           prettyPrint("Then logout");
           await statsPage.logout();
@@ -142,23 +140,21 @@ class AttendTest extends AbstractTest {
         test("it should not allow students to attend full classes", () async {
           prettyPrint("Login as user Test and attend class");
           await loginPage.loginAsTest();
-          await lessonsPage.selectLessonOfTheDay(WeekDay.monday, 2);
+          await lessonsPage.selectLessonOfTheDay(Weekday.monday, 2);
           await registryPage.registerToClass();
 
           prettyPrint("Then logout");
           await statsPage.logout();
 
-          prettyPrint(
-              "Login as user TestTwo and see the disabled class full button");
+          prettyPrint("Login as user TestTwo and see the disabled class full button");
           await loginPage.loginAsTestTwo();
-          await lessonsPage.selectLessonOfTheDay(WeekDay.monday, 2);
+          await lessonsPage.selectLessonOfTheDay(Weekday.monday, 2);
           await driver.waitFor(registryPage.registryFullButton);
 
           await prettyPrint("Then logout");
           await statsPage.logout();
         });
       });
-
     });
   }
 }
