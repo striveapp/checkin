@@ -14,10 +14,9 @@ _$_User _$_$_UserFromJson(Map<String, dynamic> json) {
     uid: json['uid'] as String,
     grade: _$enumDecodeNullable(_$GradeEnumMap, json['grade']),
     selectedGymId: json['selectedGymId'] as String,
-    knownGymIds:
-        (json['knownGymIds'] as List)?.map((e) => e as String)?.toList(),
+    knownGymIds: (json['knownGymIds'] as List)?.map((e) => e as String)?.toList(),
+    hasActivePayments: json['hasActivePayments'] as bool,
     isOwner: json['isOwner'] as bool ?? false,
-    hasActivePayments: json['hasActivePayments'] as bool ?? false,
   );
 }
 
@@ -29,8 +28,8 @@ Map<String, dynamic> _$_$_UserToJson(_$_User instance) => <String, dynamic>{
       'grade': _$GradeEnumMap[instance.grade],
       'selectedGymId': instance.selectedGymId,
       'knownGymIds': instance.knownGymIds,
-      'isOwner': instance.isOwner,
       'hasActivePayments': instance.hasActivePayments,
+      'isOwner': instance.isOwner,
     };
 
 T _$enumDecode<T>(
@@ -43,9 +42,7 @@ T _$enumDecode<T>(
         '${enumValues.values.join(', ')}');
   }
 
-  final value = enumValues.entries
-      .singleWhere((e) => e.value == source, orElse: () => null)
-      ?.key;
+  final value = enumValues.entries.singleWhere((e) => e.value == source, orElse: () => null)?.key;
 
   if (value == null && unknownValue == null) {
     throw ArgumentError('`$source` is not one of the supported values: '

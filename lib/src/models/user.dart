@@ -21,8 +21,8 @@ abstract class User with _$User {
     final Grade grade,
     final String selectedGymId,
     final List<String> knownGymIds,
+    final bool hasActivePayments,
     @Default(false) final bool isOwner,
-    @Default(false) final bool hasActivePayments,
   }) = _User;
 
   factory User.fromFirebaseUser(FirebaseAuth.User firebaseUser,

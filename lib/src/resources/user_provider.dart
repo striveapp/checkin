@@ -59,7 +59,7 @@ class UserProvider implements UserRepository {
         knownGymIds: List<String>.from(data['knownGymIds'] ?? []),
         grade: ((data['grade'] ?? data['rank']) as String)?.toGrade(),
         isOwner: data['isOwner'] ?? false,
-        hasActivePayments: data['hasActivePayments'] ?? false,
+        hasActivePayments: data['hasActivePayments'],
         selectedGymId: data['selectedGymId']);
   }
 
