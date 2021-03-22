@@ -30,8 +30,8 @@ dependencies:
   google_sign_in: ^4.5.1
   sign_in_with_apple: ^2.5.4
   share: ^0.6.3+5
-  bloc: ^6.1.0
-  flutter_bloc: ^6.1.1
+  bloc: ^7.0.0
+  flutter_bloc: ^7.0.0
   equatable: ^1.1.1
   cached_network_image: ^2.3.3
   fluro: ^1.7.8
@@ -62,14 +62,13 @@ dev_dependencies:
     sdk: flutter
   integration_test: ^1.0.2+2
   mockito: 4.1.3
-  bloc_test: ^7.1.0
-  stack_trace: ^1.9.3
+  bloc_test: ^8.0.0
+  stack_trace: ^1.10.0
   build_runner: ^1.10.6
   freezed: ^0.12.3
   json_serializable: ^3.5.0
-  # TODO: this has conflicts with flutter_svg
-  #  flutter_launcher_icons: ^0.8.1
-  #  flutter_native_splash: ^0.3.0
+  flutter_launcher_icons: ^0.9.0
+  flutter_native_splash: ^1.1.4+1
 
 dependency_overrides:
   intl: ^0.17.0
