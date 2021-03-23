@@ -1,4 +1,4 @@
-@Skip("WIP")
+@Skip("Issue with bloc_test v8")
 import 'package:bloc_test/bloc_test.dart';
 import 'package:checkin/src/api/lesson_api.dart';
 import 'package:checkin/src/blocs/registry/bloc.dart';
