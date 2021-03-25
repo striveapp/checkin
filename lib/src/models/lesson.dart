@@ -45,3 +45,22 @@ abstract class Lesson with _$Lesson {
 
   factory Lesson.fromJson(Map<String, dynamic> json) => _$LessonFromJson(json);
 }
+
+@freezed
+abstract class LessonTemplate with _$LessonTemplate {
+  factory LessonTemplate({
+    final String id,
+    final String name,
+    final String timeStart,
+    @Default("") final String timeEnd,
+    final Weekday weekDay,
+    final String imageUrl,
+    final LessonConfig lessonConfig,
+    // todo retrieve from Gym (config) https://trello.com/c/uIqJLgZL
+    @Default(DEFAULT_CLASS_CAPACITY) final int classCapacity,
+    @Default([]) final List<Master> masters,
+  }) = _LessonTemplate;
+
+  factory LessonTemplate.fromJson(Map<String, dynamic> json) => _$LessonTemplateFromJson(json);
+
+}
