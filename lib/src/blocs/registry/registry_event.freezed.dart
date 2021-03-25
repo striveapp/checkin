@@ -19,7 +19,8 @@ class _$RegistryEventTearOff {
   }
 
 // ignore: unused_element
-  RegistryUpdated registryUpdated({@required User currentUser, Lesson currentLesson}) {
+  RegistryUpdated registryUpdated(
+      {@required User currentUser, Lesson currentLesson}) {
     return RegistryUpdated(
       currentUser: currentUser,
       currentLesson: currentLesson,
@@ -116,12 +117,14 @@ mixin _$RegistryEvent {
 
 /// @nodoc
 abstract class $RegistryEventCopyWith<$Res> {
-  factory $RegistryEventCopyWith(RegistryEvent value, $Res Function(RegistryEvent) then) =
+  factory $RegistryEventCopyWith(
+          RegistryEvent value, $Res Function(RegistryEvent) then) =
       _$RegistryEventCopyWithImpl<$Res>;
 }
 
 /// @nodoc
-class _$RegistryEventCopyWithImpl<$Res> implements $RegistryEventCopyWith<$Res> {
+class _$RegistryEventCopyWithImpl<$Res>
+    implements $RegistryEventCopyWith<$Res> {
   _$RegistryEventCopyWithImpl(this._value, this._then);
 
   final RegistryEvent _value;
@@ -137,7 +140,8 @@ abstract class $InitializeRegistryCopyWith<$Res> {
 }
 
 /// @nodoc
-class _$InitializeRegistryCopyWithImpl<$Res> extends _$RegistryEventCopyWithImpl<$Res>
+class _$InitializeRegistryCopyWithImpl<$Res>
+    extends _$RegistryEventCopyWithImpl<$Res>
     implements $InitializeRegistryCopyWith<$Res> {
   _$InitializeRegistryCopyWithImpl(
       InitializeRegistry _value, $Res Function(InitializeRegistry) _then)
@@ -148,7 +152,9 @@ class _$InitializeRegistryCopyWithImpl<$Res> extends _$RegistryEventCopyWithImpl
 }
 
 /// @nodoc
-class _$InitializeRegistry with DiagnosticableTreeMixin implements InitializeRegistry {
+class _$InitializeRegistry
+    with DiagnosticableTreeMixin
+    implements InitializeRegistry {
   const _$InitializeRegistry();
 
   @override
@@ -159,7 +165,8 @@ class _$InitializeRegistry with DiagnosticableTreeMixin implements InitializeReg
   @override
   void debugFillProperties(DiagnosticPropertiesBuilder properties) {
     super.debugFillProperties(properties);
-    properties..add(DiagnosticsProperty('type', 'RegistryEvent.initializeRegistry'));
+    properties
+      ..add(DiagnosticsProperty('type', 'RegistryEvent.initializeRegistry'));
   }
 
   @override
@@ -257,7 +264,8 @@ abstract class InitializeRegistry implements RegistryEvent {
 
 /// @nodoc
 abstract class $RegistryUpdatedCopyWith<$Res> {
-  factory $RegistryUpdatedCopyWith(RegistryUpdated value, $Res Function(RegistryUpdated) then) =
+  factory $RegistryUpdatedCopyWith(
+          RegistryUpdated value, $Res Function(RegistryUpdated) then) =
       _$RegistryUpdatedCopyWithImpl<$Res>;
   $Res call({User currentUser, Lesson currentLesson});
 
@@ -266,9 +274,11 @@ abstract class $RegistryUpdatedCopyWith<$Res> {
 }
 
 /// @nodoc
-class _$RegistryUpdatedCopyWithImpl<$Res> extends _$RegistryEventCopyWithImpl<$Res>
+class _$RegistryUpdatedCopyWithImpl<$Res>
+    extends _$RegistryEventCopyWithImpl<$Res>
     implements $RegistryUpdatedCopyWith<$Res> {
-  _$RegistryUpdatedCopyWithImpl(RegistryUpdated _value, $Res Function(RegistryUpdated) _then)
+  _$RegistryUpdatedCopyWithImpl(
+      RegistryUpdated _value, $Res Function(RegistryUpdated) _then)
       : super(_value, (v) => _then(v as RegistryUpdated));
 
   @override
@@ -280,8 +290,11 @@ class _$RegistryUpdatedCopyWithImpl<$Res> extends _$RegistryEventCopyWithImpl<$R
     Object currentLesson = freezed,
   }) {
     return _then(RegistryUpdated(
-      currentUser: currentUser == freezed ? _value.currentUser : currentUser as User,
-      currentLesson: currentLesson == freezed ? _value.currentLesson : currentLesson as Lesson,
+      currentUser:
+          currentUser == freezed ? _value.currentUser : currentUser as User,
+      currentLesson: currentLesson == freezed
+          ? _value.currentLesson
+          : currentLesson as Lesson,
     ));
   }
 
@@ -307,7 +320,9 @@ class _$RegistryUpdatedCopyWithImpl<$Res> extends _$RegistryEventCopyWithImpl<$R
 }
 
 /// @nodoc
-class _$RegistryUpdated with DiagnosticableTreeMixin implements RegistryUpdated {
+class _$RegistryUpdated
+    with DiagnosticableTreeMixin
+    implements RegistryUpdated {
   const _$RegistryUpdated({@required this.currentUser, this.currentLesson})
       : assert(currentUser != null);
 
@@ -335,9 +350,11 @@ class _$RegistryUpdated with DiagnosticableTreeMixin implements RegistryUpdated 
     return identical(this, other) ||
         (other is RegistryUpdated &&
             (identical(other.currentUser, currentUser) ||
-                const DeepCollectionEquality().equals(other.currentUser, currentUser)) &&
+                const DeepCollectionEquality()
+                    .equals(other.currentUser, currentUser)) &&
             (identical(other.currentLesson, currentLesson) ||
-                const DeepCollectionEquality().equals(other.currentLesson, currentLesson)));
+                const DeepCollectionEquality()
+                    .equals(other.currentLesson, currentLesson)));
   }
 
   @override
@@ -433,8 +450,8 @@ class _$RegistryUpdated with DiagnosticableTreeMixin implements RegistryUpdated 
 }
 
 abstract class RegistryUpdated implements RegistryEvent {
-  const factory RegistryUpdated({@required User currentUser, Lesson currentLesson}) =
-      _$RegistryUpdated;
+  const factory RegistryUpdated(
+      {@required User currentUser, Lesson currentLesson}) = _$RegistryUpdated;
 
   User get currentUser;
   Lesson get currentLesson;
@@ -502,7 +519,8 @@ class _$Register with DiagnosticableTreeMixin implements Register {
             (identical(other.gymId, gymId) ||
                 const DeepCollectionEquality().equals(other.gymId, gymId)) &&
             (identical(other.attendee, attendee) ||
-                const DeepCollectionEquality().equals(other.attendee, attendee)));
+                const DeepCollectionEquality()
+                    .equals(other.attendee, attendee)));
   }
 
   @override
@@ -513,7 +531,8 @@ class _$Register with DiagnosticableTreeMixin implements Register {
 
   @JsonKey(ignore: true)
   @override
-  $RegisterCopyWith<Register> get copyWith => _$RegisterCopyWithImpl<Register>(this, _$identity);
+  $RegisterCopyWith<Register> get copyWith =>
+      _$RegisterCopyWithImpl<Register>(this, _$identity);
 
   @override
   @optionalTypeArgs
@@ -597,7 +616,8 @@ class _$Register with DiagnosticableTreeMixin implements Register {
 }
 
 abstract class Register implements RegistryEvent {
-  const factory Register({@required String gymId, @required Attendee attendee}) = _$Register;
+  const factory Register(
+      {@required String gymId, @required Attendee attendee}) = _$Register;
 
   String get gymId;
   Attendee get attendee;
@@ -607,7 +627,8 @@ abstract class Register implements RegistryEvent {
 
 /// @nodoc
 abstract class $UnregisterCopyWith<$Res> {
-  factory $UnregisterCopyWith(Unregister value, $Res Function(Unregister) then) =
+  factory $UnregisterCopyWith(
+          Unregister value, $Res Function(Unregister) then) =
       _$UnregisterCopyWithImpl<$Res>;
   $Res call({String gymId, Attendee attendee});
 }
@@ -665,7 +686,8 @@ class _$Unregister with DiagnosticableTreeMixin implements Unregister {
             (identical(other.gymId, gymId) ||
                 const DeepCollectionEquality().equals(other.gymId, gymId)) &&
             (identical(other.attendee, attendee) ||
-                const DeepCollectionEquality().equals(other.attendee, attendee)));
+                const DeepCollectionEquality()
+                    .equals(other.attendee, attendee)));
   }
 
   @override
@@ -761,7 +783,8 @@ class _$Unregister with DiagnosticableTreeMixin implements Unregister {
 }
 
 abstract class Unregister implements RegistryEvent {
-  const factory Unregister({@required String gymId, @required Attendee attendee}) = _$Unregister;
+  const factory Unregister(
+      {@required String gymId, @required Attendee attendee}) = _$Unregister;
 
   String get gymId;
   Attendee get attendee;
@@ -771,15 +794,18 @@ abstract class Unregister implements RegistryEvent {
 
 /// @nodoc
 abstract class $AcceptAttendeesCopyWith<$Res> {
-  factory $AcceptAttendeesCopyWith(AcceptAttendees value, $Res Function(AcceptAttendees) then) =
+  factory $AcceptAttendeesCopyWith(
+          AcceptAttendees value, $Res Function(AcceptAttendees) then) =
       _$AcceptAttendeesCopyWithImpl<$Res>;
   $Res call({String gymId});
 }
 
 /// @nodoc
-class _$AcceptAttendeesCopyWithImpl<$Res> extends _$RegistryEventCopyWithImpl<$Res>
+class _$AcceptAttendeesCopyWithImpl<$Res>
+    extends _$RegistryEventCopyWithImpl<$Res>
     implements $AcceptAttendeesCopyWith<$Res> {
-  _$AcceptAttendeesCopyWithImpl(AcceptAttendees _value, $Res Function(AcceptAttendees) _then)
+  _$AcceptAttendeesCopyWithImpl(
+      AcceptAttendees _value, $Res Function(AcceptAttendees) _then)
       : super(_value, (v) => _then(v as AcceptAttendees));
 
   @override
@@ -796,7 +822,9 @@ class _$AcceptAttendeesCopyWithImpl<$Res> extends _$RegistryEventCopyWithImpl<$R
 }
 
 /// @nodoc
-class _$AcceptAttendees with DiagnosticableTreeMixin implements AcceptAttendees {
+class _$AcceptAttendees
+    with DiagnosticableTreeMixin
+    implements AcceptAttendees {
   const _$AcceptAttendees({@required this.gymId}) : assert(gymId != null);
 
   @override
@@ -824,7 +852,8 @@ class _$AcceptAttendees with DiagnosticableTreeMixin implements AcceptAttendees 
   }
 
   @override
-  int get hashCode => runtimeType.hashCode ^ const DeepCollectionEquality().hash(gymId);
+  int get hashCode =>
+      runtimeType.hashCode ^ const DeepCollectionEquality().hash(gymId);
 
   @JsonKey(ignore: true)
   @override
@@ -922,7 +951,8 @@ abstract class AcceptAttendees implements RegistryEvent {
 
 /// @nodoc
 abstract class $CloseLessonCopyWith<$Res> {
-  factory $CloseLessonCopyWith(CloseLesson value, $Res Function(CloseLesson) then) =
+  factory $CloseLessonCopyWith(
+          CloseLesson value, $Res Function(CloseLesson) then) =
       _$CloseLessonCopyWithImpl<$Res>;
   $Res call({String gymId});
 }
@@ -930,7 +960,8 @@ abstract class $CloseLessonCopyWith<$Res> {
 /// @nodoc
 class _$CloseLessonCopyWithImpl<$Res> extends _$RegistryEventCopyWithImpl<$Res>
     implements $CloseLessonCopyWith<$Res> {
-  _$CloseLessonCopyWithImpl(CloseLesson _value, $Res Function(CloseLesson) _then)
+  _$CloseLessonCopyWithImpl(
+      CloseLesson _value, $Res Function(CloseLesson) _then)
       : super(_value, (v) => _then(v as CloseLesson));
 
   @override
@@ -975,7 +1006,8 @@ class _$CloseLesson with DiagnosticableTreeMixin implements CloseLesson {
   }
 
   @override
-  int get hashCode => runtimeType.hashCode ^ const DeepCollectionEquality().hash(gymId);
+  int get hashCode =>
+      runtimeType.hashCode ^ const DeepCollectionEquality().hash(gymId);
 
   @JsonKey(ignore: true)
   @override
@@ -1073,7 +1105,8 @@ abstract class CloseLesson implements RegistryEvent {
 
 /// @nodoc
 abstract class $DeleteLessonCopyWith<$Res> {
-  factory $DeleteLessonCopyWith(DeleteLesson value, $Res Function(DeleteLesson) then) =
+  factory $DeleteLessonCopyWith(
+          DeleteLesson value, $Res Function(DeleteLesson) then) =
       _$DeleteLessonCopyWithImpl<$Res>;
   $Res call({String gymId});
 }
@@ -1081,7 +1114,8 @@ abstract class $DeleteLessonCopyWith<$Res> {
 /// @nodoc
 class _$DeleteLessonCopyWithImpl<$Res> extends _$RegistryEventCopyWithImpl<$Res>
     implements $DeleteLessonCopyWith<$Res> {
-  _$DeleteLessonCopyWithImpl(DeleteLesson _value, $Res Function(DeleteLesson) _then)
+  _$DeleteLessonCopyWithImpl(
+      DeleteLesson _value, $Res Function(DeleteLesson) _then)
       : super(_value, (v) => _then(v as DeleteLesson));
 
   @override
@@ -1126,7 +1160,8 @@ class _$DeleteLesson with DiagnosticableTreeMixin implements DeleteLesson {
   }
 
   @override
-  int get hashCode => runtimeType.hashCode ^ const DeepCollectionEquality().hash(gymId);
+  int get hashCode =>
+      runtimeType.hashCode ^ const DeepCollectionEquality().hash(gymId);
 
   @JsonKey(ignore: true)
   @override

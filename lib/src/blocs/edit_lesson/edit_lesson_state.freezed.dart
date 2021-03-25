@@ -58,12 +58,14 @@ mixin _$EditLessonState {
 
 /// @nodoc
 abstract class $EditLessonStateCopyWith<$Res> {
-  factory $EditLessonStateCopyWith(EditLessonState value, $Res Function(EditLessonState) then) =
+  factory $EditLessonStateCopyWith(
+          EditLessonState value, $Res Function(EditLessonState) then) =
       _$EditLessonStateCopyWithImpl<$Res>;
 }
 
 /// @nodoc
-class _$EditLessonStateCopyWithImpl<$Res> implements $EditLessonStateCopyWith<$Res> {
+class _$EditLessonStateCopyWithImpl<$Res>
+    implements $EditLessonStateCopyWith<$Res> {
   _$EditLessonStateCopyWithImpl(this._value, this._then);
 
   final EditLessonState _value;
@@ -73,16 +75,17 @@ class _$EditLessonStateCopyWithImpl<$Res> implements $EditLessonStateCopyWith<$R
 
 /// @nodoc
 abstract class $EditLessonUninitializedCopyWith<$Res> {
-  factory $EditLessonUninitializedCopyWith(
-          EditLessonUninitialized value, $Res Function(EditLessonUninitialized) then) =
+  factory $EditLessonUninitializedCopyWith(EditLessonUninitialized value,
+          $Res Function(EditLessonUninitialized) then) =
       _$EditLessonUninitializedCopyWithImpl<$Res>;
 }
 
 /// @nodoc
-class _$EditLessonUninitializedCopyWithImpl<$Res> extends _$EditLessonStateCopyWithImpl<$Res>
+class _$EditLessonUninitializedCopyWithImpl<$Res>
+    extends _$EditLessonStateCopyWithImpl<$Res>
     implements $EditLessonUninitializedCopyWith<$Res> {
-  _$EditLessonUninitializedCopyWithImpl(
-      EditLessonUninitialized _value, $Res Function(EditLessonUninitialized) _then)
+  _$EditLessonUninitializedCopyWithImpl(EditLessonUninitialized _value,
+      $Res Function(EditLessonUninitialized) _then)
       : super(_value, (v) => _then(v as EditLessonUninitialized));
 
   @override
@@ -90,7 +93,9 @@ class _$EditLessonUninitializedCopyWithImpl<$Res> extends _$EditLessonStateCopyW
 }
 
 /// @nodoc
-class _$EditLessonUninitialized with DiagnosticableTreeMixin implements EditLessonUninitialized {
+class _$EditLessonUninitialized
+    with DiagnosticableTreeMixin
+    implements EditLessonUninitialized {
   const _$EditLessonUninitialized();
 
   @override
@@ -101,7 +106,9 @@ class _$EditLessonUninitialized with DiagnosticableTreeMixin implements EditLess
   @override
   void debugFillProperties(DiagnosticPropertiesBuilder properties) {
     super.debugFillProperties(properties);
-    properties..add(DiagnosticsProperty('type', 'EditLessonState.editLessonUninitialized'));
+    properties
+      ..add(DiagnosticsProperty(
+          'type', 'EditLessonState.editLessonUninitialized'));
   }
 
   @override
@@ -169,15 +176,18 @@ abstract class EditLessonUninitialized implements EditLessonState {
 
 /// @nodoc
 abstract class $MastersLoadedCopyWith<$Res> {
-  factory $MastersLoadedCopyWith(MastersLoaded value, $Res Function(MastersLoaded) then) =
+  factory $MastersLoadedCopyWith(
+          MastersLoaded value, $Res Function(MastersLoaded) then) =
       _$MastersLoadedCopyWithImpl<$Res>;
   $Res call({List<Master> masters});
 }
 
 /// @nodoc
-class _$MastersLoadedCopyWithImpl<$Res> extends _$EditLessonStateCopyWithImpl<$Res>
+class _$MastersLoadedCopyWithImpl<$Res>
+    extends _$EditLessonStateCopyWithImpl<$Res>
     implements $MastersLoadedCopyWith<$Res> {
-  _$MastersLoadedCopyWithImpl(MastersLoaded _value, $Res Function(MastersLoaded) _then)
+  _$MastersLoadedCopyWithImpl(
+      MastersLoaded _value, $Res Function(MastersLoaded) _then)
       : super(_value, (v) => _then(v as MastersLoaded));
 
   @override
@@ -222,7 +232,8 @@ class _$MastersLoaded with DiagnosticableTreeMixin implements MastersLoaded {
   }
 
   @override
-  int get hashCode => runtimeType.hashCode ^ const DeepCollectionEquality().hash(masters);
+  int get hashCode =>
+      runtimeType.hashCode ^ const DeepCollectionEquality().hash(masters);
 
   @JsonKey(ignore: true)
   @override
@@ -281,7 +292,8 @@ class _$MastersLoaded with DiagnosticableTreeMixin implements MastersLoaded {
 }
 
 abstract class MastersLoaded implements EditLessonState {
-  const factory MastersLoaded({@required List<Master> masters}) = _$MastersLoaded;
+  const factory MastersLoaded({@required List<Master> masters}) =
+      _$MastersLoaded;
 
   List<Master> get masters;
   @JsonKey(ignore: true)

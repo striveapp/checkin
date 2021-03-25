@@ -32,7 +32,10 @@ class _$TestGymTearOff {
 
 // ignore: unused_element
   _TestGym call(
-      {String domain, String host, String stripePublicKey, @required String requiredField}) {
+      {String domain,
+      String host,
+      String stripePublicKey,
+      @required String requiredField}) {
     return _TestGym(
       domain: domain,
       host: host,
@@ -83,7 +86,8 @@ const $TestGym = _$TestGymTearOff();
 mixin _$TestGym {
   @optionalTypeArgs
   TResult when<TResult extends Object>(
-    TResult $default(String domain, String host, String stripePublicKey, String requiredField), {
+    TResult $default(String domain, String host, String stripePublicKey,
+        String requiredField), {
     @required TResult caseOne(String caseOne),
     @required TResult caseTwo(String caseTwo),
     @required TResult caseThree(String caseThree),
@@ -91,7 +95,8 @@ mixin _$TestGym {
   });
   @optionalTypeArgs
   TResult maybeWhen<TResult extends Object>(
-    TResult $default(String domain, String host, String stripePublicKey, String requiredField), {
+    TResult $default(String domain, String host, String stripePublicKey,
+        String requiredField), {
     TResult caseOne(String caseOne),
     TResult caseTwo(String caseTwo),
     TResult caseThree(String caseThree),
@@ -137,7 +142,11 @@ class _$TestGymCopyWithImpl<$Res> implements $TestGymCopyWith<$Res> {
 abstract class _$TestGymCopyWith<$Res> {
   factory _$TestGymCopyWith(_TestGym value, $Res Function(_TestGym) then) =
       __$TestGymCopyWithImpl<$Res>;
-  $Res call({String domain, String host, String stripePublicKey, String requiredField});
+  $Res call(
+      {String domain,
+      String host,
+      String stripePublicKey,
+      String requiredField});
 }
 
 /// @nodoc
@@ -159,9 +168,12 @@ class __$TestGymCopyWithImpl<$Res> extends _$TestGymCopyWithImpl<$Res>
     return _then(_TestGym(
       domain: domain == freezed ? _value.domain : domain as String,
       host: host == freezed ? _value.host : host as String,
-      stripePublicKey:
-          stripePublicKey == freezed ? _value.stripePublicKey : stripePublicKey as String,
-      requiredField: requiredField == freezed ? _value.requiredField : requiredField as String,
+      stripePublicKey: stripePublicKey == freezed
+          ? _value.stripePublicKey
+          : stripePublicKey as String,
+      requiredField: requiredField == freezed
+          ? _value.requiredField
+          : requiredField as String,
     ));
   }
 }
@@ -170,10 +182,15 @@ class __$TestGymCopyWithImpl<$Res> extends _$TestGymCopyWithImpl<$Res>
 
 /// @nodoc
 class _$_TestGym with DiagnosticableTreeMixin implements _TestGym {
-  _$_TestGym({this.domain, this.host, this.stripePublicKey, @required this.requiredField})
+  _$_TestGym(
+      {this.domain,
+      this.host,
+      this.stripePublicKey,
+      @required this.requiredField})
       : assert(requiredField != null);
 
-  factory _$_TestGym.fromJson(Map<String, dynamic> json) => _$_$_TestGymFromJson(json);
+  factory _$_TestGym.fromJson(Map<String, dynamic> json) =>
+      _$_$_TestGymFromJson(json);
 
   @override
   final String domain;
@@ -209,9 +226,11 @@ class _$_TestGym with DiagnosticableTreeMixin implements _TestGym {
             (identical(other.host, host) ||
                 const DeepCollectionEquality().equals(other.host, host)) &&
             (identical(other.stripePublicKey, stripePublicKey) ||
-                const DeepCollectionEquality().equals(other.stripePublicKey, stripePublicKey)) &&
+                const DeepCollectionEquality()
+                    .equals(other.stripePublicKey, stripePublicKey)) &&
             (identical(other.requiredField, requiredField) ||
-                const DeepCollectionEquality().equals(other.requiredField, requiredField)));
+                const DeepCollectionEquality()
+                    .equals(other.requiredField, requiredField)));
   }
 
   @override
@@ -224,12 +243,14 @@ class _$_TestGym with DiagnosticableTreeMixin implements _TestGym {
 
   @JsonKey(ignore: true)
   @override
-  _$TestGymCopyWith<_TestGym> get copyWith => __$TestGymCopyWithImpl<_TestGym>(this, _$identity);
+  _$TestGymCopyWith<_TestGym> get copyWith =>
+      __$TestGymCopyWithImpl<_TestGym>(this, _$identity);
 
   @override
   @optionalTypeArgs
   TResult when<TResult extends Object>(
-    TResult $default(String domain, String host, String stripePublicKey, String requiredField), {
+    TResult $default(String domain, String host, String stripePublicKey,
+        String requiredField), {
     @required TResult caseOne(String caseOne),
     @required TResult caseTwo(String caseTwo),
     @required TResult caseThree(String caseThree),
@@ -246,7 +267,8 @@ class _$_TestGym with DiagnosticableTreeMixin implements _TestGym {
   @override
   @optionalTypeArgs
   TResult maybeWhen<TResult extends Object>(
-    TResult $default(String domain, String host, String stripePublicKey, String requiredField), {
+    TResult $default(String domain, String host, String stripePublicKey,
+        String requiredField), {
     TResult caseOne(String caseOne),
     TResult caseTwo(String caseTwo),
     TResult caseThree(String caseThree),
@@ -349,7 +371,8 @@ class __$CaseOneCopyWithImpl<$Res> extends _$TestGymCopyWithImpl<$Res>
 class _$_CaseOne with DiagnosticableTreeMixin implements _CaseOne {
   const _$_CaseOne([this.caseOne = "caseOne"]) : assert(caseOne != null);
 
-  factory _$_CaseOne.fromJson(Map<String, dynamic> json) => _$_$_CaseOneFromJson(json);
+  factory _$_CaseOne.fromJson(Map<String, dynamic> json) =>
+      _$_$_CaseOneFromJson(json);
 
   @JsonKey(defaultValue: "caseOne")
   @override
@@ -377,16 +400,19 @@ class _$_CaseOne with DiagnosticableTreeMixin implements _CaseOne {
   }
 
   @override
-  int get hashCode => runtimeType.hashCode ^ const DeepCollectionEquality().hash(caseOne);
+  int get hashCode =>
+      runtimeType.hashCode ^ const DeepCollectionEquality().hash(caseOne);
 
   @JsonKey(ignore: true)
   @override
-  _$CaseOneCopyWith<_CaseOne> get copyWith => __$CaseOneCopyWithImpl<_CaseOne>(this, _$identity);
+  _$CaseOneCopyWith<_CaseOne> get copyWith =>
+      __$CaseOneCopyWithImpl<_CaseOne>(this, _$identity);
 
   @override
   @optionalTypeArgs
   TResult when<TResult extends Object>(
-    TResult $default(String domain, String host, String stripePublicKey, String requiredField), {
+    TResult $default(String domain, String host, String stripePublicKey,
+        String requiredField), {
     @required TResult caseOne(String caseOne),
     @required TResult caseTwo(String caseTwo),
     @required TResult caseThree(String caseThree),
@@ -403,7 +429,8 @@ class _$_CaseOne with DiagnosticableTreeMixin implements _CaseOne {
   @override
   @optionalTypeArgs
   TResult maybeWhen<TResult extends Object>(
-    TResult $default(String domain, String host, String stripePublicKey, String requiredField), {
+    TResult $default(String domain, String host, String stripePublicKey,
+        String requiredField), {
     TResult caseOne(String caseOne),
     TResult caseTwo(String caseTwo),
     TResult caseThree(String caseThree),
@@ -499,7 +526,8 @@ class __$CaseTwoCopyWithImpl<$Res> extends _$TestGymCopyWithImpl<$Res>
 class _$_CaseTwo with DiagnosticableTreeMixin implements _CaseTwo {
   const _$_CaseTwo(this.caseTwo) : assert(caseTwo != null);
 
-  factory _$_CaseTwo.fromJson(Map<String, dynamic> json) => _$_$_CaseTwoFromJson(json);
+  factory _$_CaseTwo.fromJson(Map<String, dynamic> json) =>
+      _$_$_CaseTwoFromJson(json);
 
   @override
   final String caseTwo;
@@ -526,16 +554,19 @@ class _$_CaseTwo with DiagnosticableTreeMixin implements _CaseTwo {
   }
 
   @override
-  int get hashCode => runtimeType.hashCode ^ const DeepCollectionEquality().hash(caseTwo);
+  int get hashCode =>
+      runtimeType.hashCode ^ const DeepCollectionEquality().hash(caseTwo);
 
   @JsonKey(ignore: true)
   @override
-  _$CaseTwoCopyWith<_CaseTwo> get copyWith => __$CaseTwoCopyWithImpl<_CaseTwo>(this, _$identity);
+  _$CaseTwoCopyWith<_CaseTwo> get copyWith =>
+      __$CaseTwoCopyWithImpl<_CaseTwo>(this, _$identity);
 
   @override
   @optionalTypeArgs
   TResult when<TResult extends Object>(
-    TResult $default(String domain, String host, String stripePublicKey, String requiredField), {
+    TResult $default(String domain, String host, String stripePublicKey,
+        String requiredField), {
     @required TResult caseOne(String caseOne),
     @required TResult caseTwo(String caseTwo),
     @required TResult caseThree(String caseThree),
@@ -552,7 +583,8 @@ class _$_CaseTwo with DiagnosticableTreeMixin implements _CaseTwo {
   @override
   @optionalTypeArgs
   TResult maybeWhen<TResult extends Object>(
-    TResult $default(String domain, String host, String stripePublicKey, String requiredField), {
+    TResult $default(String domain, String host, String stripePublicKey,
+        String requiredField), {
     TResult caseOne(String caseOne),
     TResult caseTwo(String caseTwo),
     TResult caseThree(String caseThree),
@@ -648,7 +680,8 @@ class _$CaseThreeCopyWithImpl<$Res> extends _$TestGymCopyWithImpl<$Res>
 class _$CaseThree with DiagnosticableTreeMixin implements CaseThree {
   const _$CaseThree({@required this.caseThree}) : assert(caseThree != null);
 
-  factory _$CaseThree.fromJson(Map<String, dynamic> json) => _$_$CaseThreeFromJson(json);
+  factory _$CaseThree.fromJson(Map<String, dynamic> json) =>
+      _$_$CaseThreeFromJson(json);
 
   @override
   final String caseThree;
@@ -671,11 +704,13 @@ class _$CaseThree with DiagnosticableTreeMixin implements CaseThree {
     return identical(this, other) ||
         (other is CaseThree &&
             (identical(other.caseThree, caseThree) ||
-                const DeepCollectionEquality().equals(other.caseThree, caseThree)));
+                const DeepCollectionEquality()
+                    .equals(other.caseThree, caseThree)));
   }
 
   @override
-  int get hashCode => runtimeType.hashCode ^ const DeepCollectionEquality().hash(caseThree);
+  int get hashCode =>
+      runtimeType.hashCode ^ const DeepCollectionEquality().hash(caseThree);
 
   @JsonKey(ignore: true)
   @override
@@ -685,7 +720,8 @@ class _$CaseThree with DiagnosticableTreeMixin implements CaseThree {
   @override
   @optionalTypeArgs
   TResult when<TResult extends Object>(
-    TResult $default(String domain, String host, String stripePublicKey, String requiredField), {
+    TResult $default(String domain, String host, String stripePublicKey,
+        String requiredField), {
     @required TResult caseOne(String caseOne),
     @required TResult caseTwo(String caseTwo),
     @required TResult caseThree(String caseThree),
@@ -702,7 +738,8 @@ class _$CaseThree with DiagnosticableTreeMixin implements CaseThree {
   @override
   @optionalTypeArgs
   TResult maybeWhen<TResult extends Object>(
-    TResult $default(String domain, String host, String stripePublicKey, String requiredField), {
+    TResult $default(String domain, String host, String stripePublicKey,
+        String requiredField), {
     TResult caseOne(String caseOne),
     TResult caseTwo(String caseTwo),
     TResult caseThree(String caseThree),
@@ -798,7 +835,8 @@ class _$CaseFourCopyWithImpl<$Res> extends _$TestGymCopyWithImpl<$Res>
 class _$CaseFour with DiagnosticableTreeMixin implements CaseFour {
   const _$CaseFour({this.caseFour});
 
-  factory _$CaseFour.fromJson(Map<String, dynamic> json) => _$_$CaseFourFromJson(json);
+  factory _$CaseFour.fromJson(Map<String, dynamic> json) =>
+      _$_$CaseFourFromJson(json);
 
   @override
   final String caseFour;
@@ -821,20 +859,24 @@ class _$CaseFour with DiagnosticableTreeMixin implements CaseFour {
     return identical(this, other) ||
         (other is CaseFour &&
             (identical(other.caseFour, caseFour) ||
-                const DeepCollectionEquality().equals(other.caseFour, caseFour)));
+                const DeepCollectionEquality()
+                    .equals(other.caseFour, caseFour)));
   }
 
   @override
-  int get hashCode => runtimeType.hashCode ^ const DeepCollectionEquality().hash(caseFour);
+  int get hashCode =>
+      runtimeType.hashCode ^ const DeepCollectionEquality().hash(caseFour);
 
   @JsonKey(ignore: true)
   @override
-  $CaseFourCopyWith<CaseFour> get copyWith => _$CaseFourCopyWithImpl<CaseFour>(this, _$identity);
+  $CaseFourCopyWith<CaseFour> get copyWith =>
+      _$CaseFourCopyWithImpl<CaseFour>(this, _$identity);
 
   @override
   @optionalTypeArgs
   TResult when<TResult extends Object>(
-    TResult $default(String domain, String host, String stripePublicKey, String requiredField), {
+    TResult $default(String domain, String host, String stripePublicKey,
+        String requiredField), {
     @required TResult caseOne(String caseOne),
     @required TResult caseTwo(String caseTwo),
     @required TResult caseThree(String caseThree),
@@ -851,7 +893,8 @@ class _$CaseFour with DiagnosticableTreeMixin implements CaseFour {
   @override
   @optionalTypeArgs
   TResult maybeWhen<TResult extends Object>(
-    TResult $default(String domain, String host, String stripePublicKey, String requiredField), {
+    TResult $default(String domain, String host, String stripePublicKey,
+        String requiredField), {
     TResult caseOne(String caseOne),
     TResult caseTwo(String caseTwo),
     TResult caseThree(String caseThree),

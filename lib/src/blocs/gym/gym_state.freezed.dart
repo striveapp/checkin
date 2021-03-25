@@ -73,14 +73,16 @@ class _$GymStateCopyWithImpl<$Res> implements $GymStateCopyWith<$Res> {
 
 /// @nodoc
 abstract class $InitialGymStateCopyWith<$Res> {
-  factory $InitialGymStateCopyWith(InitialGymState value, $Res Function(InitialGymState) then) =
+  factory $InitialGymStateCopyWith(
+          InitialGymState value, $Res Function(InitialGymState) then) =
       _$InitialGymStateCopyWithImpl<$Res>;
 }
 
 /// @nodoc
 class _$InitialGymStateCopyWithImpl<$Res> extends _$GymStateCopyWithImpl<$Res>
     implements $InitialGymStateCopyWith<$Res> {
-  _$InitialGymStateCopyWithImpl(InitialGymState _value, $Res Function(InitialGymState) _then)
+  _$InitialGymStateCopyWithImpl(
+      InitialGymState _value, $Res Function(InitialGymState) _then)
       : super(_value, (v) => _then(v as InitialGymState));
 
   @override
@@ -88,7 +90,9 @@ class _$InitialGymStateCopyWithImpl<$Res> extends _$GymStateCopyWithImpl<$Res>
 }
 
 /// @nodoc
-class _$InitialGymState with DiagnosticableTreeMixin implements InitialGymState {
+class _$InitialGymState
+    with DiagnosticableTreeMixin
+    implements InitialGymState {
   const _$InitialGymState();
 
   @override
@@ -227,11 +231,13 @@ class _$GymLoaded with DiagnosticableTreeMixin implements GymLoaded {
   bool operator ==(dynamic other) {
     return identical(this, other) ||
         (other is GymLoaded &&
-            (identical(other.gym, gym) || const DeepCollectionEquality().equals(other.gym, gym)));
+            (identical(other.gym, gym) ||
+                const DeepCollectionEquality().equals(other.gym, gym)));
   }
 
   @override
-  int get hashCode => runtimeType.hashCode ^ const DeepCollectionEquality().hash(gym);
+  int get hashCode =>
+      runtimeType.hashCode ^ const DeepCollectionEquality().hash(gym);
 
   @JsonKey(ignore: true)
   @override

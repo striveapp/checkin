@@ -82,7 +82,8 @@ abstract class $SubscriptionStateCopyWith<$Res> {
 }
 
 /// @nodoc
-class _$SubscriptionStateCopyWithImpl<$Res> implements $SubscriptionStateCopyWith<$Res> {
+class _$SubscriptionStateCopyWithImpl<$Res>
+    implements $SubscriptionStateCopyWith<$Res> {
   _$SubscriptionStateCopyWithImpl(this._value, this._then);
 
   final SubscriptionState _value;
@@ -98,7 +99,8 @@ abstract class $SubscriptionInitialCopyWith<$Res> {
 }
 
 /// @nodoc
-class _$SubscriptionInitialCopyWithImpl<$Res> extends _$SubscriptionStateCopyWithImpl<$Res>
+class _$SubscriptionInitialCopyWithImpl<$Res>
+    extends _$SubscriptionStateCopyWithImpl<$Res>
     implements $SubscriptionInitialCopyWith<$Res> {
   _$SubscriptionInitialCopyWithImpl(
       SubscriptionInitial _value, $Res Function(SubscriptionInitial) _then)
@@ -200,7 +202,8 @@ abstract class $SubscriptionSuccessCopyWith<$Res> {
 }
 
 /// @nodoc
-class _$SubscriptionSuccessCopyWithImpl<$Res> extends _$SubscriptionStateCopyWithImpl<$Res>
+class _$SubscriptionSuccessCopyWithImpl<$Res>
+    extends _$SubscriptionStateCopyWithImpl<$Res>
     implements $SubscriptionSuccessCopyWith<$Res> {
   _$SubscriptionSuccessCopyWithImpl(
       SubscriptionSuccess _value, $Res Function(SubscriptionSuccess) _then)
@@ -302,7 +305,8 @@ abstract class $SubscriptionLoadingCopyWith<$Res> {
 }
 
 /// @nodoc
-class _$SubscriptionLoadingCopyWithImpl<$Res> extends _$SubscriptionStateCopyWithImpl<$Res>
+class _$SubscriptionLoadingCopyWithImpl<$Res>
+    extends _$SubscriptionStateCopyWithImpl<$Res>
     implements $SubscriptionLoadingCopyWith<$Res> {
   _$SubscriptionLoadingCopyWithImpl(
       SubscriptionLoading _value, $Res Function(SubscriptionLoading) _then)
@@ -405,9 +409,11 @@ abstract class $SubscriptionErrorCopyWith<$Res> {
 }
 
 /// @nodoc
-class _$SubscriptionErrorCopyWithImpl<$Res> extends _$SubscriptionStateCopyWithImpl<$Res>
+class _$SubscriptionErrorCopyWithImpl<$Res>
+    extends _$SubscriptionStateCopyWithImpl<$Res>
     implements $SubscriptionErrorCopyWith<$Res> {
-  _$SubscriptionErrorCopyWithImpl(SubscriptionError _value, $Res Function(SubscriptionError) _then)
+  _$SubscriptionErrorCopyWithImpl(
+      SubscriptionError _value, $Res Function(SubscriptionError) _then)
       : super(_value, (v) => _then(v as SubscriptionError));
 
   @override
@@ -418,7 +424,9 @@ class _$SubscriptionErrorCopyWithImpl<$Res> extends _$SubscriptionStateCopyWithI
     Object errorMessage = freezed,
   }) {
     return _then(SubscriptionError(
-      errorMessage: errorMessage == freezed ? _value.errorMessage : errorMessage as String,
+      errorMessage: errorMessage == freezed
+          ? _value.errorMessage
+          : errorMessage as String,
     ));
   }
 }
@@ -440,11 +448,13 @@ class _$SubscriptionError implements SubscriptionError {
     return identical(this, other) ||
         (other is SubscriptionError &&
             (identical(other.errorMessage, errorMessage) ||
-                const DeepCollectionEquality().equals(other.errorMessage, errorMessage)));
+                const DeepCollectionEquality()
+                    .equals(other.errorMessage, errorMessage)));
   }
 
   @override
-  int get hashCode => runtimeType.hashCode ^ const DeepCollectionEquality().hash(errorMessage);
+  int get hashCode =>
+      runtimeType.hashCode ^ const DeepCollectionEquality().hash(errorMessage);
 
   @JsonKey(ignore: true)
   @override

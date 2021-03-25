@@ -98,3 +98,36 @@ const _$WeekdayEnumMap = {
   Weekday.saturday: 'saturday',
   Weekday.sunday: 'sunday',
 };
+
+_$_LessonTemplate _$_$_LessonTemplateFromJson(Map<String, dynamic> json) {
+  return _$_LessonTemplate(
+    id: json['id'] as String,
+    name: json['name'] as String,
+    timeStart: json['timeStart'] as String,
+    timeEnd: json['timeEnd'] as String ?? '',
+    weekDay: _$enumDecodeNullable(_$WeekdayEnumMap, json['weekDay']),
+    imageUrl: json['imageUrl'] as String,
+    lessonConfig: json['lessonConfig'] == null
+        ? null
+        : LessonConfig.fromJson(json['lessonConfig'] as Map<String, dynamic>),
+    classCapacity: json['classCapacity'] as int ?? 10,
+    masters: (json['masters'] as List)
+            ?.map((e) =>
+                e == null ? null : Master.fromJson(e as Map<String, dynamic>))
+            ?.toList() ??
+        [],
+  );
+}
+
+Map<String, dynamic> _$_$_LessonTemplateToJson(_$_LessonTemplate instance) =>
+    <String, dynamic>{
+      'id': instance.id,
+      'name': instance.name,
+      'timeStart': instance.timeStart,
+      'timeEnd': instance.timeEnd,
+      'weekDay': _$WeekdayEnumMap[instance.weekDay],
+      'imageUrl': instance.imageUrl,
+      'lessonConfig': instance.lessonConfig?.toJson(),
+      'classCapacity': instance.classCapacity,
+      'masters': instance.masters?.map((e) => e?.toJson())?.toList(),
+    };
