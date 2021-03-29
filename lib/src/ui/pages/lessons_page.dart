@@ -10,6 +10,8 @@ import 'package:checkin/src/ui/components/lessons/lesson_card_list.dart';
 import 'package:checkin/src/ui/components/lessons/lesson_filter_fab.dart';
 import 'package:checkin/src/ui/components/lessons/week_calendar.dart';
 import 'package:checkin/src/ui/components/loading_indicator.dart';
+import 'package:checkin/src/ui/components/speed_dial_fab.dart';
+import 'package:checkin/src/util/debug_util.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter/widgets.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
@@ -35,7 +37,11 @@ class LessonsPage extends StatelessWidget {
       ],
       child: Scaffold(
           appBar: GymAppBar(),
-          floatingActionButton: currentUser.isOwner ? AddLessonFab() : LessonsFilterFab(),
+          floatingActionButton: currentUser.isOwner && isInDebugMode
+              ? SpeedDialFab()
+              : currentUser.isOwner
+                  ? AddLessonFab()
+                  : LessonsFilterFab(),
           body: Padding(
             padding: const EdgeInsets.only(top: 15),
             child: Container(

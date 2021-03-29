@@ -12,7 +12,7 @@ class AddLessonFab extends StatelessWidget {
           return FloatingActionButton(
               key: Key("addLessonFab"),
               onPressed: () async {
-                  context.read<LessonsBloc>().add(CreateLesson(selectedDay: state.selectedDay));
+                context.read<LessonsBloc>().add(CreateLesson(selectedDay: state.selectedDay));
               },
               child: Icon(Icons.add));
         }

@@ -55,6 +55,7 @@ dependencies:
   open_mail_app: ^0.1.0
   logger: ^1.0.0
   uuid: ^3.0.2
+  vector_math: 2.1.0
 
 dev_dependencies:
   flutter_test:
