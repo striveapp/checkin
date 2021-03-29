@@ -173,9 +173,9 @@ PODS:
   - GTMSessionFetcher/Core (1.5.0)
   - GTMSessionFetcher/Full (1.5.0):
     - GTMSessionFetcher/Core (= 1.5.0)
-  - image_cropper (0.0.3):
+  - image_cropper (0.0.4):
     - Flutter
-    - TOCropViewController (~> 2.5.4)
+    - TOCropViewController (~> 2.6.0)
   - image_picker (0.0.1):
     - Flutter
   - integration_test (0.0.1):
@@ -204,7 +204,7 @@ PODS:
   - sqflite (0.0.2):
     - Flutter
     - FMDB (>= 2.7.5)
-  - TOCropViewController (2.5.5)
+  - TOCropViewController (2.6.0)
   - url_launcher (0.0.1):
     - Flutter
 
@@ -350,7 +350,7 @@ SPEC CHECKSUMS:
   GoogleUtilities: 7f2f5a07f888cdb145101d6042bc4422f57e70b3
   GTMAppAuth: 197a8dabfea5d665224aa00d17f164fc2248dab9
   GTMSessionFetcher: b3503b20a988c4e20cc189aa798fd18220133f52
-  image_cropper: c8f9b4157933c7bb965a66d1c5e6c8fd408c6eb4
+  image_cropper: f1668dd8d2cad2d357955caad15a40547856edcb
   image_picker: 9c3312491f862b28d21ecd8fdf0ee14e601b3f09
   integration_test: 5ed24a436eb7ec17b6a13046e9bf7ca4a404e59e
   nanopb: 59317e09cf1f1a0af72f12af412d54edf52603fc
@@ -364,7 +364,7 @@ SPEC CHECKSUMS:
   shared_preferences: af6bfa751691cdc24be3045c43ec037377ada40d
   sign_in_with_apple: 34f3f5456a45fd7ac5fb42905e2ad31dae061b4a
   sqflite: 6d358c025f5b867b29ed92fc697fd34924e11904
-  TOCropViewController: da59f531f8ac8a94ef6d6c0fc34009350f9e8bfe
+  TOCropViewController: 3105367e808b7d3d886a74ff59bf4804e7d3ab38
   url_launcher: 6fef411d543ceb26efce54b05a0a40bfd74cbbef
 
 PODFILE CHECKSUM: bf1afaedc6c87893eb9baf48bbcb50d498f2a8f5
