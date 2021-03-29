@@ -4,14 +4,13 @@ import 'package:checkin/src/models/gym.dart';
 import 'package:checkin/src/repositories/gym_repository.dart';
 import 'package:checkin/src/util/date_util.dart';
 import 'package:flutter_test/flutter_test.dart';
+import 'package:mockito/annotations.dart';
 import 'package:mockito/mockito.dart';
 
+import 'gym_bloc_test.mocks.dart';
 import 'helper/mock_helper.dart';
 
-class MockGymRepository extends Mock implements GymRepository {}
-
-class MockDateUtil extends Mock implements DateUtil {}
-
+@GenerateMocks([GymRepository, DateUtil])
 void main() {
   group("GymBloc", () {
     MockGymRepository mockGymRepository;
