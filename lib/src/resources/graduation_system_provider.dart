@@ -5,9 +5,10 @@ import 'package:checkin/src/repositories/graduation_system_repository.dart';
 import 'package:cloud_firestore/cloud_firestore.dart';
 
 class GraduationSystemProvider implements GraduationSystemRepository {
-  FirebaseFirestore _firestore = FirebaseFirestore.instance;
   static const String gymPath = "gyms";
   static const String path = 'graduation_system';
+
+  FirebaseFirestore _firestore = FirebaseFirestore.instance;
 
   @override
   Stream<GraduationSystem> getGraduationSystem(String gymId, Grade grade) {

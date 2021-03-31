@@ -7,7 +7,6 @@ class SubscriptionPlansProvider implements SubscriptionPlansRepository {
   static const String path = 'subscription_plans';
   static const String subPlans = 'subPlans';
 
-  //TODO: use only a single instance of firestore https://trello.com/c/LZ79VvWa
   FirebaseFirestore _firestore = FirebaseFirestore.instance;
 
   Stream<List<SubscriptionPlan>> getPlans({String gymId}) => _firestore

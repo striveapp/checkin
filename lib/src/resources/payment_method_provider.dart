@@ -3,9 +3,10 @@ import 'package:checkin/src/repositories/payment_method_repository.dart';
 import 'package:cloud_firestore/cloud_firestore.dart';
 
 class PaymentMethodProvider implements PaymentMethodRepository {
-  FirebaseFirestore _firestore = FirebaseFirestore.instance;
   static const String gymPath = "gyms";
   static const String path = 'customers';
+
+  FirebaseFirestore _firestore = FirebaseFirestore.instance;
 
   @override
   Stream<PaymentMethod> getPaymentMethod({String gymId, String email}) {

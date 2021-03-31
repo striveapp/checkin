@@ -14,7 +14,6 @@ class LessonInstancesProvider implements LessonRepository {
   static const String path = 'lesson_instances';
   static const String sub_collection_path = 'instances';
 
-  //TODO: use only a single instance of firestore https://trello.com/c/LZ79VvWa
   FirebaseFirestore _firestore = FirebaseFirestore.instance;
 
   String _formatDate(DateTime day) => DateFormat("yyyy-MM-dd").format(day);

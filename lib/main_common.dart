@@ -41,12 +41,14 @@ import 'package:checkin/src/routes/routes.dart';
 import 'package:checkin/src/simple_bloc_observer.dart';
 import 'package:checkin/src/util/date_util.dart';
 import 'package:checkin/src/util/version_util.dart';
+import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:firebase_core/firebase_core.dart';
 import 'package:firebase_crashlytics/firebase_crashlytics.dart';
 import 'package:firebase_dynamic_links/firebase_dynamic_links.dart';
 import 'package:flutter/material.dart' hide ImageProvider;
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:flutter_svg/flutter_svg.dart';
+import 'package:platform/platform.dart';
 
 import 'src/app.dart';
 import 'src/blocs/dynamic_link/dynamic_link_event.dart';
@@ -55,7 +57,13 @@ Future<void> mainCommon(AppConfig appConfig) async {
   WidgetsFlutterBinding.ensureInitialized();
 
   await Firebase.initializeApp();
-
+  if (appConfig.useEmulator) {
+    //TODO: This works in the emulator but not in the physical device
+    FirebaseFirestore.instance.settings = Settings(
+      host: LocalPlatform().isAndroid ? '10.0.2.2:8080' : 'localhost',
+      sslEnabled: false,
+    );
+  }
   // init bloc delegate
   Bloc.observer = SimpleBlocObserver();
 

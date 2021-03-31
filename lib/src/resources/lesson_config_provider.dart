@@ -6,7 +6,6 @@ class LessonConfigProvider implements LessonConfigRepository {
   static const String gymPath = "gyms";
   static const String path = 'lesson_config';
 
-  //TODO: use only a single instance of firestore https://trello.com/c/LZ79VvWa
   FirebaseFirestore _firestore = FirebaseFirestore.instance;
 
   @override

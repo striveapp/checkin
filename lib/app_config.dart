@@ -7,6 +7,7 @@ class AppConfig {
   final String dynamicLinkDomain;
   final String deepLinkUrl;
   final Logger logger;
+  final bool useEmulator;
 
   AppConfig({
     @required this.flavor,
@@ -14,6 +15,7 @@ class AppConfig {
     @required this.dynamicLinkDomain,
     @required this.deepLinkUrl,
     @required this.logger,
+    this.useEmulator = false,
   }) {
     switch (flavor) {
       case 'dev':
