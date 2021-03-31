@@ -57,10 +57,11 @@ Future<void> mainCommon(AppConfig appConfig) async {
   WidgetsFlutterBinding.ensureInitialized();
 
   await Firebase.initializeApp();
+
   if (appConfig.useEmulator) {
     //TODO: This works in the emulator but not in the physical device
     FirebaseFirestore.instance.settings = Settings(
-      host: LocalPlatform().isAndroid ? '10.0.2.2:8080' : 'localhost',
+      host: LocalPlatform().isAndroid ? '10.0.2.2:8080' : 'localhost:8080',
       sslEnabled: false,
     );
   }

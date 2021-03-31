@@ -82,3 +82,6 @@
 *.keystore
 api-credentials.json
 api-fastlane.json
+
+# Test Data
+/test/data/**
