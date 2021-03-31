@@ -1,6 +1,15 @@
+import 'package:checkin/src/blocs/lesson_filter/bloc.dart';
+import 'package:checkin/src/blocs/lessons/bloc.dart';
+import 'package:checkin/src/blocs/user/bloc.dart';
 import 'package:checkin/src/logging/logger.dart';
+import 'package:checkin/src/repositories/lesson_config_repository.dart';
+import 'package:checkin/src/repositories/user_repository.dart';
 import 'package:flutter/material.dart';
 import 'package:vector_math/vector_math.dart' hide Matrix4, Colors;
+import 'package:flutter_bloc/flutter_bloc.dart';
+
+import 'empty_widget.dart';
+import 'lessons/filter_list_widget.dart';
 
 class SpeedDialFab extends StatefulWidget {
   @override
@@ -31,12 +40,55 @@ class _SpeedDialFabState extends State<SpeedDialFab> with SingleTickerProviderSt
             width: 120.0,
           ),
         ),
-        AnimatedCircularButton(
-          icon: Icons.access_alarm_rounded,
-          parent: _controller,
-          degrees: 270.0,
-          onPressed: () {
-            Logger.log.d("a a a, i'm a cat");
+        BlocBuilder<LessonsBloc, LessonsState>(
+          builder: (BuildContext context, LessonsState state) {
+            List<String> selectedFilterList = state.maybeMap(
+                lessonsLoaded: (LessonsLoaded state) => state.selectedFilterList, orElse: () => []);
+
+            if (state is LessonsLoaded) {
+              return AnimatedCircularButton(
+                icon: Icons.access_alarm_rounded,
+                parent: _controller,
+                degrees: 270.0,
+                onPressed: () async {
+                  Logger.log.d("a a a, i'm a cat");
+
+                  await showGeneralDialog(
+                      context: context,
+                      barrierColor: Colors.black54,
+                      barrierDismissible: true,
+                      barrierLabel: MaterialLocalizations.of(context).modalBarrierDismissLabel,
+                      pageBuilder: (_, __, ___) => MultiBlocProvider(
+                            providers: [
+                              BlocProvider.value(
+                                value: context.read<LessonsBloc>(),
+                              ),
+                              BlocProvider.value(
+                                value: context.read<UserBloc>(),
+                              ),
+                              BlocProvider(
+                                  create: (BuildContext context) => LessonFilterBloc(
+                                        lessonConfigRepository:
+                                            context.read<LessonConfigRepository>(),
+                                        userRepository: context.read<UserRepository>(),
+                                      ))
+                            ],
+                            child: Align(
+                              alignment: Alignment.bottomLeft,
+                              child: Padding(
+                                padding: const EdgeInsets.only(
+                                  left: 15,
+                                  bottom: 60,
+                                ),
+                                child: FilterListWidget(selectedFilterList: selectedFilterList),
+                              ),
+                            ),
+                          ));
+                },
+              );
+            }
+
+            return EmptyWidget();
           },
         ),
         AnimatedCircularButton(
@@ -47,12 +99,21 @@ class _SpeedDialFabState extends State<SpeedDialFab> with SingleTickerProviderSt
             Logger.log.d("a a a, fuck off");
           },
         ),
-        AnimatedCircularButton(
-          icon: Icons.add,
-          parent: _controller,
-          degrees: 180.0,
-          onPressed: () {
-            Logger.log.d("a a a, brr pup");
+        BlocBuilder<LessonsBloc, LessonsState>(
+          builder: (BuildContext context, LessonsState state) {
+            if (state is LessonsLoaded) {
+              return AnimatedCircularButton(
+                icon: Icons.add,
+                parent: _controller,
+                degrees: 180.0,
+                onPressed: () {
+                  Logger.log.d("a a a, brr pup");
+                  context.read<LessonsBloc>().add(CreateLesson(selectedDay: state.selectedDay));
+                },
+              );
+            }
+
+            return EmptyWidget();
           },
         ),
         AnimatedOpenSpeedDialButton(
