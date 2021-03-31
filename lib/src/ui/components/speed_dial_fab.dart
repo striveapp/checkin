@@ -1,15 +1,11 @@
-import 'package:checkin/src/blocs/lesson_filter/bloc.dart';
 import 'package:checkin/src/blocs/lessons/bloc.dart';
-import 'package:checkin/src/blocs/user/bloc.dart';
 import 'package:checkin/src/logging/logger.dart';
-import 'package:checkin/src/repositories/lesson_config_repository.dart';
-import 'package:checkin/src/repositories/user_repository.dart';
 import 'package:flutter/material.dart';
-import 'package:vector_math/vector_math.dart' hide Matrix4, Colors;
 import 'package:flutter_bloc/flutter_bloc.dart';
+import 'package:vector_math/vector_math.dart' hide Matrix4, Colors;
 
 import 'empty_widget.dart';
-import 'lessons/filter_list_widget.dart';
+import 'lessons/lessons_filter_dialog.dart';
 
 class SpeedDialFab extends StatefulWidget {
   @override
@@ -47,7 +43,7 @@ class _SpeedDialFabState extends State<SpeedDialFab> with SingleTickerProviderSt
 
             if (state is LessonsLoaded) {
               return AnimatedCircularButton(
-                icon: Icons.access_alarm_rounded,
+                icon: Icons.filter_list_outlined,
                 parent: _controller,
                 degrees: 270.0,
                 onPressed: () async {
@@ -58,32 +54,7 @@ class _SpeedDialFabState extends State<SpeedDialFab> with SingleTickerProviderSt
                       barrierColor: Colors.black54,
                       barrierDismissible: true,
                       barrierLabel: MaterialLocalizations.of(context).modalBarrierDismissLabel,
-                      pageBuilder: (_, __, ___) => MultiBlocProvider(
-                            providers: [
-                              BlocProvider.value(
-                                value: context.read<LessonsBloc>(),
-                              ),
-                              BlocProvider.value(
-                                value: context.read<UserBloc>(),
-                              ),
-                              BlocProvider(
-                                  create: (BuildContext context) => LessonFilterBloc(
-                                        lessonConfigRepository:
-                                            context.read<LessonConfigRepository>(),
-                                        userRepository: context.read<UserRepository>(),
-                                      ))
-                            ],
-                            child: Align(
-                              alignment: Alignment.bottomLeft,
-                              child: Padding(
-                                padding: const EdgeInsets.only(
-                                  left: 15,
-                                  bottom: 60,
-                                ),
-                                child: FilterListWidget(selectedFilterList: selectedFilterList),
-                              ),
-                            ),
-                          ));
+                      pageBuilder: (_, __, ___) => LessonsFilterDialog(selectedFilterList: selectedFilterList));
                 },
               );
             }
