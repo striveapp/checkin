@@ -10,7 +10,10 @@ import 'package:mockito/mockito.dart';
 import 'gym_bloc_test.mocks.dart';
 import 'helper/mock_helper.dart';
 
-@GenerateMocks([GymRepository, DateUtil])
+@GenerateMocks([
+  GymRepository,
+  DateUtil,
+])
 void main() {
   group("GymBloc", () {
     MockGymRepository mockGymRepository;

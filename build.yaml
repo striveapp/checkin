@@ -30,3 +30,6 @@ targets:
 
           # Overridden values
           explicit_to_json: true
+      mockito|mockBuilder:
+        generate_for:
+          - test/**/*_test.dart

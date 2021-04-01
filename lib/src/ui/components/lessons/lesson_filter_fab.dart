@@ -10,8 +10,9 @@ class LessonsFilterFab extends StatelessWidget {
     return BlocBuilder<LessonsBloc, LessonsState>(
       builder: (BuildContext context, LessonsState state) {
         List<String> selectedFilterList = state.maybeMap(
-            lessonsLoaded: (LessonsLoaded state) => state.selectedFilterList,
-            orElse: () => []);
+          lessonsLoaded: (LessonsLoaded state) => state.selectedFilterList,
+          orElse: () => [],
+        );
 
         if (state is LessonsLoaded) {
           return FloatingActionButton(
@@ -22,7 +23,10 @@ class LessonsFilterFab extends StatelessWidget {
                   barrierColor: Colors.black54,
                   barrierDismissible: true,
                   barrierLabel: MaterialLocalizations.of(context).modalBarrierDismissLabel,
-                  pageBuilder: (_, __, ___) => LessonsFilterDialog(selectedFilterList: selectedFilterList));
+                  pageBuilder: (_, __, ___) => LessonsFilterDialog(
+                        parentContext: context,
+                        selectedFilterList: selectedFilterList,
+                      ));
             },
             child: buildIcon(selectedFilterList.length),
           );

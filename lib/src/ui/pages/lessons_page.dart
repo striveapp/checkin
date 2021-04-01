@@ -3,14 +3,15 @@ import 'package:checkin/src/blocs/user/bloc.dart';
 import 'package:checkin/src/models/user.dart';
 import 'package:checkin/src/repositories/holidays_repository.dart';
 import 'package:checkin/src/repositories/lesson_repository.dart';
+import 'package:checkin/src/repositories/lesson_template_repository.dart';
 import 'package:checkin/src/repositories/user_repository.dart';
 import 'package:checkin/src/ui/components/lessons/add_lesson_fab.dart';
 import 'package:checkin/src/ui/components/lessons/gym_app_bar.dart';
 import 'package:checkin/src/ui/components/lessons/lesson_card_list.dart';
 import 'package:checkin/src/ui/components/lessons/lesson_filter_fab.dart';
+import 'package:checkin/src/ui/components/lessons/speed_dial_fab/speed_dial_fab.dart';
 import 'package:checkin/src/ui/components/lessons/week_calendar.dart';
 import 'package:checkin/src/ui/components/loading_indicator.dart';
-import 'package:checkin/src/ui/components/speed_dial_fab.dart';
 import 'package:checkin/src/util/debug_util.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter/widgets.dart';
@@ -29,6 +30,7 @@ class LessonsPage extends StatelessWidget {
         BlocProvider<LessonsBloc>(
           create: (BuildContext context) => LessonsBloc(
             lessonRepository: context.read<LessonRepository>(),
+            lessonTemplateRepository: context.read<LessonTemplateRepository>(),
             userRepository: context.read<UserRepository>(),
             dateUtil: context.read(),
             gymId: currentUser.selectedGymId,

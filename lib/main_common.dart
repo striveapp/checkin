@@ -17,6 +17,7 @@ import 'package:checkin/src/repositories/gym_repository.dart';
 import 'package:checkin/src/repositories/image_repository.dart';
 import 'package:checkin/src/repositories/lesson_config_repository.dart';
 import 'package:checkin/src/repositories/lesson_repository.dart';
+import 'package:checkin/src/repositories/lesson_template_repository.dart';
 import 'package:checkin/src/repositories/local_storage_repository.dart';
 import 'package:checkin/src/repositories/membership_repository.dart';
 import 'package:checkin/src/repositories/stats_repository.dart';
@@ -31,6 +32,7 @@ import 'package:checkin/src/resources/gym_provider.dart';
 import 'package:checkin/src/resources/image_provider.dart';
 import 'package:checkin/src/resources/lesson_config_provider.dart';
 import 'package:checkin/src/resources/lesson_instances_provider.dart';
+import 'package:checkin/src/resources/lesson_template_provider.dart';
 import 'package:checkin/src/resources/local_storage_provider.dart';
 import 'package:checkin/src/resources/membership_provider.dart';
 import 'package:checkin/src/resources/stats_provider.dart';
@@ -47,6 +49,7 @@ import 'package:firebase_crashlytics/firebase_crashlytics.dart';
 import 'package:firebase_dynamic_links/firebase_dynamic_links.dart';
 import 'package:flutter/material.dart' hide ImageProvider;
 import 'package:flutter_bloc/flutter_bloc.dart';
+import 'package:flutter_bloc/src/repository_provider.dart';
 import 'package:flutter_svg/flutter_svg.dart';
 import 'package:platform/platform.dart';
 
@@ -79,7 +82,7 @@ Future<void> mainCommon(AppConfig appConfig) async {
   // init logger
   Logger.log = appConfig.logger;
 
-  final AuthRepository authProvider = AuthProvider(appConfig: appConfig);
+  final AuthProvider authProvider = AuthProvider(appConfig: appConfig);
   final user = await _getLoggedUser(authProvider);
 
   await _precacheAssets();
@@ -87,56 +90,7 @@ Future<void> mainCommon(AppConfig appConfig) async {
   runZonedGuarded<Future<void>>(() async {
     runApp(
       MultiRepositoryProvider(
-        providers: [
-          RepositoryProvider<LessonRepository>(
-            create: (context) => LessonInstancesProvider(),
-          ),
-          RepositoryProvider<AuthRepository>(
-            create: (context) => authProvider,
-          ),
-          RepositoryProvider<DynamicLinkRepository>(
-            create: (context) => DynamicLinkProvider(appConfig: appConfig),
-          ),
-          RepositoryProvider<LessonApi>(
-            create: (context) => LessonApi(),
-          ),
-          RepositoryProvider<AnalyticsRepository>(
-            create: (context) => AnalyticsProvider(),
-          ),
-          RepositoryProvider<UserRepository>(
-            create: (context) => UserProvider(),
-          ),
-          RepositoryProvider<StatsRepository>(
-            create: (context) => StatsProvider(),
-          ),
-          RepositoryProvider<MembershipRepository>(
-            create: (context) => MembershipProvider(),
-          ),
-          RepositoryProvider<GraduationSystemRepository>(
-            create: (context) => GraduationSystemProvider(),
-          ),
-          RepositoryProvider<LocalStorageRepository>(
-            create: (context) => LocalStorageProvider(),
-          ),
-          RepositoryProvider<VersionRepository>(
-            create: (context) => VersionRepository(),
-          ),
-          RepositoryProvider<LessonConfigRepository>(
-            create: (context) => LessonConfigProvider(),
-          ),
-          RepositoryProvider<GymRepository>(
-            create: (context) => GymProvider(),
-          ),
-          RepositoryProvider<ImageRepository>(
-            create: (context) => ImageProvider(),
-          ),
-          RepositoryProvider<StorageRepository>(
-            create: (context) => StorageProvider(),
-          ),
-          RepositoryProvider<DateUtil>(
-            create: (context) => DateUtil(),
-          ),
-        ],
+        providers: _repositories(authProvider, appConfig),
         child: MultiBlocProvider(
           providers: [
             BlocProvider<ThemeBloc>(
@@ -180,6 +134,62 @@ Future<void> mainCommon(AppConfig appConfig) async {
     FirebaseCrashlytics.instance.recordError(error, stack);
   });
 }
+
+List<RepositoryProviderSingleChildWidget> _repositories(
+        AuthProvider authProvider, AppConfig appConfig) =>
+    [
+      RepositoryProvider<LessonRepository>(
+        create: (context) => LessonInstancesProvider(),
+      ),
+      RepositoryProvider<LessonTemplateRepository>(
+        create: (context) => LessonTemplateProvider(),
+      ),
+      RepositoryProvider<AuthRepository>(
+        create: (context) => authProvider,
+      ),
+      RepositoryProvider<DynamicLinkRepository>(
+        create: (context) => DynamicLinkProvider(appConfig: appConfig),
+      ),
+      RepositoryProvider<LessonApi>(
+        create: (context) => LessonApi(),
+      ),
+      RepositoryProvider<AnalyticsRepository>(
+        create: (context) => AnalyticsProvider(),
+      ),
+      RepositoryProvider<UserRepository>(
+        create: (context) => UserProvider(),
+      ),
+      RepositoryProvider<StatsRepository>(
+        create: (context) => StatsProvider(),
+      ),
+      RepositoryProvider<MembershipRepository>(
+        create: (context) => MembershipProvider(),
+      ),
+      RepositoryProvider<GraduationSystemRepository>(
+        create: (context) => GraduationSystemProvider(),
+      ),
+      RepositoryProvider<LocalStorageRepository>(
+        create: (context) => LocalStorageProvider(),
+      ),
+      RepositoryProvider<VersionRepository>(
+        create: (context) => VersionRepository(),
+      ),
+      RepositoryProvider<LessonConfigRepository>(
+        create: (context) => LessonConfigProvider(),
+      ),
+      RepositoryProvider<GymRepository>(
+        create: (context) => GymProvider(),
+      ),
+      RepositoryProvider<ImageRepository>(
+        create: (context) => ImageProvider(),
+      ),
+      RepositoryProvider<StorageRepository>(
+        create: (context) => StorageProvider(),
+      ),
+      RepositoryProvider<DateUtil>(
+        create: (context) => DateUtil(),
+      ),
+    ];
 
 Future<User> _getLoggedUser(AuthRepository authRepository) {
   return authRepository.getAuthState().first;

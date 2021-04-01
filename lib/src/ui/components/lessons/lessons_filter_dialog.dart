@@ -9,29 +9,30 @@ import 'package:flutter_bloc/flutter_bloc.dart';
 import 'filter_list_widget.dart';
 
 class LessonsFilterDialog extends StatelessWidget {
+  final List<String> selectedFilterList;
+  final BuildContext parentContext;
+
   const LessonsFilterDialog({
     Key key,
+    @required this.parentContext,
     @required this.selectedFilterList,
   }) : super(key: key);
 
-  final List<String> selectedFilterList;
-
   @override
-  Widget build(BuildContext context) {
+  Widget build(_) {
     return MultiBlocProvider(
       providers: [
         BlocProvider.value(
-          value: context.read<LessonsBloc>(),
+          value: parentContext.read<LessonsBloc>(),
         ),
         BlocProvider.value(
-          value: context.read<UserBloc>(),
+          value: parentContext.read<UserBloc>(),
         ),
         BlocProvider(
             create: (BuildContext context) => LessonFilterBloc(
-              lessonConfigRepository:
-              context.read<LessonConfigRepository>(),
-              userRepository: context.read<UserRepository>(),
-            ))
+                  lessonConfigRepository: parentContext.read<LessonConfigRepository>(),
+                  userRepository: parentContext.read<UserRepository>(),
+                ))
       ],
       child: Align(
         alignment: Alignment.bottomLeft,

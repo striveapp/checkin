@@ -20,9 +20,7 @@ class _$LessonsEventTearOff {
 
 // ignore: unused_element
   LessonsUpdated lessonsUpdated(
-      {DateTime selectedDay,
-      List<Lesson> lessons,
-      List<String> selectedFilterList = const []}) {
+      {DateTime selectedDay, List<Lesson> lessons, List<String> selectedFilterList = const []}) {
     return LessonsUpdated(
       selectedDay: selectedDay,
       lessons: lessons,
@@ -31,8 +29,7 @@ class _$LessonsEventTearOff {
   }
 
 // ignore: unused_element
-  LoadLessons loadLessons(
-      {DateTime selectedDay, List<String> selectedFilterList}) {
+  LoadLessons loadLessons({DateTime selectedDay, List<String> selectedFilterList}) {
     return LoadLessons(
       selectedDay: selectedDay,
       selectedFilterList: selectedFilterList,
@@ -43,6 +40,13 @@ class _$LessonsEventTearOff {
   CreateLesson createLesson({DateTime selectedDay}) {
     return CreateLesson(
       selectedDay: selectedDay,
+    );
+  }
+
+// ignore: unused_element
+  UpdateCalendar updateCalendar({DateTime initialDay}) {
+    return UpdateCalendar(
+      initialDay: initialDay,
     );
   }
 }
@@ -57,20 +61,20 @@ mixin _$LessonsEvent {
   TResult when<TResult extends Object>({
     @required TResult initializeLessons(),
     @required
-        TResult lessonsUpdated(DateTime selectedDay, List<Lesson> lessons,
-            List<String> selectedFilterList),
-    @required
-        TResult loadLessons(
-            DateTime selectedDay, List<String> selectedFilterList),
+        TResult lessonsUpdated(
+            DateTime selectedDay, List<Lesson> lessons, List<String> selectedFilterList),
+    @required TResult loadLessons(DateTime selectedDay, List<String> selectedFilterList),
     @required TResult createLesson(DateTime selectedDay),
+    @required TResult updateCalendar(DateTime initialDay),
   });
   @optionalTypeArgs
   TResult maybeWhen<TResult extends Object>({
     TResult initializeLessons(),
-    TResult lessonsUpdated(DateTime selectedDay, List<Lesson> lessons,
-        List<String> selectedFilterList),
+    TResult lessonsUpdated(
+        DateTime selectedDay, List<Lesson> lessons, List<String> selectedFilterList),
     TResult loadLessons(DateTime selectedDay, List<String> selectedFilterList),
     TResult createLesson(DateTime selectedDay),
+    TResult updateCalendar(DateTime initialDay),
     @required TResult orElse(),
   });
   @optionalTypeArgs
@@ -79,6 +83,7 @@ mixin _$LessonsEvent {
     @required TResult lessonsUpdated(LessonsUpdated value),
     @required TResult loadLessons(LoadLessons value),
     @required TResult createLesson(CreateLesson value),
+    @required TResult updateCalendar(UpdateCalendar value),
   });
   @optionalTypeArgs
   TResult maybeMap<TResult extends Object>({
@@ -86,14 +91,14 @@ mixin _$LessonsEvent {
     TResult lessonsUpdated(LessonsUpdated value),
     TResult loadLessons(LoadLessons value),
     TResult createLesson(CreateLesson value),
+    TResult updateCalendar(UpdateCalendar value),
     @required TResult orElse(),
   });
 }
 
 /// @nodoc
 abstract class $LessonsEventCopyWith<$Res> {
-  factory $LessonsEventCopyWith(
-          LessonsEvent value, $Res Function(LessonsEvent) then) =
+  factory $LessonsEventCopyWith(LessonsEvent value, $Res Function(LessonsEvent) then) =
       _$LessonsEventCopyWithImpl<$Res>;
 }
 
@@ -114,11 +119,9 @@ abstract class $InitializeLessonsCopyWith<$Res> {
 }
 
 /// @nodoc
-class _$InitializeLessonsCopyWithImpl<$Res>
-    extends _$LessonsEventCopyWithImpl<$Res>
+class _$InitializeLessonsCopyWithImpl<$Res> extends _$LessonsEventCopyWithImpl<$Res>
     implements $InitializeLessonsCopyWith<$Res> {
-  _$InitializeLessonsCopyWithImpl(
-      InitializeLessons _value, $Res Function(InitializeLessons) _then)
+  _$InitializeLessonsCopyWithImpl(InitializeLessons _value, $Res Function(InitializeLessons) _then)
       : super(_value, (v) => _then(v as InitializeLessons));
 
   @override
@@ -126,9 +129,7 @@ class _$InitializeLessonsCopyWithImpl<$Res>
 }
 
 /// @nodoc
-class _$InitializeLessons
-    with DiagnosticableTreeMixin
-    implements InitializeLessons {
+class _$InitializeLessons with DiagnosticableTreeMixin implements InitializeLessons {
   const _$InitializeLessons();
 
   @override
@@ -139,8 +140,7 @@ class _$InitializeLessons
   @override
   void debugFillProperties(DiagnosticPropertiesBuilder properties) {
     super.debugFillProperties(properties);
-    properties
-      ..add(DiagnosticsProperty('type', 'LessonsEvent.initializeLessons'));
+    properties..add(DiagnosticsProperty('type', 'LessonsEvent.initializeLessons'));
   }
 
   @override
@@ -156,17 +156,17 @@ class _$InitializeLessons
   TResult when<TResult extends Object>({
     @required TResult initializeLessons(),
     @required
-        TResult lessonsUpdated(DateTime selectedDay, List<Lesson> lessons,
-            List<String> selectedFilterList),
-    @required
-        TResult loadLessons(
-            DateTime selectedDay, List<String> selectedFilterList),
+        TResult lessonsUpdated(
+            DateTime selectedDay, List<Lesson> lessons, List<String> selectedFilterList),
+    @required TResult loadLessons(DateTime selectedDay, List<String> selectedFilterList),
     @required TResult createLesson(DateTime selectedDay),
+    @required TResult updateCalendar(DateTime initialDay),
   }) {
     assert(initializeLessons != null);
     assert(lessonsUpdated != null);
     assert(loadLessons != null);
     assert(createLesson != null);
+    assert(updateCalendar != null);
     return initializeLessons();
   }
 
@@ -174,10 +174,11 @@ class _$InitializeLessons
   @optionalTypeArgs
   TResult maybeWhen<TResult extends Object>({
     TResult initializeLessons(),
-    TResult lessonsUpdated(DateTime selectedDay, List<Lesson> lessons,
-        List<String> selectedFilterList),
+    TResult lessonsUpdated(
+        DateTime selectedDay, List<Lesson> lessons, List<String> selectedFilterList),
     TResult loadLessons(DateTime selectedDay, List<String> selectedFilterList),
     TResult createLesson(DateTime selectedDay),
+    TResult updateCalendar(DateTime initialDay),
     @required TResult orElse(),
   }) {
     assert(orElse != null);
@@ -194,11 +195,13 @@ class _$InitializeLessons
     @required TResult lessonsUpdated(LessonsUpdated value),
     @required TResult loadLessons(LoadLessons value),
     @required TResult createLesson(CreateLesson value),
+    @required TResult updateCalendar(UpdateCalendar value),
   }) {
     assert(initializeLessons != null);
     assert(lessonsUpdated != null);
     assert(loadLessons != null);
     assert(createLesson != null);
+    assert(updateCalendar != null);
     return initializeLessons(this);
   }
 
@@ -209,6 +212,7 @@ class _$InitializeLessons
     TResult lessonsUpdated(LessonsUpdated value),
     TResult loadLessons(LoadLessons value),
     TResult createLesson(CreateLesson value),
+    TResult updateCalendar(UpdateCalendar value),
     @required TResult orElse(),
   }) {
     assert(orElse != null);
@@ -225,21 +229,15 @@ abstract class InitializeLessons implements LessonsEvent {
 
 /// @nodoc
 abstract class $LessonsUpdatedCopyWith<$Res> {
-  factory $LessonsUpdatedCopyWith(
-          LessonsUpdated value, $Res Function(LessonsUpdated) then) =
+  factory $LessonsUpdatedCopyWith(LessonsUpdated value, $Res Function(LessonsUpdated) then) =
       _$LessonsUpdatedCopyWithImpl<$Res>;
-  $Res call(
-      {DateTime selectedDay,
-      List<Lesson> lessons,
-      List<String> selectedFilterList});
+  $Res call({DateTime selectedDay, List<Lesson> lessons, List<String> selectedFilterList});
 }
 
 /// @nodoc
-class _$LessonsUpdatedCopyWithImpl<$Res>
-    extends _$LessonsEventCopyWithImpl<$Res>
+class _$LessonsUpdatedCopyWithImpl<$Res> extends _$LessonsEventCopyWithImpl<$Res>
     implements $LessonsUpdatedCopyWith<$Res> {
-  _$LessonsUpdatedCopyWithImpl(
-      LessonsUpdated _value, $Res Function(LessonsUpdated) _then)
+  _$LessonsUpdatedCopyWithImpl(LessonsUpdated _value, $Res Function(LessonsUpdated) _then)
       : super(_value, (v) => _then(v as LessonsUpdated));
 
   @override
@@ -252,8 +250,7 @@ class _$LessonsUpdatedCopyWithImpl<$Res>
     Object selectedFilterList = freezed,
   }) {
     return _then(LessonsUpdated(
-      selectedDay:
-          selectedDay == freezed ? _value.selectedDay : selectedDay as DateTime,
+      selectedDay: selectedDay == freezed ? _value.selectedDay : selectedDay as DateTime,
       lessons: lessons == freezed ? _value.lessons : lessons as List<Lesson>,
       selectedFilterList: selectedFilterList == freezed
           ? _value.selectedFilterList
@@ -264,8 +261,7 @@ class _$LessonsUpdatedCopyWithImpl<$Res>
 
 /// @nodoc
 class _$LessonsUpdated with DiagnosticableTreeMixin implements LessonsUpdated {
-  const _$LessonsUpdated(
-      {this.selectedDay, this.lessons, this.selectedFilterList = const []})
+  const _$LessonsUpdated({this.selectedDay, this.lessons, this.selectedFilterList = const []})
       : assert(selectedFilterList != null);
 
   @override
@@ -296,11 +292,9 @@ class _$LessonsUpdated with DiagnosticableTreeMixin implements LessonsUpdated {
     return identical(this, other) ||
         (other is LessonsUpdated &&
             (identical(other.selectedDay, selectedDay) ||
-                const DeepCollectionEquality()
-                    .equals(other.selectedDay, selectedDay)) &&
+                const DeepCollectionEquality().equals(other.selectedDay, selectedDay)) &&
             (identical(other.lessons, lessons) ||
-                const DeepCollectionEquality()
-                    .equals(other.lessons, lessons)) &&
+                const DeepCollectionEquality().equals(other.lessons, lessons)) &&
             (identical(other.selectedFilterList, selectedFilterList) ||
                 const DeepCollectionEquality()
                     .equals(other.selectedFilterList, selectedFilterList)));
@@ -323,17 +317,17 @@ class _$LessonsUpdated with DiagnosticableTreeMixin implements LessonsUpdated {
   TResult when<TResult extends Object>({
     @required TResult initializeLessons(),
     @required
-        TResult lessonsUpdated(DateTime selectedDay, List<Lesson> lessons,
-            List<String> selectedFilterList),
-    @required
-        TResult loadLessons(
-            DateTime selectedDay, List<String> selectedFilterList),
+        TResult lessonsUpdated(
+            DateTime selectedDay, List<Lesson> lessons, List<String> selectedFilterList),
+    @required TResult loadLessons(DateTime selectedDay, List<String> selectedFilterList),
     @required TResult createLesson(DateTime selectedDay),
+    @required TResult updateCalendar(DateTime initialDay),
   }) {
     assert(initializeLessons != null);
     assert(lessonsUpdated != null);
     assert(loadLessons != null);
     assert(createLesson != null);
+    assert(updateCalendar != null);
     return lessonsUpdated(selectedDay, lessons, selectedFilterList);
   }
 
@@ -341,10 +335,11 @@ class _$LessonsUpdated with DiagnosticableTreeMixin implements LessonsUpdated {
   @optionalTypeArgs
   TResult maybeWhen<TResult extends Object>({
     TResult initializeLessons(),
-    TResult lessonsUpdated(DateTime selectedDay, List<Lesson> lessons,
-        List<String> selectedFilterList),
+    TResult lessonsUpdated(
+        DateTime selectedDay, List<Lesson> lessons, List<String> selectedFilterList),
     TResult loadLessons(DateTime selectedDay, List<String> selectedFilterList),
     TResult createLesson(DateTime selectedDay),
+    TResult updateCalendar(DateTime initialDay),
     @required TResult orElse(),
   }) {
     assert(orElse != null);
@@ -361,11 +356,13 @@ class _$LessonsUpdated with DiagnosticableTreeMixin implements LessonsUpdated {
     @required TResult lessonsUpdated(LessonsUpdated value),
     @required TResult loadLessons(LoadLessons value),
     @required TResult createLesson(CreateLesson value),
+    @required TResult updateCalendar(UpdateCalendar value),
   }) {
     assert(initializeLessons != null);
     assert(lessonsUpdated != null);
     assert(loadLessons != null);
     assert(createLesson != null);
+    assert(updateCalendar != null);
     return lessonsUpdated(this);
   }
 
@@ -376,6 +373,7 @@ class _$LessonsUpdated with DiagnosticableTreeMixin implements LessonsUpdated {
     TResult lessonsUpdated(LessonsUpdated value),
     TResult loadLessons(LoadLessons value),
     TResult createLesson(CreateLesson value),
+    TResult updateCalendar(UpdateCalendar value),
     @required TResult orElse(),
   }) {
     assert(orElse != null);
@@ -401,8 +399,7 @@ abstract class LessonsUpdated implements LessonsEvent {
 
 /// @nodoc
 abstract class $LoadLessonsCopyWith<$Res> {
-  factory $LoadLessonsCopyWith(
-          LoadLessons value, $Res Function(LoadLessons) then) =
+  factory $LoadLessonsCopyWith(LoadLessons value, $Res Function(LoadLessons) then) =
       _$LoadLessonsCopyWithImpl<$Res>;
   $Res call({DateTime selectedDay, List<String> selectedFilterList});
 }
@@ -410,8 +407,7 @@ abstract class $LoadLessonsCopyWith<$Res> {
 /// @nodoc
 class _$LoadLessonsCopyWithImpl<$Res> extends _$LessonsEventCopyWithImpl<$Res>
     implements $LoadLessonsCopyWith<$Res> {
-  _$LoadLessonsCopyWithImpl(
-      LoadLessons _value, $Res Function(LoadLessons) _then)
+  _$LoadLessonsCopyWithImpl(LoadLessons _value, $Res Function(LoadLessons) _then)
       : super(_value, (v) => _then(v as LoadLessons));
 
   @override
@@ -423,8 +419,7 @@ class _$LoadLessonsCopyWithImpl<$Res> extends _$LessonsEventCopyWithImpl<$Res>
     Object selectedFilterList = freezed,
   }) {
     return _then(LoadLessons(
-      selectedDay:
-          selectedDay == freezed ? _value.selectedDay : selectedDay as DateTime,
+      selectedDay: selectedDay == freezed ? _value.selectedDay : selectedDay as DateTime,
       selectedFilterList: selectedFilterList == freezed
           ? _value.selectedFilterList
           : selectedFilterList as List<String>,
@@ -460,8 +455,7 @@ class _$LoadLessons with DiagnosticableTreeMixin implements LoadLessons {
     return identical(this, other) ||
         (other is LoadLessons &&
             (identical(other.selectedDay, selectedDay) ||
-                const DeepCollectionEquality()
-                    .equals(other.selectedDay, selectedDay)) &&
+                const DeepCollectionEquality().equals(other.selectedDay, selectedDay)) &&
             (identical(other.selectedFilterList, selectedFilterList) ||
                 const DeepCollectionEquality()
                     .equals(other.selectedFilterList, selectedFilterList)));
@@ -483,17 +477,17 @@ class _$LoadLessons with DiagnosticableTreeMixin implements LoadLessons {
   TResult when<TResult extends Object>({
     @required TResult initializeLessons(),
     @required
-        TResult lessonsUpdated(DateTime selectedDay, List<Lesson> lessons,
-            List<String> selectedFilterList),
-    @required
-        TResult loadLessons(
-            DateTime selectedDay, List<String> selectedFilterList),
+        TResult lessonsUpdated(
+            DateTime selectedDay, List<Lesson> lessons, List<String> selectedFilterList),
+    @required TResult loadLessons(DateTime selectedDay, List<String> selectedFilterList),
     @required TResult createLesson(DateTime selectedDay),
+    @required TResult updateCalendar(DateTime initialDay),
   }) {
     assert(initializeLessons != null);
     assert(lessonsUpdated != null);
     assert(loadLessons != null);
     assert(createLesson != null);
+    assert(updateCalendar != null);
     return loadLessons(selectedDay, selectedFilterList);
   }
 
@@ -501,10 +495,11 @@ class _$LoadLessons with DiagnosticableTreeMixin implements LoadLessons {
   @optionalTypeArgs
   TResult maybeWhen<TResult extends Object>({
     TResult initializeLessons(),
-    TResult lessonsUpdated(DateTime selectedDay, List<Lesson> lessons,
-        List<String> selectedFilterList),
+    TResult lessonsUpdated(
+        DateTime selectedDay, List<Lesson> lessons, List<String> selectedFilterList),
     TResult loadLessons(DateTime selectedDay, List<String> selectedFilterList),
     TResult createLesson(DateTime selectedDay),
+    TResult updateCalendar(DateTime initialDay),
     @required TResult orElse(),
   }) {
     assert(orElse != null);
@@ -521,11 +516,13 @@ class _$LoadLessons with DiagnosticableTreeMixin implements LoadLessons {
     @required TResult lessonsUpdated(LessonsUpdated value),
     @required TResult loadLessons(LoadLessons value),
     @required TResult createLesson(CreateLesson value),
+    @required TResult updateCalendar(UpdateCalendar value),
   }) {
     assert(initializeLessons != null);
     assert(lessonsUpdated != null);
     assert(loadLessons != null);
     assert(createLesson != null);
+    assert(updateCalendar != null);
     return loadLessons(this);
   }
 
@@ -536,6 +533,7 @@ class _$LoadLessons with DiagnosticableTreeMixin implements LoadLessons {
     TResult lessonsUpdated(LessonsUpdated value),
     TResult loadLessons(LoadLessons value),
     TResult createLesson(CreateLesson value),
+    TResult updateCalendar(UpdateCalendar value),
     @required TResult orElse(),
   }) {
     assert(orElse != null);
@@ -547,8 +545,8 @@ class _$LoadLessons with DiagnosticableTreeMixin implements LoadLessons {
 }
 
 abstract class LoadLessons implements LessonsEvent {
-  const factory LoadLessons(
-      {DateTime selectedDay, List<String> selectedFilterList}) = _$LoadLessons;
+  const factory LoadLessons({DateTime selectedDay, List<String> selectedFilterList}) =
+      _$LoadLessons;
 
   DateTime get selectedDay;
   List<String> get selectedFilterList;
@@ -558,8 +556,7 @@ abstract class LoadLessons implements LessonsEvent {
 
 /// @nodoc
 abstract class $CreateLessonCopyWith<$Res> {
-  factory $CreateLessonCopyWith(
-          CreateLesson value, $Res Function(CreateLesson) then) =
+  factory $CreateLessonCopyWith(CreateLesson value, $Res Function(CreateLesson) then) =
       _$CreateLessonCopyWithImpl<$Res>;
   $Res call({DateTime selectedDay});
 }
@@ -567,8 +564,7 @@ abstract class $CreateLessonCopyWith<$Res> {
 /// @nodoc
 class _$CreateLessonCopyWithImpl<$Res> extends _$LessonsEventCopyWithImpl<$Res>
     implements $CreateLessonCopyWith<$Res> {
-  _$CreateLessonCopyWithImpl(
-      CreateLesson _value, $Res Function(CreateLesson) _then)
+  _$CreateLessonCopyWithImpl(CreateLesson _value, $Res Function(CreateLesson) _then)
       : super(_value, (v) => _then(v as CreateLesson));
 
   @override
@@ -579,8 +575,7 @@ class _$CreateLessonCopyWithImpl<$Res> extends _$LessonsEventCopyWithImpl<$Res>
     Object selectedDay = freezed,
   }) {
     return _then(CreateLesson(
-      selectedDay:
-          selectedDay == freezed ? _value.selectedDay : selectedDay as DateTime,
+      selectedDay: selectedDay == freezed ? _value.selectedDay : selectedDay as DateTime,
     ));
   }
 }
@@ -610,13 +605,11 @@ class _$CreateLesson with DiagnosticableTreeMixin implements CreateLesson {
     return identical(this, other) ||
         (other is CreateLesson &&
             (identical(other.selectedDay, selectedDay) ||
-                const DeepCollectionEquality()
-                    .equals(other.selectedDay, selectedDay)));
+                const DeepCollectionEquality().equals(other.selectedDay, selectedDay)));
   }
 
   @override
-  int get hashCode =>
-      runtimeType.hashCode ^ const DeepCollectionEquality().hash(selectedDay);
+  int get hashCode => runtimeType.hashCode ^ const DeepCollectionEquality().hash(selectedDay);
 
   @JsonKey(ignore: true)
   @override
@@ -628,17 +621,17 @@ class _$CreateLesson with DiagnosticableTreeMixin implements CreateLesson {
   TResult when<TResult extends Object>({
     @required TResult initializeLessons(),
     @required
-        TResult lessonsUpdated(DateTime selectedDay, List<Lesson> lessons,
-            List<String> selectedFilterList),
-    @required
-        TResult loadLessons(
-            DateTime selectedDay, List<String> selectedFilterList),
+        TResult lessonsUpdated(
+            DateTime selectedDay, List<Lesson> lessons, List<String> selectedFilterList),
+    @required TResult loadLessons(DateTime selectedDay, List<String> selectedFilterList),
     @required TResult createLesson(DateTime selectedDay),
+    @required TResult updateCalendar(DateTime initialDay),
   }) {
     assert(initializeLessons != null);
     assert(lessonsUpdated != null);
     assert(loadLessons != null);
     assert(createLesson != null);
+    assert(updateCalendar != null);
     return createLesson(selectedDay);
   }
 
@@ -646,10 +639,11 @@ class _$CreateLesson with DiagnosticableTreeMixin implements CreateLesson {
   @optionalTypeArgs
   TResult maybeWhen<TResult extends Object>({
     TResult initializeLessons(),
-    TResult lessonsUpdated(DateTime selectedDay, List<Lesson> lessons,
-        List<String> selectedFilterList),
+    TResult lessonsUpdated(
+        DateTime selectedDay, List<Lesson> lessons, List<String> selectedFilterList),
     TResult loadLessons(DateTime selectedDay, List<String> selectedFilterList),
     TResult createLesson(DateTime selectedDay),
+    TResult updateCalendar(DateTime initialDay),
     @required TResult orElse(),
   }) {
     assert(orElse != null);
@@ -666,11 +660,13 @@ class _$CreateLesson with DiagnosticableTreeMixin implements CreateLesson {
     @required TResult lessonsUpdated(LessonsUpdated value),
     @required TResult loadLessons(LoadLessons value),
     @required TResult createLesson(CreateLesson value),
+    @required TResult updateCalendar(UpdateCalendar value),
   }) {
     assert(initializeLessons != null);
     assert(lessonsUpdated != null);
     assert(loadLessons != null);
     assert(createLesson != null);
+    assert(updateCalendar != null);
     return createLesson(this);
   }
 
@@ -681,6 +677,7 @@ class _$CreateLesson with DiagnosticableTreeMixin implements CreateLesson {
     TResult lessonsUpdated(LessonsUpdated value),
     TResult loadLessons(LoadLessons value),
     TResult createLesson(CreateLesson value),
+    TResult updateCalendar(UpdateCalendar value),
     @required TResult orElse(),
   }) {
     assert(orElse != null);
@@ -697,4 +694,146 @@ abstract class CreateLesson implements LessonsEvent {
   DateTime get selectedDay;
   @JsonKey(ignore: true)
   $CreateLessonCopyWith<CreateLesson> get copyWith;
+}
+
+/// @nodoc
+abstract class $UpdateCalendarCopyWith<$Res> {
+  factory $UpdateCalendarCopyWith(UpdateCalendar value, $Res Function(UpdateCalendar) then) =
+      _$UpdateCalendarCopyWithImpl<$Res>;
+  $Res call({DateTime initialDay});
+}
+
+/// @nodoc
+class _$UpdateCalendarCopyWithImpl<$Res> extends _$LessonsEventCopyWithImpl<$Res>
+    implements $UpdateCalendarCopyWith<$Res> {
+  _$UpdateCalendarCopyWithImpl(UpdateCalendar _value, $Res Function(UpdateCalendar) _then)
+      : super(_value, (v) => _then(v as UpdateCalendar));
+
+  @override
+  UpdateCalendar get _value => super._value as UpdateCalendar;
+
+  @override
+  $Res call({
+    Object initialDay = freezed,
+  }) {
+    return _then(UpdateCalendar(
+      initialDay: initialDay == freezed ? _value.initialDay : initialDay as DateTime,
+    ));
+  }
+}
+
+/// @nodoc
+class _$UpdateCalendar with DiagnosticableTreeMixin implements UpdateCalendar {
+  const _$UpdateCalendar({this.initialDay});
+
+  @override
+  final DateTime initialDay;
+
+  @override
+  String toString({DiagnosticLevel minLevel = DiagnosticLevel.info}) {
+    return 'LessonsEvent.updateCalendar(initialDay: $initialDay)';
+  }
+
+  @override
+  void debugFillProperties(DiagnosticPropertiesBuilder properties) {
+    super.debugFillProperties(properties);
+    properties
+      ..add(DiagnosticsProperty('type', 'LessonsEvent.updateCalendar'))
+      ..add(DiagnosticsProperty('initialDay', initialDay));
+  }
+
+  @override
+  bool operator ==(dynamic other) {
+    return identical(this, other) ||
+        (other is UpdateCalendar &&
+            (identical(other.initialDay, initialDay) ||
+                const DeepCollectionEquality().equals(other.initialDay, initialDay)));
+  }
+
+  @override
+  int get hashCode => runtimeType.hashCode ^ const DeepCollectionEquality().hash(initialDay);
+
+  @JsonKey(ignore: true)
+  @override
+  $UpdateCalendarCopyWith<UpdateCalendar> get copyWith =>
+      _$UpdateCalendarCopyWithImpl<UpdateCalendar>(this, _$identity);
+
+  @override
+  @optionalTypeArgs
+  TResult when<TResult extends Object>({
+    @required TResult initializeLessons(),
+    @required
+        TResult lessonsUpdated(
+            DateTime selectedDay, List<Lesson> lessons, List<String> selectedFilterList),
+    @required TResult loadLessons(DateTime selectedDay, List<String> selectedFilterList),
+    @required TResult createLesson(DateTime selectedDay),
+    @required TResult updateCalendar(DateTime initialDay),
+  }) {
+    assert(initializeLessons != null);
+    assert(lessonsUpdated != null);
+    assert(loadLessons != null);
+    assert(createLesson != null);
+    assert(updateCalendar != null);
+    return updateCalendar(initialDay);
+  }
+
+  @override
+  @optionalTypeArgs
+  TResult maybeWhen<TResult extends Object>({
+    TResult initializeLessons(),
+    TResult lessonsUpdated(
+        DateTime selectedDay, List<Lesson> lessons, List<String> selectedFilterList),
+    TResult loadLessons(DateTime selectedDay, List<String> selectedFilterList),
+    TResult createLesson(DateTime selectedDay),
+    TResult updateCalendar(DateTime initialDay),
+    @required TResult orElse(),
+  }) {
+    assert(orElse != null);
+    if (updateCalendar != null) {
+      return updateCalendar(initialDay);
+    }
+    return orElse();
+  }
+
+  @override
+  @optionalTypeArgs
+  TResult map<TResult extends Object>({
+    @required TResult initializeLessons(InitializeLessons value),
+    @required TResult lessonsUpdated(LessonsUpdated value),
+    @required TResult loadLessons(LoadLessons value),
+    @required TResult createLesson(CreateLesson value),
+    @required TResult updateCalendar(UpdateCalendar value),
+  }) {
+    assert(initializeLessons != null);
+    assert(lessonsUpdated != null);
+    assert(loadLessons != null);
+    assert(createLesson != null);
+    assert(updateCalendar != null);
+    return updateCalendar(this);
+  }
+
+  @override
+  @optionalTypeArgs
+  TResult maybeMap<TResult extends Object>({
+    TResult initializeLessons(InitializeLessons value),
+    TResult lessonsUpdated(LessonsUpdated value),
+    TResult loadLessons(LoadLessons value),
+    TResult createLesson(CreateLesson value),
+    TResult updateCalendar(UpdateCalendar value),
+    @required TResult orElse(),
+  }) {
+    assert(orElse != null);
+    if (updateCalendar != null) {
+      return updateCalendar(this);
+    }
+    return orElse();
+  }
+}
+
+abstract class UpdateCalendar implements LessonsEvent {
+  const factory UpdateCalendar({DateTime initialDay}) = _$UpdateCalendar;
+
+  DateTime get initialDay;
+  @JsonKey(ignore: true)
+  $UpdateCalendarCopyWith<UpdateCalendar> get copyWith;
 }

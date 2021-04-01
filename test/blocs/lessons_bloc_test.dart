@@ -4,22 +4,26 @@ import 'package:checkin/src/constants.dart';
 import 'package:checkin/src/models/lesson.dart';
 import 'package:checkin/src/models/user.dart';
 import 'package:checkin/src/repositories/lesson_repository.dart';
+import 'package:checkin/src/repositories/lesson_template_repository.dart';
 import 'package:checkin/src/repositories/user_repository.dart';
 import 'package:checkin/src/util/date_util.dart';
 import 'package:flutter_test/flutter_test.dart';
+import 'package:mockito/annotations.dart';
 import 'package:mockito/mockito.dart';
 
 import 'helper/mock_helper.dart';
+import 'lessons_bloc_test.mocks.dart';
 
-class MockLessonRepository extends Mock implements LessonRepository {}
-
-class MockUserRepository extends Mock implements UserRepository {}
-
-class MockDateUtil extends Mock implements DateUtil {}
-
+@GenerateMocks([
+  LessonRepository,
+  LessonTemplateRepository,
+  UserRepository,
+  DateUtil,
+])
 void main() {
   group("LessonsBloc", () {
     MockLessonRepository mockLessonRepository;
+    MockLessonTemplateRepository mockLessonTemplateRepository;
     MockUserRepository mockUserRepository;
     MockDateUtil mockDateUtil;
 
@@ -32,6 +36,7 @@ void main() {
 
     setUp(() {
       mockLessonRepository = MockLessonRepository();
+      mockLessonTemplateRepository = MockLessonTemplateRepository();
       mockUserRepository = MockUserRepository();
       mockDateUtil = MockDateUtil();
 
@@ -56,6 +61,7 @@ void main() {
                 gymId: fakeUser.selectedGymId,
                 userRepository: mockUserRepository,
                 lessonRepository: mockLessonRepository,
+                lessonTemplateRepository: mockLessonTemplateRepository,
                 dateUtil: mockDateUtil,
               ),
           expect: () => [],
@@ -86,6 +92,7 @@ void main() {
           gymId: fakeUser.selectedGymId,
           userRepository: mockUserRepository,
           lessonRepository: mockLessonRepository,
+          lessonTemplateRepository: mockLessonTemplateRepository,
           dateUtil: mockDateUtil,
         ),
         act: (bloc) => bloc.add(InitializeLessons()),
@@ -128,6 +135,7 @@ void main() {
             gymId: fakeUser.selectedGymId,
             userRepository: mockUserRepository,
             lessonRepository: mockLessonRepository,
+            lessonTemplateRepository: mockLessonTemplateRepository,
             dateUtil: mockDateUtil,
           ),
           act: (bloc) => bloc.add(LessonsUpdated(
@@ -177,6 +185,7 @@ void main() {
                   gymId: fakeUser.selectedGymId,
                   userRepository: mockUserRepository,
                   lessonRepository: mockLessonRepository,
+                  lessonTemplateRepository: mockLessonTemplateRepository,
                   dateUtil: mockDateUtil,
                 ),
             act: (bloc) {
@@ -211,9 +220,44 @@ void main() {
           gymId: fakeUser.selectedGymId,
           userRepository: mockUserRepository,
           lessonRepository: mockLessonRepository,
+          lessonTemplateRepository: mockLessonTemplateRepository,
           dateUtil: mockDateUtil,
         ),
         act: (bloc) => bloc.add(CreateLesson(selectedDay: DateTime(2021, 1, 1))),
+        expect: () => [],
+      );
+    });
+
+    group("on UpdateCalendar event", () {
+      var initialDay = DateTime(2021, 1, 11);
+      var endDay = DateTime(2021, 1, 17);
+      setUp(() {
+        when(mockDateUtil.retrieveEndOfTheWeekDay(initialDay)).thenReturn(endDay);
+        when(mockLessonTemplateRepository.applyTemplate(
+                fakeUser.selectedGymId, "2021-01-11", "2021-01-17"))
+            .thenAnswer((realInvocation) => null);
+      });
+
+      tearDown(() async {
+        verify(mockDateUtil.retrieveEndOfTheWeekDay(initialDay));
+        await untilCalled(mockLessonTemplateRepository.applyTemplate(
+            fakeUser.selectedGymId, "2021-01-11", "2021-01-17"));
+        verify(mockLessonTemplateRepository.applyTemplate(
+            fakeUser.selectedGymId, "2021-01-11", "2021-01-17"));
+      });
+
+      blocTest(
+        "calculates the end date and update the calendar",
+        build: () => LessonsBloc(
+          gymId: fakeUser.selectedGymId,
+          userRepository: mockUserRepository,
+          lessonRepository: mockLessonRepository,
+          lessonTemplateRepository: mockLessonTemplateRepository,
+          dateUtil: mockDateUtil,
+        ),
+        act: (bloc) {
+          return bloc.add(UpdateCalendar(initialDay: initialDay));
+        },
         expect: () => [],
       );
     });

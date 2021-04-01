@@ -4,6 +4,7 @@ import 'package:bloc/bloc.dart';
 import 'package:checkin/src/models/lesson.dart';
 import 'package:checkin/src/models/user.dart';
 import 'package:checkin/src/repositories/lesson_repository.dart';
+import 'package:checkin/src/repositories/lesson_template_repository.dart';
 import 'package:checkin/src/repositories/user_repository.dart';
 import 'package:checkin/src/util/date_util.dart';
 import 'package:flutter/foundation.dart';
@@ -15,6 +16,7 @@ import 'bloc.dart';
 class LessonsBloc extends Bloc<LessonsEvent, LessonsState> {
   final String gymId;
   final LessonRepository lessonRepository;
+  final LessonTemplateRepository lessonTemplateRepository;
   final UserRepository userRepository;
   final DateUtil dateUtil;
 
@@ -24,6 +26,7 @@ class LessonsBloc extends Bloc<LessonsEvent, LessonsState> {
   LessonsBloc({
     @required this.gymId,
     @required this.lessonRepository,
+    @required this.lessonTemplateRepository,
     @required this.userRepository,
     @required this.dateUtil,
   }) : super(LessonsUninitialized());
@@ -83,6 +86,17 @@ class LessonsBloc extends Bloc<LessonsEvent, LessonsState> {
       var formattedDate = DateFormat('yyyy-MM-dd').format(event.selectedDay);
       await lessonRepository.createLesson(gymId, formattedDate);
     }
+
+    if (event is UpdateCalendar) {
+      var initDate = event.initialDay;
+      var endDate = dateUtil.retrieveEndOfTheWeekDay(initDate);
+
+      await lessonTemplateRepository.applyTemplate(
+        gymId,
+        _format(initDate),
+        _format(endDate),
+      );
+    }
   }
 
   _sortLessonsByTime(List<Lesson> lessons) =>
@@ -90,10 +104,12 @@ class LessonsBloc extends Bloc<LessonsEvent, LessonsState> {
 
   _getDate(String time) {
     DateTime now = DateTime.now();
-    var todayDate = DateFormat('yyyy-MM-dd').format(now);
+    var todayDate = _format(now);
 
     return DateTime.parse('$todayDate $time:00');
   }
+
+  String _format(DateTime d) => DateFormat('yyyy-MM-dd').format(d);
 
   @override
   Future<void> close() {
