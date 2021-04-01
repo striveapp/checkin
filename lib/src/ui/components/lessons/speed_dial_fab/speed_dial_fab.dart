@@ -1,6 +1,7 @@
 import 'package:checkin/src/blocs/lessons/bloc.dart';
 import 'package:checkin/src/ui/components/empty_widget.dart';
 import 'package:checkin/src/ui/components/lessons/lessons_filter_dialog.dart';
+import 'package:checkin/src/ui/components/lessons/update_calendar_dialog.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 
@@ -65,9 +66,10 @@ class _SpeedDialFabState extends State<SpeedDialFab> with SingleTickerProviderSt
                 parent: _controller,
                 degrees: 225.0,
                 onPressed: () {
-                  context.read<LessonsBloc>().add(UpdateCalendar(
-                        initialDay: state.selectedDay,
-                      ));
+                  showDialog(
+                    context: context,
+                    builder: (_) => UpdateCalendarDialog().build(context),
+                  );
                 },
               ),
               AnimatedCircularButton(
