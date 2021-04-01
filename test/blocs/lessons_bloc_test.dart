@@ -229,37 +229,71 @@ void main() {
     });
 
     group("on UpdateCalendar event", () {
-      var initialDay = DateTime(2021, 1, 11);
-      var endDay = DateTime(2021, 1, 17);
-      setUp(() {
-        when(mockDateUtil.retrieveEndOfTheWeekDay(initialDay)).thenReturn(endDay);
-        when(mockLessonTemplateRepository.applyTemplate(
-                fakeUser.selectedGymId, "2021-01-11", "2021-01-17"))
-            .thenAnswer((realInvocation) => null);
-      });
+      group("when the user chooses to take THIS week as the new calendar", () {
+        var today = DateTime(2021, 1, 13);
+        setUp(() {
+          when(mockDateUtil.getCurrentDateTime()).thenReturn(today);
+          when(mockLessonTemplateRepository.applyTemplate(
+                  fakeUser.selectedGymId, "2021-01-11", "2021-01-17"))
+              .thenAnswer((realInvocation) => null);
+        });
 
-      tearDown(() async {
-        verify(mockDateUtil.retrieveEndOfTheWeekDay(initialDay));
-        await untilCalled(mockLessonTemplateRepository.applyTemplate(
-            fakeUser.selectedGymId, "2021-01-11", "2021-01-17"));
-        verify(mockLessonTemplateRepository.applyTemplate(
-            fakeUser.selectedGymId, "2021-01-11", "2021-01-17"));
-      });
+        tearDown(() async {
+          verify(mockDateUtil.getCurrentDateTime());
+          await untilCalled(mockLessonTemplateRepository.applyTemplate(
+              fakeUser.selectedGymId, "2021-01-11", "2021-01-17"));
+          verify(mockLessonTemplateRepository.applyTemplate(
+              fakeUser.selectedGymId, "2021-01-11", "2021-01-17"));
+        });
 
-      blocTest(
-        "calculates the end date and update the calendar",
-        build: () => LessonsBloc(
-          gymId: fakeUser.selectedGymId,
-          userRepository: mockUserRepository,
-          lessonRepository: mockLessonRepository,
-          lessonTemplateRepository: mockLessonTemplateRepository,
-          dateUtil: mockDateUtil,
-        ),
-        act: (bloc) {
-          return bloc.add(UpdateCalendar(initialDay: initialDay));
-        },
-        expect: () => [],
-      );
+        blocTest(
+          "calculates the end date and update the calendar",
+          build: () => LessonsBloc(
+            gymId: fakeUser.selectedGymId,
+            userRepository: mockUserRepository,
+            lessonRepository: mockLessonRepository,
+            lessonTemplateRepository: mockLessonTemplateRepository,
+            dateUtil: mockDateUtil,
+          ),
+          act: (bloc) {
+            return bloc.add(UpdateCalendar(fromNextWeek: false));
+          },
+          expect: () => [],
+        );
+      });
+      group("when the user chooses to take NEXT week as the new calendar", () {
+        var today = DateTime(2021, 1, 13);
+
+        setUp(() {
+          when(mockDateUtil.getCurrentDateTime()).thenReturn(today);
+          when(mockLessonTemplateRepository.applyTemplate(
+                  fakeUser.selectedGymId, "2021-01-18", "2021-01-24"))
+              .thenAnswer((realInvocation) => null);
+        });
+
+        tearDown(() async {
+          verify(mockDateUtil.getCurrentDateTime());
+          await untilCalled(mockLessonTemplateRepository.applyTemplate(
+              fakeUser.selectedGymId, "2021-01-18", "2021-01-24"));
+          verify(mockLessonTemplateRepository.applyTemplate(
+              fakeUser.selectedGymId, "2021-01-18", "2021-01-24"));
+        });
+
+        blocTest(
+          "calculates the end date and update the calendar",
+          build: () => LessonsBloc(
+            gymId: fakeUser.selectedGymId,
+            userRepository: mockUserRepository,
+            lessonRepository: mockLessonRepository,
+            lessonTemplateRepository: mockLessonTemplateRepository,
+            dateUtil: mockDateUtil,
+          ),
+          act: (bloc) {
+            return bloc.add(UpdateCalendar(fromNextWeek: true));
+          },
+          expect: () => [],
+        );
+      });
     });
   });
 }

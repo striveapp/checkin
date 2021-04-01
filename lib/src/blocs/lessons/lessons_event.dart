@@ -15,5 +15,5 @@ abstract class LessonsEvent with _$LessonsEvent {
   const factory LessonsEvent.loadLessons({DateTime selectedDay, List<String> selectedFilterList}) =
       LoadLessons;
   const factory LessonsEvent.createLesson({DateTime selectedDay}) = CreateLesson;
-  const factory LessonsEvent.updateCalendar({DateTime initialDay}) = UpdateCalendar;
+  const factory LessonsEvent.updateCalendar({bool fromNextWeek}) = UpdateCalendar;
 }

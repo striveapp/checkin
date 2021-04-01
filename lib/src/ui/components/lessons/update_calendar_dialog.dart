@@ -1,12 +1,14 @@
 import 'package:checkin/src/blocs/lessons/bloc.dart';
-import 'package:checkin/src/constants.dart';
 import 'package:checkin/src/localization/localization.dart';
 import 'package:checkin/src/ui/components/cancel_button.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
+import 'package:intl/intl.dart';
 
 class UpdateCalendarDialog extends StatelessWidget {
-  const UpdateCalendarDialog({Key key}) : super(key: key);
+  const UpdateCalendarDialog({
+    Key key,
+  }) : super(key: key);
 
   static const String savingNextWeekAsCalendarDisclaimer =
       'You are going to apply the next week of classes as your new calendar';
@@ -31,7 +33,7 @@ class UpdateCalendarDialog extends StatelessWidget {
               height: 30,
             ),
             Text(
-              takeEffectFrom.i18n.fill(["2021-1-11"]),
+              takeEffectFrom.i18n.fill([_getMondayOfTheWeekAfter()]),
               textAlign: TextAlign.center,
               style: Theme.of(context).textTheme.headline4.apply(fontWeightDelta: 2),
             ),
@@ -57,12 +59,19 @@ class UpdateCalendarDialog extends StatelessWidget {
           ),
           onPressed: () {
             context.read<LessonsBloc>().add(UpdateCalendar(
-                  initialDay: testDate,
+                  fromNextWeek: true,
                 ));
             Navigator.of(context).pop();
           },
         ),
       ],
     );
+  }
+
+  String _getMondayOfTheWeekAfter() {
+    var dayOfTheWeekAfter = DateTime.now().add(Duration(days: 14));
+    return DateFormat('dd MMM y').format(dayOfTheWeekAfter.subtract(
+      Duration(days: dayOfTheWeekAfter.weekday - 1),
+    ));
   }
 }

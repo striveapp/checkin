@@ -44,9 +44,9 @@ class _$LessonsEventTearOff {
   }
 
 // ignore: unused_element
-  UpdateCalendar updateCalendar({DateTime initialDay}) {
+  UpdateCalendar updateCalendar({bool fromNextWeek}) {
     return UpdateCalendar(
-      initialDay: initialDay,
+      fromNextWeek: fromNextWeek,
     );
   }
 }
@@ -65,7 +65,7 @@ mixin _$LessonsEvent {
             DateTime selectedDay, List<Lesson> lessons, List<String> selectedFilterList),
     @required TResult loadLessons(DateTime selectedDay, List<String> selectedFilterList),
     @required TResult createLesson(DateTime selectedDay),
-    @required TResult updateCalendar(DateTime initialDay),
+    @required TResult updateCalendar(bool fromNextWeek),
   });
   @optionalTypeArgs
   TResult maybeWhen<TResult extends Object>({
@@ -74,7 +74,7 @@ mixin _$LessonsEvent {
         DateTime selectedDay, List<Lesson> lessons, List<String> selectedFilterList),
     TResult loadLessons(DateTime selectedDay, List<String> selectedFilterList),
     TResult createLesson(DateTime selectedDay),
-    TResult updateCalendar(DateTime initialDay),
+    TResult updateCalendar(bool fromNextWeek),
     @required TResult orElse(),
   });
   @optionalTypeArgs
@@ -160,7 +160,7 @@ class _$InitializeLessons with DiagnosticableTreeMixin implements InitializeLess
             DateTime selectedDay, List<Lesson> lessons, List<String> selectedFilterList),
     @required TResult loadLessons(DateTime selectedDay, List<String> selectedFilterList),
     @required TResult createLesson(DateTime selectedDay),
-    @required TResult updateCalendar(DateTime initialDay),
+    @required TResult updateCalendar(bool fromNextWeek),
   }) {
     assert(initializeLessons != null);
     assert(lessonsUpdated != null);
@@ -178,7 +178,7 @@ class _$InitializeLessons with DiagnosticableTreeMixin implements InitializeLess
         DateTime selectedDay, List<Lesson> lessons, List<String> selectedFilterList),
     TResult loadLessons(DateTime selectedDay, List<String> selectedFilterList),
     TResult createLesson(DateTime selectedDay),
-    TResult updateCalendar(DateTime initialDay),
+    TResult updateCalendar(bool fromNextWeek),
     @required TResult orElse(),
   }) {
     assert(orElse != null);
@@ -321,7 +321,7 @@ class _$LessonsUpdated with DiagnosticableTreeMixin implements LessonsUpdated {
             DateTime selectedDay, List<Lesson> lessons, List<String> selectedFilterList),
     @required TResult loadLessons(DateTime selectedDay, List<String> selectedFilterList),
     @required TResult createLesson(DateTime selectedDay),
-    @required TResult updateCalendar(DateTime initialDay),
+    @required TResult updateCalendar(bool fromNextWeek),
   }) {
     assert(initializeLessons != null);
     assert(lessonsUpdated != null);
@@ -339,7 +339,7 @@ class _$LessonsUpdated with DiagnosticableTreeMixin implements LessonsUpdated {
         DateTime selectedDay, List<Lesson> lessons, List<String> selectedFilterList),
     TResult loadLessons(DateTime selectedDay, List<String> selectedFilterList),
     TResult createLesson(DateTime selectedDay),
-    TResult updateCalendar(DateTime initialDay),
+    TResult updateCalendar(bool fromNextWeek),
     @required TResult orElse(),
   }) {
     assert(orElse != null);
@@ -481,7 +481,7 @@ class _$LoadLessons with DiagnosticableTreeMixin implements LoadLessons {
             DateTime selectedDay, List<Lesson> lessons, List<String> selectedFilterList),
     @required TResult loadLessons(DateTime selectedDay, List<String> selectedFilterList),
     @required TResult createLesson(DateTime selectedDay),
-    @required TResult updateCalendar(DateTime initialDay),
+    @required TResult updateCalendar(bool fromNextWeek),
   }) {
     assert(initializeLessons != null);
     assert(lessonsUpdated != null);
@@ -499,7 +499,7 @@ class _$LoadLessons with DiagnosticableTreeMixin implements LoadLessons {
         DateTime selectedDay, List<Lesson> lessons, List<String> selectedFilterList),
     TResult loadLessons(DateTime selectedDay, List<String> selectedFilterList),
     TResult createLesson(DateTime selectedDay),
-    TResult updateCalendar(DateTime initialDay),
+    TResult updateCalendar(bool fromNextWeek),
     @required TResult orElse(),
   }) {
     assert(orElse != null);
@@ -625,7 +625,7 @@ class _$CreateLesson with DiagnosticableTreeMixin implements CreateLesson {
             DateTime selectedDay, List<Lesson> lessons, List<String> selectedFilterList),
     @required TResult loadLessons(DateTime selectedDay, List<String> selectedFilterList),
     @required TResult createLesson(DateTime selectedDay),
-    @required TResult updateCalendar(DateTime initialDay),
+    @required TResult updateCalendar(bool fromNextWeek),
   }) {
     assert(initializeLessons != null);
     assert(lessonsUpdated != null);
@@ -643,7 +643,7 @@ class _$CreateLesson with DiagnosticableTreeMixin implements CreateLesson {
         DateTime selectedDay, List<Lesson> lessons, List<String> selectedFilterList),
     TResult loadLessons(DateTime selectedDay, List<String> selectedFilterList),
     TResult createLesson(DateTime selectedDay),
-    TResult updateCalendar(DateTime initialDay),
+    TResult updateCalendar(bool fromNextWeek),
     @required TResult orElse(),
   }) {
     assert(orElse != null);
@@ -700,7 +700,7 @@ abstract class CreateLesson implements LessonsEvent {
 abstract class $UpdateCalendarCopyWith<$Res> {
   factory $UpdateCalendarCopyWith(UpdateCalendar value, $Res Function(UpdateCalendar) then) =
       _$UpdateCalendarCopyWithImpl<$Res>;
-  $Res call({DateTime initialDay});
+  $Res call({bool fromNextWeek});
 }
 
 /// @nodoc
@@ -714,24 +714,24 @@ class _$UpdateCalendarCopyWithImpl<$Res> extends _$LessonsEventCopyWithImpl<$Res
 
   @override
   $Res call({
-    Object initialDay = freezed,
+    Object fromNextWeek = freezed,
   }) {
     return _then(UpdateCalendar(
-      initialDay: initialDay == freezed ? _value.initialDay : initialDay as DateTime,
+      fromNextWeek: fromNextWeek == freezed ? _value.fromNextWeek : fromNextWeek as bool,
     ));
   }
 }
 
 /// @nodoc
 class _$UpdateCalendar with DiagnosticableTreeMixin implements UpdateCalendar {
-  const _$UpdateCalendar({this.initialDay});
+  const _$UpdateCalendar({this.fromNextWeek});
 
   @override
-  final DateTime initialDay;
+  final bool fromNextWeek;
 
   @override
   String toString({DiagnosticLevel minLevel = DiagnosticLevel.info}) {
-    return 'LessonsEvent.updateCalendar(initialDay: $initialDay)';
+    return 'LessonsEvent.updateCalendar(fromNextWeek: $fromNextWeek)';
   }
 
   @override
@@ -739,19 +739,19 @@ class _$UpdateCalendar with DiagnosticableTreeMixin implements UpdateCalendar {
     super.debugFillProperties(properties);
     properties
       ..add(DiagnosticsProperty('type', 'LessonsEvent.updateCalendar'))
-      ..add(DiagnosticsProperty('initialDay', initialDay));
+      ..add(DiagnosticsProperty('fromNextWeek', fromNextWeek));
   }
 
   @override
   bool operator ==(dynamic other) {
     return identical(this, other) ||
         (other is UpdateCalendar &&
-            (identical(other.initialDay, initialDay) ||
-                const DeepCollectionEquality().equals(other.initialDay, initialDay)));
+            (identical(other.fromNextWeek, fromNextWeek) ||
+                const DeepCollectionEquality().equals(other.fromNextWeek, fromNextWeek)));
   }
 
   @override
-  int get hashCode => runtimeType.hashCode ^ const DeepCollectionEquality().hash(initialDay);
+  int get hashCode => runtimeType.hashCode ^ const DeepCollectionEquality().hash(fromNextWeek);
 
   @JsonKey(ignore: true)
   @override
@@ -767,14 +767,14 @@ class _$UpdateCalendar with DiagnosticableTreeMixin implements UpdateCalendar {
             DateTime selectedDay, List<Lesson> lessons, List<String> selectedFilterList),
     @required TResult loadLessons(DateTime selectedDay, List<String> selectedFilterList),
     @required TResult createLesson(DateTime selectedDay),
-    @required TResult updateCalendar(DateTime initialDay),
+    @required TResult updateCalendar(bool fromNextWeek),
   }) {
     assert(initializeLessons != null);
     assert(lessonsUpdated != null);
     assert(loadLessons != null);
     assert(createLesson != null);
     assert(updateCalendar != null);
-    return updateCalendar(initialDay);
+    return updateCalendar(fromNextWeek);
   }
 
   @override
@@ -785,12 +785,12 @@ class _$UpdateCalendar with DiagnosticableTreeMixin implements UpdateCalendar {
         DateTime selectedDay, List<Lesson> lessons, List<String> selectedFilterList),
     TResult loadLessons(DateTime selectedDay, List<String> selectedFilterList),
     TResult createLesson(DateTime selectedDay),
-    TResult updateCalendar(DateTime initialDay),
+    TResult updateCalendar(bool fromNextWeek),
     @required TResult orElse(),
   }) {
     assert(orElse != null);
     if (updateCalendar != null) {
-      return updateCalendar(initialDay);
+      return updateCalendar(fromNextWeek);
     }
     return orElse();
   }
@@ -831,9 +831,9 @@ class _$UpdateCalendar with DiagnosticableTreeMixin implements UpdateCalendar {
 }
 
 abstract class UpdateCalendar implements LessonsEvent {
-  const factory UpdateCalendar({DateTime initialDay}) = _$UpdateCalendar;
+  const factory UpdateCalendar({bool fromNextWeek}) = _$UpdateCalendar;
 
-  DateTime get initialDay;
+  bool get fromNextWeek;
   @JsonKey(ignore: true)
   $UpdateCalendarCopyWith<UpdateCalendar> get copyWith;
 }

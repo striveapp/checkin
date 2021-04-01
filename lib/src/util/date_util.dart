@@ -14,9 +14,6 @@ class DateUtil {
     return DateTime.now();
   }
 
-  DateTime retrieveEndOfTheWeekDay(DateTime date) =>
-      date.add(Duration(days: DateTime.daysPerWeek - date.weekday));
-
   static DateTime _getFirstDayOfTheWeek() {
     DateTime now = DateTime.now();
     if (now.weekday == 1) {

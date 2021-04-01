@@ -88,8 +88,14 @@ class LessonsBloc extends Bloc<LessonsEvent, LessonsState> {
     }
 
     if (event is UpdateCalendar) {
-      var initDate = event.initialDay;
-      var endDate = dateUtil.retrieveEndOfTheWeekDay(initDate);
+      var currentDay = dateUtil.getCurrentDateTime();
+
+      if (event.fromNextWeek) {
+        currentDay = currentDay.add(Duration(days: 7));
+      }
+
+      var initDate = _retrieveBeginningOfTheWeek(currentDay);
+      var endDate = _retrieveEndOfTheWeek(currentDay);
 
       await lessonTemplateRepository.applyTemplate(
         gymId,
@@ -98,6 +104,11 @@ class LessonsBloc extends Bloc<LessonsEvent, LessonsState> {
       );
     }
   }
+
+  DateTime _retrieveBeginningOfTheWeek(DateTime d) => d.subtract(Duration(days: d.weekday - 1));
+
+  DateTime _retrieveEndOfTheWeek(DateTime d) =>
+      d.add(Duration(days: DateTime.daysPerWeek - d.weekday));
 
   _sortLessonsByTime(List<Lesson> lessons) =>
       lessons..sort(((a, b) => _getDate(a.timeStart).compareTo(_getDate(b.timeStart))));
