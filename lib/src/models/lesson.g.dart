@@ -16,6 +16,7 @@ _$_Lesson _$_$_LessonFromJson(Map<String, dynamic> json) {
     weekDay: _$enumDecodeNullable(_$WeekdayEnumMap, json['weekDay']),
     timestamp: json['timestamp'] as int,
     imageUrl: json['imageUrl'] as String,
+    gymId: json['gymId'] as String,
     lessonConfig: json['lessonConfig'] == null
         ? null
         : LessonConfig.fromJson(json['lessonConfig'] as Map<String, dynamic>),
@@ -48,6 +49,7 @@ Map<String, dynamic> _$_$_LessonToJson(_$_Lesson instance) => <String, dynamic>{
       'weekDay': _$WeekdayEnumMap[instance.weekDay],
       'timestamp': instance.timestamp,
       'imageUrl': instance.imageUrl,
+      'gymId': instance.gymId,
       'lessonConfig': instance.lessonConfig?.toJson(),
       'classCapacity': instance.classCapacity,
       'masters': instance.masters?.map((e) => e?.toJson())?.toList(),

@@ -5,8 +5,15 @@ import 'package:flutter_driver/flutter_driver.dart';
 import 'constants.dart';
 
 extension DriverExtension on FlutterDriver {
-  Future<void> goBack() async {
+
+  goBack() async {
     await tap(find.pageBack());
+  }
+
+  closeDialog() async {
+    var _modalBarrier = find.byType('ModalBarrier');
+    await waitFor(_modalBarrier);
+    await tap(_modalBarrier);
   }
 
   Future<String> waitForExpectedValue(

@@ -17,6 +17,7 @@ class FilterChoiceChip extends StatelessWidget {
     return Container(
       padding: const EdgeInsets.symmetric(horizontal: 10),
       child: ChoiceChip(
+        key: Key('chip_$text'),
         selectedColor: Theme.of(context).accentColor,
         label: Container(
           constraints: BoxConstraints(

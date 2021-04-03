@@ -15,7 +15,7 @@ class LessonCardList extends StatelessWidget {
             if (state.lessons.length != 0) {
               return ListView.builder(
                 padding: EdgeInsets.only(bottom: 50),
-                key: Key("lessonCardList"),
+                key: Key("lessonCardList_${state.lessons.length}"),
                 itemCount: state.lessons.length,
                 itemBuilder: (BuildContext context, int index) {
                   var lesson = state.lessons[index];

@@ -46,6 +46,7 @@ class _SpeedDialFabState extends State<SpeedDialFab> with SingleTickerProviderSt
                 ),
               ),
               AnimatedCircularButton(
+                key: Key('lessonFilterFab'),
                 icon: Icons.filter_list_outlined,
                 parent: _controller,
                 degrees: 270.0,
@@ -81,6 +82,7 @@ class _SpeedDialFabState extends State<SpeedDialFab> with SingleTickerProviderSt
                     )),
               ),
               AnimatedOpenSpeedDialButton(
+                key: Key('speedDialButton'),
                 parent: _controller,
               ),
             ],

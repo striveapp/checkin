@@ -62,6 +62,7 @@ class _AnimatedCircularButtonState extends State<AnimatedCircularButton> {
         width: 40,
         height: 40,
         child: IconButton(
+          key: Key("icon_${widget.key.toString()}"),
           icon: Icon(widget.icon),
           splashRadius: 25,
           onPressed: () {

@@ -3,7 +3,8 @@
 // Do not manually edit this file.
 
 import 'package:checkin/src/repositories/lesson_repository.dart' as _i2;
-import 'package:checkin/src/repositories/lesson_template_repository.dart' as _i3;
+import 'package:checkin/src/repositories/lesson_template_repository.dart'
+    as _i3;
 import 'package:checkin/src/repositories/user_repository.dart' as _i4;
 import 'package:checkin/src/util/date_util.dart' as _i5;
 import 'package:mockito/mockito.dart' as _i1;
@@ -23,7 +24,8 @@ class MockLessonRepository extends _i1.Mock implements _i2.LessonRepository {
 /// A class which mocks [LessonTemplateRepository].
 ///
 /// See the documentation for Mockito's code generation for more information.
-class MockLessonTemplateRepository extends _i1.Mock implements _i3.LessonTemplateRepository {
+class MockLessonTemplateRepository extends _i1.Mock
+    implements _i3.LessonTemplateRepository {
   MockLessonTemplateRepository() {
     _i1.throwOnMissingStub(this);
   }

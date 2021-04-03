@@ -22,6 +22,7 @@ abstract class Lesson with _$Lesson {
     final Weekday weekDay,
     final int timestamp,
     final String imageUrl,
+    final String gymId,
     final LessonConfig lessonConfig,
     // todo retrieve from Gym (config) https://trello.com/c/uIqJLgZL
     @Default(DEFAULT_CLASS_CAPACITY) final int classCapacity,
@@ -31,7 +32,7 @@ abstract class Lesson with _$Lesson {
     @Default(false) final bool isClosed,
   }) = _Lesson;
 
-  factory Lesson.createDefault(String date) {
+  factory Lesson.createDefault(String date, String gymId) {
     return Lesson(
       id: CryptoUtil.generateUUID(),
       date: date,
@@ -39,6 +40,7 @@ abstract class Lesson with _$Lesson {
       imageUrl: STRIVE_LOGO,
       timeStart: "00:00",
       timeEnd: "00:00",
+      gymId: gymId,
       weekDay: DateUtil.retrieveWeekDay(date),
     );
   }

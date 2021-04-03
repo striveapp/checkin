@@ -244,7 +244,7 @@ class LessonInstancesProvider implements LessonRepository {
 
   @override
   Future<void> createLesson(String gymId, String date) async {
-    var defaultLesson = Lesson.createDefault(date);
+    var defaultLesson = Lesson.createDefault(date, gymId);
     await _firestore
         .collection(gymPath)
         .doc(gymId)

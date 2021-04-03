@@ -17,7 +17,7 @@ class CloseClassTest extends AbstractTest {
 
       group("when the class is open", () {
         test("master should be able to close the class", () async {
-          prettyPrint("Login as user and visit class");
+          prettyPrint("Login as admin and visit class");
           await loginPage.loginAsAdmin();
           await lessonsPage.selectLessonOfTheDay(Weekday.monday, 0);
           prettyPrint("attempt to close the class");
