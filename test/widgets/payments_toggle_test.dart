@@ -3,6 +3,7 @@ import 'package:checkin/src/models/gym.dart';
 import 'package:checkin/src/ui/components/account/payment.dart';
 import 'package:flutter_test/flutter_test.dart';
 
+// todo translate to new widget test
 void main() {
   group("Payments toggle", () {
     group("When user preference exists, it should win", () {

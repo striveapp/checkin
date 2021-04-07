@@ -1,4 +1,3 @@
-@Skip("Issue with bloc_test v8")
 import 'package:bloc_test/bloc_test.dart';
 import 'package:checkin/src/blocs/lessons_stats/bloc.dart';
 import 'package:checkin/src/blocs/stats/bloc.dart';
@@ -9,15 +8,24 @@ import 'package:checkin/src/models/master.dart';
 import 'package:checkin/src/models/timespan.dart';
 import 'package:checkin/src/repositories/lesson_repository.dart';
 import 'package:flutter_test/flutter_test.dart';
-import 'package:mockito/mockito.dart';
+import 'package:mocktail/mocktail.dart';
 
-import 'helper/mock_helper.dart';
+import 'helper/mocktail_helper.dart';
+
 
 class MockStatsBloc extends MockBloc<StatsEvent, StatsState> implements StatsBloc {}
 
 class MockLessonRepository extends Mock implements LessonRepository {}
 
+class FakeStatsState extends Fake implements StatsState {}
+class FakeStatsEvent extends Fake implements StatsEvent {}
+
 void main() {
+  setUpAll(() {
+    registerFallbackValue<StatsState>(FakeStatsState());
+    registerFallbackValue<StatsEvent>(FakeStatsEvent());
+  });
+
   group("LessonsStatsBloc", () {
     MockStatsBloc mockStatsBloc;
     MockLessonRepository mockLessonRepository;
@@ -72,13 +80,16 @@ void main() {
           whenListen(
               mockStatsBloc, Stream.fromIterable([TimespanUpdated(timespan: Timespan.week)]));
 
-          when(mockLessonRepository.getLessonsByMasterAndTimespan(fakeMaster, Timespan.week))
+          when(() => mockLessonRepository.getLessonsByMasterAndTimespan(fakeMaster, Timespan.week))
               .thenAnswer((_) => Stream<List<Lesson>>.value(allLessons));
         });
 
-        tearDown(() {
-          untilCalled(
+        tearDown(() async {
+          await untilCalled( () =>
               mockLessonRepository.getLessonsByMasterAndTimespan(fakeMaster, Timespan.week));
+          verify(() =>
+              mockLessonRepository.getLessonsByMasterAndTimespan(fakeMaster, Timespan.week));
+
         });
 
         //TODO: this should probably be a different data structure, maybe a map with attendee and counter

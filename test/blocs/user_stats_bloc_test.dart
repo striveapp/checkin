@@ -1,4 +1,3 @@
-@Skip("Issue with bloc_test v8")
 import 'package:bloc_test/bloc_test.dart';
 import 'package:checkin/src/blocs/stats/bloc.dart';
 import 'package:checkin/src/blocs/user_stats/user_stats_bloc.dart';
@@ -9,15 +8,23 @@ import 'package:checkin/src/models/user.dart';
 import 'package:checkin/src/models/user_history.dart';
 import 'package:checkin/src/repositories/stats_repository.dart';
 import 'package:flutter_test/flutter_test.dart';
-import 'package:mockito/mockito.dart';
+import 'package:mocktail/mocktail.dart';
 
-import 'helper/mock_helper.dart';
+import 'helper/mocktail_helper.dart';
 
 class MockStatsRepository extends Mock implements StatsRepository {}
 
 class MockStatsBloc extends MockBloc<StatsEvent, StatsState> implements StatsBloc {}
 
+class FakeStatsState extends Fake implements StatsState {}
+class FakeStatsEvent extends Fake implements StatsEvent {}
+
 void main() {
+  setUpAll(() {
+    registerFallbackValue<StatsState>(FakeStatsState());
+    registerFallbackValue<StatsEvent>(FakeStatsEvent());
+  });
+
   group("UserStatsBloc", () {
     MockStatsBloc mockStatsBloc;
     MockStatsRepository mockStatsRepository;
@@ -80,7 +87,7 @@ void main() {
     group("on StatsBloc TimespanUpdated event per week", () {
       setUp(() {
         whenListen(mockStatsBloc, Stream.fromIterable([TimespanUpdated(timespan: Timespan.week)]));
-        when(mockStatsRepository.getUserStats(
+        when(() => mockStatsRepository.getUserStats(
                 loggedUser.selectedGymId, loggedUser.email, Timespan.week))
             .thenAnswer((_) {
           return Stream<UserHistory>.value(
@@ -88,8 +95,10 @@ void main() {
         });
       });
 
-      tearDown(() {
-        untilCalled(mockStatsRepository.getUserStats(
+      tearDown(() async {
+        await untilCalled(() => mockStatsRepository.getUserStats(
+            loggedUser.selectedGymId, loggedUser.email, Timespan.week));
+        verify(() => mockStatsRepository.getUserStats(
             loggedUser.selectedGymId, loggedUser.email, Timespan.week));
       });
 
@@ -109,7 +118,7 @@ void main() {
     group("on StatsBloc TimespanUpdated event per month", () {
       setUp(() {
         whenListen(mockStatsBloc, Stream.fromIterable([TimespanUpdated(timespan: Timespan.month)]));
-        when(mockStatsRepository.getUserStats(
+        when(() => mockStatsRepository.getUserStats(
           loggedUser.selectedGymId,
           loggedUser.email,
           Timespan.month,
@@ -122,7 +131,7 @@ void main() {
       });
 
       tearDown(() {
-        verify(mockStatsRepository.getUserStats(
+        verify(() => mockStatsRepository.getUserStats(
             loggedUser.selectedGymId, loggedUser.email, Timespan.month));
       });
 
@@ -146,7 +155,7 @@ void main() {
     group("on StatsBloc TimespanUpdated event for all", () {
       setUp(() {
         whenListen(mockStatsBloc, Stream.fromIterable([TimespanUpdated(timespan: Timespan.all)]));
-        when(mockStatsRepository.getUserStats(
+        when(() => mockStatsRepository.getUserStats(
                 loggedUser.selectedGymId, loggedUser.email, Timespan.all))
             .thenAnswer((_) {
           return Stream<UserHistory>.value(UserHistory(
@@ -156,9 +165,12 @@ void main() {
         });
       });
 
-      tearDown(() {
-        untilCalled(mockStatsRepository.getUserStats(
+      tearDown(() async {
+        await untilCalled(() => mockStatsRepository.getUserStats(
             loggedUser.selectedGymId, loggedUser.email, Timespan.all));
+        verify(() => mockStatsRepository.getUserStats(
+            loggedUser.selectedGymId, loggedUser.email, Timespan.all));
+
       });
 
       blocTest("should emit StatsLoaded",

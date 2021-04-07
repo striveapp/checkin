@@ -1,4 +1,3 @@
-@Skip("Issue with bloc_test v8")
 import 'dart:async';
 
 import 'package:bloc_test/bloc_test.dart';
@@ -8,15 +7,23 @@ import 'package:checkin/src/models/grade.dart';
 import 'package:checkin/src/models/user.dart';
 import 'package:checkin/src/repositories/user_repository.dart';
 import 'package:flutter_test/flutter_test.dart';
-import 'package:mockito/mockito.dart';
+import 'package:mocktail/mocktail.dart';
 
-import 'helper/mock_helper.dart';
+import 'helper/mocktail_helper.dart';
 
 class MockUserRepository extends Mock implements UserRepository {}
 
 class MockAuthBloc extends MockBloc<AuthEvent, AuthState> implements AuthBloc {}
 
+class FakeAuthEvent extends Fake implements AuthEvent {}
+class FakeAuthState extends Fake implements AuthState {}
+
 void main() {
+  setUpAll(() {
+    registerFallbackValue<AuthState>(FakeAuthState());
+    registerFallbackValue<AuthEvent>(FakeAuthEvent());
+  });
+
   group("UserBloc", () {
     MockUserRepository mockUserRepository;
     AuthBloc mockAuthBloc;
@@ -49,13 +56,13 @@ void main() {
 
       group("when user is not null", () {
         setUp(() {
-          when(mockUserRepository.getUserByEmail(testUser.email)).thenAnswer((_) {
+          when(() => mockUserRepository.getUserByEmail(testUser.email)).thenAnswer((_) {
             return Stream<User>.fromFuture(Future.value(testUser));
           });
         });
 
         tearDown(() async {
-          verify(mockUserRepository.getUserByEmail(testUser.email));
+          verify(() => mockUserRepository.getUserByEmail(testUser.email));
         });
 
         blocTest(
@@ -70,13 +77,13 @@ void main() {
 
       group("when user is null", () {
         setUp(() {
-          when(mockUserRepository.getUserByEmail(testUser.email)).thenAnswer((_) {
+          when(() => mockUserRepository.getUserByEmail(testUser.email)).thenAnswer((_) {
             return Stream<User>.fromFuture(Future.value(null));
           });
         });
 
         tearDown(() {
-          verify(mockUserRepository.getUserByEmail(testUser.email));
+          verify(() => mockUserRepository.getUserByEmail(testUser.email));
         });
 
         blocTest(
@@ -92,14 +99,14 @@ void main() {
 
     group("on UpdateGrade event", () {
       setUp(() async {
-        when(mockUserRepository.updateGrade(testUser.email, Grade.black)).thenAnswer((_) {
+        when(() => mockUserRepository.updateGrade(testUser.email, Grade.black)).thenAnswer((_) {
           return Future.value(null);
         });
       });
 
       tearDown(() async {
-        await untilCalled(mockUserRepository.updateGrade(testUser.email, Grade.black));
-        verify(mockUserRepository.updateGrade(testUser.email, Grade.black));
+        await untilCalled(() => mockUserRepository.updateGrade(testUser.email, Grade.black));
+        verify(() => mockUserRepository.updateGrade(testUser.email, Grade.black));
       });
 
       blocTest("should update the user grade",
@@ -116,15 +123,15 @@ void main() {
       var newSelectedGymId = "testGym";
 
       setUp(() {
-        when(mockUserRepository.updateSelectedGymId(testUser.email, newSelectedGymId))
+        when(() => mockUserRepository.updateSelectedGymId(testUser.email, newSelectedGymId))
             .thenAnswer((_) {
           return Future.value(null);
         });
       });
 
       tearDown(() async {
-        await untilCalled(mockUserRepository.updateSelectedGymId(testUser.email, newSelectedGymId));
-        verify(mockUserRepository.updateSelectedGymId(testUser.email, newSelectedGymId));
+        await untilCalled(() => mockUserRepository.updateSelectedGymId(testUser.email, newSelectedGymId));
+        verify(() => mockUserRepository.updateSelectedGymId(testUser.email, newSelectedGymId));
       });
 
       blocTest("should update the user selected gym",

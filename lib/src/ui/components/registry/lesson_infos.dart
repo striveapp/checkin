@@ -106,6 +106,7 @@ class EditableLessonImage extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
+    // todo refactor to decouple the creation and usage of the bloc, to allow easier testing https://trello.com/c/64Qoqrl3
     return BlocProvider<EditLessonBloc>(
       create: (context) => EditLessonBloc(
         gymId: currentUser.selectedGymId,
