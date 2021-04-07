@@ -31,7 +31,8 @@ class _WeekCalendarState extends State<WeekCalendar> {
   Widget build(BuildContext context) {
     var selectedGymId = widget.currentUser.selectedGymId;
 
-    if (selectedGymId == 'test') {
+    if (selectedGymId == 'test' || selectedGymId == 'bjj_winter_week') {
+
       return TableCalendar(
         calendarController: _calendarController,
         locale: Localizations.localeOf(context).toLanguageTag(),

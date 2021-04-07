@@ -11,6 +11,16 @@ class DateUtil {
     if (selectedGymId == 'test') {
       return testDate;
     }
+
+    if (selectedGymId == 'bjj_winter_week') {
+      DateTime eventStartDate = DateTime(2021, 9, 13);
+      DateTime eventEndDate = DateTime(2021, 9, 19);
+      final currentDateTime = getCurrentDateTime();
+      return eventStartDate.isAfter(currentDateTime) || eventEndDate.isBefore(currentDateTime)
+          ? eventStartDate
+          : currentDateTime;
+    }
+
     return DateTime.now();
   }
 
