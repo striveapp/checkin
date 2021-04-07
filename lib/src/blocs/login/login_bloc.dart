@@ -101,7 +101,6 @@ class LoginBloc extends Bloc<LoginEvent, LoginState> {
       }
     }
 
-    //TODO: We put this because we have no way to test google auth for now. https://trello.com/c/I4PenA6Y
     if (event is LoginWithTestUser) {
       final testUser1 = await authRepository.loginWithTestUser(test: 1);
       Logger.log.i('Logged with test user [$testUser1]');

@@ -8,7 +8,6 @@ part 'payment_methods_event.freezed.dart';
 
 @freezed
 abstract class PaymentMethodsEvent with _$PaymentMethodsEvent {
-  //TODO: this can be an array of payment methods as soon as we support more then one payment method
   const factory PaymentMethodsEvent.paymentMethodUpdated(
       {@required String userEmail, PaymentMethod paymentMethod}) = PaymentMethodUpdated;
 
