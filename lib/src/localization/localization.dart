@@ -12,6 +12,7 @@ import 'package:checkin/src/ui/components/lessons/attendees_preview.dart';
 import 'package:checkin/src/ui/components/lessons/filter_list_widget.dart';
 import 'package:checkin/src/ui/components/lessons/lesson_card.dart';
 import 'package:checkin/src/ui/components/lessons/no_lessons_banner.dart';
+import 'package:checkin/src/ui/components/lessons/update_calendar_dialog.dart';
 import 'package:checkin/src/ui/components/login/apple_sign_in_button.dart';
 import 'package:checkin/src/ui/components/login/google_sign_in_button.dart';
 import 'package:checkin/src/ui/components/login/login_buttons.dart';
@@ -752,6 +753,26 @@ extension Localization on String {
         'en': EditLessonCapacity.capacity,
         'es': 'Aforo',
         'it': 'Capienza',
+      } +
+      {
+        'en': UpdateCalendarDialog.savingNextWeekAsCalendarDisclaimer,
+        'es': 'Estas a punto de aplicar la siguiente semana de clases como tu nuevo calendario',
+        'it': 'Stai per applicare la prossima settimana di classi come il tuo nuovo calendario',
+      } +
+      {
+        'en': UpdateCalendarDialog.apply,
+        'es': 'Aplica',
+        'it': 'Applica',
+      } +
+      {
+        'en': UpdateCalendarDialog.cancel,
+        'es': 'Cancelar',
+        'it': 'Cancella',
+      } +
+      {
+        'en': UpdateCalendarDialog.takeEffectFrom,
+        'es': 'This will take effect starting from %s',
+        'it': 'Questo cambio avrà effetto a partire dal %s',
       };
 
   String get i18n => localize(this, _t);
