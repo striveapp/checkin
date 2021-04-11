@@ -74,6 +74,7 @@ class _SpeedDialFabState extends State<SpeedDialFab> with SingleTickerProviderSt
                 },
               ),
               AnimatedCircularButton(
+                key: Key('addLessonFab'),
                 icon: Icons.add,
                 parent: _controller,
                 degrees: 180.0,

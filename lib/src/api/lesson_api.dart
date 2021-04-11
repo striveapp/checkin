@@ -15,4 +15,14 @@ class LessonApi {
       Logger.log.e("An error occurred when calling acceptAll", e, st);
     });
   }
+
+  Future<void> cleanUpTestGym() async {
+    await Api.call(
+      functionName: "cleanUpTestGym",
+    ).then((_) {
+      Logger.log.i("Test gym cleaned up");
+    }).catchError((e, st) {
+      Logger.log.e("An error occurred when calling cleanUpTestGym", e, st);
+    });
+  }
 }

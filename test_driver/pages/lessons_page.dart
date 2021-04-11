@@ -1,4 +1,3 @@
-
 import 'package:checkin/src/models/weekday.dart';
 import 'package:flutter_driver/flutter_driver.dart';
 
@@ -18,6 +17,7 @@ class LessonsPage {
   final _filterLessonFab = find.byValueKey('lessonFilterFab');
   final _filterLessonFabIcon = find.byValueKey("icon_[<'lessonFilterFab'>]");
   final _speedDialButton = find.byValueKey('speedDialButton');
+  final _addLessonFabIcon = find.byValueKey("icon_[<'addLessonFab'>]");
 
   LessonsPage(FlutterDriver driver) {
     this._driver = driver;
@@ -59,11 +59,19 @@ class LessonsPage {
   }
 
   filterLessonsAsMasterBy(String type) async {
-    // open speed dial
+    await _openSpeedDial();
+    await _filterLessonsBy(type, _filterLessonFabIcon);
+  }
+
+  addNewClass() async {
+    await _openSpeedDial();
+    await _driver.waitFor(_addLessonFabIcon);
+    await _driver.tap(_addLessonFabIcon);
+  }
+
+  Future<void> _openSpeedDial() async {
     await _driver.waitFor(_speedDialButton);
     await _driver.tap(_speedDialButton);
-
-    await _filterLessonsBy(type, _filterLessonFabIcon);
   }
 
   _filterLessonsBy(String type, SerializableFinder filterFabFinder) async {
