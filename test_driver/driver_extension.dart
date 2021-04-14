@@ -16,6 +16,11 @@ extension DriverExtension on FlutterDriver {
     await tap(_modalBarrier);
   }
 
+  Future waitForObject(SerializableFinder object, Duration timeout, {String errorMessage = "waitForObject timed out"}) async {
+    var message = "ERROR ==> $errorMessage";
+    return await waitFor(object, timeout: timeout).catchError((e) { throw(message);});
+  }
+
   Future<String> waitForExpectedValue(
           Future<String> Function() f, String expectedValue,
           {Duration timeout = defaultTimeout}) async =>

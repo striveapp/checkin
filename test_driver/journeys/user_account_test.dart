@@ -35,6 +35,6 @@ class UserAccountTest extends AbstractTest {
         await accountPage.changeName(oldName, newName);
         await accountPage.logout();
       });
-    });
+    }, timeout: Timeout(Duration(seconds: 100)));
   }
 }

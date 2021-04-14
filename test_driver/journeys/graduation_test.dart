@@ -36,6 +36,6 @@ class GraduationTest extends AbstractTest {
         prettyPrint("Then logout");
         await statsPage.logout();
       });
-    });
+    }, timeout: Timeout(Duration(seconds: 100)));
   }
 }

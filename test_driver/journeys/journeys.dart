@@ -1,4 +1,5 @@
 import 'dart:async';
+import 'dart:io';
 
 import 'package:checkin/main_dev.dart' as app;
 import 'package:checkin/src/api/lesson_api.dart';
@@ -48,8 +49,15 @@ Future<void> setup() async {
 
 Future<void> cleanDatabase() async {
   await LessonApi().cleanUpTestGym();
+  isDbClean = true;
 
-  lessonSub = LessonInstancesProvider().getLessonsForDay("test", testDate).listen((lessons) {
-    isDbClean = lessons.length == 3 && lessons.every((lesson) => lesson?.attendees?.isEmpty);
-  });
+  // lessonSub = LessonInstancesProvider().getLessonsForDay("test", testDate).listen((lessons) async {
+  //   isDbClean = lessons.length == 4 && lessons.every((lesson) => lesson?.attendees?.isEmpty);
+  //   if(isDbClean) {
+  //     var firebaseAuth = FirebaseAuth.instance;
+  //     Logger.log.i("Signing out YO!");
+  //     await firebaseAuth.signOut();
+  //     await lessonSub.cancel();
+  //   }
+  // });
 }

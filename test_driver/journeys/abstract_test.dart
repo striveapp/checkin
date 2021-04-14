@@ -40,7 +40,7 @@ abstract class AbstractTest {
     leaderboardPage = LeaderboardPage(driver);
     graduationDialog = GraduationDialog(driver);
     gymSelectionModal = GymSelectionModal(driver);
-    await driver.requestData("setup");
+    await driver.requestData("setup", timeout: Duration(seconds: 40));
     await driver.waitForExpectedValue(() => driver.requestData("is_db_clean"), "true");
     print("setup finished");
   }

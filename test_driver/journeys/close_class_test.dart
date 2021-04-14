@@ -26,6 +26,6 @@ class CloseClassTest extends AbstractTest {
           await registryPage.logout();
         });
       });
-    });
+    }, timeout: Timeout(Duration(seconds: 100)));
   }
 }

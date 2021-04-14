@@ -32,6 +32,6 @@ class StatsTest extends AbstractTest {
         await statsPage.selectTimeSpan(ALL);
         await driver.waitFor(find.text("No classes attended yet"));
       });
-    });
+    }, timeout: Timeout(Duration(seconds: 100)));
   }
 }

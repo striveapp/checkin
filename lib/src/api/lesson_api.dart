@@ -18,7 +18,7 @@ class LessonApi {
 
   Future<void> cleanUpTestGym() async {
     await Api.call(
-      functionName: "cleanUpTestGym",
+      functionName: "cleanTestGym",
     ).then((_) {
       Logger.log.i("Test gym cleaned up");
     }).catchError((e, st) {

@@ -42,7 +42,11 @@ class LessonInstancesProvider implements LessonRepository {
       .collection(sub_collection_path)
       .doc(lessonId)
       .snapshots()
-      .map((doc) => Lesson.fromJson(doc.data()));
+      .where((doc) => doc.exists)
+      .map((doc) {
+    Logger.log.i("Raw Lesson loaded [${doc.data()}], lessonId $lessonId, date $date");
+    return Lesson.fromJson(doc.data());
+      });
 
   @override
   //TODO: collectionGroups are not currently supporting our multi gym model,

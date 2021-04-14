@@ -51,7 +51,7 @@ class AttendTest extends AbstractTest {
           prettyPrint("Then logout");
           await registryPage.logout();
         });
-      });
+      }, timeout: Timeout(Duration(seconds: 100)));
 
       group("when user attends classes", () {
         test("increase the counter when master approves the class", () async {
@@ -155,6 +155,6 @@ class AttendTest extends AbstractTest {
           await statsPage.logout();
         });
       });
-    });
+    }, timeout: Timeout(Duration(seconds: 100)));
   }
 }

@@ -36,6 +36,6 @@ class SwitchGymTest extends AbstractTest {
         prettyPrint("Then logout");
         await accountPage.logout();
       });
-    });
+    }, timeout: Timeout(Duration(seconds: 100)));
   }
 }

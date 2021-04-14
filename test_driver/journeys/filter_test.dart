@@ -44,6 +44,6 @@ class FilterTest extends AbstractTest {
           await lessonsPage.logout();
         });
       });
-    });
+    }, timeout: Timeout(Duration(seconds: 100)));
   }
 }

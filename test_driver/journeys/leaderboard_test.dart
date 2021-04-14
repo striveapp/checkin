@@ -42,6 +42,6 @@ class LeaderboardTest extends AbstractTest {
         await leaderboardPage.tapFirstPodium();
         await driver.goBack();
       });
-    });
+    }, timeout: Timeout(Duration(seconds: 100)));
   }
 }

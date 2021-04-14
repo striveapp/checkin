@@ -19,16 +19,16 @@ class LessonEditTest extends AbstractTest {
         test("the new class will appear in the list of classes for the day", () async {
           prettyPrint("Login as master and add new class");
           await loginPage.loginAsMaster();
-          await driver.waitFor(find.byValueKey('lessonCardList_3'));
+          await driver.waitFor(find.byValueKey('lessonCardList_4'));
 
           await lessonsPage.addNewClass();
 
-          await driver.waitFor(find.byValueKey('lessonCardList_4'));
+          await driver.waitFor(find.byValueKey('lessonCardList_5'));
 
           prettyPrint("Then logout");
           await lessonsPage.logout();
         });
       });
-    });
+    }, timeout: Timeout(Duration(seconds: 100)));
   }
 }
