@@ -58,7 +58,6 @@ void main() {
     group("initial state", () {
       blocTest("is LessonsUninitialized",
           build: () => LessonsBloc(
-                gymId: fakeUser.selectedGymId,
                 userRepository: mockUserRepository,
                 lessonRepository: mockLessonRepository,
                 lessonTemplateRepository: mockLessonTemplateRepository,
@@ -89,7 +88,6 @@ void main() {
       blocTest(
         "should listen on lessons for current day",
         build: () => LessonsBloc(
-          gymId: fakeUser.selectedGymId,
           userRepository: mockUserRepository,
           lessonRepository: mockLessonRepository,
           lessonTemplateRepository: mockLessonTemplateRepository,
@@ -132,7 +130,6 @@ void main() {
         blocTest(
           "should emit LessonLoaded with lessons sorted by time",
           build: () => LessonsBloc(
-            gymId: fakeUser.selectedGymId,
             userRepository: mockUserRepository,
             lessonRepository: mockLessonRepository,
             lessonTemplateRepository: mockLessonTemplateRepository,
@@ -182,7 +179,6 @@ void main() {
 
         blocTest("should load new lessons for the selected day",
             build: () => LessonsBloc(
-                  gymId: fakeUser.selectedGymId,
                   userRepository: mockUserRepository,
                   lessonRepository: mockLessonRepository,
                   lessonTemplateRepository: mockLessonTemplateRepository,
@@ -216,13 +212,17 @@ void main() {
 
       blocTest(
         "create new lesson",
-        build: () => LessonsBloc(
-          gymId: fakeUser.selectedGymId,
-          userRepository: mockUserRepository,
-          lessonRepository: mockLessonRepository,
-          lessonTemplateRepository: mockLessonTemplateRepository,
-          dateUtil: mockDateUtil,
-        ),
+        build: () {
+          var lessonsBloc = LessonsBloc(
+            userRepository: mockUserRepository,
+            lessonRepository: mockLessonRepository,
+            lessonTemplateRepository: mockLessonTemplateRepository,
+            dateUtil: mockDateUtil,
+          );
+          lessonsBloc.gymId = fakeUser.selectedGymId;
+
+          return lessonsBloc;
+        },
         act: (bloc) => bloc.add(CreateLesson(selectedDay: DateTime(2021, 1, 1))),
         expect: () => [],
       );
@@ -248,13 +248,17 @@ void main() {
 
         blocTest(
           "calculates the end date and update the calendar",
-          build: () => LessonsBloc(
-            gymId: fakeUser.selectedGymId,
-            userRepository: mockUserRepository,
-            lessonRepository: mockLessonRepository,
-            lessonTemplateRepository: mockLessonTemplateRepository,
-            dateUtil: mockDateUtil,
-          ),
+          build: () {
+            var lessonsBloc = LessonsBloc(
+              userRepository: mockUserRepository,
+              lessonRepository: mockLessonRepository,
+              lessonTemplateRepository: mockLessonTemplateRepository,
+              dateUtil: mockDateUtil,
+            );
+            lessonsBloc.gymId = fakeUser.selectedGymId;
+
+            return lessonsBloc;
+          },
           act: (bloc) {
             return bloc.add(UpdateCalendar(fromNextWeek: false));
           },
@@ -281,13 +285,17 @@ void main() {
 
         blocTest(
           "calculates the end date and update the calendar",
-          build: () => LessonsBloc(
-            gymId: fakeUser.selectedGymId,
-            userRepository: mockUserRepository,
-            lessonRepository: mockLessonRepository,
-            lessonTemplateRepository: mockLessonTemplateRepository,
-            dateUtil: mockDateUtil,
-          ),
+          build: () {
+            var lessonsBloc = LessonsBloc(
+              userRepository: mockUserRepository,
+              lessonRepository: mockLessonRepository,
+              lessonTemplateRepository: mockLessonTemplateRepository,
+              dateUtil: mockDateUtil,
+            );
+            lessonsBloc.gymId = fakeUser.selectedGymId;
+
+            return lessonsBloc;
+          },
           act: (bloc) {
             return bloc.add(UpdateCalendar(fromNextWeek: true));
           },

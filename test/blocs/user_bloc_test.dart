@@ -141,7 +141,7 @@ void main() {
               ),
           seed: () => UserState.userSuccess(currentUser: testUser),
           act: (bloc) => bloc.add(
-              UserEvent.updateSelectedGym(userEmail: testUser.email, newGymId: newSelectedGymId)),
+              UserEvent.updateSelectedGym(newGymId: newSelectedGymId)),
           expect: () => []);
     });
   });

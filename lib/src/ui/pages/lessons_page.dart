@@ -31,7 +31,6 @@ class LessonsPage extends StatelessWidget {
             lessonTemplateRepository: context.read<LessonTemplateRepository>(),
             userRepository: context.read<UserRepository>(),
             dateUtil: context.read(),
-            gymId: currentUser.selectedGymId,
           )..add(InitializeLessons()),
         )
       ],

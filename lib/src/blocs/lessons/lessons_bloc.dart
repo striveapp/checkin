@@ -14,7 +14,6 @@ import 'package:meta/meta.dart';
 import 'bloc.dart';
 
 class LessonsBloc extends Bloc<LessonsEvent, LessonsState> {
-  final String gymId;
   final LessonRepository lessonRepository;
   final LessonTemplateRepository lessonTemplateRepository;
   final UserRepository userRepository;
@@ -22,19 +21,21 @@ class LessonsBloc extends Bloc<LessonsEvent, LessonsState> {
 
   StreamSubscription<List<Lesson>> lessonsSub;
   StreamSubscription<User> _userSub;
+  String gymId;
 
   LessonsBloc({
-    @required this.gymId,
     @required this.lessonRepository,
     @required this.lessonTemplateRepository,
     @required this.userRepository,
     @required this.dateUtil,
   }) : super(LessonsUninitialized());
 
-  void _onUserChanged(user) {
-    lessonsSub?.cancel();
+  void _onUserChanged(User user) {
+    gymId = user.selectedGymId;
+
     DateTime initialSelectedDay = dateUtil.getInitialSelectedDayByGym(gymId);
 
+    lessonsSub?.cancel();
     lessonsSub = this
         .lessonRepository
         .getLessonsForDay(
