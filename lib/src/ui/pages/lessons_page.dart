@@ -5,14 +5,12 @@ import 'package:checkin/src/repositories/holidays_repository.dart';
 import 'package:checkin/src/repositories/lesson_repository.dart';
 import 'package:checkin/src/repositories/lesson_template_repository.dart';
 import 'package:checkin/src/repositories/user_repository.dart';
-import 'package:checkin/src/ui/components/lessons/add_lesson_fab.dart';
 import 'package:checkin/src/ui/components/lessons/gym_app_bar.dart';
 import 'package:checkin/src/ui/components/lessons/lesson_card_list.dart';
 import 'package:checkin/src/ui/components/lessons/lesson_filter_fab.dart';
 import 'package:checkin/src/ui/components/lessons/speed_dial_fab/speed_dial_fab.dart';
 import 'package:checkin/src/ui/components/lessons/week_calendar.dart';
 import 'package:checkin/src/ui/components/loading_indicator.dart';
-import 'package:checkin/src/util/debug_util.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter/widgets.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
@@ -39,17 +37,15 @@ class LessonsPage extends StatelessWidget {
       ],
       child: Scaffold(
           appBar: GymAppBar(),
-          floatingActionButton: currentUser.isOwner && isInDebugMode
-              ? SpeedDialFab()
-              : currentUser.isOwner
-                  ? AddLessonFab()
-                  : LessonsFilterFab(),
+          floatingActionButton:
+              currentUser.isOwner ? SpeedDialFab() : LessonsFilterFab(),
           body: Padding(
             padding: const EdgeInsets.only(top: 15),
             child: Container(
               decoration: BoxDecoration(
                   borderRadius: BorderRadius.only(
-                      topLeft: Radius.circular(10.0), topRight: Radius.circular(10.0))),
+                      topLeft: Radius.circular(10.0),
+                      topRight: Radius.circular(10.0))),
               child: Column(
                 crossAxisAlignment: CrossAxisAlignment.center,
                 children: <Widget>[
