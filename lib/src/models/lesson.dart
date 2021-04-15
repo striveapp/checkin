@@ -1,4 +1,5 @@
 import 'package:checkin/src/config.dart';
+import 'package:checkin/src/models/converters/weekday_converter.dart';
 import 'package:checkin/src/models/lesson_config.dart';
 import 'package:checkin/src/models/weekday.dart';
 import 'package:checkin/src/util/crypto_util.dart';
@@ -11,6 +12,7 @@ import 'master.dart';
 part 'lesson.freezed.dart';
 part 'lesson.g.dart';
 
+
 @freezed
 abstract class Lesson with _$Lesson {
   factory Lesson({
@@ -19,7 +21,7 @@ abstract class Lesson with _$Lesson {
     final String name,
     final String timeStart,
     @Default("") final String timeEnd,
-    final Weekday weekDay,
+    @WeekdayConverter() final Weekday weekDay,
     final int timestamp,
     final String imageUrl,
     final String gymId,

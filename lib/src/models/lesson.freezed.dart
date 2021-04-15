@@ -23,7 +23,7 @@ class _$LessonTearOff {
       String name,
       String timeStart,
       String timeEnd = "",
-      Weekday weekDay,
+      @WeekdayConverter() Weekday weekDay,
       int timestamp,
       String imageUrl,
       String gymId,
@@ -69,6 +69,7 @@ mixin _$Lesson {
   String get name;
   String get timeStart;
   String get timeEnd;
+  @WeekdayConverter()
   Weekday get weekDay;
   int get timestamp;
   String get imageUrl;
@@ -96,7 +97,7 @@ abstract class $LessonCopyWith<$Res> {
       String name,
       String timeStart,
       String timeEnd,
-      Weekday weekDay,
+      @WeekdayConverter() Weekday weekDay,
       int timestamp,
       String imageUrl,
       String gymId,
@@ -184,7 +185,7 @@ abstract class _$LessonCopyWith<$Res> implements $LessonCopyWith<$Res> {
       String name,
       String timeStart,
       String timeEnd,
-      Weekday weekDay,
+      @WeekdayConverter() Weekday weekDay,
       int timestamp,
       String imageUrl,
       String gymId,
@@ -263,7 +264,7 @@ class _$_Lesson implements _Lesson {
       this.name,
       this.timeStart,
       this.timeEnd = "",
-      this.weekDay,
+      @WeekdayConverter() this.weekDay,
       this.timestamp,
       this.imageUrl,
       this.gymId,
@@ -295,6 +296,7 @@ class _$_Lesson implements _Lesson {
   @override
   final String timeEnd;
   @override
+  @WeekdayConverter()
   final Weekday weekDay;
   @override
   final int timestamp;
@@ -409,7 +411,7 @@ abstract class _Lesson implements Lesson {
       String name,
       String timeStart,
       String timeEnd,
-      Weekday weekDay,
+      @WeekdayConverter() Weekday weekDay,
       int timestamp,
       String imageUrl,
       String gymId,
@@ -433,6 +435,7 @@ abstract class _Lesson implements Lesson {
   @override
   String get timeEnd;
   @override
+  @WeekdayConverter()
   Weekday get weekDay;
   @override
   int get timestamp;
