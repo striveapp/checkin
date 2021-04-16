@@ -56,7 +56,7 @@
 		<key>LSRequiresIPhoneOS</key>
 		<true/>
 		<key>NSPhotoLibraryUsageDescription</key>
-		<string>This is needed in order for you change your profile picture</string>
+		<string>This is needed in order for you add pictures from your Library</string>
 		<key>UIBackgroundModes</key>
 		<array>
 			<string>fetch</string>

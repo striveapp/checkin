@@ -2,12 +2,14 @@ import 'dart:async';
 import 'dart:io';
 
 import 'package:bloc/bloc.dart';
+import 'package:checkin/src/logging/logger.dart';
 import 'package:checkin/src/models/lesson.dart';
 import 'package:checkin/src/repositories/image_repository.dart';
 import 'package:checkin/src/repositories/lesson_repository.dart';
 import 'package:checkin/src/repositories/storage_repository.dart';
 import 'package:checkin/src/repositories/user_repository.dart';
 import 'package:flutter/material.dart';
+import 'package:flutter/services.dart';
 
 import 'bloc.dart';
 
@@ -79,17 +81,24 @@ class EditLessonBloc extends Bloc<EditLessonEvent, EditLessonState> {
     }
 
     if (event is UpdateImageUrl) {
-      File croppedFile = await imageRepository.getCroppedImage();
-      if (croppedFile != null) {
-        String fileName = "${lesson.id}-${DateTime.now()}.png";
-        String newImageUrl = await storageRepository.uploadImage(croppedFile, fileName);
+      try {
+        File croppedFile = await imageRepository.getCroppedImage();
+        if (croppedFile != null) {
+          String fileName = "${lesson.id}-${DateTime.now()}.png";
+          String newImageUrl = await storageRepository.uploadImage(croppedFile, fileName);
 
-        await lessonRepository.updateLessonImage(
-          gymId,
-          lesson.date,
-          lesson.id,
-          newImageUrl,
-        );
+          await lessonRepository.updateLessonImage(
+            gymId,
+            lesson.date,
+            lesson.id,
+            newImageUrl,
+          );
+        }
+      } on PlatformException catch (err, st) {
+        if (err.code == "photo_access_denied") {
+          //TODO: we should ask again for permissions here https://trello.com/c/Jcgvvcwj
+          Logger.log.d("Ask for permissions");
+        }
       }
     }
 

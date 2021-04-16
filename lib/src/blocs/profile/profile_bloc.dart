@@ -8,6 +8,7 @@ import 'package:checkin/src/repositories/image_repository.dart';
 import 'package:checkin/src/repositories/storage_repository.dart';
 import 'package:checkin/src/repositories/user_repository.dart';
 import 'package:flutter/foundation.dart';
+import 'package:flutter/services.dart';
 import 'package:meta/meta.dart';
 
 import 'bloc.dart';
@@ -67,15 +68,22 @@ class ProfileBloc extends Bloc<ProfileEvent, ProfileState> {
     }
 
     if (event is UpdateImageUrl) {
-      File croppedFile = await imageRepository.getCroppedImage();
-      if (croppedFile != null) {
-        String fileName = "${event.userEmail}-${DateTime.now()}.png";
-        String newImageUrl = await storageRepository.uploadImage(croppedFile, fileName);
+      try {
+        File croppedFile = await imageRepository.getCroppedImage();
+        if (croppedFile != null) {
+          String fileName = "${event.userEmail}-${DateTime.now()}.png";
+          String newImageUrl = await storageRepository.uploadImage(croppedFile, fileName);
 
-        await userRepository.updateUserImageUrl(
-          event.userEmail,
-          newImageUrl,
-        );
+          await userRepository.updateUserImageUrl(
+            event.userEmail,
+            newImageUrl,
+          );
+        }
+      } on PlatformException catch (err, st) {
+        if (err.code == "photo_access_denied") {
+          //TODO: we should ask again for permissions here https://trello.com/c/Jcgvvcwj
+          Logger.log.d("Ask for permissions");
+        }
       }
     }
   }
