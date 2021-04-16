@@ -11,6 +11,7 @@ Future<void> main() async {
     dynamicLinkDomain: 'arya.page.link',
     deepLinkUrl: 'https://checkin-test-fba3d.web.app',
     logger: DevLogger.logger,
+    // useEmulator: true,
   );
 
   mainCommon(config);
