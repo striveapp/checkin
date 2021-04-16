@@ -28,9 +28,8 @@ class _$UserEventTearOff {
   }
 
 // ignore: unused_element
-  UpdateSelectedGym updateSelectedGym({String userEmail, String newGymId}) {
+  UpdateSelectedGym updateSelectedGym({String newGymId}) {
     return UpdateSelectedGym(
-      userEmail: userEmail,
       newGymId: newGymId,
     );
   }
@@ -46,13 +45,13 @@ mixin _$UserEvent {
   TResult when<TResult extends Object>({
     @required TResult userUpdated(User user),
     @required TResult updateGrade(Grade newGrade),
-    @required TResult updateSelectedGym(String userEmail, String newGymId),
+    @required TResult updateSelectedGym(String newGymId),
   });
   @optionalTypeArgs
   TResult maybeWhen<TResult extends Object>({
     TResult userUpdated(User user),
     TResult updateGrade(Grade newGrade),
-    TResult updateSelectedGym(String userEmail, String newGymId),
+    TResult updateSelectedGym(String newGymId),
     @required TResult orElse(),
   });
   @optionalTypeArgs
@@ -87,8 +86,7 @@ class _$UserEventCopyWithImpl<$Res> implements $UserEventCopyWith<$Res> {
 
 /// @nodoc
 abstract class $UserUpdatedCopyWith<$Res> {
-  factory $UserUpdatedCopyWith(
-          UserUpdated value, $Res Function(UserUpdated) then) =
+  factory $UserUpdatedCopyWith(UserUpdated value, $Res Function(UserUpdated) then) =
       _$UserUpdatedCopyWithImpl<$Res>;
   $Res call({User user});
 
@@ -98,8 +96,7 @@ abstract class $UserUpdatedCopyWith<$Res> {
 /// @nodoc
 class _$UserUpdatedCopyWithImpl<$Res> extends _$UserEventCopyWithImpl<$Res>
     implements $UserUpdatedCopyWith<$Res> {
-  _$UserUpdatedCopyWithImpl(
-      UserUpdated _value, $Res Function(UserUpdated) _then)
+  _$UserUpdatedCopyWithImpl(UserUpdated _value, $Res Function(UserUpdated) _then)
       : super(_value, (v) => _then(v as UserUpdated));
 
   @override
@@ -154,8 +151,7 @@ class _$UserUpdated with DiagnosticableTreeMixin implements UserUpdated {
   }
 
   @override
-  int get hashCode =>
-      runtimeType.hashCode ^ const DeepCollectionEquality().hash(user);
+  int get hashCode => runtimeType.hashCode ^ const DeepCollectionEquality().hash(user);
 
   @JsonKey(ignore: true)
   @override
@@ -167,7 +163,7 @@ class _$UserUpdated with DiagnosticableTreeMixin implements UserUpdated {
   TResult when<TResult extends Object>({
     @required TResult userUpdated(User user),
     @required TResult updateGrade(Grade newGrade),
-    @required TResult updateSelectedGym(String userEmail, String newGymId),
+    @required TResult updateSelectedGym(String newGymId),
   }) {
     assert(userUpdated != null);
     assert(updateGrade != null);
@@ -180,7 +176,7 @@ class _$UserUpdated with DiagnosticableTreeMixin implements UserUpdated {
   TResult maybeWhen<TResult extends Object>({
     TResult userUpdated(User user),
     TResult updateGrade(Grade newGrade),
-    TResult updateSelectedGym(String userEmail, String newGymId),
+    TResult updateSelectedGym(String newGymId),
     @required TResult orElse(),
   }) {
     assert(orElse != null);
@@ -229,8 +225,7 @@ abstract class UserUpdated implements UserEvent {
 
 /// @nodoc
 abstract class $UpdateGradeCopyWith<$Res> {
-  factory $UpdateGradeCopyWith(
-          UpdateGrade value, $Res Function(UpdateGrade) then) =
+  factory $UpdateGradeCopyWith(UpdateGrade value, $Res Function(UpdateGrade) then) =
       _$UpdateGradeCopyWithImpl<$Res>;
   $Res call({Grade newGrade});
 }
@@ -238,8 +233,7 @@ abstract class $UpdateGradeCopyWith<$Res> {
 /// @nodoc
 class _$UpdateGradeCopyWithImpl<$Res> extends _$UserEventCopyWithImpl<$Res>
     implements $UpdateGradeCopyWith<$Res> {
-  _$UpdateGradeCopyWithImpl(
-      UpdateGrade _value, $Res Function(UpdateGrade) _then)
+  _$UpdateGradeCopyWithImpl(UpdateGrade _value, $Res Function(UpdateGrade) _then)
       : super(_value, (v) => _then(v as UpdateGrade));
 
   @override
@@ -280,13 +274,11 @@ class _$UpdateGrade with DiagnosticableTreeMixin implements UpdateGrade {
     return identical(this, other) ||
         (other is UpdateGrade &&
             (identical(other.newGrade, newGrade) ||
-                const DeepCollectionEquality()
-                    .equals(other.newGrade, newGrade)));
+                const DeepCollectionEquality().equals(other.newGrade, newGrade)));
   }
 
   @override
-  int get hashCode =>
-      runtimeType.hashCode ^ const DeepCollectionEquality().hash(newGrade);
+  int get hashCode => runtimeType.hashCode ^ const DeepCollectionEquality().hash(newGrade);
 
   @JsonKey(ignore: true)
   @override
@@ -298,7 +290,7 @@ class _$UpdateGrade with DiagnosticableTreeMixin implements UpdateGrade {
   TResult when<TResult extends Object>({
     @required TResult userUpdated(User user),
     @required TResult updateGrade(Grade newGrade),
-    @required TResult updateSelectedGym(String userEmail, String newGymId),
+    @required TResult updateSelectedGym(String newGymId),
   }) {
     assert(userUpdated != null);
     assert(updateGrade != null);
@@ -311,7 +303,7 @@ class _$UpdateGrade with DiagnosticableTreeMixin implements UpdateGrade {
   TResult maybeWhen<TResult extends Object>({
     TResult userUpdated(User user),
     TResult updateGrade(Grade newGrade),
-    TResult updateSelectedGym(String userEmail, String newGymId),
+    TResult updateSelectedGym(String newGymId),
     @required TResult orElse(),
   }) {
     assert(orElse != null);
@@ -363,15 +355,13 @@ abstract class $UpdateSelectedGymCopyWith<$Res> {
   factory $UpdateSelectedGymCopyWith(
           UpdateSelectedGym value, $Res Function(UpdateSelectedGym) then) =
       _$UpdateSelectedGymCopyWithImpl<$Res>;
-  $Res call({String userEmail, String newGymId});
+  $Res call({String newGymId});
 }
 
 /// @nodoc
-class _$UpdateSelectedGymCopyWithImpl<$Res>
-    extends _$UserEventCopyWithImpl<$Res>
+class _$UpdateSelectedGymCopyWithImpl<$Res> extends _$UserEventCopyWithImpl<$Res>
     implements $UpdateSelectedGymCopyWith<$Res> {
-  _$UpdateSelectedGymCopyWithImpl(
-      UpdateSelectedGym _value, $Res Function(UpdateSelectedGym) _then)
+  _$UpdateSelectedGymCopyWithImpl(UpdateSelectedGym _value, $Res Function(UpdateSelectedGym) _then)
       : super(_value, (v) => _then(v as UpdateSelectedGym));
 
   @override
@@ -379,30 +369,24 @@ class _$UpdateSelectedGymCopyWithImpl<$Res>
 
   @override
   $Res call({
-    Object userEmail = freezed,
     Object newGymId = freezed,
   }) {
     return _then(UpdateSelectedGym(
-      userEmail: userEmail == freezed ? _value.userEmail : userEmail as String,
       newGymId: newGymId == freezed ? _value.newGymId : newGymId as String,
     ));
   }
 }
 
 /// @nodoc
-class _$UpdateSelectedGym
-    with DiagnosticableTreeMixin
-    implements UpdateSelectedGym {
-  const _$UpdateSelectedGym({this.userEmail, this.newGymId});
+class _$UpdateSelectedGym with DiagnosticableTreeMixin implements UpdateSelectedGym {
+  const _$UpdateSelectedGym({this.newGymId});
 
-  @override
-  final String userEmail;
   @override
   final String newGymId;
 
   @override
   String toString({DiagnosticLevel minLevel = DiagnosticLevel.info}) {
-    return 'UserEvent.updateSelectedGym(userEmail: $userEmail, newGymId: $newGymId)';
+    return 'UserEvent.updateSelectedGym(newGymId: $newGymId)';
   }
 
   @override
@@ -410,7 +394,6 @@ class _$UpdateSelectedGym
     super.debugFillProperties(properties);
     properties
       ..add(DiagnosticsProperty('type', 'UserEvent.updateSelectedGym'))
-      ..add(DiagnosticsProperty('userEmail', userEmail))
       ..add(DiagnosticsProperty('newGymId', newGymId));
   }
 
@@ -418,19 +401,12 @@ class _$UpdateSelectedGym
   bool operator ==(dynamic other) {
     return identical(this, other) ||
         (other is UpdateSelectedGym &&
-            (identical(other.userEmail, userEmail) ||
-                const DeepCollectionEquality()
-                    .equals(other.userEmail, userEmail)) &&
             (identical(other.newGymId, newGymId) ||
-                const DeepCollectionEquality()
-                    .equals(other.newGymId, newGymId)));
+                const DeepCollectionEquality().equals(other.newGymId, newGymId)));
   }
 
   @override
-  int get hashCode =>
-      runtimeType.hashCode ^
-      const DeepCollectionEquality().hash(userEmail) ^
-      const DeepCollectionEquality().hash(newGymId);
+  int get hashCode => runtimeType.hashCode ^ const DeepCollectionEquality().hash(newGymId);
 
   @JsonKey(ignore: true)
   @override
@@ -442,12 +418,12 @@ class _$UpdateSelectedGym
   TResult when<TResult extends Object>({
     @required TResult userUpdated(User user),
     @required TResult updateGrade(Grade newGrade),
-    @required TResult updateSelectedGym(String userEmail, String newGymId),
+    @required TResult updateSelectedGym(String newGymId),
   }) {
     assert(userUpdated != null);
     assert(updateGrade != null);
     assert(updateSelectedGym != null);
-    return updateSelectedGym(userEmail, newGymId);
+    return updateSelectedGym(newGymId);
   }
 
   @override
@@ -455,12 +431,12 @@ class _$UpdateSelectedGym
   TResult maybeWhen<TResult extends Object>({
     TResult userUpdated(User user),
     TResult updateGrade(Grade newGrade),
-    TResult updateSelectedGym(String userEmail, String newGymId),
+    TResult updateSelectedGym(String newGymId),
     @required TResult orElse(),
   }) {
     assert(orElse != null);
     if (updateSelectedGym != null) {
-      return updateSelectedGym(userEmail, newGymId);
+      return updateSelectedGym(newGymId);
     }
     return orElse();
   }
@@ -495,10 +471,8 @@ class _$UpdateSelectedGym
 }
 
 abstract class UpdateSelectedGym implements UserEvent {
-  const factory UpdateSelectedGym({String userEmail, String newGymId}) =
-      _$UpdateSelectedGym;
+  const factory UpdateSelectedGym({String newGymId}) = _$UpdateSelectedGym;
 
-  String get userEmail;
   String get newGymId;
   @JsonKey(ignore: true)
   $UpdateSelectedGymCopyWith<UpdateSelectedGym> get copyWith;

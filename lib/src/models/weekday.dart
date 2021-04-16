@@ -10,13 +10,13 @@ enum Weekday {
 
 extension WeekdayExtension on Weekday {
   static final names = {
-    Weekday.monday: 'Monday',
-    Weekday.tuesday: 'Tuesday',
-    Weekday.wednesday: 'Wednesday',
-    Weekday.thursday: 'Thursday',
-    Weekday.friday: 'Friday',
-    Weekday.saturday: 'Saturday',
-    Weekday.sunday: 'Sunday',
+    Weekday.monday: 'monday',
+    Weekday.tuesday: 'tuesday',
+    Weekday.wednesday: 'wednesday',
+    Weekday.thursday: 'thursday',
+    Weekday.friday: 'friday',
+    Weekday.saturday: 'saturday',
+    Weekday.sunday: 'sunday',
   };
 
   String get name => names[this];
