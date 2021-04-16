@@ -40,12 +40,6 @@ class _EditLessonTimeState extends State<EditLessonTime> {
           confirmText: EditLessonTime.ok.i18n.toUpperCase(),
           helpText: EditLessonTime.selectTime.fill([widget.text]).toUpperCase(),
           cancelText: EditLessonTime.cancel.i18n.toUpperCase(),
-          builder: (BuildContext context, Widget child) {
-            return MediaQuery(
-              data: MediaQuery.of(context).copyWith(alwaysUse24HourFormat: true),
-              child: child,
-            );
-          },
         );
         if (timePicked != null) {
           var formattedTimePicked = timePicked.format(context);

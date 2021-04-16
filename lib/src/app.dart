@@ -91,6 +91,10 @@ class _AppState extends State<App> with WidgetsBindingObserver {
         RepositoryProvider.of<AnalyticsRepository>(context).getNavigationObserver(),
       ],
       theme: widget._themeData,
+      builder: (context, child) => MediaQuery(
+        data: MediaQuery.of(context).copyWith(alwaysUse24HourFormat: true),
+        child: child,
+      ),
       home: I18n(
         // NOTE: enable locale
         // initialLocale: Locale("it", "IT"),
