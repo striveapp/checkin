@@ -22,9 +22,13 @@ class StudentButtons extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     VoidCallback onPressUnregisterClass = () {
+      var attendee = registryState.currentLesson.attendees
+          .where((attendee) => attendee.email == registryState.currentUser.email)
+          .first;
+
       BlocProvider.of<RegistryBloc>(context).add(Unregister(
         gymId: registryState.currentUser.selectedGymId,
-        attendee: Attendee.fromUser(registryState.currentUser),
+        attendee: attendee,
       ));
     };
 
