@@ -760,6 +760,11 @@ extension Localization on String {
         'it': 'Stai per applicare la prossima settimana di classi come il tuo nuovo calendario',
       } +
       {
+        'en': UpdateCalendarDialog.takeEffectFrom,
+        'es': 'Este cambio va a ser efectivo a partir de %s',
+        'it': 'Questa modifica sarà effettiva a partire dal %s',
+      } +
+      {
         'en': UpdateCalendarDialog.apply,
         'es': 'Aplica',
         'it': 'Applica',
