@@ -38,6 +38,35 @@ void main() {
       setUp(() {
         when(mockNotificationRepository.requestPermission())
             .thenAnswer((realInvocation) => Future.value(null));
+
+        when(mockNotificationRepository.getInitialMessage())
+            .thenAnswer((realInvocation) => Future.value(null));
+        when(mockNotificationRepository.onMessageOpenedApp())
+            .thenAnswer((realInvocation) => Stream.empty());
+        when(mockNotificationRepository.onMessage()).thenAnswer((realInvocation) => Stream.empty());
+      });
+
+      tearDown(() {
+        verify(mockNotificationRepository.requestPermission());
+
+        verify(mockNotificationRepository.getInitialMessage());
+        verify(mockNotificationRepository.onMessageOpenedApp());
+        verify(mockNotificationRepository.onMessage());
+      });
+
+      blocTest(
+        "request permissions and setup callbacks",
+        build: () => NotificationBloc(
+          notificationRepository: mockNotificationRepository,
+          userRepository: mockUserRepository,
+        ),
+        act: (bloc) => bloc.add(InitializeNotifications()),
+        expect: () => [],
+      );
+    });
+
+    group("on UpdateToken", () {
+      setUp(() {
         when(mockNotificationRepository.getToken())
             .thenAnswer((realInvocation) => Future.value("theGoldenToken"));
         when(mockUserRepository.updateUserFcmToken("the@email.com", "theGoldenToken"))
@@ -45,18 +74,17 @@ void main() {
       });
 
       tearDown(() {
-        verify(mockNotificationRepository.requestPermission());
         verify(mockNotificationRepository.getToken());
         verify(mockUserRepository.updateUserFcmToken("the@email.com", "theGoldenToken"));
       });
 
       blocTest(
-        "should request permissions and save the device token",
+        "save the device token",
         build: () => NotificationBloc(
           notificationRepository: mockNotificationRepository,
           userRepository: mockUserRepository,
         ),
-        act: (bloc) => bloc.add(InitializeNotifications(loggedUserEmail: "the@email.com")),
+        act: (bloc) => bloc.add(UpdateToken(loggedUserEmail: "the@email.com")),
         expect: () => [],
       );
     });

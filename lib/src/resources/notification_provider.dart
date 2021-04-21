@@ -1,4 +1,5 @@
 import 'package:checkin/src/logging/logger.dart';
+import 'package:checkin/src/models/notification.dart';
 import 'package:checkin/src/repositories/notification_repository.dart';
 import 'package:firebase_messaging/firebase_messaging.dart';
 
@@ -13,7 +14,19 @@ class NotificationProvider implements NotificationRepository {
   @override
   Future<String> getToken() => _firebaseMessaging.getToken();
 
-  // Stream<void> onMessage() {
-  //   FirebaseMessaging.onMessage.map((remoteMessage) {});
-  // }
+  Future<BasicNotification> getInitialMessage() async {
+    throw UnimplementedError();
+    // var initialMessage = await _firebaseMessaging.getInitialMessage();
+  }
+
+  Stream<BasicNotification> onMessageOpenedApp() {
+    throw UnimplementedError();
+    // return FirebaseMessaging.onMessageOpenedApp.map((remoteMessage) => BasicNotification());
+  }
+
+  @override
+  Stream<BasicNotification> onMessage() {
+    // TODO: implement onMessage
+    throw UnimplementedError();
+  }
 }

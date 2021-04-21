@@ -154,7 +154,7 @@ class _AppState extends State<App> with WidgetsBindingObserver {
               Logger.log.i("User authenticated: [${state.loggedUser}]");
               context
                   .read<NotificationBloc>()
-                  .add(InitializeNotifications(loggedUserEmail: state.loggedUser.email));
+                  .add(UpdateToken(loggedUserEmail: state.loggedUser.email));
               return MultiBlocProvider(
                 providers: [
                   BlocProvider<UserBloc>(

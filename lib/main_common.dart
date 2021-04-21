@@ -6,6 +6,7 @@ import 'package:checkin/src/api/lesson_api.dart';
 import 'package:checkin/src/blocs/auth/bloc.dart';
 import 'package:checkin/src/blocs/dynamic_link/bloc.dart';
 import 'package:checkin/src/blocs/notification/notification_bloc.dart';
+import 'package:checkin/src/blocs/notification/notification_event.dart';
 import 'package:checkin/src/blocs/theme/bloc.dart';
 import 'package:checkin/src/blocs/version/bloc.dart';
 import 'package:checkin/src/logging/logger.dart';
@@ -130,7 +131,7 @@ Future<void> mainCommon(AppConfig appConfig) async {
                 create: (context) => NotificationBloc(
                       notificationRepository: context.read(),
                       userRepository: context.read(),
-                    )),
+                    )..add(InitializeNotifications())),
           ],
           child: BlocBuilder<ThemeBloc, ThemeState>(
               builder: (BuildContext context, ThemeState state) => App(

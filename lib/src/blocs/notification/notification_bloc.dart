@@ -22,6 +22,13 @@ class NotificationBloc extends Bloc<NotificationEvent, NotificationState> {
   ) async* {
     if (event is InitializeNotifications) {
       await notificationRepository.requestPermission();
+
+      await notificationRepository.getInitialMessage();
+      notificationRepository.onMessageOpenedApp();
+      notificationRepository.onMessage();
+    }
+
+    if (event is UpdateToken) {
       var fcmToken = await notificationRepository.getToken();
       await userRepository.updateUserFcmToken(event.loggedUserEmail, fcmToken);
     }
