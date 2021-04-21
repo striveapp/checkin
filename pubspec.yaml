@@ -29,7 +29,7 @@ dependencies:
   cloud_functions: ^1.0.4
   google_sign_in: ^5.0.2
   http: ^0.13.1
-  json_annotation: ^4.0.1
+  json_annotation: ^3.1.1
   cached_network_image: ^3.0.0
   image_picker: ^0.7.4
   flutter_svg: ^0.21.0+1
@@ -63,9 +63,9 @@ dev_dependencies:
   flutter_driver:
     sdk: flutter
   mockito: ^5.0.5
-  build_runner: ^1.12.2
-  freezed: ^0.14.1+2
-  json_serializable: ^4.1.1
+  build_runner: ^1.10.6
+  freezed: ^0.12.7
+  json_serializable: ^3.5.0
   integration_test: ^1.0.2+3
   bloc_test: ^8.0.0
   mocktail: ^0.1.1
