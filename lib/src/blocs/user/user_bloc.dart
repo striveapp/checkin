@@ -12,6 +12,7 @@ import 'package:meta/meta.dart';
 class UserBloc extends Bloc<UserEvent, UserState> {
   final UserRepository userRepository;
   final AuthBloc authBloc;
+
   StreamSubscription userSub;
 
   UserBloc({

@@ -1,10 +1,10 @@
-import 'package:checkin/src/resources/notification_provider.dart';
+import 'package:checkin/src/models/notification.dart';
 
-class NotificationRepository {
-  NotificationProvider _notificationProvider = NotificationProvider();
+abstract class NotificationRepository {
+  Future<void> requestPermission();
+  Future<String> getToken();
+  Future<Notification> getInitialMessage();
 
-  void config({onMessage, onResume, onLaunch}) =>
-      _notificationProvider.config(onMessage, onResume, onLaunch);
-
-  void setup({onSuccess}) => _notificationProvider.setup(onSuccess);
+  Stream<Notification> onMessageOpenedApp();
+  Stream<Notification> onMessage();
 }

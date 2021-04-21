@@ -1,27 +1,17 @@
-import 'package:equatable/equatable.dart';
+import 'package:flutter/foundation.dart';
+import 'package:freezed_annotation/freezed_annotation.dart';
 
-class BasicNotification extends Equatable {
-  final String title;
-  final String body;
+part 'notification.freezed.dart';
 
-  BasicNotification(this.title, this.body);
+@freezed
+abstract class Notification with _$Notification {
+  factory Notification.basicNotification({
+    @required final String title,
+    @required final String body,
+  }) = BasicNotification;
 
-  @override
-  List<Object> get props => [title, body];
-
-  @override
-  String toString() => 'BasicNotification{title: $title, body: $body}';
-}
-
-class NavigationNotification extends Equatable {
-  final String type;
-  final String path;
-
-  NavigationNotification(this.type, this.path);
-
-  @override
-  List<Object> get props => [type, path];
-
-  @override
-  String toString() => 'ActionNotification{type: $type, path: $path}';
+  factory Notification.routableNotification({
+    @required final String title,
+    @required final String path,
+  }) = RoutableNotification;
 }

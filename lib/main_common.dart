@@ -5,6 +5,8 @@ import 'package:checkin/app_config.dart';
 import 'package:checkin/src/api/lesson_api.dart';
 import 'package:checkin/src/blocs/auth/bloc.dart';
 import 'package:checkin/src/blocs/dynamic_link/bloc.dart';
+import 'package:checkin/src/blocs/notification/notification_bloc.dart';
+import 'package:checkin/src/blocs/notification/notification_event.dart';
 import 'package:checkin/src/blocs/theme/bloc.dart';
 import 'package:checkin/src/blocs/version/bloc.dart';
 import 'package:checkin/src/logging/logger.dart';
@@ -20,6 +22,7 @@ import 'package:checkin/src/repositories/lesson_repository.dart';
 import 'package:checkin/src/repositories/lesson_template_repository.dart';
 import 'package:checkin/src/repositories/local_storage_repository.dart';
 import 'package:checkin/src/repositories/membership_repository.dart';
+import 'package:checkin/src/repositories/notification_repository.dart';
 import 'package:checkin/src/repositories/stats_repository.dart';
 import 'package:checkin/src/repositories/storage_repository.dart';
 import 'package:checkin/src/repositories/user_repository.dart';
@@ -35,6 +38,7 @@ import 'package:checkin/src/resources/lesson_instances_provider.dart';
 import 'package:checkin/src/resources/lesson_template_provider.dart';
 import 'package:checkin/src/resources/local_storage_provider.dart';
 import 'package:checkin/src/resources/membership_provider.dart';
+import 'package:checkin/src/resources/notification_provider.dart';
 import 'package:checkin/src/resources/stats_provider.dart';
 import 'package:checkin/src/resources/storage_provider.dart';
 import 'package:checkin/src/resources/user_provider.dart';
@@ -120,8 +124,14 @@ Future<void> mainCommon(AppConfig appConfig) async {
             ),
             BlocProvider<VersionBloc>(
                 create: (context) => VersionBloc(
-                    versionRepository: context.read<VersionRepository>(),
-                    versionUtil: VersionUtil())),
+                      versionRepository: context.read<VersionRepository>(),
+                      versionUtil: VersionUtil(),
+                    )),
+            BlocProvider<NotificationBloc>(
+                create: (context) => NotificationBloc(
+                      notificationRepository: context.read(),
+                      userRepository: context.read(),
+                    )..add(InitializeNotifications())),
           ],
           child: BlocBuilder<ThemeBloc, ThemeState>(
               builder: (BuildContext context, ThemeState state) => App(
@@ -188,6 +198,9 @@ List<RepositoryProviderSingleChildWidget> _repositories(
       ),
       RepositoryProvider<DateUtil>(
         create: (context) => DateUtil(),
+      ),
+      RepositoryProvider<NotificationRepository>(
+        create: (context) => NotificationProvider(),
       ),
     ];
 

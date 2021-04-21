@@ -18,7 +18,7 @@ class HttpClient {
 
   Future<dynamic> post({endpoint: String, dynamic body}) async {
     String baseUrl = isInDebugMode ? TEST_CLOUD_FUNCTIONS_DOMAIN : CLOUD_FUNCTIONS_DOMAIN;
-    String functionUrl = "$baseUrl/$endpoint";
+    Uri functionUrl = Uri.parse("$baseUrl/$endpoint");
     String token = await _authRepository.getIdToken();
 
     Map<String, String> headers = {HttpHeaders.authorizationHeader: "Bearer $token"};

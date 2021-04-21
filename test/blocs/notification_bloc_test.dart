@@ -1,137 +1,155 @@
+import 'package:bloc_test/bloc_test.dart';
+import 'package:checkin/src/blocs/notification/notification_bloc.dart';
+import 'package:checkin/src/blocs/notification/notification_event.dart';
+import 'package:checkin/src/blocs/notification/notification_state.dart';
+import 'package:checkin/src/models/notification.dart';
+import 'package:checkin/src/repositories/notification_repository.dart';
+import 'package:checkin/src/repositories/user_repository.dart';
 import 'package:flutter_test/flutter_test.dart';
+import 'package:mockito/mockito.dart';
 
-// class MockUserBloc extends Mock implements UserBloc {}
-//
-// class MockFirebaseMessaging extends Mock implements FirebaseMessaging {}
-//
-// class MockPlatform extends Mock implements LocalPlatform {}
-//
-// class MockIosNotificationSettings extends Mock
-//     implements IosNotificationSettings {}
+import 'helper/mock_helper.dart';
+
+class MockNotificationRepository extends Mock implements NotificationRepository {}
+
+class MockUserRepository extends Mock implements UserRepository {}
 
 void main() {
-  group("NotificationsBloc", () {
-//    NotificationsBloc notificatonsBloc;
-//    MockUserBloc mockUserBloc;
-//    MockFirebaseMessaging mockFirebaseMessaging;
-//    MockPlatform mockPlatform;
-//
-//    String fakeToken = "some token";
-//
-//    setUp(() {
-//      mockUserBloc = MockUserBloc();
-//      mockFirebaseMessaging = MockFirebaseMessaging();
-//      mockPlatform = MockPlatform();
-//
-//      when(mockFirebaseMessaging.configure);
-//      notificatonsBloc = NotificationsBloc(
-//          notificationProvider: mockFirebaseMessaging,
-//          userBloc: mockUserBloc,
-//          platform: mockPlatform);
-//    });
-//
-//    test("initial state is NotificationUninitialized", () {
-//      expect(notificatonsBloc.state, NotificationsUninitialized());
-//    });
-//
-//    group("when Setup is dispatched", () {
-//      group("when IOS", () {
-//        MockIosNotificationSettings mockIosNotificationSettings;
-//
-//        setUp(() {
-//          mockIosNotificationSettings = MockIosNotificationSettings();
-//
-//          when(mockPlatform.isIOS).thenReturn(true);
-//          when(mockFirebaseMessaging.getToken()).thenAnswer((_) {
-//            return Future<String>.value(fakeToken);
-//          });
-//          when(mockFirebaseMessaging.onIosSettingsRegistered).thenAnswer((_) {
-//            return Stream<IosNotificationSettings>.value(
-//                mockIosNotificationSettings);
-//          });
-//        });
-//
-//        test(
-//            "should setup a IOS settings listener,"
-//                "request for permission"
-//                "get the token and update the user", () async {
-//          final expectedState = [
-//            NotificationsUninitialized(),
-//            NotificationsInitialized()
-//          ];
-//
-//          notificatonsBloc.dispatch(Setup());
-//
-//          await expectLater(
-//            notificatonsBloc.state,
-//            emitsInOrder(expectedState),
-//          );
-//
-//          verify(mockUserBloc.dispatch(UpdateFcmToken(newToken: fakeToken)));
-//          verify(mockFirebaseMessaging.requestNotificationPermissions(any));
-//        });
-//      });
-//      group("when Android", () {
-//        setUp(() {
-//          when(mockPlatform.isIOS).thenReturn(false);
-//          when(mockFirebaseMessaging.getToken()).thenAnswer((_) {
-//            return Future<String>.value(fakeToken);
-//          });
-//        });
-//
-//        test("should get the token and update the user", () async {
-//          final expectedState = [
-//            NotificationsUninitialized(),
-//            NotificationsInitialized()
-//          ];
-//
-//          notificatonsBloc.dispatch(Setup());
-//
-//          await expectLater(
-//            notificatonsBloc.state,
-//            emitsInOrder(expectedState),
-//          );
-//          verify(mockUserBloc.dispatch(UpdateFcmToken(newToken: fakeToken)));
-//        });
-//      });
-//    });
-//
-//    group("when ShowDialog is dispatched", () {
-//      test("the next state will be NotificationLoaded", () async {
-//        BasicNotification fakeNotification = BasicNotification(
-//            "Lord is a title", "Thi is a sexy body");
-//        final expectedState = [
-//          NotificationsUninitialized(),
-//          BasicNotificationsLoaded(notification: fakeNotification)
-//        ];
-//
-//        notificatonsBloc.dispatch(ShowDialog(notification: fakeNotification));
-//
-//        await expectLater(
-//          notificatonsBloc.state,
-//          emitsInOrder(expectedState),
-//        );
-//      });
-//    });
-//
-//    group("when GoToLesson is dispatched", () {
-//      test("the next state will be MasterNotificationsLoaded", () async {
-//        String fakeLessonId = "a lesson id";
-//        final expectedState = [
-//          NotificationsUninitialized(),
-//          ActionNotificationsLoaded(lessonId: fakeLessonId)
-//        ];
-//
-//        notificatonsBloc.dispatch(GoToLesson(lessonId: fakeLessonId));
-//
-//        await expectLater(
-//            notificatonsBloc.state,
-//            emitsInOrder(expectedState),
-//        );
-//      });
-//    });
+  group("NotificationBloc", () {
+    MockNotificationRepository mockNotificationRepository;
+    MockUserRepository mockUserRepository;
 
-    //TODO all the logic inside the callbacks method is not tested at the moment
-    // we should refactor the code a bit in order to make it testable
+    setUp(() {
+      mockNotificationRepository = MockNotificationRepository();
+      mockUserRepository = MockUserRepository();
+
+      configureThrowOnMissingStub([
+        mockNotificationRepository,
+        mockUserRepository,
+      ]);
+    });
+
+    tearDown(() {
+      logAndVerifyNoMoreInteractions([
+        mockNotificationRepository,
+        mockUserRepository,
+      ]);
+    });
+
+    group("on InitializeNotifications event", () {
+      group("when initialMessage is empty", () {
+        setUp(() {
+          when(mockNotificationRepository.requestPermission())
+              .thenAnswer((realInvocation) => Future.value(null));
+
+          when(mockNotificationRepository.getInitialMessage())
+              .thenAnswer((realInvocation) => Future.value(null));
+          when(mockNotificationRepository.onMessageOpenedApp())
+              .thenAnswer((realInvocation) => Stream.empty());
+          when(mockNotificationRepository.onMessage())
+              .thenAnswer((realInvocation) => Stream.empty());
+        });
+
+        tearDown(() {
+          verify(mockNotificationRepository.requestPermission());
+
+          verify(mockNotificationRepository.getInitialMessage());
+          verify(mockNotificationRepository.onMessageOpenedApp());
+          verify(mockNotificationRepository.onMessage());
+        });
+
+        blocTest(
+          "request permissions and setup callbacks",
+          build: () => NotificationBloc(
+            notificationRepository: mockNotificationRepository,
+            userRepository: mockUserRepository,
+          ),
+          act: (bloc) => bloc.add(InitializeNotifications()),
+          expect: () => [],
+        );
+      });
+
+      group("when initialMessage is NOT empty", () {
+        setUp(() {
+          when(mockNotificationRepository.requestPermission())
+              .thenAnswer((realInvocation) => Future.value(null));
+
+          when(mockNotificationRepository.getInitialMessage()).thenAnswer((realInvocation) =>
+              Future.value(RoutableNotification(title: "title", path: "/navigate/here")));
+          when(mockNotificationRepository.onMessageOpenedApp())
+              .thenAnswer((realInvocation) => Stream.empty());
+          when(mockNotificationRepository.onMessage())
+              .thenAnswer((realInvocation) => Stream.empty());
+        });
+
+        tearDown(() {
+          verify(mockNotificationRepository.requestPermission());
+
+          verify(mockNotificationRepository.getInitialMessage());
+          verify(mockNotificationRepository.onMessageOpenedApp());
+          verify(mockNotificationRepository.onMessage());
+        });
+
+        blocTest(
+          "route to the notification path",
+          build: () => NotificationBloc(
+            notificationRepository: mockNotificationRepository,
+            userRepository: mockUserRepository,
+          ),
+          act: (bloc) => bloc.add(InitializeNotifications()),
+          expect: () => [NotificationToNavigate(path: "/navigate/here")],
+        );
+      });
+    });
+
+    group("on UpdateToken", () {
+      setUp(() {
+        when(mockNotificationRepository.getToken())
+            .thenAnswer((realInvocation) => Future.value("theGoldenToken"));
+        when(mockUserRepository.updateUserFcmToken("the@email.com", "theGoldenToken"))
+            .thenAnswer((realInvocation) => Future.value(null));
+      });
+
+      tearDown(() {
+        verify(mockNotificationRepository.getToken());
+        verify(mockUserRepository.updateUserFcmToken("the@email.com", "theGoldenToken"));
+      });
+
+      blocTest(
+        "save the device token",
+        build: () => NotificationBloc(
+          notificationRepository: mockNotificationRepository,
+          userRepository: mockUserRepository,
+        ),
+        act: (bloc) => bloc.add(UpdateToken(loggedUserEmail: "the@email.com")),
+        expect: () => [],
+      );
+    });
+
+    group("on MessageOpenedApp", () {
+      blocTest(
+        "route to the notification path",
+        build: () => NotificationBloc(
+          notificationRepository: mockNotificationRepository,
+          userRepository: mockUserRepository,
+        ),
+        act: (bloc) => bloc.add(
+            MessageOpenedApp(notification: RoutableNotification(title: "title", path: "/foo/bar"))),
+        expect: () => [NotificationToNavigate(path: "/foo/bar")],
+      );
+    });
+
+    group("on Message", () {
+      blocTest(
+        "dispaly the notification body",
+        build: () => NotificationBloc(
+          notificationRepository: mockNotificationRepository,
+          userRepository: mockUserRepository,
+        ),
+        act: (bloc) => bloc
+            .add(MessageOpenedApp(notification: BasicNotification(title: "title", body: "body"))),
+        expect: () => [ShowSnackBar(title: "title", body: "body")],
+      );
+    });
   });
 }

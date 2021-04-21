@@ -1,5 +1,8 @@
 import 'package:checkin/src/blocs/auth/bloc.dart';
 import 'package:checkin/src/blocs/dynamic_link/bloc.dart';
+import 'package:checkin/src/blocs/notification/notification_bloc.dart';
+import 'package:checkin/src/blocs/notification/notification_event.dart';
+import 'package:checkin/src/blocs/notification/notification_state.dart';
 import 'package:checkin/src/blocs/theme/bloc.dart';
 import 'package:checkin/src/localization/localization.dart';
 import 'package:checkin/src/logging/logger.dart';
@@ -8,6 +11,7 @@ import 'package:checkin/src/repositories/gym_repository.dart';
 import 'package:checkin/src/repositories/user_repository.dart';
 import 'package:checkin/src/routes/application.dart';
 import 'package:checkin/src/themes/theme.dart';
+import 'package:checkin/src/ui/components/notification_snack_bar_content.dart';
 import 'package:checkin/src/ui/components/upgrader_dialog.dart';
 import 'package:checkin/src/ui/pages/home_page.dart';
 import 'package:checkin/src/ui/pages/login_page.dart';
@@ -142,11 +146,35 @@ class _AppState extends State<App> with WidgetsBindingObserver {
                 UpgraderDialog.show(context);
               }
             }),
+            BlocListener<NotificationBloc, NotificationState>(
+                listener: (BuildContext context, NotificationState state) {
+              if (state is NotificationToNavigate) {
+                Logger.log.i("Notification opened! Path to navigate [${state.path}]");
+                Navigator.of(context).popUntil(ModalRoute.withName(Navigator.defaultRouteName));
+                Navigator.of(context).pushNamed(state.path);
+              }
+
+              if (state is ShowSnackBar) {
+                ScaffoldMessenger.of(context)
+                  ..hideCurrentSnackBar()
+                  ..showSnackBar(SnackBar(
+                    content: NotificationSnackBarContent(
+                      title: state.title.i18n,
+                      body: state.body.i18n,
+                    ),
+                    backgroundColor: Theme.of(context).backgroundColor.withAlpha(200),
+                    duration: Duration(milliseconds: 2500),
+                  ));
+              }
+            }),
           ],
           child: BlocBuilder<AuthBloc, AuthState>(builder: (BuildContext context, AuthState state) {
             Logger.log.i("Auth state change detected [$state]");
             if (state is AuthAuthenticated) {
               Logger.log.i("User authenticated: [${state.loggedUser}]");
+              context
+                  .read<NotificationBloc>()
+                  .add(UpdateToken(loggedUserEmail: state.loggedUser.email));
               return MultiBlocProvider(
                 providers: [
                   BlocProvider<UserBloc>(

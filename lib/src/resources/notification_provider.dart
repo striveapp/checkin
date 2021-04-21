@@ -1,32 +1,48 @@
-import 'dart:async';
-
+import 'package:checkin/src/logging/logger.dart';
+import 'package:checkin/src/models/notification.dart';
+import 'package:checkin/src/repositories/notification_repository.dart';
 import 'package:firebase_messaging/firebase_messaging.dart';
-import 'package:platform/platform.dart';
 
-class NotificationProvider {
-  FirebaseMessaging _firebaseMessaging = FirebaseMessaging();
-  LocalPlatform platform = LocalPlatform();
-  // ignore: cancel_subscriptions
-  StreamSubscription iosSubscription;
+class NotificationProvider implements NotificationRepository {
+  FirebaseMessaging _firebaseMessaging = FirebaseMessaging.instance;
 
-  void config(MessageHandler onMessage, MessageHandler onResume, MessageHandler onLaunch) =>
-      _firebaseMessaging.configure(
-        onMessage: onMessage,
-        onResume: onResume,
-        onLaunch: onLaunch,
-      );
+  Future<void> requestPermission() async {
+    var notificationSettings = await _firebaseMessaging.requestPermission();
+    Logger.log.i("Permission requested. Status: ${notificationSettings.authorizationStatus}");
+  }
 
-  void setup(Function(String) onSuccess) async {
-    if (platform.isIOS) {
-      iosSubscription = _firebaseMessaging.onIosSettingsRegistered.listen((data) async {
-        var token = await _firebaseMessaging.getToken();
-        onSuccess(token);
+  @override
+  Future<String> getToken() => _firebaseMessaging.getToken();
+
+  Future<Notification> getInitialMessage() async =>
+      _firebaseMessaging.getInitialMessage().then((remoteMessage) {
+        if (remoteMessage != null) {
+          Logger.log.d("$remoteMessage");
+          return _toRoutableNotification(remoteMessage);
+        }
+        return null;
       });
 
-      _firebaseMessaging.requestNotificationPermissions(IosNotificationSettings());
-    } else {
-      var token = await _firebaseMessaging.getToken();
-      onSuccess(token);
-    }
+  Stream<Notification> onMessageOpenedApp() =>
+      FirebaseMessaging.onMessageOpenedApp.map(_toRoutableNotification);
+
+  @override
+  Stream<Notification> onMessage() => FirebaseMessaging.onMessage.map(_toBasicNotification);
+
+  Notification _toBasicNotification(RemoteMessage remoteMessage) {
+    Logger.log.d("${remoteMessage.notification.titleLocKey}");
+    Logger.log.d("${remoteMessage.notification.title}");
+    Logger.log.d("${remoteMessage.notification.bodyLocKey}");
+    Logger.log.d("${remoteMessage.notification.body}");
+    return Notification.basicNotification(
+      title: remoteMessage.notification.titleLocKey ?? remoteMessage.notification.title,
+      body: remoteMessage.notification.bodyLocKey ?? remoteMessage.notification.body,
+    );
   }
+
+  Notification _toRoutableNotification(RemoteMessage remoteMessage) =>
+      Notification.routableNotification(
+        title: remoteMessage.notification.titleLocKey ?? remoteMessage.notification.title,
+        path: remoteMessage.data["path"],
+      );
 }
