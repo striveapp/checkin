@@ -1,5 +1,8 @@
 import 'package:checkin/src/blocs/auth/bloc.dart';
 import 'package:checkin/src/blocs/dynamic_link/bloc.dart';
+import 'package:checkin/src/blocs/notification/notification_bloc.dart';
+import 'package:checkin/src/blocs/notification/notification_event.dart';
+import 'package:checkin/src/blocs/notification/notification_state.dart';
 import 'package:checkin/src/blocs/theme/bloc.dart';
 import 'package:checkin/src/localization/localization.dart';
 import 'package:checkin/src/logging/logger.dart';
@@ -142,11 +145,16 @@ class _AppState extends State<App> with WidgetsBindingObserver {
                 UpgraderDialog.show(context);
               }
             }),
+            BlocListener<NotificationBloc, NotificationState>(
+                listener: (BuildContext context, NotificationState state) {}),
           ],
           child: BlocBuilder<AuthBloc, AuthState>(builder: (BuildContext context, AuthState state) {
             Logger.log.i("Auth state change detected [$state]");
             if (state is AuthAuthenticated) {
               Logger.log.i("User authenticated: [${state.loggedUser}]");
+              context
+                  .read<NotificationBloc>()
+                  .add(InitializeNotifications(loggedUserEmail: state.loggedUser.email));
               return MultiBlocProvider(
                 providers: [
                   BlocProvider<UserBloc>(

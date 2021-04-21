@@ -6,6 +6,6 @@ part 'notification_event.freezed.dart';
 
 @freezed
 abstract class NotificationEvent with _$NotificationEvent {
-  const factory NotificationEvent.initializeNotifications() = InitializeNotifications;
+  const factory NotificationEvent.initializeNotifications({String loggedUserEmail}) =
+      InitializeNotifications;
 }
-
