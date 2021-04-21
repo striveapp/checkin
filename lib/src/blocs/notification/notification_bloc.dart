@@ -3,6 +3,7 @@ import 'dart:async';
 import 'package:bloc/bloc.dart';
 import 'package:checkin/src/blocs/notification/notification_event.dart';
 import 'package:checkin/src/blocs/notification/notification_state.dart';
+import 'package:checkin/src/models/notification.dart';
 import 'package:checkin/src/repositories/notification_repository.dart';
 import 'package:checkin/src/repositories/user_repository.dart';
 import 'package:meta/meta.dart';
@@ -23,8 +24,15 @@ class NotificationBloc extends Bloc<NotificationEvent, NotificationState> {
     if (event is InitializeNotifications) {
       await notificationRepository.requestPermission();
 
-      await notificationRepository.getInitialMessage();
-      notificationRepository.onMessageOpenedApp();
+      var notification = await notificationRepository.getInitialMessage();
+
+      if (notification != null) {
+        yield _mapNotificationState(notification);
+      }
+
+      notificationRepository.onMessageOpenedApp().listen((notification) {
+        add(MessageOpenedApp(notification: notification));
+      });
       notificationRepository.onMessage();
     }
 
@@ -32,5 +40,22 @@ class NotificationBloc extends Bloc<NotificationEvent, NotificationState> {
       var fcmToken = await notificationRepository.getToken();
       await userRepository.updateUserFcmToken(event.loggedUserEmail, fcmToken);
     }
+
+    if (event is MessageOpenedApp) {
+      yield _mapNotificationState(event.notification);
+    }
+
+    if (event is Message) {
+      yield _mapNotificationState(event.notification);
+    }
   }
+
+  NotificationState _mapNotificationState(Notification notification) => notification.map(
+      basicNotification: (BasicNotification notification) => ShowSnackBar(
+            title: notification.title,
+            body: notification.body,
+          ),
+      routableNotification: (RoutableNotification notification) => NotificationToNavigate(
+            path: notification.path,
+          ));
 }

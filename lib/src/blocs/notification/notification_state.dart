@@ -7,4 +7,11 @@ part 'notification_state.freezed.dart';
 @freezed
 abstract class NotificationState with _$NotificationState {
   const factory NotificationState.notificationInitial() = NotificationInitial;
+  const factory NotificationState.notificationToNavigate({@required String path}) =
+      NotificationToNavigate;
+
+  const factory NotificationState.showSnackBar({
+    @required String title,
+    @required String body,
+  }) = ShowSnackBar;
 }

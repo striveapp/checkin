@@ -14,19 +14,24 @@ class NotificationProvider implements NotificationRepository {
   @override
   Future<String> getToken() => _firebaseMessaging.getToken();
 
-  Future<BasicNotification> getInitialMessage() async {
-    throw UnimplementedError();
-    // var initialMessage = await _firebaseMessaging.getInitialMessage();
-  }
+  Future<Notification> getInitialMessage() async => _firebaseMessaging
+      .getInitialMessage()
+      .then((remoteMessage) => _toRoutableNotification(remoteMessage));
 
-  Stream<BasicNotification> onMessageOpenedApp() {
-    throw UnimplementedError();
-    // return FirebaseMessaging.onMessageOpenedApp.map((remoteMessage) => BasicNotification());
-  }
+  Stream<Notification> onMessageOpenedApp() =>
+      FirebaseMessaging.onMessageOpenedApp.map(_toRoutableNotification);
 
   @override
-  Stream<BasicNotification> onMessage() {
-    // TODO: implement onMessage
-    throw UnimplementedError();
-  }
+  Stream<Notification> onMessage() => FirebaseMessaging.onMessage.map(_toBasicNotification);
+
+  Notification _toBasicNotification(RemoteMessage remoteMessage) => Notification.basicNotification(
+        title: remoteMessage.data["title"],
+        body: remoteMessage.data["body"],
+      );
+
+  Notification _toRoutableNotification(RemoteMessage remoteMessage) =>
+      Notification.routableNotification(
+        title: remoteMessage.data["title"],
+        path: remoteMessage.data["path"],
+      );
 }

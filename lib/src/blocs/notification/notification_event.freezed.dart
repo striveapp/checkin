@@ -24,6 +24,20 @@ class _$NotificationEventTearOff {
       loggedUserEmail: loggedUserEmail,
     );
   }
+
+// ignore: unused_element
+  MessageOpenedApp messageOpenedApp({Notification notification}) {
+    return MessageOpenedApp(
+      notification: notification,
+    );
+  }
+
+// ignore: unused_element
+  Message message({Notification notification}) {
+    return Message(
+      notification: notification,
+    );
+  }
 }
 
 /// @nodoc
@@ -36,22 +50,30 @@ mixin _$NotificationEvent {
   TResult when<TResult extends Object>({
     @required TResult initializeNotifications(),
     @required TResult updateToken(String loggedUserEmail),
+    @required TResult messageOpenedApp(Notification notification),
+    @required TResult message(Notification notification),
   });
   @optionalTypeArgs
   TResult maybeWhen<TResult extends Object>({
     TResult initializeNotifications(),
     TResult updateToken(String loggedUserEmail),
+    TResult messageOpenedApp(Notification notification),
+    TResult message(Notification notification),
     @required TResult orElse(),
   });
   @optionalTypeArgs
   TResult map<TResult extends Object>({
     @required TResult initializeNotifications(InitializeNotifications value),
     @required TResult updateToken(UpdateToken value),
+    @required TResult messageOpenedApp(MessageOpenedApp value),
+    @required TResult message(Message value),
   });
   @optionalTypeArgs
   TResult maybeMap<TResult extends Object>({
     TResult initializeNotifications(InitializeNotifications value),
     TResult updateToken(UpdateToken value),
+    TResult messageOpenedApp(MessageOpenedApp value),
+    TResult message(Message value),
     @required TResult orElse(),
   });
 }
@@ -118,9 +140,13 @@ class _$InitializeNotifications with DiagnosticableTreeMixin implements Initiali
   TResult when<TResult extends Object>({
     @required TResult initializeNotifications(),
     @required TResult updateToken(String loggedUserEmail),
+    @required TResult messageOpenedApp(Notification notification),
+    @required TResult message(Notification notification),
   }) {
     assert(initializeNotifications != null);
     assert(updateToken != null);
+    assert(messageOpenedApp != null);
+    assert(message != null);
     return initializeNotifications();
   }
 
@@ -129,6 +155,8 @@ class _$InitializeNotifications with DiagnosticableTreeMixin implements Initiali
   TResult maybeWhen<TResult extends Object>({
     TResult initializeNotifications(),
     TResult updateToken(String loggedUserEmail),
+    TResult messageOpenedApp(Notification notification),
+    TResult message(Notification notification),
     @required TResult orElse(),
   }) {
     assert(orElse != null);
@@ -143,9 +171,13 @@ class _$InitializeNotifications with DiagnosticableTreeMixin implements Initiali
   TResult map<TResult extends Object>({
     @required TResult initializeNotifications(InitializeNotifications value),
     @required TResult updateToken(UpdateToken value),
+    @required TResult messageOpenedApp(MessageOpenedApp value),
+    @required TResult message(Message value),
   }) {
     assert(initializeNotifications != null);
     assert(updateToken != null);
+    assert(messageOpenedApp != null);
+    assert(message != null);
     return initializeNotifications(this);
   }
 
@@ -154,6 +186,8 @@ class _$InitializeNotifications with DiagnosticableTreeMixin implements Initiali
   TResult maybeMap<TResult extends Object>({
     TResult initializeNotifications(InitializeNotifications value),
     TResult updateToken(UpdateToken value),
+    TResult messageOpenedApp(MessageOpenedApp value),
+    TResult message(Message value),
     @required TResult orElse(),
   }) {
     assert(orElse != null);
@@ -236,9 +270,13 @@ class _$UpdateToken with DiagnosticableTreeMixin implements UpdateToken {
   TResult when<TResult extends Object>({
     @required TResult initializeNotifications(),
     @required TResult updateToken(String loggedUserEmail),
+    @required TResult messageOpenedApp(Notification notification),
+    @required TResult message(Notification notification),
   }) {
     assert(initializeNotifications != null);
     assert(updateToken != null);
+    assert(messageOpenedApp != null);
+    assert(message != null);
     return updateToken(loggedUserEmail);
   }
 
@@ -247,6 +285,8 @@ class _$UpdateToken with DiagnosticableTreeMixin implements UpdateToken {
   TResult maybeWhen<TResult extends Object>({
     TResult initializeNotifications(),
     TResult updateToken(String loggedUserEmail),
+    TResult messageOpenedApp(Notification notification),
+    TResult message(Notification notification),
     @required TResult orElse(),
   }) {
     assert(orElse != null);
@@ -261,9 +301,13 @@ class _$UpdateToken with DiagnosticableTreeMixin implements UpdateToken {
   TResult map<TResult extends Object>({
     @required TResult initializeNotifications(InitializeNotifications value),
     @required TResult updateToken(UpdateToken value),
+    @required TResult messageOpenedApp(MessageOpenedApp value),
+    @required TResult message(Message value),
   }) {
     assert(initializeNotifications != null);
     assert(updateToken != null);
+    assert(messageOpenedApp != null);
+    assert(message != null);
     return updateToken(this);
   }
 
@@ -272,6 +316,8 @@ class _$UpdateToken with DiagnosticableTreeMixin implements UpdateToken {
   TResult maybeMap<TResult extends Object>({
     TResult initializeNotifications(InitializeNotifications value),
     TResult updateToken(UpdateToken value),
+    TResult messageOpenedApp(MessageOpenedApp value),
+    TResult message(Message value),
     @required TResult orElse(),
   }) {
     assert(orElse != null);
@@ -288,4 +334,293 @@ abstract class UpdateToken implements NotificationEvent {
   String get loggedUserEmail;
   @JsonKey(ignore: true)
   $UpdateTokenCopyWith<UpdateToken> get copyWith;
+}
+
+/// @nodoc
+abstract class $MessageOpenedAppCopyWith<$Res> {
+  factory $MessageOpenedAppCopyWith(MessageOpenedApp value, $Res Function(MessageOpenedApp) then) =
+      _$MessageOpenedAppCopyWithImpl<$Res>;
+  $Res call({Notification notification});
+
+  $NotificationCopyWith<$Res> get notification;
+}
+
+/// @nodoc
+class _$MessageOpenedAppCopyWithImpl<$Res> extends _$NotificationEventCopyWithImpl<$Res>
+    implements $MessageOpenedAppCopyWith<$Res> {
+  _$MessageOpenedAppCopyWithImpl(MessageOpenedApp _value, $Res Function(MessageOpenedApp) _then)
+      : super(_value, (v) => _then(v as MessageOpenedApp));
+
+  @override
+  MessageOpenedApp get _value => super._value as MessageOpenedApp;
+
+  @override
+  $Res call({
+    Object notification = freezed,
+  }) {
+    return _then(MessageOpenedApp(
+      notification: notification == freezed ? _value.notification : notification as Notification,
+    ));
+  }
+
+  @override
+  $NotificationCopyWith<$Res> get notification {
+    if (_value.notification == null) {
+      return null;
+    }
+    return $NotificationCopyWith<$Res>(_value.notification, (value) {
+      return _then(_value.copyWith(notification: value));
+    });
+  }
+}
+
+/// @nodoc
+class _$MessageOpenedApp with DiagnosticableTreeMixin implements MessageOpenedApp {
+  const _$MessageOpenedApp({this.notification});
+
+  @override
+  final Notification notification;
+
+  @override
+  String toString({DiagnosticLevel minLevel = DiagnosticLevel.info}) {
+    return 'NotificationEvent.messageOpenedApp(notification: $notification)';
+  }
+
+  @override
+  void debugFillProperties(DiagnosticPropertiesBuilder properties) {
+    super.debugFillProperties(properties);
+    properties
+      ..add(DiagnosticsProperty('type', 'NotificationEvent.messageOpenedApp'))
+      ..add(DiagnosticsProperty('notification', notification));
+  }
+
+  @override
+  bool operator ==(dynamic other) {
+    return identical(this, other) ||
+        (other is MessageOpenedApp &&
+            (identical(other.notification, notification) ||
+                const DeepCollectionEquality().equals(other.notification, notification)));
+  }
+
+  @override
+  int get hashCode => runtimeType.hashCode ^ const DeepCollectionEquality().hash(notification);
+
+  @JsonKey(ignore: true)
+  @override
+  $MessageOpenedAppCopyWith<MessageOpenedApp> get copyWith =>
+      _$MessageOpenedAppCopyWithImpl<MessageOpenedApp>(this, _$identity);
+
+  @override
+  @optionalTypeArgs
+  TResult when<TResult extends Object>({
+    @required TResult initializeNotifications(),
+    @required TResult updateToken(String loggedUserEmail),
+    @required TResult messageOpenedApp(Notification notification),
+    @required TResult message(Notification notification),
+  }) {
+    assert(initializeNotifications != null);
+    assert(updateToken != null);
+    assert(messageOpenedApp != null);
+    assert(message != null);
+    return messageOpenedApp(notification);
+  }
+
+  @override
+  @optionalTypeArgs
+  TResult maybeWhen<TResult extends Object>({
+    TResult initializeNotifications(),
+    TResult updateToken(String loggedUserEmail),
+    TResult messageOpenedApp(Notification notification),
+    TResult message(Notification notification),
+    @required TResult orElse(),
+  }) {
+    assert(orElse != null);
+    if (messageOpenedApp != null) {
+      return messageOpenedApp(notification);
+    }
+    return orElse();
+  }
+
+  @override
+  @optionalTypeArgs
+  TResult map<TResult extends Object>({
+    @required TResult initializeNotifications(InitializeNotifications value),
+    @required TResult updateToken(UpdateToken value),
+    @required TResult messageOpenedApp(MessageOpenedApp value),
+    @required TResult message(Message value),
+  }) {
+    assert(initializeNotifications != null);
+    assert(updateToken != null);
+    assert(messageOpenedApp != null);
+    assert(message != null);
+    return messageOpenedApp(this);
+  }
+
+  @override
+  @optionalTypeArgs
+  TResult maybeMap<TResult extends Object>({
+    TResult initializeNotifications(InitializeNotifications value),
+    TResult updateToken(UpdateToken value),
+    TResult messageOpenedApp(MessageOpenedApp value),
+    TResult message(Message value),
+    @required TResult orElse(),
+  }) {
+    assert(orElse != null);
+    if (messageOpenedApp != null) {
+      return messageOpenedApp(this);
+    }
+    return orElse();
+  }
+}
+
+abstract class MessageOpenedApp implements NotificationEvent {
+  const factory MessageOpenedApp({Notification notification}) = _$MessageOpenedApp;
+
+  Notification get notification;
+  @JsonKey(ignore: true)
+  $MessageOpenedAppCopyWith<MessageOpenedApp> get copyWith;
+}
+
+/// @nodoc
+abstract class $MessageCopyWith<$Res> {
+  factory $MessageCopyWith(Message value, $Res Function(Message) then) =
+      _$MessageCopyWithImpl<$Res>;
+  $Res call({Notification notification});
+
+  $NotificationCopyWith<$Res> get notification;
+}
+
+/// @nodoc
+class _$MessageCopyWithImpl<$Res> extends _$NotificationEventCopyWithImpl<$Res>
+    implements $MessageCopyWith<$Res> {
+  _$MessageCopyWithImpl(Message _value, $Res Function(Message) _then)
+      : super(_value, (v) => _then(v as Message));
+
+  @override
+  Message get _value => super._value as Message;
+
+  @override
+  $Res call({
+    Object notification = freezed,
+  }) {
+    return _then(Message(
+      notification: notification == freezed ? _value.notification : notification as Notification,
+    ));
+  }
+
+  @override
+  $NotificationCopyWith<$Res> get notification {
+    if (_value.notification == null) {
+      return null;
+    }
+    return $NotificationCopyWith<$Res>(_value.notification, (value) {
+      return _then(_value.copyWith(notification: value));
+    });
+  }
+}
+
+/// @nodoc
+class _$Message with DiagnosticableTreeMixin implements Message {
+  const _$Message({this.notification});
+
+  @override
+  final Notification notification;
+
+  @override
+  String toString({DiagnosticLevel minLevel = DiagnosticLevel.info}) {
+    return 'NotificationEvent.message(notification: $notification)';
+  }
+
+  @override
+  void debugFillProperties(DiagnosticPropertiesBuilder properties) {
+    super.debugFillProperties(properties);
+    properties
+      ..add(DiagnosticsProperty('type', 'NotificationEvent.message'))
+      ..add(DiagnosticsProperty('notification', notification));
+  }
+
+  @override
+  bool operator ==(dynamic other) {
+    return identical(this, other) ||
+        (other is Message &&
+            (identical(other.notification, notification) ||
+                const DeepCollectionEquality().equals(other.notification, notification)));
+  }
+
+  @override
+  int get hashCode => runtimeType.hashCode ^ const DeepCollectionEquality().hash(notification);
+
+  @JsonKey(ignore: true)
+  @override
+  $MessageCopyWith<Message> get copyWith => _$MessageCopyWithImpl<Message>(this, _$identity);
+
+  @override
+  @optionalTypeArgs
+  TResult when<TResult extends Object>({
+    @required TResult initializeNotifications(),
+    @required TResult updateToken(String loggedUserEmail),
+    @required TResult messageOpenedApp(Notification notification),
+    @required TResult message(Notification notification),
+  }) {
+    assert(initializeNotifications != null);
+    assert(updateToken != null);
+    assert(messageOpenedApp != null);
+    assert(message != null);
+    return message(notification);
+  }
+
+  @override
+  @optionalTypeArgs
+  TResult maybeWhen<TResult extends Object>({
+    TResult initializeNotifications(),
+    TResult updateToken(String loggedUserEmail),
+    TResult messageOpenedApp(Notification notification),
+    TResult message(Notification notification),
+    @required TResult orElse(),
+  }) {
+    assert(orElse != null);
+    if (message != null) {
+      return message(notification);
+    }
+    return orElse();
+  }
+
+  @override
+  @optionalTypeArgs
+  TResult map<TResult extends Object>({
+    @required TResult initializeNotifications(InitializeNotifications value),
+    @required TResult updateToken(UpdateToken value),
+    @required TResult messageOpenedApp(MessageOpenedApp value),
+    @required TResult message(Message value),
+  }) {
+    assert(initializeNotifications != null);
+    assert(updateToken != null);
+    assert(messageOpenedApp != null);
+    assert(message != null);
+    return message(this);
+  }
+
+  @override
+  @optionalTypeArgs
+  TResult maybeMap<TResult extends Object>({
+    TResult initializeNotifications(InitializeNotifications value),
+    TResult updateToken(UpdateToken value),
+    TResult messageOpenedApp(MessageOpenedApp value),
+    TResult message(Message value),
+    @required TResult orElse(),
+  }) {
+    assert(orElse != null);
+    if (message != null) {
+      return message(this);
+    }
+    return orElse();
+  }
+}
+
+abstract class Message implements NotificationEvent {
+  const factory Message({Notification notification}) = _$Message;
+
+  Notification get notification;
+  @JsonKey(ignore: true)
+  $MessageCopyWith<Message> get copyWith;
 }

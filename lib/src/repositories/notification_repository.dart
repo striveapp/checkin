@@ -3,8 +3,8 @@ import 'package:checkin/src/models/notification.dart';
 abstract class NotificationRepository {
   Future<void> requestPermission();
   Future<String> getToken();
-  Future<BasicNotification> getInitialMessage();
+  Future<Notification> getInitialMessage();
 
-  Stream<BasicNotification> onMessageOpenedApp();
-  Stream<BasicNotification> onMessage();
+  Stream<Notification> onMessageOpenedApp();
+  Stream<Notification> onMessage();
 }
