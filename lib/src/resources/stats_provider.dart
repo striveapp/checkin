@@ -55,8 +55,6 @@ class StatsProvider implements StatsRepository {
   }
 
   Future<void> cleanUserHistory(String gymId, String email) async {
-    await _firestore.collection(gymPath).doc(gymId).collection(path).doc(email)
-        // .delete(); todo https://trello.com/c/oXkaXNqb
-        .update({"attendedLessons": []});
+    await _firestore.collection(gymPath).doc(gymId).collection(path).doc(email).delete();
   }
 }

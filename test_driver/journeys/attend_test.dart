@@ -86,8 +86,7 @@ class AttendTest extends AbstractTest {
           await statsPage.logout();
         });
 
-        test(
-            "it should increase the counter of multiple users when in class and accepted by the master",
+        test("increase the counter of multiple users when in class and accepted by the master",
             () async {
           prettyPrint("Login as user Test and attend class");
           await loginPage.loginAsTest();
@@ -137,7 +136,7 @@ class AttendTest extends AbstractTest {
           await statsPage.logout();
         });
 
-        test("it should not allow students to attend full classes", () async {
+        test("not allow students to attend full classes", () async {
           prettyPrint("Login as user Test and attend class");
           await loginPage.loginAsTest();
           await lessonsPage.selectLessonOfTheDay(Weekday.monday, 2);
