@@ -38,7 +38,7 @@ class NotificationProvider implements NotificationRepository {
 
   Notification _toRoutableNotification(RemoteMessage remoteMessage) =>
       Notification.routableNotification(
-        title: remoteMessage.data["title"],
+        title: remoteMessage.notification.title,
         path: remoteMessage.data["path"],
       );
 }

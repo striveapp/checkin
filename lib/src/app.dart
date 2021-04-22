@@ -11,6 +11,7 @@ import 'package:checkin/src/repositories/gym_repository.dart';
 import 'package:checkin/src/repositories/user_repository.dart';
 import 'package:checkin/src/routes/application.dart';
 import 'package:checkin/src/themes/theme.dart';
+import 'package:checkin/src/ui/components/notification_snack_bar_content.dart';
 import 'package:checkin/src/ui/components/upgrader_dialog.dart';
 import 'package:checkin/src/ui/pages/home_page.dart';
 import 'package:checkin/src/ui/pages/login_page.dart';
@@ -151,6 +152,19 @@ class _AppState extends State<App> with WidgetsBindingObserver {
                 Logger.log.i("Notification opened! Path to navigate [${state.path}]");
                 Navigator.of(context).popUntil(ModalRoute.withName(Navigator.defaultRouteName));
                 Navigator.of(context).pushNamed(state.path);
+              }
+
+              if (state is ShowSnackBar) {
+                ScaffoldMessenger.of(context)
+                  ..hideCurrentSnackBar()
+                  ..showSnackBar(SnackBar(
+                    content: NotificationSnackBarContent(
+                      title: state.title,
+                      body: state.body,
+                    ),
+                    backgroundColor: Theme.of(context).backgroundColor.withAlpha(200),
+                    duration: Duration(milliseconds: 2500),
+                  ));
               }
             }),
           ],
