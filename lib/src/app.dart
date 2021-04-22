@@ -146,7 +146,13 @@ class _AppState extends State<App> with WidgetsBindingObserver {
               }
             }),
             BlocListener<NotificationBloc, NotificationState>(
-                listener: (BuildContext context, NotificationState state) {}),
+                listener: (BuildContext context, NotificationState state) {
+              if (state is NotificationToNavigate) {
+                Logger.log.i("Notification opened! Path to navigate [${state.path}]");
+                Navigator.of(context).popUntil(ModalRoute.withName(Navigator.defaultRouteName));
+                Navigator.of(context).pushNamed(state.path);
+              }
+            }),
           ],
           child: BlocBuilder<AuthBloc, AuthState>(builder: (BuildContext context, AuthState state) {
             Logger.log.i("Auth state change detected [$state]");

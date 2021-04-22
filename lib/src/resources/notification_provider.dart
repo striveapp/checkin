@@ -14,9 +14,14 @@ class NotificationProvider implements NotificationRepository {
   @override
   Future<String> getToken() => _firebaseMessaging.getToken();
 
-  Future<Notification> getInitialMessage() async => _firebaseMessaging
-      .getInitialMessage()
-      .then((remoteMessage) => _toRoutableNotification(remoteMessage));
+  Future<Notification> getInitialMessage() async =>
+      _firebaseMessaging.getInitialMessage().then((remoteMessage) {
+        if (remoteMessage != null) {
+          Logger.log.d("$remoteMessage");
+          return _toRoutableNotification(remoteMessage);
+        }
+        return null;
+      });
 
   Stream<Notification> onMessageOpenedApp() =>
       FirebaseMessaging.onMessageOpenedApp.map(_toRoutableNotification);
@@ -24,10 +29,12 @@ class NotificationProvider implements NotificationRepository {
   @override
   Stream<Notification> onMessage() => FirebaseMessaging.onMessage.map(_toBasicNotification);
 
-  Notification _toBasicNotification(RemoteMessage remoteMessage) => Notification.basicNotification(
-        title: remoteMessage.data["title"],
-        body: remoteMessage.data["body"],
-      );
+  Notification _toBasicNotification(RemoteMessage remoteMessage) {
+    return Notification.basicNotification(
+      title: remoteMessage.notification.title,
+      body: remoteMessage.notification.body,
+    );
+  }
 
   Notification _toRoutableNotification(RemoteMessage remoteMessage) =>
       Notification.routableNotification(
