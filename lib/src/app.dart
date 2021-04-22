@@ -159,8 +159,8 @@ class _AppState extends State<App> with WidgetsBindingObserver {
                   ..hideCurrentSnackBar()
                   ..showSnackBar(SnackBar(
                     content: NotificationSnackBarContent(
-                      title: state.title,
-                      body: state.body,
+                      title: state.title.i18n,
+                      body: state.body.i18n,
                     ),
                     backgroundColor: Theme.of(context).backgroundColor.withAlpha(200),
                     duration: Duration(milliseconds: 2500),

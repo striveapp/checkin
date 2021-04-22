@@ -30,15 +30,19 @@ class NotificationProvider implements NotificationRepository {
   Stream<Notification> onMessage() => FirebaseMessaging.onMessage.map(_toBasicNotification);
 
   Notification _toBasicNotification(RemoteMessage remoteMessage) {
+    Logger.log.d("${remoteMessage.notification.titleLocKey}");
+    Logger.log.d("${remoteMessage.notification.title}");
+    Logger.log.d("${remoteMessage.notification.bodyLocKey}");
+    Logger.log.d("${remoteMessage.notification.body}");
     return Notification.basicNotification(
-      title: remoteMessage.notification.title,
-      body: remoteMessage.notification.body,
+      title: remoteMessage.notification.titleLocKey ?? remoteMessage.notification.title,
+      body: remoteMessage.notification.bodyLocKey ?? remoteMessage.notification.body,
     );
   }
 
   Notification _toRoutableNotification(RemoteMessage remoteMessage) =>
       Notification.routableNotification(
-        title: remoteMessage.notification.title,
+        title: remoteMessage.notification.titleLocKey ?? remoteMessage.notification.title,
         path: remoteMessage.data["path"],
       );
 }
