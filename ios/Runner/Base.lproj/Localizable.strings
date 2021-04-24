@@ -10,5 +10,5 @@
 "student_in_class" = "Student in class 🥋";
 "first_user_sign_up" = "The first student sign up to your class!";
 
-"inactive_user_found" = "Inactive user found 🔴";
-"student_attended_lessons_days_ago" = "The user %@ last attended lesson was %@ days ago";
+"your_class_got_cancelled" = "One of your class got cancelled ❌";
+"please_check_it_out" = "Please check it out";

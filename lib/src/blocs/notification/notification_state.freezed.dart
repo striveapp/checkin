@@ -26,10 +26,16 @@ class _$NotificationStateTearOff {
   }
 
 // ignore: unused_element
-  ShowSnackBar showSnackBar({@required String title, @required String body}) {
+  ShowSnackBar showSnackBar(
+      {@required String title,
+      List<String> titleLocArgs,
+      @required String body,
+      List<String> bodyLocArgs}) {
     return ShowSnackBar(
       title: title,
+      titleLocArgs: titleLocArgs,
       body: body,
+      bodyLocArgs: bodyLocArgs,
     );
   }
 }
@@ -44,13 +50,16 @@ mixin _$NotificationState {
   TResult when<TResult extends Object>({
     @required TResult notificationInitial(),
     @required TResult notificationToNavigate(String path),
-    @required TResult showSnackBar(String title, String body),
+    @required
+        TResult showSnackBar(
+            String title, List<String> titleLocArgs, String body, List<String> bodyLocArgs),
   });
   @optionalTypeArgs
   TResult maybeWhen<TResult extends Object>({
     TResult notificationInitial(),
     TResult notificationToNavigate(String path),
-    TResult showSnackBar(String title, String body),
+    TResult showSnackBar(
+        String title, List<String> titleLocArgs, String body, List<String> bodyLocArgs),
     @required TResult orElse(),
   });
   @optionalTypeArgs
@@ -130,7 +139,9 @@ class _$NotificationInitial with DiagnosticableTreeMixin implements Notification
   TResult when<TResult extends Object>({
     @required TResult notificationInitial(),
     @required TResult notificationToNavigate(String path),
-    @required TResult showSnackBar(String title, String body),
+    @required
+        TResult showSnackBar(
+            String title, List<String> titleLocArgs, String body, List<String> bodyLocArgs),
   }) {
     assert(notificationInitial != null);
     assert(notificationToNavigate != null);
@@ -143,7 +154,8 @@ class _$NotificationInitial with DiagnosticableTreeMixin implements Notification
   TResult maybeWhen<TResult extends Object>({
     TResult notificationInitial(),
     TResult notificationToNavigate(String path),
-    TResult showSnackBar(String title, String body),
+    TResult showSnackBar(
+        String title, List<String> titleLocArgs, String body, List<String> bodyLocArgs),
     @required TResult orElse(),
   }) {
     assert(orElse != null);
@@ -255,7 +267,9 @@ class _$NotificationToNavigate with DiagnosticableTreeMixin implements Notificat
   TResult when<TResult extends Object>({
     @required TResult notificationInitial(),
     @required TResult notificationToNavigate(String path),
-    @required TResult showSnackBar(String title, String body),
+    @required
+        TResult showSnackBar(
+            String title, List<String> titleLocArgs, String body, List<String> bodyLocArgs),
   }) {
     assert(notificationInitial != null);
     assert(notificationToNavigate != null);
@@ -268,7 +282,8 @@ class _$NotificationToNavigate with DiagnosticableTreeMixin implements Notificat
   TResult maybeWhen<TResult extends Object>({
     TResult notificationInitial(),
     TResult notificationToNavigate(String path),
-    TResult showSnackBar(String title, String body),
+    TResult showSnackBar(
+        String title, List<String> titleLocArgs, String body, List<String> bodyLocArgs),
     @required TResult orElse(),
   }) {
     assert(orElse != null);
@@ -319,7 +334,7 @@ abstract class NotificationToNavigate implements NotificationState {
 abstract class $ShowSnackBarCopyWith<$Res> {
   factory $ShowSnackBarCopyWith(ShowSnackBar value, $Res Function(ShowSnackBar) then) =
       _$ShowSnackBarCopyWithImpl<$Res>;
-  $Res call({String title, String body});
+  $Res call({String title, List<String> titleLocArgs, String body, List<String> bodyLocArgs});
 }
 
 /// @nodoc
@@ -334,29 +349,38 @@ class _$ShowSnackBarCopyWithImpl<$Res> extends _$NotificationStateCopyWithImpl<$
   @override
   $Res call({
     Object title = freezed,
+    Object titleLocArgs = freezed,
     Object body = freezed,
+    Object bodyLocArgs = freezed,
   }) {
     return _then(ShowSnackBar(
       title: title == freezed ? _value.title : title as String,
+      titleLocArgs: titleLocArgs == freezed ? _value.titleLocArgs : titleLocArgs as List<String>,
       body: body == freezed ? _value.body : body as String,
+      bodyLocArgs: bodyLocArgs == freezed ? _value.bodyLocArgs : bodyLocArgs as List<String>,
     ));
   }
 }
 
 /// @nodoc
 class _$ShowSnackBar with DiagnosticableTreeMixin implements ShowSnackBar {
-  const _$ShowSnackBar({@required this.title, @required this.body})
+  const _$ShowSnackBar(
+      {@required this.title, this.titleLocArgs, @required this.body, this.bodyLocArgs})
       : assert(title != null),
         assert(body != null);
 
   @override
   final String title;
   @override
+  final List<String> titleLocArgs;
+  @override
   final String body;
+  @override
+  final List<String> bodyLocArgs;
 
   @override
   String toString({DiagnosticLevel minLevel = DiagnosticLevel.info}) {
-    return 'NotificationState.showSnackBar(title: $title, body: $body)';
+    return 'NotificationState.showSnackBar(title: $title, titleLocArgs: $titleLocArgs, body: $body, bodyLocArgs: $bodyLocArgs)';
   }
 
   @override
@@ -365,7 +389,9 @@ class _$ShowSnackBar with DiagnosticableTreeMixin implements ShowSnackBar {
     properties
       ..add(DiagnosticsProperty('type', 'NotificationState.showSnackBar'))
       ..add(DiagnosticsProperty('title', title))
-      ..add(DiagnosticsProperty('body', body));
+      ..add(DiagnosticsProperty('titleLocArgs', titleLocArgs))
+      ..add(DiagnosticsProperty('body', body))
+      ..add(DiagnosticsProperty('bodyLocArgs', bodyLocArgs));
   }
 
   @override
@@ -374,15 +400,21 @@ class _$ShowSnackBar with DiagnosticableTreeMixin implements ShowSnackBar {
         (other is ShowSnackBar &&
             (identical(other.title, title) ||
                 const DeepCollectionEquality().equals(other.title, title)) &&
+            (identical(other.titleLocArgs, titleLocArgs) ||
+                const DeepCollectionEquality().equals(other.titleLocArgs, titleLocArgs)) &&
             (identical(other.body, body) ||
-                const DeepCollectionEquality().equals(other.body, body)));
+                const DeepCollectionEquality().equals(other.body, body)) &&
+            (identical(other.bodyLocArgs, bodyLocArgs) ||
+                const DeepCollectionEquality().equals(other.bodyLocArgs, bodyLocArgs)));
   }
 
   @override
   int get hashCode =>
       runtimeType.hashCode ^
       const DeepCollectionEquality().hash(title) ^
-      const DeepCollectionEquality().hash(body);
+      const DeepCollectionEquality().hash(titleLocArgs) ^
+      const DeepCollectionEquality().hash(body) ^
+      const DeepCollectionEquality().hash(bodyLocArgs);
 
   @JsonKey(ignore: true)
   @override
@@ -394,12 +426,14 @@ class _$ShowSnackBar with DiagnosticableTreeMixin implements ShowSnackBar {
   TResult when<TResult extends Object>({
     @required TResult notificationInitial(),
     @required TResult notificationToNavigate(String path),
-    @required TResult showSnackBar(String title, String body),
+    @required
+        TResult showSnackBar(
+            String title, List<String> titleLocArgs, String body, List<String> bodyLocArgs),
   }) {
     assert(notificationInitial != null);
     assert(notificationToNavigate != null);
     assert(showSnackBar != null);
-    return showSnackBar(title, body);
+    return showSnackBar(title, titleLocArgs, body, bodyLocArgs);
   }
 
   @override
@@ -407,12 +441,13 @@ class _$ShowSnackBar with DiagnosticableTreeMixin implements ShowSnackBar {
   TResult maybeWhen<TResult extends Object>({
     TResult notificationInitial(),
     TResult notificationToNavigate(String path),
-    TResult showSnackBar(String title, String body),
+    TResult showSnackBar(
+        String title, List<String> titleLocArgs, String body, List<String> bodyLocArgs),
     @required TResult orElse(),
   }) {
     assert(orElse != null);
     if (showSnackBar != null) {
-      return showSnackBar(title, body);
+      return showSnackBar(title, titleLocArgs, body, bodyLocArgs);
     }
     return orElse();
   }
@@ -447,10 +482,16 @@ class _$ShowSnackBar with DiagnosticableTreeMixin implements ShowSnackBar {
 }
 
 abstract class ShowSnackBar implements NotificationState {
-  const factory ShowSnackBar({@required String title, @required String body}) = _$ShowSnackBar;
+  const factory ShowSnackBar(
+      {@required String title,
+      List<String> titleLocArgs,
+      @required String body,
+      List<String> bodyLocArgs}) = _$ShowSnackBar;
 
   String get title;
+  List<String> get titleLocArgs;
   String get body;
+  List<String> get bodyLocArgs;
   @JsonKey(ignore: true)
   $ShowSnackBarCopyWith<ShowSnackBar> get copyWith;
 }

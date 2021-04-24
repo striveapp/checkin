@@ -7,7 +7,9 @@ part 'notification.freezed.dart';
 abstract class Notification with _$Notification {
   factory Notification.basicNotification({
     @required final String title,
+    final List<String> titleLocArgs,
     @required final String body,
+    final List<String> bodyLocArgs,
   }) = BasicNotification;
 
   factory Notification.routableNotification({

@@ -1,0 +1,17 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <string name="test_title">Ciao Mondo</string>
+    <string name="test_body">Questo è un messaggio %1$s</string>
+
+    <string name="class_confirmed">Classe confermata ✅</string>
+    <string name="you_attended_n_classes">Hai fatto %1$s classi quest'anno!</string>
+
+    <string name="reminder">Memo ⏰</string>
+    <string name="remaining_students_in_class">Ci sono ancora studenti non accettati in classe</string>
+
+    <string name="student_in_class">Studente in classe 🥋</string>
+    <string name="first_user_sign_up">Il primo studente si è iscritto alla classe</string>
+
+    <string name="your_class_got_cancelled">Una delle tue classi è stata cancellata ❌</string>
+    <string name="please_check_it_out">Per favore verificalo</string>
+</resources>

@@ -14,10 +14,16 @@ class _$NotificationTearOff {
   const _$NotificationTearOff();
 
 // ignore: unused_element
-  BasicNotification basicNotification({@required String title, @required String body}) {
+  BasicNotification basicNotification(
+      {@required String title,
+      List<String> titleLocArgs,
+      @required String body,
+      List<String> bodyLocArgs}) {
     return BasicNotification(
       title: title,
+      titleLocArgs: titleLocArgs,
       body: body,
+      bodyLocArgs: bodyLocArgs,
     );
   }
 
@@ -40,12 +46,15 @@ mixin _$Notification {
 
   @optionalTypeArgs
   TResult when<TResult extends Object>({
-    @required TResult basicNotification(String title, String body),
+    @required
+        TResult basicNotification(
+            String title, List<String> titleLocArgs, String body, List<String> bodyLocArgs),
     @required TResult routableNotification(String title, String path),
   });
   @optionalTypeArgs
   TResult maybeWhen<TResult extends Object>({
-    TResult basicNotification(String title, String body),
+    TResult basicNotification(
+        String title, List<String> titleLocArgs, String body, List<String> bodyLocArgs),
     TResult routableNotification(String title, String path),
     @required TResult orElse(),
   });
@@ -96,7 +105,7 @@ abstract class $BasicNotificationCopyWith<$Res> implements $NotificationCopyWith
           BasicNotification value, $Res Function(BasicNotification) then) =
       _$BasicNotificationCopyWithImpl<$Res>;
   @override
-  $Res call({String title, String body});
+  $Res call({String title, List<String> titleLocArgs, String body, List<String> bodyLocArgs});
 }
 
 /// @nodoc
@@ -111,29 +120,38 @@ class _$BasicNotificationCopyWithImpl<$Res> extends _$NotificationCopyWithImpl<$
   @override
   $Res call({
     Object title = freezed,
+    Object titleLocArgs = freezed,
     Object body = freezed,
+    Object bodyLocArgs = freezed,
   }) {
     return _then(BasicNotification(
       title: title == freezed ? _value.title : title as String,
+      titleLocArgs: titleLocArgs == freezed ? _value.titleLocArgs : titleLocArgs as List<String>,
       body: body == freezed ? _value.body : body as String,
+      bodyLocArgs: bodyLocArgs == freezed ? _value.bodyLocArgs : bodyLocArgs as List<String>,
     ));
   }
 }
 
 /// @nodoc
 class _$BasicNotification with DiagnosticableTreeMixin implements BasicNotification {
-  _$BasicNotification({@required this.title, @required this.body})
+  _$BasicNotification(
+      {@required this.title, this.titleLocArgs, @required this.body, this.bodyLocArgs})
       : assert(title != null),
         assert(body != null);
 
   @override
   final String title;
   @override
+  final List<String> titleLocArgs;
+  @override
   final String body;
+  @override
+  final List<String> bodyLocArgs;
 
   @override
   String toString({DiagnosticLevel minLevel = DiagnosticLevel.info}) {
-    return 'Notification.basicNotification(title: $title, body: $body)';
+    return 'Notification.basicNotification(title: $title, titleLocArgs: $titleLocArgs, body: $body, bodyLocArgs: $bodyLocArgs)';
   }
 
   @override
@@ -142,7 +160,9 @@ class _$BasicNotification with DiagnosticableTreeMixin implements BasicNotificat
     properties
       ..add(DiagnosticsProperty('type', 'Notification.basicNotification'))
       ..add(DiagnosticsProperty('title', title))
-      ..add(DiagnosticsProperty('body', body));
+      ..add(DiagnosticsProperty('titleLocArgs', titleLocArgs))
+      ..add(DiagnosticsProperty('body', body))
+      ..add(DiagnosticsProperty('bodyLocArgs', bodyLocArgs));
   }
 
   @override
@@ -151,15 +171,21 @@ class _$BasicNotification with DiagnosticableTreeMixin implements BasicNotificat
         (other is BasicNotification &&
             (identical(other.title, title) ||
                 const DeepCollectionEquality().equals(other.title, title)) &&
+            (identical(other.titleLocArgs, titleLocArgs) ||
+                const DeepCollectionEquality().equals(other.titleLocArgs, titleLocArgs)) &&
             (identical(other.body, body) ||
-                const DeepCollectionEquality().equals(other.body, body)));
+                const DeepCollectionEquality().equals(other.body, body)) &&
+            (identical(other.bodyLocArgs, bodyLocArgs) ||
+                const DeepCollectionEquality().equals(other.bodyLocArgs, bodyLocArgs)));
   }
 
   @override
   int get hashCode =>
       runtimeType.hashCode ^
       const DeepCollectionEquality().hash(title) ^
-      const DeepCollectionEquality().hash(body);
+      const DeepCollectionEquality().hash(titleLocArgs) ^
+      const DeepCollectionEquality().hash(body) ^
+      const DeepCollectionEquality().hash(bodyLocArgs);
 
   @JsonKey(ignore: true)
   @override
@@ -169,24 +195,27 @@ class _$BasicNotification with DiagnosticableTreeMixin implements BasicNotificat
   @override
   @optionalTypeArgs
   TResult when<TResult extends Object>({
-    @required TResult basicNotification(String title, String body),
+    @required
+        TResult basicNotification(
+            String title, List<String> titleLocArgs, String body, List<String> bodyLocArgs),
     @required TResult routableNotification(String title, String path),
   }) {
     assert(basicNotification != null);
     assert(routableNotification != null);
-    return basicNotification(title, body);
+    return basicNotification(title, titleLocArgs, body, bodyLocArgs);
   }
 
   @override
   @optionalTypeArgs
   TResult maybeWhen<TResult extends Object>({
-    TResult basicNotification(String title, String body),
+    TResult basicNotification(
+        String title, List<String> titleLocArgs, String body, List<String> bodyLocArgs),
     TResult routableNotification(String title, String path),
     @required TResult orElse(),
   }) {
     assert(orElse != null);
     if (basicNotification != null) {
-      return basicNotification(title, body);
+      return basicNotification(title, titleLocArgs, body, bodyLocArgs);
     }
     return orElse();
   }
@@ -218,11 +247,17 @@ class _$BasicNotification with DiagnosticableTreeMixin implements BasicNotificat
 }
 
 abstract class BasicNotification implements Notification {
-  factory BasicNotification({@required String title, @required String body}) = _$BasicNotification;
+  factory BasicNotification(
+      {@required String title,
+      List<String> titleLocArgs,
+      @required String body,
+      List<String> bodyLocArgs}) = _$BasicNotification;
 
   @override
   String get title;
+  List<String> get titleLocArgs;
   String get body;
+  List<String> get bodyLocArgs;
   @override
   @JsonKey(ignore: true)
   $BasicNotificationCopyWith<BasicNotification> get copyWith;
@@ -308,7 +343,9 @@ class _$RoutableNotification with DiagnosticableTreeMixin implements RoutableNot
   @override
   @optionalTypeArgs
   TResult when<TResult extends Object>({
-    @required TResult basicNotification(String title, String body),
+    @required
+        TResult basicNotification(
+            String title, List<String> titleLocArgs, String body, List<String> bodyLocArgs),
     @required TResult routableNotification(String title, String path),
   }) {
     assert(basicNotification != null);
@@ -319,7 +356,8 @@ class _$RoutableNotification with DiagnosticableTreeMixin implements RoutableNot
   @override
   @optionalTypeArgs
   TResult maybeWhen<TResult extends Object>({
-    TResult basicNotification(String title, String body),
+    TResult basicNotification(
+        String title, List<String> titleLocArgs, String body, List<String> bodyLocArgs),
     TResult routableNotification(String title, String path),
     @required TResult orElse(),
   }) {

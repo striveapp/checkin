@@ -12,6 +12,8 @@ abstract class NotificationState with _$NotificationState {
 
   const factory NotificationState.showSnackBar({
     @required String title,
+    List<String> titleLocArgs,
     @required String body,
+    List<String> bodyLocArgs,
   }) = ShowSnackBar;
 }

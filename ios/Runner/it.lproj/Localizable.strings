@@ -1,0 +1,14 @@
+"test_title" = "Test IT";
+"test_body" = "Ciao mondo!";
+
+"class_confirmed" = "Classe confermata ✅";
+"you_attended_n_classes" = "Hai fatto %@ classi quest'anno!";
+
+"reminder" = "Memo ⏰";
+"remaining_students_in_class" = "Ci sono ancora studenti non accettati in classe";
+
+"student_in_class" = "Studente in classe 🥋";
+"first_user_sign_up" = "Il primo studente si è iscritto alla classe";
+
+"your_class_got_cancelled" = "Una delle tue classi è stata cancellata ❌";
+"please_check_it_out" = "Per favore verificalo";

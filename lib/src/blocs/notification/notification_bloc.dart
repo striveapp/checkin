@@ -59,7 +59,9 @@ class NotificationBloc extends Bloc<NotificationEvent, NotificationState> {
   NotificationState _mapNotificationState(Notification notification) => notification.map(
       basicNotification: (BasicNotification notification) => ShowSnackBar(
             title: notification.title,
+            titleLocArgs: notification.titleLocArgs,
             body: notification.body,
+            bodyLocArgs: notification.bodyLocArgs,
           ),
       routableNotification: (RoutableNotification notification) => NotificationToNavigate(
             path: notification.path,

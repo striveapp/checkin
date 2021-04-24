@@ -69,6 +69,48 @@ import 'package:i18n_extension/i18n_extension.dart';
 extension Localization on String {
   // ignore: unused_field
   static var _t = Translations('en') +
+      //NOTIFICATIONS I18N
+      //TODO: this should be probably moved into their own file
+      {
+        'en': "Class confirmed!",
+        'es': 'Clase confirmada!',
+        'it': 'Classe confermata!',
+      } +
+      {
+        'en': "You attended %s classes this year",
+        'es': 'Has atentido %s clases este año',
+        'it': 'Hai fatto %s classi quest\'anno',
+      } +
+      {
+        'en': "Student in class!",
+        'es': 'Estudiante en clase!',
+        'it': 'Studente in classe!',
+      } +
+      {
+        'en': "The first user sign up to your class",
+        'es': 'El primer estudiante se ha apuntado en la clase',
+        'it': 'Il primo studente si è iscritto alla classe',
+      } +
+      {
+        'en': "One of your class got cancelled!",
+        'es': 'Una de tus clases ha sido cancelada!',
+        'it': 'Una delle tue classi è stata cancellata!',
+      } +
+      {
+        'en': "Please check it out",
+        'es': 'Porfavor copruebalo',
+        'it': 'Per favore verificalo',
+      } +
+      {
+        'en': "Action Required!",
+        'es': 'Accion pendiente!',
+        'it': 'Azione richiesta!',
+      } +
+      {
+        'en': "You still have not accepted students in class",
+        'es': 'Tienes estudiantes sin aceptar todavia',
+        'it': 'Ci sono ancora studenti non accettati in classe',
+      } +
       {
         'en': LessonCard.emptyClass,
         'es': 'Nadie en clase todavía',

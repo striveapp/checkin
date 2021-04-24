@@ -10,5 +10,5 @@
 "student_in_class" = "Estudiantes en clase 🥋";
 "first_user_sign_up" = "El primer estudiante ya se apuntó a tu clase";
 
-"inactive_user_found" = "Usuario inactivo encontrado 🔴";
-"student_attended_lessons_days_ago" = "El estudiante %@ atendió su ultima clase hace %@ dias";
+"your_class_got_cancelled" = "Una de tus clases ha sido cancelada ❌";
+"please_check_it_out" = "Porfavor compruebalo";
