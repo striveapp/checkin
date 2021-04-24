@@ -49,6 +49,7 @@ dependencies:
   url_launcher: ^6.0.2
   uuid: ^3.0.4
   vector_math: 2.1.0
+  shimmer: ^2.0.0
 
 dev_dependencies:
   flutter_test:

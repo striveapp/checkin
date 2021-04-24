@@ -7,6 +7,7 @@ import 'package:checkin/src/models/user.dart';
 import 'package:checkin/src/ui/components/rounded_image.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
+import 'package:shimmer/shimmer.dart';
 
 class ProfileTile extends StatefulWidget {
   final String profileEmail;
@@ -51,16 +52,14 @@ class _ProfileTileState extends State<ProfileTile> {
             imageUrl: DEFAULT_USER_IMAGE_URL,
             grade: Grade.white,
           ),
+          isLoading: true,
           position: _getOrdinal(widget.position),
           attendedClasses: 0,
         ),
-        profileLoaded: (ProfileLoaded state) => Padding(
-          padding: EdgeInsets.symmetric(vertical: 3),
-          child: ProfileTileView(
-            profileUser: state.profileUser,
-            position: _getOrdinal(widget.position),
-            attendedClasses: widget.attendedClasses,
-          ),
+        profileLoaded: (ProfileLoaded state) => ProfileTileView(
+          profileUser: state.profileUser,
+          position: _getOrdinal(widget.position),
+          attendedClasses: widget.attendedClasses,
         ),
       ),
     );
@@ -83,9 +82,15 @@ class ProfileTileView extends StatelessWidget {
   final User profileUser;
   final String position;
   final int attendedClasses;
+  final bool isLoading;
 
-  const ProfileTileView({Key key, this.profileUser, this.position, this.attendedClasses})
-      : super(key: key);
+  const ProfileTileView({
+    Key key,
+    this.profileUser,
+    this.position,
+    this.attendedClasses,
+    this.isLoading = false,
+  }) : super(key: key);
 
   @override
   Widget build(BuildContext context) {
@@ -101,11 +106,21 @@ class ProfileTileView extends StatelessWidget {
           ),
           title: Row(
             children: <Widget>[
-              RoundedImage(
-                url: profileUser.imageUrl,
-                width: 40,
-                height: 40,
-              ),
+              isLoading
+                  ? Shimmer.fromColors(
+                      baseColor: Theme.of(context).backgroundColor.withAlpha(100),
+                      highlightColor: Theme.of(context).backgroundColor,
+                      child: RoundedImage(
+                        url: profileUser.imageUrl,
+                        width: 40,
+                        height: 40,
+                      ),
+                    )
+                  : RoundedImage(
+                      url: profileUser.imageUrl,
+                      width: 40,
+                      height: 40,
+                    ),
               SizedBox(
                 width: 15,
               ),
@@ -113,18 +128,42 @@ class ProfileTileView extends StatelessWidget {
                 child: Column(
                   crossAxisAlignment: CrossAxisAlignment.start,
                   children: <Widget>[
-                    Text(
-                      profileUser.name,
-                      overflow: TextOverflow.ellipsis,
-                      style: Theme.of(context).textTheme.headline4.apply(fontWeightDelta: 3),
-                    ),
+                    isLoading
+                        ? Shimmer.fromColors(
+                            baseColor: Theme.of(context).backgroundColor.withAlpha(100),
+                            highlightColor: Theme.of(context).backgroundColor,
+                            child: Container(
+                              height: 16,
+                              width: 145,
+                              color: Colors.grey,
+                            ),
+                          )
+                        : Text(
+                            profileUser.name,
+                            overflow: TextOverflow.ellipsis,
+                            style: Theme.of(context).textTheme.headline4.apply(fontWeightDelta: 3),
+                          ),
+                    if (isLoading)
+                      SizedBox(
+                        height: 5,
+                      ),
                     SizedBox(
                       height: 2.5,
                     ),
-                    Text(
-                      ProfileTile.beltColor.i18n.fill([profileUser.grade.name.i18n]),
-                      style: Theme.of(context).textTheme.bodyText1,
-                    ),
+                    isLoading
+                        ? Shimmer.fromColors(
+                            baseColor: Theme.of(context).backgroundColor.withAlpha(100),
+                            highlightColor: Theme.of(context).backgroundColor,
+                            child: Container(
+                              height: 12,
+                              width: 90,
+                              color: Colors.grey,
+                            ),
+                          )
+                        : Text(
+                            ProfileTile.beltColor.i18n.fill([profileUser.grade.name.i18n]),
+                            style: Theme.of(context).textTheme.bodyText1,
+                          ),
                   ],
                 ),
               ),
