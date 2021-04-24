@@ -4,7 +4,7 @@
     <string name="test_body">Questo è un messaggio %1$s</string>
 
     <string name="class_confirmed">Classe confermata ✅</string>
-    <string name="you_attended_n_classes">Hai fatto %1$s classi quest'anno!</string>
+    <string name="you_attended_n_classes">Hai fatto %1$s classi quest\'anno!</string>
 
     <string name="reminder">Memo ⏰</string>
     <string name="remaining_students_in_class">Ci sono ancora studenti non accettati in classe</string>

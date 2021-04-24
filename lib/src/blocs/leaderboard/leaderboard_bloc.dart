@@ -12,6 +12,7 @@ import 'package:flutter/material.dart';
 class LeaderboardBloc extends Bloc<LeaderboardEvent, LeaderboardState> {
   final StatsRepository statsRepository;
   final UserRepository userRepository;
+
   StreamSubscription<List<UserHistory>> _userHistorySub;
   StreamSubscription<User> _userSub;
 
