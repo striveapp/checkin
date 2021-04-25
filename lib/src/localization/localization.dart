@@ -7,7 +7,7 @@ import 'package:checkin/src/ui/components/email_retrieval/check_email_view.dart'
 import 'package:checkin/src/ui/components/email_retrieval/insert_email_view.dart';
 import 'package:checkin/src/ui/components/email_retrieval/wrong_email_dialog.dart';
 import 'package:checkin/src/ui/components/grade_card.dart';
-import 'package:checkin/src/ui/components/leaderboard/no_leaderboard_banner.dart';
+import 'package:checkin/src/ui/components/leaderboard/ranking.dart';
 import 'package:checkin/src/ui/components/lessons/attendees_preview.dart';
 import 'package:checkin/src/ui/components/lessons/filter_list_widget.dart';
 import 'package:checkin/src/ui/components/lessons/lesson_card.dart';
@@ -511,9 +511,9 @@ extension Localization on String {
         'it': 'Questa versione dell\'app non é piú supportata\n\nPer favore aggiornala',
       } +
       {
-        'en': NoLeaderboardBanner.noLeaderboard,
-        'es': 'El leaderboard no está disponible todavía',
-        'it': 'La classifica non é ancora disponibile',
+        'en': Ranking.noLeaderboard,
+        'es': 'No hay suficientes personas para monstrar la clasificación',
+        'it': 'Non ci sono abbastanza persone per mostrare la classifica',
       } +
       {
         'en': AttendeesCounter.studentsAccepted,

@@ -1,32 +1,17 @@
 import 'package:checkin/src/models/user_history.dart';
-import 'package:equatable/equatable.dart';
+import 'package:flutter/foundation.dart';
+import 'package:freezed_annotation/freezed_annotation.dart';
+import 'package:meta/meta.dart';
 
-abstract class LeaderboardState extends Equatable {
-  const LeaderboardState();
-  @override
-  List<Object> get props => [];
-}
+part 'leaderboard_state.freezed.dart';
 
-class LeaderboardInitial extends LeaderboardState {
-  @override
-  String toString() => 'LeaderboardInitial';
-}
+@freezed
+abstract class LeaderboardState with _$LeaderboardState {
+  const factory LeaderboardState.leaderboardInitial() = LeaderboardInitial;
 
-class LeaderboardLoaded extends LeaderboardState {
-  final List<UserHistory> usersHistory;
-
-  LeaderboardLoaded({
-    this.usersHistory,
-  });
-
-  @override
-  List<Object> get props => [usersHistory];
-
-  @override
-  String toString() => 'LeaderboardLoaded';
-}
-
-class LeaderboardNotAvailable extends LeaderboardState {
-  @override
-  String toString() => 'LeaderboardNotAvailable';
+  const factory LeaderboardState.leaderboardLoaded({
+    @required List<UserHistory> podium,
+    @required List<UserHistory> restOfTheUsers,
+    @Default(true) bool isAvailable,
+  }) = LeaderboardLoaded;
 }

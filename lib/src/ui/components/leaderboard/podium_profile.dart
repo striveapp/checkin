@@ -11,7 +11,12 @@ class PodiumProfile extends StatelessWidget {
   final int position;
   final Color color;
 
-  const PodiumProfile({Key key, this.profileEmail, this.position, this.color}) : super(key: key);
+  const PodiumProfile({
+    Key key,
+    this.profileEmail,
+    this.position,
+    this.color,
+  }) : super(key: key);
 
   @override
   Widget build(BuildContext context) {
@@ -60,8 +65,8 @@ class PodiumProfile extends StatelessWidget {
                 ),
                 Text(
                   state.profileUser.name,
-                  style: Theme.of(context).textTheme.headline4,
-                  softWrap: true,
+                  style: Theme.of(context).textTheme.headline3,
+                  overflow: TextOverflow.ellipsis,
                   textAlign: TextAlign.center,
                 ),
               ],
@@ -92,11 +97,13 @@ class PodiumProfile extends StatelessWidget {
                 SizedBox(
                   height: 10,
                 ),
-                Text(
-                  state.profileUser.name,
-                  style: Theme.of(context).textTheme.headline4,
-                  softWrap: true,
-                  textAlign: TextAlign.center,
+                Expanded(
+                  child: Text(
+                    state.profileUser.name,
+                    style: Theme.of(context).textTheme.headline4,
+                    overflow: TextOverflow.ellipsis,
+                    textAlign: TextAlign.center,
+                  ),
                 ),
               ]
             ],

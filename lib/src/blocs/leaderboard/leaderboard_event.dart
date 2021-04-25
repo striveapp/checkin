@@ -1,23 +1,14 @@
 import 'package:checkin/src/models/user_history.dart';
-import 'package:equatable/equatable.dart';
+import 'package:flutter/foundation.dart';
+import 'package:freezed_annotation/freezed_annotation.dart';
+import 'package:meta/meta.dart';
 
-abstract class LeaderboardEvent extends Equatable {
-  const LeaderboardEvent();
+part 'leaderboard_event.freezed.dart';
 
-  @override
-  List<Object> get props => [];
-}
+@freezed
+abstract class LeaderboardEvent with _$LeaderboardEvent {
+  const factory LeaderboardEvent.initializeLeaderboard() = InitializeLeaderboard;
 
-class LeaderboardUpdated extends LeaderboardEvent {
-  final List<UserHistory> usersHistory;
-
-  LeaderboardUpdated({
-    this.usersHistory,
-  });
-
-  @override
-  List<Object> get props => [usersHistory];
-
-  @override
-  String toString() => 'LeaderboardUpdated';
+  const factory LeaderboardEvent.leaderboardUpdated({@required List<UserHistory> usersHistory}) =
+      LeaderboardUpdated;
 }

@@ -19,28 +19,36 @@ class LeaderboardBloc extends Bloc<LeaderboardEvent, LeaderboardState> {
   LeaderboardBloc({
     @required this.statsRepository,
     @required this.userRepository,
-  }) : super(LeaderboardInitial()) {
-    _userSub?.cancel();
-    _userSub = userRepository.getUser().listen(_onUserChanged);
-  }
-
-  void _onUserChanged(User currentUser) {
-    _userHistorySub?.cancel();
-    _userHistorySub = statsRepository
-        .getAllUserStats(
-          currentUser.selectedGymId,
-          Timespan.year,
-        )
-        .listen((usersHistory) => add(LeaderboardUpdated(usersHistory: usersHistory)));
-  }
+  }) : super(LeaderboardInitial());
 
   @override
   Stream<LeaderboardState> mapEventToState(LeaderboardEvent event) async* {
+    if (event is InitializeLeaderboard) {
+      _userSub?.cancel();
+      _userSub = userRepository.getUser().listen((User currentUser) {
+        _userHistorySub?.cancel();
+        _userHistorySub = statsRepository
+            .getAllUserStats(
+              currentUser.selectedGymId,
+              Timespan.year,
+            )
+            .listen((usersHistory) => add(LeaderboardUpdated(usersHistory: usersHistory)));
+      });
+    }
+
     if (event is LeaderboardUpdated) {
-      if (event.usersHistory.length >= 3) {
-        yield LeaderboardLoaded(usersHistory: _getSortedUsers(event.usersHistory));
+      var sortedUsers = _getSortedUsers(event.usersHistory);
+      if (sortedUsers.length < 3) {
+        yield LeaderboardLoaded(
+          podium: [],
+          restOfTheUsers: [],
+          isAvailable: false,
+        );
       } else {
-        yield LeaderboardNotAvailable();
+        yield LeaderboardLoaded(
+          podium: sortedUsers.sublist(0, 3),
+          restOfTheUsers: sortedUsers.sublist(3),
+        );
       }
     }
   }

@@ -1,6 +1,5 @@
 import 'package:checkin/src/blocs/profile/bloc.dart';
 import 'package:checkin/src/localization/localization.dart';
-import 'package:checkin/src/logging/logger.dart';
 import 'package:checkin/src/models/grade.dart';
 import 'package:checkin/src/models/user.dart';
 import 'package:checkin/src/ui/components/rounded_image.dart';
@@ -26,7 +25,6 @@ class _ProfileTileState extends State<ProfileTile> {
   @override
   void dispose() {
     super.dispose();
-    Logger.log.d("Closed!");
     _bloc?.close();
   }
 

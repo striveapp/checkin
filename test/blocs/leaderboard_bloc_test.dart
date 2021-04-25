@@ -44,13 +44,32 @@ void main() {
       ]);
     });
 
-    // todo missing initial state test
-    group("on LeaderboardUpdated event", () {
-      // setUp(() {
-      //   reset(mockStatsRepository);
-      //   reset(mockUserRepository);
-      // });
+    group("on InitalizeLeaderboard", () {
+      setUp(() {
+        when(mockUserRepository.getUser()).thenAnswer((realInvocation) => Stream.value(fakeUser));
+        when(mockStatsRepository.getAllUserStats(fakeUser.selectedGymId, Timespan.year))
+            .thenAnswer((_) => Stream.empty());
+      });
 
+      tearDown(() {
+        verify(mockUserRepository.getUser());
+        verify(mockStatsRepository.getAllUserStats(fakeUser.selectedGymId, Timespan.year));
+      });
+
+      blocTest(
+        "initialize the streams",
+        build: () => LeaderboardBloc(
+          statsRepository: mockStatsRepository,
+          userRepository: mockUserRepository,
+        ),
+        act: (bloc) => bloc.add(
+          InitializeLeaderboard(),
+        ),
+        expect: () => [],
+      );
+    });
+
+    group("on LeaderboardUpdated event", () {
       group("when 3 user histories are loaded", () {
         List<Lesson> attendedLessons = [
           Lesson(timeStart: "19:00", timeEnd: "20:00"),
@@ -58,7 +77,7 @@ void main() {
           Lesson(timeStart: "07:15", timeEnd: "08:30"),
         ];
 
-        List<UserHistory> userHistories = [
+        List<UserHistory> podium = [
           UserHistory(
             email: "test@test.com",
             attendedLessons: attendedLessons,
@@ -73,24 +92,19 @@ void main() {
           ),
         ];
 
-        setUp(() {
-          when(mockUserRepository.getUser()).thenAnswer((realInvocation) => Stream.value(fakeUser));
-          when(mockStatsRepository.getAllUserStats(fakeUser.selectedGymId, Timespan.year))
-              .thenAnswer((_) => Stream<List<UserHistory>>.value(userHistories));
-        });
-
-        tearDown(() {
-          verify(mockUserRepository.getUser());
-          verify(mockStatsRepository.getAllUserStats(fakeUser.selectedGymId, Timespan.year));
-        });
-
         blocTest(
-          "should emit LeaderboardLoaded with users",
+          "emits LeaderboardLoaded with users",
           build: () => LeaderboardBloc(
             statsRepository: mockStatsRepository,
             userRepository: mockUserRepository,
           ),
-          expect: () => [LeaderboardLoaded(usersHistory: userHistories)],
+          act: (bloc) => bloc.add(LeaderboardUpdated(usersHistory: podium)),
+          expect: () => [
+            LeaderboardLoaded(
+              podium: podium,
+              restOfTheUsers: [],
+            )
+          ],
         );
       });
 
@@ -120,17 +134,6 @@ void main() {
         List<UserHistory> unsortedUsersHistory = [userHistory1, userHistory2, userHistory3];
         List<UserHistory> sortedUsersHistory = [userHistory2, userHistory1, userHistory3];
 
-        setUp(() {
-          when(mockUserRepository.getUser()).thenAnswer((realInvocation) => Stream.value(fakeUser));
-          when(mockStatsRepository.getAllUserStats(fakeUser.selectedGymId, Timespan.year))
-              .thenAnswer((_) => Stream<List<UserHistory>>.value(unsortedUsersHistory));
-        });
-
-        tearDown(() {
-          verify(mockUserRepository.getUser());
-          verify(mockStatsRepository.getAllUserStats(fakeUser.selectedGymId, Timespan.year));
-        });
-
         blocTest(
           "should emit LeaderboardLoaded with sorted users by attendedLessons count [desc]",
           build: () => LeaderboardBloc(
@@ -139,46 +142,90 @@ void main() {
           ),
           act: (bloc) => bloc.add(LeaderboardUpdated(usersHistory: unsortedUsersHistory)),
           expect: () => [
-            LeaderboardLoaded(usersHistory: sortedUsersHistory),
+            LeaderboardLoaded(podium: sortedUsersHistory, restOfTheUsers: []),
           ],
         );
       });
 
-      group("when only 1 user history is loaded", () {
+      group("when more than 3 user histories are loaded", () {
         List<Lesson> attendedLessons = [
           Lesson(timeStart: "19:00", timeEnd: "20:00"),
           Lesson(timeStart: "10:00", timeEnd: "11:00"),
           Lesson(timeStart: "07:15", timeEnd: "08:30"),
         ];
 
-        List<UserHistory> usersHistory = [
+        List<UserHistory> allUserHistories = [
           UserHistory(
             email: "test@test.com",
             attendedLessons: attendedLessons,
           ),
+          UserHistory(
+            email: "test-two@test.com",
+            attendedLessons: attendedLessons,
+          ),
+          UserHistory(
+            email: "test-three@test.com",
+            attendedLessons: attendedLessons,
+          ),
+          UserHistory(
+            email: "test-four@test.com",
+            attendedLessons: attendedLessons,
+          ),
         ];
 
-        setUp(() {
-          when(mockUserRepository.getUser()).thenAnswer((realInvocation) => Stream.value(fakeUser));
-          when(mockStatsRepository.getAllUserStats(fakeUser.selectedGymId, Timespan.year))
-              .thenAnswer((_) => Stream<List<UserHistory>>.value(usersHistory));
-        });
+        List<UserHistory> expectedPodium = [
+          UserHistory(
+            email: "test@test.com",
+            attendedLessons: attendedLessons,
+          ),
+          UserHistory(
+            email: "test-two@test.com",
+            attendedLessons: attendedLessons,
+          ),
+          UserHistory(
+            email: "test-three@test.com",
+            attendedLessons: attendedLessons,
+          ),
+        ];
 
-        tearDown(() {
-          verify(mockUserRepository.getUser());
-          verify(mockStatsRepository.getAllUserStats(fakeUser.selectedGymId, Timespan.year));
-        });
+        List<UserHistory> restOfTheUsers = [
+          UserHistory(
+            email: "test-four@test.com",
+            attendedLessons: attendedLessons,
+          ),
+        ];
 
         blocTest(
-          "should emit LeaderboardNotAvailable",
+          "emits LeaderboardLoaded with users",
           build: () => LeaderboardBloc(
             statsRepository: mockStatsRepository,
             userRepository: mockUserRepository,
           ),
-          act: (bloc) => bloc.add(
-            LeaderboardUpdated(usersHistory: usersHistory),
+          act: (bloc) => bloc.add(LeaderboardUpdated(usersHistory: allUserHistories)),
+          expect: () => [
+            LeaderboardLoaded(
+              podium: expectedPodium,
+              restOfTheUsers: restOfTheUsers,
+            )
+          ],
+        );
+      });
+
+      group("when less then 3 user histories are loaded", () {
+        blocTest(
+          "emits LeaderboardLoaded with users",
+          build: () => LeaderboardBloc(
+            statsRepository: mockStatsRepository,
+            userRepository: mockUserRepository,
           ),
-          expect: () => [LeaderboardNotAvailable()],
+          act: (bloc) => bloc.add(LeaderboardUpdated(usersHistory: [])),
+          expect: () => [
+            LeaderboardLoaded(
+              podium: [],
+              restOfTheUsers: [],
+              isAvailable: false,
+            )
+          ],
         );
       });
     });
