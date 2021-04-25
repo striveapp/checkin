@@ -24,6 +24,13 @@ class _$LeaderboardEventTearOff {
       usersHistory: usersHistory,
     );
   }
+
+// ignore: unused_element
+  UpdateTimespan updateTimespan({@required Timespan timespan}) {
+    return UpdateTimespan(
+      timespan: timespan,
+    );
+  }
 }
 
 /// @nodoc
@@ -36,22 +43,26 @@ mixin _$LeaderboardEvent {
   TResult when<TResult extends Object>({
     @required TResult initializeLeaderboard(),
     @required TResult leaderboardUpdated(List<UserHistory> usersHistory),
+    @required TResult updateTimespan(Timespan timespan),
   });
   @optionalTypeArgs
   TResult maybeWhen<TResult extends Object>({
     TResult initializeLeaderboard(),
     TResult leaderboardUpdated(List<UserHistory> usersHistory),
+    TResult updateTimespan(Timespan timespan),
     @required TResult orElse(),
   });
   @optionalTypeArgs
   TResult map<TResult extends Object>({
     @required TResult initializeLeaderboard(InitializeLeaderboard value),
     @required TResult leaderboardUpdated(LeaderboardUpdated value),
+    @required TResult updateTimespan(UpdateTimespan value),
   });
   @optionalTypeArgs
   TResult maybeMap<TResult extends Object>({
     TResult initializeLeaderboard(InitializeLeaderboard value),
     TResult leaderboardUpdated(LeaderboardUpdated value),
+    TResult updateTimespan(UpdateTimespan value),
     @required TResult orElse(),
   });
 }
@@ -117,9 +128,11 @@ class _$InitializeLeaderboard with DiagnosticableTreeMixin implements Initialize
   TResult when<TResult extends Object>({
     @required TResult initializeLeaderboard(),
     @required TResult leaderboardUpdated(List<UserHistory> usersHistory),
+    @required TResult updateTimespan(Timespan timespan),
   }) {
     assert(initializeLeaderboard != null);
     assert(leaderboardUpdated != null);
+    assert(updateTimespan != null);
     return initializeLeaderboard();
   }
 
@@ -128,6 +141,7 @@ class _$InitializeLeaderboard with DiagnosticableTreeMixin implements Initialize
   TResult maybeWhen<TResult extends Object>({
     TResult initializeLeaderboard(),
     TResult leaderboardUpdated(List<UserHistory> usersHistory),
+    TResult updateTimespan(Timespan timespan),
     @required TResult orElse(),
   }) {
     assert(orElse != null);
@@ -142,9 +156,11 @@ class _$InitializeLeaderboard with DiagnosticableTreeMixin implements Initialize
   TResult map<TResult extends Object>({
     @required TResult initializeLeaderboard(InitializeLeaderboard value),
     @required TResult leaderboardUpdated(LeaderboardUpdated value),
+    @required TResult updateTimespan(UpdateTimespan value),
   }) {
     assert(initializeLeaderboard != null);
     assert(leaderboardUpdated != null);
+    assert(updateTimespan != null);
     return initializeLeaderboard(this);
   }
 
@@ -153,6 +169,7 @@ class _$InitializeLeaderboard with DiagnosticableTreeMixin implements Initialize
   TResult maybeMap<TResult extends Object>({
     TResult initializeLeaderboard(InitializeLeaderboard value),
     TResult leaderboardUpdated(LeaderboardUpdated value),
+    TResult updateTimespan(UpdateTimespan value),
     @required TResult orElse(),
   }) {
     assert(orElse != null);
@@ -237,9 +254,11 @@ class _$LeaderboardUpdated with DiagnosticableTreeMixin implements LeaderboardUp
   TResult when<TResult extends Object>({
     @required TResult initializeLeaderboard(),
     @required TResult leaderboardUpdated(List<UserHistory> usersHistory),
+    @required TResult updateTimespan(Timespan timespan),
   }) {
     assert(initializeLeaderboard != null);
     assert(leaderboardUpdated != null);
+    assert(updateTimespan != null);
     return leaderboardUpdated(usersHistory);
   }
 
@@ -248,6 +267,7 @@ class _$LeaderboardUpdated with DiagnosticableTreeMixin implements LeaderboardUp
   TResult maybeWhen<TResult extends Object>({
     TResult initializeLeaderboard(),
     TResult leaderboardUpdated(List<UserHistory> usersHistory),
+    TResult updateTimespan(Timespan timespan),
     @required TResult orElse(),
   }) {
     assert(orElse != null);
@@ -262,9 +282,11 @@ class _$LeaderboardUpdated with DiagnosticableTreeMixin implements LeaderboardUp
   TResult map<TResult extends Object>({
     @required TResult initializeLeaderboard(InitializeLeaderboard value),
     @required TResult leaderboardUpdated(LeaderboardUpdated value),
+    @required TResult updateTimespan(UpdateTimespan value),
   }) {
     assert(initializeLeaderboard != null);
     assert(leaderboardUpdated != null);
+    assert(updateTimespan != null);
     return leaderboardUpdated(this);
   }
 
@@ -273,6 +295,7 @@ class _$LeaderboardUpdated with DiagnosticableTreeMixin implements LeaderboardUp
   TResult maybeMap<TResult extends Object>({
     TResult initializeLeaderboard(InitializeLeaderboard value),
     TResult leaderboardUpdated(LeaderboardUpdated value),
+    TResult updateTimespan(UpdateTimespan value),
     @required TResult orElse(),
   }) {
     assert(orElse != null);
@@ -290,4 +313,131 @@ abstract class LeaderboardUpdated implements LeaderboardEvent {
   List<UserHistory> get usersHistory;
   @JsonKey(ignore: true)
   $LeaderboardUpdatedCopyWith<LeaderboardUpdated> get copyWith;
+}
+
+/// @nodoc
+abstract class $UpdateTimespanCopyWith<$Res> {
+  factory $UpdateTimespanCopyWith(UpdateTimespan value, $Res Function(UpdateTimespan) then) =
+      _$UpdateTimespanCopyWithImpl<$Res>;
+  $Res call({Timespan timespan});
+}
+
+/// @nodoc
+class _$UpdateTimespanCopyWithImpl<$Res> extends _$LeaderboardEventCopyWithImpl<$Res>
+    implements $UpdateTimespanCopyWith<$Res> {
+  _$UpdateTimespanCopyWithImpl(UpdateTimespan _value, $Res Function(UpdateTimespan) _then)
+      : super(_value, (v) => _then(v as UpdateTimespan));
+
+  @override
+  UpdateTimespan get _value => super._value as UpdateTimespan;
+
+  @override
+  $Res call({
+    Object timespan = freezed,
+  }) {
+    return _then(UpdateTimespan(
+      timespan: timespan == freezed ? _value.timespan : timespan as Timespan,
+    ));
+  }
+}
+
+/// @nodoc
+class _$UpdateTimespan with DiagnosticableTreeMixin implements UpdateTimespan {
+  const _$UpdateTimespan({@required this.timespan}) : assert(timespan != null);
+
+  @override
+  final Timespan timespan;
+
+  @override
+  String toString({DiagnosticLevel minLevel = DiagnosticLevel.info}) {
+    return 'LeaderboardEvent.updateTimespan(timespan: $timespan)';
+  }
+
+  @override
+  void debugFillProperties(DiagnosticPropertiesBuilder properties) {
+    super.debugFillProperties(properties);
+    properties
+      ..add(DiagnosticsProperty('type', 'LeaderboardEvent.updateTimespan'))
+      ..add(DiagnosticsProperty('timespan', timespan));
+  }
+
+  @override
+  bool operator ==(dynamic other) {
+    return identical(this, other) ||
+        (other is UpdateTimespan &&
+            (identical(other.timespan, timespan) ||
+                const DeepCollectionEquality().equals(other.timespan, timespan)));
+  }
+
+  @override
+  int get hashCode => runtimeType.hashCode ^ const DeepCollectionEquality().hash(timespan);
+
+  @JsonKey(ignore: true)
+  @override
+  $UpdateTimespanCopyWith<UpdateTimespan> get copyWith =>
+      _$UpdateTimespanCopyWithImpl<UpdateTimespan>(this, _$identity);
+
+  @override
+  @optionalTypeArgs
+  TResult when<TResult extends Object>({
+    @required TResult initializeLeaderboard(),
+    @required TResult leaderboardUpdated(List<UserHistory> usersHistory),
+    @required TResult updateTimespan(Timespan timespan),
+  }) {
+    assert(initializeLeaderboard != null);
+    assert(leaderboardUpdated != null);
+    assert(updateTimespan != null);
+    return updateTimespan(timespan);
+  }
+
+  @override
+  @optionalTypeArgs
+  TResult maybeWhen<TResult extends Object>({
+    TResult initializeLeaderboard(),
+    TResult leaderboardUpdated(List<UserHistory> usersHistory),
+    TResult updateTimespan(Timespan timespan),
+    @required TResult orElse(),
+  }) {
+    assert(orElse != null);
+    if (updateTimespan != null) {
+      return updateTimespan(timespan);
+    }
+    return orElse();
+  }
+
+  @override
+  @optionalTypeArgs
+  TResult map<TResult extends Object>({
+    @required TResult initializeLeaderboard(InitializeLeaderboard value),
+    @required TResult leaderboardUpdated(LeaderboardUpdated value),
+    @required TResult updateTimespan(UpdateTimespan value),
+  }) {
+    assert(initializeLeaderboard != null);
+    assert(leaderboardUpdated != null);
+    assert(updateTimespan != null);
+    return updateTimespan(this);
+  }
+
+  @override
+  @optionalTypeArgs
+  TResult maybeMap<TResult extends Object>({
+    TResult initializeLeaderboard(InitializeLeaderboard value),
+    TResult leaderboardUpdated(LeaderboardUpdated value),
+    TResult updateTimespan(UpdateTimespan value),
+    @required TResult orElse(),
+  }) {
+    assert(orElse != null);
+    if (updateTimespan != null) {
+      return updateTimespan(this);
+    }
+    return orElse();
+  }
+}
+
+abstract class UpdateTimespan implements LeaderboardEvent {
+  const factory UpdateTimespan({@required Timespan timespan}) = _$UpdateTimespan;
+
+  Timespan get timespan;
+  @JsonKey(ignore: true)
+  $UpdateTimespanCopyWith<UpdateTimespan> get copyWith;
 }

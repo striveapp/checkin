@@ -1,6 +1,7 @@
 import 'package:checkin/src/blocs/leaderboard/bloc.dart';
 import 'package:checkin/src/localization/localization.dart';
 import 'package:checkin/src/ui/components/base_app_bar.dart';
+import 'package:checkin/src/ui/components/leaderboard/leaderboard_header.dart';
 import 'package:checkin/src/ui/components/leaderboard/podium.dart';
 import 'package:checkin/src/ui/components/leaderboard/ranking.dart';
 import 'package:flutter/material.dart';
@@ -23,17 +24,18 @@ class LeaderboardPage extends StatelessWidget {
         )..add(InitializeLeaderboard()),
         child: Column(
           children: <Widget>[
-            Expanded(
-              flex: 1,
-              child: Podium(),
+            SizedBox(
+              height: 30,
             ),
+            LeaderboardHeader(),
             SizedBox(
               height: 20,
             ),
-            Expanded(
-              flex: 2,
-              child: Ranking(),
+            Podium(),
+            SizedBox(
+              height: 10,
             ),
+            Expanded(child: Ranking()),
           ],
         ),
       ),

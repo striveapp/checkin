@@ -38,38 +38,34 @@ class PodiumView extends StatelessWidget {
     return Row(
       mainAxisAlignment: MainAxisAlignment.spaceAround,
       children: <Widget>[
-        Flexible(
-          flex: 1,
-          child: Padding(
-            padding: const EdgeInsets.only(top: 60),
-            child: PodiumProfile(
+        Column(
+          children: [
+            SizedBox(
+              height: 40,
+            ),
+            PodiumProfile(
               position: 2,
               profileEmail: podium[1].email,
               color: Color(0xffC0C0C0),
             ),
-          ),
+          ],
         ),
-        Flexible(
-          flex: 2,
-          child: Padding(
-            padding: const EdgeInsets.only(top: 20),
-            child: PodiumProfile(
-              position: 1,
-              profileEmail: podium.first.email,
-              color: Color(0xeeCFB53B),
+        PodiumProfile(
+          position: 1,
+          profileEmail: podium.first.email,
+          color: Color(0xeeCFB53B),
+        ),
+        Column(
+          children: [
+            SizedBox(
+              height: 40,
             ),
-          ),
-        ),
-        Flexible(
-          flex: 1,
-          child: Padding(
-            padding: const EdgeInsets.only(top: 60),
-            child: PodiumProfile(
+            PodiumProfile(
               position: 3,
               profileEmail: podium.last.email,
               color: Color(0xeecd7f32),
             ),
-          ),
+          ],
         ),
       ],
     );

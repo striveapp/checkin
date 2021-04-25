@@ -10,6 +10,13 @@ import 'package:checkin/src/repositories/user_repository.dart';
 import 'package:flutter/material.dart';
 
 class LeaderboardBloc extends Bloc<LeaderboardEvent, LeaderboardState> {
+  static const List<Timespan> availableTimespans = [
+    Timespan.week,
+    Timespan.month,
+    Timespan.year,
+    Timespan.all,
+  ];
+
   final StatsRepository statsRepository;
   final UserRepository userRepository;
 
@@ -24,16 +31,7 @@ class LeaderboardBloc extends Bloc<LeaderboardEvent, LeaderboardState> {
   @override
   Stream<LeaderboardState> mapEventToState(LeaderboardEvent event) async* {
     if (event is InitializeLeaderboard) {
-      _userSub?.cancel();
-      _userSub = userRepository.getUser().listen((User currentUser) {
-        _userHistorySub?.cancel();
-        _userHistorySub = statsRepository
-            .getAllUserStats(
-              currentUser.selectedGymId,
-              Timespan.year,
-            )
-            .listen((usersHistory) => add(LeaderboardUpdated(usersHistory: usersHistory)));
-      });
+      _fetchUserStatsByTimespan(Timespan.year);
     }
 
     if (event is LeaderboardUpdated) {
@@ -51,6 +49,23 @@ class LeaderboardBloc extends Bloc<LeaderboardEvent, LeaderboardState> {
         );
       }
     }
+
+    if (event is UpdateTimespan) {
+      _fetchUserStatsByTimespan(event.timespan);
+    }
+  }
+
+  void _fetchUserStatsByTimespan(Timespan timespan) {
+    _userSub?.cancel();
+    _userSub = userRepository.getUser().listen((User currentUser) {
+      _userHistorySub?.cancel();
+      _userHistorySub = statsRepository
+          .getAllUserStats(
+            currentUser.selectedGymId,
+            timespan,
+          )
+          .listen((usersHistory) => add(LeaderboardUpdated(usersHistory: usersHistory)));
+    });
   }
 
   @override

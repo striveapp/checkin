@@ -44,7 +44,7 @@ void main() {
       ]);
     });
 
-    group("on InitalizeLeaderboard", () {
+    group("on InitializeLeaderboard", () {
       setUp(() {
         when(mockUserRepository.getUser()).thenAnswer((realInvocation) => Stream.value(fakeUser));
         when(mockStatsRepository.getAllUserStats(fakeUser.selectedGymId, Timespan.year))
@@ -57,7 +57,7 @@ void main() {
       });
 
       blocTest(
-        "initialize the streams",
+        "fetch all the user stats",
         build: () => LeaderboardBloc(
           statsRepository: mockStatsRepository,
           userRepository: mockUserRepository,
@@ -228,6 +228,31 @@ void main() {
           ],
         );
       });
+    });
+
+    group("on UpdateTimespan event", () {
+      setUp(() {
+        when(mockUserRepository.getUser()).thenAnswer((realInvocation) => Stream.value(fakeUser));
+        when(mockStatsRepository.getAllUserStats(fakeUser.selectedGymId, Timespan.week))
+            .thenAnswer((_) => Stream.empty());
+      });
+
+      tearDown(() {
+        verify(mockUserRepository.getUser());
+        verify(mockStatsRepository.getAllUserStats(fakeUser.selectedGymId, Timespan.week));
+      });
+
+      blocTest(
+        "fetch all the user stats",
+        build: () => LeaderboardBloc(
+          statsRepository: mockStatsRepository,
+          userRepository: mockUserRepository,
+        ),
+        act: (bloc) => bloc.add(
+          UpdateTimespan(timespan: Timespan.week),
+        ),
+        expect: () => [],
+      );
     });
   });
 }
