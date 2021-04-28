@@ -10,7 +10,12 @@ class ImageProvider implements ImageRepository {
     PickedFile selectedImage = await ImagePicker().getImage(source: ImageSource.gallery);
     if (selectedImage != null) {
       return await ImageCropper.cropImage(
-          cropStyle: CropStyle.circle, sourcePath: selectedImage.path);
+          cropStyle: CropStyle.circle,
+          sourcePath: selectedImage.path,
+          aspectRatio: CropAspectRatio(ratioX: 1, ratioY: 1),
+          androidUiSettings: AndroidUiSettings(
+            hideBottomControls: true,
+          ));
     }
     return null;
   }

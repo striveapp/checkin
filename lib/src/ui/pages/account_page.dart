@@ -15,7 +15,6 @@ import 'package:checkin/src/repositories/analytics_repository.dart';
 import 'package:checkin/src/repositories/auth_repository.dart';
 import 'package:checkin/src/repositories/gym_repository.dart';
 import 'package:checkin/src/repositories/membership_repository.dart';
-import 'package:checkin/src/repositories/stats_repository.dart';
 import 'package:checkin/src/repositories/user_repository.dart';
 import 'package:checkin/src/resources/payment_method_provider.dart';
 import 'package:checkin/src/ui/components/account/payment.dart';
@@ -119,7 +118,7 @@ class AccountPage extends StatelessWidget {
                     providers: [
                       BlocProvider<UserStatsBloc>(
                         create: (BuildContext context) => UserStatsBloc(
-                          statsRepository: RepositoryProvider.of<StatsRepository>(context),
+                          statsRepository: context.read(),
                           userEmail: state.user.email,
                           selectedGymId: state.user.selectedGymId,
                           statsBloc: StatsBloc()..add(TimespanUpdate(timespan: Timespan.week)),

@@ -17,7 +17,6 @@ class NotificationProvider implements NotificationRepository {
   Future<Notification> getInitialMessage() async =>
       _firebaseMessaging.getInitialMessage().then((remoteMessage) {
         if (remoteMessage != null) {
-          Logger.log.d("$remoteMessage");
           return _toRoutableNotification(remoteMessage);
         }
         return null;
