@@ -61,4 +61,4 @@ mv "${TEST_DATA_DIR:?}"/$DATE.overall_export_metadata "${TEST_DATA_DIR:?}"/fires
 rm -r "${TEST_DATA_DIR:?}"/$DATE
 
 #4. run the emulator with the new data
-firebase emulators:start --import test/data
+firebase --project="checkin-test-fba3d" emulators:start --import test/data
