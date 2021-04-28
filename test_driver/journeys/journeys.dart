@@ -8,6 +8,7 @@ import 'package:checkin/src/models/lesson.dart';
 import 'package:checkin/src/resources/lesson_instances_provider.dart';
 import 'package:checkin/src/resources/stats_provider.dart';
 import 'package:checkin/src/resources/user_provider.dart';
+import 'package:checkin/src/util/date_util.dart';
 import 'package:firebase_auth/firebase_auth.dart';
 import 'package:firebase_core/firebase_core.dart';
 import 'package:flutter_driver/driver_extension.dart';
@@ -52,16 +53,19 @@ Future<void> setup() async {
 }
 
 Future<void> cleanDatabase() async {
+  var dateUtil = DateUtil();
   String formattedTestDate = DateFormat("yyyy-MM-dd").format(testDate);
-  await StatsProvider().cleanUserHistory("test", "test@test.com");
-  await StatsProvider().cleanUserHistory("test", "test-two@test.com");
-  await StatsProvider().cleanUserHistory("test", "test-master@test.com");
-  await StatsProvider().cleanUserHistory("test", "test-owner@test.com");
+  await StatsProvider(dateUtil: dateUtil).cleanUserHistory("test", "test@test.com");
+  await StatsProvider(dateUtil: dateUtil).cleanUserHistory("test", "test-two@test.com");
+  await StatsProvider(dateUtil: dateUtil).cleanUserHistory("test", "test-master@test.com");
+  await StatsProvider(dateUtil: dateUtil).cleanUserHistory("test", "test-owner@test.com");
   await UserProvider().updateGrade("test@test.com", Grade.white);
   await UserProvider().updateSelectedGymId("test@test.com", GYM_TEST);
-  await LessonInstancesProvider().cleanLessonAttendees("test", formattedTestDate);
+  await LessonInstancesProvider(dateUtil: dateUtil).cleanLessonAttendees("test", formattedTestDate);
 
-  lessonSub = LessonInstancesProvider().getLessonsForDay("test", testDate).listen((lessons) {
+  lessonSub = LessonInstancesProvider(dateUtil: dateUtil)
+      .getLessonsForDay("test", testDate)
+      .listen((lessons) {
     isDbClean = lessons.every((lesson) => lesson?.attendees?.isEmpty);
   });
 }

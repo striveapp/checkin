@@ -7,6 +7,7 @@ import 'package:checkin/src/models/timespan.dart';
 import 'package:checkin/src/repositories/lesson_repository.dart';
 import 'package:checkin/src/util/date_util.dart';
 import 'package:cloud_firestore/cloud_firestore.dart';
+import 'package:flutter/material.dart';
 import 'package:intl/intl.dart';
 
 class LessonInstancesProvider implements LessonRepository {
@@ -14,7 +15,11 @@ class LessonInstancesProvider implements LessonRepository {
   static const String path = 'lesson_instances';
   static const String sub_collection_path = 'instances';
 
+  final DateUtil dateUtil;
+
   FirebaseFirestore _firestore = FirebaseFirestore.instance;
+
+  LessonInstancesProvider({@required this.dateUtil});
 
   String _formatDate(DateTime day) => DateFormat("yyyy-MM-dd").format(day);
 
@@ -58,7 +63,7 @@ class LessonInstancesProvider implements LessonRepository {
       })
       .where("date",
           isGreaterThanOrEqualTo:
-              DateFormat('yyyy-MM-dd').format(DateUtil.getFirstDayOfTimespan(timespan)))
+              DateFormat('yyyy-MM-dd').format(dateUtil.getFirstDayOfTimespan(timespan)))
       .snapshots()
       .map((snapshot) => snapshot.docs
           .where((doc) => doc.data()['masters'] != null)

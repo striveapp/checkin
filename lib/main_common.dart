@@ -68,7 +68,7 @@ Future<void> mainCommon(AppConfig appConfig) async {
   if (appConfig.useEmulator) {
     //TODO: This works in the emulator but not in the physical device
     FirebaseFirestore.instance.settings = Settings(
-      host: LocalPlatform().isAndroid ? '10.0.2.2:8080' : 'localhost:8080',
+      host: LocalPlatform().isAndroid ? '192.168.1.95:8080' : 'localhost:8080',
       sslEnabled: false,
     );
   }
@@ -149,7 +149,7 @@ List<RepositoryProviderSingleChildWidget> _repositories(
         AuthProvider authProvider, AppConfig appConfig) =>
     [
       RepositoryProvider<LessonRepository>(
-        create: (context) => LessonInstancesProvider(),
+        create: (context) => LessonInstancesProvider(dateUtil: DateUtil()),
       ),
       RepositoryProvider<LessonTemplateRepository>(
         create: (context) => LessonTemplateProvider(),
@@ -170,7 +170,7 @@ List<RepositoryProviderSingleChildWidget> _repositories(
         create: (context) => UserProvider(),
       ),
       RepositoryProvider<StatsRepository>(
-        create: (context) => StatsProvider(),
+        create: (context) => StatsProvider(dateUtil: DateUtil()),
       ),
       RepositoryProvider<MembershipRepository>(
         create: (context) => MembershipProvider(),

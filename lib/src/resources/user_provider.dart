@@ -5,7 +5,6 @@ import 'package:checkin/src/models/grade.dart';
 import 'package:checkin/src/models/master.dart';
 import 'package:checkin/src/models/user.dart';
 import 'package:checkin/src/repositories/user_repository.dart';
-import 'package:checkin/src/resources/stats_provider.dart';
 import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:pub_semver/pub_semver.dart';
 
@@ -15,7 +14,6 @@ class UserProvider implements UserRepository {
   FirebaseFirestore _firestore = FirebaseFirestore.instance;
   LocalStorageProvider _localStorageProvider = LocalStorageProvider();
 
-  StatsProvider statsProvider = StatsProvider();
   static const String path = 'users';
 
   @override
