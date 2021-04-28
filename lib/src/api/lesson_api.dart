@@ -11,8 +11,6 @@ class LessonApi {
       parameters: parameters,
     ).then((_) {
       Logger.log.i("User accepted from lesson with id [$lessonDate,$lessonId]");
-    }).catchError((e, st) {
-      Logger.log.e("An error occurred when calling acceptAll", e, st);
     });
   }
 }

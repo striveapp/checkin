@@ -2,7 +2,6 @@ import 'dart:core';
 
 import 'package:checkin/src/logging/logger.dart';
 import 'package:cloud_functions/cloud_functions.dart';
-import 'package:flutter/services.dart';
 
 class Api {
   static Future<HttpsCallableResult> call({functionName: String, dynamic parameters}) {
@@ -10,9 +9,9 @@ class Api {
       Logger.log.i("Successfully invoke Function ($functionName)");
     }).catchError((error, stacktrace) {
       Logger.log.e("Function ($functionName) got an error", error, stacktrace);
-      if (error is PlatformException && error.code == 'functionsError') {
-        final String code = error.details['code'];
-        final String message = error.details['message'];
+      if (error is FirebaseFunctionsException) {
+        final String code = error.code;
+        final String message = error.message;
         // final dynamic details = error.details['details'];
         throw ApiException(message, code);
       }

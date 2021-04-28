@@ -17,8 +17,7 @@ class MembershipApi {
       'gymId': gymId,
     };
     await Api.call(functionName: "unsubscribe", parameters: parameters)
-        .then((_) => {Logger.log.i("User unsubscribed")})
-        .catchError((err, st) => {Logger.log.e("An error happened calling unsubscribe", err, st)});
+        .then((_) => {Logger.log.i("User unsubscribed")});
   }
 
   Future<void> createSubscription({String gymId, String customerId, String priceId}) async {
