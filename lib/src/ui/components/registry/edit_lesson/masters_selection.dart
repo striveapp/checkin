@@ -60,7 +60,7 @@ class _MastersSelectionState extends State<MastersSelection> {
                                   : Icon(Icons.add_circle_outline),
                               onTap: () {
                                 if (_isMasterOfTheClass(master)) {
-                                  currentMasters.remove(master);
+                                  currentMasters.removeWhere((currentMaster) => master.email == currentMaster.email);
                                 } else {
                                   currentMasters.add(master);
                                 }
