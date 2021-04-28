@@ -29,6 +29,7 @@ import 'package:checkin/src/resources/local_storage_provider.dart';
 import 'package:checkin/src/resources/storage_provider.dart';
 import 'package:checkin/src/resources/user_provider.dart';
 import 'package:checkin/src/ui/components/lessons/lesson_card.dart';
+import 'package:checkin/src/util/date_util.dart';
 import 'package:checkin/src/util/version_util.dart';
 import 'package:firebase_core/firebase_core.dart';
 import 'package:firebase_dynamic_links/firebase_dynamic_links.dart';
@@ -54,7 +55,7 @@ void main() {
     await tester.pumpWidget(MultiRepositoryProvider(
       providers: [
         RepositoryProvider<LessonRepository>(
-          create: (context) => LessonInstancesProvider(),
+          create: (context) => LessonInstancesProvider(dateUtil: DateUtil()),
         ),
         RepositoryProvider<AuthRepository>(
           create: (context) {
