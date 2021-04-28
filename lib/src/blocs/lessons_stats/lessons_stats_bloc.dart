@@ -4,32 +4,35 @@ import 'package:bloc/bloc.dart';
 import 'package:checkin/src/blocs/lessons_stats/bloc.dart';
 import 'package:checkin/src/blocs/stats/bloc.dart';
 import 'package:checkin/src/models/attendee.dart';
+import 'package:checkin/src/models/gym.dart';
 import 'package:checkin/src/models/lesson.dart';
 import 'package:checkin/src/models/master.dart';
+import 'package:checkin/src/repositories/gym_repository.dart';
 import 'package:checkin/src/repositories/lesson_repository.dart';
+import 'package:flutter/material.dart';
 
 class LessonsStatsBloc extends Bloc<LessonsStatsEvent, LessonsStatsState> {
   final LessonRepository lessonsRepository;
+  final GymRepository gymRepository;
   final StatsBloc statsBloc;
   final Master master;
 
   StreamSubscription<List<Lesson>> lessonsSub;
+  StreamSubscription<Gym> gymSub;
 
   LessonsStatsBloc({
-    this.lessonsRepository,
-    this.statsBloc,
-    this.master,
-  }) : super(LessonsStatsInitial()) {
-    _onStatsStateChanged(statsBloc.state);
-    statsBloc.stream.listen(_onStatsStateChanged);
-  }
+    @required this.lessonsRepository,
+    @required this.gymRepository,
+    @required this.statsBloc,
+    @required this.master,
+  }) : super(LessonsStatsInitial());
 
-  void _onStatsStateChanged(statsBlocState) {
+  void _onStatsStateChanged(statsBlocState, Gym gym) {
     if (statsBlocState is TimespanUpdated) {
       lessonsSub?.cancel();
       lessonsSub = this
           .lessonsRepository
-          .getLessonsByMasterAndTimespan(this.master, statsBlocState.timespan)
+          .getLessonsByMasterAndTimespan(this.master, statsBlocState.timespan, gym.id)
           .listen((lessons) => add(UpdateLessonsStats(lessons: lessons)));
     }
   }
@@ -38,6 +41,13 @@ class LessonsStatsBloc extends Bloc<LessonsStatsEvent, LessonsStatsState> {
   Stream<LessonsStatsState> mapEventToState(
     LessonsStatsEvent event,
   ) async* {
+    if(event is InitializeLessonsStats) {
+      gymSub = gymRepository.getGym().listen((gym) {
+        _onStatsStateChanged(statsBloc.state, gym);
+        statsBloc.stream.listen((statsBlocState) => _onStatsStateChanged(statsBlocState, gym));
+      });
+    }
+
     if (event is UpdateLessonsStats) {
       var acceptedAttendees = event.lessons.expand((lesson) => lesson.acceptedAttendees);
       yield LessonsStatsUpdated(
@@ -62,6 +72,8 @@ class LessonsStatsBloc extends Bloc<LessonsStatsEvent, LessonsStatsState> {
 
   @override
   Future<void> close() {
+    lessonsSub?.cancel();
+    gymSub?.cancel();
     return super.close();
   }
 }

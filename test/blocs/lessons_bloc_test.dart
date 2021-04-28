@@ -86,7 +86,7 @@ void main() {
       });
 
       blocTest(
-        "should listen on lessons for current day",
+        "listen on lessons for current day",
         build: () => LessonsBloc(
           userRepository: mockUserRepository,
           lessonRepository: mockLessonRepository,

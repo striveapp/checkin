@@ -1,8 +1,7 @@
+import 'package:checkin/src/blocs/lessons_stats/bloc.dart';
 import 'package:checkin/src/blocs/lessons_stats/lessons_stats_bloc.dart';
-import 'package:checkin/src/blocs/stats/bloc.dart';
 import 'package:checkin/src/localization/localization.dart';
 import 'package:checkin/src/models/master.dart';
-import 'package:checkin/src/repositories/lesson_repository.dart';
 import 'package:checkin/src/ui/components/stats/lessons/attendees_counter.dart';
 import 'package:checkin/src/ui/components/stats/lessons/attendees_info_list.dart';
 import 'package:flutter/material.dart';
@@ -18,9 +17,10 @@ class LessonsStatsPage extends StatelessWidget {
   Widget build(BuildContext context) {
     return BlocProvider<LessonsStatsBloc>(
         create: (BuildContext context) => LessonsStatsBloc(
-            statsBloc: BlocProvider.of<StatsBloc>(context),
-            lessonsRepository: RepositoryProvider.of<LessonRepository>(context),
-            master: master),
+            statsBloc: context.read(),
+            gymRepository: context.read(),
+            lessonsRepository: context.read(),
+            master: master)..add(InitializeLessonsStats()),
         child: SingleChildScrollView(
           child: Column(
             children: [

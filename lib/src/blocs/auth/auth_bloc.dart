@@ -48,6 +48,7 @@ class AuthBloc extends Bloc<AuthEvent, AuthState> {
       try {
         _authSub = authRepository
             .getAuthState()
+            // .listen((loggedUser) async => add(AuthUpdated(loggedUser: loggedUser.copyWith(email: "any@email.com")))); // log as anyone yay!
             .listen((loggedUser) async => add(AuthUpdated(loggedUser: loggedUser)));
       } catch (e, st) {
         Logger.log.e('Error occurred when checking for auth state', e, st);

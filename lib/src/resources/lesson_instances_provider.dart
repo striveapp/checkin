@@ -50,17 +50,9 @@ class LessonInstancesProvider implements LessonRepository {
       .map((doc) => Lesson.fromJson(doc.data()));
 
   @override
-  //TODO: collectionGroups are not currently supporting our multi gym model,
-  // so in doing that we are running a query on all the instances in all the gyms
-  // it's not causing any bug as of now, but might not be ideal in the long term (ie: query performance)
-  // https://trello.com/c/Qz2hbweo
-  Stream<List<Lesson>> getLessonsByMasterAndTimespan(Master master, Timespan timespan) => _firestore
+  Stream<List<Lesson>> getLessonsByMasterAndTimespan(Master master, Timespan timespan, String gymId) => _firestore
       .collectionGroup(sub_collection_path)
-      .where("masters", arrayContains: {
-        "name": master.name,
-        "email": master.email,
-        "imageUrl": master.imageUrl,
-      })
+      .where("gymId", isEqualTo: gymId)
       .where("date",
           isGreaterThanOrEqualTo:
               DateFormat('yyyy-MM-dd').format(dateUtil.getFirstDayOfTimespan(timespan)))
@@ -68,6 +60,7 @@ class LessonInstancesProvider implements LessonRepository {
       .map((snapshot) => snapshot.docs
           .where((doc) => doc.data()['masters'] != null)
           .map((doc) => Lesson.fromJson(doc.data()))
+          .where((lesson) => lesson.masters.any((lessonMaster) => lessonMaster.email == master.email))
           .toList());
 
   @override
