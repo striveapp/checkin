@@ -3,7 +3,6 @@ import 'package:checkin/src/blocs/sessions/bloc.dart';
 import 'package:checkin/src/localization/localization.dart';
 import 'package:checkin/src/models/attendee.dart';
 import 'package:checkin/src/repositories/graduation_system_repository.dart';
-import 'package:checkin/src/repositories/membership_repository.dart';
 import 'package:checkin/src/repositories/stats_repository.dart';
 import 'package:checkin/src/repositories/user_repository.dart';
 import 'package:checkin/src/ui/components/empty_widget.dart';
@@ -43,8 +42,8 @@ class AttendeeTile extends StatelessWidget {
       providers: [
         BlocProvider<SessionsBloc>(
           create: (BuildContext context) => SessionsBloc(
-            membershipRepository: RepositoryProvider.of<MembershipRepository>(context),
-            statsRepository: RepositoryProvider.of<StatsRepository>(context),
+            membershipRepository: context.read(),
+            statsRepository: context.read(),
             userEmail: attendee.email,
             selectedGymId: selectedGymId,
           ),

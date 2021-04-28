@@ -3,8 +3,6 @@ import 'package:checkin/src/blocs/sessions/bloc.dart';
 import 'package:checkin/src/constants.dart';
 import 'package:checkin/src/localization/localization.dart';
 import 'package:checkin/src/models/attendee.dart';
-import 'package:checkin/src/repositories/membership_repository.dart';
-import 'package:checkin/src/repositories/stats_repository.dart';
 import 'package:checkin/src/ui/components/loading_indicator.dart';
 import 'package:checkin/src/ui/components/registry/register_dialog.dart';
 import 'package:checkin/src/ui/components/registry/registry_button.dart';
@@ -75,10 +73,10 @@ class StudentButtons extends StatelessWidget {
       providers: [
         BlocProvider<SessionsBloc>(
           create: (BuildContext context) => SessionsBloc(
-            statsRepository: RepositoryProvider.of<StatsRepository>(context),
+            statsRepository: context.read(),
             userEmail: registryState.currentUser.email,
             selectedGymId: registryState.currentUser.selectedGymId,
-            membershipRepository: RepositoryProvider.of<MembershipRepository>(context),
+            membershipRepository: context.read(),
           ),
         )
       ],
