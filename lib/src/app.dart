@@ -3,6 +3,7 @@ import 'package:checkin/src/blocs/dynamic_link/bloc.dart';
 import 'package:checkin/src/blocs/notification/notification_bloc.dart';
 import 'package:checkin/src/blocs/notification/notification_event.dart';
 import 'package:checkin/src/blocs/notification/notification_state.dart';
+import 'package:checkin/src/blocs/profile/bloc.dart';
 import 'package:checkin/src/blocs/theme/bloc.dart';
 import 'package:checkin/src/localization/localization.dart';
 import 'package:checkin/src/logging/logger.dart';
@@ -178,14 +179,24 @@ class _AppState extends State<App> with WidgetsBindingObserver {
               return MultiBlocProvider(
                 providers: [
                   BlocProvider<UserBloc>(
-                      create: (BuildContext context) => UserBloc(
-                            userRepository: context.read<UserRepository>(),
-                            authBloc: context.read<AuthBloc>(),
-                          )),
+                    create: (BuildContext context) => UserBloc(
+                      userRepository: context.read<UserRepository>(),
+                      authBloc: context.read<AuthBloc>(),
+                    ),
+                  ),
                   BlocProvider<GymBloc>(
                     create: (BuildContext context) => GymBloc(
                       gymRepository: context.read<GymRepository>(),
-                    )..add(InitializeGym()),
+                    )..add(
+                        InitializeGym(),
+                      ),
+                  ),
+                  BlocProvider<ProfileBloc>(
+                    create: (BuildContext context) => ProfileBloc(
+                      userRepository: context.read(),
+                      imageRepository: context.read(),
+                      storageRepository: context.read(),
+                    )..add(InitializeProfile()),
                   ),
                 ],
                 child: HomePage(),

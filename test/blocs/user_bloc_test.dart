@@ -16,6 +16,7 @@ class MockUserRepository extends Mock implements UserRepository {}
 class MockAuthBloc extends MockBloc<AuthEvent, AuthState> implements AuthBloc {}
 
 class FakeAuthEvent extends Fake implements AuthEvent {}
+
 class FakeAuthState extends Fake implements AuthState {}
 
 void main() {
@@ -130,7 +131,8 @@ void main() {
       });
 
       tearDown(() async {
-        await untilCalled(() => mockUserRepository.updateSelectedGymId(testUser.email, newSelectedGymId));
+        await untilCalled(
+            () => mockUserRepository.updateSelectedGymId(testUser.email, newSelectedGymId));
         verify(() => mockUserRepository.updateSelectedGymId(testUser.email, newSelectedGymId));
       });
 
@@ -140,8 +142,7 @@ void main() {
                 userRepository: mockUserRepository,
               ),
           seed: () => UserState.userSuccess(currentUser: testUser),
-          act: (bloc) => bloc.add(
-              UserEvent.updateSelectedGym(newGymId: newSelectedGymId)),
+          act: (bloc) => bloc.add(UserEvent.updateSelectedGym(newGymId: newSelectedGymId)),
           expect: () => []);
     });
   });
