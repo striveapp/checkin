@@ -1,7 +1,6 @@
-import 'package:checkin/src/blocs/user/bloc.dart';
-import 'package:checkin/src/logging/logger.dart';
+import 'package:checkin/src/blocs/profile/bloc.dart';
 import 'package:checkin/src/ui/components/empty_widget.dart';
-import 'package:checkin/src/ui/components/rounded_image.dart';
+import 'package:checkin/src/ui/components/user_image.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 
@@ -21,39 +20,28 @@ class BaseAppBar extends StatelessWidget implements PreferredSizeWidget {
 
   @override
   Widget build(BuildContext context) {
-    return BlocBuilder<UserBloc, UserState>(
-      builder: (BuildContext context, UserState state) {
-        var currentUser;
-        if (state is UserSuccess) {
-          currentUser = state.currentUser;
-        }
-        Logger.log.i("drawing AppBar with user [$currentUser]");
-        return AppBar(
-          centerTitle: true,
-          backgroundColor: this.backgroundColor ?? Theme.of(context).primaryColor,
-          title: title == null || title.isEmpty
-              ? EmptyWidget()
-              : Text(this.title,
-                  style: Theme.of(context).textTheme.headline1.apply(color: Colors.white)),
-          actions: <Widget>[
-            if (showUserImage && currentUser != null)
-              Padding(
-                padding: EdgeInsets.only(right: 10.0),
-                child: IconButton(
-                    key: Key('accountPageButton'),
-                    onPressed: () {
-                      Navigator.of(context).pushNamed('account');
-                    },
-                    icon: RoundedImage(
-                      url: currentUser.imageUrl,
-                      width: 30,
-                      height: 30,
-                    )),
-              ),
-            if (actions != null) ...actions
-          ],
-        );
-      },
+    return BlocProvider(
+      create: (BuildContext context) => ProfileBloc(
+        userRepository: context.read(),
+        storageRepository: context.read(),
+        imageRepository: context.read(),
+      )..add(InitializeProfile()),
+      child: AppBar(
+        centerTitle: true,
+        backgroundColor: this.backgroundColor ?? Theme.of(context).primaryColor,
+        title: title == null || title.isEmpty
+            ? EmptyWidget()
+            : Text(this.title,
+                style: Theme.of(context).textTheme.headline1.apply(color: Colors.white)),
+        actions: <Widget>[
+          if (showUserImage)
+            Padding(
+              padding: EdgeInsets.only(right: 10.0),
+              child: UserImage(),
+            ),
+          if (actions != null) ...actions
+        ],
+      ),
     );
   }
 

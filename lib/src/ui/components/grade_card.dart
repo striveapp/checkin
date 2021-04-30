@@ -1,26 +1,21 @@
-import 'package:checkin/src/blocs/user/bloc.dart';
 import 'package:checkin/src/localization/localization.dart';
 import 'package:checkin/src/models/grade.dart';
 import 'package:flutter/material.dart';
-import 'package:flutter_bloc/flutter_bloc.dart';
 
 class GradeCard extends StatelessWidget {
   final Grade grade;
+  final VoidCallback onPressed;
 
   static const String beltColor = '%s Belt';
 
-  GradeCard({this.grade});
+  GradeCard({this.grade, this.onPressed});
 
   @override
   Widget build(BuildContext context) {
-    void _onTap(Grade grade) {
-      BlocProvider.of<UserBloc>(context)..add(UpdateGrade(newGrade: grade));
-    }
-
     return Card(
         elevation: 2,
         child: InkWell(
-          onTap: () => _onTap(grade),
+          onTap: onPressed,
           child: Padding(
             padding: EdgeInsets.symmetric(vertical: 15, horizontal: 5),
             child: Row(

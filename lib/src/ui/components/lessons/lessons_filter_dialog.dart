@@ -1,6 +1,5 @@
 import 'package:checkin/src/blocs/lesson_filter/bloc.dart';
 import 'package:checkin/src/blocs/lessons/bloc.dart';
-import 'package:checkin/src/blocs/user/bloc.dart';
 import 'package:checkin/src/repositories/lesson_config_repository.dart';
 import 'package:checkin/src/repositories/user_repository.dart';
 import 'package:flutter/material.dart';
@@ -24,9 +23,6 @@ class LessonsFilterDialog extends StatelessWidget {
       providers: [
         BlocProvider.value(
           value: parentContext.read<LessonsBloc>(),
-        ),
-        BlocProvider.value(
-          value: parentContext.read<UserBloc>(),
         ),
         BlocProvider(
             create: (BuildContext context) => LessonFilterBloc(

@@ -2,10 +2,11 @@ import 'package:checkin/src/blocs/profile/bloc.dart';
 import 'package:checkin/src/localization/localization.dart';
 import 'package:checkin/src/models/grade.dart';
 import 'package:checkin/src/models/user.dart';
+import 'package:checkin/src/ui/components/placeholder_image.dart';
+import 'package:checkin/src/ui/components/placeholder_text.dart';
 import 'package:checkin/src/ui/components/rounded_image.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
-import 'package:shimmer/shimmer.dart';
 
 class ProfileTile extends StatefulWidget {
   final String profileEmail;
@@ -156,18 +157,7 @@ class ShimmedProfileTileView extends StatelessWidget {
           ),
           title: Row(
             children: <Widget>[
-              Shimmer.fromColors(
-                baseColor: Theme.of(context).backgroundColor.withAlpha(100),
-                highlightColor: Theme.of(context).backgroundColor,
-                child: Container(
-                  decoration: BoxDecoration(
-                    shape: BoxShape.circle,
-                    color: Colors.grey,
-                  ),
-                  width: 40,
-                  height: 40,
-                ),
-              ),
+              PlaceholderImage(width: 40, height: 40),
               SizedBox(
                 width: 15,
               ),
@@ -175,27 +165,17 @@ class ShimmedProfileTileView extends StatelessWidget {
                 child: Column(
                   crossAxisAlignment: CrossAxisAlignment.start,
                   children: <Widget>[
-                    Shimmer.fromColors(
-                      baseColor: Theme.of(context).backgroundColor.withAlpha(100),
-                      highlightColor: Theme.of(context).backgroundColor,
-                      child: Container(
-                        height: 16,
-                        width: 145,
-                        color: Colors.grey,
-                      ),
+                    PlaceholderText(
+                      fontHeight: 16,
+                      width: 145,
                     ),
                     SizedBox(
                       height: 10,
                     ),
-                    Shimmer.fromColors(
-                      baseColor: Theme.of(context).backgroundColor.withAlpha(100),
-                      highlightColor: Theme.of(context).backgroundColor,
-                      child: Container(
-                        height: 12,
-                        width: 90,
-                        color: Colors.grey,
-                      ),
-                    )
+                    PlaceholderText(
+                      fontHeight: 12,
+                      width: 90,
+                    ),
                   ],
                 ),
               ),

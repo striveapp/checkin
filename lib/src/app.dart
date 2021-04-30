@@ -8,8 +8,6 @@ import 'package:checkin/src/blocs/theme/bloc.dart';
 import 'package:checkin/src/localization/localization.dart';
 import 'package:checkin/src/logging/logger.dart';
 import 'package:checkin/src/repositories/analytics_repository.dart';
-import 'package:checkin/src/repositories/gym_repository.dart';
-import 'package:checkin/src/repositories/user_repository.dart';
 import 'package:checkin/src/routes/application.dart';
 import 'package:checkin/src/themes/theme.dart';
 import 'package:checkin/src/ui/components/notification_snack_bar_content.dart';
@@ -22,8 +20,6 @@ import 'package:flutter_localizations/flutter_localizations.dart';
 import 'package:i18n_extension/i18n_widget.dart';
 import 'package:share/share.dart';
 
-import 'blocs/gym/bloc.dart';
-import 'blocs/user/bloc.dart';
 import 'blocs/version/bloc.dart';
 
 class App extends StatefulWidget {
@@ -176,31 +172,13 @@ class _AppState extends State<App> with WidgetsBindingObserver {
               context
                   .read<NotificationBloc>()
                   .add(UpdateToken(loggedUserEmail: state.loggedUser.email));
-              return MultiBlocProvider(
-                providers: [
-                  BlocProvider<UserBloc>(
-                    create: (BuildContext context) => UserBloc(
-                      userRepository: context.read<UserRepository>(),
-                      authBloc: context.read<AuthBloc>(),
-                    ),
-                  ),
-                  BlocProvider<GymBloc>(
-                    create: (BuildContext context) => GymBloc(
-                      gymRepository: context.read<GymRepository>(),
-                    )..add(
-                        InitializeGym(),
-                      ),
-                  ),
-                  BlocProvider<ProfileBloc>(
-                    create: (BuildContext context) => ProfileBloc(
-                      userRepository: context.read(),
-                      imageRepository: context.read(),
-                      storageRepository: context.read(),
-                    )..add(InitializeProfile()),
-                  ),
-                ],
-                child: HomePage(),
-              );
+              return BlocProvider<ProfileBloc>(
+                  create: (BuildContext context) => ProfileBloc(
+                        userRepository: context.read(),
+                        imageRepository: context.read(),
+                        storageRepository: context.read(),
+                      )..add(InitializeProfile()),
+                  child: HomePage());
             }
 
             //NOTE: state is AuthUnauthenticated

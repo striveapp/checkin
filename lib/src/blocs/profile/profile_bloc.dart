@@ -86,6 +86,20 @@ class ProfileBloc extends Bloc<ProfileEvent, ProfileState> {
         }
       }
     }
+
+    if (event is UpdateGrade) {
+      await userRepository.updateGrade(
+        event.userEmail,
+        event.newGrade,
+      );
+    }
+
+    if (event is UpdateSelectedGym) {
+      await userRepository.updateSelectedGymId(
+        event.userEmail,
+        event.newGymId,
+      );
+    }
   }
 
   @override

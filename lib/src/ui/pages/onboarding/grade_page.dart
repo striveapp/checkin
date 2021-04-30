@@ -6,8 +6,11 @@ import 'package:flutter/widgets.dart';
 class GradePage extends StatelessWidget {
   static const String selectYourBelt = 'Select your belt';
 
+  final String userEmail;
+
   GradePage({
     Key key,
+    this.userEmail,
   }) : super(key: key);
 
   @override
@@ -33,7 +36,11 @@ class GradePage extends StatelessWidget {
               SizedBox(
                 height: 10,
               ),
-              Expanded(child: GradeButtons()),
+              Expanded(
+                child: GradeButtons(
+                  userEmail: userEmail,
+                ),
+              ),
             ],
           ),
         ),

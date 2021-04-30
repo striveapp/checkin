@@ -2,6 +2,7 @@ import 'dart:io';
 
 import 'package:bloc_test/bloc_test.dart';
 import 'package:checkin/src/blocs/profile/bloc.dart';
+import 'package:checkin/src/models/grade.dart';
 import 'package:checkin/src/models/user.dart';
 import 'package:checkin/src/repositories/image_repository.dart';
 import 'package:checkin/src/repositories/storage_repository.dart';
@@ -216,6 +217,59 @@ void main() {
                 userEmail: loggedUser.email,
               )),
           expect: () => []);
+    });
+
+    group("on UpdateGrade event", () {
+      setUp(() {
+        when(mockUserRepository.updateGrade(loggedUser.email, Grade.black))
+            .thenAnswer((_) => Future.value(null));
+      });
+
+      tearDown(() async {
+        await untilCalled(mockUserRepository.updateGrade(loggedUser.email, Grade.black));
+        verify(mockUserRepository.updateGrade(loggedUser.email, Grade.black));
+      });
+
+      blocTest(
+        "should update the user grade",
+        build: () => ProfileBloc(
+          userRepository: mockUserRepository,
+          storageRepository: mockStorageRepository,
+          imageRepository: mockImageRepository,
+        ),
+        act: (bloc) => bloc.add(UpdateGrade(
+          userEmail: loggedUser.email,
+          newGrade: Grade.black,
+        )),
+        expect: () => [],
+      );
+    });
+
+    group("on UpdateSelectedGym event", () {
+      setUp(() {
+        when(mockUserRepository.updateSelectedGymId(loggedUser.email, "testGym"))
+            .thenAnswer((_) => Future.value(null));
+      });
+
+      tearDown(() async {
+        await untilCalled(
+            () => mockUserRepository.updateSelectedGymId(loggedUser.email, "testGym"));
+        verify(mockUserRepository.updateSelectedGymId(loggedUser.email, "testGym"));
+      });
+
+      blocTest(
+        "should update the user selected gym id",
+        build: () => ProfileBloc(
+          userRepository: mockUserRepository,
+          storageRepository: mockStorageRepository,
+          imageRepository: mockImageRepository,
+        ),
+        act: (bloc) => bloc.add(UpdateSelectedGym(
+          userEmail: loggedUser.email,
+          newGymId: "testGym",
+        )),
+        expect: () => [],
+      );
     });
   });
 }

@@ -5,9 +5,12 @@ import 'package:checkin/app_config.dart';
 import 'package:checkin/src/api/lesson_api.dart';
 import 'package:checkin/src/blocs/auth/bloc.dart';
 import 'package:checkin/src/blocs/dynamic_link/bloc.dart';
+import 'package:checkin/src/blocs/gym/bloc.dart';
+import 'package:checkin/src/blocs/gym/gym_bloc.dart';
 import 'package:checkin/src/blocs/notification/notification_bloc.dart';
 import 'package:checkin/src/blocs/notification/notification_event.dart';
 import 'package:checkin/src/blocs/theme/bloc.dart';
+import 'package:checkin/src/blocs/user/bloc.dart';
 import 'package:checkin/src/blocs/version/bloc.dart';
 import 'package:checkin/src/logging/logger.dart';
 import 'package:checkin/src/models/user.dart';
@@ -102,11 +105,11 @@ Future<void> mainCommon(AppConfig appConfig) async {
             ),
             BlocProvider<AuthBloc>(
               create: (context) => AuthBloc(
-                authRepository: context.read<AuthRepository>(),
-                analyticsRepository: context.read<AnalyticsRepository>(),
-                userRepository: context.read<UserRepository>(),
+                authRepository: context.read(),
+                analyticsRepository: context.read(),
+                userRepository: context.read(),
                 gymRepository: context.read(),
-                localStorageRepository: context.read<LocalStorageRepository>(),
+                localStorageRepository: context.read(),
                 loggedUser: user,
                 // todo retrieve from storage cache
                 versionUtil: VersionUtil(),
@@ -114,24 +117,36 @@ Future<void> mainCommon(AppConfig appConfig) async {
             ),
             BlocProvider<DynamicLinkBloc>(
               create: (context) => DynamicLinkBloc(
-                  dynamicLinks: FirebaseDynamicLinks.instance,
-                  localStorageRepository: context.read<LocalStorageRepository>(),
-                  dynamicLinkRepository: context.read<DynamicLinkRepository>(),
-                  authRepository: context.read<AuthRepository>(),
-                  analyticsRepository: context.read<AnalyticsRepository>(),
-                  userRepository: context.read<UserRepository>())
-                ..add(DeepLinkSetup()),
+                dynamicLinks: FirebaseDynamicLinks.instance,
+                localStorageRepository: context.read(),
+                dynamicLinkRepository: context.read(),
+                authRepository: context.read(),
+                analyticsRepository: context.read(),
+                userRepository: context.read(),
+              )..add(DeepLinkSetup()),
+            ),
+            BlocProvider<NotificationBloc>(
+              create: (context) => NotificationBloc(
+                notificationRepository: context.read(),
+                userRepository: context.read(),
+              )..add(InitializeNotifications()),
             ),
             BlocProvider<VersionBloc>(
                 create: (context) => VersionBloc(
-                      versionRepository: context.read<VersionRepository>(),
+                      versionRepository: context.read(),
                       versionUtil: VersionUtil(),
                     )),
-            BlocProvider<NotificationBloc>(
-                create: (context) => NotificationBloc(
-                      notificationRepository: context.read(),
-                      userRepository: context.read(),
-                    )..add(InitializeNotifications())),
+            BlocProvider<UserBloc>(
+              create: (BuildContext context) => UserBloc(
+                userRepository: context.read(),
+                authBloc: context.read(),
+              ),
+            ),
+            BlocProvider<GymBloc>(
+              create: (BuildContext context) => GymBloc(
+                gymRepository: context.read(),
+              )..add(InitializeGym()),
+            ),
           ],
           child: BlocBuilder<ThemeBloc, ThemeState>(
               builder: (BuildContext context, ThemeState state) => App(

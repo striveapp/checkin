@@ -24,11 +24,6 @@ class _$UserStateTearOff {
       currentUser: currentUser,
     );
   }
-
-// ignore: unused_element
-  UserError userError() {
-    return const UserError();
-  }
 }
 
 /// @nodoc
@@ -41,26 +36,22 @@ mixin _$UserState {
   TResult when<TResult extends Object>({
     @required TResult userLoading(),
     @required TResult userSuccess(User currentUser),
-    @required TResult userError(),
   });
   @optionalTypeArgs
   TResult maybeWhen<TResult extends Object>({
     TResult userLoading(),
     TResult userSuccess(User currentUser),
-    TResult userError(),
     @required TResult orElse(),
   });
   @optionalTypeArgs
   TResult map<TResult extends Object>({
     @required TResult userLoading(UserLoading value),
     @required TResult userSuccess(UserSuccess value),
-    @required TResult userError(UserError value),
   });
   @optionalTypeArgs
   TResult maybeMap<TResult extends Object>({
     TResult userLoading(UserLoading value),
     TResult userSuccess(UserSuccess value),
-    TResult userError(UserError value),
     @required TResult orElse(),
   });
 }
@@ -82,16 +73,14 @@ class _$UserStateCopyWithImpl<$Res> implements $UserStateCopyWith<$Res> {
 
 /// @nodoc
 abstract class $UserLoadingCopyWith<$Res> {
-  factory $UserLoadingCopyWith(
-          UserLoading value, $Res Function(UserLoading) then) =
+  factory $UserLoadingCopyWith(UserLoading value, $Res Function(UserLoading) then) =
       _$UserLoadingCopyWithImpl<$Res>;
 }
 
 /// @nodoc
 class _$UserLoadingCopyWithImpl<$Res> extends _$UserStateCopyWithImpl<$Res>
     implements $UserLoadingCopyWith<$Res> {
-  _$UserLoadingCopyWithImpl(
-      UserLoading _value, $Res Function(UserLoading) _then)
+  _$UserLoadingCopyWithImpl(UserLoading _value, $Res Function(UserLoading) _then)
       : super(_value, (v) => _then(v as UserLoading));
 
   @override
@@ -126,11 +115,9 @@ class _$UserLoading with DiagnosticableTreeMixin implements UserLoading {
   TResult when<TResult extends Object>({
     @required TResult userLoading(),
     @required TResult userSuccess(User currentUser),
-    @required TResult userError(),
   }) {
     assert(userLoading != null);
     assert(userSuccess != null);
-    assert(userError != null);
     return userLoading();
   }
 
@@ -139,7 +126,6 @@ class _$UserLoading with DiagnosticableTreeMixin implements UserLoading {
   TResult maybeWhen<TResult extends Object>({
     TResult userLoading(),
     TResult userSuccess(User currentUser),
-    TResult userError(),
     @required TResult orElse(),
   }) {
     assert(orElse != null);
@@ -154,11 +140,9 @@ class _$UserLoading with DiagnosticableTreeMixin implements UserLoading {
   TResult map<TResult extends Object>({
     @required TResult userLoading(UserLoading value),
     @required TResult userSuccess(UserSuccess value),
-    @required TResult userError(UserError value),
   }) {
     assert(userLoading != null);
     assert(userSuccess != null);
-    assert(userError != null);
     return userLoading(this);
   }
 
@@ -167,7 +151,6 @@ class _$UserLoading with DiagnosticableTreeMixin implements UserLoading {
   TResult maybeMap<TResult extends Object>({
     TResult userLoading(UserLoading value),
     TResult userSuccess(UserSuccess value),
-    TResult userError(UserError value),
     @required TResult orElse(),
   }) {
     assert(orElse != null);
@@ -184,8 +167,7 @@ abstract class UserLoading implements UserState {
 
 /// @nodoc
 abstract class $UserSuccessCopyWith<$Res> {
-  factory $UserSuccessCopyWith(
-          UserSuccess value, $Res Function(UserSuccess) then) =
+  factory $UserSuccessCopyWith(UserSuccess value, $Res Function(UserSuccess) then) =
       _$UserSuccessCopyWithImpl<$Res>;
   $Res call({User currentUser});
 
@@ -195,8 +177,7 @@ abstract class $UserSuccessCopyWith<$Res> {
 /// @nodoc
 class _$UserSuccessCopyWithImpl<$Res> extends _$UserStateCopyWithImpl<$Res>
     implements $UserSuccessCopyWith<$Res> {
-  _$UserSuccessCopyWithImpl(
-      UserSuccess _value, $Res Function(UserSuccess) _then)
+  _$UserSuccessCopyWithImpl(UserSuccess _value, $Res Function(UserSuccess) _then)
       : super(_value, (v) => _then(v as UserSuccess));
 
   @override
@@ -207,8 +188,7 @@ class _$UserSuccessCopyWithImpl<$Res> extends _$UserStateCopyWithImpl<$Res>
     Object currentUser = freezed,
   }) {
     return _then(UserSuccess(
-      currentUser:
-          currentUser == freezed ? _value.currentUser : currentUser as User,
+      currentUser: currentUser == freezed ? _value.currentUser : currentUser as User,
     ));
   }
 
@@ -248,13 +228,11 @@ class _$UserSuccess with DiagnosticableTreeMixin implements UserSuccess {
     return identical(this, other) ||
         (other is UserSuccess &&
             (identical(other.currentUser, currentUser) ||
-                const DeepCollectionEquality()
-                    .equals(other.currentUser, currentUser)));
+                const DeepCollectionEquality().equals(other.currentUser, currentUser)));
   }
 
   @override
-  int get hashCode =>
-      runtimeType.hashCode ^ const DeepCollectionEquality().hash(currentUser);
+  int get hashCode => runtimeType.hashCode ^ const DeepCollectionEquality().hash(currentUser);
 
   @JsonKey(ignore: true)
   @override
@@ -266,11 +244,9 @@ class _$UserSuccess with DiagnosticableTreeMixin implements UserSuccess {
   TResult when<TResult extends Object>({
     @required TResult userLoading(),
     @required TResult userSuccess(User currentUser),
-    @required TResult userError(),
   }) {
     assert(userLoading != null);
     assert(userSuccess != null);
-    assert(userError != null);
     return userSuccess(currentUser);
   }
 
@@ -279,7 +255,6 @@ class _$UserSuccess with DiagnosticableTreeMixin implements UserSuccess {
   TResult maybeWhen<TResult extends Object>({
     TResult userLoading(),
     TResult userSuccess(User currentUser),
-    TResult userError(),
     @required TResult orElse(),
   }) {
     assert(orElse != null);
@@ -294,11 +269,9 @@ class _$UserSuccess with DiagnosticableTreeMixin implements UserSuccess {
   TResult map<TResult extends Object>({
     @required TResult userLoading(UserLoading value),
     @required TResult userSuccess(UserSuccess value),
-    @required TResult userError(UserError value),
   }) {
     assert(userLoading != null);
     assert(userSuccess != null);
-    assert(userError != null);
     return userSuccess(this);
   }
 
@@ -307,7 +280,6 @@ class _$UserSuccess with DiagnosticableTreeMixin implements UserSuccess {
   TResult maybeMap<TResult extends Object>({
     TResult userLoading(UserLoading value),
     TResult userSuccess(UserSuccess value),
-    TResult userError(UserError value),
     @required TResult orElse(),
   }) {
     assert(orElse != null);
@@ -324,104 +296,4 @@ abstract class UserSuccess implements UserState {
   User get currentUser;
   @JsonKey(ignore: true)
   $UserSuccessCopyWith<UserSuccess> get copyWith;
-}
-
-/// @nodoc
-abstract class $UserErrorCopyWith<$Res> {
-  factory $UserErrorCopyWith(UserError value, $Res Function(UserError) then) =
-      _$UserErrorCopyWithImpl<$Res>;
-}
-
-/// @nodoc
-class _$UserErrorCopyWithImpl<$Res> extends _$UserStateCopyWithImpl<$Res>
-    implements $UserErrorCopyWith<$Res> {
-  _$UserErrorCopyWithImpl(UserError _value, $Res Function(UserError) _then)
-      : super(_value, (v) => _then(v as UserError));
-
-  @override
-  UserError get _value => super._value as UserError;
-}
-
-/// @nodoc
-class _$UserError with DiagnosticableTreeMixin implements UserError {
-  const _$UserError();
-
-  @override
-  String toString({DiagnosticLevel minLevel = DiagnosticLevel.info}) {
-    return 'UserState.userError()';
-  }
-
-  @override
-  void debugFillProperties(DiagnosticPropertiesBuilder properties) {
-    super.debugFillProperties(properties);
-    properties..add(DiagnosticsProperty('type', 'UserState.userError'));
-  }
-
-  @override
-  bool operator ==(dynamic other) {
-    return identical(this, other) || (other is UserError);
-  }
-
-  @override
-  int get hashCode => runtimeType.hashCode;
-
-  @override
-  @optionalTypeArgs
-  TResult when<TResult extends Object>({
-    @required TResult userLoading(),
-    @required TResult userSuccess(User currentUser),
-    @required TResult userError(),
-  }) {
-    assert(userLoading != null);
-    assert(userSuccess != null);
-    assert(userError != null);
-    return userError();
-  }
-
-  @override
-  @optionalTypeArgs
-  TResult maybeWhen<TResult extends Object>({
-    TResult userLoading(),
-    TResult userSuccess(User currentUser),
-    TResult userError(),
-    @required TResult orElse(),
-  }) {
-    assert(orElse != null);
-    if (userError != null) {
-      return userError();
-    }
-    return orElse();
-  }
-
-  @override
-  @optionalTypeArgs
-  TResult map<TResult extends Object>({
-    @required TResult userLoading(UserLoading value),
-    @required TResult userSuccess(UserSuccess value),
-    @required TResult userError(UserError value),
-  }) {
-    assert(userLoading != null);
-    assert(userSuccess != null);
-    assert(userError != null);
-    return userError(this);
-  }
-
-  @override
-  @optionalTypeArgs
-  TResult maybeMap<TResult extends Object>({
-    TResult userLoading(UserLoading value),
-    TResult userSuccess(UserSuccess value),
-    TResult userError(UserError value),
-    @required TResult orElse(),
-  }) {
-    assert(orElse != null);
-    if (userError != null) {
-      return userError(this);
-    }
-    return orElse();
-  }
-}
-
-abstract class UserError implements UserState {
-  const factory UserError() = _$UserError;
 }

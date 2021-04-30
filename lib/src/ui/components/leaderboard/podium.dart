@@ -1,9 +1,9 @@
 import 'package:checkin/src/blocs/leaderboard/bloc.dart';
 import 'package:checkin/src/models/user_history.dart';
 import 'package:checkin/src/ui/components/leaderboard/podium_profile.dart';
+import 'package:checkin/src/ui/components/placeholder_image.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
-import 'package:shimmer/shimmer.dart';
 
 class Podium extends StatelessWidget {
   @override
@@ -82,17 +82,9 @@ class ShimmedPodiumView extends StatelessWidget {
           flex: 1,
           child: Padding(
             padding: const EdgeInsets.only(top: 60),
-            child: Shimmer.fromColors(
-              baseColor: Theme.of(context).backgroundColor.withAlpha(100),
-              highlightColor: Theme.of(context).backgroundColor,
-              child: Container(
-                decoration: BoxDecoration(
-                  shape: BoxShape.circle,
-                  color: Colors.grey,
-                ),
-                width: 70,
-                height: 70,
-              ),
+            child: PlaceholderImage(
+              width: 70,
+              height: 70,
             ),
           ),
         ),
@@ -100,17 +92,9 @@ class ShimmedPodiumView extends StatelessWidget {
           flex: 2,
           child: Padding(
             padding: const EdgeInsets.only(top: 20),
-            child: Shimmer.fromColors(
-              baseColor: Theme.of(context).backgroundColor.withAlpha(100),
-              highlightColor: Theme.of(context).backgroundColor,
-              child: Container(
-                decoration: BoxDecoration(
-                  shape: BoxShape.circle,
-                  color: Colors.grey,
-                ),
-                width: 100,
-                height: 100,
-              ),
+            child: PlaceholderImage(
+              width: 100,
+              height: 100,
             ),
           ),
         ),
@@ -118,17 +102,9 @@ class ShimmedPodiumView extends StatelessWidget {
           flex: 1,
           child: Padding(
             padding: const EdgeInsets.only(top: 60),
-            child: Shimmer.fromColors(
-              baseColor: Theme.of(context).backgroundColor.withAlpha(100),
-              highlightColor: Theme.of(context).backgroundColor,
-              child: Container(
-                decoration: BoxDecoration(
-                  shape: BoxShape.circle,
-                  color: Colors.grey,
-                ),
-                width: 70,
-                height: 70,
-              ),
+            child: PlaceholderImage(
+              width: 70,
+              height: 70,
             ),
           ),
         ),
