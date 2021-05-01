@@ -38,18 +38,18 @@ workflows:
           pushd android \
           && ./gradlew app:assembleDevDebugAndroidTest app:assembleDevDebug -Ptarget="$FCI_BUILD_DIR/test_driver/journeys-v2/app_test.dart" \
           && popd
-      - name: Setup GCloud
-        script: |
-          echo $GCLOUD_KEY_FILE | base64 --decode > ./gcloud_key_file.json \
-          && gcloud auth activate-service-account --key-file=gcloud_key_file.json \
-          && gcloud --quiet config set project checkin-b7e8d
-      - name: Run e2e tests
-        script: |
-          gcloud firebase test android run \
-          --type instrumentation \
-          --app build/app/outputs/apk/dev/debug/app-dev-debug.apk \
-          --test build/app/outputs/apk/androidTest/dev/debug/app-dev-debug-androidTest.apk \
-          --timeout 2m
+#      - name: Setup GCloud
+#        script: |
+#          echo $GCLOUD_KEY_FILE | base64 --decode > ./gcloud_key_file.json \
+#          && gcloud auth activate-service-account --key-file=gcloud_key_file.json \
+#          && gcloud --quiet config set project checkin-b7e8d
+#      - name: Run e2e tests
+#        script: |
+#          gcloud firebase test android run \
+#          --type instrumentation \
+#          --app build/app/outputs/apk/dev/debug/app-dev-debug.apk \
+#          --test build/app/outputs/apk/androidTest/dev/debug/app-dev-debug-androidTest.apk \
+#          --timeout 2m
     artifacts:
       - build/**/outputs/**/*.apk
       - flutter_drive.log
