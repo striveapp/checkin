@@ -14,8 +14,7 @@ import 'package:mocktail/mocktail.dart';
 
 import 'helper/mocktail_helper.dart';
 
-class MockStatsBloc extends MockBloc<StatsEvent, StatsState>
-    implements StatsBloc {}
+class MockStatsBloc extends MockBloc<StatsEvent, StatsState> implements StatsBloc {}
 
 class MockLessonRepository extends Mock implements LessonRepository {}
 
@@ -72,9 +71,7 @@ void main() {
     );
 
     List<Lesson> allLessons = [
-      Lesson(
-          acceptedAttendees: [attendee1, attendee2, attendee3],
-          masters: [fakeMaster]),
+      Lesson(acceptedAttendees: [attendee1, attendee2, attendee3], masters: [fakeMaster]),
       Lesson(acceptedAttendees: [attendee1, attendee2], masters: [fakeMaster]),
     ];
 
@@ -105,23 +102,21 @@ void main() {
 
     group("on InitializeLessonsStats", () {
       setUp(() {
-        when( () => mockGymRepository.getGym())
+        when(() => mockGymRepository.getGym())
             .thenAnswer((invocation) => Stream<Gym>.value(fakeGym));
 
-        whenListen(mockStatsBloc,
-            Stream.fromIterable([TimespanUpdated(timespan: Timespan.week)]));
+        whenListen(mockStatsBloc, Stream.fromIterable([TimespanUpdated(timespan: Timespan.week)]));
 
         when(() => mockLessonRepository.getLessonsByMasterAndTimespan(
-                fakeMaster, Timespan.week, 'fake-id'))
-            .thenAnswer((_) => Stream<List<Lesson>>.empty());
+            fakeMaster, Timespan.week, 'fake-id')).thenAnswer((_) => Stream<List<Lesson>>.empty());
       });
 
       tearDown(() async {
-        await untilCalled(() => mockLessonRepository
-            .getLessonsByMasterAndTimespan(fakeMaster, Timespan.week, 'fake-id'));
+        await untilCalled(() => mockLessonRepository.getLessonsByMasterAndTimespan(
+            fakeMaster, Timespan.week, 'fake-id'));
         verify(() => mockLessonRepository.getLessonsByMasterAndTimespan(
             fakeMaster, Timespan.week, 'fake-id'));
-        verify( () => mockGymRepository.getGym());
+        verify(() => mockGymRepository.getGym());
       });
 
       blocTest(
@@ -138,14 +133,14 @@ void main() {
 
     group("on UpdateLessonStats event", () {
       group("when StatsBloc emits TimespanUpdated state", () {
-        //TODO: this should probably be a different data structure, maybe a map with attendee and counter
         blocTest(
           "emit LessonStatsUpdated",
           build: () => LessonsStatsBloc(
-              master: fakeMaster,
-              lessonsRepository: mockLessonRepository,
-              statsBloc: mockStatsBloc,
-              gymRepository: mockGymRepository),
+            master: fakeMaster,
+            lessonsRepository: mockLessonRepository,
+            statsBloc: mockStatsBloc,
+            gymRepository: mockGymRepository,
+          ),
           act: (bloc) => bloc.add(UpdateLessonsStats(lessons: allLessons)),
           expect: () => [
             LessonsStatsUpdated(
@@ -160,5 +155,7 @@ void main() {
         );
       });
     });
+
+    //TODO: how to test the sorting?
   });
 }

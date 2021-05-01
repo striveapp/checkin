@@ -1,4 +1,5 @@
 import 'dart:async';
+import 'dart:collection';
 
 import 'package:bloc/bloc.dart';
 import 'package:checkin/src/blocs/lessons_stats/bloc.dart';
@@ -32,7 +33,11 @@ class LessonsStatsBloc extends Bloc<LessonsStatsEvent, LessonsStatsState> {
       lessonsSub?.cancel();
       lessonsSub = this
           .lessonsRepository
-          .getLessonsByMasterAndTimespan(this.master, statsBlocState.timespan, gym.id)
+          .getLessonsByMasterAndTimespan(
+            this.master,
+            statsBlocState.timespan,
+            gym.id,
+          )
           .listen((lessons) => add(UpdateLessonsStats(lessons: lessons)));
     }
   }
@@ -41,7 +46,7 @@ class LessonsStatsBloc extends Bloc<LessonsStatsEvent, LessonsStatsState> {
   Stream<LessonsStatsState> mapEventToState(
     LessonsStatsEvent event,
   ) async* {
-    if(event is InitializeLessonsStats) {
+    if (event is InitializeLessonsStats) {
       gymSub = gymRepository.getGym().listen((gym) {
         _onStatsStateChanged(statsBloc.state, gym);
         statsBloc.stream.listen((statsBlocState) => _onStatsStateChanged(statsBlocState, gym));
@@ -57,7 +62,9 @@ class LessonsStatsBloc extends Bloc<LessonsStatsEvent, LessonsStatsState> {
     }
   }
 
-  Map<Attendee, int> _getAttendeesWithCounter(Iterable<Attendee> acceptedAttendees) {
+  LinkedHashMap<Attendee, int> _getAttendeesWithCounter(
+    Iterable<Attendee> acceptedAttendees,
+  ) {
     Map<Attendee, int> acceptedAttendeesWithCounterMap = {};
 
     acceptedAttendees.forEach((acceptedAttendee) {
@@ -67,7 +74,17 @@ class LessonsStatsBloc extends Bloc<LessonsStatsEvent, LessonsStatsState> {
         acceptedAttendeesWithCounterMap[acceptedAttendee] = 1;
       }
     });
-    return acceptedAttendeesWithCounterMap;
+
+    var sortedKeys = acceptedAttendeesWithCounterMap.keys.toList(growable: false)
+      ..sort((k1, k2) =>
+          acceptedAttendeesWithCounterMap[k2].compareTo(acceptedAttendeesWithCounterMap[k1]));
+    LinkedHashMap<Attendee, int> sortedMap = new LinkedHashMap.fromIterable(
+      sortedKeys,
+      key: (k) => k,
+      value: (k) => acceptedAttendeesWithCounterMap[k],
+    );
+
+    return sortedMap;
   }
 
   @override
