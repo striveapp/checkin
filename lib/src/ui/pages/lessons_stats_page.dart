@@ -20,29 +20,23 @@ class LessonsStatsPage extends StatelessWidget {
             statsBloc: context.read(),
             gymRepository: context.read(),
             lessonsRepository: context.read(),
-            master: master)..add(InitializeLessonsStats()),
-        child: SingleChildScrollView(
-          child: Column(
-            children: [
-              AttendeesCounter(),
-              SizedBox(
-                height: 30,
-              ),
-              Padding(
-                padding: EdgeInsets.symmetric(horizontal: 10),
-                child: Column(
-                  crossAxisAlignment: CrossAxisAlignment.start,
-                  children: <Widget>[
-                    Text(topStudents.i18n, style: Theme.of(context).textTheme.headline1),
-                    SizedBox(
-                      height: 10,
-                    ),
-                    AttendeesInfoList()
-                  ],
-                ),
-              ),
-            ],
-          ),
+            master: master)
+          ..add(InitializeLessonsStats()),
+        child: Column(
+          children: [
+            AttendeesCounter(),
+            SizedBox(
+              height: 30,
+            ),
+            Text(
+              topStudents.i18n,
+              style: Theme.of(context).textTheme.headline1,
+            ),
+            SizedBox(
+              height: 10,
+            ),
+            Expanded(child: AttendeesInfoList()),
+          ],
         ));
   }
 }

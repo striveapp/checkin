@@ -1,10 +1,10 @@
 import 'dart:async';
-import 'dart:collection';
 
 import 'package:bloc/bloc.dart';
 import 'package:checkin/src/blocs/lessons_stats/bloc.dart';
 import 'package:checkin/src/blocs/stats/bloc.dart';
 import 'package:checkin/src/models/attendee.dart';
+import 'package:checkin/src/models/attendee_with_counter.dart';
 import 'package:checkin/src/models/gym.dart';
 import 'package:checkin/src/models/lesson.dart';
 import 'package:checkin/src/models/master.dart';
@@ -38,7 +38,9 @@ class LessonsStatsBloc extends Bloc<LessonsStatsEvent, LessonsStatsState> {
             statsBlocState.timespan,
             gym.id,
           )
-          .listen((lessons) => add(UpdateLessonsStats(lessons: lessons)));
+          .listen((lessons) => add(UpdateLessonsStats(
+                lessons: lessons,
+              )));
     }
   }
 
@@ -56,35 +58,29 @@ class LessonsStatsBloc extends Bloc<LessonsStatsEvent, LessonsStatsState> {
     if (event is UpdateLessonsStats) {
       var acceptedAttendees = event.lessons.expand((lesson) => lesson.acceptedAttendees);
       yield LessonsStatsUpdated(
-        acceptedAttendeesWithCounter: _getAttendeesWithCounter(acceptedAttendees),
+        attendeesWithCounter: _retrieveAttendeesWithCounter(acceptedAttendees),
         totalAttendees: acceptedAttendees.length,
       );
     }
   }
 
-  LinkedHashMap<Attendee, int> _getAttendeesWithCounter(
+  List<AttendeeWithCounter> _retrieveAttendeesWithCounter(
     Iterable<Attendee> acceptedAttendees,
   ) {
-    Map<Attendee, int> acceptedAttendeesWithCounterMap = {};
+    Map<String, AttendeeWithCounter> attendeesWithCounterMap = {};
 
-    acceptedAttendees.forEach((acceptedAttendee) {
-      if (acceptedAttendeesWithCounterMap.containsKey(acceptedAttendee)) {
-        acceptedAttendeesWithCounterMap[acceptedAttendee] += 1;
+    acceptedAttendees.map((a) => a.email).forEach((email) {
+      if (attendeesWithCounterMap.containsKey(email)) {
+        var attendeeWithCounter = attendeesWithCounterMap[email];
+        attendeesWithCounterMap[email] =
+            attendeeWithCounter.copyWith(counter: attendeeWithCounter.counter + 1);
       } else {
-        acceptedAttendeesWithCounterMap[acceptedAttendee] = 1;
+        attendeesWithCounterMap[email] = AttendeeWithCounter(email: email, counter: 1);
       }
     });
 
-    var sortedKeys = acceptedAttendeesWithCounterMap.keys.toList(growable: false)
-      ..sort((k1, k2) =>
-          acceptedAttendeesWithCounterMap[k2].compareTo(acceptedAttendeesWithCounterMap[k1]));
-    LinkedHashMap<Attendee, int> sortedMap = new LinkedHashMap.fromIterable(
-      sortedKeys,
-      key: (k) => k,
-      value: (k) => acceptedAttendeesWithCounterMap[k],
-    );
-
-    return sortedMap;
+    return attendeesWithCounterMap.values.toList(growable: false)
+      ..sort((value, other) => other.compareTo(value));
   }
 
   @override

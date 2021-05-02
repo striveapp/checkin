@@ -2,6 +2,7 @@ import 'package:bloc_test/bloc_test.dart';
 import 'package:checkin/src/blocs/lessons_stats/bloc.dart';
 import 'package:checkin/src/blocs/stats/bloc.dart';
 import 'package:checkin/src/models/attendee.dart';
+import 'package:checkin/src/models/attendee_with_counter.dart';
 import 'package:checkin/src/models/grade.dart';
 import 'package:checkin/src/models/gym.dart';
 import 'package:checkin/src/models/lesson.dart';
@@ -44,21 +45,21 @@ void main() {
     Attendee attendee1 = Attendee(
       name: "Test",
       grade: Grade.white,
-      email: "fake@test.com",
+      email: "fake1@test.com",
       imageUrl: "http://imageUrl",
     );
 
     Attendee attendee2 = Attendee(
       name: "Test2",
       grade: Grade.white,
-      email: "fake@test.com",
+      email: "fake2@test.com",
       imageUrl: "http://imageUrl",
     );
 
     Attendee attendee3 = Attendee(
       name: "Test3",
       grade: Grade.white,
-      email: "fake@test.com",
+      email: "fake3@test.com",
       imageUrl: "http://imageUrl",
     );
 
@@ -69,11 +70,6 @@ void main() {
       stripePublicKey: "fake-key",
       imageUrl: "fake-img",
     );
-
-    List<Lesson> allLessons = [
-      Lesson(acceptedAttendees: [attendee1, attendee2, attendee3], masters: [fakeMaster]),
-      Lesson(acceptedAttendees: [attendee1, attendee2], masters: [fakeMaster]),
-    ];
 
     setUp(() {
       mockLessonRepository = MockLessonRepository();
@@ -133,8 +129,20 @@ void main() {
 
     group("on UpdateLessonStats event", () {
       group("when StatsBloc emits TimespanUpdated state", () {
+        List<Lesson> allLessons = [
+          Lesson(acceptedAttendees: [attendee1, attendee2, attendee3], masters: [fakeMaster]),
+          Lesson(acceptedAttendees: [attendee1, attendee2], masters: [fakeMaster]),
+          Lesson(acceptedAttendees: [attendee1], masters: [fakeMaster]),
+        ];
+
+        List<AttendeeWithCounter> sortedAttendeesWithCounter = [
+          AttendeeWithCounter(email: "fake1@test.com", counter: 3),
+          AttendeeWithCounter(email: "fake2@test.com", counter: 2),
+          AttendeeWithCounter(email: "fake3@test.com", counter: 1),
+        ];
+
         blocTest(
-          "emit LessonStatsUpdated",
+          "sorts attendee by attendedLessons and emit LessonStatsUpdated",
           build: () => LessonsStatsBloc(
             master: fakeMaster,
             lessonsRepository: mockLessonRepository,
@@ -144,18 +152,12 @@ void main() {
           act: (bloc) => bloc.add(UpdateLessonsStats(lessons: allLessons)),
           expect: () => [
             LessonsStatsUpdated(
-              acceptedAttendeesWithCounter: {
-                attendee1: 2,
-                attendee2: 2,
-                attendee3: 1,
-              },
-              totalAttendees: 5,
+              attendeesWithCounter: sortedAttendeesWithCounter,
+              totalAttendees: 6,
             ),
           ],
         );
       });
     });
-
-    //TODO: how to test the sorting?
   });
 }

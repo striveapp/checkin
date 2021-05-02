@@ -1,5 +1,5 @@
 import 'package:checkin/src/blocs/lessons_stats/bloc.dart';
-import 'package:checkin/src/ui/components/loading_indicator.dart';
+import 'package:checkin/src/ui/components/empty_widget.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 
@@ -10,22 +10,21 @@ class AttendeesInfoList extends StatelessWidget {
   Widget build(BuildContext context) {
     return BlocBuilder<LessonsStatsBloc, LessonsStatsState>(
       builder: (BuildContext context, LessonsStatsState state) {
-        if (state is LessonsStatsInitial) {
-          return LoadingIndicator();
-        }
-
-        if (state is LessonsStatsUpdated) {
-          return Column(
-            children: state.acceptedAttendeesWithCounter.entries
-                .map((MapEntry mapEntry) => AttendeeInfoCard(
-                      attendee: mapEntry.key,
-                      attendedLessons: mapEntry.value,
-                    ))
-                .toList(),
-          );
-        }
-
-        return ErrorWidget("Unknown state [$state] for attendees_info_list");
+        return state.map(
+          lessonsStatsInitial: ((LessonsStatsInitial state) => EmptyWidget()),
+          lessonsStatsUpdated: ((LessonsStatsUpdated state) => ListView.builder(
+              itemCount: state.attendeesWithCounter.length,
+              itemBuilder: (BuildContext context, int index) => InkWell(
+                    onTap: () {
+                      Navigator.of(context)
+                          .pushNamed('stats/${state.attendeesWithCounter[index].email}');
+                    },
+                    child: AttendeeInfoCard(
+                      attendeeEmail: state.attendeesWithCounter[index].email,
+                      attendedLessons: state.attendeesWithCounter[index].counter,
+                    ),
+                  ))),
+        );
       },
     );
   }
