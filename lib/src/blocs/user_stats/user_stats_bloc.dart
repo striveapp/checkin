@@ -60,7 +60,12 @@ class UserStatsBloc extends Bloc<UserStatsEvent, UserStatsState> {
 
   List<Lesson> _sortByDateAndTime(List<Lesson> lessons) {
     return lessons
-      ..sort(((a, b) => _getDate(b.date, b.timeStart).compareTo(_getDate(a.date, a.timeStart))));
+      ..sort(((a, b) {
+        if (a.date == null || b.date == null) {
+          return 0;
+        }
+        return _getDate(b.date, b.timeStart).compareTo(_getDate(a.date, a.timeStart));
+      }));
   }
 
   _getDate(String date, String time) {
