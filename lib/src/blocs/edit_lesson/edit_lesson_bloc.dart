@@ -49,7 +49,7 @@ class EditLessonBloc extends Bloc<EditLessonEvent, EditLessonState> {
         gymId,
         lesson.date,
         lesson.id,
-        event.newTimeStart,
+        event.newTimeStart.padLeft(5, '0'),
       );
     }
 
@@ -58,7 +58,7 @@ class EditLessonBloc extends Bloc<EditLessonEvent, EditLessonState> {
         gymId,
         lesson.date,
         lesson.id,
-        event.newTimeEnd,
+        event.newTimeEnd.padLeft(5, '0'),
       );
     }
 

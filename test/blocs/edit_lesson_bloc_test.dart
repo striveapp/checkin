@@ -125,69 +125,139 @@ void main() {
     });
 
     group("on UpdateTimeStart event", () {
-      setUp(() {
-        when(mockLessonRepository.updateLessonTimeStart(
-                fakeGymId, baseLesson.date, baseLesson.id, "04:20"))
-            .thenAnswer((realInvocation) => Future.value(null));
-      });
+      group("when new timeStart does NOT HAVE a leading zero", () {
+        setUp(() {
+          when(mockLessonRepository.updateLessonTimeStart(
+                  fakeGymId, baseLesson.date, baseLesson.id, "03:10"))
+              .thenAnswer((realInvocation) => Future.value(null));
+        });
 
-      tearDown(() {
-        untilCalled(mockLessonRepository.updateLessonTimeStart(
-            fakeGymId, baseLesson.date, baseLesson.id, "04:20"));
-        verify(mockLessonRepository.updateLessonTimeStart(
-            fakeGymId, baseLesson.date, baseLesson.id, "04:20"));
-      });
+        tearDown(() {
+          untilCalled(mockLessonRepository.updateLessonTimeStart(
+              fakeGymId, baseLesson.date, baseLesson.id, "03:10"));
+          verify(mockLessonRepository.updateLessonTimeStart(
+              fakeGymId, baseLesson.date, baseLesson.id, "03:10"));
+        });
 
-      blocTest(
-        "should call repository with newTimeStart",
-        build: () => EditLessonBloc(
-          gymId: fakeGymId,
-          lesson: baseLesson,
-          lessonRepository: mockLessonRepository,
-          userRepository: mockUserRepository,
-          imageRepository: mockImageRepository,
-          storageRepository: mockStorageRepository,
-        ),
-        act: (bloc) => bloc.add(
-          EditLessonEvent.updateTimeStart(
-            newTimeStart: "04:20",
+        blocTest(
+          "should call repository with newTimeStart",
+          build: () => EditLessonBloc(
+            gymId: fakeGymId,
+            lesson: baseLesson,
+            lessonRepository: mockLessonRepository,
+            userRepository: mockUserRepository,
+            imageRepository: mockImageRepository,
+            storageRepository: mockStorageRepository,
           ),
-        ),
-        expect: () => [],
-      );
+          act: (bloc) => bloc.add(
+            EditLessonEvent.updateTimeStart(
+              newTimeStart: "3:10",
+            ),
+          ),
+          expect: () => [],
+        );
+      });
+
+      group("when new timeStart does NOT NEED a leading zero", () {
+        setUp(() {
+          when(mockLessonRepository.updateLessonTimeStart(
+                  fakeGymId, baseLesson.date, baseLesson.id, "04:20"))
+              .thenAnswer((realInvocation) => Future.value(null));
+        });
+
+        tearDown(() {
+          untilCalled(mockLessonRepository.updateLessonTimeStart(
+              fakeGymId, baseLesson.date, baseLesson.id, "04:20"));
+          verify(mockLessonRepository.updateLessonTimeStart(
+              fakeGymId, baseLesson.date, baseLesson.id, "04:20"));
+        });
+
+        blocTest(
+          "should call repository with newTimeStart",
+          build: () => EditLessonBloc(
+            gymId: fakeGymId,
+            lesson: baseLesson,
+            lessonRepository: mockLessonRepository,
+            userRepository: mockUserRepository,
+            imageRepository: mockImageRepository,
+            storageRepository: mockStorageRepository,
+          ),
+          act: (bloc) => bloc.add(
+            EditLessonEvent.updateTimeStart(
+              newTimeStart: "04:20",
+            ),
+          ),
+          expect: () => [],
+        );
+      });
     });
 
     group("on UpdateTimeEnd event", () {
-      setUp(() {
-        when(mockLessonRepository.updateLessonTimeEnd(
-                fakeGymId, baseLesson.date, baseLesson.id, "13:37"))
-            .thenAnswer((realInvocation) => Future.value(null));
-      });
+      group("when timeEnd does NOT HAVE a leading zero", () {
+        setUp(() {
+          when(mockLessonRepository.updateLessonTimeEnd(
+                  fakeGymId, baseLesson.date, baseLesson.id, "03:37"))
+              .thenAnswer((realInvocation) => Future.value(null));
+        });
 
-      tearDown(() {
-        untilCalled(mockLessonRepository.updateLessonTimeEnd(
-            fakeGymId, baseLesson.date, baseLesson.id, "13:37"));
-        verify(mockLessonRepository.updateLessonTimeEnd(
-            fakeGymId, baseLesson.date, baseLesson.id, "13:37"));
-      });
+        tearDown(() {
+          untilCalled(mockLessonRepository.updateLessonTimeEnd(
+              fakeGymId, baseLesson.date, baseLesson.id, "03:37"));
+          verify(mockLessonRepository.updateLessonTimeEnd(
+              fakeGymId, baseLesson.date, baseLesson.id, "03:37"));
+        });
 
-      blocTest(
-        "should call repository with newTimeEnd",
-        build: () => EditLessonBloc(
-          gymId: fakeGymId,
-          lesson: baseLesson,
-          lessonRepository: mockLessonRepository,
-          userRepository: mockUserRepository,
-          imageRepository: mockImageRepository,
-          storageRepository: mockStorageRepository,
-        ),
-        act: (bloc) => bloc.add(
-          EditLessonEvent.updateTimeEnd(
-            newTimeEnd: "13:37",
+        blocTest(
+          "should call repository with newTimeEnd",
+          build: () => EditLessonBloc(
+            gymId: fakeGymId,
+            lesson: baseLesson,
+            lessonRepository: mockLessonRepository,
+            userRepository: mockUserRepository,
+            imageRepository: mockImageRepository,
+            storageRepository: mockStorageRepository,
           ),
-        ),
-        expect: () => [],
-      );
+          act: (bloc) => bloc.add(
+            EditLessonEvent.updateTimeEnd(
+              newTimeEnd: "3:37",
+            ),
+          ),
+          expect: () => [],
+        );
+      });
+
+      group("when timeEnd does NOT NEED a leading zero", () {
+        setUp(() {
+          when(mockLessonRepository.updateLessonTimeEnd(
+                  fakeGymId, baseLesson.date, baseLesson.id, "13:37"))
+              .thenAnswer((realInvocation) => Future.value(null));
+        });
+
+        tearDown(() {
+          untilCalled(mockLessonRepository.updateLessonTimeEnd(
+              fakeGymId, baseLesson.date, baseLesson.id, "13:37"));
+          verify(mockLessonRepository.updateLessonTimeEnd(
+              fakeGymId, baseLesson.date, baseLesson.id, "13:37"));
+        });
+
+        blocTest(
+          "should call repository with newTimeEnd",
+          build: () => EditLessonBloc(
+            gymId: fakeGymId,
+            lesson: baseLesson,
+            lessonRepository: mockLessonRepository,
+            userRepository: mockUserRepository,
+            imageRepository: mockImageRepository,
+            storageRepository: mockStorageRepository,
+          ),
+          act: (bloc) => bloc.add(
+            EditLessonEvent.updateTimeEnd(
+              newTimeEnd: "13:37",
+            ),
+          ),
+          expect: () => [],
+        );
+      });
     });
 
     group("on UpdateName event", () {
