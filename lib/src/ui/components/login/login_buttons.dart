@@ -10,6 +10,10 @@ import 'package:platform/platform.dart';
 class LoginButtons extends StatelessWidget {
   static const String or = 'or';
 
+  final Color striveColor;
+
+  LoginButtons(this.striveColor);
+
   @override
   Widget build(BuildContext context) {
     return Column(
@@ -27,7 +31,7 @@ class LoginButtons extends StatelessWidget {
         Text(
           or.i18n,
           style: Theme.of(context).textTheme.headline3.apply(
-                color: Theme.of(context).splashColor,
+                color: striveColor,
               ),
         ),
         PasswordlessSignInButton(),

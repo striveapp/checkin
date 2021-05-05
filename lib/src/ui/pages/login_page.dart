@@ -12,6 +12,8 @@ import 'package:flutter_svg/flutter_svg.dart';
 class LoginPage extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
+    var striveColor = Color(0xFFFF0024);
+
     return Scaffold(
       body: Container(
         alignment: Alignment.center,
@@ -54,7 +56,7 @@ class LoginPage extends StatelessWidget {
                         child: Container(
                           child: SvgPicture.asset(
                             "assets/logos/logos.svg",
-                            color: Theme.of(context).splashColor,
+                            color: striveColor,
                           ),
                         ),
                       ),
@@ -66,7 +68,7 @@ class LoginPage extends StatelessWidget {
                           right: 40,
                           bottom: 20,
                         ),
-                        child: LoginButtons(),
+                        child: LoginButtons(striveColor),
                       ),
                     )
                   ],

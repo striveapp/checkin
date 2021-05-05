@@ -5,7 +5,6 @@ enum ThemeType { Dark, NewLight, Light }
 final theme = {
   ThemeType.Dark: ThemeData(
     fontFamily: 'Raleway',
-    splashColor: Color(0xFFFF0024),
     primaryColor: Color(0xFFF44336),
     accentColor: Color(0xFFD32F2F),
     brightness: Brightness.dark,
@@ -124,7 +123,6 @@ final theme = {
   ),
   ThemeType.NewLight: ThemeData(
     fontFamily: 'Raleway',
-    splashColor: Color(0xFFFF0024),
     primaryColor: Color(0xFFF44336),
     accentColor: Color(0xFFD32F2F),
     backgroundColor: Color(0xFFEEEEEE),
