@@ -19,64 +19,69 @@ class EditLessonModal extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    return SingleChildScrollView(
-      child: Column(
-        mainAxisSize: MainAxisSize.min,
-        children: [
-          Padding(
-            padding: const EdgeInsets.only(top: 10.0),
-            child: Icon(
-              Icons.maximize_rounded,
-              size: 50,
-              color: Colors.grey,
+    return AnimatedPadding(
+      padding: MediaQuery.of(context).viewInsets,
+      duration: const Duration(milliseconds: 100),
+      curve: Curves.decelerate,
+      child: SingleChildScrollView(
+        child: Column(
+          mainAxisSize: MainAxisSize.min,
+          children: [
+            Padding(
+              padding: const EdgeInsets.only(top: 10.0),
+              child: Icon(
+                Icons.maximize_rounded,
+                size: 50,
+                color: Colors.grey,
+              ),
             ),
-          ),
-          Padding(
-            padding: const EdgeInsets.only(left: 40.0, right: 40, bottom: 30),
-            child: Column(
-              crossAxisAlignment: CrossAxisAlignment.start,
-              children: [
-                EditLessonTime(
-                    text: start.i18n,
-                    time: lesson.timeStart,
-                    onTimePicked: (timePicked) {
-                      context
-                          .read<EditLessonBloc>()
-                          .add(EditLessonEvent.updateTimeStart(newTimeStart: timePicked));
-                    }),
-                SizedBox(
-                  height: 20,
-                ),
-                EditLessonTime(
-                    text: end.i18n,
-                    time: lesson.timeEnd,
-                    onTimePicked: (timePicked) {
-                      context
-                          .read<EditLessonBloc>()
-                          .add(EditLessonEvent.updateTimeEnd(newTimeEnd: timePicked));
-                    }),
-                SizedBox(
-                  height: 20,
-                ),
-                EditLessonName(
-                  gymId: gymId,
-                  lessonName: lesson.name,
-                ),
-                SizedBox(
-                  height: 20,
-                ),
-                EditLessonCapacity(
-                  gymId: gymId,
-                  classCapacity: lesson.classCapacity,
-                ),
-                SizedBox(
-                  height: 20,
-                ),
-                MastersSelection(masters: lesson.masters),
-              ],
+            Padding(
+              padding: const EdgeInsets.only(left: 40.0, right: 40, bottom: 30),
+              child: Column(
+                crossAxisAlignment: CrossAxisAlignment.start,
+                children: [
+                  EditLessonTime(
+                      text: start.i18n,
+                      time: lesson.timeStart,
+                      onTimePicked: (timePicked) {
+                        context
+                            .read<EditLessonBloc>()
+                            .add(EditLessonEvent.updateTimeStart(newTimeStart: timePicked));
+                      }),
+                  SizedBox(
+                    height: 20,
+                  ),
+                  EditLessonTime(
+                      text: end.i18n,
+                      time: lesson.timeEnd,
+                      onTimePicked: (timePicked) {
+                        context
+                            .read<EditLessonBloc>()
+                            .add(EditLessonEvent.updateTimeEnd(newTimeEnd: timePicked));
+                      }),
+                  SizedBox(
+                    height: 20,
+                  ),
+                  EditLessonName(
+                    gymId: gymId,
+                    lessonName: lesson.name,
+                  ),
+                  SizedBox(
+                    height: 20,
+                  ),
+                  EditLessonCapacity(
+                    gymId: gymId,
+                    classCapacity: lesson.classCapacity,
+                  ),
+                  SizedBox(
+                    height: 20,
+                  ),
+                  MastersSelection(masters: lesson.masters),
+                ],
+              ),
             ),
-          ),
-        ],
+          ],
+        ),
       ),
     );
   }

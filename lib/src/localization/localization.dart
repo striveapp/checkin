@@ -37,6 +37,7 @@ import 'package:checkin/src/ui/components/registry/edit_lesson/edit_lesson_capac
 import 'package:checkin/src/ui/components/registry/edit_lesson/edit_lesson_modal.dart';
 import 'package:checkin/src/ui/components/registry/edit_lesson/edit_lesson_name.dart';
 import 'package:checkin/src/ui/components/registry/edit_lesson/edit_lesson_time.dart';
+import 'package:checkin/src/ui/components/registry/edit_lesson/masters_selection.dart';
 import 'package:checkin/src/ui/components/registry/empty_registry.dart';
 import 'package:checkin/src/ui/components/registry/lesson_infos.dart';
 import 'package:checkin/src/ui/components/registry/master_buttons.dart';
@@ -818,8 +819,13 @@ extension Localization on String {
       } +
       {
         'en': UpdateCalendarDialog.takeEffectFrom,
-        'es': 'This will take effect starting from %s',
+        'es': 'Este cambio entrará en vigor a partir de %s',
         'it': 'Questo cambio avrà effetto a partire dal %s',
+      } +
+      {
+        'en': MastersSelection.teachers,
+        'es': 'Profesores',
+        'it': 'Maestri',
       };
 
   String get i18n => localize(this, _t);
