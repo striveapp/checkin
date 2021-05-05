@@ -24,21 +24,25 @@ class _DismissibleCueState extends State<DismissibleCue> with SingleTickerProvid
     initFade();
 
     Future.delayed(Duration(milliseconds: 500), () {
-      setState(() {
-        running = true;
-      });
-      TickerFuture tickerFuture = _controller.repeat(
-        reverse: false,
-      );
-
-      // only display it 3 times
-      tickerFuture.timeout(Duration(milliseconds: (duration * 3) - 200), onTimeout: () {
-        _controller.stop(canceled: true);
+      if (this.mounted) {
         setState(() {
-          // after 3 times display EmptyWidget
-          running = false;
+          running = true;
         });
-      });
+        TickerFuture tickerFuture = _controller.repeat(
+          reverse: false,
+        );
+
+        // only display it 3 times
+        tickerFuture.timeout(Duration(milliseconds: (duration * 3) - 200), onTimeout: () {
+          if (this.mounted) {
+            _controller.stop(canceled: true);
+            setState(() {
+              // after 3 times display EmptyWidget
+              running = false;
+            });
+          }
+        });
+      }
     });
   }
 
@@ -69,8 +73,8 @@ class _DismissibleCueState extends State<DismissibleCue> with SingleTickerProvid
 
   @override
   void dispose() {
-    super.dispose();
     _controller.dispose();
+    super.dispose();
   }
 
   @override
