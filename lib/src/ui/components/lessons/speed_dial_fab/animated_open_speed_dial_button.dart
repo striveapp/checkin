@@ -53,6 +53,7 @@ class _AnimatedOpenSpeedDialButtonState extends State<AnimatedOpenSpeedDialButto
       child: IconButton(
         icon: AnimatedIcon(
           icon: AnimatedIcons.menu_close,
+          color: Colors.white,
           progress: _iconAnimation,
         ),
         splashRadius: 30,

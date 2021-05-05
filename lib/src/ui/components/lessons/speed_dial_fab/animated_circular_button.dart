@@ -1,5 +1,5 @@
 import 'package:flutter/material.dart';
-import 'package:vector_math/vector_math.dart' hide Matrix4;
+import 'package:vector_math/vector_math.dart' hide Matrix4, Colors;
 
 class AnimatedCircularButton extends StatefulWidget {
   final IconData icon;
@@ -63,7 +63,7 @@ class _AnimatedCircularButtonState extends State<AnimatedCircularButton> {
         height: 40,
         child: IconButton(
           key: Key("icon_${widget.key.toString()}"),
-          icon: Icon(widget.icon),
+          icon: Icon(widget.icon, color: Colors.white),
           splashRadius: 25,
           onPressed: () {
             widget.onPressed();
