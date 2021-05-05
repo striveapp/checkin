@@ -21,7 +21,7 @@ class UpdateCalendarDialog extends StatelessWidget {
     return AlertDialog(
       contentPadding: EdgeInsets.symmetric(horizontal: 15, vertical: 25),
       content: SizedBox(
-        height: 130,
+        height: 150,
         child: Column(
           children: <Widget>[
             Text(
