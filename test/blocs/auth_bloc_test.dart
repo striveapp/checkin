@@ -38,7 +38,7 @@ void main() {
       uid: "123",
       email: "test@test.com",
       name: "lol",
-      imageUrl: "http://lol",
+      imageUrl: "https://lol",
     );
 
     setUp(() {
