@@ -1,9 +1,11 @@
 import 'package:checkin/src/blocs/profile/bloc.dart';
 import 'package:checkin/src/ui/components/empty_widget.dart';
 import 'package:checkin/src/ui/pages/leaderboard_page.dart';
+import 'package:checkin/src/ui/pages/news_list_page.dart';
 import 'package:checkin/src/ui/pages/onboarding/name_selection_page.dart';
 import 'package:checkin/src/ui/pages/onboarding/unselected_gym_page.dart';
 import 'package:checkin/src/ui/pages/stats_page.dart';
+import 'package:checkin/src/util/debug_util.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter/widgets.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
@@ -33,7 +35,7 @@ class HomePage extends StatelessWidget {
             }
 
             return DefaultTabController(
-                length: 3,
+                length: isInDebugMode ? 4 : 3,
                 child: Scaffold(
                   bottomNavigationBar: Material(
                     color: Colors.black87,
@@ -43,6 +45,11 @@ class HomePage extends StatelessWidget {
                           Tab(key: Key("lessonsTab"), icon: Icon(Icons.home)),
                           Tab(key: Key("statsTab"), icon: Icon(Icons.insert_chart)),
                           Tab(key: Key("leaderboardTab"), icon: Icon(Icons.star)),
+                          if (isInDebugMode)
+                            Tab(
+                              key: Key("newsListTab"),
+                              icon: Icon(Icons.mail),
+                            ),
                         ],
                       ),
                     ),
@@ -57,6 +64,7 @@ class HomePage extends StatelessWidget {
                         userEmail: currentUser.email,
                       ),
                       LeaderboardPage(),
+                      NewsListPage()
                     ],
                   ),
                 ));
