@@ -17,13 +17,8 @@ class _$AuthorTearOff {
   const _$AuthorTearOff();
 
 // ignore: unused_element
-  _Author call(
-      {@required String email,
-      @required String imageUrl,
-      @required String name,
-      @GradeConverter() Grade grade}) {
+  _Author call({@required String imageUrl, @required String name, @GradeConverter() Grade grade}) {
     return _Author(
-      email: email,
       imageUrl: imageUrl,
       name: name,
       grade: grade,
@@ -42,7 +37,6 @@ const $Author = _$AuthorTearOff();
 
 /// @nodoc
 mixin _$Author {
-  String get email;
   String get imageUrl;
   String get name;
   @GradeConverter()
@@ -56,7 +50,7 @@ mixin _$Author {
 /// @nodoc
 abstract class $AuthorCopyWith<$Res> {
   factory $AuthorCopyWith(Author value, $Res Function(Author) then) = _$AuthorCopyWithImpl<$Res>;
-  $Res call({String email, String imageUrl, String name, @GradeConverter() Grade grade});
+  $Res call({String imageUrl, String name, @GradeConverter() Grade grade});
 }
 
 /// @nodoc
@@ -69,13 +63,11 @@ class _$AuthorCopyWithImpl<$Res> implements $AuthorCopyWith<$Res> {
 
   @override
   $Res call({
-    Object email = freezed,
     Object imageUrl = freezed,
     Object name = freezed,
     Object grade = freezed,
   }) {
     return _then(_value.copyWith(
-      email: email == freezed ? _value.email : email as String,
       imageUrl: imageUrl == freezed ? _value.imageUrl : imageUrl as String,
       name: name == freezed ? _value.name : name as String,
       grade: grade == freezed ? _value.grade : grade as Grade,
@@ -88,7 +80,7 @@ abstract class _$AuthorCopyWith<$Res> implements $AuthorCopyWith<$Res> {
   factory _$AuthorCopyWith(_Author value, $Res Function(_Author) then) =
       __$AuthorCopyWithImpl<$Res>;
   @override
-  $Res call({String email, String imageUrl, String name, @GradeConverter() Grade grade});
+  $Res call({String imageUrl, String name, @GradeConverter() Grade grade});
 }
 
 /// @nodoc
@@ -102,13 +94,11 @@ class __$AuthorCopyWithImpl<$Res> extends _$AuthorCopyWithImpl<$Res>
 
   @override
   $Res call({
-    Object email = freezed,
     Object imageUrl = freezed,
     Object name = freezed,
     Object grade = freezed,
   }) {
     return _then(_Author(
-      email: email == freezed ? _value.email : email as String,
       imageUrl: imageUrl == freezed ? _value.imageUrl : imageUrl as String,
       name: name == freezed ? _value.name : name as String,
       grade: grade == freezed ? _value.grade : grade as Grade,
@@ -120,19 +110,12 @@ class __$AuthorCopyWithImpl<$Res> extends _$AuthorCopyWithImpl<$Res>
 
 /// @nodoc
 class _$_Author with DiagnosticableTreeMixin implements _Author {
-  _$_Author(
-      {@required this.email,
-      @required this.imageUrl,
-      @required this.name,
-      @GradeConverter() this.grade})
-      : assert(email != null),
-        assert(imageUrl != null),
+  _$_Author({@required this.imageUrl, @required this.name, @GradeConverter() this.grade})
+      : assert(imageUrl != null),
         assert(name != null);
 
   factory _$_Author.fromJson(Map<String, dynamic> json) => _$_$_AuthorFromJson(json);
 
-  @override
-  final String email;
   @override
   final String imageUrl;
   @override
@@ -143,7 +126,7 @@ class _$_Author with DiagnosticableTreeMixin implements _Author {
 
   @override
   String toString({DiagnosticLevel minLevel = DiagnosticLevel.info}) {
-    return 'Author(email: $email, imageUrl: $imageUrl, name: $name, grade: $grade)';
+    return 'Author(imageUrl: $imageUrl, name: $name, grade: $grade)';
   }
 
   @override
@@ -151,7 +134,6 @@ class _$_Author with DiagnosticableTreeMixin implements _Author {
     super.debugFillProperties(properties);
     properties
       ..add(DiagnosticsProperty('type', 'Author'))
-      ..add(DiagnosticsProperty('email', email))
       ..add(DiagnosticsProperty('imageUrl', imageUrl))
       ..add(DiagnosticsProperty('name', name))
       ..add(DiagnosticsProperty('grade', grade));
@@ -161,8 +143,6 @@ class _$_Author with DiagnosticableTreeMixin implements _Author {
   bool operator ==(dynamic other) {
     return identical(this, other) ||
         (other is _Author &&
-            (identical(other.email, email) ||
-                const DeepCollectionEquality().equals(other.email, email)) &&
             (identical(other.imageUrl, imageUrl) ||
                 const DeepCollectionEquality().equals(other.imageUrl, imageUrl)) &&
             (identical(other.name, name) ||
@@ -174,7 +154,6 @@ class _$_Author with DiagnosticableTreeMixin implements _Author {
   @override
   int get hashCode =>
       runtimeType.hashCode ^
-      const DeepCollectionEquality().hash(email) ^
       const DeepCollectionEquality().hash(imageUrl) ^
       const DeepCollectionEquality().hash(name) ^
       const DeepCollectionEquality().hash(grade);
@@ -191,15 +170,12 @@ class _$_Author with DiagnosticableTreeMixin implements _Author {
 
 abstract class _Author implements Author {
   factory _Author(
-      {@required String email,
-      @required String imageUrl,
+      {@required String imageUrl,
       @required String name,
       @GradeConverter() Grade grade}) = _$_Author;
 
   factory _Author.fromJson(Map<String, dynamic> json) = _$_Author.fromJson;
 
-  @override
-  String get email;
   @override
   String get imageUrl;
   @override

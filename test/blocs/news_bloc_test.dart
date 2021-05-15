@@ -28,7 +28,6 @@ void main() {
     );
 
     var fakeAuthor = Author(
-      email: 'not@reachable.com',
       imageUrl: 'https://biutiful',
       name: 'Peppe',
     );

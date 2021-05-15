@@ -21,39 +21,39 @@ class ProfileInfos extends StatelessWidget {
       padding: EdgeInsets.symmetric(vertical: 25, horizontal: 20),
       child: BlocBuilder<ProfileBloc, ProfileState>(
           builder: (BuildContext context, ProfileState state) => state.map(
-              initialProfileState: (InitialProfileState _) => EmptyWidget(),
-              profileLoaded: (ProfileLoaded state) => Row(
-                    children: <Widget>[
-                      RoundedImage(
-                        url: state.profileUser.imageUrl,
-                        width: 30,
-                        height: 30,
+                initialProfileState: (InitialProfileState _) => EmptyWidget(),
+                profileLoaded: (ProfileLoaded state) => Row(
+                  children: <Widget>[
+                    RoundedImage(
+                      url: state.profileUser.imageUrl,
+                      width: 30,
+                      height: 30,
+                    ),
+                    SizedBox(
+                      width: 10,
+                    ),
+                    Expanded(
+                      child: Column(
+                        crossAxisAlignment: CrossAxisAlignment.start,
+                        children: <Widget>[
+                          Text(
+                            state.profileUser.name,
+                            style: Theme.of(context).textTheme.bodyText1.apply(fontWeightDelta: 2),
+                          ),
+                          SizedBox(
+                            height: 2.5,
+                          ),
+                          Text(
+                            beltColor.i18n.fill([state.profileUser.grade.name.i18n]),
+                            key: Key("userGrade"),
+                            style: Theme.of(context).textTheme.bodyText1,
+                          ),
+                        ],
                       ),
-                      SizedBox(
-                        width: 10,
-                      ),
-                      Expanded(
-                        child: Column(
-                          crossAxisAlignment: CrossAxisAlignment.start,
-                          children: <Widget>[
-                            Text(
-                              state.profileUser.name,
-                              style:
-                                  Theme.of(context).textTheme.bodyText1.apply(fontWeightDelta: 2),
-                            ),
-                            SizedBox(
-                              height: 2.5,
-                            ),
-                            Text(
-                              beltColor.i18n.fill([state.profileUser.grade.name.i18n]),
-                              key: Key("userGrade"),
-                              style: Theme.of(context).textTheme.bodyText1,
-                            ),
-                          ],
-                        ),
-                      ),
-                    ],
-                  ))),
+                    ),
+                  ],
+                ),
+              )),
     );
   }
 }

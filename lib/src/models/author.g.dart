@@ -8,7 +8,6 @@ part of 'author.dart';
 
 _$_Author _$_$_AuthorFromJson(Map<String, dynamic> json) {
   return _$_Author(
-    email: json['email'] as String,
     imageUrl: json['imageUrl'] as String,
     name: json['name'] as String,
     grade: const GradeConverter().fromJson(json['grade'] as String),
@@ -16,7 +15,6 @@ _$_Author _$_$_AuthorFromJson(Map<String, dynamic> json) {
 }
 
 Map<String, dynamic> _$_$_AuthorToJson(_$_Author instance) => <String, dynamic>{
-      'email': instance.email,
       'imageUrl': instance.imageUrl,
       'name': instance.name,
       'grade': const GradeConverter().toJson(instance.grade),

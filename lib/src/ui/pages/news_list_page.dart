@@ -25,7 +25,7 @@ class NewsListPage extends StatelessWidget {
         ),
         body: SafeArea(
           child: Padding(
-            padding: EdgeInsets.only(top: 10),
+            padding: EdgeInsets.only(top: 20),
             child: NewsList(),
           ),
         ),

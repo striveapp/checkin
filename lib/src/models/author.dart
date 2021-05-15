@@ -11,7 +11,6 @@ part 'author.g.dart';
 @freezed
 abstract class Author with _$Author {
   factory Author({
-    @required final String email,
     @required final String imageUrl,
     @required final String name,
     @GradeConverter() final Grade grade,
