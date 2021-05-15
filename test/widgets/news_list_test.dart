@@ -5,6 +5,7 @@ import 'package:checkin/src/blocs/news/news_state.dart';
 import 'package:checkin/src/models/author.dart';
 import 'package:checkin/src/models/grade.dart';
 import 'package:checkin/src/models/news.dart';
+import 'package:checkin/src/ui/components/newslist/empty_news_list.dart';
 import 'package:checkin/src/ui/components/newslist/news_list.dart';
 import 'package:checkin/src/ui/components/newslist/news_view.dart';
 import 'package:flutter/widgets.dart';
@@ -41,32 +42,38 @@ void main() {
       expect(Translations.missingTranslations, isEmpty);
     });
 
-    testWidgets("Renders PlaceholderNews when news state is NewsInitial", (
-        tester) async {
+    testWidgets("Renders PlaceholderNews when news state is NewsInitial", (tester) async {
       when(() => newsBloc.state).thenReturn(NewsInitial());
 
-      await tester.pumpApp(BlocProvider.value(
-          value: newsBloc,
-          child: NewsList())
-      );
+      await tester.pumpApp(BlocProvider.value(value: newsBloc, child: NewsList()));
 
       expect(find.byType(PlaceholderNews), findsWidgets);
+    });
+
+    group("when there are no news", () {
+      testWidgets("Renders EmptyNewsList", (tester) async {
+        when(() => newsBloc.state).thenReturn(NewsLoaded(newsList: []));
+
+        await tester.pumpApp(BlocProvider.value(value: newsBloc, child: NewsList()));
+
+        expect(find.byType(EmptyNewsList), findsOneWidget);
+        expect(find.byType(NewsView), findsNothing);
+      });
     });
 
     group("when Author has grade", () {
       testWidgets("Renders NewsView with grade", (tester) async {
         when(() => newsBloc.state).thenReturn(NewsLoaded(newsList: [
-          News(id: "fake-id",
+          News(
+            id: "fake-id",
             content: "fake-news",
             author: Author(imageUrl: "fake-img", name: "fake-name", grade: Grade.black),
             timestamp: 123,
-            isPinned: false,)
+            isPinned: false,
+          )
         ]));
 
-        await tester.pumpApp(BlocProvider.value(
-            value: newsBloc,
-            child: NewsList())
-        );
+        await tester.pumpApp(BlocProvider.value(value: newsBloc, child: NewsList()));
 
         expect(find.byType(NewsView), findsWidgets);
         expect(find.byKey(Key("authorGrade")), findsOneWidget);
@@ -76,17 +83,16 @@ void main() {
     group("when Author has NO grade", () {
       testWidgets("Renders NewsView without grade", (tester) async {
         when(() => newsBloc.state).thenReturn(NewsLoaded(newsList: [
-          News(id: "fake-id",
+          News(
+            id: "fake-id",
             content: "fake-news",
             author: Author(imageUrl: "fake-img", name: "fake-name"),
             timestamp: 123,
-            isPinned: false,)
+            isPinned: false,
+          )
         ]));
 
-        await tester.pumpApp(BlocProvider.value(
-            value: newsBloc,
-            child: NewsList())
-        );
+        await tester.pumpApp(BlocProvider.value(value: newsBloc, child: NewsList()));
 
         expect(find.byType(NewsView), findsWidgets);
         expect(find.byKey(Key("authorGrade")), findsNothing);

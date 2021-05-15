@@ -1,5 +1,6 @@
 import 'package:checkin/src/blocs/news/news_bloc.dart';
 import 'package:checkin/src/blocs/news/news_state.dart';
+import 'package:checkin/src/ui/components/newslist/empty_news_list.dart';
 import 'package:checkin/src/ui/components/newslist/news_view.dart';
 import 'package:checkin/src/ui/components/placeholder_image.dart';
 import 'package:checkin/src/ui/components/placeholder_text.dart';
@@ -26,21 +27,23 @@ class NewsList extends StatelessWidget {
                         Divider(),
                       ],
                     ))),
-            newsLoaded: (NewsLoaded state) => ListView.separated(
-                  itemCount: state.newsList.length,
-                  itemBuilder: (context, index) {
-                    var news = state.newsList[index];
-                    return Padding(
-                      padding: EdgeInsets.only(left: 10, right: 20),
-                      child: NewsView(
-                        author: news.author,
-                        content: news.content,
-                        timestamp: news.timestamp,
-                      ),
-                    );
-                  },
-                  separatorBuilder: (context, index) => Divider(),
-                ));
+            newsLoaded: (NewsLoaded state) => state.newsList.length == 0
+                ? EmptyNewsList()
+                : ListView.separated(
+                    itemCount: state.newsList.length,
+                    itemBuilder: (context, index) {
+                      var news = state.newsList[index];
+                      return Padding(
+                        padding: EdgeInsets.only(left: 10, right: 20),
+                        child: NewsView(
+                          author: news.author,
+                          content: news.content,
+                          timestamp: news.timestamp,
+                        ),
+                      );
+                    },
+                    separatorBuilder: (context, index) => Divider(),
+                  ));
       },
     );
   }

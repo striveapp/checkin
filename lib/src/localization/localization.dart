@@ -20,6 +20,7 @@ import 'package:checkin/src/ui/components/login/passwordless_sign_in_button.dart
 import 'package:checkin/src/ui/components/membership/active_membership.dart';
 import 'package:checkin/src/ui/components/membership/inactive_membership.dart';
 import 'package:checkin/src/ui/components/membership/unsubscribe_dialog.dart';
+import 'package:checkin/src/ui/components/newslist/empty_news_list.dart';
 import 'package:checkin/src/ui/components/newslist/news_view.dart';
 import 'package:checkin/src/ui/components/payment_methods/active_payment_method.dart';
 import 'package:checkin/src/ui/components/payment_methods/empty_payment_method.dart';
@@ -827,6 +828,11 @@ extension Localization on String {
         'en': UpdateCalendarDialog.takeEffectFrom,
         'es': 'Este cambio entrará en vigor a partir de %s',
         'it': 'Questo cambio avrà effetto a partire dal %s',
+      } +
+      {
+        'en': EmptyNewsList.noNews,
+        'es': 'Aún no hay noticias',
+        'it': 'Non ci sono ancora notizie',
       } +
       {
         'en': MastersSelection.teachers,
