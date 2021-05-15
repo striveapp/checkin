@@ -3,17 +3,21 @@ import 'package:checkin/src/models/author.dart';
 import 'package:checkin/src/models/grade.dart';
 import 'package:checkin/src/ui/components/rounded_image.dart';
 import 'package:flutter/material.dart';
+import 'package:platform/platform.dart';
+import 'package:timeago/timeago.dart' as timeago;
 
 class NewsView extends StatelessWidget {
   static const String beltColor = '%s Belt';
 
   final Author author;
   final String content;
+  final int timestamp;
 
   const NewsView({
     Key key,
     @required this.author,
     @required this.content,
+    @required this.timestamp,
   }) : super(key: key);
 
   @override
@@ -36,9 +40,23 @@ class NewsView extends StatelessWidget {
             child: Column(
               crossAxisAlignment: CrossAxisAlignment.start,
               children: <Widget>[
-                Text(
-                  author.name,
-                  style: Theme.of(context).textTheme.headline5.apply(fontWeightDelta: 2),
+                Row(
+                  children: [
+                    Text(
+                      author.name,
+                      style: Theme.of(context).textTheme.headline5.apply(fontWeightDelta: 2),
+                    ),
+                    SizedBox(
+                      width: 5,
+                    ),
+                    Text(
+                      "• ${_timeAgo()}",
+                      style: Theme.of(context)
+                          .textTheme
+                          .bodyText1
+                          .apply(color: Theme.of(context).textTheme.bodyText1.color.withAlpha(90)),
+                    )
+                  ],
                 ),
                 if (author.grade != null)
                   Column(
@@ -46,17 +64,12 @@ class NewsView extends StatelessWidget {
                       SizedBox(
                         height: 2.5,
                       ),
-                      Text(
-                        beltColor.i18n.fill([author.grade.name.i18n]),
-                        key: Key("authorGrade"),
-                        style: Theme.of(context).textTheme.bodyText1.apply(
-                              color: Theme.of(context).textTheme.bodyText1.color.withAlpha(90),
-                            ),
-                      ),
+                      Text(beltColor.i18n.fill([author.grade.name.i18n]),
+                          key: Key("authorGrade"), style: Theme.of(context).textTheme.bodyText1),
                     ],
                   ),
                 SizedBox(
-                  height: 5,
+                  height: 7.5,
                 ),
                 Text(
                   content,
@@ -68,5 +81,10 @@ class NewsView extends StatelessWidget {
         ),
       ],
     );
+  }
+
+  String _timeAgo() {
+    var localeShort = LocalPlatform().localeName.replaceAll(RegExp(r'_.*'), "_short");
+    return timeago.format(DateTime.fromMillisecondsSinceEpoch(timestamp), locale: localeShort);
   }
 }

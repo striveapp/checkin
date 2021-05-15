@@ -35,6 +35,7 @@ class NewsList extends StatelessWidget {
                       child: NewsView(
                         author: news.author,
                         content: news.content,
+                        timestamp: news.timestamp,
                       ),
                     );
                   },
