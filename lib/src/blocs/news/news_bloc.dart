@@ -36,9 +36,12 @@ class NewsBloc extends Bloc<NewsEvent, NewsState> {
     }
 
     if (event is NewsUpdated) {
-      yield NewsLoaded(newsList: event.newsList);
+      yield NewsLoaded(newsList: _sortByTimestamp(event.newsList));
     }
   }
+
+  List<News> _sortByTimestamp(List<News> newsList) =>
+      newsList..sort((News a, News b) => b.compareTo(a));
 
   @override
   Future<void> close() {

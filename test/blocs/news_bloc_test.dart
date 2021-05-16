@@ -31,13 +31,6 @@ void main() {
       imageUrl: 'https://biutiful',
       name: 'Peppe',
     );
-    var fakeNews = News(
-      id: "fakeId",
-      content: "5G is killing you",
-      author: fakeAuthor,
-      timestamp: 12334567,
-      isPinned: false,
-    );
 
     MockNewsRepository mockNewsRepository;
     MockGymRepository mockGymRepository;
@@ -83,16 +76,45 @@ void main() {
     });
 
     group("on NewsUpdated", () {
+      var fakeNews = News(
+        id: "fakeId",
+        content: "5G is killing you",
+        author: fakeAuthor,
+        timestamp: 1111111169,
+        isPinned: false,
+      );
+
+      var anotherFakeNews = News(
+        id: "fakeId",
+        content: "5G is killing you",
+        author: fakeAuthor,
+        timestamp: 1111111170,
+        isPinned: false,
+      );
+
+      var yetAnotherFakeNews = News(
+        id: "fakeId",
+        content: "5G is killing you",
+        author: fakeAuthor,
+        timestamp: 1111111171,
+        isPinned: false,
+      );
+
+      var unsortedList = [anotherFakeNews, fakeNews, yetAnotherFakeNews];
+
       blocTest(
-        "fetch all news",
+        "fetch all news and sort them by timestamp DESC",
         build: () => NewsBloc(
           newsRepository: mockNewsRepository,
           gymRepository: mockGymRepository,
         ),
-        act: (bloc) => bloc.add(NewsUpdated(newsList: [fakeNews, fakeNews])),
+        act: (bloc) {
+          return bloc.add(NewsUpdated(newsList: unsortedList));
+        },
         expect: () => [
           NewsLoaded(newsList: [
-            fakeNews,
+            yetAnotherFakeNews,
+            anotherFakeNews,
             fakeNews,
           ])
         ],

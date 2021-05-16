@@ -5,7 +5,8 @@ part 'news.freezed.dart';
 part 'news.g.dart';
 
 @freezed
-abstract class News with _$News {
+abstract class News implements _$News, Comparable<News> {
+  const News._();
   factory News({
     @required final String id,
     @required final String content,
@@ -16,4 +17,9 @@ abstract class News with _$News {
   }) = _News;
 
   factory News.fromJson(Map<String, dynamic> json) => _$NewsFromJson(json);
+
+  @override
+  int compareTo(News other) {
+    return this.timestamp.compareTo(other.timestamp);
+  }
 }

@@ -147,7 +147,7 @@ class __$NewsCopyWithImpl<$Res> extends _$NewsCopyWithImpl<$Res> implements _$Ne
 @JsonSerializable()
 
 /// @nodoc
-class _$_News implements _News {
+class _$_News extends _News {
   _$_News(
       {@required this.id,
       @required this.content,
@@ -159,7 +159,8 @@ class _$_News implements _News {
         assert(content != null),
         assert(author != null),
         assert(timestamp != null),
-        assert(isPinned != null);
+        assert(isPinned != null),
+        super._();
 
   factory _$_News.fromJson(Map<String, dynamic> json) => _$_$_NewsFromJson(json);
 
@@ -218,7 +219,8 @@ class _$_News implements _News {
   }
 }
 
-abstract class _News implements News {
+abstract class _News extends News {
+  _News._() : super._();
   factory _News(
       {@required String id,
       @required String content,
