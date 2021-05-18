@@ -1,7 +1,6 @@
+import 'package:checkin/src/ui/components/newslist/modal/content_editor.dart';
 import 'package:checkin/src/ui/components/newslist/modal/header.dart';
-import 'package:checkin/src/ui/components/user_image.dart';
 import 'package:flutter/material.dart';
-import 'package:flutter/services.dart';
 
 class AddNewsModal extends StatefulWidget {
   @override
@@ -32,7 +31,8 @@ class _AddNewsModalState extends State<AddNewsModal> {
 
   @override
   Widget build(BuildContext context) {
-    var remainingChars = 280 - currentLength;
+    var maxLength = 280;
+    var remainingChars = maxLength - currentLength;
 
     return FractionallySizedBox(
       heightFactor: 0.8,
@@ -61,7 +61,7 @@ class _AddNewsModalState extends State<AddNewsModal> {
                   ),
                   child: ContentEditor(
                     parentController: _controller,
-                    maxLength: 280,
+                    maxLength: maxLength,
                   ),
                 ),
               ),
@@ -80,79 +80,6 @@ class _AddNewsModalState extends State<AddNewsModal> {
           ],
         ),
       ),
-    );
-  }
-}
-
-class ContentEditor extends StatefulWidget {
-  final TextEditingController parentController;
-  final int maxLength;
-
-  ContentEditor({
-    Key key,
-    @required this.parentController,
-    @required this.maxLength,
-  }) : super(key: key);
-
-  @override
-  _ContentEditorState createState() => _ContentEditorState();
-}
-
-class _ContentEditorState extends State<ContentEditor> {
-  @override
-  Widget build(BuildContext context) {
-    return Row(
-      crossAxisAlignment: CrossAxisAlignment.start,
-      children: [
-        UserImage(
-          width: 50,
-          height: 50,
-        ),
-        Expanded(
-          child: Column(
-            children: [
-              SizedBox(
-                height: 25,
-              ),
-              TextField(
-                autofocus: true,
-                controller: widget.parentController,
-                keyboardType: TextInputType.multiline,
-                cursorColor: Theme.of(context).accentColor,
-                minLines: 1,
-                maxLines: 100,
-                maxLength: widget.maxLength + 99,
-                style: Theme.of(context).textTheme.headline3,
-                buildCounter: (
-                  BuildContext context, {
-                  int currentLength,
-                  int maxLength,
-                  bool isFocused,
-                }) =>
-                    null,
-                decoration: InputDecoration(
-                  hintText: "What's happening?",
-                  hintStyle: Theme.of(context).textTheme.headline3.apply(
-                        color: Theme.of(context).textTheme.headline3.color.withAlpha(100),
-                      ),
-                  contentPadding: EdgeInsets.zero,
-                  isDense: true,
-                  border: InputBorder.none,
-                  focusedBorder: InputBorder.none,
-                  enabledBorder: InputBorder.none,
-                  errorBorder: InputBorder.none,
-                  disabledBorder: InputBorder.none,
-                  errorMaxLines: 1,
-                  errorStyle: Theme.of(context)
-                      .textTheme
-                      .bodyText1
-                      .apply(color: Theme.of(context).errorColor),
-                ),
-              ),
-            ],
-          ),
-        ),
-      ],
     );
   }
 }
