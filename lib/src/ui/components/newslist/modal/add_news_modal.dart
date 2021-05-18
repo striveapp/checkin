@@ -1,5 +1,6 @@
 import 'package:checkin/src/ui/components/newslist/modal/content_editor.dart';
 import 'package:checkin/src/ui/components/newslist/modal/header.dart';
+import 'package:checkin/src/ui/components/newslist/modal/max_length_counter.dart';
 import 'package:flutter/material.dart';
 
 class AddNewsModal extends StatefulWidget {
@@ -72,70 +73,14 @@ class _AddNewsModalState extends State<AddNewsModal> {
               child: Align(
                 alignment: Alignment.bottomRight,
                 child: MaxLengthCounter(
-                  parentController: _controller,
-                  maxLength: 280,
+                  remainingChars: remainingChars,
+                  completionPercentage: currentLength / maxLength,
                 ),
               ),
             )
           ],
         ),
       ),
-    );
-  }
-}
-
-class MaxLengthCounter extends StatefulWidget {
-  final TextEditingController parentController;
-  final int maxLength;
-
-  const MaxLengthCounter({
-    Key key,
-    @required this.parentController,
-    @required this.maxLength,
-  }) : super(key: key);
-
-  @override
-  _MaxLengthCounterState createState() => _MaxLengthCounterState();
-}
-
-class _MaxLengthCounterState extends State<MaxLengthCounter> {
-  int currentLength = 0;
-
-  @override
-  void initState() {
-    widget.parentController.addListener(() {
-      setState(() {
-        currentLength = widget.parentController.text.length;
-      });
-    });
-    super.initState();
-  }
-
-  @override
-  Widget build(BuildContext context) {
-    var remainingChars = widget.maxLength - currentLength;
-    return Stack(
-      alignment: Alignment.center,
-      children: [
-        if (remainingChars <= 20)
-          Positioned(
-            top: 20 / 4,
-            child: Text("${remainingChars}",
-                key: Key("remainingChars"), style: Theme.of(context).textTheme.bodyText1),
-          ),
-        SizedBox(
-          height: 25,
-          width: 25,
-          child: CircularProgressIndicator(
-            strokeWidth: 2,
-            backgroundColor: Theme.of(context).backgroundColor.withAlpha(70),
-            value: currentLength / widget.maxLength,
-            valueColor: new AlwaysStoppedAnimation<Color>(
-              Theme.of(context).accentColor,
-            ),
-          ),
-        ),
-      ],
     );
   }
 }
