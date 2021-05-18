@@ -1,24 +1,17 @@
-import 'package:checkin/src/blocs/news/news_bloc.dart';
-import 'package:checkin/src/blocs/news/news_event.dart';
-import 'package:checkin/src/blocs/profile/bloc.dart';
-import 'package:checkin/src/constants.dart';
-import 'package:checkin/src/localization/localization.dart';
-import 'package:checkin/src/models/author.dart';
-import 'package:checkin/src/ui/components/empty_widget.dart';
+import 'package:checkin/src/ui/components/newslist/modal/header.dart';
 import 'package:checkin/src/ui/components/user_image.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
-import 'package:flutter_bloc/flutter_bloc.dart';
 
 class AddNewsModal extends StatefulWidget {
-  // static const String start = "Start";
-
   @override
   _AddNewsModalState createState() => _AddNewsModalState();
 }
 
 class _AddNewsModalState extends State<AddNewsModal> {
   final _controller = TextEditingController();
+  int currentLength = 0;
+  String content;
 
   @override
   void dispose() {
@@ -27,7 +20,20 @@ class _AddNewsModalState extends State<AddNewsModal> {
   }
 
   @override
+  void initState() {
+    _controller.addListener(() {
+      setState(() {
+        currentLength = _controller.text.length;
+        content = _controller.text;
+      });
+    });
+    super.initState();
+  }
+
+  @override
   Widget build(BuildContext context) {
+    var remainingChars = 280 - currentLength;
+
     return FractionallySizedBox(
       heightFactor: 0.8,
       child: AnimatedPadding(
@@ -40,8 +46,8 @@ class _AddNewsModalState extends State<AddNewsModal> {
             Padding(
               padding: const EdgeInsets.only(top: 10, left: 5, right: 10),
               child: Header(
-                parentController: _controller,
-                maxLength: 280,
+                content: content,
+                isPublishable: remainingChars >= 0,
               ),
             ),
             Expanded(
@@ -171,7 +177,6 @@ class _MaxLengthCounterState extends State<MaxLengthCounter> {
   @override
   void initState() {
     widget.parentController.addListener(() {
-      print("value: ${widget.parentController.text}");
       setState(() {
         currentLength = widget.parentController.text.length;
       });
@@ -202,82 +207,6 @@ class _MaxLengthCounterState extends State<MaxLengthCounter> {
               Theme.of(context).accentColor,
             ),
           ),
-        ),
-      ],
-    );
-  }
-}
-
-class Header extends StatefulWidget {
-  static const String publish = "Publish";
-  final TextEditingController parentController;
-  final int maxLength;
-
-  const Header({
-    Key key,
-    @required this.parentController,
-    @required this.maxLength,
-  }) : super(key: key);
-
-  @override
-  _HeaderState createState() => _HeaderState();
-}
-
-class _HeaderState extends State<Header> {
-  int currentLength = 0;
-  String content;
-
-  @override
-  void initState() {
-    widget.parentController.addListener(() {
-      print("value: ${widget.parentController.text}");
-      setState(() {
-        currentLength = widget.parentController.text.length;
-        content = widget.parentController.text;
-      });
-    });
-    super.initState();
-  }
-
-  @override
-  Widget build(BuildContext context) {
-    var remainingChars = widget.maxLength - currentLength;
-    return Row(
-      mainAxisAlignment: MainAxisAlignment.spaceBetween,
-      children: [
-        IconButton(
-          onPressed: () {
-            Navigator.of(context).pop();
-          },
-          icon: Icon(Icons.close),
-        ),
-        BlocBuilder<ProfileBloc, ProfileState>(
-          builder: (context, state) {
-            return state.map(
-                initialProfileState: (_) => EmptyWidget(),
-                profileLoaded: (ProfileLoaded state) => ElevatedButton(
-                      style: ElevatedButton.styleFrom(
-                        shape: RoundedRectangleBorder(
-                          borderRadius: new BorderRadius.circular(50.0),
-                        ),
-                        minimumSize: Size(30, 30),
-                        primary: Theme.of(context).accentColor,
-                      ),
-                      child: Text(
-                        Header.publish.i18n,
-                        style: Theme.of(context).textTheme.button.apply(fontSizeFactor: 0.8),
-                      ),
-                      onPressed: remainingChars < 0
-                          ? DISABLED_BUTTON
-                          : () {
-                              context.read<NewsBloc>().add(AddNews(
-                                    content: content,
-                                    author: Author.fromUser(state.profileUser),
-                                  ));
-                              Navigator.of(context).pop();
-                            },
-                    ));
-          },
         ),
       ],
     );

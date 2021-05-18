@@ -1,7 +1,7 @@
 import 'package:checkin/src/blocs/news/news_bloc.dart';
 import 'package:checkin/src/blocs/profile/bloc.dart';
 import 'package:checkin/src/ui/components/empty_widget.dart';
-import 'package:checkin/src/ui/components/newslist/add_news_modal.dart';
+import 'package:checkin/src/ui/components/newslist/modal/add_news_modal.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 
