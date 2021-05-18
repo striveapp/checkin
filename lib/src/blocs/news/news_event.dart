@@ -1,3 +1,4 @@
+import 'package:checkin/src/models/author.dart';
 import 'package:checkin/src/models/news.dart';
 import 'package:freezed_annotation/freezed_annotation.dart';
 
@@ -10,4 +11,9 @@ abstract class NewsEvent with _$NewsEvent {
   const factory NewsEvent.newsUpdated({
     @required List<News> newsList,
   }) = NewsUpdated;
+
+  const factory NewsEvent.addNews({
+    @required String content,
+    @required Author author,
+  }) = AddNews;
 }

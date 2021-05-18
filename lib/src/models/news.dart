@@ -1,4 +1,6 @@
 import 'package:checkin/src/models/author.dart';
+import 'package:checkin/src/util/crypto_util.dart';
+import 'package:checkin/src/util/date_util.dart';
 import 'package:freezed_annotation/freezed_annotation.dart';
 
 part 'news.freezed.dart';
@@ -15,6 +17,16 @@ abstract class News implements _$News, Comparable<News> {
     @required final bool isPinned,
     final String imageUrl,
   }) = _News;
+
+  factory News.create(String content, Author author) {
+    return News(
+      id: CryptoUtil.generateUUID(),
+      content: content,
+      author: author,
+      timestamp: DateUtil.getCurrentTimestamp(),
+      isPinned: false,
+    );
+  }
 
   factory News.fromJson(Map<String, dynamic> json) => _$NewsFromJson(json);
 

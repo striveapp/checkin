@@ -28,7 +28,8 @@ class EditLessonButton extends StatelessWidget {
                     onPressed: () {
                       showModalBottomSheet(
                           shape: RoundedRectangleBorder(
-                              borderRadius: BorderRadius.vertical(top: Radius.circular(15))),
+                            borderRadius: BorderRadius.vertical(top: Radius.circular(15)),
+                          ),
                           context: context,
                           isScrollControlled: true,
                           builder: (_) => BlocProvider.value(

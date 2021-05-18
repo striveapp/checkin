@@ -26,6 +26,7 @@ class UserImage extends StatelessWidget {
             profileLoaded: (ProfileLoaded state) {
               return IconButton(
                 key: Key('accountPageButton'),
+                iconSize: width,
                 onPressed: () {
                   Navigator.of(context).pushNamed('account');
                 },

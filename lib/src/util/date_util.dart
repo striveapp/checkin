@@ -61,4 +61,6 @@ class DateUtil {
     DateTime parsedDate = DateTime.parse(date);
     return DateFormat('EEEE').format(parsedDate).toWeekday();
   }
+
+  static int getCurrentTimestamp() => DateTime.now().millisecondsSinceEpoch;
 }

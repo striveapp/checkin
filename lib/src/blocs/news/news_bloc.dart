@@ -16,6 +16,8 @@ class NewsBloc extends Bloc<NewsEvent, NewsState> {
   StreamSubscription<Gym> gymSub;
   StreamSubscription<List<News>> newsListSub;
 
+  Gym _gym;
+
   NewsBloc({
     @required this.gymRepository,
     @required this.newsRepository,
@@ -26,8 +28,8 @@ class NewsBloc extends Bloc<NewsEvent, NewsState> {
     NewsEvent event,
   ) async* {
     if (event is InitializeNews) {
-      gymSub?.cancel();
-      gymSub = gymRepository.getGym().listen((gym) {
+      _fetchGym((gym) {
+        _gym = gym;
         newsListSub?.cancel();
         newsListSub = newsRepository.getAllNews(gym.id).listen((newsList) {
           add(NewsUpdated(newsList: newsList));
@@ -38,6 +40,22 @@ class NewsBloc extends Bloc<NewsEvent, NewsState> {
     if (event is NewsUpdated) {
       yield NewsLoaded(newsList: _sortByTimestamp(event.newsList));
     }
+
+    if (event is AddNews) {
+      if (_gym != null) {
+        await newsRepository.publishNews(_gym.id, event.content, event.author);
+      } else {
+        _fetchGym((gym) async {
+          _gym = gym;
+          await newsRepository.publishNews(_gym.id, event.content, event.author);
+        });
+      }
+    }
+  }
+
+  void _fetchGym(Function(Gym) onGymUpdated) {
+    gymSub?.cancel();
+    gymSub = gymRepository.getGym().listen(onGymUpdated);
   }
 
   List<News> _sortByTimestamp(List<News> newsList) =>

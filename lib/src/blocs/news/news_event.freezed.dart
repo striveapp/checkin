@@ -24,6 +24,14 @@ class _$NewsEventTearOff {
       newsList: newsList,
     );
   }
+
+// ignore: unused_element
+  AddNews addNews({@required String content, @required Author author}) {
+    return AddNews(
+      content: content,
+      author: author,
+    );
+  }
 }
 
 /// @nodoc
@@ -36,22 +44,26 @@ mixin _$NewsEvent {
   TResult when<TResult extends Object>({
     @required TResult initializeNews(),
     @required TResult newsUpdated(List<News> newsList),
+    @required TResult addNews(String content, Author author),
   });
   @optionalTypeArgs
   TResult maybeWhen<TResult extends Object>({
     TResult initializeNews(),
     TResult newsUpdated(List<News> newsList),
+    TResult addNews(String content, Author author),
     @required TResult orElse(),
   });
   @optionalTypeArgs
   TResult map<TResult extends Object>({
     @required TResult initializeNews(InitializeNews value),
     @required TResult newsUpdated(NewsUpdated value),
+    @required TResult addNews(AddNews value),
   });
   @optionalTypeArgs
   TResult maybeMap<TResult extends Object>({
     TResult initializeNews(InitializeNews value),
     TResult newsUpdated(NewsUpdated value),
+    TResult addNews(AddNews value),
     @required TResult orElse(),
   });
 }
@@ -109,9 +121,11 @@ class _$InitializeNews implements InitializeNews {
   TResult when<TResult extends Object>({
     @required TResult initializeNews(),
     @required TResult newsUpdated(List<News> newsList),
+    @required TResult addNews(String content, Author author),
   }) {
     assert(initializeNews != null);
     assert(newsUpdated != null);
+    assert(addNews != null);
     return initializeNews();
   }
 
@@ -120,6 +134,7 @@ class _$InitializeNews implements InitializeNews {
   TResult maybeWhen<TResult extends Object>({
     TResult initializeNews(),
     TResult newsUpdated(List<News> newsList),
+    TResult addNews(String content, Author author),
     @required TResult orElse(),
   }) {
     assert(orElse != null);
@@ -134,9 +149,11 @@ class _$InitializeNews implements InitializeNews {
   TResult map<TResult extends Object>({
     @required TResult initializeNews(InitializeNews value),
     @required TResult newsUpdated(NewsUpdated value),
+    @required TResult addNews(AddNews value),
   }) {
     assert(initializeNews != null);
     assert(newsUpdated != null);
+    assert(addNews != null);
     return initializeNews(this);
   }
 
@@ -145,6 +162,7 @@ class _$InitializeNews implements InitializeNews {
   TResult maybeMap<TResult extends Object>({
     TResult initializeNews(InitializeNews value),
     TResult newsUpdated(NewsUpdated value),
+    TResult addNews(AddNews value),
     @required TResult orElse(),
   }) {
     assert(orElse != null);
@@ -218,9 +236,11 @@ class _$NewsUpdated implements NewsUpdated {
   TResult when<TResult extends Object>({
     @required TResult initializeNews(),
     @required TResult newsUpdated(List<News> newsList),
+    @required TResult addNews(String content, Author author),
   }) {
     assert(initializeNews != null);
     assert(newsUpdated != null);
+    assert(addNews != null);
     return newsUpdated(newsList);
   }
 
@@ -229,6 +249,7 @@ class _$NewsUpdated implements NewsUpdated {
   TResult maybeWhen<TResult extends Object>({
     TResult initializeNews(),
     TResult newsUpdated(List<News> newsList),
+    TResult addNews(String content, Author author),
     @required TResult orElse(),
   }) {
     assert(orElse != null);
@@ -243,9 +264,11 @@ class _$NewsUpdated implements NewsUpdated {
   TResult map<TResult extends Object>({
     @required TResult initializeNews(InitializeNews value),
     @required TResult newsUpdated(NewsUpdated value),
+    @required TResult addNews(AddNews value),
   }) {
     assert(initializeNews != null);
     assert(newsUpdated != null);
+    assert(addNews != null);
     return newsUpdated(this);
   }
 
@@ -254,6 +277,7 @@ class _$NewsUpdated implements NewsUpdated {
   TResult maybeMap<TResult extends Object>({
     TResult initializeNews(InitializeNews value),
     TResult newsUpdated(NewsUpdated value),
+    TResult addNews(AddNews value),
     @required TResult orElse(),
   }) {
     assert(orElse != null);
@@ -270,4 +294,146 @@ abstract class NewsUpdated implements NewsEvent {
   List<News> get newsList;
   @JsonKey(ignore: true)
   $NewsUpdatedCopyWith<NewsUpdated> get copyWith;
+}
+
+/// @nodoc
+abstract class $AddNewsCopyWith<$Res> {
+  factory $AddNewsCopyWith(AddNews value, $Res Function(AddNews) then) =
+      _$AddNewsCopyWithImpl<$Res>;
+  $Res call({String content, Author author});
+
+  $AuthorCopyWith<$Res> get author;
+}
+
+/// @nodoc
+class _$AddNewsCopyWithImpl<$Res> extends _$NewsEventCopyWithImpl<$Res>
+    implements $AddNewsCopyWith<$Res> {
+  _$AddNewsCopyWithImpl(AddNews _value, $Res Function(AddNews) _then)
+      : super(_value, (v) => _then(v as AddNews));
+
+  @override
+  AddNews get _value => super._value as AddNews;
+
+  @override
+  $Res call({
+    Object content = freezed,
+    Object author = freezed,
+  }) {
+    return _then(AddNews(
+      content: content == freezed ? _value.content : content as String,
+      author: author == freezed ? _value.author : author as Author,
+    ));
+  }
+
+  @override
+  $AuthorCopyWith<$Res> get author {
+    if (_value.author == null) {
+      return null;
+    }
+    return $AuthorCopyWith<$Res>(_value.author, (value) {
+      return _then(_value.copyWith(author: value));
+    });
+  }
+}
+
+/// @nodoc
+class _$AddNews implements AddNews {
+  const _$AddNews({@required this.content, @required this.author})
+      : assert(content != null),
+        assert(author != null);
+
+  @override
+  final String content;
+  @override
+  final Author author;
+
+  @override
+  String toString() {
+    return 'NewsEvent.addNews(content: $content, author: $author)';
+  }
+
+  @override
+  bool operator ==(dynamic other) {
+    return identical(this, other) ||
+        (other is AddNews &&
+            (identical(other.content, content) ||
+                const DeepCollectionEquality().equals(other.content, content)) &&
+            (identical(other.author, author) ||
+                const DeepCollectionEquality().equals(other.author, author)));
+  }
+
+  @override
+  int get hashCode =>
+      runtimeType.hashCode ^
+      const DeepCollectionEquality().hash(content) ^
+      const DeepCollectionEquality().hash(author);
+
+  @JsonKey(ignore: true)
+  @override
+  $AddNewsCopyWith<AddNews> get copyWith => _$AddNewsCopyWithImpl<AddNews>(this, _$identity);
+
+  @override
+  @optionalTypeArgs
+  TResult when<TResult extends Object>({
+    @required TResult initializeNews(),
+    @required TResult newsUpdated(List<News> newsList),
+    @required TResult addNews(String content, Author author),
+  }) {
+    assert(initializeNews != null);
+    assert(newsUpdated != null);
+    assert(addNews != null);
+    return addNews(content, author);
+  }
+
+  @override
+  @optionalTypeArgs
+  TResult maybeWhen<TResult extends Object>({
+    TResult initializeNews(),
+    TResult newsUpdated(List<News> newsList),
+    TResult addNews(String content, Author author),
+    @required TResult orElse(),
+  }) {
+    assert(orElse != null);
+    if (addNews != null) {
+      return addNews(content, author);
+    }
+    return orElse();
+  }
+
+  @override
+  @optionalTypeArgs
+  TResult map<TResult extends Object>({
+    @required TResult initializeNews(InitializeNews value),
+    @required TResult newsUpdated(NewsUpdated value),
+    @required TResult addNews(AddNews value),
+  }) {
+    assert(initializeNews != null);
+    assert(newsUpdated != null);
+    assert(addNews != null);
+    return addNews(this);
+  }
+
+  @override
+  @optionalTypeArgs
+  TResult maybeMap<TResult extends Object>({
+    TResult initializeNews(InitializeNews value),
+    TResult newsUpdated(NewsUpdated value),
+    TResult addNews(AddNews value),
+    @required TResult orElse(),
+  }) {
+    assert(orElse != null);
+    if (addNews != null) {
+      return addNews(this);
+    }
+    return orElse();
+  }
+}
+
+abstract class AddNews implements NewsEvent {
+  const factory AddNews({@required String content, @required Author author}) = _$AddNews;
+
+  String get content;
+  Author get author;
+  @JsonKey(ignore: true)
+  $AddNewsCopyWith<AddNews> get copyWith;
 }

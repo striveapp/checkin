@@ -120,5 +120,30 @@ void main() {
         ],
       );
     });
+
+    group("on AddNews", () {
+      setUp(() {
+        when(mockGymRepository.getGym()).thenAnswer((realInvocation) => Stream.value(fakeGym));
+        when(mockNewsRepository.publishNews("fake-gym", "a news", fakeAuthor))
+            .thenAnswer((realInvocation) => Future.value());
+      });
+
+      tearDown(() {
+        verify(mockGymRepository.getGym());
+        verify(mockNewsRepository.publishNews("fake-gym", "a news", fakeAuthor));
+      });
+
+      blocTest(
+        "add a news",
+        build: () => NewsBloc(
+          newsRepository: mockNewsRepository,
+          gymRepository: mockGymRepository,
+        ),
+        act: (bloc) {
+          return bloc.add(AddNews(content: "a news", author: fakeAuthor));
+        },
+        expect: () => [],
+      );
+    });
   });
 }
