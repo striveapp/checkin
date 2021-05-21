@@ -36,6 +36,7 @@ class _AddNewsModalState extends State<AddNewsModal> {
     var remainingChars = maxLength - currentLength;
 
     return FractionallySizedBox(
+      key: Key("addNewsModal"),
       heightFactor: 0.8,
       child: AnimatedPadding(
         padding: MediaQuery.of(context).viewInsets,
