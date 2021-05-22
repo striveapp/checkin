@@ -28,7 +28,8 @@ class _$NotificationTearOff {
   }
 
 // ignore: unused_element
-  RoutableNotification routableNotification({@required String title, @required String path}) {
+  RoutableNotification routableNotification(
+      {@required String title, @required String path}) {
     return RoutableNotification(
       title: title,
       path: path,
@@ -47,14 +48,14 @@ mixin _$Notification {
   @optionalTypeArgs
   TResult when<TResult extends Object>({
     @required
-        TResult basicNotification(
-            String title, List<String> titleLocArgs, String body, List<String> bodyLocArgs),
+        TResult basicNotification(String title, List<String> titleLocArgs,
+            String body, List<String> bodyLocArgs),
     @required TResult routableNotification(String title, String path),
   });
   @optionalTypeArgs
   TResult maybeWhen<TResult extends Object>({
-    TResult basicNotification(
-        String title, List<String> titleLocArgs, String body, List<String> bodyLocArgs),
+    TResult basicNotification(String title, List<String> titleLocArgs,
+        String body, List<String> bodyLocArgs),
     TResult routableNotification(String title, String path),
     @required TResult orElse(),
   });
@@ -76,7 +77,8 @@ mixin _$Notification {
 
 /// @nodoc
 abstract class $NotificationCopyWith<$Res> {
-  factory $NotificationCopyWith(Notification value, $Res Function(Notification) then) =
+  factory $NotificationCopyWith(
+          Notification value, $Res Function(Notification) then) =
       _$NotificationCopyWithImpl<$Res>;
   $Res call({String title});
 }
@@ -100,18 +102,25 @@ class _$NotificationCopyWithImpl<$Res> implements $NotificationCopyWith<$Res> {
 }
 
 /// @nodoc
-abstract class $BasicNotificationCopyWith<$Res> implements $NotificationCopyWith<$Res> {
+abstract class $BasicNotificationCopyWith<$Res>
+    implements $NotificationCopyWith<$Res> {
   factory $BasicNotificationCopyWith(
           BasicNotification value, $Res Function(BasicNotification) then) =
       _$BasicNotificationCopyWithImpl<$Res>;
   @override
-  $Res call({String title, List<String> titleLocArgs, String body, List<String> bodyLocArgs});
+  $Res call(
+      {String title,
+      List<String> titleLocArgs,
+      String body,
+      List<String> bodyLocArgs});
 }
 
 /// @nodoc
-class _$BasicNotificationCopyWithImpl<$Res> extends _$NotificationCopyWithImpl<$Res>
+class _$BasicNotificationCopyWithImpl<$Res>
+    extends _$NotificationCopyWithImpl<$Res>
     implements $BasicNotificationCopyWith<$Res> {
-  _$BasicNotificationCopyWithImpl(BasicNotification _value, $Res Function(BasicNotification) _then)
+  _$BasicNotificationCopyWithImpl(
+      BasicNotification _value, $Res Function(BasicNotification) _then)
       : super(_value, (v) => _then(v as BasicNotification));
 
   @override
@@ -126,17 +135,26 @@ class _$BasicNotificationCopyWithImpl<$Res> extends _$NotificationCopyWithImpl<$
   }) {
     return _then(BasicNotification(
       title: title == freezed ? _value.title : title as String,
-      titleLocArgs: titleLocArgs == freezed ? _value.titleLocArgs : titleLocArgs as List<String>,
+      titleLocArgs: titleLocArgs == freezed
+          ? _value.titleLocArgs
+          : titleLocArgs as List<String>,
       body: body == freezed ? _value.body : body as String,
-      bodyLocArgs: bodyLocArgs == freezed ? _value.bodyLocArgs : bodyLocArgs as List<String>,
+      bodyLocArgs: bodyLocArgs == freezed
+          ? _value.bodyLocArgs
+          : bodyLocArgs as List<String>,
     ));
   }
 }
 
 /// @nodoc
-class _$BasicNotification with DiagnosticableTreeMixin implements BasicNotification {
+class _$BasicNotification
+    with DiagnosticableTreeMixin
+    implements BasicNotification {
   _$BasicNotification(
-      {@required this.title, this.titleLocArgs, @required this.body, this.bodyLocArgs})
+      {@required this.title,
+      this.titleLocArgs,
+      @required this.body,
+      this.bodyLocArgs})
       : assert(title != null),
         assert(body != null);
 
@@ -172,11 +190,13 @@ class _$BasicNotification with DiagnosticableTreeMixin implements BasicNotificat
             (identical(other.title, title) ||
                 const DeepCollectionEquality().equals(other.title, title)) &&
             (identical(other.titleLocArgs, titleLocArgs) ||
-                const DeepCollectionEquality().equals(other.titleLocArgs, titleLocArgs)) &&
+                const DeepCollectionEquality()
+                    .equals(other.titleLocArgs, titleLocArgs)) &&
             (identical(other.body, body) ||
                 const DeepCollectionEquality().equals(other.body, body)) &&
             (identical(other.bodyLocArgs, bodyLocArgs) ||
-                const DeepCollectionEquality().equals(other.bodyLocArgs, bodyLocArgs)));
+                const DeepCollectionEquality()
+                    .equals(other.bodyLocArgs, bodyLocArgs)));
   }
 
   @override
@@ -196,8 +216,8 @@ class _$BasicNotification with DiagnosticableTreeMixin implements BasicNotificat
   @optionalTypeArgs
   TResult when<TResult extends Object>({
     @required
-        TResult basicNotification(
-            String title, List<String> titleLocArgs, String body, List<String> bodyLocArgs),
+        TResult basicNotification(String title, List<String> titleLocArgs,
+            String body, List<String> bodyLocArgs),
     @required TResult routableNotification(String title, String path),
   }) {
     assert(basicNotification != null);
@@ -208,8 +228,8 @@ class _$BasicNotification with DiagnosticableTreeMixin implements BasicNotificat
   @override
   @optionalTypeArgs
   TResult maybeWhen<TResult extends Object>({
-    TResult basicNotification(
-        String title, List<String> titleLocArgs, String body, List<String> bodyLocArgs),
+    TResult basicNotification(String title, List<String> titleLocArgs,
+        String body, List<String> bodyLocArgs),
     TResult routableNotification(String title, String path),
     @required TResult orElse(),
   }) {
@@ -264,16 +284,18 @@ abstract class BasicNotification implements Notification {
 }
 
 /// @nodoc
-abstract class $RoutableNotificationCopyWith<$Res> implements $NotificationCopyWith<$Res> {
-  factory $RoutableNotificationCopyWith(
-          RoutableNotification value, $Res Function(RoutableNotification) then) =
+abstract class $RoutableNotificationCopyWith<$Res>
+    implements $NotificationCopyWith<$Res> {
+  factory $RoutableNotificationCopyWith(RoutableNotification value,
+          $Res Function(RoutableNotification) then) =
       _$RoutableNotificationCopyWithImpl<$Res>;
   @override
   $Res call({String title, String path});
 }
 
 /// @nodoc
-class _$RoutableNotificationCopyWithImpl<$Res> extends _$NotificationCopyWithImpl<$Res>
+class _$RoutableNotificationCopyWithImpl<$Res>
+    extends _$NotificationCopyWithImpl<$Res>
     implements $RoutableNotificationCopyWith<$Res> {
   _$RoutableNotificationCopyWithImpl(
       RoutableNotification _value, $Res Function(RoutableNotification) _then)
@@ -295,7 +317,9 @@ class _$RoutableNotificationCopyWithImpl<$Res> extends _$NotificationCopyWithImp
 }
 
 /// @nodoc
-class _$RoutableNotification with DiagnosticableTreeMixin implements RoutableNotification {
+class _$RoutableNotification
+    with DiagnosticableTreeMixin
+    implements RoutableNotification {
   _$RoutableNotification({@required this.title, @required this.path})
       : assert(title != null),
         assert(path != null);
@@ -338,14 +362,15 @@ class _$RoutableNotification with DiagnosticableTreeMixin implements RoutableNot
   @JsonKey(ignore: true)
   @override
   $RoutableNotificationCopyWith<RoutableNotification> get copyWith =>
-      _$RoutableNotificationCopyWithImpl<RoutableNotification>(this, _$identity);
+      _$RoutableNotificationCopyWithImpl<RoutableNotification>(
+          this, _$identity);
 
   @override
   @optionalTypeArgs
   TResult when<TResult extends Object>({
     @required
-        TResult basicNotification(
-            String title, List<String> titleLocArgs, String body, List<String> bodyLocArgs),
+        TResult basicNotification(String title, List<String> titleLocArgs,
+            String body, List<String> bodyLocArgs),
     @required TResult routableNotification(String title, String path),
   }) {
     assert(basicNotification != null);
@@ -356,8 +381,8 @@ class _$RoutableNotification with DiagnosticableTreeMixin implements RoutableNot
   @override
   @optionalTypeArgs
   TResult maybeWhen<TResult extends Object>({
-    TResult basicNotification(
-        String title, List<String> titleLocArgs, String body, List<String> bodyLocArgs),
+    TResult basicNotification(String title, List<String> titleLocArgs,
+        String body, List<String> bodyLocArgs),
     TResult routableNotification(String title, String path),
     @required TResult orElse(),
   }) {
@@ -395,8 +420,8 @@ class _$RoutableNotification with DiagnosticableTreeMixin implements RoutableNot
 }
 
 abstract class RoutableNotification implements Notification {
-  factory RoutableNotification({@required String title, @required String path}) =
-      _$RoutableNotification;
+  factory RoutableNotification(
+      {@required String title, @required String path}) = _$RoutableNotification;
 
   @override
   String get title;

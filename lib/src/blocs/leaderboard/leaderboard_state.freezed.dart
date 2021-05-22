@@ -41,14 +41,14 @@ mixin _$LeaderboardState {
   TResult when<TResult extends Object>({
     @required TResult leaderboardInitial(),
     @required
-        TResult leaderboardLoaded(
-            List<UserHistory> podium, List<UserHistory> restOfTheUsers, bool isAvailable),
+        TResult leaderboardLoaded(List<UserHistory> podium,
+            List<UserHistory> restOfTheUsers, bool isAvailable),
   });
   @optionalTypeArgs
   TResult maybeWhen<TResult extends Object>({
     TResult leaderboardInitial(),
-    TResult leaderboardLoaded(
-        List<UserHistory> podium, List<UserHistory> restOfTheUsers, bool isAvailable),
+    TResult leaderboardLoaded(List<UserHistory> podium,
+        List<UserHistory> restOfTheUsers, bool isAvailable),
     @required TResult orElse(),
   });
   @optionalTypeArgs
@@ -66,12 +66,14 @@ mixin _$LeaderboardState {
 
 /// @nodoc
 abstract class $LeaderboardStateCopyWith<$Res> {
-  factory $LeaderboardStateCopyWith(LeaderboardState value, $Res Function(LeaderboardState) then) =
+  factory $LeaderboardStateCopyWith(
+          LeaderboardState value, $Res Function(LeaderboardState) then) =
       _$LeaderboardStateCopyWithImpl<$Res>;
 }
 
 /// @nodoc
-class _$LeaderboardStateCopyWithImpl<$Res> implements $LeaderboardStateCopyWith<$Res> {
+class _$LeaderboardStateCopyWithImpl<$Res>
+    implements $LeaderboardStateCopyWith<$Res> {
   _$LeaderboardStateCopyWithImpl(this._value, this._then);
 
   final LeaderboardState _value;
@@ -87,7 +89,8 @@ abstract class $LeaderboardInitialCopyWith<$Res> {
 }
 
 /// @nodoc
-class _$LeaderboardInitialCopyWithImpl<$Res> extends _$LeaderboardStateCopyWithImpl<$Res>
+class _$LeaderboardInitialCopyWithImpl<$Res>
+    extends _$LeaderboardStateCopyWithImpl<$Res>
     implements $LeaderboardInitialCopyWith<$Res> {
   _$LeaderboardInitialCopyWithImpl(
       LeaderboardInitial _value, $Res Function(LeaderboardInitial) _then)
@@ -98,7 +101,9 @@ class _$LeaderboardInitialCopyWithImpl<$Res> extends _$LeaderboardStateCopyWithI
 }
 
 /// @nodoc
-class _$LeaderboardInitial with DiagnosticableTreeMixin implements LeaderboardInitial {
+class _$LeaderboardInitial
+    with DiagnosticableTreeMixin
+    implements LeaderboardInitial {
   const _$LeaderboardInitial();
 
   @override
@@ -109,7 +114,8 @@ class _$LeaderboardInitial with DiagnosticableTreeMixin implements LeaderboardIn
   @override
   void debugFillProperties(DiagnosticPropertiesBuilder properties) {
     super.debugFillProperties(properties);
-    properties..add(DiagnosticsProperty('type', 'LeaderboardState.leaderboardInitial'));
+    properties
+      ..add(DiagnosticsProperty('type', 'LeaderboardState.leaderboardInitial'));
   }
 
   @override
@@ -125,8 +131,8 @@ class _$LeaderboardInitial with DiagnosticableTreeMixin implements LeaderboardIn
   TResult when<TResult extends Object>({
     @required TResult leaderboardInitial(),
     @required
-        TResult leaderboardLoaded(
-            List<UserHistory> podium, List<UserHistory> restOfTheUsers, bool isAvailable),
+        TResult leaderboardLoaded(List<UserHistory> podium,
+            List<UserHistory> restOfTheUsers, bool isAvailable),
   }) {
     assert(leaderboardInitial != null);
     assert(leaderboardLoaded != null);
@@ -137,8 +143,8 @@ class _$LeaderboardInitial with DiagnosticableTreeMixin implements LeaderboardIn
   @optionalTypeArgs
   TResult maybeWhen<TResult extends Object>({
     TResult leaderboardInitial(),
-    TResult leaderboardLoaded(
-        List<UserHistory> podium, List<UserHistory> restOfTheUsers, bool isAvailable),
+    TResult leaderboardLoaded(List<UserHistory> podium,
+        List<UserHistory> restOfTheUsers, bool isAvailable),
     @required TResult orElse(),
   }) {
     assert(orElse != null);
@@ -183,13 +189,18 @@ abstract class $LeaderboardLoadedCopyWith<$Res> {
   factory $LeaderboardLoadedCopyWith(
           LeaderboardLoaded value, $Res Function(LeaderboardLoaded) then) =
       _$LeaderboardLoadedCopyWithImpl<$Res>;
-  $Res call({List<UserHistory> podium, List<UserHistory> restOfTheUsers, bool isAvailable});
+  $Res call(
+      {List<UserHistory> podium,
+      List<UserHistory> restOfTheUsers,
+      bool isAvailable});
 }
 
 /// @nodoc
-class _$LeaderboardLoadedCopyWithImpl<$Res> extends _$LeaderboardStateCopyWithImpl<$Res>
+class _$LeaderboardLoadedCopyWithImpl<$Res>
+    extends _$LeaderboardStateCopyWithImpl<$Res>
     implements $LeaderboardLoadedCopyWith<$Res> {
-  _$LeaderboardLoadedCopyWithImpl(LeaderboardLoaded _value, $Res Function(LeaderboardLoaded) _then)
+  _$LeaderboardLoadedCopyWithImpl(
+      LeaderboardLoaded _value, $Res Function(LeaderboardLoaded) _then)
       : super(_value, (v) => _then(v as LeaderboardLoaded));
 
   @override
@@ -203,17 +214,23 @@ class _$LeaderboardLoadedCopyWithImpl<$Res> extends _$LeaderboardStateCopyWithIm
   }) {
     return _then(LeaderboardLoaded(
       podium: podium == freezed ? _value.podium : podium as List<UserHistory>,
-      restOfTheUsers:
-          restOfTheUsers == freezed ? _value.restOfTheUsers : restOfTheUsers as List<UserHistory>,
-      isAvailable: isAvailable == freezed ? _value.isAvailable : isAvailable as bool,
+      restOfTheUsers: restOfTheUsers == freezed
+          ? _value.restOfTheUsers
+          : restOfTheUsers as List<UserHistory>,
+      isAvailable:
+          isAvailable == freezed ? _value.isAvailable : isAvailable as bool,
     ));
   }
 }
 
 /// @nodoc
-class _$LeaderboardLoaded with DiagnosticableTreeMixin implements LeaderboardLoaded {
+class _$LeaderboardLoaded
+    with DiagnosticableTreeMixin
+    implements LeaderboardLoaded {
   const _$LeaderboardLoaded(
-      {@required this.podium, @required this.restOfTheUsers, this.isAvailable = true})
+      {@required this.podium,
+      @required this.restOfTheUsers,
+      this.isAvailable = true})
       : assert(podium != null),
         assert(restOfTheUsers != null),
         assert(isAvailable != null);
@@ -248,9 +265,11 @@ class _$LeaderboardLoaded with DiagnosticableTreeMixin implements LeaderboardLoa
             (identical(other.podium, podium) ||
                 const DeepCollectionEquality().equals(other.podium, podium)) &&
             (identical(other.restOfTheUsers, restOfTheUsers) ||
-                const DeepCollectionEquality().equals(other.restOfTheUsers, restOfTheUsers)) &&
+                const DeepCollectionEquality()
+                    .equals(other.restOfTheUsers, restOfTheUsers)) &&
             (identical(other.isAvailable, isAvailable) ||
-                const DeepCollectionEquality().equals(other.isAvailable, isAvailable)));
+                const DeepCollectionEquality()
+                    .equals(other.isAvailable, isAvailable)));
   }
 
   @override
@@ -270,8 +289,8 @@ class _$LeaderboardLoaded with DiagnosticableTreeMixin implements LeaderboardLoa
   TResult when<TResult extends Object>({
     @required TResult leaderboardInitial(),
     @required
-        TResult leaderboardLoaded(
-            List<UserHistory> podium, List<UserHistory> restOfTheUsers, bool isAvailable),
+        TResult leaderboardLoaded(List<UserHistory> podium,
+            List<UserHistory> restOfTheUsers, bool isAvailable),
   }) {
     assert(leaderboardInitial != null);
     assert(leaderboardLoaded != null);
@@ -282,8 +301,8 @@ class _$LeaderboardLoaded with DiagnosticableTreeMixin implements LeaderboardLoa
   @optionalTypeArgs
   TResult maybeWhen<TResult extends Object>({
     TResult leaderboardInitial(),
-    TResult leaderboardLoaded(
-        List<UserHistory> podium, List<UserHistory> restOfTheUsers, bool isAvailable),
+    TResult leaderboardLoaded(List<UserHistory> podium,
+        List<UserHistory> restOfTheUsers, bool isAvailable),
     @required TResult orElse(),
   }) {
     assert(orElse != null);

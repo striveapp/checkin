@@ -32,6 +32,20 @@ class _$NewsEventTearOff {
       author: author,
     );
   }
+
+// ignore: unused_element
+  DeleteNews deleteNews({@required String id}) {
+    return DeleteNews(
+      id: id,
+    );
+  }
+
+// ignore: unused_element
+  PinNews pinNews({@required String id}) {
+    return PinNews(
+      id: id,
+    );
+  }
 }
 
 /// @nodoc
@@ -45,12 +59,16 @@ mixin _$NewsEvent {
     @required TResult initializeNews(),
     @required TResult newsUpdated(List<News> newsList),
     @required TResult addNews(String content, Author author),
+    @required TResult deleteNews(String id),
+    @required TResult pinNews(String id),
   });
   @optionalTypeArgs
   TResult maybeWhen<TResult extends Object>({
     TResult initializeNews(),
     TResult newsUpdated(List<News> newsList),
     TResult addNews(String content, Author author),
+    TResult deleteNews(String id),
+    TResult pinNews(String id),
     @required TResult orElse(),
   });
   @optionalTypeArgs
@@ -58,12 +76,16 @@ mixin _$NewsEvent {
     @required TResult initializeNews(InitializeNews value),
     @required TResult newsUpdated(NewsUpdated value),
     @required TResult addNews(AddNews value),
+    @required TResult deleteNews(DeleteNews value),
+    @required TResult pinNews(PinNews value),
   });
   @optionalTypeArgs
   TResult maybeMap<TResult extends Object>({
     TResult initializeNews(InitializeNews value),
     TResult newsUpdated(NewsUpdated value),
     TResult addNews(AddNews value),
+    TResult deleteNews(DeleteNews value),
+    TResult pinNews(PinNews value),
     @required TResult orElse(),
   });
 }
@@ -85,14 +107,16 @@ class _$NewsEventCopyWithImpl<$Res> implements $NewsEventCopyWith<$Res> {
 
 /// @nodoc
 abstract class $InitializeNewsCopyWith<$Res> {
-  factory $InitializeNewsCopyWith(InitializeNews value, $Res Function(InitializeNews) then) =
+  factory $InitializeNewsCopyWith(
+          InitializeNews value, $Res Function(InitializeNews) then) =
       _$InitializeNewsCopyWithImpl<$Res>;
 }
 
 /// @nodoc
 class _$InitializeNewsCopyWithImpl<$Res> extends _$NewsEventCopyWithImpl<$Res>
     implements $InitializeNewsCopyWith<$Res> {
-  _$InitializeNewsCopyWithImpl(InitializeNews _value, $Res Function(InitializeNews) _then)
+  _$InitializeNewsCopyWithImpl(
+      InitializeNews _value, $Res Function(InitializeNews) _then)
       : super(_value, (v) => _then(v as InitializeNews));
 
   @override
@@ -122,10 +146,14 @@ class _$InitializeNews implements InitializeNews {
     @required TResult initializeNews(),
     @required TResult newsUpdated(List<News> newsList),
     @required TResult addNews(String content, Author author),
+    @required TResult deleteNews(String id),
+    @required TResult pinNews(String id),
   }) {
     assert(initializeNews != null);
     assert(newsUpdated != null);
     assert(addNews != null);
+    assert(deleteNews != null);
+    assert(pinNews != null);
     return initializeNews();
   }
 
@@ -135,6 +163,8 @@ class _$InitializeNews implements InitializeNews {
     TResult initializeNews(),
     TResult newsUpdated(List<News> newsList),
     TResult addNews(String content, Author author),
+    TResult deleteNews(String id),
+    TResult pinNews(String id),
     @required TResult orElse(),
   }) {
     assert(orElse != null);
@@ -150,10 +180,14 @@ class _$InitializeNews implements InitializeNews {
     @required TResult initializeNews(InitializeNews value),
     @required TResult newsUpdated(NewsUpdated value),
     @required TResult addNews(AddNews value),
+    @required TResult deleteNews(DeleteNews value),
+    @required TResult pinNews(PinNews value),
   }) {
     assert(initializeNews != null);
     assert(newsUpdated != null);
     assert(addNews != null);
+    assert(deleteNews != null);
+    assert(pinNews != null);
     return initializeNews(this);
   }
 
@@ -163,6 +197,8 @@ class _$InitializeNews implements InitializeNews {
     TResult initializeNews(InitializeNews value),
     TResult newsUpdated(NewsUpdated value),
     TResult addNews(AddNews value),
+    TResult deleteNews(DeleteNews value),
+    TResult pinNews(PinNews value),
     @required TResult orElse(),
   }) {
     assert(orElse != null);
@@ -179,7 +215,8 @@ abstract class InitializeNews implements NewsEvent {
 
 /// @nodoc
 abstract class $NewsUpdatedCopyWith<$Res> {
-  factory $NewsUpdatedCopyWith(NewsUpdated value, $Res Function(NewsUpdated) then) =
+  factory $NewsUpdatedCopyWith(
+          NewsUpdated value, $Res Function(NewsUpdated) then) =
       _$NewsUpdatedCopyWithImpl<$Res>;
   $Res call({List<News> newsList});
 }
@@ -187,7 +224,8 @@ abstract class $NewsUpdatedCopyWith<$Res> {
 /// @nodoc
 class _$NewsUpdatedCopyWithImpl<$Res> extends _$NewsEventCopyWithImpl<$Res>
     implements $NewsUpdatedCopyWith<$Res> {
-  _$NewsUpdatedCopyWithImpl(NewsUpdated _value, $Res Function(NewsUpdated) _then)
+  _$NewsUpdatedCopyWithImpl(
+      NewsUpdated _value, $Res Function(NewsUpdated) _then)
       : super(_value, (v) => _then(v as NewsUpdated));
 
   @override
@@ -220,11 +258,13 @@ class _$NewsUpdated implements NewsUpdated {
     return identical(this, other) ||
         (other is NewsUpdated &&
             (identical(other.newsList, newsList) ||
-                const DeepCollectionEquality().equals(other.newsList, newsList)));
+                const DeepCollectionEquality()
+                    .equals(other.newsList, newsList)));
   }
 
   @override
-  int get hashCode => runtimeType.hashCode ^ const DeepCollectionEquality().hash(newsList);
+  int get hashCode =>
+      runtimeType.hashCode ^ const DeepCollectionEquality().hash(newsList);
 
   @JsonKey(ignore: true)
   @override
@@ -237,10 +277,14 @@ class _$NewsUpdated implements NewsUpdated {
     @required TResult initializeNews(),
     @required TResult newsUpdated(List<News> newsList),
     @required TResult addNews(String content, Author author),
+    @required TResult deleteNews(String id),
+    @required TResult pinNews(String id),
   }) {
     assert(initializeNews != null);
     assert(newsUpdated != null);
     assert(addNews != null);
+    assert(deleteNews != null);
+    assert(pinNews != null);
     return newsUpdated(newsList);
   }
 
@@ -250,6 +294,8 @@ class _$NewsUpdated implements NewsUpdated {
     TResult initializeNews(),
     TResult newsUpdated(List<News> newsList),
     TResult addNews(String content, Author author),
+    TResult deleteNews(String id),
+    TResult pinNews(String id),
     @required TResult orElse(),
   }) {
     assert(orElse != null);
@@ -265,10 +311,14 @@ class _$NewsUpdated implements NewsUpdated {
     @required TResult initializeNews(InitializeNews value),
     @required TResult newsUpdated(NewsUpdated value),
     @required TResult addNews(AddNews value),
+    @required TResult deleteNews(DeleteNews value),
+    @required TResult pinNews(PinNews value),
   }) {
     assert(initializeNews != null);
     assert(newsUpdated != null);
     assert(addNews != null);
+    assert(deleteNews != null);
+    assert(pinNews != null);
     return newsUpdated(this);
   }
 
@@ -278,6 +328,8 @@ class _$NewsUpdated implements NewsUpdated {
     TResult initializeNews(InitializeNews value),
     TResult newsUpdated(NewsUpdated value),
     TResult addNews(AddNews value),
+    TResult deleteNews(DeleteNews value),
+    TResult pinNews(PinNews value),
     @required TResult orElse(),
   }) {
     assert(orElse != null);
@@ -357,7 +409,8 @@ class _$AddNews implements AddNews {
     return identical(this, other) ||
         (other is AddNews &&
             (identical(other.content, content) ||
-                const DeepCollectionEquality().equals(other.content, content)) &&
+                const DeepCollectionEquality()
+                    .equals(other.content, content)) &&
             (identical(other.author, author) ||
                 const DeepCollectionEquality().equals(other.author, author)));
   }
@@ -370,7 +423,8 @@ class _$AddNews implements AddNews {
 
   @JsonKey(ignore: true)
   @override
-  $AddNewsCopyWith<AddNews> get copyWith => _$AddNewsCopyWithImpl<AddNews>(this, _$identity);
+  $AddNewsCopyWith<AddNews> get copyWith =>
+      _$AddNewsCopyWithImpl<AddNews>(this, _$identity);
 
   @override
   @optionalTypeArgs
@@ -378,10 +432,14 @@ class _$AddNews implements AddNews {
     @required TResult initializeNews(),
     @required TResult newsUpdated(List<News> newsList),
     @required TResult addNews(String content, Author author),
+    @required TResult deleteNews(String id),
+    @required TResult pinNews(String id),
   }) {
     assert(initializeNews != null);
     assert(newsUpdated != null);
     assert(addNews != null);
+    assert(deleteNews != null);
+    assert(pinNews != null);
     return addNews(content, author);
   }
 
@@ -391,6 +449,8 @@ class _$AddNews implements AddNews {
     TResult initializeNews(),
     TResult newsUpdated(List<News> newsList),
     TResult addNews(String content, Author author),
+    TResult deleteNews(String id),
+    TResult pinNews(String id),
     @required TResult orElse(),
   }) {
     assert(orElse != null);
@@ -406,10 +466,14 @@ class _$AddNews implements AddNews {
     @required TResult initializeNews(InitializeNews value),
     @required TResult newsUpdated(NewsUpdated value),
     @required TResult addNews(AddNews value),
+    @required TResult deleteNews(DeleteNews value),
+    @required TResult pinNews(PinNews value),
   }) {
     assert(initializeNews != null);
     assert(newsUpdated != null);
     assert(addNews != null);
+    assert(deleteNews != null);
+    assert(pinNews != null);
     return addNews(this);
   }
 
@@ -419,6 +483,8 @@ class _$AddNews implements AddNews {
     TResult initializeNews(InitializeNews value),
     TResult newsUpdated(NewsUpdated value),
     TResult addNews(AddNews value),
+    TResult deleteNews(DeleteNews value),
+    TResult pinNews(PinNews value),
     @required TResult orElse(),
   }) {
     assert(orElse != null);
@@ -430,10 +496,276 @@ class _$AddNews implements AddNews {
 }
 
 abstract class AddNews implements NewsEvent {
-  const factory AddNews({@required String content, @required Author author}) = _$AddNews;
+  const factory AddNews({@required String content, @required Author author}) =
+      _$AddNews;
 
   String get content;
   Author get author;
   @JsonKey(ignore: true)
   $AddNewsCopyWith<AddNews> get copyWith;
+}
+
+/// @nodoc
+abstract class $DeleteNewsCopyWith<$Res> {
+  factory $DeleteNewsCopyWith(
+          DeleteNews value, $Res Function(DeleteNews) then) =
+      _$DeleteNewsCopyWithImpl<$Res>;
+  $Res call({String id});
+}
+
+/// @nodoc
+class _$DeleteNewsCopyWithImpl<$Res> extends _$NewsEventCopyWithImpl<$Res>
+    implements $DeleteNewsCopyWith<$Res> {
+  _$DeleteNewsCopyWithImpl(DeleteNews _value, $Res Function(DeleteNews) _then)
+      : super(_value, (v) => _then(v as DeleteNews));
+
+  @override
+  DeleteNews get _value => super._value as DeleteNews;
+
+  @override
+  $Res call({
+    Object id = freezed,
+  }) {
+    return _then(DeleteNews(
+      id: id == freezed ? _value.id : id as String,
+    ));
+  }
+}
+
+/// @nodoc
+class _$DeleteNews implements DeleteNews {
+  const _$DeleteNews({@required this.id}) : assert(id != null);
+
+  @override
+  final String id;
+
+  @override
+  String toString() {
+    return 'NewsEvent.deleteNews(id: $id)';
+  }
+
+  @override
+  bool operator ==(dynamic other) {
+    return identical(this, other) ||
+        (other is DeleteNews &&
+            (identical(other.id, id) ||
+                const DeepCollectionEquality().equals(other.id, id)));
+  }
+
+  @override
+  int get hashCode =>
+      runtimeType.hashCode ^ const DeepCollectionEquality().hash(id);
+
+  @JsonKey(ignore: true)
+  @override
+  $DeleteNewsCopyWith<DeleteNews> get copyWith =>
+      _$DeleteNewsCopyWithImpl<DeleteNews>(this, _$identity);
+
+  @override
+  @optionalTypeArgs
+  TResult when<TResult extends Object>({
+    @required TResult initializeNews(),
+    @required TResult newsUpdated(List<News> newsList),
+    @required TResult addNews(String content, Author author),
+    @required TResult deleteNews(String id),
+    @required TResult pinNews(String id),
+  }) {
+    assert(initializeNews != null);
+    assert(newsUpdated != null);
+    assert(addNews != null);
+    assert(deleteNews != null);
+    assert(pinNews != null);
+    return deleteNews(id);
+  }
+
+  @override
+  @optionalTypeArgs
+  TResult maybeWhen<TResult extends Object>({
+    TResult initializeNews(),
+    TResult newsUpdated(List<News> newsList),
+    TResult addNews(String content, Author author),
+    TResult deleteNews(String id),
+    TResult pinNews(String id),
+    @required TResult orElse(),
+  }) {
+    assert(orElse != null);
+    if (deleteNews != null) {
+      return deleteNews(id);
+    }
+    return orElse();
+  }
+
+  @override
+  @optionalTypeArgs
+  TResult map<TResult extends Object>({
+    @required TResult initializeNews(InitializeNews value),
+    @required TResult newsUpdated(NewsUpdated value),
+    @required TResult addNews(AddNews value),
+    @required TResult deleteNews(DeleteNews value),
+    @required TResult pinNews(PinNews value),
+  }) {
+    assert(initializeNews != null);
+    assert(newsUpdated != null);
+    assert(addNews != null);
+    assert(deleteNews != null);
+    assert(pinNews != null);
+    return deleteNews(this);
+  }
+
+  @override
+  @optionalTypeArgs
+  TResult maybeMap<TResult extends Object>({
+    TResult initializeNews(InitializeNews value),
+    TResult newsUpdated(NewsUpdated value),
+    TResult addNews(AddNews value),
+    TResult deleteNews(DeleteNews value),
+    TResult pinNews(PinNews value),
+    @required TResult orElse(),
+  }) {
+    assert(orElse != null);
+    if (deleteNews != null) {
+      return deleteNews(this);
+    }
+    return orElse();
+  }
+}
+
+abstract class DeleteNews implements NewsEvent {
+  const factory DeleteNews({@required String id}) = _$DeleteNews;
+
+  String get id;
+  @JsonKey(ignore: true)
+  $DeleteNewsCopyWith<DeleteNews> get copyWith;
+}
+
+/// @nodoc
+abstract class $PinNewsCopyWith<$Res> {
+  factory $PinNewsCopyWith(PinNews value, $Res Function(PinNews) then) =
+      _$PinNewsCopyWithImpl<$Res>;
+  $Res call({String id});
+}
+
+/// @nodoc
+class _$PinNewsCopyWithImpl<$Res> extends _$NewsEventCopyWithImpl<$Res>
+    implements $PinNewsCopyWith<$Res> {
+  _$PinNewsCopyWithImpl(PinNews _value, $Res Function(PinNews) _then)
+      : super(_value, (v) => _then(v as PinNews));
+
+  @override
+  PinNews get _value => super._value as PinNews;
+
+  @override
+  $Res call({
+    Object id = freezed,
+  }) {
+    return _then(PinNews(
+      id: id == freezed ? _value.id : id as String,
+    ));
+  }
+}
+
+/// @nodoc
+class _$PinNews implements PinNews {
+  const _$PinNews({@required this.id}) : assert(id != null);
+
+  @override
+  final String id;
+
+  @override
+  String toString() {
+    return 'NewsEvent.pinNews(id: $id)';
+  }
+
+  @override
+  bool operator ==(dynamic other) {
+    return identical(this, other) ||
+        (other is PinNews &&
+            (identical(other.id, id) ||
+                const DeepCollectionEquality().equals(other.id, id)));
+  }
+
+  @override
+  int get hashCode =>
+      runtimeType.hashCode ^ const DeepCollectionEquality().hash(id);
+
+  @JsonKey(ignore: true)
+  @override
+  $PinNewsCopyWith<PinNews> get copyWith =>
+      _$PinNewsCopyWithImpl<PinNews>(this, _$identity);
+
+  @override
+  @optionalTypeArgs
+  TResult when<TResult extends Object>({
+    @required TResult initializeNews(),
+    @required TResult newsUpdated(List<News> newsList),
+    @required TResult addNews(String content, Author author),
+    @required TResult deleteNews(String id),
+    @required TResult pinNews(String id),
+  }) {
+    assert(initializeNews != null);
+    assert(newsUpdated != null);
+    assert(addNews != null);
+    assert(deleteNews != null);
+    assert(pinNews != null);
+    return pinNews(id);
+  }
+
+  @override
+  @optionalTypeArgs
+  TResult maybeWhen<TResult extends Object>({
+    TResult initializeNews(),
+    TResult newsUpdated(List<News> newsList),
+    TResult addNews(String content, Author author),
+    TResult deleteNews(String id),
+    TResult pinNews(String id),
+    @required TResult orElse(),
+  }) {
+    assert(orElse != null);
+    if (pinNews != null) {
+      return pinNews(id);
+    }
+    return orElse();
+  }
+
+  @override
+  @optionalTypeArgs
+  TResult map<TResult extends Object>({
+    @required TResult initializeNews(InitializeNews value),
+    @required TResult newsUpdated(NewsUpdated value),
+    @required TResult addNews(AddNews value),
+    @required TResult deleteNews(DeleteNews value),
+    @required TResult pinNews(PinNews value),
+  }) {
+    assert(initializeNews != null);
+    assert(newsUpdated != null);
+    assert(addNews != null);
+    assert(deleteNews != null);
+    assert(pinNews != null);
+    return pinNews(this);
+  }
+
+  @override
+  @optionalTypeArgs
+  TResult maybeMap<TResult extends Object>({
+    TResult initializeNews(InitializeNews value),
+    TResult newsUpdated(NewsUpdated value),
+    TResult addNews(AddNews value),
+    TResult deleteNews(DeleteNews value),
+    TResult pinNews(PinNews value),
+    @required TResult orElse(),
+  }) {
+    assert(orElse != null);
+    if (pinNews != null) {
+      return pinNews(this);
+    }
+    return orElse();
+  }
+}
+
+abstract class PinNews implements NewsEvent {
+  const factory PinNews({@required String id}) = _$PinNews;
+
+  String get id;
+  @JsonKey(ignore: true)
+  $PinNewsCopyWith<PinNews> get copyWith;
 }

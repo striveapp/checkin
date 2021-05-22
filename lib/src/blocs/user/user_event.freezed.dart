@@ -91,7 +91,8 @@ class _$UserEventCopyWithImpl<$Res> implements $UserEventCopyWith<$Res> {
 
 /// @nodoc
 abstract class $UserUpdatedCopyWith<$Res> implements $UserEventCopyWith<$Res> {
-  factory $UserUpdatedCopyWith(UserUpdated value, $Res Function(UserUpdated) then) =
+  factory $UserUpdatedCopyWith(
+          UserUpdated value, $Res Function(UserUpdated) then) =
       _$UserUpdatedCopyWithImpl<$Res>;
   @override
   $Res call({User user});
@@ -103,7 +104,8 @@ abstract class $UserUpdatedCopyWith<$Res> implements $UserEventCopyWith<$Res> {
 /// @nodoc
 class _$UserUpdatedCopyWithImpl<$Res> extends _$UserEventCopyWithImpl<$Res>
     implements $UserUpdatedCopyWith<$Res> {
-  _$UserUpdatedCopyWithImpl(UserUpdated _value, $Res Function(UserUpdated) _then)
+  _$UserUpdatedCopyWithImpl(
+      UserUpdated _value, $Res Function(UserUpdated) _then)
       : super(_value, (v) => _then(v as UserUpdated));
 
   @override
@@ -140,7 +142,8 @@ class _$UserUpdated implements UserUpdated {
   }
 
   @override
-  int get hashCode => runtimeType.hashCode ^ const DeepCollectionEquality().hash(user);
+  int get hashCode =>
+      runtimeType.hashCode ^ const DeepCollectionEquality().hash(user);
 
   @JsonKey(ignore: true)
   @override

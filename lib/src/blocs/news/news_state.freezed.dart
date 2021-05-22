@@ -73,14 +73,16 @@ class _$NewsStateCopyWithImpl<$Res> implements $NewsStateCopyWith<$Res> {
 
 /// @nodoc
 abstract class $NewsInitialCopyWith<$Res> {
-  factory $NewsInitialCopyWith(NewsInitial value, $Res Function(NewsInitial) then) =
+  factory $NewsInitialCopyWith(
+          NewsInitial value, $Res Function(NewsInitial) then) =
       _$NewsInitialCopyWithImpl<$Res>;
 }
 
 /// @nodoc
 class _$NewsInitialCopyWithImpl<$Res> extends _$NewsStateCopyWithImpl<$Res>
     implements $NewsInitialCopyWith<$Res> {
-  _$NewsInitialCopyWithImpl(NewsInitial _value, $Res Function(NewsInitial) _then)
+  _$NewsInitialCopyWithImpl(
+      NewsInitial _value, $Res Function(NewsInitial) _then)
       : super(_value, (v) => _then(v as NewsInitial));
 
   @override
@@ -167,7 +169,8 @@ abstract class NewsInitial implements NewsState {
 
 /// @nodoc
 abstract class $NewsLoadedCopyWith<$Res> {
-  factory $NewsLoadedCopyWith(NewsLoaded value, $Res Function(NewsLoaded) then) =
+  factory $NewsLoadedCopyWith(
+          NewsLoaded value, $Res Function(NewsLoaded) then) =
       _$NewsLoadedCopyWithImpl<$Res>;
   $Res call({List<News> newsList});
 }
@@ -216,11 +219,13 @@ class _$NewsLoaded with DiagnosticableTreeMixin implements NewsLoaded {
     return identical(this, other) ||
         (other is NewsLoaded &&
             (identical(other.newsList, newsList) ||
-                const DeepCollectionEquality().equals(other.newsList, newsList)));
+                const DeepCollectionEquality()
+                    .equals(other.newsList, newsList)));
   }
 
   @override
-  int get hashCode => runtimeType.hashCode ^ const DeepCollectionEquality().hash(newsList);
+  int get hashCode =>
+      runtimeType.hashCode ^ const DeepCollectionEquality().hash(newsList);
 
   @JsonKey(ignore: true)
   @override
