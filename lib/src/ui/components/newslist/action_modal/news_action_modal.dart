@@ -1,13 +1,18 @@
-import 'package:checkin/src/logging/logger.dart';
-import 'package:flutter/material.dart';
+import 'package:checkin/src/blocs/news/news_bloc.dart';
+import 'package:checkin/src/blocs/news/news_event.dart';
 import 'package:checkin/src/localization/localization.dart';
+import 'package:flutter/material.dart';
+import 'package:flutter_bloc/flutter_bloc.dart';
 
 class NewsActionModal extends StatelessWidget {
   static const String pinNewsOnTop = "Pin news on top";
   static const String deleteNews = "Delete this news";
 
+  final String newsId;
+
   const NewsActionModal({
     Key key,
+    @required this.newsId,
   }) : super(key: key);
 
   @override
@@ -30,14 +35,22 @@ class NewsActionModal extends StatelessWidget {
             ),
             Expanded(
               child: NewsAction(
-                onTap: () => Logger.log.i("imacat"),
+                key: Key("pinNewsAction"),
+                onTap: () async {
+                  await context.read<NewsBloc>().add(PinNews(id: newsId));
+                  Navigator.of(context).pop();
+                },
                 icon: Icons.push_pin,
                 text: pinNewsOnTop.i18n,
               ),
             ),
             Expanded(
               child: NewsAction(
-                onTap: () => Logger.log.i("imacat"),
+                key: Key("deleteNewsAction"),
+                onTap: () async {
+                  await context.read<NewsBloc>().add(DeleteNews(id: newsId));
+                  Navigator.of(context).pop();
+                },
                 icon: Icons.delete,
                 text: deleteNews.i18n,
               ),

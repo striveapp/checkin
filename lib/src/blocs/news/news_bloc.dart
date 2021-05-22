@@ -51,6 +51,28 @@ class NewsBloc extends Bloc<NewsEvent, NewsState> {
         });
       }
     }
+
+    if (event is PinNews) {
+      if (_gym != null) {
+        await newsRepository.pinNews(_gym.id, event.id);
+      } else {
+        _fetchGym((gym) async {
+          _gym = gym;
+          await newsRepository.pinNews(_gym.id, event.id);
+        });
+      }
+    }
+
+    if (event is DeleteNews) {
+      if (_gym != null) {
+        await newsRepository.deleteNews(_gym.id, event.id);
+      } else {
+        _fetchGym((gym) async {
+          _gym = gym;
+          await newsRepository.deleteNews(_gym.id, event.id);
+        });
+      }
+    }
   }
 
   void _fetchGym(Function(Gym) onGymUpdated) {

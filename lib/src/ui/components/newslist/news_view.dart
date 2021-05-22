@@ -1,3 +1,4 @@
+import 'package:checkin/src/blocs/news/news_bloc.dart';
 import 'package:checkin/src/blocs/profile/bloc.dart';
 import 'package:checkin/src/localization/localization.dart';
 import 'package:checkin/src/models/author.dart';
@@ -17,12 +18,14 @@ class NewsView extends StatelessWidget {
   final Author author;
   final String content;
   final int timestamp;
+  final String newsId;
 
   const NewsView({
     Key key,
     @required this.author,
     @required this.content,
     @required this.timestamp,
+    @required this.newsId,
   }) : super(key: key);
 
   @override
@@ -69,7 +72,7 @@ class NewsView extends StatelessWidget {
                     Expanded(
                         child: Align(
                       alignment: AlignmentDirectional.centerEnd,
-                      child: NewsActionMenu(),
+                      child: NewsActionMenu(newsId: newsId),
                     )),
                   ],
                 ),
@@ -111,8 +114,11 @@ class NewsView extends StatelessWidget {
 }
 
 class NewsActionMenu extends StatelessWidget {
+  final String newsId;
+
   const NewsActionMenu({
     Key key,
+    @required this.newsId,
   }) : super(key: key);
 
   @override
@@ -139,7 +145,9 @@ class NewsActionMenu extends StatelessWidget {
                       ),
                       context: context,
                       isScrollControlled: true,
-                      builder: (_) => NewsActionModal());
+                      builder: (_) => BlocProvider.value(
+                          value:  context.read<NewsBloc>(),
+                          child: NewsActionModal(newsId: newsId)));
                 },
               )) : EmptyWidget(),
         );

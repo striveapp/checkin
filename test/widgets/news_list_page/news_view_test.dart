@@ -14,7 +14,8 @@ import 'package:mocktail/mocktail.dart';
 
 import '../../pump_app.dart';
 
-class MockProfileBloc extends MockBloc<ProfileEvent, ProfileState> implements ProfileBloc {}
+class MockProfileBloc extends MockBloc<ProfileEvent, ProfileState>
+    implements ProfileBloc {}
 
 class FakeProfileEvent extends Fake implements ProfileEvent {}
 
@@ -36,9 +37,11 @@ void main() {
 
   group("NewsActionMenu", () {
     ProfileBloc profileBloc;
+    NewsBloc newsBloc;
 
     setUp(() {
       profileBloc = MockProfileBloc();
+      newsBloc = MockNewsBloc();
     });
 
     tearDown(() {
@@ -46,10 +49,15 @@ void main() {
       expect(Translations.missingTranslations, isEmpty);
     });
 
-    testWidgets("Renders EmptyWidget when the profile is not loaded yet", (tester) async {
+    testWidgets("Renders EmptyWidget when the profile is not loaded yet",
+        (tester) async {
       when(() => profileBloc.state).thenReturn(InitialProfileState());
 
-      await tester.pumpApp(BlocProvider.value(value: profileBloc, child: NewsActionMenu()));
+      await tester.pumpApp(BlocProvider.value(
+          value: profileBloc,
+          child: NewsActionMenu(
+            newsId: 'fake-news',
+          )));
 
       expect(find.byType(EmptyWidget), findsWidgets);
     });
@@ -68,7 +76,8 @@ void main() {
           isCurrentUser: true,
         ));
 
-        await tester.pumpAppWithScaffold(BlocProvider.value(value: profileBloc, child: NewsActionMenu()));
+        await tester.pumpAppWithScaffold(BlocProvider.value(
+            value: profileBloc, child: NewsActionMenu(newsId: 'fake-news')));
 
         expect(find.byType(EmptyWidget), findsOneWidget);
       });
@@ -88,18 +97,23 @@ void main() {
           isCurrentUser: true,
         ));
 
-        await tester.pumpAppWithScaffold(BlocProvider.value(value: profileBloc, child: NewsActionMenu()));
+        await tester.pumpAppWithScaffold(BlocProvider.value(
+            value: profileBloc, child: NewsActionMenu(newsId: 'fake-news')));
 
         expect(find.byType(IconButton), findsOneWidget);
       });
 
-      testWidgets("open NewsActionModal when tap on NewsActionMenu", (tester) async {
+      testWidgets("open NewsActionModal when tap on NewsActionMenu",
+          (tester) async {
         when(() => profileBloc.state).thenReturn(ProfileLoaded(
           profileUser: fakeOwner,
           isCurrentUser: true,
         ));
 
-        await tester.pumpAppWithScaffold(BlocProvider.value(value: profileBloc, child: NewsActionMenu()));
+        await tester.pumpAppWithScaffold(MultiBlocProvider(providers: [
+          BlocProvider.value(value: newsBloc),
+          BlocProvider.value(value: profileBloc),
+        ], child: NewsActionMenu(newsId: 'fake-news')));
 
         await tester.tap(find.byType(IconButton));
         await tester.pumpAndSettle();

@@ -5,4 +5,8 @@ abstract class NewsRepository {
   Stream<List<News>> getAllNews(String gymId);
 
   Future<void> publishNews(String gymId, String content, Author author);
+
+  Future<void> pinNews(String gymId, String newsId);
+
+  Future<void> deleteNews(String gymId, String newsId);
 }

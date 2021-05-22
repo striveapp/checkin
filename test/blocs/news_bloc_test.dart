@@ -145,5 +145,56 @@ void main() {
         expect: () => [],
       );
     });
+
+    group("on PinNews", () {
+      setUp(() {
+        when(mockGymRepository.getGym()).thenAnswer((realInvocation) => Stream.value(fakeGym));
+        when(mockNewsRepository.pinNews("fake-gym", "fake-news-id"))
+            .thenAnswer((realInvocation) => Future.value());
+      });
+
+      tearDown(() {
+        verify(mockGymRepository.getGym());
+        verify(mockNewsRepository.pinNews("fake-gym", "fake-news-id"));
+      });
+
+      blocTest(
+        "pin a news",
+        build: () => NewsBloc(
+          newsRepository: mockNewsRepository,
+          gymRepository: mockGymRepository,
+        ),
+        act: (bloc) {
+          return bloc.add(PinNews(id: 'fake-news-id'));
+        },
+        expect: () => [],
+      );
+    });
+
+    group("on DeleteNews", () {
+      setUp(() {
+        when(mockGymRepository.getGym()).thenAnswer((realInvocation) => Stream.value(fakeGym));
+        when(mockNewsRepository.deleteNews("fake-gym", "fake-news-id"))
+            .thenAnswer((realInvocation) => Future.value());
+      });
+
+      tearDown(() {
+        verify(mockGymRepository.getGym());
+        verify(mockNewsRepository.deleteNews("fake-gym", "fake-news-id"));
+      });
+
+      blocTest(
+        "delete a news",
+        build: () => NewsBloc(
+          newsRepository: mockNewsRepository,
+          gymRepository: mockGymRepository,
+        ),
+        act: (bloc) {
+          return bloc.add(DeleteNews(id: 'fake-news-id'));
+        },
+        expect: () => [],
+      );
+    });
+
   });
 }

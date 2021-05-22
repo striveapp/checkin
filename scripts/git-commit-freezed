@@ -1,0 +1,8 @@
+#!/bin/bash
+
+# unstage everything
+git restore --staged .
+
+git add *.freezed.dart *.g.dart
+
+git commit -m "update freezed files" --no-verify

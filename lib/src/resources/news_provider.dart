@@ -29,4 +29,24 @@ class NewsProvider implements NewsRepository {
         .doc(news.id)
         .set(news.toJson());
   }
+
+  @override
+  Future<void> pinNews(String gymId, String newsId) {
+    return _firestore
+        .collection(gymPath)
+        .doc(gymId)
+        .collection(path)
+        .doc(newsId)
+        .update({'isPinned': true});
+  }
+
+  @override
+  Future<void> deleteNews(String gymId, String newsId) {
+    return _firestore
+        .collection(gymPath)
+        .doc(gymId)
+        .collection(path)
+        .doc(newsId)
+        .delete();
+  }
 }

@@ -16,4 +16,12 @@ abstract class NewsEvent with _$NewsEvent {
     @required String content,
     @required Author author,
   }) = AddNews;
+
+  const factory NewsEvent.deleteNews({
+    @required String id,
+  }) = DeleteNews;
+
+  const factory NewsEvent.pinNews({
+    @required String id,
+  }) = PinNews;
 }
