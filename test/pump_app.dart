@@ -24,4 +24,10 @@ extension PumpApp on WidgetTester {
       ),
     );
   }
+
+  Future<void> pumpAppWithScaffold(Widget widget, {locale = const Locale("es", "")}) {
+    return pumpApp(Scaffold(
+      body: widget,
+    ));
+  }
 }

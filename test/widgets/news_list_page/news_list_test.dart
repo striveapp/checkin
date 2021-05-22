@@ -14,7 +14,7 @@ import 'package:flutter_test/flutter_test.dart';
 import 'package:i18n_extension/i18n_extension.dart';
 import 'package:mocktail/mocktail.dart';
 
-import '../pump_app.dart';
+import '../../pump_app.dart';
 
 class MockNewsBloc extends MockBloc<NewsEvent, NewsState> implements NewsBloc {}
 
