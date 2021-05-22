@@ -20,6 +20,7 @@ import 'package:checkin/src/ui/components/login/passwordless_sign_in_button.dart
 import 'package:checkin/src/ui/components/membership/active_membership.dart';
 import 'package:checkin/src/ui/components/membership/inactive_membership.dart';
 import 'package:checkin/src/ui/components/membership/unsubscribe_dialog.dart';
+import 'package:checkin/src/ui/components/newslist/action_modal/news_action_modal.dart';
 import 'package:checkin/src/ui/components/newslist/empty_news_list.dart';
 import 'package:checkin/src/ui/components/newslist/modal/content_editor.dart';
 import 'package:checkin/src/ui/components/newslist/modal/header.dart';
@@ -850,7 +851,15 @@ extension Localization on String {
         'en': MastersSelection.teachers,
         'es': 'Profesores',
         'it': 'Maestri',
-      };
+      } + {
+    'en': NewsActionModal.pinNewsOnTop,
+    'es': 'Fijar la noticia',
+    'it': 'Fissa la notizia',
+  }  + {
+    'en': NewsActionModal.deleteNews,
+    'es': 'Eliminar esta noticia',
+    'it': 'Elimina notizia',
+  } ;
 
   String get i18n => localize(this, _t);
 

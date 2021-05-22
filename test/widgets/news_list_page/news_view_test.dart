@@ -5,7 +5,7 @@ import 'package:checkin/src/blocs/news/news_state.dart';
 import 'package:checkin/src/blocs/profile/bloc.dart';
 import 'package:checkin/src/models/user.dart';
 import 'package:checkin/src/ui/components/empty_widget.dart';
-import 'package:checkin/src/ui/components/newslist/add_news_fab.dart';
+import 'package:checkin/src/ui/components/newslist/news_view.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:flutter_test/flutter_test.dart';
@@ -34,13 +34,11 @@ void main() {
     registerFallbackValue<NewsState>(FakeNewsState());
   });
 
-  group("AddNewsFab", () {
+  group("NewsActionMenu", () {
     ProfileBloc profileBloc;
-    NewsBloc newsBloc;
 
     setUp(() {
       profileBloc = MockProfileBloc();
-      newsBloc = MockNewsBloc();
     });
 
     tearDown(() {
@@ -51,7 +49,7 @@ void main() {
     testWidgets("Renders EmptyWidget when the profile is not loaded yet", (tester) async {
       when(() => profileBloc.state).thenReturn(InitialProfileState());
 
-      await tester.pumpApp(BlocProvider.value(value: profileBloc, child: AddNewsFab()));
+      await tester.pumpApp(BlocProvider.value(value: profileBloc, child: NewsActionMenu()));
 
       expect(find.byType(EmptyWidget), findsWidgets);
     });
@@ -70,7 +68,7 @@ void main() {
           isCurrentUser: true,
         ));
 
-        await tester.pumpApp(BlocProvider.value(value: profileBloc, child: AddNewsFab()));
+        await tester.pumpAppWithScaffold(BlocProvider.value(value: profileBloc, child: NewsActionMenu()));
 
         expect(find.byType(EmptyWidget), findsOneWidget);
       });
@@ -84,39 +82,29 @@ void main() {
         isOwner: true,
       );
 
-      testWidgets("Renders addNewsFab", (tester) async {
+      testWidgets("Renders IconButton", (tester) async {
         when(() => profileBloc.state).thenReturn(ProfileLoaded(
           profileUser: fakeOwner,
           isCurrentUser: true,
         ));
 
-        await tester.pumpApp(BlocProvider.value(value: profileBloc, child: AddNewsFab()));
+        await tester.pumpAppWithScaffold(BlocProvider.value(value: profileBloc, child: NewsActionMenu()));
 
-        expect(find.byKey(Key("addNewsFab")), findsOneWidget);
+        expect(find.byType(IconButton), findsOneWidget);
       });
 
-      testWidgets("open AddNewsModal when tap on AddNewsFab", (tester) async {
+      testWidgets("open NewsActionModal when tap on NewsActionMenu", (tester) async {
         when(() => profileBloc.state).thenReturn(ProfileLoaded(
           profileUser: fakeOwner,
           isCurrentUser: true,
         ));
 
-        await tester.pumpApp(MultiBlocProvider(
-          providers: [
-            BlocProvider.value(
-              value: profileBloc,
-            ),
-            BlocProvider.value(
-              value: newsBloc,
-            ),
-          ],
-          child: AddNewsFab(),
-        ));
+        await tester.pumpAppWithScaffold(BlocProvider.value(value: profileBloc, child: NewsActionMenu()));
 
-        await tester.tap(find.byKey(Key("addNewsFab")));
+        await tester.tap(find.byType(IconButton));
         await tester.pumpAndSettle();
 
-        expect(find.byKey(Key("addNewsModal")), findsOneWidget);
+        expect(find.byKey(Key("newsActionModal")), findsOneWidget);
       });
     });
   });

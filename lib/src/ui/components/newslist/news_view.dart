@@ -1,11 +1,15 @@
+import 'package:checkin/src/blocs/profile/bloc.dart';
 import 'package:checkin/src/localization/localization.dart';
-import 'package:checkin/src/logging/logger.dart';
 import 'package:checkin/src/models/author.dart';
 import 'package:checkin/src/models/grade.dart';
+import 'package:checkin/src/ui/components/empty_widget.dart';
 import 'package:checkin/src/ui/components/rounded_image.dart';
 import 'package:flutter/material.dart';
+import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:platform/platform.dart';
 import 'package:timeago/timeago.dart' as timeago;
+
+import 'action_modal/news_action_modal.dart';
 
 class NewsView extends StatelessWidget {
   static const String beltColor = '%s Belt';
@@ -65,62 +69,7 @@ class NewsView extends StatelessWidget {
                     Expanded(
                         child: Align(
                       alignment: AlignmentDirectional.centerEnd,
-                      child: Transform.scale(
-                          scale: 0.8,
-                          child: IconButton(
-                            padding: EdgeInsets.zero,
-                            constraints: BoxConstraints(),
-                            icon: Icon(
-                              Icons.more_vert,
-                              color: Theme.of(context)
-                                  .textTheme
-                                  .bodyText1
-                                  .color
-                                  .withAlpha(90),
-                            ),
-                            onPressed: () {
-                              showModalBottomSheet(
-                                  shape: RoundedRectangleBorder(
-                                    borderRadius: BorderRadius.vertical(
-                                        top: Radius.circular(15)),
-                                  ),
-                                  context: context,
-                                  isScrollControlled: true,
-                                  builder: (_) => SafeArea(
-                                        key: Key("newsModal"),
-                                        child: Container(
-                                          constraints: BoxConstraints(
-                                            maxHeight: 160,
-                                          ),
-                                          child: Column(
-                                            children: [
-                                              Padding(
-                                                padding: const EdgeInsets.only(
-                                                    top: 10.0),
-                                                child: Icon(
-                                                  Icons.maximize_rounded,
-                                                  size: 50,
-                                                  color: Colors.grey,
-                                                ),
-                                              ),
-                                              NewsAction(
-                                                onTap: () =>
-                                                    Logger.log.i("imacat"),
-                                                icon: Icons.push_pin,
-                                                text: "Pin news on top".i18n,
-                                              ),
-                                              NewsAction(
-                                                onTap: () =>
-                                                    Logger.log.i("imacat"),
-                                                icon: Icons.delete,
-                                                text: "Delete this news".i18n,
-                                              ),
-                                            ],
-                                          ),
-                                        ),
-                                      ));
-                            },
-                          )),
+                      child: NewsActionMenu(),
                     )),
                   ],
                 ),
@@ -161,37 +110,40 @@ class NewsView extends StatelessWidget {
   }
 }
 
-class NewsAction extends StatelessWidget {
-  final VoidCallback onTap;
-  final IconData icon;
-  final String text;
-
-  const NewsAction({
+class NewsActionMenu extends StatelessWidget {
+  const NewsActionMenu({
     Key key,
-    this.onTap,
-    this.icon,
-    this.text,
   }) : super(key: key);
 
   @override
   Widget build(BuildContext context) {
-    return InkWell(
-      onTap: onTap,
-      child: Padding(
-        padding: const EdgeInsets.symmetric(vertical: 10.0, horizontal: 15),
-        child: Row(
-          children: [
-            Icon(icon),
-            SizedBox(
-              width: 15,
-            ),
-            Text(
-              text,
-              style: Theme.of(context).textTheme.headline3,
-            )
-          ],
-        ),
-      ),
+    return BlocBuilder<ProfileBloc, ProfileState>(
+      builder: (context, state) {
+        return state.map(
+          initialProfileState: (initialProfileState) => EmptyWidget(),
+          profileLoaded: (state) => state.profileUser.isOwner ? Transform.scale(
+              scale: 0.8,
+              child: IconButton(
+                padding: EdgeInsets.zero,
+                constraints: BoxConstraints(),
+                icon: Icon(
+                  Icons.more_vert,
+                  color:
+                      Theme.of(context).textTheme.bodyText1.color.withAlpha(90),
+                ),
+                onPressed: () {
+                  showModalBottomSheet(
+                      shape: RoundedRectangleBorder(
+                        borderRadius:
+                            BorderRadius.vertical(top: Radius.circular(15)),
+                      ),
+                      context: context,
+                      isScrollControlled: true,
+                      builder: (_) => NewsActionModal());
+                },
+              )) : EmptyWidget(),
+        );
+      },
     );
   }
 }
