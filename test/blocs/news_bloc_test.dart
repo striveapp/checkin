@@ -205,6 +205,31 @@ void main() {
       );
     });
 
+    group("on UnpinNews", () {
+      setUp(() {
+        when(mockGymRepository.getGym()).thenAnswer((realInvocation) => Stream.value(fakeGym));
+        when(mockNewsRepository.unpinNews("fake-gym", "fake-news-id"))
+            .thenAnswer((realInvocation) => Future.value());
+      });
+
+      tearDown(() {
+        verify(mockGymRepository.getGym());
+        verify(mockNewsRepository.unpinNews("fake-gym", "fake-news-id"));
+      });
+
+      blocTest(
+        "unpin a news",
+        build: () => NewsBloc(
+          newsRepository: mockNewsRepository,
+          gymRepository: mockGymRepository,
+        ),
+        act: (bloc) {
+          return bloc.add(UnpinNews(id: 'fake-news-id'));
+        },
+        expect: () => [],
+      );
+    });
+
     group("on DeleteNews", () {
       setUp(() {
         when(mockGymRepository.getGym()).thenAnswer((realInvocation) => Stream.value(fakeGym));

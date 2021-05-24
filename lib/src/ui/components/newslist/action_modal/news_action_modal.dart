@@ -6,14 +6,15 @@ import 'package:flutter_bloc/flutter_bloc.dart';
 
 class NewsActionModal extends StatelessWidget {
   static const String pinNewsOnTop = "Pin news on top";
+  static const String unpinNews = "Unpin news";
   static const String deleteNews = "Delete this news";
 
   final String newsId;
+  final bool isPinned;
 
-  const NewsActionModal({
-    Key key,
-    @required this.newsId,
-  }) : super(key: key);
+  const NewsActionModal(
+      {Key key, @required this.newsId, @required this.isPinned})
+      : super(key: key);
 
   @override
   Widget build(BuildContext context) {
@@ -34,15 +35,25 @@ class NewsActionModal extends StatelessWidget {
               ),
             ),
             Expanded(
-              child: NewsAction(
-                key: Key("pinNewsAction"),
-                onTap: () async {
-                  await context.read<NewsBloc>().add(PinNews(id: newsId));
-                  Navigator.of(context).pop();
-                },
-                icon: Icons.push_pin,
-                text: pinNewsOnTop.i18n,
-              ),
+              child: isPinned
+                  ? NewsAction(
+                      key: Key("unpinNewsAction"),
+                      onTap: () async {
+                        await context.read<NewsBloc>().add(UnpinNews(id: newsId));
+                        Navigator.of(context).pop();
+                      },
+                      icon: Icons.push_pin_outlined,
+                      text: unpinNews.i18n,
+                    )
+                  : NewsAction(
+                      key: Key("pinNewsAction"),
+                      onTap: () async {
+                        await context.read<NewsBloc>().add(PinNews(id: newsId));
+                        Navigator.of(context).pop();
+                      },
+                      icon: Icons.push_pin,
+                      text: pinNewsOnTop.i18n,
+                    ),
             ),
             Expanded(
               child: NewsAction(
@@ -55,6 +66,7 @@ class NewsActionModal extends StatelessWidget {
                 text: deleteNews.i18n,
               ),
             ),
+            SizedBox(height: 10,),
           ],
         ),
       ),
@@ -98,4 +110,3 @@ class NewsAction extends StatelessWidget {
     );
   }
 }
-

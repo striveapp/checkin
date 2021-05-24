@@ -42,6 +42,16 @@ class NewsProvider implements NewsRepository {
   }
 
   @override
+  Future<void> unpinNews(String gymId, String newsId) {
+    return _firestore
+        .collection(gymPath)
+        .doc(gymId)
+        .collection(path)
+        .doc(newsId)
+        .update({'isPinned': false});
+  }
+
+  @override
   Future<void> deleteNews(String gymId, String newsId) {
     return _firestore
         .collection(gymPath)

@@ -178,7 +178,10 @@ extension Localization on String {
         'it': 'Classe ancora vuota',
       } +
       {
-        'en': ClassProgressIndicatorView.classes.zero('classes').one('class').many('classes'),
+        'en': ClassProgressIndicatorView.classes
+            .zero('classes')
+            .one('class')
+            .many('classes'),
         'es': 'clases'.zero('clases').one('clase').many('clases'),
         'it': 'classi'.zero('classi').one('classe').many('classi'),
       } +
@@ -197,8 +200,10 @@ extension Localization on String {
             .modifier(Timespan.month.name, 'No tienes clases este mes')
             .modifier(Timespan.all.name, 'No tienes clases todavía'),
         'it': 'ignored'
-            .modifier(Timespan.week.name, 'Non hai fatto nessuna classe questa settimana')
-            .modifier(Timespan.month.name, 'Non hai fatto nessuna classe questo mese')
+            .modifier(Timespan.week.name,
+                'Non hai fatto nessuna classe questa settimana')
+            .modifier(
+                Timespan.month.name, 'Non hai fatto nessuna classe questo mese')
             .modifier(Timespan.all.name, 'Non hai fatto ancora nessuna classe'),
       } +
       {
@@ -237,7 +242,9 @@ extension Localization on String {
         'it': 'Inizia alle %s',
       } +
       {
-        'en': AttendeesPreview.andOthers.one('and another one').many('and %d others'),
+        'en': AttendeesPreview.andOthers
+            .one('and another one')
+            .many('and %d others'),
         'es': 'y %d más'.one('y uno más').many('y %d más'),
         'it': 'e altri %d'.one('e un altro').many('e altri %d'),
       } +
@@ -428,8 +435,10 @@ extension Localization on String {
       } +
       {
         'en': PaymentSuccessPage.disclaimerSubscription30Min,
-        'es': 'Tu subscripción puede tardar hasta 30 minutos en aparecer en tu cuenta',
-        'it': 'Il tuo abbonamento può tardare fino a 30 minuti ad apparire nel tuo account',
+        'es':
+            'Tu subscripción puede tardar hasta 30 minutos en aparecer en tu cuenta',
+        'it':
+            'Il tuo abbonamento può tardare fino a 30 minuti ad apparire nel tuo account',
       } +
       {
         'en': ActiveMembershipView.unsubscribe,
@@ -518,8 +527,10 @@ extension Localization on String {
       } +
       {
         'en': UpgraderDialog.versionNotSupported,
-        'es': 'La versión actual de esta aplicación ya no es compatible\n\nPor favor, actualízala',
-        'it': 'Questa versione dell\'app non é piú supportata\n\nPer favore aggiornala',
+        'es':
+            'La versión actual de esta aplicación ya no es compatible\n\nPor favor, actualízala',
+        'it':
+            'Questa versione dell\'app non é piú supportata\n\nPer favore aggiornala',
       } +
       {
         'en': Ranking.noLeaderboard,
@@ -548,8 +559,10 @@ extension Localization on String {
       } +
       {
         'en': UnselectedGymPage.contactYourGymOwner,
-        'es': 'Porfavor contacta el dueño del gym para obtener el enlace de referencia',
-        'it': 'Perfavore contatta il proprietario dell`\'accademia per ottenere il referral link',
+        'es':
+            'Porfavor contacta el dueño del gym para obtener el enlace de referencia',
+        'it':
+            'Perfavore contatta il proprietario dell`\'accademia per ottenere il referral link',
       } +
       {
         'en': LoginBloc.loginError,
@@ -588,7 +601,8 @@ extension Localization on String {
       } +
       {
         'en': PlansFooter.subscriptionDisclaimer,
-        'es': 'los precios mostrados aquí representan los de la subscripción anual',
+        'es':
+            'los precios mostrados aquí representan los de la subscripción anual',
         'it': 'i prezzi rappresentano l\'abbonamento annuale',
       } +
       {
@@ -663,8 +677,10 @@ extension Localization on String {
       } +
       {
         'en': CheckEmailView.toConfirmEmail,
-        'es': 'Para confirmar tu dirección, toca el enlace en el correo que enviamos a',
-        'it': 'Per confermare la tua email fai tap su link nella mail che ti abbiamo inviato a',
+        'es':
+            'Para confirmar tu dirección, toca el enlace en el correo que enviamos a',
+        'it':
+            'Per confermare la tua email fai tap su link nella mail che ti abbiamo inviato a',
       } +
       {
         'en': CheckEmailView.openEmailApp,
@@ -683,13 +699,15 @@ extension Localization on String {
       } +
       {
         'en': InsertEmailView.invalidEmail,
-        'es': 'Ha habido un problema con tu correo electrónico. Comprúebalo y inténtalo de nuevo',
+        'es':
+            'Ha habido un problema con tu correo electrónico. Comprúebalo y inténtalo de nuevo',
         'it': 'C\'è stato un problema con la tua email. Controllala e riprova',
       } +
       {
         'en': InsertEmailView.sendEmailExplanation,
         'es': 'Te enviaremos un correo con el que te conectaras al instante',
-        'it': 'Ti invieremo una mail con la quale potrai connetterti instantaneamente',
+        'it':
+            'Ti invieremo una mail con la quale potrai connetterti instantaneamente',
       } +
       {
         'en': InsertEmailView.next,
@@ -703,7 +721,8 @@ extension Localization on String {
       } +
       {
         'en': DynamicLinkBloc.emailMissingError,
-        'es': 'Asegúrate de abrir el enlace mágico en el mismo device en que lo recibiste',
+        'es':
+            'Asegúrate de abrir el enlace mágico en el mismo device en que lo recibiste',
         'it':
             'Assicurati di aver aperto il magic link nello stesso dispositivo in cui l\'hai ricevuto',
       } +
@@ -714,7 +733,8 @@ extension Localization on String {
       } +
       {
         'en': WrongEmailDialog.theEmailYouInsertedMightNotBeCorrect,
-        'es': 'Es posible que el correo electrónico que ingresó no sea correcto',
+        'es':
+            'Es posible que el correo electrónico que ingresó no sea correcto',
         'it': 'La mail che hai inserito potrebbe non essere corretta',
       } +
       {
@@ -809,8 +829,10 @@ extension Localization on String {
       } +
       {
         'en': UpdateCalendarDialog.savingNextWeekAsCalendarDisclaimer,
-        'es': 'Estas a punto de aplicar la siguiente semana de clases como tu nuevo calendario',
-        'it': 'Stai per applicare la prossima settimana di classi come il tuo nuovo calendario',
+        'es':
+            'Estas a punto de aplicar la siguiente semana de clases como tu nuevo calendario',
+        'it':
+            'Stai per applicare la prossima settimana di classi come il tuo nuovo calendario',
       } +
       {
         'en': UpdateCalendarDialog.takeEffectFrom,
@@ -856,15 +878,22 @@ extension Localization on String {
         'en': MastersSelection.teachers,
         'es': 'Profesores',
         'it': 'Maestri',
-      } + {
-    'en': NewsActionModal.pinNewsOnTop,
-    'es': 'Fijar la noticia',
-    'it': 'Fissa la notizia',
-  }  + {
-    'en': NewsActionModal.deleteNews,
-    'es': 'Eliminar esta noticia',
-    'it': 'Elimina notizia',
-  } ;
+      } +
+      {
+        'en': NewsActionModal.pinNewsOnTop,
+        'es': 'Fijar la noticia',
+        'it': 'Fissa la notizia',
+      } +
+      {
+        'en': NewsActionModal.unpinNews,
+        'es': 'Desfijar la noticia',
+        'it': 'Non fissare più la notizia',
+      } +
+      {
+        'en': NewsActionModal.deleteNews,
+        'es': 'Eliminar esta noticia',
+        'it': 'Elimina notizia',
+      };
 
   String get i18n => localize(this, _t);
 

@@ -8,5 +8,7 @@ abstract class NewsRepository {
 
   Future<void> pinNews(String gymId, String newsId);
 
+  Future<void> unpinNews(String gymId, String newsId);
+
   Future<void> deleteNews(String gymId, String newsId);
 }

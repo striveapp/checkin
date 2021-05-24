@@ -57,6 +57,7 @@ void main() {
           value: profileBloc,
           child: NewsActionMenu(
             newsId: 'fake-news',
+            isPinned: false,
           )));
 
       expect(find.byType(EmptyWidget), findsWidgets);
@@ -77,7 +78,11 @@ void main() {
         ));
 
         await tester.pumpAppWithScaffold(BlocProvider.value(
-            value: profileBloc, child: NewsActionMenu(newsId: 'fake-news')));
+            value: profileBloc,
+            child: NewsActionMenu(
+              newsId: 'fake-news',
+              isPinned: false,
+            )));
 
         expect(find.byType(EmptyWidget), findsOneWidget);
       });
@@ -98,7 +103,11 @@ void main() {
         ));
 
         await tester.pumpAppWithScaffold(BlocProvider.value(
-            value: profileBloc, child: NewsActionMenu(newsId: 'fake-news')));
+            value: profileBloc,
+            child: NewsActionMenu(
+              newsId: 'fake-news',
+              isPinned: false,
+            )));
 
         expect(find.byType(IconButton), findsOneWidget);
       });
@@ -110,10 +119,15 @@ void main() {
           isCurrentUser: true,
         ));
 
-        await tester.pumpAppWithScaffold(MultiBlocProvider(providers: [
-          BlocProvider.value(value: newsBloc),
-          BlocProvider.value(value: profileBloc),
-        ], child: NewsActionMenu(newsId: 'fake-news')));
+        await tester.pumpAppWithScaffold(MultiBlocProvider(
+            providers: [
+              BlocProvider.value(value: newsBloc),
+              BlocProvider.value(value: profileBloc),
+            ],
+            child: NewsActionMenu(
+              newsId: 'fake-news',
+              isPinned: false,
+            )));
 
         await tester.tap(find.byType(IconButton));
         await tester.pumpAndSettle();

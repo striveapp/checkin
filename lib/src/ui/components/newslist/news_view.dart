@@ -83,7 +83,7 @@ class NewsView extends StatelessWidget {
                           Expanded(
                               child: Align(
                             alignment: AlignmentDirectional.centerEnd,
-                            child: NewsActionMenu(newsId: newsId),
+                            child: NewsActionMenu(newsId: newsId, isPinned: isPinned,),
                           )),
                         ],
                       ),
@@ -168,10 +168,12 @@ class PinnedBadge extends StatelessWidget {
 
 class NewsActionMenu extends StatelessWidget {
   final String newsId;
+  final bool isPinned;
 
   const NewsActionMenu({
     Key key,
     @required this.newsId,
+    @required this.isPinned,
   }) : super(key: key);
 
   @override
@@ -204,7 +206,7 @@ class NewsActionMenu extends StatelessWidget {
                           isScrollControlled: true,
                           builder: (_) => BlocProvider.value(
                               value: context.read<NewsBloc>(),
-                              child: NewsActionModal(newsId: newsId)));
+                              child: NewsActionModal(newsId: newsId, isPinned: isPinned,)));
                     },
                   ))
               : EmptyWidget(),

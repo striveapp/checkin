@@ -46,6 +46,13 @@ class _$NewsEventTearOff {
       id: id,
     );
   }
+
+// ignore: unused_element
+  UnpinNews unpinNews({@required String id}) {
+    return UnpinNews(
+      id: id,
+    );
+  }
 }
 
 /// @nodoc
@@ -61,6 +68,7 @@ mixin _$NewsEvent {
     @required TResult addNews(String content, Author author),
     @required TResult deleteNews(String id),
     @required TResult pinNews(String id),
+    @required TResult unpinNews(String id),
   });
   @optionalTypeArgs
   TResult maybeWhen<TResult extends Object>({
@@ -69,6 +77,7 @@ mixin _$NewsEvent {
     TResult addNews(String content, Author author),
     TResult deleteNews(String id),
     TResult pinNews(String id),
+    TResult unpinNews(String id),
     @required TResult orElse(),
   });
   @optionalTypeArgs
@@ -78,6 +87,7 @@ mixin _$NewsEvent {
     @required TResult addNews(AddNews value),
     @required TResult deleteNews(DeleteNews value),
     @required TResult pinNews(PinNews value),
+    @required TResult unpinNews(UnpinNews value),
   });
   @optionalTypeArgs
   TResult maybeMap<TResult extends Object>({
@@ -86,6 +96,7 @@ mixin _$NewsEvent {
     TResult addNews(AddNews value),
     TResult deleteNews(DeleteNews value),
     TResult pinNews(PinNews value),
+    TResult unpinNews(UnpinNews value),
     @required TResult orElse(),
   });
 }
@@ -148,12 +159,14 @@ class _$InitializeNews implements InitializeNews {
     @required TResult addNews(String content, Author author),
     @required TResult deleteNews(String id),
     @required TResult pinNews(String id),
+    @required TResult unpinNews(String id),
   }) {
     assert(initializeNews != null);
     assert(newsUpdated != null);
     assert(addNews != null);
     assert(deleteNews != null);
     assert(pinNews != null);
+    assert(unpinNews != null);
     return initializeNews();
   }
 
@@ -165,6 +178,7 @@ class _$InitializeNews implements InitializeNews {
     TResult addNews(String content, Author author),
     TResult deleteNews(String id),
     TResult pinNews(String id),
+    TResult unpinNews(String id),
     @required TResult orElse(),
   }) {
     assert(orElse != null);
@@ -182,12 +196,14 @@ class _$InitializeNews implements InitializeNews {
     @required TResult addNews(AddNews value),
     @required TResult deleteNews(DeleteNews value),
     @required TResult pinNews(PinNews value),
+    @required TResult unpinNews(UnpinNews value),
   }) {
     assert(initializeNews != null);
     assert(newsUpdated != null);
     assert(addNews != null);
     assert(deleteNews != null);
     assert(pinNews != null);
+    assert(unpinNews != null);
     return initializeNews(this);
   }
 
@@ -199,6 +215,7 @@ class _$InitializeNews implements InitializeNews {
     TResult addNews(AddNews value),
     TResult deleteNews(DeleteNews value),
     TResult pinNews(PinNews value),
+    TResult unpinNews(UnpinNews value),
     @required TResult orElse(),
   }) {
     assert(orElse != null);
@@ -279,12 +296,14 @@ class _$NewsUpdated implements NewsUpdated {
     @required TResult addNews(String content, Author author),
     @required TResult deleteNews(String id),
     @required TResult pinNews(String id),
+    @required TResult unpinNews(String id),
   }) {
     assert(initializeNews != null);
     assert(newsUpdated != null);
     assert(addNews != null);
     assert(deleteNews != null);
     assert(pinNews != null);
+    assert(unpinNews != null);
     return newsUpdated(newsList);
   }
 
@@ -296,6 +315,7 @@ class _$NewsUpdated implements NewsUpdated {
     TResult addNews(String content, Author author),
     TResult deleteNews(String id),
     TResult pinNews(String id),
+    TResult unpinNews(String id),
     @required TResult orElse(),
   }) {
     assert(orElse != null);
@@ -313,12 +333,14 @@ class _$NewsUpdated implements NewsUpdated {
     @required TResult addNews(AddNews value),
     @required TResult deleteNews(DeleteNews value),
     @required TResult pinNews(PinNews value),
+    @required TResult unpinNews(UnpinNews value),
   }) {
     assert(initializeNews != null);
     assert(newsUpdated != null);
     assert(addNews != null);
     assert(deleteNews != null);
     assert(pinNews != null);
+    assert(unpinNews != null);
     return newsUpdated(this);
   }
 
@@ -330,6 +352,7 @@ class _$NewsUpdated implements NewsUpdated {
     TResult addNews(AddNews value),
     TResult deleteNews(DeleteNews value),
     TResult pinNews(PinNews value),
+    TResult unpinNews(UnpinNews value),
     @required TResult orElse(),
   }) {
     assert(orElse != null);
@@ -434,12 +457,14 @@ class _$AddNews implements AddNews {
     @required TResult addNews(String content, Author author),
     @required TResult deleteNews(String id),
     @required TResult pinNews(String id),
+    @required TResult unpinNews(String id),
   }) {
     assert(initializeNews != null);
     assert(newsUpdated != null);
     assert(addNews != null);
     assert(deleteNews != null);
     assert(pinNews != null);
+    assert(unpinNews != null);
     return addNews(content, author);
   }
 
@@ -451,6 +476,7 @@ class _$AddNews implements AddNews {
     TResult addNews(String content, Author author),
     TResult deleteNews(String id),
     TResult pinNews(String id),
+    TResult unpinNews(String id),
     @required TResult orElse(),
   }) {
     assert(orElse != null);
@@ -468,12 +494,14 @@ class _$AddNews implements AddNews {
     @required TResult addNews(AddNews value),
     @required TResult deleteNews(DeleteNews value),
     @required TResult pinNews(PinNews value),
+    @required TResult unpinNews(UnpinNews value),
   }) {
     assert(initializeNews != null);
     assert(newsUpdated != null);
     assert(addNews != null);
     assert(deleteNews != null);
     assert(pinNews != null);
+    assert(unpinNews != null);
     return addNews(this);
   }
 
@@ -485,6 +513,7 @@ class _$AddNews implements AddNews {
     TResult addNews(AddNews value),
     TResult deleteNews(DeleteNews value),
     TResult pinNews(PinNews value),
+    TResult unpinNews(UnpinNews value),
     @required TResult orElse(),
   }) {
     assert(orElse != null);
@@ -569,12 +598,14 @@ class _$DeleteNews implements DeleteNews {
     @required TResult addNews(String content, Author author),
     @required TResult deleteNews(String id),
     @required TResult pinNews(String id),
+    @required TResult unpinNews(String id),
   }) {
     assert(initializeNews != null);
     assert(newsUpdated != null);
     assert(addNews != null);
     assert(deleteNews != null);
     assert(pinNews != null);
+    assert(unpinNews != null);
     return deleteNews(id);
   }
 
@@ -586,6 +617,7 @@ class _$DeleteNews implements DeleteNews {
     TResult addNews(String content, Author author),
     TResult deleteNews(String id),
     TResult pinNews(String id),
+    TResult unpinNews(String id),
     @required TResult orElse(),
   }) {
     assert(orElse != null);
@@ -603,12 +635,14 @@ class _$DeleteNews implements DeleteNews {
     @required TResult addNews(AddNews value),
     @required TResult deleteNews(DeleteNews value),
     @required TResult pinNews(PinNews value),
+    @required TResult unpinNews(UnpinNews value),
   }) {
     assert(initializeNews != null);
     assert(newsUpdated != null);
     assert(addNews != null);
     assert(deleteNews != null);
     assert(pinNews != null);
+    assert(unpinNews != null);
     return deleteNews(this);
   }
 
@@ -620,6 +654,7 @@ class _$DeleteNews implements DeleteNews {
     TResult addNews(AddNews value),
     TResult deleteNews(DeleteNews value),
     TResult pinNews(PinNews value),
+    TResult unpinNews(UnpinNews value),
     @required TResult orElse(),
   }) {
     assert(orElse != null);
@@ -701,12 +736,14 @@ class _$PinNews implements PinNews {
     @required TResult addNews(String content, Author author),
     @required TResult deleteNews(String id),
     @required TResult pinNews(String id),
+    @required TResult unpinNews(String id),
   }) {
     assert(initializeNews != null);
     assert(newsUpdated != null);
     assert(addNews != null);
     assert(deleteNews != null);
     assert(pinNews != null);
+    assert(unpinNews != null);
     return pinNews(id);
   }
 
@@ -718,6 +755,7 @@ class _$PinNews implements PinNews {
     TResult addNews(String content, Author author),
     TResult deleteNews(String id),
     TResult pinNews(String id),
+    TResult unpinNews(String id),
     @required TResult orElse(),
   }) {
     assert(orElse != null);
@@ -735,12 +773,14 @@ class _$PinNews implements PinNews {
     @required TResult addNews(AddNews value),
     @required TResult deleteNews(DeleteNews value),
     @required TResult pinNews(PinNews value),
+    @required TResult unpinNews(UnpinNews value),
   }) {
     assert(initializeNews != null);
     assert(newsUpdated != null);
     assert(addNews != null);
     assert(deleteNews != null);
     assert(pinNews != null);
+    assert(unpinNews != null);
     return pinNews(this);
   }
 
@@ -752,6 +792,7 @@ class _$PinNews implements PinNews {
     TResult addNews(AddNews value),
     TResult deleteNews(DeleteNews value),
     TResult pinNews(PinNews value),
+    TResult unpinNews(UnpinNews value),
     @required TResult orElse(),
   }) {
     assert(orElse != null);
@@ -768,4 +809,142 @@ abstract class PinNews implements NewsEvent {
   String get id;
   @JsonKey(ignore: true)
   $PinNewsCopyWith<PinNews> get copyWith;
+}
+
+/// @nodoc
+abstract class $UnpinNewsCopyWith<$Res> {
+  factory $UnpinNewsCopyWith(UnpinNews value, $Res Function(UnpinNews) then) =
+      _$UnpinNewsCopyWithImpl<$Res>;
+  $Res call({String id});
+}
+
+/// @nodoc
+class _$UnpinNewsCopyWithImpl<$Res> extends _$NewsEventCopyWithImpl<$Res>
+    implements $UnpinNewsCopyWith<$Res> {
+  _$UnpinNewsCopyWithImpl(UnpinNews _value, $Res Function(UnpinNews) _then)
+      : super(_value, (v) => _then(v as UnpinNews));
+
+  @override
+  UnpinNews get _value => super._value as UnpinNews;
+
+  @override
+  $Res call({
+    Object id = freezed,
+  }) {
+    return _then(UnpinNews(
+      id: id == freezed ? _value.id : id as String,
+    ));
+  }
+}
+
+/// @nodoc
+class _$UnpinNews implements UnpinNews {
+  const _$UnpinNews({@required this.id}) : assert(id != null);
+
+  @override
+  final String id;
+
+  @override
+  String toString() {
+    return 'NewsEvent.unpinNews(id: $id)';
+  }
+
+  @override
+  bool operator ==(dynamic other) {
+    return identical(this, other) ||
+        (other is UnpinNews &&
+            (identical(other.id, id) ||
+                const DeepCollectionEquality().equals(other.id, id)));
+  }
+
+  @override
+  int get hashCode =>
+      runtimeType.hashCode ^ const DeepCollectionEquality().hash(id);
+
+  @JsonKey(ignore: true)
+  @override
+  $UnpinNewsCopyWith<UnpinNews> get copyWith =>
+      _$UnpinNewsCopyWithImpl<UnpinNews>(this, _$identity);
+
+  @override
+  @optionalTypeArgs
+  TResult when<TResult extends Object>({
+    @required TResult initializeNews(),
+    @required TResult newsUpdated(List<News> newsList),
+    @required TResult addNews(String content, Author author),
+    @required TResult deleteNews(String id),
+    @required TResult pinNews(String id),
+    @required TResult unpinNews(String id),
+  }) {
+    assert(initializeNews != null);
+    assert(newsUpdated != null);
+    assert(addNews != null);
+    assert(deleteNews != null);
+    assert(pinNews != null);
+    assert(unpinNews != null);
+    return unpinNews(id);
+  }
+
+  @override
+  @optionalTypeArgs
+  TResult maybeWhen<TResult extends Object>({
+    TResult initializeNews(),
+    TResult newsUpdated(List<News> newsList),
+    TResult addNews(String content, Author author),
+    TResult deleteNews(String id),
+    TResult pinNews(String id),
+    TResult unpinNews(String id),
+    @required TResult orElse(),
+  }) {
+    assert(orElse != null);
+    if (unpinNews != null) {
+      return unpinNews(id);
+    }
+    return orElse();
+  }
+
+  @override
+  @optionalTypeArgs
+  TResult map<TResult extends Object>({
+    @required TResult initializeNews(InitializeNews value),
+    @required TResult newsUpdated(NewsUpdated value),
+    @required TResult addNews(AddNews value),
+    @required TResult deleteNews(DeleteNews value),
+    @required TResult pinNews(PinNews value),
+    @required TResult unpinNews(UnpinNews value),
+  }) {
+    assert(initializeNews != null);
+    assert(newsUpdated != null);
+    assert(addNews != null);
+    assert(deleteNews != null);
+    assert(pinNews != null);
+    assert(unpinNews != null);
+    return unpinNews(this);
+  }
+
+  @override
+  @optionalTypeArgs
+  TResult maybeMap<TResult extends Object>({
+    TResult initializeNews(InitializeNews value),
+    TResult newsUpdated(NewsUpdated value),
+    TResult addNews(AddNews value),
+    TResult deleteNews(DeleteNews value),
+    TResult pinNews(PinNews value),
+    TResult unpinNews(UnpinNews value),
+    @required TResult orElse(),
+  }) {
+    assert(orElse != null);
+    if (unpinNews != null) {
+      return unpinNews(this);
+    }
+    return orElse();
+  }
+}
+
+abstract class UnpinNews implements NewsEvent {
+  const factory UnpinNews({@required String id}) = _$UnpinNews;
+
+  String get id;
+  @JsonKey(ignore: true)
+  $UnpinNewsCopyWith<UnpinNews> get copyWith;
 }
