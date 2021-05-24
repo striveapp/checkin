@@ -1,5 +1,5 @@
 # checkin
-[![Codemagic build status](https://api.codemagic.io/apps/5c6d213063e304000cb3f99c/5c6d213063e304000cb3f99b/status_badge.svg)](https://codemagic.io/apps/5c6d213063e304000cb3f99c/5c6d213063e304000cb3f99b/latest_build)
+[![Codemagic build status](https://api.codemagic.io/apps/5c6d213063e304000cb3f99c/tests-only/status_badge.svg)](https://api.codemagic.io/apps/5c6d213063e304000cb3f99c/tests-only/status_badge.svg)
 
 Checkin is an app that allow a team master to checkin attendees.
 
