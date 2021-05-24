@@ -100,25 +100,59 @@ void main() {
         isPinned: false,
       );
 
-      var unsortedList = [anotherFakeNews, fakeNews, yetAnotherFakeNews];
 
-      blocTest(
-        "fetch all news and sort them by timestamp DESC",
-        build: () => NewsBloc(
-          newsRepository: mockNewsRepository,
-          gymRepository: mockGymRepository,
-        ),
-        act: (bloc) {
-          return bloc.add(NewsUpdated(newsList: unsortedList));
-        },
-        expect: () => [
-          NewsLoaded(newsList: [
-            yetAnotherFakeNews,
-            anotherFakeNews,
-            fakeNews,
-          ])
-        ],
-      );
+      group("when there is a pinned news", () {
+        var pinnedNews =  News(
+          id: "fakeId",
+          content: "5G is killing you",
+          author: fakeAuthor,
+          timestamp: 1111111168,
+          isPinned: true,
+        );
+
+        var unsortedList = [anotherFakeNews, fakeNews, yetAnotherFakeNews, pinnedNews];
+
+        blocTest(
+          "fetch all news and sort them by timestamp DESC and return the pinned news on top",
+          build: () => NewsBloc(
+            newsRepository: mockNewsRepository,
+            gymRepository: mockGymRepository,
+          ),
+          act: (bloc) {
+            return bloc.add(NewsUpdated(newsList: unsortedList));
+          },
+          expect: () => [
+            NewsLoaded(newsList: [
+              pinnedNews,
+              yetAnotherFakeNews,
+              anotherFakeNews,
+              fakeNews,
+            ])
+          ],
+        );
+      });
+
+      group("when there is NOT a pinned news", () {
+        var unsortedList = [anotherFakeNews, fakeNews, yetAnotherFakeNews];
+
+        blocTest(
+          "fetch all news and sort them by timestamp DESC",
+          build: () => NewsBloc(
+            newsRepository: mockNewsRepository,
+            gymRepository: mockGymRepository,
+          ),
+          act: (bloc) {
+            return bloc.add(NewsUpdated(newsList: unsortedList));
+          },
+          expect: () => [
+            NewsLoaded(newsList: [
+              yetAnotherFakeNews,
+              anotherFakeNews,
+              fakeNews,
+            ])
+          ],
+        );
+      });
     });
 
     group("on AddNews", () {

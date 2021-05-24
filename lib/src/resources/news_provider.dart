@@ -11,6 +11,7 @@ class NewsProvider implements NewsRepository {
 
   @override
   Stream<List<News>> getAllNews(String gymId) {
+    // todo sort by query!
     return _firestore
         .collection(gymPath)
         .doc(gymId)

@@ -38,7 +38,9 @@ class NewsBloc extends Bloc<NewsEvent, NewsState> {
     }
 
     if (event is NewsUpdated) {
-      yield NewsLoaded(newsList: _sortByTimestamp(event.newsList));
+      // sort and place pinned news on top
+      var pinnedNews = event.newsList.firstWhere((news) => news.isPinned, orElse: () => null);
+      yield NewsLoaded(newsList: _newsListWithPinOnTop(pinnedNews, _sortByTimestamp(event.newsList)));
     }
 
     if (event is AddNews) {
@@ -73,6 +75,14 @@ class NewsBloc extends Bloc<NewsEvent, NewsState> {
         });
       }
     }
+  }
+
+  List<News> _newsListWithPinOnTop(News pinnedNews, List<News> newsList) {
+    if( pinnedNews == null ) {
+      return newsList;
+    }
+    newsList.remove(pinnedNews);
+    return [pinnedNews, ...newsList];
   }
 
   void _fetchGym(Function(Gym) onGymUpdated) {
