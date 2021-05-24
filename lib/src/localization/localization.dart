@@ -838,6 +838,11 @@ extension Localization on String {
         'it': 'Non ci sono ancora notizie',
       } +
       {
+        'en': NewsView.pinnedNews,
+        'es': 'Notizia fijada',
+        'it': 'Notizia fissata',
+      } +
+      {
         'en': ContentEditor.whatsHappening,
         'es': 'Que está pasando?',
         'it': 'Cosa succede?',

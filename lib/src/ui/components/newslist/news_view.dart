@@ -36,32 +36,7 @@ class NewsView extends StatelessWidget {
     return Column(
       children: [
         if (isPinned)
-          Row(children: [
-            SizedBox(
-              width: 40,
-            ),
-            Icon(
-              Icons.push_pin,
-              size: 18,
-              color: Theme.of(context).textTheme.bodyText1.color.withAlpha(130),
-            ),
-            SizedBox(
-              width: 5,
-            ),
-            Text(
-              pinnedNews.i18n,
-              style: Theme.of(context)
-                  .textTheme
-                  .bodyText1
-                  .apply(
-                      color: Theme.of(context)
-                          .textTheme
-                          .bodyText1
-                          .color
-                          .withAlpha(130))
-                  .apply(fontWeightDelta: 2),
-            ),
-          ]),
+          PinnedBadge(pinnedNews: pinnedNews),
         if(isPinned)
           SizedBox(height: 5,),
         Padding(
@@ -149,6 +124,45 @@ class NewsView extends StatelessWidget {
         LocalPlatform().localeName.replaceAll(RegExp(r'_.*'), "_short");
     return timeago.format(DateTime.fromMillisecondsSinceEpoch(timestamp),
         locale: localeShort);
+  }
+}
+
+class PinnedBadge extends StatelessWidget {
+  const PinnedBadge({
+    Key key,
+    @required this.pinnedNews,
+  }) : super(key: key);
+
+  final String pinnedNews;
+
+  @override
+  Widget build(BuildContext context) {
+    return Row(children: [
+      SizedBox(
+        width: 40,
+      ),
+      Icon(
+        Icons.push_pin,
+        size: 18,
+        color: Theme.of(context).textTheme.bodyText1.color.withAlpha(130),
+      ),
+      SizedBox(
+        width: 5,
+      ),
+      Text(
+        pinnedNews.i18n,
+        style: Theme.of(context)
+            .textTheme
+            .bodyText1
+            .apply(
+                color: Theme.of(context)
+                    .textTheme
+                    .bodyText1
+                    .color
+                    .withAlpha(130))
+            .apply(fontWeightDelta: 2),
+      ),
+    ]);
   }
 }
 

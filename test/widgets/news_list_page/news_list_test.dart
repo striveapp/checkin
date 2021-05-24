@@ -112,6 +112,36 @@ void main() {
       });
     });
 
+    group("when there is a Pinned News", () {
+      testWidgets("Renders NewsView with PinnedBadge", (tester) async {
+        when(() => profileBloc.state).thenReturn(ProfileLoaded(
+          profileUser: fakeUser,
+          isCurrentUser: true,
+        ));
+
+        when(() => newsBloc.state).thenReturn(NewsLoaded(newsList: [
+          News(
+            id: "fake-id",
+            content: "fake-news",
+            author: Author(
+                imageUrl: "fake-img", name: "fake-name", grade: Grade.black),
+            timestamp: 123,
+            isPinned: true,
+          )
+        ]));
+
+        await tester.pumpApp(MultiBlocProvider(providers: [
+          BlocProvider.value(value: newsBloc),
+          BlocProvider.value(value: profileBloc),
+        ], child: NewsList()),);
+
+        expect(find.byType(NewsView), findsWidgets);
+        expect(find.byType(PinnedBadge), findsOneWidget);
+      });
+
+    });
+
+
     group("when Author has NO grade", () {
       testWidgets("Renders NewsView without grade", (tester) async {
         when(() => profileBloc.state).thenReturn(ProfileLoaded(
