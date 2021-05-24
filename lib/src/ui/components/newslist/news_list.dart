@@ -39,7 +39,8 @@ class NewsList extends StatelessWidget {
                           author: news.author,
                           content: news.content,
                           timestamp: news.timestamp,
-                          newsId: news.id
+                          newsId: news.id,
+                          isPinned: news.isPinned,
                         ),
                       );
                     },
