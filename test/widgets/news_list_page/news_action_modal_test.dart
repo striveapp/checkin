@@ -36,7 +36,13 @@ void main() {
     });
 
     testWidgets("Adds DeleteNews when the delete action is tapped", (tester) async {
-      await tester.pumpAppWithScaffold(BlocProvider.value(value: newsBloc, child: NewsActionModal(newsId: 'fake-news', isPinned: false,)));
+      await tester.pumpAppWithScaffold(BlocProvider.value(
+          value: newsBloc,
+          child: NewsActionModal(
+            newsId: 'fake-news',
+            isPinned: false,
+            hasPinnedNews: false,
+          )));
 
       await tester.tap(find.byKey(Key("deleteNewsAction")));
       await tester.pumpAndSettle();
@@ -45,7 +51,13 @@ void main() {
     });
 
     testWidgets("Adds PinNews when the pin action is tapped", (tester) async {
-      await tester.pumpAppWithScaffold(BlocProvider.value(value: newsBloc, child: NewsActionModal(newsId: 'fake-news',isPinned: false,)));
+      await tester.pumpAppWithScaffold(BlocProvider.value(
+          value: newsBloc,
+          child: NewsActionModal(
+            newsId: 'fake-news',
+            isPinned: false,
+            hasPinnedNews: false,
+          )));
 
       await tester.tap(find.byKey(Key("pinNewsAction")));
       await tester.pumpAndSettle();
@@ -54,12 +66,35 @@ void main() {
     });
 
     testWidgets("Adds UnpinNews when the unpin action is tapped", (tester) async {
-      await tester.pumpAppWithScaffold(BlocProvider.value(value: newsBloc, child: NewsActionModal(newsId: 'fake-news',isPinned: true,)));
+      await tester.pumpAppWithScaffold(BlocProvider.value(
+          value: newsBloc,
+          child: NewsActionModal(
+            newsId: 'fake-news',
+            isPinned: true,
+            hasPinnedNews: false,
+          )));
 
       await tester.tap(find.byKey(Key("unpinNewsAction")));
       await tester.pumpAndSettle();
 
       verify(() => newsBloc.add(NewsEvent.unpinNews(id: 'fake-news'))).called(1);
+    });
+
+    testWidgets(
+        "Adds ReplacePinnedNews when the pin news action is tapped and another news is pinned",
+        (tester) async {
+      await tester.pumpAppWithScaffold(BlocProvider.value(
+          value: newsBloc,
+          child: NewsActionModal(
+            newsId: 'fake-news',
+            isPinned: false,
+            hasPinnedNews: true,
+          )));
+
+      await tester.tap(find.byKey(Key("pinNewsAction")));
+      await tester.pumpAndSettle();
+
+      verify(() => newsBloc.add(NewsEvent.replacePinnedNews(id: 'fake-news'))).called(1);
     });
   });
 }

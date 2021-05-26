@@ -31,19 +31,13 @@ class NewsList extends StatelessWidget {
                 ? EmptyNewsList()
                 : ListView.separated(
                     itemCount: state.newsList.length,
-                    itemBuilder: (context, index) {
-                      var news = state.newsList[index];
-                      return Padding(
-                        padding: EdgeInsets.only(left: 10, right: 20),
-                        child: NewsView(
-                          author: news.author,
-                          content: news.content,
-                          timestamp: news.timestamp,
-                          newsId: news.id,
-                          isPinned: news.isPinned,
-                        ),
-                      );
-                    },
+                    itemBuilder: (context, index) => Padding(
+                      padding: EdgeInsets.only(left: 10, right: 20),
+                      child: NewsView(
+                        news: state.newsList[index],
+                        hasPinnedNews: state.hasPinnedNews,
+                      ),
+                    ),
                     separatorBuilder: (context, index) => Divider(),
                   ));
       },

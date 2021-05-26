@@ -1,3 +1,4 @@
+import 'package:checkin/src/logging/logger.dart';
 import 'package:checkin/src/models/author.dart';
 import 'package:checkin/src/models/news.dart';
 import 'package:checkin/src/repositories/news_repository.dart';
@@ -53,11 +54,51 @@ class NewsProvider implements NewsRepository {
 
   @override
   Future<void> deleteNews(String gymId, String newsId) {
-    return _firestore
+    return _firestore.collection(gymPath).doc(gymId).collection(path).doc(newsId).delete();
+  }
+
+  @override
+  Future<void> replacePinnedNews(String gymId, String newsId) async {
+    Logger.log.i("Find pinned news in $gymId");
+    var querySnapshot = await _firestore
         .collection(gymPath)
         .doc(gymId)
         .collection(path)
-        .doc(newsId)
-        .delete();
+        .where("isPinned", isEqualTo: true)
+        .get();
+
+    List<DocumentReference> pinnedNewsRefs =
+        querySnapshot.docs.map((doc) => doc.reference).toList();
+
+    var batch = _firestore.batch();
+    _unpinNews(pinnedNewsRefs, batch);
+    _pinNews(newsId, gymId, batch);
+    batch.commit();
+  }
+
+  void _pinNews(String newsId, String gymId, WriteBatch batch) {
+    Logger.log.i("News to pin [$newsId]");
+    DocumentReference newsToPinRef =
+        _firestore.collection(gymPath).doc(gymId).collection(path).doc(newsId);
+
+    batch.set(
+        newsToPinRef,
+        {
+          "isPinned": true,
+        },
+        SetOptions(merge: true));
+  }
+
+  void _unpinNews(List<DocumentReference> pinnedNewsRefs, WriteBatch batch) {
+    for (DocumentReference pinnedNewsRef in pinnedNewsRefs) {
+      Logger.log.i("Unpin pinned news [${pinnedNewsRef.id}]");
+      batch.set(
+        pinnedNewsRef,
+        {
+          "isPinned": false,
+        },
+        SetOptions(merge: true),
+      );
+    }
   }
 }

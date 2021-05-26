@@ -14,8 +14,7 @@ import 'package:mocktail/mocktail.dart';
 
 import '../../pump_app.dart';
 
-class MockProfileBloc extends MockBloc<ProfileEvent, ProfileState>
-    implements ProfileBloc {}
+class MockProfileBloc extends MockBloc<ProfileEvent, ProfileState> implements ProfileBloc {}
 
 class FakeProfileEvent extends Fake implements ProfileEvent {}
 
@@ -49,8 +48,7 @@ void main() {
       expect(Translations.missingTranslations, isEmpty);
     });
 
-    testWidgets("Renders EmptyWidget when the profile is not loaded yet",
-        (tester) async {
+    testWidgets("Renders EmptyWidget when the profile is not loaded yet", (tester) async {
       when(() => profileBloc.state).thenReturn(InitialProfileState());
 
       await tester.pumpApp(BlocProvider.value(
@@ -58,6 +56,7 @@ void main() {
           child: NewsActionMenu(
             newsId: 'fake-news',
             isPinned: false,
+            hasPinnedNews: false,
           )));
 
       expect(find.byType(EmptyWidget), findsWidgets);
@@ -82,6 +81,7 @@ void main() {
             child: NewsActionMenu(
               newsId: 'fake-news',
               isPinned: false,
+              hasPinnedNews: false,
             )));
 
         expect(find.byType(EmptyWidget), findsOneWidget);
@@ -107,13 +107,13 @@ void main() {
             child: NewsActionMenu(
               newsId: 'fake-news',
               isPinned: false,
+              hasPinnedNews: false,
             )));
 
         expect(find.byType(IconButton), findsOneWidget);
       });
 
-      testWidgets("open NewsActionModal when tap on NewsActionMenu",
-          (tester) async {
+      testWidgets("open NewsActionModal when tap on NewsActionMenu", (tester) async {
         when(() => profileBloc.state).thenReturn(ProfileLoaded(
           profileUser: fakeOwner,
           isCurrentUser: true,
@@ -127,6 +127,7 @@ void main() {
             child: NewsActionMenu(
               newsId: 'fake-news',
               isPinned: false,
+              hasPinnedNews: false,
             )));
 
         await tester.tap(find.byType(IconButton));

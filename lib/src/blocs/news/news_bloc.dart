@@ -40,7 +40,10 @@ class NewsBloc extends Bloc<NewsEvent, NewsState> {
     if (event is NewsUpdated) {
       // sort and place pinned news on top
       var pinnedNews = event.newsList.firstWhere((news) => news.isPinned, orElse: () => null);
-      yield NewsLoaded(newsList: _newsListWithPinOnTop(pinnedNews, _sortByTimestamp(event.newsList)));
+      yield NewsLoaded(
+        newsList: _newsListWithPinOnTop(pinnedNews, _sortByTimestamp(event.newsList)),
+        hasPinnedNews: pinnedNews != null,
+      );
     }
 
     if (event is AddNews) {
@@ -61,6 +64,17 @@ class NewsBloc extends Bloc<NewsEvent, NewsState> {
         _fetchGym((gym) async {
           _gym = gym;
           await newsRepository.pinNews(_gym.id, event.id);
+        });
+      }
+    }
+
+    if (event is ReplacePinnedNews) {
+      if (_gym != null) {
+        await newsRepository.replacePinnedNews(_gym.id, event.id);
+      } else {
+        _fetchGym((gym) async {
+          _gym = gym;
+          await newsRepository.replacePinnedNews(_gym.id, event.id);
         });
       }
     }
@@ -89,7 +103,7 @@ class NewsBloc extends Bloc<NewsEvent, NewsState> {
   }
 
   List<News> _newsListWithPinOnTop(News pinnedNews, List<News> newsList) {
-    if( pinnedNews == null ) {
+    if (pinnedNews == null) {
       return newsList;
     }
     newsList.remove(pinnedNews);

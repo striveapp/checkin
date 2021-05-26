@@ -24,8 +24,7 @@ class FakeNewsEvent extends Fake implements NewsEvent {}
 
 class FakeNewsState extends Fake implements NewsState {}
 
-class MockProfileBloc extends MockBloc<ProfileEvent, ProfileState>
-    implements ProfileBloc {}
+class MockProfileBloc extends MockBloc<ProfileEvent, ProfileState> implements ProfileBloc {}
 
 class FakeProfileEvent extends Fake implements ProfileEvent {}
 
@@ -62,22 +61,19 @@ void main() {
       expect(Translations.missingTranslations, isEmpty);
     });
 
-    testWidgets("Renders PlaceholderNews when news state is NewsInitial", (
-        tester) async {
+    testWidgets("Renders PlaceholderNews when news state is NewsInitial", (tester) async {
       when(() => newsBloc.state).thenReturn(NewsInitial());
 
-      await tester.pumpApp(
-          BlocProvider.value(value: newsBloc, child: NewsList()));
+      await tester.pumpApp(BlocProvider.value(value: newsBloc, child: NewsList()));
 
       expect(find.byType(PlaceholderNews), findsWidgets);
     });
 
     group("when there are no news", () {
       testWidgets("Renders EmptyNewsList", (tester) async {
-        when(() => newsBloc.state).thenReturn(NewsLoaded(newsList: []));
+        when(() => newsBloc.state).thenReturn(NewsLoaded(newsList: [], hasPinnedNews: false));
 
-        await tester.pumpApp(
-            BlocProvider.value(value: newsBloc, child: NewsList()));
+        await tester.pumpApp(BlocProvider.value(value: newsBloc, child: NewsList()));
 
         expect(find.byType(EmptyNewsList), findsOneWidget);
         expect(find.byType(NewsView), findsNothing);
@@ -91,21 +87,25 @@ void main() {
           isCurrentUser: true,
         ));
 
-        when(() => newsBloc.state).thenReturn(NewsLoaded(newsList: [
-          News(
-            id: "fake-id",
-            content: "fake-news",
-            author: Author(
-                imageUrl: "fake-img", name: "fake-name", grade: Grade.black),
-            timestamp: 123,
-            isPinned: false,
-          )
-        ]));
+        when(() => newsBloc.state).thenReturn(NewsLoaded(
+          newsList: [
+            News(
+              id: "fake-id",
+              content: "fake-news",
+              author: Author(imageUrl: "fake-img", name: "fake-name", grade: Grade.black),
+              timestamp: 123,
+              isPinned: false,
+            )
+          ],
+          hasPinnedNews: false,
+        ));
 
-        await tester.pumpApp(MultiBlocProvider(providers: [
-          BlocProvider.value(value: newsBloc),
-          BlocProvider.value(value: profileBloc),
-        ], child: NewsList()),);
+        await tester.pumpApp(
+          MultiBlocProvider(providers: [
+            BlocProvider.value(value: newsBloc),
+            BlocProvider.value(value: profileBloc),
+          ], child: NewsList()),
+        );
 
         expect(find.byType(NewsView), findsWidgets);
         expect(find.byKey(Key("authorGrade")), findsOneWidget);
@@ -123,24 +123,23 @@ void main() {
           News(
             id: "fake-id",
             content: "fake-news",
-            author: Author(
-                imageUrl: "fake-img", name: "fake-name", grade: Grade.black),
+            author: Author(imageUrl: "fake-img", name: "fake-name", grade: Grade.black),
             timestamp: 123,
             isPinned: true,
           )
-        ]));
+        ], hasPinnedNews: true));
 
-        await tester.pumpApp(MultiBlocProvider(providers: [
-          BlocProvider.value(value: newsBloc),
-          BlocProvider.value(value: profileBloc),
-        ], child: NewsList()),);
+        await tester.pumpApp(
+          MultiBlocProvider(providers: [
+            BlocProvider.value(value: newsBloc),
+            BlocProvider.value(value: profileBloc),
+          ], child: NewsList()),
+        );
 
         expect(find.byType(NewsView), findsWidgets);
         expect(find.byType(PinnedBadge), findsOneWidget);
       });
-
     });
-
 
     group("when Author has NO grade", () {
       testWidgets("Renders NewsView without grade", (tester) async {
@@ -148,21 +147,23 @@ void main() {
           profileUser: fakeUser,
           isCurrentUser: true,
         ));
-        when(() => newsBloc.state).thenReturn(NewsLoaded(newsList: [
-          News(
-            id: "fake-id",
-            content: "fake-news",
-            author: Author(imageUrl: "fake-img", name: "fake-name"),
-            timestamp: 123,
-            isPinned: false,
-          )
-        ]));
+        when(() => newsBloc.state).thenReturn(NewsLoaded(
+          newsList: [
+            News(
+              id: "fake-id",
+              content: "fake-news",
+              author: Author(imageUrl: "fake-img", name: "fake-name"),
+              timestamp: 123,
+              isPinned: false,
+            )
+          ],
+          hasPinnedNews: false,
+        ));
 
-        await tester.pumpApp(
-            MultiBlocProvider(providers: [
-              BlocProvider.value(value: newsBloc),
-              BlocProvider.value(value: profileBloc),
-            ], child: NewsList()));
+        await tester.pumpApp(MultiBlocProvider(providers: [
+          BlocProvider.value(value: newsBloc),
+          BlocProvider.value(value: profileBloc),
+        ], child: NewsList()));
 
         expect(find.byType(NewsView), findsWidgets);
         expect(find.byKey(Key("authorGrade")), findsNothing);

@@ -11,10 +11,14 @@ class NewsActionModal extends StatelessWidget {
 
   final String newsId;
   final bool isPinned;
+  final bool hasPinnedNews;
 
-  const NewsActionModal(
-      {Key key, @required this.newsId, @required this.isPinned})
-      : super(key: key);
+  const NewsActionModal({
+    Key key,
+    @required this.newsId,
+    @required this.isPinned,
+    @required this.hasPinnedNews,
+  }) : super(key: key);
 
   @override
   Widget build(BuildContext context) {
@@ -48,7 +52,11 @@ class NewsActionModal extends StatelessWidget {
                   : NewsAction(
                       key: Key("pinNewsAction"),
                       onTap: () async {
-                        await context.read<NewsBloc>().add(PinNews(id: newsId));
+                        if (hasPinnedNews) {
+                          await context.read<NewsBloc>().add(ReplacePinnedNews(id: newsId));
+                        } else {
+                          await context.read<NewsBloc>().add(PinNews(id: newsId));
+                        }
                         Navigator.of(context).pop();
                       },
                       icon: Icons.push_pin,
@@ -66,7 +74,9 @@ class NewsActionModal extends StatelessWidget {
                 text: deleteNews.i18n,
               ),
             ),
-            SizedBox(height: 10,),
+            SizedBox(
+              height: 10,
+            ),
           ],
         ),
       ),

@@ -28,4 +28,8 @@ abstract class NewsEvent with _$NewsEvent {
   const factory NewsEvent.unpinNews({
     @required String id,
   }) = UnpinNews;
+
+  const factory NewsEvent.replacePinnedNews({
+    @required String id,
+  }) = ReplacePinnedNews;
 }

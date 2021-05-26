@@ -100,9 +100,8 @@ void main() {
         isPinned: false,
       );
 
-
       group("when there is a pinned news", () {
-        var pinnedNews =  News(
+        var pinnedNews = News(
           id: "fakeId",
           content: "5G is killing you",
           author: fakeAuthor,
@@ -122,17 +121,20 @@ void main() {
             return bloc.add(NewsUpdated(newsList: unsortedList));
           },
           expect: () => [
-            NewsLoaded(newsList: [
-              pinnedNews,
-              yetAnotherFakeNews,
-              anotherFakeNews,
-              fakeNews,
-            ])
+            NewsLoaded(
+              newsList: [
+                pinnedNews,
+                yetAnotherFakeNews,
+                anotherFakeNews,
+                fakeNews,
+              ],
+              hasPinnedNews: true,
+            )
           ],
         );
       });
 
-      group("when there is NOT a pinned news", () {
+      group("when there is NO pinned news", () {
         var unsortedList = [anotherFakeNews, fakeNews, yetAnotherFakeNews];
 
         blocTest(
@@ -145,11 +147,14 @@ void main() {
             return bloc.add(NewsUpdated(newsList: unsortedList));
           },
           expect: () => [
-            NewsLoaded(newsList: [
-              yetAnotherFakeNews,
-              anotherFakeNews,
-              fakeNews,
-            ])
+            NewsLoaded(
+              newsList: [
+                yetAnotherFakeNews,
+                anotherFakeNews,
+                fakeNews,
+              ],
+              hasPinnedNews: false,
+            )
           ],
         );
       });
@@ -205,6 +210,31 @@ void main() {
       );
     });
 
+    group("on ReplacePinnedNews", () {
+      setUp(() {
+        when(mockGymRepository.getGym()).thenAnswer((realInvocation) => Stream.value(fakeGym));
+        when(mockNewsRepository.replacePinnedNews("fake-gym", "fake-news-id"))
+            .thenAnswer((realInvocation) => Future.value());
+      });
+
+      tearDown(() {
+        verify(mockGymRepository.getGym());
+        verify(mockNewsRepository.replacePinnedNews("fake-gym", "fake-news-id"));
+      });
+
+      blocTest(
+        "replace pinned news",
+        build: () => NewsBloc(
+          newsRepository: mockNewsRepository,
+          gymRepository: mockGymRepository,
+        ),
+        act: (bloc) {
+          return bloc.add(ReplacePinnedNews(id: 'fake-news-id'));
+        },
+        expect: () => [],
+      );
+    });
+
     group("on UnpinNews", () {
       setUp(() {
         when(mockGymRepository.getGym()).thenAnswer((realInvocation) => Stream.value(fakeGym));
@@ -254,6 +284,5 @@ void main() {
         expect: () => [],
       );
     });
-
   });
 }
