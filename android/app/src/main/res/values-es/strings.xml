@@ -14,4 +14,7 @@
 
     <string name="your_class_got_cancelled">Una de tus clases ha sido cancelada ❌</string>
     <string name="please_check_it_out">Porfavor compruebalo</string>
+
+    <string name="news_for_you">Nueva noticia para tí</string>
+    <string name="go_check_it_out">¡Vete a verla!</string>
 </resources>

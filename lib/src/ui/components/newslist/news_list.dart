@@ -1,5 +1,6 @@
 import 'package:checkin/src/blocs/news/news_bloc.dart';
 import 'package:checkin/src/blocs/news/news_state.dart';
+import 'package:checkin/src/models/news.dart';
 import 'package:checkin/src/ui/components/newslist/empty_news_list.dart';
 import 'package:checkin/src/ui/components/newslist/news_view.dart';
 import 'package:checkin/src/ui/components/placeholder_image.dart';
@@ -7,8 +8,12 @@ import 'package:checkin/src/ui/components/placeholder_text.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 
+import '../highlight_animation.dart';
+
 class NewsList extends StatelessWidget {
-  const NewsList({Key key}) : super(key: key);
+  final String highlightNewsId;
+
+  const NewsList({Key key, this.highlightNewsId}) : super(key: key);
 
   @override
   Widget build(BuildContext context) {
@@ -31,16 +36,45 @@ class NewsList extends StatelessWidget {
                 ? EmptyNewsList()
                 : ListView.separated(
                     itemCount: state.newsList.length,
-                    itemBuilder: (context, index) => Padding(
-                      padding: EdgeInsets.only(left: 10, right: 20),
-                      child: NewsView(
-                        news: state.newsList[index],
-                        hasPinnedNews: state.hasPinnedNews,
-                      ),
-                    ),
+                    itemBuilder: (context, index) {
+                      var news = state.newsList[index];
+                      return news.id == highlightNewsId
+                          ? HighlightAnimation(
+                              child: NewsItem(
+                                news: news,
+                                hasPinnedNews: state.hasPinnedNews,
+                              ),
+                            )
+                          : NewsItem(
+                              news: news,
+                              hasPinnedNews: state.hasPinnedNews,
+                            );
+                    },
                     separatorBuilder: (context, index) => Divider(),
                   ));
       },
+    );
+  }
+}
+
+class NewsItem extends StatelessWidget {
+  final News news;
+  final bool hasPinnedNews;
+
+  const NewsItem({
+    Key key,
+    @required this.news,
+    @required this.hasPinnedNews,
+  }) : super(key: key);
+
+  @override
+  Widget build(BuildContext context) {
+    return Padding(
+      padding: EdgeInsets.only(left: 10, right: 20),
+      child: NewsView(
+        news: news,
+        hasPinnedNews: hasPinnedNews,
+      ),
     );
   }
 }

@@ -16,6 +16,7 @@ class Routes {
     PaymentSuccessHandler(),
     StatsHandler(),
     EmailRetrieveHandler(),
+    NewsHandler()
   ];
 
   static void configureRoutes(FluroRouter router) {

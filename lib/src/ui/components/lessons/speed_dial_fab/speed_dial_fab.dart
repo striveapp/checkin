@@ -25,6 +25,13 @@ class _SpeedDialFabState extends State<SpeedDialFab> with SingleTickerProviderSt
     );
   }
 
+
+  @override
+  void dispose() {
+    _controller.dispose();
+    super.dispose();
+  }
+
   @override
   Widget build(BuildContext context) {
     return BlocBuilder<LessonsBloc, LessonsState>(

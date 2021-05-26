@@ -7,6 +7,7 @@ import 'package:checkin/src/models/author.dart';
 import 'package:checkin/src/models/grade.dart';
 import 'package:checkin/src/models/news.dart';
 import 'package:checkin/src/models/user.dart';
+import 'package:checkin/src/ui/components/highlight_animation.dart';
 import 'package:checkin/src/ui/components/newslist/empty_news_list.dart';
 import 'package:checkin/src/ui/components/newslist/news_list.dart';
 import 'package:checkin/src/ui/components/newslist/news_view.dart';
@@ -167,6 +168,35 @@ void main() {
 
         expect(find.byType(NewsView), findsWidgets);
         expect(find.byKey(Key("authorGrade")), findsNothing);
+      });
+    });
+
+  group("when highlightNewsId matches a News", () {
+      testWidgets("Renders HighlightAnimation", (tester) async {
+        when(() => profileBloc.state).thenReturn(ProfileLoaded(
+          profileUser: fakeUser,
+          isCurrentUser: true,
+        ));
+        when(() => newsBloc.state).thenReturn(NewsLoaded(
+          newsList: [
+            News(
+              id: "fake-id",
+              content: "fake-news",
+              author: Author(imageUrl: "fake-img", name: "fake-name"),
+              timestamp: 123,
+              isPinned: false,
+            )
+          ],
+          hasPinnedNews: false,
+        ));
+
+        await tester.pumpApp(MultiBlocProvider(providers: [
+          BlocProvider.value(value: newsBloc),
+          BlocProvider.value(value: profileBloc),
+        ], child: NewsList(highlightNewsId: "fake-id",)));
+
+        expect(find.byType(NewsView), findsWidgets);
+        expect(find.byType(HighlightAnimation), findsOneWidget);
       });
     });
   });

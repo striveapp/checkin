@@ -37,8 +37,8 @@ class _AnimatedOpenSpeedDialButtonState extends State<AnimatedOpenSpeedDialButto
 
   @override
   void dispose() {
-    super.dispose();
     _controller.dispose();
+    super.dispose();
   }
 
   @override

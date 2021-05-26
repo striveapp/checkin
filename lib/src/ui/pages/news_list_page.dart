@@ -11,7 +11,9 @@ import 'package:flutter_bloc/flutter_bloc.dart';
 class NewsListPage extends StatelessWidget {
   static const String news = "News";
 
-  const NewsListPage({Key key}) : super(key: key);
+  final String newsId;
+
+  const NewsListPage({Key key, this.newsId}) : super(key: key);
 
   @override
   Widget build(BuildContext context) {
@@ -40,7 +42,7 @@ class NewsListPage extends StatelessWidget {
         body: SafeArea(
           child: Padding(
             padding: EdgeInsets.only(top: 20),
-            child: NewsList(),
+            child: NewsList(highlightNewsId: newsId),
           ),
         ),
       ),
