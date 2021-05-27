@@ -40,10 +40,7 @@ class NewsListPage extends StatelessWidget {
         ),
         floatingActionButton: AddNewsFab(),
         body: SafeArea(
-          child: Padding(
-            padding: EdgeInsets.only(top: 20),
-            child: NewsList(highlightNewsId: newsId),
-          ),
+          child: NewsList(highlightNewsId: newsId),
         ),
       ),
     );

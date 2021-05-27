@@ -35,6 +35,7 @@ class NewsList extends StatelessWidget {
             newsLoaded: (NewsLoaded state) => state.newsList.length == 0
                 ? EmptyNewsList()
                 : ListView.separated(
+                    padding: EdgeInsets.symmetric(vertical: 20),
                     itemCount: state.newsList.length,
                     itemBuilder: (context, index) {
                       var news = state.newsList[index];

@@ -30,12 +30,14 @@ class NewsActionModal extends StatelessWidget {
         ),
         child: Column(
           children: [
-            Padding(
-              padding: const EdgeInsets.only(top: 10.0),
-              child: Icon(
-                Icons.maximize_rounded,
-                size: 50,
-                color: Colors.grey,
+            Flexible(
+              child: Padding(
+                padding: const EdgeInsets.only(top: 10.0),
+                child: Icon(
+                  Icons.maximize_rounded,
+                  size: 50,
+                  color: Colors.grey,
+                ),
               ),
             ),
             Expanded(
@@ -74,9 +76,6 @@ class NewsActionModal extends StatelessWidget {
                 text: deleteNews.i18n,
               ),
             ),
-            SizedBox(
-              height: 10,
-            ),
           ],
         ),
       ),
@@ -101,7 +100,7 @@ class NewsAction extends StatelessWidget {
     return InkWell(
       onTap: onTap,
       child: Padding(
-        padding: const EdgeInsets.symmetric(vertical: 10.0, horizontal: 15),
+        padding: const EdgeInsets.symmetric(horizontal: 15),
         child: Row(
           children: [
             Icon(icon),

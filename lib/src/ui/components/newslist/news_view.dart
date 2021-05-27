@@ -194,7 +194,8 @@ class NewsActionMenu extends StatelessWidget {
                                 hasPinnedNews: hasPinnedNews,
                               )));
                     },
-                  ))
+                  ),
+                )
               : EmptyWidget(),
         );
       },
