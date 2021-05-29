@@ -8,9 +8,15 @@ part 'graduation_state.freezed.dart';
 @freezed
 abstract class GraduationState with _$GraduationState {
   const factory GraduationState.initialGraduationState() = InitialGraduationState;
+
   const factory GraduationState.notReadyForGraduation({@required Grade nextGrade}) =
       NotReadyForGraduation;
-  const factory GraduationState.readyForGraduation({@required Grade nextGrade}) =
-      ReadyForGraduation;
+
+  const factory GraduationState.graduationLoaded({
+    @required Grade nextGrade,
+    @required int attendedLessonsForGrade,
+    @required double forNextLevel,
+  }) = GraduationLoaded;
+
   const factory GraduationState.graduationLoading() = GraduationLoading;
 }

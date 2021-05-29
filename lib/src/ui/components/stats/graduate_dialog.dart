@@ -27,67 +27,40 @@ class GraduateDialog extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    return graduationState.maybeWhen(
-        notReadyForGraduation: (Grade newGrade) => AlertDialog(
-              key: Key("graduationDialog"),
-              actionsPadding: EdgeInsets.symmetric(horizontal: 8),
-              title: Text(
-                notReadyYet.i18n,
-              ),
-              titleTextStyle: Theme.of(context).textTheme.headline3,
-              contentPadding: EdgeInsets.symmetric(vertical: 25),
-              content: GraduationPreview(currentGrade: currentUserGrade, newGrade: newGrade),
-              actions: <Widget>[
-                ElevatedButton(
-                  key: Key("graduateButton"),
-                  child: Text(
-                    graduateAnyway.i18n,
-                    style: Theme.of(context).textTheme.button,
-                  ),
-                  onPressed: () {
-                    context.read<GraduationBloc>().add(Graduate(newGrade: newGrade));
-                    Navigator.of(context).pop();
-                  },
-                ),
-                CancelButton(
-                  key: Key("cancelButton"),
-                  text: cancel.i18n,
-                  onPressed: () {
-                    Navigator.of(context).pop();
-                  },
-                ),
-              ],
+    return graduationState.map(
+      initialGraduationState: (_) => LoadingIndicator(),
+      notReadyForGraduation: (_) => LoadingIndicator(),
+      graduationLoaded: (GraduationLoaded state) => AlertDialog(
+        key: Key("graduationDialog"),
+        actionsPadding: EdgeInsets.symmetric(horizontal: 8),
+        title: Text(
+          readyForGraduation.i18n,
+        ),
+        titleTextStyle: Theme.of(context).textTheme.headline3,
+        contentPadding: EdgeInsets.symmetric(vertical: 25),
+        content: GraduationPreview(currentGrade: currentUserGrade, newGrade: state.nextGrade),
+        actions: <Widget>[
+          ElevatedButton(
+            key: Key("graduateButton"),
+            child: Text(
+              graduate.i18n,
+              style: Theme.of(context).textTheme.button,
             ),
-        readyForGraduation: (Grade newGrade) => AlertDialog(
-              key: Key("graduationDialog"),
-              actionsPadding: EdgeInsets.symmetric(horizontal: 8),
-              title: Text(
-                readyForGraduation.i18n,
-              ),
-              titleTextStyle: Theme.of(context).textTheme.headline3,
-              contentPadding: EdgeInsets.symmetric(vertical: 25),
-              content: GraduationPreview(currentGrade: currentUserGrade, newGrade: newGrade),
-              actions: <Widget>[
-                ElevatedButton(
-                  key: Key("graduateButton"),
-                  child: Text(
-                    graduate.i18n,
-                    style: Theme.of(context).textTheme.button,
-                  ),
-                  onPressed: () {
-                    context.read<GraduationBloc>().add(Graduate(newGrade: newGrade));
-                    Navigator.of(context).pop();
-                  },
-                ),
-                CancelButton(
-                  key: Key("cancelButton"),
-                  text: cancel.i18n,
-                  onPressed: () {
-                    Navigator.of(context).pop();
-                  },
-                ),
-              ],
-            ),
-        orElse: () => LoadingIndicator());
+            onPressed: () {
+              context.read<GraduationBloc>().add(Graduate(newGrade: state.nextGrade));
+              Navigator.of(context).pop();
+            },
+          ),
+          CancelButton(
+            key: Key("cancelButton"),
+            text: cancel.i18n,
+            onPressed: () {
+              Navigator.of(context).pop();
+            },
+          ),
+        ],
+      ),
+      graduationLoading: (_) => LoadingIndicator(),
+    );
   }
 }

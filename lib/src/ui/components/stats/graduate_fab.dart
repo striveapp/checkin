@@ -54,8 +54,6 @@ class GraduateFabView extends StatelessWidget {
             statsRepository: RepositoryProvider.of<StatsRepository>(context),
             graduationUtils: GraduationUtil(),
             userEmail: profileState.profileUser.email,
-            userGrade: profileState.profileUser.grade,
-            gymId: profileState.profileUser.selectedGymId,
           )..add(InitializeGraduation()),
           child: BlocBuilder<GraduationBloc, GraduationState>(
               builder: (BuildContext context, GraduationState graduationState) {
