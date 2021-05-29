@@ -19,13 +19,6 @@ class _$GraduationStateTearOff {
   }
 
 // ignore: unused_element
-  NotReadyForGraduation notReadyForGraduation({@required Grade nextGrade}) {
-    return NotReadyForGraduation(
-      nextGrade: nextGrade,
-    );
-  }
-
-// ignore: unused_element
   GraduationLoaded graduationLoaded(
       {@required Grade nextGrade,
       @required int attendedLessonsForGrade,
@@ -35,11 +28,6 @@ class _$GraduationStateTearOff {
       attendedLessonsForGrade: attendedLessonsForGrade,
       forNextLevel: forNextLevel,
     );
-  }
-
-// ignore: unused_element
-  GraduationLoading graduationLoading() {
-    return const GraduationLoading();
   }
 }
 
@@ -52,32 +40,24 @@ mixin _$GraduationState {
   @optionalTypeArgs
   TResult when<TResult extends Object>({
     @required TResult initialGraduationState(),
-    @required TResult notReadyForGraduation(Grade nextGrade),
     @required
         TResult graduationLoaded(Grade nextGrade, int attendedLessonsForGrade, double forNextLevel),
-    @required TResult graduationLoading(),
   });
   @optionalTypeArgs
   TResult maybeWhen<TResult extends Object>({
     TResult initialGraduationState(),
-    TResult notReadyForGraduation(Grade nextGrade),
     TResult graduationLoaded(Grade nextGrade, int attendedLessonsForGrade, double forNextLevel),
-    TResult graduationLoading(),
     @required TResult orElse(),
   });
   @optionalTypeArgs
   TResult map<TResult extends Object>({
     @required TResult initialGraduationState(InitialGraduationState value),
-    @required TResult notReadyForGraduation(NotReadyForGraduation value),
     @required TResult graduationLoaded(GraduationLoaded value),
-    @required TResult graduationLoading(GraduationLoading value),
   });
   @optionalTypeArgs
   TResult maybeMap<TResult extends Object>({
     TResult initialGraduationState(InitialGraduationState value),
-    TResult notReadyForGraduation(NotReadyForGraduation value),
     TResult graduationLoaded(GraduationLoaded value),
-    TResult graduationLoading(GraduationLoading value),
     @required TResult orElse(),
   });
 }
@@ -142,15 +122,11 @@ class _$InitialGraduationState with DiagnosticableTreeMixin implements InitialGr
   @optionalTypeArgs
   TResult when<TResult extends Object>({
     @required TResult initialGraduationState(),
-    @required TResult notReadyForGraduation(Grade nextGrade),
     @required
         TResult graduationLoaded(Grade nextGrade, int attendedLessonsForGrade, double forNextLevel),
-    @required TResult graduationLoading(),
   }) {
     assert(initialGraduationState != null);
-    assert(notReadyForGraduation != null);
     assert(graduationLoaded != null);
-    assert(graduationLoading != null);
     return initialGraduationState();
   }
 
@@ -158,9 +134,7 @@ class _$InitialGraduationState with DiagnosticableTreeMixin implements InitialGr
   @optionalTypeArgs
   TResult maybeWhen<TResult extends Object>({
     TResult initialGraduationState(),
-    TResult notReadyForGraduation(Grade nextGrade),
     TResult graduationLoaded(Grade nextGrade, int attendedLessonsForGrade, double forNextLevel),
-    TResult graduationLoading(),
     @required TResult orElse(),
   }) {
     assert(orElse != null);
@@ -174,14 +148,10 @@ class _$InitialGraduationState with DiagnosticableTreeMixin implements InitialGr
   @optionalTypeArgs
   TResult map<TResult extends Object>({
     @required TResult initialGraduationState(InitialGraduationState value),
-    @required TResult notReadyForGraduation(NotReadyForGraduation value),
     @required TResult graduationLoaded(GraduationLoaded value),
-    @required TResult graduationLoading(GraduationLoading value),
   }) {
     assert(initialGraduationState != null);
-    assert(notReadyForGraduation != null);
     assert(graduationLoaded != null);
-    assert(graduationLoading != null);
     return initialGraduationState(this);
   }
 
@@ -189,9 +159,7 @@ class _$InitialGraduationState with DiagnosticableTreeMixin implements InitialGr
   @optionalTypeArgs
   TResult maybeMap<TResult extends Object>({
     TResult initialGraduationState(InitialGraduationState value),
-    TResult notReadyForGraduation(NotReadyForGraduation value),
     TResult graduationLoaded(GraduationLoaded value),
-    TResult graduationLoading(GraduationLoading value),
     @required TResult orElse(),
   }) {
     assert(orElse != null);
@@ -204,142 +172,6 @@ class _$InitialGraduationState with DiagnosticableTreeMixin implements InitialGr
 
 abstract class InitialGraduationState implements GraduationState {
   const factory InitialGraduationState() = _$InitialGraduationState;
-}
-
-/// @nodoc
-abstract class $NotReadyForGraduationCopyWith<$Res> {
-  factory $NotReadyForGraduationCopyWith(
-          NotReadyForGraduation value, $Res Function(NotReadyForGraduation) then) =
-      _$NotReadyForGraduationCopyWithImpl<$Res>;
-  $Res call({Grade nextGrade});
-}
-
-/// @nodoc
-class _$NotReadyForGraduationCopyWithImpl<$Res> extends _$GraduationStateCopyWithImpl<$Res>
-    implements $NotReadyForGraduationCopyWith<$Res> {
-  _$NotReadyForGraduationCopyWithImpl(
-      NotReadyForGraduation _value, $Res Function(NotReadyForGraduation) _then)
-      : super(_value, (v) => _then(v as NotReadyForGraduation));
-
-  @override
-  NotReadyForGraduation get _value => super._value as NotReadyForGraduation;
-
-  @override
-  $Res call({
-    Object nextGrade = freezed,
-  }) {
-    return _then(NotReadyForGraduation(
-      nextGrade: nextGrade == freezed ? _value.nextGrade : nextGrade as Grade,
-    ));
-  }
-}
-
-/// @nodoc
-class _$NotReadyForGraduation with DiagnosticableTreeMixin implements NotReadyForGraduation {
-  const _$NotReadyForGraduation({@required this.nextGrade}) : assert(nextGrade != null);
-
-  @override
-  final Grade nextGrade;
-
-  @override
-  String toString({DiagnosticLevel minLevel = DiagnosticLevel.info}) {
-    return 'GraduationState.notReadyForGraduation(nextGrade: $nextGrade)';
-  }
-
-  @override
-  void debugFillProperties(DiagnosticPropertiesBuilder properties) {
-    super.debugFillProperties(properties);
-    properties
-      ..add(DiagnosticsProperty('type', 'GraduationState.notReadyForGraduation'))
-      ..add(DiagnosticsProperty('nextGrade', nextGrade));
-  }
-
-  @override
-  bool operator ==(dynamic other) {
-    return identical(this, other) ||
-        (other is NotReadyForGraduation &&
-            (identical(other.nextGrade, nextGrade) ||
-                const DeepCollectionEquality().equals(other.nextGrade, nextGrade)));
-  }
-
-  @override
-  int get hashCode => runtimeType.hashCode ^ const DeepCollectionEquality().hash(nextGrade);
-
-  @JsonKey(ignore: true)
-  @override
-  $NotReadyForGraduationCopyWith<NotReadyForGraduation> get copyWith =>
-      _$NotReadyForGraduationCopyWithImpl<NotReadyForGraduation>(this, _$identity);
-
-  @override
-  @optionalTypeArgs
-  TResult when<TResult extends Object>({
-    @required TResult initialGraduationState(),
-    @required TResult notReadyForGraduation(Grade nextGrade),
-    @required
-        TResult graduationLoaded(Grade nextGrade, int attendedLessonsForGrade, double forNextLevel),
-    @required TResult graduationLoading(),
-  }) {
-    assert(initialGraduationState != null);
-    assert(notReadyForGraduation != null);
-    assert(graduationLoaded != null);
-    assert(graduationLoading != null);
-    return notReadyForGraduation(nextGrade);
-  }
-
-  @override
-  @optionalTypeArgs
-  TResult maybeWhen<TResult extends Object>({
-    TResult initialGraduationState(),
-    TResult notReadyForGraduation(Grade nextGrade),
-    TResult graduationLoaded(Grade nextGrade, int attendedLessonsForGrade, double forNextLevel),
-    TResult graduationLoading(),
-    @required TResult orElse(),
-  }) {
-    assert(orElse != null);
-    if (notReadyForGraduation != null) {
-      return notReadyForGraduation(nextGrade);
-    }
-    return orElse();
-  }
-
-  @override
-  @optionalTypeArgs
-  TResult map<TResult extends Object>({
-    @required TResult initialGraduationState(InitialGraduationState value),
-    @required TResult notReadyForGraduation(NotReadyForGraduation value),
-    @required TResult graduationLoaded(GraduationLoaded value),
-    @required TResult graduationLoading(GraduationLoading value),
-  }) {
-    assert(initialGraduationState != null);
-    assert(notReadyForGraduation != null);
-    assert(graduationLoaded != null);
-    assert(graduationLoading != null);
-    return notReadyForGraduation(this);
-  }
-
-  @override
-  @optionalTypeArgs
-  TResult maybeMap<TResult extends Object>({
-    TResult initialGraduationState(InitialGraduationState value),
-    TResult notReadyForGraduation(NotReadyForGraduation value),
-    TResult graduationLoaded(GraduationLoaded value),
-    TResult graduationLoading(GraduationLoading value),
-    @required TResult orElse(),
-  }) {
-    assert(orElse != null);
-    if (notReadyForGraduation != null) {
-      return notReadyForGraduation(this);
-    }
-    return orElse();
-  }
-}
-
-abstract class NotReadyForGraduation implements GraduationState {
-  const factory NotReadyForGraduation({@required Grade nextGrade}) = _$NotReadyForGraduation;
-
-  Grade get nextGrade;
-  @JsonKey(ignore: true)
-  $NotReadyForGraduationCopyWith<NotReadyForGraduation> get copyWith;
 }
 
 /// @nodoc
@@ -435,15 +267,11 @@ class _$GraduationLoaded with DiagnosticableTreeMixin implements GraduationLoade
   @optionalTypeArgs
   TResult when<TResult extends Object>({
     @required TResult initialGraduationState(),
-    @required TResult notReadyForGraduation(Grade nextGrade),
     @required
         TResult graduationLoaded(Grade nextGrade, int attendedLessonsForGrade, double forNextLevel),
-    @required TResult graduationLoading(),
   }) {
     assert(initialGraduationState != null);
-    assert(notReadyForGraduation != null);
     assert(graduationLoaded != null);
-    assert(graduationLoading != null);
     return graduationLoaded(nextGrade, attendedLessonsForGrade, forNextLevel);
   }
 
@@ -451,9 +279,7 @@ class _$GraduationLoaded with DiagnosticableTreeMixin implements GraduationLoade
   @optionalTypeArgs
   TResult maybeWhen<TResult extends Object>({
     TResult initialGraduationState(),
-    TResult notReadyForGraduation(Grade nextGrade),
     TResult graduationLoaded(Grade nextGrade, int attendedLessonsForGrade, double forNextLevel),
-    TResult graduationLoading(),
     @required TResult orElse(),
   }) {
     assert(orElse != null);
@@ -467,14 +293,10 @@ class _$GraduationLoaded with DiagnosticableTreeMixin implements GraduationLoade
   @optionalTypeArgs
   TResult map<TResult extends Object>({
     @required TResult initialGraduationState(InitialGraduationState value),
-    @required TResult notReadyForGraduation(NotReadyForGraduation value),
     @required TResult graduationLoaded(GraduationLoaded value),
-    @required TResult graduationLoading(GraduationLoading value),
   }) {
     assert(initialGraduationState != null);
-    assert(notReadyForGraduation != null);
     assert(graduationLoaded != null);
-    assert(graduationLoading != null);
     return graduationLoaded(this);
   }
 
@@ -482,9 +304,7 @@ class _$GraduationLoaded with DiagnosticableTreeMixin implements GraduationLoade
   @optionalTypeArgs
   TResult maybeMap<TResult extends Object>({
     TResult initialGraduationState(InitialGraduationState value),
-    TResult notReadyForGraduation(NotReadyForGraduation value),
     TResult graduationLoaded(GraduationLoaded value),
-    TResult graduationLoading(GraduationLoading value),
     @required TResult orElse(),
   }) {
     assert(orElse != null);
@@ -506,112 +326,4 @@ abstract class GraduationLoaded implements GraduationState {
   double get forNextLevel;
   @JsonKey(ignore: true)
   $GraduationLoadedCopyWith<GraduationLoaded> get copyWith;
-}
-
-/// @nodoc
-abstract class $GraduationLoadingCopyWith<$Res> {
-  factory $GraduationLoadingCopyWith(
-          GraduationLoading value, $Res Function(GraduationLoading) then) =
-      _$GraduationLoadingCopyWithImpl<$Res>;
-}
-
-/// @nodoc
-class _$GraduationLoadingCopyWithImpl<$Res> extends _$GraduationStateCopyWithImpl<$Res>
-    implements $GraduationLoadingCopyWith<$Res> {
-  _$GraduationLoadingCopyWithImpl(GraduationLoading _value, $Res Function(GraduationLoading) _then)
-      : super(_value, (v) => _then(v as GraduationLoading));
-
-  @override
-  GraduationLoading get _value => super._value as GraduationLoading;
-}
-
-/// @nodoc
-class _$GraduationLoading with DiagnosticableTreeMixin implements GraduationLoading {
-  const _$GraduationLoading();
-
-  @override
-  String toString({DiagnosticLevel minLevel = DiagnosticLevel.info}) {
-    return 'GraduationState.graduationLoading()';
-  }
-
-  @override
-  void debugFillProperties(DiagnosticPropertiesBuilder properties) {
-    super.debugFillProperties(properties);
-    properties..add(DiagnosticsProperty('type', 'GraduationState.graduationLoading'));
-  }
-
-  @override
-  bool operator ==(dynamic other) {
-    return identical(this, other) || (other is GraduationLoading);
-  }
-
-  @override
-  int get hashCode => runtimeType.hashCode;
-
-  @override
-  @optionalTypeArgs
-  TResult when<TResult extends Object>({
-    @required TResult initialGraduationState(),
-    @required TResult notReadyForGraduation(Grade nextGrade),
-    @required
-        TResult graduationLoaded(Grade nextGrade, int attendedLessonsForGrade, double forNextLevel),
-    @required TResult graduationLoading(),
-  }) {
-    assert(initialGraduationState != null);
-    assert(notReadyForGraduation != null);
-    assert(graduationLoaded != null);
-    assert(graduationLoading != null);
-    return graduationLoading();
-  }
-
-  @override
-  @optionalTypeArgs
-  TResult maybeWhen<TResult extends Object>({
-    TResult initialGraduationState(),
-    TResult notReadyForGraduation(Grade nextGrade),
-    TResult graduationLoaded(Grade nextGrade, int attendedLessonsForGrade, double forNextLevel),
-    TResult graduationLoading(),
-    @required TResult orElse(),
-  }) {
-    assert(orElse != null);
-    if (graduationLoading != null) {
-      return graduationLoading();
-    }
-    return orElse();
-  }
-
-  @override
-  @optionalTypeArgs
-  TResult map<TResult extends Object>({
-    @required TResult initialGraduationState(InitialGraduationState value),
-    @required TResult notReadyForGraduation(NotReadyForGraduation value),
-    @required TResult graduationLoaded(GraduationLoaded value),
-    @required TResult graduationLoading(GraduationLoading value),
-  }) {
-    assert(initialGraduationState != null);
-    assert(notReadyForGraduation != null);
-    assert(graduationLoaded != null);
-    assert(graduationLoading != null);
-    return graduationLoading(this);
-  }
-
-  @override
-  @optionalTypeArgs
-  TResult maybeMap<TResult extends Object>({
-    TResult initialGraduationState(InitialGraduationState value),
-    TResult notReadyForGraduation(NotReadyForGraduation value),
-    TResult graduationLoaded(GraduationLoaded value),
-    TResult graduationLoading(GraduationLoading value),
-    @required TResult orElse(),
-  }) {
-    assert(orElse != null);
-    if (graduationLoading != null) {
-      return graduationLoading(this);
-    }
-    return orElse();
-  }
-}
-
-abstract class GraduationLoading implements GraduationState {
-  const factory GraduationLoading() = _$GraduationLoading;
 }

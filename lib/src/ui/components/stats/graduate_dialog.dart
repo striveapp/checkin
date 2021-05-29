@@ -26,7 +26,6 @@ class GraduateDialog extends StatelessWidget {
       builder: (context, state) {
         return state.map(
           initialGraduationState: (_) => LoadingIndicator(),
-          notReadyForGraduation: (_) => LoadingIndicator(),
           graduationLoaded: (GraduationLoaded state) {
             return AlertDialog(
               key: Key("graduationDialog"),
@@ -60,7 +59,6 @@ class GraduateDialog extends StatelessWidget {
               ],
             );
           },
-          graduationLoading: (_) => LoadingIndicator(),
         );
       },
     );

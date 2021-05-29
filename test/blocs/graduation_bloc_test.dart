@@ -176,9 +176,7 @@ void main() {
             graduationUtils: mockGraduationUtils,
             userEmail: fakeUser.email),
         act: (bloc) => bloc.add(Graduate(newGrade: fakeNewGrade)),
-        expect: () => [
-          GraduationLoading(),
-        ],
+        expect: () => [],
       );
     });
   });

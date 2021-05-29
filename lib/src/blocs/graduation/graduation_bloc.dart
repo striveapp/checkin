@@ -72,7 +72,6 @@ class GraduationBloc extends Bloc<GraduationEvent, GraduationState> {
     }
 
     if (event is Graduate) {
-      yield GraduationLoading();
       await userRepository.updateGrade(userEmail, event.newGrade);
     }
   }
