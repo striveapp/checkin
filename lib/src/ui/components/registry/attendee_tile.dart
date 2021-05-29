@@ -1,14 +1,9 @@
-import 'package:checkin/src/blocs/graduation/bloc.dart';
 import 'package:checkin/src/blocs/sessions/bloc.dart';
 import 'package:checkin/src/localization/localization.dart';
 import 'package:checkin/src/models/attendee.dart';
-import 'package:checkin/src/repositories/graduation_system_repository.dart';
-import 'package:checkin/src/repositories/stats_repository.dart';
-import 'package:checkin/src/repositories/user_repository.dart';
 import 'package:checkin/src/ui/components/empty_widget.dart';
-import 'package:checkin/src/ui/components/registry/attendee_thumbnail.dart';
 import 'package:checkin/src/ui/components/registry/dismissible_cue.dart';
-import 'package:checkin/src/util/graduation_util.dart';
+import 'package:checkin/src/ui/components/rounded_image.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 
@@ -48,17 +43,6 @@ class AttendeeTile extends StatelessWidget {
             selectedGymId: selectedGymId,
           ),
         ),
-        BlocProvider<GraduationBloc>(
-          create: (BuildContext context) => GraduationBloc(
-            graduationSystemRepository: RepositoryProvider.of<GraduationSystemRepository>(context),
-            statsRepository: RepositoryProvider.of<StatsRepository>(context),
-            userRepository: RepositoryProvider.of<UserRepository>(context),
-            graduationUtils: GraduationUtil(),
-            userEmail: attendee.email,
-            userGrade: attendee.grade,
-            gymId: selectedGymId,
-          )..add(InitializeGraduation()),
-        ),
       ],
       child: Column(
         crossAxisAlignment: CrossAxisAlignment.center,
@@ -67,10 +51,7 @@ class AttendeeTile extends StatelessWidget {
             padding: const EdgeInsets.symmetric(vertical: 8.0),
             child: ListTile(
               key: Key("tile-${attendee.email}"),
-              leading: AttendeeThumbnail(
-                attendeeImage: attendee.imageUrl,
-                showGraduationIndication: showGraduationIndication,
-              ),
+              leading: RoundedImage(url: attendee.imageUrl),
               title: Padding(
                 padding: const EdgeInsets.only(left: 6),
                 child: Text("${attendee.name}${this.isCurrent ? " (${you.i18n})" : ""}",

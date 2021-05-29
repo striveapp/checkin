@@ -2,7 +2,6 @@ import 'package:checkin/src/blocs/profile/bloc.dart';
 import 'package:checkin/src/blocs/stats/bloc.dart';
 import 'package:checkin/src/localization/localization.dart';
 import 'package:checkin/src/models/timespan.dart';
-import 'package:checkin/src/repositories/user_repository.dart';
 import 'package:checkin/src/ui/components/base_app_bar.dart';
 import 'package:checkin/src/ui/components/stats/graduate_fab.dart';
 import 'package:checkin/src/ui/components/stats/stats_body.dart';
@@ -30,7 +29,7 @@ class StatsPage extends StatelessWidget {
         ),
         BlocProvider<ProfileBloc>(
           create: (context) => ProfileBloc(
-            userRepository: context.read<UserRepository>(),
+            userRepository: context.read(),
             storageRepository: context.read(),
             imageRepository: context.read(),
             nonCurrentUserEmail: userEmail,

@@ -8,6 +8,9 @@ import 'package:checkin/src/repositories/user_repository.dart';
 import 'package:flutter/foundation.dart';
 import 'package:meta/meta.dart';
 
+//TODO: This is still used to show the graduation fab, since if appears in the profile
+// Cannot be removed because the profile in stats cannot load both current and selected user https://trello.com/c/1WwrY87L
+
 class UserBloc extends Bloc<UserEvent, UserState> {
   final UserRepository userRepository;
   final AuthBloc authBloc;
