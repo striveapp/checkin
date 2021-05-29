@@ -61,11 +61,12 @@ void main() {
       blocTest(
         "is InitialGraduationState",
         build: () => GraduationBloc(
-            graduationSystemRepository: mockGraduationSystemRepository,
-            statsRepository: mockStatsRepository,
-            userRepository: mockUserRepository,
-            graduationUtils: mockGraduationUtils,
-            userEmail: fakeUser.email),
+          graduationSystemRepository: mockGraduationSystemRepository,
+          statsRepository: mockStatsRepository,
+          userRepository: mockUserRepository,
+          graduationUtils: mockGraduationUtils,
+          userEmail: fakeUser.email,
+        ),
         expect: () => [],
         verify: (bloc) {
           expect(bloc.state, InitialGraduationState());
@@ -80,7 +81,8 @@ void main() {
       );
 
       setUp(() {
-        when(mockUserRepository.getUser()).thenAnswer((_) => Stream.value(fakeUser));
+        when(mockUserRepository.getUserByEmail(fakeUser.email))
+            .thenAnswer((_) => Stream.value(fakeUser));
         when(mockGraduationSystemRepository.getGraduationSystem(
                 fakeUser.selectedGymId, fakeUser.grade))
             .thenAnswer((_) => Stream.value(graduationSystem));
@@ -97,7 +99,7 @@ void main() {
       });
 
       tearDown(() {
-        verify(mockUserRepository.getUser());
+        verify(mockUserRepository.getUserByEmail(fakeUser.email));
         verify(mockGraduationSystemRepository.getGraduationSystem(
             fakeUser.selectedGymId, fakeUser.grade));
         verify(mockStatsRepository.getUserStatsByGrade(

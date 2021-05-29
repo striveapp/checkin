@@ -5,7 +5,7 @@ import 'package:flutter_test/flutter_test.dart';
 import 'package:i18n_extension/i18n_widget.dart';
 
 extension PumpApp on WidgetTester {
-  Future<void> pumpApp(Widget widget, {locale = const Locale("es", "")}) {
+  Future<void> pumpApp(Widget widget, {Locale locale = const Locale("es", "")}) {
     return pumpWidget(
       MaterialApp(
         localizationsDelegates: [
@@ -26,8 +26,11 @@ extension PumpApp on WidgetTester {
   }
 
   Future<void> pumpAppWithScaffold(Widget widget, {locale = const Locale("es", "")}) {
-    return pumpApp(Scaffold(
-      body: widget,
-    ));
+    return pumpApp(
+      Scaffold(
+        body: widget,
+      ),
+      locale: locale,
+    );
   }
 }

@@ -60,7 +60,7 @@ class GraduationBloc extends Bloc<GraduationEvent, GraduationState> {
   ) async* {
     if (event is InitializeGraduation) {
       userSub?.cancel();
-      userSub = userRepository.getUser().listen(_onUserChanged);
+      userSub = userRepository.getUserByEmail(userEmail).listen(_onUserChanged);
     }
 
     if (event is GraduationSystemUpdated) {
