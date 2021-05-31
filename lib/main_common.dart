@@ -10,7 +10,6 @@ import 'package:checkin/src/blocs/gym/gym_bloc.dart';
 import 'package:checkin/src/blocs/notification/notification_bloc.dart';
 import 'package:checkin/src/blocs/notification/notification_event.dart';
 import 'package:checkin/src/blocs/theme/bloc.dart';
-import 'package:checkin/src/blocs/user/bloc.dart';
 import 'package:checkin/src/blocs/version/bloc.dart';
 import 'package:checkin/src/logging/logger.dart';
 import 'package:checkin/src/models/user.dart';
@@ -138,12 +137,6 @@ Future<void> mainCommon(AppConfig appConfig) async {
                       versionRepository: context.read(),
                       versionUtil: VersionUtil(),
                     )),
-            BlocProvider<UserBloc>(
-              create: (BuildContext context) => UserBloc(
-                userRepository: context.read(),
-                authBloc: context.read(),
-              ),
-            ),
             BlocProvider<GymBloc>(
               create: (BuildContext context) => GymBloc(
                 gymRepository: context.read(),

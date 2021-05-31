@@ -20,13 +20,17 @@ class _$GraduationStateTearOff {
 
 // ignore: unused_element
   GraduationLoaded graduationLoaded(
-      {@required Grade nextGrade,
+      {@required Grade currentGrade,
+      @required Grade nextGrade,
       @required int attendedLessonsForGrade,
-      @required double forNextLevel}) {
+      @required double forNextLevel,
+      @required bool isVisible}) {
     return GraduationLoaded(
+      currentGrade: currentGrade,
       nextGrade: nextGrade,
       attendedLessonsForGrade: attendedLessonsForGrade,
       forNextLevel: forNextLevel,
+      isVisible: isVisible,
     );
   }
 }
@@ -41,12 +45,14 @@ mixin _$GraduationState {
   TResult when<TResult extends Object>({
     @required TResult initialGraduationState(),
     @required
-        TResult graduationLoaded(Grade nextGrade, int attendedLessonsForGrade, double forNextLevel),
+        TResult graduationLoaded(Grade currentGrade, Grade nextGrade,
+            int attendedLessonsForGrade, double forNextLevel, bool isVisible),
   });
   @optionalTypeArgs
   TResult maybeWhen<TResult extends Object>({
     TResult initialGraduationState(),
-    TResult graduationLoaded(Grade nextGrade, int attendedLessonsForGrade, double forNextLevel),
+    TResult graduationLoaded(Grade currentGrade, Grade nextGrade,
+        int attendedLessonsForGrade, double forNextLevel, bool isVisible),
     @required TResult orElse(),
   });
   @optionalTypeArgs
@@ -64,12 +70,14 @@ mixin _$GraduationState {
 
 /// @nodoc
 abstract class $GraduationStateCopyWith<$Res> {
-  factory $GraduationStateCopyWith(GraduationState value, $Res Function(GraduationState) then) =
+  factory $GraduationStateCopyWith(
+          GraduationState value, $Res Function(GraduationState) then) =
       _$GraduationStateCopyWithImpl<$Res>;
 }
 
 /// @nodoc
-class _$GraduationStateCopyWithImpl<$Res> implements $GraduationStateCopyWith<$Res> {
+class _$GraduationStateCopyWithImpl<$Res>
+    implements $GraduationStateCopyWith<$Res> {
   _$GraduationStateCopyWithImpl(this._value, this._then);
 
   final GraduationState _value;
@@ -79,16 +87,17 @@ class _$GraduationStateCopyWithImpl<$Res> implements $GraduationStateCopyWith<$R
 
 /// @nodoc
 abstract class $InitialGraduationStateCopyWith<$Res> {
-  factory $InitialGraduationStateCopyWith(
-          InitialGraduationState value, $Res Function(InitialGraduationState) then) =
+  factory $InitialGraduationStateCopyWith(InitialGraduationState value,
+          $Res Function(InitialGraduationState) then) =
       _$InitialGraduationStateCopyWithImpl<$Res>;
 }
 
 /// @nodoc
-class _$InitialGraduationStateCopyWithImpl<$Res> extends _$GraduationStateCopyWithImpl<$Res>
+class _$InitialGraduationStateCopyWithImpl<$Res>
+    extends _$GraduationStateCopyWithImpl<$Res>
     implements $InitialGraduationStateCopyWith<$Res> {
-  _$InitialGraduationStateCopyWithImpl(
-      InitialGraduationState _value, $Res Function(InitialGraduationState) _then)
+  _$InitialGraduationStateCopyWithImpl(InitialGraduationState _value,
+      $Res Function(InitialGraduationState) _then)
       : super(_value, (v) => _then(v as InitialGraduationState));
 
   @override
@@ -96,7 +105,9 @@ class _$InitialGraduationStateCopyWithImpl<$Res> extends _$GraduationStateCopyWi
 }
 
 /// @nodoc
-class _$InitialGraduationState with DiagnosticableTreeMixin implements InitialGraduationState {
+class _$InitialGraduationState
+    with DiagnosticableTreeMixin
+    implements InitialGraduationState {
   const _$InitialGraduationState();
 
   @override
@@ -107,7 +118,9 @@ class _$InitialGraduationState with DiagnosticableTreeMixin implements InitialGr
   @override
   void debugFillProperties(DiagnosticPropertiesBuilder properties) {
     super.debugFillProperties(properties);
-    properties..add(DiagnosticsProperty('type', 'GraduationState.initialGraduationState'));
+    properties
+      ..add(DiagnosticsProperty(
+          'type', 'GraduationState.initialGraduationState'));
   }
 
   @override
@@ -123,7 +136,8 @@ class _$InitialGraduationState with DiagnosticableTreeMixin implements InitialGr
   TResult when<TResult extends Object>({
     @required TResult initialGraduationState(),
     @required
-        TResult graduationLoaded(Grade nextGrade, int attendedLessonsForGrade, double forNextLevel),
+        TResult graduationLoaded(Grade currentGrade, Grade nextGrade,
+            int attendedLessonsForGrade, double forNextLevel, bool isVisible),
   }) {
     assert(initialGraduationState != null);
     assert(graduationLoaded != null);
@@ -134,7 +148,8 @@ class _$InitialGraduationState with DiagnosticableTreeMixin implements InitialGr
   @optionalTypeArgs
   TResult maybeWhen<TResult extends Object>({
     TResult initialGraduationState(),
-    TResult graduationLoaded(Grade nextGrade, int attendedLessonsForGrade, double forNextLevel),
+    TResult graduationLoaded(Grade currentGrade, Grade nextGrade,
+        int attendedLessonsForGrade, double forNextLevel, bool isVisible),
     @required TResult orElse(),
   }) {
     assert(orElse != null);
@@ -176,15 +191,23 @@ abstract class InitialGraduationState implements GraduationState {
 
 /// @nodoc
 abstract class $GraduationLoadedCopyWith<$Res> {
-  factory $GraduationLoadedCopyWith(GraduationLoaded value, $Res Function(GraduationLoaded) then) =
+  factory $GraduationLoadedCopyWith(
+          GraduationLoaded value, $Res Function(GraduationLoaded) then) =
       _$GraduationLoadedCopyWithImpl<$Res>;
-  $Res call({Grade nextGrade, int attendedLessonsForGrade, double forNextLevel});
+  $Res call(
+      {Grade currentGrade,
+      Grade nextGrade,
+      int attendedLessonsForGrade,
+      double forNextLevel,
+      bool isVisible});
 }
 
 /// @nodoc
-class _$GraduationLoadedCopyWithImpl<$Res> extends _$GraduationStateCopyWithImpl<$Res>
+class _$GraduationLoadedCopyWithImpl<$Res>
+    extends _$GraduationStateCopyWithImpl<$Res>
     implements $GraduationLoadedCopyWith<$Res> {
-  _$GraduationLoadedCopyWithImpl(GraduationLoaded _value, $Res Function(GraduationLoaded) _then)
+  _$GraduationLoadedCopyWithImpl(
+      GraduationLoaded _value, $Res Function(GraduationLoaded) _then)
       : super(_value, (v) => _then(v as GraduationLoaded));
 
   @override
@@ -192,40 +215,57 @@ class _$GraduationLoadedCopyWithImpl<$Res> extends _$GraduationStateCopyWithImpl
 
   @override
   $Res call({
+    Object currentGrade = freezed,
     Object nextGrade = freezed,
     Object attendedLessonsForGrade = freezed,
     Object forNextLevel = freezed,
+    Object isVisible = freezed,
   }) {
     return _then(GraduationLoaded(
+      currentGrade:
+          currentGrade == freezed ? _value.currentGrade : currentGrade as Grade,
       nextGrade: nextGrade == freezed ? _value.nextGrade : nextGrade as Grade,
       attendedLessonsForGrade: attendedLessonsForGrade == freezed
           ? _value.attendedLessonsForGrade
           : attendedLessonsForGrade as int,
-      forNextLevel: forNextLevel == freezed ? _value.forNextLevel : forNextLevel as double,
+      forNextLevel: forNextLevel == freezed
+          ? _value.forNextLevel
+          : forNextLevel as double,
+      isVisible: isVisible == freezed ? _value.isVisible : isVisible as bool,
     ));
   }
 }
 
 /// @nodoc
-class _$GraduationLoaded with DiagnosticableTreeMixin implements GraduationLoaded {
+class _$GraduationLoaded
+    with DiagnosticableTreeMixin
+    implements GraduationLoaded {
   const _$GraduationLoaded(
-      {@required this.nextGrade,
+      {@required this.currentGrade,
+      @required this.nextGrade,
       @required this.attendedLessonsForGrade,
-      @required this.forNextLevel})
-      : assert(nextGrade != null),
+      @required this.forNextLevel,
+      @required this.isVisible})
+      : assert(currentGrade != null),
+        assert(nextGrade != null),
         assert(attendedLessonsForGrade != null),
-        assert(forNextLevel != null);
+        assert(forNextLevel != null),
+        assert(isVisible != null);
 
+  @override
+  final Grade currentGrade;
   @override
   final Grade nextGrade;
   @override
   final int attendedLessonsForGrade;
   @override
   final double forNextLevel;
+  @override
+  final bool isVisible;
 
   @override
   String toString({DiagnosticLevel minLevel = DiagnosticLevel.info}) {
-    return 'GraduationState.graduationLoaded(nextGrade: $nextGrade, attendedLessonsForGrade: $attendedLessonsForGrade, forNextLevel: $forNextLevel)';
+    return 'GraduationState.graduationLoaded(currentGrade: $currentGrade, nextGrade: $nextGrade, attendedLessonsForGrade: $attendedLessonsForGrade, forNextLevel: $forNextLevel, isVisible: $isVisible)';
   }
 
   @override
@@ -233,30 +273,44 @@ class _$GraduationLoaded with DiagnosticableTreeMixin implements GraduationLoade
     super.debugFillProperties(properties);
     properties
       ..add(DiagnosticsProperty('type', 'GraduationState.graduationLoaded'))
+      ..add(DiagnosticsProperty('currentGrade', currentGrade))
       ..add(DiagnosticsProperty('nextGrade', nextGrade))
-      ..add(DiagnosticsProperty('attendedLessonsForGrade', attendedLessonsForGrade))
-      ..add(DiagnosticsProperty('forNextLevel', forNextLevel));
+      ..add(DiagnosticsProperty(
+          'attendedLessonsForGrade', attendedLessonsForGrade))
+      ..add(DiagnosticsProperty('forNextLevel', forNextLevel))
+      ..add(DiagnosticsProperty('isVisible', isVisible));
   }
 
   @override
   bool operator ==(dynamic other) {
     return identical(this, other) ||
         (other is GraduationLoaded &&
-            (identical(other.nextGrade, nextGrade) ||
-                const DeepCollectionEquality().equals(other.nextGrade, nextGrade)) &&
-            (identical(other.attendedLessonsForGrade, attendedLessonsForGrade) ||
+            (identical(other.currentGrade, currentGrade) ||
                 const DeepCollectionEquality()
-                    .equals(other.attendedLessonsForGrade, attendedLessonsForGrade)) &&
+                    .equals(other.currentGrade, currentGrade)) &&
+            (identical(other.nextGrade, nextGrade) ||
+                const DeepCollectionEquality()
+                    .equals(other.nextGrade, nextGrade)) &&
+            (identical(
+                    other.attendedLessonsForGrade, attendedLessonsForGrade) ||
+                const DeepCollectionEquality().equals(
+                    other.attendedLessonsForGrade, attendedLessonsForGrade)) &&
             (identical(other.forNextLevel, forNextLevel) ||
-                const DeepCollectionEquality().equals(other.forNextLevel, forNextLevel)));
+                const DeepCollectionEquality()
+                    .equals(other.forNextLevel, forNextLevel)) &&
+            (identical(other.isVisible, isVisible) ||
+                const DeepCollectionEquality()
+                    .equals(other.isVisible, isVisible)));
   }
 
   @override
   int get hashCode =>
       runtimeType.hashCode ^
+      const DeepCollectionEquality().hash(currentGrade) ^
       const DeepCollectionEquality().hash(nextGrade) ^
       const DeepCollectionEquality().hash(attendedLessonsForGrade) ^
-      const DeepCollectionEquality().hash(forNextLevel);
+      const DeepCollectionEquality().hash(forNextLevel) ^
+      const DeepCollectionEquality().hash(isVisible);
 
   @JsonKey(ignore: true)
   @override
@@ -268,23 +322,27 @@ class _$GraduationLoaded with DiagnosticableTreeMixin implements GraduationLoade
   TResult when<TResult extends Object>({
     @required TResult initialGraduationState(),
     @required
-        TResult graduationLoaded(Grade nextGrade, int attendedLessonsForGrade, double forNextLevel),
+        TResult graduationLoaded(Grade currentGrade, Grade nextGrade,
+            int attendedLessonsForGrade, double forNextLevel, bool isVisible),
   }) {
     assert(initialGraduationState != null);
     assert(graduationLoaded != null);
-    return graduationLoaded(nextGrade, attendedLessonsForGrade, forNextLevel);
+    return graduationLoaded(currentGrade, nextGrade, attendedLessonsForGrade,
+        forNextLevel, isVisible);
   }
 
   @override
   @optionalTypeArgs
   TResult maybeWhen<TResult extends Object>({
     TResult initialGraduationState(),
-    TResult graduationLoaded(Grade nextGrade, int attendedLessonsForGrade, double forNextLevel),
+    TResult graduationLoaded(Grade currentGrade, Grade nextGrade,
+        int attendedLessonsForGrade, double forNextLevel, bool isVisible),
     @required TResult orElse(),
   }) {
     assert(orElse != null);
     if (graduationLoaded != null) {
-      return graduationLoaded(nextGrade, attendedLessonsForGrade, forNextLevel);
+      return graduationLoaded(currentGrade, nextGrade, attendedLessonsForGrade,
+          forNextLevel, isVisible);
     }
     return orElse();
   }
@@ -317,13 +375,17 @@ class _$GraduationLoaded with DiagnosticableTreeMixin implements GraduationLoade
 
 abstract class GraduationLoaded implements GraduationState {
   const factory GraduationLoaded(
-      {@required Grade nextGrade,
+      {@required Grade currentGrade,
+      @required Grade nextGrade,
       @required int attendedLessonsForGrade,
-      @required double forNextLevel}) = _$GraduationLoaded;
+      @required double forNextLevel,
+      @required bool isVisible}) = _$GraduationLoaded;
 
+  Grade get currentGrade;
   Grade get nextGrade;
   int get attendedLessonsForGrade;
   double get forNextLevel;
+  bool get isVisible;
   @JsonKey(ignore: true)
   $GraduationLoadedCopyWith<GraduationLoaded> get copyWith;
 }

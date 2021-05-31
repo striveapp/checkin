@@ -1,6 +1,5 @@
 import 'package:checkin/src/blocs/graduation/bloc.dart';
 import 'package:checkin/src/localization/localization.dart';
-import 'package:checkin/src/models/grade.dart';
 import 'package:checkin/src/ui/components/cancel_button.dart';
 import 'package:checkin/src/ui/components/loading_indicator.dart';
 import 'package:checkin/src/ui/components/stats/graduation_preview.dart';
@@ -13,11 +12,8 @@ class GraduateDialog extends StatelessWidget {
   static const String cancel = 'Cancel';
   static const String graduate = 'Graduate';
 
-  final Grade currentUserGrade;
-
   const GraduateDialog({
     Key key,
-    @required this.currentUserGrade,
   }) : super(key: key);
 
   @override
@@ -36,7 +32,8 @@ class GraduateDialog extends StatelessWidget {
               ),
               titleTextStyle: Theme.of(context).textTheme.headline3,
               contentPadding: EdgeInsets.symmetric(vertical: 25),
-              content: GraduationPreview(currentGrade: currentUserGrade, newGrade: state.nextGrade),
+              content:
+                  GraduationPreview(currentGrade: state.currentGrade, newGrade: state.nextGrade),
               actions: <Widget>[
                 ElevatedButton(
                   key: Key("graduateButton"),

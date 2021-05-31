@@ -18,38 +18,44 @@ class GraduationBloc extends Bloc<GraduationEvent, GraduationState> {
   final UserRepository userRepository;
   final GraduationUtil graduationUtils;
 
-  final String userEmail;
+  final String userToGraduateEmail;
 
   StreamSubscription<GraduationSystem> graduationSystemSub;
   StreamSubscription<UserHistory> statsSub;
-  StreamSubscription<User> userSub;
+  StreamSubscription<User> currentUserSub;
+  StreamSubscription<User> userToGraduateSub;
 
   GraduationBloc({
     @required this.graduationSystemRepository,
     @required this.statsRepository,
     @required this.userRepository,
     @required this.graduationUtils,
-    @required this.userEmail,
+    @required this.userToGraduateEmail,
   }) : super(InitialGraduationState());
 
-  void _onUserChanged(User user) {
-    graduationSystemSub?.cancel();
-    graduationSystemSub = graduationSystemRepository
-        .getGraduationSystem(user.selectedGymId, user.grade)
-        .listen((graduationSystem) {
-      statsSub?.cancel();
-      statsSub = statsRepository
-          .getUserStatsByGrade(
-        user.selectedGymId,
-        user.email,
-        user.grade,
-      )
-          .listen((history) {
-        add(GraduationSystemUpdated(
-          attendedLessonsForGrade: history.attendedLessons.length,
-          forNextLevel: graduationSystem.forNextLevel,
-          nextGrade: graduationUtils.calculateNextGrade(user.grade),
-        ));
+  void _onCurrentUserChanged(User currentUser) {
+    userToGraduateSub?.cancel();
+    userToGraduateSub = userRepository.getUserByEmail(userToGraduateEmail).listen((userToGraduate) {
+      graduationSystemSub?.cancel();
+      graduationSystemSub = graduationSystemRepository
+          .getGraduationSystem(userToGraduate.selectedGymId, userToGraduate.grade)
+          .listen((graduationSystem) {
+        statsSub?.cancel();
+        statsSub = statsRepository
+            .getUserStatsByGrade(
+          userToGraduate.selectedGymId,
+          userToGraduate.email,
+          userToGraduate.grade,
+        )
+            .listen((history) {
+          add(GraduationSystemUpdated(
+            attendedLessonsForGrade: history.attendedLessons.length,
+            forNextLevel: graduationSystem.forNextLevel,
+            currentGrade: userToGraduate.grade,
+            nextGrade: graduationUtils.calculateNextGrade(userToGraduate.grade),
+            isVisible: currentUser.isOwner,
+          ));
+        });
       });
     });
   }
@@ -59,20 +65,22 @@ class GraduationBloc extends Bloc<GraduationEvent, GraduationState> {
     GraduationEvent event,
   ) async* {
     if (event is InitializeGraduation) {
-      userSub?.cancel();
-      userSub = userRepository.getUserByEmail(userEmail).listen(_onUserChanged);
+      currentUserSub?.cancel();
+      currentUserSub = userRepository.getUser().listen(_onCurrentUserChanged);
     }
 
     if (event is GraduationSystemUpdated) {
       yield GraduationLoaded(
+        currentGrade: event.currentGrade,
         nextGrade: event.nextGrade,
         forNextLevel: event.forNextLevel,
         attendedLessonsForGrade: event.attendedLessonsForGrade,
+        isVisible: event.isVisible,
       );
     }
 
     if (event is Graduate) {
-      await userRepository.updateGrade(userEmail, event.newGrade);
+      await userRepository.updateGrade(userToGraduateEmail, event.newGrade);
     }
   }
 
@@ -80,7 +88,7 @@ class GraduationBloc extends Bloc<GraduationEvent, GraduationState> {
   Future<void> close() {
     graduationSystemSub?.cancel();
     statsSub?.cancel();
-    userSub?.cancel();
+    currentUserSub?.cancel();
     return super.close();
   }
 }

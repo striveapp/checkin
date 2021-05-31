@@ -1,3 +1,5 @@
+import 'package:checkin/src/blocs/graduation/bloc.dart';
+import 'package:checkin/src/blocs/graduation/graduation_bloc.dart';
 import 'package:checkin/src/blocs/profile/bloc.dart';
 import 'package:checkin/src/blocs/stats/bloc.dart';
 import 'package:checkin/src/localization/localization.dart';
@@ -6,6 +8,7 @@ import 'package:checkin/src/ui/components/base_app_bar.dart';
 import 'package:checkin/src/ui/components/stats/graduate_fab.dart';
 import 'package:checkin/src/ui/components/stats/stats_body.dart';
 import 'package:checkin/src/ui/components/stats/stats_header.dart';
+import 'package:checkin/src/util/graduation_util.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 
@@ -35,13 +38,22 @@ class StatsPage extends StatelessWidget {
             nonCurrentUserEmail: userEmail,
           )..add(InitializeProfile()),
         ),
+        BlocProvider<GraduationBloc>(
+          create: (_) => GraduationBloc(
+            graduationSystemRepository: context.read(),
+            userRepository: context.read(),
+            statsRepository: context.read(),
+            graduationUtils: GraduationUtil(),
+            userToGraduateEmail: userEmail,
+          )..add(InitializeGraduation()),
+        ),
       ],
       child: Scaffold(
         appBar: BaseAppBar(
           title: stats.i18n,
           showUserImage: false,
         ),
-        floatingActionButton: GraduateFab(userEmail: userEmail),
+        floatingActionButton: GraduateFab(),
         floatingActionButtonLocation: FloatingActionButtonLocation.centerFloat,
         body: Container(
           child: Padding(

@@ -41,11 +41,7 @@ void main() {
         when(() => graduationBloc.state).thenReturn(InitialGraduationState());
 
         await tester.pumpAppWithScaffold(
-          BlocProvider.value(
-              value: graduationBloc,
-              child: GraduateDialog(
-                currentUserGrade: Grade.black,
-              )),
+          BlocProvider.value(value: graduationBloc, child: GraduateDialog()),
         );
 
         expect(find.byType(LoadingIndicator), findsOneWidget);
@@ -54,15 +50,16 @@ void main() {
 
     group("when graduation is loaded", () {
       testWidgets("Renders AlertDialog", (tester) async {
-        when(() => graduationBloc.state).thenReturn(
-            GraduationLoaded(nextGrade: Grade.black, attendedLessonsForGrade: 0, forNextLevel: 3));
+        when(() => graduationBloc.state).thenReturn(GraduationLoaded(
+          currentGrade: Grade.brown,
+          nextGrade: Grade.black,
+          attendedLessonsForGrade: 0,
+          forNextLevel: 3,
+          isVisible: true,
+        ));
 
         await tester.pumpAppWithScaffold(
-          BlocProvider.value(
-              value: graduationBloc,
-              child: GraduateDialog(
-                currentUserGrade: Grade.brown,
-              )),
+          BlocProvider.value(value: graduationBloc, child: GraduateDialog()),
           locale: Locale("en", ""),
         );
 
@@ -72,14 +69,16 @@ void main() {
       });
 
       testWidgets('when graduateButton is tapped dispatch Graduate event', (tester) async {
-        when(() => graduationBloc.state).thenReturn(
-            GraduationLoaded(nextGrade: Grade.black, attendedLessonsForGrade: 0, forNextLevel: 3));
+        when(() => graduationBloc.state).thenReturn(GraduationLoaded(
+          currentGrade: Grade.brown,
+          nextGrade: Grade.black,
+          attendedLessonsForGrade: 0,
+          forNextLevel: 3,
+          isVisible: true,
+        ));
 
-        await tester.pumpAppWithScaffold(BlocProvider.value(
-            value: graduationBloc,
-            child: GraduateDialog(
-              currentUserGrade: Grade.brown,
-            )));
+        await tester.pumpAppWithScaffold(
+            BlocProvider.value(value: graduationBloc, child: GraduateDialog()));
 
         await tester.tap(find.byKey(Key("graduateButton")));
         await tester.pumpAndSettle();

@@ -20,7 +20,9 @@ class _$NewsStateTearOff {
 
 // ignore: unused_element
   NewsLoaded newsLoaded(
-      {@required List<News> newsList, @required bool hasPinnedNews, @required String gymId}) {
+      {@required List<News> newsList,
+      @required bool hasPinnedNews,
+      @required String gymId}) {
     return NewsLoaded(
       newsList: newsList,
       hasPinnedNews: hasPinnedNews,
@@ -38,7 +40,9 @@ mixin _$NewsState {
   @optionalTypeArgs
   TResult when<TResult extends Object>({
     @required TResult newsInitial(),
-    @required TResult newsLoaded(List<News> newsList, bool hasPinnedNews, String gymId),
+    @required
+        TResult newsLoaded(
+            List<News> newsList, bool hasPinnedNews, String gymId),
   });
   @optionalTypeArgs
   TResult maybeWhen<TResult extends Object>({
@@ -76,14 +80,16 @@ class _$NewsStateCopyWithImpl<$Res> implements $NewsStateCopyWith<$Res> {
 
 /// @nodoc
 abstract class $NewsInitialCopyWith<$Res> {
-  factory $NewsInitialCopyWith(NewsInitial value, $Res Function(NewsInitial) then) =
+  factory $NewsInitialCopyWith(
+          NewsInitial value, $Res Function(NewsInitial) then) =
       _$NewsInitialCopyWithImpl<$Res>;
 }
 
 /// @nodoc
 class _$NewsInitialCopyWithImpl<$Res> extends _$NewsStateCopyWithImpl<$Res>
     implements $NewsInitialCopyWith<$Res> {
-  _$NewsInitialCopyWithImpl(NewsInitial _value, $Res Function(NewsInitial) _then)
+  _$NewsInitialCopyWithImpl(
+      NewsInitial _value, $Res Function(NewsInitial) _then)
       : super(_value, (v) => _then(v as NewsInitial));
 
   @override
@@ -117,7 +123,9 @@ class _$NewsInitial with DiagnosticableTreeMixin implements NewsInitial {
   @optionalTypeArgs
   TResult when<TResult extends Object>({
     @required TResult newsInitial(),
-    @required TResult newsLoaded(List<News> newsList, bool hasPinnedNews, String gymId),
+    @required
+        TResult newsLoaded(
+            List<News> newsList, bool hasPinnedNews, String gymId),
   }) {
     assert(newsInitial != null);
     assert(newsLoaded != null);
@@ -170,7 +178,8 @@ abstract class NewsInitial implements NewsState {
 
 /// @nodoc
 abstract class $NewsLoadedCopyWith<$Res> {
-  factory $NewsLoadedCopyWith(NewsLoaded value, $Res Function(NewsLoaded) then) =
+  factory $NewsLoadedCopyWith(
+          NewsLoaded value, $Res Function(NewsLoaded) then) =
       _$NewsLoadedCopyWithImpl<$Res>;
   $Res call({List<News> newsList, bool hasPinnedNews, String gymId});
 }
@@ -192,7 +201,9 @@ class _$NewsLoadedCopyWithImpl<$Res> extends _$NewsStateCopyWithImpl<$Res>
   }) {
     return _then(NewsLoaded(
       newsList: newsList == freezed ? _value.newsList : newsList as List<News>,
-      hasPinnedNews: hasPinnedNews == freezed ? _value.hasPinnedNews : hasPinnedNews as bool,
+      hasPinnedNews: hasPinnedNews == freezed
+          ? _value.hasPinnedNews
+          : hasPinnedNews as bool,
       gymId: gymId == freezed ? _value.gymId : gymId as String,
     ));
   }
@@ -200,7 +211,10 @@ class _$NewsLoadedCopyWithImpl<$Res> extends _$NewsStateCopyWithImpl<$Res>
 
 /// @nodoc
 class _$NewsLoaded with DiagnosticableTreeMixin implements NewsLoaded {
-  const _$NewsLoaded({@required this.newsList, @required this.hasPinnedNews, @required this.gymId})
+  const _$NewsLoaded(
+      {@required this.newsList,
+      @required this.hasPinnedNews,
+      @required this.gymId})
       : assert(newsList != null),
         assert(hasPinnedNews != null),
         assert(gymId != null);
@@ -232,9 +246,11 @@ class _$NewsLoaded with DiagnosticableTreeMixin implements NewsLoaded {
     return identical(this, other) ||
         (other is NewsLoaded &&
             (identical(other.newsList, newsList) ||
-                const DeepCollectionEquality().equals(other.newsList, newsList)) &&
+                const DeepCollectionEquality()
+                    .equals(other.newsList, newsList)) &&
             (identical(other.hasPinnedNews, hasPinnedNews) ||
-                const DeepCollectionEquality().equals(other.hasPinnedNews, hasPinnedNews)) &&
+                const DeepCollectionEquality()
+                    .equals(other.hasPinnedNews, hasPinnedNews)) &&
             (identical(other.gymId, gymId) ||
                 const DeepCollectionEquality().equals(other.gymId, gymId)));
   }
@@ -255,7 +271,9 @@ class _$NewsLoaded with DiagnosticableTreeMixin implements NewsLoaded {
   @optionalTypeArgs
   TResult when<TResult extends Object>({
     @required TResult newsInitial(),
-    @required TResult newsLoaded(List<News> newsList, bool hasPinnedNews, String gymId),
+    @required
+        TResult newsLoaded(
+            List<News> newsList, bool hasPinnedNews, String gymId),
   }) {
     assert(newsInitial != null);
     assert(newsLoaded != null);
