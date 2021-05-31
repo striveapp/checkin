@@ -55,13 +55,13 @@ void main() {
     group("on InitializeNews event", () {
       setUp(() {
         when(mockGymRepository.getGym()).thenAnswer((realInvocation) => Stream.value(fakeGym));
-        when(mockNewsRepository.getAllNews("fake-gym"))
+        when(mockNewsRepository.getNews("fake-gym", NewsBloc.PAGE_SIZE))
             .thenAnswer((realInvocation) => Stream.empty());
       });
 
       tearDown(() {
         verify(mockGymRepository.getGym());
-        verify(mockNewsRepository.getAllNews("fake-gym"));
+        verify(mockNewsRepository.getNews("fake-gym", NewsBloc.PAGE_SIZE));
       });
 
       blocTest(

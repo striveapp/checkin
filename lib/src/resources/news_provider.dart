@@ -11,12 +11,26 @@ class NewsProvider implements NewsRepository {
   FirebaseFirestore _firestore = FirebaseFirestore.instance;
 
   @override
-  Stream<List<News>> getAllNews(String gymId) {
-    // todo sort by query!
+  Stream<List<News>> getNews(String gymId, int limit) {
     return _firestore
         .collection(gymPath)
         .doc(gymId)
         .collection(path)
+        .orderBy("timestamp", descending: true)
+        .limit(limit)
+        .snapshots()
+        .map((snapshot) => snapshot.docs.map((doc) => News.fromJson(doc.data())).toList());
+  }
+
+  @override
+  Stream<List<News>> getPaginatedNews(String gymId, int lastVisibleTimestamp, int limit) {
+    return _firestore
+        .collection(gymPath)
+        .doc(gymId)
+        .collection(path)
+        .orderBy("timestamp", descending: true)
+        .limit(limit)
+        .startAfter([lastVisibleTimestamp])
         .snapshots()
         .map((snapshot) => snapshot.docs.map((doc) => News.fromJson(doc.data())).toList());
   }

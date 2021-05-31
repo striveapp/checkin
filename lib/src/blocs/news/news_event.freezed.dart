@@ -19,6 +19,11 @@ class _$NewsEventTearOff {
   }
 
 // ignore: unused_element
+  FetchMoreNews fetchMoreNews() {
+    return const FetchMoreNews();
+  }
+
+// ignore: unused_element
   NewsUpdated newsUpdated({@required List<News> newsList}) {
     return NewsUpdated(
       newsList: newsList,
@@ -71,6 +76,7 @@ mixin _$NewsEvent {
   @optionalTypeArgs
   TResult when<TResult extends Object>({
     @required TResult initializeNews(),
+    @required TResult fetchMoreNews(),
     @required TResult newsUpdated(List<News> newsList),
     @required TResult addNews(String content, Author author),
     @required TResult deleteNews(String id),
@@ -81,6 +87,7 @@ mixin _$NewsEvent {
   @optionalTypeArgs
   TResult maybeWhen<TResult extends Object>({
     TResult initializeNews(),
+    TResult fetchMoreNews(),
     TResult newsUpdated(List<News> newsList),
     TResult addNews(String content, Author author),
     TResult deleteNews(String id),
@@ -92,6 +99,7 @@ mixin _$NewsEvent {
   @optionalTypeArgs
   TResult map<TResult extends Object>({
     @required TResult initializeNews(InitializeNews value),
+    @required TResult fetchMoreNews(FetchMoreNews value),
     @required TResult newsUpdated(NewsUpdated value),
     @required TResult addNews(AddNews value),
     @required TResult deleteNews(DeleteNews value),
@@ -102,6 +110,7 @@ mixin _$NewsEvent {
   @optionalTypeArgs
   TResult maybeMap<TResult extends Object>({
     TResult initializeNews(InitializeNews value),
+    TResult fetchMoreNews(FetchMoreNews value),
     TResult newsUpdated(NewsUpdated value),
     TResult addNews(AddNews value),
     TResult deleteNews(DeleteNews value),
@@ -129,16 +138,14 @@ class _$NewsEventCopyWithImpl<$Res> implements $NewsEventCopyWith<$Res> {
 
 /// @nodoc
 abstract class $InitializeNewsCopyWith<$Res> {
-  factory $InitializeNewsCopyWith(
-          InitializeNews value, $Res Function(InitializeNews) then) =
+  factory $InitializeNewsCopyWith(InitializeNews value, $Res Function(InitializeNews) then) =
       _$InitializeNewsCopyWithImpl<$Res>;
 }
 
 /// @nodoc
 class _$InitializeNewsCopyWithImpl<$Res> extends _$NewsEventCopyWithImpl<$Res>
     implements $InitializeNewsCopyWith<$Res> {
-  _$InitializeNewsCopyWithImpl(
-      InitializeNews _value, $Res Function(InitializeNews) _then)
+  _$InitializeNewsCopyWithImpl(InitializeNews _value, $Res Function(InitializeNews) _then)
       : super(_value, (v) => _then(v as InitializeNews));
 
   @override
@@ -166,6 +173,7 @@ class _$InitializeNews implements InitializeNews {
   @optionalTypeArgs
   TResult when<TResult extends Object>({
     @required TResult initializeNews(),
+    @required TResult fetchMoreNews(),
     @required TResult newsUpdated(List<News> newsList),
     @required TResult addNews(String content, Author author),
     @required TResult deleteNews(String id),
@@ -174,6 +182,7 @@ class _$InitializeNews implements InitializeNews {
     @required TResult replacePinnedNews(String id),
   }) {
     assert(initializeNews != null);
+    assert(fetchMoreNews != null);
     assert(newsUpdated != null);
     assert(addNews != null);
     assert(deleteNews != null);
@@ -187,6 +196,7 @@ class _$InitializeNews implements InitializeNews {
   @optionalTypeArgs
   TResult maybeWhen<TResult extends Object>({
     TResult initializeNews(),
+    TResult fetchMoreNews(),
     TResult newsUpdated(List<News> newsList),
     TResult addNews(String content, Author author),
     TResult deleteNews(String id),
@@ -206,6 +216,7 @@ class _$InitializeNews implements InitializeNews {
   @optionalTypeArgs
   TResult map<TResult extends Object>({
     @required TResult initializeNews(InitializeNews value),
+    @required TResult fetchMoreNews(FetchMoreNews value),
     @required TResult newsUpdated(NewsUpdated value),
     @required TResult addNews(AddNews value),
     @required TResult deleteNews(DeleteNews value),
@@ -214,6 +225,7 @@ class _$InitializeNews implements InitializeNews {
     @required TResult replacePinnedNews(ReplacePinnedNews value),
   }) {
     assert(initializeNews != null);
+    assert(fetchMoreNews != null);
     assert(newsUpdated != null);
     assert(addNews != null);
     assert(deleteNews != null);
@@ -227,6 +239,7 @@ class _$InitializeNews implements InitializeNews {
   @optionalTypeArgs
   TResult maybeMap<TResult extends Object>({
     TResult initializeNews(InitializeNews value),
+    TResult fetchMoreNews(FetchMoreNews value),
     TResult newsUpdated(NewsUpdated value),
     TResult addNews(AddNews value),
     TResult deleteNews(DeleteNews value),
@@ -248,9 +261,132 @@ abstract class InitializeNews implements NewsEvent {
 }
 
 /// @nodoc
+abstract class $FetchMoreNewsCopyWith<$Res> {
+  factory $FetchMoreNewsCopyWith(FetchMoreNews value, $Res Function(FetchMoreNews) then) =
+      _$FetchMoreNewsCopyWithImpl<$Res>;
+}
+
+/// @nodoc
+class _$FetchMoreNewsCopyWithImpl<$Res> extends _$NewsEventCopyWithImpl<$Res>
+    implements $FetchMoreNewsCopyWith<$Res> {
+  _$FetchMoreNewsCopyWithImpl(FetchMoreNews _value, $Res Function(FetchMoreNews) _then)
+      : super(_value, (v) => _then(v as FetchMoreNews));
+
+  @override
+  FetchMoreNews get _value => super._value as FetchMoreNews;
+}
+
+/// @nodoc
+class _$FetchMoreNews implements FetchMoreNews {
+  const _$FetchMoreNews();
+
+  @override
+  String toString() {
+    return 'NewsEvent.fetchMoreNews()';
+  }
+
+  @override
+  bool operator ==(dynamic other) {
+    return identical(this, other) || (other is FetchMoreNews);
+  }
+
+  @override
+  int get hashCode => runtimeType.hashCode;
+
+  @override
+  @optionalTypeArgs
+  TResult when<TResult extends Object>({
+    @required TResult initializeNews(),
+    @required TResult fetchMoreNews(),
+    @required TResult newsUpdated(List<News> newsList),
+    @required TResult addNews(String content, Author author),
+    @required TResult deleteNews(String id),
+    @required TResult pinNews(String id),
+    @required TResult unpinNews(String id),
+    @required TResult replacePinnedNews(String id),
+  }) {
+    assert(initializeNews != null);
+    assert(fetchMoreNews != null);
+    assert(newsUpdated != null);
+    assert(addNews != null);
+    assert(deleteNews != null);
+    assert(pinNews != null);
+    assert(unpinNews != null);
+    assert(replacePinnedNews != null);
+    return fetchMoreNews();
+  }
+
+  @override
+  @optionalTypeArgs
+  TResult maybeWhen<TResult extends Object>({
+    TResult initializeNews(),
+    TResult fetchMoreNews(),
+    TResult newsUpdated(List<News> newsList),
+    TResult addNews(String content, Author author),
+    TResult deleteNews(String id),
+    TResult pinNews(String id),
+    TResult unpinNews(String id),
+    TResult replacePinnedNews(String id),
+    @required TResult orElse(),
+  }) {
+    assert(orElse != null);
+    if (fetchMoreNews != null) {
+      return fetchMoreNews();
+    }
+    return orElse();
+  }
+
+  @override
+  @optionalTypeArgs
+  TResult map<TResult extends Object>({
+    @required TResult initializeNews(InitializeNews value),
+    @required TResult fetchMoreNews(FetchMoreNews value),
+    @required TResult newsUpdated(NewsUpdated value),
+    @required TResult addNews(AddNews value),
+    @required TResult deleteNews(DeleteNews value),
+    @required TResult pinNews(PinNews value),
+    @required TResult unpinNews(UnpinNews value),
+    @required TResult replacePinnedNews(ReplacePinnedNews value),
+  }) {
+    assert(initializeNews != null);
+    assert(fetchMoreNews != null);
+    assert(newsUpdated != null);
+    assert(addNews != null);
+    assert(deleteNews != null);
+    assert(pinNews != null);
+    assert(unpinNews != null);
+    assert(replacePinnedNews != null);
+    return fetchMoreNews(this);
+  }
+
+  @override
+  @optionalTypeArgs
+  TResult maybeMap<TResult extends Object>({
+    TResult initializeNews(InitializeNews value),
+    TResult fetchMoreNews(FetchMoreNews value),
+    TResult newsUpdated(NewsUpdated value),
+    TResult addNews(AddNews value),
+    TResult deleteNews(DeleteNews value),
+    TResult pinNews(PinNews value),
+    TResult unpinNews(UnpinNews value),
+    TResult replacePinnedNews(ReplacePinnedNews value),
+    @required TResult orElse(),
+  }) {
+    assert(orElse != null);
+    if (fetchMoreNews != null) {
+      return fetchMoreNews(this);
+    }
+    return orElse();
+  }
+}
+
+abstract class FetchMoreNews implements NewsEvent {
+  const factory FetchMoreNews() = _$FetchMoreNews;
+}
+
+/// @nodoc
 abstract class $NewsUpdatedCopyWith<$Res> {
-  factory $NewsUpdatedCopyWith(
-          NewsUpdated value, $Res Function(NewsUpdated) then) =
+  factory $NewsUpdatedCopyWith(NewsUpdated value, $Res Function(NewsUpdated) then) =
       _$NewsUpdatedCopyWithImpl<$Res>;
   $Res call({List<News> newsList});
 }
@@ -258,8 +394,7 @@ abstract class $NewsUpdatedCopyWith<$Res> {
 /// @nodoc
 class _$NewsUpdatedCopyWithImpl<$Res> extends _$NewsEventCopyWithImpl<$Res>
     implements $NewsUpdatedCopyWith<$Res> {
-  _$NewsUpdatedCopyWithImpl(
-      NewsUpdated _value, $Res Function(NewsUpdated) _then)
+  _$NewsUpdatedCopyWithImpl(NewsUpdated _value, $Res Function(NewsUpdated) _then)
       : super(_value, (v) => _then(v as NewsUpdated));
 
   @override
@@ -292,13 +427,11 @@ class _$NewsUpdated implements NewsUpdated {
     return identical(this, other) ||
         (other is NewsUpdated &&
             (identical(other.newsList, newsList) ||
-                const DeepCollectionEquality()
-                    .equals(other.newsList, newsList)));
+                const DeepCollectionEquality().equals(other.newsList, newsList)));
   }
 
   @override
-  int get hashCode =>
-      runtimeType.hashCode ^ const DeepCollectionEquality().hash(newsList);
+  int get hashCode => runtimeType.hashCode ^ const DeepCollectionEquality().hash(newsList);
 
   @JsonKey(ignore: true)
   @override
@@ -309,6 +442,7 @@ class _$NewsUpdated implements NewsUpdated {
   @optionalTypeArgs
   TResult when<TResult extends Object>({
     @required TResult initializeNews(),
+    @required TResult fetchMoreNews(),
     @required TResult newsUpdated(List<News> newsList),
     @required TResult addNews(String content, Author author),
     @required TResult deleteNews(String id),
@@ -317,6 +451,7 @@ class _$NewsUpdated implements NewsUpdated {
     @required TResult replacePinnedNews(String id),
   }) {
     assert(initializeNews != null);
+    assert(fetchMoreNews != null);
     assert(newsUpdated != null);
     assert(addNews != null);
     assert(deleteNews != null);
@@ -330,6 +465,7 @@ class _$NewsUpdated implements NewsUpdated {
   @optionalTypeArgs
   TResult maybeWhen<TResult extends Object>({
     TResult initializeNews(),
+    TResult fetchMoreNews(),
     TResult newsUpdated(List<News> newsList),
     TResult addNews(String content, Author author),
     TResult deleteNews(String id),
@@ -349,6 +485,7 @@ class _$NewsUpdated implements NewsUpdated {
   @optionalTypeArgs
   TResult map<TResult extends Object>({
     @required TResult initializeNews(InitializeNews value),
+    @required TResult fetchMoreNews(FetchMoreNews value),
     @required TResult newsUpdated(NewsUpdated value),
     @required TResult addNews(AddNews value),
     @required TResult deleteNews(DeleteNews value),
@@ -357,6 +494,7 @@ class _$NewsUpdated implements NewsUpdated {
     @required TResult replacePinnedNews(ReplacePinnedNews value),
   }) {
     assert(initializeNews != null);
+    assert(fetchMoreNews != null);
     assert(newsUpdated != null);
     assert(addNews != null);
     assert(deleteNews != null);
@@ -370,6 +508,7 @@ class _$NewsUpdated implements NewsUpdated {
   @optionalTypeArgs
   TResult maybeMap<TResult extends Object>({
     TResult initializeNews(InitializeNews value),
+    TResult fetchMoreNews(FetchMoreNews value),
     TResult newsUpdated(NewsUpdated value),
     TResult addNews(AddNews value),
     TResult deleteNews(DeleteNews value),
@@ -455,8 +594,7 @@ class _$AddNews implements AddNews {
     return identical(this, other) ||
         (other is AddNews &&
             (identical(other.content, content) ||
-                const DeepCollectionEquality()
-                    .equals(other.content, content)) &&
+                const DeepCollectionEquality().equals(other.content, content)) &&
             (identical(other.author, author) ||
                 const DeepCollectionEquality().equals(other.author, author)));
   }
@@ -469,13 +607,13 @@ class _$AddNews implements AddNews {
 
   @JsonKey(ignore: true)
   @override
-  $AddNewsCopyWith<AddNews> get copyWith =>
-      _$AddNewsCopyWithImpl<AddNews>(this, _$identity);
+  $AddNewsCopyWith<AddNews> get copyWith => _$AddNewsCopyWithImpl<AddNews>(this, _$identity);
 
   @override
   @optionalTypeArgs
   TResult when<TResult extends Object>({
     @required TResult initializeNews(),
+    @required TResult fetchMoreNews(),
     @required TResult newsUpdated(List<News> newsList),
     @required TResult addNews(String content, Author author),
     @required TResult deleteNews(String id),
@@ -484,6 +622,7 @@ class _$AddNews implements AddNews {
     @required TResult replacePinnedNews(String id),
   }) {
     assert(initializeNews != null);
+    assert(fetchMoreNews != null);
     assert(newsUpdated != null);
     assert(addNews != null);
     assert(deleteNews != null);
@@ -497,6 +636,7 @@ class _$AddNews implements AddNews {
   @optionalTypeArgs
   TResult maybeWhen<TResult extends Object>({
     TResult initializeNews(),
+    TResult fetchMoreNews(),
     TResult newsUpdated(List<News> newsList),
     TResult addNews(String content, Author author),
     TResult deleteNews(String id),
@@ -516,6 +656,7 @@ class _$AddNews implements AddNews {
   @optionalTypeArgs
   TResult map<TResult extends Object>({
     @required TResult initializeNews(InitializeNews value),
+    @required TResult fetchMoreNews(FetchMoreNews value),
     @required TResult newsUpdated(NewsUpdated value),
     @required TResult addNews(AddNews value),
     @required TResult deleteNews(DeleteNews value),
@@ -524,6 +665,7 @@ class _$AddNews implements AddNews {
     @required TResult replacePinnedNews(ReplacePinnedNews value),
   }) {
     assert(initializeNews != null);
+    assert(fetchMoreNews != null);
     assert(newsUpdated != null);
     assert(addNews != null);
     assert(deleteNews != null);
@@ -537,6 +679,7 @@ class _$AddNews implements AddNews {
   @optionalTypeArgs
   TResult maybeMap<TResult extends Object>({
     TResult initializeNews(InitializeNews value),
+    TResult fetchMoreNews(FetchMoreNews value),
     TResult newsUpdated(NewsUpdated value),
     TResult addNews(AddNews value),
     TResult deleteNews(DeleteNews value),
@@ -554,8 +697,7 @@ class _$AddNews implements AddNews {
 }
 
 abstract class AddNews implements NewsEvent {
-  const factory AddNews({@required String content, @required Author author}) =
-      _$AddNews;
+  const factory AddNews({@required String content, @required Author author}) = _$AddNews;
 
   String get content;
   Author get author;
@@ -565,8 +707,7 @@ abstract class AddNews implements NewsEvent {
 
 /// @nodoc
 abstract class $DeleteNewsCopyWith<$Res> {
-  factory $DeleteNewsCopyWith(
-          DeleteNews value, $Res Function(DeleteNews) then) =
+  factory $DeleteNewsCopyWith(DeleteNews value, $Res Function(DeleteNews) then) =
       _$DeleteNewsCopyWithImpl<$Res>;
   $Res call({String id});
 }
@@ -606,13 +747,11 @@ class _$DeleteNews implements DeleteNews {
   bool operator ==(dynamic other) {
     return identical(this, other) ||
         (other is DeleteNews &&
-            (identical(other.id, id) ||
-                const DeepCollectionEquality().equals(other.id, id)));
+            (identical(other.id, id) || const DeepCollectionEquality().equals(other.id, id)));
   }
 
   @override
-  int get hashCode =>
-      runtimeType.hashCode ^ const DeepCollectionEquality().hash(id);
+  int get hashCode => runtimeType.hashCode ^ const DeepCollectionEquality().hash(id);
 
   @JsonKey(ignore: true)
   @override
@@ -623,6 +762,7 @@ class _$DeleteNews implements DeleteNews {
   @optionalTypeArgs
   TResult when<TResult extends Object>({
     @required TResult initializeNews(),
+    @required TResult fetchMoreNews(),
     @required TResult newsUpdated(List<News> newsList),
     @required TResult addNews(String content, Author author),
     @required TResult deleteNews(String id),
@@ -631,6 +771,7 @@ class _$DeleteNews implements DeleteNews {
     @required TResult replacePinnedNews(String id),
   }) {
     assert(initializeNews != null);
+    assert(fetchMoreNews != null);
     assert(newsUpdated != null);
     assert(addNews != null);
     assert(deleteNews != null);
@@ -644,6 +785,7 @@ class _$DeleteNews implements DeleteNews {
   @optionalTypeArgs
   TResult maybeWhen<TResult extends Object>({
     TResult initializeNews(),
+    TResult fetchMoreNews(),
     TResult newsUpdated(List<News> newsList),
     TResult addNews(String content, Author author),
     TResult deleteNews(String id),
@@ -663,6 +805,7 @@ class _$DeleteNews implements DeleteNews {
   @optionalTypeArgs
   TResult map<TResult extends Object>({
     @required TResult initializeNews(InitializeNews value),
+    @required TResult fetchMoreNews(FetchMoreNews value),
     @required TResult newsUpdated(NewsUpdated value),
     @required TResult addNews(AddNews value),
     @required TResult deleteNews(DeleteNews value),
@@ -671,6 +814,7 @@ class _$DeleteNews implements DeleteNews {
     @required TResult replacePinnedNews(ReplacePinnedNews value),
   }) {
     assert(initializeNews != null);
+    assert(fetchMoreNews != null);
     assert(newsUpdated != null);
     assert(addNews != null);
     assert(deleteNews != null);
@@ -684,6 +828,7 @@ class _$DeleteNews implements DeleteNews {
   @optionalTypeArgs
   TResult maybeMap<TResult extends Object>({
     TResult initializeNews(InitializeNews value),
+    TResult fetchMoreNews(FetchMoreNews value),
     TResult newsUpdated(NewsUpdated value),
     TResult addNews(AddNews value),
     TResult deleteNews(DeleteNews value),
@@ -750,23 +895,21 @@ class _$PinNews implements PinNews {
   bool operator ==(dynamic other) {
     return identical(this, other) ||
         (other is PinNews &&
-            (identical(other.id, id) ||
-                const DeepCollectionEquality().equals(other.id, id)));
+            (identical(other.id, id) || const DeepCollectionEquality().equals(other.id, id)));
   }
 
   @override
-  int get hashCode =>
-      runtimeType.hashCode ^ const DeepCollectionEquality().hash(id);
+  int get hashCode => runtimeType.hashCode ^ const DeepCollectionEquality().hash(id);
 
   @JsonKey(ignore: true)
   @override
-  $PinNewsCopyWith<PinNews> get copyWith =>
-      _$PinNewsCopyWithImpl<PinNews>(this, _$identity);
+  $PinNewsCopyWith<PinNews> get copyWith => _$PinNewsCopyWithImpl<PinNews>(this, _$identity);
 
   @override
   @optionalTypeArgs
   TResult when<TResult extends Object>({
     @required TResult initializeNews(),
+    @required TResult fetchMoreNews(),
     @required TResult newsUpdated(List<News> newsList),
     @required TResult addNews(String content, Author author),
     @required TResult deleteNews(String id),
@@ -775,6 +918,7 @@ class _$PinNews implements PinNews {
     @required TResult replacePinnedNews(String id),
   }) {
     assert(initializeNews != null);
+    assert(fetchMoreNews != null);
     assert(newsUpdated != null);
     assert(addNews != null);
     assert(deleteNews != null);
@@ -788,6 +932,7 @@ class _$PinNews implements PinNews {
   @optionalTypeArgs
   TResult maybeWhen<TResult extends Object>({
     TResult initializeNews(),
+    TResult fetchMoreNews(),
     TResult newsUpdated(List<News> newsList),
     TResult addNews(String content, Author author),
     TResult deleteNews(String id),
@@ -807,6 +952,7 @@ class _$PinNews implements PinNews {
   @optionalTypeArgs
   TResult map<TResult extends Object>({
     @required TResult initializeNews(InitializeNews value),
+    @required TResult fetchMoreNews(FetchMoreNews value),
     @required TResult newsUpdated(NewsUpdated value),
     @required TResult addNews(AddNews value),
     @required TResult deleteNews(DeleteNews value),
@@ -815,6 +961,7 @@ class _$PinNews implements PinNews {
     @required TResult replacePinnedNews(ReplacePinnedNews value),
   }) {
     assert(initializeNews != null);
+    assert(fetchMoreNews != null);
     assert(newsUpdated != null);
     assert(addNews != null);
     assert(deleteNews != null);
@@ -828,6 +975,7 @@ class _$PinNews implements PinNews {
   @optionalTypeArgs
   TResult maybeMap<TResult extends Object>({
     TResult initializeNews(InitializeNews value),
+    TResult fetchMoreNews(FetchMoreNews value),
     TResult newsUpdated(NewsUpdated value),
     TResult addNews(AddNews value),
     TResult deleteNews(DeleteNews value),
@@ -894,13 +1042,11 @@ class _$UnpinNews implements UnpinNews {
   bool operator ==(dynamic other) {
     return identical(this, other) ||
         (other is UnpinNews &&
-            (identical(other.id, id) ||
-                const DeepCollectionEquality().equals(other.id, id)));
+            (identical(other.id, id) || const DeepCollectionEquality().equals(other.id, id)));
   }
 
   @override
-  int get hashCode =>
-      runtimeType.hashCode ^ const DeepCollectionEquality().hash(id);
+  int get hashCode => runtimeType.hashCode ^ const DeepCollectionEquality().hash(id);
 
   @JsonKey(ignore: true)
   @override
@@ -911,6 +1057,7 @@ class _$UnpinNews implements UnpinNews {
   @optionalTypeArgs
   TResult when<TResult extends Object>({
     @required TResult initializeNews(),
+    @required TResult fetchMoreNews(),
     @required TResult newsUpdated(List<News> newsList),
     @required TResult addNews(String content, Author author),
     @required TResult deleteNews(String id),
@@ -919,6 +1066,7 @@ class _$UnpinNews implements UnpinNews {
     @required TResult replacePinnedNews(String id),
   }) {
     assert(initializeNews != null);
+    assert(fetchMoreNews != null);
     assert(newsUpdated != null);
     assert(addNews != null);
     assert(deleteNews != null);
@@ -932,6 +1080,7 @@ class _$UnpinNews implements UnpinNews {
   @optionalTypeArgs
   TResult maybeWhen<TResult extends Object>({
     TResult initializeNews(),
+    TResult fetchMoreNews(),
     TResult newsUpdated(List<News> newsList),
     TResult addNews(String content, Author author),
     TResult deleteNews(String id),
@@ -951,6 +1100,7 @@ class _$UnpinNews implements UnpinNews {
   @optionalTypeArgs
   TResult map<TResult extends Object>({
     @required TResult initializeNews(InitializeNews value),
+    @required TResult fetchMoreNews(FetchMoreNews value),
     @required TResult newsUpdated(NewsUpdated value),
     @required TResult addNews(AddNews value),
     @required TResult deleteNews(DeleteNews value),
@@ -959,6 +1109,7 @@ class _$UnpinNews implements UnpinNews {
     @required TResult replacePinnedNews(ReplacePinnedNews value),
   }) {
     assert(initializeNews != null);
+    assert(fetchMoreNews != null);
     assert(newsUpdated != null);
     assert(addNews != null);
     assert(deleteNews != null);
@@ -972,6 +1123,7 @@ class _$UnpinNews implements UnpinNews {
   @optionalTypeArgs
   TResult maybeMap<TResult extends Object>({
     TResult initializeNews(InitializeNews value),
+    TResult fetchMoreNews(FetchMoreNews value),
     TResult newsUpdated(NewsUpdated value),
     TResult addNews(AddNews value),
     TResult deleteNews(DeleteNews value),
@@ -1005,11 +1157,9 @@ abstract class $ReplacePinnedNewsCopyWith<$Res> {
 }
 
 /// @nodoc
-class _$ReplacePinnedNewsCopyWithImpl<$Res>
-    extends _$NewsEventCopyWithImpl<$Res>
+class _$ReplacePinnedNewsCopyWithImpl<$Res> extends _$NewsEventCopyWithImpl<$Res>
     implements $ReplacePinnedNewsCopyWith<$Res> {
-  _$ReplacePinnedNewsCopyWithImpl(
-      ReplacePinnedNews _value, $Res Function(ReplacePinnedNews) _then)
+  _$ReplacePinnedNewsCopyWithImpl(ReplacePinnedNews _value, $Res Function(ReplacePinnedNews) _then)
       : super(_value, (v) => _then(v as ReplacePinnedNews));
 
   @override
@@ -1041,13 +1191,11 @@ class _$ReplacePinnedNews implements ReplacePinnedNews {
   bool operator ==(dynamic other) {
     return identical(this, other) ||
         (other is ReplacePinnedNews &&
-            (identical(other.id, id) ||
-                const DeepCollectionEquality().equals(other.id, id)));
+            (identical(other.id, id) || const DeepCollectionEquality().equals(other.id, id)));
   }
 
   @override
-  int get hashCode =>
-      runtimeType.hashCode ^ const DeepCollectionEquality().hash(id);
+  int get hashCode => runtimeType.hashCode ^ const DeepCollectionEquality().hash(id);
 
   @JsonKey(ignore: true)
   @override
@@ -1058,6 +1206,7 @@ class _$ReplacePinnedNews implements ReplacePinnedNews {
   @optionalTypeArgs
   TResult when<TResult extends Object>({
     @required TResult initializeNews(),
+    @required TResult fetchMoreNews(),
     @required TResult newsUpdated(List<News> newsList),
     @required TResult addNews(String content, Author author),
     @required TResult deleteNews(String id),
@@ -1066,6 +1215,7 @@ class _$ReplacePinnedNews implements ReplacePinnedNews {
     @required TResult replacePinnedNews(String id),
   }) {
     assert(initializeNews != null);
+    assert(fetchMoreNews != null);
     assert(newsUpdated != null);
     assert(addNews != null);
     assert(deleteNews != null);
@@ -1079,6 +1229,7 @@ class _$ReplacePinnedNews implements ReplacePinnedNews {
   @optionalTypeArgs
   TResult maybeWhen<TResult extends Object>({
     TResult initializeNews(),
+    TResult fetchMoreNews(),
     TResult newsUpdated(List<News> newsList),
     TResult addNews(String content, Author author),
     TResult deleteNews(String id),
@@ -1098,6 +1249,7 @@ class _$ReplacePinnedNews implements ReplacePinnedNews {
   @optionalTypeArgs
   TResult map<TResult extends Object>({
     @required TResult initializeNews(InitializeNews value),
+    @required TResult fetchMoreNews(FetchMoreNews value),
     @required TResult newsUpdated(NewsUpdated value),
     @required TResult addNews(AddNews value),
     @required TResult deleteNews(DeleteNews value),
@@ -1106,6 +1258,7 @@ class _$ReplacePinnedNews implements ReplacePinnedNews {
     @required TResult replacePinnedNews(ReplacePinnedNews value),
   }) {
     assert(initializeNews != null);
+    assert(fetchMoreNews != null);
     assert(newsUpdated != null);
     assert(addNews != null);
     assert(deleteNews != null);
@@ -1119,6 +1272,7 @@ class _$ReplacePinnedNews implements ReplacePinnedNews {
   @optionalTypeArgs
   TResult maybeMap<TResult extends Object>({
     TResult initializeNews(InitializeNews value),
+    TResult fetchMoreNews(FetchMoreNews value),
     TResult newsUpdated(NewsUpdated value),
     TResult addNews(AddNews value),
     TResult deleteNews(DeleteNews value),

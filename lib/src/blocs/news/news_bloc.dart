@@ -16,6 +16,8 @@ class NewsBloc extends Bloc<NewsEvent, NewsState> {
   StreamSubscription<Gym> gymSub;
   StreamSubscription<List<News>> newsListSub;
 
+  static const int PAGE_SIZE = 3;
+
   Gym _gym;
 
   NewsBloc({
@@ -31,7 +33,7 @@ class NewsBloc extends Bloc<NewsEvent, NewsState> {
       _fetchGym((gym) {
         _gym = gym;
         newsListSub?.cancel();
-        newsListSub = newsRepository.getAllNews(gym.id).listen((newsList) {
+        newsListSub = newsRepository.getNews(gym.id, PAGE_SIZE).listen((newsList) {
           add(NewsUpdated(newsList: newsList));
         });
       });
@@ -44,6 +46,20 @@ class NewsBloc extends Bloc<NewsEvent, NewsState> {
         newsList: _newsListWithPinOnTop(pinnedNews, _sortByTimestamp(event.newsList)),
         hasPinnedNews: pinnedNews != null,
       );
+    }
+
+    if (event is FetchMoreNews) {
+      final currentState = state;
+      if (currentState is NewsLoaded) {
+        final lastVisibleTimestamp = currentState.newsList.last.timestamp;
+
+        newsListSub?.cancel();
+        newsListSub = newsRepository
+            .getPaginatedNews(_gym.id, lastVisibleTimestamp, PAGE_SIZE)
+            .listen((newsList) {
+          add(NewsUpdated(newsList: [...currentState.newsList, ...newsList]));
+        });
+      }
     }
 
     if (event is AddNews) {

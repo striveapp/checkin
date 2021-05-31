@@ -8,6 +8,8 @@ part 'news_event.freezed.dart';
 abstract class NewsEvent with _$NewsEvent {
   const factory NewsEvent.initializeNews() = InitializeNews;
 
+  const factory NewsEvent.fetchMoreNews() = FetchMoreNews;
+
   const factory NewsEvent.newsUpdated({
     @required List<News> newsList,
   }) = NewsUpdated;

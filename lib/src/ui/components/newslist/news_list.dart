@@ -1,4 +1,5 @@
 import 'package:checkin/src/blocs/news/news_bloc.dart';
+import 'package:checkin/src/blocs/news/news_event.dart';
 import 'package:checkin/src/blocs/news/news_state.dart';
 import 'package:checkin/src/models/news.dart';
 import 'package:checkin/src/ui/components/newslist/empty_news_list.dart';
@@ -34,24 +35,36 @@ class NewsList extends StatelessWidget {
                     ))),
             newsLoaded: (NewsLoaded state) => state.newsList.length == 0
                 ? EmptyNewsList()
-                : ListView.separated(
-                    padding: EdgeInsets.symmetric(vertical: 20),
-                    itemCount: state.newsList.length,
-                    itemBuilder: (context, index) {
-                      var news = state.newsList[index];
-                      return news.id == highlightNewsId
-                          ? HighlightAnimation(
-                              child: NewsItem(
-                                news: news,
-                                hasPinnedNews: state.hasPinnedNews,
-                              ),
-                            )
-                          : NewsItem(
-                              news: news,
-                              hasPinnedNews: state.hasPinnedNews,
-                            );
-                    },
-                    separatorBuilder: (context, index) => Divider(),
+                : Column(
+                    children: [
+                      Expanded(
+                        child: ListView.separated(
+                          padding: EdgeInsets.symmetric(vertical: 20),
+                          itemCount: state.newsList.length,
+                          itemBuilder: (context, index) {
+                            var news = state.newsList[index];
+                            return news.id == highlightNewsId
+                                ? HighlightAnimation(
+                                    child: NewsItem(
+                                      news: news,
+                                      hasPinnedNews: state.hasPinnedNews,
+                                    ),
+                                  )
+                                : NewsItem(
+                                    news: news,
+                                    hasPinnedNews: state.hasPinnedNews,
+                                  );
+                          },
+                          separatorBuilder: (context, index) => Divider(),
+                        ),
+                      ),
+                      ElevatedButton(
+                        onPressed: () {
+                          context.read<NewsBloc>().add(FetchMoreNews());
+                        },
+                        child: Text("Porco dio?"),
+                      )
+                    ],
                   ));
       },
     );
