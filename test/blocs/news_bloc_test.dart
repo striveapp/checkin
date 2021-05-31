@@ -55,13 +55,12 @@ void main() {
     group("on InitializeNews event", () {
       setUp(() {
         when(mockGymRepository.getGym()).thenAnswer((realInvocation) => Stream.value(fakeGym));
-        when(mockNewsRepository.getAllNews("fake-gym"))
-            .thenAnswer((realInvocation) => Stream.empty());
+        when(mockNewsRepository.getNews("fake-gym")).thenAnswer((realInvocation) => Stream.empty());
       });
 
       tearDown(() {
         verify(mockGymRepository.getGym());
-        verify(mockNewsRepository.getAllNews("fake-gym"));
+        verify(mockNewsRepository.getNews("fake-gym"));
       });
 
       blocTest(
@@ -75,31 +74,31 @@ void main() {
       );
     });
 
+    var fakeNews = News(
+      id: "fakeId",
+      content: "5G is killing you",
+      author: fakeAuthor,
+      timestamp: 1111111169,
+      isPinned: false,
+    );
+
+    var anotherFakeNews = News(
+      id: "fakeId",
+      content: "5G is killing you",
+      author: fakeAuthor,
+      timestamp: 1111111170,
+      isPinned: false,
+    );
+
+    var yetAnotherFakeNews = News(
+      id: "fakeId",
+      content: "5G is killing you",
+      author: fakeAuthor,
+      timestamp: 1111111171,
+      isPinned: false,
+    );
+
     group("on NewsUpdated", () {
-      var fakeNews = News(
-        id: "fakeId",
-        content: "5G is killing you",
-        author: fakeAuthor,
-        timestamp: 1111111169,
-        isPinned: false,
-      );
-
-      var anotherFakeNews = News(
-        id: "fakeId",
-        content: "5G is killing you",
-        author: fakeAuthor,
-        timestamp: 1111111170,
-        isPinned: false,
-      );
-
-      var yetAnotherFakeNews = News(
-        id: "fakeId",
-        content: "5G is killing you",
-        author: fakeAuthor,
-        timestamp: 1111111171,
-        isPinned: false,
-      );
-
       group("when there is a pinned news", () {
         var pinnedNews = News(
           id: "fakeId",
@@ -109,54 +108,131 @@ void main() {
           isPinned: true,
         );
 
-        var unsortedList = [anotherFakeNews, fakeNews, yetAnotherFakeNews, pinnedNews];
+        var fakeNewsList = [anotherFakeNews, fakeNews, yetAnotherFakeNews, pinnedNews];
 
         blocTest(
-          "fetch all news and sort them by timestamp DESC and return the pinned news on top",
+          "fetch all news and return the pinned news on top",
           build: () => NewsBloc(
             newsRepository: mockNewsRepository,
             gymRepository: mockGymRepository,
           ),
           act: (bloc) {
-            return bloc.add(NewsUpdated(newsList: unsortedList));
+            return bloc.add(NewsUpdated(newsList: fakeNewsList));
           },
           expect: () => [
             NewsLoaded(
               newsList: [
                 pinnedNews,
-                yetAnotherFakeNews,
                 anotherFakeNews,
                 fakeNews,
+                yetAnotherFakeNews,
               ],
               hasPinnedNews: true,
+              hasMoreNews: true,
             )
           ],
         );
       });
+    });
 
-      group("when there is NO pinned news", () {
-        var unsortedList = [anotherFakeNews, fakeNews, yetAnotherFakeNews];
+    group("on FetchNews", () {
+      group("when state is NewsInitial", () {
+        setUp(() {
+          when(mockGymRepository.getGym()).thenAnswer((realInvocation) => Stream.value(fakeGym));
+        });
+        tearDown(() {
+          verify(mockGymRepository.getGym());
+        });
 
         blocTest(
-          "fetch all news and sort them by timestamp DESC",
+          "emits nothing",
+          seed: () => NewsState.newsInitial(),
           build: () => NewsBloc(
             newsRepository: mockNewsRepository,
             gymRepository: mockGymRepository,
           ),
-          act: (bloc) {
-            return bloc.add(NewsUpdated(newsList: unsortedList));
-          },
-          expect: () => [
-            NewsLoaded(
-              newsList: [
-                yetAnotherFakeNews,
-                anotherFakeNews,
-                fakeNews,
-              ],
-              hasPinnedNews: false,
-            )
-          ],
+          act: (bloc) => bloc.add(FetchNews()),
+          expect: () => [],
         );
+      });
+
+      group("when state is NewsLoaded", () {
+        group("when there are additional news", () {
+          setUp(() {
+            when(mockGymRepository.getGym()).thenAnswer((realInvocation) => Stream.value(fakeGym));
+            when(mockNewsRepository.getNews(fakeGym.id, any)).thenAnswer((_) => Stream.value([
+                  fakeNews,
+                  anotherFakeNews,
+                  yetAnotherFakeNews,
+                ]));
+          });
+
+          tearDown(() {
+            verify(mockGymRepository.getGym());
+            verify(mockNewsRepository.getNews(fakeGym.id, 3));
+          });
+
+          blocTest(
+            "emits NewsLoaded with more news",
+            seed: () => NewsState.newsLoaded(
+              newsList: [fakeNews],
+              hasPinnedNews: false,
+              hasMoreNews: true,
+            ),
+            build: () => NewsBloc(
+              newsRepository: mockNewsRepository,
+              gymRepository: mockGymRepository,
+            ),
+            act: (bloc) => bloc.add(FetchNews()),
+            expect: () => [
+              NewsLoaded(
+                newsList: [
+                  fakeNews,
+                  anotherFakeNews,
+                  yetAnotherFakeNews,
+                ],
+                hasPinnedNews: false,
+                hasMoreNews: true,
+              )
+            ],
+          );
+        });
+        group("when there is no more news to fetch", () {
+          setUp(() {
+            when(mockGymRepository.getGym()).thenAnswer((_) => Stream.value(fakeGym));
+            when(mockNewsRepository.getNews(fakeGym.id, any)).thenAnswer((_) => Stream.value([
+                  fakeNews,
+                ]));
+          });
+
+          tearDown(() {
+            verify(mockGymRepository.getGym());
+            verify(mockNewsRepository.getNews(fakeGym.id, 2));
+          });
+
+          blocTest(
+            "emits NewsLoaded with the hasMoreNews as false",
+            seed: () => NewsState.newsLoaded(
+              newsList: [],
+              hasPinnedNews: false,
+              hasMoreNews: true,
+            ),
+            build: () => NewsBloc(
+              newsRepository: mockNewsRepository,
+              gymRepository: mockGymRepository,
+            ),
+            act: (bloc) => bloc.add(FetchNews()),
+            expect: () => [
+              NewsLoaded(
+                newsList: [
+                  fakeNews,
+                ],
+                hasPinnedNews: false,
+                hasMoreNews: false,
+              )
+            ],
+          );
+        });
       });
     });
 

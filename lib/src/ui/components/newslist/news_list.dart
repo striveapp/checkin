@@ -34,24 +34,31 @@ class NewsList extends StatelessWidget {
                     ))),
             newsLoaded: (NewsLoaded state) => state.newsList.length == 0
                 ? EmptyNewsList()
-                : ListView.separated(
-                    padding: EdgeInsets.symmetric(vertical: 20),
-                    itemCount: state.newsList.length,
-                    itemBuilder: (context, index) {
-                      var news = state.newsList[index];
-                      return news.id == highlightNewsId
-                          ? HighlightAnimation(
-                              child: NewsItem(
-                                news: news,
-                                hasPinnedNews: state.hasPinnedNews,
-                              ),
-                            )
-                          : NewsItem(
-                              news: news,
-                              hasPinnedNews: state.hasPinnedNews,
-                            );
-                    },
-                    separatorBuilder: (context, index) => Divider(),
+                : Column(
+                    children: [
+                      Expanded(
+                        child: ListView.separated(
+                          padding: EdgeInsets.symmetric(vertical: 20),
+                          itemCount: state.newsList.length,
+                          itemBuilder: (context, index) {
+                            var news = state.newsList[index];
+                            return news.id == highlightNewsId
+                                ? HighlightAnimation(
+                                    child: NewsItem(
+                                      news: news,
+                                      hasPinnedNews: state.hasPinnedNews,
+                                    ),
+                                  )
+                                : NewsItem(
+                                    news: news,
+                                    hasPinnedNews: state.hasPinnedNews,
+                                  );
+                          },
+                          separatorBuilder: (context, index) => Divider(),
+                        ),
+                      ),
+                      ElevatedButton(onPressed: () {}, child: Text("Push me!"))
+                    ],
                   ));
       },
     );

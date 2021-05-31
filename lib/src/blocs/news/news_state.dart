@@ -11,5 +11,6 @@ abstract class NewsState with _$NewsState {
   const factory NewsState.newsLoaded({
     @required List<News> newsList,
     @required bool hasPinnedNews,
+    @required bool hasMoreNews,
   }) = NewsLoaded;
 }

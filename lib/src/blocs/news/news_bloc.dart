@@ -13,6 +13,8 @@ class NewsBloc extends Bloc<NewsEvent, NewsState> {
   final NewsRepository newsRepository;
   final GymRepository gymRepository;
 
+  static const int PAGE_SIZE = 2;
+
   StreamSubscription<Gym> gymSub;
   StreamSubscription<List<News>> newsListSub;
 
@@ -31,19 +33,55 @@ class NewsBloc extends Bloc<NewsEvent, NewsState> {
       _fetchGym((gym) {
         _gym = gym;
         newsListSub?.cancel();
-        newsListSub = newsRepository.getAllNews(gym.id).listen((newsList) {
+        newsListSub = newsRepository.getNews(gym.id).listen((newsList) {
           add(NewsUpdated(newsList: newsList));
         });
       });
     }
 
     if (event is NewsUpdated) {
-      // sort and place pinned news on top
-      var pinnedNews = event.newsList.firstWhere((news) => news.isPinned, orElse: () => null);
-      yield NewsLoaded(
-        newsList: _newsListWithPinOnTop(pinnedNews, _sortByTimestamp(event.newsList)),
-        hasPinnedNews: pinnedNews != null,
-      );
+      final currentState = state;
+
+      if (currentState is NewsLoaded) {
+        // sort and place pinned news on top
+        var pinnedNews = event.newsList.firstWhere((news) => news.isPinned, orElse: () => null);
+        yield NewsLoaded(
+          newsList: _newsListWithPinOnTop(pinnedNews, event.newsList),
+          hasPinnedNews: pinnedNews != null,
+          hasMoreNews: event.newsList.length - currentState.newsList.length >= PAGE_SIZE,
+        );
+      } else {
+        var pinnedNews = event.newsList.firstWhere((news) => news.isPinned, orElse: () => null);
+        yield NewsLoaded(
+          newsList: _newsListWithPinOnTop(pinnedNews, event.newsList),
+          hasPinnedNews: pinnedNews != null,
+          hasMoreNews: event.newsList.length >= PAGE_SIZE,
+        );
+      }
+    }
+
+    if (event is FetchNews) {
+      final currentState = state;
+      if (_gym != null) {
+        if (currentState is NewsLoaded) {
+          newsListSub = newsRepository
+              .getNews(_gym.id, currentState.newsList.length + PAGE_SIZE)
+              .listen((newsList) {
+            add(NewsUpdated(newsList: newsList));
+          });
+        }
+      } else {
+        _fetchGym((gym) async {
+          _gym = gym;
+          if (currentState is NewsLoaded) {
+            newsListSub = newsRepository
+                .getNews(_gym.id, currentState.newsList.length + PAGE_SIZE)
+                .listen((newsList) {
+              add(NewsUpdated(newsList: newsList));
+            });
+          }
+        });
+      }
     }
 
     if (event is AddNews) {
@@ -114,9 +152,6 @@ class NewsBloc extends Bloc<NewsEvent, NewsState> {
     gymSub?.cancel();
     gymSub = gymRepository.getGym().listen(onGymUpdated);
   }
-
-  List<News> _sortByTimestamp(List<News> newsList) =>
-      newsList..sort((News a, News b) => b.compareTo(a));
 
   @override
   Future<void> close() {

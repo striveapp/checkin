@@ -30,7 +30,11 @@ void main() {
     MockGraduationUtils mockGraduationUtils;
 
     var fakeUser = User(
-        selectedGymId: "test", grade: Grade.white, email: "test@test.com", imageUrl: "sto.ca.png");
+      selectedGymId: "test",
+      grade: Grade.white,
+      email: "test@test.com",
+      imageUrl: "sto.ca.png",
+    );
 
     var fakeNewGrade = Grade.blue;
 
