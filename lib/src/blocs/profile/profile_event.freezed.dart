@@ -19,8 +19,7 @@ class _$ProfileEventTearOff {
   }
 
 // ignore: unused_element
-  ProfileUpdated profileUpdated(
-      {@required User user, @required bool isCurrentUser}) {
+  ProfileUpdated profileUpdated({@required User user, @required bool isCurrentUser}) {
     return ProfileUpdated(
       user: user,
       isCurrentUser: isCurrentUser,
@@ -35,8 +34,7 @@ class _$ProfileEventTearOff {
   }
 
 // ignore: unused_element
-  UpdateName updateName(
-      {@required String userEmail, @required String newName}) {
+  UpdateName updateName({@required String userEmail, @required String newName}) {
     return UpdateName(
       userEmail: userEmail,
       newName: newName,
@@ -44,8 +42,7 @@ class _$ProfileEventTearOff {
   }
 
 // ignore: unused_element
-  UpdateGrade updateGrade(
-      {@required String userEmail, @required Grade newGrade}) {
+  UpdateGrade updateGrade({@required String userEmail, @required Grade newGrade}) {
     return UpdateGrade(
       userEmail: userEmail,
       newGrade: newGrade,
@@ -53,8 +50,7 @@ class _$ProfileEventTearOff {
   }
 
 // ignore: unused_element
-  UpdateSelectedGym updateSelectedGym(
-      {@required String userEmail, @required String newGymId}) {
+  UpdateSelectedGym updateSelectedGym({@required String userEmail, @required String newGymId}) {
     return UpdateSelectedGym(
       userEmail: userEmail,
       newGymId: newGymId,
@@ -110,8 +106,7 @@ mixin _$ProfileEvent {
 
 /// @nodoc
 abstract class $ProfileEventCopyWith<$Res> {
-  factory $ProfileEventCopyWith(
-          ProfileEvent value, $Res Function(ProfileEvent) then) =
+  factory $ProfileEventCopyWith(ProfileEvent value, $Res Function(ProfileEvent) then) =
       _$ProfileEventCopyWithImpl<$Res>;
 }
 
@@ -132,11 +127,9 @@ abstract class $InitializeProfileCopyWith<$Res> {
 }
 
 /// @nodoc
-class _$InitializeProfileCopyWithImpl<$Res>
-    extends _$ProfileEventCopyWithImpl<$Res>
+class _$InitializeProfileCopyWithImpl<$Res> extends _$ProfileEventCopyWithImpl<$Res>
     implements $InitializeProfileCopyWith<$Res> {
-  _$InitializeProfileCopyWithImpl(
-      InitializeProfile _value, $Res Function(InitializeProfile) _then)
+  _$InitializeProfileCopyWithImpl(InitializeProfile _value, $Res Function(InitializeProfile) _then)
       : super(_value, (v) => _then(v as InitializeProfile));
 
   @override
@@ -144,9 +137,7 @@ class _$InitializeProfileCopyWithImpl<$Res>
 }
 
 /// @nodoc
-class _$InitializeProfile
-    with DiagnosticableTreeMixin
-    implements InitializeProfile {
+class _$InitializeProfile with DiagnosticableTreeMixin implements InitializeProfile {
   const _$InitializeProfile();
 
   @override
@@ -157,8 +148,7 @@ class _$InitializeProfile
   @override
   void debugFillProperties(DiagnosticPropertiesBuilder properties) {
     super.debugFillProperties(properties);
-    properties
-      ..add(DiagnosticsProperty('type', 'ProfileEvent.initializeProfile'));
+    properties..add(DiagnosticsProperty('type', 'ProfileEvent.initializeProfile'));
   }
 
   @override
@@ -250,8 +240,7 @@ abstract class InitializeProfile implements ProfileEvent {
 
 /// @nodoc
 abstract class $ProfileUpdatedCopyWith<$Res> {
-  factory $ProfileUpdatedCopyWith(
-          ProfileUpdated value, $Res Function(ProfileUpdated) then) =
+  factory $ProfileUpdatedCopyWith(ProfileUpdated value, $Res Function(ProfileUpdated) then) =
       _$ProfileUpdatedCopyWithImpl<$Res>;
   $Res call({User user, bool isCurrentUser});
 
@@ -259,11 +248,9 @@ abstract class $ProfileUpdatedCopyWith<$Res> {
 }
 
 /// @nodoc
-class _$ProfileUpdatedCopyWithImpl<$Res>
-    extends _$ProfileEventCopyWithImpl<$Res>
+class _$ProfileUpdatedCopyWithImpl<$Res> extends _$ProfileEventCopyWithImpl<$Res>
     implements $ProfileUpdatedCopyWith<$Res> {
-  _$ProfileUpdatedCopyWithImpl(
-      ProfileUpdated _value, $Res Function(ProfileUpdated) _then)
+  _$ProfileUpdatedCopyWithImpl(ProfileUpdated _value, $Res Function(ProfileUpdated) _then)
       : super(_value, (v) => _then(v as ProfileUpdated));
 
   @override
@@ -276,9 +263,7 @@ class _$ProfileUpdatedCopyWithImpl<$Res>
   }) {
     return _then(ProfileUpdated(
       user: user == freezed ? _value.user : user as User,
-      isCurrentUser: isCurrentUser == freezed
-          ? _value.isCurrentUser
-          : isCurrentUser as bool,
+      isCurrentUser: isCurrentUser == freezed ? _value.isCurrentUser : isCurrentUser as bool,
     ));
   }
 
@@ -325,8 +310,7 @@ class _$ProfileUpdated with DiagnosticableTreeMixin implements ProfileUpdated {
             (identical(other.user, user) ||
                 const DeepCollectionEquality().equals(other.user, user)) &&
             (identical(other.isCurrentUser, isCurrentUser) ||
-                const DeepCollectionEquality()
-                    .equals(other.isCurrentUser, isCurrentUser)));
+                const DeepCollectionEquality().equals(other.isCurrentUser, isCurrentUser)));
   }
 
   @override
@@ -416,8 +400,8 @@ class _$ProfileUpdated with DiagnosticableTreeMixin implements ProfileUpdated {
 }
 
 abstract class ProfileUpdated implements ProfileEvent {
-  const factory ProfileUpdated(
-      {@required User user, @required bool isCurrentUser}) = _$ProfileUpdated;
+  const factory ProfileUpdated({@required User user, @required bool isCurrentUser}) =
+      _$ProfileUpdated;
 
   User get user;
   bool get isCurrentUser;
@@ -427,18 +411,15 @@ abstract class ProfileUpdated implements ProfileEvent {
 
 /// @nodoc
 abstract class $UpdateImageUrlCopyWith<$Res> {
-  factory $UpdateImageUrlCopyWith(
-          UpdateImageUrl value, $Res Function(UpdateImageUrl) then) =
+  factory $UpdateImageUrlCopyWith(UpdateImageUrl value, $Res Function(UpdateImageUrl) then) =
       _$UpdateImageUrlCopyWithImpl<$Res>;
   $Res call({String userEmail});
 }
 
 /// @nodoc
-class _$UpdateImageUrlCopyWithImpl<$Res>
-    extends _$ProfileEventCopyWithImpl<$Res>
+class _$UpdateImageUrlCopyWithImpl<$Res> extends _$ProfileEventCopyWithImpl<$Res>
     implements $UpdateImageUrlCopyWith<$Res> {
-  _$UpdateImageUrlCopyWithImpl(
-      UpdateImageUrl _value, $Res Function(UpdateImageUrl) _then)
+  _$UpdateImageUrlCopyWithImpl(UpdateImageUrl _value, $Res Function(UpdateImageUrl) _then)
       : super(_value, (v) => _then(v as UpdateImageUrl));
 
   @override
@@ -456,8 +437,7 @@ class _$UpdateImageUrlCopyWithImpl<$Res>
 
 /// @nodoc
 class _$UpdateImageUrl with DiagnosticableTreeMixin implements UpdateImageUrl {
-  const _$UpdateImageUrl({@required this.userEmail})
-      : assert(userEmail != null);
+  const _$UpdateImageUrl({@required this.userEmail}) : assert(userEmail != null);
 
   @override
   final String userEmail;
@@ -480,13 +460,11 @@ class _$UpdateImageUrl with DiagnosticableTreeMixin implements UpdateImageUrl {
     return identical(this, other) ||
         (other is UpdateImageUrl &&
             (identical(other.userEmail, userEmail) ||
-                const DeepCollectionEquality()
-                    .equals(other.userEmail, userEmail)));
+                const DeepCollectionEquality().equals(other.userEmail, userEmail)));
   }
 
   @override
-  int get hashCode =>
-      runtimeType.hashCode ^ const DeepCollectionEquality().hash(userEmail);
+  int get hashCode => runtimeType.hashCode ^ const DeepCollectionEquality().hash(userEmail);
 
   @JsonKey(ignore: true)
   @override
@@ -578,8 +556,7 @@ abstract class UpdateImageUrl implements ProfileEvent {
 
 /// @nodoc
 abstract class $UpdateNameCopyWith<$Res> {
-  factory $UpdateNameCopyWith(
-          UpdateName value, $Res Function(UpdateName) then) =
+  factory $UpdateNameCopyWith(UpdateName value, $Res Function(UpdateName) then) =
       _$UpdateNameCopyWithImpl<$Res>;
   $Res call({String userEmail, String newName});
 }
@@ -635,8 +612,7 @@ class _$UpdateName with DiagnosticableTreeMixin implements UpdateName {
     return identical(this, other) ||
         (other is UpdateName &&
             (identical(other.userEmail, userEmail) ||
-                const DeepCollectionEquality()
-                    .equals(other.userEmail, userEmail)) &&
+                const DeepCollectionEquality().equals(other.userEmail, userEmail)) &&
             (identical(other.newName, newName) ||
                 const DeepCollectionEquality().equals(other.newName, newName)));
   }
@@ -728,8 +704,7 @@ class _$UpdateName with DiagnosticableTreeMixin implements UpdateName {
 }
 
 abstract class UpdateName implements ProfileEvent {
-  const factory UpdateName(
-      {@required String userEmail, @required String newName}) = _$UpdateName;
+  const factory UpdateName({@required String userEmail, @required String newName}) = _$UpdateName;
 
   String get userEmail;
   String get newName;
@@ -739,8 +714,7 @@ abstract class UpdateName implements ProfileEvent {
 
 /// @nodoc
 abstract class $UpdateGradeCopyWith<$Res> {
-  factory $UpdateGradeCopyWith(
-          UpdateGrade value, $Res Function(UpdateGrade) then) =
+  factory $UpdateGradeCopyWith(UpdateGrade value, $Res Function(UpdateGrade) then) =
       _$UpdateGradeCopyWithImpl<$Res>;
   $Res call({String userEmail, Grade newGrade});
 }
@@ -748,8 +722,7 @@ abstract class $UpdateGradeCopyWith<$Res> {
 /// @nodoc
 class _$UpdateGradeCopyWithImpl<$Res> extends _$ProfileEventCopyWithImpl<$Res>
     implements $UpdateGradeCopyWith<$Res> {
-  _$UpdateGradeCopyWithImpl(
-      UpdateGrade _value, $Res Function(UpdateGrade) _then)
+  _$UpdateGradeCopyWithImpl(UpdateGrade _value, $Res Function(UpdateGrade) _then)
       : super(_value, (v) => _then(v as UpdateGrade));
 
   @override
@@ -797,11 +770,9 @@ class _$UpdateGrade with DiagnosticableTreeMixin implements UpdateGrade {
     return identical(this, other) ||
         (other is UpdateGrade &&
             (identical(other.userEmail, userEmail) ||
-                const DeepCollectionEquality()
-                    .equals(other.userEmail, userEmail)) &&
+                const DeepCollectionEquality().equals(other.userEmail, userEmail)) &&
             (identical(other.newGrade, newGrade) ||
-                const DeepCollectionEquality()
-                    .equals(other.newGrade, newGrade)));
+                const DeepCollectionEquality().equals(other.newGrade, newGrade)));
   }
 
   @override
@@ -891,8 +862,7 @@ class _$UpdateGrade with DiagnosticableTreeMixin implements UpdateGrade {
 }
 
 abstract class UpdateGrade implements ProfileEvent {
-  const factory UpdateGrade(
-      {@required String userEmail, @required Grade newGrade}) = _$UpdateGrade;
+  const factory UpdateGrade({@required String userEmail, @required Grade newGrade}) = _$UpdateGrade;
 
   String get userEmail;
   Grade get newGrade;
@@ -909,11 +879,9 @@ abstract class $UpdateSelectedGymCopyWith<$Res> {
 }
 
 /// @nodoc
-class _$UpdateSelectedGymCopyWithImpl<$Res>
-    extends _$ProfileEventCopyWithImpl<$Res>
+class _$UpdateSelectedGymCopyWithImpl<$Res> extends _$ProfileEventCopyWithImpl<$Res>
     implements $UpdateSelectedGymCopyWith<$Res> {
-  _$UpdateSelectedGymCopyWithImpl(
-      UpdateSelectedGym _value, $Res Function(UpdateSelectedGym) _then)
+  _$UpdateSelectedGymCopyWithImpl(UpdateSelectedGym _value, $Res Function(UpdateSelectedGym) _then)
       : super(_value, (v) => _then(v as UpdateSelectedGym));
 
   @override
@@ -932,9 +900,7 @@ class _$UpdateSelectedGymCopyWithImpl<$Res>
 }
 
 /// @nodoc
-class _$UpdateSelectedGym
-    with DiagnosticableTreeMixin
-    implements UpdateSelectedGym {
+class _$UpdateSelectedGym with DiagnosticableTreeMixin implements UpdateSelectedGym {
   const _$UpdateSelectedGym({@required this.userEmail, @required this.newGymId})
       : assert(userEmail != null),
         assert(newGymId != null);
@@ -963,11 +929,9 @@ class _$UpdateSelectedGym
     return identical(this, other) ||
         (other is UpdateSelectedGym &&
             (identical(other.userEmail, userEmail) ||
-                const DeepCollectionEquality()
-                    .equals(other.userEmail, userEmail)) &&
+                const DeepCollectionEquality().equals(other.userEmail, userEmail)) &&
             (identical(other.newGymId, newGymId) ||
-                const DeepCollectionEquality()
-                    .equals(other.newGymId, newGymId)));
+                const DeepCollectionEquality().equals(other.newGymId, newGymId)));
   }
 
   @override
@@ -1057,9 +1021,8 @@ class _$UpdateSelectedGym
 }
 
 abstract class UpdateSelectedGym implements ProfileEvent {
-  const factory UpdateSelectedGym(
-      {@required String userEmail,
-      @required String newGymId}) = _$UpdateSelectedGym;
+  const factory UpdateSelectedGym({@required String userEmail, @required String newGymId}) =
+      _$UpdateSelectedGym;
 
   String get userEmail;
   String get newGymId;

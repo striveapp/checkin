@@ -50,18 +50,21 @@ class LessonInstancesProvider implements LessonRepository {
       .map((doc) => Lesson.fromJson(doc.data()));
 
   @override
-  Stream<List<Lesson>> getLessonsByMasterAndTimespan(Master master, Timespan timespan, String gymId) => _firestore
-      .collectionGroup(sub_collection_path)
-      .where("gymId", isEqualTo: gymId)
-      .where("date",
-          isGreaterThanOrEqualTo:
-              DateFormat('yyyy-MM-dd').format(dateUtil.getFirstDayOfTimespan(timespan)))
-      .snapshots()
-      .map((snapshot) => snapshot.docs
-          .where((doc) => doc.data()['masters'] != null)
-          .map((doc) => Lesson.fromJson(doc.data()))
-          .where((lesson) => lesson.masters.any((lessonMaster) => lessonMaster.email == master.email))
-          .toList());
+  Stream<List<Lesson>> getLessonsByMasterAndTimespan(
+          Master master, Timespan timespan, String gymId) =>
+      _firestore
+          .collectionGroup(sub_collection_path)
+          .where("gymId", isEqualTo: gymId)
+          .where("date",
+              isGreaterThanOrEqualTo:
+                  DateFormat('yyyy-MM-dd').format(dateUtil.getFirstDayOfTimespan(timespan)))
+          .snapshots()
+          .map((snapshot) => snapshot.docs
+              .where((doc) => doc.data()['masters'] != null)
+              .map((doc) => Lesson.fromJson(doc.data()))
+              .where((lesson) =>
+                  lesson.masters.any((lessonMaster) => lessonMaster.email == master.email))
+              .toList());
 
   @override
   Future<void> register(String gymId, String date, String lessonId, Attendee attendee) async {

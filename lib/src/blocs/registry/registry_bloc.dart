@@ -25,7 +25,6 @@ class RegistryBloc extends Bloc<RegistryEvent, RegistryState> {
   final StorageRepository storageRepository;
   final DateUtil dateUtil;
 
-
   StreamSubscription<Lesson> _lessonSub;
   StreamSubscription<User> _userSub;
 

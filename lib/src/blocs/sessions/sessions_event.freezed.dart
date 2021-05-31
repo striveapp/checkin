@@ -41,22 +41,18 @@ mixin _$SessionsEvent {
   @optionalTypeArgs
   TResult when<TResult extends Object>({
     @required TResult sessionsUpdated(Membership membership),
-    @required
-        TResult sessionsUpdatedWithHistory(
-            Membership membership, UserHistory userHistory),
+    @required TResult sessionsUpdatedWithHistory(Membership membership, UserHistory userHistory),
   });
   @optionalTypeArgs
   TResult maybeWhen<TResult extends Object>({
     TResult sessionsUpdated(Membership membership),
-    TResult sessionsUpdatedWithHistory(
-        Membership membership, UserHistory userHistory),
+    TResult sessionsUpdatedWithHistory(Membership membership, UserHistory userHistory),
     @required TResult orElse(),
   });
   @optionalTypeArgs
   TResult map<TResult extends Object>({
     @required TResult sessionsUpdated(SessionsUpdated value),
-    @required
-        TResult sessionsUpdatedWithHistory(SessionsUpdatedWithHistory value),
+    @required TResult sessionsUpdatedWithHistory(SessionsUpdatedWithHistory value),
   });
   @optionalTypeArgs
   TResult maybeMap<TResult extends Object>({
@@ -71,8 +67,7 @@ mixin _$SessionsEvent {
 
 /// @nodoc
 abstract class $SessionsEventCopyWith<$Res> {
-  factory $SessionsEventCopyWith(
-          SessionsEvent value, $Res Function(SessionsEvent) then) =
+  factory $SessionsEventCopyWith(SessionsEvent value, $Res Function(SessionsEvent) then) =
       _$SessionsEventCopyWithImpl<$Res>;
   $Res call({Membership membership});
 
@@ -80,8 +75,7 @@ abstract class $SessionsEventCopyWith<$Res> {
 }
 
 /// @nodoc
-class _$SessionsEventCopyWithImpl<$Res>
-    implements $SessionsEventCopyWith<$Res> {
+class _$SessionsEventCopyWithImpl<$Res> implements $SessionsEventCopyWith<$Res> {
   _$SessionsEventCopyWithImpl(this._value, this._then);
 
   final SessionsEvent _value;
@@ -93,8 +87,7 @@ class _$SessionsEventCopyWithImpl<$Res>
     Object membership = freezed,
   }) {
     return _then(_value.copyWith(
-      membership:
-          membership == freezed ? _value.membership : membership as Membership,
+      membership: membership == freezed ? _value.membership : membership as Membership,
     ));
   }
 
@@ -110,10 +103,8 @@ class _$SessionsEventCopyWithImpl<$Res>
 }
 
 /// @nodoc
-abstract class $SessionsUpdatedCopyWith<$Res>
-    implements $SessionsEventCopyWith<$Res> {
-  factory $SessionsUpdatedCopyWith(
-          SessionsUpdated value, $Res Function(SessionsUpdated) then) =
+abstract class $SessionsUpdatedCopyWith<$Res> implements $SessionsEventCopyWith<$Res> {
+  factory $SessionsUpdatedCopyWith(SessionsUpdated value, $Res Function(SessionsUpdated) then) =
       _$SessionsUpdatedCopyWithImpl<$Res>;
   @override
   $Res call({Membership membership});
@@ -123,11 +114,9 @@ abstract class $SessionsUpdatedCopyWith<$Res>
 }
 
 /// @nodoc
-class _$SessionsUpdatedCopyWithImpl<$Res>
-    extends _$SessionsEventCopyWithImpl<$Res>
+class _$SessionsUpdatedCopyWithImpl<$Res> extends _$SessionsEventCopyWithImpl<$Res>
     implements $SessionsUpdatedCopyWith<$Res> {
-  _$SessionsUpdatedCopyWithImpl(
-      SessionsUpdated _value, $Res Function(SessionsUpdated) _then)
+  _$SessionsUpdatedCopyWithImpl(SessionsUpdated _value, $Res Function(SessionsUpdated) _then)
       : super(_value, (v) => _then(v as SessionsUpdated));
 
   @override
@@ -138,18 +127,14 @@ class _$SessionsUpdatedCopyWithImpl<$Res>
     Object membership = freezed,
   }) {
     return _then(SessionsUpdated(
-      membership:
-          membership == freezed ? _value.membership : membership as Membership,
+      membership: membership == freezed ? _value.membership : membership as Membership,
     ));
   }
 }
 
 /// @nodoc
-class _$SessionsUpdated
-    with DiagnosticableTreeMixin
-    implements SessionsUpdated {
-  const _$SessionsUpdated({@required this.membership})
-      : assert(membership != null);
+class _$SessionsUpdated with DiagnosticableTreeMixin implements SessionsUpdated {
+  const _$SessionsUpdated({@required this.membership}) : assert(membership != null);
 
   @override
   final Membership membership;
@@ -172,13 +157,11 @@ class _$SessionsUpdated
     return identical(this, other) ||
         (other is SessionsUpdated &&
             (identical(other.membership, membership) ||
-                const DeepCollectionEquality()
-                    .equals(other.membership, membership)));
+                const DeepCollectionEquality().equals(other.membership, membership)));
   }
 
   @override
-  int get hashCode =>
-      runtimeType.hashCode ^ const DeepCollectionEquality().hash(membership);
+  int get hashCode => runtimeType.hashCode ^ const DeepCollectionEquality().hash(membership);
 
   @JsonKey(ignore: true)
   @override
@@ -189,9 +172,7 @@ class _$SessionsUpdated
   @optionalTypeArgs
   TResult when<TResult extends Object>({
     @required TResult sessionsUpdated(Membership membership),
-    @required
-        TResult sessionsUpdatedWithHistory(
-            Membership membership, UserHistory userHistory),
+    @required TResult sessionsUpdatedWithHistory(Membership membership, UserHistory userHistory),
   }) {
     assert(sessionsUpdated != null);
     assert(sessionsUpdatedWithHistory != null);
@@ -202,8 +183,7 @@ class _$SessionsUpdated
   @optionalTypeArgs
   TResult maybeWhen<TResult extends Object>({
     TResult sessionsUpdated(Membership membership),
-    TResult sessionsUpdatedWithHistory(
-        Membership membership, UserHistory userHistory),
+    TResult sessionsUpdatedWithHistory(Membership membership, UserHistory userHistory),
     @required TResult orElse(),
   }) {
     assert(orElse != null);
@@ -217,8 +197,7 @@ class _$SessionsUpdated
   @optionalTypeArgs
   TResult map<TResult extends Object>({
     @required TResult sessionsUpdated(SessionsUpdated value),
-    @required
-        TResult sessionsUpdatedWithHistory(SessionsUpdatedWithHistory value),
+    @required TResult sessionsUpdatedWithHistory(SessionsUpdatedWithHistory value),
   }) {
     assert(sessionsUpdated != null);
     assert(sessionsUpdatedWithHistory != null);
@@ -241,8 +220,7 @@ class _$SessionsUpdated
 }
 
 abstract class SessionsUpdated implements SessionsEvent {
-  const factory SessionsUpdated({@required Membership membership}) =
-      _$SessionsUpdated;
+  const factory SessionsUpdated({@required Membership membership}) = _$SessionsUpdated;
 
   @override
   Membership get membership;
@@ -252,10 +230,9 @@ abstract class SessionsUpdated implements SessionsEvent {
 }
 
 /// @nodoc
-abstract class $SessionsUpdatedWithHistoryCopyWith<$Res>
-    implements $SessionsEventCopyWith<$Res> {
-  factory $SessionsUpdatedWithHistoryCopyWith(SessionsUpdatedWithHistory value,
-          $Res Function(SessionsUpdatedWithHistory) then) =
+abstract class $SessionsUpdatedWithHistoryCopyWith<$Res> implements $SessionsEventCopyWith<$Res> {
+  factory $SessionsUpdatedWithHistoryCopyWith(
+          SessionsUpdatedWithHistory value, $Res Function(SessionsUpdatedWithHistory) then) =
       _$SessionsUpdatedWithHistoryCopyWithImpl<$Res>;
   @override
   $Res call({Membership membership, UserHistory userHistory});
@@ -265,16 +242,14 @@ abstract class $SessionsUpdatedWithHistoryCopyWith<$Res>
 }
 
 /// @nodoc
-class _$SessionsUpdatedWithHistoryCopyWithImpl<$Res>
-    extends _$SessionsEventCopyWithImpl<$Res>
+class _$SessionsUpdatedWithHistoryCopyWithImpl<$Res> extends _$SessionsEventCopyWithImpl<$Res>
     implements $SessionsUpdatedWithHistoryCopyWith<$Res> {
-  _$SessionsUpdatedWithHistoryCopyWithImpl(SessionsUpdatedWithHistory _value,
-      $Res Function(SessionsUpdatedWithHistory) _then)
+  _$SessionsUpdatedWithHistoryCopyWithImpl(
+      SessionsUpdatedWithHistory _value, $Res Function(SessionsUpdatedWithHistory) _then)
       : super(_value, (v) => _then(v as SessionsUpdatedWithHistory));
 
   @override
-  SessionsUpdatedWithHistory get _value =>
-      super._value as SessionsUpdatedWithHistory;
+  SessionsUpdatedWithHistory get _value => super._value as SessionsUpdatedWithHistory;
 
   @override
   $Res call({
@@ -282,11 +257,8 @@ class _$SessionsUpdatedWithHistoryCopyWithImpl<$Res>
     Object userHistory = freezed,
   }) {
     return _then(SessionsUpdatedWithHistory(
-      membership:
-          membership == freezed ? _value.membership : membership as Membership,
-      userHistory: userHistory == freezed
-          ? _value.userHistory
-          : userHistory as UserHistory,
+      membership: membership == freezed ? _value.membership : membership as Membership,
+      userHistory: userHistory == freezed ? _value.userHistory : userHistory as UserHistory,
     ));
   }
 }
@@ -295,8 +267,7 @@ class _$SessionsUpdatedWithHistoryCopyWithImpl<$Res>
 class _$SessionsUpdatedWithHistory
     with DiagnosticableTreeMixin
     implements SessionsUpdatedWithHistory {
-  const _$SessionsUpdatedWithHistory(
-      {@required this.membership, @required this.userHistory})
+  const _$SessionsUpdatedWithHistory({@required this.membership, @required this.userHistory})
       : assert(membership != null),
         assert(userHistory != null);
 
@@ -314,8 +285,7 @@ class _$SessionsUpdatedWithHistory
   void debugFillProperties(DiagnosticPropertiesBuilder properties) {
     super.debugFillProperties(properties);
     properties
-      ..add(DiagnosticsProperty(
-          'type', 'SessionsEvent.sessionsUpdatedWithHistory'))
+      ..add(DiagnosticsProperty('type', 'SessionsEvent.sessionsUpdatedWithHistory'))
       ..add(DiagnosticsProperty('membership', membership))
       ..add(DiagnosticsProperty('userHistory', userHistory));
   }
@@ -325,11 +295,9 @@ class _$SessionsUpdatedWithHistory
     return identical(this, other) ||
         (other is SessionsUpdatedWithHistory &&
             (identical(other.membership, membership) ||
-                const DeepCollectionEquality()
-                    .equals(other.membership, membership)) &&
+                const DeepCollectionEquality().equals(other.membership, membership)) &&
             (identical(other.userHistory, userHistory) ||
-                const DeepCollectionEquality()
-                    .equals(other.userHistory, userHistory)));
+                const DeepCollectionEquality().equals(other.userHistory, userHistory)));
   }
 
   @override
@@ -340,18 +308,14 @@ class _$SessionsUpdatedWithHistory
 
   @JsonKey(ignore: true)
   @override
-  $SessionsUpdatedWithHistoryCopyWith<SessionsUpdatedWithHistory>
-      get copyWith =>
-          _$SessionsUpdatedWithHistoryCopyWithImpl<SessionsUpdatedWithHistory>(
-              this, _$identity);
+  $SessionsUpdatedWithHistoryCopyWith<SessionsUpdatedWithHistory> get copyWith =>
+      _$SessionsUpdatedWithHistoryCopyWithImpl<SessionsUpdatedWithHistory>(this, _$identity);
 
   @override
   @optionalTypeArgs
   TResult when<TResult extends Object>({
     @required TResult sessionsUpdated(Membership membership),
-    @required
-        TResult sessionsUpdatedWithHistory(
-            Membership membership, UserHistory userHistory),
+    @required TResult sessionsUpdatedWithHistory(Membership membership, UserHistory userHistory),
   }) {
     assert(sessionsUpdated != null);
     assert(sessionsUpdatedWithHistory != null);
@@ -362,8 +326,7 @@ class _$SessionsUpdatedWithHistory
   @optionalTypeArgs
   TResult maybeWhen<TResult extends Object>({
     TResult sessionsUpdated(Membership membership),
-    TResult sessionsUpdatedWithHistory(
-        Membership membership, UserHistory userHistory),
+    TResult sessionsUpdatedWithHistory(Membership membership, UserHistory userHistory),
     @required TResult orElse(),
   }) {
     assert(orElse != null);
@@ -377,8 +340,7 @@ class _$SessionsUpdatedWithHistory
   @optionalTypeArgs
   TResult map<TResult extends Object>({
     @required TResult sessionsUpdated(SessionsUpdated value),
-    @required
-        TResult sessionsUpdatedWithHistory(SessionsUpdatedWithHistory value),
+    @required TResult sessionsUpdatedWithHistory(SessionsUpdatedWithHistory value),
   }) {
     assert(sessionsUpdated != null);
     assert(sessionsUpdatedWithHistory != null);

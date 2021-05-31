@@ -19,8 +19,7 @@ class _$DynamicLinkEventTearOff {
   }
 
 // ignore: unused_element
-  DeepLinkErrorEvent deepLinkErrorEvent(
-      {@required OnLinkErrorException error}) {
+  DeepLinkErrorEvent deepLinkErrorEvent({@required OnLinkErrorException error}) {
     return DeepLinkErrorEvent(
       error: error,
     );
@@ -34,8 +33,7 @@ class _$DynamicLinkEventTearOff {
   }
 
 // ignore: unused_element
-  ShareRegistryLink shareRegistryLink(
-      {@required String date, @required String lessonId}) {
+  ShareRegistryLink shareRegistryLink({@required String date, @required String lessonId}) {
     return ShareRegistryLink(
       date: date,
       lessonId: lessonId,
@@ -83,14 +81,12 @@ mixin _$DynamicLinkEvent {
 
 /// @nodoc
 abstract class $DynamicLinkEventCopyWith<$Res> {
-  factory $DynamicLinkEventCopyWith(
-          DynamicLinkEvent value, $Res Function(DynamicLinkEvent) then) =
+  factory $DynamicLinkEventCopyWith(DynamicLinkEvent value, $Res Function(DynamicLinkEvent) then) =
       _$DynamicLinkEventCopyWithImpl<$Res>;
 }
 
 /// @nodoc
-class _$DynamicLinkEventCopyWithImpl<$Res>
-    implements $DynamicLinkEventCopyWith<$Res> {
+class _$DynamicLinkEventCopyWithImpl<$Res> implements $DynamicLinkEventCopyWith<$Res> {
   _$DynamicLinkEventCopyWithImpl(this._value, this._then);
 
   final DynamicLinkEvent _value;
@@ -100,17 +96,14 @@ class _$DynamicLinkEventCopyWithImpl<$Res>
 
 /// @nodoc
 abstract class $DeepLinkSetupCopyWith<$Res> {
-  factory $DeepLinkSetupCopyWith(
-          DeepLinkSetup value, $Res Function(DeepLinkSetup) then) =
+  factory $DeepLinkSetupCopyWith(DeepLinkSetup value, $Res Function(DeepLinkSetup) then) =
       _$DeepLinkSetupCopyWithImpl<$Res>;
 }
 
 /// @nodoc
-class _$DeepLinkSetupCopyWithImpl<$Res>
-    extends _$DynamicLinkEventCopyWithImpl<$Res>
+class _$DeepLinkSetupCopyWithImpl<$Res> extends _$DynamicLinkEventCopyWithImpl<$Res>
     implements $DeepLinkSetupCopyWith<$Res> {
-  _$DeepLinkSetupCopyWithImpl(
-      DeepLinkSetup _value, $Res Function(DeepLinkSetup) _then)
+  _$DeepLinkSetupCopyWithImpl(DeepLinkSetup _value, $Res Function(DeepLinkSetup) _then)
       : super(_value, (v) => _then(v as DeepLinkSetup));
 
   @override
@@ -129,8 +122,7 @@ class _$DeepLinkSetup with DiagnosticableTreeMixin implements DeepLinkSetup {
   @override
   void debugFillProperties(DiagnosticPropertiesBuilder properties) {
     super.debugFillProperties(properties);
-    properties
-      ..add(DiagnosticsProperty('type', 'DynamicLinkEvent.deepLinkSetup'));
+    properties..add(DiagnosticsProperty('type', 'DynamicLinkEvent.deepLinkSetup'));
   }
 
   @override
@@ -217,8 +209,7 @@ abstract class $DeepLinkErrorEventCopyWith<$Res> {
 }
 
 /// @nodoc
-class _$DeepLinkErrorEventCopyWithImpl<$Res>
-    extends _$DynamicLinkEventCopyWithImpl<$Res>
+class _$DeepLinkErrorEventCopyWithImpl<$Res> extends _$DynamicLinkEventCopyWithImpl<$Res>
     implements $DeepLinkErrorEventCopyWith<$Res> {
   _$DeepLinkErrorEventCopyWithImpl(
       DeepLinkErrorEvent _value, $Res Function(DeepLinkErrorEvent) _then)
@@ -238,9 +229,7 @@ class _$DeepLinkErrorEventCopyWithImpl<$Res>
 }
 
 /// @nodoc
-class _$DeepLinkErrorEvent
-    with DiagnosticableTreeMixin
-    implements DeepLinkErrorEvent {
+class _$DeepLinkErrorEvent with DiagnosticableTreeMixin implements DeepLinkErrorEvent {
   const _$DeepLinkErrorEvent({@required this.error}) : assert(error != null);
 
   @override
@@ -268,8 +257,7 @@ class _$DeepLinkErrorEvent
   }
 
   @override
-  int get hashCode =>
-      runtimeType.hashCode ^ const DeepCollectionEquality().hash(error);
+  int get hashCode => runtimeType.hashCode ^ const DeepCollectionEquality().hash(error);
 
   @JsonKey(ignore: true)
   @override
@@ -340,8 +328,7 @@ class _$DeepLinkErrorEvent
 }
 
 abstract class DeepLinkErrorEvent implements DynamicLinkEvent {
-  const factory DeepLinkErrorEvent({@required OnLinkErrorException error}) =
-      _$DeepLinkErrorEvent;
+  const factory DeepLinkErrorEvent({@required OnLinkErrorException error}) = _$DeepLinkErrorEvent;
 
   OnLinkErrorException get error;
   @JsonKey(ignore: true)
@@ -350,18 +337,15 @@ abstract class DeepLinkErrorEvent implements DynamicLinkEvent {
 
 /// @nodoc
 abstract class $DeepLinkReceivedCopyWith<$Res> {
-  factory $DeepLinkReceivedCopyWith(
-          DeepLinkReceived value, $Res Function(DeepLinkReceived) then) =
+  factory $DeepLinkReceivedCopyWith(DeepLinkReceived value, $Res Function(DeepLinkReceived) then) =
       _$DeepLinkReceivedCopyWithImpl<$Res>;
   $Res call({Uri deepLink});
 }
 
 /// @nodoc
-class _$DeepLinkReceivedCopyWithImpl<$Res>
-    extends _$DynamicLinkEventCopyWithImpl<$Res>
+class _$DeepLinkReceivedCopyWithImpl<$Res> extends _$DynamicLinkEventCopyWithImpl<$Res>
     implements $DeepLinkReceivedCopyWith<$Res> {
-  _$DeepLinkReceivedCopyWithImpl(
-      DeepLinkReceived _value, $Res Function(DeepLinkReceived) _then)
+  _$DeepLinkReceivedCopyWithImpl(DeepLinkReceived _value, $Res Function(DeepLinkReceived) _then)
       : super(_value, (v) => _then(v as DeepLinkReceived));
 
   @override
@@ -378,11 +362,8 @@ class _$DeepLinkReceivedCopyWithImpl<$Res>
 }
 
 /// @nodoc
-class _$DeepLinkReceived
-    with DiagnosticableTreeMixin
-    implements DeepLinkReceived {
-  const _$DeepLinkReceived({@required this.deepLink})
-      : assert(deepLink != null);
+class _$DeepLinkReceived with DiagnosticableTreeMixin implements DeepLinkReceived {
+  const _$DeepLinkReceived({@required this.deepLink}) : assert(deepLink != null);
 
   @override
   final Uri deepLink;
@@ -405,13 +386,11 @@ class _$DeepLinkReceived
     return identical(this, other) ||
         (other is DeepLinkReceived &&
             (identical(other.deepLink, deepLink) ||
-                const DeepCollectionEquality()
-                    .equals(other.deepLink, deepLink)));
+                const DeepCollectionEquality().equals(other.deepLink, deepLink)));
   }
 
   @override
-  int get hashCode =>
-      runtimeType.hashCode ^ const DeepCollectionEquality().hash(deepLink);
+  int get hashCode => runtimeType.hashCode ^ const DeepCollectionEquality().hash(deepLink);
 
   @JsonKey(ignore: true)
   @override
@@ -498,11 +477,9 @@ abstract class $ShareRegistryLinkCopyWith<$Res> {
 }
 
 /// @nodoc
-class _$ShareRegistryLinkCopyWithImpl<$Res>
-    extends _$DynamicLinkEventCopyWithImpl<$Res>
+class _$ShareRegistryLinkCopyWithImpl<$Res> extends _$DynamicLinkEventCopyWithImpl<$Res>
     implements $ShareRegistryLinkCopyWith<$Res> {
-  _$ShareRegistryLinkCopyWithImpl(
-      ShareRegistryLink _value, $Res Function(ShareRegistryLink) _then)
+  _$ShareRegistryLinkCopyWithImpl(ShareRegistryLink _value, $Res Function(ShareRegistryLink) _then)
       : super(_value, (v) => _then(v as ShareRegistryLink));
 
   @override
@@ -521,9 +498,7 @@ class _$ShareRegistryLinkCopyWithImpl<$Res>
 }
 
 /// @nodoc
-class _$ShareRegistryLink
-    with DiagnosticableTreeMixin
-    implements ShareRegistryLink {
+class _$ShareRegistryLink with DiagnosticableTreeMixin implements ShareRegistryLink {
   const _$ShareRegistryLink({@required this.date, @required this.lessonId})
       : assert(date != null),
         assert(lessonId != null);
@@ -554,8 +529,7 @@ class _$ShareRegistryLink
             (identical(other.date, date) ||
                 const DeepCollectionEquality().equals(other.date, date)) &&
             (identical(other.lessonId, lessonId) ||
-                const DeepCollectionEquality()
-                    .equals(other.lessonId, lessonId)));
+                const DeepCollectionEquality().equals(other.lessonId, lessonId)));
   }
 
   @override
@@ -633,8 +607,8 @@ class _$ShareRegistryLink
 }
 
 abstract class ShareRegistryLink implements DynamicLinkEvent {
-  const factory ShareRegistryLink(
-      {@required String date, @required String lessonId}) = _$ShareRegistryLink;
+  const factory ShareRegistryLink({@required String date, @required String lessonId}) =
+      _$ShareRegistryLink;
 
   String get date;
   String get lessonId;

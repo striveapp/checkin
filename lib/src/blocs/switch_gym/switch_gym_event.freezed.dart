@@ -20,9 +20,7 @@ class _$SwitchGymsEventTearOff {
 
 // ignore: unused_element
   SwitchGymUpdated switchGymUpdated(
-      {@required Gym selectedGym,
-      @required User currentUser,
-      @required List<String> knowGymsIds}) {
+      {@required Gym selectedGym, @required User currentUser, @required List<String> knowGymsIds}) {
     return SwitchGymUpdated(
       selectedGym: selectedGym,
       currentUser: currentUser,
@@ -40,15 +38,12 @@ mixin _$SwitchGymsEvent {
   @optionalTypeArgs
   TResult when<TResult extends Object>({
     @required TResult initializeSwitchGym(),
-    @required
-        TResult switchGymUpdated(
-            Gym selectedGym, User currentUser, List<String> knowGymsIds),
+    @required TResult switchGymUpdated(Gym selectedGym, User currentUser, List<String> knowGymsIds),
   });
   @optionalTypeArgs
   TResult maybeWhen<TResult extends Object>({
     TResult initializeSwitchGym(),
-    TResult switchGymUpdated(
-        Gym selectedGym, User currentUser, List<String> knowGymsIds),
+    TResult switchGymUpdated(Gym selectedGym, User currentUser, List<String> knowGymsIds),
     @required TResult orElse(),
   });
   @optionalTypeArgs
@@ -66,14 +61,12 @@ mixin _$SwitchGymsEvent {
 
 /// @nodoc
 abstract class $SwitchGymsEventCopyWith<$Res> {
-  factory $SwitchGymsEventCopyWith(
-          SwitchGymsEvent value, $Res Function(SwitchGymsEvent) then) =
+  factory $SwitchGymsEventCopyWith(SwitchGymsEvent value, $Res Function(SwitchGymsEvent) then) =
       _$SwitchGymsEventCopyWithImpl<$Res>;
 }
 
 /// @nodoc
-class _$SwitchGymsEventCopyWithImpl<$Res>
-    implements $SwitchGymsEventCopyWith<$Res> {
+class _$SwitchGymsEventCopyWithImpl<$Res> implements $SwitchGymsEventCopyWith<$Res> {
   _$SwitchGymsEventCopyWithImpl(this._value, this._then);
 
   final SwitchGymsEvent _value;
@@ -89,8 +82,7 @@ abstract class $InitializeSwitchGymCopyWith<$Res> {
 }
 
 /// @nodoc
-class _$InitializeSwitchGymCopyWithImpl<$Res>
-    extends _$SwitchGymsEventCopyWithImpl<$Res>
+class _$InitializeSwitchGymCopyWithImpl<$Res> extends _$SwitchGymsEventCopyWithImpl<$Res>
     implements $InitializeSwitchGymCopyWith<$Res> {
   _$InitializeSwitchGymCopyWithImpl(
       InitializeSwitchGym _value, $Res Function(InitializeSwitchGym) _then)
@@ -121,9 +113,7 @@ class _$InitializeSwitchGym implements InitializeSwitchGym {
   @optionalTypeArgs
   TResult when<TResult extends Object>({
     @required TResult initializeSwitchGym(),
-    @required
-        TResult switchGymUpdated(
-            Gym selectedGym, User currentUser, List<String> knowGymsIds),
+    @required TResult switchGymUpdated(Gym selectedGym, User currentUser, List<String> knowGymsIds),
   }) {
     assert(initializeSwitchGym != null);
     assert(switchGymUpdated != null);
@@ -134,8 +124,7 @@ class _$InitializeSwitchGym implements InitializeSwitchGym {
   @optionalTypeArgs
   TResult maybeWhen<TResult extends Object>({
     TResult initializeSwitchGym(),
-    TResult switchGymUpdated(
-        Gym selectedGym, User currentUser, List<String> knowGymsIds),
+    TResult switchGymUpdated(Gym selectedGym, User currentUser, List<String> knowGymsIds),
     @required TResult orElse(),
   }) {
     assert(orElse != null);
@@ -177,8 +166,7 @@ abstract class InitializeSwitchGym implements SwitchGymsEvent {
 
 /// @nodoc
 abstract class $SwitchGymUpdatedCopyWith<$Res> {
-  factory $SwitchGymUpdatedCopyWith(
-          SwitchGymUpdated value, $Res Function(SwitchGymUpdated) then) =
+  factory $SwitchGymUpdatedCopyWith(SwitchGymUpdated value, $Res Function(SwitchGymUpdated) then) =
       _$SwitchGymUpdatedCopyWithImpl<$Res>;
   $Res call({Gym selectedGym, User currentUser, List<String> knowGymsIds});
 
@@ -187,11 +175,9 @@ abstract class $SwitchGymUpdatedCopyWith<$Res> {
 }
 
 /// @nodoc
-class _$SwitchGymUpdatedCopyWithImpl<$Res>
-    extends _$SwitchGymsEventCopyWithImpl<$Res>
+class _$SwitchGymUpdatedCopyWithImpl<$Res> extends _$SwitchGymsEventCopyWithImpl<$Res>
     implements $SwitchGymUpdatedCopyWith<$Res> {
-  _$SwitchGymUpdatedCopyWithImpl(
-      SwitchGymUpdated _value, $Res Function(SwitchGymUpdated) _then)
+  _$SwitchGymUpdatedCopyWithImpl(SwitchGymUpdated _value, $Res Function(SwitchGymUpdated) _then)
       : super(_value, (v) => _then(v as SwitchGymUpdated));
 
   @override
@@ -204,13 +190,9 @@ class _$SwitchGymUpdatedCopyWithImpl<$Res>
     Object knowGymsIds = freezed,
   }) {
     return _then(SwitchGymUpdated(
-      selectedGym:
-          selectedGym == freezed ? _value.selectedGym : selectedGym as Gym,
-      currentUser:
-          currentUser == freezed ? _value.currentUser : currentUser as User,
-      knowGymsIds: knowGymsIds == freezed
-          ? _value.knowGymsIds
-          : knowGymsIds as List<String>,
+      selectedGym: selectedGym == freezed ? _value.selectedGym : selectedGym as Gym,
+      currentUser: currentUser == freezed ? _value.currentUser : currentUser as User,
+      knowGymsIds: knowGymsIds == freezed ? _value.knowGymsIds : knowGymsIds as List<String>,
     ));
   }
 
@@ -238,9 +220,7 @@ class _$SwitchGymUpdatedCopyWithImpl<$Res>
 /// @nodoc
 class _$SwitchGymUpdated implements SwitchGymUpdated {
   const _$SwitchGymUpdated(
-      {@required this.selectedGym,
-      @required this.currentUser,
-      @required this.knowGymsIds})
+      {@required this.selectedGym, @required this.currentUser, @required this.knowGymsIds})
       : assert(selectedGym != null),
         assert(currentUser != null),
         assert(knowGymsIds != null);
@@ -262,14 +242,11 @@ class _$SwitchGymUpdated implements SwitchGymUpdated {
     return identical(this, other) ||
         (other is SwitchGymUpdated &&
             (identical(other.selectedGym, selectedGym) ||
-                const DeepCollectionEquality()
-                    .equals(other.selectedGym, selectedGym)) &&
+                const DeepCollectionEquality().equals(other.selectedGym, selectedGym)) &&
             (identical(other.currentUser, currentUser) ||
-                const DeepCollectionEquality()
-                    .equals(other.currentUser, currentUser)) &&
+                const DeepCollectionEquality().equals(other.currentUser, currentUser)) &&
             (identical(other.knowGymsIds, knowGymsIds) ||
-                const DeepCollectionEquality()
-                    .equals(other.knowGymsIds, knowGymsIds)));
+                const DeepCollectionEquality().equals(other.knowGymsIds, knowGymsIds)));
   }
 
   @override
@@ -288,9 +265,7 @@ class _$SwitchGymUpdated implements SwitchGymUpdated {
   @optionalTypeArgs
   TResult when<TResult extends Object>({
     @required TResult initializeSwitchGym(),
-    @required
-        TResult switchGymUpdated(
-            Gym selectedGym, User currentUser, List<String> knowGymsIds),
+    @required TResult switchGymUpdated(Gym selectedGym, User currentUser, List<String> knowGymsIds),
   }) {
     assert(initializeSwitchGym != null);
     assert(switchGymUpdated != null);
@@ -301,8 +276,7 @@ class _$SwitchGymUpdated implements SwitchGymUpdated {
   @optionalTypeArgs
   TResult maybeWhen<TResult extends Object>({
     TResult initializeSwitchGym(),
-    TResult switchGymUpdated(
-        Gym selectedGym, User currentUser, List<String> knowGymsIds),
+    TResult switchGymUpdated(Gym selectedGym, User currentUser, List<String> knowGymsIds),
     @required TResult orElse(),
   }) {
     assert(orElse != null);

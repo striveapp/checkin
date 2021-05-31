@@ -25,7 +25,6 @@ class _SpeedDialFabState extends State<SpeedDialFab> with SingleTickerProviderSt
     );
   }
 
-
   @override
   void dispose() {
     _controller.dispose();

@@ -8,8 +8,7 @@ import 'package:flutter_bloc/flutter_bloc.dart';
 
 class ProfileCard extends StatelessWidget {
   static const String enterYourName = 'Enter your name';
-  static const String thisDoesNotLookLikeAValidName =
-      "This does not look like a valid name";
+  static const String thisDoesNotLookLikeAValidName = "This does not look like a valid name";
 
   final String userEmail;
   final bool isOwner;
@@ -27,15 +26,15 @@ class ProfileCard extends StatelessWidget {
         padding: EdgeInsets.symmetric(vertical: 25, horizontal: 20),
         child: BlocBuilder<ProfileBloc, ProfileState>(
             builder: (BuildContext context, ProfileState state) => state.map(
-                initialProfileState: (InitialProfileState _) =>
-                    LoadingIndicator(),
+                initialProfileState: (InitialProfileState _) => LoadingIndicator(),
                 profileLoaded: (ProfileLoaded state) => Row(
                       children: <Widget>[
                         EditableImage(
                           imageUrl: state.profileUser.imageUrl,
                           onEdit: () {
-                            context.read<ProfileBloc>().add(UpdateImageUrl(
-                                userEmail: state.profileUser.email));
+                            context
+                                .read<ProfileBloc>()
+                                .add(UpdateImageUrl(userEmail: state.profileUser.email));
                           },
                         ),
                         SizedBox(
@@ -44,8 +43,7 @@ class ProfileCard extends StatelessWidget {
                         Expanded(
                           child: Form(
                             key: _formKey,
-                            autovalidateMode:
-                                AutovalidateMode.onUserInteraction,
+                            autovalidateMode: AutovalidateMode.onUserInteraction,
                             child: TextFormField(
                               key: Key("editProfileButton"),
                               keyboardType: TextInputType.name,
@@ -53,8 +51,7 @@ class ProfileCard extends StatelessWidget {
                               style: Theme.of(context).textTheme.headline2,
                               decoration: new InputDecoration(
                                 hintText: enterYourName.i18n,
-                                hintStyle:
-                                    Theme.of(context).textTheme.headline3,
+                                hintStyle: Theme.of(context).textTheme.headline3,
                                 border: InputBorder.none,
                                 focusedBorder: InputBorder.none,
                                 enabledBorder: InputBorder.none,
@@ -66,18 +63,15 @@ class ProfileCard extends StatelessWidget {
                                     .apply(color: Theme.of(context).errorColor),
                                 disabledBorder: InputBorder.none,
                               ),
-                              controller: TextEditingController.fromValue(
-                                  TextEditingValue(
-                                      text: state.profileUser.name,
-                                      selection: new TextSelection.collapsed(
-                                          offset:
-                                              state.profileUser.name.length))),
+                              controller: TextEditingController.fromValue(TextEditingValue(
+                                  text: state.profileUser.name,
+                                  selection: new TextSelection.collapsed(
+                                      offset: state.profileUser.name.length))),
                               validator: _validateName,
                               onFieldSubmitted: (String value) {
                                 if (_formKey.currentState.validate()) {
                                   context.read<ProfileBloc>().add(UpdateName(
-                                      userEmail: state.profileUser.email,
-                                      newName: value.trim()));
+                                      userEmail: state.profileUser.email, newName: value.trim()));
                                 }
                               },
                             ),

@@ -9,7 +9,8 @@ class DeleteLessonDialog extends StatelessWidget {
 
   const DeleteLessonDialog({Key key, @required this.selectedGymId}) : super(key: key);
 
-  static const String deletingClassDisclaimer = 'Are you sure you want to permanently delete this class?';
+  static const String deletingClassDisclaimer =
+      'Are you sure you want to permanently delete this class?';
   static const String cannotBeUndone = 'This operation cannot be undone';
   static const String goBack = 'Go back';
   static const String deleteClass = 'Delete class';

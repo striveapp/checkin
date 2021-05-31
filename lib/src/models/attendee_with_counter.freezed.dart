@@ -44,8 +44,7 @@ abstract class $AttendeeWithCounterCopyWith<$Res> {
 }
 
 /// @nodoc
-class _$AttendeeWithCounterCopyWithImpl<$Res>
-    implements $AttendeeWithCounterCopyWith<$Res> {
+class _$AttendeeWithCounterCopyWithImpl<$Res> implements $AttendeeWithCounterCopyWith<$Res> {
   _$AttendeeWithCounterCopyWithImpl(this._value, this._then);
 
   final AttendeeWithCounter _value;
@@ -65,18 +64,16 @@ class _$AttendeeWithCounterCopyWithImpl<$Res>
 }
 
 /// @nodoc
-abstract class _$AttendeeWithCounterCopyWith<$Res>
-    implements $AttendeeWithCounterCopyWith<$Res> {
-  factory _$AttendeeWithCounterCopyWith(_AttendeeWithCounter value,
-          $Res Function(_AttendeeWithCounter) then) =
+abstract class _$AttendeeWithCounterCopyWith<$Res> implements $AttendeeWithCounterCopyWith<$Res> {
+  factory _$AttendeeWithCounterCopyWith(
+          _AttendeeWithCounter value, $Res Function(_AttendeeWithCounter) then) =
       __$AttendeeWithCounterCopyWithImpl<$Res>;
   @override
   $Res call({String email, int counter});
 }
 
 /// @nodoc
-class __$AttendeeWithCounterCopyWithImpl<$Res>
-    extends _$AttendeeWithCounterCopyWithImpl<$Res>
+class __$AttendeeWithCounterCopyWithImpl<$Res> extends _$AttendeeWithCounterCopyWithImpl<$Res>
     implements _$AttendeeWithCounterCopyWith<$Res> {
   __$AttendeeWithCounterCopyWithImpl(
       _AttendeeWithCounter _value, $Res Function(_AttendeeWithCounter) _then)
@@ -133,14 +130,13 @@ class _$_AttendeeWithCounter extends _AttendeeWithCounter {
   @JsonKey(ignore: true)
   @override
   _$AttendeeWithCounterCopyWith<_AttendeeWithCounter> get copyWith =>
-      __$AttendeeWithCounterCopyWithImpl<_AttendeeWithCounter>(
-          this, _$identity);
+      __$AttendeeWithCounterCopyWithImpl<_AttendeeWithCounter>(this, _$identity);
 }
 
 abstract class _AttendeeWithCounter extends AttendeeWithCounter {
   _AttendeeWithCounter._() : super._();
-  factory _AttendeeWithCounter(
-      {@required String email, @required int counter}) = _$_AttendeeWithCounter;
+  factory _AttendeeWithCounter({@required String email, @required int counter}) =
+      _$_AttendeeWithCounter;
 
   @override
   String get email;

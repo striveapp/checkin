@@ -52,6 +52,8 @@ void main() {
       isOwner: false,
     );
 
+    var fakeGymId = "fake-gym";
+
     setUp(() {
       newsBloc = MockNewsBloc();
       profileBloc = MockProfileBloc();
@@ -72,7 +74,7 @@ void main() {
 
     group("when there are no news", () {
       testWidgets("Renders EmptyNewsList", (tester) async {
-        when(() => newsBloc.state).thenReturn(NewsLoaded(newsList: [], hasPinnedNews: false));
+        when(() => newsBloc.state).thenReturn(NewsLoaded(newsList: [], hasPinnedNews: false, gymId: fakeGymId,));
 
         await tester.pumpApp(BlocProvider.value(value: newsBloc, child: NewsList()));
 
@@ -99,6 +101,7 @@ void main() {
             )
           ],
           hasPinnedNews: false,
+          gymId: fakeGymId,
         ));
 
         await tester.pumpApp(
@@ -128,7 +131,8 @@ void main() {
             timestamp: 123,
             isPinned: true,
           )
-        ], hasPinnedNews: true));
+        ], hasPinnedNews: true,
+          gymId: fakeGymId,));
 
         await tester.pumpApp(
           MultiBlocProvider(providers: [
@@ -159,6 +163,7 @@ void main() {
             )
           ],
           hasPinnedNews: false,
+          gymId: fakeGymId,
         ));
 
         await tester.pumpApp(MultiBlocProvider(providers: [
@@ -188,6 +193,7 @@ void main() {
             )
           ],
           hasPinnedNews: false,
+          gymId: fakeGymId,
         ));
 
         await tester.pumpApp(MultiBlocProvider(providers: [

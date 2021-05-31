@@ -20,10 +20,11 @@ class _$NewsStateTearOff {
 
 // ignore: unused_element
   NewsLoaded newsLoaded(
-      {@required List<News> newsList, @required bool hasPinnedNews}) {
+      {@required List<News> newsList, @required bool hasPinnedNews, @required String gymId}) {
     return NewsLoaded(
       newsList: newsList,
       hasPinnedNews: hasPinnedNews,
+      gymId: gymId,
     );
   }
 }
@@ -37,12 +38,12 @@ mixin _$NewsState {
   @optionalTypeArgs
   TResult when<TResult extends Object>({
     @required TResult newsInitial(),
-    @required TResult newsLoaded(List<News> newsList, bool hasPinnedNews),
+    @required TResult newsLoaded(List<News> newsList, bool hasPinnedNews, String gymId),
   });
   @optionalTypeArgs
   TResult maybeWhen<TResult extends Object>({
     TResult newsInitial(),
-    TResult newsLoaded(List<News> newsList, bool hasPinnedNews),
+    TResult newsLoaded(List<News> newsList, bool hasPinnedNews, String gymId),
     @required TResult orElse(),
   });
   @optionalTypeArgs
@@ -75,16 +76,14 @@ class _$NewsStateCopyWithImpl<$Res> implements $NewsStateCopyWith<$Res> {
 
 /// @nodoc
 abstract class $NewsInitialCopyWith<$Res> {
-  factory $NewsInitialCopyWith(
-          NewsInitial value, $Res Function(NewsInitial) then) =
+  factory $NewsInitialCopyWith(NewsInitial value, $Res Function(NewsInitial) then) =
       _$NewsInitialCopyWithImpl<$Res>;
 }
 
 /// @nodoc
 class _$NewsInitialCopyWithImpl<$Res> extends _$NewsStateCopyWithImpl<$Res>
     implements $NewsInitialCopyWith<$Res> {
-  _$NewsInitialCopyWithImpl(
-      NewsInitial _value, $Res Function(NewsInitial) _then)
+  _$NewsInitialCopyWithImpl(NewsInitial _value, $Res Function(NewsInitial) _then)
       : super(_value, (v) => _then(v as NewsInitial));
 
   @override
@@ -118,7 +117,7 @@ class _$NewsInitial with DiagnosticableTreeMixin implements NewsInitial {
   @optionalTypeArgs
   TResult when<TResult extends Object>({
     @required TResult newsInitial(),
-    @required TResult newsLoaded(List<News> newsList, bool hasPinnedNews),
+    @required TResult newsLoaded(List<News> newsList, bool hasPinnedNews, String gymId),
   }) {
     assert(newsInitial != null);
     assert(newsLoaded != null);
@@ -129,7 +128,7 @@ class _$NewsInitial with DiagnosticableTreeMixin implements NewsInitial {
   @optionalTypeArgs
   TResult maybeWhen<TResult extends Object>({
     TResult newsInitial(),
-    TResult newsLoaded(List<News> newsList, bool hasPinnedNews),
+    TResult newsLoaded(List<News> newsList, bool hasPinnedNews, String gymId),
     @required TResult orElse(),
   }) {
     assert(orElse != null);
@@ -171,10 +170,9 @@ abstract class NewsInitial implements NewsState {
 
 /// @nodoc
 abstract class $NewsLoadedCopyWith<$Res> {
-  factory $NewsLoadedCopyWith(
-          NewsLoaded value, $Res Function(NewsLoaded) then) =
+  factory $NewsLoadedCopyWith(NewsLoaded value, $Res Function(NewsLoaded) then) =
       _$NewsLoadedCopyWithImpl<$Res>;
-  $Res call({List<News> newsList, bool hasPinnedNews});
+  $Res call({List<News> newsList, bool hasPinnedNews, String gymId});
 }
 
 /// @nodoc
@@ -190,30 +188,33 @@ class _$NewsLoadedCopyWithImpl<$Res> extends _$NewsStateCopyWithImpl<$Res>
   $Res call({
     Object newsList = freezed,
     Object hasPinnedNews = freezed,
+    Object gymId = freezed,
   }) {
     return _then(NewsLoaded(
       newsList: newsList == freezed ? _value.newsList : newsList as List<News>,
-      hasPinnedNews: hasPinnedNews == freezed
-          ? _value.hasPinnedNews
-          : hasPinnedNews as bool,
+      hasPinnedNews: hasPinnedNews == freezed ? _value.hasPinnedNews : hasPinnedNews as bool,
+      gymId: gymId == freezed ? _value.gymId : gymId as String,
     ));
   }
 }
 
 /// @nodoc
 class _$NewsLoaded with DiagnosticableTreeMixin implements NewsLoaded {
-  const _$NewsLoaded({@required this.newsList, @required this.hasPinnedNews})
+  const _$NewsLoaded({@required this.newsList, @required this.hasPinnedNews, @required this.gymId})
       : assert(newsList != null),
-        assert(hasPinnedNews != null);
+        assert(hasPinnedNews != null),
+        assert(gymId != null);
 
   @override
   final List<News> newsList;
   @override
   final bool hasPinnedNews;
+  @override
+  final String gymId;
 
   @override
   String toString({DiagnosticLevel minLevel = DiagnosticLevel.info}) {
-    return 'NewsState.newsLoaded(newsList: $newsList, hasPinnedNews: $hasPinnedNews)';
+    return 'NewsState.newsLoaded(newsList: $newsList, hasPinnedNews: $hasPinnedNews, gymId: $gymId)';
   }
 
   @override
@@ -222,7 +223,8 @@ class _$NewsLoaded with DiagnosticableTreeMixin implements NewsLoaded {
     properties
       ..add(DiagnosticsProperty('type', 'NewsState.newsLoaded'))
       ..add(DiagnosticsProperty('newsList', newsList))
-      ..add(DiagnosticsProperty('hasPinnedNews', hasPinnedNews));
+      ..add(DiagnosticsProperty('hasPinnedNews', hasPinnedNews))
+      ..add(DiagnosticsProperty('gymId', gymId));
   }
 
   @override
@@ -230,18 +232,19 @@ class _$NewsLoaded with DiagnosticableTreeMixin implements NewsLoaded {
     return identical(this, other) ||
         (other is NewsLoaded &&
             (identical(other.newsList, newsList) ||
-                const DeepCollectionEquality()
-                    .equals(other.newsList, newsList)) &&
+                const DeepCollectionEquality().equals(other.newsList, newsList)) &&
             (identical(other.hasPinnedNews, hasPinnedNews) ||
-                const DeepCollectionEquality()
-                    .equals(other.hasPinnedNews, hasPinnedNews)));
+                const DeepCollectionEquality().equals(other.hasPinnedNews, hasPinnedNews)) &&
+            (identical(other.gymId, gymId) ||
+                const DeepCollectionEquality().equals(other.gymId, gymId)));
   }
 
   @override
   int get hashCode =>
       runtimeType.hashCode ^
       const DeepCollectionEquality().hash(newsList) ^
-      const DeepCollectionEquality().hash(hasPinnedNews);
+      const DeepCollectionEquality().hash(hasPinnedNews) ^
+      const DeepCollectionEquality().hash(gymId);
 
   @JsonKey(ignore: true)
   @override
@@ -252,23 +255,23 @@ class _$NewsLoaded with DiagnosticableTreeMixin implements NewsLoaded {
   @optionalTypeArgs
   TResult when<TResult extends Object>({
     @required TResult newsInitial(),
-    @required TResult newsLoaded(List<News> newsList, bool hasPinnedNews),
+    @required TResult newsLoaded(List<News> newsList, bool hasPinnedNews, String gymId),
   }) {
     assert(newsInitial != null);
     assert(newsLoaded != null);
-    return newsLoaded(newsList, hasPinnedNews);
+    return newsLoaded(newsList, hasPinnedNews, gymId);
   }
 
   @override
   @optionalTypeArgs
   TResult maybeWhen<TResult extends Object>({
     TResult newsInitial(),
-    TResult newsLoaded(List<News> newsList, bool hasPinnedNews),
+    TResult newsLoaded(List<News> newsList, bool hasPinnedNews, String gymId),
     @required TResult orElse(),
   }) {
     assert(orElse != null);
     if (newsLoaded != null) {
-      return newsLoaded(newsList, hasPinnedNews);
+      return newsLoaded(newsList, hasPinnedNews, gymId);
     }
     return orElse();
   }
@@ -302,10 +305,12 @@ class _$NewsLoaded with DiagnosticableTreeMixin implements NewsLoaded {
 abstract class NewsLoaded implements NewsState {
   const factory NewsLoaded(
       {@required List<News> newsList,
-      @required bool hasPinnedNews}) = _$NewsLoaded;
+      @required bool hasPinnedNews,
+      @required String gymId}) = _$NewsLoaded;
 
   List<News> get newsList;
   bool get hasPinnedNews;
+  String get gymId;
   @JsonKey(ignore: true)
   $NewsLoadedCopyWith<NewsLoaded> get copyWith;
 }

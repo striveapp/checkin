@@ -16,8 +16,6 @@ class NewsBloc extends Bloc<NewsEvent, NewsState> {
   StreamSubscription<Gym> gymSub;
   StreamSubscription<List<News>> newsListSub;
 
-  Gym _gym;
-
   NewsBloc({
     @required this.gymRepository,
     @required this.newsRepository,
@@ -29,75 +27,42 @@ class NewsBloc extends Bloc<NewsEvent, NewsState> {
   ) async* {
     if (event is InitializeNews) {
       _fetchGym((gym) {
-        _gym = gym;
         newsListSub?.cancel();
         newsListSub = newsRepository.getAllNews(gym.id).listen((newsList) {
-          add(NewsUpdated(newsList: newsList));
+          add(NewsUpdated(newsList: newsList, gymId: gym.id));
         });
       });
     }
 
     if (event is NewsUpdated) {
-      // sort and place pinned news on top
       var pinnedNews = event.newsList.firstWhere((news) => news.isPinned, orElse: () => null);
       yield NewsLoaded(
         newsList: _newsListWithPinOnTop(pinnedNews, _sortByTimestamp(event.newsList)),
         hasPinnedNews: pinnedNews != null,
+        gymId: event.gymId,
       );
     }
 
-    if (event is AddNews) {
-      if (_gym != null) {
-        await newsRepository.publishNews(_gym.id, event.content, event.author);
-      } else {
-        _fetchGym((gym) async {
-          _gym = gym;
-          await newsRepository.publishNews(_gym.id, event.content, event.author);
-        });
+    final currentState = state;
+    if (currentState is NewsLoaded) {
+      if (event is AddNews) {
+        await newsRepository.publishNews(currentState.gymId, event.content, event.author);
       }
-    }
 
-    if (event is PinNews) {
-      if (_gym != null) {
-        await newsRepository.pinNews(_gym.id, event.id);
-      } else {
-        _fetchGym((gym) async {
-          _gym = gym;
-          await newsRepository.pinNews(_gym.id, event.id);
-        });
+      if (event is PinNews) {
+        await newsRepository.pinNews(currentState.gymId, event.id);
       }
-    }
 
-    if (event is ReplacePinnedNews) {
-      if (_gym != null) {
-        await newsRepository.replacePinnedNews(_gym.id, event.id);
-      } else {
-        _fetchGym((gym) async {
-          _gym = gym;
-          await newsRepository.replacePinnedNews(_gym.id, event.id);
-        });
+      if (event is ReplacePinnedNews) {
+        await newsRepository.replacePinnedNews(currentState.gymId, event.id);
       }
-    }
 
-    if (event is UnpinNews) {
-      if (_gym != null) {
-        await newsRepository.unpinNews(_gym.id, event.id);
-      } else {
-        _fetchGym((gym) async {
-          _gym = gym;
-          await newsRepository.unpinNews(_gym.id, event.id);
-        });
+      if (event is UnpinNews) {
+        await newsRepository.unpinNews(currentState.gymId, event.id);
       }
-    }
 
-    if (event is DeleteNews) {
-      if (_gym != null) {
-        await newsRepository.deleteNews(_gym.id, event.id);
-      } else {
-        _fetchGym((gym) async {
-          _gym = gym;
-          await newsRepository.deleteNews(_gym.id, event.id);
-        });
+      if (event is DeleteNews) {
+        await newsRepository.deleteNews(currentState.gymId, event.id);
       }
     }
   }

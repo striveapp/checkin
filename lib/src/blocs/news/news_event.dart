@@ -10,6 +10,7 @@ abstract class NewsEvent with _$NewsEvent {
 
   const factory NewsEvent.newsUpdated({
     @required List<News> newsList,
+    @required String gymId,
   }) = NewsUpdated;
 
   const factory NewsEvent.addNews({

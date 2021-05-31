@@ -29,7 +29,7 @@ class SubscriptionBloc extends Bloc<SubscriptionEvent, SubscriptionState> {
   }
 
   void _onGymUpdated(Gym gym) {
-    if (gym != null ) {
+    if (gym != null) {
       this.gym = gym;
     }
   }

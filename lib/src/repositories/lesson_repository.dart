@@ -8,7 +8,8 @@ import 'package:checkin/src/models/timespan.dart';
 abstract class LessonRepository {
   Stream<List<Lesson>> getLessonsForDay(String gymId, DateTime day, [List<String> filterTypes]);
 
-  Stream<List<Lesson>> getLessonsByMasterAndTimespan(Master master, Timespan timespan, String gymId);
+  Stream<List<Lesson>> getLessonsByMasterAndTimespan(
+      Master master, Timespan timespan, String gymId);
 
   Stream<Lesson> getLesson(String gymId, String date, String lessonId);
 

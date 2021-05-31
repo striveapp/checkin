@@ -43,14 +43,14 @@ mixin _$SwitchGymsState {
   TResult when<TResult extends Object>({
     @required TResult switchGymsInitial(),
     @required
-        TResult knownGymsLoaded(Gym selectedGym, User currentUser,
-            List<String> knowGymsIds, bool showDropdown),
+        TResult knownGymsLoaded(
+            Gym selectedGym, User currentUser, List<String> knowGymsIds, bool showDropdown),
   });
   @optionalTypeArgs
   TResult maybeWhen<TResult extends Object>({
     TResult switchGymsInitial(),
-    TResult knownGymsLoaded(Gym selectedGym, User currentUser,
-        List<String> knowGymsIds, bool showDropdown),
+    TResult knownGymsLoaded(
+        Gym selectedGym, User currentUser, List<String> knowGymsIds, bool showDropdown),
     @required TResult orElse(),
   });
   @optionalTypeArgs
@@ -68,14 +68,12 @@ mixin _$SwitchGymsState {
 
 /// @nodoc
 abstract class $SwitchGymsStateCopyWith<$Res> {
-  factory $SwitchGymsStateCopyWith(
-          SwitchGymsState value, $Res Function(SwitchGymsState) then) =
+  factory $SwitchGymsStateCopyWith(SwitchGymsState value, $Res Function(SwitchGymsState) then) =
       _$SwitchGymsStateCopyWithImpl<$Res>;
 }
 
 /// @nodoc
-class _$SwitchGymsStateCopyWithImpl<$Res>
-    implements $SwitchGymsStateCopyWith<$Res> {
+class _$SwitchGymsStateCopyWithImpl<$Res> implements $SwitchGymsStateCopyWith<$Res> {
   _$SwitchGymsStateCopyWithImpl(this._value, this._then);
 
   final SwitchGymsState _value;
@@ -91,11 +89,9 @@ abstract class $SwitchGymsInitialCopyWith<$Res> {
 }
 
 /// @nodoc
-class _$SwitchGymsInitialCopyWithImpl<$Res>
-    extends _$SwitchGymsStateCopyWithImpl<$Res>
+class _$SwitchGymsInitialCopyWithImpl<$Res> extends _$SwitchGymsStateCopyWithImpl<$Res>
     implements $SwitchGymsInitialCopyWith<$Res> {
-  _$SwitchGymsInitialCopyWithImpl(
-      SwitchGymsInitial _value, $Res Function(SwitchGymsInitial) _then)
+  _$SwitchGymsInitialCopyWithImpl(SwitchGymsInitial _value, $Res Function(SwitchGymsInitial) _then)
       : super(_value, (v) => _then(v as SwitchGymsInitial));
 
   @override
@@ -124,8 +120,8 @@ class _$SwitchGymsInitial implements SwitchGymsInitial {
   TResult when<TResult extends Object>({
     @required TResult switchGymsInitial(),
     @required
-        TResult knownGymsLoaded(Gym selectedGym, User currentUser,
-            List<String> knowGymsIds, bool showDropdown),
+        TResult knownGymsLoaded(
+            Gym selectedGym, User currentUser, List<String> knowGymsIds, bool showDropdown),
   }) {
     assert(switchGymsInitial != null);
     assert(knownGymsLoaded != null);
@@ -136,8 +132,8 @@ class _$SwitchGymsInitial implements SwitchGymsInitial {
   @optionalTypeArgs
   TResult maybeWhen<TResult extends Object>({
     TResult switchGymsInitial(),
-    TResult knownGymsLoaded(Gym selectedGym, User currentUser,
-        List<String> knowGymsIds, bool showDropdown),
+    TResult knownGymsLoaded(
+        Gym selectedGym, User currentUser, List<String> knowGymsIds, bool showDropdown),
     @required TResult orElse(),
   }) {
     assert(orElse != null);
@@ -179,25 +175,18 @@ abstract class SwitchGymsInitial implements SwitchGymsState {
 
 /// @nodoc
 abstract class $KnownGymsLoadedCopyWith<$Res> {
-  factory $KnownGymsLoadedCopyWith(
-          KnownGymsLoaded value, $Res Function(KnownGymsLoaded) then) =
+  factory $KnownGymsLoadedCopyWith(KnownGymsLoaded value, $Res Function(KnownGymsLoaded) then) =
       _$KnownGymsLoadedCopyWithImpl<$Res>;
-  $Res call(
-      {Gym selectedGym,
-      User currentUser,
-      List<String> knowGymsIds,
-      bool showDropdown});
+  $Res call({Gym selectedGym, User currentUser, List<String> knowGymsIds, bool showDropdown});
 
   $GymCopyWith<$Res> get selectedGym;
   $UserCopyWith<$Res> get currentUser;
 }
 
 /// @nodoc
-class _$KnownGymsLoadedCopyWithImpl<$Res>
-    extends _$SwitchGymsStateCopyWithImpl<$Res>
+class _$KnownGymsLoadedCopyWithImpl<$Res> extends _$SwitchGymsStateCopyWithImpl<$Res>
     implements $KnownGymsLoadedCopyWith<$Res> {
-  _$KnownGymsLoadedCopyWithImpl(
-      KnownGymsLoaded _value, $Res Function(KnownGymsLoaded) _then)
+  _$KnownGymsLoadedCopyWithImpl(KnownGymsLoaded _value, $Res Function(KnownGymsLoaded) _then)
       : super(_value, (v) => _then(v as KnownGymsLoaded));
 
   @override
@@ -211,15 +200,10 @@ class _$KnownGymsLoadedCopyWithImpl<$Res>
     Object showDropdown = freezed,
   }) {
     return _then(KnownGymsLoaded(
-      selectedGym:
-          selectedGym == freezed ? _value.selectedGym : selectedGym as Gym,
-      currentUser:
-          currentUser == freezed ? _value.currentUser : currentUser as User,
-      knowGymsIds: knowGymsIds == freezed
-          ? _value.knowGymsIds
-          : knowGymsIds as List<String>,
-      showDropdown:
-          showDropdown == freezed ? _value.showDropdown : showDropdown as bool,
+      selectedGym: selectedGym == freezed ? _value.selectedGym : selectedGym as Gym,
+      currentUser: currentUser == freezed ? _value.currentUser : currentUser as User,
+      knowGymsIds: knowGymsIds == freezed ? _value.knowGymsIds : knowGymsIds as List<String>,
+      showDropdown: showDropdown == freezed ? _value.showDropdown : showDropdown as bool,
     ));
   }
 
@@ -276,17 +260,13 @@ class _$KnownGymsLoaded implements KnownGymsLoaded {
     return identical(this, other) ||
         (other is KnownGymsLoaded &&
             (identical(other.selectedGym, selectedGym) ||
-                const DeepCollectionEquality()
-                    .equals(other.selectedGym, selectedGym)) &&
+                const DeepCollectionEquality().equals(other.selectedGym, selectedGym)) &&
             (identical(other.currentUser, currentUser) ||
-                const DeepCollectionEquality()
-                    .equals(other.currentUser, currentUser)) &&
+                const DeepCollectionEquality().equals(other.currentUser, currentUser)) &&
             (identical(other.knowGymsIds, knowGymsIds) ||
-                const DeepCollectionEquality()
-                    .equals(other.knowGymsIds, knowGymsIds)) &&
+                const DeepCollectionEquality().equals(other.knowGymsIds, knowGymsIds)) &&
             (identical(other.showDropdown, showDropdown) ||
-                const DeepCollectionEquality()
-                    .equals(other.showDropdown, showDropdown)));
+                const DeepCollectionEquality().equals(other.showDropdown, showDropdown)));
   }
 
   @override
@@ -307,8 +287,8 @@ class _$KnownGymsLoaded implements KnownGymsLoaded {
   TResult when<TResult extends Object>({
     @required TResult switchGymsInitial(),
     @required
-        TResult knownGymsLoaded(Gym selectedGym, User currentUser,
-            List<String> knowGymsIds, bool showDropdown),
+        TResult knownGymsLoaded(
+            Gym selectedGym, User currentUser, List<String> knowGymsIds, bool showDropdown),
   }) {
     assert(switchGymsInitial != null);
     assert(knownGymsLoaded != null);
@@ -319,14 +299,13 @@ class _$KnownGymsLoaded implements KnownGymsLoaded {
   @optionalTypeArgs
   TResult maybeWhen<TResult extends Object>({
     TResult switchGymsInitial(),
-    TResult knownGymsLoaded(Gym selectedGym, User currentUser,
-        List<String> knowGymsIds, bool showDropdown),
+    TResult knownGymsLoaded(
+        Gym selectedGym, User currentUser, List<String> knowGymsIds, bool showDropdown),
     @required TResult orElse(),
   }) {
     assert(orElse != null);
     if (knownGymsLoaded != null) {
-      return knownGymsLoaded(
-          selectedGym, currentUser, knowGymsIds, showDropdown);
+      return knownGymsLoaded(selectedGym, currentUser, knowGymsIds, showDropdown);
     }
     return orElse();
   }

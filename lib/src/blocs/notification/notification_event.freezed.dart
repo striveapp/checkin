@@ -86,8 +86,7 @@ abstract class $NotificationEventCopyWith<$Res> {
 }
 
 /// @nodoc
-class _$NotificationEventCopyWithImpl<$Res>
-    implements $NotificationEventCopyWith<$Res> {
+class _$NotificationEventCopyWithImpl<$Res> implements $NotificationEventCopyWith<$Res> {
   _$NotificationEventCopyWithImpl(this._value, this._then);
 
   final NotificationEvent _value;
@@ -97,17 +96,16 @@ class _$NotificationEventCopyWithImpl<$Res>
 
 /// @nodoc
 abstract class $InitializeNotificationsCopyWith<$Res> {
-  factory $InitializeNotificationsCopyWith(InitializeNotifications value,
-          $Res Function(InitializeNotifications) then) =
+  factory $InitializeNotificationsCopyWith(
+          InitializeNotifications value, $Res Function(InitializeNotifications) then) =
       _$InitializeNotificationsCopyWithImpl<$Res>;
 }
 
 /// @nodoc
-class _$InitializeNotificationsCopyWithImpl<$Res>
-    extends _$NotificationEventCopyWithImpl<$Res>
+class _$InitializeNotificationsCopyWithImpl<$Res> extends _$NotificationEventCopyWithImpl<$Res>
     implements $InitializeNotificationsCopyWith<$Res> {
-  _$InitializeNotificationsCopyWithImpl(InitializeNotifications _value,
-      $Res Function(InitializeNotifications) _then)
+  _$InitializeNotificationsCopyWithImpl(
+      InitializeNotifications _value, $Res Function(InitializeNotifications) _then)
       : super(_value, (v) => _then(v as InitializeNotifications));
 
   @override
@@ -115,9 +113,7 @@ class _$InitializeNotificationsCopyWithImpl<$Res>
 }
 
 /// @nodoc
-class _$InitializeNotifications
-    with DiagnosticableTreeMixin
-    implements InitializeNotifications {
+class _$InitializeNotifications with DiagnosticableTreeMixin implements InitializeNotifications {
   const _$InitializeNotifications();
 
   @override
@@ -128,9 +124,7 @@ class _$InitializeNotifications
   @override
   void debugFillProperties(DiagnosticPropertiesBuilder properties) {
     super.debugFillProperties(properties);
-    properties
-      ..add(DiagnosticsProperty(
-          'type', 'NotificationEvent.initializeNotifications'));
+    properties..add(DiagnosticsProperty('type', 'NotificationEvent.initializeNotifications'));
   }
 
   @override
@@ -210,18 +204,15 @@ abstract class InitializeNotifications implements NotificationEvent {
 
 /// @nodoc
 abstract class $UpdateTokenCopyWith<$Res> {
-  factory $UpdateTokenCopyWith(
-          UpdateToken value, $Res Function(UpdateToken) then) =
+  factory $UpdateTokenCopyWith(UpdateToken value, $Res Function(UpdateToken) then) =
       _$UpdateTokenCopyWithImpl<$Res>;
   $Res call({String loggedUserEmail});
 }
 
 /// @nodoc
-class _$UpdateTokenCopyWithImpl<$Res>
-    extends _$NotificationEventCopyWithImpl<$Res>
+class _$UpdateTokenCopyWithImpl<$Res> extends _$NotificationEventCopyWithImpl<$Res>
     implements $UpdateTokenCopyWith<$Res> {
-  _$UpdateTokenCopyWithImpl(
-      UpdateToken _value, $Res Function(UpdateToken) _then)
+  _$UpdateTokenCopyWithImpl(UpdateToken _value, $Res Function(UpdateToken) _then)
       : super(_value, (v) => _then(v as UpdateToken));
 
   @override
@@ -232,9 +223,8 @@ class _$UpdateTokenCopyWithImpl<$Res>
     Object loggedUserEmail = freezed,
   }) {
     return _then(UpdateToken(
-      loggedUserEmail: loggedUserEmail == freezed
-          ? _value.loggedUserEmail
-          : loggedUserEmail as String,
+      loggedUserEmail:
+          loggedUserEmail == freezed ? _value.loggedUserEmail : loggedUserEmail as String,
     ));
   }
 }
@@ -264,14 +254,11 @@ class _$UpdateToken with DiagnosticableTreeMixin implements UpdateToken {
     return identical(this, other) ||
         (other is UpdateToken &&
             (identical(other.loggedUserEmail, loggedUserEmail) ||
-                const DeepCollectionEquality()
-                    .equals(other.loggedUserEmail, loggedUserEmail)));
+                const DeepCollectionEquality().equals(other.loggedUserEmail, loggedUserEmail)));
   }
 
   @override
-  int get hashCode =>
-      runtimeType.hashCode ^
-      const DeepCollectionEquality().hash(loggedUserEmail);
+  int get hashCode => runtimeType.hashCode ^ const DeepCollectionEquality().hash(loggedUserEmail);
 
   @JsonKey(ignore: true)
   @override
@@ -351,8 +338,7 @@ abstract class UpdateToken implements NotificationEvent {
 
 /// @nodoc
 abstract class $MessageOpenedAppCopyWith<$Res> {
-  factory $MessageOpenedAppCopyWith(
-          MessageOpenedApp value, $Res Function(MessageOpenedApp) then) =
+  factory $MessageOpenedAppCopyWith(MessageOpenedApp value, $Res Function(MessageOpenedApp) then) =
       _$MessageOpenedAppCopyWithImpl<$Res>;
   $Res call({Notification notification});
 
@@ -360,11 +346,9 @@ abstract class $MessageOpenedAppCopyWith<$Res> {
 }
 
 /// @nodoc
-class _$MessageOpenedAppCopyWithImpl<$Res>
-    extends _$NotificationEventCopyWithImpl<$Res>
+class _$MessageOpenedAppCopyWithImpl<$Res> extends _$NotificationEventCopyWithImpl<$Res>
     implements $MessageOpenedAppCopyWith<$Res> {
-  _$MessageOpenedAppCopyWithImpl(
-      MessageOpenedApp _value, $Res Function(MessageOpenedApp) _then)
+  _$MessageOpenedAppCopyWithImpl(MessageOpenedApp _value, $Res Function(MessageOpenedApp) _then)
       : super(_value, (v) => _then(v as MessageOpenedApp));
 
   @override
@@ -375,9 +359,7 @@ class _$MessageOpenedAppCopyWithImpl<$Res>
     Object notification = freezed,
   }) {
     return _then(MessageOpenedApp(
-      notification: notification == freezed
-          ? _value.notification
-          : notification as Notification,
+      notification: notification == freezed ? _value.notification : notification as Notification,
     ));
   }
 
@@ -393,9 +375,7 @@ class _$MessageOpenedAppCopyWithImpl<$Res>
 }
 
 /// @nodoc
-class _$MessageOpenedApp
-    with DiagnosticableTreeMixin
-    implements MessageOpenedApp {
+class _$MessageOpenedApp with DiagnosticableTreeMixin implements MessageOpenedApp {
   const _$MessageOpenedApp({this.notification});
 
   @override
@@ -419,13 +399,11 @@ class _$MessageOpenedApp
     return identical(this, other) ||
         (other is MessageOpenedApp &&
             (identical(other.notification, notification) ||
-                const DeepCollectionEquality()
-                    .equals(other.notification, notification)));
+                const DeepCollectionEquality().equals(other.notification, notification)));
   }
 
   @override
-  int get hashCode =>
-      runtimeType.hashCode ^ const DeepCollectionEquality().hash(notification);
+  int get hashCode => runtimeType.hashCode ^ const DeepCollectionEquality().hash(notification);
 
   @JsonKey(ignore: true)
   @override
@@ -496,8 +474,7 @@ class _$MessageOpenedApp
 }
 
 abstract class MessageOpenedApp implements NotificationEvent {
-  const factory MessageOpenedApp({Notification notification}) =
-      _$MessageOpenedApp;
+  const factory MessageOpenedApp({Notification notification}) = _$MessageOpenedApp;
 
   Notification get notification;
   @JsonKey(ignore: true)
@@ -527,9 +504,7 @@ class _$MessageCopyWithImpl<$Res> extends _$NotificationEventCopyWithImpl<$Res>
     Object notification = freezed,
   }) {
     return _then(Message(
-      notification: notification == freezed
-          ? _value.notification
-          : notification as Notification,
+      notification: notification == freezed ? _value.notification : notification as Notification,
     ));
   }
 
@@ -569,18 +544,15 @@ class _$Message with DiagnosticableTreeMixin implements Message {
     return identical(this, other) ||
         (other is Message &&
             (identical(other.notification, notification) ||
-                const DeepCollectionEquality()
-                    .equals(other.notification, notification)));
+                const DeepCollectionEquality().equals(other.notification, notification)));
   }
 
   @override
-  int get hashCode =>
-      runtimeType.hashCode ^ const DeepCollectionEquality().hash(notification);
+  int get hashCode => runtimeType.hashCode ^ const DeepCollectionEquality().hash(notification);
 
   @JsonKey(ignore: true)
   @override
-  $MessageCopyWith<Message> get copyWith =>
-      _$MessageCopyWithImpl<Message>(this, _$identity);
+  $MessageCopyWith<Message> get copyWith => _$MessageCopyWithImpl<Message>(this, _$identity);
 
   @override
   @optionalTypeArgs

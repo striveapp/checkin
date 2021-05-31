@@ -16,8 +16,7 @@ class HighlightAnimationState extends State<HighlightAnimation>
 
   @override
   void initState() {
-    _animationController =
-        AnimationController(vsync: this, duration: Duration(milliseconds: 2000));
+    _animationController = AnimationController(vsync: this, duration: Duration(milliseconds: 2000));
     _colorTween = ColorTween(begin: Colors.amber.withOpacity(0.3), end: Colors.transparent)
         .animate(_animationController);
 
@@ -36,9 +35,6 @@ class HighlightAnimationState extends State<HighlightAnimation>
   Widget build(BuildContext context) {
     return AnimatedBuilder(
         animation: _colorTween,
-        builder: (context, child) => Container(
-            color: _colorTween.value,
-            child: this.widget.child)
-    );
+        builder: (context, child) => Container(color: _colorTween.value, child: this.widget.child));
   }
 }

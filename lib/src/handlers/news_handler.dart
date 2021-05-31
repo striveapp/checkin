@@ -13,9 +13,9 @@ class NewsHandler extends Handler implements RegisterableHandler {
 
   @override
   HandlerFunc get handlerFunc =>
-          (BuildContext context, Map<String, List<String>> params) => NewsListPage(
-        newsId: params[newsId][0],
-      );
+      (BuildContext context, Map<String, List<String>> params) => NewsListPage(
+            newsId: params[newsId][0],
+          );
 
   String get route => "news/:$newsId";
 }

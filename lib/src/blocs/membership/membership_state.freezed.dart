@@ -26,8 +26,7 @@ class _$MembershipStateTearOff {
   }
 
 // ignore: unused_element
-  MembershipInactive membershipInactive(
-      {@required String customerEmail, String customerId}) {
+  MembershipInactive membershipInactive({@required String customerEmail, String customerId}) {
     return MembershipInactive(
       customerEmail: customerEmail,
       customerId: customerId,
@@ -57,8 +56,7 @@ mixin _$MembershipState {
   TResult when<TResult extends Object>({
     @required TResult initialMembershipState(),
     @required TResult membershipActive(Membership membership),
-    @required
-        TResult membershipInactive(String customerEmail, String customerId),
+    @required TResult membershipInactive(String customerEmail, String customerId),
     @required TResult membershipLoading(),
     @required TResult membershipError(String errorMessage),
   });
@@ -92,14 +90,12 @@ mixin _$MembershipState {
 
 /// @nodoc
 abstract class $MembershipStateCopyWith<$Res> {
-  factory $MembershipStateCopyWith(
-          MembershipState value, $Res Function(MembershipState) then) =
+  factory $MembershipStateCopyWith(MembershipState value, $Res Function(MembershipState) then) =
       _$MembershipStateCopyWithImpl<$Res>;
 }
 
 /// @nodoc
-class _$MembershipStateCopyWithImpl<$Res>
-    implements $MembershipStateCopyWith<$Res> {
+class _$MembershipStateCopyWithImpl<$Res> implements $MembershipStateCopyWith<$Res> {
   _$MembershipStateCopyWithImpl(this._value, this._then);
 
   final MembershipState _value;
@@ -109,17 +105,16 @@ class _$MembershipStateCopyWithImpl<$Res>
 
 /// @nodoc
 abstract class $InitialMembershipStateCopyWith<$Res> {
-  factory $InitialMembershipStateCopyWith(InitialMembershipState value,
-          $Res Function(InitialMembershipState) then) =
+  factory $InitialMembershipStateCopyWith(
+          InitialMembershipState value, $Res Function(InitialMembershipState) then) =
       _$InitialMembershipStateCopyWithImpl<$Res>;
 }
 
 /// @nodoc
-class _$InitialMembershipStateCopyWithImpl<$Res>
-    extends _$MembershipStateCopyWithImpl<$Res>
+class _$InitialMembershipStateCopyWithImpl<$Res> extends _$MembershipStateCopyWithImpl<$Res>
     implements $InitialMembershipStateCopyWith<$Res> {
-  _$InitialMembershipStateCopyWithImpl(InitialMembershipState _value,
-      $Res Function(InitialMembershipState) _then)
+  _$InitialMembershipStateCopyWithImpl(
+      InitialMembershipState _value, $Res Function(InitialMembershipState) _then)
       : super(_value, (v) => _then(v as InitialMembershipState));
 
   @override
@@ -127,9 +122,7 @@ class _$InitialMembershipStateCopyWithImpl<$Res>
 }
 
 /// @nodoc
-class _$InitialMembershipState
-    with DiagnosticableTreeMixin
-    implements InitialMembershipState {
+class _$InitialMembershipState with DiagnosticableTreeMixin implements InitialMembershipState {
   const _$InitialMembershipState();
 
   @override
@@ -140,9 +133,7 @@ class _$InitialMembershipState
   @override
   void debugFillProperties(DiagnosticPropertiesBuilder properties) {
     super.debugFillProperties(properties);
-    properties
-      ..add(DiagnosticsProperty(
-          'type', 'MembershipState.initialMembershipState'));
+    properties..add(DiagnosticsProperty('type', 'MembershipState.initialMembershipState'));
   }
 
   @override
@@ -158,8 +149,7 @@ class _$InitialMembershipState
   TResult when<TResult extends Object>({
     @required TResult initialMembershipState(),
     @required TResult membershipActive(Membership membership),
-    @required
-        TResult membershipInactive(String customerEmail, String customerId),
+    @required TResult membershipInactive(String customerEmail, String customerId),
     @required TResult membershipLoading(),
     @required TResult membershipError(String errorMessage),
   }) {
@@ -229,8 +219,7 @@ abstract class InitialMembershipState implements MembershipState {
 
 /// @nodoc
 abstract class $MembershipActiveCopyWith<$Res> {
-  factory $MembershipActiveCopyWith(
-          MembershipActive value, $Res Function(MembershipActive) then) =
+  factory $MembershipActiveCopyWith(MembershipActive value, $Res Function(MembershipActive) then) =
       _$MembershipActiveCopyWithImpl<$Res>;
   $Res call({Membership membership});
 
@@ -238,11 +227,9 @@ abstract class $MembershipActiveCopyWith<$Res> {
 }
 
 /// @nodoc
-class _$MembershipActiveCopyWithImpl<$Res>
-    extends _$MembershipStateCopyWithImpl<$Res>
+class _$MembershipActiveCopyWithImpl<$Res> extends _$MembershipStateCopyWithImpl<$Res>
     implements $MembershipActiveCopyWith<$Res> {
-  _$MembershipActiveCopyWithImpl(
-      MembershipActive _value, $Res Function(MembershipActive) _then)
+  _$MembershipActiveCopyWithImpl(MembershipActive _value, $Res Function(MembershipActive) _then)
       : super(_value, (v) => _then(v as MembershipActive));
 
   @override
@@ -253,8 +240,7 @@ class _$MembershipActiveCopyWithImpl<$Res>
     Object membership = freezed,
   }) {
     return _then(MembershipActive(
-      membership:
-          membership == freezed ? _value.membership : membership as Membership,
+      membership: membership == freezed ? _value.membership : membership as Membership,
     ));
   }
 
@@ -270,11 +256,8 @@ class _$MembershipActiveCopyWithImpl<$Res>
 }
 
 /// @nodoc
-class _$MembershipActive
-    with DiagnosticableTreeMixin
-    implements MembershipActive {
-  const _$MembershipActive({@required this.membership})
-      : assert(membership != null);
+class _$MembershipActive with DiagnosticableTreeMixin implements MembershipActive {
+  const _$MembershipActive({@required this.membership}) : assert(membership != null);
 
   @override
   final Membership membership;
@@ -297,13 +280,11 @@ class _$MembershipActive
     return identical(this, other) ||
         (other is MembershipActive &&
             (identical(other.membership, membership) ||
-                const DeepCollectionEquality()
-                    .equals(other.membership, membership)));
+                const DeepCollectionEquality().equals(other.membership, membership)));
   }
 
   @override
-  int get hashCode =>
-      runtimeType.hashCode ^ const DeepCollectionEquality().hash(membership);
+  int get hashCode => runtimeType.hashCode ^ const DeepCollectionEquality().hash(membership);
 
   @JsonKey(ignore: true)
   @override
@@ -315,8 +296,7 @@ class _$MembershipActive
   TResult when<TResult extends Object>({
     @required TResult initialMembershipState(),
     @required TResult membershipActive(Membership membership),
-    @required
-        TResult membershipInactive(String customerEmail, String customerId),
+    @required TResult membershipInactive(String customerEmail, String customerId),
     @required TResult membershipLoading(),
     @required TResult membershipError(String errorMessage),
   }) {
@@ -381,8 +361,7 @@ class _$MembershipActive
 }
 
 abstract class MembershipActive implements MembershipState {
-  const factory MembershipActive({@required Membership membership}) =
-      _$MembershipActive;
+  const factory MembershipActive({@required Membership membership}) = _$MembershipActive;
 
   Membership get membership;
   @JsonKey(ignore: true)
@@ -398,8 +377,7 @@ abstract class $MembershipInactiveCopyWith<$Res> {
 }
 
 /// @nodoc
-class _$MembershipInactiveCopyWithImpl<$Res>
-    extends _$MembershipStateCopyWithImpl<$Res>
+class _$MembershipInactiveCopyWithImpl<$Res> extends _$MembershipStateCopyWithImpl<$Res>
     implements $MembershipInactiveCopyWith<$Res> {
   _$MembershipInactiveCopyWithImpl(
       MembershipInactive _value, $Res Function(MembershipInactive) _then)
@@ -414,19 +392,14 @@ class _$MembershipInactiveCopyWithImpl<$Res>
     Object customerId = freezed,
   }) {
     return _then(MembershipInactive(
-      customerEmail: customerEmail == freezed
-          ? _value.customerEmail
-          : customerEmail as String,
-      customerId:
-          customerId == freezed ? _value.customerId : customerId as String,
+      customerEmail: customerEmail == freezed ? _value.customerEmail : customerEmail as String,
+      customerId: customerId == freezed ? _value.customerId : customerId as String,
     ));
   }
 }
 
 /// @nodoc
-class _$MembershipInactive
-    with DiagnosticableTreeMixin
-    implements MembershipInactive {
+class _$MembershipInactive with DiagnosticableTreeMixin implements MembershipInactive {
   const _$MembershipInactive({@required this.customerEmail, this.customerId})
       : assert(customerEmail != null);
 
@@ -454,11 +427,9 @@ class _$MembershipInactive
     return identical(this, other) ||
         (other is MembershipInactive &&
             (identical(other.customerEmail, customerEmail) ||
-                const DeepCollectionEquality()
-                    .equals(other.customerEmail, customerEmail)) &&
+                const DeepCollectionEquality().equals(other.customerEmail, customerEmail)) &&
             (identical(other.customerId, customerId) ||
-                const DeepCollectionEquality()
-                    .equals(other.customerId, customerId)));
+                const DeepCollectionEquality().equals(other.customerId, customerId)));
   }
 
   @override
@@ -477,8 +448,7 @@ class _$MembershipInactive
   TResult when<TResult extends Object>({
     @required TResult initialMembershipState(),
     @required TResult membershipActive(Membership membership),
-    @required
-        TResult membershipInactive(String customerEmail, String customerId),
+    @required TResult membershipInactive(String customerEmail, String customerId),
     @required TResult membershipLoading(),
     @required TResult membershipError(String errorMessage),
   }) {
@@ -543,9 +513,8 @@ class _$MembershipInactive
 }
 
 abstract class MembershipInactive implements MembershipState {
-  const factory MembershipInactive(
-      {@required String customerEmail,
-      String customerId}) = _$MembershipInactive;
+  const factory MembershipInactive({@required String customerEmail, String customerId}) =
+      _$MembershipInactive;
 
   String get customerEmail;
   String get customerId;
@@ -561,11 +530,9 @@ abstract class $MembershipLoadingCopyWith<$Res> {
 }
 
 /// @nodoc
-class _$MembershipLoadingCopyWithImpl<$Res>
-    extends _$MembershipStateCopyWithImpl<$Res>
+class _$MembershipLoadingCopyWithImpl<$Res> extends _$MembershipStateCopyWithImpl<$Res>
     implements $MembershipLoadingCopyWith<$Res> {
-  _$MembershipLoadingCopyWithImpl(
-      MembershipLoading _value, $Res Function(MembershipLoading) _then)
+  _$MembershipLoadingCopyWithImpl(MembershipLoading _value, $Res Function(MembershipLoading) _then)
       : super(_value, (v) => _then(v as MembershipLoading));
 
   @override
@@ -573,9 +540,7 @@ class _$MembershipLoadingCopyWithImpl<$Res>
 }
 
 /// @nodoc
-class _$MembershipLoading
-    with DiagnosticableTreeMixin
-    implements MembershipLoading {
+class _$MembershipLoading with DiagnosticableTreeMixin implements MembershipLoading {
   const _$MembershipLoading();
 
   @override
@@ -586,8 +551,7 @@ class _$MembershipLoading
   @override
   void debugFillProperties(DiagnosticPropertiesBuilder properties) {
     super.debugFillProperties(properties);
-    properties
-      ..add(DiagnosticsProperty('type', 'MembershipState.membershipLoading'));
+    properties..add(DiagnosticsProperty('type', 'MembershipState.membershipLoading'));
   }
 
   @override
@@ -603,8 +567,7 @@ class _$MembershipLoading
   TResult when<TResult extends Object>({
     @required TResult initialMembershipState(),
     @required TResult membershipActive(Membership membership),
-    @required
-        TResult membershipInactive(String customerEmail, String customerId),
+    @required TResult membershipInactive(String customerEmail, String customerId),
     @required TResult membershipLoading(),
     @required TResult membershipError(String errorMessage),
   }) {
@@ -674,18 +637,15 @@ abstract class MembershipLoading implements MembershipState {
 
 /// @nodoc
 abstract class $MembershipErrorCopyWith<$Res> {
-  factory $MembershipErrorCopyWith(
-          MembershipError value, $Res Function(MembershipError) then) =
+  factory $MembershipErrorCopyWith(MembershipError value, $Res Function(MembershipError) then) =
       _$MembershipErrorCopyWithImpl<$Res>;
   $Res call({String errorMessage});
 }
 
 /// @nodoc
-class _$MembershipErrorCopyWithImpl<$Res>
-    extends _$MembershipStateCopyWithImpl<$Res>
+class _$MembershipErrorCopyWithImpl<$Res> extends _$MembershipStateCopyWithImpl<$Res>
     implements $MembershipErrorCopyWith<$Res> {
-  _$MembershipErrorCopyWithImpl(
-      MembershipError _value, $Res Function(MembershipError) _then)
+  _$MembershipErrorCopyWithImpl(MembershipError _value, $Res Function(MembershipError) _then)
       : super(_value, (v) => _then(v as MembershipError));
 
   @override
@@ -696,19 +656,14 @@ class _$MembershipErrorCopyWithImpl<$Res>
     Object errorMessage = freezed,
   }) {
     return _then(MembershipError(
-      errorMessage: errorMessage == freezed
-          ? _value.errorMessage
-          : errorMessage as String,
+      errorMessage: errorMessage == freezed ? _value.errorMessage : errorMessage as String,
     ));
   }
 }
 
 /// @nodoc
-class _$MembershipError
-    with DiagnosticableTreeMixin
-    implements MembershipError {
-  const _$MembershipError({@required this.errorMessage})
-      : assert(errorMessage != null);
+class _$MembershipError with DiagnosticableTreeMixin implements MembershipError {
+  const _$MembershipError({@required this.errorMessage}) : assert(errorMessage != null);
 
   @override
   final String errorMessage;
@@ -731,13 +686,11 @@ class _$MembershipError
     return identical(this, other) ||
         (other is MembershipError &&
             (identical(other.errorMessage, errorMessage) ||
-                const DeepCollectionEquality()
-                    .equals(other.errorMessage, errorMessage)));
+                const DeepCollectionEquality().equals(other.errorMessage, errorMessage)));
   }
 
   @override
-  int get hashCode =>
-      runtimeType.hashCode ^ const DeepCollectionEquality().hash(errorMessage);
+  int get hashCode => runtimeType.hashCode ^ const DeepCollectionEquality().hash(errorMessage);
 
   @JsonKey(ignore: true)
   @override
@@ -749,8 +702,7 @@ class _$MembershipError
   TResult when<TResult extends Object>({
     @required TResult initialMembershipState(),
     @required TResult membershipActive(Membership membership),
-    @required
-        TResult membershipInactive(String customerEmail, String customerId),
+    @required TResult membershipInactive(String customerEmail, String customerId),
     @required TResult membershipLoading(),
     @required TResult membershipError(String errorMessage),
   }) {
@@ -815,8 +767,7 @@ class _$MembershipError
 }
 
 abstract class MembershipError implements MembershipState {
-  const factory MembershipError({@required String errorMessage}) =
-      _$MembershipError;
+  const factory MembershipError({@required String errorMessage}) = _$MembershipError;
 
   String get errorMessage;
   @JsonKey(ignore: true)

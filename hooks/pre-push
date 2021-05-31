@@ -34,4 +34,4 @@ call_lefthook()
 
 
 
-call_lefthook "lefthook run pre-commit $@"
+call_lefthook "lefthook run pre-push $@"

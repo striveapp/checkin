@@ -11,23 +11,22 @@ class LessonCardList extends StatelessWidget {
   Widget build(BuildContext context) {
     return BlocBuilder<LessonsBloc, LessonsState>(
         builder: (BuildContext context, LessonsState state) {
-          if (state is LessonsLoaded) {
-            if (state.lessons.length != 0) {
-              return ListView.builder(
-                padding: EdgeInsets.only(bottom: 50),
-                key: Key("lessonCardList_${state.lessons.length}"),
-                itemCount: state.lessons.length,
-                itemBuilder: (BuildContext context, int index) {
-                  var lesson = state.lessons[index];
-                  return LessonCard(
-                      key: Key("lesson_${lesson.weekDay.name}_$index"), lesson: lesson);
-                });
-            } else {
-              return NoLessonsBanner();
-            }
-          }
+      if (state is LessonsLoaded) {
+        if (state.lessons.length != 0) {
+          return ListView.builder(
+              padding: EdgeInsets.only(bottom: 50),
+              key: Key("lessonCardList_${state.lessons.length}"),
+              itemCount: state.lessons.length,
+              itemBuilder: (BuildContext context, int index) {
+                var lesson = state.lessons[index];
+                return LessonCard(key: Key("lesson_${lesson.weekDay.name}_$index"), lesson: lesson);
+              });
+        } else {
+          return NoLessonsBanner();
+        }
+      }
 
-          return LoadingIndicator();
-        });
+      return LoadingIndicator();
+    });
   }
 }

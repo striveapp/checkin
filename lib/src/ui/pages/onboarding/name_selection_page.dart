@@ -58,7 +58,9 @@ class NameSelectionPage extends StatelessWidget {
                       validator: _validateName,
                       onFieldSubmitted: (String value) {
                         if (_formKey.currentState.validate()) {
-                          context.read<ProfileBloc>().add(UpdateName(userEmail: userEmail, newName: value.trim()));
+                          context
+                              .read<ProfileBloc>()
+                              .add(UpdateName(userEmail: userEmail, newName: value.trim()));
                         }
                       },
                     ),

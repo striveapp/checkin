@@ -19,8 +19,7 @@ class _$LeaderboardEventTearOff {
   }
 
 // ignore: unused_element
-  LeaderboardUpdated leaderboardUpdated(
-      {@required List<UserHistory> usersHistory}) {
+  LeaderboardUpdated leaderboardUpdated({@required List<UserHistory> usersHistory}) {
     return LeaderboardUpdated(
       usersHistory: usersHistory,
     );
@@ -70,14 +69,12 @@ mixin _$LeaderboardEvent {
 
 /// @nodoc
 abstract class $LeaderboardEventCopyWith<$Res> {
-  factory $LeaderboardEventCopyWith(
-          LeaderboardEvent value, $Res Function(LeaderboardEvent) then) =
+  factory $LeaderboardEventCopyWith(LeaderboardEvent value, $Res Function(LeaderboardEvent) then) =
       _$LeaderboardEventCopyWithImpl<$Res>;
 }
 
 /// @nodoc
-class _$LeaderboardEventCopyWithImpl<$Res>
-    implements $LeaderboardEventCopyWith<$Res> {
+class _$LeaderboardEventCopyWithImpl<$Res> implements $LeaderboardEventCopyWith<$Res> {
   _$LeaderboardEventCopyWithImpl(this._value, this._then);
 
   final LeaderboardEvent _value;
@@ -87,14 +84,13 @@ class _$LeaderboardEventCopyWithImpl<$Res>
 
 /// @nodoc
 abstract class $InitializeLeaderboardCopyWith<$Res> {
-  factory $InitializeLeaderboardCopyWith(InitializeLeaderboard value,
-          $Res Function(InitializeLeaderboard) then) =
+  factory $InitializeLeaderboardCopyWith(
+          InitializeLeaderboard value, $Res Function(InitializeLeaderboard) then) =
       _$InitializeLeaderboardCopyWithImpl<$Res>;
 }
 
 /// @nodoc
-class _$InitializeLeaderboardCopyWithImpl<$Res>
-    extends _$LeaderboardEventCopyWithImpl<$Res>
+class _$InitializeLeaderboardCopyWithImpl<$Res> extends _$LeaderboardEventCopyWithImpl<$Res>
     implements $InitializeLeaderboardCopyWith<$Res> {
   _$InitializeLeaderboardCopyWithImpl(
       InitializeLeaderboard _value, $Res Function(InitializeLeaderboard) _then)
@@ -105,9 +101,7 @@ class _$InitializeLeaderboardCopyWithImpl<$Res>
 }
 
 /// @nodoc
-class _$InitializeLeaderboard
-    with DiagnosticableTreeMixin
-    implements InitializeLeaderboard {
+class _$InitializeLeaderboard with DiagnosticableTreeMixin implements InitializeLeaderboard {
   const _$InitializeLeaderboard();
 
   @override
@@ -118,9 +112,7 @@ class _$InitializeLeaderboard
   @override
   void debugFillProperties(DiagnosticPropertiesBuilder properties) {
     super.debugFillProperties(properties);
-    properties
-      ..add(DiagnosticsProperty(
-          'type', 'LeaderboardEvent.initializeLeaderboard'));
+    properties..add(DiagnosticsProperty('type', 'LeaderboardEvent.initializeLeaderboard'));
   }
 
   @override
@@ -201,8 +193,7 @@ abstract class $LeaderboardUpdatedCopyWith<$Res> {
 }
 
 /// @nodoc
-class _$LeaderboardUpdatedCopyWithImpl<$Res>
-    extends _$LeaderboardEventCopyWithImpl<$Res>
+class _$LeaderboardUpdatedCopyWithImpl<$Res> extends _$LeaderboardEventCopyWithImpl<$Res>
     implements $LeaderboardUpdatedCopyWith<$Res> {
   _$LeaderboardUpdatedCopyWithImpl(
       LeaderboardUpdated _value, $Res Function(LeaderboardUpdated) _then)
@@ -216,19 +207,15 @@ class _$LeaderboardUpdatedCopyWithImpl<$Res>
     Object usersHistory = freezed,
   }) {
     return _then(LeaderboardUpdated(
-      usersHistory: usersHistory == freezed
-          ? _value.usersHistory
-          : usersHistory as List<UserHistory>,
+      usersHistory:
+          usersHistory == freezed ? _value.usersHistory : usersHistory as List<UserHistory>,
     ));
   }
 }
 
 /// @nodoc
-class _$LeaderboardUpdated
-    with DiagnosticableTreeMixin
-    implements LeaderboardUpdated {
-  const _$LeaderboardUpdated({@required this.usersHistory})
-      : assert(usersHistory != null);
+class _$LeaderboardUpdated with DiagnosticableTreeMixin implements LeaderboardUpdated {
+  const _$LeaderboardUpdated({@required this.usersHistory}) : assert(usersHistory != null);
 
   @override
   final List<UserHistory> usersHistory;
@@ -251,13 +238,11 @@ class _$LeaderboardUpdated
     return identical(this, other) ||
         (other is LeaderboardUpdated &&
             (identical(other.usersHistory, usersHistory) ||
-                const DeepCollectionEquality()
-                    .equals(other.usersHistory, usersHistory)));
+                const DeepCollectionEquality().equals(other.usersHistory, usersHistory)));
   }
 
   @override
-  int get hashCode =>
-      runtimeType.hashCode ^ const DeepCollectionEquality().hash(usersHistory);
+  int get hashCode => runtimeType.hashCode ^ const DeepCollectionEquality().hash(usersHistory);
 
   @JsonKey(ignore: true)
   @override
@@ -332,18 +317,15 @@ abstract class LeaderboardUpdated implements LeaderboardEvent {
 
 /// @nodoc
 abstract class $UpdateTimespanCopyWith<$Res> {
-  factory $UpdateTimespanCopyWith(
-          UpdateTimespan value, $Res Function(UpdateTimespan) then) =
+  factory $UpdateTimespanCopyWith(UpdateTimespan value, $Res Function(UpdateTimespan) then) =
       _$UpdateTimespanCopyWithImpl<$Res>;
   $Res call({Timespan timespan});
 }
 
 /// @nodoc
-class _$UpdateTimespanCopyWithImpl<$Res>
-    extends _$LeaderboardEventCopyWithImpl<$Res>
+class _$UpdateTimespanCopyWithImpl<$Res> extends _$LeaderboardEventCopyWithImpl<$Res>
     implements $UpdateTimespanCopyWith<$Res> {
-  _$UpdateTimespanCopyWithImpl(
-      UpdateTimespan _value, $Res Function(UpdateTimespan) _then)
+  _$UpdateTimespanCopyWithImpl(UpdateTimespan _value, $Res Function(UpdateTimespan) _then)
       : super(_value, (v) => _then(v as UpdateTimespan));
 
   @override
@@ -384,13 +366,11 @@ class _$UpdateTimespan with DiagnosticableTreeMixin implements UpdateTimespan {
     return identical(this, other) ||
         (other is UpdateTimespan &&
             (identical(other.timespan, timespan) ||
-                const DeepCollectionEquality()
-                    .equals(other.timespan, timespan)));
+                const DeepCollectionEquality().equals(other.timespan, timespan)));
   }
 
   @override
-  int get hashCode =>
-      runtimeType.hashCode ^ const DeepCollectionEquality().hash(timespan);
+  int get hashCode => runtimeType.hashCode ^ const DeepCollectionEquality().hash(timespan);
 
   @JsonKey(ignore: true)
   @override
@@ -455,8 +435,7 @@ class _$UpdateTimespan with DiagnosticableTreeMixin implements UpdateTimespan {
 }
 
 abstract class UpdateTimespan implements LeaderboardEvent {
-  const factory UpdateTimespan({@required Timespan timespan}) =
-      _$UpdateTimespan;
+  const factory UpdateTimespan({@required Timespan timespan}) = _$UpdateTimespan;
 
   Timespan get timespan;
   @JsonKey(ignore: true)

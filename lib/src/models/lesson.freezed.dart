@@ -74,8 +74,7 @@ mixin _$Lesson {
   int get timestamp;
   String get imageUrl;
   String get gymId;
-  LessonConfig
-      get lessonConfig; // todo retrieve from Gym (config) https://trello.com/c/uIqJLgZL
+  LessonConfig get lessonConfig; // todo retrieve from Gym (config) https://trello.com/c/uIqJLgZL
   int get classCapacity;
   List<Master> get masters;
   List<Attendee> get attendees;
@@ -89,8 +88,7 @@ mixin _$Lesson {
 
 /// @nodoc
 abstract class $LessonCopyWith<$Res> {
-  factory $LessonCopyWith(Lesson value, $Res Function(Lesson) then) =
-      _$LessonCopyWithImpl<$Res>;
+  factory $LessonCopyWith(Lesson value, $Res Function(Lesson) then) = _$LessonCopyWithImpl<$Res>;
   $Res call(
       {String id,
       String date,
@@ -147,15 +145,10 @@ class _$LessonCopyWithImpl<$Res> implements $LessonCopyWith<$Res> {
       timestamp: timestamp == freezed ? _value.timestamp : timestamp as int,
       imageUrl: imageUrl == freezed ? _value.imageUrl : imageUrl as String,
       gymId: gymId == freezed ? _value.gymId : gymId as String,
-      lessonConfig: lessonConfig == freezed
-          ? _value.lessonConfig
-          : lessonConfig as LessonConfig,
-      classCapacity: classCapacity == freezed
-          ? _value.classCapacity
-          : classCapacity as int,
+      lessonConfig: lessonConfig == freezed ? _value.lessonConfig : lessonConfig as LessonConfig,
+      classCapacity: classCapacity == freezed ? _value.classCapacity : classCapacity as int,
       masters: masters == freezed ? _value.masters : masters as List<Master>,
-      attendees:
-          attendees == freezed ? _value.attendees : attendees as List<Attendee>,
+      attendees: attendees == freezed ? _value.attendees : attendees as List<Attendee>,
       acceptedAttendees: acceptedAttendees == freezed
           ? _value.acceptedAttendees
           : acceptedAttendees as List<Attendee>,
@@ -237,15 +230,10 @@ class __$LessonCopyWithImpl<$Res> extends _$LessonCopyWithImpl<$Res>
       timestamp: timestamp == freezed ? _value.timestamp : timestamp as int,
       imageUrl: imageUrl == freezed ? _value.imageUrl : imageUrl as String,
       gymId: gymId == freezed ? _value.gymId : gymId as String,
-      lessonConfig: lessonConfig == freezed
-          ? _value.lessonConfig
-          : lessonConfig as LessonConfig,
-      classCapacity: classCapacity == freezed
-          ? _value.classCapacity
-          : classCapacity as int,
+      lessonConfig: lessonConfig == freezed ? _value.lessonConfig : lessonConfig as LessonConfig,
+      classCapacity: classCapacity == freezed ? _value.classCapacity : classCapacity as int,
       masters: masters == freezed ? _value.masters : masters as List<Master>,
-      attendees:
-          attendees == freezed ? _value.attendees : attendees as List<Attendee>,
+      attendees: attendees == freezed ? _value.attendees : attendees as List<Attendee>,
       acceptedAttendees: acceptedAttendees == freezed
           ? _value.acceptedAttendees
           : acceptedAttendees as List<Attendee>,
@@ -281,8 +269,7 @@ class _$_Lesson implements _Lesson {
         assert(acceptedAttendees != null),
         assert(isClosed != null);
 
-  factory _$_Lesson.fromJson(Map<String, dynamic> json) =>
-      _$_$_LessonFromJson(json);
+  factory _$_Lesson.fromJson(Map<String, dynamic> json) => _$_$_LessonFromJson(json);
 
   @override
   final String id;
@@ -331,47 +318,36 @@ class _$_Lesson implements _Lesson {
   bool operator ==(dynamic other) {
     return identical(this, other) ||
         (other is _Lesson &&
-            (identical(other.id, id) ||
-                const DeepCollectionEquality().equals(other.id, id)) &&
+            (identical(other.id, id) || const DeepCollectionEquality().equals(other.id, id)) &&
             (identical(other.date, date) ||
                 const DeepCollectionEquality().equals(other.date, date)) &&
             (identical(other.name, name) ||
                 const DeepCollectionEquality().equals(other.name, name)) &&
             (identical(other.timeStart, timeStart) ||
-                const DeepCollectionEquality()
-                    .equals(other.timeStart, timeStart)) &&
+                const DeepCollectionEquality().equals(other.timeStart, timeStart)) &&
             (identical(other.timeEnd, timeEnd) ||
-                const DeepCollectionEquality()
-                    .equals(other.timeEnd, timeEnd)) &&
+                const DeepCollectionEquality().equals(other.timeEnd, timeEnd)) &&
             (identical(other.weekDay, weekDay) ||
-                const DeepCollectionEquality()
-                    .equals(other.weekDay, weekDay)) &&
+                const DeepCollectionEquality().equals(other.weekDay, weekDay)) &&
             (identical(other.timestamp, timestamp) ||
-                const DeepCollectionEquality()
-                    .equals(other.timestamp, timestamp)) &&
+                const DeepCollectionEquality().equals(other.timestamp, timestamp)) &&
             (identical(other.imageUrl, imageUrl) ||
-                const DeepCollectionEquality()
-                    .equals(other.imageUrl, imageUrl)) &&
+                const DeepCollectionEquality().equals(other.imageUrl, imageUrl)) &&
             (identical(other.gymId, gymId) ||
                 const DeepCollectionEquality().equals(other.gymId, gymId)) &&
             (identical(other.lessonConfig, lessonConfig) ||
-                const DeepCollectionEquality()
-                    .equals(other.lessonConfig, lessonConfig)) &&
+                const DeepCollectionEquality().equals(other.lessonConfig, lessonConfig)) &&
             (identical(other.classCapacity, classCapacity) ||
-                const DeepCollectionEquality()
-                    .equals(other.classCapacity, classCapacity)) &&
+                const DeepCollectionEquality().equals(other.classCapacity, classCapacity)) &&
             (identical(other.masters, masters) ||
-                const DeepCollectionEquality()
-                    .equals(other.masters, masters)) &&
+                const DeepCollectionEquality().equals(other.masters, masters)) &&
             (identical(other.attendees, attendees) ||
-                const DeepCollectionEquality()
-                    .equals(other.attendees, attendees)) &&
+                const DeepCollectionEquality().equals(other.attendees, attendees)) &&
             (identical(other.acceptedAttendees, acceptedAttendees) ||
                 const DeepCollectionEquality()
                     .equals(other.acceptedAttendees, acceptedAttendees)) &&
             (identical(other.isClosed, isClosed) ||
-                const DeepCollectionEquality()
-                    .equals(other.isClosed, isClosed)));
+                const DeepCollectionEquality().equals(other.isClosed, isClosed)));
   }
 
   @override
@@ -395,8 +371,7 @@ class _$_Lesson implements _Lesson {
 
   @JsonKey(ignore: true)
   @override
-  _$LessonCopyWith<_Lesson> get copyWith =>
-      __$LessonCopyWithImpl<_Lesson>(this, _$identity);
+  _$LessonCopyWith<_Lesson> get copyWith => __$LessonCopyWithImpl<_Lesson>(this, _$identity);
 
   @override
   Map<String, dynamic> toJson() {
@@ -510,8 +485,7 @@ mixin _$LessonTemplate {
   String get timeEnd;
   Weekday get weekDay;
   String get imageUrl;
-  LessonConfig
-      get lessonConfig; // todo retrieve from Gym (config) https://trello.com/c/uIqJLgZL
+  LessonConfig get lessonConfig; // todo retrieve from Gym (config) https://trello.com/c/uIqJLgZL
   int get classCapacity;
   List<Master> get masters;
 
@@ -522,8 +496,7 @@ mixin _$LessonTemplate {
 
 /// @nodoc
 abstract class $LessonTemplateCopyWith<$Res> {
-  factory $LessonTemplateCopyWith(
-          LessonTemplate value, $Res Function(LessonTemplate) then) =
+  factory $LessonTemplateCopyWith(LessonTemplate value, $Res Function(LessonTemplate) then) =
       _$LessonTemplateCopyWithImpl<$Res>;
   $Res call(
       {String id,
@@ -540,8 +513,7 @@ abstract class $LessonTemplateCopyWith<$Res> {
 }
 
 /// @nodoc
-class _$LessonTemplateCopyWithImpl<$Res>
-    implements $LessonTemplateCopyWith<$Res> {
+class _$LessonTemplateCopyWithImpl<$Res> implements $LessonTemplateCopyWith<$Res> {
   _$LessonTemplateCopyWithImpl(this._value, this._then);
 
   final LessonTemplate _value;
@@ -567,12 +539,8 @@ class _$LessonTemplateCopyWithImpl<$Res>
       timeEnd: timeEnd == freezed ? _value.timeEnd : timeEnd as String,
       weekDay: weekDay == freezed ? _value.weekDay : weekDay as Weekday,
       imageUrl: imageUrl == freezed ? _value.imageUrl : imageUrl as String,
-      lessonConfig: lessonConfig == freezed
-          ? _value.lessonConfig
-          : lessonConfig as LessonConfig,
-      classCapacity: classCapacity == freezed
-          ? _value.classCapacity
-          : classCapacity as int,
+      lessonConfig: lessonConfig == freezed ? _value.lessonConfig : lessonConfig as LessonConfig,
+      classCapacity: classCapacity == freezed ? _value.classCapacity : classCapacity as int,
       masters: masters == freezed ? _value.masters : masters as List<Master>,
     ));
   }
@@ -589,10 +557,8 @@ class _$LessonTemplateCopyWithImpl<$Res>
 }
 
 /// @nodoc
-abstract class _$LessonTemplateCopyWith<$Res>
-    implements $LessonTemplateCopyWith<$Res> {
-  factory _$LessonTemplateCopyWith(
-          _LessonTemplate value, $Res Function(_LessonTemplate) then) =
+abstract class _$LessonTemplateCopyWith<$Res> implements $LessonTemplateCopyWith<$Res> {
+  factory _$LessonTemplateCopyWith(_LessonTemplate value, $Res Function(_LessonTemplate) then) =
       __$LessonTemplateCopyWithImpl<$Res>;
   @override
   $Res call(
@@ -611,11 +577,9 @@ abstract class _$LessonTemplateCopyWith<$Res>
 }
 
 /// @nodoc
-class __$LessonTemplateCopyWithImpl<$Res>
-    extends _$LessonTemplateCopyWithImpl<$Res>
+class __$LessonTemplateCopyWithImpl<$Res> extends _$LessonTemplateCopyWithImpl<$Res>
     implements _$LessonTemplateCopyWith<$Res> {
-  __$LessonTemplateCopyWithImpl(
-      _LessonTemplate _value, $Res Function(_LessonTemplate) _then)
+  __$LessonTemplateCopyWithImpl(_LessonTemplate _value, $Res Function(_LessonTemplate) _then)
       : super(_value, (v) => _then(v as _LessonTemplate));
 
   @override
@@ -640,12 +604,8 @@ class __$LessonTemplateCopyWithImpl<$Res>
       timeEnd: timeEnd == freezed ? _value.timeEnd : timeEnd as String,
       weekDay: weekDay == freezed ? _value.weekDay : weekDay as Weekday,
       imageUrl: imageUrl == freezed ? _value.imageUrl : imageUrl as String,
-      lessonConfig: lessonConfig == freezed
-          ? _value.lessonConfig
-          : lessonConfig as LessonConfig,
-      classCapacity: classCapacity == freezed
-          ? _value.classCapacity
-          : classCapacity as int,
+      lessonConfig: lessonConfig == freezed ? _value.lessonConfig : lessonConfig as LessonConfig,
+      classCapacity: classCapacity == freezed ? _value.classCapacity : classCapacity as int,
       masters: masters == freezed ? _value.masters : masters as List<Master>,
     ));
   }
@@ -703,28 +663,21 @@ class _$_LessonTemplate implements _LessonTemplate {
   bool operator ==(dynamic other) {
     return identical(this, other) ||
         (other is _LessonTemplate &&
-            (identical(other.id, id) ||
-                const DeepCollectionEquality().equals(other.id, id)) &&
+            (identical(other.id, id) || const DeepCollectionEquality().equals(other.id, id)) &&
             (identical(other.name, name) ||
                 const DeepCollectionEquality().equals(other.name, name)) &&
             (identical(other.timeStart, timeStart) ||
-                const DeepCollectionEquality()
-                    .equals(other.timeStart, timeStart)) &&
+                const DeepCollectionEquality().equals(other.timeStart, timeStart)) &&
             (identical(other.timeEnd, timeEnd) ||
-                const DeepCollectionEquality()
-                    .equals(other.timeEnd, timeEnd)) &&
+                const DeepCollectionEquality().equals(other.timeEnd, timeEnd)) &&
             (identical(other.weekDay, weekDay) ||
-                const DeepCollectionEquality()
-                    .equals(other.weekDay, weekDay)) &&
+                const DeepCollectionEquality().equals(other.weekDay, weekDay)) &&
             (identical(other.imageUrl, imageUrl) ||
-                const DeepCollectionEquality()
-                    .equals(other.imageUrl, imageUrl)) &&
+                const DeepCollectionEquality().equals(other.imageUrl, imageUrl)) &&
             (identical(other.lessonConfig, lessonConfig) ||
-                const DeepCollectionEquality()
-                    .equals(other.lessonConfig, lessonConfig)) &&
+                const DeepCollectionEquality().equals(other.lessonConfig, lessonConfig)) &&
             (identical(other.classCapacity, classCapacity) ||
-                const DeepCollectionEquality()
-                    .equals(other.classCapacity, classCapacity)) &&
+                const DeepCollectionEquality().equals(other.classCapacity, classCapacity)) &&
             (identical(other.masters, masters) ||
                 const DeepCollectionEquality().equals(other.masters, masters)));
   }
@@ -765,8 +718,7 @@ abstract class _LessonTemplate implements LessonTemplate {
       int classCapacity,
       List<Master> masters}) = _$_LessonTemplate;
 
-  factory _LessonTemplate.fromJson(Map<String, dynamic> json) =
-      _$_LessonTemplate.fromJson;
+  factory _LessonTemplate.fromJson(Map<String, dynamic> json) = _$_LessonTemplate.fromJson;
 
   @override
   String get id;

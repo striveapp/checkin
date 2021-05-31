@@ -12,7 +12,6 @@ import 'master.dart';
 part 'lesson.freezed.dart';
 part 'lesson.g.dart';
 
-
 @freezed
 abstract class Lesson with _$Lesson {
   factory Lesson({
@@ -66,5 +65,4 @@ abstract class LessonTemplate with _$LessonTemplate {
   }) = _LessonTemplate;
 
   factory LessonTemplate.fromJson(Map<String, dynamic> json) => _$LessonTemplateFromJson(json);
-
 }
