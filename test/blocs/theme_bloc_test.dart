@@ -15,7 +15,7 @@ void main() {
       });
 
       test('is AppTheme', () {
-        expect(themeBloc.state, AppTheme(themeData: theme[ThemeType.NewLight]));
+        expect(themeBloc.state, AppTheme(themeData: theme[ThemeType.Light]));
       });
 
       tearDown(() {

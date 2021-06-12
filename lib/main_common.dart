@@ -70,7 +70,7 @@ Future<void> mainCommon(AppConfig appConfig) async {
   await Firebase.initializeApp();
 
   if (appConfig.useEmulator) {
-    //TODO: This works in the emulator but not in the physical device
+    //NOTE: This works in the emulator but not in the physical device
     FirebaseFirestore.instance.settings = Settings(
       host: LocalPlatform().isAndroid ? '10.0.2.2:8080' : 'localhost:8080',
       sslEnabled: false,
@@ -111,8 +111,8 @@ Future<void> mainCommon(AppConfig appConfig) async {
                 userRepository: context.read(),
                 gymRepository: context.read(),
                 localStorageRepository: context.read(),
-                loggedUser: user,
                 // todo retrieve from storage cache
+                loggedUser: user,
                 versionUtil: VersionUtil(),
               )..add(AppStarted()),
             ),

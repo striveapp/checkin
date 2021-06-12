@@ -1,6 +1,7 @@
 import 'package:bloc/bloc.dart';
 import 'package:checkin/src/themes/theme.dart';
 import 'package:flutter/material.dart';
+
 import './bloc.dart';
 
 class ThemeBloc extends Bloc<ThemeEvent, ThemeState> {
@@ -8,7 +9,7 @@ class ThemeBloc extends Bloc<ThemeEvent, ThemeState> {
       : super(AppTheme(
             themeData: WidgetsBinding.instance.window.platformBrightness == Brightness.dark
                 ? theme[ThemeType.Dark]
-                : theme[ThemeType.NewLight]));
+                : theme[ThemeType.Light]));
 
   @override
   Stream<ThemeState> mapEventToState(

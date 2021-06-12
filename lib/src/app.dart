@@ -69,7 +69,7 @@ class _AppState extends State<App> with WidgetsBindingObserver {
     if (platformBrightness == Brightness.dark) {
       themeBloc.add(UpdateTheme(themeType: ThemeType.Dark));
     } else {
-      themeBloc.add(UpdateTheme(themeType: ThemeType.NewLight));
+      themeBloc.add(UpdateTheme(themeType: ThemeType.Light));
     }
   }
 
