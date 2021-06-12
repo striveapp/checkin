@@ -1,10 +1,5 @@
-import 'package:checkin/src/api/lesson_api.dart';
 import 'package:checkin/src/blocs/registry/bloc.dart';
 import 'package:checkin/src/blocs/registry/registry_bloc.dart';
-import 'package:checkin/src/repositories/image_repository.dart';
-import 'package:checkin/src/repositories/lesson_repository.dart';
-import 'package:checkin/src/repositories/storage_repository.dart';
-import 'package:checkin/src/repositories/user_repository.dart';
 import 'package:checkin/src/ui/components/base_app_bar.dart';
 import 'package:checkin/src/ui/components/loading_indicator.dart';
 import 'package:checkin/src/ui/components/registry/close_lesson_button.dart';
@@ -41,11 +36,11 @@ class RegistryPage extends StatelessWidget {
               create: (context) => RegistryBloc(
                 lessonId: lessonId,
                 lessonDate: date,
-                lessonApi: context.read<LessonApi>(),
-                lessonRepository: context.read<LessonRepository>(),
-                imageRepository: context.read<ImageRepository>(),
-                storageRepository: context.read<StorageRepository>(),
-                userRepository: context.read<UserRepository>(),
+                lessonApi: context.read(),
+                lessonRepository: context.read(),
+                imageRepository: context.read(),
+                storageRepository: context.read(),
+                userRepository: context.read(),
                 dateUtil: context.read(),
               )..add(InitializeRegistry()),
             ),
@@ -74,7 +69,7 @@ class RegistryPage extends StatelessWidget {
                       child: Row(
                         mainAxisAlignment: MainAxisAlignment.spaceBetween,
                         children: [
-                          LessonInfos(),
+                          Expanded(child: LessonInfos()),
                           Row(
                             children: [
                               EditLessonButton(),

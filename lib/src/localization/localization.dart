@@ -44,7 +44,6 @@ import 'package:checkin/src/ui/components/registry/edit_lesson/edit_lesson_name.
 import 'package:checkin/src/ui/components/registry/edit_lesson/edit_lesson_time.dart';
 import 'package:checkin/src/ui/components/registry/edit_lesson/masters_selection.dart';
 import 'package:checkin/src/ui/components/registry/empty_registry.dart';
-import 'package:checkin/src/ui/components/registry/lesson_infos.dart';
 import 'package:checkin/src/ui/components/registry/master_buttons.dart';
 import 'package:checkin/src/ui/components/registry/register_dialog.dart';
 import 'package:checkin/src/ui/components/registry/registry_controls.dart';
@@ -240,16 +239,6 @@ extension Localization on String {
         'en': AttendeeTile.thisStudentIsInSessionOverdue,
         'es': 'Este estudiante ya no tienes sesiones disponibles',
         'it': 'Questo studente non ha piú sessioni disponibili',
-      } +
-      {
-        'en': LessonInfos.and,
-        'es': 'y',
-        'it': 'e',
-      } +
-      {
-        'en': LessonInfos.startingAt,
-        'es': "Empieza a las %s",
-        'it': 'Inizia alle %s',
       } +
       {
         'en': AttendeesPreview.andOthers.one('and another one').many('and %d others'),
