@@ -1,6 +1,3 @@
-"test_title" = "Test";
-"test_body" = "Hello world!";
-
 "class_confirmed" = "Class confirmed ✅";
 "you_attended_n_classes" = "You attended %@ classes this year!";
 
@@ -11,6 +8,9 @@
 "first_user_sign_up" = "The first student sign up to your class!";
 
 "your_class_got_cancelled" = "One of your class got cancelled ❌";
+"please_check_it_out" = "Please check it out";
+
+"your_class_has_changed_time" = "One of your classes change time ⌛";
 "please_check_it_out" = "Please check it out";
 
 "news_for_you" = "News for you";

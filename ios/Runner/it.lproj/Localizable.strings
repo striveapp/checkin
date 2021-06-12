@@ -1,6 +1,3 @@
-"test_title" = "Test IT";
-"test_body" = "Ciao mondo!";
-
 "class_confirmed" = "Classe confermata ✅";
 "you_attended_n_classes" = "Hai fatto %@ classi quest'anno!";
 
@@ -11,7 +8,10 @@
 "first_user_sign_up" = "Il primo studente si è iscritto alla classe";
 
 "your_class_got_cancelled" = "Una delle tue classi è stata cancellata ❌";
-"please_check_it_out" = "Per favore verificalo";
+"please_check_it_out" = "Dacci un\'occhiata";
 
 "news_for_you" = "Nuova notizia per te";
 "go_check_it_out" = "Dacci un'occhiata";
+
+"your_class_has_changed_time" = "Una delle tue classi ha cambiato orario ⌛";
+"please_check_it_out" = "Dacci un'occhiata";

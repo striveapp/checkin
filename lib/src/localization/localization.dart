@@ -98,14 +98,29 @@ extension Localization on String {
         'it': 'Il primo studente si è iscritto alla classe',
       } +
       {
-        'en': "One of your class got cancelled!",
-        'es': 'Una de tus clases ha sido cancelada!',
-        'it': 'Una delle tue classi è stata cancellata!',
+        'en': "One of your class got cancelled",
+        'es': 'Una de tus clases ha sido cancelada',
+        'it': 'Una delle tue classi è stata cancellata',
+      } +
+      {
+        'en': "One of your classes change time",
+        'es': 'Una de tus clases ha cambiado orario',
+        'it': 'Una delle tue classi ha cambiato orario',
+      } +
+      {
+        'en': "News for you",
+        'es': 'Nueva noticia para tí',
+        'it': 'Nuova notizia per te',
       } +
       {
         'en': "Please check it out",
         'es': 'Porfavor copruebalo',
-        'it': 'Per favore verificalo',
+        'it': 'Dacci un\' occhiata',
+      } +
+      {
+        'en': "Go check it out",
+        'es': '¡Vete a verla!',
+        'it': 'Dacci un\' occhiata',
       } +
       {
         'en': "Action Required!",
