@@ -19,7 +19,8 @@ class _$LessonFilterStateTearOff {
   }
 
 // ignore: unused_element
-  LessonFilterLoaded lessonFilterLoaded({@required List<String> availableLessonTypes}) {
+  LessonFilterLoaded lessonFilterLoaded(
+      {@required List<String> availableLessonTypes}) {
     return LessonFilterLoaded(
       availableLessonTypes: availableLessonTypes,
     );
@@ -64,7 +65,8 @@ abstract class $LessonFilterStateCopyWith<$Res> {
 }
 
 /// @nodoc
-class _$LessonFilterStateCopyWithImpl<$Res> implements $LessonFilterStateCopyWith<$Res> {
+class _$LessonFilterStateCopyWithImpl<$Res>
+    implements $LessonFilterStateCopyWith<$Res> {
   _$LessonFilterStateCopyWithImpl(this._value, this._then);
 
   final LessonFilterState _value;
@@ -74,24 +76,28 @@ class _$LessonFilterStateCopyWithImpl<$Res> implements $LessonFilterStateCopyWit
 
 /// @nodoc
 abstract class $InitialLessonFilterStateCopyWith<$Res> {
-  factory $InitialLessonFilterStateCopyWith(
-          InitialLessonFilterState value, $Res Function(InitialLessonFilterState) then) =
+  factory $InitialLessonFilterStateCopyWith(InitialLessonFilterState value,
+          $Res Function(InitialLessonFilterState) then) =
       _$InitialLessonFilterStateCopyWithImpl<$Res>;
 }
 
 /// @nodoc
-class _$InitialLessonFilterStateCopyWithImpl<$Res> extends _$LessonFilterStateCopyWithImpl<$Res>
+class _$InitialLessonFilterStateCopyWithImpl<$Res>
+    extends _$LessonFilterStateCopyWithImpl<$Res>
     implements $InitialLessonFilterStateCopyWith<$Res> {
-  _$InitialLessonFilterStateCopyWithImpl(
-      InitialLessonFilterState _value, $Res Function(InitialLessonFilterState) _then)
+  _$InitialLessonFilterStateCopyWithImpl(InitialLessonFilterState _value,
+      $Res Function(InitialLessonFilterState) _then)
       : super(_value, (v) => _then(v as InitialLessonFilterState));
 
   @override
-  InitialLessonFilterState get _value => super._value as InitialLessonFilterState;
+  InitialLessonFilterState get _value =>
+      super._value as InitialLessonFilterState;
 }
 
 /// @nodoc
-class _$InitialLessonFilterState with DiagnosticableTreeMixin implements InitialLessonFilterState {
+class _$InitialLessonFilterState
+    with DiagnosticableTreeMixin
+    implements InitialLessonFilterState {
   const _$InitialLessonFilterState();
 
   @override
@@ -102,7 +108,9 @@ class _$InitialLessonFilterState with DiagnosticableTreeMixin implements Initial
   @override
   void debugFillProperties(DiagnosticPropertiesBuilder properties) {
     super.debugFillProperties(properties);
-    properties..add(DiagnosticsProperty('type', 'LessonFilterState.initialLessonFilterState'));
+    properties
+      ..add(DiagnosticsProperty(
+          'type', 'LessonFilterState.initialLessonFilterState'));
   }
 
   @override
@@ -177,7 +185,8 @@ abstract class $LessonFilterLoadedCopyWith<$Res> {
 }
 
 /// @nodoc
-class _$LessonFilterLoadedCopyWithImpl<$Res> extends _$LessonFilterStateCopyWithImpl<$Res>
+class _$LessonFilterLoadedCopyWithImpl<$Res>
+    extends _$LessonFilterStateCopyWithImpl<$Res>
     implements $LessonFilterLoadedCopyWith<$Res> {
   _$LessonFilterLoadedCopyWithImpl(
       LessonFilterLoaded _value, $Res Function(LessonFilterLoaded) _then)
@@ -199,7 +208,9 @@ class _$LessonFilterLoadedCopyWithImpl<$Res> extends _$LessonFilterStateCopyWith
 }
 
 /// @nodoc
-class _$LessonFilterLoaded with DiagnosticableTreeMixin implements LessonFilterLoaded {
+class _$LessonFilterLoaded
+    with DiagnosticableTreeMixin
+    implements LessonFilterLoaded {
   const _$LessonFilterLoaded({@required this.availableLessonTypes})
       : assert(availableLessonTypes != null);
 
@@ -230,7 +241,8 @@ class _$LessonFilterLoaded with DiagnosticableTreeMixin implements LessonFilterL
 
   @override
   int get hashCode =>
-      runtimeType.hashCode ^ const DeepCollectionEquality().hash(availableLessonTypes);
+      runtimeType.hashCode ^
+      const DeepCollectionEquality().hash(availableLessonTypes);
 
   @JsonKey(ignore: true)
   @override
@@ -289,8 +301,8 @@ class _$LessonFilterLoaded with DiagnosticableTreeMixin implements LessonFilterL
 }
 
 abstract class LessonFilterLoaded implements LessonFilterState {
-  const factory LessonFilterLoaded({@required List<String> availableLessonTypes}) =
-      _$LessonFilterLoaded;
+  const factory LessonFilterLoaded(
+      {@required List<String> availableLessonTypes}) = _$LessonFilterLoaded;
 
   List<String> get availableLessonTypes;
   @JsonKey(ignore: true)

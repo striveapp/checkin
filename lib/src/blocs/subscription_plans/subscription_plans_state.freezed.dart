@@ -47,7 +47,9 @@ mixin _$SubscriptionPlansState {
   TResult when<TResult extends Object>({
     @required TResult subscriptionPlansInitial(),
     @required TResult subscriptionPlansLoading(),
-    @required TResult subscriptionPlansLoaded(List<SubscriptionPlan> subscriptionPlans),
+    @required
+        TResult subscriptionPlansLoaded(
+            List<SubscriptionPlan> subscriptionPlans),
     @required TResult subscriptionPlansEmpty(),
   });
   @optionalTypeArgs
@@ -77,13 +79,14 @@ mixin _$SubscriptionPlansState {
 
 /// @nodoc
 abstract class $SubscriptionPlansStateCopyWith<$Res> {
-  factory $SubscriptionPlansStateCopyWith(
-          SubscriptionPlansState value, $Res Function(SubscriptionPlansState) then) =
+  factory $SubscriptionPlansStateCopyWith(SubscriptionPlansState value,
+          $Res Function(SubscriptionPlansState) then) =
       _$SubscriptionPlansStateCopyWithImpl<$Res>;
 }
 
 /// @nodoc
-class _$SubscriptionPlansStateCopyWithImpl<$Res> implements $SubscriptionPlansStateCopyWith<$Res> {
+class _$SubscriptionPlansStateCopyWithImpl<$Res>
+    implements $SubscriptionPlansStateCopyWith<$Res> {
   _$SubscriptionPlansStateCopyWithImpl(this._value, this._then);
 
   final SubscriptionPlansState _value;
@@ -93,8 +96,8 @@ class _$SubscriptionPlansStateCopyWithImpl<$Res> implements $SubscriptionPlansSt
 
 /// @nodoc
 abstract class $SubscriptionPlansInitialCopyWith<$Res> {
-  factory $SubscriptionPlansInitialCopyWith(
-          SubscriptionPlansInitial value, $Res Function(SubscriptionPlansInitial) then) =
+  factory $SubscriptionPlansInitialCopyWith(SubscriptionPlansInitial value,
+          $Res Function(SubscriptionPlansInitial) then) =
       _$SubscriptionPlansInitialCopyWithImpl<$Res>;
 }
 
@@ -102,16 +105,19 @@ abstract class $SubscriptionPlansInitialCopyWith<$Res> {
 class _$SubscriptionPlansInitialCopyWithImpl<$Res>
     extends _$SubscriptionPlansStateCopyWithImpl<$Res>
     implements $SubscriptionPlansInitialCopyWith<$Res> {
-  _$SubscriptionPlansInitialCopyWithImpl(
-      SubscriptionPlansInitial _value, $Res Function(SubscriptionPlansInitial) _then)
+  _$SubscriptionPlansInitialCopyWithImpl(SubscriptionPlansInitial _value,
+      $Res Function(SubscriptionPlansInitial) _then)
       : super(_value, (v) => _then(v as SubscriptionPlansInitial));
 
   @override
-  SubscriptionPlansInitial get _value => super._value as SubscriptionPlansInitial;
+  SubscriptionPlansInitial get _value =>
+      super._value as SubscriptionPlansInitial;
 }
 
 /// @nodoc
-class _$SubscriptionPlansInitial with DiagnosticableTreeMixin implements SubscriptionPlansInitial {
+class _$SubscriptionPlansInitial
+    with DiagnosticableTreeMixin
+    implements SubscriptionPlansInitial {
   const _$SubscriptionPlansInitial();
 
   @override
@@ -122,7 +128,9 @@ class _$SubscriptionPlansInitial with DiagnosticableTreeMixin implements Subscri
   @override
   void debugFillProperties(DiagnosticPropertiesBuilder properties) {
     super.debugFillProperties(properties);
-    properties..add(DiagnosticsProperty('type', 'SubscriptionPlansState.subscriptionPlansInitial'));
+    properties
+      ..add(DiagnosticsProperty(
+          'type', 'SubscriptionPlansState.subscriptionPlansInitial'));
   }
 
   @override
@@ -138,7 +146,9 @@ class _$SubscriptionPlansInitial with DiagnosticableTreeMixin implements Subscri
   TResult when<TResult extends Object>({
     @required TResult subscriptionPlansInitial(),
     @required TResult subscriptionPlansLoading(),
-    @required TResult subscriptionPlansLoaded(List<SubscriptionPlan> subscriptionPlans),
+    @required
+        TResult subscriptionPlansLoaded(
+            List<SubscriptionPlan> subscriptionPlans),
     @required TResult subscriptionPlansEmpty(),
   }) {
     assert(subscriptionPlansInitial != null);
@@ -202,8 +212,8 @@ abstract class SubscriptionPlansInitial implements SubscriptionPlansState {
 
 /// @nodoc
 abstract class $SubscriptionPlansLoadingCopyWith<$Res> {
-  factory $SubscriptionPlansLoadingCopyWith(
-          SubscriptionPlansLoading value, $Res Function(SubscriptionPlansLoading) then) =
+  factory $SubscriptionPlansLoadingCopyWith(SubscriptionPlansLoading value,
+          $Res Function(SubscriptionPlansLoading) then) =
       _$SubscriptionPlansLoadingCopyWithImpl<$Res>;
 }
 
@@ -211,16 +221,19 @@ abstract class $SubscriptionPlansLoadingCopyWith<$Res> {
 class _$SubscriptionPlansLoadingCopyWithImpl<$Res>
     extends _$SubscriptionPlansStateCopyWithImpl<$Res>
     implements $SubscriptionPlansLoadingCopyWith<$Res> {
-  _$SubscriptionPlansLoadingCopyWithImpl(
-      SubscriptionPlansLoading _value, $Res Function(SubscriptionPlansLoading) _then)
+  _$SubscriptionPlansLoadingCopyWithImpl(SubscriptionPlansLoading _value,
+      $Res Function(SubscriptionPlansLoading) _then)
       : super(_value, (v) => _then(v as SubscriptionPlansLoading));
 
   @override
-  SubscriptionPlansLoading get _value => super._value as SubscriptionPlansLoading;
+  SubscriptionPlansLoading get _value =>
+      super._value as SubscriptionPlansLoading;
 }
 
 /// @nodoc
-class _$SubscriptionPlansLoading with DiagnosticableTreeMixin implements SubscriptionPlansLoading {
+class _$SubscriptionPlansLoading
+    with DiagnosticableTreeMixin
+    implements SubscriptionPlansLoading {
   const _$SubscriptionPlansLoading();
 
   @override
@@ -231,7 +244,9 @@ class _$SubscriptionPlansLoading with DiagnosticableTreeMixin implements Subscri
   @override
   void debugFillProperties(DiagnosticPropertiesBuilder properties) {
     super.debugFillProperties(properties);
-    properties..add(DiagnosticsProperty('type', 'SubscriptionPlansState.subscriptionPlansLoading'));
+    properties
+      ..add(DiagnosticsProperty(
+          'type', 'SubscriptionPlansState.subscriptionPlansLoading'));
   }
 
   @override
@@ -247,7 +262,9 @@ class _$SubscriptionPlansLoading with DiagnosticableTreeMixin implements Subscri
   TResult when<TResult extends Object>({
     @required TResult subscriptionPlansInitial(),
     @required TResult subscriptionPlansLoading(),
-    @required TResult subscriptionPlansLoaded(List<SubscriptionPlan> subscriptionPlans),
+    @required
+        TResult subscriptionPlansLoaded(
+            List<SubscriptionPlan> subscriptionPlans),
     @required TResult subscriptionPlansEmpty(),
   }) {
     assert(subscriptionPlansInitial != null);
@@ -311,17 +328,18 @@ abstract class SubscriptionPlansLoading implements SubscriptionPlansState {
 
 /// @nodoc
 abstract class $SubscriptionPlansLoadedCopyWith<$Res> {
-  factory $SubscriptionPlansLoadedCopyWith(
-          SubscriptionPlansLoaded value, $Res Function(SubscriptionPlansLoaded) then) =
+  factory $SubscriptionPlansLoadedCopyWith(SubscriptionPlansLoaded value,
+          $Res Function(SubscriptionPlansLoaded) then) =
       _$SubscriptionPlansLoadedCopyWithImpl<$Res>;
   $Res call({List<SubscriptionPlan> subscriptionPlans});
 }
 
 /// @nodoc
-class _$SubscriptionPlansLoadedCopyWithImpl<$Res> extends _$SubscriptionPlansStateCopyWithImpl<$Res>
+class _$SubscriptionPlansLoadedCopyWithImpl<$Res>
+    extends _$SubscriptionPlansStateCopyWithImpl<$Res>
     implements $SubscriptionPlansLoadedCopyWith<$Res> {
-  _$SubscriptionPlansLoadedCopyWithImpl(
-      SubscriptionPlansLoaded _value, $Res Function(SubscriptionPlansLoaded) _then)
+  _$SubscriptionPlansLoadedCopyWithImpl(SubscriptionPlansLoaded _value,
+      $Res Function(SubscriptionPlansLoaded) _then)
       : super(_value, (v) => _then(v as SubscriptionPlansLoaded));
 
   @override
@@ -340,7 +358,9 @@ class _$SubscriptionPlansLoadedCopyWithImpl<$Res> extends _$SubscriptionPlansSta
 }
 
 /// @nodoc
-class _$SubscriptionPlansLoaded with DiagnosticableTreeMixin implements SubscriptionPlansLoaded {
+class _$SubscriptionPlansLoaded
+    with DiagnosticableTreeMixin
+    implements SubscriptionPlansLoaded {
   const _$SubscriptionPlansLoaded({@required this.subscriptionPlans})
       : assert(subscriptionPlans != null);
 
@@ -356,7 +376,8 @@ class _$SubscriptionPlansLoaded with DiagnosticableTreeMixin implements Subscrip
   void debugFillProperties(DiagnosticPropertiesBuilder properties) {
     super.debugFillProperties(properties);
     properties
-      ..add(DiagnosticsProperty('type', 'SubscriptionPlansState.subscriptionPlansLoaded'))
+      ..add(DiagnosticsProperty(
+          'type', 'SubscriptionPlansState.subscriptionPlansLoaded'))
       ..add(DiagnosticsProperty('subscriptionPlans', subscriptionPlans));
   }
 
@@ -365,23 +386,29 @@ class _$SubscriptionPlansLoaded with DiagnosticableTreeMixin implements Subscrip
     return identical(this, other) ||
         (other is SubscriptionPlansLoaded &&
             (identical(other.subscriptionPlans, subscriptionPlans) ||
-                const DeepCollectionEquality().equals(other.subscriptionPlans, subscriptionPlans)));
+                const DeepCollectionEquality()
+                    .equals(other.subscriptionPlans, subscriptionPlans)));
   }
 
   @override
-  int get hashCode => runtimeType.hashCode ^ const DeepCollectionEquality().hash(subscriptionPlans);
+  int get hashCode =>
+      runtimeType.hashCode ^
+      const DeepCollectionEquality().hash(subscriptionPlans);
 
   @JsonKey(ignore: true)
   @override
   $SubscriptionPlansLoadedCopyWith<SubscriptionPlansLoaded> get copyWith =>
-      _$SubscriptionPlansLoadedCopyWithImpl<SubscriptionPlansLoaded>(this, _$identity);
+      _$SubscriptionPlansLoadedCopyWithImpl<SubscriptionPlansLoaded>(
+          this, _$identity);
 
   @override
   @optionalTypeArgs
   TResult when<TResult extends Object>({
     @required TResult subscriptionPlansInitial(),
     @required TResult subscriptionPlansLoading(),
-    @required TResult subscriptionPlansLoaded(List<SubscriptionPlan> subscriptionPlans),
+    @required
+        TResult subscriptionPlansLoaded(
+            List<SubscriptionPlan> subscriptionPlans),
     @required TResult subscriptionPlansEmpty(),
   }) {
     assert(subscriptionPlansInitial != null);
@@ -440,7 +467,8 @@ class _$SubscriptionPlansLoaded with DiagnosticableTreeMixin implements Subscrip
 }
 
 abstract class SubscriptionPlansLoaded implements SubscriptionPlansState {
-  const factory SubscriptionPlansLoaded({@required List<SubscriptionPlan> subscriptionPlans}) =
+  const factory SubscriptionPlansLoaded(
+          {@required List<SubscriptionPlan> subscriptionPlans}) =
       _$SubscriptionPlansLoaded;
 
   List<SubscriptionPlan> get subscriptionPlans;
@@ -450,16 +478,17 @@ abstract class SubscriptionPlansLoaded implements SubscriptionPlansState {
 
 /// @nodoc
 abstract class $SubscriptionPlansEmptyCopyWith<$Res> {
-  factory $SubscriptionPlansEmptyCopyWith(
-          SubscriptionPlansEmpty value, $Res Function(SubscriptionPlansEmpty) then) =
+  factory $SubscriptionPlansEmptyCopyWith(SubscriptionPlansEmpty value,
+          $Res Function(SubscriptionPlansEmpty) then) =
       _$SubscriptionPlansEmptyCopyWithImpl<$Res>;
 }
 
 /// @nodoc
-class _$SubscriptionPlansEmptyCopyWithImpl<$Res> extends _$SubscriptionPlansStateCopyWithImpl<$Res>
+class _$SubscriptionPlansEmptyCopyWithImpl<$Res>
+    extends _$SubscriptionPlansStateCopyWithImpl<$Res>
     implements $SubscriptionPlansEmptyCopyWith<$Res> {
-  _$SubscriptionPlansEmptyCopyWithImpl(
-      SubscriptionPlansEmpty _value, $Res Function(SubscriptionPlansEmpty) _then)
+  _$SubscriptionPlansEmptyCopyWithImpl(SubscriptionPlansEmpty _value,
+      $Res Function(SubscriptionPlansEmpty) _then)
       : super(_value, (v) => _then(v as SubscriptionPlansEmpty));
 
   @override
@@ -467,7 +496,9 @@ class _$SubscriptionPlansEmptyCopyWithImpl<$Res> extends _$SubscriptionPlansStat
 }
 
 /// @nodoc
-class _$SubscriptionPlansEmpty with DiagnosticableTreeMixin implements SubscriptionPlansEmpty {
+class _$SubscriptionPlansEmpty
+    with DiagnosticableTreeMixin
+    implements SubscriptionPlansEmpty {
   const _$SubscriptionPlansEmpty();
 
   @override
@@ -478,7 +509,9 @@ class _$SubscriptionPlansEmpty with DiagnosticableTreeMixin implements Subscript
   @override
   void debugFillProperties(DiagnosticPropertiesBuilder properties) {
     super.debugFillProperties(properties);
-    properties..add(DiagnosticsProperty('type', 'SubscriptionPlansState.subscriptionPlansEmpty'));
+    properties
+      ..add(DiagnosticsProperty(
+          'type', 'SubscriptionPlansState.subscriptionPlansEmpty'));
   }
 
   @override
@@ -494,7 +527,9 @@ class _$SubscriptionPlansEmpty with DiagnosticableTreeMixin implements Subscript
   TResult when<TResult extends Object>({
     @required TResult subscriptionPlansInitial(),
     @required TResult subscriptionPlansLoading(),
-    @required TResult subscriptionPlansLoaded(List<SubscriptionPlan> subscriptionPlans),
+    @required
+        TResult subscriptionPlansLoaded(
+            List<SubscriptionPlan> subscriptionPlans),
     @required TResult subscriptionPlansEmpty(),
   }) {
     assert(subscriptionPlansInitial != null);

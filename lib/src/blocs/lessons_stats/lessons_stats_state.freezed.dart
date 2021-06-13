@@ -20,7 +20,8 @@ class _$LessonsStatsStateTearOff {
 
 // ignore: unused_element
   LessonsStatsUpdated lessonsStatsUpdated(
-      {@required List<AttendeeWithCounter> attendeesWithCounter, @required int totalAttendees}) {
+      {@required List<AttendeeWithCounter> attendeesWithCounter,
+      @required int totalAttendees}) {
     return LessonsStatsUpdated(
       attendeesWithCounter: attendeesWithCounter,
       totalAttendees: totalAttendees,
@@ -44,7 +45,8 @@ mixin _$LessonsStatsState {
   @optionalTypeArgs
   TResult maybeWhen<TResult extends Object>({
     TResult lessonsStatsInitial(),
-    TResult lessonsStatsUpdated(List<AttendeeWithCounter> attendeesWithCounter, int totalAttendees),
+    TResult lessonsStatsUpdated(
+        List<AttendeeWithCounter> attendeesWithCounter, int totalAttendees),
     @required TResult orElse(),
   });
   @optionalTypeArgs
@@ -68,7 +70,8 @@ abstract class $LessonsStatsStateCopyWith<$Res> {
 }
 
 /// @nodoc
-class _$LessonsStatsStateCopyWithImpl<$Res> implements $LessonsStatsStateCopyWith<$Res> {
+class _$LessonsStatsStateCopyWithImpl<$Res>
+    implements $LessonsStatsStateCopyWith<$Res> {
   _$LessonsStatsStateCopyWithImpl(this._value, this._then);
 
   final LessonsStatsState _value;
@@ -84,7 +87,8 @@ abstract class $LessonsStatsInitialCopyWith<$Res> {
 }
 
 /// @nodoc
-class _$LessonsStatsInitialCopyWithImpl<$Res> extends _$LessonsStatsStateCopyWithImpl<$Res>
+class _$LessonsStatsInitialCopyWithImpl<$Res>
+    extends _$LessonsStatsStateCopyWithImpl<$Res>
     implements $LessonsStatsInitialCopyWith<$Res> {
   _$LessonsStatsInitialCopyWithImpl(
       LessonsStatsInitial _value, $Res Function(LessonsStatsInitial) _then)
@@ -95,7 +99,9 @@ class _$LessonsStatsInitialCopyWithImpl<$Res> extends _$LessonsStatsStateCopyWit
 }
 
 /// @nodoc
-class _$LessonsStatsInitial with DiagnosticableTreeMixin implements LessonsStatsInitial {
+class _$LessonsStatsInitial
+    with DiagnosticableTreeMixin
+    implements LessonsStatsInitial {
   const _$LessonsStatsInitial();
 
   @override
@@ -106,7 +112,9 @@ class _$LessonsStatsInitial with DiagnosticableTreeMixin implements LessonsStats
   @override
   void debugFillProperties(DiagnosticPropertiesBuilder properties) {
     super.debugFillProperties(properties);
-    properties..add(DiagnosticsProperty('type', 'LessonsStatsState.lessonsStatsInitial'));
+    properties
+      ..add(
+          DiagnosticsProperty('type', 'LessonsStatsState.lessonsStatsInitial'));
   }
 
   @override
@@ -134,7 +142,8 @@ class _$LessonsStatsInitial with DiagnosticableTreeMixin implements LessonsStats
   @optionalTypeArgs
   TResult maybeWhen<TResult extends Object>({
     TResult lessonsStatsInitial(),
-    TResult lessonsStatsUpdated(List<AttendeeWithCounter> attendeesWithCounter, int totalAttendees),
+    TResult lessonsStatsUpdated(
+        List<AttendeeWithCounter> attendeesWithCounter, int totalAttendees),
     @required TResult orElse(),
   }) {
     assert(orElse != null);
@@ -179,11 +188,13 @@ abstract class $LessonsStatsUpdatedCopyWith<$Res> {
   factory $LessonsStatsUpdatedCopyWith(
           LessonsStatsUpdated value, $Res Function(LessonsStatsUpdated) then) =
       _$LessonsStatsUpdatedCopyWithImpl<$Res>;
-  $Res call({List<AttendeeWithCounter> attendeesWithCounter, int totalAttendees});
+  $Res call(
+      {List<AttendeeWithCounter> attendeesWithCounter, int totalAttendees});
 }
 
 /// @nodoc
-class _$LessonsStatsUpdatedCopyWithImpl<$Res> extends _$LessonsStatsStateCopyWithImpl<$Res>
+class _$LessonsStatsUpdatedCopyWithImpl<$Res>
+    extends _$LessonsStatsStateCopyWithImpl<$Res>
     implements $LessonsStatsUpdatedCopyWith<$Res> {
   _$LessonsStatsUpdatedCopyWithImpl(
       LessonsStatsUpdated _value, $Res Function(LessonsStatsUpdated) _then)
@@ -201,14 +212,19 @@ class _$LessonsStatsUpdatedCopyWithImpl<$Res> extends _$LessonsStatsStateCopyWit
       attendeesWithCounter: attendeesWithCounter == freezed
           ? _value.attendeesWithCounter
           : attendeesWithCounter as List<AttendeeWithCounter>,
-      totalAttendees: totalAttendees == freezed ? _value.totalAttendees : totalAttendees as int,
+      totalAttendees: totalAttendees == freezed
+          ? _value.totalAttendees
+          : totalAttendees as int,
     ));
   }
 }
 
 /// @nodoc
-class _$LessonsStatsUpdated with DiagnosticableTreeMixin implements LessonsStatsUpdated {
-  const _$LessonsStatsUpdated({@required this.attendeesWithCounter, @required this.totalAttendees})
+class _$LessonsStatsUpdated
+    with DiagnosticableTreeMixin
+    implements LessonsStatsUpdated {
+  const _$LessonsStatsUpdated(
+      {@required this.attendeesWithCounter, @required this.totalAttendees})
       : assert(attendeesWithCounter != null),
         assert(totalAttendees != null);
 
@@ -226,7 +242,8 @@ class _$LessonsStatsUpdated with DiagnosticableTreeMixin implements LessonsStats
   void debugFillProperties(DiagnosticPropertiesBuilder properties) {
     super.debugFillProperties(properties);
     properties
-      ..add(DiagnosticsProperty('type', 'LessonsStatsState.lessonsStatsUpdated'))
+      ..add(
+          DiagnosticsProperty('type', 'LessonsStatsState.lessonsStatsUpdated'))
       ..add(DiagnosticsProperty('attendeesWithCounter', attendeesWithCounter))
       ..add(DiagnosticsProperty('totalAttendees', totalAttendees));
   }
@@ -236,10 +253,11 @@ class _$LessonsStatsUpdated with DiagnosticableTreeMixin implements LessonsStats
     return identical(this, other) ||
         (other is LessonsStatsUpdated &&
             (identical(other.attendeesWithCounter, attendeesWithCounter) ||
-                const DeepCollectionEquality()
-                    .equals(other.attendeesWithCounter, attendeesWithCounter)) &&
+                const DeepCollectionEquality().equals(
+                    other.attendeesWithCounter, attendeesWithCounter)) &&
             (identical(other.totalAttendees, totalAttendees) ||
-                const DeepCollectionEquality().equals(other.totalAttendees, totalAttendees)));
+                const DeepCollectionEquality()
+                    .equals(other.totalAttendees, totalAttendees)));
   }
 
   @override
@@ -270,7 +288,8 @@ class _$LessonsStatsUpdated with DiagnosticableTreeMixin implements LessonsStats
   @optionalTypeArgs
   TResult maybeWhen<TResult extends Object>({
     TResult lessonsStatsInitial(),
-    TResult lessonsStatsUpdated(List<AttendeeWithCounter> attendeesWithCounter, int totalAttendees),
+    TResult lessonsStatsUpdated(
+        List<AttendeeWithCounter> attendeesWithCounter, int totalAttendees),
     @required TResult orElse(),
   }) {
     assert(orElse != null);

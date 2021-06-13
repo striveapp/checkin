@@ -20,6 +20,7 @@ _$_Lesson _$_$_LessonFromJson(Map<String, dynamic> json) {
     lessonConfig: json['lessonConfig'] == null
         ? null
         : LessonConfig.fromJson(json['lessonConfig'] as Map<String, dynamic>),
+    locationUrl: json['locationUrl'] as String,
     classCapacity: json['classCapacity'] as int ?? 10,
     masters: (json['masters'] as List)
             ?.map((e) =>
@@ -51,6 +52,7 @@ Map<String, dynamic> _$_$_LessonToJson(_$_Lesson instance) => <String, dynamic>{
       'imageUrl': instance.imageUrl,
       'gymId': instance.gymId,
       'lessonConfig': instance.lessonConfig?.toJson(),
+      'locationUrl': instance.locationUrl,
       'classCapacity': instance.classCapacity,
       'masters': instance.masters?.map((e) => e?.toJson())?.toList(),
       'attendees': instance.attendees?.map((e) => e?.toJson())?.toList(),

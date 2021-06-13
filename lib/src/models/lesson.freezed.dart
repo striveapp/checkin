@@ -28,6 +28,7 @@ class _$LessonTearOff {
       String imageUrl,
       String gymId,
       LessonConfig lessonConfig,
+      String locationUrl,
       int classCapacity = DEFAULT_CLASS_CAPACITY,
       List<Master> masters = const [],
       List<Attendee> attendees = const [],
@@ -44,6 +45,7 @@ class _$LessonTearOff {
       imageUrl: imageUrl,
       gymId: gymId,
       lessonConfig: lessonConfig,
+      locationUrl: locationUrl,
       classCapacity: classCapacity,
       masters: masters,
       attendees: attendees,
@@ -74,8 +76,9 @@ mixin _$Lesson {
   int get timestamp;
   String get imageUrl;
   String get gymId;
-  LessonConfig
-      get lessonConfig; // todo retrieve from Gym (config) https://trello.com/c/uIqJLgZL
+  LessonConfig get lessonConfig;
+  String
+      get locationUrl; // todo retrieve from Gym (config) https://trello.com/c/uIqJLgZL
   int get classCapacity;
   List<Master> get masters;
   List<Attendee> get attendees;
@@ -102,6 +105,7 @@ abstract class $LessonCopyWith<$Res> {
       String imageUrl,
       String gymId,
       LessonConfig lessonConfig,
+      String locationUrl,
       int classCapacity,
       List<Master> masters,
       List<Attendee> attendees,
@@ -131,6 +135,7 @@ class _$LessonCopyWithImpl<$Res> implements $LessonCopyWith<$Res> {
     Object imageUrl = freezed,
     Object gymId = freezed,
     Object lessonConfig = freezed,
+    Object locationUrl = freezed,
     Object classCapacity = freezed,
     Object masters = freezed,
     Object attendees = freezed,
@@ -150,6 +155,8 @@ class _$LessonCopyWithImpl<$Res> implements $LessonCopyWith<$Res> {
       lessonConfig: lessonConfig == freezed
           ? _value.lessonConfig
           : lessonConfig as LessonConfig,
+      locationUrl:
+          locationUrl == freezed ? _value.locationUrl : locationUrl as String,
       classCapacity: classCapacity == freezed
           ? _value.classCapacity
           : classCapacity as int,
@@ -190,6 +197,7 @@ abstract class _$LessonCopyWith<$Res> implements $LessonCopyWith<$Res> {
       String imageUrl,
       String gymId,
       LessonConfig lessonConfig,
+      String locationUrl,
       int classCapacity,
       List<Master> masters,
       List<Attendee> attendees,
@@ -221,6 +229,7 @@ class __$LessonCopyWithImpl<$Res> extends _$LessonCopyWithImpl<$Res>
     Object imageUrl = freezed,
     Object gymId = freezed,
     Object lessonConfig = freezed,
+    Object locationUrl = freezed,
     Object classCapacity = freezed,
     Object masters = freezed,
     Object attendees = freezed,
@@ -240,6 +249,8 @@ class __$LessonCopyWithImpl<$Res> extends _$LessonCopyWithImpl<$Res>
       lessonConfig: lessonConfig == freezed
           ? _value.lessonConfig
           : lessonConfig as LessonConfig,
+      locationUrl:
+          locationUrl == freezed ? _value.locationUrl : locationUrl as String,
       classCapacity: classCapacity == freezed
           ? _value.classCapacity
           : classCapacity as int,
@@ -269,6 +280,7 @@ class _$_Lesson implements _Lesson {
       this.imageUrl,
       this.gymId,
       this.lessonConfig,
+      this.locationUrl,
       this.classCapacity = DEFAULT_CLASS_CAPACITY,
       this.masters = const [],
       this.attendees = const [],
@@ -306,6 +318,8 @@ class _$_Lesson implements _Lesson {
   final String gymId;
   @override
   final LessonConfig lessonConfig;
+  @override
+  final String locationUrl;
   @JsonKey(defaultValue: DEFAULT_CLASS_CAPACITY)
   @override // todo retrieve from Gym (config) https://trello.com/c/uIqJLgZL
   final int classCapacity;
@@ -324,7 +338,7 @@ class _$_Lesson implements _Lesson {
 
   @override
   String toString() {
-    return 'Lesson(id: $id, date: $date, name: $name, timeStart: $timeStart, timeEnd: $timeEnd, weekDay: $weekDay, timestamp: $timestamp, imageUrl: $imageUrl, gymId: $gymId, lessonConfig: $lessonConfig, classCapacity: $classCapacity, masters: $masters, attendees: $attendees, acceptedAttendees: $acceptedAttendees, isClosed: $isClosed)';
+    return 'Lesson(id: $id, date: $date, name: $name, timeStart: $timeStart, timeEnd: $timeEnd, weekDay: $weekDay, timestamp: $timestamp, imageUrl: $imageUrl, gymId: $gymId, lessonConfig: $lessonConfig, locationUrl: $locationUrl, classCapacity: $classCapacity, masters: $masters, attendees: $attendees, acceptedAttendees: $acceptedAttendees, isClosed: $isClosed)';
   }
 
   @override
@@ -357,6 +371,9 @@ class _$_Lesson implements _Lesson {
             (identical(other.lessonConfig, lessonConfig) ||
                 const DeepCollectionEquality()
                     .equals(other.lessonConfig, lessonConfig)) &&
+            (identical(other.locationUrl, locationUrl) ||
+                const DeepCollectionEquality()
+                    .equals(other.locationUrl, locationUrl)) &&
             (identical(other.classCapacity, classCapacity) ||
                 const DeepCollectionEquality()
                     .equals(other.classCapacity, classCapacity)) &&
@@ -387,6 +404,7 @@ class _$_Lesson implements _Lesson {
       const DeepCollectionEquality().hash(imageUrl) ^
       const DeepCollectionEquality().hash(gymId) ^
       const DeepCollectionEquality().hash(lessonConfig) ^
+      const DeepCollectionEquality().hash(locationUrl) ^
       const DeepCollectionEquality().hash(classCapacity) ^
       const DeepCollectionEquality().hash(masters) ^
       const DeepCollectionEquality().hash(attendees) ^
@@ -416,6 +434,7 @@ abstract class _Lesson implements Lesson {
       String imageUrl,
       String gymId,
       LessonConfig lessonConfig,
+      String locationUrl,
       int classCapacity,
       List<Master> masters,
       List<Attendee> attendees,
@@ -445,6 +464,8 @@ abstract class _Lesson implements Lesson {
   String get gymId;
   @override
   LessonConfig get lessonConfig;
+  @override
+  String get locationUrl;
   @override // todo retrieve from Gym (config) https://trello.com/c/uIqJLgZL
   int get classCapacity;
   @override

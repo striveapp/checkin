@@ -60,9 +60,15 @@ mixin _$News {
 
 /// @nodoc
 abstract class $NewsCopyWith<$Res> {
-  factory $NewsCopyWith(News value, $Res Function(News) then) = _$NewsCopyWithImpl<$Res>;
+  factory $NewsCopyWith(News value, $Res Function(News) then) =
+      _$NewsCopyWithImpl<$Res>;
   $Res call(
-      {String id, String content, Author author, int timestamp, bool isPinned, String imageUrl});
+      {String id,
+      String content,
+      Author author,
+      int timestamp,
+      bool isPinned,
+      String imageUrl});
 
   $AuthorCopyWith<$Res> get author;
 }
@@ -107,17 +113,24 @@ class _$NewsCopyWithImpl<$Res> implements $NewsCopyWith<$Res> {
 
 /// @nodoc
 abstract class _$NewsCopyWith<$Res> implements $NewsCopyWith<$Res> {
-  factory _$NewsCopyWith(_News value, $Res Function(_News) then) = __$NewsCopyWithImpl<$Res>;
+  factory _$NewsCopyWith(_News value, $Res Function(_News) then) =
+      __$NewsCopyWithImpl<$Res>;
   @override
   $Res call(
-      {String id, String content, Author author, int timestamp, bool isPinned, String imageUrl});
+      {String id,
+      String content,
+      Author author,
+      int timestamp,
+      bool isPinned,
+      String imageUrl});
 
   @override
   $AuthorCopyWith<$Res> get author;
 }
 
 /// @nodoc
-class __$NewsCopyWithImpl<$Res> extends _$NewsCopyWithImpl<$Res> implements _$NewsCopyWith<$Res> {
+class __$NewsCopyWithImpl<$Res> extends _$NewsCopyWithImpl<$Res>
+    implements _$NewsCopyWith<$Res> {
   __$NewsCopyWithImpl(_News _value, $Res Function(_News) _then)
       : super(_value, (v) => _then(v as _News));
 
@@ -162,7 +175,8 @@ class _$_News extends _News {
         assert(isPinned != null),
         super._();
 
-  factory _$_News.fromJson(Map<String, dynamic> json) => _$_$_NewsFromJson(json);
+  factory _$_News.fromJson(Map<String, dynamic> json) =>
+      _$_$_NewsFromJson(json);
 
   @override
   final String id;
@@ -186,17 +200,22 @@ class _$_News extends _News {
   bool operator ==(dynamic other) {
     return identical(this, other) ||
         (other is _News &&
-            (identical(other.id, id) || const DeepCollectionEquality().equals(other.id, id)) &&
+            (identical(other.id, id) ||
+                const DeepCollectionEquality().equals(other.id, id)) &&
             (identical(other.content, content) ||
-                const DeepCollectionEquality().equals(other.content, content)) &&
+                const DeepCollectionEquality()
+                    .equals(other.content, content)) &&
             (identical(other.author, author) ||
                 const DeepCollectionEquality().equals(other.author, author)) &&
             (identical(other.timestamp, timestamp) ||
-                const DeepCollectionEquality().equals(other.timestamp, timestamp)) &&
+                const DeepCollectionEquality()
+                    .equals(other.timestamp, timestamp)) &&
             (identical(other.isPinned, isPinned) ||
-                const DeepCollectionEquality().equals(other.isPinned, isPinned)) &&
+                const DeepCollectionEquality()
+                    .equals(other.isPinned, isPinned)) &&
             (identical(other.imageUrl, imageUrl) ||
-                const DeepCollectionEquality().equals(other.imageUrl, imageUrl)));
+                const DeepCollectionEquality()
+                    .equals(other.imageUrl, imageUrl)));
   }
 
   @override
@@ -211,7 +230,8 @@ class _$_News extends _News {
 
   @JsonKey(ignore: true)
   @override
-  _$NewsCopyWith<_News> get copyWith => __$NewsCopyWithImpl<_News>(this, _$identity);
+  _$NewsCopyWith<_News> get copyWith =>
+      __$NewsCopyWithImpl<_News>(this, _$identity);
 
   @override
   Map<String, dynamic> toJson() {
