@@ -1,4 +1,4 @@
-import 'package:checkin/src/ui/components/registry/delete_lesson/delete_lesson_dialog.dart';
+import 'package:checkin/src/ui/components/registry/delete_lesson_dialog.dart';
 import 'package:flutter/material.dart';
 
 class DeleteLessonButton extends StatelessWidget {

@@ -2,7 +2,7 @@ import 'package:checkin/src/blocs/registry/bloc.dart';
 import 'package:checkin/src/blocs/registry/registry_bloc.dart';
 import 'package:checkin/src/ui/components/base_app_bar.dart';
 import 'package:checkin/src/ui/components/loading_indicator.dart';
-import 'package:checkin/src/ui/components/registry/lesson_actions.dart';
+import 'package:checkin/src/ui/components/registry/lesson_actions/lesson_actions.dart';
 import 'package:checkin/src/ui/components/registry/lesson_infos.dart';
 import 'package:checkin/src/ui/components/registry/registry.dart';
 import 'package:flutter/material.dart';

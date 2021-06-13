@@ -3,10 +3,11 @@ import 'package:checkin/src/blocs/registry/bloc.dart';
 import 'package:checkin/src/models/lesson.dart';
 import 'package:checkin/src/models/user.dart';
 import 'package:checkin/src/ui/components/empty_widget.dart';
-import 'package:checkin/src/ui/components/registry/close_lesson_button.dart';
-import 'package:checkin/src/ui/components/registry/delete_lesson/delete_lesson_button.dart';
-import 'package:checkin/src/ui/components/registry/edit_lesson/edit_lesson_button.dart';
-import 'package:checkin/src/ui/components/registry/lesson_actions.dart';
+import 'package:checkin/src/ui/components/registry/lesson_actions/close_lesson_button.dart';
+import 'package:checkin/src/ui/components/registry/lesson_actions/delete_lesson_button.dart';
+import 'package:checkin/src/ui/components/registry/lesson_actions/edit_lesson_button.dart';
+import 'package:checkin/src/ui/components/registry/lesson_actions/lesson_actions.dart';
+import 'package:checkin/src/ui/components/registry/lesson_actions/map_button.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:flutter_test/flutter_test.dart';
 import 'package:i18n_extension/i18n_extension.dart';
@@ -112,22 +113,45 @@ void main() {
           });
         });
         group("and the user is NOT owner", () {
-          testWidgets("renders nothing", (tester) async {
-            when(() => registryBloc.state).thenReturn(RegistryLoaded(
-              currentLesson: baseLesson.copyWith(isClosed: false),
-              currentUser: baseUser.copyWith(isOwner: false),
-            ));
+          group("and the lesson has a location", () {
+            testWidgets("renders MapButton", (tester) async {
+              when(() => registryBloc.state).thenReturn(RegistryLoaded(
+                currentLesson:
+                    baseLesson.copyWith(isClosed: false, locationUrl: "https://gmaps/fancu"),
+                currentUser: baseUser.copyWith(isOwner: false),
+              ));
 
-            await tester.pumpAppWithScaffold(
-              BlocProvider.value(
-                value: registryBloc,
-                child: LessonActions(),
-              ),
-            );
+              await tester.pumpAppWithScaffold(
+                BlocProvider.value(
+                  value: registryBloc,
+                  child: LessonActions(),
+                ),
+              );
 
-            expect(find.byType(EditLessonButton), findsNothing);
-            expect(find.byType(CloseLessonButton), findsNothing);
-            expect(find.byType(DeleteLessonButton), findsNothing);
+              expect(find.byType(EditLessonButton), findsNothing);
+              expect(find.byType(CloseLessonButton), findsNothing);
+              expect(find.byType(DeleteLessonButton), findsNothing);
+              expect(find.byType(MapButton), findsOneWidget);
+            });
+          });
+          group("and the lesson has NO location", () {
+            testWidgets("renders nothing", (tester) async {
+              when(() => registryBloc.state).thenReturn(RegistryLoaded(
+                currentLesson: baseLesson.copyWith(isClosed: false),
+                currentUser: baseUser.copyWith(isOwner: false),
+              ));
+
+              await tester.pumpAppWithScaffold(
+                BlocProvider.value(
+                  value: registryBloc,
+                  child: LessonActions(),
+                ),
+              );
+
+              expect(find.byType(EditLessonButton), findsNothing);
+              expect(find.byType(CloseLessonButton), findsNothing);
+              expect(find.byType(DeleteLessonButton), findsNothing);
+            });
           });
         });
       });

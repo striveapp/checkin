@@ -37,7 +37,7 @@ import 'package:checkin/src/ui/components/registry/accept_all_dialog.dart';
 import 'package:checkin/src/ui/components/registry/attendee_tile.dart';
 import 'package:checkin/src/ui/components/registry/attendees_list.dart';
 import 'package:checkin/src/ui/components/registry/close_lesson_dialog.dart';
-import 'package:checkin/src/ui/components/registry/delete_lesson/delete_lesson_dialog.dart';
+import 'package:checkin/src/ui/components/registry/delete_lesson_dialog.dart';
 import 'package:checkin/src/ui/components/registry/edit_lesson/edit_lesson_capacity.dart';
 import 'package:checkin/src/ui/components/registry/edit_lesson/edit_lesson_modal.dart';
 import 'package:checkin/src/ui/components/registry/edit_lesson/edit_lesson_name.dart';

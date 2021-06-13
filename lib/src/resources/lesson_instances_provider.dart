@@ -47,6 +47,7 @@ class LessonInstancesProvider implements LessonRepository {
       .collection(sub_collection_path)
       .doc(lessonId)
       .snapshots()
+      .where((doc) => doc.exists)
       .map((doc) => Lesson.fromJson(doc.data()));
 
   @override

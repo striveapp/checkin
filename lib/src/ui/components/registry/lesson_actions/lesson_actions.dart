@@ -1,8 +1,9 @@
 import 'package:checkin/src/blocs/registry/bloc.dart';
 import 'package:checkin/src/ui/components/empty_widget.dart';
-import 'package:checkin/src/ui/components/registry/close_lesson_button.dart';
-import 'package:checkin/src/ui/components/registry/delete_lesson/delete_lesson_button.dart';
-import 'package:checkin/src/ui/components/registry/edit_lesson/edit_lesson_button.dart';
+import 'package:checkin/src/ui/components/registry/lesson_actions/close_lesson_button.dart';
+import 'package:checkin/src/ui/components/registry/lesson_actions/delete_lesson_button.dart';
+import 'package:checkin/src/ui/components/registry/lesson_actions/edit_lesson_button.dart';
+import 'package:checkin/src/ui/components/registry/lesson_actions/map_button.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 
@@ -21,6 +22,8 @@ class LessonActions extends StatelessWidget {
             var currentUser = registryState.currentUser;
             return Row(
               children: [
+                if (currentLesson.locationUrl != null)
+                  MapButton(locationUrl: currentLesson.locationUrl),
                 if (!currentLesson.isClosed && currentUser.isOwner)
                   Row(
                     children: [

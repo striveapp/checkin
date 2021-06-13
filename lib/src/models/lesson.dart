@@ -25,6 +25,7 @@ abstract class Lesson with _$Lesson {
     final String imageUrl,
     final String gymId,
     final LessonConfig lessonConfig,
+    final String locationUrl,
     // todo retrieve from Gym (config) https://trello.com/c/uIqJLgZL
     @Default(DEFAULT_CLASS_CAPACITY) final int classCapacity,
     @Default([]) final List<Master> masters,
