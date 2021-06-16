@@ -11,12 +11,10 @@ class ProfileCard extends StatelessWidget {
   static const String thisDoesNotLookLikeAValidName = "This does not look like a valid name";
 
   final String userEmail;
-  final bool isOwner;
   final GlobalKey<FormState> _formKey = GlobalKey<FormState>();
 
   ProfileCard({
     @required this.userEmail,
-    @required this.isOwner,
   });
 
   @override

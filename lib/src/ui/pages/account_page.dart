@@ -154,7 +154,8 @@ class AccountPage extends StatelessWidget {
                             Padding(
                               padding: EdgeInsets.only(top: 10.0),
                               child: ProfileCard(
-                                  userEmail: state.user.email, isOwner: state.user.isOwner),
+                                userEmail: state.user.email,
+                              ),
                             ),
                             if (state.user.selectedGymId == "test")
                               SizedBox(

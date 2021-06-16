@@ -86,7 +86,7 @@ class ProfileTileView extends StatelessWidget {
       children: <Widget>[
         ListTile(
           onTap: () {
-            Navigator.of(context).pushNamed('stats/${profileUser.email}');
+            Navigator.of(context).pushNamed('user_info/${profileUser.email}');
           },
           leading: Text(
             position,
