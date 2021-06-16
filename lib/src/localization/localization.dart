@@ -317,7 +317,7 @@ extension Localization on String {
       } +
       {
         'en': MasterButtons.acceptAll,
-        'es': 'Aceptar todos',
+        'es': 'Confirmar asistencias',
         'it': 'Accetta tutti',
       } +
       {
