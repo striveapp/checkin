@@ -53,7 +53,7 @@ class GraduationBloc extends Bloc<GraduationEvent, GraduationState> {
             forNextLevel: graduationSystem.forNextLevel,
             currentGrade: userToGraduate.grade,
             nextGrade: graduationUtils.calculateNextGrade(userToGraduate.grade),
-            isVisible: currentUser.isOwner,
+            isVisible: currentUser.isOwner && userToGraduate != currentUser,
           ));
         });
       });
