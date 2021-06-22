@@ -13,7 +13,7 @@ class Routes {
     PlansHandler(),
     SubPlanHandler(),
     PaymentSuccessHandler(),
-    UserInfoHandler(),
+    ProfileHandler(),
     EmailRetrieveHandler(),
     NewsHandler()
   ];

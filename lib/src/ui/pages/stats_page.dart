@@ -14,7 +14,9 @@ import 'package:flutter_bloc/flutter_bloc.dart';
 
 class StatsPage extends StatelessWidget {
   final String userEmail;
+
   static const String stats = 'Stats';
+  static const String yourClasses = "Your classes";
 
   StatsPage({
     Key key,
@@ -57,10 +59,10 @@ class StatsPage extends StatelessWidget {
         floatingActionButtonLocation: FloatingActionButtonLocation.centerFloat,
         body: Container(
           child: Padding(
-            padding: EdgeInsets.symmetric(horizontal: 10, vertical: 10),
+            padding: EdgeInsets.symmetric(horizontal: 10, vertical: 20),
             child: Column(
               children: <Widget>[
-                StatsHeader(userEmail: userEmail),
+                StatsHeader(headerText: yourClasses.i18n),
                 Expanded(child: StatsBody()),
               ],
             ),

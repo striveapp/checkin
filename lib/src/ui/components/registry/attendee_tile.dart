@@ -88,7 +88,7 @@ class AttendeeTile extends StatelessWidget {
                 ],
               ),
               onTap: () async {
-                Navigator.of(context).pushNamed('user_info/${attendee.email}');
+                Navigator.of(context).pushNamed('profile/${attendee.email}');
               },
             ),
           ),

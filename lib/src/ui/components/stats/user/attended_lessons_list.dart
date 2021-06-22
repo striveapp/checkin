@@ -26,7 +26,7 @@ class AttendedLessonCards extends StatelessWidget {
                       child: Text(
                     noClassesAttended.gender(state.timespan.name),
                     textAlign: TextAlign.center,
-                    style: Theme.of(context).textTheme.headline2,
+                    style: Theme.of(context).textTheme.headline3,
                   )),
                 )
               : SliverList(

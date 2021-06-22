@@ -17,7 +17,7 @@ class AttendeesInfoList extends StatelessWidget {
               itemBuilder: (BuildContext context, int index) => InkWell(
                     onTap: () {
                       Navigator.of(context)
-                          .pushNamed('user_info/${state.attendeesWithCounter[index].email}');
+                          .pushNamed('profile/${state.attendeesWithCounter[index].email}');
                     },
                     child: AttendeeInfoCard(
                       attendeeEmail: state.attendeesWithCounter[index].email,

@@ -9,6 +9,7 @@ class StatsBloc extends Bloc<StatsEvent, StatsState> {
   static final List<Timespan> availableTimespans = <Timespan>[
     Timespan.week,
     Timespan.month,
+    Timespan.year,
     Timespan.all,
   ];
 

@@ -3,9 +3,8 @@ import 'package:checkin/src/blocs/user_stats/bloc.dart';
 import 'package:checkin/src/blocs/user_stats/user_stats_bloc.dart';
 import 'package:checkin/src/models/user.dart';
 import 'package:checkin/src/repositories/stats_repository.dart';
-import 'package:checkin/src/ui/components/stats/user/attended_lessons_header.dart';
 import 'package:checkin/src/ui/components/stats/user/attended_lessons_list.dart';
-import 'package:checkin/src/ui/components/stats/user/class_progression_indicator.dart';
+import 'package:checkin/src/ui/components/stats/user/class_progress_indicator_shrinkable.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter/widgets.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
@@ -31,21 +30,24 @@ class UserStatsPage extends StatelessWidget {
       ),
       child: CustomScrollView(
         slivers: [
-          SliverToBoxAdapter(
-            child: SizedBox(
-              height: 30,
+          SliverPersistentHeader(
+            pinned: true,
+            delegate: ClassProgressionIndicatorShrinkable(
+              min: 140,
+              max: 220,
             ),
           ),
           SliverToBoxAdapter(
-            child: ClassProgressionIndicator(),
-          ),
-          SliverToBoxAdapter(
             child: SizedBox(
-              height: 30,
+              height: 10,
             ),
           ),
-          AttendedLessonsHeader(),
-          AttendedLessonCards()
+          AttendedLessonCards(),
+          SliverToBoxAdapter(
+            child: SizedBox(
+              height: 35,
+            ),
+          ),
         ],
       ),
     );

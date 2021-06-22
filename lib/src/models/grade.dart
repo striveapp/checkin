@@ -24,6 +24,14 @@ extension GradeExtension on Grade {
     Grade.black: 'Black',
   };
 
+  static final colors = {
+    Grade.white: Colors.white,
+    Grade.blue: Colors.blueAccent,
+    Grade.purple: Colors.deepPurple,
+    Grade.brown: Colors.brown,
+    Grade.black: Colors.black87,
+  };
+
   static final descriptions = {
     Grade.white: 'Building a foundation',
     Grade.blue: 'Technical proficiency',
@@ -43,6 +51,7 @@ extension GradeExtension on Grade {
   String get name => names[this];
   String get description => descriptions[this];
   Widget get icon => icons[this];
+  Color get color => colors[this];
 }
 
 extension GradeParser on String {

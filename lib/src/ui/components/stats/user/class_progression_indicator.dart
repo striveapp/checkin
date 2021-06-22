@@ -6,8 +6,11 @@ import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 
 class ClassProgressionIndicator extends StatelessWidget {
+  final double size;
+
   ClassProgressionIndicator({
     Key key,
+    this.size,
   }) : super(key: key);
 
   @override
@@ -20,10 +23,10 @@ class ClassProgressionIndicator extends StatelessWidget {
               var numberOfAttendedClasses = state.attendedLessons.length;
 
               return ClassProgressIndicatorView(
-                numberOfAttendedClasses: numberOfAttendedClasses,
-                percentageOfAttendedClasses:
-                    _getAttendancePercentage(numberOfAttendedClasses, state.timespan),
-              );
+                  numberOfAttendedClasses: numberOfAttendedClasses,
+                  percentageOfAttendedClasses:
+                      _getAttendancePercentage(numberOfAttendedClasses, state.timespan),
+                  size: size);
             });
       },
     );
@@ -33,15 +36,15 @@ class ClassProgressionIndicator extends StatelessWidget {
 class ClassProgressIndicatorView extends StatelessWidget {
   static const String classes = 'classes';
 
-  final size = 180.0;
-
   final int numberOfAttendedClasses;
   final double percentageOfAttendedClasses;
+  final double size;
 
   ClassProgressIndicatorView({
     Key key,
     this.numberOfAttendedClasses = 0,
     this.percentageOfAttendedClasses = 0,
+    this.size = 180,
   }) : super(key: key);
 
   @override
@@ -50,25 +53,27 @@ class ClassProgressIndicatorView extends StatelessWidget {
       alignment: Alignment.center,
       children: [
         Positioned(
-          top: size / 4,
+          top: (size / 4),
           child: Column(
             children: [
               Text(
                 "$numberOfAttendedClasses",
                 key: Key("matHours"),
-                style: Theme.of(context)
-                    .textTheme
-                    .headline1
-                    .apply(fontSizeFactor: 2, color: Theme.of(context).primaryColor),
+                style: Theme.of(context).textTheme.headline1.apply(
+                      fontSizeFactor: size / 100,
+                      color: Theme.of(context).primaryColor,
+                    ),
               ),
               Text(
                 classes.plural(numberOfAttendedClasses),
-                style: Theme.of(context).textTheme.headline3,
+                style: Theme.of(context).textTheme.headline3.apply(
+                      fontSizeFactor: size / 150,
+                    ),
               ),
             ],
           ),
         ),
-        SizedBox(
+        Container(
           width: size,
           height: size,
           child: TweenAnimationBuilder<double>(
@@ -80,7 +85,7 @@ class ClassProgressIndicatorView extends StatelessWidget {
             duration: const Duration(milliseconds: 3500),
             builder: (context, value, _) {
               return CircularProgressIndicator(
-                strokeWidth: 15,
+                strokeWidth: size / 10,
                 backgroundColor: Theme.of(context).accentColor.withAlpha(100),
                 value: value,
                 valueColor: new AlwaysStoppedAnimation<Color>(Theme.of(context).accentColor),

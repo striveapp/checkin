@@ -54,7 +54,6 @@ import 'package:checkin/src/ui/components/registry/student_button.dart';
 import 'package:checkin/src/ui/components/stats/graduate_dialog.dart';
 import 'package:checkin/src/ui/components/stats/graduate_fab.dart';
 import 'package:checkin/src/ui/components/stats/lessons/attendees_counter.dart';
-import 'package:checkin/src/ui/components/stats/user/attended_lessons_header.dart';
 import 'package:checkin/src/ui/components/stats/user/attended_lessons_list.dart';
 import 'package:checkin/src/ui/components/stats/user/class_progression_indicator.dart';
 import 'package:checkin/src/ui/components/upgrader_dialog.dart';
@@ -197,7 +196,7 @@ extension Localization on String {
         'it': 'classi'.zero('classi').one('classe').many('classi'),
       } +
       {
-        'en': AttendedLessonsHeaderDelegate.yourClasses,
+        'en': StatsPage.yourClasses,
         'es': 'Tus clases',
         'it': 'Le tue classi',
       } +
@@ -205,14 +204,17 @@ extension Localization on String {
         'en': AttendedLessonCards.noClassesAttended
             .modifier(Timespan.week.name, 'No classes attended this week')
             .modifier(Timespan.month.name, 'No classes attended this month')
+            .modifier(Timespan.year.name, 'No classes attended this year')
             .modifier(Timespan.all.name, 'No classes attended yet'),
         'es': 'ignored'
             .modifier(Timespan.week.name, 'No tienes clases esta semana')
             .modifier(Timespan.month.name, 'No tienes clases este mes')
+            .modifier(Timespan.year.name, 'No tienes clases este año')
             .modifier(Timespan.all.name, 'No tienes clases todavía'),
         'it': 'ignored'
             .modifier(Timespan.week.name, 'Non hai fatto nessuna classe questa settimana')
             .modifier(Timespan.month.name, 'Non hai fatto nessuna classe questo mese')
+            .modifier(Timespan.year.name, 'Non hai fatto nessuna classe quest\'anno')
             .modifier(Timespan.all.name, 'Non hai fatto ancora nessuna classe'),
       } +
       {
