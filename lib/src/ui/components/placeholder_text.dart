@@ -19,7 +19,10 @@ class PlaceholderText extends StatelessWidget {
       child: Container(
         height: fontHeight,
         width: width,
-        color: Colors.grey,
+        decoration: BoxDecoration(
+          borderRadius: BorderRadius.circular(4),
+          color: Colors.grey,
+        ),
       ),
     );
   }

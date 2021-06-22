@@ -32,7 +32,7 @@ import 'package:checkin/src/ui/components/plans/plans_footer.dart';
 import 'package:checkin/src/ui/components/plans/plans_list.dart';
 import 'package:checkin/src/ui/components/plans/price/price_footer.dart';
 import 'package:checkin/src/ui/components/profile_card.dart';
-import 'package:checkin/src/ui/components/profile_infos.dart';
+import 'package:checkin/src/ui/components/profile_page/profile_info.dart';
 import 'package:checkin/src/ui/components/registry/accept_all_dialog.dart';
 import 'package:checkin/src/ui/components/registry/attendee_tile.dart';
 import 'package:checkin/src/ui/components/registry/attendees_list.dart';
@@ -508,12 +508,7 @@ extension Localization on String {
         'it': 'Cintura %s',
       } +
       {
-        'en': ProfileInfos.beltColor,
-        'es': 'Cinturón %s',
-        'it': 'Cintura %s',
-      } +
-      {
-        'en': ProfileInfos.beltColor,
+        'en': ProfileInfo.beltColor,
         'es': 'Cinturón %s',
         'it': 'Cintura %s',
       } +

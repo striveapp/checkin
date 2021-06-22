@@ -29,7 +29,7 @@ extension GradeExtension on Grade {
     Grade.blue: Colors.blueAccent,
     Grade.purple: Colors.deepPurple,
     Grade.brown: Colors.brown,
-    Grade.black: Colors.black87,
+    Grade.black: Colors.black54,
   };
 
   static final descriptions = {
