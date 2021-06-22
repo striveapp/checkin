@@ -33,6 +33,7 @@ import 'package:checkin/src/ui/components/plans/plans_list.dart';
 import 'package:checkin/src/ui/components/plans/price/price_footer.dart';
 import 'package:checkin/src/ui/components/profile_card.dart';
 import 'package:checkin/src/ui/components/profile_page/profile_info.dart';
+import 'package:checkin/src/ui/components/profile_page/user_stats.dart';
 import 'package:checkin/src/ui/components/registry/accept_all_dialog.dart';
 import 'package:checkin/src/ui/components/registry/attendee_tile.dart';
 import 'package:checkin/src/ui/components/registry/attendees_list.dart';
@@ -65,6 +66,7 @@ import 'package:checkin/src/ui/pages/onboarding/name_selection_page.dart';
 import 'package:checkin/src/ui/pages/onboarding/unselected_gym_page.dart';
 import 'package:checkin/src/ui/pages/payment_success_page.dart';
 import 'package:checkin/src/ui/pages/plans_page.dart';
+import 'package:checkin/src/ui/pages/profile_page.dart';
 import 'package:checkin/src/ui/pages/registry_page.dart';
 import 'package:checkin/src/ui/pages/stats_page.dart';
 import 'package:checkin/src/ui/pages/sub_plan_page.dart';
@@ -199,6 +201,16 @@ extension Localization on String {
         'en': StatsPage.yourClasses,
         'es': 'Tus clases',
         'it': 'Le tue classi',
+      } +
+      {
+        'en': UserStats.classes,
+        'es': 'Clases',
+        'it': 'Classi',
+      } +
+      {
+        'en': ProfilePage.profile,
+        'es': 'Perfil',
+        'it': 'Profilo',
       } +
       {
         'en': AttendedLessonCards.noClassesAttended

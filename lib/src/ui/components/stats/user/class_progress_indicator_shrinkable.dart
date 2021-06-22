@@ -17,7 +17,18 @@ class ClassProgressionIndicatorShrinkable extends SliverPersistentHeaderDelegate
     var currentSize = max - shrinkOffset;
     var size = currentSize >= min ? currentSize - 40 : min - 40;
     return Container(
-      color: Theme.of(context).scaffoldBackgroundColor,
+      decoration: BoxDecoration(
+        color: Theme.of(context).scaffoldBackgroundColor,
+        boxShadow: [
+          //TODO: this is a workaround because of this issue in flutter: https://github.com/flutter/flutter/issues/37578
+          BoxShadow(
+            color: Theme.of(context).scaffoldBackgroundColor,
+            blurRadius: 0.0,
+            spreadRadius: 0.0,
+            offset: Offset.fromDirection(4),
+          ),
+        ],
+      ),
       child: Padding(
         padding: EdgeInsets.symmetric(vertical: 20),
         child: ClassProgressionIndicator(
