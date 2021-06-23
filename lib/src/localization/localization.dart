@@ -536,7 +536,7 @@ extension Localization on String {
       } +
       {
         'en': Ranking.noLeaderboard,
-        'es': 'No hay suficientes personas para monstrar la clasificación',
+        'es': 'No hay suficientes personas para mostrar la clasificación',
         'it': 'Non ci sono abbastanza persone per mostrare la classifica',
       } +
       {
