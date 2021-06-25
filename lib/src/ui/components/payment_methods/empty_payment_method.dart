@@ -34,10 +34,12 @@ class EmptyPaymentMethod extends StatelessWidget {
                           connectBankAccount.i18n,
                           style: Theme.of(context).textTheme.button,
                         ),
-                        onPressed: () {
-                          BlocProvider.of<PaymentMethodsBloc>(context)
-                              .add(RegisterBankAccount(gym: gym, billingEmail: customerEmail));
-                        },
+                        onPressed: gym.id != "demo"
+                            ? () {
+                                BlocProvider.of<PaymentMethodsBloc>(context).add(
+                                    RegisterBankAccount(gym: gym, billingEmail: customerEmail));
+                              }
+                            : null,
                       )))
         ],
       ),
