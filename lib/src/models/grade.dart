@@ -25,7 +25,7 @@ extension GradeExtension on Grade {
   };
 
   static final colors = {
-    Grade.white: Colors.white,
+    Grade.white: Colors.grey,
     Grade.blue: Colors.blueAccent,
     Grade.purple: Colors.deepPurple,
     Grade.brown: Colors.brown,
