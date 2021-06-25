@@ -121,7 +121,7 @@ class AccountPage extends StatelessWidget {
                           statsRepository: context.read(),
                           userEmail: state.user.email,
                           selectedGymId: state.user.selectedGymId,
-                          statsBloc: StatsBloc()..add(TimespanUpdate(timespan: Timespan.week)),
+                          statsBloc: StatsBloc()..add(TimespanUpdate(timespan: Timespan.month)),
                         ),
                       ),
                       BlocProvider<MembershipBloc>(
