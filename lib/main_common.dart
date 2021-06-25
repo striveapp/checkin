@@ -26,6 +26,7 @@ import 'package:checkin/src/repositories/local_storage_repository.dart';
 import 'package:checkin/src/repositories/membership_repository.dart';
 import 'package:checkin/src/repositories/news_repository.dart';
 import 'package:checkin/src/repositories/notification_repository.dart';
+import 'package:checkin/src/repositories/payment_method_repository.dart';
 import 'package:checkin/src/repositories/stats_repository.dart';
 import 'package:checkin/src/repositories/storage_repository.dart';
 import 'package:checkin/src/repositories/user_repository.dart';
@@ -43,6 +44,7 @@ import 'package:checkin/src/resources/local_storage_provider.dart';
 import 'package:checkin/src/resources/membership_provider.dart';
 import 'package:checkin/src/resources/news_provider.dart';
 import 'package:checkin/src/resources/notification_provider.dart';
+import 'package:checkin/src/resources/payment_method_provider.dart';
 import 'package:checkin/src/resources/stats_provider.dart';
 import 'package:checkin/src/resources/storage_provider.dart';
 import 'package:checkin/src/resources/user_provider.dart';
@@ -214,6 +216,9 @@ List<RepositoryProviderSingleChildWidget> _repositories(
       ),
       RepositoryProvider<NewsRepository>(
         create: (context) => NewsProvider(),
+      ),
+      RepositoryProvider<PaymentMethodRepository>(
+        create: (context) => PaymentMethodProvider(),
       ),
     ];
 

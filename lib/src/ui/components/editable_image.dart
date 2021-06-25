@@ -6,12 +6,14 @@ class EditableImage extends StatelessWidget {
   final String imageUrl;
   final VoidCallback onEdit;
   final bool isGrayscale;
+  final double size;
 
   const EditableImage({
     Key key,
     this.imageUrl,
     this.onEdit,
     this.isGrayscale = false,
+    this.size = 50,
   }) : super(key: key);
 
   @override
@@ -24,12 +26,15 @@ class EditableImage extends StatelessWidget {
             RoundedImage(
               url: imageUrl,
               isGrayscale: isGrayscale,
+              width: size,
+              height: size,
             ),
             if (!isGrayscale)
               Positioned(
-                right: -8,
-                bottom: -2,
-                child: AddPhotoBadge(),
+                top: size * .8,
+                child: AddPhotoBadge(
+                  size: size / 4,
+                ),
               ),
           ],
         ),

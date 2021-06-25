@@ -76,6 +76,17 @@ final theme = {
         borderRadius: new BorderRadius.circular(4.0),
       ),
     )),
+    outlinedButtonTheme: OutlinedButtonThemeData(
+      style: OutlinedButton.styleFrom(
+          side: BorderSide(
+            width: 0.8,
+            color: Color(0xFFD32F2F),
+          ),
+          shape: RoundedRectangleBorder(
+            borderRadius: BorderRadius.circular(8.0),
+          ),
+          primary: Color(0xFFD32F2F)),
+    ),
     buttonTheme: ButtonThemeData(
         buttonColor: Color(0xFF7C4DFF),
         disabledColor: Color(0xFFBBBBBB),
@@ -194,6 +205,17 @@ final theme = {
         borderRadius: new BorderRadius.circular(4.0),
       ),
     )),
+    outlinedButtonTheme: OutlinedButtonThemeData(
+      style: OutlinedButton.styleFrom(
+          side: BorderSide(
+            width: 0.8,
+            color: Color(0xFFD32F2F),
+          ),
+          shape: RoundedRectangleBorder(
+            borderRadius: BorderRadius.circular(8.0),
+          ),
+          primary: Color(0xFFD32F2F)),
+    ),
     buttonTheme: ButtonThemeData(
       buttonColor: Color(0xFF7C4DFF),
       disabledColor: Color(0xFFBBBBBB),

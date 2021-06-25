@@ -1,5 +1,7 @@
 import 'package:checkin/src/handlers/registerable_handler.dart';
 import 'package:checkin/src/ui/pages/account_page.dart';
+import 'package:checkin/src/ui/pages/account_page2.dart';
+import 'package:checkin/src/util/debug_util.dart';
 import 'package:fluro/fluro.dart';
 import 'package:flutter/widgets.dart' hide Router;
 
@@ -12,8 +14,12 @@ class AccountHandler extends Handler implements RegisterableHandler {
   }
 
   @override
-  HandlerFunc get handlerFunc => (BuildContext context, Map<String, List<String>> params) =>
-      AccountPage(errorMessage: params[errorMessage]?.first);
+  HandlerFunc get handlerFunc =>
+      (BuildContext context, Map<String, List<String>> params) => isInDebugMode
+          ? AccountPage2()
+          : AccountPage(
+              errorMessage: params[errorMessage]?.first,
+            );
 
   String get route => "account";
 }
