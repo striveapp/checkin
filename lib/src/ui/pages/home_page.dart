@@ -40,6 +40,7 @@ class HomePage extends StatelessWidget {
                     color: Colors.black87,
                     child: SafeArea(
                       child: TabBar(
+                        indicatorColor: Theme.of(context).colorScheme.secondary,
                         tabs: <Widget>[
                           Tab(key: Key("lessonsTab"), icon: Icon(Icons.home)),
                           Tab(key: Key("statsTab"), icon: Icon(Icons.insert_chart)),

@@ -131,7 +131,7 @@ class _AppState extends State<App> with WidgetsBindingObserver {
                         textAlign: TextAlign.center,
                         style: Theme.of(context).textTheme.bodyText1,
                       ),
-                      backgroundColor: Theme.of(context).accentColor.withAlpha(150),
+                      backgroundColor: Theme.of(context).colorScheme.secondary.withAlpha(150),
                       duration: Duration(seconds: 10),
                     ),
                   );
@@ -159,7 +159,7 @@ class _AppState extends State<App> with WidgetsBindingObserver {
                       title: state.title.i18n.fill(state.titleLocArgs),
                       body: state.body.i18n.fill(state.bodyLocArgs),
                     ),
-                    backgroundColor: Theme.of(context).backgroundColor.withAlpha(200),
+                    backgroundColor: Theme.of(context).colorScheme.background.withAlpha(200),
                     duration: Duration(milliseconds: 2500),
                   ));
               }

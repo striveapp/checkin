@@ -19,13 +19,15 @@ class NotificationSnackBarContent extends StatelessWidget {
             style: Theme.of(context)
                 .textTheme
                 .headline4
-                .apply(color: Theme.of(context).accentColor, fontWeightDelta: 2),
+                .apply(color: Theme.of(context).colorScheme.secondary, fontWeightDelta: 2),
           ),
           Text(
             body,
             textAlign: TextAlign.start,
-            style:
-                Theme.of(context).textTheme.headline5.apply(color: Theme.of(context).accentColor),
+            style: Theme.of(context)
+                .textTheme
+                .headline5
+                .apply(color: Theme.of(context).colorScheme.secondary),
           ),
         ],
       ),

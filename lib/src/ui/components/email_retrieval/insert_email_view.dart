@@ -39,7 +39,7 @@ class _InsertEmailViewState extends State<InsertEmailView> {
                   autovalidateMode: _autoValidateMode,
                   child: TextFormField(
                     keyboardType: TextInputType.emailAddress,
-                    cursorColor: Theme.of(context).accentColor,
+                    cursorColor: Theme.of(context).colorScheme.secondary,
                     style: Theme.of(context).textTheme.headline1,
                     decoration: new InputDecoration(
                       border: InputBorder.none,
@@ -50,7 +50,7 @@ class _InsertEmailViewState extends State<InsertEmailView> {
                       errorStyle: Theme.of(context)
                           .textTheme
                           .bodyText1
-                          .apply(color: Theme.of(context).errorColor),
+                          .apply(color: Theme.of(context).colorScheme.error),
                       disabledBorder: InputBorder.none,
                       labelText: InsertEmailView.insetEmailPlaceholder.i18n,
                       labelStyle: Theme.of(context).textTheme.headline1,

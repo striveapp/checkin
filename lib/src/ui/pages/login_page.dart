@@ -17,7 +17,7 @@ class LoginPage extends StatelessWidget {
     return Scaffold(
       body: Container(
         alignment: Alignment.center,
-        color: Theme.of(context).backgroundColor,
+        color: Theme.of(context).colorScheme.background,
         child: BlocProvider<LoginBloc>(
           create: (context) => LoginBloc(
             authRepository: context.read<AuthRepository>(),
@@ -37,7 +37,7 @@ class LoginPage extends StatelessWidget {
                           textAlign: TextAlign.center,
                           style: Theme.of(context).textTheme.bodyText1,
                         ),
-                        backgroundColor: Theme.of(context).accentColor.withAlpha(150),
+                        backgroundColor: Theme.of(context).colorScheme.secondary.withAlpha(150),
                         duration: Duration(seconds: 10),
                       ),
                     );

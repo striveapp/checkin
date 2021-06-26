@@ -26,10 +26,10 @@ class MaxLengthCounter extends StatelessWidget {
           width: 25,
           child: CircularProgressIndicator(
             strokeWidth: 2,
-            backgroundColor: Theme.of(context).backgroundColor.withAlpha(70),
+            backgroundColor: Theme.of(context).colorScheme.background.withAlpha(70),
             value: completionPercentage,
             valueColor: new AlwaysStoppedAnimation<Color>(
-              Theme.of(context).accentColor,
+              Theme.of(context).colorScheme.secondary,
             ),
           ),
         ),

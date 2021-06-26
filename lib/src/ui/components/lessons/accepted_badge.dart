@@ -7,7 +7,7 @@ class AcceptedBadge extends StatelessWidget {
         child: Container(
             width: 12,
             height: 12,
-            color: Theme.of(context).accentColor,
+            color: Theme.of(context).colorScheme.secondary,
             child: Center(
                 //
                 child: Icon(

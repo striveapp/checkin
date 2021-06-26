@@ -20,7 +20,7 @@ class PaymentSuccessPage extends StatelessWidget {
                 children: <Widget>[
                   Icon(
                     Icons.check_circle,
-                    color: Theme.of(context).accentColor,
+                    color: Theme.of(context).colorScheme.secondary,
                     size: 150,
                   ),
                   SizedBox(
@@ -45,7 +45,7 @@ class PaymentSuccessPage extends StatelessWidget {
               ),
               ElevatedButton(
                 style: ElevatedButton.styleFrom(
-                  primary: Theme.of(context).accentColor,
+                  primary: Theme.of(context).colorScheme.secondary,
                 ),
                 onPressed: () {
                   Navigator.of(context).pushNamedAndRemoveUntil(

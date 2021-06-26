@@ -25,7 +25,7 @@ class RoundedImage extends StatelessWidget {
       padding: this.withBorder ? EdgeInsets.all(1.5) : null,
       decoration: BoxDecoration(
           border: Border.all(
-              color: this.withBorder ? Theme.of(context).accentColor : Colors.transparent,
+              color: this.withBorder ? Theme.of(context).colorScheme.secondary : Colors.transparent,
               width: 1.5),
           borderRadius: BorderRadius.circular(circularRadius)),
       child: ClipRRect(

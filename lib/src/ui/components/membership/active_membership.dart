@@ -62,10 +62,8 @@ class ActiveMembershipView extends StatelessWidget {
                       TextSpan(
                           text: DateFormat('dd MMM y').format(DateTime.fromMillisecondsSinceEpoch(
                               membership.currentPeriodEnd * 1000)),
-                          style: Theme.of(context)
-                              .textTheme
-                              .headline3
-                              .apply(fontWeightDelta: 1, color: Theme.of(context).accentColor)),
+                          style: Theme.of(context).textTheme.headline3.apply(
+                              fontWeightDelta: 1, color: Theme.of(context).colorScheme.secondary)),
                     ],
                   ),
                 ),

@@ -18,8 +18,9 @@ class RemainingLessonsIndicator extends StatelessWidget {
                 child: LinearProgressIndicator(
                   value: state.attendedLessons.length / totalLessonsOfPlan,
                   minHeight: 10,
-                  valueColor: AlwaysStoppedAnimation<Color>(Theme.of(context).accentColor),
-                  backgroundColor: Theme.of(context).primaryColor.withAlpha(70),
+                  valueColor:
+                      AlwaysStoppedAnimation<Color>(Theme.of(context).colorScheme.secondary),
+                  backgroundColor: Theme.of(context).colorScheme.primary.withAlpha(70),
                 ),
               ),
               Padding(
@@ -38,8 +39,8 @@ class RemainingLessonsIndicator extends StatelessWidget {
               child: LinearProgressIndicator(
                 value: 0.3,
                 minHeight: 10,
-                valueColor: AlwaysStoppedAnimation<Color>(Theme.of(context).accentColor),
-                backgroundColor: Theme.of(context).primaryColor.withAlpha(70),
+                valueColor: AlwaysStoppedAnimation<Color>(Theme.of(context).colorScheme.secondary),
+                backgroundColor: Theme.of(context).colorScheme.primary.withAlpha(70),
               ),
             ),
             Padding(

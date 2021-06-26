@@ -42,14 +42,12 @@ class EditableProfilePage extends StatelessWidget {
                       children: [
                         Text(
                           "Membership".i18n,
-                          style: Theme.of(context)
-                              .textTheme
-                              .button
-                              .apply(color: Theme.of(context).accentColor, fontSizeFactor: 0.80),
+                          style: Theme.of(context).textTheme.button.apply(
+                              color: Theme.of(context).colorScheme.secondary, fontSizeFactor: 0.80),
                         ),
                         Icon(
                           Icons.keyboard_arrow_right_outlined,
-                          color: Theme.of(context).accentColor,
+                          color: Theme.of(context).colorScheme.secondary,
                         ),
                       ],
                     ),
@@ -97,7 +95,7 @@ class EditableProfilePage extends StatelessWidget {
                       TextFormField(
                         key: Key("editName"),
                         keyboardType: TextInputType.name,
-                        cursorColor: Theme.of(context).accentColor,
+                        cursorColor: Theme.of(context).colorScheme.secondary,
                         style: Theme.of(context).textTheme.headline3,
                         decoration: new InputDecoration(
                           errorBorder: InputBorder.none,
@@ -105,7 +103,7 @@ class EditableProfilePage extends StatelessWidget {
                           errorStyle: Theme.of(context)
                               .textTheme
                               .bodyText1
-                              .apply(color: Theme.of(context).errorColor),
+                              .apply(color: Theme.of(context).colorScheme.error),
                           disabledBorder: InputBorder.none,
                           labelText: "Your name".i18n,
                           labelStyle: Theme.of(context).textTheme.headline1,

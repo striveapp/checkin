@@ -59,7 +59,7 @@ class AttendeeTile extends StatelessWidget {
                         ? Theme.of(context)
                             .textTheme
                             .headline3
-                            .apply(color: Theme.of(context).accentColor.withAlpha(200))
+                            .apply(color: Theme.of(context).colorScheme.secondary.withAlpha(200))
                         : Theme.of(context).textTheme.headline3),
               ),
               trailing: Wrap(
@@ -81,7 +81,7 @@ class AttendeeTile extends StatelessWidget {
                               orElse: () => EmptyWidget());
                         }),
                       if (this.isAccepted)
-                        Icon(Icons.check_circle, color: Theme.of(context).accentColor),
+                        Icon(Icons.check_circle, color: Theme.of(context).colorScheme.secondary),
                     ],
                   ),
                   if (this.showDismissibleCue && !this.isAccepted) DismissibleCue()

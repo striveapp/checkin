@@ -31,7 +31,7 @@ class ImageWithGrade extends StatelessWidget {
             height: size / 2 - 5,
             padding: EdgeInsets.all(5),
             decoration: BoxDecoration(
-              color: Theme.of(context).accentColor.withAlpha(80),
+              color: Theme.of(context).colorScheme.secondary.withAlpha(80),
               shape: BoxShape.circle,
             ),
             child: grade.icon,

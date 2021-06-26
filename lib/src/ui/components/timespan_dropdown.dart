@@ -37,7 +37,7 @@ class _TimespanDropdownState extends State<TimespanDropdown> {
         horizontal: 10,
       ),
       decoration: BoxDecoration(
-          color: Theme.of(context).backgroundColor.withAlpha(100),
+          color: Theme.of(context).colorScheme.background.withAlpha(100),
           borderRadius: BorderRadius.circular(8)),
       child: DropdownButton(
           icon: Icon(Icons.keyboard_arrow_down_rounded),

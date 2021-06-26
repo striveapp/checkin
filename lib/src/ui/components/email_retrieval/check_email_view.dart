@@ -26,7 +26,7 @@ class CheckEmailView extends StatelessWidget {
               children: [
                 Icon(
                   Icons.email,
-                  color: Theme.of(context).accentColor,
+                  color: Theme.of(context).colorScheme.secondary,
                   size: 100,
                 ),
                 SizedBox(

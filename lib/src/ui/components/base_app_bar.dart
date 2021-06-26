@@ -28,7 +28,7 @@ class BaseAppBar extends StatelessWidget implements PreferredSizeWidget {
       )..add(InitializeProfile()),
       child: AppBar(
         centerTitle: true,
-        backgroundColor: this.backgroundColor ?? Theme.of(context).primaryColor,
+        backgroundColor: this.backgroundColor ?? Theme.of(context).colorScheme.primary,
         title: title == null || title.isEmpty
             ? EmptyWidget()
             : Text(this.title,

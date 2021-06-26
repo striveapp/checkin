@@ -45,7 +45,7 @@ class _AnimatedOpenSpeedDialButtonState extends State<AnimatedOpenSpeedDialButto
   Widget build(BuildContext context) {
     return Container(
       decoration: BoxDecoration(
-        color: Theme.of(context).accentColor,
+        color: Theme.of(context).colorScheme.secondary,
         shape: BoxShape.circle,
       ),
       width: 55,

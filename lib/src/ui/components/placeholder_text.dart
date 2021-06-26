@@ -14,8 +14,8 @@ class PlaceholderText extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return Shimmer.fromColors(
-      baseColor: Theme.of(context).backgroundColor.withAlpha(100),
-      highlightColor: Theme.of(context).backgroundColor,
+      baseColor: Theme.of(context).colorScheme.background.withAlpha(100),
+      highlightColor: Theme.of(context).colorScheme.background,
       child: Container(
         height: fontHeight,
         width: width,

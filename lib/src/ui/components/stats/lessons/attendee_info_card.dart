@@ -106,7 +106,7 @@ class _AttendeeInfoCardState extends State<AttendeeInfoCard> {
                           style: Theme.of(context)
                               .textTheme
                               .headline1
-                              .apply(color: Theme.of(context).accentColor),
+                              .apply(color: Theme.of(context).colorScheme.secondary),
                         ),
                       ),
                     ],

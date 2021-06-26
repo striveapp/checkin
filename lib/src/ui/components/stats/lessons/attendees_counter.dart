@@ -23,7 +23,7 @@ class AttendeesCounter extends StatelessWidget {
               style: Theme.of(context)
                   .textTheme
                   .headline1
-                  .apply(fontSizeFactor: 3, color: Theme.of(context).accentColor),
+                  .apply(fontSizeFactor: 3, color: Theme.of(context).colorScheme.secondary),
             ),
             SizedBox(
               height: 10,
