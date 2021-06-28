@@ -1,3 +1,5 @@
+// @dart=2.9
+
 import 'package:checkin/src/models/membership.dart';
 import 'package:checkin/src/repositories/membership_repository.dart';
 import 'package:cloud_firestore/cloud_firestore.dart';

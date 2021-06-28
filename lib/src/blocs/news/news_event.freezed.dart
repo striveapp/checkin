@@ -1,5 +1,5 @@
 // GENERATED CODE - DO NOT MODIFY BY HAND
-// ignore_for_file: deprecated_member_use, deprecated_member_use_from_same_package, use_function_type_syntax_for_parameters, unnecessary_const, avoid_init_to_null, invalid_override_different_default_values_named, prefer_expression_function_bodies
+// ignore_for_file: unused_element, deprecated_member_use, deprecated_member_use_from_same_package, use_function_type_syntax_for_parameters, unnecessary_const, avoid_init_to_null, invalid_override_different_default_values_named, prefer_expression_function_bodies, annotate_overrides
 
 part of 'news_event.dart';
 
@@ -9,55 +9,51 @@ part of 'news_event.dart';
 
 T _$identity<T>(T value) => value;
 
+final _privateConstructorUsedError = UnsupportedError(
+    'It seems like you constructed your class using `MyClass._()`. This constructor is only meant to be used by freezed and you are not supposed to need it nor use it.\nPlease check the documentation here for more informations: https://github.com/rrousselGit/freezed#custom-getters-and-methods');
+
 /// @nodoc
 class _$NewsEventTearOff {
   const _$NewsEventTearOff();
 
-// ignore: unused_element
   InitializeNews initializeNews() {
     return const InitializeNews();
   }
 
-// ignore: unused_element
   NewsUpdated newsUpdated(
-      {@required List<News> newsList, @required String gymId}) {
+      {required List<News> newsList, required String gymId}) {
     return NewsUpdated(
       newsList: newsList,
       gymId: gymId,
     );
   }
 
-// ignore: unused_element
-  AddNews addNews({@required String content, @required Author author}) {
+  AddNews addNews({required String content, required Author author}) {
     return AddNews(
       content: content,
       author: author,
     );
   }
 
-// ignore: unused_element
-  DeleteNews deleteNews({@required String id}) {
+  DeleteNews deleteNews({required String id}) {
     return DeleteNews(
       id: id,
     );
   }
 
-// ignore: unused_element
-  PinNews pinNews({@required String id}) {
+  PinNews pinNews({required String id}) {
     return PinNews(
       id: id,
     );
   }
 
-// ignore: unused_element
-  UnpinNews unpinNews({@required String id}) {
+  UnpinNews unpinNews({required String id}) {
     return UnpinNews(
       id: id,
     );
   }
 
-// ignore: unused_element
-  ReplacePinnedNews replacePinnedNews({@required String id}) {
+  ReplacePinnedNews replacePinnedNews({required String id}) {
     return ReplacePinnedNews(
       id: id,
     );
@@ -65,53 +61,56 @@ class _$NewsEventTearOff {
 }
 
 /// @nodoc
-// ignore: unused_element
 const $NewsEvent = _$NewsEventTearOff();
 
 /// @nodoc
 mixin _$NewsEvent {
   @optionalTypeArgs
-  TResult when<TResult extends Object>({
-    @required TResult initializeNews(),
-    @required TResult newsUpdated(List<News> newsList, String gymId),
-    @required TResult addNews(String content, Author author),
-    @required TResult deleteNews(String id),
-    @required TResult pinNews(String id),
-    @required TResult unpinNews(String id),
-    @required TResult replacePinnedNews(String id),
-  });
+  TResult when<TResult extends Object?>({
+    required TResult Function() initializeNews,
+    required TResult Function(List<News> newsList, String gymId) newsUpdated,
+    required TResult Function(String content, Author author) addNews,
+    required TResult Function(String id) deleteNews,
+    required TResult Function(String id) pinNews,
+    required TResult Function(String id) unpinNews,
+    required TResult Function(String id) replacePinnedNews,
+  }) =>
+      throw _privateConstructorUsedError;
   @optionalTypeArgs
-  TResult maybeWhen<TResult extends Object>({
-    TResult initializeNews(),
-    TResult newsUpdated(List<News> newsList, String gymId),
-    TResult addNews(String content, Author author),
-    TResult deleteNews(String id),
-    TResult pinNews(String id),
-    TResult unpinNews(String id),
-    TResult replacePinnedNews(String id),
-    @required TResult orElse(),
-  });
+  TResult maybeWhen<TResult extends Object?>({
+    TResult Function()? initializeNews,
+    TResult Function(List<News> newsList, String gymId)? newsUpdated,
+    TResult Function(String content, Author author)? addNews,
+    TResult Function(String id)? deleteNews,
+    TResult Function(String id)? pinNews,
+    TResult Function(String id)? unpinNews,
+    TResult Function(String id)? replacePinnedNews,
+    required TResult orElse(),
+  }) =>
+      throw _privateConstructorUsedError;
   @optionalTypeArgs
-  TResult map<TResult extends Object>({
-    @required TResult initializeNews(InitializeNews value),
-    @required TResult newsUpdated(NewsUpdated value),
-    @required TResult addNews(AddNews value),
-    @required TResult deleteNews(DeleteNews value),
-    @required TResult pinNews(PinNews value),
-    @required TResult unpinNews(UnpinNews value),
-    @required TResult replacePinnedNews(ReplacePinnedNews value),
-  });
+  TResult map<TResult extends Object?>({
+    required TResult Function(InitializeNews value) initializeNews,
+    required TResult Function(NewsUpdated value) newsUpdated,
+    required TResult Function(AddNews value) addNews,
+    required TResult Function(DeleteNews value) deleteNews,
+    required TResult Function(PinNews value) pinNews,
+    required TResult Function(UnpinNews value) unpinNews,
+    required TResult Function(ReplacePinnedNews value) replacePinnedNews,
+  }) =>
+      throw _privateConstructorUsedError;
   @optionalTypeArgs
-  TResult maybeMap<TResult extends Object>({
-    TResult initializeNews(InitializeNews value),
-    TResult newsUpdated(NewsUpdated value),
-    TResult addNews(AddNews value),
-    TResult deleteNews(DeleteNews value),
-    TResult pinNews(PinNews value),
-    TResult unpinNews(UnpinNews value),
-    TResult replacePinnedNews(ReplacePinnedNews value),
-    @required TResult orElse(),
-  });
+  TResult maybeMap<TResult extends Object?>({
+    TResult Function(InitializeNews value)? initializeNews,
+    TResult Function(NewsUpdated value)? newsUpdated,
+    TResult Function(AddNews value)? addNews,
+    TResult Function(DeleteNews value)? deleteNews,
+    TResult Function(PinNews value)? pinNews,
+    TResult Function(UnpinNews value)? unpinNews,
+    TResult Function(ReplacePinnedNews value)? replacePinnedNews,
+    required TResult orElse(),
+  }) =>
+      throw _privateConstructorUsedError;
 }
 
 /// @nodoc
@@ -148,6 +147,7 @@ class _$InitializeNewsCopyWithImpl<$Res> extends _$NewsEventCopyWithImpl<$Res>
 }
 
 /// @nodoc
+
 class _$InitializeNews implements InitializeNews {
   const _$InitializeNews();
 
@@ -166,38 +166,30 @@ class _$InitializeNews implements InitializeNews {
 
   @override
   @optionalTypeArgs
-  TResult when<TResult extends Object>({
-    @required TResult initializeNews(),
-    @required TResult newsUpdated(List<News> newsList, String gymId),
-    @required TResult addNews(String content, Author author),
-    @required TResult deleteNews(String id),
-    @required TResult pinNews(String id),
-    @required TResult unpinNews(String id),
-    @required TResult replacePinnedNews(String id),
+  TResult when<TResult extends Object?>({
+    required TResult Function() initializeNews,
+    required TResult Function(List<News> newsList, String gymId) newsUpdated,
+    required TResult Function(String content, Author author) addNews,
+    required TResult Function(String id) deleteNews,
+    required TResult Function(String id) pinNews,
+    required TResult Function(String id) unpinNews,
+    required TResult Function(String id) replacePinnedNews,
   }) {
-    assert(initializeNews != null);
-    assert(newsUpdated != null);
-    assert(addNews != null);
-    assert(deleteNews != null);
-    assert(pinNews != null);
-    assert(unpinNews != null);
-    assert(replacePinnedNews != null);
     return initializeNews();
   }
 
   @override
   @optionalTypeArgs
-  TResult maybeWhen<TResult extends Object>({
-    TResult initializeNews(),
-    TResult newsUpdated(List<News> newsList, String gymId),
-    TResult addNews(String content, Author author),
-    TResult deleteNews(String id),
-    TResult pinNews(String id),
-    TResult unpinNews(String id),
-    TResult replacePinnedNews(String id),
-    @required TResult orElse(),
+  TResult maybeWhen<TResult extends Object?>({
+    TResult Function()? initializeNews,
+    TResult Function(List<News> newsList, String gymId)? newsUpdated,
+    TResult Function(String content, Author author)? addNews,
+    TResult Function(String id)? deleteNews,
+    TResult Function(String id)? pinNews,
+    TResult Function(String id)? unpinNews,
+    TResult Function(String id)? replacePinnedNews,
+    required TResult orElse(),
   }) {
-    assert(orElse != null);
     if (initializeNews != null) {
       return initializeNews();
     }
@@ -206,38 +198,30 @@ class _$InitializeNews implements InitializeNews {
 
   @override
   @optionalTypeArgs
-  TResult map<TResult extends Object>({
-    @required TResult initializeNews(InitializeNews value),
-    @required TResult newsUpdated(NewsUpdated value),
-    @required TResult addNews(AddNews value),
-    @required TResult deleteNews(DeleteNews value),
-    @required TResult pinNews(PinNews value),
-    @required TResult unpinNews(UnpinNews value),
-    @required TResult replacePinnedNews(ReplacePinnedNews value),
+  TResult map<TResult extends Object?>({
+    required TResult Function(InitializeNews value) initializeNews,
+    required TResult Function(NewsUpdated value) newsUpdated,
+    required TResult Function(AddNews value) addNews,
+    required TResult Function(DeleteNews value) deleteNews,
+    required TResult Function(PinNews value) pinNews,
+    required TResult Function(UnpinNews value) unpinNews,
+    required TResult Function(ReplacePinnedNews value) replacePinnedNews,
   }) {
-    assert(initializeNews != null);
-    assert(newsUpdated != null);
-    assert(addNews != null);
-    assert(deleteNews != null);
-    assert(pinNews != null);
-    assert(unpinNews != null);
-    assert(replacePinnedNews != null);
     return initializeNews(this);
   }
 
   @override
   @optionalTypeArgs
-  TResult maybeMap<TResult extends Object>({
-    TResult initializeNews(InitializeNews value),
-    TResult newsUpdated(NewsUpdated value),
-    TResult addNews(AddNews value),
-    TResult deleteNews(DeleteNews value),
-    TResult pinNews(PinNews value),
-    TResult unpinNews(UnpinNews value),
-    TResult replacePinnedNews(ReplacePinnedNews value),
-    @required TResult orElse(),
+  TResult maybeMap<TResult extends Object?>({
+    TResult Function(InitializeNews value)? initializeNews,
+    TResult Function(NewsUpdated value)? newsUpdated,
+    TResult Function(AddNews value)? addNews,
+    TResult Function(DeleteNews value)? deleteNews,
+    TResult Function(PinNews value)? pinNews,
+    TResult Function(UnpinNews value)? unpinNews,
+    TResult Function(ReplacePinnedNews value)? replacePinnedNews,
+    required TResult orElse(),
   }) {
-    assert(orElse != null);
     if (initializeNews != null) {
       return initializeNews(this);
     }
@@ -269,21 +253,26 @@ class _$NewsUpdatedCopyWithImpl<$Res> extends _$NewsEventCopyWithImpl<$Res>
 
   @override
   $Res call({
-    Object newsList = freezed,
-    Object gymId = freezed,
+    Object? newsList = freezed,
+    Object? gymId = freezed,
   }) {
     return _then(NewsUpdated(
-      newsList: newsList == freezed ? _value.newsList : newsList as List<News>,
-      gymId: gymId == freezed ? _value.gymId : gymId as String,
+      newsList: newsList == freezed
+          ? _value.newsList
+          : newsList // ignore: cast_nullable_to_non_nullable
+              as List<News>,
+      gymId: gymId == freezed
+          ? _value.gymId
+          : gymId // ignore: cast_nullable_to_non_nullable
+              as String,
     ));
   }
 }
 
 /// @nodoc
+
 class _$NewsUpdated implements NewsUpdated {
-  const _$NewsUpdated({@required this.newsList, @required this.gymId})
-      : assert(newsList != null),
-        assert(gymId != null);
+  const _$NewsUpdated({required this.newsList, required this.gymId});
 
   @override
   final List<News> newsList;
@@ -319,38 +308,30 @@ class _$NewsUpdated implements NewsUpdated {
 
   @override
   @optionalTypeArgs
-  TResult when<TResult extends Object>({
-    @required TResult initializeNews(),
-    @required TResult newsUpdated(List<News> newsList, String gymId),
-    @required TResult addNews(String content, Author author),
-    @required TResult deleteNews(String id),
-    @required TResult pinNews(String id),
-    @required TResult unpinNews(String id),
-    @required TResult replacePinnedNews(String id),
+  TResult when<TResult extends Object?>({
+    required TResult Function() initializeNews,
+    required TResult Function(List<News> newsList, String gymId) newsUpdated,
+    required TResult Function(String content, Author author) addNews,
+    required TResult Function(String id) deleteNews,
+    required TResult Function(String id) pinNews,
+    required TResult Function(String id) unpinNews,
+    required TResult Function(String id) replacePinnedNews,
   }) {
-    assert(initializeNews != null);
-    assert(newsUpdated != null);
-    assert(addNews != null);
-    assert(deleteNews != null);
-    assert(pinNews != null);
-    assert(unpinNews != null);
-    assert(replacePinnedNews != null);
     return newsUpdated(newsList, gymId);
   }
 
   @override
   @optionalTypeArgs
-  TResult maybeWhen<TResult extends Object>({
-    TResult initializeNews(),
-    TResult newsUpdated(List<News> newsList, String gymId),
-    TResult addNews(String content, Author author),
-    TResult deleteNews(String id),
-    TResult pinNews(String id),
-    TResult unpinNews(String id),
-    TResult replacePinnedNews(String id),
-    @required TResult orElse(),
+  TResult maybeWhen<TResult extends Object?>({
+    TResult Function()? initializeNews,
+    TResult Function(List<News> newsList, String gymId)? newsUpdated,
+    TResult Function(String content, Author author)? addNews,
+    TResult Function(String id)? deleteNews,
+    TResult Function(String id)? pinNews,
+    TResult Function(String id)? unpinNews,
+    TResult Function(String id)? replacePinnedNews,
+    required TResult orElse(),
   }) {
-    assert(orElse != null);
     if (newsUpdated != null) {
       return newsUpdated(newsList, gymId);
     }
@@ -359,38 +340,30 @@ class _$NewsUpdated implements NewsUpdated {
 
   @override
   @optionalTypeArgs
-  TResult map<TResult extends Object>({
-    @required TResult initializeNews(InitializeNews value),
-    @required TResult newsUpdated(NewsUpdated value),
-    @required TResult addNews(AddNews value),
-    @required TResult deleteNews(DeleteNews value),
-    @required TResult pinNews(PinNews value),
-    @required TResult unpinNews(UnpinNews value),
-    @required TResult replacePinnedNews(ReplacePinnedNews value),
+  TResult map<TResult extends Object?>({
+    required TResult Function(InitializeNews value) initializeNews,
+    required TResult Function(NewsUpdated value) newsUpdated,
+    required TResult Function(AddNews value) addNews,
+    required TResult Function(DeleteNews value) deleteNews,
+    required TResult Function(PinNews value) pinNews,
+    required TResult Function(UnpinNews value) unpinNews,
+    required TResult Function(ReplacePinnedNews value) replacePinnedNews,
   }) {
-    assert(initializeNews != null);
-    assert(newsUpdated != null);
-    assert(addNews != null);
-    assert(deleteNews != null);
-    assert(pinNews != null);
-    assert(unpinNews != null);
-    assert(replacePinnedNews != null);
     return newsUpdated(this);
   }
 
   @override
   @optionalTypeArgs
-  TResult maybeMap<TResult extends Object>({
-    TResult initializeNews(InitializeNews value),
-    TResult newsUpdated(NewsUpdated value),
-    TResult addNews(AddNews value),
-    TResult deleteNews(DeleteNews value),
-    TResult pinNews(PinNews value),
-    TResult unpinNews(UnpinNews value),
-    TResult replacePinnedNews(ReplacePinnedNews value),
-    @required TResult orElse(),
+  TResult maybeMap<TResult extends Object?>({
+    TResult Function(InitializeNews value)? initializeNews,
+    TResult Function(NewsUpdated value)? newsUpdated,
+    TResult Function(AddNews value)? addNews,
+    TResult Function(DeleteNews value)? deleteNews,
+    TResult Function(PinNews value)? pinNews,
+    TResult Function(UnpinNews value)? unpinNews,
+    TResult Function(ReplacePinnedNews value)? replacePinnedNews,
+    required TResult orElse(),
   }) {
-    assert(orElse != null);
     if (newsUpdated != null) {
       return newsUpdated(this);
     }
@@ -400,12 +373,13 @@ class _$NewsUpdated implements NewsUpdated {
 
 abstract class NewsUpdated implements NewsEvent {
   const factory NewsUpdated(
-      {@required List<News> newsList, @required String gymId}) = _$NewsUpdated;
+      {required List<News> newsList, required String gymId}) = _$NewsUpdated;
 
-  List<News> get newsList;
-  String get gymId;
+  List<News> get newsList => throw _privateConstructorUsedError;
+  String get gymId => throw _privateConstructorUsedError;
   @JsonKey(ignore: true)
-  $NewsUpdatedCopyWith<NewsUpdated> get copyWith;
+  $NewsUpdatedCopyWith<NewsUpdated> get copyWith =>
+      throw _privateConstructorUsedError;
 }
 
 /// @nodoc
@@ -428,20 +402,23 @@ class _$AddNewsCopyWithImpl<$Res> extends _$NewsEventCopyWithImpl<$Res>
 
   @override
   $Res call({
-    Object content = freezed,
-    Object author = freezed,
+    Object? content = freezed,
+    Object? author = freezed,
   }) {
     return _then(AddNews(
-      content: content == freezed ? _value.content : content as String,
-      author: author == freezed ? _value.author : author as Author,
+      content: content == freezed
+          ? _value.content
+          : content // ignore: cast_nullable_to_non_nullable
+              as String,
+      author: author == freezed
+          ? _value.author
+          : author // ignore: cast_nullable_to_non_nullable
+              as Author,
     ));
   }
 
   @override
   $AuthorCopyWith<$Res> get author {
-    if (_value.author == null) {
-      return null;
-    }
     return $AuthorCopyWith<$Res>(_value.author, (value) {
       return _then(_value.copyWith(author: value));
     });
@@ -449,10 +426,9 @@ class _$AddNewsCopyWithImpl<$Res> extends _$NewsEventCopyWithImpl<$Res>
 }
 
 /// @nodoc
+
 class _$AddNews implements AddNews {
-  const _$AddNews({@required this.content, @required this.author})
-      : assert(content != null),
-        assert(author != null);
+  const _$AddNews({required this.content, required this.author});
 
   @override
   final String content;
@@ -488,38 +464,30 @@ class _$AddNews implements AddNews {
 
   @override
   @optionalTypeArgs
-  TResult when<TResult extends Object>({
-    @required TResult initializeNews(),
-    @required TResult newsUpdated(List<News> newsList, String gymId),
-    @required TResult addNews(String content, Author author),
-    @required TResult deleteNews(String id),
-    @required TResult pinNews(String id),
-    @required TResult unpinNews(String id),
-    @required TResult replacePinnedNews(String id),
+  TResult when<TResult extends Object?>({
+    required TResult Function() initializeNews,
+    required TResult Function(List<News> newsList, String gymId) newsUpdated,
+    required TResult Function(String content, Author author) addNews,
+    required TResult Function(String id) deleteNews,
+    required TResult Function(String id) pinNews,
+    required TResult Function(String id) unpinNews,
+    required TResult Function(String id) replacePinnedNews,
   }) {
-    assert(initializeNews != null);
-    assert(newsUpdated != null);
-    assert(addNews != null);
-    assert(deleteNews != null);
-    assert(pinNews != null);
-    assert(unpinNews != null);
-    assert(replacePinnedNews != null);
     return addNews(content, author);
   }
 
   @override
   @optionalTypeArgs
-  TResult maybeWhen<TResult extends Object>({
-    TResult initializeNews(),
-    TResult newsUpdated(List<News> newsList, String gymId),
-    TResult addNews(String content, Author author),
-    TResult deleteNews(String id),
-    TResult pinNews(String id),
-    TResult unpinNews(String id),
-    TResult replacePinnedNews(String id),
-    @required TResult orElse(),
+  TResult maybeWhen<TResult extends Object?>({
+    TResult Function()? initializeNews,
+    TResult Function(List<News> newsList, String gymId)? newsUpdated,
+    TResult Function(String content, Author author)? addNews,
+    TResult Function(String id)? deleteNews,
+    TResult Function(String id)? pinNews,
+    TResult Function(String id)? unpinNews,
+    TResult Function(String id)? replacePinnedNews,
+    required TResult orElse(),
   }) {
-    assert(orElse != null);
     if (addNews != null) {
       return addNews(content, author);
     }
@@ -528,38 +496,30 @@ class _$AddNews implements AddNews {
 
   @override
   @optionalTypeArgs
-  TResult map<TResult extends Object>({
-    @required TResult initializeNews(InitializeNews value),
-    @required TResult newsUpdated(NewsUpdated value),
-    @required TResult addNews(AddNews value),
-    @required TResult deleteNews(DeleteNews value),
-    @required TResult pinNews(PinNews value),
-    @required TResult unpinNews(UnpinNews value),
-    @required TResult replacePinnedNews(ReplacePinnedNews value),
+  TResult map<TResult extends Object?>({
+    required TResult Function(InitializeNews value) initializeNews,
+    required TResult Function(NewsUpdated value) newsUpdated,
+    required TResult Function(AddNews value) addNews,
+    required TResult Function(DeleteNews value) deleteNews,
+    required TResult Function(PinNews value) pinNews,
+    required TResult Function(UnpinNews value) unpinNews,
+    required TResult Function(ReplacePinnedNews value) replacePinnedNews,
   }) {
-    assert(initializeNews != null);
-    assert(newsUpdated != null);
-    assert(addNews != null);
-    assert(deleteNews != null);
-    assert(pinNews != null);
-    assert(unpinNews != null);
-    assert(replacePinnedNews != null);
     return addNews(this);
   }
 
   @override
   @optionalTypeArgs
-  TResult maybeMap<TResult extends Object>({
-    TResult initializeNews(InitializeNews value),
-    TResult newsUpdated(NewsUpdated value),
-    TResult addNews(AddNews value),
-    TResult deleteNews(DeleteNews value),
-    TResult pinNews(PinNews value),
-    TResult unpinNews(UnpinNews value),
-    TResult replacePinnedNews(ReplacePinnedNews value),
-    @required TResult orElse(),
+  TResult maybeMap<TResult extends Object?>({
+    TResult Function(InitializeNews value)? initializeNews,
+    TResult Function(NewsUpdated value)? newsUpdated,
+    TResult Function(AddNews value)? addNews,
+    TResult Function(DeleteNews value)? deleteNews,
+    TResult Function(PinNews value)? pinNews,
+    TResult Function(UnpinNews value)? unpinNews,
+    TResult Function(ReplacePinnedNews value)? replacePinnedNews,
+    required TResult orElse(),
   }) {
-    assert(orElse != null);
     if (addNews != null) {
       return addNews(this);
     }
@@ -568,13 +528,13 @@ class _$AddNews implements AddNews {
 }
 
 abstract class AddNews implements NewsEvent {
-  const factory AddNews({@required String content, @required Author author}) =
+  const factory AddNews({required String content, required Author author}) =
       _$AddNews;
 
-  String get content;
-  Author get author;
+  String get content => throw _privateConstructorUsedError;
+  Author get author => throw _privateConstructorUsedError;
   @JsonKey(ignore: true)
-  $AddNewsCopyWith<AddNews> get copyWith;
+  $AddNewsCopyWith<AddNews> get copyWith => throw _privateConstructorUsedError;
 }
 
 /// @nodoc
@@ -596,17 +556,21 @@ class _$DeleteNewsCopyWithImpl<$Res> extends _$NewsEventCopyWithImpl<$Res>
 
   @override
   $Res call({
-    Object id = freezed,
+    Object? id = freezed,
   }) {
     return _then(DeleteNews(
-      id: id == freezed ? _value.id : id as String,
+      id: id == freezed
+          ? _value.id
+          : id // ignore: cast_nullable_to_non_nullable
+              as String,
     ));
   }
 }
 
 /// @nodoc
+
 class _$DeleteNews implements DeleteNews {
-  const _$DeleteNews({@required this.id}) : assert(id != null);
+  const _$DeleteNews({required this.id});
 
   @override
   final String id;
@@ -635,38 +599,30 @@ class _$DeleteNews implements DeleteNews {
 
   @override
   @optionalTypeArgs
-  TResult when<TResult extends Object>({
-    @required TResult initializeNews(),
-    @required TResult newsUpdated(List<News> newsList, String gymId),
-    @required TResult addNews(String content, Author author),
-    @required TResult deleteNews(String id),
-    @required TResult pinNews(String id),
-    @required TResult unpinNews(String id),
-    @required TResult replacePinnedNews(String id),
+  TResult when<TResult extends Object?>({
+    required TResult Function() initializeNews,
+    required TResult Function(List<News> newsList, String gymId) newsUpdated,
+    required TResult Function(String content, Author author) addNews,
+    required TResult Function(String id) deleteNews,
+    required TResult Function(String id) pinNews,
+    required TResult Function(String id) unpinNews,
+    required TResult Function(String id) replacePinnedNews,
   }) {
-    assert(initializeNews != null);
-    assert(newsUpdated != null);
-    assert(addNews != null);
-    assert(deleteNews != null);
-    assert(pinNews != null);
-    assert(unpinNews != null);
-    assert(replacePinnedNews != null);
     return deleteNews(id);
   }
 
   @override
   @optionalTypeArgs
-  TResult maybeWhen<TResult extends Object>({
-    TResult initializeNews(),
-    TResult newsUpdated(List<News> newsList, String gymId),
-    TResult addNews(String content, Author author),
-    TResult deleteNews(String id),
-    TResult pinNews(String id),
-    TResult unpinNews(String id),
-    TResult replacePinnedNews(String id),
-    @required TResult orElse(),
+  TResult maybeWhen<TResult extends Object?>({
+    TResult Function()? initializeNews,
+    TResult Function(List<News> newsList, String gymId)? newsUpdated,
+    TResult Function(String content, Author author)? addNews,
+    TResult Function(String id)? deleteNews,
+    TResult Function(String id)? pinNews,
+    TResult Function(String id)? unpinNews,
+    TResult Function(String id)? replacePinnedNews,
+    required TResult orElse(),
   }) {
-    assert(orElse != null);
     if (deleteNews != null) {
       return deleteNews(id);
     }
@@ -675,38 +631,30 @@ class _$DeleteNews implements DeleteNews {
 
   @override
   @optionalTypeArgs
-  TResult map<TResult extends Object>({
-    @required TResult initializeNews(InitializeNews value),
-    @required TResult newsUpdated(NewsUpdated value),
-    @required TResult addNews(AddNews value),
-    @required TResult deleteNews(DeleteNews value),
-    @required TResult pinNews(PinNews value),
-    @required TResult unpinNews(UnpinNews value),
-    @required TResult replacePinnedNews(ReplacePinnedNews value),
+  TResult map<TResult extends Object?>({
+    required TResult Function(InitializeNews value) initializeNews,
+    required TResult Function(NewsUpdated value) newsUpdated,
+    required TResult Function(AddNews value) addNews,
+    required TResult Function(DeleteNews value) deleteNews,
+    required TResult Function(PinNews value) pinNews,
+    required TResult Function(UnpinNews value) unpinNews,
+    required TResult Function(ReplacePinnedNews value) replacePinnedNews,
   }) {
-    assert(initializeNews != null);
-    assert(newsUpdated != null);
-    assert(addNews != null);
-    assert(deleteNews != null);
-    assert(pinNews != null);
-    assert(unpinNews != null);
-    assert(replacePinnedNews != null);
     return deleteNews(this);
   }
 
   @override
   @optionalTypeArgs
-  TResult maybeMap<TResult extends Object>({
-    TResult initializeNews(InitializeNews value),
-    TResult newsUpdated(NewsUpdated value),
-    TResult addNews(AddNews value),
-    TResult deleteNews(DeleteNews value),
-    TResult pinNews(PinNews value),
-    TResult unpinNews(UnpinNews value),
-    TResult replacePinnedNews(ReplacePinnedNews value),
-    @required TResult orElse(),
+  TResult maybeMap<TResult extends Object?>({
+    TResult Function(InitializeNews value)? initializeNews,
+    TResult Function(NewsUpdated value)? newsUpdated,
+    TResult Function(AddNews value)? addNews,
+    TResult Function(DeleteNews value)? deleteNews,
+    TResult Function(PinNews value)? pinNews,
+    TResult Function(UnpinNews value)? unpinNews,
+    TResult Function(ReplacePinnedNews value)? replacePinnedNews,
+    required TResult orElse(),
   }) {
-    assert(orElse != null);
     if (deleteNews != null) {
       return deleteNews(this);
     }
@@ -715,11 +663,12 @@ class _$DeleteNews implements DeleteNews {
 }
 
 abstract class DeleteNews implements NewsEvent {
-  const factory DeleteNews({@required String id}) = _$DeleteNews;
+  const factory DeleteNews({required String id}) = _$DeleteNews;
 
-  String get id;
+  String get id => throw _privateConstructorUsedError;
   @JsonKey(ignore: true)
-  $DeleteNewsCopyWith<DeleteNews> get copyWith;
+  $DeleteNewsCopyWith<DeleteNews> get copyWith =>
+      throw _privateConstructorUsedError;
 }
 
 /// @nodoc
@@ -740,17 +689,21 @@ class _$PinNewsCopyWithImpl<$Res> extends _$NewsEventCopyWithImpl<$Res>
 
   @override
   $Res call({
-    Object id = freezed,
+    Object? id = freezed,
   }) {
     return _then(PinNews(
-      id: id == freezed ? _value.id : id as String,
+      id: id == freezed
+          ? _value.id
+          : id // ignore: cast_nullable_to_non_nullable
+              as String,
     ));
   }
 }
 
 /// @nodoc
+
 class _$PinNews implements PinNews {
-  const _$PinNews({@required this.id}) : assert(id != null);
+  const _$PinNews({required this.id});
 
   @override
   final String id;
@@ -779,38 +732,30 @@ class _$PinNews implements PinNews {
 
   @override
   @optionalTypeArgs
-  TResult when<TResult extends Object>({
-    @required TResult initializeNews(),
-    @required TResult newsUpdated(List<News> newsList, String gymId),
-    @required TResult addNews(String content, Author author),
-    @required TResult deleteNews(String id),
-    @required TResult pinNews(String id),
-    @required TResult unpinNews(String id),
-    @required TResult replacePinnedNews(String id),
+  TResult when<TResult extends Object?>({
+    required TResult Function() initializeNews,
+    required TResult Function(List<News> newsList, String gymId) newsUpdated,
+    required TResult Function(String content, Author author) addNews,
+    required TResult Function(String id) deleteNews,
+    required TResult Function(String id) pinNews,
+    required TResult Function(String id) unpinNews,
+    required TResult Function(String id) replacePinnedNews,
   }) {
-    assert(initializeNews != null);
-    assert(newsUpdated != null);
-    assert(addNews != null);
-    assert(deleteNews != null);
-    assert(pinNews != null);
-    assert(unpinNews != null);
-    assert(replacePinnedNews != null);
     return pinNews(id);
   }
 
   @override
   @optionalTypeArgs
-  TResult maybeWhen<TResult extends Object>({
-    TResult initializeNews(),
-    TResult newsUpdated(List<News> newsList, String gymId),
-    TResult addNews(String content, Author author),
-    TResult deleteNews(String id),
-    TResult pinNews(String id),
-    TResult unpinNews(String id),
-    TResult replacePinnedNews(String id),
-    @required TResult orElse(),
+  TResult maybeWhen<TResult extends Object?>({
+    TResult Function()? initializeNews,
+    TResult Function(List<News> newsList, String gymId)? newsUpdated,
+    TResult Function(String content, Author author)? addNews,
+    TResult Function(String id)? deleteNews,
+    TResult Function(String id)? pinNews,
+    TResult Function(String id)? unpinNews,
+    TResult Function(String id)? replacePinnedNews,
+    required TResult orElse(),
   }) {
-    assert(orElse != null);
     if (pinNews != null) {
       return pinNews(id);
     }
@@ -819,38 +764,30 @@ class _$PinNews implements PinNews {
 
   @override
   @optionalTypeArgs
-  TResult map<TResult extends Object>({
-    @required TResult initializeNews(InitializeNews value),
-    @required TResult newsUpdated(NewsUpdated value),
-    @required TResult addNews(AddNews value),
-    @required TResult deleteNews(DeleteNews value),
-    @required TResult pinNews(PinNews value),
-    @required TResult unpinNews(UnpinNews value),
-    @required TResult replacePinnedNews(ReplacePinnedNews value),
+  TResult map<TResult extends Object?>({
+    required TResult Function(InitializeNews value) initializeNews,
+    required TResult Function(NewsUpdated value) newsUpdated,
+    required TResult Function(AddNews value) addNews,
+    required TResult Function(DeleteNews value) deleteNews,
+    required TResult Function(PinNews value) pinNews,
+    required TResult Function(UnpinNews value) unpinNews,
+    required TResult Function(ReplacePinnedNews value) replacePinnedNews,
   }) {
-    assert(initializeNews != null);
-    assert(newsUpdated != null);
-    assert(addNews != null);
-    assert(deleteNews != null);
-    assert(pinNews != null);
-    assert(unpinNews != null);
-    assert(replacePinnedNews != null);
     return pinNews(this);
   }
 
   @override
   @optionalTypeArgs
-  TResult maybeMap<TResult extends Object>({
-    TResult initializeNews(InitializeNews value),
-    TResult newsUpdated(NewsUpdated value),
-    TResult addNews(AddNews value),
-    TResult deleteNews(DeleteNews value),
-    TResult pinNews(PinNews value),
-    TResult unpinNews(UnpinNews value),
-    TResult replacePinnedNews(ReplacePinnedNews value),
-    @required TResult orElse(),
+  TResult maybeMap<TResult extends Object?>({
+    TResult Function(InitializeNews value)? initializeNews,
+    TResult Function(NewsUpdated value)? newsUpdated,
+    TResult Function(AddNews value)? addNews,
+    TResult Function(DeleteNews value)? deleteNews,
+    TResult Function(PinNews value)? pinNews,
+    TResult Function(UnpinNews value)? unpinNews,
+    TResult Function(ReplacePinnedNews value)? replacePinnedNews,
+    required TResult orElse(),
   }) {
-    assert(orElse != null);
     if (pinNews != null) {
       return pinNews(this);
     }
@@ -859,11 +796,11 @@ class _$PinNews implements PinNews {
 }
 
 abstract class PinNews implements NewsEvent {
-  const factory PinNews({@required String id}) = _$PinNews;
+  const factory PinNews({required String id}) = _$PinNews;
 
-  String get id;
+  String get id => throw _privateConstructorUsedError;
   @JsonKey(ignore: true)
-  $PinNewsCopyWith<PinNews> get copyWith;
+  $PinNewsCopyWith<PinNews> get copyWith => throw _privateConstructorUsedError;
 }
 
 /// @nodoc
@@ -884,17 +821,21 @@ class _$UnpinNewsCopyWithImpl<$Res> extends _$NewsEventCopyWithImpl<$Res>
 
   @override
   $Res call({
-    Object id = freezed,
+    Object? id = freezed,
   }) {
     return _then(UnpinNews(
-      id: id == freezed ? _value.id : id as String,
+      id: id == freezed
+          ? _value.id
+          : id // ignore: cast_nullable_to_non_nullable
+              as String,
     ));
   }
 }
 
 /// @nodoc
+
 class _$UnpinNews implements UnpinNews {
-  const _$UnpinNews({@required this.id}) : assert(id != null);
+  const _$UnpinNews({required this.id});
 
   @override
   final String id;
@@ -923,38 +864,30 @@ class _$UnpinNews implements UnpinNews {
 
   @override
   @optionalTypeArgs
-  TResult when<TResult extends Object>({
-    @required TResult initializeNews(),
-    @required TResult newsUpdated(List<News> newsList, String gymId),
-    @required TResult addNews(String content, Author author),
-    @required TResult deleteNews(String id),
-    @required TResult pinNews(String id),
-    @required TResult unpinNews(String id),
-    @required TResult replacePinnedNews(String id),
+  TResult when<TResult extends Object?>({
+    required TResult Function() initializeNews,
+    required TResult Function(List<News> newsList, String gymId) newsUpdated,
+    required TResult Function(String content, Author author) addNews,
+    required TResult Function(String id) deleteNews,
+    required TResult Function(String id) pinNews,
+    required TResult Function(String id) unpinNews,
+    required TResult Function(String id) replacePinnedNews,
   }) {
-    assert(initializeNews != null);
-    assert(newsUpdated != null);
-    assert(addNews != null);
-    assert(deleteNews != null);
-    assert(pinNews != null);
-    assert(unpinNews != null);
-    assert(replacePinnedNews != null);
     return unpinNews(id);
   }
 
   @override
   @optionalTypeArgs
-  TResult maybeWhen<TResult extends Object>({
-    TResult initializeNews(),
-    TResult newsUpdated(List<News> newsList, String gymId),
-    TResult addNews(String content, Author author),
-    TResult deleteNews(String id),
-    TResult pinNews(String id),
-    TResult unpinNews(String id),
-    TResult replacePinnedNews(String id),
-    @required TResult orElse(),
+  TResult maybeWhen<TResult extends Object?>({
+    TResult Function()? initializeNews,
+    TResult Function(List<News> newsList, String gymId)? newsUpdated,
+    TResult Function(String content, Author author)? addNews,
+    TResult Function(String id)? deleteNews,
+    TResult Function(String id)? pinNews,
+    TResult Function(String id)? unpinNews,
+    TResult Function(String id)? replacePinnedNews,
+    required TResult orElse(),
   }) {
-    assert(orElse != null);
     if (unpinNews != null) {
       return unpinNews(id);
     }
@@ -963,38 +896,30 @@ class _$UnpinNews implements UnpinNews {
 
   @override
   @optionalTypeArgs
-  TResult map<TResult extends Object>({
-    @required TResult initializeNews(InitializeNews value),
-    @required TResult newsUpdated(NewsUpdated value),
-    @required TResult addNews(AddNews value),
-    @required TResult deleteNews(DeleteNews value),
-    @required TResult pinNews(PinNews value),
-    @required TResult unpinNews(UnpinNews value),
-    @required TResult replacePinnedNews(ReplacePinnedNews value),
+  TResult map<TResult extends Object?>({
+    required TResult Function(InitializeNews value) initializeNews,
+    required TResult Function(NewsUpdated value) newsUpdated,
+    required TResult Function(AddNews value) addNews,
+    required TResult Function(DeleteNews value) deleteNews,
+    required TResult Function(PinNews value) pinNews,
+    required TResult Function(UnpinNews value) unpinNews,
+    required TResult Function(ReplacePinnedNews value) replacePinnedNews,
   }) {
-    assert(initializeNews != null);
-    assert(newsUpdated != null);
-    assert(addNews != null);
-    assert(deleteNews != null);
-    assert(pinNews != null);
-    assert(unpinNews != null);
-    assert(replacePinnedNews != null);
     return unpinNews(this);
   }
 
   @override
   @optionalTypeArgs
-  TResult maybeMap<TResult extends Object>({
-    TResult initializeNews(InitializeNews value),
-    TResult newsUpdated(NewsUpdated value),
-    TResult addNews(AddNews value),
-    TResult deleteNews(DeleteNews value),
-    TResult pinNews(PinNews value),
-    TResult unpinNews(UnpinNews value),
-    TResult replacePinnedNews(ReplacePinnedNews value),
-    @required TResult orElse(),
+  TResult maybeMap<TResult extends Object?>({
+    TResult Function(InitializeNews value)? initializeNews,
+    TResult Function(NewsUpdated value)? newsUpdated,
+    TResult Function(AddNews value)? addNews,
+    TResult Function(DeleteNews value)? deleteNews,
+    TResult Function(PinNews value)? pinNews,
+    TResult Function(UnpinNews value)? unpinNews,
+    TResult Function(ReplacePinnedNews value)? replacePinnedNews,
+    required TResult orElse(),
   }) {
-    assert(orElse != null);
     if (unpinNews != null) {
       return unpinNews(this);
     }
@@ -1003,11 +928,12 @@ class _$UnpinNews implements UnpinNews {
 }
 
 abstract class UnpinNews implements NewsEvent {
-  const factory UnpinNews({@required String id}) = _$UnpinNews;
+  const factory UnpinNews({required String id}) = _$UnpinNews;
 
-  String get id;
+  String get id => throw _privateConstructorUsedError;
   @JsonKey(ignore: true)
-  $UnpinNewsCopyWith<UnpinNews> get copyWith;
+  $UnpinNewsCopyWith<UnpinNews> get copyWith =>
+      throw _privateConstructorUsedError;
 }
 
 /// @nodoc
@@ -1031,17 +957,21 @@ class _$ReplacePinnedNewsCopyWithImpl<$Res>
 
   @override
   $Res call({
-    Object id = freezed,
+    Object? id = freezed,
   }) {
     return _then(ReplacePinnedNews(
-      id: id == freezed ? _value.id : id as String,
+      id: id == freezed
+          ? _value.id
+          : id // ignore: cast_nullable_to_non_nullable
+              as String,
     ));
   }
 }
 
 /// @nodoc
+
 class _$ReplacePinnedNews implements ReplacePinnedNews {
-  const _$ReplacePinnedNews({@required this.id}) : assert(id != null);
+  const _$ReplacePinnedNews({required this.id});
 
   @override
   final String id;
@@ -1070,38 +1000,30 @@ class _$ReplacePinnedNews implements ReplacePinnedNews {
 
   @override
   @optionalTypeArgs
-  TResult when<TResult extends Object>({
-    @required TResult initializeNews(),
-    @required TResult newsUpdated(List<News> newsList, String gymId),
-    @required TResult addNews(String content, Author author),
-    @required TResult deleteNews(String id),
-    @required TResult pinNews(String id),
-    @required TResult unpinNews(String id),
-    @required TResult replacePinnedNews(String id),
+  TResult when<TResult extends Object?>({
+    required TResult Function() initializeNews,
+    required TResult Function(List<News> newsList, String gymId) newsUpdated,
+    required TResult Function(String content, Author author) addNews,
+    required TResult Function(String id) deleteNews,
+    required TResult Function(String id) pinNews,
+    required TResult Function(String id) unpinNews,
+    required TResult Function(String id) replacePinnedNews,
   }) {
-    assert(initializeNews != null);
-    assert(newsUpdated != null);
-    assert(addNews != null);
-    assert(deleteNews != null);
-    assert(pinNews != null);
-    assert(unpinNews != null);
-    assert(replacePinnedNews != null);
     return replacePinnedNews(id);
   }
 
   @override
   @optionalTypeArgs
-  TResult maybeWhen<TResult extends Object>({
-    TResult initializeNews(),
-    TResult newsUpdated(List<News> newsList, String gymId),
-    TResult addNews(String content, Author author),
-    TResult deleteNews(String id),
-    TResult pinNews(String id),
-    TResult unpinNews(String id),
-    TResult replacePinnedNews(String id),
-    @required TResult orElse(),
+  TResult maybeWhen<TResult extends Object?>({
+    TResult Function()? initializeNews,
+    TResult Function(List<News> newsList, String gymId)? newsUpdated,
+    TResult Function(String content, Author author)? addNews,
+    TResult Function(String id)? deleteNews,
+    TResult Function(String id)? pinNews,
+    TResult Function(String id)? unpinNews,
+    TResult Function(String id)? replacePinnedNews,
+    required TResult orElse(),
   }) {
-    assert(orElse != null);
     if (replacePinnedNews != null) {
       return replacePinnedNews(id);
     }
@@ -1110,38 +1032,30 @@ class _$ReplacePinnedNews implements ReplacePinnedNews {
 
   @override
   @optionalTypeArgs
-  TResult map<TResult extends Object>({
-    @required TResult initializeNews(InitializeNews value),
-    @required TResult newsUpdated(NewsUpdated value),
-    @required TResult addNews(AddNews value),
-    @required TResult deleteNews(DeleteNews value),
-    @required TResult pinNews(PinNews value),
-    @required TResult unpinNews(UnpinNews value),
-    @required TResult replacePinnedNews(ReplacePinnedNews value),
+  TResult map<TResult extends Object?>({
+    required TResult Function(InitializeNews value) initializeNews,
+    required TResult Function(NewsUpdated value) newsUpdated,
+    required TResult Function(AddNews value) addNews,
+    required TResult Function(DeleteNews value) deleteNews,
+    required TResult Function(PinNews value) pinNews,
+    required TResult Function(UnpinNews value) unpinNews,
+    required TResult Function(ReplacePinnedNews value) replacePinnedNews,
   }) {
-    assert(initializeNews != null);
-    assert(newsUpdated != null);
-    assert(addNews != null);
-    assert(deleteNews != null);
-    assert(pinNews != null);
-    assert(unpinNews != null);
-    assert(replacePinnedNews != null);
     return replacePinnedNews(this);
   }
 
   @override
   @optionalTypeArgs
-  TResult maybeMap<TResult extends Object>({
-    TResult initializeNews(InitializeNews value),
-    TResult newsUpdated(NewsUpdated value),
-    TResult addNews(AddNews value),
-    TResult deleteNews(DeleteNews value),
-    TResult pinNews(PinNews value),
-    TResult unpinNews(UnpinNews value),
-    TResult replacePinnedNews(ReplacePinnedNews value),
-    @required TResult orElse(),
+  TResult maybeMap<TResult extends Object?>({
+    TResult Function(InitializeNews value)? initializeNews,
+    TResult Function(NewsUpdated value)? newsUpdated,
+    TResult Function(AddNews value)? addNews,
+    TResult Function(DeleteNews value)? deleteNews,
+    TResult Function(PinNews value)? pinNews,
+    TResult Function(UnpinNews value)? unpinNews,
+    TResult Function(ReplacePinnedNews value)? replacePinnedNews,
+    required TResult orElse(),
   }) {
-    assert(orElse != null);
     if (replacePinnedNews != null) {
       return replacePinnedNews(this);
     }
@@ -1150,9 +1064,10 @@ class _$ReplacePinnedNews implements ReplacePinnedNews {
 }
 
 abstract class ReplacePinnedNews implements NewsEvent {
-  const factory ReplacePinnedNews({@required String id}) = _$ReplacePinnedNews;
+  const factory ReplacePinnedNews({required String id}) = _$ReplacePinnedNews;
 
-  String get id;
+  String get id => throw _privateConstructorUsedError;
   @JsonKey(ignore: true)
-  $ReplacePinnedNewsCopyWith<ReplacePinnedNews> get copyWith;
+  $ReplacePinnedNewsCopyWith<ReplacePinnedNews> get copyWith =>
+      throw _privateConstructorUsedError;
 }

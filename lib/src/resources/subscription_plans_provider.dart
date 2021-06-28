@@ -1,3 +1,5 @@
+// @dart=2.9
+
 import 'package:checkin/src/models/subscription_plan.dart';
 import 'package:checkin/src/repositories/subscription_plans_repository.dart';
 import 'package:cloud_firestore/cloud_firestore.dart';

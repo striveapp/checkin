@@ -1,3 +1,5 @@
+// @dart=2.9
+
 import 'package:checkin/src/blocs/profile/bloc.dart';
 import 'package:checkin/src/models/master.dart';
 import 'package:checkin/src/ui/components/loading_indicator.dart';

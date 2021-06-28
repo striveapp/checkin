@@ -1,5 +1,5 @@
 // GENERATED CODE - DO NOT MODIFY BY HAND
-// ignore_for_file: deprecated_member_use, deprecated_member_use_from_same_package, use_function_type_syntax_for_parameters, unnecessary_const, avoid_init_to_null, invalid_override_different_default_values_named, prefer_expression_function_bodies
+// ignore_for_file: unused_element, deprecated_member_use, deprecated_member_use_from_same_package, use_function_type_syntax_for_parameters, unnecessary_const, avoid_init_to_null, invalid_override_different_default_values_named, prefer_expression_function_bodies, annotate_overrides
 
 part of 'notification.dart';
 
@@ -9,16 +9,18 @@ part of 'notification.dart';
 
 T _$identity<T>(T value) => value;
 
+final _privateConstructorUsedError = UnsupportedError(
+    'It seems like you constructed your class using `MyClass._()`. This constructor is only meant to be used by freezed and you are not supposed to need it nor use it.\nPlease check the documentation here for more informations: https://github.com/rrousselGit/freezed#custom-getters-and-methods');
+
 /// @nodoc
 class _$NotificationTearOff {
   const _$NotificationTearOff();
 
-// ignore: unused_element
   BasicNotification basicNotification(
-      {@required String title,
-      List<String> titleLocArgs,
-      @required String body,
-      List<String> bodyLocArgs}) {
+      {required String title,
+      List<String>? titleLocArgs,
+      required String body,
+      List<String>? bodyLocArgs}) {
     return BasicNotification(
       title: title,
       titleLocArgs: titleLocArgs,
@@ -27,9 +29,8 @@ class _$NotificationTearOff {
     );
   }
 
-// ignore: unused_element
   RoutableNotification routableNotification(
-      {@required String title, @required String path}) {
+      {required String title, required String path}) {
     return RoutableNotification(
       title: title,
       path: path,
@@ -38,41 +39,46 @@ class _$NotificationTearOff {
 }
 
 /// @nodoc
-// ignore: unused_element
 const $Notification = _$NotificationTearOff();
 
 /// @nodoc
 mixin _$Notification {
-  String get title;
+  String get title => throw _privateConstructorUsedError;
 
   @optionalTypeArgs
-  TResult when<TResult extends Object>({
-    @required
-        TResult basicNotification(String title, List<String> titleLocArgs,
-            String body, List<String> bodyLocArgs),
-    @required TResult routableNotification(String title, String path),
-  });
+  TResult when<TResult extends Object?>({
+    required TResult Function(String title, List<String>? titleLocArgs,
+            String body, List<String>? bodyLocArgs)
+        basicNotification,
+    required TResult Function(String title, String path) routableNotification,
+  }) =>
+      throw _privateConstructorUsedError;
   @optionalTypeArgs
-  TResult maybeWhen<TResult extends Object>({
-    TResult basicNotification(String title, List<String> titleLocArgs,
-        String body, List<String> bodyLocArgs),
-    TResult routableNotification(String title, String path),
-    @required TResult orElse(),
-  });
+  TResult maybeWhen<TResult extends Object?>({
+    TResult Function(String title, List<String>? titleLocArgs, String body,
+            List<String>? bodyLocArgs)?
+        basicNotification,
+    TResult Function(String title, String path)? routableNotification,
+    required TResult orElse(),
+  }) =>
+      throw _privateConstructorUsedError;
   @optionalTypeArgs
-  TResult map<TResult extends Object>({
-    @required TResult basicNotification(BasicNotification value),
-    @required TResult routableNotification(RoutableNotification value),
-  });
+  TResult map<TResult extends Object?>({
+    required TResult Function(BasicNotification value) basicNotification,
+    required TResult Function(RoutableNotification value) routableNotification,
+  }) =>
+      throw _privateConstructorUsedError;
   @optionalTypeArgs
-  TResult maybeMap<TResult extends Object>({
-    TResult basicNotification(BasicNotification value),
-    TResult routableNotification(RoutableNotification value),
-    @required TResult orElse(),
-  });
+  TResult maybeMap<TResult extends Object?>({
+    TResult Function(BasicNotification value)? basicNotification,
+    TResult Function(RoutableNotification value)? routableNotification,
+    required TResult orElse(),
+  }) =>
+      throw _privateConstructorUsedError;
 
   @JsonKey(ignore: true)
-  $NotificationCopyWith<Notification> get copyWith;
+  $NotificationCopyWith<Notification> get copyWith =>
+      throw _privateConstructorUsedError;
 }
 
 /// @nodoc
@@ -93,10 +99,13 @@ class _$NotificationCopyWithImpl<$Res> implements $NotificationCopyWith<$Res> {
 
   @override
   $Res call({
-    Object title = freezed,
+    Object? title = freezed,
   }) {
     return _then(_value.copyWith(
-      title: title == freezed ? _value.title : title as String,
+      title: title == freezed
+          ? _value.title
+          : title // ignore: cast_nullable_to_non_nullable
+              as String,
     ));
   }
 }
@@ -110,9 +119,9 @@ abstract class $BasicNotificationCopyWith<$Res>
   @override
   $Res call(
       {String title,
-      List<String> titleLocArgs,
+      List<String>? titleLocArgs,
       String body,
-      List<String> bodyLocArgs});
+      List<String>? bodyLocArgs});
 }
 
 /// @nodoc
@@ -128,44 +137,51 @@ class _$BasicNotificationCopyWithImpl<$Res>
 
   @override
   $Res call({
-    Object title = freezed,
-    Object titleLocArgs = freezed,
-    Object body = freezed,
-    Object bodyLocArgs = freezed,
+    Object? title = freezed,
+    Object? titleLocArgs = freezed,
+    Object? body = freezed,
+    Object? bodyLocArgs = freezed,
   }) {
     return _then(BasicNotification(
-      title: title == freezed ? _value.title : title as String,
+      title: title == freezed
+          ? _value.title
+          : title // ignore: cast_nullable_to_non_nullable
+              as String,
       titleLocArgs: titleLocArgs == freezed
           ? _value.titleLocArgs
-          : titleLocArgs as List<String>,
-      body: body == freezed ? _value.body : body as String,
+          : titleLocArgs // ignore: cast_nullable_to_non_nullable
+              as List<String>?,
+      body: body == freezed
+          ? _value.body
+          : body // ignore: cast_nullable_to_non_nullable
+              as String,
       bodyLocArgs: bodyLocArgs == freezed
           ? _value.bodyLocArgs
-          : bodyLocArgs as List<String>,
+          : bodyLocArgs // ignore: cast_nullable_to_non_nullable
+              as List<String>?,
     ));
   }
 }
 
 /// @nodoc
+
 class _$BasicNotification
     with DiagnosticableTreeMixin
     implements BasicNotification {
   _$BasicNotification(
-      {@required this.title,
+      {required this.title,
       this.titleLocArgs,
-      @required this.body,
-      this.bodyLocArgs})
-      : assert(title != null),
-        assert(body != null);
+      required this.body,
+      this.bodyLocArgs});
 
   @override
   final String title;
   @override
-  final List<String> titleLocArgs;
+  final List<String>? titleLocArgs;
   @override
   final String body;
   @override
-  final List<String> bodyLocArgs;
+  final List<String>? bodyLocArgs;
 
   @override
   String toString({DiagnosticLevel minLevel = DiagnosticLevel.info}) {
@@ -214,26 +230,24 @@ class _$BasicNotification
 
   @override
   @optionalTypeArgs
-  TResult when<TResult extends Object>({
-    @required
-        TResult basicNotification(String title, List<String> titleLocArgs,
-            String body, List<String> bodyLocArgs),
-    @required TResult routableNotification(String title, String path),
+  TResult when<TResult extends Object?>({
+    required TResult Function(String title, List<String>? titleLocArgs,
+            String body, List<String>? bodyLocArgs)
+        basicNotification,
+    required TResult Function(String title, String path) routableNotification,
   }) {
-    assert(basicNotification != null);
-    assert(routableNotification != null);
     return basicNotification(title, titleLocArgs, body, bodyLocArgs);
   }
 
   @override
   @optionalTypeArgs
-  TResult maybeWhen<TResult extends Object>({
-    TResult basicNotification(String title, List<String> titleLocArgs,
-        String body, List<String> bodyLocArgs),
-    TResult routableNotification(String title, String path),
-    @required TResult orElse(),
+  TResult maybeWhen<TResult extends Object?>({
+    TResult Function(String title, List<String>? titleLocArgs, String body,
+            List<String>? bodyLocArgs)?
+        basicNotification,
+    TResult Function(String title, String path)? routableNotification,
+    required TResult orElse(),
   }) {
-    assert(orElse != null);
     if (basicNotification != null) {
       return basicNotification(title, titleLocArgs, body, bodyLocArgs);
     }
@@ -242,23 +256,20 @@ class _$BasicNotification
 
   @override
   @optionalTypeArgs
-  TResult map<TResult extends Object>({
-    @required TResult basicNotification(BasicNotification value),
-    @required TResult routableNotification(RoutableNotification value),
+  TResult map<TResult extends Object?>({
+    required TResult Function(BasicNotification value) basicNotification,
+    required TResult Function(RoutableNotification value) routableNotification,
   }) {
-    assert(basicNotification != null);
-    assert(routableNotification != null);
     return basicNotification(this);
   }
 
   @override
   @optionalTypeArgs
-  TResult maybeMap<TResult extends Object>({
-    TResult basicNotification(BasicNotification value),
-    TResult routableNotification(RoutableNotification value),
-    @required TResult orElse(),
+  TResult maybeMap<TResult extends Object?>({
+    TResult Function(BasicNotification value)? basicNotification,
+    TResult Function(RoutableNotification value)? routableNotification,
+    required TResult orElse(),
   }) {
-    assert(orElse != null);
     if (basicNotification != null) {
       return basicNotification(this);
     }
@@ -268,19 +279,20 @@ class _$BasicNotification
 
 abstract class BasicNotification implements Notification {
   factory BasicNotification(
-      {@required String title,
-      List<String> titleLocArgs,
-      @required String body,
-      List<String> bodyLocArgs}) = _$BasicNotification;
+      {required String title,
+      List<String>? titleLocArgs,
+      required String body,
+      List<String>? bodyLocArgs}) = _$BasicNotification;
 
   @override
-  String get title;
-  List<String> get titleLocArgs;
-  String get body;
-  List<String> get bodyLocArgs;
+  String get title => throw _privateConstructorUsedError;
+  List<String>? get titleLocArgs => throw _privateConstructorUsedError;
+  String get body => throw _privateConstructorUsedError;
+  List<String>? get bodyLocArgs => throw _privateConstructorUsedError;
   @override
   @JsonKey(ignore: true)
-  $BasicNotificationCopyWith<BasicNotification> get copyWith;
+  $BasicNotificationCopyWith<BasicNotification> get copyWith =>
+      throw _privateConstructorUsedError;
 }
 
 /// @nodoc
@@ -306,23 +318,28 @@ class _$RoutableNotificationCopyWithImpl<$Res>
 
   @override
   $Res call({
-    Object title = freezed,
-    Object path = freezed,
+    Object? title = freezed,
+    Object? path = freezed,
   }) {
     return _then(RoutableNotification(
-      title: title == freezed ? _value.title : title as String,
-      path: path == freezed ? _value.path : path as String,
+      title: title == freezed
+          ? _value.title
+          : title // ignore: cast_nullable_to_non_nullable
+              as String,
+      path: path == freezed
+          ? _value.path
+          : path // ignore: cast_nullable_to_non_nullable
+              as String,
     ));
   }
 }
 
 /// @nodoc
+
 class _$RoutableNotification
     with DiagnosticableTreeMixin
     implements RoutableNotification {
-  _$RoutableNotification({@required this.title, @required this.path})
-      : assert(title != null),
-        assert(path != null);
+  _$RoutableNotification({required this.title, required this.path});
 
   @override
   final String title;
@@ -367,26 +384,24 @@ class _$RoutableNotification
 
   @override
   @optionalTypeArgs
-  TResult when<TResult extends Object>({
-    @required
-        TResult basicNotification(String title, List<String> titleLocArgs,
-            String body, List<String> bodyLocArgs),
-    @required TResult routableNotification(String title, String path),
+  TResult when<TResult extends Object?>({
+    required TResult Function(String title, List<String>? titleLocArgs,
+            String body, List<String>? bodyLocArgs)
+        basicNotification,
+    required TResult Function(String title, String path) routableNotification,
   }) {
-    assert(basicNotification != null);
-    assert(routableNotification != null);
     return routableNotification(title, path);
   }
 
   @override
   @optionalTypeArgs
-  TResult maybeWhen<TResult extends Object>({
-    TResult basicNotification(String title, List<String> titleLocArgs,
-        String body, List<String> bodyLocArgs),
-    TResult routableNotification(String title, String path),
-    @required TResult orElse(),
+  TResult maybeWhen<TResult extends Object?>({
+    TResult Function(String title, List<String>? titleLocArgs, String body,
+            List<String>? bodyLocArgs)?
+        basicNotification,
+    TResult Function(String title, String path)? routableNotification,
+    required TResult orElse(),
   }) {
-    assert(orElse != null);
     if (routableNotification != null) {
       return routableNotification(title, path);
     }
@@ -395,23 +410,20 @@ class _$RoutableNotification
 
   @override
   @optionalTypeArgs
-  TResult map<TResult extends Object>({
-    @required TResult basicNotification(BasicNotification value),
-    @required TResult routableNotification(RoutableNotification value),
+  TResult map<TResult extends Object?>({
+    required TResult Function(BasicNotification value) basicNotification,
+    required TResult Function(RoutableNotification value) routableNotification,
   }) {
-    assert(basicNotification != null);
-    assert(routableNotification != null);
     return routableNotification(this);
   }
 
   @override
   @optionalTypeArgs
-  TResult maybeMap<TResult extends Object>({
-    TResult basicNotification(BasicNotification value),
-    TResult routableNotification(RoutableNotification value),
-    @required TResult orElse(),
+  TResult maybeMap<TResult extends Object?>({
+    TResult Function(BasicNotification value)? basicNotification,
+    TResult Function(RoutableNotification value)? routableNotification,
+    required TResult orElse(),
   }) {
-    assert(orElse != null);
     if (routableNotification != null) {
       return routableNotification(this);
     }
@@ -420,13 +432,14 @@ class _$RoutableNotification
 }
 
 abstract class RoutableNotification implements Notification {
-  factory RoutableNotification(
-      {@required String title, @required String path}) = _$RoutableNotification;
+  factory RoutableNotification({required String title, required String path}) =
+      _$RoutableNotification;
 
   @override
-  String get title;
-  String get path;
+  String get title => throw _privateConstructorUsedError;
+  String get path => throw _privateConstructorUsedError;
   @override
   @JsonKey(ignore: true)
-  $RoutableNotificationCopyWith<RoutableNotification> get copyWith;
+  $RoutableNotificationCopyWith<RoutableNotification> get copyWith =>
+      throw _privateConstructorUsedError;
 }

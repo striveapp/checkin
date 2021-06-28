@@ -1,3 +1,5 @@
+// @dart=2.9
+
 import 'package:bloc/bloc.dart';
 import 'package:checkin/src/themes/theme.dart';
 import 'package:flutter/material.dart';

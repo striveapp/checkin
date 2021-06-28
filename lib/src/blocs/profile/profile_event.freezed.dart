@@ -1,5 +1,5 @@
 // GENERATED CODE - DO NOT MODIFY BY HAND
-// ignore_for_file: deprecated_member_use, deprecated_member_use_from_same_package, use_function_type_syntax_for_parameters, unnecessary_const, avoid_init_to_null, invalid_override_different_default_values_named, prefer_expression_function_bodies
+// ignore_for_file: unused_element, deprecated_member_use, deprecated_member_use_from_same_package, use_function_type_syntax_for_parameters, unnecessary_const, avoid_init_to_null, invalid_override_different_default_values_named, prefer_expression_function_bodies, annotate_overrides
 
 part of 'profile_event.dart';
 
@@ -9,52 +9,48 @@ part of 'profile_event.dart';
 
 T _$identity<T>(T value) => value;
 
+final _privateConstructorUsedError = UnsupportedError(
+    'It seems like you constructed your class using `MyClass._()`. This constructor is only meant to be used by freezed and you are not supposed to need it nor use it.\nPlease check the documentation here for more informations: https://github.com/rrousselGit/freezed#custom-getters-and-methods');
+
 /// @nodoc
 class _$ProfileEventTearOff {
   const _$ProfileEventTearOff();
 
-// ignore: unused_element
   InitializeProfile initializeProfile() {
     return const InitializeProfile();
   }
 
-// ignore: unused_element
   ProfileUpdated profileUpdated(
-      {@required User user, @required bool isCurrentUser}) {
+      {required User user, required bool isCurrentUser}) {
     return ProfileUpdated(
       user: user,
       isCurrentUser: isCurrentUser,
     );
   }
 
-// ignore: unused_element
-  UpdateImageUrl updateImageUrl({@required String userEmail}) {
+  UpdateImageUrl updateImageUrl({required String userEmail}) {
     return UpdateImageUrl(
       userEmail: userEmail,
     );
   }
 
-// ignore: unused_element
-  UpdateName updateName(
-      {@required String userEmail, @required String newName}) {
+  UpdateName updateName({required String userEmail, required String newName}) {
     return UpdateName(
       userEmail: userEmail,
       newName: newName,
     );
   }
 
-// ignore: unused_element
   UpdateGrade updateGrade(
-      {@required String userEmail, @required Grade newGrade}) {
+      {required String userEmail, required Grade newGrade}) {
     return UpdateGrade(
       userEmail: userEmail,
       newGrade: newGrade,
     );
   }
 
-// ignore: unused_element
   UpdateSelectedGym updateSelectedGym(
-      {@required String userEmail, @required String newGymId}) {
+      {required String userEmail, required String newGymId}) {
     return UpdateSelectedGym(
       userEmail: userEmail,
       newGymId: newGymId,
@@ -63,49 +59,53 @@ class _$ProfileEventTearOff {
 }
 
 /// @nodoc
-// ignore: unused_element
 const $ProfileEvent = _$ProfileEventTearOff();
 
 /// @nodoc
 mixin _$ProfileEvent {
   @optionalTypeArgs
-  TResult when<TResult extends Object>({
-    @required TResult initializeProfile(),
-    @required TResult profileUpdated(User user, bool isCurrentUser),
-    @required TResult updateImageUrl(String userEmail),
-    @required TResult updateName(String userEmail, String newName),
-    @required TResult updateGrade(String userEmail, Grade newGrade),
-    @required TResult updateSelectedGym(String userEmail, String newGymId),
-  });
+  TResult when<TResult extends Object?>({
+    required TResult Function() initializeProfile,
+    required TResult Function(User user, bool isCurrentUser) profileUpdated,
+    required TResult Function(String userEmail) updateImageUrl,
+    required TResult Function(String userEmail, String newName) updateName,
+    required TResult Function(String userEmail, Grade newGrade) updateGrade,
+    required TResult Function(String userEmail, String newGymId)
+        updateSelectedGym,
+  }) =>
+      throw _privateConstructorUsedError;
   @optionalTypeArgs
-  TResult maybeWhen<TResult extends Object>({
-    TResult initializeProfile(),
-    TResult profileUpdated(User user, bool isCurrentUser),
-    TResult updateImageUrl(String userEmail),
-    TResult updateName(String userEmail, String newName),
-    TResult updateGrade(String userEmail, Grade newGrade),
-    TResult updateSelectedGym(String userEmail, String newGymId),
-    @required TResult orElse(),
-  });
+  TResult maybeWhen<TResult extends Object?>({
+    TResult Function()? initializeProfile,
+    TResult Function(User user, bool isCurrentUser)? profileUpdated,
+    TResult Function(String userEmail)? updateImageUrl,
+    TResult Function(String userEmail, String newName)? updateName,
+    TResult Function(String userEmail, Grade newGrade)? updateGrade,
+    TResult Function(String userEmail, String newGymId)? updateSelectedGym,
+    required TResult orElse(),
+  }) =>
+      throw _privateConstructorUsedError;
   @optionalTypeArgs
-  TResult map<TResult extends Object>({
-    @required TResult initializeProfile(InitializeProfile value),
-    @required TResult profileUpdated(ProfileUpdated value),
-    @required TResult updateImageUrl(UpdateImageUrl value),
-    @required TResult updateName(UpdateName value),
-    @required TResult updateGrade(UpdateGrade value),
-    @required TResult updateSelectedGym(UpdateSelectedGym value),
-  });
+  TResult map<TResult extends Object?>({
+    required TResult Function(InitializeProfile value) initializeProfile,
+    required TResult Function(ProfileUpdated value) profileUpdated,
+    required TResult Function(UpdateImageUrl value) updateImageUrl,
+    required TResult Function(UpdateName value) updateName,
+    required TResult Function(UpdateGrade value) updateGrade,
+    required TResult Function(UpdateSelectedGym value) updateSelectedGym,
+  }) =>
+      throw _privateConstructorUsedError;
   @optionalTypeArgs
-  TResult maybeMap<TResult extends Object>({
-    TResult initializeProfile(InitializeProfile value),
-    TResult profileUpdated(ProfileUpdated value),
-    TResult updateImageUrl(UpdateImageUrl value),
-    TResult updateName(UpdateName value),
-    TResult updateGrade(UpdateGrade value),
-    TResult updateSelectedGym(UpdateSelectedGym value),
-    @required TResult orElse(),
-  });
+  TResult maybeMap<TResult extends Object?>({
+    TResult Function(InitializeProfile value)? initializeProfile,
+    TResult Function(ProfileUpdated value)? profileUpdated,
+    TResult Function(UpdateImageUrl value)? updateImageUrl,
+    TResult Function(UpdateName value)? updateName,
+    TResult Function(UpdateGrade value)? updateGrade,
+    TResult Function(UpdateSelectedGym value)? updateSelectedGym,
+    required TResult orElse(),
+  }) =>
+      throw _privateConstructorUsedError;
 }
 
 /// @nodoc
@@ -144,6 +144,7 @@ class _$InitializeProfileCopyWithImpl<$Res>
 }
 
 /// @nodoc
+
 class _$InitializeProfile
     with DiagnosticableTreeMixin
     implements InitializeProfile {
@@ -171,35 +172,29 @@ class _$InitializeProfile
 
   @override
   @optionalTypeArgs
-  TResult when<TResult extends Object>({
-    @required TResult initializeProfile(),
-    @required TResult profileUpdated(User user, bool isCurrentUser),
-    @required TResult updateImageUrl(String userEmail),
-    @required TResult updateName(String userEmail, String newName),
-    @required TResult updateGrade(String userEmail, Grade newGrade),
-    @required TResult updateSelectedGym(String userEmail, String newGymId),
+  TResult when<TResult extends Object?>({
+    required TResult Function() initializeProfile,
+    required TResult Function(User user, bool isCurrentUser) profileUpdated,
+    required TResult Function(String userEmail) updateImageUrl,
+    required TResult Function(String userEmail, String newName) updateName,
+    required TResult Function(String userEmail, Grade newGrade) updateGrade,
+    required TResult Function(String userEmail, String newGymId)
+        updateSelectedGym,
   }) {
-    assert(initializeProfile != null);
-    assert(profileUpdated != null);
-    assert(updateImageUrl != null);
-    assert(updateName != null);
-    assert(updateGrade != null);
-    assert(updateSelectedGym != null);
     return initializeProfile();
   }
 
   @override
   @optionalTypeArgs
-  TResult maybeWhen<TResult extends Object>({
-    TResult initializeProfile(),
-    TResult profileUpdated(User user, bool isCurrentUser),
-    TResult updateImageUrl(String userEmail),
-    TResult updateName(String userEmail, String newName),
-    TResult updateGrade(String userEmail, Grade newGrade),
-    TResult updateSelectedGym(String userEmail, String newGymId),
-    @required TResult orElse(),
+  TResult maybeWhen<TResult extends Object?>({
+    TResult Function()? initializeProfile,
+    TResult Function(User user, bool isCurrentUser)? profileUpdated,
+    TResult Function(String userEmail)? updateImageUrl,
+    TResult Function(String userEmail, String newName)? updateName,
+    TResult Function(String userEmail, Grade newGrade)? updateGrade,
+    TResult Function(String userEmail, String newGymId)? updateSelectedGym,
+    required TResult orElse(),
   }) {
-    assert(orElse != null);
     if (initializeProfile != null) {
       return initializeProfile();
     }
@@ -208,35 +203,28 @@ class _$InitializeProfile
 
   @override
   @optionalTypeArgs
-  TResult map<TResult extends Object>({
-    @required TResult initializeProfile(InitializeProfile value),
-    @required TResult profileUpdated(ProfileUpdated value),
-    @required TResult updateImageUrl(UpdateImageUrl value),
-    @required TResult updateName(UpdateName value),
-    @required TResult updateGrade(UpdateGrade value),
-    @required TResult updateSelectedGym(UpdateSelectedGym value),
+  TResult map<TResult extends Object?>({
+    required TResult Function(InitializeProfile value) initializeProfile,
+    required TResult Function(ProfileUpdated value) profileUpdated,
+    required TResult Function(UpdateImageUrl value) updateImageUrl,
+    required TResult Function(UpdateName value) updateName,
+    required TResult Function(UpdateGrade value) updateGrade,
+    required TResult Function(UpdateSelectedGym value) updateSelectedGym,
   }) {
-    assert(initializeProfile != null);
-    assert(profileUpdated != null);
-    assert(updateImageUrl != null);
-    assert(updateName != null);
-    assert(updateGrade != null);
-    assert(updateSelectedGym != null);
     return initializeProfile(this);
   }
 
   @override
   @optionalTypeArgs
-  TResult maybeMap<TResult extends Object>({
-    TResult initializeProfile(InitializeProfile value),
-    TResult profileUpdated(ProfileUpdated value),
-    TResult updateImageUrl(UpdateImageUrl value),
-    TResult updateName(UpdateName value),
-    TResult updateGrade(UpdateGrade value),
-    TResult updateSelectedGym(UpdateSelectedGym value),
-    @required TResult orElse(),
+  TResult maybeMap<TResult extends Object?>({
+    TResult Function(InitializeProfile value)? initializeProfile,
+    TResult Function(ProfileUpdated value)? profileUpdated,
+    TResult Function(UpdateImageUrl value)? updateImageUrl,
+    TResult Function(UpdateName value)? updateName,
+    TResult Function(UpdateGrade value)? updateGrade,
+    TResult Function(UpdateSelectedGym value)? updateSelectedGym,
+    required TResult orElse(),
   }) {
-    assert(orElse != null);
     if (initializeProfile != null) {
       return initializeProfile(this);
     }
@@ -271,22 +259,23 @@ class _$ProfileUpdatedCopyWithImpl<$Res>
 
   @override
   $Res call({
-    Object user = freezed,
-    Object isCurrentUser = freezed,
+    Object? user = freezed,
+    Object? isCurrentUser = freezed,
   }) {
     return _then(ProfileUpdated(
-      user: user == freezed ? _value.user : user as User,
+      user: user == freezed
+          ? _value.user
+          : user // ignore: cast_nullable_to_non_nullable
+              as User,
       isCurrentUser: isCurrentUser == freezed
           ? _value.isCurrentUser
-          : isCurrentUser as bool,
+          : isCurrentUser // ignore: cast_nullable_to_non_nullable
+              as bool,
     ));
   }
 
   @override
   $UserCopyWith<$Res> get user {
-    if (_value.user == null) {
-      return null;
-    }
     return $UserCopyWith<$Res>(_value.user, (value) {
       return _then(_value.copyWith(user: value));
     });
@@ -294,10 +283,9 @@ class _$ProfileUpdatedCopyWithImpl<$Res>
 }
 
 /// @nodoc
+
 class _$ProfileUpdated with DiagnosticableTreeMixin implements ProfileUpdated {
-  const _$ProfileUpdated({@required this.user, @required this.isCurrentUser})
-      : assert(user != null),
-        assert(isCurrentUser != null);
+  const _$ProfileUpdated({required this.user, required this.isCurrentUser});
 
   @override
   final User user;
@@ -342,35 +330,29 @@ class _$ProfileUpdated with DiagnosticableTreeMixin implements ProfileUpdated {
 
   @override
   @optionalTypeArgs
-  TResult when<TResult extends Object>({
-    @required TResult initializeProfile(),
-    @required TResult profileUpdated(User user, bool isCurrentUser),
-    @required TResult updateImageUrl(String userEmail),
-    @required TResult updateName(String userEmail, String newName),
-    @required TResult updateGrade(String userEmail, Grade newGrade),
-    @required TResult updateSelectedGym(String userEmail, String newGymId),
+  TResult when<TResult extends Object?>({
+    required TResult Function() initializeProfile,
+    required TResult Function(User user, bool isCurrentUser) profileUpdated,
+    required TResult Function(String userEmail) updateImageUrl,
+    required TResult Function(String userEmail, String newName) updateName,
+    required TResult Function(String userEmail, Grade newGrade) updateGrade,
+    required TResult Function(String userEmail, String newGymId)
+        updateSelectedGym,
   }) {
-    assert(initializeProfile != null);
-    assert(profileUpdated != null);
-    assert(updateImageUrl != null);
-    assert(updateName != null);
-    assert(updateGrade != null);
-    assert(updateSelectedGym != null);
     return profileUpdated(user, isCurrentUser);
   }
 
   @override
   @optionalTypeArgs
-  TResult maybeWhen<TResult extends Object>({
-    TResult initializeProfile(),
-    TResult profileUpdated(User user, bool isCurrentUser),
-    TResult updateImageUrl(String userEmail),
-    TResult updateName(String userEmail, String newName),
-    TResult updateGrade(String userEmail, Grade newGrade),
-    TResult updateSelectedGym(String userEmail, String newGymId),
-    @required TResult orElse(),
+  TResult maybeWhen<TResult extends Object?>({
+    TResult Function()? initializeProfile,
+    TResult Function(User user, bool isCurrentUser)? profileUpdated,
+    TResult Function(String userEmail)? updateImageUrl,
+    TResult Function(String userEmail, String newName)? updateName,
+    TResult Function(String userEmail, Grade newGrade)? updateGrade,
+    TResult Function(String userEmail, String newGymId)? updateSelectedGym,
+    required TResult orElse(),
   }) {
-    assert(orElse != null);
     if (profileUpdated != null) {
       return profileUpdated(user, isCurrentUser);
     }
@@ -379,35 +361,28 @@ class _$ProfileUpdated with DiagnosticableTreeMixin implements ProfileUpdated {
 
   @override
   @optionalTypeArgs
-  TResult map<TResult extends Object>({
-    @required TResult initializeProfile(InitializeProfile value),
-    @required TResult profileUpdated(ProfileUpdated value),
-    @required TResult updateImageUrl(UpdateImageUrl value),
-    @required TResult updateName(UpdateName value),
-    @required TResult updateGrade(UpdateGrade value),
-    @required TResult updateSelectedGym(UpdateSelectedGym value),
+  TResult map<TResult extends Object?>({
+    required TResult Function(InitializeProfile value) initializeProfile,
+    required TResult Function(ProfileUpdated value) profileUpdated,
+    required TResult Function(UpdateImageUrl value) updateImageUrl,
+    required TResult Function(UpdateName value) updateName,
+    required TResult Function(UpdateGrade value) updateGrade,
+    required TResult Function(UpdateSelectedGym value) updateSelectedGym,
   }) {
-    assert(initializeProfile != null);
-    assert(profileUpdated != null);
-    assert(updateImageUrl != null);
-    assert(updateName != null);
-    assert(updateGrade != null);
-    assert(updateSelectedGym != null);
     return profileUpdated(this);
   }
 
   @override
   @optionalTypeArgs
-  TResult maybeMap<TResult extends Object>({
-    TResult initializeProfile(InitializeProfile value),
-    TResult profileUpdated(ProfileUpdated value),
-    TResult updateImageUrl(UpdateImageUrl value),
-    TResult updateName(UpdateName value),
-    TResult updateGrade(UpdateGrade value),
-    TResult updateSelectedGym(UpdateSelectedGym value),
-    @required TResult orElse(),
+  TResult maybeMap<TResult extends Object?>({
+    TResult Function(InitializeProfile value)? initializeProfile,
+    TResult Function(ProfileUpdated value)? profileUpdated,
+    TResult Function(UpdateImageUrl value)? updateImageUrl,
+    TResult Function(UpdateName value)? updateName,
+    TResult Function(UpdateGrade value)? updateGrade,
+    TResult Function(UpdateSelectedGym value)? updateSelectedGym,
+    required TResult orElse(),
   }) {
-    assert(orElse != null);
     if (profileUpdated != null) {
       return profileUpdated(this);
     }
@@ -417,12 +392,13 @@ class _$ProfileUpdated with DiagnosticableTreeMixin implements ProfileUpdated {
 
 abstract class ProfileUpdated implements ProfileEvent {
   const factory ProfileUpdated(
-      {@required User user, @required bool isCurrentUser}) = _$ProfileUpdated;
+      {required User user, required bool isCurrentUser}) = _$ProfileUpdated;
 
-  User get user;
-  bool get isCurrentUser;
+  User get user => throw _privateConstructorUsedError;
+  bool get isCurrentUser => throw _privateConstructorUsedError;
   @JsonKey(ignore: true)
-  $ProfileUpdatedCopyWith<ProfileUpdated> get copyWith;
+  $ProfileUpdatedCopyWith<ProfileUpdated> get copyWith =>
+      throw _privateConstructorUsedError;
 }
 
 /// @nodoc
@@ -446,18 +422,21 @@ class _$UpdateImageUrlCopyWithImpl<$Res>
 
   @override
   $Res call({
-    Object userEmail = freezed,
+    Object? userEmail = freezed,
   }) {
     return _then(UpdateImageUrl(
-      userEmail: userEmail == freezed ? _value.userEmail : userEmail as String,
+      userEmail: userEmail == freezed
+          ? _value.userEmail
+          : userEmail // ignore: cast_nullable_to_non_nullable
+              as String,
     ));
   }
 }
 
 /// @nodoc
+
 class _$UpdateImageUrl with DiagnosticableTreeMixin implements UpdateImageUrl {
-  const _$UpdateImageUrl({@required this.userEmail})
-      : assert(userEmail != null);
+  const _$UpdateImageUrl({required this.userEmail});
 
   @override
   final String userEmail;
@@ -495,35 +474,29 @@ class _$UpdateImageUrl with DiagnosticableTreeMixin implements UpdateImageUrl {
 
   @override
   @optionalTypeArgs
-  TResult when<TResult extends Object>({
-    @required TResult initializeProfile(),
-    @required TResult profileUpdated(User user, bool isCurrentUser),
-    @required TResult updateImageUrl(String userEmail),
-    @required TResult updateName(String userEmail, String newName),
-    @required TResult updateGrade(String userEmail, Grade newGrade),
-    @required TResult updateSelectedGym(String userEmail, String newGymId),
+  TResult when<TResult extends Object?>({
+    required TResult Function() initializeProfile,
+    required TResult Function(User user, bool isCurrentUser) profileUpdated,
+    required TResult Function(String userEmail) updateImageUrl,
+    required TResult Function(String userEmail, String newName) updateName,
+    required TResult Function(String userEmail, Grade newGrade) updateGrade,
+    required TResult Function(String userEmail, String newGymId)
+        updateSelectedGym,
   }) {
-    assert(initializeProfile != null);
-    assert(profileUpdated != null);
-    assert(updateImageUrl != null);
-    assert(updateName != null);
-    assert(updateGrade != null);
-    assert(updateSelectedGym != null);
     return updateImageUrl(userEmail);
   }
 
   @override
   @optionalTypeArgs
-  TResult maybeWhen<TResult extends Object>({
-    TResult initializeProfile(),
-    TResult profileUpdated(User user, bool isCurrentUser),
-    TResult updateImageUrl(String userEmail),
-    TResult updateName(String userEmail, String newName),
-    TResult updateGrade(String userEmail, Grade newGrade),
-    TResult updateSelectedGym(String userEmail, String newGymId),
-    @required TResult orElse(),
+  TResult maybeWhen<TResult extends Object?>({
+    TResult Function()? initializeProfile,
+    TResult Function(User user, bool isCurrentUser)? profileUpdated,
+    TResult Function(String userEmail)? updateImageUrl,
+    TResult Function(String userEmail, String newName)? updateName,
+    TResult Function(String userEmail, Grade newGrade)? updateGrade,
+    TResult Function(String userEmail, String newGymId)? updateSelectedGym,
+    required TResult orElse(),
   }) {
-    assert(orElse != null);
     if (updateImageUrl != null) {
       return updateImageUrl(userEmail);
     }
@@ -532,35 +505,28 @@ class _$UpdateImageUrl with DiagnosticableTreeMixin implements UpdateImageUrl {
 
   @override
   @optionalTypeArgs
-  TResult map<TResult extends Object>({
-    @required TResult initializeProfile(InitializeProfile value),
-    @required TResult profileUpdated(ProfileUpdated value),
-    @required TResult updateImageUrl(UpdateImageUrl value),
-    @required TResult updateName(UpdateName value),
-    @required TResult updateGrade(UpdateGrade value),
-    @required TResult updateSelectedGym(UpdateSelectedGym value),
+  TResult map<TResult extends Object?>({
+    required TResult Function(InitializeProfile value) initializeProfile,
+    required TResult Function(ProfileUpdated value) profileUpdated,
+    required TResult Function(UpdateImageUrl value) updateImageUrl,
+    required TResult Function(UpdateName value) updateName,
+    required TResult Function(UpdateGrade value) updateGrade,
+    required TResult Function(UpdateSelectedGym value) updateSelectedGym,
   }) {
-    assert(initializeProfile != null);
-    assert(profileUpdated != null);
-    assert(updateImageUrl != null);
-    assert(updateName != null);
-    assert(updateGrade != null);
-    assert(updateSelectedGym != null);
     return updateImageUrl(this);
   }
 
   @override
   @optionalTypeArgs
-  TResult maybeMap<TResult extends Object>({
-    TResult initializeProfile(InitializeProfile value),
-    TResult profileUpdated(ProfileUpdated value),
-    TResult updateImageUrl(UpdateImageUrl value),
-    TResult updateName(UpdateName value),
-    TResult updateGrade(UpdateGrade value),
-    TResult updateSelectedGym(UpdateSelectedGym value),
-    @required TResult orElse(),
+  TResult maybeMap<TResult extends Object?>({
+    TResult Function(InitializeProfile value)? initializeProfile,
+    TResult Function(ProfileUpdated value)? profileUpdated,
+    TResult Function(UpdateImageUrl value)? updateImageUrl,
+    TResult Function(UpdateName value)? updateName,
+    TResult Function(UpdateGrade value)? updateGrade,
+    TResult Function(UpdateSelectedGym value)? updateSelectedGym,
+    required TResult orElse(),
   }) {
-    assert(orElse != null);
     if (updateImageUrl != null) {
       return updateImageUrl(this);
     }
@@ -569,11 +535,12 @@ class _$UpdateImageUrl with DiagnosticableTreeMixin implements UpdateImageUrl {
 }
 
 abstract class UpdateImageUrl implements ProfileEvent {
-  const factory UpdateImageUrl({@required String userEmail}) = _$UpdateImageUrl;
+  const factory UpdateImageUrl({required String userEmail}) = _$UpdateImageUrl;
 
-  String get userEmail;
+  String get userEmail => throw _privateConstructorUsedError;
   @JsonKey(ignore: true)
-  $UpdateImageUrlCopyWith<UpdateImageUrl> get copyWith;
+  $UpdateImageUrlCopyWith<UpdateImageUrl> get copyWith =>
+      throw _privateConstructorUsedError;
 }
 
 /// @nodoc
@@ -595,21 +562,26 @@ class _$UpdateNameCopyWithImpl<$Res> extends _$ProfileEventCopyWithImpl<$Res>
 
   @override
   $Res call({
-    Object userEmail = freezed,
-    Object newName = freezed,
+    Object? userEmail = freezed,
+    Object? newName = freezed,
   }) {
     return _then(UpdateName(
-      userEmail: userEmail == freezed ? _value.userEmail : userEmail as String,
-      newName: newName == freezed ? _value.newName : newName as String,
+      userEmail: userEmail == freezed
+          ? _value.userEmail
+          : userEmail // ignore: cast_nullable_to_non_nullable
+              as String,
+      newName: newName == freezed
+          ? _value.newName
+          : newName // ignore: cast_nullable_to_non_nullable
+              as String,
     ));
   }
 }
 
 /// @nodoc
+
 class _$UpdateName with DiagnosticableTreeMixin implements UpdateName {
-  const _$UpdateName({@required this.userEmail, @required this.newName})
-      : assert(userEmail != null),
-        assert(newName != null);
+  const _$UpdateName({required this.userEmail, required this.newName});
 
   @override
   final String userEmail;
@@ -654,35 +626,29 @@ class _$UpdateName with DiagnosticableTreeMixin implements UpdateName {
 
   @override
   @optionalTypeArgs
-  TResult when<TResult extends Object>({
-    @required TResult initializeProfile(),
-    @required TResult profileUpdated(User user, bool isCurrentUser),
-    @required TResult updateImageUrl(String userEmail),
-    @required TResult updateName(String userEmail, String newName),
-    @required TResult updateGrade(String userEmail, Grade newGrade),
-    @required TResult updateSelectedGym(String userEmail, String newGymId),
+  TResult when<TResult extends Object?>({
+    required TResult Function() initializeProfile,
+    required TResult Function(User user, bool isCurrentUser) profileUpdated,
+    required TResult Function(String userEmail) updateImageUrl,
+    required TResult Function(String userEmail, String newName) updateName,
+    required TResult Function(String userEmail, Grade newGrade) updateGrade,
+    required TResult Function(String userEmail, String newGymId)
+        updateSelectedGym,
   }) {
-    assert(initializeProfile != null);
-    assert(profileUpdated != null);
-    assert(updateImageUrl != null);
-    assert(updateName != null);
-    assert(updateGrade != null);
-    assert(updateSelectedGym != null);
     return updateName(userEmail, newName);
   }
 
   @override
   @optionalTypeArgs
-  TResult maybeWhen<TResult extends Object>({
-    TResult initializeProfile(),
-    TResult profileUpdated(User user, bool isCurrentUser),
-    TResult updateImageUrl(String userEmail),
-    TResult updateName(String userEmail, String newName),
-    TResult updateGrade(String userEmail, Grade newGrade),
-    TResult updateSelectedGym(String userEmail, String newGymId),
-    @required TResult orElse(),
+  TResult maybeWhen<TResult extends Object?>({
+    TResult Function()? initializeProfile,
+    TResult Function(User user, bool isCurrentUser)? profileUpdated,
+    TResult Function(String userEmail)? updateImageUrl,
+    TResult Function(String userEmail, String newName)? updateName,
+    TResult Function(String userEmail, Grade newGrade)? updateGrade,
+    TResult Function(String userEmail, String newGymId)? updateSelectedGym,
+    required TResult orElse(),
   }) {
-    assert(orElse != null);
     if (updateName != null) {
       return updateName(userEmail, newName);
     }
@@ -691,35 +657,28 @@ class _$UpdateName with DiagnosticableTreeMixin implements UpdateName {
 
   @override
   @optionalTypeArgs
-  TResult map<TResult extends Object>({
-    @required TResult initializeProfile(InitializeProfile value),
-    @required TResult profileUpdated(ProfileUpdated value),
-    @required TResult updateImageUrl(UpdateImageUrl value),
-    @required TResult updateName(UpdateName value),
-    @required TResult updateGrade(UpdateGrade value),
-    @required TResult updateSelectedGym(UpdateSelectedGym value),
+  TResult map<TResult extends Object?>({
+    required TResult Function(InitializeProfile value) initializeProfile,
+    required TResult Function(ProfileUpdated value) profileUpdated,
+    required TResult Function(UpdateImageUrl value) updateImageUrl,
+    required TResult Function(UpdateName value) updateName,
+    required TResult Function(UpdateGrade value) updateGrade,
+    required TResult Function(UpdateSelectedGym value) updateSelectedGym,
   }) {
-    assert(initializeProfile != null);
-    assert(profileUpdated != null);
-    assert(updateImageUrl != null);
-    assert(updateName != null);
-    assert(updateGrade != null);
-    assert(updateSelectedGym != null);
     return updateName(this);
   }
 
   @override
   @optionalTypeArgs
-  TResult maybeMap<TResult extends Object>({
-    TResult initializeProfile(InitializeProfile value),
-    TResult profileUpdated(ProfileUpdated value),
-    TResult updateImageUrl(UpdateImageUrl value),
-    TResult updateName(UpdateName value),
-    TResult updateGrade(UpdateGrade value),
-    TResult updateSelectedGym(UpdateSelectedGym value),
-    @required TResult orElse(),
+  TResult maybeMap<TResult extends Object?>({
+    TResult Function(InitializeProfile value)? initializeProfile,
+    TResult Function(ProfileUpdated value)? profileUpdated,
+    TResult Function(UpdateImageUrl value)? updateImageUrl,
+    TResult Function(UpdateName value)? updateName,
+    TResult Function(UpdateGrade value)? updateGrade,
+    TResult Function(UpdateSelectedGym value)? updateSelectedGym,
+    required TResult orElse(),
   }) {
-    assert(orElse != null);
     if (updateName != null) {
       return updateName(this);
     }
@@ -729,12 +688,13 @@ class _$UpdateName with DiagnosticableTreeMixin implements UpdateName {
 
 abstract class UpdateName implements ProfileEvent {
   const factory UpdateName(
-      {@required String userEmail, @required String newName}) = _$UpdateName;
+      {required String userEmail, required String newName}) = _$UpdateName;
 
-  String get userEmail;
-  String get newName;
+  String get userEmail => throw _privateConstructorUsedError;
+  String get newName => throw _privateConstructorUsedError;
   @JsonKey(ignore: true)
-  $UpdateNameCopyWith<UpdateName> get copyWith;
+  $UpdateNameCopyWith<UpdateName> get copyWith =>
+      throw _privateConstructorUsedError;
 }
 
 /// @nodoc
@@ -757,21 +717,26 @@ class _$UpdateGradeCopyWithImpl<$Res> extends _$ProfileEventCopyWithImpl<$Res>
 
   @override
   $Res call({
-    Object userEmail = freezed,
-    Object newGrade = freezed,
+    Object? userEmail = freezed,
+    Object? newGrade = freezed,
   }) {
     return _then(UpdateGrade(
-      userEmail: userEmail == freezed ? _value.userEmail : userEmail as String,
-      newGrade: newGrade == freezed ? _value.newGrade : newGrade as Grade,
+      userEmail: userEmail == freezed
+          ? _value.userEmail
+          : userEmail // ignore: cast_nullable_to_non_nullable
+              as String,
+      newGrade: newGrade == freezed
+          ? _value.newGrade
+          : newGrade // ignore: cast_nullable_to_non_nullable
+              as Grade,
     ));
   }
 }
 
 /// @nodoc
+
 class _$UpdateGrade with DiagnosticableTreeMixin implements UpdateGrade {
-  const _$UpdateGrade({@required this.userEmail, @required this.newGrade})
-      : assert(userEmail != null),
-        assert(newGrade != null);
+  const _$UpdateGrade({required this.userEmail, required this.newGrade});
 
   @override
   final String userEmail;
@@ -817,35 +782,29 @@ class _$UpdateGrade with DiagnosticableTreeMixin implements UpdateGrade {
 
   @override
   @optionalTypeArgs
-  TResult when<TResult extends Object>({
-    @required TResult initializeProfile(),
-    @required TResult profileUpdated(User user, bool isCurrentUser),
-    @required TResult updateImageUrl(String userEmail),
-    @required TResult updateName(String userEmail, String newName),
-    @required TResult updateGrade(String userEmail, Grade newGrade),
-    @required TResult updateSelectedGym(String userEmail, String newGymId),
+  TResult when<TResult extends Object?>({
+    required TResult Function() initializeProfile,
+    required TResult Function(User user, bool isCurrentUser) profileUpdated,
+    required TResult Function(String userEmail) updateImageUrl,
+    required TResult Function(String userEmail, String newName) updateName,
+    required TResult Function(String userEmail, Grade newGrade) updateGrade,
+    required TResult Function(String userEmail, String newGymId)
+        updateSelectedGym,
   }) {
-    assert(initializeProfile != null);
-    assert(profileUpdated != null);
-    assert(updateImageUrl != null);
-    assert(updateName != null);
-    assert(updateGrade != null);
-    assert(updateSelectedGym != null);
     return updateGrade(userEmail, newGrade);
   }
 
   @override
   @optionalTypeArgs
-  TResult maybeWhen<TResult extends Object>({
-    TResult initializeProfile(),
-    TResult profileUpdated(User user, bool isCurrentUser),
-    TResult updateImageUrl(String userEmail),
-    TResult updateName(String userEmail, String newName),
-    TResult updateGrade(String userEmail, Grade newGrade),
-    TResult updateSelectedGym(String userEmail, String newGymId),
-    @required TResult orElse(),
+  TResult maybeWhen<TResult extends Object?>({
+    TResult Function()? initializeProfile,
+    TResult Function(User user, bool isCurrentUser)? profileUpdated,
+    TResult Function(String userEmail)? updateImageUrl,
+    TResult Function(String userEmail, String newName)? updateName,
+    TResult Function(String userEmail, Grade newGrade)? updateGrade,
+    TResult Function(String userEmail, String newGymId)? updateSelectedGym,
+    required TResult orElse(),
   }) {
-    assert(orElse != null);
     if (updateGrade != null) {
       return updateGrade(userEmail, newGrade);
     }
@@ -854,35 +813,28 @@ class _$UpdateGrade with DiagnosticableTreeMixin implements UpdateGrade {
 
   @override
   @optionalTypeArgs
-  TResult map<TResult extends Object>({
-    @required TResult initializeProfile(InitializeProfile value),
-    @required TResult profileUpdated(ProfileUpdated value),
-    @required TResult updateImageUrl(UpdateImageUrl value),
-    @required TResult updateName(UpdateName value),
-    @required TResult updateGrade(UpdateGrade value),
-    @required TResult updateSelectedGym(UpdateSelectedGym value),
+  TResult map<TResult extends Object?>({
+    required TResult Function(InitializeProfile value) initializeProfile,
+    required TResult Function(ProfileUpdated value) profileUpdated,
+    required TResult Function(UpdateImageUrl value) updateImageUrl,
+    required TResult Function(UpdateName value) updateName,
+    required TResult Function(UpdateGrade value) updateGrade,
+    required TResult Function(UpdateSelectedGym value) updateSelectedGym,
   }) {
-    assert(initializeProfile != null);
-    assert(profileUpdated != null);
-    assert(updateImageUrl != null);
-    assert(updateName != null);
-    assert(updateGrade != null);
-    assert(updateSelectedGym != null);
     return updateGrade(this);
   }
 
   @override
   @optionalTypeArgs
-  TResult maybeMap<TResult extends Object>({
-    TResult initializeProfile(InitializeProfile value),
-    TResult profileUpdated(ProfileUpdated value),
-    TResult updateImageUrl(UpdateImageUrl value),
-    TResult updateName(UpdateName value),
-    TResult updateGrade(UpdateGrade value),
-    TResult updateSelectedGym(UpdateSelectedGym value),
-    @required TResult orElse(),
+  TResult maybeMap<TResult extends Object?>({
+    TResult Function(InitializeProfile value)? initializeProfile,
+    TResult Function(ProfileUpdated value)? profileUpdated,
+    TResult Function(UpdateImageUrl value)? updateImageUrl,
+    TResult Function(UpdateName value)? updateName,
+    TResult Function(UpdateGrade value)? updateGrade,
+    TResult Function(UpdateSelectedGym value)? updateSelectedGym,
+    required TResult orElse(),
   }) {
-    assert(orElse != null);
     if (updateGrade != null) {
       return updateGrade(this);
     }
@@ -892,12 +844,13 @@ class _$UpdateGrade with DiagnosticableTreeMixin implements UpdateGrade {
 
 abstract class UpdateGrade implements ProfileEvent {
   const factory UpdateGrade(
-      {@required String userEmail, @required Grade newGrade}) = _$UpdateGrade;
+      {required String userEmail, required Grade newGrade}) = _$UpdateGrade;
 
-  String get userEmail;
-  Grade get newGrade;
+  String get userEmail => throw _privateConstructorUsedError;
+  Grade get newGrade => throw _privateConstructorUsedError;
   @JsonKey(ignore: true)
-  $UpdateGradeCopyWith<UpdateGrade> get copyWith;
+  $UpdateGradeCopyWith<UpdateGrade> get copyWith =>
+      throw _privateConstructorUsedError;
 }
 
 /// @nodoc
@@ -921,23 +874,28 @@ class _$UpdateSelectedGymCopyWithImpl<$Res>
 
   @override
   $Res call({
-    Object userEmail = freezed,
-    Object newGymId = freezed,
+    Object? userEmail = freezed,
+    Object? newGymId = freezed,
   }) {
     return _then(UpdateSelectedGym(
-      userEmail: userEmail == freezed ? _value.userEmail : userEmail as String,
-      newGymId: newGymId == freezed ? _value.newGymId : newGymId as String,
+      userEmail: userEmail == freezed
+          ? _value.userEmail
+          : userEmail // ignore: cast_nullable_to_non_nullable
+              as String,
+      newGymId: newGymId == freezed
+          ? _value.newGymId
+          : newGymId // ignore: cast_nullable_to_non_nullable
+              as String,
     ));
   }
 }
 
 /// @nodoc
+
 class _$UpdateSelectedGym
     with DiagnosticableTreeMixin
     implements UpdateSelectedGym {
-  const _$UpdateSelectedGym({@required this.userEmail, @required this.newGymId})
-      : assert(userEmail != null),
-        assert(newGymId != null);
+  const _$UpdateSelectedGym({required this.userEmail, required this.newGymId});
 
   @override
   final String userEmail;
@@ -983,35 +941,29 @@ class _$UpdateSelectedGym
 
   @override
   @optionalTypeArgs
-  TResult when<TResult extends Object>({
-    @required TResult initializeProfile(),
-    @required TResult profileUpdated(User user, bool isCurrentUser),
-    @required TResult updateImageUrl(String userEmail),
-    @required TResult updateName(String userEmail, String newName),
-    @required TResult updateGrade(String userEmail, Grade newGrade),
-    @required TResult updateSelectedGym(String userEmail, String newGymId),
+  TResult when<TResult extends Object?>({
+    required TResult Function() initializeProfile,
+    required TResult Function(User user, bool isCurrentUser) profileUpdated,
+    required TResult Function(String userEmail) updateImageUrl,
+    required TResult Function(String userEmail, String newName) updateName,
+    required TResult Function(String userEmail, Grade newGrade) updateGrade,
+    required TResult Function(String userEmail, String newGymId)
+        updateSelectedGym,
   }) {
-    assert(initializeProfile != null);
-    assert(profileUpdated != null);
-    assert(updateImageUrl != null);
-    assert(updateName != null);
-    assert(updateGrade != null);
-    assert(updateSelectedGym != null);
     return updateSelectedGym(userEmail, newGymId);
   }
 
   @override
   @optionalTypeArgs
-  TResult maybeWhen<TResult extends Object>({
-    TResult initializeProfile(),
-    TResult profileUpdated(User user, bool isCurrentUser),
-    TResult updateImageUrl(String userEmail),
-    TResult updateName(String userEmail, String newName),
-    TResult updateGrade(String userEmail, Grade newGrade),
-    TResult updateSelectedGym(String userEmail, String newGymId),
-    @required TResult orElse(),
+  TResult maybeWhen<TResult extends Object?>({
+    TResult Function()? initializeProfile,
+    TResult Function(User user, bool isCurrentUser)? profileUpdated,
+    TResult Function(String userEmail)? updateImageUrl,
+    TResult Function(String userEmail, String newName)? updateName,
+    TResult Function(String userEmail, Grade newGrade)? updateGrade,
+    TResult Function(String userEmail, String newGymId)? updateSelectedGym,
+    required TResult orElse(),
   }) {
-    assert(orElse != null);
     if (updateSelectedGym != null) {
       return updateSelectedGym(userEmail, newGymId);
     }
@@ -1020,35 +972,28 @@ class _$UpdateSelectedGym
 
   @override
   @optionalTypeArgs
-  TResult map<TResult extends Object>({
-    @required TResult initializeProfile(InitializeProfile value),
-    @required TResult profileUpdated(ProfileUpdated value),
-    @required TResult updateImageUrl(UpdateImageUrl value),
-    @required TResult updateName(UpdateName value),
-    @required TResult updateGrade(UpdateGrade value),
-    @required TResult updateSelectedGym(UpdateSelectedGym value),
+  TResult map<TResult extends Object?>({
+    required TResult Function(InitializeProfile value) initializeProfile,
+    required TResult Function(ProfileUpdated value) profileUpdated,
+    required TResult Function(UpdateImageUrl value) updateImageUrl,
+    required TResult Function(UpdateName value) updateName,
+    required TResult Function(UpdateGrade value) updateGrade,
+    required TResult Function(UpdateSelectedGym value) updateSelectedGym,
   }) {
-    assert(initializeProfile != null);
-    assert(profileUpdated != null);
-    assert(updateImageUrl != null);
-    assert(updateName != null);
-    assert(updateGrade != null);
-    assert(updateSelectedGym != null);
     return updateSelectedGym(this);
   }
 
   @override
   @optionalTypeArgs
-  TResult maybeMap<TResult extends Object>({
-    TResult initializeProfile(InitializeProfile value),
-    TResult profileUpdated(ProfileUpdated value),
-    TResult updateImageUrl(UpdateImageUrl value),
-    TResult updateName(UpdateName value),
-    TResult updateGrade(UpdateGrade value),
-    TResult updateSelectedGym(UpdateSelectedGym value),
-    @required TResult orElse(),
+  TResult maybeMap<TResult extends Object?>({
+    TResult Function(InitializeProfile value)? initializeProfile,
+    TResult Function(ProfileUpdated value)? profileUpdated,
+    TResult Function(UpdateImageUrl value)? updateImageUrl,
+    TResult Function(UpdateName value)? updateName,
+    TResult Function(UpdateGrade value)? updateGrade,
+    TResult Function(UpdateSelectedGym value)? updateSelectedGym,
+    required TResult orElse(),
   }) {
-    assert(orElse != null);
     if (updateSelectedGym != null) {
       return updateSelectedGym(this);
     }
@@ -1058,11 +1003,12 @@ class _$UpdateSelectedGym
 
 abstract class UpdateSelectedGym implements ProfileEvent {
   const factory UpdateSelectedGym(
-      {@required String userEmail,
-      @required String newGymId}) = _$UpdateSelectedGym;
+      {required String userEmail,
+      required String newGymId}) = _$UpdateSelectedGym;
 
-  String get userEmail;
-  String get newGymId;
+  String get userEmail => throw _privateConstructorUsedError;
+  String get newGymId => throw _privateConstructorUsedError;
   @JsonKey(ignore: true)
-  $UpdateSelectedGymCopyWith<UpdateSelectedGym> get copyWith;
+  $UpdateSelectedGymCopyWith<UpdateSelectedGym> get copyWith =>
+      throw _privateConstructorUsedError;
 }

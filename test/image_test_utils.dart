@@ -1,3 +1,5 @@
+// @dart=2.9
+
 import 'dart:async';
 import 'dart:io';
 
@@ -42,8 +44,7 @@ import 'package:mockito/mockito.dart';
 ///
 /// The underlying code is taken from the Flutter repo:
 /// https://github.com/flutter/flutter/blob/master/dev/manual_tests/test/mock_image_http.dart
-R provideMockedNetworkImages<R>(R body(),
-    {List<int> imageBytes = _transparentImage}) {
+R provideMockedNetworkImages<R>(R body(), {List<int> imageBytes = _transparentImage}) {
   return HttpOverrides.runZoned(
     body,
     createHttpClient: (_) => _createMockImageHttpClient(_, imageBytes),
@@ -59,32 +60,25 @@ class MockHttpClientResponse extends Mock implements HttpClientResponse {}
 class MockHttpHeaders extends Mock implements HttpHeaders {}
 
 // Returns a mock HTTP client that responds with an image to all requests.
-MockHttpClient _createMockImageHttpClient(
-    SecurityContext _, List<int> imageBytes) {
+MockHttpClient _createMockImageHttpClient(SecurityContext _, List<int> imageBytes) {
   final MockHttpClient client = MockHttpClient();
   final MockHttpClientRequest request = MockHttpClientRequest();
   final MockHttpClientResponse response = MockHttpClientResponse();
   final MockHttpHeaders headers = MockHttpHeaders();
 
-  when(client.getUrl(any))
-      .thenAnswer((_) => Future<HttpClientRequest>.value(request));
+  when(client.getUrl(any)).thenAnswer((_) => Future<HttpClientRequest>.value(request));
   when(request.headers).thenReturn(headers);
-  when(request.close())
-      .thenAnswer((_) => Future<HttpClientResponse>.value(response));
+  when(request.close()).thenAnswer((_) => Future<HttpClientResponse>.value(response));
   when(response.contentLength).thenReturn(_transparentImage.length);
   when(response.statusCode).thenReturn(HttpStatus.ok);
   when(response.listen(any)).thenAnswer((Invocation invocation) {
     final void Function(List<int>) onData = invocation.positionalArguments[0];
     final void Function() onDone = invocation.namedArguments[#onDone];
-    final void Function(Object, [StackTrace]) onError =
-        invocation.namedArguments[#onError];
+    final void Function(Object, [StackTrace]) onError = invocation.namedArguments[#onError];
     final bool cancelOnError = invocation.namedArguments[#cancelOnError];
 
-    return Stream<List<int>>.fromIterable(<List<int>>[imageBytes]).listen(
-        onData,
-        onDone: onDone,
-        onError: onError,
-        cancelOnError: cancelOnError);
+    return Stream<List<int>>.fromIterable(<List<int>>[imageBytes])
+        .listen(onData, onDone: onDone, onError: onError, cancelOnError: cancelOnError);
   });
 
   return client;

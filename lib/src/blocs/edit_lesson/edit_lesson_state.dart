@@ -5,7 +5,7 @@ import 'package:freezed_annotation/freezed_annotation.dart';
 part 'edit_lesson_state.freezed.dart';
 
 @freezed
-abstract class EditLessonState with _$EditLessonState {
+class EditLessonState with _$EditLessonState {
   const factory EditLessonState.editLessonUninitialized() = EditLessonUninitialized;
-  const factory EditLessonState.mastersLoaded({@required List<Master> masters}) = MastersLoaded;
+  const factory EditLessonState.mastersLoaded({required List<Master> masters}) = MastersLoaded;
 }

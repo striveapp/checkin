@@ -8,9 +8,9 @@ part of 'test_gym.dart';
 
 _$_TestGym _$_$_TestGymFromJson(Map<String, dynamic> json) {
   return _$_TestGym(
-    domain: json['domain'] as String,
-    host: json['host'] as String,
-    stripePublicKey: json['stripePublicKey'] as String,
+    domain: json['domain'] as String?,
+    host: json['host'] as String?,
+    stripePublicKey: json['stripePublicKey'] as String?,
     requiredField: json['requiredField'] as String,
   );
 }
@@ -25,7 +25,7 @@ Map<String, dynamic> _$_$_TestGymToJson(_$_TestGym instance) =>
 
 _$_CaseOne _$_$_CaseOneFromJson(Map<String, dynamic> json) {
   return _$_CaseOne(
-    json['caseOne'] as String ?? 'caseOne',
+    json['caseOne'] as String? ?? 'caseOne',
   );
 }
 
@@ -58,7 +58,7 @@ Map<String, dynamic> _$_$CaseThreeToJson(_$CaseThree instance) =>
 
 _$CaseFour _$_$CaseFourFromJson(Map<String, dynamic> json) {
   return _$CaseFour(
-    caseFour: json['caseFour'] as String,
+    caseFour: json['caseFour'] as String?,
   );
 }
 

@@ -9,10 +9,10 @@ abstract class Membership with _$Membership {
   static const String INACTIVE_MEMBERSHIP = "inactive";
 
   factory Membership({
-    @required final String status,
-    final String customerId,
-    final String name,
-    final int currentPeriodEnd,
-    final double totalLessonsOfPlan,
+    required final String status,
+    final String? customerId,
+    final String? name,
+    final int? currentPeriodEnd,
+    final double? totalLessonsOfPlan,
   }) = _Membership;
 }

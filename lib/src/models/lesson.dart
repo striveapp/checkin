@@ -13,28 +13,28 @@ part 'lesson.freezed.dart';
 part 'lesson.g.dart';
 
 @freezed
-abstract class Lesson with _$Lesson {
+class Lesson with _$Lesson {
   factory Lesson({
-    final String id,
-    final String date,
-    final String name,
-    final String timeStart,
-    @Default("") final String timeEnd,
-    @WeekdayConverter() final Weekday weekDay,
-    final int timestamp,
-    final String imageUrl,
-    final String gymId,
-    final LessonConfig lessonConfig,
-    final String locationUrl,
+    final String? id,
+    final String? date,
+    final String? name,
+    final String? timeStart,
+    @Default("") String timeEnd,
+    @WeekdayConverter() final Weekday? weekDay,
+    final int? timestamp,
+    final String? imageUrl,
+    final String? gymId,
+    final LessonConfig? lessonConfig,
+    final String? locationUrl,
     // todo retrieve from Gym (config) https://trello.com/c/uIqJLgZL
-    @Default(DEFAULT_CLASS_CAPACITY) final int classCapacity,
-    @Default([]) final List<Master> masters,
-    @Default([]) final List<Attendee> attendees,
-    @Default([]) final List<Attendee> acceptedAttendees,
-    @Default(false) final bool isClosed,
+    @Default(DEFAULT_CLASS_CAPACITY) int classCapacity,
+    @Default([]) List<Master> masters,
+    @Default([]) List<Attendee> attendees,
+    @Default([]) List<Attendee> acceptedAttendees,
+    @Default(false) bool isClosed,
   }) = _Lesson;
 
-  factory Lesson.createDefault(String date, String gymId) {
+  factory Lesson.createDefault(String date, String? gymId) {
     return Lesson(
       id: CryptoUtil.generateUUID(),
       date: date,
@@ -51,15 +51,15 @@ abstract class Lesson with _$Lesson {
 }
 
 @freezed
-abstract class LessonTemplate with _$LessonTemplate {
+class LessonTemplate with _$LessonTemplate {
   factory LessonTemplate({
-    final String id,
-    final String name,
-    final String timeStart,
+    final String? id,
+    final String? name,
+    final String? timeStart,
     @Default("") final String timeEnd,
-    final Weekday weekDay,
-    final String imageUrl,
-    final LessonConfig lessonConfig,
+    final Weekday? weekDay,
+    final String? imageUrl,
+    final LessonConfig? lessonConfig,
     // todo retrieve from Gym (config) https://trello.com/c/uIqJLgZL
     @Default(DEFAULT_CLASS_CAPACITY) final int classCapacity,
     @Default([]) final List<Master> masters,

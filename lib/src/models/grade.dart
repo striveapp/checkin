@@ -1,3 +1,4 @@
+import 'package:collection/collection.dart' show IterableExtension;
 import 'package:flutter/material.dart';
 import 'package:flutter_svg/flutter_svg.dart';
 
@@ -15,7 +16,7 @@ Widget _getIcon(String color) => Tab(
       ),
     );
 
-extension GradeExtension on Grade {
+extension GradeExtension on Grade? {
   static final names = {
     Grade.white: 'White',
     Grade.blue: 'Blue',
@@ -48,14 +49,13 @@ extension GradeExtension on Grade {
     Grade.black: _getIcon('black'),
   };
 
-  String get name => names[this];
-  String get description => descriptions[this];
-  Widget get icon => icons[this];
-  Color get color => colors[this];
+  String? get name => names[this!];
+  String? get description => descriptions[this!];
+  Widget? get icon => icons[this!];
+  Color? get color => colors[this!];
 }
 
 extension GradeParser on String {
-  Grade toGrade() =>
-      Grade.values.firstWhere((element) => element.name.toLowerCase() == this?.toLowerCase(),
-          orElse: () => null);
+  Grade? toGrade() =>
+      Grade.values.firstWhereOrNull((element) => element.name!.toLowerCase() == this.toLowerCase());
 }

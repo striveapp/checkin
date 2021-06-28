@@ -1,5 +1,5 @@
 // GENERATED CODE - DO NOT MODIFY BY HAND
-// ignore_for_file: deprecated_member_use, deprecated_member_use_from_same_package, use_function_type_syntax_for_parameters, unnecessary_const, avoid_init_to_null, invalid_override_different_default_values_named, prefer_expression_function_bodies
+// ignore_for_file: unused_element, deprecated_member_use, deprecated_member_use_from_same_package, use_function_type_syntax_for_parameters, unnecessary_const, avoid_init_to_null, invalid_override_different_default_values_named, prefer_expression_function_bodies, annotate_overrides
 
 part of 'switch_gym_state.dart';
 
@@ -9,20 +9,21 @@ part of 'switch_gym_state.dart';
 
 T _$identity<T>(T value) => value;
 
+final _privateConstructorUsedError = UnsupportedError(
+    'It seems like you constructed your class using `MyClass._()`. This constructor is only meant to be used by freezed and you are not supposed to need it nor use it.\nPlease check the documentation here for more informations: https://github.com/rrousselGit/freezed#custom-getters-and-methods');
+
 /// @nodoc
 class _$SwitchGymsStateTearOff {
   const _$SwitchGymsStateTearOff();
 
-// ignore: unused_element
   SwitchGymsInitial switchGymsInitial() {
     return const SwitchGymsInitial();
   }
 
-// ignore: unused_element
   KnownGymsLoaded knownGymsLoaded(
-      {@required Gym selectedGym,
-      @required User currentUser,
-      @required List<String> knowGymsIds,
+      {required Gym selectedGym,
+      required User currentUser,
+      required List<String> knowGymsIds,
       bool showDropdown = false}) {
     return KnownGymsLoaded(
       selectedGym: selectedGym,
@@ -34,36 +35,40 @@ class _$SwitchGymsStateTearOff {
 }
 
 /// @nodoc
-// ignore: unused_element
 const $SwitchGymsState = _$SwitchGymsStateTearOff();
 
 /// @nodoc
 mixin _$SwitchGymsState {
   @optionalTypeArgs
-  TResult when<TResult extends Object>({
-    @required TResult switchGymsInitial(),
-    @required
-        TResult knownGymsLoaded(Gym selectedGym, User currentUser,
-            List<String> knowGymsIds, bool showDropdown),
-  });
+  TResult when<TResult extends Object?>({
+    required TResult Function() switchGymsInitial,
+    required TResult Function(Gym selectedGym, User currentUser,
+            List<String> knowGymsIds, bool showDropdown)
+        knownGymsLoaded,
+  }) =>
+      throw _privateConstructorUsedError;
   @optionalTypeArgs
-  TResult maybeWhen<TResult extends Object>({
-    TResult switchGymsInitial(),
-    TResult knownGymsLoaded(Gym selectedGym, User currentUser,
-        List<String> knowGymsIds, bool showDropdown),
-    @required TResult orElse(),
-  });
+  TResult maybeWhen<TResult extends Object?>({
+    TResult Function()? switchGymsInitial,
+    TResult Function(Gym selectedGym, User currentUser,
+            List<String> knowGymsIds, bool showDropdown)?
+        knownGymsLoaded,
+    required TResult orElse(),
+  }) =>
+      throw _privateConstructorUsedError;
   @optionalTypeArgs
-  TResult map<TResult extends Object>({
-    @required TResult switchGymsInitial(SwitchGymsInitial value),
-    @required TResult knownGymsLoaded(KnownGymsLoaded value),
-  });
+  TResult map<TResult extends Object?>({
+    required TResult Function(SwitchGymsInitial value) switchGymsInitial,
+    required TResult Function(KnownGymsLoaded value) knownGymsLoaded,
+  }) =>
+      throw _privateConstructorUsedError;
   @optionalTypeArgs
-  TResult maybeMap<TResult extends Object>({
-    TResult switchGymsInitial(SwitchGymsInitial value),
-    TResult knownGymsLoaded(KnownGymsLoaded value),
-    @required TResult orElse(),
-  });
+  TResult maybeMap<TResult extends Object?>({
+    TResult Function(SwitchGymsInitial value)? switchGymsInitial,
+    TResult Function(KnownGymsLoaded value)? knownGymsLoaded,
+    required TResult orElse(),
+  }) =>
+      throw _privateConstructorUsedError;
 }
 
 /// @nodoc
@@ -103,6 +108,7 @@ class _$SwitchGymsInitialCopyWithImpl<$Res>
 }
 
 /// @nodoc
+
 class _$SwitchGymsInitial implements SwitchGymsInitial {
   const _$SwitchGymsInitial();
 
@@ -121,26 +127,24 @@ class _$SwitchGymsInitial implements SwitchGymsInitial {
 
   @override
   @optionalTypeArgs
-  TResult when<TResult extends Object>({
-    @required TResult switchGymsInitial(),
-    @required
-        TResult knownGymsLoaded(Gym selectedGym, User currentUser,
-            List<String> knowGymsIds, bool showDropdown),
+  TResult when<TResult extends Object?>({
+    required TResult Function() switchGymsInitial,
+    required TResult Function(Gym selectedGym, User currentUser,
+            List<String> knowGymsIds, bool showDropdown)
+        knownGymsLoaded,
   }) {
-    assert(switchGymsInitial != null);
-    assert(knownGymsLoaded != null);
     return switchGymsInitial();
   }
 
   @override
   @optionalTypeArgs
-  TResult maybeWhen<TResult extends Object>({
-    TResult switchGymsInitial(),
-    TResult knownGymsLoaded(Gym selectedGym, User currentUser,
-        List<String> knowGymsIds, bool showDropdown),
-    @required TResult orElse(),
+  TResult maybeWhen<TResult extends Object?>({
+    TResult Function()? switchGymsInitial,
+    TResult Function(Gym selectedGym, User currentUser,
+            List<String> knowGymsIds, bool showDropdown)?
+        knownGymsLoaded,
+    required TResult orElse(),
   }) {
-    assert(orElse != null);
     if (switchGymsInitial != null) {
       return switchGymsInitial();
     }
@@ -149,23 +153,20 @@ class _$SwitchGymsInitial implements SwitchGymsInitial {
 
   @override
   @optionalTypeArgs
-  TResult map<TResult extends Object>({
-    @required TResult switchGymsInitial(SwitchGymsInitial value),
-    @required TResult knownGymsLoaded(KnownGymsLoaded value),
+  TResult map<TResult extends Object?>({
+    required TResult Function(SwitchGymsInitial value) switchGymsInitial,
+    required TResult Function(KnownGymsLoaded value) knownGymsLoaded,
   }) {
-    assert(switchGymsInitial != null);
-    assert(knownGymsLoaded != null);
     return switchGymsInitial(this);
   }
 
   @override
   @optionalTypeArgs
-  TResult maybeMap<TResult extends Object>({
-    TResult switchGymsInitial(SwitchGymsInitial value),
-    TResult knownGymsLoaded(KnownGymsLoaded value),
-    @required TResult orElse(),
+  TResult maybeMap<TResult extends Object?>({
+    TResult Function(SwitchGymsInitial value)? switchGymsInitial,
+    TResult Function(KnownGymsLoaded value)? knownGymsLoaded,
+    required TResult orElse(),
   }) {
-    assert(orElse != null);
     if (switchGymsInitial != null) {
       return switchGymsInitial(this);
     }
@@ -205,29 +206,33 @@ class _$KnownGymsLoadedCopyWithImpl<$Res>
 
   @override
   $Res call({
-    Object selectedGym = freezed,
-    Object currentUser = freezed,
-    Object knowGymsIds = freezed,
-    Object showDropdown = freezed,
+    Object? selectedGym = freezed,
+    Object? currentUser = freezed,
+    Object? knowGymsIds = freezed,
+    Object? showDropdown = freezed,
   }) {
     return _then(KnownGymsLoaded(
-      selectedGym:
-          selectedGym == freezed ? _value.selectedGym : selectedGym as Gym,
-      currentUser:
-          currentUser == freezed ? _value.currentUser : currentUser as User,
+      selectedGym: selectedGym == freezed
+          ? _value.selectedGym
+          : selectedGym // ignore: cast_nullable_to_non_nullable
+              as Gym,
+      currentUser: currentUser == freezed
+          ? _value.currentUser
+          : currentUser // ignore: cast_nullable_to_non_nullable
+              as User,
       knowGymsIds: knowGymsIds == freezed
           ? _value.knowGymsIds
-          : knowGymsIds as List<String>,
-      showDropdown:
-          showDropdown == freezed ? _value.showDropdown : showDropdown as bool,
+          : knowGymsIds // ignore: cast_nullable_to_non_nullable
+              as List<String>,
+      showDropdown: showDropdown == freezed
+          ? _value.showDropdown
+          : showDropdown // ignore: cast_nullable_to_non_nullable
+              as bool,
     ));
   }
 
   @override
   $GymCopyWith<$Res> get selectedGym {
-    if (_value.selectedGym == null) {
-      return null;
-    }
     return $GymCopyWith<$Res>(_value.selectedGym, (value) {
       return _then(_value.copyWith(selectedGym: value));
     });
@@ -235,9 +240,6 @@ class _$KnownGymsLoadedCopyWithImpl<$Res>
 
   @override
   $UserCopyWith<$Res> get currentUser {
-    if (_value.currentUser == null) {
-      return null;
-    }
     return $UserCopyWith<$Res>(_value.currentUser, (value) {
       return _then(_value.copyWith(currentUser: value));
     });
@@ -245,16 +247,13 @@ class _$KnownGymsLoadedCopyWithImpl<$Res>
 }
 
 /// @nodoc
+
 class _$KnownGymsLoaded implements KnownGymsLoaded {
   const _$KnownGymsLoaded(
-      {@required this.selectedGym,
-      @required this.currentUser,
-      @required this.knowGymsIds,
-      this.showDropdown = false})
-      : assert(selectedGym != null),
-        assert(currentUser != null),
-        assert(knowGymsIds != null),
-        assert(showDropdown != null);
+      {required this.selectedGym,
+      required this.currentUser,
+      required this.knowGymsIds,
+      this.showDropdown = false});
 
   @override
   final Gym selectedGym;
@@ -304,26 +303,24 @@ class _$KnownGymsLoaded implements KnownGymsLoaded {
 
   @override
   @optionalTypeArgs
-  TResult when<TResult extends Object>({
-    @required TResult switchGymsInitial(),
-    @required
-        TResult knownGymsLoaded(Gym selectedGym, User currentUser,
-            List<String> knowGymsIds, bool showDropdown),
+  TResult when<TResult extends Object?>({
+    required TResult Function() switchGymsInitial,
+    required TResult Function(Gym selectedGym, User currentUser,
+            List<String> knowGymsIds, bool showDropdown)
+        knownGymsLoaded,
   }) {
-    assert(switchGymsInitial != null);
-    assert(knownGymsLoaded != null);
     return knownGymsLoaded(selectedGym, currentUser, knowGymsIds, showDropdown);
   }
 
   @override
   @optionalTypeArgs
-  TResult maybeWhen<TResult extends Object>({
-    TResult switchGymsInitial(),
-    TResult knownGymsLoaded(Gym selectedGym, User currentUser,
-        List<String> knowGymsIds, bool showDropdown),
-    @required TResult orElse(),
+  TResult maybeWhen<TResult extends Object?>({
+    TResult Function()? switchGymsInitial,
+    TResult Function(Gym selectedGym, User currentUser,
+            List<String> knowGymsIds, bool showDropdown)?
+        knownGymsLoaded,
+    required TResult orElse(),
   }) {
-    assert(orElse != null);
     if (knownGymsLoaded != null) {
       return knownGymsLoaded(
           selectedGym, currentUser, knowGymsIds, showDropdown);
@@ -333,23 +330,20 @@ class _$KnownGymsLoaded implements KnownGymsLoaded {
 
   @override
   @optionalTypeArgs
-  TResult map<TResult extends Object>({
-    @required TResult switchGymsInitial(SwitchGymsInitial value),
-    @required TResult knownGymsLoaded(KnownGymsLoaded value),
+  TResult map<TResult extends Object?>({
+    required TResult Function(SwitchGymsInitial value) switchGymsInitial,
+    required TResult Function(KnownGymsLoaded value) knownGymsLoaded,
   }) {
-    assert(switchGymsInitial != null);
-    assert(knownGymsLoaded != null);
     return knownGymsLoaded(this);
   }
 
   @override
   @optionalTypeArgs
-  TResult maybeMap<TResult extends Object>({
-    TResult switchGymsInitial(SwitchGymsInitial value),
-    TResult knownGymsLoaded(KnownGymsLoaded value),
-    @required TResult orElse(),
+  TResult maybeMap<TResult extends Object?>({
+    TResult Function(SwitchGymsInitial value)? switchGymsInitial,
+    TResult Function(KnownGymsLoaded value)? knownGymsLoaded,
+    required TResult orElse(),
   }) {
-    assert(orElse != null);
     if (knownGymsLoaded != null) {
       return knownGymsLoaded(this);
     }
@@ -359,15 +353,16 @@ class _$KnownGymsLoaded implements KnownGymsLoaded {
 
 abstract class KnownGymsLoaded implements SwitchGymsState {
   const factory KnownGymsLoaded(
-      {@required Gym selectedGym,
-      @required User currentUser,
-      @required List<String> knowGymsIds,
+      {required Gym selectedGym,
+      required User currentUser,
+      required List<String> knowGymsIds,
       bool showDropdown}) = _$KnownGymsLoaded;
 
-  Gym get selectedGym;
-  User get currentUser;
-  List<String> get knowGymsIds;
-  bool get showDropdown;
+  Gym get selectedGym => throw _privateConstructorUsedError;
+  User get currentUser => throw _privateConstructorUsedError;
+  List<String> get knowGymsIds => throw _privateConstructorUsedError;
+  bool get showDropdown => throw _privateConstructorUsedError;
   @JsonKey(ignore: true)
-  $KnownGymsLoadedCopyWith<KnownGymsLoaded> get copyWith;
+  $KnownGymsLoadedCopyWith<KnownGymsLoaded> get copyWith =>
+      throw _privateConstructorUsedError;
 }

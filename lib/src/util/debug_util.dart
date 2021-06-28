@@ -1,3 +1,5 @@
+// @dart=2.9
+
 bool get isInDebugMode {
   bool inDebugMode = false;
   assert(inDebugMode = true);

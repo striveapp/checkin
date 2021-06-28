@@ -1,5 +1,5 @@
 // GENERATED CODE - DO NOT MODIFY BY HAND
-// ignore_for_file: deprecated_member_use, deprecated_member_use_from_same_package, use_function_type_syntax_for_parameters, unnecessary_const, avoid_init_to_null, invalid_override_different_default_values_named, prefer_expression_function_bodies
+// ignore_for_file: unused_element, deprecated_member_use, deprecated_member_use_from_same_package, use_function_type_syntax_for_parameters, unnecessary_const, avoid_init_to_null, invalid_override_different_default_values_named, prefer_expression_function_bodies, annotate_overrides
 
 part of 'stats_state.dart';
 
@@ -9,17 +9,18 @@ part of 'stats_state.dart';
 
 T _$identity<T>(T value) => value;
 
+final _privateConstructorUsedError = UnsupportedError(
+    'It seems like you constructed your class using `MyClass._()`. This constructor is only meant to be used by freezed and you are not supposed to need it nor use it.\nPlease check the documentation here for more informations: https://github.com/rrousselGit/freezed#custom-getters-and-methods');
+
 /// @nodoc
 class _$StatsStateTearOff {
   const _$StatsStateTearOff();
 
-// ignore: unused_element
   InitialStatsState initialStatsState() {
     return const InitialStatsState();
   }
 
-// ignore: unused_element
-  TimespanUpdated timespanUpdated({@required Timespan timespan}) {
+  TimespanUpdated timespanUpdated({required Timespan timespan}) {
     return TimespanUpdated(
       timespan: timespan,
     );
@@ -27,33 +28,36 @@ class _$StatsStateTearOff {
 }
 
 /// @nodoc
-// ignore: unused_element
 const $StatsState = _$StatsStateTearOff();
 
 /// @nodoc
 mixin _$StatsState {
   @optionalTypeArgs
-  TResult when<TResult extends Object>({
-    @required TResult initialStatsState(),
-    @required TResult timespanUpdated(Timespan timespan),
-  });
+  TResult when<TResult extends Object?>({
+    required TResult Function() initialStatsState,
+    required TResult Function(Timespan timespan) timespanUpdated,
+  }) =>
+      throw _privateConstructorUsedError;
   @optionalTypeArgs
-  TResult maybeWhen<TResult extends Object>({
-    TResult initialStatsState(),
-    TResult timespanUpdated(Timespan timespan),
-    @required TResult orElse(),
-  });
+  TResult maybeWhen<TResult extends Object?>({
+    TResult Function()? initialStatsState,
+    TResult Function(Timespan timespan)? timespanUpdated,
+    required TResult orElse(),
+  }) =>
+      throw _privateConstructorUsedError;
   @optionalTypeArgs
-  TResult map<TResult extends Object>({
-    @required TResult initialStatsState(InitialStatsState value),
-    @required TResult timespanUpdated(TimespanUpdated value),
-  });
+  TResult map<TResult extends Object?>({
+    required TResult Function(InitialStatsState value) initialStatsState,
+    required TResult Function(TimespanUpdated value) timespanUpdated,
+  }) =>
+      throw _privateConstructorUsedError;
   @optionalTypeArgs
-  TResult maybeMap<TResult extends Object>({
-    TResult initialStatsState(InitialStatsState value),
-    TResult timespanUpdated(TimespanUpdated value),
-    @required TResult orElse(),
-  });
+  TResult maybeMap<TResult extends Object?>({
+    TResult Function(InitialStatsState value)? initialStatsState,
+    TResult Function(TimespanUpdated value)? timespanUpdated,
+    required TResult orElse(),
+  }) =>
+      throw _privateConstructorUsedError;
 }
 
 /// @nodoc
@@ -92,6 +96,7 @@ class _$InitialStatsStateCopyWithImpl<$Res>
 }
 
 /// @nodoc
+
 class _$InitialStatsState
     with DiagnosticableTreeMixin
     implements InitialStatsState {
@@ -119,23 +124,20 @@ class _$InitialStatsState
 
   @override
   @optionalTypeArgs
-  TResult when<TResult extends Object>({
-    @required TResult initialStatsState(),
-    @required TResult timespanUpdated(Timespan timespan),
+  TResult when<TResult extends Object?>({
+    required TResult Function() initialStatsState,
+    required TResult Function(Timespan timespan) timespanUpdated,
   }) {
-    assert(initialStatsState != null);
-    assert(timespanUpdated != null);
     return initialStatsState();
   }
 
   @override
   @optionalTypeArgs
-  TResult maybeWhen<TResult extends Object>({
-    TResult initialStatsState(),
-    TResult timespanUpdated(Timespan timespan),
-    @required TResult orElse(),
+  TResult maybeWhen<TResult extends Object?>({
+    TResult Function()? initialStatsState,
+    TResult Function(Timespan timespan)? timespanUpdated,
+    required TResult orElse(),
   }) {
-    assert(orElse != null);
     if (initialStatsState != null) {
       return initialStatsState();
     }
@@ -144,23 +146,20 @@ class _$InitialStatsState
 
   @override
   @optionalTypeArgs
-  TResult map<TResult extends Object>({
-    @required TResult initialStatsState(InitialStatsState value),
-    @required TResult timespanUpdated(TimespanUpdated value),
+  TResult map<TResult extends Object?>({
+    required TResult Function(InitialStatsState value) initialStatsState,
+    required TResult Function(TimespanUpdated value) timespanUpdated,
   }) {
-    assert(initialStatsState != null);
-    assert(timespanUpdated != null);
     return initialStatsState(this);
   }
 
   @override
   @optionalTypeArgs
-  TResult maybeMap<TResult extends Object>({
-    TResult initialStatsState(InitialStatsState value),
-    TResult timespanUpdated(TimespanUpdated value),
-    @required TResult orElse(),
+  TResult maybeMap<TResult extends Object?>({
+    TResult Function(InitialStatsState value)? initialStatsState,
+    TResult Function(TimespanUpdated value)? timespanUpdated,
+    required TResult orElse(),
   }) {
-    assert(orElse != null);
     if (initialStatsState != null) {
       return initialStatsState(this);
     }
@@ -192,19 +191,23 @@ class _$TimespanUpdatedCopyWithImpl<$Res> extends _$StatsStateCopyWithImpl<$Res>
 
   @override
   $Res call({
-    Object timespan = freezed,
+    Object? timespan = freezed,
   }) {
     return _then(TimespanUpdated(
-      timespan: timespan == freezed ? _value.timespan : timespan as Timespan,
+      timespan: timespan == freezed
+          ? _value.timespan
+          : timespan // ignore: cast_nullable_to_non_nullable
+              as Timespan,
     ));
   }
 }
 
 /// @nodoc
+
 class _$TimespanUpdated
     with DiagnosticableTreeMixin
     implements TimespanUpdated {
-  const _$TimespanUpdated({@required this.timespan}) : assert(timespan != null);
+  const _$TimespanUpdated({required this.timespan});
 
   @override
   final Timespan timespan;
@@ -242,23 +245,20 @@ class _$TimespanUpdated
 
   @override
   @optionalTypeArgs
-  TResult when<TResult extends Object>({
-    @required TResult initialStatsState(),
-    @required TResult timespanUpdated(Timespan timespan),
+  TResult when<TResult extends Object?>({
+    required TResult Function() initialStatsState,
+    required TResult Function(Timespan timespan) timespanUpdated,
   }) {
-    assert(initialStatsState != null);
-    assert(timespanUpdated != null);
     return timespanUpdated(timespan);
   }
 
   @override
   @optionalTypeArgs
-  TResult maybeWhen<TResult extends Object>({
-    TResult initialStatsState(),
-    TResult timespanUpdated(Timespan timespan),
-    @required TResult orElse(),
+  TResult maybeWhen<TResult extends Object?>({
+    TResult Function()? initialStatsState,
+    TResult Function(Timespan timespan)? timespanUpdated,
+    required TResult orElse(),
   }) {
-    assert(orElse != null);
     if (timespanUpdated != null) {
       return timespanUpdated(timespan);
     }
@@ -267,23 +267,20 @@ class _$TimespanUpdated
 
   @override
   @optionalTypeArgs
-  TResult map<TResult extends Object>({
-    @required TResult initialStatsState(InitialStatsState value),
-    @required TResult timespanUpdated(TimespanUpdated value),
+  TResult map<TResult extends Object?>({
+    required TResult Function(InitialStatsState value) initialStatsState,
+    required TResult Function(TimespanUpdated value) timespanUpdated,
   }) {
-    assert(initialStatsState != null);
-    assert(timespanUpdated != null);
     return timespanUpdated(this);
   }
 
   @override
   @optionalTypeArgs
-  TResult maybeMap<TResult extends Object>({
-    TResult initialStatsState(InitialStatsState value),
-    TResult timespanUpdated(TimespanUpdated value),
-    @required TResult orElse(),
+  TResult maybeMap<TResult extends Object?>({
+    TResult Function(InitialStatsState value)? initialStatsState,
+    TResult Function(TimespanUpdated value)? timespanUpdated,
+    required TResult orElse(),
   }) {
-    assert(orElse != null);
     if (timespanUpdated != null) {
       return timespanUpdated(this);
     }
@@ -292,10 +289,11 @@ class _$TimespanUpdated
 }
 
 abstract class TimespanUpdated implements StatsState {
-  const factory TimespanUpdated({@required Timespan timespan}) =
+  const factory TimespanUpdated({required Timespan timespan}) =
       _$TimespanUpdated;
 
-  Timespan get timespan;
+  Timespan get timespan => throw _privateConstructorUsedError;
   @JsonKey(ignore: true)
-  $TimespanUpdatedCopyWith<TimespanUpdated> get copyWith;
+  $TimespanUpdatedCopyWith<TimespanUpdated> get copyWith =>
+      throw _privateConstructorUsedError;
 }

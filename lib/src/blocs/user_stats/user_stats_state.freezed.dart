@@ -1,5 +1,5 @@
 // GENERATED CODE - DO NOT MODIFY BY HAND
-// ignore_for_file: deprecated_member_use, deprecated_member_use_from_same_package, use_function_type_syntax_for_parameters, unnecessary_const, avoid_init_to_null, invalid_override_different_default_values_named, prefer_expression_function_bodies
+// ignore_for_file: unused_element, deprecated_member_use, deprecated_member_use_from_same_package, use_function_type_syntax_for_parameters, unnecessary_const, avoid_init_to_null, invalid_override_different_default_values_named, prefer_expression_function_bodies, annotate_overrides
 
 part of 'user_stats_state.dart';
 
@@ -9,18 +9,19 @@ part of 'user_stats_state.dart';
 
 T _$identity<T>(T value) => value;
 
+final _privateConstructorUsedError = UnsupportedError(
+    'It seems like you constructed your class using `MyClass._()`. This constructor is only meant to be used by freezed and you are not supposed to need it nor use it.\nPlease check the documentation here for more informations: https://github.com/rrousselGit/freezed#custom-getters-and-methods');
+
 /// @nodoc
 class _$UserStatsStateTearOff {
   const _$UserStatsStateTearOff();
 
-// ignore: unused_element
   UserStatsUninitialized userStatsUninitialized() {
     return const UserStatsUninitialized();
   }
 
-// ignore: unused_element
   UserStatsLoaded userStatsLoaded(
-      {@required List<Lesson> attendedLessons, @required Timespan timespan}) {
+      {required List<Lesson> attendedLessons, required Timespan timespan}) {
     return UserStatsLoaded(
       attendedLessons: attendedLessons,
       timespan: timespan,
@@ -29,35 +30,39 @@ class _$UserStatsStateTearOff {
 }
 
 /// @nodoc
-// ignore: unused_element
 const $UserStatsState = _$UserStatsStateTearOff();
 
 /// @nodoc
 mixin _$UserStatsState {
   @optionalTypeArgs
-  TResult when<TResult extends Object>({
-    @required TResult userStatsUninitialized(),
-    @required
-        TResult userStatsLoaded(
-            List<Lesson> attendedLessons, Timespan timespan),
-  });
+  TResult when<TResult extends Object?>({
+    required TResult Function() userStatsUninitialized,
+    required TResult Function(List<Lesson> attendedLessons, Timespan timespan)
+        userStatsLoaded,
+  }) =>
+      throw _privateConstructorUsedError;
   @optionalTypeArgs
-  TResult maybeWhen<TResult extends Object>({
-    TResult userStatsUninitialized(),
-    TResult userStatsLoaded(List<Lesson> attendedLessons, Timespan timespan),
-    @required TResult orElse(),
-  });
+  TResult maybeWhen<TResult extends Object?>({
+    TResult Function()? userStatsUninitialized,
+    TResult Function(List<Lesson> attendedLessons, Timespan timespan)?
+        userStatsLoaded,
+    required TResult orElse(),
+  }) =>
+      throw _privateConstructorUsedError;
   @optionalTypeArgs
-  TResult map<TResult extends Object>({
-    @required TResult userStatsUninitialized(UserStatsUninitialized value),
-    @required TResult userStatsLoaded(UserStatsLoaded value),
-  });
+  TResult map<TResult extends Object?>({
+    required TResult Function(UserStatsUninitialized value)
+        userStatsUninitialized,
+    required TResult Function(UserStatsLoaded value) userStatsLoaded,
+  }) =>
+      throw _privateConstructorUsedError;
   @optionalTypeArgs
-  TResult maybeMap<TResult extends Object>({
-    TResult userStatsUninitialized(UserStatsUninitialized value),
-    TResult userStatsLoaded(UserStatsLoaded value),
-    @required TResult orElse(),
-  });
+  TResult maybeMap<TResult extends Object?>({
+    TResult Function(UserStatsUninitialized value)? userStatsUninitialized,
+    TResult Function(UserStatsLoaded value)? userStatsLoaded,
+    required TResult orElse(),
+  }) =>
+      throw _privateConstructorUsedError;
 }
 
 /// @nodoc
@@ -97,6 +102,7 @@ class _$UserStatsUninitializedCopyWithImpl<$Res>
 }
 
 /// @nodoc
+
 class _$UserStatsUninitialized
     with DiagnosticableTreeMixin
     implements UserStatsUninitialized {
@@ -125,25 +131,22 @@ class _$UserStatsUninitialized
 
   @override
   @optionalTypeArgs
-  TResult when<TResult extends Object>({
-    @required TResult userStatsUninitialized(),
-    @required
-        TResult userStatsLoaded(
-            List<Lesson> attendedLessons, Timespan timespan),
+  TResult when<TResult extends Object?>({
+    required TResult Function() userStatsUninitialized,
+    required TResult Function(List<Lesson> attendedLessons, Timespan timespan)
+        userStatsLoaded,
   }) {
-    assert(userStatsUninitialized != null);
-    assert(userStatsLoaded != null);
     return userStatsUninitialized();
   }
 
   @override
   @optionalTypeArgs
-  TResult maybeWhen<TResult extends Object>({
-    TResult userStatsUninitialized(),
-    TResult userStatsLoaded(List<Lesson> attendedLessons, Timespan timespan),
-    @required TResult orElse(),
+  TResult maybeWhen<TResult extends Object?>({
+    TResult Function()? userStatsUninitialized,
+    TResult Function(List<Lesson> attendedLessons, Timespan timespan)?
+        userStatsLoaded,
+    required TResult orElse(),
   }) {
-    assert(orElse != null);
     if (userStatsUninitialized != null) {
       return userStatsUninitialized();
     }
@@ -152,23 +155,21 @@ class _$UserStatsUninitialized
 
   @override
   @optionalTypeArgs
-  TResult map<TResult extends Object>({
-    @required TResult userStatsUninitialized(UserStatsUninitialized value),
-    @required TResult userStatsLoaded(UserStatsLoaded value),
+  TResult map<TResult extends Object?>({
+    required TResult Function(UserStatsUninitialized value)
+        userStatsUninitialized,
+    required TResult Function(UserStatsLoaded value) userStatsLoaded,
   }) {
-    assert(userStatsUninitialized != null);
-    assert(userStatsLoaded != null);
     return userStatsUninitialized(this);
   }
 
   @override
   @optionalTypeArgs
-  TResult maybeMap<TResult extends Object>({
-    TResult userStatsUninitialized(UserStatsUninitialized value),
-    TResult userStatsLoaded(UserStatsLoaded value),
-    @required TResult orElse(),
+  TResult maybeMap<TResult extends Object?>({
+    TResult Function(UserStatsUninitialized value)? userStatsUninitialized,
+    TResult Function(UserStatsLoaded value)? userStatsLoaded,
+    required TResult orElse(),
   }) {
-    assert(orElse != null);
     if (userStatsUninitialized != null) {
       return userStatsUninitialized(this);
     }
@@ -201,26 +202,29 @@ class _$UserStatsLoadedCopyWithImpl<$Res>
 
   @override
   $Res call({
-    Object attendedLessons = freezed,
-    Object timespan = freezed,
+    Object? attendedLessons = freezed,
+    Object? timespan = freezed,
   }) {
     return _then(UserStatsLoaded(
       attendedLessons: attendedLessons == freezed
           ? _value.attendedLessons
-          : attendedLessons as List<Lesson>,
-      timespan: timespan == freezed ? _value.timespan : timespan as Timespan,
+          : attendedLessons // ignore: cast_nullable_to_non_nullable
+              as List<Lesson>,
+      timespan: timespan == freezed
+          ? _value.timespan
+          : timespan // ignore: cast_nullable_to_non_nullable
+              as Timespan,
     ));
   }
 }
 
 /// @nodoc
+
 class _$UserStatsLoaded
     with DiagnosticableTreeMixin
     implements UserStatsLoaded {
   const _$UserStatsLoaded(
-      {@required this.attendedLessons, @required this.timespan})
-      : assert(attendedLessons != null),
-        assert(timespan != null);
+      {required this.attendedLessons, required this.timespan});
 
   @override
   final List<Lesson> attendedLessons;
@@ -266,25 +270,22 @@ class _$UserStatsLoaded
 
   @override
   @optionalTypeArgs
-  TResult when<TResult extends Object>({
-    @required TResult userStatsUninitialized(),
-    @required
-        TResult userStatsLoaded(
-            List<Lesson> attendedLessons, Timespan timespan),
+  TResult when<TResult extends Object?>({
+    required TResult Function() userStatsUninitialized,
+    required TResult Function(List<Lesson> attendedLessons, Timespan timespan)
+        userStatsLoaded,
   }) {
-    assert(userStatsUninitialized != null);
-    assert(userStatsLoaded != null);
     return userStatsLoaded(attendedLessons, timespan);
   }
 
   @override
   @optionalTypeArgs
-  TResult maybeWhen<TResult extends Object>({
-    TResult userStatsUninitialized(),
-    TResult userStatsLoaded(List<Lesson> attendedLessons, Timespan timespan),
-    @required TResult orElse(),
+  TResult maybeWhen<TResult extends Object?>({
+    TResult Function()? userStatsUninitialized,
+    TResult Function(List<Lesson> attendedLessons, Timespan timespan)?
+        userStatsLoaded,
+    required TResult orElse(),
   }) {
-    assert(orElse != null);
     if (userStatsLoaded != null) {
       return userStatsLoaded(attendedLessons, timespan);
     }
@@ -293,23 +294,21 @@ class _$UserStatsLoaded
 
   @override
   @optionalTypeArgs
-  TResult map<TResult extends Object>({
-    @required TResult userStatsUninitialized(UserStatsUninitialized value),
-    @required TResult userStatsLoaded(UserStatsLoaded value),
+  TResult map<TResult extends Object?>({
+    required TResult Function(UserStatsUninitialized value)
+        userStatsUninitialized,
+    required TResult Function(UserStatsLoaded value) userStatsLoaded,
   }) {
-    assert(userStatsUninitialized != null);
-    assert(userStatsLoaded != null);
     return userStatsLoaded(this);
   }
 
   @override
   @optionalTypeArgs
-  TResult maybeMap<TResult extends Object>({
-    TResult userStatsUninitialized(UserStatsUninitialized value),
-    TResult userStatsLoaded(UserStatsLoaded value),
-    @required TResult orElse(),
+  TResult maybeMap<TResult extends Object?>({
+    TResult Function(UserStatsUninitialized value)? userStatsUninitialized,
+    TResult Function(UserStatsLoaded value)? userStatsLoaded,
+    required TResult orElse(),
   }) {
-    assert(orElse != null);
     if (userStatsLoaded != null) {
       return userStatsLoaded(this);
     }
@@ -319,11 +318,12 @@ class _$UserStatsLoaded
 
 abstract class UserStatsLoaded implements UserStatsState {
   const factory UserStatsLoaded(
-      {@required List<Lesson> attendedLessons,
-      @required Timespan timespan}) = _$UserStatsLoaded;
+      {required List<Lesson> attendedLessons,
+      required Timespan timespan}) = _$UserStatsLoaded;
 
-  List<Lesson> get attendedLessons;
-  Timespan get timespan;
+  List<Lesson> get attendedLessons => throw _privateConstructorUsedError;
+  Timespan get timespan => throw _privateConstructorUsedError;
   @JsonKey(ignore: true)
-  $UserStatsLoadedCopyWith<UserStatsLoaded> get copyWith;
+  $UserStatsLoadedCopyWith<UserStatsLoaded> get copyWith =>
+      throw _privateConstructorUsedError;
 }

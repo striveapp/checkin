@@ -13,5 +13,5 @@ extension TimespanExtension on Timespan {
     Timespan.all: 'all',
   };
 
-  String get name => names[this];
+  String? get name => names[this];
 }

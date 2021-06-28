@@ -1,5 +1,5 @@
 // GENERATED CODE - DO NOT MODIFY BY HAND
-// ignore_for_file: deprecated_member_use, deprecated_member_use_from_same_package, use_function_type_syntax_for_parameters, unnecessary_const, avoid_init_to_null, invalid_override_different_default_values_named, prefer_expression_function_bodies
+// ignore_for_file: unused_element, deprecated_member_use, deprecated_member_use_from_same_package, use_function_type_syntax_for_parameters, unnecessary_const, avoid_init_to_null, invalid_override_different_default_values_named, prefer_expression_function_bodies, annotate_overrides
 
 part of 'author.dart';
 
@@ -8,6 +8,10 @@ part of 'author.dart';
 // **************************************************************************
 
 T _$identity<T>(T value) => value;
+
+final _privateConstructorUsedError = UnsupportedError(
+    'It seems like you constructed your class using `MyClass._()`. This constructor is only meant to be used by freezed and you are not supposed to need it nor use it.\nPlease check the documentation here for more informations: https://github.com/rrousselGit/freezed#custom-getters-and-methods');
+
 Author _$AuthorFromJson(Map<String, dynamic> json) {
   return _Author.fromJson(json);
 }
@@ -16,11 +20,10 @@ Author _$AuthorFromJson(Map<String, dynamic> json) {
 class _$AuthorTearOff {
   const _$AuthorTearOff();
 
-// ignore: unused_element
   _Author call(
-      {@required String imageUrl,
-      @required String name,
-      @GradeConverter() Grade grade}) {
+      {required String imageUrl,
+      required String name,
+      @GradeConverter() Grade? grade}) {
     return _Author(
       imageUrl: imageUrl,
       name: name,
@@ -28,33 +31,31 @@ class _$AuthorTearOff {
     );
   }
 
-// ignore: unused_element
   Author fromJson(Map<String, Object> json) {
     return Author.fromJson(json);
   }
 }
 
 /// @nodoc
-// ignore: unused_element
 const $Author = _$AuthorTearOff();
 
 /// @nodoc
 mixin _$Author {
-  String get imageUrl;
-  String get name;
+  String get imageUrl => throw _privateConstructorUsedError;
+  String get name => throw _privateConstructorUsedError;
   @GradeConverter()
-  Grade get grade;
+  Grade? get grade => throw _privateConstructorUsedError;
 
-  Map<String, dynamic> toJson();
+  Map<String, dynamic> toJson() => throw _privateConstructorUsedError;
   @JsonKey(ignore: true)
-  $AuthorCopyWith<Author> get copyWith;
+  $AuthorCopyWith<Author> get copyWith => throw _privateConstructorUsedError;
 }
 
 /// @nodoc
 abstract class $AuthorCopyWith<$Res> {
   factory $AuthorCopyWith(Author value, $Res Function(Author) then) =
       _$AuthorCopyWithImpl<$Res>;
-  $Res call({String imageUrl, String name, @GradeConverter() Grade grade});
+  $Res call({String imageUrl, String name, @GradeConverter() Grade? grade});
 }
 
 /// @nodoc
@@ -67,14 +68,23 @@ class _$AuthorCopyWithImpl<$Res> implements $AuthorCopyWith<$Res> {
 
   @override
   $Res call({
-    Object imageUrl = freezed,
-    Object name = freezed,
-    Object grade = freezed,
+    Object? imageUrl = freezed,
+    Object? name = freezed,
+    Object? grade = freezed,
   }) {
     return _then(_value.copyWith(
-      imageUrl: imageUrl == freezed ? _value.imageUrl : imageUrl as String,
-      name: name == freezed ? _value.name : name as String,
-      grade: grade == freezed ? _value.grade : grade as Grade,
+      imageUrl: imageUrl == freezed
+          ? _value.imageUrl
+          : imageUrl // ignore: cast_nullable_to_non_nullable
+              as String,
+      name: name == freezed
+          ? _value.name
+          : name // ignore: cast_nullable_to_non_nullable
+              as String,
+      grade: grade == freezed
+          ? _value.grade
+          : grade // ignore: cast_nullable_to_non_nullable
+              as Grade?,
     ));
   }
 }
@@ -84,7 +94,7 @@ abstract class _$AuthorCopyWith<$Res> implements $AuthorCopyWith<$Res> {
   factory _$AuthorCopyWith(_Author value, $Res Function(_Author) then) =
       __$AuthorCopyWithImpl<$Res>;
   @override
-  $Res call({String imageUrl, String name, @GradeConverter() Grade grade});
+  $Res call({String imageUrl, String name, @GradeConverter() Grade? grade});
 }
 
 /// @nodoc
@@ -98,28 +108,34 @@ class __$AuthorCopyWithImpl<$Res> extends _$AuthorCopyWithImpl<$Res>
 
   @override
   $Res call({
-    Object imageUrl = freezed,
-    Object name = freezed,
-    Object grade = freezed,
+    Object? imageUrl = freezed,
+    Object? name = freezed,
+    Object? grade = freezed,
   }) {
     return _then(_Author(
-      imageUrl: imageUrl == freezed ? _value.imageUrl : imageUrl as String,
-      name: name == freezed ? _value.name : name as String,
-      grade: grade == freezed ? _value.grade : grade as Grade,
+      imageUrl: imageUrl == freezed
+          ? _value.imageUrl
+          : imageUrl // ignore: cast_nullable_to_non_nullable
+              as String,
+      name: name == freezed
+          ? _value.name
+          : name // ignore: cast_nullable_to_non_nullable
+              as String,
+      grade: grade == freezed
+          ? _value.grade
+          : grade // ignore: cast_nullable_to_non_nullable
+              as Grade?,
     ));
   }
 }
 
-@JsonSerializable()
-
 /// @nodoc
+@JsonSerializable()
 class _$_Author with DiagnosticableTreeMixin implements _Author {
   _$_Author(
-      {@required this.imageUrl,
-      @required this.name,
-      @GradeConverter() this.grade})
-      : assert(imageUrl != null),
-        assert(name != null);
+      {required this.imageUrl,
+      required this.name,
+      @GradeConverter() this.grade});
 
   factory _$_Author.fromJson(Map<String, dynamic> json) =>
       _$_$_AuthorFromJson(json);
@@ -130,7 +146,7 @@ class _$_Author with DiagnosticableTreeMixin implements _Author {
   final String name;
   @override
   @GradeConverter()
-  final Grade grade;
+  final Grade? grade;
 
   @override
   String toString({DiagnosticLevel minLevel = DiagnosticLevel.info}) {
@@ -180,20 +196,20 @@ class _$_Author with DiagnosticableTreeMixin implements _Author {
 
 abstract class _Author implements Author {
   factory _Author(
-      {@required String imageUrl,
-      @required String name,
-      @GradeConverter() Grade grade}) = _$_Author;
+      {required String imageUrl,
+      required String name,
+      @GradeConverter() Grade? grade}) = _$_Author;
 
   factory _Author.fromJson(Map<String, dynamic> json) = _$_Author.fromJson;
 
   @override
-  String get imageUrl;
+  String get imageUrl => throw _privateConstructorUsedError;
   @override
-  String get name;
+  String get name => throw _privateConstructorUsedError;
   @override
   @GradeConverter()
-  Grade get grade;
+  Grade? get grade => throw _privateConstructorUsedError;
   @override
   @JsonKey(ignore: true)
-  _$AuthorCopyWith<_Author> get copyWith;
+  _$AuthorCopyWith<_Author> get copyWith => throw _privateConstructorUsedError;
 }

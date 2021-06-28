@@ -1,3 +1,5 @@
+// @dart=2.9
+
 import 'dart:io';
 
 import 'package:flutter_driver/flutter_driver.dart';
@@ -5,7 +7,6 @@ import 'package:flutter_driver/flutter_driver.dart';
 import 'constants.dart';
 
 extension DriverExtension on FlutterDriver {
-
   goBack() async {
     await tap(find.pageBack());
   }
@@ -16,8 +17,7 @@ extension DriverExtension on FlutterDriver {
     await tap(_modalBarrier);
   }
 
-  Future<String> waitForExpectedValue(
-          Future<String> Function() f, String expectedValue,
+  Future<String> waitForExpectedValue(Future<String> Function() f, String expectedValue,
           {Duration timeout = defaultTimeout}) async =>
       _getTextValueFromFuture(f, expectedValue).timeout(timeout);
 
@@ -56,8 +56,7 @@ Future<FlutterDriver> getDriverAndWaitForHotRestartFinished() async {
   return driver;
 }
 
-Future<String> _getTextValueFromFuture(
-    Future<String> Function() f, String expectedValue) async {
+Future<String> _getTextValueFromFuture(Future<String> Function() f, String expectedValue) async {
   try {
     if (await f.call() == expectedValue) {
       return expectedValue;

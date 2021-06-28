@@ -1,3 +1,5 @@
+// @dart=2.9
+
 import 'package:mockito/mockito.dart';
 
 /// Throw every time that a mock method is called without a stub being matched:

@@ -1,5 +1,5 @@
 // GENERATED CODE - DO NOT MODIFY BY HAND
-// ignore_for_file: deprecated_member_use, deprecated_member_use_from_same_package, use_function_type_syntax_for_parameters, unnecessary_const, avoid_init_to_null, invalid_override_different_default_values_named, prefer_expression_function_bodies
+// ignore_for_file: unused_element, deprecated_member_use, deprecated_member_use_from_same_package, use_function_type_syntax_for_parameters, unnecessary_const, avoid_init_to_null, invalid_override_different_default_values_named, prefer_expression_function_bodies, annotate_overrides
 
 part of 'leaderboard_state.dart';
 
@@ -9,19 +9,20 @@ part of 'leaderboard_state.dart';
 
 T _$identity<T>(T value) => value;
 
+final _privateConstructorUsedError = UnsupportedError(
+    'It seems like you constructed your class using `MyClass._()`. This constructor is only meant to be used by freezed and you are not supposed to need it nor use it.\nPlease check the documentation here for more informations: https://github.com/rrousselGit/freezed#custom-getters-and-methods');
+
 /// @nodoc
 class _$LeaderboardStateTearOff {
   const _$LeaderboardStateTearOff();
 
-// ignore: unused_element
   LeaderboardInitial leaderboardInitial() {
     return const LeaderboardInitial();
   }
 
-// ignore: unused_element
   LeaderboardLoaded leaderboardLoaded(
-      {@required List<UserHistory> podium,
-      @required List<UserHistory> restOfTheUsers,
+      {required List<UserHistory> podium,
+      required List<UserHistory> restOfTheUsers,
       bool isAvailable = true}) {
     return LeaderboardLoaded(
       podium: podium,
@@ -32,36 +33,40 @@ class _$LeaderboardStateTearOff {
 }
 
 /// @nodoc
-// ignore: unused_element
 const $LeaderboardState = _$LeaderboardStateTearOff();
 
 /// @nodoc
 mixin _$LeaderboardState {
   @optionalTypeArgs
-  TResult when<TResult extends Object>({
-    @required TResult leaderboardInitial(),
-    @required
-        TResult leaderboardLoaded(List<UserHistory> podium,
-            List<UserHistory> restOfTheUsers, bool isAvailable),
-  });
+  TResult when<TResult extends Object?>({
+    required TResult Function() leaderboardInitial,
+    required TResult Function(List<UserHistory> podium,
+            List<UserHistory> restOfTheUsers, bool isAvailable)
+        leaderboardLoaded,
+  }) =>
+      throw _privateConstructorUsedError;
   @optionalTypeArgs
-  TResult maybeWhen<TResult extends Object>({
-    TResult leaderboardInitial(),
-    TResult leaderboardLoaded(List<UserHistory> podium,
-        List<UserHistory> restOfTheUsers, bool isAvailable),
-    @required TResult orElse(),
-  });
+  TResult maybeWhen<TResult extends Object?>({
+    TResult Function()? leaderboardInitial,
+    TResult Function(List<UserHistory> podium, List<UserHistory> restOfTheUsers,
+            bool isAvailable)?
+        leaderboardLoaded,
+    required TResult orElse(),
+  }) =>
+      throw _privateConstructorUsedError;
   @optionalTypeArgs
-  TResult map<TResult extends Object>({
-    @required TResult leaderboardInitial(LeaderboardInitial value),
-    @required TResult leaderboardLoaded(LeaderboardLoaded value),
-  });
+  TResult map<TResult extends Object?>({
+    required TResult Function(LeaderboardInitial value) leaderboardInitial,
+    required TResult Function(LeaderboardLoaded value) leaderboardLoaded,
+  }) =>
+      throw _privateConstructorUsedError;
   @optionalTypeArgs
-  TResult maybeMap<TResult extends Object>({
-    TResult leaderboardInitial(LeaderboardInitial value),
-    TResult leaderboardLoaded(LeaderboardLoaded value),
-    @required TResult orElse(),
-  });
+  TResult maybeMap<TResult extends Object?>({
+    TResult Function(LeaderboardInitial value)? leaderboardInitial,
+    TResult Function(LeaderboardLoaded value)? leaderboardLoaded,
+    required TResult orElse(),
+  }) =>
+      throw _privateConstructorUsedError;
 }
 
 /// @nodoc
@@ -101,6 +106,7 @@ class _$LeaderboardInitialCopyWithImpl<$Res>
 }
 
 /// @nodoc
+
 class _$LeaderboardInitial
     with DiagnosticableTreeMixin
     implements LeaderboardInitial {
@@ -128,26 +134,24 @@ class _$LeaderboardInitial
 
   @override
   @optionalTypeArgs
-  TResult when<TResult extends Object>({
-    @required TResult leaderboardInitial(),
-    @required
-        TResult leaderboardLoaded(List<UserHistory> podium,
-            List<UserHistory> restOfTheUsers, bool isAvailable),
+  TResult when<TResult extends Object?>({
+    required TResult Function() leaderboardInitial,
+    required TResult Function(List<UserHistory> podium,
+            List<UserHistory> restOfTheUsers, bool isAvailable)
+        leaderboardLoaded,
   }) {
-    assert(leaderboardInitial != null);
-    assert(leaderboardLoaded != null);
     return leaderboardInitial();
   }
 
   @override
   @optionalTypeArgs
-  TResult maybeWhen<TResult extends Object>({
-    TResult leaderboardInitial(),
-    TResult leaderboardLoaded(List<UserHistory> podium,
-        List<UserHistory> restOfTheUsers, bool isAvailable),
-    @required TResult orElse(),
+  TResult maybeWhen<TResult extends Object?>({
+    TResult Function()? leaderboardInitial,
+    TResult Function(List<UserHistory> podium, List<UserHistory> restOfTheUsers,
+            bool isAvailable)?
+        leaderboardLoaded,
+    required TResult orElse(),
   }) {
-    assert(orElse != null);
     if (leaderboardInitial != null) {
       return leaderboardInitial();
     }
@@ -156,23 +160,20 @@ class _$LeaderboardInitial
 
   @override
   @optionalTypeArgs
-  TResult map<TResult extends Object>({
-    @required TResult leaderboardInitial(LeaderboardInitial value),
-    @required TResult leaderboardLoaded(LeaderboardLoaded value),
+  TResult map<TResult extends Object?>({
+    required TResult Function(LeaderboardInitial value) leaderboardInitial,
+    required TResult Function(LeaderboardLoaded value) leaderboardLoaded,
   }) {
-    assert(leaderboardInitial != null);
-    assert(leaderboardLoaded != null);
     return leaderboardInitial(this);
   }
 
   @override
   @optionalTypeArgs
-  TResult maybeMap<TResult extends Object>({
-    TResult leaderboardInitial(LeaderboardInitial value),
-    TResult leaderboardLoaded(LeaderboardLoaded value),
-    @required TResult orElse(),
+  TResult maybeMap<TResult extends Object?>({
+    TResult Function(LeaderboardInitial value)? leaderboardInitial,
+    TResult Function(LeaderboardLoaded value)? leaderboardLoaded,
+    required TResult orElse(),
   }) {
-    assert(orElse != null);
     if (leaderboardInitial != null) {
       return leaderboardInitial(this);
     }
@@ -208,32 +209,36 @@ class _$LeaderboardLoadedCopyWithImpl<$Res>
 
   @override
   $Res call({
-    Object podium = freezed,
-    Object restOfTheUsers = freezed,
-    Object isAvailable = freezed,
+    Object? podium = freezed,
+    Object? restOfTheUsers = freezed,
+    Object? isAvailable = freezed,
   }) {
     return _then(LeaderboardLoaded(
-      podium: podium == freezed ? _value.podium : podium as List<UserHistory>,
+      podium: podium == freezed
+          ? _value.podium
+          : podium // ignore: cast_nullable_to_non_nullable
+              as List<UserHistory>,
       restOfTheUsers: restOfTheUsers == freezed
           ? _value.restOfTheUsers
-          : restOfTheUsers as List<UserHistory>,
-      isAvailable:
-          isAvailable == freezed ? _value.isAvailable : isAvailable as bool,
+          : restOfTheUsers // ignore: cast_nullable_to_non_nullable
+              as List<UserHistory>,
+      isAvailable: isAvailable == freezed
+          ? _value.isAvailable
+          : isAvailable // ignore: cast_nullable_to_non_nullable
+              as bool,
     ));
   }
 }
 
 /// @nodoc
+
 class _$LeaderboardLoaded
     with DiagnosticableTreeMixin
     implements LeaderboardLoaded {
   const _$LeaderboardLoaded(
-      {@required this.podium,
-      @required this.restOfTheUsers,
-      this.isAvailable = true})
-      : assert(podium != null),
-        assert(restOfTheUsers != null),
-        assert(isAvailable != null);
+      {required this.podium,
+      required this.restOfTheUsers,
+      this.isAvailable = true});
 
   @override
   final List<UserHistory> podium;
@@ -286,26 +291,24 @@ class _$LeaderboardLoaded
 
   @override
   @optionalTypeArgs
-  TResult when<TResult extends Object>({
-    @required TResult leaderboardInitial(),
-    @required
-        TResult leaderboardLoaded(List<UserHistory> podium,
-            List<UserHistory> restOfTheUsers, bool isAvailable),
+  TResult when<TResult extends Object?>({
+    required TResult Function() leaderboardInitial,
+    required TResult Function(List<UserHistory> podium,
+            List<UserHistory> restOfTheUsers, bool isAvailable)
+        leaderboardLoaded,
   }) {
-    assert(leaderboardInitial != null);
-    assert(leaderboardLoaded != null);
     return leaderboardLoaded(podium, restOfTheUsers, isAvailable);
   }
 
   @override
   @optionalTypeArgs
-  TResult maybeWhen<TResult extends Object>({
-    TResult leaderboardInitial(),
-    TResult leaderboardLoaded(List<UserHistory> podium,
-        List<UserHistory> restOfTheUsers, bool isAvailable),
-    @required TResult orElse(),
+  TResult maybeWhen<TResult extends Object?>({
+    TResult Function()? leaderboardInitial,
+    TResult Function(List<UserHistory> podium, List<UserHistory> restOfTheUsers,
+            bool isAvailable)?
+        leaderboardLoaded,
+    required TResult orElse(),
   }) {
-    assert(orElse != null);
     if (leaderboardLoaded != null) {
       return leaderboardLoaded(podium, restOfTheUsers, isAvailable);
     }
@@ -314,23 +317,20 @@ class _$LeaderboardLoaded
 
   @override
   @optionalTypeArgs
-  TResult map<TResult extends Object>({
-    @required TResult leaderboardInitial(LeaderboardInitial value),
-    @required TResult leaderboardLoaded(LeaderboardLoaded value),
+  TResult map<TResult extends Object?>({
+    required TResult Function(LeaderboardInitial value) leaderboardInitial,
+    required TResult Function(LeaderboardLoaded value) leaderboardLoaded,
   }) {
-    assert(leaderboardInitial != null);
-    assert(leaderboardLoaded != null);
     return leaderboardLoaded(this);
   }
 
   @override
   @optionalTypeArgs
-  TResult maybeMap<TResult extends Object>({
-    TResult leaderboardInitial(LeaderboardInitial value),
-    TResult leaderboardLoaded(LeaderboardLoaded value),
-    @required TResult orElse(),
+  TResult maybeMap<TResult extends Object?>({
+    TResult Function(LeaderboardInitial value)? leaderboardInitial,
+    TResult Function(LeaderboardLoaded value)? leaderboardLoaded,
+    required TResult orElse(),
   }) {
-    assert(orElse != null);
     if (leaderboardLoaded != null) {
       return leaderboardLoaded(this);
     }
@@ -340,13 +340,14 @@ class _$LeaderboardLoaded
 
 abstract class LeaderboardLoaded implements LeaderboardState {
   const factory LeaderboardLoaded(
-      {@required List<UserHistory> podium,
-      @required List<UserHistory> restOfTheUsers,
+      {required List<UserHistory> podium,
+      required List<UserHistory> restOfTheUsers,
       bool isAvailable}) = _$LeaderboardLoaded;
 
-  List<UserHistory> get podium;
-  List<UserHistory> get restOfTheUsers;
-  bool get isAvailable;
+  List<UserHistory> get podium => throw _privateConstructorUsedError;
+  List<UserHistory> get restOfTheUsers => throw _privateConstructorUsedError;
+  bool get isAvailable => throw _privateConstructorUsedError;
   @JsonKey(ignore: true)
-  $LeaderboardLoadedCopyWith<LeaderboardLoaded> get copyWith;
+  $LeaderboardLoadedCopyWith<LeaderboardLoaded> get copyWith =>
+      throw _privateConstructorUsedError;
 }

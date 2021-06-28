@@ -1,5 +1,5 @@
 // GENERATED CODE - DO NOT MODIFY BY HAND
-// ignore_for_file: deprecated_member_use, deprecated_member_use_from_same_package, use_function_type_syntax_for_parameters, unnecessary_const, avoid_init_to_null, invalid_override_different_default_values_named, prefer_expression_function_bodies
+// ignore_for_file: unused_element, deprecated_member_use, deprecated_member_use_from_same_package, use_function_type_syntax_for_parameters, unnecessary_const, avoid_init_to_null, invalid_override_different_default_values_named, prefer_expression_function_bodies, annotate_overrides
 
 part of 'notification_state.dart';
 
@@ -9,28 +9,28 @@ part of 'notification_state.dart';
 
 T _$identity<T>(T value) => value;
 
+final _privateConstructorUsedError = UnsupportedError(
+    'It seems like you constructed your class using `MyClass._()`. This constructor is only meant to be used by freezed and you are not supposed to need it nor use it.\nPlease check the documentation here for more informations: https://github.com/rrousselGit/freezed#custom-getters-and-methods');
+
 /// @nodoc
 class _$NotificationStateTearOff {
   const _$NotificationStateTearOff();
 
-// ignore: unused_element
   NotificationInitial notificationInitial() {
     return const NotificationInitial();
   }
 
-// ignore: unused_element
-  NotificationToNavigate notificationToNavigate({@required String path}) {
+  NotificationToNavigate notificationToNavigate({required String path}) {
     return NotificationToNavigate(
       path: path,
     );
   }
 
-// ignore: unused_element
   ShowSnackBar showSnackBar(
-      {@required String title,
-      List<String> titleLocArgs,
-      @required String body,
-      List<String> bodyLocArgs}) {
+      {required String title,
+      List<String>? titleLocArgs,
+      required String body,
+      List<String>? bodyLocArgs}) {
     return ShowSnackBar(
       title: title,
       titleLocArgs: titleLocArgs,
@@ -41,40 +41,45 @@ class _$NotificationStateTearOff {
 }
 
 /// @nodoc
-// ignore: unused_element
 const $NotificationState = _$NotificationStateTearOff();
 
 /// @nodoc
 mixin _$NotificationState {
   @optionalTypeArgs
-  TResult when<TResult extends Object>({
-    @required TResult notificationInitial(),
-    @required TResult notificationToNavigate(String path),
-    @required
-        TResult showSnackBar(String title, List<String> titleLocArgs,
-            String body, List<String> bodyLocArgs),
-  });
+  TResult when<TResult extends Object?>({
+    required TResult Function() notificationInitial,
+    required TResult Function(String path) notificationToNavigate,
+    required TResult Function(String title, List<String>? titleLocArgs,
+            String body, List<String>? bodyLocArgs)
+        showSnackBar,
+  }) =>
+      throw _privateConstructorUsedError;
   @optionalTypeArgs
-  TResult maybeWhen<TResult extends Object>({
-    TResult notificationInitial(),
-    TResult notificationToNavigate(String path),
-    TResult showSnackBar(String title, List<String> titleLocArgs, String body,
-        List<String> bodyLocArgs),
-    @required TResult orElse(),
-  });
+  TResult maybeWhen<TResult extends Object?>({
+    TResult Function()? notificationInitial,
+    TResult Function(String path)? notificationToNavigate,
+    TResult Function(String title, List<String>? titleLocArgs, String body,
+            List<String>? bodyLocArgs)?
+        showSnackBar,
+    required TResult orElse(),
+  }) =>
+      throw _privateConstructorUsedError;
   @optionalTypeArgs
-  TResult map<TResult extends Object>({
-    @required TResult notificationInitial(NotificationInitial value),
-    @required TResult notificationToNavigate(NotificationToNavigate value),
-    @required TResult showSnackBar(ShowSnackBar value),
-  });
+  TResult map<TResult extends Object?>({
+    required TResult Function(NotificationInitial value) notificationInitial,
+    required TResult Function(NotificationToNavigate value)
+        notificationToNavigate,
+    required TResult Function(ShowSnackBar value) showSnackBar,
+  }) =>
+      throw _privateConstructorUsedError;
   @optionalTypeArgs
-  TResult maybeMap<TResult extends Object>({
-    TResult notificationInitial(NotificationInitial value),
-    TResult notificationToNavigate(NotificationToNavigate value),
-    TResult showSnackBar(ShowSnackBar value),
-    @required TResult orElse(),
-  });
+  TResult maybeMap<TResult extends Object?>({
+    TResult Function(NotificationInitial value)? notificationInitial,
+    TResult Function(NotificationToNavigate value)? notificationToNavigate,
+    TResult Function(ShowSnackBar value)? showSnackBar,
+    required TResult orElse(),
+  }) =>
+      throw _privateConstructorUsedError;
 }
 
 /// @nodoc
@@ -114,6 +119,7 @@ class _$NotificationInitialCopyWithImpl<$Res>
 }
 
 /// @nodoc
+
 class _$NotificationInitial
     with DiagnosticableTreeMixin
     implements NotificationInitial {
@@ -142,29 +148,26 @@ class _$NotificationInitial
 
   @override
   @optionalTypeArgs
-  TResult when<TResult extends Object>({
-    @required TResult notificationInitial(),
-    @required TResult notificationToNavigate(String path),
-    @required
-        TResult showSnackBar(String title, List<String> titleLocArgs,
-            String body, List<String> bodyLocArgs),
+  TResult when<TResult extends Object?>({
+    required TResult Function() notificationInitial,
+    required TResult Function(String path) notificationToNavigate,
+    required TResult Function(String title, List<String>? titleLocArgs,
+            String body, List<String>? bodyLocArgs)
+        showSnackBar,
   }) {
-    assert(notificationInitial != null);
-    assert(notificationToNavigate != null);
-    assert(showSnackBar != null);
     return notificationInitial();
   }
 
   @override
   @optionalTypeArgs
-  TResult maybeWhen<TResult extends Object>({
-    TResult notificationInitial(),
-    TResult notificationToNavigate(String path),
-    TResult showSnackBar(String title, List<String> titleLocArgs, String body,
-        List<String> bodyLocArgs),
-    @required TResult orElse(),
+  TResult maybeWhen<TResult extends Object?>({
+    TResult Function()? notificationInitial,
+    TResult Function(String path)? notificationToNavigate,
+    TResult Function(String title, List<String>? titleLocArgs, String body,
+            List<String>? bodyLocArgs)?
+        showSnackBar,
+    required TResult orElse(),
   }) {
-    assert(orElse != null);
     if (notificationInitial != null) {
       return notificationInitial();
     }
@@ -173,26 +176,23 @@ class _$NotificationInitial
 
   @override
   @optionalTypeArgs
-  TResult map<TResult extends Object>({
-    @required TResult notificationInitial(NotificationInitial value),
-    @required TResult notificationToNavigate(NotificationToNavigate value),
-    @required TResult showSnackBar(ShowSnackBar value),
+  TResult map<TResult extends Object?>({
+    required TResult Function(NotificationInitial value) notificationInitial,
+    required TResult Function(NotificationToNavigate value)
+        notificationToNavigate,
+    required TResult Function(ShowSnackBar value) showSnackBar,
   }) {
-    assert(notificationInitial != null);
-    assert(notificationToNavigate != null);
-    assert(showSnackBar != null);
     return notificationInitial(this);
   }
 
   @override
   @optionalTypeArgs
-  TResult maybeMap<TResult extends Object>({
-    TResult notificationInitial(NotificationInitial value),
-    TResult notificationToNavigate(NotificationToNavigate value),
-    TResult showSnackBar(ShowSnackBar value),
-    @required TResult orElse(),
+  TResult maybeMap<TResult extends Object?>({
+    TResult Function(NotificationInitial value)? notificationInitial,
+    TResult Function(NotificationToNavigate value)? notificationToNavigate,
+    TResult Function(ShowSnackBar value)? showSnackBar,
+    required TResult orElse(),
   }) {
-    assert(orElse != null);
     if (notificationInitial != null) {
       return notificationInitial(this);
     }
@@ -225,19 +225,23 @@ class _$NotificationToNavigateCopyWithImpl<$Res>
 
   @override
   $Res call({
-    Object path = freezed,
+    Object? path = freezed,
   }) {
     return _then(NotificationToNavigate(
-      path: path == freezed ? _value.path : path as String,
+      path: path == freezed
+          ? _value.path
+          : path // ignore: cast_nullable_to_non_nullable
+              as String,
     ));
   }
 }
 
 /// @nodoc
+
 class _$NotificationToNavigate
     with DiagnosticableTreeMixin
     implements NotificationToNavigate {
-  const _$NotificationToNavigate({@required this.path}) : assert(path != null);
+  const _$NotificationToNavigate({required this.path});
 
   @override
   final String path;
@@ -276,29 +280,26 @@ class _$NotificationToNavigate
 
   @override
   @optionalTypeArgs
-  TResult when<TResult extends Object>({
-    @required TResult notificationInitial(),
-    @required TResult notificationToNavigate(String path),
-    @required
-        TResult showSnackBar(String title, List<String> titleLocArgs,
-            String body, List<String> bodyLocArgs),
+  TResult when<TResult extends Object?>({
+    required TResult Function() notificationInitial,
+    required TResult Function(String path) notificationToNavigate,
+    required TResult Function(String title, List<String>? titleLocArgs,
+            String body, List<String>? bodyLocArgs)
+        showSnackBar,
   }) {
-    assert(notificationInitial != null);
-    assert(notificationToNavigate != null);
-    assert(showSnackBar != null);
     return notificationToNavigate(path);
   }
 
   @override
   @optionalTypeArgs
-  TResult maybeWhen<TResult extends Object>({
-    TResult notificationInitial(),
-    TResult notificationToNavigate(String path),
-    TResult showSnackBar(String title, List<String> titleLocArgs, String body,
-        List<String> bodyLocArgs),
-    @required TResult orElse(),
+  TResult maybeWhen<TResult extends Object?>({
+    TResult Function()? notificationInitial,
+    TResult Function(String path)? notificationToNavigate,
+    TResult Function(String title, List<String>? titleLocArgs, String body,
+            List<String>? bodyLocArgs)?
+        showSnackBar,
+    required TResult orElse(),
   }) {
-    assert(orElse != null);
     if (notificationToNavigate != null) {
       return notificationToNavigate(path);
     }
@@ -307,26 +308,23 @@ class _$NotificationToNavigate
 
   @override
   @optionalTypeArgs
-  TResult map<TResult extends Object>({
-    @required TResult notificationInitial(NotificationInitial value),
-    @required TResult notificationToNavigate(NotificationToNavigate value),
-    @required TResult showSnackBar(ShowSnackBar value),
+  TResult map<TResult extends Object?>({
+    required TResult Function(NotificationInitial value) notificationInitial,
+    required TResult Function(NotificationToNavigate value)
+        notificationToNavigate,
+    required TResult Function(ShowSnackBar value) showSnackBar,
   }) {
-    assert(notificationInitial != null);
-    assert(notificationToNavigate != null);
-    assert(showSnackBar != null);
     return notificationToNavigate(this);
   }
 
   @override
   @optionalTypeArgs
-  TResult maybeMap<TResult extends Object>({
-    TResult notificationInitial(NotificationInitial value),
-    TResult notificationToNavigate(NotificationToNavigate value),
-    TResult showSnackBar(ShowSnackBar value),
-    @required TResult orElse(),
+  TResult maybeMap<TResult extends Object?>({
+    TResult Function(NotificationInitial value)? notificationInitial,
+    TResult Function(NotificationToNavigate value)? notificationToNavigate,
+    TResult Function(ShowSnackBar value)? showSnackBar,
+    required TResult orElse(),
   }) {
-    assert(orElse != null);
     if (notificationToNavigate != null) {
       return notificationToNavigate(this);
     }
@@ -335,12 +333,13 @@ class _$NotificationToNavigate
 }
 
 abstract class NotificationToNavigate implements NotificationState {
-  const factory NotificationToNavigate({@required String path}) =
+  const factory NotificationToNavigate({required String path}) =
       _$NotificationToNavigate;
 
-  String get path;
+  String get path => throw _privateConstructorUsedError;
   @JsonKey(ignore: true)
-  $NotificationToNavigateCopyWith<NotificationToNavigate> get copyWith;
+  $NotificationToNavigateCopyWith<NotificationToNavigate> get copyWith =>
+      throw _privateConstructorUsedError;
 }
 
 /// @nodoc
@@ -350,9 +349,9 @@ abstract class $ShowSnackBarCopyWith<$Res> {
       _$ShowSnackBarCopyWithImpl<$Res>;
   $Res call(
       {String title,
-      List<String> titleLocArgs,
+      List<String>? titleLocArgs,
       String body,
-      List<String> bodyLocArgs});
+      List<String>? bodyLocArgs});
 }
 
 /// @nodoc
@@ -368,42 +367,49 @@ class _$ShowSnackBarCopyWithImpl<$Res>
 
   @override
   $Res call({
-    Object title = freezed,
-    Object titleLocArgs = freezed,
-    Object body = freezed,
-    Object bodyLocArgs = freezed,
+    Object? title = freezed,
+    Object? titleLocArgs = freezed,
+    Object? body = freezed,
+    Object? bodyLocArgs = freezed,
   }) {
     return _then(ShowSnackBar(
-      title: title == freezed ? _value.title : title as String,
+      title: title == freezed
+          ? _value.title
+          : title // ignore: cast_nullable_to_non_nullable
+              as String,
       titleLocArgs: titleLocArgs == freezed
           ? _value.titleLocArgs
-          : titleLocArgs as List<String>,
-      body: body == freezed ? _value.body : body as String,
+          : titleLocArgs // ignore: cast_nullable_to_non_nullable
+              as List<String>?,
+      body: body == freezed
+          ? _value.body
+          : body // ignore: cast_nullable_to_non_nullable
+              as String,
       bodyLocArgs: bodyLocArgs == freezed
           ? _value.bodyLocArgs
-          : bodyLocArgs as List<String>,
+          : bodyLocArgs // ignore: cast_nullable_to_non_nullable
+              as List<String>?,
     ));
   }
 }
 
 /// @nodoc
+
 class _$ShowSnackBar with DiagnosticableTreeMixin implements ShowSnackBar {
   const _$ShowSnackBar(
-      {@required this.title,
+      {required this.title,
       this.titleLocArgs,
-      @required this.body,
-      this.bodyLocArgs})
-      : assert(title != null),
-        assert(body != null);
+      required this.body,
+      this.bodyLocArgs});
 
   @override
   final String title;
   @override
-  final List<String> titleLocArgs;
+  final List<String>? titleLocArgs;
   @override
   final String body;
   @override
-  final List<String> bodyLocArgs;
+  final List<String>? bodyLocArgs;
 
   @override
   String toString({DiagnosticLevel minLevel = DiagnosticLevel.info}) {
@@ -452,29 +458,26 @@ class _$ShowSnackBar with DiagnosticableTreeMixin implements ShowSnackBar {
 
   @override
   @optionalTypeArgs
-  TResult when<TResult extends Object>({
-    @required TResult notificationInitial(),
-    @required TResult notificationToNavigate(String path),
-    @required
-        TResult showSnackBar(String title, List<String> titleLocArgs,
-            String body, List<String> bodyLocArgs),
+  TResult when<TResult extends Object?>({
+    required TResult Function() notificationInitial,
+    required TResult Function(String path) notificationToNavigate,
+    required TResult Function(String title, List<String>? titleLocArgs,
+            String body, List<String>? bodyLocArgs)
+        showSnackBar,
   }) {
-    assert(notificationInitial != null);
-    assert(notificationToNavigate != null);
-    assert(showSnackBar != null);
     return showSnackBar(title, titleLocArgs, body, bodyLocArgs);
   }
 
   @override
   @optionalTypeArgs
-  TResult maybeWhen<TResult extends Object>({
-    TResult notificationInitial(),
-    TResult notificationToNavigate(String path),
-    TResult showSnackBar(String title, List<String> titleLocArgs, String body,
-        List<String> bodyLocArgs),
-    @required TResult orElse(),
+  TResult maybeWhen<TResult extends Object?>({
+    TResult Function()? notificationInitial,
+    TResult Function(String path)? notificationToNavigate,
+    TResult Function(String title, List<String>? titleLocArgs, String body,
+            List<String>? bodyLocArgs)?
+        showSnackBar,
+    required TResult orElse(),
   }) {
-    assert(orElse != null);
     if (showSnackBar != null) {
       return showSnackBar(title, titleLocArgs, body, bodyLocArgs);
     }
@@ -483,26 +486,23 @@ class _$ShowSnackBar with DiagnosticableTreeMixin implements ShowSnackBar {
 
   @override
   @optionalTypeArgs
-  TResult map<TResult extends Object>({
-    @required TResult notificationInitial(NotificationInitial value),
-    @required TResult notificationToNavigate(NotificationToNavigate value),
-    @required TResult showSnackBar(ShowSnackBar value),
+  TResult map<TResult extends Object?>({
+    required TResult Function(NotificationInitial value) notificationInitial,
+    required TResult Function(NotificationToNavigate value)
+        notificationToNavigate,
+    required TResult Function(ShowSnackBar value) showSnackBar,
   }) {
-    assert(notificationInitial != null);
-    assert(notificationToNavigate != null);
-    assert(showSnackBar != null);
     return showSnackBar(this);
   }
 
   @override
   @optionalTypeArgs
-  TResult maybeMap<TResult extends Object>({
-    TResult notificationInitial(NotificationInitial value),
-    TResult notificationToNavigate(NotificationToNavigate value),
-    TResult showSnackBar(ShowSnackBar value),
-    @required TResult orElse(),
+  TResult maybeMap<TResult extends Object?>({
+    TResult Function(NotificationInitial value)? notificationInitial,
+    TResult Function(NotificationToNavigate value)? notificationToNavigate,
+    TResult Function(ShowSnackBar value)? showSnackBar,
+    required TResult orElse(),
   }) {
-    assert(orElse != null);
     if (showSnackBar != null) {
       return showSnackBar(this);
     }
@@ -512,15 +512,16 @@ class _$ShowSnackBar with DiagnosticableTreeMixin implements ShowSnackBar {
 
 abstract class ShowSnackBar implements NotificationState {
   const factory ShowSnackBar(
-      {@required String title,
-      List<String> titleLocArgs,
-      @required String body,
-      List<String> bodyLocArgs}) = _$ShowSnackBar;
+      {required String title,
+      List<String>? titleLocArgs,
+      required String body,
+      List<String>? bodyLocArgs}) = _$ShowSnackBar;
 
-  String get title;
-  List<String> get titleLocArgs;
-  String get body;
-  List<String> get bodyLocArgs;
+  String get title => throw _privateConstructorUsedError;
+  List<String>? get titleLocArgs => throw _privateConstructorUsedError;
+  String get body => throw _privateConstructorUsedError;
+  List<String>? get bodyLocArgs => throw _privateConstructorUsedError;
   @JsonKey(ignore: true)
-  $ShowSnackBarCopyWith<ShowSnackBar> get copyWith;
+  $ShowSnackBarCopyWith<ShowSnackBar> get copyWith =>
+      throw _privateConstructorUsedError;
 }

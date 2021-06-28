@@ -10,9 +10,9 @@ abstract class UserRepository {
 
   Stream<User> subscribeToUser(String email);
 
-  Stream<User> getUserByEmail(String email);
+  Stream<User> getUserByEmail(String? email);
 
-  Stream<List<Master>> retrieveAvailableMasters(String gymId);
+  Stream<List<Master>> retrieveAvailableMasters(String? gymId);
 
   Future<bool> isFirstLogin(String email);
 
@@ -24,11 +24,11 @@ abstract class UserRepository {
 
   Future<void> updateUserImageUrl(String userEmail, String newImageUrl);
 
-  Future<void> updateUserFcmToken(String userEmail, String newToken);
+  Future<void> updateUserFcmToken(String? userEmail, String? newToken);
 
-  Future<void> updateSelectedGymId(String userEmail, String newSelectedGym);
+  Future<void> updateSelectedGymId(String userEmail, String? newSelectedGym);
 
-  Future<void> updateKnownGymIds(String userEmail, String newGymId);
+  Future<void> updateKnownGymIds(String userEmail, String? newGymId);
 
   Future<void> updateUserAppVersion(String userEmail, Version newVersion);
 }

@@ -1,5 +1,5 @@
 // GENERATED CODE - DO NOT MODIFY BY HAND
-// ignore_for_file: deprecated_member_use, deprecated_member_use_from_same_package, use_function_type_syntax_for_parameters, unnecessary_const, avoid_init_to_null, invalid_override_different_default_values_named, prefer_expression_function_bodies
+// ignore_for_file: unused_element, deprecated_member_use, deprecated_member_use_from_same_package, use_function_type_syntax_for_parameters, unnecessary_const, avoid_init_to_null, invalid_override_different_default_values_named, prefer_expression_function_bodies, annotate_overrides
 
 part of 'gym.dart';
 
@@ -8,6 +8,10 @@ part of 'gym.dart';
 // **************************************************************************
 
 T _$identity<T>(T value) => value;
+
+final _privateConstructorUsedError = UnsupportedError(
+    'It seems like you constructed your class using `MyClass._()`. This constructor is only meant to be used by freezed and you are not supposed to need it nor use it.\nPlease check the documentation here for more informations: https://github.com/rrousselGit/freezed#custom-getters-and-methods');
+
 Gym _$GymFromJson(Map<String, dynamic> json) {
   return _Gym.fromJson(json);
 }
@@ -16,13 +20,12 @@ Gym _$GymFromJson(Map<String, dynamic> json) {
 class _$GymTearOff {
   const _$GymTearOff();
 
-// ignore: unused_element
   _Gym call(
-      {@required String id,
-      @required String name,
-      @required String paymentAppDomain,
-      @required String stripePublicKey,
-      @required String imageUrl,
+      {required String id,
+      required String name,
+      required String paymentAppDomain,
+      required String stripePublicKey,
+      required String imageUrl,
       bool hasActivePayments = false}) {
     return _Gym(
       id: id,
@@ -34,28 +37,26 @@ class _$GymTearOff {
     );
   }
 
-// ignore: unused_element
   Gym fromJson(Map<String, Object> json) {
     return Gym.fromJson(json);
   }
 }
 
 /// @nodoc
-// ignore: unused_element
 const $Gym = _$GymTearOff();
 
 /// @nodoc
 mixin _$Gym {
-  String get id;
-  String get name;
-  String get paymentAppDomain;
-  String get stripePublicKey;
-  String get imageUrl;
-  bool get hasActivePayments;
+  String get id => throw _privateConstructorUsedError;
+  String get name => throw _privateConstructorUsedError;
+  String get paymentAppDomain => throw _privateConstructorUsedError;
+  String get stripePublicKey => throw _privateConstructorUsedError;
+  String get imageUrl => throw _privateConstructorUsedError;
+  bool get hasActivePayments => throw _privateConstructorUsedError;
 
-  Map<String, dynamic> toJson();
+  Map<String, dynamic> toJson() => throw _privateConstructorUsedError;
   @JsonKey(ignore: true)
-  $GymCopyWith<Gym> get copyWith;
+  $GymCopyWith<Gym> get copyWith => throw _privateConstructorUsedError;
 }
 
 /// @nodoc
@@ -81,26 +82,38 @@ class _$GymCopyWithImpl<$Res> implements $GymCopyWith<$Res> {
 
   @override
   $Res call({
-    Object id = freezed,
-    Object name = freezed,
-    Object paymentAppDomain = freezed,
-    Object stripePublicKey = freezed,
-    Object imageUrl = freezed,
-    Object hasActivePayments = freezed,
+    Object? id = freezed,
+    Object? name = freezed,
+    Object? paymentAppDomain = freezed,
+    Object? stripePublicKey = freezed,
+    Object? imageUrl = freezed,
+    Object? hasActivePayments = freezed,
   }) {
     return _then(_value.copyWith(
-      id: id == freezed ? _value.id : id as String,
-      name: name == freezed ? _value.name : name as String,
+      id: id == freezed
+          ? _value.id
+          : id // ignore: cast_nullable_to_non_nullable
+              as String,
+      name: name == freezed
+          ? _value.name
+          : name // ignore: cast_nullable_to_non_nullable
+              as String,
       paymentAppDomain: paymentAppDomain == freezed
           ? _value.paymentAppDomain
-          : paymentAppDomain as String,
+          : paymentAppDomain // ignore: cast_nullable_to_non_nullable
+              as String,
       stripePublicKey: stripePublicKey == freezed
           ? _value.stripePublicKey
-          : stripePublicKey as String,
-      imageUrl: imageUrl == freezed ? _value.imageUrl : imageUrl as String,
+          : stripePublicKey // ignore: cast_nullable_to_non_nullable
+              as String,
+      imageUrl: imageUrl == freezed
+          ? _value.imageUrl
+          : imageUrl // ignore: cast_nullable_to_non_nullable
+              as String,
       hasActivePayments: hasActivePayments == freezed
           ? _value.hasActivePayments
-          : hasActivePayments as bool,
+          : hasActivePayments // ignore: cast_nullable_to_non_nullable
+              as bool,
     ));
   }
 }
@@ -130,47 +143,52 @@ class __$GymCopyWithImpl<$Res> extends _$GymCopyWithImpl<$Res>
 
   @override
   $Res call({
-    Object id = freezed,
-    Object name = freezed,
-    Object paymentAppDomain = freezed,
-    Object stripePublicKey = freezed,
-    Object imageUrl = freezed,
-    Object hasActivePayments = freezed,
+    Object? id = freezed,
+    Object? name = freezed,
+    Object? paymentAppDomain = freezed,
+    Object? stripePublicKey = freezed,
+    Object? imageUrl = freezed,
+    Object? hasActivePayments = freezed,
   }) {
     return _then(_Gym(
-      id: id == freezed ? _value.id : id as String,
-      name: name == freezed ? _value.name : name as String,
+      id: id == freezed
+          ? _value.id
+          : id // ignore: cast_nullable_to_non_nullable
+              as String,
+      name: name == freezed
+          ? _value.name
+          : name // ignore: cast_nullable_to_non_nullable
+              as String,
       paymentAppDomain: paymentAppDomain == freezed
           ? _value.paymentAppDomain
-          : paymentAppDomain as String,
+          : paymentAppDomain // ignore: cast_nullable_to_non_nullable
+              as String,
       stripePublicKey: stripePublicKey == freezed
           ? _value.stripePublicKey
-          : stripePublicKey as String,
-      imageUrl: imageUrl == freezed ? _value.imageUrl : imageUrl as String,
+          : stripePublicKey // ignore: cast_nullable_to_non_nullable
+              as String,
+      imageUrl: imageUrl == freezed
+          ? _value.imageUrl
+          : imageUrl // ignore: cast_nullable_to_non_nullable
+              as String,
       hasActivePayments: hasActivePayments == freezed
           ? _value.hasActivePayments
-          : hasActivePayments as bool,
+          : hasActivePayments // ignore: cast_nullable_to_non_nullable
+              as bool,
     ));
   }
 }
 
-@JsonSerializable()
-
 /// @nodoc
+@JsonSerializable()
 class _$_Gym with DiagnosticableTreeMixin implements _Gym {
   _$_Gym(
-      {@required this.id,
-      @required this.name,
-      @required this.paymentAppDomain,
-      @required this.stripePublicKey,
-      @required this.imageUrl,
-      this.hasActivePayments = false})
-      : assert(id != null),
-        assert(name != null),
-        assert(paymentAppDomain != null),
-        assert(stripePublicKey != null),
-        assert(imageUrl != null),
-        assert(hasActivePayments != null);
+      {required this.id,
+      required this.name,
+      required this.paymentAppDomain,
+      required this.stripePublicKey,
+      required this.imageUrl,
+      this.hasActivePayments = false});
 
   factory _$_Gym.fromJson(Map<String, dynamic> json) => _$_$_GymFromJson(json);
 
@@ -251,28 +269,28 @@ class _$_Gym with DiagnosticableTreeMixin implements _Gym {
 
 abstract class _Gym implements Gym {
   factory _Gym(
-      {@required String id,
-      @required String name,
-      @required String paymentAppDomain,
-      @required String stripePublicKey,
-      @required String imageUrl,
+      {required String id,
+      required String name,
+      required String paymentAppDomain,
+      required String stripePublicKey,
+      required String imageUrl,
       bool hasActivePayments}) = _$_Gym;
 
   factory _Gym.fromJson(Map<String, dynamic> json) = _$_Gym.fromJson;
 
   @override
-  String get id;
+  String get id => throw _privateConstructorUsedError;
   @override
-  String get name;
+  String get name => throw _privateConstructorUsedError;
   @override
-  String get paymentAppDomain;
+  String get paymentAppDomain => throw _privateConstructorUsedError;
   @override
-  String get stripePublicKey;
+  String get stripePublicKey => throw _privateConstructorUsedError;
   @override
-  String get imageUrl;
+  String get imageUrl => throw _privateConstructorUsedError;
   @override
-  bool get hasActivePayments;
+  bool get hasActivePayments => throw _privateConstructorUsedError;
   @override
   @JsonKey(ignore: true)
-  _$GymCopyWith<_Gym> get copyWith;
+  _$GymCopyWith<_Gym> get copyWith => throw _privateConstructorUsedError;
 }

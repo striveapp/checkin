@@ -1,3 +1,5 @@
+// @dart=2.9
+
 import 'package:checkin/src/blocs/gym/bloc.dart';
 import 'package:checkin/src/models/gym.dart';
 import 'package:checkin/src/ui/components/account/payment.dart';
@@ -27,13 +29,13 @@ void main() {
           userHasActivePayments: null,
         ).paymentsToggle(GymState.gymLoaded(
             gym: Gym(
-                id: "fake-gym",
-                name: "Test gym",
-                paymentAppDomain: "test-domain",
-                stripePublicKey: "test-key",
-                hasActivePayments: true,
-              imageUrl: "cool-gyms-have-cooler-images",
-            )));
+          id: "fake-gym",
+          name: "Test gym",
+          paymentAppDomain: "test-domain",
+          stripePublicKey: "test-key",
+          hasActivePayments: true,
+          imageUrl: "cool-gyms-have-cooler-images",
+        )));
         expect(result, true);
       });
       test("When gym preference is false", () {
@@ -41,13 +43,13 @@ void main() {
           userHasActivePayments: null,
         ).paymentsToggle(GymState.gymLoaded(
             gym: Gym(
-                id: "fake-gym",
-                name: "Test gym",
-                paymentAppDomain: "test-domain",
-                stripePublicKey: "test-key",
-                hasActivePayments: false,
-              imageUrl: "cool-gyms-have-cooler-images",
-            )));
+          id: "fake-gym",
+          name: "Test gym",
+          paymentAppDomain: "test-domain",
+          stripePublicKey: "test-key",
+          hasActivePayments: false,
+          imageUrl: "cool-gyms-have-cooler-images",
+        )));
         expect(result, false);
       });
       test("When you get here you should question your reality", () {

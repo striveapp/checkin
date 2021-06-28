@@ -1,5 +1,5 @@
 // GENERATED CODE - DO NOT MODIFY BY HAND
-// ignore_for_file: deprecated_member_use, deprecated_member_use_from_same_package, use_function_type_syntax_for_parameters, unnecessary_const, avoid_init_to_null, invalid_override_different_default_values_named, prefer_expression_function_bodies
+// ignore_for_file: unused_element, deprecated_member_use, deprecated_member_use_from_same_package, use_function_type_syntax_for_parameters, unnecessary_const, avoid_init_to_null, invalid_override_different_default_values_named, prefer_expression_function_bodies, annotate_overrides
 
 part of 'graduation_state.dart';
 
@@ -9,22 +9,23 @@ part of 'graduation_state.dart';
 
 T _$identity<T>(T value) => value;
 
+final _privateConstructorUsedError = UnsupportedError(
+    'It seems like you constructed your class using `MyClass._()`. This constructor is only meant to be used by freezed and you are not supposed to need it nor use it.\nPlease check the documentation here for more informations: https://github.com/rrousselGit/freezed#custom-getters-and-methods');
+
 /// @nodoc
 class _$GraduationStateTearOff {
   const _$GraduationStateTearOff();
 
-// ignore: unused_element
   InitialGraduationState initialGraduationState() {
     return const InitialGraduationState();
   }
 
-// ignore: unused_element
   GraduationLoaded graduationLoaded(
-      {@required Grade currentGrade,
-      @required Grade nextGrade,
-      @required int attendedLessonsForGrade,
-      @required double forNextLevel,
-      @required bool isVisible}) {
+      {required Grade currentGrade,
+      required Grade nextGrade,
+      required int attendedLessonsForGrade,
+      required double forNextLevel,
+      required bool isVisible}) {
     return GraduationLoaded(
       currentGrade: currentGrade,
       nextGrade: nextGrade,
@@ -36,36 +37,41 @@ class _$GraduationStateTearOff {
 }
 
 /// @nodoc
-// ignore: unused_element
 const $GraduationState = _$GraduationStateTearOff();
 
 /// @nodoc
 mixin _$GraduationState {
   @optionalTypeArgs
-  TResult when<TResult extends Object>({
-    @required TResult initialGraduationState(),
-    @required
-        TResult graduationLoaded(Grade currentGrade, Grade nextGrade,
-            int attendedLessonsForGrade, double forNextLevel, bool isVisible),
-  });
+  TResult when<TResult extends Object?>({
+    required TResult Function() initialGraduationState,
+    required TResult Function(Grade currentGrade, Grade nextGrade,
+            int attendedLessonsForGrade, double forNextLevel, bool isVisible)
+        graduationLoaded,
+  }) =>
+      throw _privateConstructorUsedError;
   @optionalTypeArgs
-  TResult maybeWhen<TResult extends Object>({
-    TResult initialGraduationState(),
-    TResult graduationLoaded(Grade currentGrade, Grade nextGrade,
-        int attendedLessonsForGrade, double forNextLevel, bool isVisible),
-    @required TResult orElse(),
-  });
+  TResult maybeWhen<TResult extends Object?>({
+    TResult Function()? initialGraduationState,
+    TResult Function(Grade currentGrade, Grade nextGrade,
+            int attendedLessonsForGrade, double forNextLevel, bool isVisible)?
+        graduationLoaded,
+    required TResult orElse(),
+  }) =>
+      throw _privateConstructorUsedError;
   @optionalTypeArgs
-  TResult map<TResult extends Object>({
-    @required TResult initialGraduationState(InitialGraduationState value),
-    @required TResult graduationLoaded(GraduationLoaded value),
-  });
+  TResult map<TResult extends Object?>({
+    required TResult Function(InitialGraduationState value)
+        initialGraduationState,
+    required TResult Function(GraduationLoaded value) graduationLoaded,
+  }) =>
+      throw _privateConstructorUsedError;
   @optionalTypeArgs
-  TResult maybeMap<TResult extends Object>({
-    TResult initialGraduationState(InitialGraduationState value),
-    TResult graduationLoaded(GraduationLoaded value),
-    @required TResult orElse(),
-  });
+  TResult maybeMap<TResult extends Object?>({
+    TResult Function(InitialGraduationState value)? initialGraduationState,
+    TResult Function(GraduationLoaded value)? graduationLoaded,
+    required TResult orElse(),
+  }) =>
+      throw _privateConstructorUsedError;
 }
 
 /// @nodoc
@@ -105,6 +111,7 @@ class _$InitialGraduationStateCopyWithImpl<$Res>
 }
 
 /// @nodoc
+
 class _$InitialGraduationState
     with DiagnosticableTreeMixin
     implements InitialGraduationState {
@@ -133,26 +140,24 @@ class _$InitialGraduationState
 
   @override
   @optionalTypeArgs
-  TResult when<TResult extends Object>({
-    @required TResult initialGraduationState(),
-    @required
-        TResult graduationLoaded(Grade currentGrade, Grade nextGrade,
-            int attendedLessonsForGrade, double forNextLevel, bool isVisible),
+  TResult when<TResult extends Object?>({
+    required TResult Function() initialGraduationState,
+    required TResult Function(Grade currentGrade, Grade nextGrade,
+            int attendedLessonsForGrade, double forNextLevel, bool isVisible)
+        graduationLoaded,
   }) {
-    assert(initialGraduationState != null);
-    assert(graduationLoaded != null);
     return initialGraduationState();
   }
 
   @override
   @optionalTypeArgs
-  TResult maybeWhen<TResult extends Object>({
-    TResult initialGraduationState(),
-    TResult graduationLoaded(Grade currentGrade, Grade nextGrade,
-        int attendedLessonsForGrade, double forNextLevel, bool isVisible),
-    @required TResult orElse(),
+  TResult maybeWhen<TResult extends Object?>({
+    TResult Function()? initialGraduationState,
+    TResult Function(Grade currentGrade, Grade nextGrade,
+            int attendedLessonsForGrade, double forNextLevel, bool isVisible)?
+        graduationLoaded,
+    required TResult orElse(),
   }) {
-    assert(orElse != null);
     if (initialGraduationState != null) {
       return initialGraduationState();
     }
@@ -161,23 +166,21 @@ class _$InitialGraduationState
 
   @override
   @optionalTypeArgs
-  TResult map<TResult extends Object>({
-    @required TResult initialGraduationState(InitialGraduationState value),
-    @required TResult graduationLoaded(GraduationLoaded value),
+  TResult map<TResult extends Object?>({
+    required TResult Function(InitialGraduationState value)
+        initialGraduationState,
+    required TResult Function(GraduationLoaded value) graduationLoaded,
   }) {
-    assert(initialGraduationState != null);
-    assert(graduationLoaded != null);
     return initialGraduationState(this);
   }
 
   @override
   @optionalTypeArgs
-  TResult maybeMap<TResult extends Object>({
-    TResult initialGraduationState(InitialGraduationState value),
-    TResult graduationLoaded(GraduationLoaded value),
-    @required TResult orElse(),
+  TResult maybeMap<TResult extends Object?>({
+    TResult Function(InitialGraduationState value)? initialGraduationState,
+    TResult Function(GraduationLoaded value)? graduationLoaded,
+    required TResult orElse(),
   }) {
-    assert(orElse != null);
     if (initialGraduationState != null) {
       return initialGraduationState(this);
     }
@@ -215,42 +218,48 @@ class _$GraduationLoadedCopyWithImpl<$Res>
 
   @override
   $Res call({
-    Object currentGrade = freezed,
-    Object nextGrade = freezed,
-    Object attendedLessonsForGrade = freezed,
-    Object forNextLevel = freezed,
-    Object isVisible = freezed,
+    Object? currentGrade = freezed,
+    Object? nextGrade = freezed,
+    Object? attendedLessonsForGrade = freezed,
+    Object? forNextLevel = freezed,
+    Object? isVisible = freezed,
   }) {
     return _then(GraduationLoaded(
-      currentGrade:
-          currentGrade == freezed ? _value.currentGrade : currentGrade as Grade,
-      nextGrade: nextGrade == freezed ? _value.nextGrade : nextGrade as Grade,
+      currentGrade: currentGrade == freezed
+          ? _value.currentGrade
+          : currentGrade // ignore: cast_nullable_to_non_nullable
+              as Grade,
+      nextGrade: nextGrade == freezed
+          ? _value.nextGrade
+          : nextGrade // ignore: cast_nullable_to_non_nullable
+              as Grade,
       attendedLessonsForGrade: attendedLessonsForGrade == freezed
           ? _value.attendedLessonsForGrade
-          : attendedLessonsForGrade as int,
+          : attendedLessonsForGrade // ignore: cast_nullable_to_non_nullable
+              as int,
       forNextLevel: forNextLevel == freezed
           ? _value.forNextLevel
-          : forNextLevel as double,
-      isVisible: isVisible == freezed ? _value.isVisible : isVisible as bool,
+          : forNextLevel // ignore: cast_nullable_to_non_nullable
+              as double,
+      isVisible: isVisible == freezed
+          ? _value.isVisible
+          : isVisible // ignore: cast_nullable_to_non_nullable
+              as bool,
     ));
   }
 }
 
 /// @nodoc
+
 class _$GraduationLoaded
     with DiagnosticableTreeMixin
     implements GraduationLoaded {
   const _$GraduationLoaded(
-      {@required this.currentGrade,
-      @required this.nextGrade,
-      @required this.attendedLessonsForGrade,
-      @required this.forNextLevel,
-      @required this.isVisible})
-      : assert(currentGrade != null),
-        assert(nextGrade != null),
-        assert(attendedLessonsForGrade != null),
-        assert(forNextLevel != null),
-        assert(isVisible != null);
+      {required this.currentGrade,
+      required this.nextGrade,
+      required this.attendedLessonsForGrade,
+      required this.forNextLevel,
+      required this.isVisible});
 
   @override
   final Grade currentGrade;
@@ -319,27 +328,25 @@ class _$GraduationLoaded
 
   @override
   @optionalTypeArgs
-  TResult when<TResult extends Object>({
-    @required TResult initialGraduationState(),
-    @required
-        TResult graduationLoaded(Grade currentGrade, Grade nextGrade,
-            int attendedLessonsForGrade, double forNextLevel, bool isVisible),
+  TResult when<TResult extends Object?>({
+    required TResult Function() initialGraduationState,
+    required TResult Function(Grade currentGrade, Grade nextGrade,
+            int attendedLessonsForGrade, double forNextLevel, bool isVisible)
+        graduationLoaded,
   }) {
-    assert(initialGraduationState != null);
-    assert(graduationLoaded != null);
     return graduationLoaded(currentGrade, nextGrade, attendedLessonsForGrade,
         forNextLevel, isVisible);
   }
 
   @override
   @optionalTypeArgs
-  TResult maybeWhen<TResult extends Object>({
-    TResult initialGraduationState(),
-    TResult graduationLoaded(Grade currentGrade, Grade nextGrade,
-        int attendedLessonsForGrade, double forNextLevel, bool isVisible),
-    @required TResult orElse(),
+  TResult maybeWhen<TResult extends Object?>({
+    TResult Function()? initialGraduationState,
+    TResult Function(Grade currentGrade, Grade nextGrade,
+            int attendedLessonsForGrade, double forNextLevel, bool isVisible)?
+        graduationLoaded,
+    required TResult orElse(),
   }) {
-    assert(orElse != null);
     if (graduationLoaded != null) {
       return graduationLoaded(currentGrade, nextGrade, attendedLessonsForGrade,
           forNextLevel, isVisible);
@@ -349,23 +356,21 @@ class _$GraduationLoaded
 
   @override
   @optionalTypeArgs
-  TResult map<TResult extends Object>({
-    @required TResult initialGraduationState(InitialGraduationState value),
-    @required TResult graduationLoaded(GraduationLoaded value),
+  TResult map<TResult extends Object?>({
+    required TResult Function(InitialGraduationState value)
+        initialGraduationState,
+    required TResult Function(GraduationLoaded value) graduationLoaded,
   }) {
-    assert(initialGraduationState != null);
-    assert(graduationLoaded != null);
     return graduationLoaded(this);
   }
 
   @override
   @optionalTypeArgs
-  TResult maybeMap<TResult extends Object>({
-    TResult initialGraduationState(InitialGraduationState value),
-    TResult graduationLoaded(GraduationLoaded value),
-    @required TResult orElse(),
+  TResult maybeMap<TResult extends Object?>({
+    TResult Function(InitialGraduationState value)? initialGraduationState,
+    TResult Function(GraduationLoaded value)? graduationLoaded,
+    required TResult orElse(),
   }) {
-    assert(orElse != null);
     if (graduationLoaded != null) {
       return graduationLoaded(this);
     }
@@ -375,17 +380,18 @@ class _$GraduationLoaded
 
 abstract class GraduationLoaded implements GraduationState {
   const factory GraduationLoaded(
-      {@required Grade currentGrade,
-      @required Grade nextGrade,
-      @required int attendedLessonsForGrade,
-      @required double forNextLevel,
-      @required bool isVisible}) = _$GraduationLoaded;
+      {required Grade currentGrade,
+      required Grade nextGrade,
+      required int attendedLessonsForGrade,
+      required double forNextLevel,
+      required bool isVisible}) = _$GraduationLoaded;
 
-  Grade get currentGrade;
-  Grade get nextGrade;
-  int get attendedLessonsForGrade;
-  double get forNextLevel;
-  bool get isVisible;
+  Grade get currentGrade => throw _privateConstructorUsedError;
+  Grade get nextGrade => throw _privateConstructorUsedError;
+  int get attendedLessonsForGrade => throw _privateConstructorUsedError;
+  double get forNextLevel => throw _privateConstructorUsedError;
+  bool get isVisible => throw _privateConstructorUsedError;
   @JsonKey(ignore: true)
-  $GraduationLoadedCopyWith<GraduationLoaded> get copyWith;
+  $GraduationLoadedCopyWith<GraduationLoaded> get copyWith =>
+      throw _privateConstructorUsedError;
 }

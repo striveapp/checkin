@@ -1,3 +1,5 @@
+// @dart=2.9
+
 import 'dart:math' as math;
 
 import 'package:checkin/src/ui/components/stats/user/class_progression_indicator.dart';

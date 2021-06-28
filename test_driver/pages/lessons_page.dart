@@ -1,3 +1,4 @@
+// @dart=2.9
 
 import 'package:checkin/src/models/weekday.dart';
 import 'package:flutter_driver/flutter_driver.dart';

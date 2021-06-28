@@ -1,5 +1,5 @@
 // GENERATED CODE - DO NOT MODIFY BY HAND
-// ignore_for_file: deprecated_member_use, deprecated_member_use_from_same_package, use_function_type_syntax_for_parameters, unnecessary_const, avoid_init_to_null, invalid_override_different_default_values_named, prefer_expression_function_bodies
+// ignore_for_file: unused_element, deprecated_member_use, deprecated_member_use_from_same_package, use_function_type_syntax_for_parameters, unnecessary_const, avoid_init_to_null, invalid_override_different_default_values_named, prefer_expression_function_bodies, annotate_overrides
 
 part of 'membership.dart';
 
@@ -9,17 +9,19 @@ part of 'membership.dart';
 
 T _$identity<T>(T value) => value;
 
+final _privateConstructorUsedError = UnsupportedError(
+    'It seems like you constructed your class using `MyClass._()`. This constructor is only meant to be used by freezed and you are not supposed to need it nor use it.\nPlease check the documentation here for more informations: https://github.com/rrousselGit/freezed#custom-getters-and-methods');
+
 /// @nodoc
 class _$MembershipTearOff {
   const _$MembershipTearOff();
 
-// ignore: unused_element
   _Membership call(
-      {@required String status,
-      String customerId,
-      String name,
-      int currentPeriodEnd,
-      double totalLessonsOfPlan}) {
+      {required String status,
+      String? customerId,
+      String? name,
+      int? currentPeriodEnd,
+      double? totalLessonsOfPlan}) {
     return _Membership(
       status: status,
       customerId: customerId,
@@ -31,19 +33,19 @@ class _$MembershipTearOff {
 }
 
 /// @nodoc
-// ignore: unused_element
 const $Membership = _$MembershipTearOff();
 
 /// @nodoc
 mixin _$Membership {
-  String get status;
-  String get customerId;
-  String get name;
-  int get currentPeriodEnd;
-  double get totalLessonsOfPlan;
+  String get status => throw _privateConstructorUsedError;
+  String? get customerId => throw _privateConstructorUsedError;
+  String? get name => throw _privateConstructorUsedError;
+  int? get currentPeriodEnd => throw _privateConstructorUsedError;
+  double? get totalLessonsOfPlan => throw _privateConstructorUsedError;
 
   @JsonKey(ignore: true)
-  $MembershipCopyWith<Membership> get copyWith;
+  $MembershipCopyWith<Membership> get copyWith =>
+      throw _privateConstructorUsedError;
 }
 
 /// @nodoc
@@ -53,10 +55,10 @@ abstract class $MembershipCopyWith<$Res> {
       _$MembershipCopyWithImpl<$Res>;
   $Res call(
       {String status,
-      String customerId,
-      String name,
-      int currentPeriodEnd,
-      double totalLessonsOfPlan});
+      String? customerId,
+      String? name,
+      int? currentPeriodEnd,
+      double? totalLessonsOfPlan});
 }
 
 /// @nodoc
@@ -69,23 +71,33 @@ class _$MembershipCopyWithImpl<$Res> implements $MembershipCopyWith<$Res> {
 
   @override
   $Res call({
-    Object status = freezed,
-    Object customerId = freezed,
-    Object name = freezed,
-    Object currentPeriodEnd = freezed,
-    Object totalLessonsOfPlan = freezed,
+    Object? status = freezed,
+    Object? customerId = freezed,
+    Object? name = freezed,
+    Object? currentPeriodEnd = freezed,
+    Object? totalLessonsOfPlan = freezed,
   }) {
     return _then(_value.copyWith(
-      status: status == freezed ? _value.status : status as String,
-      customerId:
-          customerId == freezed ? _value.customerId : customerId as String,
-      name: name == freezed ? _value.name : name as String,
+      status: status == freezed
+          ? _value.status
+          : status // ignore: cast_nullable_to_non_nullable
+              as String,
+      customerId: customerId == freezed
+          ? _value.customerId
+          : customerId // ignore: cast_nullable_to_non_nullable
+              as String?,
+      name: name == freezed
+          ? _value.name
+          : name // ignore: cast_nullable_to_non_nullable
+              as String?,
       currentPeriodEnd: currentPeriodEnd == freezed
           ? _value.currentPeriodEnd
-          : currentPeriodEnd as int,
+          : currentPeriodEnd // ignore: cast_nullable_to_non_nullable
+              as int?,
       totalLessonsOfPlan: totalLessonsOfPlan == freezed
           ? _value.totalLessonsOfPlan
-          : totalLessonsOfPlan as double,
+          : totalLessonsOfPlan // ignore: cast_nullable_to_non_nullable
+              as double?,
     ));
   }
 }
@@ -98,10 +110,10 @@ abstract class _$MembershipCopyWith<$Res> implements $MembershipCopyWith<$Res> {
   @override
   $Res call(
       {String status,
-      String customerId,
-      String name,
-      int currentPeriodEnd,
-      double totalLessonsOfPlan});
+      String? customerId,
+      String? name,
+      int? currentPeriodEnd,
+      double? totalLessonsOfPlan});
 }
 
 /// @nodoc
@@ -116,47 +128,57 @@ class __$MembershipCopyWithImpl<$Res> extends _$MembershipCopyWithImpl<$Res>
 
   @override
   $Res call({
-    Object status = freezed,
-    Object customerId = freezed,
-    Object name = freezed,
-    Object currentPeriodEnd = freezed,
-    Object totalLessonsOfPlan = freezed,
+    Object? status = freezed,
+    Object? customerId = freezed,
+    Object? name = freezed,
+    Object? currentPeriodEnd = freezed,
+    Object? totalLessonsOfPlan = freezed,
   }) {
     return _then(_Membership(
-      status: status == freezed ? _value.status : status as String,
-      customerId:
-          customerId == freezed ? _value.customerId : customerId as String,
-      name: name == freezed ? _value.name : name as String,
+      status: status == freezed
+          ? _value.status
+          : status // ignore: cast_nullable_to_non_nullable
+              as String,
+      customerId: customerId == freezed
+          ? _value.customerId
+          : customerId // ignore: cast_nullable_to_non_nullable
+              as String?,
+      name: name == freezed
+          ? _value.name
+          : name // ignore: cast_nullable_to_non_nullable
+              as String?,
       currentPeriodEnd: currentPeriodEnd == freezed
           ? _value.currentPeriodEnd
-          : currentPeriodEnd as int,
+          : currentPeriodEnd // ignore: cast_nullable_to_non_nullable
+              as int?,
       totalLessonsOfPlan: totalLessonsOfPlan == freezed
           ? _value.totalLessonsOfPlan
-          : totalLessonsOfPlan as double,
+          : totalLessonsOfPlan // ignore: cast_nullable_to_non_nullable
+              as double?,
     ));
   }
 }
 
 /// @nodoc
+
 class _$_Membership with DiagnosticableTreeMixin implements _Membership {
   _$_Membership(
-      {@required this.status,
+      {required this.status,
       this.customerId,
       this.name,
       this.currentPeriodEnd,
-      this.totalLessonsOfPlan})
-      : assert(status != null);
+      this.totalLessonsOfPlan});
 
   @override
   final String status;
   @override
-  final String customerId;
+  final String? customerId;
   @override
-  final String name;
+  final String? name;
   @override
-  final int currentPeriodEnd;
+  final int? currentPeriodEnd;
   @override
-  final double totalLessonsOfPlan;
+  final double? totalLessonsOfPlan;
 
   @override
   String toString({DiagnosticLevel minLevel = DiagnosticLevel.info}) {
@@ -211,23 +233,24 @@ class _$_Membership with DiagnosticableTreeMixin implements _Membership {
 
 abstract class _Membership implements Membership {
   factory _Membership(
-      {@required String status,
-      String customerId,
-      String name,
-      int currentPeriodEnd,
-      double totalLessonsOfPlan}) = _$_Membership;
+      {required String status,
+      String? customerId,
+      String? name,
+      int? currentPeriodEnd,
+      double? totalLessonsOfPlan}) = _$_Membership;
 
   @override
-  String get status;
+  String get status => throw _privateConstructorUsedError;
   @override
-  String get customerId;
+  String? get customerId => throw _privateConstructorUsedError;
   @override
-  String get name;
+  String? get name => throw _privateConstructorUsedError;
   @override
-  int get currentPeriodEnd;
+  int? get currentPeriodEnd => throw _privateConstructorUsedError;
   @override
-  double get totalLessonsOfPlan;
+  double? get totalLessonsOfPlan => throw _privateConstructorUsedError;
   @override
   @JsonKey(ignore: true)
-  _$MembershipCopyWith<_Membership> get copyWith;
+  _$MembershipCopyWith<_Membership> get copyWith =>
+      throw _privateConstructorUsedError;
 }

@@ -6,11 +6,11 @@ import 'package:meta/meta.dart';
 part 'news_state.freezed.dart';
 
 @freezed
-abstract class NewsState with _$NewsState {
+class NewsState with _$NewsState {
   const factory NewsState.newsInitial() = NewsInitial;
   const factory NewsState.newsLoaded({
-    @required List<News> newsList,
-    @required bool hasPinnedNews,
-    @required String gymId,
+    required List<News> newsList,
+    required bool hasPinnedNews,
+    required String gymId,
   }) = NewsLoaded;
 }

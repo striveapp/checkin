@@ -1,3 +1,5 @@
+// @dart=2.9
+
 import 'package:bloc/bloc.dart';
 import 'package:checkin/src/repositories/analytics_repository.dart';
 import 'package:checkin/src/repositories/auth_repository.dart';

@@ -1,3 +1,5 @@
+// @dart=2.9
+
 import 'package:checkin/src/blocs/lessons_stats/bloc.dart';
 import 'package:checkin/src/localization/localization.dart';
 import 'package:checkin/src/ui/components/loading_indicator.dart';

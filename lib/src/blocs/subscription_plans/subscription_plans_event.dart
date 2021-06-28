@@ -6,11 +6,11 @@ import 'package:meta/meta.dart';
 part 'subscription_plans_event.freezed.dart';
 
 @freezed
-abstract class SubscriptionPlansEvent with _$SubscriptionPlansEvent {
+class SubscriptionPlansEvent with _$SubscriptionPlansEvent {
   const factory SubscriptionPlansEvent.subscriptionPlansUpdated({
-    @required List<SubscriptionPlan> subscriptionPlans,
+    required List<SubscriptionPlan> subscriptionPlans,
   }) = SubscriptionPlansUpdated;
 
-  const factory SubscriptionPlansEvent.loadSubscriptionPlans({@required String planId}) =
+  const factory SubscriptionPlansEvent.loadSubscriptionPlans({required String planId}) =
       LoadSubscriptionPlans;
 }

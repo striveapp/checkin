@@ -1,5 +1,5 @@
 // GENERATED CODE - DO NOT MODIFY BY HAND
-// ignore_for_file: deprecated_member_use, deprecated_member_use_from_same_package, use_function_type_syntax_for_parameters, unnecessary_const, avoid_init_to_null, invalid_override_different_default_values_named, prefer_expression_function_bodies
+// ignore_for_file: unused_element, deprecated_member_use, deprecated_member_use_from_same_package, use_function_type_syntax_for_parameters, unnecessary_const, avoid_init_to_null, invalid_override_different_default_values_named, prefer_expression_function_bodies, annotate_overrides
 
 part of 'sessions_state.dart';
 
@@ -9,32 +9,31 @@ part of 'sessions_state.dart';
 
 T _$identity<T>(T value) => value;
 
+final _privateConstructorUsedError = UnsupportedError(
+    'It seems like you constructed your class using `MyClass._()`. This constructor is only meant to be used by freezed and you are not supposed to need it nor use it.\nPlease check the documentation here for more informations: https://github.com/rrousselGit/freezed#custom-getters-and-methods');
+
 /// @nodoc
 class _$SessionsStateTearOff {
   const _$SessionsStateTearOff();
 
-// ignore: unused_element
   InitialSessionsState initialSessionsState() {
     return const InitialSessionsState();
   }
 
-// ignore: unused_element
   SessionsUnlimited sessionsUnlimited() {
     return const SessionsUnlimited();
   }
 
-// ignore: unused_element
   SessionsLoaded sessionsLoaded(
-      {@required double totalLessonsOfPlan, @required double attendedLessons}) {
+      {required double totalLessonsOfPlan, required double attendedLessons}) {
     return SessionsLoaded(
       totalLessonsOfPlan: totalLessonsOfPlan,
       attendedLessons: attendedLessons,
     );
   }
 
-// ignore: unused_element
   SessionsWarning sessionsWarning(
-      {@required double totalLessonsOfPlan, @required double attendedLessons}) {
+      {required double totalLessonsOfPlan, required double attendedLessons}) {
     return SessionsWarning(
       totalLessonsOfPlan: totalLessonsOfPlan,
       attendedLessons: attendedLessons,
@@ -43,45 +42,48 @@ class _$SessionsStateTearOff {
 }
 
 /// @nodoc
-// ignore: unused_element
 const $SessionsState = _$SessionsStateTearOff();
 
 /// @nodoc
 mixin _$SessionsState {
   @optionalTypeArgs
-  TResult when<TResult extends Object>({
-    @required TResult initialSessionsState(),
-    @required TResult sessionsUnlimited(),
-    @required
-        TResult sessionsLoaded(
-            double totalLessonsOfPlan, double attendedLessons),
-    @required
-        TResult sessionsWarning(
-            double totalLessonsOfPlan, double attendedLessons),
-  });
+  TResult when<TResult extends Object?>({
+    required TResult Function() initialSessionsState,
+    required TResult Function() sessionsUnlimited,
+    required TResult Function(double totalLessonsOfPlan, double attendedLessons)
+        sessionsLoaded,
+    required TResult Function(double totalLessonsOfPlan, double attendedLessons)
+        sessionsWarning,
+  }) =>
+      throw _privateConstructorUsedError;
   @optionalTypeArgs
-  TResult maybeWhen<TResult extends Object>({
-    TResult initialSessionsState(),
-    TResult sessionsUnlimited(),
-    TResult sessionsLoaded(double totalLessonsOfPlan, double attendedLessons),
-    TResult sessionsWarning(double totalLessonsOfPlan, double attendedLessons),
-    @required TResult orElse(),
-  });
+  TResult maybeWhen<TResult extends Object?>({
+    TResult Function()? initialSessionsState,
+    TResult Function()? sessionsUnlimited,
+    TResult Function(double totalLessonsOfPlan, double attendedLessons)?
+        sessionsLoaded,
+    TResult Function(double totalLessonsOfPlan, double attendedLessons)?
+        sessionsWarning,
+    required TResult orElse(),
+  }) =>
+      throw _privateConstructorUsedError;
   @optionalTypeArgs
-  TResult map<TResult extends Object>({
-    @required TResult initialSessionsState(InitialSessionsState value),
-    @required TResult sessionsUnlimited(SessionsUnlimited value),
-    @required TResult sessionsLoaded(SessionsLoaded value),
-    @required TResult sessionsWarning(SessionsWarning value),
-  });
+  TResult map<TResult extends Object?>({
+    required TResult Function(InitialSessionsState value) initialSessionsState,
+    required TResult Function(SessionsUnlimited value) sessionsUnlimited,
+    required TResult Function(SessionsLoaded value) sessionsLoaded,
+    required TResult Function(SessionsWarning value) sessionsWarning,
+  }) =>
+      throw _privateConstructorUsedError;
   @optionalTypeArgs
-  TResult maybeMap<TResult extends Object>({
-    TResult initialSessionsState(InitialSessionsState value),
-    TResult sessionsUnlimited(SessionsUnlimited value),
-    TResult sessionsLoaded(SessionsLoaded value),
-    TResult sessionsWarning(SessionsWarning value),
-    @required TResult orElse(),
-  });
+  TResult maybeMap<TResult extends Object?>({
+    TResult Function(InitialSessionsState value)? initialSessionsState,
+    TResult Function(SessionsUnlimited value)? sessionsUnlimited,
+    TResult Function(SessionsLoaded value)? sessionsLoaded,
+    TResult Function(SessionsWarning value)? sessionsWarning,
+    required TResult orElse(),
+  }) =>
+      throw _privateConstructorUsedError;
 }
 
 /// @nodoc
@@ -121,6 +123,7 @@ class _$InitialSessionsStateCopyWithImpl<$Res>
 }
 
 /// @nodoc
+
 class _$InitialSessionsState
     with DiagnosticableTreeMixin
     implements InitialSessionsState {
@@ -148,33 +151,28 @@ class _$InitialSessionsState
 
   @override
   @optionalTypeArgs
-  TResult when<TResult extends Object>({
-    @required TResult initialSessionsState(),
-    @required TResult sessionsUnlimited(),
-    @required
-        TResult sessionsLoaded(
-            double totalLessonsOfPlan, double attendedLessons),
-    @required
-        TResult sessionsWarning(
-            double totalLessonsOfPlan, double attendedLessons),
+  TResult when<TResult extends Object?>({
+    required TResult Function() initialSessionsState,
+    required TResult Function() sessionsUnlimited,
+    required TResult Function(double totalLessonsOfPlan, double attendedLessons)
+        sessionsLoaded,
+    required TResult Function(double totalLessonsOfPlan, double attendedLessons)
+        sessionsWarning,
   }) {
-    assert(initialSessionsState != null);
-    assert(sessionsUnlimited != null);
-    assert(sessionsLoaded != null);
-    assert(sessionsWarning != null);
     return initialSessionsState();
   }
 
   @override
   @optionalTypeArgs
-  TResult maybeWhen<TResult extends Object>({
-    TResult initialSessionsState(),
-    TResult sessionsUnlimited(),
-    TResult sessionsLoaded(double totalLessonsOfPlan, double attendedLessons),
-    TResult sessionsWarning(double totalLessonsOfPlan, double attendedLessons),
-    @required TResult orElse(),
+  TResult maybeWhen<TResult extends Object?>({
+    TResult Function()? initialSessionsState,
+    TResult Function()? sessionsUnlimited,
+    TResult Function(double totalLessonsOfPlan, double attendedLessons)?
+        sessionsLoaded,
+    TResult Function(double totalLessonsOfPlan, double attendedLessons)?
+        sessionsWarning,
+    required TResult orElse(),
   }) {
-    assert(orElse != null);
     if (initialSessionsState != null) {
       return initialSessionsState();
     }
@@ -183,29 +181,24 @@ class _$InitialSessionsState
 
   @override
   @optionalTypeArgs
-  TResult map<TResult extends Object>({
-    @required TResult initialSessionsState(InitialSessionsState value),
-    @required TResult sessionsUnlimited(SessionsUnlimited value),
-    @required TResult sessionsLoaded(SessionsLoaded value),
-    @required TResult sessionsWarning(SessionsWarning value),
+  TResult map<TResult extends Object?>({
+    required TResult Function(InitialSessionsState value) initialSessionsState,
+    required TResult Function(SessionsUnlimited value) sessionsUnlimited,
+    required TResult Function(SessionsLoaded value) sessionsLoaded,
+    required TResult Function(SessionsWarning value) sessionsWarning,
   }) {
-    assert(initialSessionsState != null);
-    assert(sessionsUnlimited != null);
-    assert(sessionsLoaded != null);
-    assert(sessionsWarning != null);
     return initialSessionsState(this);
   }
 
   @override
   @optionalTypeArgs
-  TResult maybeMap<TResult extends Object>({
-    TResult initialSessionsState(InitialSessionsState value),
-    TResult sessionsUnlimited(SessionsUnlimited value),
-    TResult sessionsLoaded(SessionsLoaded value),
-    TResult sessionsWarning(SessionsWarning value),
-    @required TResult orElse(),
+  TResult maybeMap<TResult extends Object?>({
+    TResult Function(InitialSessionsState value)? initialSessionsState,
+    TResult Function(SessionsUnlimited value)? sessionsUnlimited,
+    TResult Function(SessionsLoaded value)? sessionsLoaded,
+    TResult Function(SessionsWarning value)? sessionsWarning,
+    required TResult orElse(),
   }) {
-    assert(orElse != null);
     if (initialSessionsState != null) {
       return initialSessionsState(this);
     }
@@ -237,6 +230,7 @@ class _$SessionsUnlimitedCopyWithImpl<$Res>
 }
 
 /// @nodoc
+
 class _$SessionsUnlimited
     with DiagnosticableTreeMixin
     implements SessionsUnlimited {
@@ -264,33 +258,28 @@ class _$SessionsUnlimited
 
   @override
   @optionalTypeArgs
-  TResult when<TResult extends Object>({
-    @required TResult initialSessionsState(),
-    @required TResult sessionsUnlimited(),
-    @required
-        TResult sessionsLoaded(
-            double totalLessonsOfPlan, double attendedLessons),
-    @required
-        TResult sessionsWarning(
-            double totalLessonsOfPlan, double attendedLessons),
+  TResult when<TResult extends Object?>({
+    required TResult Function() initialSessionsState,
+    required TResult Function() sessionsUnlimited,
+    required TResult Function(double totalLessonsOfPlan, double attendedLessons)
+        sessionsLoaded,
+    required TResult Function(double totalLessonsOfPlan, double attendedLessons)
+        sessionsWarning,
   }) {
-    assert(initialSessionsState != null);
-    assert(sessionsUnlimited != null);
-    assert(sessionsLoaded != null);
-    assert(sessionsWarning != null);
     return sessionsUnlimited();
   }
 
   @override
   @optionalTypeArgs
-  TResult maybeWhen<TResult extends Object>({
-    TResult initialSessionsState(),
-    TResult sessionsUnlimited(),
-    TResult sessionsLoaded(double totalLessonsOfPlan, double attendedLessons),
-    TResult sessionsWarning(double totalLessonsOfPlan, double attendedLessons),
-    @required TResult orElse(),
+  TResult maybeWhen<TResult extends Object?>({
+    TResult Function()? initialSessionsState,
+    TResult Function()? sessionsUnlimited,
+    TResult Function(double totalLessonsOfPlan, double attendedLessons)?
+        sessionsLoaded,
+    TResult Function(double totalLessonsOfPlan, double attendedLessons)?
+        sessionsWarning,
+    required TResult orElse(),
   }) {
-    assert(orElse != null);
     if (sessionsUnlimited != null) {
       return sessionsUnlimited();
     }
@@ -299,29 +288,24 @@ class _$SessionsUnlimited
 
   @override
   @optionalTypeArgs
-  TResult map<TResult extends Object>({
-    @required TResult initialSessionsState(InitialSessionsState value),
-    @required TResult sessionsUnlimited(SessionsUnlimited value),
-    @required TResult sessionsLoaded(SessionsLoaded value),
-    @required TResult sessionsWarning(SessionsWarning value),
+  TResult map<TResult extends Object?>({
+    required TResult Function(InitialSessionsState value) initialSessionsState,
+    required TResult Function(SessionsUnlimited value) sessionsUnlimited,
+    required TResult Function(SessionsLoaded value) sessionsLoaded,
+    required TResult Function(SessionsWarning value) sessionsWarning,
   }) {
-    assert(initialSessionsState != null);
-    assert(sessionsUnlimited != null);
-    assert(sessionsLoaded != null);
-    assert(sessionsWarning != null);
     return sessionsUnlimited(this);
   }
 
   @override
   @optionalTypeArgs
-  TResult maybeMap<TResult extends Object>({
-    TResult initialSessionsState(InitialSessionsState value),
-    TResult sessionsUnlimited(SessionsUnlimited value),
-    TResult sessionsLoaded(SessionsLoaded value),
-    TResult sessionsWarning(SessionsWarning value),
-    @required TResult orElse(),
+  TResult maybeMap<TResult extends Object?>({
+    TResult Function(InitialSessionsState value)? initialSessionsState,
+    TResult Function(SessionsUnlimited value)? sessionsUnlimited,
+    TResult Function(SessionsLoaded value)? sessionsLoaded,
+    TResult Function(SessionsWarning value)? sessionsWarning,
+    required TResult orElse(),
   }) {
-    assert(orElse != null);
     if (sessionsUnlimited != null) {
       return sessionsUnlimited(this);
     }
@@ -354,26 +338,27 @@ class _$SessionsLoadedCopyWithImpl<$Res>
 
   @override
   $Res call({
-    Object totalLessonsOfPlan = freezed,
-    Object attendedLessons = freezed,
+    Object? totalLessonsOfPlan = freezed,
+    Object? attendedLessons = freezed,
   }) {
     return _then(SessionsLoaded(
       totalLessonsOfPlan: totalLessonsOfPlan == freezed
           ? _value.totalLessonsOfPlan
-          : totalLessonsOfPlan as double,
+          : totalLessonsOfPlan // ignore: cast_nullable_to_non_nullable
+              as double,
       attendedLessons: attendedLessons == freezed
           ? _value.attendedLessons
-          : attendedLessons as double,
+          : attendedLessons // ignore: cast_nullable_to_non_nullable
+              as double,
     ));
   }
 }
 
 /// @nodoc
+
 class _$SessionsLoaded with DiagnosticableTreeMixin implements SessionsLoaded {
   const _$SessionsLoaded(
-      {@required this.totalLessonsOfPlan, @required this.attendedLessons})
-      : assert(totalLessonsOfPlan != null),
-        assert(attendedLessons != null);
+      {required this.totalLessonsOfPlan, required this.attendedLessons});
 
   @override
   final double totalLessonsOfPlan;
@@ -419,33 +404,28 @@ class _$SessionsLoaded with DiagnosticableTreeMixin implements SessionsLoaded {
 
   @override
   @optionalTypeArgs
-  TResult when<TResult extends Object>({
-    @required TResult initialSessionsState(),
-    @required TResult sessionsUnlimited(),
-    @required
-        TResult sessionsLoaded(
-            double totalLessonsOfPlan, double attendedLessons),
-    @required
-        TResult sessionsWarning(
-            double totalLessonsOfPlan, double attendedLessons),
+  TResult when<TResult extends Object?>({
+    required TResult Function() initialSessionsState,
+    required TResult Function() sessionsUnlimited,
+    required TResult Function(double totalLessonsOfPlan, double attendedLessons)
+        sessionsLoaded,
+    required TResult Function(double totalLessonsOfPlan, double attendedLessons)
+        sessionsWarning,
   }) {
-    assert(initialSessionsState != null);
-    assert(sessionsUnlimited != null);
-    assert(sessionsLoaded != null);
-    assert(sessionsWarning != null);
     return sessionsLoaded(totalLessonsOfPlan, attendedLessons);
   }
 
   @override
   @optionalTypeArgs
-  TResult maybeWhen<TResult extends Object>({
-    TResult initialSessionsState(),
-    TResult sessionsUnlimited(),
-    TResult sessionsLoaded(double totalLessonsOfPlan, double attendedLessons),
-    TResult sessionsWarning(double totalLessonsOfPlan, double attendedLessons),
-    @required TResult orElse(),
+  TResult maybeWhen<TResult extends Object?>({
+    TResult Function()? initialSessionsState,
+    TResult Function()? sessionsUnlimited,
+    TResult Function(double totalLessonsOfPlan, double attendedLessons)?
+        sessionsLoaded,
+    TResult Function(double totalLessonsOfPlan, double attendedLessons)?
+        sessionsWarning,
+    required TResult orElse(),
   }) {
-    assert(orElse != null);
     if (sessionsLoaded != null) {
       return sessionsLoaded(totalLessonsOfPlan, attendedLessons);
     }
@@ -454,29 +434,24 @@ class _$SessionsLoaded with DiagnosticableTreeMixin implements SessionsLoaded {
 
   @override
   @optionalTypeArgs
-  TResult map<TResult extends Object>({
-    @required TResult initialSessionsState(InitialSessionsState value),
-    @required TResult sessionsUnlimited(SessionsUnlimited value),
-    @required TResult sessionsLoaded(SessionsLoaded value),
-    @required TResult sessionsWarning(SessionsWarning value),
+  TResult map<TResult extends Object?>({
+    required TResult Function(InitialSessionsState value) initialSessionsState,
+    required TResult Function(SessionsUnlimited value) sessionsUnlimited,
+    required TResult Function(SessionsLoaded value) sessionsLoaded,
+    required TResult Function(SessionsWarning value) sessionsWarning,
   }) {
-    assert(initialSessionsState != null);
-    assert(sessionsUnlimited != null);
-    assert(sessionsLoaded != null);
-    assert(sessionsWarning != null);
     return sessionsLoaded(this);
   }
 
   @override
   @optionalTypeArgs
-  TResult maybeMap<TResult extends Object>({
-    TResult initialSessionsState(InitialSessionsState value),
-    TResult sessionsUnlimited(SessionsUnlimited value),
-    TResult sessionsLoaded(SessionsLoaded value),
-    TResult sessionsWarning(SessionsWarning value),
-    @required TResult orElse(),
+  TResult maybeMap<TResult extends Object?>({
+    TResult Function(InitialSessionsState value)? initialSessionsState,
+    TResult Function(SessionsUnlimited value)? sessionsUnlimited,
+    TResult Function(SessionsLoaded value)? sessionsLoaded,
+    TResult Function(SessionsWarning value)? sessionsWarning,
+    required TResult orElse(),
   }) {
-    assert(orElse != null);
     if (sessionsLoaded != null) {
       return sessionsLoaded(this);
     }
@@ -486,13 +461,14 @@ class _$SessionsLoaded with DiagnosticableTreeMixin implements SessionsLoaded {
 
 abstract class SessionsLoaded implements SessionsState {
   const factory SessionsLoaded(
-      {@required double totalLessonsOfPlan,
-      @required double attendedLessons}) = _$SessionsLoaded;
+      {required double totalLessonsOfPlan,
+      required double attendedLessons}) = _$SessionsLoaded;
 
-  double get totalLessonsOfPlan;
-  double get attendedLessons;
+  double get totalLessonsOfPlan => throw _privateConstructorUsedError;
+  double get attendedLessons => throw _privateConstructorUsedError;
   @JsonKey(ignore: true)
-  $SessionsLoadedCopyWith<SessionsLoaded> get copyWith;
+  $SessionsLoadedCopyWith<SessionsLoaded> get copyWith =>
+      throw _privateConstructorUsedError;
 }
 
 /// @nodoc
@@ -516,28 +492,29 @@ class _$SessionsWarningCopyWithImpl<$Res>
 
   @override
   $Res call({
-    Object totalLessonsOfPlan = freezed,
-    Object attendedLessons = freezed,
+    Object? totalLessonsOfPlan = freezed,
+    Object? attendedLessons = freezed,
   }) {
     return _then(SessionsWarning(
       totalLessonsOfPlan: totalLessonsOfPlan == freezed
           ? _value.totalLessonsOfPlan
-          : totalLessonsOfPlan as double,
+          : totalLessonsOfPlan // ignore: cast_nullable_to_non_nullable
+              as double,
       attendedLessons: attendedLessons == freezed
           ? _value.attendedLessons
-          : attendedLessons as double,
+          : attendedLessons // ignore: cast_nullable_to_non_nullable
+              as double,
     ));
   }
 }
 
 /// @nodoc
+
 class _$SessionsWarning
     with DiagnosticableTreeMixin
     implements SessionsWarning {
   const _$SessionsWarning(
-      {@required this.totalLessonsOfPlan, @required this.attendedLessons})
-      : assert(totalLessonsOfPlan != null),
-        assert(attendedLessons != null);
+      {required this.totalLessonsOfPlan, required this.attendedLessons});
 
   @override
   final double totalLessonsOfPlan;
@@ -583,33 +560,28 @@ class _$SessionsWarning
 
   @override
   @optionalTypeArgs
-  TResult when<TResult extends Object>({
-    @required TResult initialSessionsState(),
-    @required TResult sessionsUnlimited(),
-    @required
-        TResult sessionsLoaded(
-            double totalLessonsOfPlan, double attendedLessons),
-    @required
-        TResult sessionsWarning(
-            double totalLessonsOfPlan, double attendedLessons),
+  TResult when<TResult extends Object?>({
+    required TResult Function() initialSessionsState,
+    required TResult Function() sessionsUnlimited,
+    required TResult Function(double totalLessonsOfPlan, double attendedLessons)
+        sessionsLoaded,
+    required TResult Function(double totalLessonsOfPlan, double attendedLessons)
+        sessionsWarning,
   }) {
-    assert(initialSessionsState != null);
-    assert(sessionsUnlimited != null);
-    assert(sessionsLoaded != null);
-    assert(sessionsWarning != null);
     return sessionsWarning(totalLessonsOfPlan, attendedLessons);
   }
 
   @override
   @optionalTypeArgs
-  TResult maybeWhen<TResult extends Object>({
-    TResult initialSessionsState(),
-    TResult sessionsUnlimited(),
-    TResult sessionsLoaded(double totalLessonsOfPlan, double attendedLessons),
-    TResult sessionsWarning(double totalLessonsOfPlan, double attendedLessons),
-    @required TResult orElse(),
+  TResult maybeWhen<TResult extends Object?>({
+    TResult Function()? initialSessionsState,
+    TResult Function()? sessionsUnlimited,
+    TResult Function(double totalLessonsOfPlan, double attendedLessons)?
+        sessionsLoaded,
+    TResult Function(double totalLessonsOfPlan, double attendedLessons)?
+        sessionsWarning,
+    required TResult orElse(),
   }) {
-    assert(orElse != null);
     if (sessionsWarning != null) {
       return sessionsWarning(totalLessonsOfPlan, attendedLessons);
     }
@@ -618,29 +590,24 @@ class _$SessionsWarning
 
   @override
   @optionalTypeArgs
-  TResult map<TResult extends Object>({
-    @required TResult initialSessionsState(InitialSessionsState value),
-    @required TResult sessionsUnlimited(SessionsUnlimited value),
-    @required TResult sessionsLoaded(SessionsLoaded value),
-    @required TResult sessionsWarning(SessionsWarning value),
+  TResult map<TResult extends Object?>({
+    required TResult Function(InitialSessionsState value) initialSessionsState,
+    required TResult Function(SessionsUnlimited value) sessionsUnlimited,
+    required TResult Function(SessionsLoaded value) sessionsLoaded,
+    required TResult Function(SessionsWarning value) sessionsWarning,
   }) {
-    assert(initialSessionsState != null);
-    assert(sessionsUnlimited != null);
-    assert(sessionsLoaded != null);
-    assert(sessionsWarning != null);
     return sessionsWarning(this);
   }
 
   @override
   @optionalTypeArgs
-  TResult maybeMap<TResult extends Object>({
-    TResult initialSessionsState(InitialSessionsState value),
-    TResult sessionsUnlimited(SessionsUnlimited value),
-    TResult sessionsLoaded(SessionsLoaded value),
-    TResult sessionsWarning(SessionsWarning value),
-    @required TResult orElse(),
+  TResult maybeMap<TResult extends Object?>({
+    TResult Function(InitialSessionsState value)? initialSessionsState,
+    TResult Function(SessionsUnlimited value)? sessionsUnlimited,
+    TResult Function(SessionsLoaded value)? sessionsLoaded,
+    TResult Function(SessionsWarning value)? sessionsWarning,
+    required TResult orElse(),
   }) {
-    assert(orElse != null);
     if (sessionsWarning != null) {
       return sessionsWarning(this);
     }
@@ -650,11 +617,12 @@ class _$SessionsWarning
 
 abstract class SessionsWarning implements SessionsState {
   const factory SessionsWarning(
-      {@required double totalLessonsOfPlan,
-      @required double attendedLessons}) = _$SessionsWarning;
+      {required double totalLessonsOfPlan,
+      required double attendedLessons}) = _$SessionsWarning;
 
-  double get totalLessonsOfPlan;
-  double get attendedLessons;
+  double get totalLessonsOfPlan => throw _privateConstructorUsedError;
+  double get attendedLessons => throw _privateConstructorUsedError;
   @JsonKey(ignore: true)
-  $SessionsWarningCopyWith<SessionsWarning> get copyWith;
+  $SessionsWarningCopyWith<SessionsWarning> get copyWith =>
+      throw _privateConstructorUsedError;
 }

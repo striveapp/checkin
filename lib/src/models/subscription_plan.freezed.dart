@@ -1,5 +1,5 @@
 // GENERATED CODE - DO NOT MODIFY BY HAND
-// ignore_for_file: deprecated_member_use, deprecated_member_use_from_same_package, use_function_type_syntax_for_parameters, unnecessary_const, avoid_init_to_null, invalid_override_different_default_values_named, prefer_expression_function_bodies
+// ignore_for_file: unused_element, deprecated_member_use, deprecated_member_use_from_same_package, use_function_type_syntax_for_parameters, unnecessary_const, avoid_init_to_null, invalid_override_different_default_values_named, prefer_expression_function_bodies, annotate_overrides
 
 part of 'subscription_plan.dart';
 
@@ -9,18 +9,20 @@ part of 'subscription_plan.dart';
 
 T _$identity<T>(T value) => value;
 
+final _privateConstructorUsedError = UnsupportedError(
+    'It seems like you constructed your class using `MyClass._()`. This constructor is only meant to be used by freezed and you are not supposed to need it nor use it.\nPlease check the documentation here for more informations: https://github.com/rrousselGit/freezed#custom-getters-and-methods');
+
 /// @nodoc
 class _$SubscriptionPlanTearOff {
   const _$SubscriptionPlanTearOff();
 
-// ignore: unused_element
   SimpleSubscription simpleSubscription(
-      {@required String name,
-      @required String code,
-      @required String interval,
-      @required String currency,
-      @required int price,
-      String description}) {
+      {required String name,
+      required String code,
+      required String interval,
+      required String currency,
+      required int price,
+      String? description}) {
     return SimpleSubscription(
       name: name,
       code: code,
@@ -31,13 +33,12 @@ class _$SubscriptionPlanTearOff {
     );
   }
 
-// ignore: unused_element
   SubscriptionWithPrices subscriptionWithPrices(
-      {@required String id,
-      @required String name,
-      @required String currency,
-      @required int startingPrice,
-      String description}) {
+      {required String id,
+      required String name,
+      required String currency,
+      required int startingPrice,
+      String? description}) {
     return SubscriptionWithPrices(
       id: id,
       name: name,
@@ -49,46 +50,53 @@ class _$SubscriptionPlanTearOff {
 }
 
 /// @nodoc
-// ignore: unused_element
 const $SubscriptionPlan = _$SubscriptionPlanTearOff();
 
 /// @nodoc
 mixin _$SubscriptionPlan {
-  String get name;
-  String get currency;
-  String get description;
+  String get name => throw _privateConstructorUsedError;
+  String get currency => throw _privateConstructorUsedError;
+  String? get description => throw _privateConstructorUsedError;
 
   @optionalTypeArgs
-  TResult when<TResult extends Object>({
-    @required
-        TResult simpleSubscription(String name, String code, String interval,
-            String currency, int price, String description),
-    @required
-        TResult subscriptionWithPrices(String id, String name, String currency,
-            int startingPrice, String description),
-  });
+  TResult when<TResult extends Object?>({
+    required TResult Function(String name, String code, String interval,
+            String currency, int price, String? description)
+        simpleSubscription,
+    required TResult Function(String id, String name, String currency,
+            int startingPrice, String? description)
+        subscriptionWithPrices,
+  }) =>
+      throw _privateConstructorUsedError;
   @optionalTypeArgs
-  TResult maybeWhen<TResult extends Object>({
-    TResult simpleSubscription(String name, String code, String interval,
-        String currency, int price, String description),
-    TResult subscriptionWithPrices(String id, String name, String currency,
-        int startingPrice, String description),
-    @required TResult orElse(),
-  });
+  TResult maybeWhen<TResult extends Object?>({
+    TResult Function(String name, String code, String interval, String currency,
+            int price, String? description)?
+        simpleSubscription,
+    TResult Function(String id, String name, String currency, int startingPrice,
+            String? description)?
+        subscriptionWithPrices,
+    required TResult orElse(),
+  }) =>
+      throw _privateConstructorUsedError;
   @optionalTypeArgs
-  TResult map<TResult extends Object>({
-    @required TResult simpleSubscription(SimpleSubscription value),
-    @required TResult subscriptionWithPrices(SubscriptionWithPrices value),
-  });
+  TResult map<TResult extends Object?>({
+    required TResult Function(SimpleSubscription value) simpleSubscription,
+    required TResult Function(SubscriptionWithPrices value)
+        subscriptionWithPrices,
+  }) =>
+      throw _privateConstructorUsedError;
   @optionalTypeArgs
-  TResult maybeMap<TResult extends Object>({
-    TResult simpleSubscription(SimpleSubscription value),
-    TResult subscriptionWithPrices(SubscriptionWithPrices value),
-    @required TResult orElse(),
-  });
+  TResult maybeMap<TResult extends Object?>({
+    TResult Function(SimpleSubscription value)? simpleSubscription,
+    TResult Function(SubscriptionWithPrices value)? subscriptionWithPrices,
+    required TResult orElse(),
+  }) =>
+      throw _privateConstructorUsedError;
 
   @JsonKey(ignore: true)
-  $SubscriptionPlanCopyWith<SubscriptionPlan> get copyWith;
+  $SubscriptionPlanCopyWith<SubscriptionPlan> get copyWith =>
+      throw _privateConstructorUsedError;
 }
 
 /// @nodoc
@@ -96,7 +104,7 @@ abstract class $SubscriptionPlanCopyWith<$Res> {
   factory $SubscriptionPlanCopyWith(
           SubscriptionPlan value, $Res Function(SubscriptionPlan) then) =
       _$SubscriptionPlanCopyWithImpl<$Res>;
-  $Res call({String name, String currency, String description});
+  $Res call({String name, String currency, String? description});
 }
 
 /// @nodoc
@@ -110,15 +118,23 @@ class _$SubscriptionPlanCopyWithImpl<$Res>
 
   @override
   $Res call({
-    Object name = freezed,
-    Object currency = freezed,
-    Object description = freezed,
+    Object? name = freezed,
+    Object? currency = freezed,
+    Object? description = freezed,
   }) {
     return _then(_value.copyWith(
-      name: name == freezed ? _value.name : name as String,
-      currency: currency == freezed ? _value.currency : currency as String,
-      description:
-          description == freezed ? _value.description : description as String,
+      name: name == freezed
+          ? _value.name
+          : name // ignore: cast_nullable_to_non_nullable
+              as String,
+      currency: currency == freezed
+          ? _value.currency
+          : currency // ignore: cast_nullable_to_non_nullable
+              as String,
+      description: description == freezed
+          ? _value.description
+          : description // ignore: cast_nullable_to_non_nullable
+              as String?,
     ));
   }
 }
@@ -136,7 +152,7 @@ abstract class $SimpleSubscriptionCopyWith<$Res>
       String interval,
       String currency,
       int price,
-      String description});
+      String? description});
 }
 
 /// @nodoc
@@ -152,41 +168,54 @@ class _$SimpleSubscriptionCopyWithImpl<$Res>
 
   @override
   $Res call({
-    Object name = freezed,
-    Object code = freezed,
-    Object interval = freezed,
-    Object currency = freezed,
-    Object price = freezed,
-    Object description = freezed,
+    Object? name = freezed,
+    Object? code = freezed,
+    Object? interval = freezed,
+    Object? currency = freezed,
+    Object? price = freezed,
+    Object? description = freezed,
   }) {
     return _then(SimpleSubscription(
-      name: name == freezed ? _value.name : name as String,
-      code: code == freezed ? _value.code : code as String,
-      interval: interval == freezed ? _value.interval : interval as String,
-      currency: currency == freezed ? _value.currency : currency as String,
-      price: price == freezed ? _value.price : price as int,
-      description:
-          description == freezed ? _value.description : description as String,
+      name: name == freezed
+          ? _value.name
+          : name // ignore: cast_nullable_to_non_nullable
+              as String,
+      code: code == freezed
+          ? _value.code
+          : code // ignore: cast_nullable_to_non_nullable
+              as String,
+      interval: interval == freezed
+          ? _value.interval
+          : interval // ignore: cast_nullable_to_non_nullable
+              as String,
+      currency: currency == freezed
+          ? _value.currency
+          : currency // ignore: cast_nullable_to_non_nullable
+              as String,
+      price: price == freezed
+          ? _value.price
+          : price // ignore: cast_nullable_to_non_nullable
+              as int,
+      description: description == freezed
+          ? _value.description
+          : description // ignore: cast_nullable_to_non_nullable
+              as String?,
     ));
   }
 }
 
 /// @nodoc
+
 class _$SimpleSubscription
     with DiagnosticableTreeMixin
     implements SimpleSubscription {
   const _$SimpleSubscription(
-      {@required this.name,
-      @required this.code,
-      @required this.interval,
-      @required this.currency,
-      @required this.price,
-      this.description})
-      : assert(name != null),
-        assert(code != null),
-        assert(interval != null),
-        assert(currency != null),
-        assert(price != null);
+      {required this.name,
+      required this.code,
+      required this.interval,
+      required this.currency,
+      required this.price,
+      this.description});
 
   @override
   final String name;
@@ -199,7 +228,7 @@ class _$SimpleSubscription
   @override
   final int price;
   @override
-  final String description;
+  final String? description;
 
   @override
   String toString({DiagnosticLevel minLevel = DiagnosticLevel.info}) {
@@ -257,30 +286,29 @@ class _$SimpleSubscription
 
   @override
   @optionalTypeArgs
-  TResult when<TResult extends Object>({
-    @required
-        TResult simpleSubscription(String name, String code, String interval,
-            String currency, int price, String description),
-    @required
-        TResult subscriptionWithPrices(String id, String name, String currency,
-            int startingPrice, String description),
+  TResult when<TResult extends Object?>({
+    required TResult Function(String name, String code, String interval,
+            String currency, int price, String? description)
+        simpleSubscription,
+    required TResult Function(String id, String name, String currency,
+            int startingPrice, String? description)
+        subscriptionWithPrices,
   }) {
-    assert(simpleSubscription != null);
-    assert(subscriptionWithPrices != null);
     return simpleSubscription(
         name, code, interval, currency, price, description);
   }
 
   @override
   @optionalTypeArgs
-  TResult maybeWhen<TResult extends Object>({
-    TResult simpleSubscription(String name, String code, String interval,
-        String currency, int price, String description),
-    TResult subscriptionWithPrices(String id, String name, String currency,
-        int startingPrice, String description),
-    @required TResult orElse(),
+  TResult maybeWhen<TResult extends Object?>({
+    TResult Function(String name, String code, String interval, String currency,
+            int price, String? description)?
+        simpleSubscription,
+    TResult Function(String id, String name, String currency, int startingPrice,
+            String? description)?
+        subscriptionWithPrices,
+    required TResult orElse(),
   }) {
-    assert(orElse != null);
     if (simpleSubscription != null) {
       return simpleSubscription(
           name, code, interval, currency, price, description);
@@ -290,23 +318,21 @@ class _$SimpleSubscription
 
   @override
   @optionalTypeArgs
-  TResult map<TResult extends Object>({
-    @required TResult simpleSubscription(SimpleSubscription value),
-    @required TResult subscriptionWithPrices(SubscriptionWithPrices value),
+  TResult map<TResult extends Object?>({
+    required TResult Function(SimpleSubscription value) simpleSubscription,
+    required TResult Function(SubscriptionWithPrices value)
+        subscriptionWithPrices,
   }) {
-    assert(simpleSubscription != null);
-    assert(subscriptionWithPrices != null);
     return simpleSubscription(this);
   }
 
   @override
   @optionalTypeArgs
-  TResult maybeMap<TResult extends Object>({
-    TResult simpleSubscription(SimpleSubscription value),
-    TResult subscriptionWithPrices(SubscriptionWithPrices value),
-    @required TResult orElse(),
+  TResult maybeMap<TResult extends Object?>({
+    TResult Function(SimpleSubscription value)? simpleSubscription,
+    TResult Function(SubscriptionWithPrices value)? subscriptionWithPrices,
+    required TResult orElse(),
   }) {
-    assert(orElse != null);
     if (simpleSubscription != null) {
       return simpleSubscription(this);
     }
@@ -316,25 +342,26 @@ class _$SimpleSubscription
 
 abstract class SimpleSubscription implements SubscriptionPlan {
   const factory SimpleSubscription(
-      {@required String name,
-      @required String code,
-      @required String interval,
-      @required String currency,
-      @required int price,
-      String description}) = _$SimpleSubscription;
+      {required String name,
+      required String code,
+      required String interval,
+      required String currency,
+      required int price,
+      String? description}) = _$SimpleSubscription;
 
   @override
-  String get name;
-  String get code;
-  String get interval;
+  String get name => throw _privateConstructorUsedError;
+  String get code => throw _privateConstructorUsedError;
+  String get interval => throw _privateConstructorUsedError;
   @override
-  String get currency;
-  int get price;
+  String get currency => throw _privateConstructorUsedError;
+  int get price => throw _privateConstructorUsedError;
   @override
-  String get description;
+  String? get description => throw _privateConstructorUsedError;
   @override
   @JsonKey(ignore: true)
-  $SimpleSubscriptionCopyWith<SimpleSubscription> get copyWith;
+  $SimpleSubscriptionCopyWith<SimpleSubscription> get copyWith =>
+      throw _privateConstructorUsedError;
 }
 
 /// @nodoc
@@ -349,7 +376,7 @@ abstract class $SubscriptionWithPricesCopyWith<$Res>
       String name,
       String currency,
       int startingPrice,
-      String description});
+      String? description});
 }
 
 /// @nodoc
@@ -365,39 +392,48 @@ class _$SubscriptionWithPricesCopyWithImpl<$Res>
 
   @override
   $Res call({
-    Object id = freezed,
-    Object name = freezed,
-    Object currency = freezed,
-    Object startingPrice = freezed,
-    Object description = freezed,
+    Object? id = freezed,
+    Object? name = freezed,
+    Object? currency = freezed,
+    Object? startingPrice = freezed,
+    Object? description = freezed,
   }) {
     return _then(SubscriptionWithPrices(
-      id: id == freezed ? _value.id : id as String,
-      name: name == freezed ? _value.name : name as String,
-      currency: currency == freezed ? _value.currency : currency as String,
+      id: id == freezed
+          ? _value.id
+          : id // ignore: cast_nullable_to_non_nullable
+              as String,
+      name: name == freezed
+          ? _value.name
+          : name // ignore: cast_nullable_to_non_nullable
+              as String,
+      currency: currency == freezed
+          ? _value.currency
+          : currency // ignore: cast_nullable_to_non_nullable
+              as String,
       startingPrice: startingPrice == freezed
           ? _value.startingPrice
-          : startingPrice as int,
-      description:
-          description == freezed ? _value.description : description as String,
+          : startingPrice // ignore: cast_nullable_to_non_nullable
+              as int,
+      description: description == freezed
+          ? _value.description
+          : description // ignore: cast_nullable_to_non_nullable
+              as String?,
     ));
   }
 }
 
 /// @nodoc
+
 class _$SubscriptionWithPrices
     with DiagnosticableTreeMixin
     implements SubscriptionWithPrices {
   const _$SubscriptionWithPrices(
-      {@required this.id,
-      @required this.name,
-      @required this.currency,
-      @required this.startingPrice,
-      this.description})
-      : assert(id != null),
-        assert(name != null),
-        assert(currency != null),
-        assert(startingPrice != null);
+      {required this.id,
+      required this.name,
+      required this.currency,
+      required this.startingPrice,
+      this.description});
 
   @override
   final String id;
@@ -408,7 +444,7 @@ class _$SubscriptionWithPrices
   @override
   final int startingPrice;
   @override
-  final String description;
+  final String? description;
 
   @override
   String toString({DiagnosticLevel minLevel = DiagnosticLevel.info}) {
@@ -464,30 +500,29 @@ class _$SubscriptionWithPrices
 
   @override
   @optionalTypeArgs
-  TResult when<TResult extends Object>({
-    @required
-        TResult simpleSubscription(String name, String code, String interval,
-            String currency, int price, String description),
-    @required
-        TResult subscriptionWithPrices(String id, String name, String currency,
-            int startingPrice, String description),
+  TResult when<TResult extends Object?>({
+    required TResult Function(String name, String code, String interval,
+            String currency, int price, String? description)
+        simpleSubscription,
+    required TResult Function(String id, String name, String currency,
+            int startingPrice, String? description)
+        subscriptionWithPrices,
   }) {
-    assert(simpleSubscription != null);
-    assert(subscriptionWithPrices != null);
     return subscriptionWithPrices(
         id, name, currency, startingPrice, description);
   }
 
   @override
   @optionalTypeArgs
-  TResult maybeWhen<TResult extends Object>({
-    TResult simpleSubscription(String name, String code, String interval,
-        String currency, int price, String description),
-    TResult subscriptionWithPrices(String id, String name, String currency,
-        int startingPrice, String description),
-    @required TResult orElse(),
+  TResult maybeWhen<TResult extends Object?>({
+    TResult Function(String name, String code, String interval, String currency,
+            int price, String? description)?
+        simpleSubscription,
+    TResult Function(String id, String name, String currency, int startingPrice,
+            String? description)?
+        subscriptionWithPrices,
+    required TResult orElse(),
   }) {
-    assert(orElse != null);
     if (subscriptionWithPrices != null) {
       return subscriptionWithPrices(
           id, name, currency, startingPrice, description);
@@ -497,23 +532,21 @@ class _$SubscriptionWithPrices
 
   @override
   @optionalTypeArgs
-  TResult map<TResult extends Object>({
-    @required TResult simpleSubscription(SimpleSubscription value),
-    @required TResult subscriptionWithPrices(SubscriptionWithPrices value),
+  TResult map<TResult extends Object?>({
+    required TResult Function(SimpleSubscription value) simpleSubscription,
+    required TResult Function(SubscriptionWithPrices value)
+        subscriptionWithPrices,
   }) {
-    assert(simpleSubscription != null);
-    assert(subscriptionWithPrices != null);
     return subscriptionWithPrices(this);
   }
 
   @override
   @optionalTypeArgs
-  TResult maybeMap<TResult extends Object>({
-    TResult simpleSubscription(SimpleSubscription value),
-    TResult subscriptionWithPrices(SubscriptionWithPrices value),
-    @required TResult orElse(),
+  TResult maybeMap<TResult extends Object?>({
+    TResult Function(SimpleSubscription value)? simpleSubscription,
+    TResult Function(SubscriptionWithPrices value)? subscriptionWithPrices,
+    required TResult orElse(),
   }) {
-    assert(orElse != null);
     if (subscriptionWithPrices != null) {
       return subscriptionWithPrices(this);
     }
@@ -523,21 +556,22 @@ class _$SubscriptionWithPrices
 
 abstract class SubscriptionWithPrices implements SubscriptionPlan {
   const factory SubscriptionWithPrices(
-      {@required String id,
-      @required String name,
-      @required String currency,
-      @required int startingPrice,
-      String description}) = _$SubscriptionWithPrices;
+      {required String id,
+      required String name,
+      required String currency,
+      required int startingPrice,
+      String? description}) = _$SubscriptionWithPrices;
 
-  String get id;
+  String get id => throw _privateConstructorUsedError;
   @override
-  String get name;
+  String get name => throw _privateConstructorUsedError;
   @override
-  String get currency;
-  int get startingPrice;
+  String get currency => throw _privateConstructorUsedError;
+  int get startingPrice => throw _privateConstructorUsedError;
   @override
-  String get description;
+  String? get description => throw _privateConstructorUsedError;
   @override
   @JsonKey(ignore: true)
-  $SubscriptionWithPricesCopyWith<SubscriptionWithPrices> get copyWith;
+  $SubscriptionWithPricesCopyWith<SubscriptionWithPrices> get copyWith =>
+      throw _privateConstructorUsedError;
 }

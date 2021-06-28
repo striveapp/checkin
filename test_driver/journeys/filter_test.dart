@@ -1,3 +1,5 @@
+// @dart=2.9
+
 import 'package:flutter_driver/flutter_driver.dart';
 import 'package:test/test.dart';
 
@@ -14,7 +16,7 @@ class FilterTest extends AbstractTest {
       tearDown(() async {
         await super.teardown();
       });
-      
+
       group("when user filters yoga lessons", () {
         test("only yoga lessons should be displayed", () async {
           prettyPrint("Login as user and filter lessons");
@@ -29,7 +31,7 @@ class FilterTest extends AbstractTest {
           await lessonsPage.logout();
         });
       });
-      
+
       group("when master filters yoga lessons", () {
         test("only yoga lessons should be displayed", () async {
           prettyPrint("Login as master and filter lessons");

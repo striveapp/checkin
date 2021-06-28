@@ -1,3 +1,5 @@
+// @dart=2.9
+
 import 'package:bloc_test/bloc_test.dart';
 import 'package:checkin/src/blocs/news/news_bloc.dart';
 import 'package:checkin/src/blocs/news/news_event.dart';
@@ -74,7 +76,11 @@ void main() {
 
     group("when there are no news", () {
       testWidgets("Renders EmptyNewsList", (tester) async {
-        when(() => newsBloc.state).thenReturn(NewsLoaded(newsList: [], hasPinnedNews: false, gymId: fakeGymId,));
+        when(() => newsBloc.state).thenReturn(NewsLoaded(
+          newsList: [],
+          hasPinnedNews: false,
+          gymId: fakeGymId,
+        ));
 
         await tester.pumpApp(BlocProvider.value(value: newsBloc, child: NewsList()));
 
@@ -123,16 +129,19 @@ void main() {
           isCurrentUser: true,
         ));
 
-        when(() => newsBloc.state).thenReturn(NewsLoaded(newsList: [
-          News(
-            id: "fake-id",
-            content: "fake-news",
-            author: Author(imageUrl: "fake-img", name: "fake-name", grade: Grade.black),
-            timestamp: 123,
-            isPinned: true,
-          )
-        ], hasPinnedNews: true,
-          gymId: fakeGymId,));
+        when(() => newsBloc.state).thenReturn(NewsLoaded(
+          newsList: [
+            News(
+              id: "fake-id",
+              content: "fake-news",
+              author: Author(imageUrl: "fake-img", name: "fake-name", grade: Grade.black),
+              timestamp: 123,
+              isPinned: true,
+            )
+          ],
+          hasPinnedNews: true,
+          gymId: fakeGymId,
+        ));
 
         await tester.pumpApp(
           MultiBlocProvider(providers: [
@@ -176,7 +185,7 @@ void main() {
       });
     });
 
-  group("when highlightNewsId matches a News", () {
+    group("when highlightNewsId matches a News", () {
       testWidgets("Renders HighlightAnimation", (tester) async {
         when(() => profileBloc.state).thenReturn(ProfileLoaded(
           profileUser: fakeUser,
@@ -196,10 +205,14 @@ void main() {
           gymId: fakeGymId,
         ));
 
-        await tester.pumpApp(MultiBlocProvider(providers: [
-          BlocProvider.value(value: newsBloc),
-          BlocProvider.value(value: profileBloc),
-        ], child: NewsList(highlightNewsId: "fake-id",)));
+        await tester.pumpApp(MultiBlocProvider(
+            providers: [
+              BlocProvider.value(value: newsBloc),
+              BlocProvider.value(value: profileBloc),
+            ],
+            child: NewsList(
+              highlightNewsId: "fake-id",
+            )));
 
         expect(find.byType(NewsView), findsWidgets);
         expect(find.byType(HighlightAnimation), findsOneWidget);

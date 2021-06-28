@@ -1,5 +1,5 @@
 // GENERATED CODE - DO NOT MODIFY BY HAND
-// ignore_for_file: deprecated_member_use, deprecated_member_use_from_same_package, use_function_type_syntax_for_parameters, unnecessary_const, avoid_init_to_null, invalid_override_different_default_values_named, prefer_expression_function_bodies
+// ignore_for_file: unused_element, deprecated_member_use, deprecated_member_use_from_same_package, use_function_type_syntax_for_parameters, unnecessary_const, avoid_init_to_null, invalid_override_different_default_values_named, prefer_expression_function_bodies, annotate_overrides
 
 part of 'subscription_plans_event.dart';
 
@@ -9,20 +9,21 @@ part of 'subscription_plans_event.dart';
 
 T _$identity<T>(T value) => value;
 
+final _privateConstructorUsedError = UnsupportedError(
+    'It seems like you constructed your class using `MyClass._()`. This constructor is only meant to be used by freezed and you are not supposed to need it nor use it.\nPlease check the documentation here for more informations: https://github.com/rrousselGit/freezed#custom-getters-and-methods');
+
 /// @nodoc
 class _$SubscriptionPlansEventTearOff {
   const _$SubscriptionPlansEventTearOff();
 
-// ignore: unused_element
   SubscriptionPlansUpdated subscriptionPlansUpdated(
-      {@required List<SubscriptionPlan> subscriptionPlans}) {
+      {required List<SubscriptionPlan> subscriptionPlans}) {
     return SubscriptionPlansUpdated(
       subscriptionPlans: subscriptionPlans,
     );
   }
 
-// ignore: unused_element
-  LoadSubscriptionPlans loadSubscriptionPlans({@required String planId}) {
+  LoadSubscriptionPlans loadSubscriptionPlans({required String planId}) {
     return LoadSubscriptionPlans(
       planId: planId,
     );
@@ -30,35 +31,40 @@ class _$SubscriptionPlansEventTearOff {
 }
 
 /// @nodoc
-// ignore: unused_element
 const $SubscriptionPlansEvent = _$SubscriptionPlansEventTearOff();
 
 /// @nodoc
 mixin _$SubscriptionPlansEvent {
   @optionalTypeArgs
-  TResult when<TResult extends Object>({
-    @required
-        TResult subscriptionPlansUpdated(
-            List<SubscriptionPlan> subscriptionPlans),
-    @required TResult loadSubscriptionPlans(String planId),
-  });
+  TResult when<TResult extends Object?>({
+    required TResult Function(List<SubscriptionPlan> subscriptionPlans)
+        subscriptionPlansUpdated,
+    required TResult Function(String planId) loadSubscriptionPlans,
+  }) =>
+      throw _privateConstructorUsedError;
   @optionalTypeArgs
-  TResult maybeWhen<TResult extends Object>({
-    TResult subscriptionPlansUpdated(List<SubscriptionPlan> subscriptionPlans),
-    TResult loadSubscriptionPlans(String planId),
-    @required TResult orElse(),
-  });
+  TResult maybeWhen<TResult extends Object?>({
+    TResult Function(List<SubscriptionPlan> subscriptionPlans)?
+        subscriptionPlansUpdated,
+    TResult Function(String planId)? loadSubscriptionPlans,
+    required TResult orElse(),
+  }) =>
+      throw _privateConstructorUsedError;
   @optionalTypeArgs
-  TResult map<TResult extends Object>({
-    @required TResult subscriptionPlansUpdated(SubscriptionPlansUpdated value),
-    @required TResult loadSubscriptionPlans(LoadSubscriptionPlans value),
-  });
+  TResult map<TResult extends Object?>({
+    required TResult Function(SubscriptionPlansUpdated value)
+        subscriptionPlansUpdated,
+    required TResult Function(LoadSubscriptionPlans value)
+        loadSubscriptionPlans,
+  }) =>
+      throw _privateConstructorUsedError;
   @optionalTypeArgs
-  TResult maybeMap<TResult extends Object>({
-    TResult subscriptionPlansUpdated(SubscriptionPlansUpdated value),
-    TResult loadSubscriptionPlans(LoadSubscriptionPlans value),
-    @required TResult orElse(),
-  });
+  TResult maybeMap<TResult extends Object?>({
+    TResult Function(SubscriptionPlansUpdated value)? subscriptionPlansUpdated,
+    TResult Function(LoadSubscriptionPlans value)? loadSubscriptionPlans,
+    required TResult orElse(),
+  }) =>
+      throw _privateConstructorUsedError;
 }
 
 /// @nodoc
@@ -100,22 +106,23 @@ class _$SubscriptionPlansUpdatedCopyWithImpl<$Res>
 
   @override
   $Res call({
-    Object subscriptionPlans = freezed,
+    Object? subscriptionPlans = freezed,
   }) {
     return _then(SubscriptionPlansUpdated(
       subscriptionPlans: subscriptionPlans == freezed
           ? _value.subscriptionPlans
-          : subscriptionPlans as List<SubscriptionPlan>,
+          : subscriptionPlans // ignore: cast_nullable_to_non_nullable
+              as List<SubscriptionPlan>,
     ));
   }
 }
 
 /// @nodoc
+
 class _$SubscriptionPlansUpdated
     with DiagnosticableTreeMixin
     implements SubscriptionPlansUpdated {
-  const _$SubscriptionPlansUpdated({@required this.subscriptionPlans})
-      : assert(subscriptionPlans != null);
+  const _$SubscriptionPlansUpdated({required this.subscriptionPlans});
 
   @override
   final List<SubscriptionPlan> subscriptionPlans;
@@ -156,25 +163,22 @@ class _$SubscriptionPlansUpdated
 
   @override
   @optionalTypeArgs
-  TResult when<TResult extends Object>({
-    @required
-        TResult subscriptionPlansUpdated(
-            List<SubscriptionPlan> subscriptionPlans),
-    @required TResult loadSubscriptionPlans(String planId),
+  TResult when<TResult extends Object?>({
+    required TResult Function(List<SubscriptionPlan> subscriptionPlans)
+        subscriptionPlansUpdated,
+    required TResult Function(String planId) loadSubscriptionPlans,
   }) {
-    assert(subscriptionPlansUpdated != null);
-    assert(loadSubscriptionPlans != null);
     return subscriptionPlansUpdated(subscriptionPlans);
   }
 
   @override
   @optionalTypeArgs
-  TResult maybeWhen<TResult extends Object>({
-    TResult subscriptionPlansUpdated(List<SubscriptionPlan> subscriptionPlans),
-    TResult loadSubscriptionPlans(String planId),
-    @required TResult orElse(),
+  TResult maybeWhen<TResult extends Object?>({
+    TResult Function(List<SubscriptionPlan> subscriptionPlans)?
+        subscriptionPlansUpdated,
+    TResult Function(String planId)? loadSubscriptionPlans,
+    required TResult orElse(),
   }) {
-    assert(orElse != null);
     if (subscriptionPlansUpdated != null) {
       return subscriptionPlansUpdated(subscriptionPlans);
     }
@@ -183,23 +187,22 @@ class _$SubscriptionPlansUpdated
 
   @override
   @optionalTypeArgs
-  TResult map<TResult extends Object>({
-    @required TResult subscriptionPlansUpdated(SubscriptionPlansUpdated value),
-    @required TResult loadSubscriptionPlans(LoadSubscriptionPlans value),
+  TResult map<TResult extends Object?>({
+    required TResult Function(SubscriptionPlansUpdated value)
+        subscriptionPlansUpdated,
+    required TResult Function(LoadSubscriptionPlans value)
+        loadSubscriptionPlans,
   }) {
-    assert(subscriptionPlansUpdated != null);
-    assert(loadSubscriptionPlans != null);
     return subscriptionPlansUpdated(this);
   }
 
   @override
   @optionalTypeArgs
-  TResult maybeMap<TResult extends Object>({
-    TResult subscriptionPlansUpdated(SubscriptionPlansUpdated value),
-    TResult loadSubscriptionPlans(LoadSubscriptionPlans value),
-    @required TResult orElse(),
+  TResult maybeMap<TResult extends Object?>({
+    TResult Function(SubscriptionPlansUpdated value)? subscriptionPlansUpdated,
+    TResult Function(LoadSubscriptionPlans value)? loadSubscriptionPlans,
+    required TResult orElse(),
   }) {
-    assert(orElse != null);
     if (subscriptionPlansUpdated != null) {
       return subscriptionPlansUpdated(this);
     }
@@ -209,12 +212,14 @@ class _$SubscriptionPlansUpdated
 
 abstract class SubscriptionPlansUpdated implements SubscriptionPlansEvent {
   const factory SubscriptionPlansUpdated(
-          {@required List<SubscriptionPlan> subscriptionPlans}) =
+          {required List<SubscriptionPlan> subscriptionPlans}) =
       _$SubscriptionPlansUpdated;
 
-  List<SubscriptionPlan> get subscriptionPlans;
+  List<SubscriptionPlan> get subscriptionPlans =>
+      throw _privateConstructorUsedError;
   @JsonKey(ignore: true)
-  $SubscriptionPlansUpdatedCopyWith<SubscriptionPlansUpdated> get copyWith;
+  $SubscriptionPlansUpdatedCopyWith<SubscriptionPlansUpdated> get copyWith =>
+      throw _privateConstructorUsedError;
 }
 
 /// @nodoc
@@ -238,20 +243,23 @@ class _$LoadSubscriptionPlansCopyWithImpl<$Res>
 
   @override
   $Res call({
-    Object planId = freezed,
+    Object? planId = freezed,
   }) {
     return _then(LoadSubscriptionPlans(
-      planId: planId == freezed ? _value.planId : planId as String,
+      planId: planId == freezed
+          ? _value.planId
+          : planId // ignore: cast_nullable_to_non_nullable
+              as String,
     ));
   }
 }
 
 /// @nodoc
+
 class _$LoadSubscriptionPlans
     with DiagnosticableTreeMixin
     implements LoadSubscriptionPlans {
-  const _$LoadSubscriptionPlans({@required this.planId})
-      : assert(planId != null);
+  const _$LoadSubscriptionPlans({required this.planId});
 
   @override
   final String planId;
@@ -290,25 +298,22 @@ class _$LoadSubscriptionPlans
 
   @override
   @optionalTypeArgs
-  TResult when<TResult extends Object>({
-    @required
-        TResult subscriptionPlansUpdated(
-            List<SubscriptionPlan> subscriptionPlans),
-    @required TResult loadSubscriptionPlans(String planId),
+  TResult when<TResult extends Object?>({
+    required TResult Function(List<SubscriptionPlan> subscriptionPlans)
+        subscriptionPlansUpdated,
+    required TResult Function(String planId) loadSubscriptionPlans,
   }) {
-    assert(subscriptionPlansUpdated != null);
-    assert(loadSubscriptionPlans != null);
     return loadSubscriptionPlans(planId);
   }
 
   @override
   @optionalTypeArgs
-  TResult maybeWhen<TResult extends Object>({
-    TResult subscriptionPlansUpdated(List<SubscriptionPlan> subscriptionPlans),
-    TResult loadSubscriptionPlans(String planId),
-    @required TResult orElse(),
+  TResult maybeWhen<TResult extends Object?>({
+    TResult Function(List<SubscriptionPlan> subscriptionPlans)?
+        subscriptionPlansUpdated,
+    TResult Function(String planId)? loadSubscriptionPlans,
+    required TResult orElse(),
   }) {
-    assert(orElse != null);
     if (loadSubscriptionPlans != null) {
       return loadSubscriptionPlans(planId);
     }
@@ -317,23 +322,22 @@ class _$LoadSubscriptionPlans
 
   @override
   @optionalTypeArgs
-  TResult map<TResult extends Object>({
-    @required TResult subscriptionPlansUpdated(SubscriptionPlansUpdated value),
-    @required TResult loadSubscriptionPlans(LoadSubscriptionPlans value),
+  TResult map<TResult extends Object?>({
+    required TResult Function(SubscriptionPlansUpdated value)
+        subscriptionPlansUpdated,
+    required TResult Function(LoadSubscriptionPlans value)
+        loadSubscriptionPlans,
   }) {
-    assert(subscriptionPlansUpdated != null);
-    assert(loadSubscriptionPlans != null);
     return loadSubscriptionPlans(this);
   }
 
   @override
   @optionalTypeArgs
-  TResult maybeMap<TResult extends Object>({
-    TResult subscriptionPlansUpdated(SubscriptionPlansUpdated value),
-    TResult loadSubscriptionPlans(LoadSubscriptionPlans value),
-    @required TResult orElse(),
+  TResult maybeMap<TResult extends Object?>({
+    TResult Function(SubscriptionPlansUpdated value)? subscriptionPlansUpdated,
+    TResult Function(LoadSubscriptionPlans value)? loadSubscriptionPlans,
+    required TResult orElse(),
   }) {
-    assert(orElse != null);
     if (loadSubscriptionPlans != null) {
       return loadSubscriptionPlans(this);
     }
@@ -342,10 +346,11 @@ class _$LoadSubscriptionPlans
 }
 
 abstract class LoadSubscriptionPlans implements SubscriptionPlansEvent {
-  const factory LoadSubscriptionPlans({@required String planId}) =
+  const factory LoadSubscriptionPlans({required String planId}) =
       _$LoadSubscriptionPlans;
 
-  String get planId;
+  String get planId => throw _privateConstructorUsedError;
   @JsonKey(ignore: true)
-  $LoadSubscriptionPlansCopyWith<LoadSubscriptionPlans> get copyWith;
+  $LoadSubscriptionPlansCopyWith<LoadSubscriptionPlans> get copyWith =>
+      throw _privateConstructorUsedError;
 }

@@ -1,5 +1,5 @@
 // GENERATED CODE - DO NOT MODIFY BY HAND
-// ignore_for_file: deprecated_member_use, deprecated_member_use_from_same_package, use_function_type_syntax_for_parameters, unnecessary_const, avoid_init_to_null, invalid_override_different_default_values_named, prefer_expression_function_bodies
+// ignore_for_file: unused_element, deprecated_member_use, deprecated_member_use_from_same_package, use_function_type_syntax_for_parameters, unnecessary_const, avoid_init_to_null, invalid_override_different_default_values_named, prefer_expression_function_bodies, annotate_overrides
 
 part of 'lesson_filter_event.dart';
 
@@ -9,13 +9,15 @@ part of 'lesson_filter_event.dart';
 
 T _$identity<T>(T value) => value;
 
+final _privateConstructorUsedError = UnsupportedError(
+    'It seems like you constructed your class using `MyClass._()`. This constructor is only meant to be used by freezed and you are not supposed to need it nor use it.\nPlease check the documentation here for more informations: https://github.com/rrousselGit/freezed#custom-getters-and-methods');
+
 /// @nodoc
 class _$LessonFilterEventTearOff {
   const _$LessonFilterEventTearOff();
 
-// ignore: unused_element
   LessonFilterUpdated lessonFilterUpdated(
-      {@required Set<String> availableLessonTypes}) {
+      {required Set<String> availableLessonTypes}) {
     return LessonFilterUpdated(
       availableLessonTypes: availableLessonTypes,
     );
@@ -23,34 +25,39 @@ class _$LessonFilterEventTearOff {
 }
 
 /// @nodoc
-// ignore: unused_element
 const $LessonFilterEvent = _$LessonFilterEventTearOff();
 
 /// @nodoc
 mixin _$LessonFilterEvent {
-  Set<String> get availableLessonTypes;
+  Set<String> get availableLessonTypes => throw _privateConstructorUsedError;
 
   @optionalTypeArgs
-  TResult when<TResult extends Object>({
-    @required TResult lessonFilterUpdated(Set<String> availableLessonTypes),
-  });
+  TResult when<TResult extends Object?>({
+    required TResult Function(Set<String> availableLessonTypes)
+        lessonFilterUpdated,
+  }) =>
+      throw _privateConstructorUsedError;
   @optionalTypeArgs
-  TResult maybeWhen<TResult extends Object>({
-    TResult lessonFilterUpdated(Set<String> availableLessonTypes),
-    @required TResult orElse(),
-  });
+  TResult maybeWhen<TResult extends Object?>({
+    TResult Function(Set<String> availableLessonTypes)? lessonFilterUpdated,
+    required TResult orElse(),
+  }) =>
+      throw _privateConstructorUsedError;
   @optionalTypeArgs
-  TResult map<TResult extends Object>({
-    @required TResult lessonFilterUpdated(LessonFilterUpdated value),
-  });
+  TResult map<TResult extends Object?>({
+    required TResult Function(LessonFilterUpdated value) lessonFilterUpdated,
+  }) =>
+      throw _privateConstructorUsedError;
   @optionalTypeArgs
-  TResult maybeMap<TResult extends Object>({
-    TResult lessonFilterUpdated(LessonFilterUpdated value),
-    @required TResult orElse(),
-  });
+  TResult maybeMap<TResult extends Object?>({
+    TResult Function(LessonFilterUpdated value)? lessonFilterUpdated,
+    required TResult orElse(),
+  }) =>
+      throw _privateConstructorUsedError;
 
   @JsonKey(ignore: true)
-  $LessonFilterEventCopyWith<LessonFilterEvent> get copyWith;
+  $LessonFilterEventCopyWith<LessonFilterEvent> get copyWith =>
+      throw _privateConstructorUsedError;
 }
 
 /// @nodoc
@@ -72,12 +79,13 @@ class _$LessonFilterEventCopyWithImpl<$Res>
 
   @override
   $Res call({
-    Object availableLessonTypes = freezed,
+    Object? availableLessonTypes = freezed,
   }) {
     return _then(_value.copyWith(
       availableLessonTypes: availableLessonTypes == freezed
           ? _value.availableLessonTypes
-          : availableLessonTypes as Set<String>,
+          : availableLessonTypes // ignore: cast_nullable_to_non_nullable
+              as Set<String>,
     ));
   }
 }
@@ -105,22 +113,23 @@ class _$LessonFilterUpdatedCopyWithImpl<$Res>
 
   @override
   $Res call({
-    Object availableLessonTypes = freezed,
+    Object? availableLessonTypes = freezed,
   }) {
     return _then(LessonFilterUpdated(
       availableLessonTypes: availableLessonTypes == freezed
           ? _value.availableLessonTypes
-          : availableLessonTypes as Set<String>,
+          : availableLessonTypes // ignore: cast_nullable_to_non_nullable
+              as Set<String>,
     ));
   }
 }
 
 /// @nodoc
+
 class _$LessonFilterUpdated
     with DiagnosticableTreeMixin
     implements LessonFilterUpdated {
-  const _$LessonFilterUpdated({@required this.availableLessonTypes})
-      : assert(availableLessonTypes != null);
+  const _$LessonFilterUpdated({required this.availableLessonTypes});
 
   @override
   final Set<String> availableLessonTypes;
@@ -160,20 +169,19 @@ class _$LessonFilterUpdated
 
   @override
   @optionalTypeArgs
-  TResult when<TResult extends Object>({
-    @required TResult lessonFilterUpdated(Set<String> availableLessonTypes),
+  TResult when<TResult extends Object?>({
+    required TResult Function(Set<String> availableLessonTypes)
+        lessonFilterUpdated,
   }) {
-    assert(lessonFilterUpdated != null);
     return lessonFilterUpdated(availableLessonTypes);
   }
 
   @override
   @optionalTypeArgs
-  TResult maybeWhen<TResult extends Object>({
-    TResult lessonFilterUpdated(Set<String> availableLessonTypes),
-    @required TResult orElse(),
+  TResult maybeWhen<TResult extends Object?>({
+    TResult Function(Set<String> availableLessonTypes)? lessonFilterUpdated,
+    required TResult orElse(),
   }) {
-    assert(orElse != null);
     if (lessonFilterUpdated != null) {
       return lessonFilterUpdated(availableLessonTypes);
     }
@@ -182,20 +190,18 @@ class _$LessonFilterUpdated
 
   @override
   @optionalTypeArgs
-  TResult map<TResult extends Object>({
-    @required TResult lessonFilterUpdated(LessonFilterUpdated value),
+  TResult map<TResult extends Object?>({
+    required TResult Function(LessonFilterUpdated value) lessonFilterUpdated,
   }) {
-    assert(lessonFilterUpdated != null);
     return lessonFilterUpdated(this);
   }
 
   @override
   @optionalTypeArgs
-  TResult maybeMap<TResult extends Object>({
-    TResult lessonFilterUpdated(LessonFilterUpdated value),
-    @required TResult orElse(),
+  TResult maybeMap<TResult extends Object?>({
+    TResult Function(LessonFilterUpdated value)? lessonFilterUpdated,
+    required TResult orElse(),
   }) {
-    assert(orElse != null);
     if (lessonFilterUpdated != null) {
       return lessonFilterUpdated(this);
     }
@@ -205,11 +211,12 @@ class _$LessonFilterUpdated
 
 abstract class LessonFilterUpdated implements LessonFilterEvent {
   const factory LessonFilterUpdated(
-      {@required Set<String> availableLessonTypes}) = _$LessonFilterUpdated;
+      {required Set<String> availableLessonTypes}) = _$LessonFilterUpdated;
 
   @override
-  Set<String> get availableLessonTypes;
+  Set<String> get availableLessonTypes => throw _privateConstructorUsedError;
   @override
   @JsonKey(ignore: true)
-  $LessonFilterUpdatedCopyWith<LessonFilterUpdated> get copyWith;
+  $LessonFilterUpdatedCopyWith<LessonFilterUpdated> get copyWith =>
+      throw _privateConstructorUsedError;
 }

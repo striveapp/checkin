@@ -1,5 +1,5 @@
 // GENERATED CODE - DO NOT MODIFY BY HAND
-// ignore_for_file: deprecated_member_use, deprecated_member_use_from_same_package, use_function_type_syntax_for_parameters, unnecessary_const, avoid_init_to_null, invalid_override_different_default_values_named, prefer_expression_function_bodies
+// ignore_for_file: unused_element, deprecated_member_use, deprecated_member_use_from_same_package, use_function_type_syntax_for_parameters, unnecessary_const, avoid_init_to_null, invalid_override_different_default_values_named, prefer_expression_function_bodies, annotate_overrides
 
 part of 'lesson.dart';
 
@@ -8,6 +8,10 @@ part of 'lesson.dart';
 // **************************************************************************
 
 T _$identity<T>(T value) => value;
+
+final _privateConstructorUsedError = UnsupportedError(
+    'It seems like you constructed your class using `MyClass._()`. This constructor is only meant to be used by freezed and you are not supposed to need it nor use it.\nPlease check the documentation here for more informations: https://github.com/rrousselGit/freezed#custom-getters-and-methods');
+
 Lesson _$LessonFromJson(Map<String, dynamic> json) {
   return _Lesson.fromJson(json);
 }
@@ -16,19 +20,18 @@ Lesson _$LessonFromJson(Map<String, dynamic> json) {
 class _$LessonTearOff {
   const _$LessonTearOff();
 
-// ignore: unused_element
   _Lesson call(
-      {String id,
-      String date,
-      String name,
-      String timeStart,
+      {String? id,
+      String? date,
+      String? name,
+      String? timeStart,
       String timeEnd = "",
-      @WeekdayConverter() Weekday weekDay,
-      int timestamp,
-      String imageUrl,
-      String gymId,
-      LessonConfig lessonConfig,
-      String locationUrl,
+      @WeekdayConverter() Weekday? weekDay,
+      int? timestamp,
+      String? imageUrl,
+      String? gymId,
+      LessonConfig? lessonConfig,
+      String? locationUrl,
       int classCapacity = DEFAULT_CLASS_CAPACITY,
       List<Master> masters = const [],
       List<Attendee> attendees = const [],
@@ -54,40 +57,38 @@ class _$LessonTearOff {
     );
   }
 
-// ignore: unused_element
   Lesson fromJson(Map<String, Object> json) {
     return Lesson.fromJson(json);
   }
 }
 
 /// @nodoc
-// ignore: unused_element
 const $Lesson = _$LessonTearOff();
 
 /// @nodoc
 mixin _$Lesson {
-  String get id;
-  String get date;
-  String get name;
-  String get timeStart;
-  String get timeEnd;
+  String? get id => throw _privateConstructorUsedError;
+  String? get date => throw _privateConstructorUsedError;
+  String? get name => throw _privateConstructorUsedError;
+  String? get timeStart => throw _privateConstructorUsedError;
+  String get timeEnd => throw _privateConstructorUsedError;
   @WeekdayConverter()
-  Weekday get weekDay;
-  int get timestamp;
-  String get imageUrl;
-  String get gymId;
-  LessonConfig get lessonConfig;
-  String
-      get locationUrl; // todo retrieve from Gym (config) https://trello.com/c/uIqJLgZL
-  int get classCapacity;
-  List<Master> get masters;
-  List<Attendee> get attendees;
-  List<Attendee> get acceptedAttendees;
-  bool get isClosed;
+  Weekday? get weekDay => throw _privateConstructorUsedError;
+  int? get timestamp => throw _privateConstructorUsedError;
+  String? get imageUrl => throw _privateConstructorUsedError;
+  String? get gymId => throw _privateConstructorUsedError;
+  LessonConfig? get lessonConfig => throw _privateConstructorUsedError;
+  String? get locationUrl =>
+      throw _privateConstructorUsedError; // todo retrieve from Gym (config) https://trello.com/c/uIqJLgZL
+  int get classCapacity => throw _privateConstructorUsedError;
+  List<Master> get masters => throw _privateConstructorUsedError;
+  List<Attendee> get attendees => throw _privateConstructorUsedError;
+  List<Attendee> get acceptedAttendees => throw _privateConstructorUsedError;
+  bool get isClosed => throw _privateConstructorUsedError;
 
-  Map<String, dynamic> toJson();
+  Map<String, dynamic> toJson() => throw _privateConstructorUsedError;
   @JsonKey(ignore: true)
-  $LessonCopyWith<Lesson> get copyWith;
+  $LessonCopyWith<Lesson> get copyWith => throw _privateConstructorUsedError;
 }
 
 /// @nodoc
@@ -95,24 +96,24 @@ abstract class $LessonCopyWith<$Res> {
   factory $LessonCopyWith(Lesson value, $Res Function(Lesson) then) =
       _$LessonCopyWithImpl<$Res>;
   $Res call(
-      {String id,
-      String date,
-      String name,
-      String timeStart,
+      {String? id,
+      String? date,
+      String? name,
+      String? timeStart,
       String timeEnd,
-      @WeekdayConverter() Weekday weekDay,
-      int timestamp,
-      String imageUrl,
-      String gymId,
-      LessonConfig lessonConfig,
-      String locationUrl,
+      @WeekdayConverter() Weekday? weekDay,
+      int? timestamp,
+      String? imageUrl,
+      String? gymId,
+      LessonConfig? lessonConfig,
+      String? locationUrl,
       int classCapacity,
       List<Master> masters,
       List<Attendee> attendees,
       List<Attendee> acceptedAttendees,
       bool isClosed});
 
-  $LessonConfigCopyWith<$Res> get lessonConfig;
+  $LessonConfigCopyWith<$Res>? get lessonConfig;
 }
 
 /// @nodoc
@@ -125,57 +126,98 @@ class _$LessonCopyWithImpl<$Res> implements $LessonCopyWith<$Res> {
 
   @override
   $Res call({
-    Object id = freezed,
-    Object date = freezed,
-    Object name = freezed,
-    Object timeStart = freezed,
-    Object timeEnd = freezed,
-    Object weekDay = freezed,
-    Object timestamp = freezed,
-    Object imageUrl = freezed,
-    Object gymId = freezed,
-    Object lessonConfig = freezed,
-    Object locationUrl = freezed,
-    Object classCapacity = freezed,
-    Object masters = freezed,
-    Object attendees = freezed,
-    Object acceptedAttendees = freezed,
-    Object isClosed = freezed,
+    Object? id = freezed,
+    Object? date = freezed,
+    Object? name = freezed,
+    Object? timeStart = freezed,
+    Object? timeEnd = freezed,
+    Object? weekDay = freezed,
+    Object? timestamp = freezed,
+    Object? imageUrl = freezed,
+    Object? gymId = freezed,
+    Object? lessonConfig = freezed,
+    Object? locationUrl = freezed,
+    Object? classCapacity = freezed,
+    Object? masters = freezed,
+    Object? attendees = freezed,
+    Object? acceptedAttendees = freezed,
+    Object? isClosed = freezed,
   }) {
     return _then(_value.copyWith(
-      id: id == freezed ? _value.id : id as String,
-      date: date == freezed ? _value.date : date as String,
-      name: name == freezed ? _value.name : name as String,
-      timeStart: timeStart == freezed ? _value.timeStart : timeStart as String,
-      timeEnd: timeEnd == freezed ? _value.timeEnd : timeEnd as String,
-      weekDay: weekDay == freezed ? _value.weekDay : weekDay as Weekday,
-      timestamp: timestamp == freezed ? _value.timestamp : timestamp as int,
-      imageUrl: imageUrl == freezed ? _value.imageUrl : imageUrl as String,
-      gymId: gymId == freezed ? _value.gymId : gymId as String,
+      id: id == freezed
+          ? _value.id
+          : id // ignore: cast_nullable_to_non_nullable
+              as String?,
+      date: date == freezed
+          ? _value.date
+          : date // ignore: cast_nullable_to_non_nullable
+              as String?,
+      name: name == freezed
+          ? _value.name
+          : name // ignore: cast_nullable_to_non_nullable
+              as String?,
+      timeStart: timeStart == freezed
+          ? _value.timeStart
+          : timeStart // ignore: cast_nullable_to_non_nullable
+              as String?,
+      timeEnd: timeEnd == freezed
+          ? _value.timeEnd
+          : timeEnd // ignore: cast_nullable_to_non_nullable
+              as String,
+      weekDay: weekDay == freezed
+          ? _value.weekDay
+          : weekDay // ignore: cast_nullable_to_non_nullable
+              as Weekday?,
+      timestamp: timestamp == freezed
+          ? _value.timestamp
+          : timestamp // ignore: cast_nullable_to_non_nullable
+              as int?,
+      imageUrl: imageUrl == freezed
+          ? _value.imageUrl
+          : imageUrl // ignore: cast_nullable_to_non_nullable
+              as String?,
+      gymId: gymId == freezed
+          ? _value.gymId
+          : gymId // ignore: cast_nullable_to_non_nullable
+              as String?,
       lessonConfig: lessonConfig == freezed
           ? _value.lessonConfig
-          : lessonConfig as LessonConfig,
-      locationUrl:
-          locationUrl == freezed ? _value.locationUrl : locationUrl as String,
+          : lessonConfig // ignore: cast_nullable_to_non_nullable
+              as LessonConfig?,
+      locationUrl: locationUrl == freezed
+          ? _value.locationUrl
+          : locationUrl // ignore: cast_nullable_to_non_nullable
+              as String?,
       classCapacity: classCapacity == freezed
           ? _value.classCapacity
-          : classCapacity as int,
-      masters: masters == freezed ? _value.masters : masters as List<Master>,
-      attendees:
-          attendees == freezed ? _value.attendees : attendees as List<Attendee>,
+          : classCapacity // ignore: cast_nullable_to_non_nullable
+              as int,
+      masters: masters == freezed
+          ? _value.masters
+          : masters // ignore: cast_nullable_to_non_nullable
+              as List<Master>,
+      attendees: attendees == freezed
+          ? _value.attendees
+          : attendees // ignore: cast_nullable_to_non_nullable
+              as List<Attendee>,
       acceptedAttendees: acceptedAttendees == freezed
           ? _value.acceptedAttendees
-          : acceptedAttendees as List<Attendee>,
-      isClosed: isClosed == freezed ? _value.isClosed : isClosed as bool,
+          : acceptedAttendees // ignore: cast_nullable_to_non_nullable
+              as List<Attendee>,
+      isClosed: isClosed == freezed
+          ? _value.isClosed
+          : isClosed // ignore: cast_nullable_to_non_nullable
+              as bool,
     ));
   }
 
   @override
-  $LessonConfigCopyWith<$Res> get lessonConfig {
+  $LessonConfigCopyWith<$Res>? get lessonConfig {
     if (_value.lessonConfig == null) {
       return null;
     }
-    return $LessonConfigCopyWith<$Res>(_value.lessonConfig, (value) {
+
+    return $LessonConfigCopyWith<$Res>(_value.lessonConfig!, (value) {
       return _then(_value.copyWith(lessonConfig: value));
     });
   }
@@ -187,17 +229,17 @@ abstract class _$LessonCopyWith<$Res> implements $LessonCopyWith<$Res> {
       __$LessonCopyWithImpl<$Res>;
   @override
   $Res call(
-      {String id,
-      String date,
-      String name,
-      String timeStart,
+      {String? id,
+      String? date,
+      String? name,
+      String? timeStart,
       String timeEnd,
-      @WeekdayConverter() Weekday weekDay,
-      int timestamp,
-      String imageUrl,
-      String gymId,
-      LessonConfig lessonConfig,
-      String locationUrl,
+      @WeekdayConverter() Weekday? weekDay,
+      int? timestamp,
+      String? imageUrl,
+      String? gymId,
+      LessonConfig? lessonConfig,
+      String? locationUrl,
       int classCapacity,
       List<Master> masters,
       List<Attendee> attendees,
@@ -205,7 +247,7 @@ abstract class _$LessonCopyWith<$Res> implements $LessonCopyWith<$Res> {
       bool isClosed});
 
   @override
-  $LessonConfigCopyWith<$Res> get lessonConfig;
+  $LessonConfigCopyWith<$Res>? get lessonConfig;
 }
 
 /// @nodoc
@@ -219,55 +261,94 @@ class __$LessonCopyWithImpl<$Res> extends _$LessonCopyWithImpl<$Res>
 
   @override
   $Res call({
-    Object id = freezed,
-    Object date = freezed,
-    Object name = freezed,
-    Object timeStart = freezed,
-    Object timeEnd = freezed,
-    Object weekDay = freezed,
-    Object timestamp = freezed,
-    Object imageUrl = freezed,
-    Object gymId = freezed,
-    Object lessonConfig = freezed,
-    Object locationUrl = freezed,
-    Object classCapacity = freezed,
-    Object masters = freezed,
-    Object attendees = freezed,
-    Object acceptedAttendees = freezed,
-    Object isClosed = freezed,
+    Object? id = freezed,
+    Object? date = freezed,
+    Object? name = freezed,
+    Object? timeStart = freezed,
+    Object? timeEnd = freezed,
+    Object? weekDay = freezed,
+    Object? timestamp = freezed,
+    Object? imageUrl = freezed,
+    Object? gymId = freezed,
+    Object? lessonConfig = freezed,
+    Object? locationUrl = freezed,
+    Object? classCapacity = freezed,
+    Object? masters = freezed,
+    Object? attendees = freezed,
+    Object? acceptedAttendees = freezed,
+    Object? isClosed = freezed,
   }) {
     return _then(_Lesson(
-      id: id == freezed ? _value.id : id as String,
-      date: date == freezed ? _value.date : date as String,
-      name: name == freezed ? _value.name : name as String,
-      timeStart: timeStart == freezed ? _value.timeStart : timeStart as String,
-      timeEnd: timeEnd == freezed ? _value.timeEnd : timeEnd as String,
-      weekDay: weekDay == freezed ? _value.weekDay : weekDay as Weekday,
-      timestamp: timestamp == freezed ? _value.timestamp : timestamp as int,
-      imageUrl: imageUrl == freezed ? _value.imageUrl : imageUrl as String,
-      gymId: gymId == freezed ? _value.gymId : gymId as String,
+      id: id == freezed
+          ? _value.id
+          : id // ignore: cast_nullable_to_non_nullable
+              as String?,
+      date: date == freezed
+          ? _value.date
+          : date // ignore: cast_nullable_to_non_nullable
+              as String?,
+      name: name == freezed
+          ? _value.name
+          : name // ignore: cast_nullable_to_non_nullable
+              as String?,
+      timeStart: timeStart == freezed
+          ? _value.timeStart
+          : timeStart // ignore: cast_nullable_to_non_nullable
+              as String?,
+      timeEnd: timeEnd == freezed
+          ? _value.timeEnd
+          : timeEnd // ignore: cast_nullable_to_non_nullable
+              as String,
+      weekDay: weekDay == freezed
+          ? _value.weekDay
+          : weekDay // ignore: cast_nullable_to_non_nullable
+              as Weekday?,
+      timestamp: timestamp == freezed
+          ? _value.timestamp
+          : timestamp // ignore: cast_nullable_to_non_nullable
+              as int?,
+      imageUrl: imageUrl == freezed
+          ? _value.imageUrl
+          : imageUrl // ignore: cast_nullable_to_non_nullable
+              as String?,
+      gymId: gymId == freezed
+          ? _value.gymId
+          : gymId // ignore: cast_nullable_to_non_nullable
+              as String?,
       lessonConfig: lessonConfig == freezed
           ? _value.lessonConfig
-          : lessonConfig as LessonConfig,
-      locationUrl:
-          locationUrl == freezed ? _value.locationUrl : locationUrl as String,
+          : lessonConfig // ignore: cast_nullable_to_non_nullable
+              as LessonConfig?,
+      locationUrl: locationUrl == freezed
+          ? _value.locationUrl
+          : locationUrl // ignore: cast_nullable_to_non_nullable
+              as String?,
       classCapacity: classCapacity == freezed
           ? _value.classCapacity
-          : classCapacity as int,
-      masters: masters == freezed ? _value.masters : masters as List<Master>,
-      attendees:
-          attendees == freezed ? _value.attendees : attendees as List<Attendee>,
+          : classCapacity // ignore: cast_nullable_to_non_nullable
+              as int,
+      masters: masters == freezed
+          ? _value.masters
+          : masters // ignore: cast_nullable_to_non_nullable
+              as List<Master>,
+      attendees: attendees == freezed
+          ? _value.attendees
+          : attendees // ignore: cast_nullable_to_non_nullable
+              as List<Attendee>,
       acceptedAttendees: acceptedAttendees == freezed
           ? _value.acceptedAttendees
-          : acceptedAttendees as List<Attendee>,
-      isClosed: isClosed == freezed ? _value.isClosed : isClosed as bool,
+          : acceptedAttendees // ignore: cast_nullable_to_non_nullable
+              as List<Attendee>,
+      isClosed: isClosed == freezed
+          ? _value.isClosed
+          : isClosed // ignore: cast_nullable_to_non_nullable
+              as bool,
     ));
   }
 }
 
-@JsonSerializable()
-
 /// @nodoc
+@JsonSerializable()
 class _$_Lesson implements _Lesson {
   _$_Lesson(
       {this.id,
@@ -285,41 +366,35 @@ class _$_Lesson implements _Lesson {
       this.masters = const [],
       this.attendees = const [],
       this.acceptedAttendees = const [],
-      this.isClosed = false})
-      : assert(timeEnd != null),
-        assert(classCapacity != null),
-        assert(masters != null),
-        assert(attendees != null),
-        assert(acceptedAttendees != null),
-        assert(isClosed != null);
+      this.isClosed = false});
 
   factory _$_Lesson.fromJson(Map<String, dynamic> json) =>
       _$_$_LessonFromJson(json);
 
   @override
-  final String id;
+  final String? id;
   @override
-  final String date;
+  final String? date;
   @override
-  final String name;
+  final String? name;
   @override
-  final String timeStart;
+  final String? timeStart;
   @JsonKey(defaultValue: "")
   @override
   final String timeEnd;
   @override
   @WeekdayConverter()
-  final Weekday weekDay;
+  final Weekday? weekDay;
   @override
-  final int timestamp;
+  final int? timestamp;
   @override
-  final String imageUrl;
+  final String? imageUrl;
   @override
-  final String gymId;
+  final String? gymId;
   @override
-  final LessonConfig lessonConfig;
+  final LessonConfig? lessonConfig;
   @override
-  final String locationUrl;
+  final String? locationUrl;
   @JsonKey(defaultValue: DEFAULT_CLASS_CAPACITY)
   @override // todo retrieve from Gym (config) https://trello.com/c/uIqJLgZL
   final int classCapacity;
@@ -424,17 +499,17 @@ class _$_Lesson implements _Lesson {
 
 abstract class _Lesson implements Lesson {
   factory _Lesson(
-      {String id,
-      String date,
-      String name,
-      String timeStart,
+      {String? id,
+      String? date,
+      String? name,
+      String? timeStart,
       String timeEnd,
-      @WeekdayConverter() Weekday weekDay,
-      int timestamp,
-      String imageUrl,
-      String gymId,
-      LessonConfig lessonConfig,
-      String locationUrl,
+      @WeekdayConverter() Weekday? weekDay,
+      int? timestamp,
+      String? imageUrl,
+      String? gymId,
+      LessonConfig? lessonConfig,
+      String? locationUrl,
       int classCapacity,
       List<Master> masters,
       List<Attendee> attendees,
@@ -444,41 +519,41 @@ abstract class _Lesson implements Lesson {
   factory _Lesson.fromJson(Map<String, dynamic> json) = _$_Lesson.fromJson;
 
   @override
-  String get id;
+  String? get id => throw _privateConstructorUsedError;
   @override
-  String get date;
+  String? get date => throw _privateConstructorUsedError;
   @override
-  String get name;
+  String? get name => throw _privateConstructorUsedError;
   @override
-  String get timeStart;
+  String? get timeStart => throw _privateConstructorUsedError;
   @override
-  String get timeEnd;
+  String get timeEnd => throw _privateConstructorUsedError;
   @override
   @WeekdayConverter()
-  Weekday get weekDay;
+  Weekday? get weekDay => throw _privateConstructorUsedError;
   @override
-  int get timestamp;
+  int? get timestamp => throw _privateConstructorUsedError;
   @override
-  String get imageUrl;
+  String? get imageUrl => throw _privateConstructorUsedError;
   @override
-  String get gymId;
+  String? get gymId => throw _privateConstructorUsedError;
   @override
-  LessonConfig get lessonConfig;
+  LessonConfig? get lessonConfig => throw _privateConstructorUsedError;
   @override
-  String get locationUrl;
+  String? get locationUrl => throw _privateConstructorUsedError;
   @override // todo retrieve from Gym (config) https://trello.com/c/uIqJLgZL
-  int get classCapacity;
+  int get classCapacity => throw _privateConstructorUsedError;
   @override
-  List<Master> get masters;
+  List<Master> get masters => throw _privateConstructorUsedError;
   @override
-  List<Attendee> get attendees;
+  List<Attendee> get attendees => throw _privateConstructorUsedError;
   @override
-  List<Attendee> get acceptedAttendees;
+  List<Attendee> get acceptedAttendees => throw _privateConstructorUsedError;
   @override
-  bool get isClosed;
+  bool get isClosed => throw _privateConstructorUsedError;
   @override
   @JsonKey(ignore: true)
-  _$LessonCopyWith<_Lesson> get copyWith;
+  _$LessonCopyWith<_Lesson> get copyWith => throw _privateConstructorUsedError;
 }
 
 LessonTemplate _$LessonTemplateFromJson(Map<String, dynamic> json) {
@@ -489,15 +564,14 @@ LessonTemplate _$LessonTemplateFromJson(Map<String, dynamic> json) {
 class _$LessonTemplateTearOff {
   const _$LessonTemplateTearOff();
 
-// ignore: unused_element
   _LessonTemplate call(
-      {String id,
-      String name,
-      String timeStart,
+      {String? id,
+      String? name,
+      String? timeStart,
       String timeEnd = "",
-      Weekday weekDay,
-      String imageUrl,
-      LessonConfig lessonConfig,
+      Weekday? weekDay,
+      String? imageUrl,
+      LessonConfig? lessonConfig,
       int classCapacity = DEFAULT_CLASS_CAPACITY,
       List<Master> masters = const []}) {
     return _LessonTemplate(
@@ -513,32 +587,31 @@ class _$LessonTemplateTearOff {
     );
   }
 
-// ignore: unused_element
   LessonTemplate fromJson(Map<String, Object> json) {
     return LessonTemplate.fromJson(json);
   }
 }
 
 /// @nodoc
-// ignore: unused_element
 const $LessonTemplate = _$LessonTemplateTearOff();
 
 /// @nodoc
 mixin _$LessonTemplate {
-  String get id;
-  String get name;
-  String get timeStart;
-  String get timeEnd;
-  Weekday get weekDay;
-  String get imageUrl;
-  LessonConfig
-      get lessonConfig; // todo retrieve from Gym (config) https://trello.com/c/uIqJLgZL
-  int get classCapacity;
-  List<Master> get masters;
+  String? get id => throw _privateConstructorUsedError;
+  String? get name => throw _privateConstructorUsedError;
+  String? get timeStart => throw _privateConstructorUsedError;
+  String get timeEnd => throw _privateConstructorUsedError;
+  Weekday? get weekDay => throw _privateConstructorUsedError;
+  String? get imageUrl => throw _privateConstructorUsedError;
+  LessonConfig? get lessonConfig =>
+      throw _privateConstructorUsedError; // todo retrieve from Gym (config) https://trello.com/c/uIqJLgZL
+  int get classCapacity => throw _privateConstructorUsedError;
+  List<Master> get masters => throw _privateConstructorUsedError;
 
-  Map<String, dynamic> toJson();
+  Map<String, dynamic> toJson() => throw _privateConstructorUsedError;
   @JsonKey(ignore: true)
-  $LessonTemplateCopyWith<LessonTemplate> get copyWith;
+  $LessonTemplateCopyWith<LessonTemplate> get copyWith =>
+      throw _privateConstructorUsedError;
 }
 
 /// @nodoc
@@ -547,17 +620,17 @@ abstract class $LessonTemplateCopyWith<$Res> {
           LessonTemplate value, $Res Function(LessonTemplate) then) =
       _$LessonTemplateCopyWithImpl<$Res>;
   $Res call(
-      {String id,
-      String name,
-      String timeStart,
+      {String? id,
+      String? name,
+      String? timeStart,
       String timeEnd,
-      Weekday weekDay,
-      String imageUrl,
-      LessonConfig lessonConfig,
+      Weekday? weekDay,
+      String? imageUrl,
+      LessonConfig? lessonConfig,
       int classCapacity,
       List<Master> masters});
 
-  $LessonConfigCopyWith<$Res> get lessonConfig;
+  $LessonConfigCopyWith<$Res>? get lessonConfig;
 }
 
 /// @nodoc
@@ -571,39 +644,63 @@ class _$LessonTemplateCopyWithImpl<$Res>
 
   @override
   $Res call({
-    Object id = freezed,
-    Object name = freezed,
-    Object timeStart = freezed,
-    Object timeEnd = freezed,
-    Object weekDay = freezed,
-    Object imageUrl = freezed,
-    Object lessonConfig = freezed,
-    Object classCapacity = freezed,
-    Object masters = freezed,
+    Object? id = freezed,
+    Object? name = freezed,
+    Object? timeStart = freezed,
+    Object? timeEnd = freezed,
+    Object? weekDay = freezed,
+    Object? imageUrl = freezed,
+    Object? lessonConfig = freezed,
+    Object? classCapacity = freezed,
+    Object? masters = freezed,
   }) {
     return _then(_value.copyWith(
-      id: id == freezed ? _value.id : id as String,
-      name: name == freezed ? _value.name : name as String,
-      timeStart: timeStart == freezed ? _value.timeStart : timeStart as String,
-      timeEnd: timeEnd == freezed ? _value.timeEnd : timeEnd as String,
-      weekDay: weekDay == freezed ? _value.weekDay : weekDay as Weekday,
-      imageUrl: imageUrl == freezed ? _value.imageUrl : imageUrl as String,
+      id: id == freezed
+          ? _value.id
+          : id // ignore: cast_nullable_to_non_nullable
+              as String?,
+      name: name == freezed
+          ? _value.name
+          : name // ignore: cast_nullable_to_non_nullable
+              as String?,
+      timeStart: timeStart == freezed
+          ? _value.timeStart
+          : timeStart // ignore: cast_nullable_to_non_nullable
+              as String?,
+      timeEnd: timeEnd == freezed
+          ? _value.timeEnd
+          : timeEnd // ignore: cast_nullable_to_non_nullable
+              as String,
+      weekDay: weekDay == freezed
+          ? _value.weekDay
+          : weekDay // ignore: cast_nullable_to_non_nullable
+              as Weekday?,
+      imageUrl: imageUrl == freezed
+          ? _value.imageUrl
+          : imageUrl // ignore: cast_nullable_to_non_nullable
+              as String?,
       lessonConfig: lessonConfig == freezed
           ? _value.lessonConfig
-          : lessonConfig as LessonConfig,
+          : lessonConfig // ignore: cast_nullable_to_non_nullable
+              as LessonConfig?,
       classCapacity: classCapacity == freezed
           ? _value.classCapacity
-          : classCapacity as int,
-      masters: masters == freezed ? _value.masters : masters as List<Master>,
+          : classCapacity // ignore: cast_nullable_to_non_nullable
+              as int,
+      masters: masters == freezed
+          ? _value.masters
+          : masters // ignore: cast_nullable_to_non_nullable
+              as List<Master>,
     ));
   }
 
   @override
-  $LessonConfigCopyWith<$Res> get lessonConfig {
+  $LessonConfigCopyWith<$Res>? get lessonConfig {
     if (_value.lessonConfig == null) {
       return null;
     }
-    return $LessonConfigCopyWith<$Res>(_value.lessonConfig, (value) {
+
+    return $LessonConfigCopyWith<$Res>(_value.lessonConfig!, (value) {
       return _then(_value.copyWith(lessonConfig: value));
     });
   }
@@ -617,18 +714,18 @@ abstract class _$LessonTemplateCopyWith<$Res>
       __$LessonTemplateCopyWithImpl<$Res>;
   @override
   $Res call(
-      {String id,
-      String name,
-      String timeStart,
+      {String? id,
+      String? name,
+      String? timeStart,
       String timeEnd,
-      Weekday weekDay,
-      String imageUrl,
-      LessonConfig lessonConfig,
+      Weekday? weekDay,
+      String? imageUrl,
+      LessonConfig? lessonConfig,
       int classCapacity,
       List<Master> masters});
 
   @override
-  $LessonConfigCopyWith<$Res> get lessonConfig;
+  $LessonConfigCopyWith<$Res>? get lessonConfig;
 }
 
 /// @nodoc
@@ -644,37 +741,59 @@ class __$LessonTemplateCopyWithImpl<$Res>
 
   @override
   $Res call({
-    Object id = freezed,
-    Object name = freezed,
-    Object timeStart = freezed,
-    Object timeEnd = freezed,
-    Object weekDay = freezed,
-    Object imageUrl = freezed,
-    Object lessonConfig = freezed,
-    Object classCapacity = freezed,
-    Object masters = freezed,
+    Object? id = freezed,
+    Object? name = freezed,
+    Object? timeStart = freezed,
+    Object? timeEnd = freezed,
+    Object? weekDay = freezed,
+    Object? imageUrl = freezed,
+    Object? lessonConfig = freezed,
+    Object? classCapacity = freezed,
+    Object? masters = freezed,
   }) {
     return _then(_LessonTemplate(
-      id: id == freezed ? _value.id : id as String,
-      name: name == freezed ? _value.name : name as String,
-      timeStart: timeStart == freezed ? _value.timeStart : timeStart as String,
-      timeEnd: timeEnd == freezed ? _value.timeEnd : timeEnd as String,
-      weekDay: weekDay == freezed ? _value.weekDay : weekDay as Weekday,
-      imageUrl: imageUrl == freezed ? _value.imageUrl : imageUrl as String,
+      id: id == freezed
+          ? _value.id
+          : id // ignore: cast_nullable_to_non_nullable
+              as String?,
+      name: name == freezed
+          ? _value.name
+          : name // ignore: cast_nullable_to_non_nullable
+              as String?,
+      timeStart: timeStart == freezed
+          ? _value.timeStart
+          : timeStart // ignore: cast_nullable_to_non_nullable
+              as String?,
+      timeEnd: timeEnd == freezed
+          ? _value.timeEnd
+          : timeEnd // ignore: cast_nullable_to_non_nullable
+              as String,
+      weekDay: weekDay == freezed
+          ? _value.weekDay
+          : weekDay // ignore: cast_nullable_to_non_nullable
+              as Weekday?,
+      imageUrl: imageUrl == freezed
+          ? _value.imageUrl
+          : imageUrl // ignore: cast_nullable_to_non_nullable
+              as String?,
       lessonConfig: lessonConfig == freezed
           ? _value.lessonConfig
-          : lessonConfig as LessonConfig,
+          : lessonConfig // ignore: cast_nullable_to_non_nullable
+              as LessonConfig?,
       classCapacity: classCapacity == freezed
           ? _value.classCapacity
-          : classCapacity as int,
-      masters: masters == freezed ? _value.masters : masters as List<Master>,
+          : classCapacity // ignore: cast_nullable_to_non_nullable
+              as int,
+      masters: masters == freezed
+          ? _value.masters
+          : masters // ignore: cast_nullable_to_non_nullable
+              as List<Master>,
     ));
   }
 }
 
-@JsonSerializable()
-
 /// @nodoc
+@JsonSerializable()
 class _$_LessonTemplate implements _LessonTemplate {
   _$_LessonTemplate(
       {this.id,
@@ -685,29 +804,26 @@ class _$_LessonTemplate implements _LessonTemplate {
       this.imageUrl,
       this.lessonConfig,
       this.classCapacity = DEFAULT_CLASS_CAPACITY,
-      this.masters = const []})
-      : assert(timeEnd != null),
-        assert(classCapacity != null),
-        assert(masters != null);
+      this.masters = const []});
 
   factory _$_LessonTemplate.fromJson(Map<String, dynamic> json) =>
       _$_$_LessonTemplateFromJson(json);
 
   @override
-  final String id;
+  final String? id;
   @override
-  final String name;
+  final String? name;
   @override
-  final String timeStart;
+  final String? timeStart;
   @JsonKey(defaultValue: "")
   @override
   final String timeEnd;
   @override
-  final Weekday weekDay;
+  final Weekday? weekDay;
   @override
-  final String imageUrl;
+  final String? imageUrl;
   @override
-  final LessonConfig lessonConfig;
+  final LessonConfig? lessonConfig;
   @JsonKey(defaultValue: DEFAULT_CLASS_CAPACITY)
   @override // todo retrieve from Gym (config) https://trello.com/c/uIqJLgZL
   final int classCapacity;
@@ -776,13 +892,13 @@ class _$_LessonTemplate implements _LessonTemplate {
 
 abstract class _LessonTemplate implements LessonTemplate {
   factory _LessonTemplate(
-      {String id,
-      String name,
-      String timeStart,
+      {String? id,
+      String? name,
+      String? timeStart,
       String timeEnd,
-      Weekday weekDay,
-      String imageUrl,
-      LessonConfig lessonConfig,
+      Weekday? weekDay,
+      String? imageUrl,
+      LessonConfig? lessonConfig,
       int classCapacity,
       List<Master> masters}) = _$_LessonTemplate;
 
@@ -790,24 +906,25 @@ abstract class _LessonTemplate implements LessonTemplate {
       _$_LessonTemplate.fromJson;
 
   @override
-  String get id;
+  String? get id => throw _privateConstructorUsedError;
   @override
-  String get name;
+  String? get name => throw _privateConstructorUsedError;
   @override
-  String get timeStart;
+  String? get timeStart => throw _privateConstructorUsedError;
   @override
-  String get timeEnd;
+  String get timeEnd => throw _privateConstructorUsedError;
   @override
-  Weekday get weekDay;
+  Weekday? get weekDay => throw _privateConstructorUsedError;
   @override
-  String get imageUrl;
+  String? get imageUrl => throw _privateConstructorUsedError;
   @override
-  LessonConfig get lessonConfig;
+  LessonConfig? get lessonConfig => throw _privateConstructorUsedError;
   @override // todo retrieve from Gym (config) https://trello.com/c/uIqJLgZL
-  int get classCapacity;
+  int get classCapacity => throw _privateConstructorUsedError;
   @override
-  List<Master> get masters;
+  List<Master> get masters => throw _privateConstructorUsedError;
   @override
   @JsonKey(ignore: true)
-  _$LessonTemplateCopyWith<_LessonTemplate> get copyWith;
+  _$LessonTemplateCopyWith<_LessonTemplate> get copyWith =>
+      throw _privateConstructorUsedError;
 }

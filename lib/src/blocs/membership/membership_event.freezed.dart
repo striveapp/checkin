@@ -1,5 +1,5 @@
 // GENERATED CODE - DO NOT MODIFY BY HAND
-// ignore_for_file: deprecated_member_use, deprecated_member_use_from_same_package, use_function_type_syntax_for_parameters, unnecessary_const, avoid_init_to_null, invalid_override_different_default_values_named, prefer_expression_function_bodies
+// ignore_for_file: unused_element, deprecated_member_use, deprecated_member_use_from_same_package, use_function_type_syntax_for_parameters, unnecessary_const, avoid_init_to_null, invalid_override_different_default_values_named, prefer_expression_function_bodies, annotate_overrides
 
 part of 'membership_event.dart';
 
@@ -9,54 +9,59 @@ part of 'membership_event.dart';
 
 T _$identity<T>(T value) => value;
 
+final _privateConstructorUsedError = UnsupportedError(
+    'It seems like you constructed your class using `MyClass._()`. This constructor is only meant to be used by freezed and you are not supposed to need it nor use it.\nPlease check the documentation here for more informations: https://github.com/rrousselGit/freezed#custom-getters-and-methods');
+
 /// @nodoc
 class _$MembershipEventTearOff {
   const _$MembershipEventTearOff();
 
-// ignore: unused_element
   MembershipUpdated membershipUpdated(
-      {@required String customerEmail, @required Membership membership}) {
+      {required String customerEmail, required Membership membership}) {
     return MembershipUpdated(
       customerEmail: customerEmail,
       membership: membership,
     );
   }
 
-// ignore: unused_element
   Unsubscribe unsubscribe() {
     return const Unsubscribe();
   }
 }
 
 /// @nodoc
-// ignore: unused_element
 const $MembershipEvent = _$MembershipEventTearOff();
 
 /// @nodoc
 mixin _$MembershipEvent {
   @optionalTypeArgs
-  TResult when<TResult extends Object>({
-    @required
-        TResult membershipUpdated(String customerEmail, Membership membership),
-    @required TResult unsubscribe(),
-  });
+  TResult when<TResult extends Object?>({
+    required TResult Function(String customerEmail, Membership membership)
+        membershipUpdated,
+    required TResult Function() unsubscribe,
+  }) =>
+      throw _privateConstructorUsedError;
   @optionalTypeArgs
-  TResult maybeWhen<TResult extends Object>({
-    TResult membershipUpdated(String customerEmail, Membership membership),
-    TResult unsubscribe(),
-    @required TResult orElse(),
-  });
+  TResult maybeWhen<TResult extends Object?>({
+    TResult Function(String customerEmail, Membership membership)?
+        membershipUpdated,
+    TResult Function()? unsubscribe,
+    required TResult orElse(),
+  }) =>
+      throw _privateConstructorUsedError;
   @optionalTypeArgs
-  TResult map<TResult extends Object>({
-    @required TResult membershipUpdated(MembershipUpdated value),
-    @required TResult unsubscribe(Unsubscribe value),
-  });
+  TResult map<TResult extends Object?>({
+    required TResult Function(MembershipUpdated value) membershipUpdated,
+    required TResult Function(Unsubscribe value) unsubscribe,
+  }) =>
+      throw _privateConstructorUsedError;
   @optionalTypeArgs
-  TResult maybeMap<TResult extends Object>({
-    TResult membershipUpdated(MembershipUpdated value),
-    TResult unsubscribe(Unsubscribe value),
-    @required TResult orElse(),
-  });
+  TResult maybeMap<TResult extends Object?>({
+    TResult Function(MembershipUpdated value)? membershipUpdated,
+    TResult Function(Unsubscribe value)? unsubscribe,
+    required TResult orElse(),
+  }) =>
+      throw _privateConstructorUsedError;
 }
 
 /// @nodoc
@@ -99,23 +104,23 @@ class _$MembershipUpdatedCopyWithImpl<$Res>
 
   @override
   $Res call({
-    Object customerEmail = freezed,
-    Object membership = freezed,
+    Object? customerEmail = freezed,
+    Object? membership = freezed,
   }) {
     return _then(MembershipUpdated(
       customerEmail: customerEmail == freezed
           ? _value.customerEmail
-          : customerEmail as String,
-      membership:
-          membership == freezed ? _value.membership : membership as Membership,
+          : customerEmail // ignore: cast_nullable_to_non_nullable
+              as String,
+      membership: membership == freezed
+          ? _value.membership
+          : membership // ignore: cast_nullable_to_non_nullable
+              as Membership,
     ));
   }
 
   @override
   $MembershipCopyWith<$Res> get membership {
-    if (_value.membership == null) {
-      return null;
-    }
     return $MembershipCopyWith<$Res>(_value.membership, (value) {
       return _then(_value.copyWith(membership: value));
     });
@@ -123,13 +128,12 @@ class _$MembershipUpdatedCopyWithImpl<$Res>
 }
 
 /// @nodoc
+
 class _$MembershipUpdated
     with DiagnosticableTreeMixin
     implements MembershipUpdated {
   const _$MembershipUpdated(
-      {@required this.customerEmail, @required this.membership})
-      : assert(customerEmail != null),
-        assert(membership != null);
+      {required this.customerEmail, required this.membership});
 
   @override
   final String customerEmail;
@@ -175,24 +179,22 @@ class _$MembershipUpdated
 
   @override
   @optionalTypeArgs
-  TResult when<TResult extends Object>({
-    @required
-        TResult membershipUpdated(String customerEmail, Membership membership),
-    @required TResult unsubscribe(),
+  TResult when<TResult extends Object?>({
+    required TResult Function(String customerEmail, Membership membership)
+        membershipUpdated,
+    required TResult Function() unsubscribe,
   }) {
-    assert(membershipUpdated != null);
-    assert(unsubscribe != null);
     return membershipUpdated(customerEmail, membership);
   }
 
   @override
   @optionalTypeArgs
-  TResult maybeWhen<TResult extends Object>({
-    TResult membershipUpdated(String customerEmail, Membership membership),
-    TResult unsubscribe(),
-    @required TResult orElse(),
+  TResult maybeWhen<TResult extends Object?>({
+    TResult Function(String customerEmail, Membership membership)?
+        membershipUpdated,
+    TResult Function()? unsubscribe,
+    required TResult orElse(),
   }) {
-    assert(orElse != null);
     if (membershipUpdated != null) {
       return membershipUpdated(customerEmail, membership);
     }
@@ -201,23 +203,20 @@ class _$MembershipUpdated
 
   @override
   @optionalTypeArgs
-  TResult map<TResult extends Object>({
-    @required TResult membershipUpdated(MembershipUpdated value),
-    @required TResult unsubscribe(Unsubscribe value),
+  TResult map<TResult extends Object?>({
+    required TResult Function(MembershipUpdated value) membershipUpdated,
+    required TResult Function(Unsubscribe value) unsubscribe,
   }) {
-    assert(membershipUpdated != null);
-    assert(unsubscribe != null);
     return membershipUpdated(this);
   }
 
   @override
   @optionalTypeArgs
-  TResult maybeMap<TResult extends Object>({
-    TResult membershipUpdated(MembershipUpdated value),
-    TResult unsubscribe(Unsubscribe value),
-    @required TResult orElse(),
+  TResult maybeMap<TResult extends Object?>({
+    TResult Function(MembershipUpdated value)? membershipUpdated,
+    TResult Function(Unsubscribe value)? unsubscribe,
+    required TResult orElse(),
   }) {
-    assert(orElse != null);
     if (membershipUpdated != null) {
       return membershipUpdated(this);
     }
@@ -227,13 +226,14 @@ class _$MembershipUpdated
 
 abstract class MembershipUpdated implements MembershipEvent {
   const factory MembershipUpdated(
-      {@required String customerEmail,
-      @required Membership membership}) = _$MembershipUpdated;
+      {required String customerEmail,
+      required Membership membership}) = _$MembershipUpdated;
 
-  String get customerEmail;
-  Membership get membership;
+  String get customerEmail => throw _privateConstructorUsedError;
+  Membership get membership => throw _privateConstructorUsedError;
   @JsonKey(ignore: true)
-  $MembershipUpdatedCopyWith<MembershipUpdated> get copyWith;
+  $MembershipUpdatedCopyWith<MembershipUpdated> get copyWith =>
+      throw _privateConstructorUsedError;
 }
 
 /// @nodoc
@@ -256,6 +256,7 @@ class _$UnsubscribeCopyWithImpl<$Res>
 }
 
 /// @nodoc
+
 class _$Unsubscribe with DiagnosticableTreeMixin implements Unsubscribe {
   const _$Unsubscribe();
 
@@ -280,24 +281,22 @@ class _$Unsubscribe with DiagnosticableTreeMixin implements Unsubscribe {
 
   @override
   @optionalTypeArgs
-  TResult when<TResult extends Object>({
-    @required
-        TResult membershipUpdated(String customerEmail, Membership membership),
-    @required TResult unsubscribe(),
+  TResult when<TResult extends Object?>({
+    required TResult Function(String customerEmail, Membership membership)
+        membershipUpdated,
+    required TResult Function() unsubscribe,
   }) {
-    assert(membershipUpdated != null);
-    assert(unsubscribe != null);
     return unsubscribe();
   }
 
   @override
   @optionalTypeArgs
-  TResult maybeWhen<TResult extends Object>({
-    TResult membershipUpdated(String customerEmail, Membership membership),
-    TResult unsubscribe(),
-    @required TResult orElse(),
+  TResult maybeWhen<TResult extends Object?>({
+    TResult Function(String customerEmail, Membership membership)?
+        membershipUpdated,
+    TResult Function()? unsubscribe,
+    required TResult orElse(),
   }) {
-    assert(orElse != null);
     if (unsubscribe != null) {
       return unsubscribe();
     }
@@ -306,23 +305,20 @@ class _$Unsubscribe with DiagnosticableTreeMixin implements Unsubscribe {
 
   @override
   @optionalTypeArgs
-  TResult map<TResult extends Object>({
-    @required TResult membershipUpdated(MembershipUpdated value),
-    @required TResult unsubscribe(Unsubscribe value),
+  TResult map<TResult extends Object?>({
+    required TResult Function(MembershipUpdated value) membershipUpdated,
+    required TResult Function(Unsubscribe value) unsubscribe,
   }) {
-    assert(membershipUpdated != null);
-    assert(unsubscribe != null);
     return unsubscribe(this);
   }
 
   @override
   @optionalTypeArgs
-  TResult maybeMap<TResult extends Object>({
-    TResult membershipUpdated(MembershipUpdated value),
-    TResult unsubscribe(Unsubscribe value),
-    @required TResult orElse(),
+  TResult maybeMap<TResult extends Object?>({
+    TResult Function(MembershipUpdated value)? membershipUpdated,
+    TResult Function(Unsubscribe value)? unsubscribe,
+    required TResult orElse(),
   }) {
-    assert(orElse != null);
     if (unsubscribe != null) {
       return unsubscribe(this);
     }

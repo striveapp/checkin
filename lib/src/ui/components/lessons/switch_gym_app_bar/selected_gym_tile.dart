@@ -1,3 +1,5 @@
+// @dart=2.9
+
 import 'package:checkin/src/models/gym.dart';
 import 'package:checkin/src/ui/components/rounded_image.dart';
 import 'package:flutter/material.dart';

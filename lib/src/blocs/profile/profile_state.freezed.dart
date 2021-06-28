@@ -1,5 +1,5 @@
 // GENERATED CODE - DO NOT MODIFY BY HAND
-// ignore_for_file: deprecated_member_use, deprecated_member_use_from_same_package, use_function_type_syntax_for_parameters, unnecessary_const, avoid_init_to_null, invalid_override_different_default_values_named, prefer_expression_function_bodies
+// ignore_for_file: unused_element, deprecated_member_use, deprecated_member_use_from_same_package, use_function_type_syntax_for_parameters, unnecessary_const, avoid_init_to_null, invalid_override_different_default_values_named, prefer_expression_function_bodies, annotate_overrides
 
 part of 'profile_state.dart';
 
@@ -9,18 +9,19 @@ part of 'profile_state.dart';
 
 T _$identity<T>(T value) => value;
 
+final _privateConstructorUsedError = UnsupportedError(
+    'It seems like you constructed your class using `MyClass._()`. This constructor is only meant to be used by freezed and you are not supposed to need it nor use it.\nPlease check the documentation here for more informations: https://github.com/rrousselGit/freezed#custom-getters-and-methods');
+
 /// @nodoc
 class _$ProfileStateTearOff {
   const _$ProfileStateTearOff();
 
-// ignore: unused_element
   InitialProfileState initialProfileState() {
     return const InitialProfileState();
   }
 
-// ignore: unused_element
   ProfileLoaded profileLoaded(
-      {@required User profileUser, @required bool isCurrentUser}) {
+      {required User profileUser, required bool isCurrentUser}) {
     return ProfileLoaded(
       profileUser: profileUser,
       isCurrentUser: isCurrentUser,
@@ -29,33 +30,37 @@ class _$ProfileStateTearOff {
 }
 
 /// @nodoc
-// ignore: unused_element
 const $ProfileState = _$ProfileStateTearOff();
 
 /// @nodoc
 mixin _$ProfileState {
   @optionalTypeArgs
-  TResult when<TResult extends Object>({
-    @required TResult initialProfileState(),
-    @required TResult profileLoaded(User profileUser, bool isCurrentUser),
-  });
+  TResult when<TResult extends Object?>({
+    required TResult Function() initialProfileState,
+    required TResult Function(User profileUser, bool isCurrentUser)
+        profileLoaded,
+  }) =>
+      throw _privateConstructorUsedError;
   @optionalTypeArgs
-  TResult maybeWhen<TResult extends Object>({
-    TResult initialProfileState(),
-    TResult profileLoaded(User profileUser, bool isCurrentUser),
-    @required TResult orElse(),
-  });
+  TResult maybeWhen<TResult extends Object?>({
+    TResult Function()? initialProfileState,
+    TResult Function(User profileUser, bool isCurrentUser)? profileLoaded,
+    required TResult orElse(),
+  }) =>
+      throw _privateConstructorUsedError;
   @optionalTypeArgs
-  TResult map<TResult extends Object>({
-    @required TResult initialProfileState(InitialProfileState value),
-    @required TResult profileLoaded(ProfileLoaded value),
-  });
+  TResult map<TResult extends Object?>({
+    required TResult Function(InitialProfileState value) initialProfileState,
+    required TResult Function(ProfileLoaded value) profileLoaded,
+  }) =>
+      throw _privateConstructorUsedError;
   @optionalTypeArgs
-  TResult maybeMap<TResult extends Object>({
-    TResult initialProfileState(InitialProfileState value),
-    TResult profileLoaded(ProfileLoaded value),
-    @required TResult orElse(),
-  });
+  TResult maybeMap<TResult extends Object?>({
+    TResult Function(InitialProfileState value)? initialProfileState,
+    TResult Function(ProfileLoaded value)? profileLoaded,
+    required TResult orElse(),
+  }) =>
+      throw _privateConstructorUsedError;
 }
 
 /// @nodoc
@@ -94,6 +99,7 @@ class _$InitialProfileStateCopyWithImpl<$Res>
 }
 
 /// @nodoc
+
 class _$InitialProfileState
     with DiagnosticableTreeMixin
     implements InitialProfileState {
@@ -121,23 +127,21 @@ class _$InitialProfileState
 
   @override
   @optionalTypeArgs
-  TResult when<TResult extends Object>({
-    @required TResult initialProfileState(),
-    @required TResult profileLoaded(User profileUser, bool isCurrentUser),
+  TResult when<TResult extends Object?>({
+    required TResult Function() initialProfileState,
+    required TResult Function(User profileUser, bool isCurrentUser)
+        profileLoaded,
   }) {
-    assert(initialProfileState != null);
-    assert(profileLoaded != null);
     return initialProfileState();
   }
 
   @override
   @optionalTypeArgs
-  TResult maybeWhen<TResult extends Object>({
-    TResult initialProfileState(),
-    TResult profileLoaded(User profileUser, bool isCurrentUser),
-    @required TResult orElse(),
+  TResult maybeWhen<TResult extends Object?>({
+    TResult Function()? initialProfileState,
+    TResult Function(User profileUser, bool isCurrentUser)? profileLoaded,
+    required TResult orElse(),
   }) {
-    assert(orElse != null);
     if (initialProfileState != null) {
       return initialProfileState();
     }
@@ -146,23 +150,20 @@ class _$InitialProfileState
 
   @override
   @optionalTypeArgs
-  TResult map<TResult extends Object>({
-    @required TResult initialProfileState(InitialProfileState value),
-    @required TResult profileLoaded(ProfileLoaded value),
+  TResult map<TResult extends Object?>({
+    required TResult Function(InitialProfileState value) initialProfileState,
+    required TResult Function(ProfileLoaded value) profileLoaded,
   }) {
-    assert(initialProfileState != null);
-    assert(profileLoaded != null);
     return initialProfileState(this);
   }
 
   @override
   @optionalTypeArgs
-  TResult maybeMap<TResult extends Object>({
-    TResult initialProfileState(InitialProfileState value),
-    TResult profileLoaded(ProfileLoaded value),
-    @required TResult orElse(),
+  TResult maybeMap<TResult extends Object?>({
+    TResult Function(InitialProfileState value)? initialProfileState,
+    TResult Function(ProfileLoaded value)? profileLoaded,
+    required TResult orElse(),
   }) {
-    assert(orElse != null);
     if (initialProfileState != null) {
       return initialProfileState(this);
     }
@@ -196,23 +197,23 @@ class _$ProfileLoadedCopyWithImpl<$Res> extends _$ProfileStateCopyWithImpl<$Res>
 
   @override
   $Res call({
-    Object profileUser = freezed,
-    Object isCurrentUser = freezed,
+    Object? profileUser = freezed,
+    Object? isCurrentUser = freezed,
   }) {
     return _then(ProfileLoaded(
-      profileUser:
-          profileUser == freezed ? _value.profileUser : profileUser as User,
+      profileUser: profileUser == freezed
+          ? _value.profileUser
+          : profileUser // ignore: cast_nullable_to_non_nullable
+              as User,
       isCurrentUser: isCurrentUser == freezed
           ? _value.isCurrentUser
-          : isCurrentUser as bool,
+          : isCurrentUser // ignore: cast_nullable_to_non_nullable
+              as bool,
     ));
   }
 
   @override
   $UserCopyWith<$Res> get profileUser {
-    if (_value.profileUser == null) {
-      return null;
-    }
     return $UserCopyWith<$Res>(_value.profileUser, (value) {
       return _then(_value.copyWith(profileUser: value));
     });
@@ -220,11 +221,10 @@ class _$ProfileLoadedCopyWithImpl<$Res> extends _$ProfileStateCopyWithImpl<$Res>
 }
 
 /// @nodoc
+
 class _$ProfileLoaded with DiagnosticableTreeMixin implements ProfileLoaded {
   const _$ProfileLoaded(
-      {@required this.profileUser, @required this.isCurrentUser})
-      : assert(profileUser != null),
-        assert(isCurrentUser != null);
+      {required this.profileUser, required this.isCurrentUser});
 
   @override
   final User profileUser;
@@ -270,23 +270,21 @@ class _$ProfileLoaded with DiagnosticableTreeMixin implements ProfileLoaded {
 
   @override
   @optionalTypeArgs
-  TResult when<TResult extends Object>({
-    @required TResult initialProfileState(),
-    @required TResult profileLoaded(User profileUser, bool isCurrentUser),
+  TResult when<TResult extends Object?>({
+    required TResult Function() initialProfileState,
+    required TResult Function(User profileUser, bool isCurrentUser)
+        profileLoaded,
   }) {
-    assert(initialProfileState != null);
-    assert(profileLoaded != null);
     return profileLoaded(profileUser, isCurrentUser);
   }
 
   @override
   @optionalTypeArgs
-  TResult maybeWhen<TResult extends Object>({
-    TResult initialProfileState(),
-    TResult profileLoaded(User profileUser, bool isCurrentUser),
-    @required TResult orElse(),
+  TResult maybeWhen<TResult extends Object?>({
+    TResult Function()? initialProfileState,
+    TResult Function(User profileUser, bool isCurrentUser)? profileLoaded,
+    required TResult orElse(),
   }) {
-    assert(orElse != null);
     if (profileLoaded != null) {
       return profileLoaded(profileUser, isCurrentUser);
     }
@@ -295,23 +293,20 @@ class _$ProfileLoaded with DiagnosticableTreeMixin implements ProfileLoaded {
 
   @override
   @optionalTypeArgs
-  TResult map<TResult extends Object>({
-    @required TResult initialProfileState(InitialProfileState value),
-    @required TResult profileLoaded(ProfileLoaded value),
+  TResult map<TResult extends Object?>({
+    required TResult Function(InitialProfileState value) initialProfileState,
+    required TResult Function(ProfileLoaded value) profileLoaded,
   }) {
-    assert(initialProfileState != null);
-    assert(profileLoaded != null);
     return profileLoaded(this);
   }
 
   @override
   @optionalTypeArgs
-  TResult maybeMap<TResult extends Object>({
-    TResult initialProfileState(InitialProfileState value),
-    TResult profileLoaded(ProfileLoaded value),
-    @required TResult orElse(),
+  TResult maybeMap<TResult extends Object?>({
+    TResult Function(InitialProfileState value)? initialProfileState,
+    TResult Function(ProfileLoaded value)? profileLoaded,
+    required TResult orElse(),
   }) {
-    assert(orElse != null);
     if (profileLoaded != null) {
       return profileLoaded(this);
     }
@@ -321,11 +316,12 @@ class _$ProfileLoaded with DiagnosticableTreeMixin implements ProfileLoaded {
 
 abstract class ProfileLoaded implements ProfileState {
   const factory ProfileLoaded(
-      {@required User profileUser,
-      @required bool isCurrentUser}) = _$ProfileLoaded;
+      {required User profileUser,
+      required bool isCurrentUser}) = _$ProfileLoaded;
 
-  User get profileUser;
-  bool get isCurrentUser;
+  User get profileUser => throw _privateConstructorUsedError;
+  bool get isCurrentUser => throw _privateConstructorUsedError;
   @JsonKey(ignore: true)
-  $ProfileLoadedCopyWith<ProfileLoaded> get copyWith;
+  $ProfileLoadedCopyWith<ProfileLoaded> get copyWith =>
+      throw _privateConstructorUsedError;
 }

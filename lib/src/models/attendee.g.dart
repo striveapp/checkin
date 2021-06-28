@@ -8,8 +8,8 @@ part of 'attendee.dart';
 
 Attendee _$AttendeeFromJson(Map<String, dynamic> json) {
   return Attendee(
-    name: json['name'] as String,
-    grade: const GradeConverter().fromJson(json['grade'] as String),
+    name: json['name'] as String?,
+    grade: const GradeConverter().fromJson(json['grade'] as String?),
     imageUrl: json['imageUrl'] as String,
     email: json['email'] as String,
   );

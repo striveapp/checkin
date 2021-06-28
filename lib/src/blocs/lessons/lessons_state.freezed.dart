@@ -1,5 +1,5 @@
 // GENERATED CODE - DO NOT MODIFY BY HAND
-// ignore_for_file: deprecated_member_use, deprecated_member_use_from_same_package, use_function_type_syntax_for_parameters, unnecessary_const, avoid_init_to_null, invalid_override_different_default_values_named, prefer_expression_function_bodies
+// ignore_for_file: unused_element, deprecated_member_use, deprecated_member_use_from_same_package, use_function_type_syntax_for_parameters, unnecessary_const, avoid_init_to_null, invalid_override_different_default_values_named, prefer_expression_function_bodies, annotate_overrides
 
 part of 'lessons_state.dart';
 
@@ -9,21 +9,22 @@ part of 'lessons_state.dart';
 
 T _$identity<T>(T value) => value;
 
+final _privateConstructorUsedError = UnsupportedError(
+    'It seems like you constructed your class using `MyClass._()`. This constructor is only meant to be used by freezed and you are not supposed to need it nor use it.\nPlease check the documentation here for more informations: https://github.com/rrousselGit/freezed#custom-getters-and-methods');
+
 /// @nodoc
 class _$LessonsStateTearOff {
   const _$LessonsStateTearOff();
 
-// ignore: unused_element
   LessonsUninitialized lessonsUninitialized() {
     return const LessonsUninitialized();
   }
 
-// ignore: unused_element
   LessonsLoaded lessonsLoaded(
-      {List<Lesson> lessons,
-      DateTime selectedDay,
+      {List<Lesson>? lessons,
+      DateTime? selectedDay,
       List<String> selectedFilterList = const [],
-      DateTime nocache}) {
+      DateTime? nocache}) {
     return LessonsLoaded(
       lessons: lessons,
       selectedDay: selectedDay,
@@ -34,36 +35,40 @@ class _$LessonsStateTearOff {
 }
 
 /// @nodoc
-// ignore: unused_element
 const $LessonsState = _$LessonsStateTearOff();
 
 /// @nodoc
 mixin _$LessonsState {
   @optionalTypeArgs
-  TResult when<TResult extends Object>({
-    @required TResult lessonsUninitialized(),
-    @required
-        TResult lessonsLoaded(List<Lesson> lessons, DateTime selectedDay,
-            List<String> selectedFilterList, DateTime nocache),
-  });
+  TResult when<TResult extends Object?>({
+    required TResult Function() lessonsUninitialized,
+    required TResult Function(List<Lesson>? lessons, DateTime? selectedDay,
+            List<String> selectedFilterList, DateTime? nocache)
+        lessonsLoaded,
+  }) =>
+      throw _privateConstructorUsedError;
   @optionalTypeArgs
-  TResult maybeWhen<TResult extends Object>({
-    TResult lessonsUninitialized(),
-    TResult lessonsLoaded(List<Lesson> lessons, DateTime selectedDay,
-        List<String> selectedFilterList, DateTime nocache),
-    @required TResult orElse(),
-  });
+  TResult maybeWhen<TResult extends Object?>({
+    TResult Function()? lessonsUninitialized,
+    TResult Function(List<Lesson>? lessons, DateTime? selectedDay,
+            List<String> selectedFilterList, DateTime? nocache)?
+        lessonsLoaded,
+    required TResult orElse(),
+  }) =>
+      throw _privateConstructorUsedError;
   @optionalTypeArgs
-  TResult map<TResult extends Object>({
-    @required TResult lessonsUninitialized(LessonsUninitialized value),
-    @required TResult lessonsLoaded(LessonsLoaded value),
-  });
+  TResult map<TResult extends Object?>({
+    required TResult Function(LessonsUninitialized value) lessonsUninitialized,
+    required TResult Function(LessonsLoaded value) lessonsLoaded,
+  }) =>
+      throw _privateConstructorUsedError;
   @optionalTypeArgs
-  TResult maybeMap<TResult extends Object>({
-    TResult lessonsUninitialized(LessonsUninitialized value),
-    TResult lessonsLoaded(LessonsLoaded value),
-    @required TResult orElse(),
-  });
+  TResult maybeMap<TResult extends Object?>({
+    TResult Function(LessonsUninitialized value)? lessonsUninitialized,
+    TResult Function(LessonsLoaded value)? lessonsLoaded,
+    required TResult orElse(),
+  }) =>
+      throw _privateConstructorUsedError;
 }
 
 /// @nodoc
@@ -102,6 +107,7 @@ class _$LessonsUninitializedCopyWithImpl<$Res>
 }
 
 /// @nodoc
+
 class _$LessonsUninitialized
     with DiagnosticableTreeMixin
     implements LessonsUninitialized {
@@ -129,26 +135,24 @@ class _$LessonsUninitialized
 
   @override
   @optionalTypeArgs
-  TResult when<TResult extends Object>({
-    @required TResult lessonsUninitialized(),
-    @required
-        TResult lessonsLoaded(List<Lesson> lessons, DateTime selectedDay,
-            List<String> selectedFilterList, DateTime nocache),
+  TResult when<TResult extends Object?>({
+    required TResult Function() lessonsUninitialized,
+    required TResult Function(List<Lesson>? lessons, DateTime? selectedDay,
+            List<String> selectedFilterList, DateTime? nocache)
+        lessonsLoaded,
   }) {
-    assert(lessonsUninitialized != null);
-    assert(lessonsLoaded != null);
     return lessonsUninitialized();
   }
 
   @override
   @optionalTypeArgs
-  TResult maybeWhen<TResult extends Object>({
-    TResult lessonsUninitialized(),
-    TResult lessonsLoaded(List<Lesson> lessons, DateTime selectedDay,
-        List<String> selectedFilterList, DateTime nocache),
-    @required TResult orElse(),
+  TResult maybeWhen<TResult extends Object?>({
+    TResult Function()? lessonsUninitialized,
+    TResult Function(List<Lesson>? lessons, DateTime? selectedDay,
+            List<String> selectedFilterList, DateTime? nocache)?
+        lessonsLoaded,
+    required TResult orElse(),
   }) {
-    assert(orElse != null);
     if (lessonsUninitialized != null) {
       return lessonsUninitialized();
     }
@@ -157,23 +161,20 @@ class _$LessonsUninitialized
 
   @override
   @optionalTypeArgs
-  TResult map<TResult extends Object>({
-    @required TResult lessonsUninitialized(LessonsUninitialized value),
-    @required TResult lessonsLoaded(LessonsLoaded value),
+  TResult map<TResult extends Object?>({
+    required TResult Function(LessonsUninitialized value) lessonsUninitialized,
+    required TResult Function(LessonsLoaded value) lessonsLoaded,
   }) {
-    assert(lessonsUninitialized != null);
-    assert(lessonsLoaded != null);
     return lessonsUninitialized(this);
   }
 
   @override
   @optionalTypeArgs
-  TResult maybeMap<TResult extends Object>({
-    TResult lessonsUninitialized(LessonsUninitialized value),
-    TResult lessonsLoaded(LessonsLoaded value),
-    @required TResult orElse(),
+  TResult maybeMap<TResult extends Object?>({
+    TResult Function(LessonsUninitialized value)? lessonsUninitialized,
+    TResult Function(LessonsLoaded value)? lessonsLoaded,
+    required TResult orElse(),
   }) {
-    assert(orElse != null);
     if (lessonsUninitialized != null) {
       return lessonsUninitialized(this);
     }
@@ -191,10 +192,10 @@ abstract class $LessonsLoadedCopyWith<$Res> {
           LessonsLoaded value, $Res Function(LessonsLoaded) then) =
       _$LessonsLoadedCopyWithImpl<$Res>;
   $Res call(
-      {List<Lesson> lessons,
-      DateTime selectedDay,
+      {List<Lesson>? lessons,
+      DateTime? selectedDay,
       List<String> selectedFilterList,
-      DateTime nocache});
+      DateTime? nocache});
 }
 
 /// @nodoc
@@ -209,41 +210,50 @@ class _$LessonsLoadedCopyWithImpl<$Res> extends _$LessonsStateCopyWithImpl<$Res>
 
   @override
   $Res call({
-    Object lessons = freezed,
-    Object selectedDay = freezed,
-    Object selectedFilterList = freezed,
-    Object nocache = freezed,
+    Object? lessons = freezed,
+    Object? selectedDay = freezed,
+    Object? selectedFilterList = freezed,
+    Object? nocache = freezed,
   }) {
     return _then(LessonsLoaded(
-      lessons: lessons == freezed ? _value.lessons : lessons as List<Lesson>,
-      selectedDay:
-          selectedDay == freezed ? _value.selectedDay : selectedDay as DateTime,
+      lessons: lessons == freezed
+          ? _value.lessons
+          : lessons // ignore: cast_nullable_to_non_nullable
+              as List<Lesson>?,
+      selectedDay: selectedDay == freezed
+          ? _value.selectedDay
+          : selectedDay // ignore: cast_nullable_to_non_nullable
+              as DateTime?,
       selectedFilterList: selectedFilterList == freezed
           ? _value.selectedFilterList
-          : selectedFilterList as List<String>,
-      nocache: nocache == freezed ? _value.nocache : nocache as DateTime,
+          : selectedFilterList // ignore: cast_nullable_to_non_nullable
+              as List<String>,
+      nocache: nocache == freezed
+          ? _value.nocache
+          : nocache // ignore: cast_nullable_to_non_nullable
+              as DateTime?,
     ));
   }
 }
 
 /// @nodoc
+
 class _$LessonsLoaded with DiagnosticableTreeMixin implements LessonsLoaded {
   const _$LessonsLoaded(
       {this.lessons,
       this.selectedDay,
       this.selectedFilterList = const [],
-      this.nocache})
-      : assert(selectedFilterList != null);
+      this.nocache});
 
   @override
-  final List<Lesson> lessons;
+  final List<Lesson>? lessons;
   @override
-  final DateTime selectedDay;
+  final DateTime? selectedDay;
   @JsonKey(defaultValue: const [])
   @override
   final List<String> selectedFilterList;
   @override
-  final DateTime nocache;
+  final DateTime? nocache;
 
   @override
   String toString({DiagnosticLevel minLevel = DiagnosticLevel.info}) {
@@ -293,26 +303,24 @@ class _$LessonsLoaded with DiagnosticableTreeMixin implements LessonsLoaded {
 
   @override
   @optionalTypeArgs
-  TResult when<TResult extends Object>({
-    @required TResult lessonsUninitialized(),
-    @required
-        TResult lessonsLoaded(List<Lesson> lessons, DateTime selectedDay,
-            List<String> selectedFilterList, DateTime nocache),
+  TResult when<TResult extends Object?>({
+    required TResult Function() lessonsUninitialized,
+    required TResult Function(List<Lesson>? lessons, DateTime? selectedDay,
+            List<String> selectedFilterList, DateTime? nocache)
+        lessonsLoaded,
   }) {
-    assert(lessonsUninitialized != null);
-    assert(lessonsLoaded != null);
     return lessonsLoaded(lessons, selectedDay, selectedFilterList, nocache);
   }
 
   @override
   @optionalTypeArgs
-  TResult maybeWhen<TResult extends Object>({
-    TResult lessonsUninitialized(),
-    TResult lessonsLoaded(List<Lesson> lessons, DateTime selectedDay,
-        List<String> selectedFilterList, DateTime nocache),
-    @required TResult orElse(),
+  TResult maybeWhen<TResult extends Object?>({
+    TResult Function()? lessonsUninitialized,
+    TResult Function(List<Lesson>? lessons, DateTime? selectedDay,
+            List<String> selectedFilterList, DateTime? nocache)?
+        lessonsLoaded,
+    required TResult orElse(),
   }) {
-    assert(orElse != null);
     if (lessonsLoaded != null) {
       return lessonsLoaded(lessons, selectedDay, selectedFilterList, nocache);
     }
@@ -321,23 +329,20 @@ class _$LessonsLoaded with DiagnosticableTreeMixin implements LessonsLoaded {
 
   @override
   @optionalTypeArgs
-  TResult map<TResult extends Object>({
-    @required TResult lessonsUninitialized(LessonsUninitialized value),
-    @required TResult lessonsLoaded(LessonsLoaded value),
+  TResult map<TResult extends Object?>({
+    required TResult Function(LessonsUninitialized value) lessonsUninitialized,
+    required TResult Function(LessonsLoaded value) lessonsLoaded,
   }) {
-    assert(lessonsUninitialized != null);
-    assert(lessonsLoaded != null);
     return lessonsLoaded(this);
   }
 
   @override
   @optionalTypeArgs
-  TResult maybeMap<TResult extends Object>({
-    TResult lessonsUninitialized(LessonsUninitialized value),
-    TResult lessonsLoaded(LessonsLoaded value),
-    @required TResult orElse(),
+  TResult maybeMap<TResult extends Object?>({
+    TResult Function(LessonsUninitialized value)? lessonsUninitialized,
+    TResult Function(LessonsLoaded value)? lessonsLoaded,
+    required TResult orElse(),
   }) {
-    assert(orElse != null);
     if (lessonsLoaded != null) {
       return lessonsLoaded(this);
     }
@@ -347,15 +352,16 @@ class _$LessonsLoaded with DiagnosticableTreeMixin implements LessonsLoaded {
 
 abstract class LessonsLoaded implements LessonsState {
   const factory LessonsLoaded(
-      {List<Lesson> lessons,
-      DateTime selectedDay,
+      {List<Lesson>? lessons,
+      DateTime? selectedDay,
       List<String> selectedFilterList,
-      DateTime nocache}) = _$LessonsLoaded;
+      DateTime? nocache}) = _$LessonsLoaded;
 
-  List<Lesson> get lessons;
-  DateTime get selectedDay;
-  List<String> get selectedFilterList;
-  DateTime get nocache;
+  List<Lesson>? get lessons => throw _privateConstructorUsedError;
+  DateTime? get selectedDay => throw _privateConstructorUsedError;
+  List<String> get selectedFilterList => throw _privateConstructorUsedError;
+  DateTime? get nocache => throw _privateConstructorUsedError;
   @JsonKey(ignore: true)
-  $LessonsLoadedCopyWith<LessonsLoaded> get copyWith;
+  $LessonsLoadedCopyWith<LessonsLoaded> get copyWith =>
+      throw _privateConstructorUsedError;
 }

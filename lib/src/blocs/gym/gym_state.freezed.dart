@@ -1,5 +1,5 @@
 // GENERATED CODE - DO NOT MODIFY BY HAND
-// ignore_for_file: deprecated_member_use, deprecated_member_use_from_same_package, use_function_type_syntax_for_parameters, unnecessary_const, avoid_init_to_null, invalid_override_different_default_values_named, prefer_expression_function_bodies
+// ignore_for_file: unused_element, deprecated_member_use, deprecated_member_use_from_same_package, use_function_type_syntax_for_parameters, unnecessary_const, avoid_init_to_null, invalid_override_different_default_values_named, prefer_expression_function_bodies, annotate_overrides
 
 part of 'gym_state.dart';
 
@@ -9,17 +9,18 @@ part of 'gym_state.dart';
 
 T _$identity<T>(T value) => value;
 
+final _privateConstructorUsedError = UnsupportedError(
+    'It seems like you constructed your class using `MyClass._()`. This constructor is only meant to be used by freezed and you are not supposed to need it nor use it.\nPlease check the documentation here for more informations: https://github.com/rrousselGit/freezed#custom-getters-and-methods');
+
 /// @nodoc
 class _$GymStateTearOff {
   const _$GymStateTearOff();
 
-// ignore: unused_element
   InitialGymState initialGymState() {
     return const InitialGymState();
   }
 
-// ignore: unused_element
-  GymLoaded gymLoaded({@required Gym gym}) {
+  GymLoaded gymLoaded({required Gym gym}) {
     return GymLoaded(
       gym: gym,
     );
@@ -27,33 +28,36 @@ class _$GymStateTearOff {
 }
 
 /// @nodoc
-// ignore: unused_element
 const $GymState = _$GymStateTearOff();
 
 /// @nodoc
 mixin _$GymState {
   @optionalTypeArgs
-  TResult when<TResult extends Object>({
-    @required TResult initialGymState(),
-    @required TResult gymLoaded(Gym gym),
-  });
+  TResult when<TResult extends Object?>({
+    required TResult Function() initialGymState,
+    required TResult Function(Gym gym) gymLoaded,
+  }) =>
+      throw _privateConstructorUsedError;
   @optionalTypeArgs
-  TResult maybeWhen<TResult extends Object>({
-    TResult initialGymState(),
-    TResult gymLoaded(Gym gym),
-    @required TResult orElse(),
-  });
+  TResult maybeWhen<TResult extends Object?>({
+    TResult Function()? initialGymState,
+    TResult Function(Gym gym)? gymLoaded,
+    required TResult orElse(),
+  }) =>
+      throw _privateConstructorUsedError;
   @optionalTypeArgs
-  TResult map<TResult extends Object>({
-    @required TResult initialGymState(InitialGymState value),
-    @required TResult gymLoaded(GymLoaded value),
-  });
+  TResult map<TResult extends Object?>({
+    required TResult Function(InitialGymState value) initialGymState,
+    required TResult Function(GymLoaded value) gymLoaded,
+  }) =>
+      throw _privateConstructorUsedError;
   @optionalTypeArgs
-  TResult maybeMap<TResult extends Object>({
-    TResult initialGymState(InitialGymState value),
-    TResult gymLoaded(GymLoaded value),
-    @required TResult orElse(),
-  });
+  TResult maybeMap<TResult extends Object?>({
+    TResult Function(InitialGymState value)? initialGymState,
+    TResult Function(GymLoaded value)? gymLoaded,
+    required TResult orElse(),
+  }) =>
+      throw _privateConstructorUsedError;
 }
 
 /// @nodoc
@@ -90,6 +94,7 @@ class _$InitialGymStateCopyWithImpl<$Res> extends _$GymStateCopyWithImpl<$Res>
 }
 
 /// @nodoc
+
 class _$InitialGymState
     with DiagnosticableTreeMixin
     implements InitialGymState {
@@ -116,23 +121,20 @@ class _$InitialGymState
 
   @override
   @optionalTypeArgs
-  TResult when<TResult extends Object>({
-    @required TResult initialGymState(),
-    @required TResult gymLoaded(Gym gym),
+  TResult when<TResult extends Object?>({
+    required TResult Function() initialGymState,
+    required TResult Function(Gym gym) gymLoaded,
   }) {
-    assert(initialGymState != null);
-    assert(gymLoaded != null);
     return initialGymState();
   }
 
   @override
   @optionalTypeArgs
-  TResult maybeWhen<TResult extends Object>({
-    TResult initialGymState(),
-    TResult gymLoaded(Gym gym),
-    @required TResult orElse(),
+  TResult maybeWhen<TResult extends Object?>({
+    TResult Function()? initialGymState,
+    TResult Function(Gym gym)? gymLoaded,
+    required TResult orElse(),
   }) {
-    assert(orElse != null);
     if (initialGymState != null) {
       return initialGymState();
     }
@@ -141,23 +143,20 @@ class _$InitialGymState
 
   @override
   @optionalTypeArgs
-  TResult map<TResult extends Object>({
-    @required TResult initialGymState(InitialGymState value),
-    @required TResult gymLoaded(GymLoaded value),
+  TResult map<TResult extends Object?>({
+    required TResult Function(InitialGymState value) initialGymState,
+    required TResult Function(GymLoaded value) gymLoaded,
   }) {
-    assert(initialGymState != null);
-    assert(gymLoaded != null);
     return initialGymState(this);
   }
 
   @override
   @optionalTypeArgs
-  TResult maybeMap<TResult extends Object>({
-    TResult initialGymState(InitialGymState value),
-    TResult gymLoaded(GymLoaded value),
-    @required TResult orElse(),
+  TResult maybeMap<TResult extends Object?>({
+    TResult Function(InitialGymState value)? initialGymState,
+    TResult Function(GymLoaded value)? gymLoaded,
+    required TResult orElse(),
   }) {
-    assert(orElse != null);
     if (initialGymState != null) {
       return initialGymState(this);
     }
@@ -189,18 +188,18 @@ class _$GymLoadedCopyWithImpl<$Res> extends _$GymStateCopyWithImpl<$Res>
 
   @override
   $Res call({
-    Object gym = freezed,
+    Object? gym = freezed,
   }) {
     return _then(GymLoaded(
-      gym: gym == freezed ? _value.gym : gym as Gym,
+      gym: gym == freezed
+          ? _value.gym
+          : gym // ignore: cast_nullable_to_non_nullable
+              as Gym,
     ));
   }
 
   @override
   $GymCopyWith<$Res> get gym {
-    if (_value.gym == null) {
-      return null;
-    }
     return $GymCopyWith<$Res>(_value.gym, (value) {
       return _then(_value.copyWith(gym: value));
     });
@@ -208,8 +207,9 @@ class _$GymLoadedCopyWithImpl<$Res> extends _$GymStateCopyWithImpl<$Res>
 }
 
 /// @nodoc
+
 class _$GymLoaded with DiagnosticableTreeMixin implements GymLoaded {
-  const _$GymLoaded({@required this.gym}) : assert(gym != null);
+  const _$GymLoaded({required this.gym});
 
   @override
   final Gym gym;
@@ -246,23 +246,20 @@ class _$GymLoaded with DiagnosticableTreeMixin implements GymLoaded {
 
   @override
   @optionalTypeArgs
-  TResult when<TResult extends Object>({
-    @required TResult initialGymState(),
-    @required TResult gymLoaded(Gym gym),
+  TResult when<TResult extends Object?>({
+    required TResult Function() initialGymState,
+    required TResult Function(Gym gym) gymLoaded,
   }) {
-    assert(initialGymState != null);
-    assert(gymLoaded != null);
     return gymLoaded(gym);
   }
 
   @override
   @optionalTypeArgs
-  TResult maybeWhen<TResult extends Object>({
-    TResult initialGymState(),
-    TResult gymLoaded(Gym gym),
-    @required TResult orElse(),
+  TResult maybeWhen<TResult extends Object?>({
+    TResult Function()? initialGymState,
+    TResult Function(Gym gym)? gymLoaded,
+    required TResult orElse(),
   }) {
-    assert(orElse != null);
     if (gymLoaded != null) {
       return gymLoaded(gym);
     }
@@ -271,23 +268,20 @@ class _$GymLoaded with DiagnosticableTreeMixin implements GymLoaded {
 
   @override
   @optionalTypeArgs
-  TResult map<TResult extends Object>({
-    @required TResult initialGymState(InitialGymState value),
-    @required TResult gymLoaded(GymLoaded value),
+  TResult map<TResult extends Object?>({
+    required TResult Function(InitialGymState value) initialGymState,
+    required TResult Function(GymLoaded value) gymLoaded,
   }) {
-    assert(initialGymState != null);
-    assert(gymLoaded != null);
     return gymLoaded(this);
   }
 
   @override
   @optionalTypeArgs
-  TResult maybeMap<TResult extends Object>({
-    TResult initialGymState(InitialGymState value),
-    TResult gymLoaded(GymLoaded value),
-    @required TResult orElse(),
+  TResult maybeMap<TResult extends Object?>({
+    TResult Function(InitialGymState value)? initialGymState,
+    TResult Function(GymLoaded value)? gymLoaded,
+    required TResult orElse(),
   }) {
-    assert(orElse != null);
     if (gymLoaded != null) {
       return gymLoaded(this);
     }
@@ -296,9 +290,10 @@ class _$GymLoaded with DiagnosticableTreeMixin implements GymLoaded {
 }
 
 abstract class GymLoaded implements GymState {
-  const factory GymLoaded({@required Gym gym}) = _$GymLoaded;
+  const factory GymLoaded({required Gym gym}) = _$GymLoaded;
 
-  Gym get gym;
+  Gym get gym => throw _privateConstructorUsedError;
   @JsonKey(ignore: true)
-  $GymLoadedCopyWith<GymLoaded> get copyWith;
+  $GymLoadedCopyWith<GymLoaded> get copyWith =>
+      throw _privateConstructorUsedError;
 }

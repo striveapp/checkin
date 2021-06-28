@@ -1,3 +1,5 @@
+// @dart=2.9
+
 import 'package:bloc_test/bloc_test.dart';
 import 'package:checkin/src/blocs/stats/bloc.dart';
 import 'package:checkin/src/blocs/user_stats/user_stats_bloc.dart';
@@ -17,6 +19,7 @@ class MockStatsRepository extends Mock implements StatsRepository {}
 class MockStatsBloc extends MockBloc<StatsEvent, StatsState> implements StatsBloc {}
 
 class FakeStatsState extends Fake implements StatsState {}
+
 class FakeStatsEvent extends Fake implements StatsEvent {}
 
 void main() {
@@ -88,8 +91,7 @@ void main() {
       setUp(() {
         whenListen(mockStatsBloc, Stream.fromIterable([TimespanUpdated(timespan: Timespan.week)]));
         when(() => mockStatsRepository.getUserStats(
-                loggedUser.selectedGymId, loggedUser.email, Timespan.week))
-            .thenAnswer((_) {
+            loggedUser.selectedGymId, loggedUser.email, Timespan.week)).thenAnswer((_) {
           return Stream<UserHistory>.value(
               UserHistory(email: "test@test.com", attendedLessons: unorderedAttendedLessons));
         });
@@ -119,10 +121,10 @@ void main() {
       setUp(() {
         whenListen(mockStatsBloc, Stream.fromIterable([TimespanUpdated(timespan: Timespan.month)]));
         when(() => mockStatsRepository.getUserStats(
-          loggedUser.selectedGymId,
-          loggedUser.email,
-          Timespan.month,
-        )).thenAnswer((_) {
+              loggedUser.selectedGymId,
+              loggedUser.email,
+              Timespan.month,
+            )).thenAnswer((_) {
           return Stream<UserHistory>.value(UserHistory(
             email: "test@test.com",
             attendedLessons: unorderedAttendedLessons,
@@ -156,8 +158,7 @@ void main() {
       setUp(() {
         whenListen(mockStatsBloc, Stream.fromIterable([TimespanUpdated(timespan: Timespan.all)]));
         when(() => mockStatsRepository.getUserStats(
-                loggedUser.selectedGymId, loggedUser.email, Timespan.all))
-            .thenAnswer((_) {
+            loggedUser.selectedGymId, loggedUser.email, Timespan.all)).thenAnswer((_) {
           return Stream<UserHistory>.value(UserHistory(
             email: "test@test.com",
             attendedLessons: unorderedAttendedLessons,
@@ -170,7 +171,6 @@ void main() {
             loggedUser.selectedGymId, loggedUser.email, Timespan.all));
         verify(() => mockStatsRepository.getUserStats(
             loggedUser.selectedGymId, loggedUser.email, Timespan.all));
-
       });
 
       blocTest("should emit StatsLoaded",

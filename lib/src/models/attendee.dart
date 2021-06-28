@@ -3,28 +3,27 @@ import 'package:checkin/src/models/grade.dart';
 import 'package:checkin/src/models/user.dart';
 import 'package:equatable/equatable.dart';
 import 'package:json_annotation/json_annotation.dart';
-import 'package:meta/meta.dart';
 
 part 'attendee.g.dart';
 
-@JsonSerializable()
 @GradeConverter()
+@JsonSerializable()
 class Attendee extends Equatable {
-  final String name;
-  final Grade grade;
+  final String? name;
+  final Grade? grade;
   final String imageUrl;
   // TODO: we should use some kind of id to perform this check not the email https://trello.com/c/j5sAVRXJ
   final String email;
 
   Attendee({
-    @required this.name,
-    @required this.grade,
-    @required this.imageUrl,
-    @required this.email,
+    required this.name,
+    required this.grade,
+    required this.imageUrl,
+    required this.email,
   });
 
   @override
-  List<Object> get props => [name, grade, imageUrl, email];
+  List<Object?> get props => [name, grade, imageUrl, email];
 
   factory Attendee.fromUser(User user) {
     return Attendee(

@@ -1,3 +1,5 @@
+// @dart=2.9
+
 import 'package:checkin/src/logging/logger.dart';
 import 'package:checkin/src/models/notification.dart';
 import 'package:checkin/src/repositories/notification_repository.dart';

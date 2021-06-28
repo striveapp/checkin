@@ -9,12 +9,11 @@ part 'json_model.g.dart';
 @freezed
 abstract class JsonModel with _$JsonModel {
   factory JsonModel({
-    String simpleField,
-    @required String requiredField,
+    String? simpleField,
+    required String requiredField,
     @Default(true) bool defaultField,
-    @GradeConverter() Grade grade,
+    @GradeConverter() Grade? grade,
   }) = _JsonModel;
 
-  factory JsonModel.fromJson(Map<String, dynamic> json) =>
-      _$JsonModelFromJson(json);
+  factory JsonModel.fromJson(Map<String, dynamic> json) => _$JsonModelFromJson(json);
 }

@@ -1,5 +1,5 @@
 // GENERATED CODE - DO NOT MODIFY BY HAND
-// ignore_for_file: deprecated_member_use, deprecated_member_use_from_same_package, use_function_type_syntax_for_parameters, unnecessary_const, avoid_init_to_null, invalid_override_different_default_values_named, prefer_expression_function_bodies
+// ignore_for_file: unused_element, deprecated_member_use, deprecated_member_use_from_same_package, use_function_type_syntax_for_parameters, unnecessary_const, avoid_init_to_null, invalid_override_different_default_values_named, prefer_expression_function_bodies, annotate_overrides
 
 part of 'registry_event.dart';
 
@@ -9,56 +9,52 @@ part of 'registry_event.dart';
 
 T _$identity<T>(T value) => value;
 
+final _privateConstructorUsedError = UnsupportedError(
+    'It seems like you constructed your class using `MyClass._()`. This constructor is only meant to be used by freezed and you are not supposed to need it nor use it.\nPlease check the documentation here for more informations: https://github.com/rrousselGit/freezed#custom-getters-and-methods');
+
 /// @nodoc
 class _$RegistryEventTearOff {
   const _$RegistryEventTearOff();
 
-// ignore: unused_element
   InitializeRegistry initializeRegistry() {
     return const InitializeRegistry();
   }
 
-// ignore: unused_element
   RegistryUpdated registryUpdated(
-      {@required User currentUser, Lesson currentLesson}) {
+      {required User currentUser, Lesson? currentLesson}) {
     return RegistryUpdated(
       currentUser: currentUser,
       currentLesson: currentLesson,
     );
   }
 
-// ignore: unused_element
-  Register register({@required String gymId, @required Attendee attendee}) {
+  Register register({required String gymId, required Attendee attendee}) {
     return Register(
       gymId: gymId,
       attendee: attendee,
     );
   }
 
-// ignore: unused_element
-  Unregister unregister({@required String gymId, @required Attendee attendee}) {
+  Unregister unregister({required String gymId, required Attendee attendee}) {
     return Unregister(
       gymId: gymId,
       attendee: attendee,
     );
   }
 
-// ignore: unused_element
-  AcceptAttendees acceptAttendees({@required String gymId}) {
+  AcceptAttendees acceptAttendees({required String gymId}) {
     return AcceptAttendees(
       gymId: gymId,
     );
   }
 
-// ignore: unused_element
-  CloseLesson closeLesson({@required String gymId}) {
+  CloseLesson closeLesson({required String gymId}) {
     return CloseLesson(
       gymId: gymId,
     );
   }
 
-// ignore: unused_element
-  DeleteLesson deleteLesson({@required String gymId}) {
+  DeleteLesson deleteLesson({required String gymId}) {
     return DeleteLesson(
       gymId: gymId,
     );
@@ -66,53 +62,57 @@ class _$RegistryEventTearOff {
 }
 
 /// @nodoc
-// ignore: unused_element
 const $RegistryEvent = _$RegistryEventTearOff();
 
 /// @nodoc
 mixin _$RegistryEvent {
   @optionalTypeArgs
-  TResult when<TResult extends Object>({
-    @required TResult initializeRegistry(),
-    @required TResult registryUpdated(User currentUser, Lesson currentLesson),
-    @required TResult register(String gymId, Attendee attendee),
-    @required TResult unregister(String gymId, Attendee attendee),
-    @required TResult acceptAttendees(String gymId),
-    @required TResult closeLesson(String gymId),
-    @required TResult deleteLesson(String gymId),
-  });
+  TResult when<TResult extends Object?>({
+    required TResult Function() initializeRegistry,
+    required TResult Function(User currentUser, Lesson? currentLesson)
+        registryUpdated,
+    required TResult Function(String gymId, Attendee attendee) register,
+    required TResult Function(String gymId, Attendee attendee) unregister,
+    required TResult Function(String gymId) acceptAttendees,
+    required TResult Function(String gymId) closeLesson,
+    required TResult Function(String gymId) deleteLesson,
+  }) =>
+      throw _privateConstructorUsedError;
   @optionalTypeArgs
-  TResult maybeWhen<TResult extends Object>({
-    TResult initializeRegistry(),
-    TResult registryUpdated(User currentUser, Lesson currentLesson),
-    TResult register(String gymId, Attendee attendee),
-    TResult unregister(String gymId, Attendee attendee),
-    TResult acceptAttendees(String gymId),
-    TResult closeLesson(String gymId),
-    TResult deleteLesson(String gymId),
-    @required TResult orElse(),
-  });
+  TResult maybeWhen<TResult extends Object?>({
+    TResult Function()? initializeRegistry,
+    TResult Function(User currentUser, Lesson? currentLesson)? registryUpdated,
+    TResult Function(String gymId, Attendee attendee)? register,
+    TResult Function(String gymId, Attendee attendee)? unregister,
+    TResult Function(String gymId)? acceptAttendees,
+    TResult Function(String gymId)? closeLesson,
+    TResult Function(String gymId)? deleteLesson,
+    required TResult orElse(),
+  }) =>
+      throw _privateConstructorUsedError;
   @optionalTypeArgs
-  TResult map<TResult extends Object>({
-    @required TResult initializeRegistry(InitializeRegistry value),
-    @required TResult registryUpdated(RegistryUpdated value),
-    @required TResult register(Register value),
-    @required TResult unregister(Unregister value),
-    @required TResult acceptAttendees(AcceptAttendees value),
-    @required TResult closeLesson(CloseLesson value),
-    @required TResult deleteLesson(DeleteLesson value),
-  });
+  TResult map<TResult extends Object?>({
+    required TResult Function(InitializeRegistry value) initializeRegistry,
+    required TResult Function(RegistryUpdated value) registryUpdated,
+    required TResult Function(Register value) register,
+    required TResult Function(Unregister value) unregister,
+    required TResult Function(AcceptAttendees value) acceptAttendees,
+    required TResult Function(CloseLesson value) closeLesson,
+    required TResult Function(DeleteLesson value) deleteLesson,
+  }) =>
+      throw _privateConstructorUsedError;
   @optionalTypeArgs
-  TResult maybeMap<TResult extends Object>({
-    TResult initializeRegistry(InitializeRegistry value),
-    TResult registryUpdated(RegistryUpdated value),
-    TResult register(Register value),
-    TResult unregister(Unregister value),
-    TResult acceptAttendees(AcceptAttendees value),
-    TResult closeLesson(CloseLesson value),
-    TResult deleteLesson(DeleteLesson value),
-    @required TResult orElse(),
-  });
+  TResult maybeMap<TResult extends Object?>({
+    TResult Function(InitializeRegistry value)? initializeRegistry,
+    TResult Function(RegistryUpdated value)? registryUpdated,
+    TResult Function(Register value)? register,
+    TResult Function(Unregister value)? unregister,
+    TResult Function(AcceptAttendees value)? acceptAttendees,
+    TResult Function(CloseLesson value)? closeLesson,
+    TResult Function(DeleteLesson value)? deleteLesson,
+    required TResult orElse(),
+  }) =>
+      throw _privateConstructorUsedError;
 }
 
 /// @nodoc
@@ -152,6 +152,7 @@ class _$InitializeRegistryCopyWithImpl<$Res>
 }
 
 /// @nodoc
+
 class _$InitializeRegistry
     with DiagnosticableTreeMixin
     implements InitializeRegistry {
@@ -179,38 +180,31 @@ class _$InitializeRegistry
 
   @override
   @optionalTypeArgs
-  TResult when<TResult extends Object>({
-    @required TResult initializeRegistry(),
-    @required TResult registryUpdated(User currentUser, Lesson currentLesson),
-    @required TResult register(String gymId, Attendee attendee),
-    @required TResult unregister(String gymId, Attendee attendee),
-    @required TResult acceptAttendees(String gymId),
-    @required TResult closeLesson(String gymId),
-    @required TResult deleteLesson(String gymId),
+  TResult when<TResult extends Object?>({
+    required TResult Function() initializeRegistry,
+    required TResult Function(User currentUser, Lesson? currentLesson)
+        registryUpdated,
+    required TResult Function(String gymId, Attendee attendee) register,
+    required TResult Function(String gymId, Attendee attendee) unregister,
+    required TResult Function(String gymId) acceptAttendees,
+    required TResult Function(String gymId) closeLesson,
+    required TResult Function(String gymId) deleteLesson,
   }) {
-    assert(initializeRegistry != null);
-    assert(registryUpdated != null);
-    assert(register != null);
-    assert(unregister != null);
-    assert(acceptAttendees != null);
-    assert(closeLesson != null);
-    assert(deleteLesson != null);
     return initializeRegistry();
   }
 
   @override
   @optionalTypeArgs
-  TResult maybeWhen<TResult extends Object>({
-    TResult initializeRegistry(),
-    TResult registryUpdated(User currentUser, Lesson currentLesson),
-    TResult register(String gymId, Attendee attendee),
-    TResult unregister(String gymId, Attendee attendee),
-    TResult acceptAttendees(String gymId),
-    TResult closeLesson(String gymId),
-    TResult deleteLesson(String gymId),
-    @required TResult orElse(),
+  TResult maybeWhen<TResult extends Object?>({
+    TResult Function()? initializeRegistry,
+    TResult Function(User currentUser, Lesson? currentLesson)? registryUpdated,
+    TResult Function(String gymId, Attendee attendee)? register,
+    TResult Function(String gymId, Attendee attendee)? unregister,
+    TResult Function(String gymId)? acceptAttendees,
+    TResult Function(String gymId)? closeLesson,
+    TResult Function(String gymId)? deleteLesson,
+    required TResult orElse(),
   }) {
-    assert(orElse != null);
     if (initializeRegistry != null) {
       return initializeRegistry();
     }
@@ -219,38 +213,30 @@ class _$InitializeRegistry
 
   @override
   @optionalTypeArgs
-  TResult map<TResult extends Object>({
-    @required TResult initializeRegistry(InitializeRegistry value),
-    @required TResult registryUpdated(RegistryUpdated value),
-    @required TResult register(Register value),
-    @required TResult unregister(Unregister value),
-    @required TResult acceptAttendees(AcceptAttendees value),
-    @required TResult closeLesson(CloseLesson value),
-    @required TResult deleteLesson(DeleteLesson value),
+  TResult map<TResult extends Object?>({
+    required TResult Function(InitializeRegistry value) initializeRegistry,
+    required TResult Function(RegistryUpdated value) registryUpdated,
+    required TResult Function(Register value) register,
+    required TResult Function(Unregister value) unregister,
+    required TResult Function(AcceptAttendees value) acceptAttendees,
+    required TResult Function(CloseLesson value) closeLesson,
+    required TResult Function(DeleteLesson value) deleteLesson,
   }) {
-    assert(initializeRegistry != null);
-    assert(registryUpdated != null);
-    assert(register != null);
-    assert(unregister != null);
-    assert(acceptAttendees != null);
-    assert(closeLesson != null);
-    assert(deleteLesson != null);
     return initializeRegistry(this);
   }
 
   @override
   @optionalTypeArgs
-  TResult maybeMap<TResult extends Object>({
-    TResult initializeRegistry(InitializeRegistry value),
-    TResult registryUpdated(RegistryUpdated value),
-    TResult register(Register value),
-    TResult unregister(Unregister value),
-    TResult acceptAttendees(AcceptAttendees value),
-    TResult closeLesson(CloseLesson value),
-    TResult deleteLesson(DeleteLesson value),
-    @required TResult orElse(),
+  TResult maybeMap<TResult extends Object?>({
+    TResult Function(InitializeRegistry value)? initializeRegistry,
+    TResult Function(RegistryUpdated value)? registryUpdated,
+    TResult Function(Register value)? register,
+    TResult Function(Unregister value)? unregister,
+    TResult Function(AcceptAttendees value)? acceptAttendees,
+    TResult Function(CloseLesson value)? closeLesson,
+    TResult Function(DeleteLesson value)? deleteLesson,
+    required TResult orElse(),
   }) {
-    assert(orElse != null);
     if (initializeRegistry != null) {
       return initializeRegistry(this);
     }
@@ -267,10 +253,10 @@ abstract class $RegistryUpdatedCopyWith<$Res> {
   factory $RegistryUpdatedCopyWith(
           RegistryUpdated value, $Res Function(RegistryUpdated) then) =
       _$RegistryUpdatedCopyWithImpl<$Res>;
-  $Res call({User currentUser, Lesson currentLesson});
+  $Res call({User currentUser, Lesson? currentLesson});
 
   $UserCopyWith<$Res> get currentUser;
-  $LessonCopyWith<$Res> get currentLesson;
+  $LessonCopyWith<$Res>? get currentLesson;
 }
 
 /// @nodoc
@@ -286,50 +272,51 @@ class _$RegistryUpdatedCopyWithImpl<$Res>
 
   @override
   $Res call({
-    Object currentUser = freezed,
-    Object currentLesson = freezed,
+    Object? currentUser = freezed,
+    Object? currentLesson = freezed,
   }) {
     return _then(RegistryUpdated(
-      currentUser:
-          currentUser == freezed ? _value.currentUser : currentUser as User,
+      currentUser: currentUser == freezed
+          ? _value.currentUser
+          : currentUser // ignore: cast_nullable_to_non_nullable
+              as User,
       currentLesson: currentLesson == freezed
           ? _value.currentLesson
-          : currentLesson as Lesson,
+          : currentLesson // ignore: cast_nullable_to_non_nullable
+              as Lesson?,
     ));
   }
 
   @override
   $UserCopyWith<$Res> get currentUser {
-    if (_value.currentUser == null) {
-      return null;
-    }
     return $UserCopyWith<$Res>(_value.currentUser, (value) {
       return _then(_value.copyWith(currentUser: value));
     });
   }
 
   @override
-  $LessonCopyWith<$Res> get currentLesson {
+  $LessonCopyWith<$Res>? get currentLesson {
     if (_value.currentLesson == null) {
       return null;
     }
-    return $LessonCopyWith<$Res>(_value.currentLesson, (value) {
+
+    return $LessonCopyWith<$Res>(_value.currentLesson!, (value) {
       return _then(_value.copyWith(currentLesson: value));
     });
   }
 }
 
 /// @nodoc
+
 class _$RegistryUpdated
     with DiagnosticableTreeMixin
     implements RegistryUpdated {
-  const _$RegistryUpdated({@required this.currentUser, this.currentLesson})
-      : assert(currentUser != null);
+  const _$RegistryUpdated({required this.currentUser, this.currentLesson});
 
   @override
   final User currentUser;
   @override
-  final Lesson currentLesson;
+  final Lesson? currentLesson;
 
   @override
   String toString({DiagnosticLevel minLevel = DiagnosticLevel.info}) {
@@ -370,38 +357,31 @@ class _$RegistryUpdated
 
   @override
   @optionalTypeArgs
-  TResult when<TResult extends Object>({
-    @required TResult initializeRegistry(),
-    @required TResult registryUpdated(User currentUser, Lesson currentLesson),
-    @required TResult register(String gymId, Attendee attendee),
-    @required TResult unregister(String gymId, Attendee attendee),
-    @required TResult acceptAttendees(String gymId),
-    @required TResult closeLesson(String gymId),
-    @required TResult deleteLesson(String gymId),
+  TResult when<TResult extends Object?>({
+    required TResult Function() initializeRegistry,
+    required TResult Function(User currentUser, Lesson? currentLesson)
+        registryUpdated,
+    required TResult Function(String gymId, Attendee attendee) register,
+    required TResult Function(String gymId, Attendee attendee) unregister,
+    required TResult Function(String gymId) acceptAttendees,
+    required TResult Function(String gymId) closeLesson,
+    required TResult Function(String gymId) deleteLesson,
   }) {
-    assert(initializeRegistry != null);
-    assert(registryUpdated != null);
-    assert(register != null);
-    assert(unregister != null);
-    assert(acceptAttendees != null);
-    assert(closeLesson != null);
-    assert(deleteLesson != null);
     return registryUpdated(currentUser, currentLesson);
   }
 
   @override
   @optionalTypeArgs
-  TResult maybeWhen<TResult extends Object>({
-    TResult initializeRegistry(),
-    TResult registryUpdated(User currentUser, Lesson currentLesson),
-    TResult register(String gymId, Attendee attendee),
-    TResult unregister(String gymId, Attendee attendee),
-    TResult acceptAttendees(String gymId),
-    TResult closeLesson(String gymId),
-    TResult deleteLesson(String gymId),
-    @required TResult orElse(),
+  TResult maybeWhen<TResult extends Object?>({
+    TResult Function()? initializeRegistry,
+    TResult Function(User currentUser, Lesson? currentLesson)? registryUpdated,
+    TResult Function(String gymId, Attendee attendee)? register,
+    TResult Function(String gymId, Attendee attendee)? unregister,
+    TResult Function(String gymId)? acceptAttendees,
+    TResult Function(String gymId)? closeLesson,
+    TResult Function(String gymId)? deleteLesson,
+    required TResult orElse(),
   }) {
-    assert(orElse != null);
     if (registryUpdated != null) {
       return registryUpdated(currentUser, currentLesson);
     }
@@ -410,38 +390,30 @@ class _$RegistryUpdated
 
   @override
   @optionalTypeArgs
-  TResult map<TResult extends Object>({
-    @required TResult initializeRegistry(InitializeRegistry value),
-    @required TResult registryUpdated(RegistryUpdated value),
-    @required TResult register(Register value),
-    @required TResult unregister(Unregister value),
-    @required TResult acceptAttendees(AcceptAttendees value),
-    @required TResult closeLesson(CloseLesson value),
-    @required TResult deleteLesson(DeleteLesson value),
+  TResult map<TResult extends Object?>({
+    required TResult Function(InitializeRegistry value) initializeRegistry,
+    required TResult Function(RegistryUpdated value) registryUpdated,
+    required TResult Function(Register value) register,
+    required TResult Function(Unregister value) unregister,
+    required TResult Function(AcceptAttendees value) acceptAttendees,
+    required TResult Function(CloseLesson value) closeLesson,
+    required TResult Function(DeleteLesson value) deleteLesson,
   }) {
-    assert(initializeRegistry != null);
-    assert(registryUpdated != null);
-    assert(register != null);
-    assert(unregister != null);
-    assert(acceptAttendees != null);
-    assert(closeLesson != null);
-    assert(deleteLesson != null);
     return registryUpdated(this);
   }
 
   @override
   @optionalTypeArgs
-  TResult maybeMap<TResult extends Object>({
-    TResult initializeRegistry(InitializeRegistry value),
-    TResult registryUpdated(RegistryUpdated value),
-    TResult register(Register value),
-    TResult unregister(Unregister value),
-    TResult acceptAttendees(AcceptAttendees value),
-    TResult closeLesson(CloseLesson value),
-    TResult deleteLesson(DeleteLesson value),
-    @required TResult orElse(),
+  TResult maybeMap<TResult extends Object?>({
+    TResult Function(InitializeRegistry value)? initializeRegistry,
+    TResult Function(RegistryUpdated value)? registryUpdated,
+    TResult Function(Register value)? register,
+    TResult Function(Unregister value)? unregister,
+    TResult Function(AcceptAttendees value)? acceptAttendees,
+    TResult Function(CloseLesson value)? closeLesson,
+    TResult Function(DeleteLesson value)? deleteLesson,
+    required TResult orElse(),
   }) {
-    assert(orElse != null);
     if (registryUpdated != null) {
       return registryUpdated(this);
     }
@@ -451,12 +423,13 @@ class _$RegistryUpdated
 
 abstract class RegistryUpdated implements RegistryEvent {
   const factory RegistryUpdated(
-      {@required User currentUser, Lesson currentLesson}) = _$RegistryUpdated;
+      {required User currentUser, Lesson? currentLesson}) = _$RegistryUpdated;
 
-  User get currentUser;
-  Lesson get currentLesson;
+  User get currentUser => throw _privateConstructorUsedError;
+  Lesson? get currentLesson => throw _privateConstructorUsedError;
   @JsonKey(ignore: true)
-  $RegistryUpdatedCopyWith<RegistryUpdated> get copyWith;
+  $RegistryUpdatedCopyWith<RegistryUpdated> get copyWith =>
+      throw _privateConstructorUsedError;
 }
 
 /// @nodoc
@@ -477,21 +450,26 @@ class _$RegisterCopyWithImpl<$Res> extends _$RegistryEventCopyWithImpl<$Res>
 
   @override
   $Res call({
-    Object gymId = freezed,
-    Object attendee = freezed,
+    Object? gymId = freezed,
+    Object? attendee = freezed,
   }) {
     return _then(Register(
-      gymId: gymId == freezed ? _value.gymId : gymId as String,
-      attendee: attendee == freezed ? _value.attendee : attendee as Attendee,
+      gymId: gymId == freezed
+          ? _value.gymId
+          : gymId // ignore: cast_nullable_to_non_nullable
+              as String,
+      attendee: attendee == freezed
+          ? _value.attendee
+          : attendee // ignore: cast_nullable_to_non_nullable
+              as Attendee,
     ));
   }
 }
 
 /// @nodoc
+
 class _$Register with DiagnosticableTreeMixin implements Register {
-  const _$Register({@required this.gymId, @required this.attendee})
-      : assert(gymId != null),
-        assert(attendee != null);
+  const _$Register({required this.gymId, required this.attendee});
 
   @override
   final String gymId;
@@ -536,38 +514,31 @@ class _$Register with DiagnosticableTreeMixin implements Register {
 
   @override
   @optionalTypeArgs
-  TResult when<TResult extends Object>({
-    @required TResult initializeRegistry(),
-    @required TResult registryUpdated(User currentUser, Lesson currentLesson),
-    @required TResult register(String gymId, Attendee attendee),
-    @required TResult unregister(String gymId, Attendee attendee),
-    @required TResult acceptAttendees(String gymId),
-    @required TResult closeLesson(String gymId),
-    @required TResult deleteLesson(String gymId),
+  TResult when<TResult extends Object?>({
+    required TResult Function() initializeRegistry,
+    required TResult Function(User currentUser, Lesson? currentLesson)
+        registryUpdated,
+    required TResult Function(String gymId, Attendee attendee) register,
+    required TResult Function(String gymId, Attendee attendee) unregister,
+    required TResult Function(String gymId) acceptAttendees,
+    required TResult Function(String gymId) closeLesson,
+    required TResult Function(String gymId) deleteLesson,
   }) {
-    assert(initializeRegistry != null);
-    assert(registryUpdated != null);
-    assert(register != null);
-    assert(unregister != null);
-    assert(acceptAttendees != null);
-    assert(closeLesson != null);
-    assert(deleteLesson != null);
     return register(gymId, attendee);
   }
 
   @override
   @optionalTypeArgs
-  TResult maybeWhen<TResult extends Object>({
-    TResult initializeRegistry(),
-    TResult registryUpdated(User currentUser, Lesson currentLesson),
-    TResult register(String gymId, Attendee attendee),
-    TResult unregister(String gymId, Attendee attendee),
-    TResult acceptAttendees(String gymId),
-    TResult closeLesson(String gymId),
-    TResult deleteLesson(String gymId),
-    @required TResult orElse(),
+  TResult maybeWhen<TResult extends Object?>({
+    TResult Function()? initializeRegistry,
+    TResult Function(User currentUser, Lesson? currentLesson)? registryUpdated,
+    TResult Function(String gymId, Attendee attendee)? register,
+    TResult Function(String gymId, Attendee attendee)? unregister,
+    TResult Function(String gymId)? acceptAttendees,
+    TResult Function(String gymId)? closeLesson,
+    TResult Function(String gymId)? deleteLesson,
+    required TResult orElse(),
   }) {
-    assert(orElse != null);
     if (register != null) {
       return register(gymId, attendee);
     }
@@ -576,38 +547,30 @@ class _$Register with DiagnosticableTreeMixin implements Register {
 
   @override
   @optionalTypeArgs
-  TResult map<TResult extends Object>({
-    @required TResult initializeRegistry(InitializeRegistry value),
-    @required TResult registryUpdated(RegistryUpdated value),
-    @required TResult register(Register value),
-    @required TResult unregister(Unregister value),
-    @required TResult acceptAttendees(AcceptAttendees value),
-    @required TResult closeLesson(CloseLesson value),
-    @required TResult deleteLesson(DeleteLesson value),
+  TResult map<TResult extends Object?>({
+    required TResult Function(InitializeRegistry value) initializeRegistry,
+    required TResult Function(RegistryUpdated value) registryUpdated,
+    required TResult Function(Register value) register,
+    required TResult Function(Unregister value) unregister,
+    required TResult Function(AcceptAttendees value) acceptAttendees,
+    required TResult Function(CloseLesson value) closeLesson,
+    required TResult Function(DeleteLesson value) deleteLesson,
   }) {
-    assert(initializeRegistry != null);
-    assert(registryUpdated != null);
-    assert(register != null);
-    assert(unregister != null);
-    assert(acceptAttendees != null);
-    assert(closeLesson != null);
-    assert(deleteLesson != null);
     return register(this);
   }
 
   @override
   @optionalTypeArgs
-  TResult maybeMap<TResult extends Object>({
-    TResult initializeRegistry(InitializeRegistry value),
-    TResult registryUpdated(RegistryUpdated value),
-    TResult register(Register value),
-    TResult unregister(Unregister value),
-    TResult acceptAttendees(AcceptAttendees value),
-    TResult closeLesson(CloseLesson value),
-    TResult deleteLesson(DeleteLesson value),
-    @required TResult orElse(),
+  TResult maybeMap<TResult extends Object?>({
+    TResult Function(InitializeRegistry value)? initializeRegistry,
+    TResult Function(RegistryUpdated value)? registryUpdated,
+    TResult Function(Register value)? register,
+    TResult Function(Unregister value)? unregister,
+    TResult Function(AcceptAttendees value)? acceptAttendees,
+    TResult Function(CloseLesson value)? closeLesson,
+    TResult Function(DeleteLesson value)? deleteLesson,
+    required TResult orElse(),
   }) {
-    assert(orElse != null);
     if (register != null) {
       return register(this);
     }
@@ -616,13 +579,14 @@ class _$Register with DiagnosticableTreeMixin implements Register {
 }
 
 abstract class Register implements RegistryEvent {
-  const factory Register(
-      {@required String gymId, @required Attendee attendee}) = _$Register;
+  const factory Register({required String gymId, required Attendee attendee}) =
+      _$Register;
 
-  String get gymId;
-  Attendee get attendee;
+  String get gymId => throw _privateConstructorUsedError;
+  Attendee get attendee => throw _privateConstructorUsedError;
   @JsonKey(ignore: true)
-  $RegisterCopyWith<Register> get copyWith;
+  $RegisterCopyWith<Register> get copyWith =>
+      throw _privateConstructorUsedError;
 }
 
 /// @nodoc
@@ -644,21 +608,26 @@ class _$UnregisterCopyWithImpl<$Res> extends _$RegistryEventCopyWithImpl<$Res>
 
   @override
   $Res call({
-    Object gymId = freezed,
-    Object attendee = freezed,
+    Object? gymId = freezed,
+    Object? attendee = freezed,
   }) {
     return _then(Unregister(
-      gymId: gymId == freezed ? _value.gymId : gymId as String,
-      attendee: attendee == freezed ? _value.attendee : attendee as Attendee,
+      gymId: gymId == freezed
+          ? _value.gymId
+          : gymId // ignore: cast_nullable_to_non_nullable
+              as String,
+      attendee: attendee == freezed
+          ? _value.attendee
+          : attendee // ignore: cast_nullable_to_non_nullable
+              as Attendee,
     ));
   }
 }
 
 /// @nodoc
+
 class _$Unregister with DiagnosticableTreeMixin implements Unregister {
-  const _$Unregister({@required this.gymId, @required this.attendee})
-      : assert(gymId != null),
-        assert(attendee != null);
+  const _$Unregister({required this.gymId, required this.attendee});
 
   @override
   final String gymId;
@@ -703,38 +672,31 @@ class _$Unregister with DiagnosticableTreeMixin implements Unregister {
 
   @override
   @optionalTypeArgs
-  TResult when<TResult extends Object>({
-    @required TResult initializeRegistry(),
-    @required TResult registryUpdated(User currentUser, Lesson currentLesson),
-    @required TResult register(String gymId, Attendee attendee),
-    @required TResult unregister(String gymId, Attendee attendee),
-    @required TResult acceptAttendees(String gymId),
-    @required TResult closeLesson(String gymId),
-    @required TResult deleteLesson(String gymId),
+  TResult when<TResult extends Object?>({
+    required TResult Function() initializeRegistry,
+    required TResult Function(User currentUser, Lesson? currentLesson)
+        registryUpdated,
+    required TResult Function(String gymId, Attendee attendee) register,
+    required TResult Function(String gymId, Attendee attendee) unregister,
+    required TResult Function(String gymId) acceptAttendees,
+    required TResult Function(String gymId) closeLesson,
+    required TResult Function(String gymId) deleteLesson,
   }) {
-    assert(initializeRegistry != null);
-    assert(registryUpdated != null);
-    assert(register != null);
-    assert(unregister != null);
-    assert(acceptAttendees != null);
-    assert(closeLesson != null);
-    assert(deleteLesson != null);
     return unregister(gymId, attendee);
   }
 
   @override
   @optionalTypeArgs
-  TResult maybeWhen<TResult extends Object>({
-    TResult initializeRegistry(),
-    TResult registryUpdated(User currentUser, Lesson currentLesson),
-    TResult register(String gymId, Attendee attendee),
-    TResult unregister(String gymId, Attendee attendee),
-    TResult acceptAttendees(String gymId),
-    TResult closeLesson(String gymId),
-    TResult deleteLesson(String gymId),
-    @required TResult orElse(),
+  TResult maybeWhen<TResult extends Object?>({
+    TResult Function()? initializeRegistry,
+    TResult Function(User currentUser, Lesson? currentLesson)? registryUpdated,
+    TResult Function(String gymId, Attendee attendee)? register,
+    TResult Function(String gymId, Attendee attendee)? unregister,
+    TResult Function(String gymId)? acceptAttendees,
+    TResult Function(String gymId)? closeLesson,
+    TResult Function(String gymId)? deleteLesson,
+    required TResult orElse(),
   }) {
-    assert(orElse != null);
     if (unregister != null) {
       return unregister(gymId, attendee);
     }
@@ -743,38 +705,30 @@ class _$Unregister with DiagnosticableTreeMixin implements Unregister {
 
   @override
   @optionalTypeArgs
-  TResult map<TResult extends Object>({
-    @required TResult initializeRegistry(InitializeRegistry value),
-    @required TResult registryUpdated(RegistryUpdated value),
-    @required TResult register(Register value),
-    @required TResult unregister(Unregister value),
-    @required TResult acceptAttendees(AcceptAttendees value),
-    @required TResult closeLesson(CloseLesson value),
-    @required TResult deleteLesson(DeleteLesson value),
+  TResult map<TResult extends Object?>({
+    required TResult Function(InitializeRegistry value) initializeRegistry,
+    required TResult Function(RegistryUpdated value) registryUpdated,
+    required TResult Function(Register value) register,
+    required TResult Function(Unregister value) unregister,
+    required TResult Function(AcceptAttendees value) acceptAttendees,
+    required TResult Function(CloseLesson value) closeLesson,
+    required TResult Function(DeleteLesson value) deleteLesson,
   }) {
-    assert(initializeRegistry != null);
-    assert(registryUpdated != null);
-    assert(register != null);
-    assert(unregister != null);
-    assert(acceptAttendees != null);
-    assert(closeLesson != null);
-    assert(deleteLesson != null);
     return unregister(this);
   }
 
   @override
   @optionalTypeArgs
-  TResult maybeMap<TResult extends Object>({
-    TResult initializeRegistry(InitializeRegistry value),
-    TResult registryUpdated(RegistryUpdated value),
-    TResult register(Register value),
-    TResult unregister(Unregister value),
-    TResult acceptAttendees(AcceptAttendees value),
-    TResult closeLesson(CloseLesson value),
-    TResult deleteLesson(DeleteLesson value),
-    @required TResult orElse(),
+  TResult maybeMap<TResult extends Object?>({
+    TResult Function(InitializeRegistry value)? initializeRegistry,
+    TResult Function(RegistryUpdated value)? registryUpdated,
+    TResult Function(Register value)? register,
+    TResult Function(Unregister value)? unregister,
+    TResult Function(AcceptAttendees value)? acceptAttendees,
+    TResult Function(CloseLesson value)? closeLesson,
+    TResult Function(DeleteLesson value)? deleteLesson,
+    required TResult orElse(),
   }) {
-    assert(orElse != null);
     if (unregister != null) {
       return unregister(this);
     }
@@ -784,12 +738,13 @@ class _$Unregister with DiagnosticableTreeMixin implements Unregister {
 
 abstract class Unregister implements RegistryEvent {
   const factory Unregister(
-      {@required String gymId, @required Attendee attendee}) = _$Unregister;
+      {required String gymId, required Attendee attendee}) = _$Unregister;
 
-  String get gymId;
-  Attendee get attendee;
+  String get gymId => throw _privateConstructorUsedError;
+  Attendee get attendee => throw _privateConstructorUsedError;
   @JsonKey(ignore: true)
-  $UnregisterCopyWith<Unregister> get copyWith;
+  $UnregisterCopyWith<Unregister> get copyWith =>
+      throw _privateConstructorUsedError;
 }
 
 /// @nodoc
@@ -813,19 +768,23 @@ class _$AcceptAttendeesCopyWithImpl<$Res>
 
   @override
   $Res call({
-    Object gymId = freezed,
+    Object? gymId = freezed,
   }) {
     return _then(AcceptAttendees(
-      gymId: gymId == freezed ? _value.gymId : gymId as String,
+      gymId: gymId == freezed
+          ? _value.gymId
+          : gymId // ignore: cast_nullable_to_non_nullable
+              as String,
     ));
   }
 }
 
 /// @nodoc
+
 class _$AcceptAttendees
     with DiagnosticableTreeMixin
     implements AcceptAttendees {
-  const _$AcceptAttendees({@required this.gymId}) : assert(gymId != null);
+  const _$AcceptAttendees({required this.gymId});
 
   @override
   final String gymId;
@@ -862,38 +821,31 @@ class _$AcceptAttendees
 
   @override
   @optionalTypeArgs
-  TResult when<TResult extends Object>({
-    @required TResult initializeRegistry(),
-    @required TResult registryUpdated(User currentUser, Lesson currentLesson),
-    @required TResult register(String gymId, Attendee attendee),
-    @required TResult unregister(String gymId, Attendee attendee),
-    @required TResult acceptAttendees(String gymId),
-    @required TResult closeLesson(String gymId),
-    @required TResult deleteLesson(String gymId),
+  TResult when<TResult extends Object?>({
+    required TResult Function() initializeRegistry,
+    required TResult Function(User currentUser, Lesson? currentLesson)
+        registryUpdated,
+    required TResult Function(String gymId, Attendee attendee) register,
+    required TResult Function(String gymId, Attendee attendee) unregister,
+    required TResult Function(String gymId) acceptAttendees,
+    required TResult Function(String gymId) closeLesson,
+    required TResult Function(String gymId) deleteLesson,
   }) {
-    assert(initializeRegistry != null);
-    assert(registryUpdated != null);
-    assert(register != null);
-    assert(unregister != null);
-    assert(acceptAttendees != null);
-    assert(closeLesson != null);
-    assert(deleteLesson != null);
     return acceptAttendees(gymId);
   }
 
   @override
   @optionalTypeArgs
-  TResult maybeWhen<TResult extends Object>({
-    TResult initializeRegistry(),
-    TResult registryUpdated(User currentUser, Lesson currentLesson),
-    TResult register(String gymId, Attendee attendee),
-    TResult unregister(String gymId, Attendee attendee),
-    TResult acceptAttendees(String gymId),
-    TResult closeLesson(String gymId),
-    TResult deleteLesson(String gymId),
-    @required TResult orElse(),
+  TResult maybeWhen<TResult extends Object?>({
+    TResult Function()? initializeRegistry,
+    TResult Function(User currentUser, Lesson? currentLesson)? registryUpdated,
+    TResult Function(String gymId, Attendee attendee)? register,
+    TResult Function(String gymId, Attendee attendee)? unregister,
+    TResult Function(String gymId)? acceptAttendees,
+    TResult Function(String gymId)? closeLesson,
+    TResult Function(String gymId)? deleteLesson,
+    required TResult orElse(),
   }) {
-    assert(orElse != null);
     if (acceptAttendees != null) {
       return acceptAttendees(gymId);
     }
@@ -902,38 +854,30 @@ class _$AcceptAttendees
 
   @override
   @optionalTypeArgs
-  TResult map<TResult extends Object>({
-    @required TResult initializeRegistry(InitializeRegistry value),
-    @required TResult registryUpdated(RegistryUpdated value),
-    @required TResult register(Register value),
-    @required TResult unregister(Unregister value),
-    @required TResult acceptAttendees(AcceptAttendees value),
-    @required TResult closeLesson(CloseLesson value),
-    @required TResult deleteLesson(DeleteLesson value),
+  TResult map<TResult extends Object?>({
+    required TResult Function(InitializeRegistry value) initializeRegistry,
+    required TResult Function(RegistryUpdated value) registryUpdated,
+    required TResult Function(Register value) register,
+    required TResult Function(Unregister value) unregister,
+    required TResult Function(AcceptAttendees value) acceptAttendees,
+    required TResult Function(CloseLesson value) closeLesson,
+    required TResult Function(DeleteLesson value) deleteLesson,
   }) {
-    assert(initializeRegistry != null);
-    assert(registryUpdated != null);
-    assert(register != null);
-    assert(unregister != null);
-    assert(acceptAttendees != null);
-    assert(closeLesson != null);
-    assert(deleteLesson != null);
     return acceptAttendees(this);
   }
 
   @override
   @optionalTypeArgs
-  TResult maybeMap<TResult extends Object>({
-    TResult initializeRegistry(InitializeRegistry value),
-    TResult registryUpdated(RegistryUpdated value),
-    TResult register(Register value),
-    TResult unregister(Unregister value),
-    TResult acceptAttendees(AcceptAttendees value),
-    TResult closeLesson(CloseLesson value),
-    TResult deleteLesson(DeleteLesson value),
-    @required TResult orElse(),
+  TResult maybeMap<TResult extends Object?>({
+    TResult Function(InitializeRegistry value)? initializeRegistry,
+    TResult Function(RegistryUpdated value)? registryUpdated,
+    TResult Function(Register value)? register,
+    TResult Function(Unregister value)? unregister,
+    TResult Function(AcceptAttendees value)? acceptAttendees,
+    TResult Function(CloseLesson value)? closeLesson,
+    TResult Function(DeleteLesson value)? deleteLesson,
+    required TResult orElse(),
   }) {
-    assert(orElse != null);
     if (acceptAttendees != null) {
       return acceptAttendees(this);
     }
@@ -942,11 +886,12 @@ class _$AcceptAttendees
 }
 
 abstract class AcceptAttendees implements RegistryEvent {
-  const factory AcceptAttendees({@required String gymId}) = _$AcceptAttendees;
+  const factory AcceptAttendees({required String gymId}) = _$AcceptAttendees;
 
-  String get gymId;
+  String get gymId => throw _privateConstructorUsedError;
   @JsonKey(ignore: true)
-  $AcceptAttendeesCopyWith<AcceptAttendees> get copyWith;
+  $AcceptAttendeesCopyWith<AcceptAttendees> get copyWith =>
+      throw _privateConstructorUsedError;
 }
 
 /// @nodoc
@@ -969,17 +914,21 @@ class _$CloseLessonCopyWithImpl<$Res> extends _$RegistryEventCopyWithImpl<$Res>
 
   @override
   $Res call({
-    Object gymId = freezed,
+    Object? gymId = freezed,
   }) {
     return _then(CloseLesson(
-      gymId: gymId == freezed ? _value.gymId : gymId as String,
+      gymId: gymId == freezed
+          ? _value.gymId
+          : gymId // ignore: cast_nullable_to_non_nullable
+              as String,
     ));
   }
 }
 
 /// @nodoc
+
 class _$CloseLesson with DiagnosticableTreeMixin implements CloseLesson {
-  const _$CloseLesson({@required this.gymId}) : assert(gymId != null);
+  const _$CloseLesson({required this.gymId});
 
   @override
   final String gymId;
@@ -1016,38 +965,31 @@ class _$CloseLesson with DiagnosticableTreeMixin implements CloseLesson {
 
   @override
   @optionalTypeArgs
-  TResult when<TResult extends Object>({
-    @required TResult initializeRegistry(),
-    @required TResult registryUpdated(User currentUser, Lesson currentLesson),
-    @required TResult register(String gymId, Attendee attendee),
-    @required TResult unregister(String gymId, Attendee attendee),
-    @required TResult acceptAttendees(String gymId),
-    @required TResult closeLesson(String gymId),
-    @required TResult deleteLesson(String gymId),
+  TResult when<TResult extends Object?>({
+    required TResult Function() initializeRegistry,
+    required TResult Function(User currentUser, Lesson? currentLesson)
+        registryUpdated,
+    required TResult Function(String gymId, Attendee attendee) register,
+    required TResult Function(String gymId, Attendee attendee) unregister,
+    required TResult Function(String gymId) acceptAttendees,
+    required TResult Function(String gymId) closeLesson,
+    required TResult Function(String gymId) deleteLesson,
   }) {
-    assert(initializeRegistry != null);
-    assert(registryUpdated != null);
-    assert(register != null);
-    assert(unregister != null);
-    assert(acceptAttendees != null);
-    assert(closeLesson != null);
-    assert(deleteLesson != null);
     return closeLesson(gymId);
   }
 
   @override
   @optionalTypeArgs
-  TResult maybeWhen<TResult extends Object>({
-    TResult initializeRegistry(),
-    TResult registryUpdated(User currentUser, Lesson currentLesson),
-    TResult register(String gymId, Attendee attendee),
-    TResult unregister(String gymId, Attendee attendee),
-    TResult acceptAttendees(String gymId),
-    TResult closeLesson(String gymId),
-    TResult deleteLesson(String gymId),
-    @required TResult orElse(),
+  TResult maybeWhen<TResult extends Object?>({
+    TResult Function()? initializeRegistry,
+    TResult Function(User currentUser, Lesson? currentLesson)? registryUpdated,
+    TResult Function(String gymId, Attendee attendee)? register,
+    TResult Function(String gymId, Attendee attendee)? unregister,
+    TResult Function(String gymId)? acceptAttendees,
+    TResult Function(String gymId)? closeLesson,
+    TResult Function(String gymId)? deleteLesson,
+    required TResult orElse(),
   }) {
-    assert(orElse != null);
     if (closeLesson != null) {
       return closeLesson(gymId);
     }
@@ -1056,38 +998,30 @@ class _$CloseLesson with DiagnosticableTreeMixin implements CloseLesson {
 
   @override
   @optionalTypeArgs
-  TResult map<TResult extends Object>({
-    @required TResult initializeRegistry(InitializeRegistry value),
-    @required TResult registryUpdated(RegistryUpdated value),
-    @required TResult register(Register value),
-    @required TResult unregister(Unregister value),
-    @required TResult acceptAttendees(AcceptAttendees value),
-    @required TResult closeLesson(CloseLesson value),
-    @required TResult deleteLesson(DeleteLesson value),
+  TResult map<TResult extends Object?>({
+    required TResult Function(InitializeRegistry value) initializeRegistry,
+    required TResult Function(RegistryUpdated value) registryUpdated,
+    required TResult Function(Register value) register,
+    required TResult Function(Unregister value) unregister,
+    required TResult Function(AcceptAttendees value) acceptAttendees,
+    required TResult Function(CloseLesson value) closeLesson,
+    required TResult Function(DeleteLesson value) deleteLesson,
   }) {
-    assert(initializeRegistry != null);
-    assert(registryUpdated != null);
-    assert(register != null);
-    assert(unregister != null);
-    assert(acceptAttendees != null);
-    assert(closeLesson != null);
-    assert(deleteLesson != null);
     return closeLesson(this);
   }
 
   @override
   @optionalTypeArgs
-  TResult maybeMap<TResult extends Object>({
-    TResult initializeRegistry(InitializeRegistry value),
-    TResult registryUpdated(RegistryUpdated value),
-    TResult register(Register value),
-    TResult unregister(Unregister value),
-    TResult acceptAttendees(AcceptAttendees value),
-    TResult closeLesson(CloseLesson value),
-    TResult deleteLesson(DeleteLesson value),
-    @required TResult orElse(),
+  TResult maybeMap<TResult extends Object?>({
+    TResult Function(InitializeRegistry value)? initializeRegistry,
+    TResult Function(RegistryUpdated value)? registryUpdated,
+    TResult Function(Register value)? register,
+    TResult Function(Unregister value)? unregister,
+    TResult Function(AcceptAttendees value)? acceptAttendees,
+    TResult Function(CloseLesson value)? closeLesson,
+    TResult Function(DeleteLesson value)? deleteLesson,
+    required TResult orElse(),
   }) {
-    assert(orElse != null);
     if (closeLesson != null) {
       return closeLesson(this);
     }
@@ -1096,11 +1030,12 @@ class _$CloseLesson with DiagnosticableTreeMixin implements CloseLesson {
 }
 
 abstract class CloseLesson implements RegistryEvent {
-  const factory CloseLesson({@required String gymId}) = _$CloseLesson;
+  const factory CloseLesson({required String gymId}) = _$CloseLesson;
 
-  String get gymId;
+  String get gymId => throw _privateConstructorUsedError;
   @JsonKey(ignore: true)
-  $CloseLessonCopyWith<CloseLesson> get copyWith;
+  $CloseLessonCopyWith<CloseLesson> get copyWith =>
+      throw _privateConstructorUsedError;
 }
 
 /// @nodoc
@@ -1123,17 +1058,21 @@ class _$DeleteLessonCopyWithImpl<$Res> extends _$RegistryEventCopyWithImpl<$Res>
 
   @override
   $Res call({
-    Object gymId = freezed,
+    Object? gymId = freezed,
   }) {
     return _then(DeleteLesson(
-      gymId: gymId == freezed ? _value.gymId : gymId as String,
+      gymId: gymId == freezed
+          ? _value.gymId
+          : gymId // ignore: cast_nullable_to_non_nullable
+              as String,
     ));
   }
 }
 
 /// @nodoc
+
 class _$DeleteLesson with DiagnosticableTreeMixin implements DeleteLesson {
-  const _$DeleteLesson({@required this.gymId}) : assert(gymId != null);
+  const _$DeleteLesson({required this.gymId});
 
   @override
   final String gymId;
@@ -1170,38 +1109,31 @@ class _$DeleteLesson with DiagnosticableTreeMixin implements DeleteLesson {
 
   @override
   @optionalTypeArgs
-  TResult when<TResult extends Object>({
-    @required TResult initializeRegistry(),
-    @required TResult registryUpdated(User currentUser, Lesson currentLesson),
-    @required TResult register(String gymId, Attendee attendee),
-    @required TResult unregister(String gymId, Attendee attendee),
-    @required TResult acceptAttendees(String gymId),
-    @required TResult closeLesson(String gymId),
-    @required TResult deleteLesson(String gymId),
+  TResult when<TResult extends Object?>({
+    required TResult Function() initializeRegistry,
+    required TResult Function(User currentUser, Lesson? currentLesson)
+        registryUpdated,
+    required TResult Function(String gymId, Attendee attendee) register,
+    required TResult Function(String gymId, Attendee attendee) unregister,
+    required TResult Function(String gymId) acceptAttendees,
+    required TResult Function(String gymId) closeLesson,
+    required TResult Function(String gymId) deleteLesson,
   }) {
-    assert(initializeRegistry != null);
-    assert(registryUpdated != null);
-    assert(register != null);
-    assert(unregister != null);
-    assert(acceptAttendees != null);
-    assert(closeLesson != null);
-    assert(deleteLesson != null);
     return deleteLesson(gymId);
   }
 
   @override
   @optionalTypeArgs
-  TResult maybeWhen<TResult extends Object>({
-    TResult initializeRegistry(),
-    TResult registryUpdated(User currentUser, Lesson currentLesson),
-    TResult register(String gymId, Attendee attendee),
-    TResult unregister(String gymId, Attendee attendee),
-    TResult acceptAttendees(String gymId),
-    TResult closeLesson(String gymId),
-    TResult deleteLesson(String gymId),
-    @required TResult orElse(),
+  TResult maybeWhen<TResult extends Object?>({
+    TResult Function()? initializeRegistry,
+    TResult Function(User currentUser, Lesson? currentLesson)? registryUpdated,
+    TResult Function(String gymId, Attendee attendee)? register,
+    TResult Function(String gymId, Attendee attendee)? unregister,
+    TResult Function(String gymId)? acceptAttendees,
+    TResult Function(String gymId)? closeLesson,
+    TResult Function(String gymId)? deleteLesson,
+    required TResult orElse(),
   }) {
-    assert(orElse != null);
     if (deleteLesson != null) {
       return deleteLesson(gymId);
     }
@@ -1210,38 +1142,30 @@ class _$DeleteLesson with DiagnosticableTreeMixin implements DeleteLesson {
 
   @override
   @optionalTypeArgs
-  TResult map<TResult extends Object>({
-    @required TResult initializeRegistry(InitializeRegistry value),
-    @required TResult registryUpdated(RegistryUpdated value),
-    @required TResult register(Register value),
-    @required TResult unregister(Unregister value),
-    @required TResult acceptAttendees(AcceptAttendees value),
-    @required TResult closeLesson(CloseLesson value),
-    @required TResult deleteLesson(DeleteLesson value),
+  TResult map<TResult extends Object?>({
+    required TResult Function(InitializeRegistry value) initializeRegistry,
+    required TResult Function(RegistryUpdated value) registryUpdated,
+    required TResult Function(Register value) register,
+    required TResult Function(Unregister value) unregister,
+    required TResult Function(AcceptAttendees value) acceptAttendees,
+    required TResult Function(CloseLesson value) closeLesson,
+    required TResult Function(DeleteLesson value) deleteLesson,
   }) {
-    assert(initializeRegistry != null);
-    assert(registryUpdated != null);
-    assert(register != null);
-    assert(unregister != null);
-    assert(acceptAttendees != null);
-    assert(closeLesson != null);
-    assert(deleteLesson != null);
     return deleteLesson(this);
   }
 
   @override
   @optionalTypeArgs
-  TResult maybeMap<TResult extends Object>({
-    TResult initializeRegistry(InitializeRegistry value),
-    TResult registryUpdated(RegistryUpdated value),
-    TResult register(Register value),
-    TResult unregister(Unregister value),
-    TResult acceptAttendees(AcceptAttendees value),
-    TResult closeLesson(CloseLesson value),
-    TResult deleteLesson(DeleteLesson value),
-    @required TResult orElse(),
+  TResult maybeMap<TResult extends Object?>({
+    TResult Function(InitializeRegistry value)? initializeRegistry,
+    TResult Function(RegistryUpdated value)? registryUpdated,
+    TResult Function(Register value)? register,
+    TResult Function(Unregister value)? unregister,
+    TResult Function(AcceptAttendees value)? acceptAttendees,
+    TResult Function(CloseLesson value)? closeLesson,
+    TResult Function(DeleteLesson value)? deleteLesson,
+    required TResult orElse(),
   }) {
-    assert(orElse != null);
     if (deleteLesson != null) {
       return deleteLesson(this);
     }
@@ -1250,9 +1174,10 @@ class _$DeleteLesson with DiagnosticableTreeMixin implements DeleteLesson {
 }
 
 abstract class DeleteLesson implements RegistryEvent {
-  const factory DeleteLesson({@required String gymId}) = _$DeleteLesson;
+  const factory DeleteLesson({required String gymId}) = _$DeleteLesson;
 
-  String get gymId;
+  String get gymId => throw _privateConstructorUsedError;
   @JsonKey(ignore: true)
-  $DeleteLessonCopyWith<DeleteLesson> get copyWith;
+  $DeleteLessonCopyWith<DeleteLesson> get copyWith =>
+      throw _privateConstructorUsedError;
 }

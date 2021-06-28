@@ -8,6 +8,6 @@ class VersionProvider {
     return _firestore
         .doc(path)
         .snapshots()
-        .map((versionDocument) => versionDocument.data()["minimumVersionRequired"]);
+        .map((versionDocument) => versionDocument.data()?["minimumVersionRequired"]);
   }
 }

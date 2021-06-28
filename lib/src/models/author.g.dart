@@ -10,7 +10,7 @@ _$_Author _$_$_AuthorFromJson(Map<String, dynamic> json) {
   return _$_Author(
     imageUrl: json['imageUrl'] as String,
     name: json['name'] as String,
-    grade: const GradeConverter().fromJson(json['grade'] as String),
+    grade: const GradeConverter().fromJson(json['grade'] as String?),
   );
 }
 

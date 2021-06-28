@@ -1,3 +1,5 @@
+import 'package:collection/collection.dart' show IterableExtension;
+
 enum Weekday {
   monday,
   tuesday,
@@ -8,7 +10,7 @@ enum Weekday {
   sunday,
 }
 
-extension WeekdayExtension on Weekday {
+extension WeekdayExtension on Weekday? {
   static final names = {
     Weekday.monday: 'monday',
     Weekday.tuesday: 'tuesday',
@@ -19,11 +21,10 @@ extension WeekdayExtension on Weekday {
     Weekday.sunday: 'sunday',
   };
 
-  String get name => names[this];
+  String? get name => names[this!];
 }
 
 extension WeekdayParser on String {
-  Weekday toWeekday() =>
-      Weekday.values.firstWhere((element) => element.name.toLowerCase() == this?.toLowerCase(),
-          orElse: () => null);
+  Weekday? toWeekday() => Weekday.values
+      .firstWhereOrNull((element) => element.name!.toLowerCase() == this.toLowerCase());
 }

@@ -1,3 +1,5 @@
+// @dart=2.9
+
 import 'package:checkin/src/handlers/registerable_handler.dart';
 import 'package:checkin/src/ui/pages/account_page.dart';
 import 'package:checkin/src/ui/pages/account_page2.dart';

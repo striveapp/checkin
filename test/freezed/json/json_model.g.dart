@@ -8,10 +8,10 @@ part of 'json_model.dart';
 
 _$_JsonModel _$_$_JsonModelFromJson(Map<String, dynamic> json) {
   return _$_JsonModel(
-    simpleField: json['simpleField'] as String,
+    simpleField: json['simpleField'] as String?,
     requiredField: json['requiredField'] as String,
-    defaultField: json['defaultField'] as bool ?? true,
-    grade: const GradeConverter().fromJson(json['grade'] as String),
+    defaultField: json['defaultField'] as bool? ?? true,
+    grade: const GradeConverter().fromJson(json['grade'] as String?),
   );
 }
 

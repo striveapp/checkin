@@ -1,3 +1,5 @@
+// @dart=2.9
+
 import 'package:bloc_test/bloc_test.dart';
 import 'package:checkin/src/blocs/lessons/bloc.dart';
 import 'package:checkin/src/constants.dart';

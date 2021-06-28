@@ -1,3 +1,5 @@
+// @dart=2.9
+
 import 'package:checkin/src/blocs/gym/bloc.dart';
 import 'package:checkin/src/blocs/payment_methods/bloc.dart';
 import 'package:checkin/src/localization/localization.dart';

@@ -5,13 +5,13 @@ import 'package:freezed_annotation/freezed_annotation.dart';
 part 'switch_gym_state.freezed.dart';
 
 @freezed
-abstract class SwitchGymsState with _$SwitchGymsState {
+class SwitchGymsState with _$SwitchGymsState {
   const factory SwitchGymsState.switchGymsInitial() = SwitchGymsInitial;
 
   const factory SwitchGymsState.knownGymsLoaded({
-    @required Gym selectedGym,
-    @required User currentUser,
-    @required List<String> knowGymsIds,
+    required Gym selectedGym,
+    required User currentUser,
+    required List<String> knowGymsIds,
     @Default(false) bool showDropdown,
   }) = KnownGymsLoaded;
 }

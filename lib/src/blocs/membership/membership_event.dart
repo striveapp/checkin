@@ -6,10 +6,10 @@ import 'package:meta/meta.dart';
 part 'membership_event.freezed.dart';
 
 @freezed
-abstract class MembershipEvent with _$MembershipEvent {
+class MembershipEvent with _$MembershipEvent {
   const factory MembershipEvent.membershipUpdated({
-    @required String customerEmail,
-    @required Membership membership,
+    required String customerEmail,
+    required Membership membership,
   }) = MembershipUpdated;
 
   const factory MembershipEvent.unsubscribe() = Unsubscribe;

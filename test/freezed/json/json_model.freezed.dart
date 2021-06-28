@@ -1,5 +1,5 @@
 // GENERATED CODE - DO NOT MODIFY BY HAND
-// ignore_for_file: deprecated_member_use, deprecated_member_use_from_same_package, use_function_type_syntax_for_parameters, unnecessary_const, avoid_init_to_null, invalid_override_different_default_values_named, prefer_expression_function_bodies
+// ignore_for_file: unused_element, deprecated_member_use, deprecated_member_use_from_same_package, use_function_type_syntax_for_parameters, unnecessary_const, avoid_init_to_null, invalid_override_different_default_values_named, prefer_expression_function_bodies, annotate_overrides
 
 part of 'json_model.dart';
 
@@ -8,6 +8,10 @@ part of 'json_model.dart';
 // **************************************************************************
 
 T _$identity<T>(T value) => value;
+
+final _privateConstructorUsedError = UnsupportedError(
+    'It seems like you constructed your class using `MyClass._()`. This constructor is only meant to be used by freezed and you are not supposed to need it nor use it.\nPlease check the documentation here for more informations: https://github.com/rrousselGit/freezed#custom-getters-and-methods');
+
 JsonModel _$JsonModelFromJson(Map<String, dynamic> json) {
   return _JsonModel.fromJson(json);
 }
@@ -16,12 +20,11 @@ JsonModel _$JsonModelFromJson(Map<String, dynamic> json) {
 class _$JsonModelTearOff {
   const _$JsonModelTearOff();
 
-// ignore: unused_element
   _JsonModel call(
-      {String simpleField,
-      @required String requiredField,
+      {String? simpleField,
+      required String requiredField,
       bool defaultField = true,
-      @GradeConverter() Grade grade}) {
+      @GradeConverter() Grade? grade}) {
     return _JsonModel(
       simpleField: simpleField,
       requiredField: requiredField,
@@ -30,27 +33,26 @@ class _$JsonModelTearOff {
     );
   }
 
-// ignore: unused_element
   JsonModel fromJson(Map<String, Object> json) {
     return JsonModel.fromJson(json);
   }
 }
 
 /// @nodoc
-// ignore: unused_element
 const $JsonModel = _$JsonModelTearOff();
 
 /// @nodoc
 mixin _$JsonModel {
-  String get simpleField;
-  String get requiredField;
-  bool get defaultField;
+  String? get simpleField => throw _privateConstructorUsedError;
+  String get requiredField => throw _privateConstructorUsedError;
+  bool get defaultField => throw _privateConstructorUsedError;
   @GradeConverter()
-  Grade get grade;
+  Grade? get grade => throw _privateConstructorUsedError;
 
-  Map<String, dynamic> toJson();
+  Map<String, dynamic> toJson() => throw _privateConstructorUsedError;
   @JsonKey(ignore: true)
-  $JsonModelCopyWith<JsonModel> get copyWith;
+  $JsonModelCopyWith<JsonModel> get copyWith =>
+      throw _privateConstructorUsedError;
 }
 
 /// @nodoc
@@ -58,10 +60,10 @@ abstract class $JsonModelCopyWith<$Res> {
   factory $JsonModelCopyWith(JsonModel value, $Res Function(JsonModel) then) =
       _$JsonModelCopyWithImpl<$Res>;
   $Res call(
-      {String simpleField,
+      {String? simpleField,
       String requiredField,
       bool defaultField,
-      @GradeConverter() Grade grade});
+      @GradeConverter() Grade? grade});
 }
 
 /// @nodoc
@@ -74,20 +76,28 @@ class _$JsonModelCopyWithImpl<$Res> implements $JsonModelCopyWith<$Res> {
 
   @override
   $Res call({
-    Object simpleField = freezed,
-    Object requiredField = freezed,
-    Object defaultField = freezed,
-    Object grade = freezed,
+    Object? simpleField = freezed,
+    Object? requiredField = freezed,
+    Object? defaultField = freezed,
+    Object? grade = freezed,
   }) {
     return _then(_value.copyWith(
-      simpleField:
-          simpleField == freezed ? _value.simpleField : simpleField as String,
+      simpleField: simpleField == freezed
+          ? _value.simpleField
+          : simpleField // ignore: cast_nullable_to_non_nullable
+              as String?,
       requiredField: requiredField == freezed
           ? _value.requiredField
-          : requiredField as String,
-      defaultField:
-          defaultField == freezed ? _value.defaultField : defaultField as bool,
-      grade: grade == freezed ? _value.grade : grade as Grade,
+          : requiredField // ignore: cast_nullable_to_non_nullable
+              as String,
+      defaultField: defaultField == freezed
+          ? _value.defaultField
+          : defaultField // ignore: cast_nullable_to_non_nullable
+              as bool,
+      grade: grade == freezed
+          ? _value.grade
+          : grade // ignore: cast_nullable_to_non_nullable
+              as Grade?,
     ));
   }
 }
@@ -99,10 +109,10 @@ abstract class _$JsonModelCopyWith<$Res> implements $JsonModelCopyWith<$Res> {
       __$JsonModelCopyWithImpl<$Res>;
   @override
   $Res call(
-      {String simpleField,
+      {String? simpleField,
       String requiredField,
       bool defaultField,
-      @GradeConverter() Grade grade});
+      @GradeConverter() Grade? grade});
 }
 
 /// @nodoc
@@ -116,41 +126,46 @@ class __$JsonModelCopyWithImpl<$Res> extends _$JsonModelCopyWithImpl<$Res>
 
   @override
   $Res call({
-    Object simpleField = freezed,
-    Object requiredField = freezed,
-    Object defaultField = freezed,
-    Object grade = freezed,
+    Object? simpleField = freezed,
+    Object? requiredField = freezed,
+    Object? defaultField = freezed,
+    Object? grade = freezed,
   }) {
     return _then(_JsonModel(
-      simpleField:
-          simpleField == freezed ? _value.simpleField : simpleField as String,
+      simpleField: simpleField == freezed
+          ? _value.simpleField
+          : simpleField // ignore: cast_nullable_to_non_nullable
+              as String?,
       requiredField: requiredField == freezed
           ? _value.requiredField
-          : requiredField as String,
-      defaultField:
-          defaultField == freezed ? _value.defaultField : defaultField as bool,
-      grade: grade == freezed ? _value.grade : grade as Grade,
+          : requiredField // ignore: cast_nullable_to_non_nullable
+              as String,
+      defaultField: defaultField == freezed
+          ? _value.defaultField
+          : defaultField // ignore: cast_nullable_to_non_nullable
+              as bool,
+      grade: grade == freezed
+          ? _value.grade
+          : grade // ignore: cast_nullable_to_non_nullable
+              as Grade?,
     ));
   }
 }
 
-@JsonSerializable()
-
 /// @nodoc
+@JsonSerializable()
 class _$_JsonModel with DiagnosticableTreeMixin implements _JsonModel {
   _$_JsonModel(
       {this.simpleField,
-      @required this.requiredField,
+      required this.requiredField,
       this.defaultField = true,
-      @GradeConverter() this.grade})
-      : assert(requiredField != null),
-        assert(defaultField != null);
+      @GradeConverter() this.grade});
 
   factory _$_JsonModel.fromJson(Map<String, dynamic> json) =>
       _$_$_JsonModelFromJson(json);
 
   @override
-  final String simpleField;
+  final String? simpleField;
   @override
   final String requiredField;
   @JsonKey(defaultValue: true)
@@ -158,7 +173,7 @@ class _$_JsonModel with DiagnosticableTreeMixin implements _JsonModel {
   final bool defaultField;
   @override
   @GradeConverter()
-  final Grade grade;
+  final Grade? grade;
 
   @override
   String toString({DiagnosticLevel minLevel = DiagnosticLevel.info}) {
@@ -214,24 +229,25 @@ class _$_JsonModel with DiagnosticableTreeMixin implements _JsonModel {
 
 abstract class _JsonModel implements JsonModel {
   factory _JsonModel(
-      {String simpleField,
-      @required String requiredField,
+      {String? simpleField,
+      required String requiredField,
       bool defaultField,
-      @GradeConverter() Grade grade}) = _$_JsonModel;
+      @GradeConverter() Grade? grade}) = _$_JsonModel;
 
   factory _JsonModel.fromJson(Map<String, dynamic> json) =
       _$_JsonModel.fromJson;
 
   @override
-  String get simpleField;
+  String? get simpleField => throw _privateConstructorUsedError;
   @override
-  String get requiredField;
+  String get requiredField => throw _privateConstructorUsedError;
   @override
-  bool get defaultField;
+  bool get defaultField => throw _privateConstructorUsedError;
   @override
   @GradeConverter()
-  Grade get grade;
+  Grade? get grade => throw _privateConstructorUsedError;
   @override
   @JsonKey(ignore: true)
-  _$JsonModelCopyWith<_JsonModel> get copyWith;
+  _$JsonModelCopyWith<_JsonModel> get copyWith =>
+      throw _privateConstructorUsedError;
 }

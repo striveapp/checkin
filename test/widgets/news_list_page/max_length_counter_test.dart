@@ -1,3 +1,5 @@
+// @dart=2.9
+
 import 'package:checkin/src/ui/components/newslist/modal/max_length_counter.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_test/flutter_test.dart';

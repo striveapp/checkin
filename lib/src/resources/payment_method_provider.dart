@@ -1,3 +1,5 @@
+// @dart=2.9
+
 import 'package:checkin/src/models/payment_method.dart';
 import 'package:checkin/src/repositories/payment_method_repository.dart';
 import 'package:cloud_firestore/cloud_firestore.dart';

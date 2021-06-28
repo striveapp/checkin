@@ -1,3 +1,5 @@
+// @dart=2.9
+
 import 'package:checkin/src/blocs/subscription/bloc.dart';
 import 'package:checkin/src/blocs/subscription_plans/bloc.dart';
 import 'package:checkin/src/localization/localization.dart';

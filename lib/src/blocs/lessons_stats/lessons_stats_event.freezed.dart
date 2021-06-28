@@ -1,5 +1,5 @@
 // GENERATED CODE - DO NOT MODIFY BY HAND
-// ignore_for_file: deprecated_member_use, deprecated_member_use_from_same_package, use_function_type_syntax_for_parameters, unnecessary_const, avoid_init_to_null, invalid_override_different_default_values_named, prefer_expression_function_bodies
+// ignore_for_file: unused_element, deprecated_member_use, deprecated_member_use_from_same_package, use_function_type_syntax_for_parameters, unnecessary_const, avoid_init_to_null, invalid_override_different_default_values_named, prefer_expression_function_bodies, annotate_overrides
 
 part of 'lessons_stats_event.dart';
 
@@ -9,17 +9,18 @@ part of 'lessons_stats_event.dart';
 
 T _$identity<T>(T value) => value;
 
+final _privateConstructorUsedError = UnsupportedError(
+    'It seems like you constructed your class using `MyClass._()`. This constructor is only meant to be used by freezed and you are not supposed to need it nor use it.\nPlease check the documentation here for more informations: https://github.com/rrousselGit/freezed#custom-getters-and-methods');
+
 /// @nodoc
 class _$LessonsStatsEventTearOff {
   const _$LessonsStatsEventTearOff();
 
-// ignore: unused_element
   InitializeLessonsStats initializeLessonsStats() {
     return const InitializeLessonsStats();
   }
 
-// ignore: unused_element
-  UpdateLessonsStats updateLessonsStats({@required List<Lesson> lessons}) {
+  UpdateLessonsStats updateLessonsStats({required List<Lesson> lessons}) {
     return UpdateLessonsStats(
       lessons: lessons,
     );
@@ -27,33 +28,37 @@ class _$LessonsStatsEventTearOff {
 }
 
 /// @nodoc
-// ignore: unused_element
 const $LessonsStatsEvent = _$LessonsStatsEventTearOff();
 
 /// @nodoc
 mixin _$LessonsStatsEvent {
   @optionalTypeArgs
-  TResult when<TResult extends Object>({
-    @required TResult initializeLessonsStats(),
-    @required TResult updateLessonsStats(List<Lesson> lessons),
-  });
+  TResult when<TResult extends Object?>({
+    required TResult Function() initializeLessonsStats,
+    required TResult Function(List<Lesson> lessons) updateLessonsStats,
+  }) =>
+      throw _privateConstructorUsedError;
   @optionalTypeArgs
-  TResult maybeWhen<TResult extends Object>({
-    TResult initializeLessonsStats(),
-    TResult updateLessonsStats(List<Lesson> lessons),
-    @required TResult orElse(),
-  });
+  TResult maybeWhen<TResult extends Object?>({
+    TResult Function()? initializeLessonsStats,
+    TResult Function(List<Lesson> lessons)? updateLessonsStats,
+    required TResult orElse(),
+  }) =>
+      throw _privateConstructorUsedError;
   @optionalTypeArgs
-  TResult map<TResult extends Object>({
-    @required TResult initializeLessonsStats(InitializeLessonsStats value),
-    @required TResult updateLessonsStats(UpdateLessonsStats value),
-  });
+  TResult map<TResult extends Object?>({
+    required TResult Function(InitializeLessonsStats value)
+        initializeLessonsStats,
+    required TResult Function(UpdateLessonsStats value) updateLessonsStats,
+  }) =>
+      throw _privateConstructorUsedError;
   @optionalTypeArgs
-  TResult maybeMap<TResult extends Object>({
-    TResult initializeLessonsStats(InitializeLessonsStats value),
-    TResult updateLessonsStats(UpdateLessonsStats value),
-    @required TResult orElse(),
-  });
+  TResult maybeMap<TResult extends Object?>({
+    TResult Function(InitializeLessonsStats value)? initializeLessonsStats,
+    TResult Function(UpdateLessonsStats value)? updateLessonsStats,
+    required TResult orElse(),
+  }) =>
+      throw _privateConstructorUsedError;
 }
 
 /// @nodoc
@@ -93,6 +98,7 @@ class _$InitializeLessonsStatsCopyWithImpl<$Res>
 }
 
 /// @nodoc
+
 class _$InitializeLessonsStats
     with DiagnosticableTreeMixin
     implements InitializeLessonsStats {
@@ -121,23 +127,20 @@ class _$InitializeLessonsStats
 
   @override
   @optionalTypeArgs
-  TResult when<TResult extends Object>({
-    @required TResult initializeLessonsStats(),
-    @required TResult updateLessonsStats(List<Lesson> lessons),
+  TResult when<TResult extends Object?>({
+    required TResult Function() initializeLessonsStats,
+    required TResult Function(List<Lesson> lessons) updateLessonsStats,
   }) {
-    assert(initializeLessonsStats != null);
-    assert(updateLessonsStats != null);
     return initializeLessonsStats();
   }
 
   @override
   @optionalTypeArgs
-  TResult maybeWhen<TResult extends Object>({
-    TResult initializeLessonsStats(),
-    TResult updateLessonsStats(List<Lesson> lessons),
-    @required TResult orElse(),
+  TResult maybeWhen<TResult extends Object?>({
+    TResult Function()? initializeLessonsStats,
+    TResult Function(List<Lesson> lessons)? updateLessonsStats,
+    required TResult orElse(),
   }) {
-    assert(orElse != null);
     if (initializeLessonsStats != null) {
       return initializeLessonsStats();
     }
@@ -146,23 +149,21 @@ class _$InitializeLessonsStats
 
   @override
   @optionalTypeArgs
-  TResult map<TResult extends Object>({
-    @required TResult initializeLessonsStats(InitializeLessonsStats value),
-    @required TResult updateLessonsStats(UpdateLessonsStats value),
+  TResult map<TResult extends Object?>({
+    required TResult Function(InitializeLessonsStats value)
+        initializeLessonsStats,
+    required TResult Function(UpdateLessonsStats value) updateLessonsStats,
   }) {
-    assert(initializeLessonsStats != null);
-    assert(updateLessonsStats != null);
     return initializeLessonsStats(this);
   }
 
   @override
   @optionalTypeArgs
-  TResult maybeMap<TResult extends Object>({
-    TResult initializeLessonsStats(InitializeLessonsStats value),
-    TResult updateLessonsStats(UpdateLessonsStats value),
-    @required TResult orElse(),
+  TResult maybeMap<TResult extends Object?>({
+    TResult Function(InitializeLessonsStats value)? initializeLessonsStats,
+    TResult Function(UpdateLessonsStats value)? updateLessonsStats,
+    required TResult orElse(),
   }) {
-    assert(orElse != null);
     if (initializeLessonsStats != null) {
       return initializeLessonsStats(this);
     }
@@ -195,20 +196,23 @@ class _$UpdateLessonsStatsCopyWithImpl<$Res>
 
   @override
   $Res call({
-    Object lessons = freezed,
+    Object? lessons = freezed,
   }) {
     return _then(UpdateLessonsStats(
-      lessons: lessons == freezed ? _value.lessons : lessons as List<Lesson>,
+      lessons: lessons == freezed
+          ? _value.lessons
+          : lessons // ignore: cast_nullable_to_non_nullable
+              as List<Lesson>,
     ));
   }
 }
 
 /// @nodoc
+
 class _$UpdateLessonsStats
     with DiagnosticableTreeMixin
     implements UpdateLessonsStats {
-  const _$UpdateLessonsStats({@required this.lessons})
-      : assert(lessons != null);
+  const _$UpdateLessonsStats({required this.lessons});
 
   @override
   final List<Lesson> lessons;
@@ -245,23 +249,20 @@ class _$UpdateLessonsStats
 
   @override
   @optionalTypeArgs
-  TResult when<TResult extends Object>({
-    @required TResult initializeLessonsStats(),
-    @required TResult updateLessonsStats(List<Lesson> lessons),
+  TResult when<TResult extends Object?>({
+    required TResult Function() initializeLessonsStats,
+    required TResult Function(List<Lesson> lessons) updateLessonsStats,
   }) {
-    assert(initializeLessonsStats != null);
-    assert(updateLessonsStats != null);
     return updateLessonsStats(lessons);
   }
 
   @override
   @optionalTypeArgs
-  TResult maybeWhen<TResult extends Object>({
-    TResult initializeLessonsStats(),
-    TResult updateLessonsStats(List<Lesson> lessons),
-    @required TResult orElse(),
+  TResult maybeWhen<TResult extends Object?>({
+    TResult Function()? initializeLessonsStats,
+    TResult Function(List<Lesson> lessons)? updateLessonsStats,
+    required TResult orElse(),
   }) {
-    assert(orElse != null);
     if (updateLessonsStats != null) {
       return updateLessonsStats(lessons);
     }
@@ -270,23 +271,21 @@ class _$UpdateLessonsStats
 
   @override
   @optionalTypeArgs
-  TResult map<TResult extends Object>({
-    @required TResult initializeLessonsStats(InitializeLessonsStats value),
-    @required TResult updateLessonsStats(UpdateLessonsStats value),
+  TResult map<TResult extends Object?>({
+    required TResult Function(InitializeLessonsStats value)
+        initializeLessonsStats,
+    required TResult Function(UpdateLessonsStats value) updateLessonsStats,
   }) {
-    assert(initializeLessonsStats != null);
-    assert(updateLessonsStats != null);
     return updateLessonsStats(this);
   }
 
   @override
   @optionalTypeArgs
-  TResult maybeMap<TResult extends Object>({
-    TResult initializeLessonsStats(InitializeLessonsStats value),
-    TResult updateLessonsStats(UpdateLessonsStats value),
-    @required TResult orElse(),
+  TResult maybeMap<TResult extends Object?>({
+    TResult Function(InitializeLessonsStats value)? initializeLessonsStats,
+    TResult Function(UpdateLessonsStats value)? updateLessonsStats,
+    required TResult orElse(),
   }) {
-    assert(orElse != null);
     if (updateLessonsStats != null) {
       return updateLessonsStats(this);
     }
@@ -295,10 +294,11 @@ class _$UpdateLessonsStats
 }
 
 abstract class UpdateLessonsStats implements LessonsStatsEvent {
-  const factory UpdateLessonsStats({@required List<Lesson> lessons}) =
+  const factory UpdateLessonsStats({required List<Lesson> lessons}) =
       _$UpdateLessonsStats;
 
-  List<Lesson> get lessons;
+  List<Lesson> get lessons => throw _privateConstructorUsedError;
   @JsonKey(ignore: true)
-  $UpdateLessonsStatsCopyWith<UpdateLessonsStats> get copyWith;
+  $UpdateLessonsStatsCopyWith<UpdateLessonsStats> get copyWith =>
+      throw _privateConstructorUsedError;
 }

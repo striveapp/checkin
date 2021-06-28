@@ -1,3 +1,5 @@
+// @dart=2.9
+
 import 'package:checkin/src/ui/components/registry/delete_lesson_dialog.dart';
 import 'package:flutter/material.dart';
 

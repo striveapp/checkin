@@ -8,8 +8,8 @@ part of 'lesson_config.dart';
 
 _$_LessonConfig _$_$_LessonConfigFromJson(Map<String, dynamic> json) {
   return _$_LessonConfig(
-    type: json['type'] as String,
-    color: json['color'] as String,
+    type: json['type'] as String?,
+    color: json['color'] as String?,
   );
 }
 

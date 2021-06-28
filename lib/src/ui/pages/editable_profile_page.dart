@@ -1,3 +1,5 @@
+// @dart=2.9
+
 import 'package:checkin/src/blocs/auth/auth_bloc.dart';
 import 'package:checkin/src/blocs/auth/bloc.dart';
 import 'package:checkin/src/blocs/profile/bloc.dart';
@@ -16,7 +18,9 @@ class EditableProfilePage extends StatelessWidget {
   static const String enterYourName = 'Enter your name';
   static const String thisDoesNotLookLikeAValidName = "This does not look like a valid name";
 
-  const EditableProfilePage({Key key}) : super(key: key);
+  final PageController pageController;
+
+  const EditableProfilePage({Key key, PageController this.pageController}) : super(key: key);
 
   @override
   Widget build(BuildContext context) {
@@ -33,7 +37,10 @@ class EditableProfilePage extends StatelessWidget {
                 Align(
                   alignment: Alignment.centerRight,
                   child: OutlinedButton(
-                    onPressed: () {},
+                    onPressed: () {
+                      pageController.animateToPage(1,
+                          curve: Curves.ease, duration: Duration(milliseconds: 500));
+                    },
                     style: OutlinedButton.styleFrom(padding: EdgeInsets.only(left: 10)),
                     child: Row(
                       mainAxisSize: MainAxisSize.min,
