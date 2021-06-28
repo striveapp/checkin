@@ -1,5 +1,5 @@
 // GENERATED CODE - DO NOT MODIFY BY HAND
-// ignore_for_file: deprecated_member_use, deprecated_member_use_from_same_package, use_function_type_syntax_for_parameters, unnecessary_const, avoid_init_to_null, invalid_override_different_default_values_named, prefer_expression_function_bodies
+// ignore_for_file: unused_element, deprecated_member_use, deprecated_member_use_from_same_package, use_function_type_syntax_for_parameters, unnecessary_const, avoid_init_to_null, invalid_override_different_default_values_named, prefer_expression_function_bodies, annotate_overrides
 
 part of 'registry_state.dart';
 
@@ -9,41 +9,39 @@ part of 'registry_state.dart';
 
 T _$identity<T>(T value) => value;
 
+final _privateConstructorUsedError = UnsupportedError(
+    'It seems like you constructed your class using `MyClass._()`. This constructor is only meant to be used by freezed and you are not supposed to need it nor use it.\nPlease check the documentation here for more informations: https://github.com/rrousselGit/freezed#custom-getters-and-methods');
+
 /// @nodoc
 class _$RegistryStateTearOff {
   const _$RegistryStateTearOff();
 
-// ignore: unused_element
   RegistryUninitialized registryUninitialized() {
     return const RegistryUninitialized();
   }
 
-// ignore: unused_element
   RegistryLoading registryLoading() {
     return const RegistryLoading();
   }
 
-// ignore: unused_element
   RegistryError registryError() {
     return const RegistryError();
   }
 
-// ignore: unused_element
   RegistryMissing registryMissing() {
     return const RegistryMissing();
   }
 
-// ignore: unused_element
   RegistryLoaded registryLoaded(
-      {@required User currentUser,
-      @required Lesson currentLesson,
+      {required User currentUser,
+      required Lesson currentLesson,
       bool isAcceptedUser = false,
       bool isRegisteredUser = false,
       bool isFullRegistry = false,
       bool isEmptyRegistry = false,
       bool isMasterOfTheClass = false,
       dynamic isClosedRegistry = false,
-      DateTime nocache}) {
+      DateTime? nocache}) {
     return RegistryLoaded(
       currentUser: currentUser,
       currentLesson: currentLesson,
@@ -59,19 +57,17 @@ class _$RegistryStateTearOff {
 }
 
 /// @nodoc
-// ignore: unused_element
 const $RegistryState = _$RegistryStateTearOff();
 
 /// @nodoc
 mixin _$RegistryState {
   @optionalTypeArgs
-  TResult when<TResult extends Object>({
-    @required TResult registryUninitialized(),
-    @required TResult registryLoading(),
-    @required TResult registryError(),
-    @required TResult registryMissing(),
-    @required
-        TResult registryLoaded(
+  TResult when<TResult extends Object?>({
+    required TResult Function() registryUninitialized,
+    required TResult Function() registryLoading,
+    required TResult Function() registryError,
+    required TResult Function() registryMissing,
+    required TResult Function(
             User currentUser,
             Lesson currentLesson,
             bool isAcceptedUser,
@@ -80,43 +76,50 @@ mixin _$RegistryState {
             bool isEmptyRegistry,
             bool isMasterOfTheClass,
             dynamic isClosedRegistry,
-            DateTime nocache),
-  });
+            DateTime? nocache)
+        registryLoaded,
+  }) =>
+      throw _privateConstructorUsedError;
   @optionalTypeArgs
-  TResult maybeWhen<TResult extends Object>({
-    TResult registryUninitialized(),
-    TResult registryLoading(),
-    TResult registryError(),
-    TResult registryMissing(),
-    TResult registryLoaded(
-        User currentUser,
-        Lesson currentLesson,
-        bool isAcceptedUser,
-        bool isRegisteredUser,
-        bool isFullRegistry,
-        bool isEmptyRegistry,
-        bool isMasterOfTheClass,
-        dynamic isClosedRegistry,
-        DateTime nocache),
-    @required TResult orElse(),
-  });
+  TResult maybeWhen<TResult extends Object?>({
+    TResult Function()? registryUninitialized,
+    TResult Function()? registryLoading,
+    TResult Function()? registryError,
+    TResult Function()? registryMissing,
+    TResult Function(
+            User currentUser,
+            Lesson currentLesson,
+            bool isAcceptedUser,
+            bool isRegisteredUser,
+            bool isFullRegistry,
+            bool isEmptyRegistry,
+            bool isMasterOfTheClass,
+            dynamic isClosedRegistry,
+            DateTime? nocache)?
+        registryLoaded,
+    required TResult orElse(),
+  }) =>
+      throw _privateConstructorUsedError;
   @optionalTypeArgs
-  TResult map<TResult extends Object>({
-    @required TResult registryUninitialized(RegistryUninitialized value),
-    @required TResult registryLoading(RegistryLoading value),
-    @required TResult registryError(RegistryError value),
-    @required TResult registryMissing(RegistryMissing value),
-    @required TResult registryLoaded(RegistryLoaded value),
-  });
+  TResult map<TResult extends Object?>({
+    required TResult Function(RegistryUninitialized value)
+        registryUninitialized,
+    required TResult Function(RegistryLoading value) registryLoading,
+    required TResult Function(RegistryError value) registryError,
+    required TResult Function(RegistryMissing value) registryMissing,
+    required TResult Function(RegistryLoaded value) registryLoaded,
+  }) =>
+      throw _privateConstructorUsedError;
   @optionalTypeArgs
-  TResult maybeMap<TResult extends Object>({
-    TResult registryUninitialized(RegistryUninitialized value),
-    TResult registryLoading(RegistryLoading value),
-    TResult registryError(RegistryError value),
-    TResult registryMissing(RegistryMissing value),
-    TResult registryLoaded(RegistryLoaded value),
-    @required TResult orElse(),
-  });
+  TResult maybeMap<TResult extends Object?>({
+    TResult Function(RegistryUninitialized value)? registryUninitialized,
+    TResult Function(RegistryLoading value)? registryLoading,
+    TResult Function(RegistryError value)? registryError,
+    TResult Function(RegistryMissing value)? registryMissing,
+    TResult Function(RegistryLoaded value)? registryLoaded,
+    required TResult orElse(),
+  }) =>
+      throw _privateConstructorUsedError;
 }
 
 /// @nodoc
@@ -156,6 +159,7 @@ class _$RegistryUninitializedCopyWithImpl<$Res>
 }
 
 /// @nodoc
+
 class _$RegistryUninitialized
     with DiagnosticableTreeMixin
     implements RegistryUninitialized {
@@ -183,13 +187,12 @@ class _$RegistryUninitialized
 
   @override
   @optionalTypeArgs
-  TResult when<TResult extends Object>({
-    @required TResult registryUninitialized(),
-    @required TResult registryLoading(),
-    @required TResult registryError(),
-    @required TResult registryMissing(),
-    @required
-        TResult registryLoaded(
+  TResult when<TResult extends Object?>({
+    required TResult Function() registryUninitialized,
+    required TResult Function() registryLoading,
+    required TResult Function() registryError,
+    required TResult Function() registryMissing,
+    required TResult Function(
             User currentUser,
             Lesson currentLesson,
             bool isAcceptedUser,
@@ -198,36 +201,32 @@ class _$RegistryUninitialized
             bool isEmptyRegistry,
             bool isMasterOfTheClass,
             dynamic isClosedRegistry,
-            DateTime nocache),
+            DateTime? nocache)
+        registryLoaded,
   }) {
-    assert(registryUninitialized != null);
-    assert(registryLoading != null);
-    assert(registryError != null);
-    assert(registryMissing != null);
-    assert(registryLoaded != null);
     return registryUninitialized();
   }
 
   @override
   @optionalTypeArgs
-  TResult maybeWhen<TResult extends Object>({
-    TResult registryUninitialized(),
-    TResult registryLoading(),
-    TResult registryError(),
-    TResult registryMissing(),
-    TResult registryLoaded(
-        User currentUser,
-        Lesson currentLesson,
-        bool isAcceptedUser,
-        bool isRegisteredUser,
-        bool isFullRegistry,
-        bool isEmptyRegistry,
-        bool isMasterOfTheClass,
-        dynamic isClosedRegistry,
-        DateTime nocache),
-    @required TResult orElse(),
+  TResult maybeWhen<TResult extends Object?>({
+    TResult Function()? registryUninitialized,
+    TResult Function()? registryLoading,
+    TResult Function()? registryError,
+    TResult Function()? registryMissing,
+    TResult Function(
+            User currentUser,
+            Lesson currentLesson,
+            bool isAcceptedUser,
+            bool isRegisteredUser,
+            bool isFullRegistry,
+            bool isEmptyRegistry,
+            bool isMasterOfTheClass,
+            dynamic isClosedRegistry,
+            DateTime? nocache)?
+        registryLoaded,
+    required TResult orElse(),
   }) {
-    assert(orElse != null);
     if (registryUninitialized != null) {
       return registryUninitialized();
     }
@@ -236,32 +235,27 @@ class _$RegistryUninitialized
 
   @override
   @optionalTypeArgs
-  TResult map<TResult extends Object>({
-    @required TResult registryUninitialized(RegistryUninitialized value),
-    @required TResult registryLoading(RegistryLoading value),
-    @required TResult registryError(RegistryError value),
-    @required TResult registryMissing(RegistryMissing value),
-    @required TResult registryLoaded(RegistryLoaded value),
+  TResult map<TResult extends Object?>({
+    required TResult Function(RegistryUninitialized value)
+        registryUninitialized,
+    required TResult Function(RegistryLoading value) registryLoading,
+    required TResult Function(RegistryError value) registryError,
+    required TResult Function(RegistryMissing value) registryMissing,
+    required TResult Function(RegistryLoaded value) registryLoaded,
   }) {
-    assert(registryUninitialized != null);
-    assert(registryLoading != null);
-    assert(registryError != null);
-    assert(registryMissing != null);
-    assert(registryLoaded != null);
     return registryUninitialized(this);
   }
 
   @override
   @optionalTypeArgs
-  TResult maybeMap<TResult extends Object>({
-    TResult registryUninitialized(RegistryUninitialized value),
-    TResult registryLoading(RegistryLoading value),
-    TResult registryError(RegistryError value),
-    TResult registryMissing(RegistryMissing value),
-    TResult registryLoaded(RegistryLoaded value),
-    @required TResult orElse(),
+  TResult maybeMap<TResult extends Object?>({
+    TResult Function(RegistryUninitialized value)? registryUninitialized,
+    TResult Function(RegistryLoading value)? registryLoading,
+    TResult Function(RegistryError value)? registryError,
+    TResult Function(RegistryMissing value)? registryMissing,
+    TResult Function(RegistryLoaded value)? registryLoaded,
+    required TResult orElse(),
   }) {
-    assert(orElse != null);
     if (registryUninitialized != null) {
       return registryUninitialized(this);
     }
@@ -293,6 +287,7 @@ class _$RegistryLoadingCopyWithImpl<$Res>
 }
 
 /// @nodoc
+
 class _$RegistryLoading
     with DiagnosticableTreeMixin
     implements RegistryLoading {
@@ -320,13 +315,12 @@ class _$RegistryLoading
 
   @override
   @optionalTypeArgs
-  TResult when<TResult extends Object>({
-    @required TResult registryUninitialized(),
-    @required TResult registryLoading(),
-    @required TResult registryError(),
-    @required TResult registryMissing(),
-    @required
-        TResult registryLoaded(
+  TResult when<TResult extends Object?>({
+    required TResult Function() registryUninitialized,
+    required TResult Function() registryLoading,
+    required TResult Function() registryError,
+    required TResult Function() registryMissing,
+    required TResult Function(
             User currentUser,
             Lesson currentLesson,
             bool isAcceptedUser,
@@ -335,36 +329,32 @@ class _$RegistryLoading
             bool isEmptyRegistry,
             bool isMasterOfTheClass,
             dynamic isClosedRegistry,
-            DateTime nocache),
+            DateTime? nocache)
+        registryLoaded,
   }) {
-    assert(registryUninitialized != null);
-    assert(registryLoading != null);
-    assert(registryError != null);
-    assert(registryMissing != null);
-    assert(registryLoaded != null);
     return registryLoading();
   }
 
   @override
   @optionalTypeArgs
-  TResult maybeWhen<TResult extends Object>({
-    TResult registryUninitialized(),
-    TResult registryLoading(),
-    TResult registryError(),
-    TResult registryMissing(),
-    TResult registryLoaded(
-        User currentUser,
-        Lesson currentLesson,
-        bool isAcceptedUser,
-        bool isRegisteredUser,
-        bool isFullRegistry,
-        bool isEmptyRegistry,
-        bool isMasterOfTheClass,
-        dynamic isClosedRegistry,
-        DateTime nocache),
-    @required TResult orElse(),
+  TResult maybeWhen<TResult extends Object?>({
+    TResult Function()? registryUninitialized,
+    TResult Function()? registryLoading,
+    TResult Function()? registryError,
+    TResult Function()? registryMissing,
+    TResult Function(
+            User currentUser,
+            Lesson currentLesson,
+            bool isAcceptedUser,
+            bool isRegisteredUser,
+            bool isFullRegistry,
+            bool isEmptyRegistry,
+            bool isMasterOfTheClass,
+            dynamic isClosedRegistry,
+            DateTime? nocache)?
+        registryLoaded,
+    required TResult orElse(),
   }) {
-    assert(orElse != null);
     if (registryLoading != null) {
       return registryLoading();
     }
@@ -373,32 +363,27 @@ class _$RegistryLoading
 
   @override
   @optionalTypeArgs
-  TResult map<TResult extends Object>({
-    @required TResult registryUninitialized(RegistryUninitialized value),
-    @required TResult registryLoading(RegistryLoading value),
-    @required TResult registryError(RegistryError value),
-    @required TResult registryMissing(RegistryMissing value),
-    @required TResult registryLoaded(RegistryLoaded value),
+  TResult map<TResult extends Object?>({
+    required TResult Function(RegistryUninitialized value)
+        registryUninitialized,
+    required TResult Function(RegistryLoading value) registryLoading,
+    required TResult Function(RegistryError value) registryError,
+    required TResult Function(RegistryMissing value) registryMissing,
+    required TResult Function(RegistryLoaded value) registryLoaded,
   }) {
-    assert(registryUninitialized != null);
-    assert(registryLoading != null);
-    assert(registryError != null);
-    assert(registryMissing != null);
-    assert(registryLoaded != null);
     return registryLoading(this);
   }
 
   @override
   @optionalTypeArgs
-  TResult maybeMap<TResult extends Object>({
-    TResult registryUninitialized(RegistryUninitialized value),
-    TResult registryLoading(RegistryLoading value),
-    TResult registryError(RegistryError value),
-    TResult registryMissing(RegistryMissing value),
-    TResult registryLoaded(RegistryLoaded value),
-    @required TResult orElse(),
+  TResult maybeMap<TResult extends Object?>({
+    TResult Function(RegistryUninitialized value)? registryUninitialized,
+    TResult Function(RegistryLoading value)? registryLoading,
+    TResult Function(RegistryError value)? registryError,
+    TResult Function(RegistryMissing value)? registryMissing,
+    TResult Function(RegistryLoaded value)? registryLoaded,
+    required TResult orElse(),
   }) {
-    assert(orElse != null);
     if (registryLoading != null) {
       return registryLoading(this);
     }
@@ -430,6 +415,7 @@ class _$RegistryErrorCopyWithImpl<$Res>
 }
 
 /// @nodoc
+
 class _$RegistryError with DiagnosticableTreeMixin implements RegistryError {
   const _$RegistryError();
 
@@ -454,13 +440,12 @@ class _$RegistryError with DiagnosticableTreeMixin implements RegistryError {
 
   @override
   @optionalTypeArgs
-  TResult when<TResult extends Object>({
-    @required TResult registryUninitialized(),
-    @required TResult registryLoading(),
-    @required TResult registryError(),
-    @required TResult registryMissing(),
-    @required
-        TResult registryLoaded(
+  TResult when<TResult extends Object?>({
+    required TResult Function() registryUninitialized,
+    required TResult Function() registryLoading,
+    required TResult Function() registryError,
+    required TResult Function() registryMissing,
+    required TResult Function(
             User currentUser,
             Lesson currentLesson,
             bool isAcceptedUser,
@@ -469,36 +454,32 @@ class _$RegistryError with DiagnosticableTreeMixin implements RegistryError {
             bool isEmptyRegistry,
             bool isMasterOfTheClass,
             dynamic isClosedRegistry,
-            DateTime nocache),
+            DateTime? nocache)
+        registryLoaded,
   }) {
-    assert(registryUninitialized != null);
-    assert(registryLoading != null);
-    assert(registryError != null);
-    assert(registryMissing != null);
-    assert(registryLoaded != null);
     return registryError();
   }
 
   @override
   @optionalTypeArgs
-  TResult maybeWhen<TResult extends Object>({
-    TResult registryUninitialized(),
-    TResult registryLoading(),
-    TResult registryError(),
-    TResult registryMissing(),
-    TResult registryLoaded(
-        User currentUser,
-        Lesson currentLesson,
-        bool isAcceptedUser,
-        bool isRegisteredUser,
-        bool isFullRegistry,
-        bool isEmptyRegistry,
-        bool isMasterOfTheClass,
-        dynamic isClosedRegistry,
-        DateTime nocache),
-    @required TResult orElse(),
+  TResult maybeWhen<TResult extends Object?>({
+    TResult Function()? registryUninitialized,
+    TResult Function()? registryLoading,
+    TResult Function()? registryError,
+    TResult Function()? registryMissing,
+    TResult Function(
+            User currentUser,
+            Lesson currentLesson,
+            bool isAcceptedUser,
+            bool isRegisteredUser,
+            bool isFullRegistry,
+            bool isEmptyRegistry,
+            bool isMasterOfTheClass,
+            dynamic isClosedRegistry,
+            DateTime? nocache)?
+        registryLoaded,
+    required TResult orElse(),
   }) {
-    assert(orElse != null);
     if (registryError != null) {
       return registryError();
     }
@@ -507,32 +488,27 @@ class _$RegistryError with DiagnosticableTreeMixin implements RegistryError {
 
   @override
   @optionalTypeArgs
-  TResult map<TResult extends Object>({
-    @required TResult registryUninitialized(RegistryUninitialized value),
-    @required TResult registryLoading(RegistryLoading value),
-    @required TResult registryError(RegistryError value),
-    @required TResult registryMissing(RegistryMissing value),
-    @required TResult registryLoaded(RegistryLoaded value),
+  TResult map<TResult extends Object?>({
+    required TResult Function(RegistryUninitialized value)
+        registryUninitialized,
+    required TResult Function(RegistryLoading value) registryLoading,
+    required TResult Function(RegistryError value) registryError,
+    required TResult Function(RegistryMissing value) registryMissing,
+    required TResult Function(RegistryLoaded value) registryLoaded,
   }) {
-    assert(registryUninitialized != null);
-    assert(registryLoading != null);
-    assert(registryError != null);
-    assert(registryMissing != null);
-    assert(registryLoaded != null);
     return registryError(this);
   }
 
   @override
   @optionalTypeArgs
-  TResult maybeMap<TResult extends Object>({
-    TResult registryUninitialized(RegistryUninitialized value),
-    TResult registryLoading(RegistryLoading value),
-    TResult registryError(RegistryError value),
-    TResult registryMissing(RegistryMissing value),
-    TResult registryLoaded(RegistryLoaded value),
-    @required TResult orElse(),
+  TResult maybeMap<TResult extends Object?>({
+    TResult Function(RegistryUninitialized value)? registryUninitialized,
+    TResult Function(RegistryLoading value)? registryLoading,
+    TResult Function(RegistryError value)? registryError,
+    TResult Function(RegistryMissing value)? registryMissing,
+    TResult Function(RegistryLoaded value)? registryLoaded,
+    required TResult orElse(),
   }) {
-    assert(orElse != null);
     if (registryError != null) {
       return registryError(this);
     }
@@ -564,6 +540,7 @@ class _$RegistryMissingCopyWithImpl<$Res>
 }
 
 /// @nodoc
+
 class _$RegistryMissing
     with DiagnosticableTreeMixin
     implements RegistryMissing {
@@ -591,13 +568,12 @@ class _$RegistryMissing
 
   @override
   @optionalTypeArgs
-  TResult when<TResult extends Object>({
-    @required TResult registryUninitialized(),
-    @required TResult registryLoading(),
-    @required TResult registryError(),
-    @required TResult registryMissing(),
-    @required
-        TResult registryLoaded(
+  TResult when<TResult extends Object?>({
+    required TResult Function() registryUninitialized,
+    required TResult Function() registryLoading,
+    required TResult Function() registryError,
+    required TResult Function() registryMissing,
+    required TResult Function(
             User currentUser,
             Lesson currentLesson,
             bool isAcceptedUser,
@@ -606,36 +582,32 @@ class _$RegistryMissing
             bool isEmptyRegistry,
             bool isMasterOfTheClass,
             dynamic isClosedRegistry,
-            DateTime nocache),
+            DateTime? nocache)
+        registryLoaded,
   }) {
-    assert(registryUninitialized != null);
-    assert(registryLoading != null);
-    assert(registryError != null);
-    assert(registryMissing != null);
-    assert(registryLoaded != null);
     return registryMissing();
   }
 
   @override
   @optionalTypeArgs
-  TResult maybeWhen<TResult extends Object>({
-    TResult registryUninitialized(),
-    TResult registryLoading(),
-    TResult registryError(),
-    TResult registryMissing(),
-    TResult registryLoaded(
-        User currentUser,
-        Lesson currentLesson,
-        bool isAcceptedUser,
-        bool isRegisteredUser,
-        bool isFullRegistry,
-        bool isEmptyRegistry,
-        bool isMasterOfTheClass,
-        dynamic isClosedRegistry,
-        DateTime nocache),
-    @required TResult orElse(),
+  TResult maybeWhen<TResult extends Object?>({
+    TResult Function()? registryUninitialized,
+    TResult Function()? registryLoading,
+    TResult Function()? registryError,
+    TResult Function()? registryMissing,
+    TResult Function(
+            User currentUser,
+            Lesson currentLesson,
+            bool isAcceptedUser,
+            bool isRegisteredUser,
+            bool isFullRegistry,
+            bool isEmptyRegistry,
+            bool isMasterOfTheClass,
+            dynamic isClosedRegistry,
+            DateTime? nocache)?
+        registryLoaded,
+    required TResult orElse(),
   }) {
-    assert(orElse != null);
     if (registryMissing != null) {
       return registryMissing();
     }
@@ -644,32 +616,27 @@ class _$RegistryMissing
 
   @override
   @optionalTypeArgs
-  TResult map<TResult extends Object>({
-    @required TResult registryUninitialized(RegistryUninitialized value),
-    @required TResult registryLoading(RegistryLoading value),
-    @required TResult registryError(RegistryError value),
-    @required TResult registryMissing(RegistryMissing value),
-    @required TResult registryLoaded(RegistryLoaded value),
+  TResult map<TResult extends Object?>({
+    required TResult Function(RegistryUninitialized value)
+        registryUninitialized,
+    required TResult Function(RegistryLoading value) registryLoading,
+    required TResult Function(RegistryError value) registryError,
+    required TResult Function(RegistryMissing value) registryMissing,
+    required TResult Function(RegistryLoaded value) registryLoaded,
   }) {
-    assert(registryUninitialized != null);
-    assert(registryLoading != null);
-    assert(registryError != null);
-    assert(registryMissing != null);
-    assert(registryLoaded != null);
     return registryMissing(this);
   }
 
   @override
   @optionalTypeArgs
-  TResult maybeMap<TResult extends Object>({
-    TResult registryUninitialized(RegistryUninitialized value),
-    TResult registryLoading(RegistryLoading value),
-    TResult registryError(RegistryError value),
-    TResult registryMissing(RegistryMissing value),
-    TResult registryLoaded(RegistryLoaded value),
-    @required TResult orElse(),
+  TResult maybeMap<TResult extends Object?>({
+    TResult Function(RegistryUninitialized value)? registryUninitialized,
+    TResult Function(RegistryLoading value)? registryLoading,
+    TResult Function(RegistryError value)? registryError,
+    TResult Function(RegistryMissing value)? registryMissing,
+    TResult Function(RegistryLoaded value)? registryLoaded,
+    required TResult orElse(),
   }) {
-    assert(orElse != null);
     if (registryMissing != null) {
       return registryMissing(this);
     }
@@ -695,7 +662,7 @@ abstract class $RegistryLoadedCopyWith<$Res> {
       bool isEmptyRegistry,
       bool isMasterOfTheClass,
       dynamic isClosedRegistry,
-      DateTime nocache});
+      DateTime? nocache});
 
   $UserCopyWith<$Res> get currentUser;
   $LessonCopyWith<$Res> get currentLesson;
@@ -714,49 +681,57 @@ class _$RegistryLoadedCopyWithImpl<$Res>
 
   @override
   $Res call({
-    Object currentUser = freezed,
-    Object currentLesson = freezed,
-    Object isAcceptedUser = freezed,
-    Object isRegisteredUser = freezed,
-    Object isFullRegistry = freezed,
-    Object isEmptyRegistry = freezed,
-    Object isMasterOfTheClass = freezed,
-    Object isClosedRegistry = freezed,
-    Object nocache = freezed,
+    Object? currentUser = freezed,
+    Object? currentLesson = freezed,
+    Object? isAcceptedUser = freezed,
+    Object? isRegisteredUser = freezed,
+    Object? isFullRegistry = freezed,
+    Object? isEmptyRegistry = freezed,
+    Object? isMasterOfTheClass = freezed,
+    Object? isClosedRegistry = freezed,
+    Object? nocache = freezed,
   }) {
     return _then(RegistryLoaded(
-      currentUser:
-          currentUser == freezed ? _value.currentUser : currentUser as User,
+      currentUser: currentUser == freezed
+          ? _value.currentUser
+          : currentUser // ignore: cast_nullable_to_non_nullable
+              as User,
       currentLesson: currentLesson == freezed
           ? _value.currentLesson
-          : currentLesson as Lesson,
+          : currentLesson // ignore: cast_nullable_to_non_nullable
+              as Lesson,
       isAcceptedUser: isAcceptedUser == freezed
           ? _value.isAcceptedUser
-          : isAcceptedUser as bool,
+          : isAcceptedUser // ignore: cast_nullable_to_non_nullable
+              as bool,
       isRegisteredUser: isRegisteredUser == freezed
           ? _value.isRegisteredUser
-          : isRegisteredUser as bool,
+          : isRegisteredUser // ignore: cast_nullable_to_non_nullable
+              as bool,
       isFullRegistry: isFullRegistry == freezed
           ? _value.isFullRegistry
-          : isFullRegistry as bool,
+          : isFullRegistry // ignore: cast_nullable_to_non_nullable
+              as bool,
       isEmptyRegistry: isEmptyRegistry == freezed
           ? _value.isEmptyRegistry
-          : isEmptyRegistry as bool,
+          : isEmptyRegistry // ignore: cast_nullable_to_non_nullable
+              as bool,
       isMasterOfTheClass: isMasterOfTheClass == freezed
           ? _value.isMasterOfTheClass
-          : isMasterOfTheClass as bool,
+          : isMasterOfTheClass // ignore: cast_nullable_to_non_nullable
+              as bool,
       isClosedRegistry: isClosedRegistry == freezed
           ? _value.isClosedRegistry
           : isClosedRegistry,
-      nocache: nocache == freezed ? _value.nocache : nocache as DateTime,
+      nocache: nocache == freezed
+          ? _value.nocache
+          : nocache // ignore: cast_nullable_to_non_nullable
+              as DateTime?,
     ));
   }
 
   @override
   $UserCopyWith<$Res> get currentUser {
-    if (_value.currentUser == null) {
-      return null;
-    }
     return $UserCopyWith<$Res>(_value.currentUser, (value) {
       return _then(_value.copyWith(currentUser: value));
     });
@@ -764,9 +739,6 @@ class _$RegistryLoadedCopyWithImpl<$Res>
 
   @override
   $LessonCopyWith<$Res> get currentLesson {
-    if (_value.currentLesson == null) {
-      return null;
-    }
     return $LessonCopyWith<$Res>(_value.currentLesson, (value) {
       return _then(_value.copyWith(currentLesson: value));
     });
@@ -774,25 +746,18 @@ class _$RegistryLoadedCopyWithImpl<$Res>
 }
 
 /// @nodoc
+
 class _$RegistryLoaded with DiagnosticableTreeMixin implements RegistryLoaded {
   const _$RegistryLoaded(
-      {@required this.currentUser,
-      @required this.currentLesson,
+      {required this.currentUser,
+      required this.currentLesson,
       this.isAcceptedUser = false,
       this.isRegisteredUser = false,
       this.isFullRegistry = false,
       this.isEmptyRegistry = false,
       this.isMasterOfTheClass = false,
       this.isClosedRegistry = false,
-      this.nocache})
-      : assert(currentUser != null),
-        assert(currentLesson != null),
-        assert(isAcceptedUser != null),
-        assert(isRegisteredUser != null),
-        assert(isFullRegistry != null),
-        assert(isEmptyRegistry != null),
-        assert(isMasterOfTheClass != null),
-        assert(isClosedRegistry != null);
+      this.nocache});
 
   @override
   final User currentUser;
@@ -817,7 +782,7 @@ class _$RegistryLoaded with DiagnosticableTreeMixin implements RegistryLoaded {
   @override
   final dynamic isClosedRegistry;
   @override
-  final DateTime nocache;
+  final DateTime? nocache;
 
   @override
   String toString({DiagnosticLevel minLevel = DiagnosticLevel.info}) {
@@ -892,13 +857,12 @@ class _$RegistryLoaded with DiagnosticableTreeMixin implements RegistryLoaded {
 
   @override
   @optionalTypeArgs
-  TResult when<TResult extends Object>({
-    @required TResult registryUninitialized(),
-    @required TResult registryLoading(),
-    @required TResult registryError(),
-    @required TResult registryMissing(),
-    @required
-        TResult registryLoaded(
+  TResult when<TResult extends Object?>({
+    required TResult Function() registryUninitialized,
+    required TResult Function() registryLoading,
+    required TResult Function() registryError,
+    required TResult Function() registryMissing,
+    required TResult Function(
             User currentUser,
             Lesson currentLesson,
             bool isAcceptedUser,
@@ -907,13 +871,9 @@ class _$RegistryLoaded with DiagnosticableTreeMixin implements RegistryLoaded {
             bool isEmptyRegistry,
             bool isMasterOfTheClass,
             dynamic isClosedRegistry,
-            DateTime nocache),
+            DateTime? nocache)
+        registryLoaded,
   }) {
-    assert(registryUninitialized != null);
-    assert(registryLoading != null);
-    assert(registryError != null);
-    assert(registryMissing != null);
-    assert(registryLoaded != null);
     return registryLoaded(
         currentUser,
         currentLesson,
@@ -928,24 +888,24 @@ class _$RegistryLoaded with DiagnosticableTreeMixin implements RegistryLoaded {
 
   @override
   @optionalTypeArgs
-  TResult maybeWhen<TResult extends Object>({
-    TResult registryUninitialized(),
-    TResult registryLoading(),
-    TResult registryError(),
-    TResult registryMissing(),
-    TResult registryLoaded(
-        User currentUser,
-        Lesson currentLesson,
-        bool isAcceptedUser,
-        bool isRegisteredUser,
-        bool isFullRegistry,
-        bool isEmptyRegistry,
-        bool isMasterOfTheClass,
-        dynamic isClosedRegistry,
-        DateTime nocache),
-    @required TResult orElse(),
+  TResult maybeWhen<TResult extends Object?>({
+    TResult Function()? registryUninitialized,
+    TResult Function()? registryLoading,
+    TResult Function()? registryError,
+    TResult Function()? registryMissing,
+    TResult Function(
+            User currentUser,
+            Lesson currentLesson,
+            bool isAcceptedUser,
+            bool isRegisteredUser,
+            bool isFullRegistry,
+            bool isEmptyRegistry,
+            bool isMasterOfTheClass,
+            dynamic isClosedRegistry,
+            DateTime? nocache)?
+        registryLoaded,
+    required TResult orElse(),
   }) {
-    assert(orElse != null);
     if (registryLoaded != null) {
       return registryLoaded(
           currentUser,
@@ -963,32 +923,27 @@ class _$RegistryLoaded with DiagnosticableTreeMixin implements RegistryLoaded {
 
   @override
   @optionalTypeArgs
-  TResult map<TResult extends Object>({
-    @required TResult registryUninitialized(RegistryUninitialized value),
-    @required TResult registryLoading(RegistryLoading value),
-    @required TResult registryError(RegistryError value),
-    @required TResult registryMissing(RegistryMissing value),
-    @required TResult registryLoaded(RegistryLoaded value),
+  TResult map<TResult extends Object?>({
+    required TResult Function(RegistryUninitialized value)
+        registryUninitialized,
+    required TResult Function(RegistryLoading value) registryLoading,
+    required TResult Function(RegistryError value) registryError,
+    required TResult Function(RegistryMissing value) registryMissing,
+    required TResult Function(RegistryLoaded value) registryLoaded,
   }) {
-    assert(registryUninitialized != null);
-    assert(registryLoading != null);
-    assert(registryError != null);
-    assert(registryMissing != null);
-    assert(registryLoaded != null);
     return registryLoaded(this);
   }
 
   @override
   @optionalTypeArgs
-  TResult maybeMap<TResult extends Object>({
-    TResult registryUninitialized(RegistryUninitialized value),
-    TResult registryLoading(RegistryLoading value),
-    TResult registryError(RegistryError value),
-    TResult registryMissing(RegistryMissing value),
-    TResult registryLoaded(RegistryLoaded value),
-    @required TResult orElse(),
+  TResult maybeMap<TResult extends Object?>({
+    TResult Function(RegistryUninitialized value)? registryUninitialized,
+    TResult Function(RegistryLoading value)? registryLoading,
+    TResult Function(RegistryError value)? registryError,
+    TResult Function(RegistryMissing value)? registryMissing,
+    TResult Function(RegistryLoaded value)? registryLoaded,
+    required TResult orElse(),
   }) {
-    assert(orElse != null);
     if (registryLoaded != null) {
       return registryLoaded(this);
     }
@@ -998,25 +953,26 @@ class _$RegistryLoaded with DiagnosticableTreeMixin implements RegistryLoaded {
 
 abstract class RegistryLoaded implements RegistryState {
   const factory RegistryLoaded(
-      {@required User currentUser,
-      @required Lesson currentLesson,
+      {required User currentUser,
+      required Lesson currentLesson,
       bool isAcceptedUser,
       bool isRegisteredUser,
       bool isFullRegistry,
       bool isEmptyRegistry,
       bool isMasterOfTheClass,
       dynamic isClosedRegistry,
-      DateTime nocache}) = _$RegistryLoaded;
+      DateTime? nocache}) = _$RegistryLoaded;
 
-  User get currentUser;
-  Lesson get currentLesson;
-  bool get isAcceptedUser;
-  bool get isRegisteredUser;
-  bool get isFullRegistry;
-  bool get isEmptyRegistry;
-  bool get isMasterOfTheClass;
-  dynamic get isClosedRegistry;
-  DateTime get nocache;
+  User get currentUser => throw _privateConstructorUsedError;
+  Lesson get currentLesson => throw _privateConstructorUsedError;
+  bool get isAcceptedUser => throw _privateConstructorUsedError;
+  bool get isRegisteredUser => throw _privateConstructorUsedError;
+  bool get isFullRegistry => throw _privateConstructorUsedError;
+  bool get isEmptyRegistry => throw _privateConstructorUsedError;
+  bool get isMasterOfTheClass => throw _privateConstructorUsedError;
+  dynamic get isClosedRegistry => throw _privateConstructorUsedError;
+  DateTime? get nocache => throw _privateConstructorUsedError;
   @JsonKey(ignore: true)
-  $RegistryLoadedCopyWith<RegistryLoaded> get copyWith;
+  $RegistryLoadedCopyWith<RegistryLoaded> get copyWith =>
+      throw _privateConstructorUsedError;
 }

@@ -1,5 +1,5 @@
 // GENERATED CODE - DO NOT MODIFY BY HAND
-// ignore_for_file: deprecated_member_use, deprecated_member_use_from_same_package, use_function_type_syntax_for_parameters, unnecessary_const, avoid_init_to_null, invalid_override_different_default_values_named, prefer_expression_function_bodies
+// ignore_for_file: unused_element, deprecated_member_use, deprecated_member_use_from_same_package, use_function_type_syntax_for_parameters, unnecessary_const, avoid_init_to_null, invalid_override_different_default_values_named, prefer_expression_function_bodies, annotate_overrides
 
 part of 'membership_state.dart';
 
@@ -9,38 +9,36 @@ part of 'membership_state.dart';
 
 T _$identity<T>(T value) => value;
 
+final _privateConstructorUsedError = UnsupportedError(
+    'It seems like you constructed your class using `MyClass._()`. This constructor is only meant to be used by freezed and you are not supposed to need it nor use it.\nPlease check the documentation here for more informations: https://github.com/rrousselGit/freezed#custom-getters-and-methods');
+
 /// @nodoc
 class _$MembershipStateTearOff {
   const _$MembershipStateTearOff();
 
-// ignore: unused_element
   InitialMembershipState initialMembershipState() {
     return const InitialMembershipState();
   }
 
-// ignore: unused_element
-  MembershipActive membershipActive({@required Membership membership}) {
+  MembershipActive membershipActive({required Membership membership}) {
     return MembershipActive(
       membership: membership,
     );
   }
 
-// ignore: unused_element
   MembershipInactive membershipInactive(
-      {@required String customerEmail, String customerId}) {
+      {required String customerEmail, String? customerId}) {
     return MembershipInactive(
       customerEmail: customerEmail,
       customerId: customerId,
     );
   }
 
-// ignore: unused_element
   MembershipLoading membershipLoading() {
     return const MembershipLoading();
   }
 
-// ignore: unused_element
-  MembershipError membershipError({@required String errorMessage}) {
+  MembershipError membershipError({required String errorMessage}) {
     return MembershipError(
       errorMessage: errorMessage,
     );
@@ -48,46 +46,51 @@ class _$MembershipStateTearOff {
 }
 
 /// @nodoc
-// ignore: unused_element
 const $MembershipState = _$MembershipStateTearOff();
 
 /// @nodoc
 mixin _$MembershipState {
   @optionalTypeArgs
-  TResult when<TResult extends Object>({
-    @required TResult initialMembershipState(),
-    @required TResult membershipActive(Membership membership),
-    @required
-        TResult membershipInactive(String customerEmail, String customerId),
-    @required TResult membershipLoading(),
-    @required TResult membershipError(String errorMessage),
-  });
+  TResult when<TResult extends Object?>({
+    required TResult Function() initialMembershipState,
+    required TResult Function(Membership membership) membershipActive,
+    required TResult Function(String customerEmail, String? customerId)
+        membershipInactive,
+    required TResult Function() membershipLoading,
+    required TResult Function(String errorMessage) membershipError,
+  }) =>
+      throw _privateConstructorUsedError;
   @optionalTypeArgs
-  TResult maybeWhen<TResult extends Object>({
-    TResult initialMembershipState(),
-    TResult membershipActive(Membership membership),
-    TResult membershipInactive(String customerEmail, String customerId),
-    TResult membershipLoading(),
-    TResult membershipError(String errorMessage),
-    @required TResult orElse(),
-  });
+  TResult maybeWhen<TResult extends Object?>({
+    TResult Function()? initialMembershipState,
+    TResult Function(Membership membership)? membershipActive,
+    TResult Function(String customerEmail, String? customerId)?
+        membershipInactive,
+    TResult Function()? membershipLoading,
+    TResult Function(String errorMessage)? membershipError,
+    required TResult orElse(),
+  }) =>
+      throw _privateConstructorUsedError;
   @optionalTypeArgs
-  TResult map<TResult extends Object>({
-    @required TResult initialMembershipState(InitialMembershipState value),
-    @required TResult membershipActive(MembershipActive value),
-    @required TResult membershipInactive(MembershipInactive value),
-    @required TResult membershipLoading(MembershipLoading value),
-    @required TResult membershipError(MembershipError value),
-  });
+  TResult map<TResult extends Object?>({
+    required TResult Function(InitialMembershipState value)
+        initialMembershipState,
+    required TResult Function(MembershipActive value) membershipActive,
+    required TResult Function(MembershipInactive value) membershipInactive,
+    required TResult Function(MembershipLoading value) membershipLoading,
+    required TResult Function(MembershipError value) membershipError,
+  }) =>
+      throw _privateConstructorUsedError;
   @optionalTypeArgs
-  TResult maybeMap<TResult extends Object>({
-    TResult initialMembershipState(InitialMembershipState value),
-    TResult membershipActive(MembershipActive value),
-    TResult membershipInactive(MembershipInactive value),
-    TResult membershipLoading(MembershipLoading value),
-    TResult membershipError(MembershipError value),
-    @required TResult orElse(),
-  });
+  TResult maybeMap<TResult extends Object?>({
+    TResult Function(InitialMembershipState value)? initialMembershipState,
+    TResult Function(MembershipActive value)? membershipActive,
+    TResult Function(MembershipInactive value)? membershipInactive,
+    TResult Function(MembershipLoading value)? membershipLoading,
+    TResult Function(MembershipError value)? membershipError,
+    required TResult orElse(),
+  }) =>
+      throw _privateConstructorUsedError;
 }
 
 /// @nodoc
@@ -127,6 +130,7 @@ class _$InitialMembershipStateCopyWithImpl<$Res>
 }
 
 /// @nodoc
+
 class _$InitialMembershipState
     with DiagnosticableTreeMixin
     implements InitialMembershipState {
@@ -155,33 +159,28 @@ class _$InitialMembershipState
 
   @override
   @optionalTypeArgs
-  TResult when<TResult extends Object>({
-    @required TResult initialMembershipState(),
-    @required TResult membershipActive(Membership membership),
-    @required
-        TResult membershipInactive(String customerEmail, String customerId),
-    @required TResult membershipLoading(),
-    @required TResult membershipError(String errorMessage),
+  TResult when<TResult extends Object?>({
+    required TResult Function() initialMembershipState,
+    required TResult Function(Membership membership) membershipActive,
+    required TResult Function(String customerEmail, String? customerId)
+        membershipInactive,
+    required TResult Function() membershipLoading,
+    required TResult Function(String errorMessage) membershipError,
   }) {
-    assert(initialMembershipState != null);
-    assert(membershipActive != null);
-    assert(membershipInactive != null);
-    assert(membershipLoading != null);
-    assert(membershipError != null);
     return initialMembershipState();
   }
 
   @override
   @optionalTypeArgs
-  TResult maybeWhen<TResult extends Object>({
-    TResult initialMembershipState(),
-    TResult membershipActive(Membership membership),
-    TResult membershipInactive(String customerEmail, String customerId),
-    TResult membershipLoading(),
-    TResult membershipError(String errorMessage),
-    @required TResult orElse(),
+  TResult maybeWhen<TResult extends Object?>({
+    TResult Function()? initialMembershipState,
+    TResult Function(Membership membership)? membershipActive,
+    TResult Function(String customerEmail, String? customerId)?
+        membershipInactive,
+    TResult Function()? membershipLoading,
+    TResult Function(String errorMessage)? membershipError,
+    required TResult orElse(),
   }) {
-    assert(orElse != null);
     if (initialMembershipState != null) {
       return initialMembershipState();
     }
@@ -190,32 +189,27 @@ class _$InitialMembershipState
 
   @override
   @optionalTypeArgs
-  TResult map<TResult extends Object>({
-    @required TResult initialMembershipState(InitialMembershipState value),
-    @required TResult membershipActive(MembershipActive value),
-    @required TResult membershipInactive(MembershipInactive value),
-    @required TResult membershipLoading(MembershipLoading value),
-    @required TResult membershipError(MembershipError value),
+  TResult map<TResult extends Object?>({
+    required TResult Function(InitialMembershipState value)
+        initialMembershipState,
+    required TResult Function(MembershipActive value) membershipActive,
+    required TResult Function(MembershipInactive value) membershipInactive,
+    required TResult Function(MembershipLoading value) membershipLoading,
+    required TResult Function(MembershipError value) membershipError,
   }) {
-    assert(initialMembershipState != null);
-    assert(membershipActive != null);
-    assert(membershipInactive != null);
-    assert(membershipLoading != null);
-    assert(membershipError != null);
     return initialMembershipState(this);
   }
 
   @override
   @optionalTypeArgs
-  TResult maybeMap<TResult extends Object>({
-    TResult initialMembershipState(InitialMembershipState value),
-    TResult membershipActive(MembershipActive value),
-    TResult membershipInactive(MembershipInactive value),
-    TResult membershipLoading(MembershipLoading value),
-    TResult membershipError(MembershipError value),
-    @required TResult orElse(),
+  TResult maybeMap<TResult extends Object?>({
+    TResult Function(InitialMembershipState value)? initialMembershipState,
+    TResult Function(MembershipActive value)? membershipActive,
+    TResult Function(MembershipInactive value)? membershipInactive,
+    TResult Function(MembershipLoading value)? membershipLoading,
+    TResult Function(MembershipError value)? membershipError,
+    required TResult orElse(),
   }) {
-    assert(orElse != null);
     if (initialMembershipState != null) {
       return initialMembershipState(this);
     }
@@ -250,19 +244,18 @@ class _$MembershipActiveCopyWithImpl<$Res>
 
   @override
   $Res call({
-    Object membership = freezed,
+    Object? membership = freezed,
   }) {
     return _then(MembershipActive(
-      membership:
-          membership == freezed ? _value.membership : membership as Membership,
+      membership: membership == freezed
+          ? _value.membership
+          : membership // ignore: cast_nullable_to_non_nullable
+              as Membership,
     ));
   }
 
   @override
   $MembershipCopyWith<$Res> get membership {
-    if (_value.membership == null) {
-      return null;
-    }
     return $MembershipCopyWith<$Res>(_value.membership, (value) {
       return _then(_value.copyWith(membership: value));
     });
@@ -270,11 +263,11 @@ class _$MembershipActiveCopyWithImpl<$Res>
 }
 
 /// @nodoc
+
 class _$MembershipActive
     with DiagnosticableTreeMixin
     implements MembershipActive {
-  const _$MembershipActive({@required this.membership})
-      : assert(membership != null);
+  const _$MembershipActive({required this.membership});
 
   @override
   final Membership membership;
@@ -312,33 +305,28 @@ class _$MembershipActive
 
   @override
   @optionalTypeArgs
-  TResult when<TResult extends Object>({
-    @required TResult initialMembershipState(),
-    @required TResult membershipActive(Membership membership),
-    @required
-        TResult membershipInactive(String customerEmail, String customerId),
-    @required TResult membershipLoading(),
-    @required TResult membershipError(String errorMessage),
+  TResult when<TResult extends Object?>({
+    required TResult Function() initialMembershipState,
+    required TResult Function(Membership membership) membershipActive,
+    required TResult Function(String customerEmail, String? customerId)
+        membershipInactive,
+    required TResult Function() membershipLoading,
+    required TResult Function(String errorMessage) membershipError,
   }) {
-    assert(initialMembershipState != null);
-    assert(membershipActive != null);
-    assert(membershipInactive != null);
-    assert(membershipLoading != null);
-    assert(membershipError != null);
     return membershipActive(membership);
   }
 
   @override
   @optionalTypeArgs
-  TResult maybeWhen<TResult extends Object>({
-    TResult initialMembershipState(),
-    TResult membershipActive(Membership membership),
-    TResult membershipInactive(String customerEmail, String customerId),
-    TResult membershipLoading(),
-    TResult membershipError(String errorMessage),
-    @required TResult orElse(),
+  TResult maybeWhen<TResult extends Object?>({
+    TResult Function()? initialMembershipState,
+    TResult Function(Membership membership)? membershipActive,
+    TResult Function(String customerEmail, String? customerId)?
+        membershipInactive,
+    TResult Function()? membershipLoading,
+    TResult Function(String errorMessage)? membershipError,
+    required TResult orElse(),
   }) {
-    assert(orElse != null);
     if (membershipActive != null) {
       return membershipActive(membership);
     }
@@ -347,32 +335,27 @@ class _$MembershipActive
 
   @override
   @optionalTypeArgs
-  TResult map<TResult extends Object>({
-    @required TResult initialMembershipState(InitialMembershipState value),
-    @required TResult membershipActive(MembershipActive value),
-    @required TResult membershipInactive(MembershipInactive value),
-    @required TResult membershipLoading(MembershipLoading value),
-    @required TResult membershipError(MembershipError value),
+  TResult map<TResult extends Object?>({
+    required TResult Function(InitialMembershipState value)
+        initialMembershipState,
+    required TResult Function(MembershipActive value) membershipActive,
+    required TResult Function(MembershipInactive value) membershipInactive,
+    required TResult Function(MembershipLoading value) membershipLoading,
+    required TResult Function(MembershipError value) membershipError,
   }) {
-    assert(initialMembershipState != null);
-    assert(membershipActive != null);
-    assert(membershipInactive != null);
-    assert(membershipLoading != null);
-    assert(membershipError != null);
     return membershipActive(this);
   }
 
   @override
   @optionalTypeArgs
-  TResult maybeMap<TResult extends Object>({
-    TResult initialMembershipState(InitialMembershipState value),
-    TResult membershipActive(MembershipActive value),
-    TResult membershipInactive(MembershipInactive value),
-    TResult membershipLoading(MembershipLoading value),
-    TResult membershipError(MembershipError value),
-    @required TResult orElse(),
+  TResult maybeMap<TResult extends Object?>({
+    TResult Function(InitialMembershipState value)? initialMembershipState,
+    TResult Function(MembershipActive value)? membershipActive,
+    TResult Function(MembershipInactive value)? membershipInactive,
+    TResult Function(MembershipLoading value)? membershipLoading,
+    TResult Function(MembershipError value)? membershipError,
+    required TResult orElse(),
   }) {
-    assert(orElse != null);
     if (membershipActive != null) {
       return membershipActive(this);
     }
@@ -381,12 +364,13 @@ class _$MembershipActive
 }
 
 abstract class MembershipActive implements MembershipState {
-  const factory MembershipActive({@required Membership membership}) =
+  const factory MembershipActive({required Membership membership}) =
       _$MembershipActive;
 
-  Membership get membership;
+  Membership get membership => throw _privateConstructorUsedError;
   @JsonKey(ignore: true)
-  $MembershipActiveCopyWith<MembershipActive> get copyWith;
+  $MembershipActiveCopyWith<MembershipActive> get copyWith =>
+      throw _privateConstructorUsedError;
 }
 
 /// @nodoc
@@ -394,7 +378,7 @@ abstract class $MembershipInactiveCopyWith<$Res> {
   factory $MembershipInactiveCopyWith(
           MembershipInactive value, $Res Function(MembershipInactive) then) =
       _$MembershipInactiveCopyWithImpl<$Res>;
-  $Res call({String customerEmail, String customerId});
+  $Res call({String customerEmail, String? customerId});
 }
 
 /// @nodoc
@@ -410,30 +394,33 @@ class _$MembershipInactiveCopyWithImpl<$Res>
 
   @override
   $Res call({
-    Object customerEmail = freezed,
-    Object customerId = freezed,
+    Object? customerEmail = freezed,
+    Object? customerId = freezed,
   }) {
     return _then(MembershipInactive(
       customerEmail: customerEmail == freezed
           ? _value.customerEmail
-          : customerEmail as String,
-      customerId:
-          customerId == freezed ? _value.customerId : customerId as String,
+          : customerEmail // ignore: cast_nullable_to_non_nullable
+              as String,
+      customerId: customerId == freezed
+          ? _value.customerId
+          : customerId // ignore: cast_nullable_to_non_nullable
+              as String?,
     ));
   }
 }
 
 /// @nodoc
+
 class _$MembershipInactive
     with DiagnosticableTreeMixin
     implements MembershipInactive {
-  const _$MembershipInactive({@required this.customerEmail, this.customerId})
-      : assert(customerEmail != null);
+  const _$MembershipInactive({required this.customerEmail, this.customerId});
 
   @override
   final String customerEmail;
   @override
-  final String customerId;
+  final String? customerId;
 
   @override
   String toString({DiagnosticLevel minLevel = DiagnosticLevel.info}) {
@@ -474,33 +461,28 @@ class _$MembershipInactive
 
   @override
   @optionalTypeArgs
-  TResult when<TResult extends Object>({
-    @required TResult initialMembershipState(),
-    @required TResult membershipActive(Membership membership),
-    @required
-        TResult membershipInactive(String customerEmail, String customerId),
-    @required TResult membershipLoading(),
-    @required TResult membershipError(String errorMessage),
+  TResult when<TResult extends Object?>({
+    required TResult Function() initialMembershipState,
+    required TResult Function(Membership membership) membershipActive,
+    required TResult Function(String customerEmail, String? customerId)
+        membershipInactive,
+    required TResult Function() membershipLoading,
+    required TResult Function(String errorMessage) membershipError,
   }) {
-    assert(initialMembershipState != null);
-    assert(membershipActive != null);
-    assert(membershipInactive != null);
-    assert(membershipLoading != null);
-    assert(membershipError != null);
     return membershipInactive(customerEmail, customerId);
   }
 
   @override
   @optionalTypeArgs
-  TResult maybeWhen<TResult extends Object>({
-    TResult initialMembershipState(),
-    TResult membershipActive(Membership membership),
-    TResult membershipInactive(String customerEmail, String customerId),
-    TResult membershipLoading(),
-    TResult membershipError(String errorMessage),
-    @required TResult orElse(),
+  TResult maybeWhen<TResult extends Object?>({
+    TResult Function()? initialMembershipState,
+    TResult Function(Membership membership)? membershipActive,
+    TResult Function(String customerEmail, String? customerId)?
+        membershipInactive,
+    TResult Function()? membershipLoading,
+    TResult Function(String errorMessage)? membershipError,
+    required TResult orElse(),
   }) {
-    assert(orElse != null);
     if (membershipInactive != null) {
       return membershipInactive(customerEmail, customerId);
     }
@@ -509,32 +491,27 @@ class _$MembershipInactive
 
   @override
   @optionalTypeArgs
-  TResult map<TResult extends Object>({
-    @required TResult initialMembershipState(InitialMembershipState value),
-    @required TResult membershipActive(MembershipActive value),
-    @required TResult membershipInactive(MembershipInactive value),
-    @required TResult membershipLoading(MembershipLoading value),
-    @required TResult membershipError(MembershipError value),
+  TResult map<TResult extends Object?>({
+    required TResult Function(InitialMembershipState value)
+        initialMembershipState,
+    required TResult Function(MembershipActive value) membershipActive,
+    required TResult Function(MembershipInactive value) membershipInactive,
+    required TResult Function(MembershipLoading value) membershipLoading,
+    required TResult Function(MembershipError value) membershipError,
   }) {
-    assert(initialMembershipState != null);
-    assert(membershipActive != null);
-    assert(membershipInactive != null);
-    assert(membershipLoading != null);
-    assert(membershipError != null);
     return membershipInactive(this);
   }
 
   @override
   @optionalTypeArgs
-  TResult maybeMap<TResult extends Object>({
-    TResult initialMembershipState(InitialMembershipState value),
-    TResult membershipActive(MembershipActive value),
-    TResult membershipInactive(MembershipInactive value),
-    TResult membershipLoading(MembershipLoading value),
-    TResult membershipError(MembershipError value),
-    @required TResult orElse(),
+  TResult maybeMap<TResult extends Object?>({
+    TResult Function(InitialMembershipState value)? initialMembershipState,
+    TResult Function(MembershipActive value)? membershipActive,
+    TResult Function(MembershipInactive value)? membershipInactive,
+    TResult Function(MembershipLoading value)? membershipLoading,
+    TResult Function(MembershipError value)? membershipError,
+    required TResult orElse(),
   }) {
-    assert(orElse != null);
     if (membershipInactive != null) {
       return membershipInactive(this);
     }
@@ -544,13 +521,14 @@ class _$MembershipInactive
 
 abstract class MembershipInactive implements MembershipState {
   const factory MembershipInactive(
-      {@required String customerEmail,
-      String customerId}) = _$MembershipInactive;
+      {required String customerEmail,
+      String? customerId}) = _$MembershipInactive;
 
-  String get customerEmail;
-  String get customerId;
+  String get customerEmail => throw _privateConstructorUsedError;
+  String? get customerId => throw _privateConstructorUsedError;
   @JsonKey(ignore: true)
-  $MembershipInactiveCopyWith<MembershipInactive> get copyWith;
+  $MembershipInactiveCopyWith<MembershipInactive> get copyWith =>
+      throw _privateConstructorUsedError;
 }
 
 /// @nodoc
@@ -573,6 +551,7 @@ class _$MembershipLoadingCopyWithImpl<$Res>
 }
 
 /// @nodoc
+
 class _$MembershipLoading
     with DiagnosticableTreeMixin
     implements MembershipLoading {
@@ -600,33 +579,28 @@ class _$MembershipLoading
 
   @override
   @optionalTypeArgs
-  TResult when<TResult extends Object>({
-    @required TResult initialMembershipState(),
-    @required TResult membershipActive(Membership membership),
-    @required
-        TResult membershipInactive(String customerEmail, String customerId),
-    @required TResult membershipLoading(),
-    @required TResult membershipError(String errorMessage),
+  TResult when<TResult extends Object?>({
+    required TResult Function() initialMembershipState,
+    required TResult Function(Membership membership) membershipActive,
+    required TResult Function(String customerEmail, String? customerId)
+        membershipInactive,
+    required TResult Function() membershipLoading,
+    required TResult Function(String errorMessage) membershipError,
   }) {
-    assert(initialMembershipState != null);
-    assert(membershipActive != null);
-    assert(membershipInactive != null);
-    assert(membershipLoading != null);
-    assert(membershipError != null);
     return membershipLoading();
   }
 
   @override
   @optionalTypeArgs
-  TResult maybeWhen<TResult extends Object>({
-    TResult initialMembershipState(),
-    TResult membershipActive(Membership membership),
-    TResult membershipInactive(String customerEmail, String customerId),
-    TResult membershipLoading(),
-    TResult membershipError(String errorMessage),
-    @required TResult orElse(),
+  TResult maybeWhen<TResult extends Object?>({
+    TResult Function()? initialMembershipState,
+    TResult Function(Membership membership)? membershipActive,
+    TResult Function(String customerEmail, String? customerId)?
+        membershipInactive,
+    TResult Function()? membershipLoading,
+    TResult Function(String errorMessage)? membershipError,
+    required TResult orElse(),
   }) {
-    assert(orElse != null);
     if (membershipLoading != null) {
       return membershipLoading();
     }
@@ -635,32 +609,27 @@ class _$MembershipLoading
 
   @override
   @optionalTypeArgs
-  TResult map<TResult extends Object>({
-    @required TResult initialMembershipState(InitialMembershipState value),
-    @required TResult membershipActive(MembershipActive value),
-    @required TResult membershipInactive(MembershipInactive value),
-    @required TResult membershipLoading(MembershipLoading value),
-    @required TResult membershipError(MembershipError value),
+  TResult map<TResult extends Object?>({
+    required TResult Function(InitialMembershipState value)
+        initialMembershipState,
+    required TResult Function(MembershipActive value) membershipActive,
+    required TResult Function(MembershipInactive value) membershipInactive,
+    required TResult Function(MembershipLoading value) membershipLoading,
+    required TResult Function(MembershipError value) membershipError,
   }) {
-    assert(initialMembershipState != null);
-    assert(membershipActive != null);
-    assert(membershipInactive != null);
-    assert(membershipLoading != null);
-    assert(membershipError != null);
     return membershipLoading(this);
   }
 
   @override
   @optionalTypeArgs
-  TResult maybeMap<TResult extends Object>({
-    TResult initialMembershipState(InitialMembershipState value),
-    TResult membershipActive(MembershipActive value),
-    TResult membershipInactive(MembershipInactive value),
-    TResult membershipLoading(MembershipLoading value),
-    TResult membershipError(MembershipError value),
-    @required TResult orElse(),
+  TResult maybeMap<TResult extends Object?>({
+    TResult Function(InitialMembershipState value)? initialMembershipState,
+    TResult Function(MembershipActive value)? membershipActive,
+    TResult Function(MembershipInactive value)? membershipInactive,
+    TResult Function(MembershipLoading value)? membershipLoading,
+    TResult Function(MembershipError value)? membershipError,
+    required TResult orElse(),
   }) {
-    assert(orElse != null);
     if (membershipLoading != null) {
       return membershipLoading(this);
     }
@@ -693,22 +662,23 @@ class _$MembershipErrorCopyWithImpl<$Res>
 
   @override
   $Res call({
-    Object errorMessage = freezed,
+    Object? errorMessage = freezed,
   }) {
     return _then(MembershipError(
       errorMessage: errorMessage == freezed
           ? _value.errorMessage
-          : errorMessage as String,
+          : errorMessage // ignore: cast_nullable_to_non_nullable
+              as String,
     ));
   }
 }
 
 /// @nodoc
+
 class _$MembershipError
     with DiagnosticableTreeMixin
     implements MembershipError {
-  const _$MembershipError({@required this.errorMessage})
-      : assert(errorMessage != null);
+  const _$MembershipError({required this.errorMessage});
 
   @override
   final String errorMessage;
@@ -746,33 +716,28 @@ class _$MembershipError
 
   @override
   @optionalTypeArgs
-  TResult when<TResult extends Object>({
-    @required TResult initialMembershipState(),
-    @required TResult membershipActive(Membership membership),
-    @required
-        TResult membershipInactive(String customerEmail, String customerId),
-    @required TResult membershipLoading(),
-    @required TResult membershipError(String errorMessage),
+  TResult when<TResult extends Object?>({
+    required TResult Function() initialMembershipState,
+    required TResult Function(Membership membership) membershipActive,
+    required TResult Function(String customerEmail, String? customerId)
+        membershipInactive,
+    required TResult Function() membershipLoading,
+    required TResult Function(String errorMessage) membershipError,
   }) {
-    assert(initialMembershipState != null);
-    assert(membershipActive != null);
-    assert(membershipInactive != null);
-    assert(membershipLoading != null);
-    assert(membershipError != null);
     return membershipError(errorMessage);
   }
 
   @override
   @optionalTypeArgs
-  TResult maybeWhen<TResult extends Object>({
-    TResult initialMembershipState(),
-    TResult membershipActive(Membership membership),
-    TResult membershipInactive(String customerEmail, String customerId),
-    TResult membershipLoading(),
-    TResult membershipError(String errorMessage),
-    @required TResult orElse(),
+  TResult maybeWhen<TResult extends Object?>({
+    TResult Function()? initialMembershipState,
+    TResult Function(Membership membership)? membershipActive,
+    TResult Function(String customerEmail, String? customerId)?
+        membershipInactive,
+    TResult Function()? membershipLoading,
+    TResult Function(String errorMessage)? membershipError,
+    required TResult orElse(),
   }) {
-    assert(orElse != null);
     if (membershipError != null) {
       return membershipError(errorMessage);
     }
@@ -781,32 +746,27 @@ class _$MembershipError
 
   @override
   @optionalTypeArgs
-  TResult map<TResult extends Object>({
-    @required TResult initialMembershipState(InitialMembershipState value),
-    @required TResult membershipActive(MembershipActive value),
-    @required TResult membershipInactive(MembershipInactive value),
-    @required TResult membershipLoading(MembershipLoading value),
-    @required TResult membershipError(MembershipError value),
+  TResult map<TResult extends Object?>({
+    required TResult Function(InitialMembershipState value)
+        initialMembershipState,
+    required TResult Function(MembershipActive value) membershipActive,
+    required TResult Function(MembershipInactive value) membershipInactive,
+    required TResult Function(MembershipLoading value) membershipLoading,
+    required TResult Function(MembershipError value) membershipError,
   }) {
-    assert(initialMembershipState != null);
-    assert(membershipActive != null);
-    assert(membershipInactive != null);
-    assert(membershipLoading != null);
-    assert(membershipError != null);
     return membershipError(this);
   }
 
   @override
   @optionalTypeArgs
-  TResult maybeMap<TResult extends Object>({
-    TResult initialMembershipState(InitialMembershipState value),
-    TResult membershipActive(MembershipActive value),
-    TResult membershipInactive(MembershipInactive value),
-    TResult membershipLoading(MembershipLoading value),
-    TResult membershipError(MembershipError value),
-    @required TResult orElse(),
+  TResult maybeMap<TResult extends Object?>({
+    TResult Function(InitialMembershipState value)? initialMembershipState,
+    TResult Function(MembershipActive value)? membershipActive,
+    TResult Function(MembershipInactive value)? membershipInactive,
+    TResult Function(MembershipLoading value)? membershipLoading,
+    TResult Function(MembershipError value)? membershipError,
+    required TResult orElse(),
   }) {
-    assert(orElse != null);
     if (membershipError != null) {
       return membershipError(this);
     }
@@ -815,10 +775,11 @@ class _$MembershipError
 }
 
 abstract class MembershipError implements MembershipState {
-  const factory MembershipError({@required String errorMessage}) =
+  const factory MembershipError({required String errorMessage}) =
       _$MembershipError;
 
-  String get errorMessage;
+  String get errorMessage => throw _privateConstructorUsedError;
   @JsonKey(ignore: true)
-  $MembershipErrorCopyWith<MembershipError> get copyWith;
+  $MembershipErrorCopyWith<MembershipError> get copyWith =>
+      throw _privateConstructorUsedError;
 }

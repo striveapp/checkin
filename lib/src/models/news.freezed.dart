@@ -1,5 +1,5 @@
 // GENERATED CODE - DO NOT MODIFY BY HAND
-// ignore_for_file: deprecated_member_use, deprecated_member_use_from_same_package, use_function_type_syntax_for_parameters, unnecessary_const, avoid_init_to_null, invalid_override_different_default_values_named, prefer_expression_function_bodies
+// ignore_for_file: unused_element, deprecated_member_use, deprecated_member_use_from_same_package, use_function_type_syntax_for_parameters, unnecessary_const, avoid_init_to_null, invalid_override_different_default_values_named, prefer_expression_function_bodies, annotate_overrides
 
 part of 'news.dart';
 
@@ -8,6 +8,10 @@ part of 'news.dart';
 // **************************************************************************
 
 T _$identity<T>(T value) => value;
+
+final _privateConstructorUsedError = UnsupportedError(
+    'It seems like you constructed your class using `MyClass._()`. This constructor is only meant to be used by freezed and you are not supposed to need it nor use it.\nPlease check the documentation here for more informations: https://github.com/rrousselGit/freezed#custom-getters-and-methods');
+
 News _$NewsFromJson(Map<String, dynamic> json) {
   return _News.fromJson(json);
 }
@@ -16,14 +20,13 @@ News _$NewsFromJson(Map<String, dynamic> json) {
 class _$NewsTearOff {
   const _$NewsTearOff();
 
-// ignore: unused_element
   _News call(
-      {@required String id,
-      @required String content,
-      @required Author author,
-      @required int timestamp,
-      @required bool isPinned,
-      String imageUrl}) {
+      {required String id,
+      required String content,
+      required Author author,
+      required int timestamp,
+      required bool isPinned,
+      String? imageUrl}) {
     return _News(
       id: id,
       content: content,
@@ -34,28 +37,26 @@ class _$NewsTearOff {
     );
   }
 
-// ignore: unused_element
   News fromJson(Map<String, Object> json) {
     return News.fromJson(json);
   }
 }
 
 /// @nodoc
-// ignore: unused_element
 const $News = _$NewsTearOff();
 
 /// @nodoc
 mixin _$News {
-  String get id;
-  String get content;
-  Author get author;
-  int get timestamp;
-  bool get isPinned;
-  String get imageUrl;
+  String get id => throw _privateConstructorUsedError;
+  String get content => throw _privateConstructorUsedError;
+  Author get author => throw _privateConstructorUsedError;
+  int get timestamp => throw _privateConstructorUsedError;
+  bool get isPinned => throw _privateConstructorUsedError;
+  String? get imageUrl => throw _privateConstructorUsedError;
 
-  Map<String, dynamic> toJson();
+  Map<String, dynamic> toJson() => throw _privateConstructorUsedError;
   @JsonKey(ignore: true)
-  $NewsCopyWith<News> get copyWith;
+  $NewsCopyWith<News> get copyWith => throw _privateConstructorUsedError;
 }
 
 /// @nodoc
@@ -68,7 +69,7 @@ abstract class $NewsCopyWith<$Res> {
       Author author,
       int timestamp,
       bool isPinned,
-      String imageUrl});
+      String? imageUrl});
 
   $AuthorCopyWith<$Res> get author;
 }
@@ -83,28 +84,43 @@ class _$NewsCopyWithImpl<$Res> implements $NewsCopyWith<$Res> {
 
   @override
   $Res call({
-    Object id = freezed,
-    Object content = freezed,
-    Object author = freezed,
-    Object timestamp = freezed,
-    Object isPinned = freezed,
-    Object imageUrl = freezed,
+    Object? id = freezed,
+    Object? content = freezed,
+    Object? author = freezed,
+    Object? timestamp = freezed,
+    Object? isPinned = freezed,
+    Object? imageUrl = freezed,
   }) {
     return _then(_value.copyWith(
-      id: id == freezed ? _value.id : id as String,
-      content: content == freezed ? _value.content : content as String,
-      author: author == freezed ? _value.author : author as Author,
-      timestamp: timestamp == freezed ? _value.timestamp : timestamp as int,
-      isPinned: isPinned == freezed ? _value.isPinned : isPinned as bool,
-      imageUrl: imageUrl == freezed ? _value.imageUrl : imageUrl as String,
+      id: id == freezed
+          ? _value.id
+          : id // ignore: cast_nullable_to_non_nullable
+              as String,
+      content: content == freezed
+          ? _value.content
+          : content // ignore: cast_nullable_to_non_nullable
+              as String,
+      author: author == freezed
+          ? _value.author
+          : author // ignore: cast_nullable_to_non_nullable
+              as Author,
+      timestamp: timestamp == freezed
+          ? _value.timestamp
+          : timestamp // ignore: cast_nullable_to_non_nullable
+              as int,
+      isPinned: isPinned == freezed
+          ? _value.isPinned
+          : isPinned // ignore: cast_nullable_to_non_nullable
+              as bool,
+      imageUrl: imageUrl == freezed
+          ? _value.imageUrl
+          : imageUrl // ignore: cast_nullable_to_non_nullable
+              as String?,
     ));
   }
 
   @override
   $AuthorCopyWith<$Res> get author {
-    if (_value.author == null) {
-      return null;
-    }
     return $AuthorCopyWith<$Res>(_value.author, (value) {
       return _then(_value.copyWith(author: value));
     });
@@ -122,7 +138,7 @@ abstract class _$NewsCopyWith<$Res> implements $NewsCopyWith<$Res> {
       Author author,
       int timestamp,
       bool isPinned,
-      String imageUrl});
+      String? imageUrl});
 
   @override
   $AuthorCopyWith<$Res> get author;
@@ -139,41 +155,53 @@ class __$NewsCopyWithImpl<$Res> extends _$NewsCopyWithImpl<$Res>
 
   @override
   $Res call({
-    Object id = freezed,
-    Object content = freezed,
-    Object author = freezed,
-    Object timestamp = freezed,
-    Object isPinned = freezed,
-    Object imageUrl = freezed,
+    Object? id = freezed,
+    Object? content = freezed,
+    Object? author = freezed,
+    Object? timestamp = freezed,
+    Object? isPinned = freezed,
+    Object? imageUrl = freezed,
   }) {
     return _then(_News(
-      id: id == freezed ? _value.id : id as String,
-      content: content == freezed ? _value.content : content as String,
-      author: author == freezed ? _value.author : author as Author,
-      timestamp: timestamp == freezed ? _value.timestamp : timestamp as int,
-      isPinned: isPinned == freezed ? _value.isPinned : isPinned as bool,
-      imageUrl: imageUrl == freezed ? _value.imageUrl : imageUrl as String,
+      id: id == freezed
+          ? _value.id
+          : id // ignore: cast_nullable_to_non_nullable
+              as String,
+      content: content == freezed
+          ? _value.content
+          : content // ignore: cast_nullable_to_non_nullable
+              as String,
+      author: author == freezed
+          ? _value.author
+          : author // ignore: cast_nullable_to_non_nullable
+              as Author,
+      timestamp: timestamp == freezed
+          ? _value.timestamp
+          : timestamp // ignore: cast_nullable_to_non_nullable
+              as int,
+      isPinned: isPinned == freezed
+          ? _value.isPinned
+          : isPinned // ignore: cast_nullable_to_non_nullable
+              as bool,
+      imageUrl: imageUrl == freezed
+          ? _value.imageUrl
+          : imageUrl // ignore: cast_nullable_to_non_nullable
+              as String?,
     ));
   }
 }
 
-@JsonSerializable()
-
 /// @nodoc
+@JsonSerializable()
 class _$_News extends _News {
   _$_News(
-      {@required this.id,
-      @required this.content,
-      @required this.author,
-      @required this.timestamp,
-      @required this.isPinned,
+      {required this.id,
+      required this.content,
+      required this.author,
+      required this.timestamp,
+      required this.isPinned,
       this.imageUrl})
-      : assert(id != null),
-        assert(content != null),
-        assert(author != null),
-        assert(timestamp != null),
-        assert(isPinned != null),
-        super._();
+      : super._();
 
   factory _$_News.fromJson(Map<String, dynamic> json) =>
       _$_$_NewsFromJson(json);
@@ -189,7 +217,7 @@ class _$_News extends _News {
   @override
   final bool isPinned;
   @override
-  final String imageUrl;
+  final String? imageUrl;
 
   @override
   String toString() {
@@ -240,30 +268,30 @@ class _$_News extends _News {
 }
 
 abstract class _News extends News {
-  _News._() : super._();
   factory _News(
-      {@required String id,
-      @required String content,
-      @required Author author,
-      @required int timestamp,
-      @required bool isPinned,
-      String imageUrl}) = _$_News;
+      {required String id,
+      required String content,
+      required Author author,
+      required int timestamp,
+      required bool isPinned,
+      String? imageUrl}) = _$_News;
+  _News._() : super._();
 
   factory _News.fromJson(Map<String, dynamic> json) = _$_News.fromJson;
 
   @override
-  String get id;
+  String get id => throw _privateConstructorUsedError;
   @override
-  String get content;
+  String get content => throw _privateConstructorUsedError;
   @override
-  Author get author;
+  Author get author => throw _privateConstructorUsedError;
   @override
-  int get timestamp;
+  int get timestamp => throw _privateConstructorUsedError;
   @override
-  bool get isPinned;
+  bool get isPinned => throw _privateConstructorUsedError;
   @override
-  String get imageUrl;
+  String? get imageUrl => throw _privateConstructorUsedError;
   @override
   @JsonKey(ignore: true)
-  _$NewsCopyWith<_News> get copyWith;
+  _$NewsCopyWith<_News> get copyWith => throw _privateConstructorUsedError;
 }

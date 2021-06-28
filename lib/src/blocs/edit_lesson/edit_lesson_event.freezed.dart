@@ -1,5 +1,5 @@
 // GENERATED CODE - DO NOT MODIFY BY HAND
-// ignore_for_file: deprecated_member_use, deprecated_member_use_from_same_package, use_function_type_syntax_for_parameters, unnecessary_const, avoid_init_to_null, invalid_override_different_default_values_named, prefer_expression_function_bodies
+// ignore_for_file: unused_element, deprecated_member_use, deprecated_member_use_from_same_package, use_function_type_syntax_for_parameters, unnecessary_const, avoid_init_to_null, invalid_override_different_default_values_named, prefer_expression_function_bodies, annotate_overrides
 
 part of 'edit_lesson_event.dart';
 
@@ -9,62 +9,56 @@ part of 'edit_lesson_event.dart';
 
 T _$identity<T>(T value) => value;
 
+final _privateConstructorUsedError = UnsupportedError(
+    'It seems like you constructed your class using `MyClass._()`. This constructor is only meant to be used by freezed and you are not supposed to need it nor use it.\nPlease check the documentation here for more informations: https://github.com/rrousselGit/freezed#custom-getters-and-methods');
+
 /// @nodoc
 class _$EditLessonEventTearOff {
   const _$EditLessonEventTearOff();
 
-// ignore: unused_element
   InitializeEditLesson initializeEditLesson() {
     return const InitializeEditLesson();
   }
 
-// ignore: unused_element
-  MastersUpdated mastersUpdated({@required List<Master> masters}) {
+  MastersUpdated mastersUpdated({required List<Master> masters}) {
     return MastersUpdated(
       masters: masters,
     );
   }
 
-// ignore: unused_element
   RetrieveMasters retrieveMasters() {
     return const RetrieveMasters();
   }
 
-// ignore: unused_element
-  UpdateTimeStart updateTimeStart({@required String newTimeStart}) {
+  UpdateTimeStart updateTimeStart({required String newTimeStart}) {
     return UpdateTimeStart(
       newTimeStart: newTimeStart,
     );
   }
 
-// ignore: unused_element
-  UpdateTimeEnd updateTimeEnd({@required String newTimeEnd}) {
+  UpdateTimeEnd updateTimeEnd({required String newTimeEnd}) {
     return UpdateTimeEnd(
       newTimeEnd: newTimeEnd,
     );
   }
 
-// ignore: unused_element
-  UpdateName updateName({@required String newName}) {
+  UpdateName updateName({required String newName}) {
     return UpdateName(
       newName: newName,
     );
   }
 
-// ignore: unused_element
-  UpdateCapacity updateCapacity({@required int newCapacity}) {
+  UpdateCapacity updateCapacity({required int newCapacity}) {
     return UpdateCapacity(
       newCapacity: newCapacity,
     );
   }
 
-// ignore: unused_element
   UpdateImageUrl updateImageUrl() {
     return const UpdateImageUrl();
   }
 
-// ignore: unused_element
-  UpdateMasters updateMasters({@required List<Master> newMasters}) {
+  UpdateMasters updateMasters({required List<Master> newMasters}) {
     return UpdateMasters(
       newMasters: newMasters,
     );
@@ -72,61 +66,64 @@ class _$EditLessonEventTearOff {
 }
 
 /// @nodoc
-// ignore: unused_element
 const $EditLessonEvent = _$EditLessonEventTearOff();
 
 /// @nodoc
 mixin _$EditLessonEvent {
   @optionalTypeArgs
-  TResult when<TResult extends Object>({
-    @required TResult initializeEditLesson(),
-    @required TResult mastersUpdated(List<Master> masters),
-    @required TResult retrieveMasters(),
-    @required TResult updateTimeStart(String newTimeStart),
-    @required TResult updateTimeEnd(String newTimeEnd),
-    @required TResult updateName(String newName),
-    @required TResult updateCapacity(int newCapacity),
-    @required TResult updateImageUrl(),
-    @required TResult updateMasters(List<Master> newMasters),
-  });
+  TResult when<TResult extends Object?>({
+    required TResult Function() initializeEditLesson,
+    required TResult Function(List<Master> masters) mastersUpdated,
+    required TResult Function() retrieveMasters,
+    required TResult Function(String newTimeStart) updateTimeStart,
+    required TResult Function(String newTimeEnd) updateTimeEnd,
+    required TResult Function(String newName) updateName,
+    required TResult Function(int newCapacity) updateCapacity,
+    required TResult Function() updateImageUrl,
+    required TResult Function(List<Master> newMasters) updateMasters,
+  }) =>
+      throw _privateConstructorUsedError;
   @optionalTypeArgs
-  TResult maybeWhen<TResult extends Object>({
-    TResult initializeEditLesson(),
-    TResult mastersUpdated(List<Master> masters),
-    TResult retrieveMasters(),
-    TResult updateTimeStart(String newTimeStart),
-    TResult updateTimeEnd(String newTimeEnd),
-    TResult updateName(String newName),
-    TResult updateCapacity(int newCapacity),
-    TResult updateImageUrl(),
-    TResult updateMasters(List<Master> newMasters),
-    @required TResult orElse(),
-  });
+  TResult maybeWhen<TResult extends Object?>({
+    TResult Function()? initializeEditLesson,
+    TResult Function(List<Master> masters)? mastersUpdated,
+    TResult Function()? retrieveMasters,
+    TResult Function(String newTimeStart)? updateTimeStart,
+    TResult Function(String newTimeEnd)? updateTimeEnd,
+    TResult Function(String newName)? updateName,
+    TResult Function(int newCapacity)? updateCapacity,
+    TResult Function()? updateImageUrl,
+    TResult Function(List<Master> newMasters)? updateMasters,
+    required TResult orElse(),
+  }) =>
+      throw _privateConstructorUsedError;
   @optionalTypeArgs
-  TResult map<TResult extends Object>({
-    @required TResult initializeEditLesson(InitializeEditLesson value),
-    @required TResult mastersUpdated(MastersUpdated value),
-    @required TResult retrieveMasters(RetrieveMasters value),
-    @required TResult updateTimeStart(UpdateTimeStart value),
-    @required TResult updateTimeEnd(UpdateTimeEnd value),
-    @required TResult updateName(UpdateName value),
-    @required TResult updateCapacity(UpdateCapacity value),
-    @required TResult updateImageUrl(UpdateImageUrl value),
-    @required TResult updateMasters(UpdateMasters value),
-  });
+  TResult map<TResult extends Object?>({
+    required TResult Function(InitializeEditLesson value) initializeEditLesson,
+    required TResult Function(MastersUpdated value) mastersUpdated,
+    required TResult Function(RetrieveMasters value) retrieveMasters,
+    required TResult Function(UpdateTimeStart value) updateTimeStart,
+    required TResult Function(UpdateTimeEnd value) updateTimeEnd,
+    required TResult Function(UpdateName value) updateName,
+    required TResult Function(UpdateCapacity value) updateCapacity,
+    required TResult Function(UpdateImageUrl value) updateImageUrl,
+    required TResult Function(UpdateMasters value) updateMasters,
+  }) =>
+      throw _privateConstructorUsedError;
   @optionalTypeArgs
-  TResult maybeMap<TResult extends Object>({
-    TResult initializeEditLesson(InitializeEditLesson value),
-    TResult mastersUpdated(MastersUpdated value),
-    TResult retrieveMasters(RetrieveMasters value),
-    TResult updateTimeStart(UpdateTimeStart value),
-    TResult updateTimeEnd(UpdateTimeEnd value),
-    TResult updateName(UpdateName value),
-    TResult updateCapacity(UpdateCapacity value),
-    TResult updateImageUrl(UpdateImageUrl value),
-    TResult updateMasters(UpdateMasters value),
-    @required TResult orElse(),
-  });
+  TResult maybeMap<TResult extends Object?>({
+    TResult Function(InitializeEditLesson value)? initializeEditLesson,
+    TResult Function(MastersUpdated value)? mastersUpdated,
+    TResult Function(RetrieveMasters value)? retrieveMasters,
+    TResult Function(UpdateTimeStart value)? updateTimeStart,
+    TResult Function(UpdateTimeEnd value)? updateTimeEnd,
+    TResult Function(UpdateName value)? updateName,
+    TResult Function(UpdateCapacity value)? updateCapacity,
+    TResult Function(UpdateImageUrl value)? updateImageUrl,
+    TResult Function(UpdateMasters value)? updateMasters,
+    required TResult orElse(),
+  }) =>
+      throw _privateConstructorUsedError;
 }
 
 /// @nodoc
@@ -166,6 +163,7 @@ class _$InitializeEditLessonCopyWithImpl<$Res>
 }
 
 /// @nodoc
+
 class _$InitializeEditLesson
     with DiagnosticableTreeMixin
     implements InitializeEditLesson {
@@ -194,44 +192,34 @@ class _$InitializeEditLesson
 
   @override
   @optionalTypeArgs
-  TResult when<TResult extends Object>({
-    @required TResult initializeEditLesson(),
-    @required TResult mastersUpdated(List<Master> masters),
-    @required TResult retrieveMasters(),
-    @required TResult updateTimeStart(String newTimeStart),
-    @required TResult updateTimeEnd(String newTimeEnd),
-    @required TResult updateName(String newName),
-    @required TResult updateCapacity(int newCapacity),
-    @required TResult updateImageUrl(),
-    @required TResult updateMasters(List<Master> newMasters),
+  TResult when<TResult extends Object?>({
+    required TResult Function() initializeEditLesson,
+    required TResult Function(List<Master> masters) mastersUpdated,
+    required TResult Function() retrieveMasters,
+    required TResult Function(String newTimeStart) updateTimeStart,
+    required TResult Function(String newTimeEnd) updateTimeEnd,
+    required TResult Function(String newName) updateName,
+    required TResult Function(int newCapacity) updateCapacity,
+    required TResult Function() updateImageUrl,
+    required TResult Function(List<Master> newMasters) updateMasters,
   }) {
-    assert(initializeEditLesson != null);
-    assert(mastersUpdated != null);
-    assert(retrieveMasters != null);
-    assert(updateTimeStart != null);
-    assert(updateTimeEnd != null);
-    assert(updateName != null);
-    assert(updateCapacity != null);
-    assert(updateImageUrl != null);
-    assert(updateMasters != null);
     return initializeEditLesson();
   }
 
   @override
   @optionalTypeArgs
-  TResult maybeWhen<TResult extends Object>({
-    TResult initializeEditLesson(),
-    TResult mastersUpdated(List<Master> masters),
-    TResult retrieveMasters(),
-    TResult updateTimeStart(String newTimeStart),
-    TResult updateTimeEnd(String newTimeEnd),
-    TResult updateName(String newName),
-    TResult updateCapacity(int newCapacity),
-    TResult updateImageUrl(),
-    TResult updateMasters(List<Master> newMasters),
-    @required TResult orElse(),
+  TResult maybeWhen<TResult extends Object?>({
+    TResult Function()? initializeEditLesson,
+    TResult Function(List<Master> masters)? mastersUpdated,
+    TResult Function()? retrieveMasters,
+    TResult Function(String newTimeStart)? updateTimeStart,
+    TResult Function(String newTimeEnd)? updateTimeEnd,
+    TResult Function(String newName)? updateName,
+    TResult Function(int newCapacity)? updateCapacity,
+    TResult Function()? updateImageUrl,
+    TResult Function(List<Master> newMasters)? updateMasters,
+    required TResult orElse(),
   }) {
-    assert(orElse != null);
     if (initializeEditLesson != null) {
       return initializeEditLesson();
     }
@@ -240,44 +228,34 @@ class _$InitializeEditLesson
 
   @override
   @optionalTypeArgs
-  TResult map<TResult extends Object>({
-    @required TResult initializeEditLesson(InitializeEditLesson value),
-    @required TResult mastersUpdated(MastersUpdated value),
-    @required TResult retrieveMasters(RetrieveMasters value),
-    @required TResult updateTimeStart(UpdateTimeStart value),
-    @required TResult updateTimeEnd(UpdateTimeEnd value),
-    @required TResult updateName(UpdateName value),
-    @required TResult updateCapacity(UpdateCapacity value),
-    @required TResult updateImageUrl(UpdateImageUrl value),
-    @required TResult updateMasters(UpdateMasters value),
+  TResult map<TResult extends Object?>({
+    required TResult Function(InitializeEditLesson value) initializeEditLesson,
+    required TResult Function(MastersUpdated value) mastersUpdated,
+    required TResult Function(RetrieveMasters value) retrieveMasters,
+    required TResult Function(UpdateTimeStart value) updateTimeStart,
+    required TResult Function(UpdateTimeEnd value) updateTimeEnd,
+    required TResult Function(UpdateName value) updateName,
+    required TResult Function(UpdateCapacity value) updateCapacity,
+    required TResult Function(UpdateImageUrl value) updateImageUrl,
+    required TResult Function(UpdateMasters value) updateMasters,
   }) {
-    assert(initializeEditLesson != null);
-    assert(mastersUpdated != null);
-    assert(retrieveMasters != null);
-    assert(updateTimeStart != null);
-    assert(updateTimeEnd != null);
-    assert(updateName != null);
-    assert(updateCapacity != null);
-    assert(updateImageUrl != null);
-    assert(updateMasters != null);
     return initializeEditLesson(this);
   }
 
   @override
   @optionalTypeArgs
-  TResult maybeMap<TResult extends Object>({
-    TResult initializeEditLesson(InitializeEditLesson value),
-    TResult mastersUpdated(MastersUpdated value),
-    TResult retrieveMasters(RetrieveMasters value),
-    TResult updateTimeStart(UpdateTimeStart value),
-    TResult updateTimeEnd(UpdateTimeEnd value),
-    TResult updateName(UpdateName value),
-    TResult updateCapacity(UpdateCapacity value),
-    TResult updateImageUrl(UpdateImageUrl value),
-    TResult updateMasters(UpdateMasters value),
-    @required TResult orElse(),
+  TResult maybeMap<TResult extends Object?>({
+    TResult Function(InitializeEditLesson value)? initializeEditLesson,
+    TResult Function(MastersUpdated value)? mastersUpdated,
+    TResult Function(RetrieveMasters value)? retrieveMasters,
+    TResult Function(UpdateTimeStart value)? updateTimeStart,
+    TResult Function(UpdateTimeEnd value)? updateTimeEnd,
+    TResult Function(UpdateName value)? updateName,
+    TResult Function(UpdateCapacity value)? updateCapacity,
+    TResult Function(UpdateImageUrl value)? updateImageUrl,
+    TResult Function(UpdateMasters value)? updateMasters,
+    required TResult orElse(),
   }) {
-    assert(orElse != null);
     if (initializeEditLesson != null) {
       return initializeEditLesson(this);
     }
@@ -310,17 +288,21 @@ class _$MastersUpdatedCopyWithImpl<$Res>
 
   @override
   $Res call({
-    Object masters = freezed,
+    Object? masters = freezed,
   }) {
     return _then(MastersUpdated(
-      masters: masters == freezed ? _value.masters : masters as List<Master>,
+      masters: masters == freezed
+          ? _value.masters
+          : masters // ignore: cast_nullable_to_non_nullable
+              as List<Master>,
     ));
   }
 }
 
 /// @nodoc
+
 class _$MastersUpdated with DiagnosticableTreeMixin implements MastersUpdated {
-  const _$MastersUpdated({@required this.masters}) : assert(masters != null);
+  const _$MastersUpdated({required this.masters});
 
   @override
   final List<Master> masters;
@@ -357,44 +339,34 @@ class _$MastersUpdated with DiagnosticableTreeMixin implements MastersUpdated {
 
   @override
   @optionalTypeArgs
-  TResult when<TResult extends Object>({
-    @required TResult initializeEditLesson(),
-    @required TResult mastersUpdated(List<Master> masters),
-    @required TResult retrieveMasters(),
-    @required TResult updateTimeStart(String newTimeStart),
-    @required TResult updateTimeEnd(String newTimeEnd),
-    @required TResult updateName(String newName),
-    @required TResult updateCapacity(int newCapacity),
-    @required TResult updateImageUrl(),
-    @required TResult updateMasters(List<Master> newMasters),
+  TResult when<TResult extends Object?>({
+    required TResult Function() initializeEditLesson,
+    required TResult Function(List<Master> masters) mastersUpdated,
+    required TResult Function() retrieveMasters,
+    required TResult Function(String newTimeStart) updateTimeStart,
+    required TResult Function(String newTimeEnd) updateTimeEnd,
+    required TResult Function(String newName) updateName,
+    required TResult Function(int newCapacity) updateCapacity,
+    required TResult Function() updateImageUrl,
+    required TResult Function(List<Master> newMasters) updateMasters,
   }) {
-    assert(initializeEditLesson != null);
-    assert(mastersUpdated != null);
-    assert(retrieveMasters != null);
-    assert(updateTimeStart != null);
-    assert(updateTimeEnd != null);
-    assert(updateName != null);
-    assert(updateCapacity != null);
-    assert(updateImageUrl != null);
-    assert(updateMasters != null);
     return mastersUpdated(masters);
   }
 
   @override
   @optionalTypeArgs
-  TResult maybeWhen<TResult extends Object>({
-    TResult initializeEditLesson(),
-    TResult mastersUpdated(List<Master> masters),
-    TResult retrieveMasters(),
-    TResult updateTimeStart(String newTimeStart),
-    TResult updateTimeEnd(String newTimeEnd),
-    TResult updateName(String newName),
-    TResult updateCapacity(int newCapacity),
-    TResult updateImageUrl(),
-    TResult updateMasters(List<Master> newMasters),
-    @required TResult orElse(),
+  TResult maybeWhen<TResult extends Object?>({
+    TResult Function()? initializeEditLesson,
+    TResult Function(List<Master> masters)? mastersUpdated,
+    TResult Function()? retrieveMasters,
+    TResult Function(String newTimeStart)? updateTimeStart,
+    TResult Function(String newTimeEnd)? updateTimeEnd,
+    TResult Function(String newName)? updateName,
+    TResult Function(int newCapacity)? updateCapacity,
+    TResult Function()? updateImageUrl,
+    TResult Function(List<Master> newMasters)? updateMasters,
+    required TResult orElse(),
   }) {
-    assert(orElse != null);
     if (mastersUpdated != null) {
       return mastersUpdated(masters);
     }
@@ -403,44 +375,34 @@ class _$MastersUpdated with DiagnosticableTreeMixin implements MastersUpdated {
 
   @override
   @optionalTypeArgs
-  TResult map<TResult extends Object>({
-    @required TResult initializeEditLesson(InitializeEditLesson value),
-    @required TResult mastersUpdated(MastersUpdated value),
-    @required TResult retrieveMasters(RetrieveMasters value),
-    @required TResult updateTimeStart(UpdateTimeStart value),
-    @required TResult updateTimeEnd(UpdateTimeEnd value),
-    @required TResult updateName(UpdateName value),
-    @required TResult updateCapacity(UpdateCapacity value),
-    @required TResult updateImageUrl(UpdateImageUrl value),
-    @required TResult updateMasters(UpdateMasters value),
+  TResult map<TResult extends Object?>({
+    required TResult Function(InitializeEditLesson value) initializeEditLesson,
+    required TResult Function(MastersUpdated value) mastersUpdated,
+    required TResult Function(RetrieveMasters value) retrieveMasters,
+    required TResult Function(UpdateTimeStart value) updateTimeStart,
+    required TResult Function(UpdateTimeEnd value) updateTimeEnd,
+    required TResult Function(UpdateName value) updateName,
+    required TResult Function(UpdateCapacity value) updateCapacity,
+    required TResult Function(UpdateImageUrl value) updateImageUrl,
+    required TResult Function(UpdateMasters value) updateMasters,
   }) {
-    assert(initializeEditLesson != null);
-    assert(mastersUpdated != null);
-    assert(retrieveMasters != null);
-    assert(updateTimeStart != null);
-    assert(updateTimeEnd != null);
-    assert(updateName != null);
-    assert(updateCapacity != null);
-    assert(updateImageUrl != null);
-    assert(updateMasters != null);
     return mastersUpdated(this);
   }
 
   @override
   @optionalTypeArgs
-  TResult maybeMap<TResult extends Object>({
-    TResult initializeEditLesson(InitializeEditLesson value),
-    TResult mastersUpdated(MastersUpdated value),
-    TResult retrieveMasters(RetrieveMasters value),
-    TResult updateTimeStart(UpdateTimeStart value),
-    TResult updateTimeEnd(UpdateTimeEnd value),
-    TResult updateName(UpdateName value),
-    TResult updateCapacity(UpdateCapacity value),
-    TResult updateImageUrl(UpdateImageUrl value),
-    TResult updateMasters(UpdateMasters value),
-    @required TResult orElse(),
+  TResult maybeMap<TResult extends Object?>({
+    TResult Function(InitializeEditLesson value)? initializeEditLesson,
+    TResult Function(MastersUpdated value)? mastersUpdated,
+    TResult Function(RetrieveMasters value)? retrieveMasters,
+    TResult Function(UpdateTimeStart value)? updateTimeStart,
+    TResult Function(UpdateTimeEnd value)? updateTimeEnd,
+    TResult Function(UpdateName value)? updateName,
+    TResult Function(UpdateCapacity value)? updateCapacity,
+    TResult Function(UpdateImageUrl value)? updateImageUrl,
+    TResult Function(UpdateMasters value)? updateMasters,
+    required TResult orElse(),
   }) {
-    assert(orElse != null);
     if (mastersUpdated != null) {
       return mastersUpdated(this);
     }
@@ -449,12 +411,13 @@ class _$MastersUpdated with DiagnosticableTreeMixin implements MastersUpdated {
 }
 
 abstract class MastersUpdated implements EditLessonEvent {
-  const factory MastersUpdated({@required List<Master> masters}) =
+  const factory MastersUpdated({required List<Master> masters}) =
       _$MastersUpdated;
 
-  List<Master> get masters;
+  List<Master> get masters => throw _privateConstructorUsedError;
   @JsonKey(ignore: true)
-  $MastersUpdatedCopyWith<MastersUpdated> get copyWith;
+  $MastersUpdatedCopyWith<MastersUpdated> get copyWith =>
+      throw _privateConstructorUsedError;
 }
 
 /// @nodoc
@@ -477,6 +440,7 @@ class _$RetrieveMastersCopyWithImpl<$Res>
 }
 
 /// @nodoc
+
 class _$RetrieveMasters
     with DiagnosticableTreeMixin
     implements RetrieveMasters {
@@ -504,44 +468,34 @@ class _$RetrieveMasters
 
   @override
   @optionalTypeArgs
-  TResult when<TResult extends Object>({
-    @required TResult initializeEditLesson(),
-    @required TResult mastersUpdated(List<Master> masters),
-    @required TResult retrieveMasters(),
-    @required TResult updateTimeStart(String newTimeStart),
-    @required TResult updateTimeEnd(String newTimeEnd),
-    @required TResult updateName(String newName),
-    @required TResult updateCapacity(int newCapacity),
-    @required TResult updateImageUrl(),
-    @required TResult updateMasters(List<Master> newMasters),
+  TResult when<TResult extends Object?>({
+    required TResult Function() initializeEditLesson,
+    required TResult Function(List<Master> masters) mastersUpdated,
+    required TResult Function() retrieveMasters,
+    required TResult Function(String newTimeStart) updateTimeStart,
+    required TResult Function(String newTimeEnd) updateTimeEnd,
+    required TResult Function(String newName) updateName,
+    required TResult Function(int newCapacity) updateCapacity,
+    required TResult Function() updateImageUrl,
+    required TResult Function(List<Master> newMasters) updateMasters,
   }) {
-    assert(initializeEditLesson != null);
-    assert(mastersUpdated != null);
-    assert(retrieveMasters != null);
-    assert(updateTimeStart != null);
-    assert(updateTimeEnd != null);
-    assert(updateName != null);
-    assert(updateCapacity != null);
-    assert(updateImageUrl != null);
-    assert(updateMasters != null);
     return retrieveMasters();
   }
 
   @override
   @optionalTypeArgs
-  TResult maybeWhen<TResult extends Object>({
-    TResult initializeEditLesson(),
-    TResult mastersUpdated(List<Master> masters),
-    TResult retrieveMasters(),
-    TResult updateTimeStart(String newTimeStart),
-    TResult updateTimeEnd(String newTimeEnd),
-    TResult updateName(String newName),
-    TResult updateCapacity(int newCapacity),
-    TResult updateImageUrl(),
-    TResult updateMasters(List<Master> newMasters),
-    @required TResult orElse(),
+  TResult maybeWhen<TResult extends Object?>({
+    TResult Function()? initializeEditLesson,
+    TResult Function(List<Master> masters)? mastersUpdated,
+    TResult Function()? retrieveMasters,
+    TResult Function(String newTimeStart)? updateTimeStart,
+    TResult Function(String newTimeEnd)? updateTimeEnd,
+    TResult Function(String newName)? updateName,
+    TResult Function(int newCapacity)? updateCapacity,
+    TResult Function()? updateImageUrl,
+    TResult Function(List<Master> newMasters)? updateMasters,
+    required TResult orElse(),
   }) {
-    assert(orElse != null);
     if (retrieveMasters != null) {
       return retrieveMasters();
     }
@@ -550,44 +504,34 @@ class _$RetrieveMasters
 
   @override
   @optionalTypeArgs
-  TResult map<TResult extends Object>({
-    @required TResult initializeEditLesson(InitializeEditLesson value),
-    @required TResult mastersUpdated(MastersUpdated value),
-    @required TResult retrieveMasters(RetrieveMasters value),
-    @required TResult updateTimeStart(UpdateTimeStart value),
-    @required TResult updateTimeEnd(UpdateTimeEnd value),
-    @required TResult updateName(UpdateName value),
-    @required TResult updateCapacity(UpdateCapacity value),
-    @required TResult updateImageUrl(UpdateImageUrl value),
-    @required TResult updateMasters(UpdateMasters value),
+  TResult map<TResult extends Object?>({
+    required TResult Function(InitializeEditLesson value) initializeEditLesson,
+    required TResult Function(MastersUpdated value) mastersUpdated,
+    required TResult Function(RetrieveMasters value) retrieveMasters,
+    required TResult Function(UpdateTimeStart value) updateTimeStart,
+    required TResult Function(UpdateTimeEnd value) updateTimeEnd,
+    required TResult Function(UpdateName value) updateName,
+    required TResult Function(UpdateCapacity value) updateCapacity,
+    required TResult Function(UpdateImageUrl value) updateImageUrl,
+    required TResult Function(UpdateMasters value) updateMasters,
   }) {
-    assert(initializeEditLesson != null);
-    assert(mastersUpdated != null);
-    assert(retrieveMasters != null);
-    assert(updateTimeStart != null);
-    assert(updateTimeEnd != null);
-    assert(updateName != null);
-    assert(updateCapacity != null);
-    assert(updateImageUrl != null);
-    assert(updateMasters != null);
     return retrieveMasters(this);
   }
 
   @override
   @optionalTypeArgs
-  TResult maybeMap<TResult extends Object>({
-    TResult initializeEditLesson(InitializeEditLesson value),
-    TResult mastersUpdated(MastersUpdated value),
-    TResult retrieveMasters(RetrieveMasters value),
-    TResult updateTimeStart(UpdateTimeStart value),
-    TResult updateTimeEnd(UpdateTimeEnd value),
-    TResult updateName(UpdateName value),
-    TResult updateCapacity(UpdateCapacity value),
-    TResult updateImageUrl(UpdateImageUrl value),
-    TResult updateMasters(UpdateMasters value),
-    @required TResult orElse(),
+  TResult maybeMap<TResult extends Object?>({
+    TResult Function(InitializeEditLesson value)? initializeEditLesson,
+    TResult Function(MastersUpdated value)? mastersUpdated,
+    TResult Function(RetrieveMasters value)? retrieveMasters,
+    TResult Function(UpdateTimeStart value)? updateTimeStart,
+    TResult Function(UpdateTimeEnd value)? updateTimeEnd,
+    TResult Function(UpdateName value)? updateName,
+    TResult Function(UpdateCapacity value)? updateCapacity,
+    TResult Function(UpdateImageUrl value)? updateImageUrl,
+    TResult Function(UpdateMasters value)? updateMasters,
+    required TResult orElse(),
   }) {
-    assert(orElse != null);
     if (retrieveMasters != null) {
       return retrieveMasters(this);
     }
@@ -620,22 +564,23 @@ class _$UpdateTimeStartCopyWithImpl<$Res>
 
   @override
   $Res call({
-    Object newTimeStart = freezed,
+    Object? newTimeStart = freezed,
   }) {
     return _then(UpdateTimeStart(
       newTimeStart: newTimeStart == freezed
           ? _value.newTimeStart
-          : newTimeStart as String,
+          : newTimeStart // ignore: cast_nullable_to_non_nullable
+              as String,
     ));
   }
 }
 
 /// @nodoc
+
 class _$UpdateTimeStart
     with DiagnosticableTreeMixin
     implements UpdateTimeStart {
-  const _$UpdateTimeStart({@required this.newTimeStart})
-      : assert(newTimeStart != null);
+  const _$UpdateTimeStart({required this.newTimeStart});
 
   @override
   final String newTimeStart;
@@ -673,44 +618,34 @@ class _$UpdateTimeStart
 
   @override
   @optionalTypeArgs
-  TResult when<TResult extends Object>({
-    @required TResult initializeEditLesson(),
-    @required TResult mastersUpdated(List<Master> masters),
-    @required TResult retrieveMasters(),
-    @required TResult updateTimeStart(String newTimeStart),
-    @required TResult updateTimeEnd(String newTimeEnd),
-    @required TResult updateName(String newName),
-    @required TResult updateCapacity(int newCapacity),
-    @required TResult updateImageUrl(),
-    @required TResult updateMasters(List<Master> newMasters),
+  TResult when<TResult extends Object?>({
+    required TResult Function() initializeEditLesson,
+    required TResult Function(List<Master> masters) mastersUpdated,
+    required TResult Function() retrieveMasters,
+    required TResult Function(String newTimeStart) updateTimeStart,
+    required TResult Function(String newTimeEnd) updateTimeEnd,
+    required TResult Function(String newName) updateName,
+    required TResult Function(int newCapacity) updateCapacity,
+    required TResult Function() updateImageUrl,
+    required TResult Function(List<Master> newMasters) updateMasters,
   }) {
-    assert(initializeEditLesson != null);
-    assert(mastersUpdated != null);
-    assert(retrieveMasters != null);
-    assert(updateTimeStart != null);
-    assert(updateTimeEnd != null);
-    assert(updateName != null);
-    assert(updateCapacity != null);
-    assert(updateImageUrl != null);
-    assert(updateMasters != null);
     return updateTimeStart(newTimeStart);
   }
 
   @override
   @optionalTypeArgs
-  TResult maybeWhen<TResult extends Object>({
-    TResult initializeEditLesson(),
-    TResult mastersUpdated(List<Master> masters),
-    TResult retrieveMasters(),
-    TResult updateTimeStart(String newTimeStart),
-    TResult updateTimeEnd(String newTimeEnd),
-    TResult updateName(String newName),
-    TResult updateCapacity(int newCapacity),
-    TResult updateImageUrl(),
-    TResult updateMasters(List<Master> newMasters),
-    @required TResult orElse(),
+  TResult maybeWhen<TResult extends Object?>({
+    TResult Function()? initializeEditLesson,
+    TResult Function(List<Master> masters)? mastersUpdated,
+    TResult Function()? retrieveMasters,
+    TResult Function(String newTimeStart)? updateTimeStart,
+    TResult Function(String newTimeEnd)? updateTimeEnd,
+    TResult Function(String newName)? updateName,
+    TResult Function(int newCapacity)? updateCapacity,
+    TResult Function()? updateImageUrl,
+    TResult Function(List<Master> newMasters)? updateMasters,
+    required TResult orElse(),
   }) {
-    assert(orElse != null);
     if (updateTimeStart != null) {
       return updateTimeStart(newTimeStart);
     }
@@ -719,44 +654,34 @@ class _$UpdateTimeStart
 
   @override
   @optionalTypeArgs
-  TResult map<TResult extends Object>({
-    @required TResult initializeEditLesson(InitializeEditLesson value),
-    @required TResult mastersUpdated(MastersUpdated value),
-    @required TResult retrieveMasters(RetrieveMasters value),
-    @required TResult updateTimeStart(UpdateTimeStart value),
-    @required TResult updateTimeEnd(UpdateTimeEnd value),
-    @required TResult updateName(UpdateName value),
-    @required TResult updateCapacity(UpdateCapacity value),
-    @required TResult updateImageUrl(UpdateImageUrl value),
-    @required TResult updateMasters(UpdateMasters value),
+  TResult map<TResult extends Object?>({
+    required TResult Function(InitializeEditLesson value) initializeEditLesson,
+    required TResult Function(MastersUpdated value) mastersUpdated,
+    required TResult Function(RetrieveMasters value) retrieveMasters,
+    required TResult Function(UpdateTimeStart value) updateTimeStart,
+    required TResult Function(UpdateTimeEnd value) updateTimeEnd,
+    required TResult Function(UpdateName value) updateName,
+    required TResult Function(UpdateCapacity value) updateCapacity,
+    required TResult Function(UpdateImageUrl value) updateImageUrl,
+    required TResult Function(UpdateMasters value) updateMasters,
   }) {
-    assert(initializeEditLesson != null);
-    assert(mastersUpdated != null);
-    assert(retrieveMasters != null);
-    assert(updateTimeStart != null);
-    assert(updateTimeEnd != null);
-    assert(updateName != null);
-    assert(updateCapacity != null);
-    assert(updateImageUrl != null);
-    assert(updateMasters != null);
     return updateTimeStart(this);
   }
 
   @override
   @optionalTypeArgs
-  TResult maybeMap<TResult extends Object>({
-    TResult initializeEditLesson(InitializeEditLesson value),
-    TResult mastersUpdated(MastersUpdated value),
-    TResult retrieveMasters(RetrieveMasters value),
-    TResult updateTimeStart(UpdateTimeStart value),
-    TResult updateTimeEnd(UpdateTimeEnd value),
-    TResult updateName(UpdateName value),
-    TResult updateCapacity(UpdateCapacity value),
-    TResult updateImageUrl(UpdateImageUrl value),
-    TResult updateMasters(UpdateMasters value),
-    @required TResult orElse(),
+  TResult maybeMap<TResult extends Object?>({
+    TResult Function(InitializeEditLesson value)? initializeEditLesson,
+    TResult Function(MastersUpdated value)? mastersUpdated,
+    TResult Function(RetrieveMasters value)? retrieveMasters,
+    TResult Function(UpdateTimeStart value)? updateTimeStart,
+    TResult Function(UpdateTimeEnd value)? updateTimeEnd,
+    TResult Function(UpdateName value)? updateName,
+    TResult Function(UpdateCapacity value)? updateCapacity,
+    TResult Function(UpdateImageUrl value)? updateImageUrl,
+    TResult Function(UpdateMasters value)? updateMasters,
+    required TResult orElse(),
   }) {
-    assert(orElse != null);
     if (updateTimeStart != null) {
       return updateTimeStart(this);
     }
@@ -765,12 +690,13 @@ class _$UpdateTimeStart
 }
 
 abstract class UpdateTimeStart implements EditLessonEvent {
-  const factory UpdateTimeStart({@required String newTimeStart}) =
+  const factory UpdateTimeStart({required String newTimeStart}) =
       _$UpdateTimeStart;
 
-  String get newTimeStart;
+  String get newTimeStart => throw _privateConstructorUsedError;
   @JsonKey(ignore: true)
-  $UpdateTimeStartCopyWith<UpdateTimeStart> get copyWith;
+  $UpdateTimeStartCopyWith<UpdateTimeStart> get copyWith =>
+      throw _privateConstructorUsedError;
 }
 
 /// @nodoc
@@ -794,19 +720,21 @@ class _$UpdateTimeEndCopyWithImpl<$Res>
 
   @override
   $Res call({
-    Object newTimeEnd = freezed,
+    Object? newTimeEnd = freezed,
   }) {
     return _then(UpdateTimeEnd(
-      newTimeEnd:
-          newTimeEnd == freezed ? _value.newTimeEnd : newTimeEnd as String,
+      newTimeEnd: newTimeEnd == freezed
+          ? _value.newTimeEnd
+          : newTimeEnd // ignore: cast_nullable_to_non_nullable
+              as String,
     ));
   }
 }
 
 /// @nodoc
+
 class _$UpdateTimeEnd with DiagnosticableTreeMixin implements UpdateTimeEnd {
-  const _$UpdateTimeEnd({@required this.newTimeEnd})
-      : assert(newTimeEnd != null);
+  const _$UpdateTimeEnd({required this.newTimeEnd});
 
   @override
   final String newTimeEnd;
@@ -844,44 +772,34 @@ class _$UpdateTimeEnd with DiagnosticableTreeMixin implements UpdateTimeEnd {
 
   @override
   @optionalTypeArgs
-  TResult when<TResult extends Object>({
-    @required TResult initializeEditLesson(),
-    @required TResult mastersUpdated(List<Master> masters),
-    @required TResult retrieveMasters(),
-    @required TResult updateTimeStart(String newTimeStart),
-    @required TResult updateTimeEnd(String newTimeEnd),
-    @required TResult updateName(String newName),
-    @required TResult updateCapacity(int newCapacity),
-    @required TResult updateImageUrl(),
-    @required TResult updateMasters(List<Master> newMasters),
+  TResult when<TResult extends Object?>({
+    required TResult Function() initializeEditLesson,
+    required TResult Function(List<Master> masters) mastersUpdated,
+    required TResult Function() retrieveMasters,
+    required TResult Function(String newTimeStart) updateTimeStart,
+    required TResult Function(String newTimeEnd) updateTimeEnd,
+    required TResult Function(String newName) updateName,
+    required TResult Function(int newCapacity) updateCapacity,
+    required TResult Function() updateImageUrl,
+    required TResult Function(List<Master> newMasters) updateMasters,
   }) {
-    assert(initializeEditLesson != null);
-    assert(mastersUpdated != null);
-    assert(retrieveMasters != null);
-    assert(updateTimeStart != null);
-    assert(updateTimeEnd != null);
-    assert(updateName != null);
-    assert(updateCapacity != null);
-    assert(updateImageUrl != null);
-    assert(updateMasters != null);
     return updateTimeEnd(newTimeEnd);
   }
 
   @override
   @optionalTypeArgs
-  TResult maybeWhen<TResult extends Object>({
-    TResult initializeEditLesson(),
-    TResult mastersUpdated(List<Master> masters),
-    TResult retrieveMasters(),
-    TResult updateTimeStart(String newTimeStart),
-    TResult updateTimeEnd(String newTimeEnd),
-    TResult updateName(String newName),
-    TResult updateCapacity(int newCapacity),
-    TResult updateImageUrl(),
-    TResult updateMasters(List<Master> newMasters),
-    @required TResult orElse(),
+  TResult maybeWhen<TResult extends Object?>({
+    TResult Function()? initializeEditLesson,
+    TResult Function(List<Master> masters)? mastersUpdated,
+    TResult Function()? retrieveMasters,
+    TResult Function(String newTimeStart)? updateTimeStart,
+    TResult Function(String newTimeEnd)? updateTimeEnd,
+    TResult Function(String newName)? updateName,
+    TResult Function(int newCapacity)? updateCapacity,
+    TResult Function()? updateImageUrl,
+    TResult Function(List<Master> newMasters)? updateMasters,
+    required TResult orElse(),
   }) {
-    assert(orElse != null);
     if (updateTimeEnd != null) {
       return updateTimeEnd(newTimeEnd);
     }
@@ -890,44 +808,34 @@ class _$UpdateTimeEnd with DiagnosticableTreeMixin implements UpdateTimeEnd {
 
   @override
   @optionalTypeArgs
-  TResult map<TResult extends Object>({
-    @required TResult initializeEditLesson(InitializeEditLesson value),
-    @required TResult mastersUpdated(MastersUpdated value),
-    @required TResult retrieveMasters(RetrieveMasters value),
-    @required TResult updateTimeStart(UpdateTimeStart value),
-    @required TResult updateTimeEnd(UpdateTimeEnd value),
-    @required TResult updateName(UpdateName value),
-    @required TResult updateCapacity(UpdateCapacity value),
-    @required TResult updateImageUrl(UpdateImageUrl value),
-    @required TResult updateMasters(UpdateMasters value),
+  TResult map<TResult extends Object?>({
+    required TResult Function(InitializeEditLesson value) initializeEditLesson,
+    required TResult Function(MastersUpdated value) mastersUpdated,
+    required TResult Function(RetrieveMasters value) retrieveMasters,
+    required TResult Function(UpdateTimeStart value) updateTimeStart,
+    required TResult Function(UpdateTimeEnd value) updateTimeEnd,
+    required TResult Function(UpdateName value) updateName,
+    required TResult Function(UpdateCapacity value) updateCapacity,
+    required TResult Function(UpdateImageUrl value) updateImageUrl,
+    required TResult Function(UpdateMasters value) updateMasters,
   }) {
-    assert(initializeEditLesson != null);
-    assert(mastersUpdated != null);
-    assert(retrieveMasters != null);
-    assert(updateTimeStart != null);
-    assert(updateTimeEnd != null);
-    assert(updateName != null);
-    assert(updateCapacity != null);
-    assert(updateImageUrl != null);
-    assert(updateMasters != null);
     return updateTimeEnd(this);
   }
 
   @override
   @optionalTypeArgs
-  TResult maybeMap<TResult extends Object>({
-    TResult initializeEditLesson(InitializeEditLesson value),
-    TResult mastersUpdated(MastersUpdated value),
-    TResult retrieveMasters(RetrieveMasters value),
-    TResult updateTimeStart(UpdateTimeStart value),
-    TResult updateTimeEnd(UpdateTimeEnd value),
-    TResult updateName(UpdateName value),
-    TResult updateCapacity(UpdateCapacity value),
-    TResult updateImageUrl(UpdateImageUrl value),
-    TResult updateMasters(UpdateMasters value),
-    @required TResult orElse(),
+  TResult maybeMap<TResult extends Object?>({
+    TResult Function(InitializeEditLesson value)? initializeEditLesson,
+    TResult Function(MastersUpdated value)? mastersUpdated,
+    TResult Function(RetrieveMasters value)? retrieveMasters,
+    TResult Function(UpdateTimeStart value)? updateTimeStart,
+    TResult Function(UpdateTimeEnd value)? updateTimeEnd,
+    TResult Function(UpdateName value)? updateName,
+    TResult Function(UpdateCapacity value)? updateCapacity,
+    TResult Function(UpdateImageUrl value)? updateImageUrl,
+    TResult Function(UpdateMasters value)? updateMasters,
+    required TResult orElse(),
   }) {
-    assert(orElse != null);
     if (updateTimeEnd != null) {
       return updateTimeEnd(this);
     }
@@ -936,11 +844,12 @@ class _$UpdateTimeEnd with DiagnosticableTreeMixin implements UpdateTimeEnd {
 }
 
 abstract class UpdateTimeEnd implements EditLessonEvent {
-  const factory UpdateTimeEnd({@required String newTimeEnd}) = _$UpdateTimeEnd;
+  const factory UpdateTimeEnd({required String newTimeEnd}) = _$UpdateTimeEnd;
 
-  String get newTimeEnd;
+  String get newTimeEnd => throw _privateConstructorUsedError;
   @JsonKey(ignore: true)
-  $UpdateTimeEndCopyWith<UpdateTimeEnd> get copyWith;
+  $UpdateTimeEndCopyWith<UpdateTimeEnd> get copyWith =>
+      throw _privateConstructorUsedError;
 }
 
 /// @nodoc
@@ -962,17 +871,21 @@ class _$UpdateNameCopyWithImpl<$Res> extends _$EditLessonEventCopyWithImpl<$Res>
 
   @override
   $Res call({
-    Object newName = freezed,
+    Object? newName = freezed,
   }) {
     return _then(UpdateName(
-      newName: newName == freezed ? _value.newName : newName as String,
+      newName: newName == freezed
+          ? _value.newName
+          : newName // ignore: cast_nullable_to_non_nullable
+              as String,
     ));
   }
 }
 
 /// @nodoc
+
 class _$UpdateName with DiagnosticableTreeMixin implements UpdateName {
-  const _$UpdateName({@required this.newName}) : assert(newName != null);
+  const _$UpdateName({required this.newName});
 
   @override
   final String newName;
@@ -1009,44 +922,34 @@ class _$UpdateName with DiagnosticableTreeMixin implements UpdateName {
 
   @override
   @optionalTypeArgs
-  TResult when<TResult extends Object>({
-    @required TResult initializeEditLesson(),
-    @required TResult mastersUpdated(List<Master> masters),
-    @required TResult retrieveMasters(),
-    @required TResult updateTimeStart(String newTimeStart),
-    @required TResult updateTimeEnd(String newTimeEnd),
-    @required TResult updateName(String newName),
-    @required TResult updateCapacity(int newCapacity),
-    @required TResult updateImageUrl(),
-    @required TResult updateMasters(List<Master> newMasters),
+  TResult when<TResult extends Object?>({
+    required TResult Function() initializeEditLesson,
+    required TResult Function(List<Master> masters) mastersUpdated,
+    required TResult Function() retrieveMasters,
+    required TResult Function(String newTimeStart) updateTimeStart,
+    required TResult Function(String newTimeEnd) updateTimeEnd,
+    required TResult Function(String newName) updateName,
+    required TResult Function(int newCapacity) updateCapacity,
+    required TResult Function() updateImageUrl,
+    required TResult Function(List<Master> newMasters) updateMasters,
   }) {
-    assert(initializeEditLesson != null);
-    assert(mastersUpdated != null);
-    assert(retrieveMasters != null);
-    assert(updateTimeStart != null);
-    assert(updateTimeEnd != null);
-    assert(updateName != null);
-    assert(updateCapacity != null);
-    assert(updateImageUrl != null);
-    assert(updateMasters != null);
     return updateName(newName);
   }
 
   @override
   @optionalTypeArgs
-  TResult maybeWhen<TResult extends Object>({
-    TResult initializeEditLesson(),
-    TResult mastersUpdated(List<Master> masters),
-    TResult retrieveMasters(),
-    TResult updateTimeStart(String newTimeStart),
-    TResult updateTimeEnd(String newTimeEnd),
-    TResult updateName(String newName),
-    TResult updateCapacity(int newCapacity),
-    TResult updateImageUrl(),
-    TResult updateMasters(List<Master> newMasters),
-    @required TResult orElse(),
+  TResult maybeWhen<TResult extends Object?>({
+    TResult Function()? initializeEditLesson,
+    TResult Function(List<Master> masters)? mastersUpdated,
+    TResult Function()? retrieveMasters,
+    TResult Function(String newTimeStart)? updateTimeStart,
+    TResult Function(String newTimeEnd)? updateTimeEnd,
+    TResult Function(String newName)? updateName,
+    TResult Function(int newCapacity)? updateCapacity,
+    TResult Function()? updateImageUrl,
+    TResult Function(List<Master> newMasters)? updateMasters,
+    required TResult orElse(),
   }) {
-    assert(orElse != null);
     if (updateName != null) {
       return updateName(newName);
     }
@@ -1055,44 +958,34 @@ class _$UpdateName with DiagnosticableTreeMixin implements UpdateName {
 
   @override
   @optionalTypeArgs
-  TResult map<TResult extends Object>({
-    @required TResult initializeEditLesson(InitializeEditLesson value),
-    @required TResult mastersUpdated(MastersUpdated value),
-    @required TResult retrieveMasters(RetrieveMasters value),
-    @required TResult updateTimeStart(UpdateTimeStart value),
-    @required TResult updateTimeEnd(UpdateTimeEnd value),
-    @required TResult updateName(UpdateName value),
-    @required TResult updateCapacity(UpdateCapacity value),
-    @required TResult updateImageUrl(UpdateImageUrl value),
-    @required TResult updateMasters(UpdateMasters value),
+  TResult map<TResult extends Object?>({
+    required TResult Function(InitializeEditLesson value) initializeEditLesson,
+    required TResult Function(MastersUpdated value) mastersUpdated,
+    required TResult Function(RetrieveMasters value) retrieveMasters,
+    required TResult Function(UpdateTimeStart value) updateTimeStart,
+    required TResult Function(UpdateTimeEnd value) updateTimeEnd,
+    required TResult Function(UpdateName value) updateName,
+    required TResult Function(UpdateCapacity value) updateCapacity,
+    required TResult Function(UpdateImageUrl value) updateImageUrl,
+    required TResult Function(UpdateMasters value) updateMasters,
   }) {
-    assert(initializeEditLesson != null);
-    assert(mastersUpdated != null);
-    assert(retrieveMasters != null);
-    assert(updateTimeStart != null);
-    assert(updateTimeEnd != null);
-    assert(updateName != null);
-    assert(updateCapacity != null);
-    assert(updateImageUrl != null);
-    assert(updateMasters != null);
     return updateName(this);
   }
 
   @override
   @optionalTypeArgs
-  TResult maybeMap<TResult extends Object>({
-    TResult initializeEditLesson(InitializeEditLesson value),
-    TResult mastersUpdated(MastersUpdated value),
-    TResult retrieveMasters(RetrieveMasters value),
-    TResult updateTimeStart(UpdateTimeStart value),
-    TResult updateTimeEnd(UpdateTimeEnd value),
-    TResult updateName(UpdateName value),
-    TResult updateCapacity(UpdateCapacity value),
-    TResult updateImageUrl(UpdateImageUrl value),
-    TResult updateMasters(UpdateMasters value),
-    @required TResult orElse(),
+  TResult maybeMap<TResult extends Object?>({
+    TResult Function(InitializeEditLesson value)? initializeEditLesson,
+    TResult Function(MastersUpdated value)? mastersUpdated,
+    TResult Function(RetrieveMasters value)? retrieveMasters,
+    TResult Function(UpdateTimeStart value)? updateTimeStart,
+    TResult Function(UpdateTimeEnd value)? updateTimeEnd,
+    TResult Function(UpdateName value)? updateName,
+    TResult Function(UpdateCapacity value)? updateCapacity,
+    TResult Function(UpdateImageUrl value)? updateImageUrl,
+    TResult Function(UpdateMasters value)? updateMasters,
+    required TResult orElse(),
   }) {
-    assert(orElse != null);
     if (updateName != null) {
       return updateName(this);
     }
@@ -1101,11 +994,12 @@ class _$UpdateName with DiagnosticableTreeMixin implements UpdateName {
 }
 
 abstract class UpdateName implements EditLessonEvent {
-  const factory UpdateName({@required String newName}) = _$UpdateName;
+  const factory UpdateName({required String newName}) = _$UpdateName;
 
-  String get newName;
+  String get newName => throw _privateConstructorUsedError;
   @JsonKey(ignore: true)
-  $UpdateNameCopyWith<UpdateName> get copyWith;
+  $UpdateNameCopyWith<UpdateName> get copyWith =>
+      throw _privateConstructorUsedError;
 }
 
 /// @nodoc
@@ -1129,19 +1023,21 @@ class _$UpdateCapacityCopyWithImpl<$Res>
 
   @override
   $Res call({
-    Object newCapacity = freezed,
+    Object? newCapacity = freezed,
   }) {
     return _then(UpdateCapacity(
-      newCapacity:
-          newCapacity == freezed ? _value.newCapacity : newCapacity as int,
+      newCapacity: newCapacity == freezed
+          ? _value.newCapacity
+          : newCapacity // ignore: cast_nullable_to_non_nullable
+              as int,
     ));
   }
 }
 
 /// @nodoc
+
 class _$UpdateCapacity with DiagnosticableTreeMixin implements UpdateCapacity {
-  const _$UpdateCapacity({@required this.newCapacity})
-      : assert(newCapacity != null);
+  const _$UpdateCapacity({required this.newCapacity});
 
   @override
   final int newCapacity;
@@ -1179,44 +1075,34 @@ class _$UpdateCapacity with DiagnosticableTreeMixin implements UpdateCapacity {
 
   @override
   @optionalTypeArgs
-  TResult when<TResult extends Object>({
-    @required TResult initializeEditLesson(),
-    @required TResult mastersUpdated(List<Master> masters),
-    @required TResult retrieveMasters(),
-    @required TResult updateTimeStart(String newTimeStart),
-    @required TResult updateTimeEnd(String newTimeEnd),
-    @required TResult updateName(String newName),
-    @required TResult updateCapacity(int newCapacity),
-    @required TResult updateImageUrl(),
-    @required TResult updateMasters(List<Master> newMasters),
+  TResult when<TResult extends Object?>({
+    required TResult Function() initializeEditLesson,
+    required TResult Function(List<Master> masters) mastersUpdated,
+    required TResult Function() retrieveMasters,
+    required TResult Function(String newTimeStart) updateTimeStart,
+    required TResult Function(String newTimeEnd) updateTimeEnd,
+    required TResult Function(String newName) updateName,
+    required TResult Function(int newCapacity) updateCapacity,
+    required TResult Function() updateImageUrl,
+    required TResult Function(List<Master> newMasters) updateMasters,
   }) {
-    assert(initializeEditLesson != null);
-    assert(mastersUpdated != null);
-    assert(retrieveMasters != null);
-    assert(updateTimeStart != null);
-    assert(updateTimeEnd != null);
-    assert(updateName != null);
-    assert(updateCapacity != null);
-    assert(updateImageUrl != null);
-    assert(updateMasters != null);
     return updateCapacity(newCapacity);
   }
 
   @override
   @optionalTypeArgs
-  TResult maybeWhen<TResult extends Object>({
-    TResult initializeEditLesson(),
-    TResult mastersUpdated(List<Master> masters),
-    TResult retrieveMasters(),
-    TResult updateTimeStart(String newTimeStart),
-    TResult updateTimeEnd(String newTimeEnd),
-    TResult updateName(String newName),
-    TResult updateCapacity(int newCapacity),
-    TResult updateImageUrl(),
-    TResult updateMasters(List<Master> newMasters),
-    @required TResult orElse(),
+  TResult maybeWhen<TResult extends Object?>({
+    TResult Function()? initializeEditLesson,
+    TResult Function(List<Master> masters)? mastersUpdated,
+    TResult Function()? retrieveMasters,
+    TResult Function(String newTimeStart)? updateTimeStart,
+    TResult Function(String newTimeEnd)? updateTimeEnd,
+    TResult Function(String newName)? updateName,
+    TResult Function(int newCapacity)? updateCapacity,
+    TResult Function()? updateImageUrl,
+    TResult Function(List<Master> newMasters)? updateMasters,
+    required TResult orElse(),
   }) {
-    assert(orElse != null);
     if (updateCapacity != null) {
       return updateCapacity(newCapacity);
     }
@@ -1225,44 +1111,34 @@ class _$UpdateCapacity with DiagnosticableTreeMixin implements UpdateCapacity {
 
   @override
   @optionalTypeArgs
-  TResult map<TResult extends Object>({
-    @required TResult initializeEditLesson(InitializeEditLesson value),
-    @required TResult mastersUpdated(MastersUpdated value),
-    @required TResult retrieveMasters(RetrieveMasters value),
-    @required TResult updateTimeStart(UpdateTimeStart value),
-    @required TResult updateTimeEnd(UpdateTimeEnd value),
-    @required TResult updateName(UpdateName value),
-    @required TResult updateCapacity(UpdateCapacity value),
-    @required TResult updateImageUrl(UpdateImageUrl value),
-    @required TResult updateMasters(UpdateMasters value),
+  TResult map<TResult extends Object?>({
+    required TResult Function(InitializeEditLesson value) initializeEditLesson,
+    required TResult Function(MastersUpdated value) mastersUpdated,
+    required TResult Function(RetrieveMasters value) retrieveMasters,
+    required TResult Function(UpdateTimeStart value) updateTimeStart,
+    required TResult Function(UpdateTimeEnd value) updateTimeEnd,
+    required TResult Function(UpdateName value) updateName,
+    required TResult Function(UpdateCapacity value) updateCapacity,
+    required TResult Function(UpdateImageUrl value) updateImageUrl,
+    required TResult Function(UpdateMasters value) updateMasters,
   }) {
-    assert(initializeEditLesson != null);
-    assert(mastersUpdated != null);
-    assert(retrieveMasters != null);
-    assert(updateTimeStart != null);
-    assert(updateTimeEnd != null);
-    assert(updateName != null);
-    assert(updateCapacity != null);
-    assert(updateImageUrl != null);
-    assert(updateMasters != null);
     return updateCapacity(this);
   }
 
   @override
   @optionalTypeArgs
-  TResult maybeMap<TResult extends Object>({
-    TResult initializeEditLesson(InitializeEditLesson value),
-    TResult mastersUpdated(MastersUpdated value),
-    TResult retrieveMasters(RetrieveMasters value),
-    TResult updateTimeStart(UpdateTimeStart value),
-    TResult updateTimeEnd(UpdateTimeEnd value),
-    TResult updateName(UpdateName value),
-    TResult updateCapacity(UpdateCapacity value),
-    TResult updateImageUrl(UpdateImageUrl value),
-    TResult updateMasters(UpdateMasters value),
-    @required TResult orElse(),
+  TResult maybeMap<TResult extends Object?>({
+    TResult Function(InitializeEditLesson value)? initializeEditLesson,
+    TResult Function(MastersUpdated value)? mastersUpdated,
+    TResult Function(RetrieveMasters value)? retrieveMasters,
+    TResult Function(UpdateTimeStart value)? updateTimeStart,
+    TResult Function(UpdateTimeEnd value)? updateTimeEnd,
+    TResult Function(UpdateName value)? updateName,
+    TResult Function(UpdateCapacity value)? updateCapacity,
+    TResult Function(UpdateImageUrl value)? updateImageUrl,
+    TResult Function(UpdateMasters value)? updateMasters,
+    required TResult orElse(),
   }) {
-    assert(orElse != null);
     if (updateCapacity != null) {
       return updateCapacity(this);
     }
@@ -1271,11 +1147,12 @@ class _$UpdateCapacity with DiagnosticableTreeMixin implements UpdateCapacity {
 }
 
 abstract class UpdateCapacity implements EditLessonEvent {
-  const factory UpdateCapacity({@required int newCapacity}) = _$UpdateCapacity;
+  const factory UpdateCapacity({required int newCapacity}) = _$UpdateCapacity;
 
-  int get newCapacity;
+  int get newCapacity => throw _privateConstructorUsedError;
   @JsonKey(ignore: true)
-  $UpdateCapacityCopyWith<UpdateCapacity> get copyWith;
+  $UpdateCapacityCopyWith<UpdateCapacity> get copyWith =>
+      throw _privateConstructorUsedError;
 }
 
 /// @nodoc
@@ -1298,6 +1175,7 @@ class _$UpdateImageUrlCopyWithImpl<$Res>
 }
 
 /// @nodoc
+
 class _$UpdateImageUrl with DiagnosticableTreeMixin implements UpdateImageUrl {
   const _$UpdateImageUrl();
 
@@ -1323,44 +1201,34 @@ class _$UpdateImageUrl with DiagnosticableTreeMixin implements UpdateImageUrl {
 
   @override
   @optionalTypeArgs
-  TResult when<TResult extends Object>({
-    @required TResult initializeEditLesson(),
-    @required TResult mastersUpdated(List<Master> masters),
-    @required TResult retrieveMasters(),
-    @required TResult updateTimeStart(String newTimeStart),
-    @required TResult updateTimeEnd(String newTimeEnd),
-    @required TResult updateName(String newName),
-    @required TResult updateCapacity(int newCapacity),
-    @required TResult updateImageUrl(),
-    @required TResult updateMasters(List<Master> newMasters),
+  TResult when<TResult extends Object?>({
+    required TResult Function() initializeEditLesson,
+    required TResult Function(List<Master> masters) mastersUpdated,
+    required TResult Function() retrieveMasters,
+    required TResult Function(String newTimeStart) updateTimeStart,
+    required TResult Function(String newTimeEnd) updateTimeEnd,
+    required TResult Function(String newName) updateName,
+    required TResult Function(int newCapacity) updateCapacity,
+    required TResult Function() updateImageUrl,
+    required TResult Function(List<Master> newMasters) updateMasters,
   }) {
-    assert(initializeEditLesson != null);
-    assert(mastersUpdated != null);
-    assert(retrieveMasters != null);
-    assert(updateTimeStart != null);
-    assert(updateTimeEnd != null);
-    assert(updateName != null);
-    assert(updateCapacity != null);
-    assert(updateImageUrl != null);
-    assert(updateMasters != null);
     return updateImageUrl();
   }
 
   @override
   @optionalTypeArgs
-  TResult maybeWhen<TResult extends Object>({
-    TResult initializeEditLesson(),
-    TResult mastersUpdated(List<Master> masters),
-    TResult retrieveMasters(),
-    TResult updateTimeStart(String newTimeStart),
-    TResult updateTimeEnd(String newTimeEnd),
-    TResult updateName(String newName),
-    TResult updateCapacity(int newCapacity),
-    TResult updateImageUrl(),
-    TResult updateMasters(List<Master> newMasters),
-    @required TResult orElse(),
+  TResult maybeWhen<TResult extends Object?>({
+    TResult Function()? initializeEditLesson,
+    TResult Function(List<Master> masters)? mastersUpdated,
+    TResult Function()? retrieveMasters,
+    TResult Function(String newTimeStart)? updateTimeStart,
+    TResult Function(String newTimeEnd)? updateTimeEnd,
+    TResult Function(String newName)? updateName,
+    TResult Function(int newCapacity)? updateCapacity,
+    TResult Function()? updateImageUrl,
+    TResult Function(List<Master> newMasters)? updateMasters,
+    required TResult orElse(),
   }) {
-    assert(orElse != null);
     if (updateImageUrl != null) {
       return updateImageUrl();
     }
@@ -1369,44 +1237,34 @@ class _$UpdateImageUrl with DiagnosticableTreeMixin implements UpdateImageUrl {
 
   @override
   @optionalTypeArgs
-  TResult map<TResult extends Object>({
-    @required TResult initializeEditLesson(InitializeEditLesson value),
-    @required TResult mastersUpdated(MastersUpdated value),
-    @required TResult retrieveMasters(RetrieveMasters value),
-    @required TResult updateTimeStart(UpdateTimeStart value),
-    @required TResult updateTimeEnd(UpdateTimeEnd value),
-    @required TResult updateName(UpdateName value),
-    @required TResult updateCapacity(UpdateCapacity value),
-    @required TResult updateImageUrl(UpdateImageUrl value),
-    @required TResult updateMasters(UpdateMasters value),
+  TResult map<TResult extends Object?>({
+    required TResult Function(InitializeEditLesson value) initializeEditLesson,
+    required TResult Function(MastersUpdated value) mastersUpdated,
+    required TResult Function(RetrieveMasters value) retrieveMasters,
+    required TResult Function(UpdateTimeStart value) updateTimeStart,
+    required TResult Function(UpdateTimeEnd value) updateTimeEnd,
+    required TResult Function(UpdateName value) updateName,
+    required TResult Function(UpdateCapacity value) updateCapacity,
+    required TResult Function(UpdateImageUrl value) updateImageUrl,
+    required TResult Function(UpdateMasters value) updateMasters,
   }) {
-    assert(initializeEditLesson != null);
-    assert(mastersUpdated != null);
-    assert(retrieveMasters != null);
-    assert(updateTimeStart != null);
-    assert(updateTimeEnd != null);
-    assert(updateName != null);
-    assert(updateCapacity != null);
-    assert(updateImageUrl != null);
-    assert(updateMasters != null);
     return updateImageUrl(this);
   }
 
   @override
   @optionalTypeArgs
-  TResult maybeMap<TResult extends Object>({
-    TResult initializeEditLesson(InitializeEditLesson value),
-    TResult mastersUpdated(MastersUpdated value),
-    TResult retrieveMasters(RetrieveMasters value),
-    TResult updateTimeStart(UpdateTimeStart value),
-    TResult updateTimeEnd(UpdateTimeEnd value),
-    TResult updateName(UpdateName value),
-    TResult updateCapacity(UpdateCapacity value),
-    TResult updateImageUrl(UpdateImageUrl value),
-    TResult updateMasters(UpdateMasters value),
-    @required TResult orElse(),
+  TResult maybeMap<TResult extends Object?>({
+    TResult Function(InitializeEditLesson value)? initializeEditLesson,
+    TResult Function(MastersUpdated value)? mastersUpdated,
+    TResult Function(RetrieveMasters value)? retrieveMasters,
+    TResult Function(UpdateTimeStart value)? updateTimeStart,
+    TResult Function(UpdateTimeEnd value)? updateTimeEnd,
+    TResult Function(UpdateName value)? updateName,
+    TResult Function(UpdateCapacity value)? updateCapacity,
+    TResult Function(UpdateImageUrl value)? updateImageUrl,
+    TResult Function(UpdateMasters value)? updateMasters,
+    required TResult orElse(),
   }) {
-    assert(orElse != null);
     if (updateImageUrl != null) {
       return updateImageUrl(this);
     }
@@ -1439,20 +1297,21 @@ class _$UpdateMastersCopyWithImpl<$Res>
 
   @override
   $Res call({
-    Object newMasters = freezed,
+    Object? newMasters = freezed,
   }) {
     return _then(UpdateMasters(
       newMasters: newMasters == freezed
           ? _value.newMasters
-          : newMasters as List<Master>,
+          : newMasters // ignore: cast_nullable_to_non_nullable
+              as List<Master>,
     ));
   }
 }
 
 /// @nodoc
+
 class _$UpdateMasters with DiagnosticableTreeMixin implements UpdateMasters {
-  const _$UpdateMasters({@required this.newMasters})
-      : assert(newMasters != null);
+  const _$UpdateMasters({required this.newMasters});
 
   @override
   final List<Master> newMasters;
@@ -1490,44 +1349,34 @@ class _$UpdateMasters with DiagnosticableTreeMixin implements UpdateMasters {
 
   @override
   @optionalTypeArgs
-  TResult when<TResult extends Object>({
-    @required TResult initializeEditLesson(),
-    @required TResult mastersUpdated(List<Master> masters),
-    @required TResult retrieveMasters(),
-    @required TResult updateTimeStart(String newTimeStart),
-    @required TResult updateTimeEnd(String newTimeEnd),
-    @required TResult updateName(String newName),
-    @required TResult updateCapacity(int newCapacity),
-    @required TResult updateImageUrl(),
-    @required TResult updateMasters(List<Master> newMasters),
+  TResult when<TResult extends Object?>({
+    required TResult Function() initializeEditLesson,
+    required TResult Function(List<Master> masters) mastersUpdated,
+    required TResult Function() retrieveMasters,
+    required TResult Function(String newTimeStart) updateTimeStart,
+    required TResult Function(String newTimeEnd) updateTimeEnd,
+    required TResult Function(String newName) updateName,
+    required TResult Function(int newCapacity) updateCapacity,
+    required TResult Function() updateImageUrl,
+    required TResult Function(List<Master> newMasters) updateMasters,
   }) {
-    assert(initializeEditLesson != null);
-    assert(mastersUpdated != null);
-    assert(retrieveMasters != null);
-    assert(updateTimeStart != null);
-    assert(updateTimeEnd != null);
-    assert(updateName != null);
-    assert(updateCapacity != null);
-    assert(updateImageUrl != null);
-    assert(updateMasters != null);
     return updateMasters(newMasters);
   }
 
   @override
   @optionalTypeArgs
-  TResult maybeWhen<TResult extends Object>({
-    TResult initializeEditLesson(),
-    TResult mastersUpdated(List<Master> masters),
-    TResult retrieveMasters(),
-    TResult updateTimeStart(String newTimeStart),
-    TResult updateTimeEnd(String newTimeEnd),
-    TResult updateName(String newName),
-    TResult updateCapacity(int newCapacity),
-    TResult updateImageUrl(),
-    TResult updateMasters(List<Master> newMasters),
-    @required TResult orElse(),
+  TResult maybeWhen<TResult extends Object?>({
+    TResult Function()? initializeEditLesson,
+    TResult Function(List<Master> masters)? mastersUpdated,
+    TResult Function()? retrieveMasters,
+    TResult Function(String newTimeStart)? updateTimeStart,
+    TResult Function(String newTimeEnd)? updateTimeEnd,
+    TResult Function(String newName)? updateName,
+    TResult Function(int newCapacity)? updateCapacity,
+    TResult Function()? updateImageUrl,
+    TResult Function(List<Master> newMasters)? updateMasters,
+    required TResult orElse(),
   }) {
-    assert(orElse != null);
     if (updateMasters != null) {
       return updateMasters(newMasters);
     }
@@ -1536,44 +1385,34 @@ class _$UpdateMasters with DiagnosticableTreeMixin implements UpdateMasters {
 
   @override
   @optionalTypeArgs
-  TResult map<TResult extends Object>({
-    @required TResult initializeEditLesson(InitializeEditLesson value),
-    @required TResult mastersUpdated(MastersUpdated value),
-    @required TResult retrieveMasters(RetrieveMasters value),
-    @required TResult updateTimeStart(UpdateTimeStart value),
-    @required TResult updateTimeEnd(UpdateTimeEnd value),
-    @required TResult updateName(UpdateName value),
-    @required TResult updateCapacity(UpdateCapacity value),
-    @required TResult updateImageUrl(UpdateImageUrl value),
-    @required TResult updateMasters(UpdateMasters value),
+  TResult map<TResult extends Object?>({
+    required TResult Function(InitializeEditLesson value) initializeEditLesson,
+    required TResult Function(MastersUpdated value) mastersUpdated,
+    required TResult Function(RetrieveMasters value) retrieveMasters,
+    required TResult Function(UpdateTimeStart value) updateTimeStart,
+    required TResult Function(UpdateTimeEnd value) updateTimeEnd,
+    required TResult Function(UpdateName value) updateName,
+    required TResult Function(UpdateCapacity value) updateCapacity,
+    required TResult Function(UpdateImageUrl value) updateImageUrl,
+    required TResult Function(UpdateMasters value) updateMasters,
   }) {
-    assert(initializeEditLesson != null);
-    assert(mastersUpdated != null);
-    assert(retrieveMasters != null);
-    assert(updateTimeStart != null);
-    assert(updateTimeEnd != null);
-    assert(updateName != null);
-    assert(updateCapacity != null);
-    assert(updateImageUrl != null);
-    assert(updateMasters != null);
     return updateMasters(this);
   }
 
   @override
   @optionalTypeArgs
-  TResult maybeMap<TResult extends Object>({
-    TResult initializeEditLesson(InitializeEditLesson value),
-    TResult mastersUpdated(MastersUpdated value),
-    TResult retrieveMasters(RetrieveMasters value),
-    TResult updateTimeStart(UpdateTimeStart value),
-    TResult updateTimeEnd(UpdateTimeEnd value),
-    TResult updateName(UpdateName value),
-    TResult updateCapacity(UpdateCapacity value),
-    TResult updateImageUrl(UpdateImageUrl value),
-    TResult updateMasters(UpdateMasters value),
-    @required TResult orElse(),
+  TResult maybeMap<TResult extends Object?>({
+    TResult Function(InitializeEditLesson value)? initializeEditLesson,
+    TResult Function(MastersUpdated value)? mastersUpdated,
+    TResult Function(RetrieveMasters value)? retrieveMasters,
+    TResult Function(UpdateTimeStart value)? updateTimeStart,
+    TResult Function(UpdateTimeEnd value)? updateTimeEnd,
+    TResult Function(UpdateName value)? updateName,
+    TResult Function(UpdateCapacity value)? updateCapacity,
+    TResult Function(UpdateImageUrl value)? updateImageUrl,
+    TResult Function(UpdateMasters value)? updateMasters,
+    required TResult orElse(),
   }) {
-    assert(orElse != null);
     if (updateMasters != null) {
       return updateMasters(this);
     }
@@ -1582,10 +1421,11 @@ class _$UpdateMasters with DiagnosticableTreeMixin implements UpdateMasters {
 }
 
 abstract class UpdateMasters implements EditLessonEvent {
-  const factory UpdateMasters({@required List<Master> newMasters}) =
+  const factory UpdateMasters({required List<Master> newMasters}) =
       _$UpdateMasters;
 
-  List<Master> get newMasters;
+  List<Master> get newMasters => throw _privateConstructorUsedError;
   @JsonKey(ignore: true)
-  $UpdateMastersCopyWith<UpdateMasters> get copyWith;
+  $UpdateMastersCopyWith<UpdateMasters> get copyWith =>
+      throw _privateConstructorUsedError;
 }

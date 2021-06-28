@@ -1,5 +1,5 @@
 // GENERATED CODE - DO NOT MODIFY BY HAND
-// ignore_for_file: deprecated_member_use, deprecated_member_use_from_same_package, use_function_type_syntax_for_parameters, unnecessary_const, avoid_init_to_null, invalid_override_different_default_values_named, prefer_expression_function_bodies
+// ignore_for_file: unused_element, deprecated_member_use, deprecated_member_use_from_same_package, use_function_type_syntax_for_parameters, unnecessary_const, avoid_init_to_null, invalid_override_different_default_values_named, prefer_expression_function_bodies, annotate_overrides
 
 part of 'graduation_event.dart';
 
@@ -9,17 +9,19 @@ part of 'graduation_event.dart';
 
 T _$identity<T>(T value) => value;
 
+final _privateConstructorUsedError = UnsupportedError(
+    'It seems like you constructed your class using `MyClass._()`. This constructor is only meant to be used by freezed and you are not supposed to need it nor use it.\nPlease check the documentation here for more informations: https://github.com/rrousselGit/freezed#custom-getters-and-methods');
+
 /// @nodoc
 class _$GraduationEventTearOff {
   const _$GraduationEventTearOff();
 
-// ignore: unused_element
   GraduationSystemUpdated graduationSystemUpdated(
-      {@required double forNextLevel,
-      @required int attendedLessonsForGrade,
-      @required Grade currentGrade,
-      @required Grade nextGrade,
-      @required bool isVisible}) {
+      {required double forNextLevel,
+      required int attendedLessonsForGrade,
+      required Grade currentGrade,
+      required Grade nextGrade,
+      required bool isVisible}) {
     return GraduationSystemUpdated(
       forNextLevel: forNextLevel,
       attendedLessonsForGrade: attendedLessonsForGrade,
@@ -29,62 +31,57 @@ class _$GraduationEventTearOff {
     );
   }
 
-// ignore: unused_element
-  Graduate graduate({@required Grade newGrade}) {
+  Graduate graduate({required Grade newGrade}) {
     return Graduate(
       newGrade: newGrade,
     );
   }
 
-// ignore: unused_element
   InitializeGraduation initializeGraduation() {
     return const InitializeGraduation();
   }
 }
 
 /// @nodoc
-// ignore: unused_element
 const $GraduationEvent = _$GraduationEventTearOff();
 
 /// @nodoc
 mixin _$GraduationEvent {
   @optionalTypeArgs
-  TResult when<TResult extends Object>({
-    @required
-        TResult graduationSystemUpdated(
-            double forNextLevel,
-            int attendedLessonsForGrade,
-            Grade currentGrade,
-            Grade nextGrade,
-            bool isVisible),
-    @required TResult graduate(Grade newGrade),
-    @required TResult initializeGraduation(),
-  });
+  TResult when<TResult extends Object?>({
+    required TResult Function(double forNextLevel, int attendedLessonsForGrade,
+            Grade currentGrade, Grade nextGrade, bool isVisible)
+        graduationSystemUpdated,
+    required TResult Function(Grade newGrade) graduate,
+    required TResult Function() initializeGraduation,
+  }) =>
+      throw _privateConstructorUsedError;
   @optionalTypeArgs
-  TResult maybeWhen<TResult extends Object>({
-    TResult graduationSystemUpdated(
-        double forNextLevel,
-        int attendedLessonsForGrade,
-        Grade currentGrade,
-        Grade nextGrade,
-        bool isVisible),
-    TResult graduate(Grade newGrade),
-    TResult initializeGraduation(),
-    @required TResult orElse(),
-  });
+  TResult maybeWhen<TResult extends Object?>({
+    TResult Function(double forNextLevel, int attendedLessonsForGrade,
+            Grade currentGrade, Grade nextGrade, bool isVisible)?
+        graduationSystemUpdated,
+    TResult Function(Grade newGrade)? graduate,
+    TResult Function()? initializeGraduation,
+    required TResult orElse(),
+  }) =>
+      throw _privateConstructorUsedError;
   @optionalTypeArgs
-  TResult map<TResult extends Object>({
-    @required TResult graduationSystemUpdated(GraduationSystemUpdated value),
-    @required TResult graduate(Graduate value),
-    @required TResult initializeGraduation(InitializeGraduation value),
-  });
+  TResult map<TResult extends Object?>({
+    required TResult Function(GraduationSystemUpdated value)
+        graduationSystemUpdated,
+    required TResult Function(Graduate value) graduate,
+    required TResult Function(InitializeGraduation value) initializeGraduation,
+  }) =>
+      throw _privateConstructorUsedError;
   @optionalTypeArgs
-  TResult maybeMap<TResult extends Object>({
-    TResult graduationSystemUpdated(GraduationSystemUpdated value),
-    TResult graduate(Graduate value),
-    TResult initializeGraduation(InitializeGraduation value),
-    @required TResult orElse(),
-  });
+  TResult maybeMap<TResult extends Object?>({
+    TResult Function(GraduationSystemUpdated value)? graduationSystemUpdated,
+    TResult Function(Graduate value)? graduate,
+    TResult Function(InitializeGraduation value)? initializeGraduation,
+    required TResult orElse(),
+  }) =>
+      throw _privateConstructorUsedError;
 }
 
 /// @nodoc
@@ -130,42 +127,48 @@ class _$GraduationSystemUpdatedCopyWithImpl<$Res>
 
   @override
   $Res call({
-    Object forNextLevel = freezed,
-    Object attendedLessonsForGrade = freezed,
-    Object currentGrade = freezed,
-    Object nextGrade = freezed,
-    Object isVisible = freezed,
+    Object? forNextLevel = freezed,
+    Object? attendedLessonsForGrade = freezed,
+    Object? currentGrade = freezed,
+    Object? nextGrade = freezed,
+    Object? isVisible = freezed,
   }) {
     return _then(GraduationSystemUpdated(
       forNextLevel: forNextLevel == freezed
           ? _value.forNextLevel
-          : forNextLevel as double,
+          : forNextLevel // ignore: cast_nullable_to_non_nullable
+              as double,
       attendedLessonsForGrade: attendedLessonsForGrade == freezed
           ? _value.attendedLessonsForGrade
-          : attendedLessonsForGrade as int,
-      currentGrade:
-          currentGrade == freezed ? _value.currentGrade : currentGrade as Grade,
-      nextGrade: nextGrade == freezed ? _value.nextGrade : nextGrade as Grade,
-      isVisible: isVisible == freezed ? _value.isVisible : isVisible as bool,
+          : attendedLessonsForGrade // ignore: cast_nullable_to_non_nullable
+              as int,
+      currentGrade: currentGrade == freezed
+          ? _value.currentGrade
+          : currentGrade // ignore: cast_nullable_to_non_nullable
+              as Grade,
+      nextGrade: nextGrade == freezed
+          ? _value.nextGrade
+          : nextGrade // ignore: cast_nullable_to_non_nullable
+              as Grade,
+      isVisible: isVisible == freezed
+          ? _value.isVisible
+          : isVisible // ignore: cast_nullable_to_non_nullable
+              as bool,
     ));
   }
 }
 
 /// @nodoc
+
 class _$GraduationSystemUpdated
     with DiagnosticableTreeMixin
     implements GraduationSystemUpdated {
   const _$GraduationSystemUpdated(
-      {@required this.forNextLevel,
-      @required this.attendedLessonsForGrade,
-      @required this.currentGrade,
-      @required this.nextGrade,
-      @required this.isVisible})
-      : assert(forNextLevel != null),
-        assert(attendedLessonsForGrade != null),
-        assert(currentGrade != null),
-        assert(nextGrade != null),
-        assert(isVisible != null);
+      {required this.forNextLevel,
+      required this.attendedLessonsForGrade,
+      required this.currentGrade,
+      required this.nextGrade,
+      required this.isVisible});
 
   @override
   final double forNextLevel;
@@ -236,38 +239,27 @@ class _$GraduationSystemUpdated
 
   @override
   @optionalTypeArgs
-  TResult when<TResult extends Object>({
-    @required
-        TResult graduationSystemUpdated(
-            double forNextLevel,
-            int attendedLessonsForGrade,
-            Grade currentGrade,
-            Grade nextGrade,
-            bool isVisible),
-    @required TResult graduate(Grade newGrade),
-    @required TResult initializeGraduation(),
+  TResult when<TResult extends Object?>({
+    required TResult Function(double forNextLevel, int attendedLessonsForGrade,
+            Grade currentGrade, Grade nextGrade, bool isVisible)
+        graduationSystemUpdated,
+    required TResult Function(Grade newGrade) graduate,
+    required TResult Function() initializeGraduation,
   }) {
-    assert(graduationSystemUpdated != null);
-    assert(graduate != null);
-    assert(initializeGraduation != null);
     return graduationSystemUpdated(forNextLevel, attendedLessonsForGrade,
         currentGrade, nextGrade, isVisible);
   }
 
   @override
   @optionalTypeArgs
-  TResult maybeWhen<TResult extends Object>({
-    TResult graduationSystemUpdated(
-        double forNextLevel,
-        int attendedLessonsForGrade,
-        Grade currentGrade,
-        Grade nextGrade,
-        bool isVisible),
-    TResult graduate(Grade newGrade),
-    TResult initializeGraduation(),
-    @required TResult orElse(),
+  TResult maybeWhen<TResult extends Object?>({
+    TResult Function(double forNextLevel, int attendedLessonsForGrade,
+            Grade currentGrade, Grade nextGrade, bool isVisible)?
+        graduationSystemUpdated,
+    TResult Function(Grade newGrade)? graduate,
+    TResult Function()? initializeGraduation,
+    required TResult orElse(),
   }) {
-    assert(orElse != null);
     if (graduationSystemUpdated != null) {
       return graduationSystemUpdated(forNextLevel, attendedLessonsForGrade,
           currentGrade, nextGrade, isVisible);
@@ -277,26 +269,23 @@ class _$GraduationSystemUpdated
 
   @override
   @optionalTypeArgs
-  TResult map<TResult extends Object>({
-    @required TResult graduationSystemUpdated(GraduationSystemUpdated value),
-    @required TResult graduate(Graduate value),
-    @required TResult initializeGraduation(InitializeGraduation value),
+  TResult map<TResult extends Object?>({
+    required TResult Function(GraduationSystemUpdated value)
+        graduationSystemUpdated,
+    required TResult Function(Graduate value) graduate,
+    required TResult Function(InitializeGraduation value) initializeGraduation,
   }) {
-    assert(graduationSystemUpdated != null);
-    assert(graduate != null);
-    assert(initializeGraduation != null);
     return graduationSystemUpdated(this);
   }
 
   @override
   @optionalTypeArgs
-  TResult maybeMap<TResult extends Object>({
-    TResult graduationSystemUpdated(GraduationSystemUpdated value),
-    TResult graduate(Graduate value),
-    TResult initializeGraduation(InitializeGraduation value),
-    @required TResult orElse(),
+  TResult maybeMap<TResult extends Object?>({
+    TResult Function(GraduationSystemUpdated value)? graduationSystemUpdated,
+    TResult Function(Graduate value)? graduate,
+    TResult Function(InitializeGraduation value)? initializeGraduation,
+    required TResult orElse(),
   }) {
-    assert(orElse != null);
     if (graduationSystemUpdated != null) {
       return graduationSystemUpdated(this);
     }
@@ -306,19 +295,20 @@ class _$GraduationSystemUpdated
 
 abstract class GraduationSystemUpdated implements GraduationEvent {
   const factory GraduationSystemUpdated(
-      {@required double forNextLevel,
-      @required int attendedLessonsForGrade,
-      @required Grade currentGrade,
-      @required Grade nextGrade,
-      @required bool isVisible}) = _$GraduationSystemUpdated;
+      {required double forNextLevel,
+      required int attendedLessonsForGrade,
+      required Grade currentGrade,
+      required Grade nextGrade,
+      required bool isVisible}) = _$GraduationSystemUpdated;
 
-  double get forNextLevel;
-  int get attendedLessonsForGrade;
-  Grade get currentGrade;
-  Grade get nextGrade;
-  bool get isVisible;
+  double get forNextLevel => throw _privateConstructorUsedError;
+  int get attendedLessonsForGrade => throw _privateConstructorUsedError;
+  Grade get currentGrade => throw _privateConstructorUsedError;
+  Grade get nextGrade => throw _privateConstructorUsedError;
+  bool get isVisible => throw _privateConstructorUsedError;
   @JsonKey(ignore: true)
-  $GraduationSystemUpdatedCopyWith<GraduationSystemUpdated> get copyWith;
+  $GraduationSystemUpdatedCopyWith<GraduationSystemUpdated> get copyWith =>
+      throw _privateConstructorUsedError;
 }
 
 /// @nodoc
@@ -339,17 +329,21 @@ class _$GraduateCopyWithImpl<$Res> extends _$GraduationEventCopyWithImpl<$Res>
 
   @override
   $Res call({
-    Object newGrade = freezed,
+    Object? newGrade = freezed,
   }) {
     return _then(Graduate(
-      newGrade: newGrade == freezed ? _value.newGrade : newGrade as Grade,
+      newGrade: newGrade == freezed
+          ? _value.newGrade
+          : newGrade // ignore: cast_nullable_to_non_nullable
+              as Grade,
     ));
   }
 }
 
 /// @nodoc
+
 class _$Graduate with DiagnosticableTreeMixin implements Graduate {
-  const _$Graduate({@required this.newGrade}) : assert(newGrade != null);
+  const _$Graduate({required this.newGrade});
 
   @override
   final Grade newGrade;
@@ -387,37 +381,26 @@ class _$Graduate with DiagnosticableTreeMixin implements Graduate {
 
   @override
   @optionalTypeArgs
-  TResult when<TResult extends Object>({
-    @required
-        TResult graduationSystemUpdated(
-            double forNextLevel,
-            int attendedLessonsForGrade,
-            Grade currentGrade,
-            Grade nextGrade,
-            bool isVisible),
-    @required TResult graduate(Grade newGrade),
-    @required TResult initializeGraduation(),
+  TResult when<TResult extends Object?>({
+    required TResult Function(double forNextLevel, int attendedLessonsForGrade,
+            Grade currentGrade, Grade nextGrade, bool isVisible)
+        graduationSystemUpdated,
+    required TResult Function(Grade newGrade) graduate,
+    required TResult Function() initializeGraduation,
   }) {
-    assert(graduationSystemUpdated != null);
-    assert(graduate != null);
-    assert(initializeGraduation != null);
     return graduate(newGrade);
   }
 
   @override
   @optionalTypeArgs
-  TResult maybeWhen<TResult extends Object>({
-    TResult graduationSystemUpdated(
-        double forNextLevel,
-        int attendedLessonsForGrade,
-        Grade currentGrade,
-        Grade nextGrade,
-        bool isVisible),
-    TResult graduate(Grade newGrade),
-    TResult initializeGraduation(),
-    @required TResult orElse(),
+  TResult maybeWhen<TResult extends Object?>({
+    TResult Function(double forNextLevel, int attendedLessonsForGrade,
+            Grade currentGrade, Grade nextGrade, bool isVisible)?
+        graduationSystemUpdated,
+    TResult Function(Grade newGrade)? graduate,
+    TResult Function()? initializeGraduation,
+    required TResult orElse(),
   }) {
-    assert(orElse != null);
     if (graduate != null) {
       return graduate(newGrade);
     }
@@ -426,26 +409,23 @@ class _$Graduate with DiagnosticableTreeMixin implements Graduate {
 
   @override
   @optionalTypeArgs
-  TResult map<TResult extends Object>({
-    @required TResult graduationSystemUpdated(GraduationSystemUpdated value),
-    @required TResult graduate(Graduate value),
-    @required TResult initializeGraduation(InitializeGraduation value),
+  TResult map<TResult extends Object?>({
+    required TResult Function(GraduationSystemUpdated value)
+        graduationSystemUpdated,
+    required TResult Function(Graduate value) graduate,
+    required TResult Function(InitializeGraduation value) initializeGraduation,
   }) {
-    assert(graduationSystemUpdated != null);
-    assert(graduate != null);
-    assert(initializeGraduation != null);
     return graduate(this);
   }
 
   @override
   @optionalTypeArgs
-  TResult maybeMap<TResult extends Object>({
-    TResult graduationSystemUpdated(GraduationSystemUpdated value),
-    TResult graduate(Graduate value),
-    TResult initializeGraduation(InitializeGraduation value),
-    @required TResult orElse(),
+  TResult maybeMap<TResult extends Object?>({
+    TResult Function(GraduationSystemUpdated value)? graduationSystemUpdated,
+    TResult Function(Graduate value)? graduate,
+    TResult Function(InitializeGraduation value)? initializeGraduation,
+    required TResult orElse(),
   }) {
-    assert(orElse != null);
     if (graduate != null) {
       return graduate(this);
     }
@@ -454,11 +434,12 @@ class _$Graduate with DiagnosticableTreeMixin implements Graduate {
 }
 
 abstract class Graduate implements GraduationEvent {
-  const factory Graduate({@required Grade newGrade}) = _$Graduate;
+  const factory Graduate({required Grade newGrade}) = _$Graduate;
 
-  Grade get newGrade;
+  Grade get newGrade => throw _privateConstructorUsedError;
   @JsonKey(ignore: true)
-  $GraduateCopyWith<Graduate> get copyWith;
+  $GraduateCopyWith<Graduate> get copyWith =>
+      throw _privateConstructorUsedError;
 }
 
 /// @nodoc
@@ -481,6 +462,7 @@ class _$InitializeGraduationCopyWithImpl<$Res>
 }
 
 /// @nodoc
+
 class _$InitializeGraduation
     with DiagnosticableTreeMixin
     implements InitializeGraduation {
@@ -509,37 +491,26 @@ class _$InitializeGraduation
 
   @override
   @optionalTypeArgs
-  TResult when<TResult extends Object>({
-    @required
-        TResult graduationSystemUpdated(
-            double forNextLevel,
-            int attendedLessonsForGrade,
-            Grade currentGrade,
-            Grade nextGrade,
-            bool isVisible),
-    @required TResult graduate(Grade newGrade),
-    @required TResult initializeGraduation(),
+  TResult when<TResult extends Object?>({
+    required TResult Function(double forNextLevel, int attendedLessonsForGrade,
+            Grade currentGrade, Grade nextGrade, bool isVisible)
+        graduationSystemUpdated,
+    required TResult Function(Grade newGrade) graduate,
+    required TResult Function() initializeGraduation,
   }) {
-    assert(graduationSystemUpdated != null);
-    assert(graduate != null);
-    assert(initializeGraduation != null);
     return initializeGraduation();
   }
 
   @override
   @optionalTypeArgs
-  TResult maybeWhen<TResult extends Object>({
-    TResult graduationSystemUpdated(
-        double forNextLevel,
-        int attendedLessonsForGrade,
-        Grade currentGrade,
-        Grade nextGrade,
-        bool isVisible),
-    TResult graduate(Grade newGrade),
-    TResult initializeGraduation(),
-    @required TResult orElse(),
+  TResult maybeWhen<TResult extends Object?>({
+    TResult Function(double forNextLevel, int attendedLessonsForGrade,
+            Grade currentGrade, Grade nextGrade, bool isVisible)?
+        graduationSystemUpdated,
+    TResult Function(Grade newGrade)? graduate,
+    TResult Function()? initializeGraduation,
+    required TResult orElse(),
   }) {
-    assert(orElse != null);
     if (initializeGraduation != null) {
       return initializeGraduation();
     }
@@ -548,26 +519,23 @@ class _$InitializeGraduation
 
   @override
   @optionalTypeArgs
-  TResult map<TResult extends Object>({
-    @required TResult graduationSystemUpdated(GraduationSystemUpdated value),
-    @required TResult graduate(Graduate value),
-    @required TResult initializeGraduation(InitializeGraduation value),
+  TResult map<TResult extends Object?>({
+    required TResult Function(GraduationSystemUpdated value)
+        graduationSystemUpdated,
+    required TResult Function(Graduate value) graduate,
+    required TResult Function(InitializeGraduation value) initializeGraduation,
   }) {
-    assert(graduationSystemUpdated != null);
-    assert(graduate != null);
-    assert(initializeGraduation != null);
     return initializeGraduation(this);
   }
 
   @override
   @optionalTypeArgs
-  TResult maybeMap<TResult extends Object>({
-    TResult graduationSystemUpdated(GraduationSystemUpdated value),
-    TResult graduate(Graduate value),
-    TResult initializeGraduation(InitializeGraduation value),
-    @required TResult orElse(),
+  TResult maybeMap<TResult extends Object?>({
+    TResult Function(GraduationSystemUpdated value)? graduationSystemUpdated,
+    TResult Function(Graduate value)? graduate,
+    TResult Function(InitializeGraduation value)? initializeGraduation,
+    required TResult orElse(),
   }) {
-    assert(orElse != null);
     if (initializeGraduation != null) {
       return initializeGraduation(this);
     }

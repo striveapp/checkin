@@ -1,5 +1,5 @@
 // GENERATED CODE - DO NOT MODIFY BY HAND
-// ignore_for_file: deprecated_member_use, deprecated_member_use_from_same_package, use_function_type_syntax_for_parameters, unnecessary_const, avoid_init_to_null, invalid_override_different_default_values_named, prefer_expression_function_bodies
+// ignore_for_file: unused_element, deprecated_member_use, deprecated_member_use_from_same_package, use_function_type_syntax_for_parameters, unnecessary_const, avoid_init_to_null, invalid_override_different_default_values_named, prefer_expression_function_bodies, annotate_overrides
 
 part of 'theme_state.dart';
 
@@ -9,12 +9,14 @@ part of 'theme_state.dart';
 
 T _$identity<T>(T value) => value;
 
+final _privateConstructorUsedError = UnsupportedError(
+    'It seems like you constructed your class using `MyClass._()`. This constructor is only meant to be used by freezed and you are not supposed to need it nor use it.\nPlease check the documentation here for more informations: https://github.com/rrousselGit/freezed#custom-getters-and-methods');
+
 /// @nodoc
 class _$ThemeStateTearOff {
   const _$ThemeStateTearOff();
 
-// ignore: unused_element
-  AppTheme appTheme({ThemeData themeData}) {
+  AppTheme appTheme({ThemeData? themeData}) {
     return AppTheme(
       themeData: themeData,
     );
@@ -22,34 +24,38 @@ class _$ThemeStateTearOff {
 }
 
 /// @nodoc
-// ignore: unused_element
 const $ThemeState = _$ThemeStateTearOff();
 
 /// @nodoc
 mixin _$ThemeState {
-  ThemeData get themeData;
+  ThemeData? get themeData => throw _privateConstructorUsedError;
 
   @optionalTypeArgs
-  TResult when<TResult extends Object>({
-    @required TResult appTheme(ThemeData themeData),
-  });
+  TResult when<TResult extends Object?>({
+    required TResult Function(ThemeData? themeData) appTheme,
+  }) =>
+      throw _privateConstructorUsedError;
   @optionalTypeArgs
-  TResult maybeWhen<TResult extends Object>({
-    TResult appTheme(ThemeData themeData),
-    @required TResult orElse(),
-  });
+  TResult maybeWhen<TResult extends Object?>({
+    TResult Function(ThemeData? themeData)? appTheme,
+    required TResult orElse(),
+  }) =>
+      throw _privateConstructorUsedError;
   @optionalTypeArgs
-  TResult map<TResult extends Object>({
-    @required TResult appTheme(AppTheme value),
-  });
+  TResult map<TResult extends Object?>({
+    required TResult Function(AppTheme value) appTheme,
+  }) =>
+      throw _privateConstructorUsedError;
   @optionalTypeArgs
-  TResult maybeMap<TResult extends Object>({
-    TResult appTheme(AppTheme value),
-    @required TResult orElse(),
-  });
+  TResult maybeMap<TResult extends Object?>({
+    TResult Function(AppTheme value)? appTheme,
+    required TResult orElse(),
+  }) =>
+      throw _privateConstructorUsedError;
 
   @JsonKey(ignore: true)
-  $ThemeStateCopyWith<ThemeState> get copyWith;
+  $ThemeStateCopyWith<ThemeState> get copyWith =>
+      throw _privateConstructorUsedError;
 }
 
 /// @nodoc
@@ -57,7 +63,7 @@ abstract class $ThemeStateCopyWith<$Res> {
   factory $ThemeStateCopyWith(
           ThemeState value, $Res Function(ThemeState) then) =
       _$ThemeStateCopyWithImpl<$Res>;
-  $Res call({ThemeData themeData});
+  $Res call({ThemeData? themeData});
 }
 
 /// @nodoc
@@ -70,11 +76,13 @@ class _$ThemeStateCopyWithImpl<$Res> implements $ThemeStateCopyWith<$Res> {
 
   @override
   $Res call({
-    Object themeData = freezed,
+    Object? themeData = freezed,
   }) {
     return _then(_value.copyWith(
-      themeData:
-          themeData == freezed ? _value.themeData : themeData as ThemeData,
+      themeData: themeData == freezed
+          ? _value.themeData
+          : themeData // ignore: cast_nullable_to_non_nullable
+              as ThemeData?,
     ));
   }
 }
@@ -84,7 +92,7 @@ abstract class $AppThemeCopyWith<$Res> implements $ThemeStateCopyWith<$Res> {
   factory $AppThemeCopyWith(AppTheme value, $Res Function(AppTheme) then) =
       _$AppThemeCopyWithImpl<$Res>;
   @override
-  $Res call({ThemeData themeData});
+  $Res call({ThemeData? themeData});
 }
 
 /// @nodoc
@@ -98,21 +106,24 @@ class _$AppThemeCopyWithImpl<$Res> extends _$ThemeStateCopyWithImpl<$Res>
 
   @override
   $Res call({
-    Object themeData = freezed,
+    Object? themeData = freezed,
   }) {
     return _then(AppTheme(
-      themeData:
-          themeData == freezed ? _value.themeData : themeData as ThemeData,
+      themeData: themeData == freezed
+          ? _value.themeData
+          : themeData // ignore: cast_nullable_to_non_nullable
+              as ThemeData?,
     ));
   }
 }
 
 /// @nodoc
+
 class _$AppTheme with DiagnosticableTreeMixin implements AppTheme {
   const _$AppTheme({this.themeData});
 
   @override
-  final ThemeData themeData;
+  final ThemeData? themeData;
 
   @override
   String toString({DiagnosticLevel minLevel = DiagnosticLevel.info}) {
@@ -147,20 +158,18 @@ class _$AppTheme with DiagnosticableTreeMixin implements AppTheme {
 
   @override
   @optionalTypeArgs
-  TResult when<TResult extends Object>({
-    @required TResult appTheme(ThemeData themeData),
+  TResult when<TResult extends Object?>({
+    required TResult Function(ThemeData? themeData) appTheme,
   }) {
-    assert(appTheme != null);
     return appTheme(themeData);
   }
 
   @override
   @optionalTypeArgs
-  TResult maybeWhen<TResult extends Object>({
-    TResult appTheme(ThemeData themeData),
-    @required TResult orElse(),
+  TResult maybeWhen<TResult extends Object?>({
+    TResult Function(ThemeData? themeData)? appTheme,
+    required TResult orElse(),
   }) {
-    assert(orElse != null);
     if (appTheme != null) {
       return appTheme(themeData);
     }
@@ -169,20 +178,18 @@ class _$AppTheme with DiagnosticableTreeMixin implements AppTheme {
 
   @override
   @optionalTypeArgs
-  TResult map<TResult extends Object>({
-    @required TResult appTheme(AppTheme value),
+  TResult map<TResult extends Object?>({
+    required TResult Function(AppTheme value) appTheme,
   }) {
-    assert(appTheme != null);
     return appTheme(this);
   }
 
   @override
   @optionalTypeArgs
-  TResult maybeMap<TResult extends Object>({
-    TResult appTheme(AppTheme value),
-    @required TResult orElse(),
+  TResult maybeMap<TResult extends Object?>({
+    TResult Function(AppTheme value)? appTheme,
+    required TResult orElse(),
   }) {
-    assert(orElse != null);
     if (appTheme != null) {
       return appTheme(this);
     }
@@ -191,11 +198,12 @@ class _$AppTheme with DiagnosticableTreeMixin implements AppTheme {
 }
 
 abstract class AppTheme implements ThemeState {
-  const factory AppTheme({ThemeData themeData}) = _$AppTheme;
+  const factory AppTheme({ThemeData? themeData}) = _$AppTheme;
 
   @override
-  ThemeData get themeData;
+  ThemeData? get themeData => throw _privateConstructorUsedError;
   @override
   @JsonKey(ignore: true)
-  $AppThemeCopyWith<AppTheme> get copyWith;
+  $AppThemeCopyWith<AppTheme> get copyWith =>
+      throw _privateConstructorUsedError;
 }

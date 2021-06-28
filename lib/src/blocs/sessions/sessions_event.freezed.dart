@@ -1,5 +1,5 @@
 // GENERATED CODE - DO NOT MODIFY BY HAND
-// ignore_for_file: deprecated_member_use, deprecated_member_use_from_same_package, use_function_type_syntax_for_parameters, unnecessary_const, avoid_init_to_null, invalid_override_different_default_values_named, prefer_expression_function_bodies
+// ignore_for_file: unused_element, deprecated_member_use, deprecated_member_use_from_same_package, use_function_type_syntax_for_parameters, unnecessary_const, avoid_init_to_null, invalid_override_different_default_values_named, prefer_expression_function_bodies, annotate_overrides
 
 part of 'sessions_event.dart';
 
@@ -9,20 +9,21 @@ part of 'sessions_event.dart';
 
 T _$identity<T>(T value) => value;
 
+final _privateConstructorUsedError = UnsupportedError(
+    'It seems like you constructed your class using `MyClass._()`. This constructor is only meant to be used by freezed and you are not supposed to need it nor use it.\nPlease check the documentation here for more informations: https://github.com/rrousselGit/freezed#custom-getters-and-methods');
+
 /// @nodoc
 class _$SessionsEventTearOff {
   const _$SessionsEventTearOff();
 
-// ignore: unused_element
-  SessionsUpdated sessionsUpdated({@required Membership membership}) {
+  SessionsUpdated sessionsUpdated({required Membership membership}) {
     return SessionsUpdated(
       membership: membership,
     );
   }
 
-// ignore: unused_element
   SessionsUpdatedWithHistory sessionsUpdatedWithHistory(
-      {@required Membership membership, @required UserHistory userHistory}) {
+      {required Membership membership, required UserHistory userHistory}) {
     return SessionsUpdatedWithHistory(
       membership: membership,
       userHistory: userHistory,
@@ -31,42 +32,46 @@ class _$SessionsEventTearOff {
 }
 
 /// @nodoc
-// ignore: unused_element
 const $SessionsEvent = _$SessionsEventTearOff();
 
 /// @nodoc
 mixin _$SessionsEvent {
-  Membership get membership;
+  Membership get membership => throw _privateConstructorUsedError;
 
   @optionalTypeArgs
-  TResult when<TResult extends Object>({
-    @required TResult sessionsUpdated(Membership membership),
-    @required
-        TResult sessionsUpdatedWithHistory(
-            Membership membership, UserHistory userHistory),
-  });
+  TResult when<TResult extends Object?>({
+    required TResult Function(Membership membership) sessionsUpdated,
+    required TResult Function(Membership membership, UserHistory userHistory)
+        sessionsUpdatedWithHistory,
+  }) =>
+      throw _privateConstructorUsedError;
   @optionalTypeArgs
-  TResult maybeWhen<TResult extends Object>({
-    TResult sessionsUpdated(Membership membership),
-    TResult sessionsUpdatedWithHistory(
-        Membership membership, UserHistory userHistory),
-    @required TResult orElse(),
-  });
+  TResult maybeWhen<TResult extends Object?>({
+    TResult Function(Membership membership)? sessionsUpdated,
+    TResult Function(Membership membership, UserHistory userHistory)?
+        sessionsUpdatedWithHistory,
+    required TResult orElse(),
+  }) =>
+      throw _privateConstructorUsedError;
   @optionalTypeArgs
-  TResult map<TResult extends Object>({
-    @required TResult sessionsUpdated(SessionsUpdated value),
-    @required
-        TResult sessionsUpdatedWithHistory(SessionsUpdatedWithHistory value),
-  });
+  TResult map<TResult extends Object?>({
+    required TResult Function(SessionsUpdated value) sessionsUpdated,
+    required TResult Function(SessionsUpdatedWithHistory value)
+        sessionsUpdatedWithHistory,
+  }) =>
+      throw _privateConstructorUsedError;
   @optionalTypeArgs
-  TResult maybeMap<TResult extends Object>({
-    TResult sessionsUpdated(SessionsUpdated value),
-    TResult sessionsUpdatedWithHistory(SessionsUpdatedWithHistory value),
-    @required TResult orElse(),
-  });
+  TResult maybeMap<TResult extends Object?>({
+    TResult Function(SessionsUpdated value)? sessionsUpdated,
+    TResult Function(SessionsUpdatedWithHistory value)?
+        sessionsUpdatedWithHistory,
+    required TResult orElse(),
+  }) =>
+      throw _privateConstructorUsedError;
 
   @JsonKey(ignore: true)
-  $SessionsEventCopyWith<SessionsEvent> get copyWith;
+  $SessionsEventCopyWith<SessionsEvent> get copyWith =>
+      throw _privateConstructorUsedError;
 }
 
 /// @nodoc
@@ -90,19 +95,18 @@ class _$SessionsEventCopyWithImpl<$Res>
 
   @override
   $Res call({
-    Object membership = freezed,
+    Object? membership = freezed,
   }) {
     return _then(_value.copyWith(
-      membership:
-          membership == freezed ? _value.membership : membership as Membership,
+      membership: membership == freezed
+          ? _value.membership
+          : membership // ignore: cast_nullable_to_non_nullable
+              as Membership,
     ));
   }
 
   @override
   $MembershipCopyWith<$Res> get membership {
-    if (_value.membership == null) {
-      return null;
-    }
     return $MembershipCopyWith<$Res>(_value.membership, (value) {
       return _then(_value.copyWith(membership: value));
     });
@@ -135,21 +139,23 @@ class _$SessionsUpdatedCopyWithImpl<$Res>
 
   @override
   $Res call({
-    Object membership = freezed,
+    Object? membership = freezed,
   }) {
     return _then(SessionsUpdated(
-      membership:
-          membership == freezed ? _value.membership : membership as Membership,
+      membership: membership == freezed
+          ? _value.membership
+          : membership // ignore: cast_nullable_to_non_nullable
+              as Membership,
     ));
   }
 }
 
 /// @nodoc
+
 class _$SessionsUpdated
     with DiagnosticableTreeMixin
     implements SessionsUpdated {
-  const _$SessionsUpdated({@required this.membership})
-      : assert(membership != null);
+  const _$SessionsUpdated({required this.membership});
 
   @override
   final Membership membership;
@@ -187,26 +193,22 @@ class _$SessionsUpdated
 
   @override
   @optionalTypeArgs
-  TResult when<TResult extends Object>({
-    @required TResult sessionsUpdated(Membership membership),
-    @required
-        TResult sessionsUpdatedWithHistory(
-            Membership membership, UserHistory userHistory),
+  TResult when<TResult extends Object?>({
+    required TResult Function(Membership membership) sessionsUpdated,
+    required TResult Function(Membership membership, UserHistory userHistory)
+        sessionsUpdatedWithHistory,
   }) {
-    assert(sessionsUpdated != null);
-    assert(sessionsUpdatedWithHistory != null);
     return sessionsUpdated(membership);
   }
 
   @override
   @optionalTypeArgs
-  TResult maybeWhen<TResult extends Object>({
-    TResult sessionsUpdated(Membership membership),
-    TResult sessionsUpdatedWithHistory(
-        Membership membership, UserHistory userHistory),
-    @required TResult orElse(),
+  TResult maybeWhen<TResult extends Object?>({
+    TResult Function(Membership membership)? sessionsUpdated,
+    TResult Function(Membership membership, UserHistory userHistory)?
+        sessionsUpdatedWithHistory,
+    required TResult orElse(),
   }) {
-    assert(orElse != null);
     if (sessionsUpdated != null) {
       return sessionsUpdated(membership);
     }
@@ -215,24 +217,22 @@ class _$SessionsUpdated
 
   @override
   @optionalTypeArgs
-  TResult map<TResult extends Object>({
-    @required TResult sessionsUpdated(SessionsUpdated value),
-    @required
-        TResult sessionsUpdatedWithHistory(SessionsUpdatedWithHistory value),
+  TResult map<TResult extends Object?>({
+    required TResult Function(SessionsUpdated value) sessionsUpdated,
+    required TResult Function(SessionsUpdatedWithHistory value)
+        sessionsUpdatedWithHistory,
   }) {
-    assert(sessionsUpdated != null);
-    assert(sessionsUpdatedWithHistory != null);
     return sessionsUpdated(this);
   }
 
   @override
   @optionalTypeArgs
-  TResult maybeMap<TResult extends Object>({
-    TResult sessionsUpdated(SessionsUpdated value),
-    TResult sessionsUpdatedWithHistory(SessionsUpdatedWithHistory value),
-    @required TResult orElse(),
+  TResult maybeMap<TResult extends Object?>({
+    TResult Function(SessionsUpdated value)? sessionsUpdated,
+    TResult Function(SessionsUpdatedWithHistory value)?
+        sessionsUpdatedWithHistory,
+    required TResult orElse(),
   }) {
-    assert(orElse != null);
     if (sessionsUpdated != null) {
       return sessionsUpdated(this);
     }
@@ -241,14 +241,15 @@ class _$SessionsUpdated
 }
 
 abstract class SessionsUpdated implements SessionsEvent {
-  const factory SessionsUpdated({@required Membership membership}) =
+  const factory SessionsUpdated({required Membership membership}) =
       _$SessionsUpdated;
 
   @override
-  Membership get membership;
+  Membership get membership => throw _privateConstructorUsedError;
   @override
   @JsonKey(ignore: true)
-  $SessionsUpdatedCopyWith<SessionsUpdated> get copyWith;
+  $SessionsUpdatedCopyWith<SessionsUpdated> get copyWith =>
+      throw _privateConstructorUsedError;
 }
 
 /// @nodoc
@@ -278,27 +279,29 @@ class _$SessionsUpdatedWithHistoryCopyWithImpl<$Res>
 
   @override
   $Res call({
-    Object membership = freezed,
-    Object userHistory = freezed,
+    Object? membership = freezed,
+    Object? userHistory = freezed,
   }) {
     return _then(SessionsUpdatedWithHistory(
-      membership:
-          membership == freezed ? _value.membership : membership as Membership,
+      membership: membership == freezed
+          ? _value.membership
+          : membership // ignore: cast_nullable_to_non_nullable
+              as Membership,
       userHistory: userHistory == freezed
           ? _value.userHistory
-          : userHistory as UserHistory,
+          : userHistory // ignore: cast_nullable_to_non_nullable
+              as UserHistory,
     ));
   }
 }
 
 /// @nodoc
+
 class _$SessionsUpdatedWithHistory
     with DiagnosticableTreeMixin
     implements SessionsUpdatedWithHistory {
   const _$SessionsUpdatedWithHistory(
-      {@required this.membership, @required this.userHistory})
-      : assert(membership != null),
-        assert(userHistory != null);
+      {required this.membership, required this.userHistory});
 
   @override
   final Membership membership;
@@ -347,26 +350,22 @@ class _$SessionsUpdatedWithHistory
 
   @override
   @optionalTypeArgs
-  TResult when<TResult extends Object>({
-    @required TResult sessionsUpdated(Membership membership),
-    @required
-        TResult sessionsUpdatedWithHistory(
-            Membership membership, UserHistory userHistory),
+  TResult when<TResult extends Object?>({
+    required TResult Function(Membership membership) sessionsUpdated,
+    required TResult Function(Membership membership, UserHistory userHistory)
+        sessionsUpdatedWithHistory,
   }) {
-    assert(sessionsUpdated != null);
-    assert(sessionsUpdatedWithHistory != null);
     return sessionsUpdatedWithHistory(membership, userHistory);
   }
 
   @override
   @optionalTypeArgs
-  TResult maybeWhen<TResult extends Object>({
-    TResult sessionsUpdated(Membership membership),
-    TResult sessionsUpdatedWithHistory(
-        Membership membership, UserHistory userHistory),
-    @required TResult orElse(),
+  TResult maybeWhen<TResult extends Object?>({
+    TResult Function(Membership membership)? sessionsUpdated,
+    TResult Function(Membership membership, UserHistory userHistory)?
+        sessionsUpdatedWithHistory,
+    required TResult orElse(),
   }) {
-    assert(orElse != null);
     if (sessionsUpdatedWithHistory != null) {
       return sessionsUpdatedWithHistory(membership, userHistory);
     }
@@ -375,24 +374,22 @@ class _$SessionsUpdatedWithHistory
 
   @override
   @optionalTypeArgs
-  TResult map<TResult extends Object>({
-    @required TResult sessionsUpdated(SessionsUpdated value),
-    @required
-        TResult sessionsUpdatedWithHistory(SessionsUpdatedWithHistory value),
+  TResult map<TResult extends Object?>({
+    required TResult Function(SessionsUpdated value) sessionsUpdated,
+    required TResult Function(SessionsUpdatedWithHistory value)
+        sessionsUpdatedWithHistory,
   }) {
-    assert(sessionsUpdated != null);
-    assert(sessionsUpdatedWithHistory != null);
     return sessionsUpdatedWithHistory(this);
   }
 
   @override
   @optionalTypeArgs
-  TResult maybeMap<TResult extends Object>({
-    TResult sessionsUpdated(SessionsUpdated value),
-    TResult sessionsUpdatedWithHistory(SessionsUpdatedWithHistory value),
-    @required TResult orElse(),
+  TResult maybeMap<TResult extends Object?>({
+    TResult Function(SessionsUpdated value)? sessionsUpdated,
+    TResult Function(SessionsUpdatedWithHistory value)?
+        sessionsUpdatedWithHistory,
+    required TResult orElse(),
   }) {
-    assert(orElse != null);
     if (sessionsUpdatedWithHistory != null) {
       return sessionsUpdatedWithHistory(this);
     }
@@ -402,13 +399,14 @@ class _$SessionsUpdatedWithHistory
 
 abstract class SessionsUpdatedWithHistory implements SessionsEvent {
   const factory SessionsUpdatedWithHistory(
-      {@required Membership membership,
-      @required UserHistory userHistory}) = _$SessionsUpdatedWithHistory;
+      {required Membership membership,
+      required UserHistory userHistory}) = _$SessionsUpdatedWithHistory;
 
   @override
-  Membership get membership;
-  UserHistory get userHistory;
+  Membership get membership => throw _privateConstructorUsedError;
+  UserHistory get userHistory => throw _privateConstructorUsedError;
   @override
   @JsonKey(ignore: true)
-  $SessionsUpdatedWithHistoryCopyWith<SessionsUpdatedWithHistory> get copyWith;
+  $SessionsUpdatedWithHistoryCopyWith<SessionsUpdatedWithHistory>
+      get copyWith => throw _privateConstructorUsedError;
 }

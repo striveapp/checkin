@@ -1,5 +1,5 @@
 // GENERATED CODE - DO NOT MODIFY BY HAND
-// ignore_for_file: deprecated_member_use, deprecated_member_use_from_same_package, use_function_type_syntax_for_parameters, unnecessary_const, avoid_init_to_null, invalid_override_different_default_values_named, prefer_expression_function_bodies
+// ignore_for_file: unused_element, deprecated_member_use, deprecated_member_use_from_same_package, use_function_type_syntax_for_parameters, unnecessary_const, avoid_init_to_null, invalid_override_different_default_values_named, prefer_expression_function_bodies, annotate_overrides
 
 part of 'dynamic_link_event.dart';
 
@@ -9,33 +9,31 @@ part of 'dynamic_link_event.dart';
 
 T _$identity<T>(T value) => value;
 
+final _privateConstructorUsedError = UnsupportedError(
+    'It seems like you constructed your class using `MyClass._()`. This constructor is only meant to be used by freezed and you are not supposed to need it nor use it.\nPlease check the documentation here for more informations: https://github.com/rrousselGit/freezed#custom-getters-and-methods');
+
 /// @nodoc
 class _$DynamicLinkEventTearOff {
   const _$DynamicLinkEventTearOff();
 
-// ignore: unused_element
   DeepLinkSetup deepLinkSetup() {
     return const DeepLinkSetup();
   }
 
-// ignore: unused_element
-  DeepLinkErrorEvent deepLinkErrorEvent(
-      {@required OnLinkErrorException error}) {
+  DeepLinkErrorEvent deepLinkErrorEvent({required OnLinkErrorException error}) {
     return DeepLinkErrorEvent(
       error: error,
     );
   }
 
-// ignore: unused_element
-  DeepLinkReceived deepLinkReceived({@required Uri deepLink}) {
+  DeepLinkReceived deepLinkReceived({required Uri deepLink}) {
     return DeepLinkReceived(
       deepLink: deepLink,
     );
   }
 
-// ignore: unused_element
   ShareRegistryLink shareRegistryLink(
-      {@required String date, @required String lessonId}) {
+      {required String date, required String lessonId}) {
     return ShareRegistryLink(
       date: date,
       lessonId: lessonId,
@@ -44,41 +42,44 @@ class _$DynamicLinkEventTearOff {
 }
 
 /// @nodoc
-// ignore: unused_element
 const $DynamicLinkEvent = _$DynamicLinkEventTearOff();
 
 /// @nodoc
 mixin _$DynamicLinkEvent {
   @optionalTypeArgs
-  TResult when<TResult extends Object>({
-    @required TResult deepLinkSetup(),
-    @required TResult deepLinkErrorEvent(OnLinkErrorException error),
-    @required TResult deepLinkReceived(Uri deepLink),
-    @required TResult shareRegistryLink(String date, String lessonId),
-  });
+  TResult when<TResult extends Object?>({
+    required TResult Function() deepLinkSetup,
+    required TResult Function(OnLinkErrorException error) deepLinkErrorEvent,
+    required TResult Function(Uri deepLink) deepLinkReceived,
+    required TResult Function(String date, String lessonId) shareRegistryLink,
+  }) =>
+      throw _privateConstructorUsedError;
   @optionalTypeArgs
-  TResult maybeWhen<TResult extends Object>({
-    TResult deepLinkSetup(),
-    TResult deepLinkErrorEvent(OnLinkErrorException error),
-    TResult deepLinkReceived(Uri deepLink),
-    TResult shareRegistryLink(String date, String lessonId),
-    @required TResult orElse(),
-  });
+  TResult maybeWhen<TResult extends Object?>({
+    TResult Function()? deepLinkSetup,
+    TResult Function(OnLinkErrorException error)? deepLinkErrorEvent,
+    TResult Function(Uri deepLink)? deepLinkReceived,
+    TResult Function(String date, String lessonId)? shareRegistryLink,
+    required TResult orElse(),
+  }) =>
+      throw _privateConstructorUsedError;
   @optionalTypeArgs
-  TResult map<TResult extends Object>({
-    @required TResult deepLinkSetup(DeepLinkSetup value),
-    @required TResult deepLinkErrorEvent(DeepLinkErrorEvent value),
-    @required TResult deepLinkReceived(DeepLinkReceived value),
-    @required TResult shareRegistryLink(ShareRegistryLink value),
-  });
+  TResult map<TResult extends Object?>({
+    required TResult Function(DeepLinkSetup value) deepLinkSetup,
+    required TResult Function(DeepLinkErrorEvent value) deepLinkErrorEvent,
+    required TResult Function(DeepLinkReceived value) deepLinkReceived,
+    required TResult Function(ShareRegistryLink value) shareRegistryLink,
+  }) =>
+      throw _privateConstructorUsedError;
   @optionalTypeArgs
-  TResult maybeMap<TResult extends Object>({
-    TResult deepLinkSetup(DeepLinkSetup value),
-    TResult deepLinkErrorEvent(DeepLinkErrorEvent value),
-    TResult deepLinkReceived(DeepLinkReceived value),
-    TResult shareRegistryLink(ShareRegistryLink value),
-    @required TResult orElse(),
-  });
+  TResult maybeMap<TResult extends Object?>({
+    TResult Function(DeepLinkSetup value)? deepLinkSetup,
+    TResult Function(DeepLinkErrorEvent value)? deepLinkErrorEvent,
+    TResult Function(DeepLinkReceived value)? deepLinkReceived,
+    TResult Function(ShareRegistryLink value)? shareRegistryLink,
+    required TResult orElse(),
+  }) =>
+      throw _privateConstructorUsedError;
 }
 
 /// @nodoc
@@ -118,6 +119,7 @@ class _$DeepLinkSetupCopyWithImpl<$Res>
 }
 
 /// @nodoc
+
 class _$DeepLinkSetup with DiagnosticableTreeMixin implements DeepLinkSetup {
   const _$DeepLinkSetup();
 
@@ -143,29 +145,24 @@ class _$DeepLinkSetup with DiagnosticableTreeMixin implements DeepLinkSetup {
 
   @override
   @optionalTypeArgs
-  TResult when<TResult extends Object>({
-    @required TResult deepLinkSetup(),
-    @required TResult deepLinkErrorEvent(OnLinkErrorException error),
-    @required TResult deepLinkReceived(Uri deepLink),
-    @required TResult shareRegistryLink(String date, String lessonId),
+  TResult when<TResult extends Object?>({
+    required TResult Function() deepLinkSetup,
+    required TResult Function(OnLinkErrorException error) deepLinkErrorEvent,
+    required TResult Function(Uri deepLink) deepLinkReceived,
+    required TResult Function(String date, String lessonId) shareRegistryLink,
   }) {
-    assert(deepLinkSetup != null);
-    assert(deepLinkErrorEvent != null);
-    assert(deepLinkReceived != null);
-    assert(shareRegistryLink != null);
     return deepLinkSetup();
   }
 
   @override
   @optionalTypeArgs
-  TResult maybeWhen<TResult extends Object>({
-    TResult deepLinkSetup(),
-    TResult deepLinkErrorEvent(OnLinkErrorException error),
-    TResult deepLinkReceived(Uri deepLink),
-    TResult shareRegistryLink(String date, String lessonId),
-    @required TResult orElse(),
+  TResult maybeWhen<TResult extends Object?>({
+    TResult Function()? deepLinkSetup,
+    TResult Function(OnLinkErrorException error)? deepLinkErrorEvent,
+    TResult Function(Uri deepLink)? deepLinkReceived,
+    TResult Function(String date, String lessonId)? shareRegistryLink,
+    required TResult orElse(),
   }) {
-    assert(orElse != null);
     if (deepLinkSetup != null) {
       return deepLinkSetup();
     }
@@ -174,29 +171,24 @@ class _$DeepLinkSetup with DiagnosticableTreeMixin implements DeepLinkSetup {
 
   @override
   @optionalTypeArgs
-  TResult map<TResult extends Object>({
-    @required TResult deepLinkSetup(DeepLinkSetup value),
-    @required TResult deepLinkErrorEvent(DeepLinkErrorEvent value),
-    @required TResult deepLinkReceived(DeepLinkReceived value),
-    @required TResult shareRegistryLink(ShareRegistryLink value),
+  TResult map<TResult extends Object?>({
+    required TResult Function(DeepLinkSetup value) deepLinkSetup,
+    required TResult Function(DeepLinkErrorEvent value) deepLinkErrorEvent,
+    required TResult Function(DeepLinkReceived value) deepLinkReceived,
+    required TResult Function(ShareRegistryLink value) shareRegistryLink,
   }) {
-    assert(deepLinkSetup != null);
-    assert(deepLinkErrorEvent != null);
-    assert(deepLinkReceived != null);
-    assert(shareRegistryLink != null);
     return deepLinkSetup(this);
   }
 
   @override
   @optionalTypeArgs
-  TResult maybeMap<TResult extends Object>({
-    TResult deepLinkSetup(DeepLinkSetup value),
-    TResult deepLinkErrorEvent(DeepLinkErrorEvent value),
-    TResult deepLinkReceived(DeepLinkReceived value),
-    TResult shareRegistryLink(ShareRegistryLink value),
-    @required TResult orElse(),
+  TResult maybeMap<TResult extends Object?>({
+    TResult Function(DeepLinkSetup value)? deepLinkSetup,
+    TResult Function(DeepLinkErrorEvent value)? deepLinkErrorEvent,
+    TResult Function(DeepLinkReceived value)? deepLinkReceived,
+    TResult Function(ShareRegistryLink value)? shareRegistryLink,
+    required TResult orElse(),
   }) {
-    assert(orElse != null);
     if (deepLinkSetup != null) {
       return deepLinkSetup(this);
     }
@@ -229,19 +221,23 @@ class _$DeepLinkErrorEventCopyWithImpl<$Res>
 
   @override
   $Res call({
-    Object error = freezed,
+    Object? error = freezed,
   }) {
     return _then(DeepLinkErrorEvent(
-      error: error == freezed ? _value.error : error as OnLinkErrorException,
+      error: error == freezed
+          ? _value.error
+          : error // ignore: cast_nullable_to_non_nullable
+              as OnLinkErrorException,
     ));
   }
 }
 
 /// @nodoc
+
 class _$DeepLinkErrorEvent
     with DiagnosticableTreeMixin
     implements DeepLinkErrorEvent {
-  const _$DeepLinkErrorEvent({@required this.error}) : assert(error != null);
+  const _$DeepLinkErrorEvent({required this.error});
 
   @override
   final OnLinkErrorException error;
@@ -278,29 +274,24 @@ class _$DeepLinkErrorEvent
 
   @override
   @optionalTypeArgs
-  TResult when<TResult extends Object>({
-    @required TResult deepLinkSetup(),
-    @required TResult deepLinkErrorEvent(OnLinkErrorException error),
-    @required TResult deepLinkReceived(Uri deepLink),
-    @required TResult shareRegistryLink(String date, String lessonId),
+  TResult when<TResult extends Object?>({
+    required TResult Function() deepLinkSetup,
+    required TResult Function(OnLinkErrorException error) deepLinkErrorEvent,
+    required TResult Function(Uri deepLink) deepLinkReceived,
+    required TResult Function(String date, String lessonId) shareRegistryLink,
   }) {
-    assert(deepLinkSetup != null);
-    assert(deepLinkErrorEvent != null);
-    assert(deepLinkReceived != null);
-    assert(shareRegistryLink != null);
     return deepLinkErrorEvent(error);
   }
 
   @override
   @optionalTypeArgs
-  TResult maybeWhen<TResult extends Object>({
-    TResult deepLinkSetup(),
-    TResult deepLinkErrorEvent(OnLinkErrorException error),
-    TResult deepLinkReceived(Uri deepLink),
-    TResult shareRegistryLink(String date, String lessonId),
-    @required TResult orElse(),
+  TResult maybeWhen<TResult extends Object?>({
+    TResult Function()? deepLinkSetup,
+    TResult Function(OnLinkErrorException error)? deepLinkErrorEvent,
+    TResult Function(Uri deepLink)? deepLinkReceived,
+    TResult Function(String date, String lessonId)? shareRegistryLink,
+    required TResult orElse(),
   }) {
-    assert(orElse != null);
     if (deepLinkErrorEvent != null) {
       return deepLinkErrorEvent(error);
     }
@@ -309,29 +300,24 @@ class _$DeepLinkErrorEvent
 
   @override
   @optionalTypeArgs
-  TResult map<TResult extends Object>({
-    @required TResult deepLinkSetup(DeepLinkSetup value),
-    @required TResult deepLinkErrorEvent(DeepLinkErrorEvent value),
-    @required TResult deepLinkReceived(DeepLinkReceived value),
-    @required TResult shareRegistryLink(ShareRegistryLink value),
+  TResult map<TResult extends Object?>({
+    required TResult Function(DeepLinkSetup value) deepLinkSetup,
+    required TResult Function(DeepLinkErrorEvent value) deepLinkErrorEvent,
+    required TResult Function(DeepLinkReceived value) deepLinkReceived,
+    required TResult Function(ShareRegistryLink value) shareRegistryLink,
   }) {
-    assert(deepLinkSetup != null);
-    assert(deepLinkErrorEvent != null);
-    assert(deepLinkReceived != null);
-    assert(shareRegistryLink != null);
     return deepLinkErrorEvent(this);
   }
 
   @override
   @optionalTypeArgs
-  TResult maybeMap<TResult extends Object>({
-    TResult deepLinkSetup(DeepLinkSetup value),
-    TResult deepLinkErrorEvent(DeepLinkErrorEvent value),
-    TResult deepLinkReceived(DeepLinkReceived value),
-    TResult shareRegistryLink(ShareRegistryLink value),
-    @required TResult orElse(),
+  TResult maybeMap<TResult extends Object?>({
+    TResult Function(DeepLinkSetup value)? deepLinkSetup,
+    TResult Function(DeepLinkErrorEvent value)? deepLinkErrorEvent,
+    TResult Function(DeepLinkReceived value)? deepLinkReceived,
+    TResult Function(ShareRegistryLink value)? shareRegistryLink,
+    required TResult orElse(),
   }) {
-    assert(orElse != null);
     if (deepLinkErrorEvent != null) {
       return deepLinkErrorEvent(this);
     }
@@ -340,12 +326,13 @@ class _$DeepLinkErrorEvent
 }
 
 abstract class DeepLinkErrorEvent implements DynamicLinkEvent {
-  const factory DeepLinkErrorEvent({@required OnLinkErrorException error}) =
+  const factory DeepLinkErrorEvent({required OnLinkErrorException error}) =
       _$DeepLinkErrorEvent;
 
-  OnLinkErrorException get error;
+  OnLinkErrorException get error => throw _privateConstructorUsedError;
   @JsonKey(ignore: true)
-  $DeepLinkErrorEventCopyWith<DeepLinkErrorEvent> get copyWith;
+  $DeepLinkErrorEventCopyWith<DeepLinkErrorEvent> get copyWith =>
+      throw _privateConstructorUsedError;
 }
 
 /// @nodoc
@@ -369,20 +356,23 @@ class _$DeepLinkReceivedCopyWithImpl<$Res>
 
   @override
   $Res call({
-    Object deepLink = freezed,
+    Object? deepLink = freezed,
   }) {
     return _then(DeepLinkReceived(
-      deepLink: deepLink == freezed ? _value.deepLink : deepLink as Uri,
+      deepLink: deepLink == freezed
+          ? _value.deepLink
+          : deepLink // ignore: cast_nullable_to_non_nullable
+              as Uri,
     ));
   }
 }
 
 /// @nodoc
+
 class _$DeepLinkReceived
     with DiagnosticableTreeMixin
     implements DeepLinkReceived {
-  const _$DeepLinkReceived({@required this.deepLink})
-      : assert(deepLink != null);
+  const _$DeepLinkReceived({required this.deepLink});
 
   @override
   final Uri deepLink;
@@ -420,29 +410,24 @@ class _$DeepLinkReceived
 
   @override
   @optionalTypeArgs
-  TResult when<TResult extends Object>({
-    @required TResult deepLinkSetup(),
-    @required TResult deepLinkErrorEvent(OnLinkErrorException error),
-    @required TResult deepLinkReceived(Uri deepLink),
-    @required TResult shareRegistryLink(String date, String lessonId),
+  TResult when<TResult extends Object?>({
+    required TResult Function() deepLinkSetup,
+    required TResult Function(OnLinkErrorException error) deepLinkErrorEvent,
+    required TResult Function(Uri deepLink) deepLinkReceived,
+    required TResult Function(String date, String lessonId) shareRegistryLink,
   }) {
-    assert(deepLinkSetup != null);
-    assert(deepLinkErrorEvent != null);
-    assert(deepLinkReceived != null);
-    assert(shareRegistryLink != null);
     return deepLinkReceived(deepLink);
   }
 
   @override
   @optionalTypeArgs
-  TResult maybeWhen<TResult extends Object>({
-    TResult deepLinkSetup(),
-    TResult deepLinkErrorEvent(OnLinkErrorException error),
-    TResult deepLinkReceived(Uri deepLink),
-    TResult shareRegistryLink(String date, String lessonId),
-    @required TResult orElse(),
+  TResult maybeWhen<TResult extends Object?>({
+    TResult Function()? deepLinkSetup,
+    TResult Function(OnLinkErrorException error)? deepLinkErrorEvent,
+    TResult Function(Uri deepLink)? deepLinkReceived,
+    TResult Function(String date, String lessonId)? shareRegistryLink,
+    required TResult orElse(),
   }) {
-    assert(orElse != null);
     if (deepLinkReceived != null) {
       return deepLinkReceived(deepLink);
     }
@@ -451,29 +436,24 @@ class _$DeepLinkReceived
 
   @override
   @optionalTypeArgs
-  TResult map<TResult extends Object>({
-    @required TResult deepLinkSetup(DeepLinkSetup value),
-    @required TResult deepLinkErrorEvent(DeepLinkErrorEvent value),
-    @required TResult deepLinkReceived(DeepLinkReceived value),
-    @required TResult shareRegistryLink(ShareRegistryLink value),
+  TResult map<TResult extends Object?>({
+    required TResult Function(DeepLinkSetup value) deepLinkSetup,
+    required TResult Function(DeepLinkErrorEvent value) deepLinkErrorEvent,
+    required TResult Function(DeepLinkReceived value) deepLinkReceived,
+    required TResult Function(ShareRegistryLink value) shareRegistryLink,
   }) {
-    assert(deepLinkSetup != null);
-    assert(deepLinkErrorEvent != null);
-    assert(deepLinkReceived != null);
-    assert(shareRegistryLink != null);
     return deepLinkReceived(this);
   }
 
   @override
   @optionalTypeArgs
-  TResult maybeMap<TResult extends Object>({
-    TResult deepLinkSetup(DeepLinkSetup value),
-    TResult deepLinkErrorEvent(DeepLinkErrorEvent value),
-    TResult deepLinkReceived(DeepLinkReceived value),
-    TResult shareRegistryLink(ShareRegistryLink value),
-    @required TResult orElse(),
+  TResult maybeMap<TResult extends Object?>({
+    TResult Function(DeepLinkSetup value)? deepLinkSetup,
+    TResult Function(DeepLinkErrorEvent value)? deepLinkErrorEvent,
+    TResult Function(DeepLinkReceived value)? deepLinkReceived,
+    TResult Function(ShareRegistryLink value)? shareRegistryLink,
+    required TResult orElse(),
   }) {
-    assert(orElse != null);
     if (deepLinkReceived != null) {
       return deepLinkReceived(this);
     }
@@ -482,11 +462,12 @@ class _$DeepLinkReceived
 }
 
 abstract class DeepLinkReceived implements DynamicLinkEvent {
-  const factory DeepLinkReceived({@required Uri deepLink}) = _$DeepLinkReceived;
+  const factory DeepLinkReceived({required Uri deepLink}) = _$DeepLinkReceived;
 
-  Uri get deepLink;
+  Uri get deepLink => throw _privateConstructorUsedError;
   @JsonKey(ignore: true)
-  $DeepLinkReceivedCopyWith<DeepLinkReceived> get copyWith;
+  $DeepLinkReceivedCopyWith<DeepLinkReceived> get copyWith =>
+      throw _privateConstructorUsedError;
 }
 
 /// @nodoc
@@ -510,23 +491,28 @@ class _$ShareRegistryLinkCopyWithImpl<$Res>
 
   @override
   $Res call({
-    Object date = freezed,
-    Object lessonId = freezed,
+    Object? date = freezed,
+    Object? lessonId = freezed,
   }) {
     return _then(ShareRegistryLink(
-      date: date == freezed ? _value.date : date as String,
-      lessonId: lessonId == freezed ? _value.lessonId : lessonId as String,
+      date: date == freezed
+          ? _value.date
+          : date // ignore: cast_nullable_to_non_nullable
+              as String,
+      lessonId: lessonId == freezed
+          ? _value.lessonId
+          : lessonId // ignore: cast_nullable_to_non_nullable
+              as String,
     ));
   }
 }
 
 /// @nodoc
+
 class _$ShareRegistryLink
     with DiagnosticableTreeMixin
     implements ShareRegistryLink {
-  const _$ShareRegistryLink({@required this.date, @required this.lessonId})
-      : assert(date != null),
-        assert(lessonId != null);
+  const _$ShareRegistryLink({required this.date, required this.lessonId});
 
   @override
   final String date;
@@ -571,29 +557,24 @@ class _$ShareRegistryLink
 
   @override
   @optionalTypeArgs
-  TResult when<TResult extends Object>({
-    @required TResult deepLinkSetup(),
-    @required TResult deepLinkErrorEvent(OnLinkErrorException error),
-    @required TResult deepLinkReceived(Uri deepLink),
-    @required TResult shareRegistryLink(String date, String lessonId),
+  TResult when<TResult extends Object?>({
+    required TResult Function() deepLinkSetup,
+    required TResult Function(OnLinkErrorException error) deepLinkErrorEvent,
+    required TResult Function(Uri deepLink) deepLinkReceived,
+    required TResult Function(String date, String lessonId) shareRegistryLink,
   }) {
-    assert(deepLinkSetup != null);
-    assert(deepLinkErrorEvent != null);
-    assert(deepLinkReceived != null);
-    assert(shareRegistryLink != null);
     return shareRegistryLink(date, lessonId);
   }
 
   @override
   @optionalTypeArgs
-  TResult maybeWhen<TResult extends Object>({
-    TResult deepLinkSetup(),
-    TResult deepLinkErrorEvent(OnLinkErrorException error),
-    TResult deepLinkReceived(Uri deepLink),
-    TResult shareRegistryLink(String date, String lessonId),
-    @required TResult orElse(),
+  TResult maybeWhen<TResult extends Object?>({
+    TResult Function()? deepLinkSetup,
+    TResult Function(OnLinkErrorException error)? deepLinkErrorEvent,
+    TResult Function(Uri deepLink)? deepLinkReceived,
+    TResult Function(String date, String lessonId)? shareRegistryLink,
+    required TResult orElse(),
   }) {
-    assert(orElse != null);
     if (shareRegistryLink != null) {
       return shareRegistryLink(date, lessonId);
     }
@@ -602,29 +583,24 @@ class _$ShareRegistryLink
 
   @override
   @optionalTypeArgs
-  TResult map<TResult extends Object>({
-    @required TResult deepLinkSetup(DeepLinkSetup value),
-    @required TResult deepLinkErrorEvent(DeepLinkErrorEvent value),
-    @required TResult deepLinkReceived(DeepLinkReceived value),
-    @required TResult shareRegistryLink(ShareRegistryLink value),
+  TResult map<TResult extends Object?>({
+    required TResult Function(DeepLinkSetup value) deepLinkSetup,
+    required TResult Function(DeepLinkErrorEvent value) deepLinkErrorEvent,
+    required TResult Function(DeepLinkReceived value) deepLinkReceived,
+    required TResult Function(ShareRegistryLink value) shareRegistryLink,
   }) {
-    assert(deepLinkSetup != null);
-    assert(deepLinkErrorEvent != null);
-    assert(deepLinkReceived != null);
-    assert(shareRegistryLink != null);
     return shareRegistryLink(this);
   }
 
   @override
   @optionalTypeArgs
-  TResult maybeMap<TResult extends Object>({
-    TResult deepLinkSetup(DeepLinkSetup value),
-    TResult deepLinkErrorEvent(DeepLinkErrorEvent value),
-    TResult deepLinkReceived(DeepLinkReceived value),
-    TResult shareRegistryLink(ShareRegistryLink value),
-    @required TResult orElse(),
+  TResult maybeMap<TResult extends Object?>({
+    TResult Function(DeepLinkSetup value)? deepLinkSetup,
+    TResult Function(DeepLinkErrorEvent value)? deepLinkErrorEvent,
+    TResult Function(DeepLinkReceived value)? deepLinkReceived,
+    TResult Function(ShareRegistryLink value)? shareRegistryLink,
+    required TResult orElse(),
   }) {
-    assert(orElse != null);
     if (shareRegistryLink != null) {
       return shareRegistryLink(this);
     }
@@ -634,10 +610,11 @@ class _$ShareRegistryLink
 
 abstract class ShareRegistryLink implements DynamicLinkEvent {
   const factory ShareRegistryLink(
-      {@required String date, @required String lessonId}) = _$ShareRegistryLink;
+      {required String date, required String lessonId}) = _$ShareRegistryLink;
 
-  String get date;
-  String get lessonId;
+  String get date => throw _privateConstructorUsedError;
+  String get lessonId => throw _privateConstructorUsedError;
   @JsonKey(ignore: true)
-  $ShareRegistryLinkCopyWith<ShareRegistryLink> get copyWith;
+  $ShareRegistryLinkCopyWith<ShareRegistryLink> get copyWith =>
+      throw _privateConstructorUsedError;
 }

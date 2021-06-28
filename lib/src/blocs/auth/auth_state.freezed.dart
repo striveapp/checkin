@@ -1,5 +1,5 @@
 // GENERATED CODE - DO NOT MODIFY BY HAND
-// ignore_for_file: deprecated_member_use, deprecated_member_use_from_same_package, use_function_type_syntax_for_parameters, unnecessary_const, avoid_init_to_null, invalid_override_different_default_values_named, prefer_expression_function_bodies
+// ignore_for_file: unused_element, deprecated_member_use, deprecated_member_use_from_same_package, use_function_type_syntax_for_parameters, unnecessary_const, avoid_init_to_null, invalid_override_different_default_values_named, prefer_expression_function_bodies, annotate_overrides
 
 part of 'auth_state.dart';
 
@@ -9,19 +9,20 @@ part of 'auth_state.dart';
 
 T _$identity<T>(T value) => value;
 
+final _privateConstructorUsedError = UnsupportedError(
+    'It seems like you constructed your class using `MyClass._()`. This constructor is only meant to be used by freezed and you are not supposed to need it nor use it.\nPlease check the documentation here for more informations: https://github.com/rrousselGit/freezed#custom-getters-and-methods');
+
 /// @nodoc
 class _$AuthStateTearOff {
   const _$AuthStateTearOff();
 
-// ignore: unused_element
-  AuthAuthenticated authAuthenticated({User loggedUser}) {
+  AuthAuthenticated authAuthenticated({User? loggedUser}) {
     return AuthAuthenticated(
       loggedUser: loggedUser,
     );
   }
 
-// ignore: unused_element
-  AuthUnauthenticated authUnauthenticated({Error error}) {
+  AuthUnauthenticated authUnauthenticated({Error? error}) {
     return AuthUnauthenticated(
       error: error,
     );
@@ -29,33 +30,36 @@ class _$AuthStateTearOff {
 }
 
 /// @nodoc
-// ignore: unused_element
 const $AuthState = _$AuthStateTearOff();
 
 /// @nodoc
 mixin _$AuthState {
   @optionalTypeArgs
-  TResult when<TResult extends Object>({
-    @required TResult authAuthenticated(User loggedUser),
-    @required TResult authUnauthenticated(Error error),
-  });
+  TResult when<TResult extends Object?>({
+    required TResult Function(User? loggedUser) authAuthenticated,
+    required TResult Function(Error? error) authUnauthenticated,
+  }) =>
+      throw _privateConstructorUsedError;
   @optionalTypeArgs
-  TResult maybeWhen<TResult extends Object>({
-    TResult authAuthenticated(User loggedUser),
-    TResult authUnauthenticated(Error error),
-    @required TResult orElse(),
-  });
+  TResult maybeWhen<TResult extends Object?>({
+    TResult Function(User? loggedUser)? authAuthenticated,
+    TResult Function(Error? error)? authUnauthenticated,
+    required TResult orElse(),
+  }) =>
+      throw _privateConstructorUsedError;
   @optionalTypeArgs
-  TResult map<TResult extends Object>({
-    @required TResult authAuthenticated(AuthAuthenticated value),
-    @required TResult authUnauthenticated(AuthUnauthenticated value),
-  });
+  TResult map<TResult extends Object?>({
+    required TResult Function(AuthAuthenticated value) authAuthenticated,
+    required TResult Function(AuthUnauthenticated value) authUnauthenticated,
+  }) =>
+      throw _privateConstructorUsedError;
   @optionalTypeArgs
-  TResult maybeMap<TResult extends Object>({
-    TResult authAuthenticated(AuthAuthenticated value),
-    TResult authUnauthenticated(AuthUnauthenticated value),
-    @required TResult orElse(),
-  });
+  TResult maybeMap<TResult extends Object?>({
+    TResult Function(AuthAuthenticated value)? authAuthenticated,
+    TResult Function(AuthUnauthenticated value)? authUnauthenticated,
+    required TResult orElse(),
+  }) =>
+      throw _privateConstructorUsedError;
 }
 
 /// @nodoc
@@ -78,9 +82,9 @@ abstract class $AuthAuthenticatedCopyWith<$Res> {
   factory $AuthAuthenticatedCopyWith(
           AuthAuthenticated value, $Res Function(AuthAuthenticated) then) =
       _$AuthAuthenticatedCopyWithImpl<$Res>;
-  $Res call({User loggedUser});
+  $Res call({User? loggedUser});
 
-  $UserCopyWith<$Res> get loggedUser;
+  $UserCopyWith<$Res>? get loggedUser;
 }
 
 /// @nodoc
@@ -96,33 +100,37 @@ class _$AuthAuthenticatedCopyWithImpl<$Res>
 
   @override
   $Res call({
-    Object loggedUser = freezed,
+    Object? loggedUser = freezed,
   }) {
     return _then(AuthAuthenticated(
-      loggedUser:
-          loggedUser == freezed ? _value.loggedUser : loggedUser as User,
+      loggedUser: loggedUser == freezed
+          ? _value.loggedUser
+          : loggedUser // ignore: cast_nullable_to_non_nullable
+              as User?,
     ));
   }
 
   @override
-  $UserCopyWith<$Res> get loggedUser {
+  $UserCopyWith<$Res>? get loggedUser {
     if (_value.loggedUser == null) {
       return null;
     }
-    return $UserCopyWith<$Res>(_value.loggedUser, (value) {
+
+    return $UserCopyWith<$Res>(_value.loggedUser!, (value) {
       return _then(_value.copyWith(loggedUser: value));
     });
   }
 }
 
 /// @nodoc
+
 class _$AuthAuthenticated
     with DiagnosticableTreeMixin
     implements AuthAuthenticated {
   const _$AuthAuthenticated({this.loggedUser});
 
   @override
-  final User loggedUser;
+  final User? loggedUser;
 
   @override
   String toString({DiagnosticLevel minLevel = DiagnosticLevel.info}) {
@@ -157,23 +165,20 @@ class _$AuthAuthenticated
 
   @override
   @optionalTypeArgs
-  TResult when<TResult extends Object>({
-    @required TResult authAuthenticated(User loggedUser),
-    @required TResult authUnauthenticated(Error error),
+  TResult when<TResult extends Object?>({
+    required TResult Function(User? loggedUser) authAuthenticated,
+    required TResult Function(Error? error) authUnauthenticated,
   }) {
-    assert(authAuthenticated != null);
-    assert(authUnauthenticated != null);
     return authAuthenticated(loggedUser);
   }
 
   @override
   @optionalTypeArgs
-  TResult maybeWhen<TResult extends Object>({
-    TResult authAuthenticated(User loggedUser),
-    TResult authUnauthenticated(Error error),
-    @required TResult orElse(),
+  TResult maybeWhen<TResult extends Object?>({
+    TResult Function(User? loggedUser)? authAuthenticated,
+    TResult Function(Error? error)? authUnauthenticated,
+    required TResult orElse(),
   }) {
-    assert(orElse != null);
     if (authAuthenticated != null) {
       return authAuthenticated(loggedUser);
     }
@@ -182,23 +187,20 @@ class _$AuthAuthenticated
 
   @override
   @optionalTypeArgs
-  TResult map<TResult extends Object>({
-    @required TResult authAuthenticated(AuthAuthenticated value),
-    @required TResult authUnauthenticated(AuthUnauthenticated value),
+  TResult map<TResult extends Object?>({
+    required TResult Function(AuthAuthenticated value) authAuthenticated,
+    required TResult Function(AuthUnauthenticated value) authUnauthenticated,
   }) {
-    assert(authAuthenticated != null);
-    assert(authUnauthenticated != null);
     return authAuthenticated(this);
   }
 
   @override
   @optionalTypeArgs
-  TResult maybeMap<TResult extends Object>({
-    TResult authAuthenticated(AuthAuthenticated value),
-    TResult authUnauthenticated(AuthUnauthenticated value),
-    @required TResult orElse(),
+  TResult maybeMap<TResult extends Object?>({
+    TResult Function(AuthAuthenticated value)? authAuthenticated,
+    TResult Function(AuthUnauthenticated value)? authUnauthenticated,
+    required TResult orElse(),
   }) {
-    assert(orElse != null);
     if (authAuthenticated != null) {
       return authAuthenticated(this);
     }
@@ -207,11 +209,12 @@ class _$AuthAuthenticated
 }
 
 abstract class AuthAuthenticated implements AuthState {
-  const factory AuthAuthenticated({User loggedUser}) = _$AuthAuthenticated;
+  const factory AuthAuthenticated({User? loggedUser}) = _$AuthAuthenticated;
 
-  User get loggedUser;
+  User? get loggedUser => throw _privateConstructorUsedError;
   @JsonKey(ignore: true)
-  $AuthAuthenticatedCopyWith<AuthAuthenticated> get copyWith;
+  $AuthAuthenticatedCopyWith<AuthAuthenticated> get copyWith =>
+      throw _privateConstructorUsedError;
 }
 
 /// @nodoc
@@ -219,7 +222,7 @@ abstract class $AuthUnauthenticatedCopyWith<$Res> {
   factory $AuthUnauthenticatedCopyWith(
           AuthUnauthenticated value, $Res Function(AuthUnauthenticated) then) =
       _$AuthUnauthenticatedCopyWithImpl<$Res>;
-  $Res call({Error error});
+  $Res call({Error? error});
 }
 
 /// @nodoc
@@ -235,22 +238,26 @@ class _$AuthUnauthenticatedCopyWithImpl<$Res>
 
   @override
   $Res call({
-    Object error = freezed,
+    Object? error = freezed,
   }) {
     return _then(AuthUnauthenticated(
-      error: error == freezed ? _value.error : error as Error,
+      error: error == freezed
+          ? _value.error
+          : error // ignore: cast_nullable_to_non_nullable
+              as Error?,
     ));
   }
 }
 
 /// @nodoc
+
 class _$AuthUnauthenticated
     with DiagnosticableTreeMixin
     implements AuthUnauthenticated {
   const _$AuthUnauthenticated({this.error});
 
   @override
-  final Error error;
+  final Error? error;
 
   @override
   String toString({DiagnosticLevel minLevel = DiagnosticLevel.info}) {
@@ -284,23 +291,20 @@ class _$AuthUnauthenticated
 
   @override
   @optionalTypeArgs
-  TResult when<TResult extends Object>({
-    @required TResult authAuthenticated(User loggedUser),
-    @required TResult authUnauthenticated(Error error),
+  TResult when<TResult extends Object?>({
+    required TResult Function(User? loggedUser) authAuthenticated,
+    required TResult Function(Error? error) authUnauthenticated,
   }) {
-    assert(authAuthenticated != null);
-    assert(authUnauthenticated != null);
     return authUnauthenticated(error);
   }
 
   @override
   @optionalTypeArgs
-  TResult maybeWhen<TResult extends Object>({
-    TResult authAuthenticated(User loggedUser),
-    TResult authUnauthenticated(Error error),
-    @required TResult orElse(),
+  TResult maybeWhen<TResult extends Object?>({
+    TResult Function(User? loggedUser)? authAuthenticated,
+    TResult Function(Error? error)? authUnauthenticated,
+    required TResult orElse(),
   }) {
-    assert(orElse != null);
     if (authUnauthenticated != null) {
       return authUnauthenticated(error);
     }
@@ -309,23 +313,20 @@ class _$AuthUnauthenticated
 
   @override
   @optionalTypeArgs
-  TResult map<TResult extends Object>({
-    @required TResult authAuthenticated(AuthAuthenticated value),
-    @required TResult authUnauthenticated(AuthUnauthenticated value),
+  TResult map<TResult extends Object?>({
+    required TResult Function(AuthAuthenticated value) authAuthenticated,
+    required TResult Function(AuthUnauthenticated value) authUnauthenticated,
   }) {
-    assert(authAuthenticated != null);
-    assert(authUnauthenticated != null);
     return authUnauthenticated(this);
   }
 
   @override
   @optionalTypeArgs
-  TResult maybeMap<TResult extends Object>({
-    TResult authAuthenticated(AuthAuthenticated value),
-    TResult authUnauthenticated(AuthUnauthenticated value),
-    @required TResult orElse(),
+  TResult maybeMap<TResult extends Object?>({
+    TResult Function(AuthAuthenticated value)? authAuthenticated,
+    TResult Function(AuthUnauthenticated value)? authUnauthenticated,
+    required TResult orElse(),
   }) {
-    assert(orElse != null);
     if (authUnauthenticated != null) {
       return authUnauthenticated(this);
     }
@@ -334,9 +335,10 @@ class _$AuthUnauthenticated
 }
 
 abstract class AuthUnauthenticated implements AuthState {
-  const factory AuthUnauthenticated({Error error}) = _$AuthUnauthenticated;
+  const factory AuthUnauthenticated({Error? error}) = _$AuthUnauthenticated;
 
-  Error get error;
+  Error? get error => throw _privateConstructorUsedError;
   @JsonKey(ignore: true)
-  $AuthUnauthenticatedCopyWith<AuthUnauthenticated> get copyWith;
+  $AuthUnauthenticatedCopyWith<AuthUnauthenticated> get copyWith =>
+      throw _privateConstructorUsedError;
 }

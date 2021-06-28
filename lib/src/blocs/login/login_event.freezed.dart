@@ -1,5 +1,5 @@
 // GENERATED CODE - DO NOT MODIFY BY HAND
-// ignore_for_file: deprecated_member_use, deprecated_member_use_from_same_package, use_function_type_syntax_for_parameters, unnecessary_const, avoid_init_to_null, invalid_override_different_default_values_named, prefer_expression_function_bodies
+// ignore_for_file: unused_element, deprecated_member_use, deprecated_member_use_from_same_package, use_function_type_syntax_for_parameters, unnecessary_const, avoid_init_to_null, invalid_override_different_default_values_named, prefer_expression_function_bodies, annotate_overrides
 
 part of 'login_event.dart';
 
@@ -9,96 +9,97 @@ part of 'login_event.dart';
 
 T _$identity<T>(T value) => value;
 
+final _privateConstructorUsedError = UnsupportedError(
+    'It seems like you constructed your class using `MyClass._()`. This constructor is only meant to be used by freezed and you are not supposed to need it nor use it.\nPlease check the documentation here for more informations: https://github.com/rrousselGit/freezed#custom-getters-and-methods');
+
 /// @nodoc
 class _$LoginEventTearOff {
   const _$LoginEventTearOff();
 
-// ignore: unused_element
   LoginWithGoogle loginWithGoogle() {
     return const LoginWithGoogle();
   }
 
-// ignore: unused_element
   LoginWithApple loginWithApple() {
     return const LoginWithApple();
   }
 
-// ignore: unused_element
-  LoginPasswordless loginPasswordless({@required String userEmail}) {
+  LoginPasswordless loginPasswordless({required String userEmail}) {
     return LoginPasswordless(
       userEmail: userEmail,
     );
   }
 
-// ignore: unused_element
   LoginWithTestUser loginWithTestUser() {
     return const LoginWithTestUser();
   }
 
-// ignore: unused_element
   LoginWithTestUserTwo loginWithTestUserTwo() {
     return const LoginWithTestUserTwo();
   }
 
-// ignore: unused_element
   LoginWithTestUserAdmin loginWithTestUserAdmin() {
     return const LoginWithTestUserAdmin();
   }
 
-// ignore: unused_element
   LoginWithTestUserMaster loginWithTestUserMaster() {
     return const LoginWithTestUserMaster();
   }
 }
 
 /// @nodoc
-// ignore: unused_element
 const $LoginEvent = _$LoginEventTearOff();
 
 /// @nodoc
 mixin _$LoginEvent {
   @optionalTypeArgs
-  TResult when<TResult extends Object>({
-    @required TResult loginWithGoogle(),
-    @required TResult loginWithApple(),
-    @required TResult loginPasswordless(String userEmail),
-    @required TResult loginWithTestUser(),
-    @required TResult loginWithTestUserTwo(),
-    @required TResult loginWithTestUserAdmin(),
-    @required TResult loginWithTestUserMaster(),
-  });
+  TResult when<TResult extends Object?>({
+    required TResult Function() loginWithGoogle,
+    required TResult Function() loginWithApple,
+    required TResult Function(String userEmail) loginPasswordless,
+    required TResult Function() loginWithTestUser,
+    required TResult Function() loginWithTestUserTwo,
+    required TResult Function() loginWithTestUserAdmin,
+    required TResult Function() loginWithTestUserMaster,
+  }) =>
+      throw _privateConstructorUsedError;
   @optionalTypeArgs
-  TResult maybeWhen<TResult extends Object>({
-    TResult loginWithGoogle(),
-    TResult loginWithApple(),
-    TResult loginPasswordless(String userEmail),
-    TResult loginWithTestUser(),
-    TResult loginWithTestUserTwo(),
-    TResult loginWithTestUserAdmin(),
-    TResult loginWithTestUserMaster(),
-    @required TResult orElse(),
-  });
+  TResult maybeWhen<TResult extends Object?>({
+    TResult Function()? loginWithGoogle,
+    TResult Function()? loginWithApple,
+    TResult Function(String userEmail)? loginPasswordless,
+    TResult Function()? loginWithTestUser,
+    TResult Function()? loginWithTestUserTwo,
+    TResult Function()? loginWithTestUserAdmin,
+    TResult Function()? loginWithTestUserMaster,
+    required TResult orElse(),
+  }) =>
+      throw _privateConstructorUsedError;
   @optionalTypeArgs
-  TResult map<TResult extends Object>({
-    @required TResult loginWithGoogle(LoginWithGoogle value),
-    @required TResult loginWithApple(LoginWithApple value),
-    @required TResult loginPasswordless(LoginPasswordless value),
-    @required TResult loginWithTestUser(LoginWithTestUser value),
-    @required TResult loginWithTestUserTwo(LoginWithTestUserTwo value),
-    @required TResult loginWithTestUserAdmin(LoginWithTestUserAdmin value),
-    @required TResult loginWithTestUserMaster(LoginWithTestUserMaster value),
-  });
+  TResult map<TResult extends Object?>({
+    required TResult Function(LoginWithGoogle value) loginWithGoogle,
+    required TResult Function(LoginWithApple value) loginWithApple,
+    required TResult Function(LoginPasswordless value) loginPasswordless,
+    required TResult Function(LoginWithTestUser value) loginWithTestUser,
+    required TResult Function(LoginWithTestUserTwo value) loginWithTestUserTwo,
+    required TResult Function(LoginWithTestUserAdmin value)
+        loginWithTestUserAdmin,
+    required TResult Function(LoginWithTestUserMaster value)
+        loginWithTestUserMaster,
+  }) =>
+      throw _privateConstructorUsedError;
   @optionalTypeArgs
-  TResult maybeMap<TResult extends Object>({
-    TResult loginWithGoogle(LoginWithGoogle value),
-    TResult loginWithApple(LoginWithApple value),
-    TResult loginPasswordless(LoginPasswordless value),
-    TResult loginWithTestUser(LoginWithTestUser value),
-    TResult loginWithTestUserTwo(LoginWithTestUserTwo value),
-    TResult loginWithTestUserAdmin(LoginWithTestUserAdmin value),
-    TResult loginWithTestUserMaster(LoginWithTestUserMaster value),
-    @required TResult orElse(),
-  });
+  TResult maybeMap<TResult extends Object?>({
+    TResult Function(LoginWithGoogle value)? loginWithGoogle,
+    TResult Function(LoginWithApple value)? loginWithApple,
+    TResult Function(LoginPasswordless value)? loginPasswordless,
+    TResult Function(LoginWithTestUser value)? loginWithTestUser,
+    TResult Function(LoginWithTestUserTwo value)? loginWithTestUserTwo,
+    TResult Function(LoginWithTestUserAdmin value)? loginWithTestUserAdmin,
+    TResult Function(LoginWithTestUserMaster value)? loginWithTestUserMaster,
+    required TResult orElse(),
+  }) =>
+      throw _privateConstructorUsedError;
 }
 
 /// @nodoc
@@ -136,6 +137,7 @@ class _$LoginWithGoogleCopyWithImpl<$Res> extends _$LoginEventCopyWithImpl<$Res>
 }
 
 /// @nodoc
+
 class _$LoginWithGoogle
     with DiagnosticableTreeMixin
     implements LoginWithGoogle {
@@ -162,38 +164,30 @@ class _$LoginWithGoogle
 
   @override
   @optionalTypeArgs
-  TResult when<TResult extends Object>({
-    @required TResult loginWithGoogle(),
-    @required TResult loginWithApple(),
-    @required TResult loginPasswordless(String userEmail),
-    @required TResult loginWithTestUser(),
-    @required TResult loginWithTestUserTwo(),
-    @required TResult loginWithTestUserAdmin(),
-    @required TResult loginWithTestUserMaster(),
+  TResult when<TResult extends Object?>({
+    required TResult Function() loginWithGoogle,
+    required TResult Function() loginWithApple,
+    required TResult Function(String userEmail) loginPasswordless,
+    required TResult Function() loginWithTestUser,
+    required TResult Function() loginWithTestUserTwo,
+    required TResult Function() loginWithTestUserAdmin,
+    required TResult Function() loginWithTestUserMaster,
   }) {
-    assert(loginWithGoogle != null);
-    assert(loginWithApple != null);
-    assert(loginPasswordless != null);
-    assert(loginWithTestUser != null);
-    assert(loginWithTestUserTwo != null);
-    assert(loginWithTestUserAdmin != null);
-    assert(loginWithTestUserMaster != null);
     return loginWithGoogle();
   }
 
   @override
   @optionalTypeArgs
-  TResult maybeWhen<TResult extends Object>({
-    TResult loginWithGoogle(),
-    TResult loginWithApple(),
-    TResult loginPasswordless(String userEmail),
-    TResult loginWithTestUser(),
-    TResult loginWithTestUserTwo(),
-    TResult loginWithTestUserAdmin(),
-    TResult loginWithTestUserMaster(),
-    @required TResult orElse(),
+  TResult maybeWhen<TResult extends Object?>({
+    TResult Function()? loginWithGoogle,
+    TResult Function()? loginWithApple,
+    TResult Function(String userEmail)? loginPasswordless,
+    TResult Function()? loginWithTestUser,
+    TResult Function()? loginWithTestUserTwo,
+    TResult Function()? loginWithTestUserAdmin,
+    TResult Function()? loginWithTestUserMaster,
+    required TResult orElse(),
   }) {
-    assert(orElse != null);
     if (loginWithGoogle != null) {
       return loginWithGoogle();
     }
@@ -202,38 +196,32 @@ class _$LoginWithGoogle
 
   @override
   @optionalTypeArgs
-  TResult map<TResult extends Object>({
-    @required TResult loginWithGoogle(LoginWithGoogle value),
-    @required TResult loginWithApple(LoginWithApple value),
-    @required TResult loginPasswordless(LoginPasswordless value),
-    @required TResult loginWithTestUser(LoginWithTestUser value),
-    @required TResult loginWithTestUserTwo(LoginWithTestUserTwo value),
-    @required TResult loginWithTestUserAdmin(LoginWithTestUserAdmin value),
-    @required TResult loginWithTestUserMaster(LoginWithTestUserMaster value),
+  TResult map<TResult extends Object?>({
+    required TResult Function(LoginWithGoogle value) loginWithGoogle,
+    required TResult Function(LoginWithApple value) loginWithApple,
+    required TResult Function(LoginPasswordless value) loginPasswordless,
+    required TResult Function(LoginWithTestUser value) loginWithTestUser,
+    required TResult Function(LoginWithTestUserTwo value) loginWithTestUserTwo,
+    required TResult Function(LoginWithTestUserAdmin value)
+        loginWithTestUserAdmin,
+    required TResult Function(LoginWithTestUserMaster value)
+        loginWithTestUserMaster,
   }) {
-    assert(loginWithGoogle != null);
-    assert(loginWithApple != null);
-    assert(loginPasswordless != null);
-    assert(loginWithTestUser != null);
-    assert(loginWithTestUserTwo != null);
-    assert(loginWithTestUserAdmin != null);
-    assert(loginWithTestUserMaster != null);
     return loginWithGoogle(this);
   }
 
   @override
   @optionalTypeArgs
-  TResult maybeMap<TResult extends Object>({
-    TResult loginWithGoogle(LoginWithGoogle value),
-    TResult loginWithApple(LoginWithApple value),
-    TResult loginPasswordless(LoginPasswordless value),
-    TResult loginWithTestUser(LoginWithTestUser value),
-    TResult loginWithTestUserTwo(LoginWithTestUserTwo value),
-    TResult loginWithTestUserAdmin(LoginWithTestUserAdmin value),
-    TResult loginWithTestUserMaster(LoginWithTestUserMaster value),
-    @required TResult orElse(),
+  TResult maybeMap<TResult extends Object?>({
+    TResult Function(LoginWithGoogle value)? loginWithGoogle,
+    TResult Function(LoginWithApple value)? loginWithApple,
+    TResult Function(LoginPasswordless value)? loginPasswordless,
+    TResult Function(LoginWithTestUser value)? loginWithTestUser,
+    TResult Function(LoginWithTestUserTwo value)? loginWithTestUserTwo,
+    TResult Function(LoginWithTestUserAdmin value)? loginWithTestUserAdmin,
+    TResult Function(LoginWithTestUserMaster value)? loginWithTestUserMaster,
+    required TResult orElse(),
   }) {
-    assert(orElse != null);
     if (loginWithGoogle != null) {
       return loginWithGoogle(this);
     }
@@ -264,6 +252,7 @@ class _$LoginWithAppleCopyWithImpl<$Res> extends _$LoginEventCopyWithImpl<$Res>
 }
 
 /// @nodoc
+
 class _$LoginWithApple with DiagnosticableTreeMixin implements LoginWithApple {
   const _$LoginWithApple();
 
@@ -288,38 +277,30 @@ class _$LoginWithApple with DiagnosticableTreeMixin implements LoginWithApple {
 
   @override
   @optionalTypeArgs
-  TResult when<TResult extends Object>({
-    @required TResult loginWithGoogle(),
-    @required TResult loginWithApple(),
-    @required TResult loginPasswordless(String userEmail),
-    @required TResult loginWithTestUser(),
-    @required TResult loginWithTestUserTwo(),
-    @required TResult loginWithTestUserAdmin(),
-    @required TResult loginWithTestUserMaster(),
+  TResult when<TResult extends Object?>({
+    required TResult Function() loginWithGoogle,
+    required TResult Function() loginWithApple,
+    required TResult Function(String userEmail) loginPasswordless,
+    required TResult Function() loginWithTestUser,
+    required TResult Function() loginWithTestUserTwo,
+    required TResult Function() loginWithTestUserAdmin,
+    required TResult Function() loginWithTestUserMaster,
   }) {
-    assert(loginWithGoogle != null);
-    assert(loginWithApple != null);
-    assert(loginPasswordless != null);
-    assert(loginWithTestUser != null);
-    assert(loginWithTestUserTwo != null);
-    assert(loginWithTestUserAdmin != null);
-    assert(loginWithTestUserMaster != null);
     return loginWithApple();
   }
 
   @override
   @optionalTypeArgs
-  TResult maybeWhen<TResult extends Object>({
-    TResult loginWithGoogle(),
-    TResult loginWithApple(),
-    TResult loginPasswordless(String userEmail),
-    TResult loginWithTestUser(),
-    TResult loginWithTestUserTwo(),
-    TResult loginWithTestUserAdmin(),
-    TResult loginWithTestUserMaster(),
-    @required TResult orElse(),
+  TResult maybeWhen<TResult extends Object?>({
+    TResult Function()? loginWithGoogle,
+    TResult Function()? loginWithApple,
+    TResult Function(String userEmail)? loginPasswordless,
+    TResult Function()? loginWithTestUser,
+    TResult Function()? loginWithTestUserTwo,
+    TResult Function()? loginWithTestUserAdmin,
+    TResult Function()? loginWithTestUserMaster,
+    required TResult orElse(),
   }) {
-    assert(orElse != null);
     if (loginWithApple != null) {
       return loginWithApple();
     }
@@ -328,38 +309,32 @@ class _$LoginWithApple with DiagnosticableTreeMixin implements LoginWithApple {
 
   @override
   @optionalTypeArgs
-  TResult map<TResult extends Object>({
-    @required TResult loginWithGoogle(LoginWithGoogle value),
-    @required TResult loginWithApple(LoginWithApple value),
-    @required TResult loginPasswordless(LoginPasswordless value),
-    @required TResult loginWithTestUser(LoginWithTestUser value),
-    @required TResult loginWithTestUserTwo(LoginWithTestUserTwo value),
-    @required TResult loginWithTestUserAdmin(LoginWithTestUserAdmin value),
-    @required TResult loginWithTestUserMaster(LoginWithTestUserMaster value),
+  TResult map<TResult extends Object?>({
+    required TResult Function(LoginWithGoogle value) loginWithGoogle,
+    required TResult Function(LoginWithApple value) loginWithApple,
+    required TResult Function(LoginPasswordless value) loginPasswordless,
+    required TResult Function(LoginWithTestUser value) loginWithTestUser,
+    required TResult Function(LoginWithTestUserTwo value) loginWithTestUserTwo,
+    required TResult Function(LoginWithTestUserAdmin value)
+        loginWithTestUserAdmin,
+    required TResult Function(LoginWithTestUserMaster value)
+        loginWithTestUserMaster,
   }) {
-    assert(loginWithGoogle != null);
-    assert(loginWithApple != null);
-    assert(loginPasswordless != null);
-    assert(loginWithTestUser != null);
-    assert(loginWithTestUserTwo != null);
-    assert(loginWithTestUserAdmin != null);
-    assert(loginWithTestUserMaster != null);
     return loginWithApple(this);
   }
 
   @override
   @optionalTypeArgs
-  TResult maybeMap<TResult extends Object>({
-    TResult loginWithGoogle(LoginWithGoogle value),
-    TResult loginWithApple(LoginWithApple value),
-    TResult loginPasswordless(LoginPasswordless value),
-    TResult loginWithTestUser(LoginWithTestUser value),
-    TResult loginWithTestUserTwo(LoginWithTestUserTwo value),
-    TResult loginWithTestUserAdmin(LoginWithTestUserAdmin value),
-    TResult loginWithTestUserMaster(LoginWithTestUserMaster value),
-    @required TResult orElse(),
+  TResult maybeMap<TResult extends Object?>({
+    TResult Function(LoginWithGoogle value)? loginWithGoogle,
+    TResult Function(LoginWithApple value)? loginWithApple,
+    TResult Function(LoginPasswordless value)? loginPasswordless,
+    TResult Function(LoginWithTestUser value)? loginWithTestUser,
+    TResult Function(LoginWithTestUserTwo value)? loginWithTestUserTwo,
+    TResult Function(LoginWithTestUserAdmin value)? loginWithTestUserAdmin,
+    TResult Function(LoginWithTestUserMaster value)? loginWithTestUserMaster,
+    required TResult orElse(),
   }) {
-    assert(orElse != null);
     if (loginWithApple != null) {
       return loginWithApple(this);
     }
@@ -392,20 +367,23 @@ class _$LoginPasswordlessCopyWithImpl<$Res>
 
   @override
   $Res call({
-    Object userEmail = freezed,
+    Object? userEmail = freezed,
   }) {
     return _then(LoginPasswordless(
-      userEmail: userEmail == freezed ? _value.userEmail : userEmail as String,
+      userEmail: userEmail == freezed
+          ? _value.userEmail
+          : userEmail // ignore: cast_nullable_to_non_nullable
+              as String,
     ));
   }
 }
 
 /// @nodoc
+
 class _$LoginPasswordless
     with DiagnosticableTreeMixin
     implements LoginPasswordless {
-  const _$LoginPasswordless({@required this.userEmail})
-      : assert(userEmail != null);
+  const _$LoginPasswordless({required this.userEmail});
 
   @override
   final String userEmail;
@@ -443,38 +421,30 @@ class _$LoginPasswordless
 
   @override
   @optionalTypeArgs
-  TResult when<TResult extends Object>({
-    @required TResult loginWithGoogle(),
-    @required TResult loginWithApple(),
-    @required TResult loginPasswordless(String userEmail),
-    @required TResult loginWithTestUser(),
-    @required TResult loginWithTestUserTwo(),
-    @required TResult loginWithTestUserAdmin(),
-    @required TResult loginWithTestUserMaster(),
+  TResult when<TResult extends Object?>({
+    required TResult Function() loginWithGoogle,
+    required TResult Function() loginWithApple,
+    required TResult Function(String userEmail) loginPasswordless,
+    required TResult Function() loginWithTestUser,
+    required TResult Function() loginWithTestUserTwo,
+    required TResult Function() loginWithTestUserAdmin,
+    required TResult Function() loginWithTestUserMaster,
   }) {
-    assert(loginWithGoogle != null);
-    assert(loginWithApple != null);
-    assert(loginPasswordless != null);
-    assert(loginWithTestUser != null);
-    assert(loginWithTestUserTwo != null);
-    assert(loginWithTestUserAdmin != null);
-    assert(loginWithTestUserMaster != null);
     return loginPasswordless(userEmail);
   }
 
   @override
   @optionalTypeArgs
-  TResult maybeWhen<TResult extends Object>({
-    TResult loginWithGoogle(),
-    TResult loginWithApple(),
-    TResult loginPasswordless(String userEmail),
-    TResult loginWithTestUser(),
-    TResult loginWithTestUserTwo(),
-    TResult loginWithTestUserAdmin(),
-    TResult loginWithTestUserMaster(),
-    @required TResult orElse(),
+  TResult maybeWhen<TResult extends Object?>({
+    TResult Function()? loginWithGoogle,
+    TResult Function()? loginWithApple,
+    TResult Function(String userEmail)? loginPasswordless,
+    TResult Function()? loginWithTestUser,
+    TResult Function()? loginWithTestUserTwo,
+    TResult Function()? loginWithTestUserAdmin,
+    TResult Function()? loginWithTestUserMaster,
+    required TResult orElse(),
   }) {
-    assert(orElse != null);
     if (loginPasswordless != null) {
       return loginPasswordless(userEmail);
     }
@@ -483,38 +453,32 @@ class _$LoginPasswordless
 
   @override
   @optionalTypeArgs
-  TResult map<TResult extends Object>({
-    @required TResult loginWithGoogle(LoginWithGoogle value),
-    @required TResult loginWithApple(LoginWithApple value),
-    @required TResult loginPasswordless(LoginPasswordless value),
-    @required TResult loginWithTestUser(LoginWithTestUser value),
-    @required TResult loginWithTestUserTwo(LoginWithTestUserTwo value),
-    @required TResult loginWithTestUserAdmin(LoginWithTestUserAdmin value),
-    @required TResult loginWithTestUserMaster(LoginWithTestUserMaster value),
+  TResult map<TResult extends Object?>({
+    required TResult Function(LoginWithGoogle value) loginWithGoogle,
+    required TResult Function(LoginWithApple value) loginWithApple,
+    required TResult Function(LoginPasswordless value) loginPasswordless,
+    required TResult Function(LoginWithTestUser value) loginWithTestUser,
+    required TResult Function(LoginWithTestUserTwo value) loginWithTestUserTwo,
+    required TResult Function(LoginWithTestUserAdmin value)
+        loginWithTestUserAdmin,
+    required TResult Function(LoginWithTestUserMaster value)
+        loginWithTestUserMaster,
   }) {
-    assert(loginWithGoogle != null);
-    assert(loginWithApple != null);
-    assert(loginPasswordless != null);
-    assert(loginWithTestUser != null);
-    assert(loginWithTestUserTwo != null);
-    assert(loginWithTestUserAdmin != null);
-    assert(loginWithTestUserMaster != null);
     return loginPasswordless(this);
   }
 
   @override
   @optionalTypeArgs
-  TResult maybeMap<TResult extends Object>({
-    TResult loginWithGoogle(LoginWithGoogle value),
-    TResult loginWithApple(LoginWithApple value),
-    TResult loginPasswordless(LoginPasswordless value),
-    TResult loginWithTestUser(LoginWithTestUser value),
-    TResult loginWithTestUserTwo(LoginWithTestUserTwo value),
-    TResult loginWithTestUserAdmin(LoginWithTestUserAdmin value),
-    TResult loginWithTestUserMaster(LoginWithTestUserMaster value),
-    @required TResult orElse(),
+  TResult maybeMap<TResult extends Object?>({
+    TResult Function(LoginWithGoogle value)? loginWithGoogle,
+    TResult Function(LoginWithApple value)? loginWithApple,
+    TResult Function(LoginPasswordless value)? loginPasswordless,
+    TResult Function(LoginWithTestUser value)? loginWithTestUser,
+    TResult Function(LoginWithTestUserTwo value)? loginWithTestUserTwo,
+    TResult Function(LoginWithTestUserAdmin value)? loginWithTestUserAdmin,
+    TResult Function(LoginWithTestUserMaster value)? loginWithTestUserMaster,
+    required TResult orElse(),
   }) {
-    assert(orElse != null);
     if (loginPasswordless != null) {
       return loginPasswordless(this);
     }
@@ -523,12 +487,13 @@ class _$LoginPasswordless
 }
 
 abstract class LoginPasswordless implements LoginEvent {
-  const factory LoginPasswordless({@required String userEmail}) =
+  const factory LoginPasswordless({required String userEmail}) =
       _$LoginPasswordless;
 
-  String get userEmail;
+  String get userEmail => throw _privateConstructorUsedError;
   @JsonKey(ignore: true)
-  $LoginPasswordlessCopyWith<LoginPasswordless> get copyWith;
+  $LoginPasswordlessCopyWith<LoginPasswordless> get copyWith =>
+      throw _privateConstructorUsedError;
 }
 
 /// @nodoc
@@ -551,6 +516,7 @@ class _$LoginWithTestUserCopyWithImpl<$Res>
 }
 
 /// @nodoc
+
 class _$LoginWithTestUser
     with DiagnosticableTreeMixin
     implements LoginWithTestUser {
@@ -578,38 +544,30 @@ class _$LoginWithTestUser
 
   @override
   @optionalTypeArgs
-  TResult when<TResult extends Object>({
-    @required TResult loginWithGoogle(),
-    @required TResult loginWithApple(),
-    @required TResult loginPasswordless(String userEmail),
-    @required TResult loginWithTestUser(),
-    @required TResult loginWithTestUserTwo(),
-    @required TResult loginWithTestUserAdmin(),
-    @required TResult loginWithTestUserMaster(),
+  TResult when<TResult extends Object?>({
+    required TResult Function() loginWithGoogle,
+    required TResult Function() loginWithApple,
+    required TResult Function(String userEmail) loginPasswordless,
+    required TResult Function() loginWithTestUser,
+    required TResult Function() loginWithTestUserTwo,
+    required TResult Function() loginWithTestUserAdmin,
+    required TResult Function() loginWithTestUserMaster,
   }) {
-    assert(loginWithGoogle != null);
-    assert(loginWithApple != null);
-    assert(loginPasswordless != null);
-    assert(loginWithTestUser != null);
-    assert(loginWithTestUserTwo != null);
-    assert(loginWithTestUserAdmin != null);
-    assert(loginWithTestUserMaster != null);
     return loginWithTestUser();
   }
 
   @override
   @optionalTypeArgs
-  TResult maybeWhen<TResult extends Object>({
-    TResult loginWithGoogle(),
-    TResult loginWithApple(),
-    TResult loginPasswordless(String userEmail),
-    TResult loginWithTestUser(),
-    TResult loginWithTestUserTwo(),
-    TResult loginWithTestUserAdmin(),
-    TResult loginWithTestUserMaster(),
-    @required TResult orElse(),
+  TResult maybeWhen<TResult extends Object?>({
+    TResult Function()? loginWithGoogle,
+    TResult Function()? loginWithApple,
+    TResult Function(String userEmail)? loginPasswordless,
+    TResult Function()? loginWithTestUser,
+    TResult Function()? loginWithTestUserTwo,
+    TResult Function()? loginWithTestUserAdmin,
+    TResult Function()? loginWithTestUserMaster,
+    required TResult orElse(),
   }) {
-    assert(orElse != null);
     if (loginWithTestUser != null) {
       return loginWithTestUser();
     }
@@ -618,38 +576,32 @@ class _$LoginWithTestUser
 
   @override
   @optionalTypeArgs
-  TResult map<TResult extends Object>({
-    @required TResult loginWithGoogle(LoginWithGoogle value),
-    @required TResult loginWithApple(LoginWithApple value),
-    @required TResult loginPasswordless(LoginPasswordless value),
-    @required TResult loginWithTestUser(LoginWithTestUser value),
-    @required TResult loginWithTestUserTwo(LoginWithTestUserTwo value),
-    @required TResult loginWithTestUserAdmin(LoginWithTestUserAdmin value),
-    @required TResult loginWithTestUserMaster(LoginWithTestUserMaster value),
+  TResult map<TResult extends Object?>({
+    required TResult Function(LoginWithGoogle value) loginWithGoogle,
+    required TResult Function(LoginWithApple value) loginWithApple,
+    required TResult Function(LoginPasswordless value) loginPasswordless,
+    required TResult Function(LoginWithTestUser value) loginWithTestUser,
+    required TResult Function(LoginWithTestUserTwo value) loginWithTestUserTwo,
+    required TResult Function(LoginWithTestUserAdmin value)
+        loginWithTestUserAdmin,
+    required TResult Function(LoginWithTestUserMaster value)
+        loginWithTestUserMaster,
   }) {
-    assert(loginWithGoogle != null);
-    assert(loginWithApple != null);
-    assert(loginPasswordless != null);
-    assert(loginWithTestUser != null);
-    assert(loginWithTestUserTwo != null);
-    assert(loginWithTestUserAdmin != null);
-    assert(loginWithTestUserMaster != null);
     return loginWithTestUser(this);
   }
 
   @override
   @optionalTypeArgs
-  TResult maybeMap<TResult extends Object>({
-    TResult loginWithGoogle(LoginWithGoogle value),
-    TResult loginWithApple(LoginWithApple value),
-    TResult loginPasswordless(LoginPasswordless value),
-    TResult loginWithTestUser(LoginWithTestUser value),
-    TResult loginWithTestUserTwo(LoginWithTestUserTwo value),
-    TResult loginWithTestUserAdmin(LoginWithTestUserAdmin value),
-    TResult loginWithTestUserMaster(LoginWithTestUserMaster value),
-    @required TResult orElse(),
+  TResult maybeMap<TResult extends Object?>({
+    TResult Function(LoginWithGoogle value)? loginWithGoogle,
+    TResult Function(LoginWithApple value)? loginWithApple,
+    TResult Function(LoginPasswordless value)? loginPasswordless,
+    TResult Function(LoginWithTestUser value)? loginWithTestUser,
+    TResult Function(LoginWithTestUserTwo value)? loginWithTestUserTwo,
+    TResult Function(LoginWithTestUserAdmin value)? loginWithTestUserAdmin,
+    TResult Function(LoginWithTestUserMaster value)? loginWithTestUserMaster,
+    required TResult orElse(),
   }) {
-    assert(orElse != null);
     if (loginWithTestUser != null) {
       return loginWithTestUser(this);
     }
@@ -681,6 +633,7 @@ class _$LoginWithTestUserTwoCopyWithImpl<$Res>
 }
 
 /// @nodoc
+
 class _$LoginWithTestUserTwo
     with DiagnosticableTreeMixin
     implements LoginWithTestUserTwo {
@@ -708,38 +661,30 @@ class _$LoginWithTestUserTwo
 
   @override
   @optionalTypeArgs
-  TResult when<TResult extends Object>({
-    @required TResult loginWithGoogle(),
-    @required TResult loginWithApple(),
-    @required TResult loginPasswordless(String userEmail),
-    @required TResult loginWithTestUser(),
-    @required TResult loginWithTestUserTwo(),
-    @required TResult loginWithTestUserAdmin(),
-    @required TResult loginWithTestUserMaster(),
+  TResult when<TResult extends Object?>({
+    required TResult Function() loginWithGoogle,
+    required TResult Function() loginWithApple,
+    required TResult Function(String userEmail) loginPasswordless,
+    required TResult Function() loginWithTestUser,
+    required TResult Function() loginWithTestUserTwo,
+    required TResult Function() loginWithTestUserAdmin,
+    required TResult Function() loginWithTestUserMaster,
   }) {
-    assert(loginWithGoogle != null);
-    assert(loginWithApple != null);
-    assert(loginPasswordless != null);
-    assert(loginWithTestUser != null);
-    assert(loginWithTestUserTwo != null);
-    assert(loginWithTestUserAdmin != null);
-    assert(loginWithTestUserMaster != null);
     return loginWithTestUserTwo();
   }
 
   @override
   @optionalTypeArgs
-  TResult maybeWhen<TResult extends Object>({
-    TResult loginWithGoogle(),
-    TResult loginWithApple(),
-    TResult loginPasswordless(String userEmail),
-    TResult loginWithTestUser(),
-    TResult loginWithTestUserTwo(),
-    TResult loginWithTestUserAdmin(),
-    TResult loginWithTestUserMaster(),
-    @required TResult orElse(),
+  TResult maybeWhen<TResult extends Object?>({
+    TResult Function()? loginWithGoogle,
+    TResult Function()? loginWithApple,
+    TResult Function(String userEmail)? loginPasswordless,
+    TResult Function()? loginWithTestUser,
+    TResult Function()? loginWithTestUserTwo,
+    TResult Function()? loginWithTestUserAdmin,
+    TResult Function()? loginWithTestUserMaster,
+    required TResult orElse(),
   }) {
-    assert(orElse != null);
     if (loginWithTestUserTwo != null) {
       return loginWithTestUserTwo();
     }
@@ -748,38 +693,32 @@ class _$LoginWithTestUserTwo
 
   @override
   @optionalTypeArgs
-  TResult map<TResult extends Object>({
-    @required TResult loginWithGoogle(LoginWithGoogle value),
-    @required TResult loginWithApple(LoginWithApple value),
-    @required TResult loginPasswordless(LoginPasswordless value),
-    @required TResult loginWithTestUser(LoginWithTestUser value),
-    @required TResult loginWithTestUserTwo(LoginWithTestUserTwo value),
-    @required TResult loginWithTestUserAdmin(LoginWithTestUserAdmin value),
-    @required TResult loginWithTestUserMaster(LoginWithTestUserMaster value),
+  TResult map<TResult extends Object?>({
+    required TResult Function(LoginWithGoogle value) loginWithGoogle,
+    required TResult Function(LoginWithApple value) loginWithApple,
+    required TResult Function(LoginPasswordless value) loginPasswordless,
+    required TResult Function(LoginWithTestUser value) loginWithTestUser,
+    required TResult Function(LoginWithTestUserTwo value) loginWithTestUserTwo,
+    required TResult Function(LoginWithTestUserAdmin value)
+        loginWithTestUserAdmin,
+    required TResult Function(LoginWithTestUserMaster value)
+        loginWithTestUserMaster,
   }) {
-    assert(loginWithGoogle != null);
-    assert(loginWithApple != null);
-    assert(loginPasswordless != null);
-    assert(loginWithTestUser != null);
-    assert(loginWithTestUserTwo != null);
-    assert(loginWithTestUserAdmin != null);
-    assert(loginWithTestUserMaster != null);
     return loginWithTestUserTwo(this);
   }
 
   @override
   @optionalTypeArgs
-  TResult maybeMap<TResult extends Object>({
-    TResult loginWithGoogle(LoginWithGoogle value),
-    TResult loginWithApple(LoginWithApple value),
-    TResult loginPasswordless(LoginPasswordless value),
-    TResult loginWithTestUser(LoginWithTestUser value),
-    TResult loginWithTestUserTwo(LoginWithTestUserTwo value),
-    TResult loginWithTestUserAdmin(LoginWithTestUserAdmin value),
-    TResult loginWithTestUserMaster(LoginWithTestUserMaster value),
-    @required TResult orElse(),
+  TResult maybeMap<TResult extends Object?>({
+    TResult Function(LoginWithGoogle value)? loginWithGoogle,
+    TResult Function(LoginWithApple value)? loginWithApple,
+    TResult Function(LoginPasswordless value)? loginPasswordless,
+    TResult Function(LoginWithTestUser value)? loginWithTestUser,
+    TResult Function(LoginWithTestUserTwo value)? loginWithTestUserTwo,
+    TResult Function(LoginWithTestUserAdmin value)? loginWithTestUserAdmin,
+    TResult Function(LoginWithTestUserMaster value)? loginWithTestUserMaster,
+    required TResult orElse(),
   }) {
-    assert(orElse != null);
     if (loginWithTestUserTwo != null) {
       return loginWithTestUserTwo(this);
     }
@@ -811,6 +750,7 @@ class _$LoginWithTestUserAdminCopyWithImpl<$Res>
 }
 
 /// @nodoc
+
 class _$LoginWithTestUserAdmin
     with DiagnosticableTreeMixin
     implements LoginWithTestUserAdmin {
@@ -838,38 +778,30 @@ class _$LoginWithTestUserAdmin
 
   @override
   @optionalTypeArgs
-  TResult when<TResult extends Object>({
-    @required TResult loginWithGoogle(),
-    @required TResult loginWithApple(),
-    @required TResult loginPasswordless(String userEmail),
-    @required TResult loginWithTestUser(),
-    @required TResult loginWithTestUserTwo(),
-    @required TResult loginWithTestUserAdmin(),
-    @required TResult loginWithTestUserMaster(),
+  TResult when<TResult extends Object?>({
+    required TResult Function() loginWithGoogle,
+    required TResult Function() loginWithApple,
+    required TResult Function(String userEmail) loginPasswordless,
+    required TResult Function() loginWithTestUser,
+    required TResult Function() loginWithTestUserTwo,
+    required TResult Function() loginWithTestUserAdmin,
+    required TResult Function() loginWithTestUserMaster,
   }) {
-    assert(loginWithGoogle != null);
-    assert(loginWithApple != null);
-    assert(loginPasswordless != null);
-    assert(loginWithTestUser != null);
-    assert(loginWithTestUserTwo != null);
-    assert(loginWithTestUserAdmin != null);
-    assert(loginWithTestUserMaster != null);
     return loginWithTestUserAdmin();
   }
 
   @override
   @optionalTypeArgs
-  TResult maybeWhen<TResult extends Object>({
-    TResult loginWithGoogle(),
-    TResult loginWithApple(),
-    TResult loginPasswordless(String userEmail),
-    TResult loginWithTestUser(),
-    TResult loginWithTestUserTwo(),
-    TResult loginWithTestUserAdmin(),
-    TResult loginWithTestUserMaster(),
-    @required TResult orElse(),
+  TResult maybeWhen<TResult extends Object?>({
+    TResult Function()? loginWithGoogle,
+    TResult Function()? loginWithApple,
+    TResult Function(String userEmail)? loginPasswordless,
+    TResult Function()? loginWithTestUser,
+    TResult Function()? loginWithTestUserTwo,
+    TResult Function()? loginWithTestUserAdmin,
+    TResult Function()? loginWithTestUserMaster,
+    required TResult orElse(),
   }) {
-    assert(orElse != null);
     if (loginWithTestUserAdmin != null) {
       return loginWithTestUserAdmin();
     }
@@ -878,38 +810,32 @@ class _$LoginWithTestUserAdmin
 
   @override
   @optionalTypeArgs
-  TResult map<TResult extends Object>({
-    @required TResult loginWithGoogle(LoginWithGoogle value),
-    @required TResult loginWithApple(LoginWithApple value),
-    @required TResult loginPasswordless(LoginPasswordless value),
-    @required TResult loginWithTestUser(LoginWithTestUser value),
-    @required TResult loginWithTestUserTwo(LoginWithTestUserTwo value),
-    @required TResult loginWithTestUserAdmin(LoginWithTestUserAdmin value),
-    @required TResult loginWithTestUserMaster(LoginWithTestUserMaster value),
+  TResult map<TResult extends Object?>({
+    required TResult Function(LoginWithGoogle value) loginWithGoogle,
+    required TResult Function(LoginWithApple value) loginWithApple,
+    required TResult Function(LoginPasswordless value) loginPasswordless,
+    required TResult Function(LoginWithTestUser value) loginWithTestUser,
+    required TResult Function(LoginWithTestUserTwo value) loginWithTestUserTwo,
+    required TResult Function(LoginWithTestUserAdmin value)
+        loginWithTestUserAdmin,
+    required TResult Function(LoginWithTestUserMaster value)
+        loginWithTestUserMaster,
   }) {
-    assert(loginWithGoogle != null);
-    assert(loginWithApple != null);
-    assert(loginPasswordless != null);
-    assert(loginWithTestUser != null);
-    assert(loginWithTestUserTwo != null);
-    assert(loginWithTestUserAdmin != null);
-    assert(loginWithTestUserMaster != null);
     return loginWithTestUserAdmin(this);
   }
 
   @override
   @optionalTypeArgs
-  TResult maybeMap<TResult extends Object>({
-    TResult loginWithGoogle(LoginWithGoogle value),
-    TResult loginWithApple(LoginWithApple value),
-    TResult loginPasswordless(LoginPasswordless value),
-    TResult loginWithTestUser(LoginWithTestUser value),
-    TResult loginWithTestUserTwo(LoginWithTestUserTwo value),
-    TResult loginWithTestUserAdmin(LoginWithTestUserAdmin value),
-    TResult loginWithTestUserMaster(LoginWithTestUserMaster value),
-    @required TResult orElse(),
+  TResult maybeMap<TResult extends Object?>({
+    TResult Function(LoginWithGoogle value)? loginWithGoogle,
+    TResult Function(LoginWithApple value)? loginWithApple,
+    TResult Function(LoginPasswordless value)? loginPasswordless,
+    TResult Function(LoginWithTestUser value)? loginWithTestUser,
+    TResult Function(LoginWithTestUserTwo value)? loginWithTestUserTwo,
+    TResult Function(LoginWithTestUserAdmin value)? loginWithTestUserAdmin,
+    TResult Function(LoginWithTestUserMaster value)? loginWithTestUserMaster,
+    required TResult orElse(),
   }) {
-    assert(orElse != null);
     if (loginWithTestUserAdmin != null) {
       return loginWithTestUserAdmin(this);
     }
@@ -941,6 +867,7 @@ class _$LoginWithTestUserMasterCopyWithImpl<$Res>
 }
 
 /// @nodoc
+
 class _$LoginWithTestUserMaster
     with DiagnosticableTreeMixin
     implements LoginWithTestUserMaster {
@@ -968,38 +895,30 @@ class _$LoginWithTestUserMaster
 
   @override
   @optionalTypeArgs
-  TResult when<TResult extends Object>({
-    @required TResult loginWithGoogle(),
-    @required TResult loginWithApple(),
-    @required TResult loginPasswordless(String userEmail),
-    @required TResult loginWithTestUser(),
-    @required TResult loginWithTestUserTwo(),
-    @required TResult loginWithTestUserAdmin(),
-    @required TResult loginWithTestUserMaster(),
+  TResult when<TResult extends Object?>({
+    required TResult Function() loginWithGoogle,
+    required TResult Function() loginWithApple,
+    required TResult Function(String userEmail) loginPasswordless,
+    required TResult Function() loginWithTestUser,
+    required TResult Function() loginWithTestUserTwo,
+    required TResult Function() loginWithTestUserAdmin,
+    required TResult Function() loginWithTestUserMaster,
   }) {
-    assert(loginWithGoogle != null);
-    assert(loginWithApple != null);
-    assert(loginPasswordless != null);
-    assert(loginWithTestUser != null);
-    assert(loginWithTestUserTwo != null);
-    assert(loginWithTestUserAdmin != null);
-    assert(loginWithTestUserMaster != null);
     return loginWithTestUserMaster();
   }
 
   @override
   @optionalTypeArgs
-  TResult maybeWhen<TResult extends Object>({
-    TResult loginWithGoogle(),
-    TResult loginWithApple(),
-    TResult loginPasswordless(String userEmail),
-    TResult loginWithTestUser(),
-    TResult loginWithTestUserTwo(),
-    TResult loginWithTestUserAdmin(),
-    TResult loginWithTestUserMaster(),
-    @required TResult orElse(),
+  TResult maybeWhen<TResult extends Object?>({
+    TResult Function()? loginWithGoogle,
+    TResult Function()? loginWithApple,
+    TResult Function(String userEmail)? loginPasswordless,
+    TResult Function()? loginWithTestUser,
+    TResult Function()? loginWithTestUserTwo,
+    TResult Function()? loginWithTestUserAdmin,
+    TResult Function()? loginWithTestUserMaster,
+    required TResult orElse(),
   }) {
-    assert(orElse != null);
     if (loginWithTestUserMaster != null) {
       return loginWithTestUserMaster();
     }
@@ -1008,38 +927,32 @@ class _$LoginWithTestUserMaster
 
   @override
   @optionalTypeArgs
-  TResult map<TResult extends Object>({
-    @required TResult loginWithGoogle(LoginWithGoogle value),
-    @required TResult loginWithApple(LoginWithApple value),
-    @required TResult loginPasswordless(LoginPasswordless value),
-    @required TResult loginWithTestUser(LoginWithTestUser value),
-    @required TResult loginWithTestUserTwo(LoginWithTestUserTwo value),
-    @required TResult loginWithTestUserAdmin(LoginWithTestUserAdmin value),
-    @required TResult loginWithTestUserMaster(LoginWithTestUserMaster value),
+  TResult map<TResult extends Object?>({
+    required TResult Function(LoginWithGoogle value) loginWithGoogle,
+    required TResult Function(LoginWithApple value) loginWithApple,
+    required TResult Function(LoginPasswordless value) loginPasswordless,
+    required TResult Function(LoginWithTestUser value) loginWithTestUser,
+    required TResult Function(LoginWithTestUserTwo value) loginWithTestUserTwo,
+    required TResult Function(LoginWithTestUserAdmin value)
+        loginWithTestUserAdmin,
+    required TResult Function(LoginWithTestUserMaster value)
+        loginWithTestUserMaster,
   }) {
-    assert(loginWithGoogle != null);
-    assert(loginWithApple != null);
-    assert(loginPasswordless != null);
-    assert(loginWithTestUser != null);
-    assert(loginWithTestUserTwo != null);
-    assert(loginWithTestUserAdmin != null);
-    assert(loginWithTestUserMaster != null);
     return loginWithTestUserMaster(this);
   }
 
   @override
   @optionalTypeArgs
-  TResult maybeMap<TResult extends Object>({
-    TResult loginWithGoogle(LoginWithGoogle value),
-    TResult loginWithApple(LoginWithApple value),
-    TResult loginPasswordless(LoginPasswordless value),
-    TResult loginWithTestUser(LoginWithTestUser value),
-    TResult loginWithTestUserTwo(LoginWithTestUserTwo value),
-    TResult loginWithTestUserAdmin(LoginWithTestUserAdmin value),
-    TResult loginWithTestUserMaster(LoginWithTestUserMaster value),
-    @required TResult orElse(),
+  TResult maybeMap<TResult extends Object?>({
+    TResult Function(LoginWithGoogle value)? loginWithGoogle,
+    TResult Function(LoginWithApple value)? loginWithApple,
+    TResult Function(LoginPasswordless value)? loginPasswordless,
+    TResult Function(LoginWithTestUser value)? loginWithTestUser,
+    TResult Function(LoginWithTestUserTwo value)? loginWithTestUserTwo,
+    TResult Function(LoginWithTestUserAdmin value)? loginWithTestUserAdmin,
+    TResult Function(LoginWithTestUserMaster value)? loginWithTestUserMaster,
+    required TResult orElse(),
   }) {
-    assert(orElse != null);
     if (loginWithTestUserMaster != null) {
       return loginWithTestUserMaster(this);
     }

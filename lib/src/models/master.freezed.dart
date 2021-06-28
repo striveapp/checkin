@@ -1,5 +1,5 @@
 // GENERATED CODE - DO NOT MODIFY BY HAND
-// ignore_for_file: deprecated_member_use, deprecated_member_use_from_same_package, use_function_type_syntax_for_parameters, unnecessary_const, avoid_init_to_null, invalid_override_different_default_values_named, prefer_expression_function_bodies
+// ignore_for_file: unused_element, deprecated_member_use, deprecated_member_use_from_same_package, use_function_type_syntax_for_parameters, unnecessary_const, avoid_init_to_null, invalid_override_different_default_values_named, prefer_expression_function_bodies, annotate_overrides
 
 part of 'master.dart';
 
@@ -8,6 +8,10 @@ part of 'master.dart';
 // **************************************************************************
 
 T _$identity<T>(T value) => value;
+
+final _privateConstructorUsedError = UnsupportedError(
+    'It seems like you constructed your class using `MyClass._()`. This constructor is only meant to be used by freezed and you are not supposed to need it nor use it.\nPlease check the documentation here for more informations: https://github.com/rrousselGit/freezed#custom-getters-and-methods');
+
 Master _$MasterFromJson(Map<String, dynamic> json) {
   return _Master.fromJson(json);
 }
@@ -16,9 +20,8 @@ Master _$MasterFromJson(Map<String, dynamic> json) {
 class _$MasterTearOff {
   const _$MasterTearOff();
 
-// ignore: unused_element
   _Master call(
-      {@required String name, @required String email, String imageUrl}) {
+      {required String name, required String email, String? imageUrl}) {
     return _Master(
       name: name,
       email: email,
@@ -26,32 +29,30 @@ class _$MasterTearOff {
     );
   }
 
-// ignore: unused_element
   Master fromJson(Map<String, Object> json) {
     return Master.fromJson(json);
   }
 }
 
 /// @nodoc
-// ignore: unused_element
 const $Master = _$MasterTearOff();
 
 /// @nodoc
 mixin _$Master {
-  String get name;
-  String get email;
-  String get imageUrl;
+  String get name => throw _privateConstructorUsedError;
+  String get email => throw _privateConstructorUsedError;
+  String? get imageUrl => throw _privateConstructorUsedError;
 
-  Map<String, dynamic> toJson();
+  Map<String, dynamic> toJson() => throw _privateConstructorUsedError;
   @JsonKey(ignore: true)
-  $MasterCopyWith<Master> get copyWith;
+  $MasterCopyWith<Master> get copyWith => throw _privateConstructorUsedError;
 }
 
 /// @nodoc
 abstract class $MasterCopyWith<$Res> {
   factory $MasterCopyWith(Master value, $Res Function(Master) then) =
       _$MasterCopyWithImpl<$Res>;
-  $Res call({String name, String email, String imageUrl});
+  $Res call({String name, String email, String? imageUrl});
 }
 
 /// @nodoc
@@ -64,14 +65,23 @@ class _$MasterCopyWithImpl<$Res> implements $MasterCopyWith<$Res> {
 
   @override
   $Res call({
-    Object name = freezed,
-    Object email = freezed,
-    Object imageUrl = freezed,
+    Object? name = freezed,
+    Object? email = freezed,
+    Object? imageUrl = freezed,
   }) {
     return _then(_value.copyWith(
-      name: name == freezed ? _value.name : name as String,
-      email: email == freezed ? _value.email : email as String,
-      imageUrl: imageUrl == freezed ? _value.imageUrl : imageUrl as String,
+      name: name == freezed
+          ? _value.name
+          : name // ignore: cast_nullable_to_non_nullable
+              as String,
+      email: email == freezed
+          ? _value.email
+          : email // ignore: cast_nullable_to_non_nullable
+              as String,
+      imageUrl: imageUrl == freezed
+          ? _value.imageUrl
+          : imageUrl // ignore: cast_nullable_to_non_nullable
+              as String?,
     ));
   }
 }
@@ -81,7 +91,7 @@ abstract class _$MasterCopyWith<$Res> implements $MasterCopyWith<$Res> {
   factory _$MasterCopyWith(_Master value, $Res Function(_Master) then) =
       __$MasterCopyWithImpl<$Res>;
   @override
-  $Res call({String name, String email, String imageUrl});
+  $Res call({String name, String email, String? imageUrl});
 }
 
 /// @nodoc
@@ -95,25 +105,31 @@ class __$MasterCopyWithImpl<$Res> extends _$MasterCopyWithImpl<$Res>
 
   @override
   $Res call({
-    Object name = freezed,
-    Object email = freezed,
-    Object imageUrl = freezed,
+    Object? name = freezed,
+    Object? email = freezed,
+    Object? imageUrl = freezed,
   }) {
     return _then(_Master(
-      name: name == freezed ? _value.name : name as String,
-      email: email == freezed ? _value.email : email as String,
-      imageUrl: imageUrl == freezed ? _value.imageUrl : imageUrl as String,
+      name: name == freezed
+          ? _value.name
+          : name // ignore: cast_nullable_to_non_nullable
+              as String,
+      email: email == freezed
+          ? _value.email
+          : email // ignore: cast_nullable_to_non_nullable
+              as String,
+      imageUrl: imageUrl == freezed
+          ? _value.imageUrl
+          : imageUrl // ignore: cast_nullable_to_non_nullable
+              as String?,
     ));
   }
 }
 
-@JsonSerializable()
-
 /// @nodoc
+@JsonSerializable()
 class _$_Master implements _Master {
-  _$_Master({@required this.name, @required this.email, this.imageUrl})
-      : assert(name != null),
-        assert(email != null);
+  _$_Master({required this.name, required this.email, this.imageUrl});
 
   factory _$_Master.fromJson(Map<String, dynamic> json) =>
       _$_$_MasterFromJson(json);
@@ -123,7 +139,7 @@ class _$_Master implements _Master {
   @override
   final String email;
   @override
-  final String imageUrl;
+  final String? imageUrl;
 
   @override
   String toString() {
@@ -163,19 +179,19 @@ class _$_Master implements _Master {
 
 abstract class _Master implements Master {
   factory _Master(
-      {@required String name,
-      @required String email,
-      String imageUrl}) = _$_Master;
+      {required String name,
+      required String email,
+      String? imageUrl}) = _$_Master;
 
   factory _Master.fromJson(Map<String, dynamic> json) = _$_Master.fromJson;
 
   @override
-  String get name;
+  String get name => throw _privateConstructorUsedError;
   @override
-  String get email;
+  String get email => throw _privateConstructorUsedError;
   @override
-  String get imageUrl;
+  String? get imageUrl => throw _privateConstructorUsedError;
   @override
   @JsonKey(ignore: true)
-  _$MasterCopyWith<_Master> get copyWith;
+  _$MasterCopyWith<_Master> get copyWith => throw _privateConstructorUsedError;
 }

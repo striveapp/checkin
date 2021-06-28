@@ -1,5 +1,5 @@
 // GENERATED CODE - DO NOT MODIFY BY HAND
-// ignore_for_file: deprecated_member_use, deprecated_member_use_from_same_package, use_function_type_syntax_for_parameters, unnecessary_const, avoid_init_to_null, invalid_override_different_default_values_named, prefer_expression_function_bodies
+// ignore_for_file: unused_element, deprecated_member_use, deprecated_member_use_from_same_package, use_function_type_syntax_for_parameters, unnecessary_const, avoid_init_to_null, invalid_override_different_default_values_named, prefer_expression_function_bodies, annotate_overrides
 
 part of 'login_state.dart';
 
@@ -9,60 +9,64 @@ part of 'login_state.dart';
 
 T _$identity<T>(T value) => value;
 
+final _privateConstructorUsedError = UnsupportedError(
+    'It seems like you constructed your class using `MyClass._()`. This constructor is only meant to be used by freezed and you are not supposed to need it nor use it.\nPlease check the documentation here for more informations: https://github.com/rrousselGit/freezed#custom-getters-and-methods');
+
 /// @nodoc
 class _$LoginStateTearOff {
   const _$LoginStateTearOff();
 
-// ignore: unused_element
   LoginInitial loginInitial() {
     return const LoginInitial();
   }
 
-// ignore: unused_element
-  LoginFailure loginFailure({String errorMessage}) {
+  LoginFailure loginFailure({String? errorMessage}) {
     return LoginFailure(
       errorMessage: errorMessage,
     );
   }
 
-// ignore: unused_element
   WrongfullyInsertedEmail wrongfullyInsertedEmail() {
     return const WrongfullyInsertedEmail();
   }
 }
 
 /// @nodoc
-// ignore: unused_element
 const $LoginState = _$LoginStateTearOff();
 
 /// @nodoc
 mixin _$LoginState {
   @optionalTypeArgs
-  TResult when<TResult extends Object>({
-    @required TResult loginInitial(),
-    @required TResult loginFailure(String errorMessage),
-    @required TResult wrongfullyInsertedEmail(),
-  });
+  TResult when<TResult extends Object?>({
+    required TResult Function() loginInitial,
+    required TResult Function(String? errorMessage) loginFailure,
+    required TResult Function() wrongfullyInsertedEmail,
+  }) =>
+      throw _privateConstructorUsedError;
   @optionalTypeArgs
-  TResult maybeWhen<TResult extends Object>({
-    TResult loginInitial(),
-    TResult loginFailure(String errorMessage),
-    TResult wrongfullyInsertedEmail(),
-    @required TResult orElse(),
-  });
+  TResult maybeWhen<TResult extends Object?>({
+    TResult Function()? loginInitial,
+    TResult Function(String? errorMessage)? loginFailure,
+    TResult Function()? wrongfullyInsertedEmail,
+    required TResult orElse(),
+  }) =>
+      throw _privateConstructorUsedError;
   @optionalTypeArgs
-  TResult map<TResult extends Object>({
-    @required TResult loginInitial(LoginInitial value),
-    @required TResult loginFailure(LoginFailure value),
-    @required TResult wrongfullyInsertedEmail(WrongfullyInsertedEmail value),
-  });
+  TResult map<TResult extends Object?>({
+    required TResult Function(LoginInitial value) loginInitial,
+    required TResult Function(LoginFailure value) loginFailure,
+    required TResult Function(WrongfullyInsertedEmail value)
+        wrongfullyInsertedEmail,
+  }) =>
+      throw _privateConstructorUsedError;
   @optionalTypeArgs
-  TResult maybeMap<TResult extends Object>({
-    TResult loginInitial(LoginInitial value),
-    TResult loginFailure(LoginFailure value),
-    TResult wrongfullyInsertedEmail(WrongfullyInsertedEmail value),
-    @required TResult orElse(),
-  });
+  TResult maybeMap<TResult extends Object?>({
+    TResult Function(LoginInitial value)? loginInitial,
+    TResult Function(LoginFailure value)? loginFailure,
+    TResult Function(WrongfullyInsertedEmail value)? wrongfullyInsertedEmail,
+    required TResult orElse(),
+  }) =>
+      throw _privateConstructorUsedError;
 }
 
 /// @nodoc
@@ -100,6 +104,7 @@ class _$LoginInitialCopyWithImpl<$Res> extends _$LoginStateCopyWithImpl<$Res>
 }
 
 /// @nodoc
+
 class _$LoginInitial with DiagnosticableTreeMixin implements LoginInitial {
   const _$LoginInitial();
 
@@ -124,26 +129,22 @@ class _$LoginInitial with DiagnosticableTreeMixin implements LoginInitial {
 
   @override
   @optionalTypeArgs
-  TResult when<TResult extends Object>({
-    @required TResult loginInitial(),
-    @required TResult loginFailure(String errorMessage),
-    @required TResult wrongfullyInsertedEmail(),
+  TResult when<TResult extends Object?>({
+    required TResult Function() loginInitial,
+    required TResult Function(String? errorMessage) loginFailure,
+    required TResult Function() wrongfullyInsertedEmail,
   }) {
-    assert(loginInitial != null);
-    assert(loginFailure != null);
-    assert(wrongfullyInsertedEmail != null);
     return loginInitial();
   }
 
   @override
   @optionalTypeArgs
-  TResult maybeWhen<TResult extends Object>({
-    TResult loginInitial(),
-    TResult loginFailure(String errorMessage),
-    TResult wrongfullyInsertedEmail(),
-    @required TResult orElse(),
+  TResult maybeWhen<TResult extends Object?>({
+    TResult Function()? loginInitial,
+    TResult Function(String? errorMessage)? loginFailure,
+    TResult Function()? wrongfullyInsertedEmail,
+    required TResult orElse(),
   }) {
-    assert(orElse != null);
     if (loginInitial != null) {
       return loginInitial();
     }
@@ -152,26 +153,23 @@ class _$LoginInitial with DiagnosticableTreeMixin implements LoginInitial {
 
   @override
   @optionalTypeArgs
-  TResult map<TResult extends Object>({
-    @required TResult loginInitial(LoginInitial value),
-    @required TResult loginFailure(LoginFailure value),
-    @required TResult wrongfullyInsertedEmail(WrongfullyInsertedEmail value),
+  TResult map<TResult extends Object?>({
+    required TResult Function(LoginInitial value) loginInitial,
+    required TResult Function(LoginFailure value) loginFailure,
+    required TResult Function(WrongfullyInsertedEmail value)
+        wrongfullyInsertedEmail,
   }) {
-    assert(loginInitial != null);
-    assert(loginFailure != null);
-    assert(wrongfullyInsertedEmail != null);
     return loginInitial(this);
   }
 
   @override
   @optionalTypeArgs
-  TResult maybeMap<TResult extends Object>({
-    TResult loginInitial(LoginInitial value),
-    TResult loginFailure(LoginFailure value),
-    TResult wrongfullyInsertedEmail(WrongfullyInsertedEmail value),
-    @required TResult orElse(),
+  TResult maybeMap<TResult extends Object?>({
+    TResult Function(LoginInitial value)? loginInitial,
+    TResult Function(LoginFailure value)? loginFailure,
+    TResult Function(WrongfullyInsertedEmail value)? wrongfullyInsertedEmail,
+    required TResult orElse(),
   }) {
-    assert(orElse != null);
     if (loginInitial != null) {
       return loginInitial(this);
     }
@@ -188,7 +186,7 @@ abstract class $LoginFailureCopyWith<$Res> {
   factory $LoginFailureCopyWith(
           LoginFailure value, $Res Function(LoginFailure) then) =
       _$LoginFailureCopyWithImpl<$Res>;
-  $Res call({String errorMessage});
+  $Res call({String? errorMessage});
 }
 
 /// @nodoc
@@ -203,22 +201,24 @@ class _$LoginFailureCopyWithImpl<$Res> extends _$LoginStateCopyWithImpl<$Res>
 
   @override
   $Res call({
-    Object errorMessage = freezed,
+    Object? errorMessage = freezed,
   }) {
     return _then(LoginFailure(
       errorMessage: errorMessage == freezed
           ? _value.errorMessage
-          : errorMessage as String,
+          : errorMessage // ignore: cast_nullable_to_non_nullable
+              as String?,
     ));
   }
 }
 
 /// @nodoc
+
 class _$LoginFailure with DiagnosticableTreeMixin implements LoginFailure {
   const _$LoginFailure({this.errorMessage});
 
   @override
-  final String errorMessage;
+  final String? errorMessage;
 
   @override
   String toString({DiagnosticLevel minLevel = DiagnosticLevel.info}) {
@@ -253,26 +253,22 @@ class _$LoginFailure with DiagnosticableTreeMixin implements LoginFailure {
 
   @override
   @optionalTypeArgs
-  TResult when<TResult extends Object>({
-    @required TResult loginInitial(),
-    @required TResult loginFailure(String errorMessage),
-    @required TResult wrongfullyInsertedEmail(),
+  TResult when<TResult extends Object?>({
+    required TResult Function() loginInitial,
+    required TResult Function(String? errorMessage) loginFailure,
+    required TResult Function() wrongfullyInsertedEmail,
   }) {
-    assert(loginInitial != null);
-    assert(loginFailure != null);
-    assert(wrongfullyInsertedEmail != null);
     return loginFailure(errorMessage);
   }
 
   @override
   @optionalTypeArgs
-  TResult maybeWhen<TResult extends Object>({
-    TResult loginInitial(),
-    TResult loginFailure(String errorMessage),
-    TResult wrongfullyInsertedEmail(),
-    @required TResult orElse(),
+  TResult maybeWhen<TResult extends Object?>({
+    TResult Function()? loginInitial,
+    TResult Function(String? errorMessage)? loginFailure,
+    TResult Function()? wrongfullyInsertedEmail,
+    required TResult orElse(),
   }) {
-    assert(orElse != null);
     if (loginFailure != null) {
       return loginFailure(errorMessage);
     }
@@ -281,26 +277,23 @@ class _$LoginFailure with DiagnosticableTreeMixin implements LoginFailure {
 
   @override
   @optionalTypeArgs
-  TResult map<TResult extends Object>({
-    @required TResult loginInitial(LoginInitial value),
-    @required TResult loginFailure(LoginFailure value),
-    @required TResult wrongfullyInsertedEmail(WrongfullyInsertedEmail value),
+  TResult map<TResult extends Object?>({
+    required TResult Function(LoginInitial value) loginInitial,
+    required TResult Function(LoginFailure value) loginFailure,
+    required TResult Function(WrongfullyInsertedEmail value)
+        wrongfullyInsertedEmail,
   }) {
-    assert(loginInitial != null);
-    assert(loginFailure != null);
-    assert(wrongfullyInsertedEmail != null);
     return loginFailure(this);
   }
 
   @override
   @optionalTypeArgs
-  TResult maybeMap<TResult extends Object>({
-    TResult loginInitial(LoginInitial value),
-    TResult loginFailure(LoginFailure value),
-    TResult wrongfullyInsertedEmail(WrongfullyInsertedEmail value),
-    @required TResult orElse(),
+  TResult maybeMap<TResult extends Object?>({
+    TResult Function(LoginInitial value)? loginInitial,
+    TResult Function(LoginFailure value)? loginFailure,
+    TResult Function(WrongfullyInsertedEmail value)? wrongfullyInsertedEmail,
+    required TResult orElse(),
   }) {
-    assert(orElse != null);
     if (loginFailure != null) {
       return loginFailure(this);
     }
@@ -309,11 +302,12 @@ class _$LoginFailure with DiagnosticableTreeMixin implements LoginFailure {
 }
 
 abstract class LoginFailure implements LoginState {
-  const factory LoginFailure({String errorMessage}) = _$LoginFailure;
+  const factory LoginFailure({String? errorMessage}) = _$LoginFailure;
 
-  String get errorMessage;
+  String? get errorMessage => throw _privateConstructorUsedError;
   @JsonKey(ignore: true)
-  $LoginFailureCopyWith<LoginFailure> get copyWith;
+  $LoginFailureCopyWith<LoginFailure> get copyWith =>
+      throw _privateConstructorUsedError;
 }
 
 /// @nodoc
@@ -336,6 +330,7 @@ class _$WrongfullyInsertedEmailCopyWithImpl<$Res>
 }
 
 /// @nodoc
+
 class _$WrongfullyInsertedEmail
     with DiagnosticableTreeMixin
     implements WrongfullyInsertedEmail {
@@ -363,26 +358,22 @@ class _$WrongfullyInsertedEmail
 
   @override
   @optionalTypeArgs
-  TResult when<TResult extends Object>({
-    @required TResult loginInitial(),
-    @required TResult loginFailure(String errorMessage),
-    @required TResult wrongfullyInsertedEmail(),
+  TResult when<TResult extends Object?>({
+    required TResult Function() loginInitial,
+    required TResult Function(String? errorMessage) loginFailure,
+    required TResult Function() wrongfullyInsertedEmail,
   }) {
-    assert(loginInitial != null);
-    assert(loginFailure != null);
-    assert(wrongfullyInsertedEmail != null);
     return wrongfullyInsertedEmail();
   }
 
   @override
   @optionalTypeArgs
-  TResult maybeWhen<TResult extends Object>({
-    TResult loginInitial(),
-    TResult loginFailure(String errorMessage),
-    TResult wrongfullyInsertedEmail(),
-    @required TResult orElse(),
+  TResult maybeWhen<TResult extends Object?>({
+    TResult Function()? loginInitial,
+    TResult Function(String? errorMessage)? loginFailure,
+    TResult Function()? wrongfullyInsertedEmail,
+    required TResult orElse(),
   }) {
-    assert(orElse != null);
     if (wrongfullyInsertedEmail != null) {
       return wrongfullyInsertedEmail();
     }
@@ -391,26 +382,23 @@ class _$WrongfullyInsertedEmail
 
   @override
   @optionalTypeArgs
-  TResult map<TResult extends Object>({
-    @required TResult loginInitial(LoginInitial value),
-    @required TResult loginFailure(LoginFailure value),
-    @required TResult wrongfullyInsertedEmail(WrongfullyInsertedEmail value),
+  TResult map<TResult extends Object?>({
+    required TResult Function(LoginInitial value) loginInitial,
+    required TResult Function(LoginFailure value) loginFailure,
+    required TResult Function(WrongfullyInsertedEmail value)
+        wrongfullyInsertedEmail,
   }) {
-    assert(loginInitial != null);
-    assert(loginFailure != null);
-    assert(wrongfullyInsertedEmail != null);
     return wrongfullyInsertedEmail(this);
   }
 
   @override
   @optionalTypeArgs
-  TResult maybeMap<TResult extends Object>({
-    TResult loginInitial(LoginInitial value),
-    TResult loginFailure(LoginFailure value),
-    TResult wrongfullyInsertedEmail(WrongfullyInsertedEmail value),
-    @required TResult orElse(),
+  TResult maybeMap<TResult extends Object?>({
+    TResult Function(LoginInitial value)? loginInitial,
+    TResult Function(LoginFailure value)? loginFailure,
+    TResult Function(WrongfullyInsertedEmail value)? wrongfullyInsertedEmail,
+    required TResult orElse(),
   }) {
-    assert(orElse != null);
     if (wrongfullyInsertedEmail != null) {
       return wrongfullyInsertedEmail(this);
     }

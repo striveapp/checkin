@@ -1,5 +1,5 @@
 // GENERATED CODE - DO NOT MODIFY BY HAND
-// ignore_for_file: deprecated_member_use, deprecated_member_use_from_same_package, use_function_type_syntax_for_parameters, unnecessary_const, avoid_init_to_null, invalid_override_different_default_values_named, prefer_expression_function_bodies
+// ignore_for_file: unused_element, deprecated_member_use, deprecated_member_use_from_same_package, use_function_type_syntax_for_parameters, unnecessary_const, avoid_init_to_null, invalid_override_different_default_values_named, prefer_expression_function_bodies, annotate_overrides
 
 part of 'auth_event.dart';
 
@@ -9,60 +9,63 @@ part of 'auth_event.dart';
 
 T _$identity<T>(T value) => value;
 
+final _privateConstructorUsedError = UnsupportedError(
+    'It seems like you constructed your class using `MyClass._()`. This constructor is only meant to be used by freezed and you are not supposed to need it nor use it.\nPlease check the documentation here for more informations: https://github.com/rrousselGit/freezed#custom-getters-and-methods');
+
 /// @nodoc
 class _$AuthEventTearOff {
   const _$AuthEventTearOff();
 
-// ignore: unused_element
   AppStarted appStarted() {
     return const AppStarted();
   }
 
-// ignore: unused_element
-  AuthUpdated authUpdated({User loggedUser}) {
+  AuthUpdated authUpdated({User? loggedUser}) {
     return AuthUpdated(
       loggedUser: loggedUser,
     );
   }
 
-// ignore: unused_element
   LogOut logOut() {
     return const LogOut();
   }
 }
 
 /// @nodoc
-// ignore: unused_element
 const $AuthEvent = _$AuthEventTearOff();
 
 /// @nodoc
 mixin _$AuthEvent {
   @optionalTypeArgs
-  TResult when<TResult extends Object>({
-    @required TResult appStarted(),
-    @required TResult authUpdated(User loggedUser),
-    @required TResult logOut(),
-  });
+  TResult when<TResult extends Object?>({
+    required TResult Function() appStarted,
+    required TResult Function(User? loggedUser) authUpdated,
+    required TResult Function() logOut,
+  }) =>
+      throw _privateConstructorUsedError;
   @optionalTypeArgs
-  TResult maybeWhen<TResult extends Object>({
-    TResult appStarted(),
-    TResult authUpdated(User loggedUser),
-    TResult logOut(),
-    @required TResult orElse(),
-  });
+  TResult maybeWhen<TResult extends Object?>({
+    TResult Function()? appStarted,
+    TResult Function(User? loggedUser)? authUpdated,
+    TResult Function()? logOut,
+    required TResult orElse(),
+  }) =>
+      throw _privateConstructorUsedError;
   @optionalTypeArgs
-  TResult map<TResult extends Object>({
-    @required TResult appStarted(AppStarted value),
-    @required TResult authUpdated(AuthUpdated value),
-    @required TResult logOut(LogOut value),
-  });
+  TResult map<TResult extends Object?>({
+    required TResult Function(AppStarted value) appStarted,
+    required TResult Function(AuthUpdated value) authUpdated,
+    required TResult Function(LogOut value) logOut,
+  }) =>
+      throw _privateConstructorUsedError;
   @optionalTypeArgs
-  TResult maybeMap<TResult extends Object>({
-    TResult appStarted(AppStarted value),
-    TResult authUpdated(AuthUpdated value),
-    TResult logOut(LogOut value),
-    @required TResult orElse(),
-  });
+  TResult maybeMap<TResult extends Object?>({
+    TResult Function(AppStarted value)? appStarted,
+    TResult Function(AuthUpdated value)? authUpdated,
+    TResult Function(LogOut value)? logOut,
+    required TResult orElse(),
+  }) =>
+      throw _privateConstructorUsedError;
 }
 
 /// @nodoc
@@ -98,6 +101,7 @@ class _$AppStartedCopyWithImpl<$Res> extends _$AuthEventCopyWithImpl<$Res>
 }
 
 /// @nodoc
+
 class _$AppStarted with DiagnosticableTreeMixin implements AppStarted {
   const _$AppStarted();
 
@@ -122,26 +126,22 @@ class _$AppStarted with DiagnosticableTreeMixin implements AppStarted {
 
   @override
   @optionalTypeArgs
-  TResult when<TResult extends Object>({
-    @required TResult appStarted(),
-    @required TResult authUpdated(User loggedUser),
-    @required TResult logOut(),
+  TResult when<TResult extends Object?>({
+    required TResult Function() appStarted,
+    required TResult Function(User? loggedUser) authUpdated,
+    required TResult Function() logOut,
   }) {
-    assert(appStarted != null);
-    assert(authUpdated != null);
-    assert(logOut != null);
     return appStarted();
   }
 
   @override
   @optionalTypeArgs
-  TResult maybeWhen<TResult extends Object>({
-    TResult appStarted(),
-    TResult authUpdated(User loggedUser),
-    TResult logOut(),
-    @required TResult orElse(),
+  TResult maybeWhen<TResult extends Object?>({
+    TResult Function()? appStarted,
+    TResult Function(User? loggedUser)? authUpdated,
+    TResult Function()? logOut,
+    required TResult orElse(),
   }) {
-    assert(orElse != null);
     if (appStarted != null) {
       return appStarted();
     }
@@ -150,26 +150,22 @@ class _$AppStarted with DiagnosticableTreeMixin implements AppStarted {
 
   @override
   @optionalTypeArgs
-  TResult map<TResult extends Object>({
-    @required TResult appStarted(AppStarted value),
-    @required TResult authUpdated(AuthUpdated value),
-    @required TResult logOut(LogOut value),
+  TResult map<TResult extends Object?>({
+    required TResult Function(AppStarted value) appStarted,
+    required TResult Function(AuthUpdated value) authUpdated,
+    required TResult Function(LogOut value) logOut,
   }) {
-    assert(appStarted != null);
-    assert(authUpdated != null);
-    assert(logOut != null);
     return appStarted(this);
   }
 
   @override
   @optionalTypeArgs
-  TResult maybeMap<TResult extends Object>({
-    TResult appStarted(AppStarted value),
-    TResult authUpdated(AuthUpdated value),
-    TResult logOut(LogOut value),
-    @required TResult orElse(),
+  TResult maybeMap<TResult extends Object?>({
+    TResult Function(AppStarted value)? appStarted,
+    TResult Function(AuthUpdated value)? authUpdated,
+    TResult Function(LogOut value)? logOut,
+    required TResult orElse(),
   }) {
-    assert(orElse != null);
     if (appStarted != null) {
       return appStarted(this);
     }
@@ -186,9 +182,9 @@ abstract class $AuthUpdatedCopyWith<$Res> {
   factory $AuthUpdatedCopyWith(
           AuthUpdated value, $Res Function(AuthUpdated) then) =
       _$AuthUpdatedCopyWithImpl<$Res>;
-  $Res call({User loggedUser});
+  $Res call({User? loggedUser});
 
-  $UserCopyWith<$Res> get loggedUser;
+  $UserCopyWith<$Res>? get loggedUser;
 }
 
 /// @nodoc
@@ -203,31 +199,35 @@ class _$AuthUpdatedCopyWithImpl<$Res> extends _$AuthEventCopyWithImpl<$Res>
 
   @override
   $Res call({
-    Object loggedUser = freezed,
+    Object? loggedUser = freezed,
   }) {
     return _then(AuthUpdated(
-      loggedUser:
-          loggedUser == freezed ? _value.loggedUser : loggedUser as User,
+      loggedUser: loggedUser == freezed
+          ? _value.loggedUser
+          : loggedUser // ignore: cast_nullable_to_non_nullable
+              as User?,
     ));
   }
 
   @override
-  $UserCopyWith<$Res> get loggedUser {
+  $UserCopyWith<$Res>? get loggedUser {
     if (_value.loggedUser == null) {
       return null;
     }
-    return $UserCopyWith<$Res>(_value.loggedUser, (value) {
+
+    return $UserCopyWith<$Res>(_value.loggedUser!, (value) {
       return _then(_value.copyWith(loggedUser: value));
     });
   }
 }
 
 /// @nodoc
+
 class _$AuthUpdated with DiagnosticableTreeMixin implements AuthUpdated {
   const _$AuthUpdated({this.loggedUser});
 
   @override
-  final User loggedUser;
+  final User? loggedUser;
 
   @override
   String toString({DiagnosticLevel minLevel = DiagnosticLevel.info}) {
@@ -262,26 +262,22 @@ class _$AuthUpdated with DiagnosticableTreeMixin implements AuthUpdated {
 
   @override
   @optionalTypeArgs
-  TResult when<TResult extends Object>({
-    @required TResult appStarted(),
-    @required TResult authUpdated(User loggedUser),
-    @required TResult logOut(),
+  TResult when<TResult extends Object?>({
+    required TResult Function() appStarted,
+    required TResult Function(User? loggedUser) authUpdated,
+    required TResult Function() logOut,
   }) {
-    assert(appStarted != null);
-    assert(authUpdated != null);
-    assert(logOut != null);
     return authUpdated(loggedUser);
   }
 
   @override
   @optionalTypeArgs
-  TResult maybeWhen<TResult extends Object>({
-    TResult appStarted(),
-    TResult authUpdated(User loggedUser),
-    TResult logOut(),
-    @required TResult orElse(),
+  TResult maybeWhen<TResult extends Object?>({
+    TResult Function()? appStarted,
+    TResult Function(User? loggedUser)? authUpdated,
+    TResult Function()? logOut,
+    required TResult orElse(),
   }) {
-    assert(orElse != null);
     if (authUpdated != null) {
       return authUpdated(loggedUser);
     }
@@ -290,26 +286,22 @@ class _$AuthUpdated with DiagnosticableTreeMixin implements AuthUpdated {
 
   @override
   @optionalTypeArgs
-  TResult map<TResult extends Object>({
-    @required TResult appStarted(AppStarted value),
-    @required TResult authUpdated(AuthUpdated value),
-    @required TResult logOut(LogOut value),
+  TResult map<TResult extends Object?>({
+    required TResult Function(AppStarted value) appStarted,
+    required TResult Function(AuthUpdated value) authUpdated,
+    required TResult Function(LogOut value) logOut,
   }) {
-    assert(appStarted != null);
-    assert(authUpdated != null);
-    assert(logOut != null);
     return authUpdated(this);
   }
 
   @override
   @optionalTypeArgs
-  TResult maybeMap<TResult extends Object>({
-    TResult appStarted(AppStarted value),
-    TResult authUpdated(AuthUpdated value),
-    TResult logOut(LogOut value),
-    @required TResult orElse(),
+  TResult maybeMap<TResult extends Object?>({
+    TResult Function(AppStarted value)? appStarted,
+    TResult Function(AuthUpdated value)? authUpdated,
+    TResult Function(LogOut value)? logOut,
+    required TResult orElse(),
   }) {
-    assert(orElse != null);
     if (authUpdated != null) {
       return authUpdated(this);
     }
@@ -318,11 +310,12 @@ class _$AuthUpdated with DiagnosticableTreeMixin implements AuthUpdated {
 }
 
 abstract class AuthUpdated implements AuthEvent {
-  const factory AuthUpdated({User loggedUser}) = _$AuthUpdated;
+  const factory AuthUpdated({User? loggedUser}) = _$AuthUpdated;
 
-  User get loggedUser;
+  User? get loggedUser => throw _privateConstructorUsedError;
   @JsonKey(ignore: true)
-  $AuthUpdatedCopyWith<AuthUpdated> get copyWith;
+  $AuthUpdatedCopyWith<AuthUpdated> get copyWith =>
+      throw _privateConstructorUsedError;
 }
 
 /// @nodoc
@@ -342,6 +335,7 @@ class _$LogOutCopyWithImpl<$Res> extends _$AuthEventCopyWithImpl<$Res>
 }
 
 /// @nodoc
+
 class _$LogOut with DiagnosticableTreeMixin implements LogOut {
   const _$LogOut();
 
@@ -366,26 +360,22 @@ class _$LogOut with DiagnosticableTreeMixin implements LogOut {
 
   @override
   @optionalTypeArgs
-  TResult when<TResult extends Object>({
-    @required TResult appStarted(),
-    @required TResult authUpdated(User loggedUser),
-    @required TResult logOut(),
+  TResult when<TResult extends Object?>({
+    required TResult Function() appStarted,
+    required TResult Function(User? loggedUser) authUpdated,
+    required TResult Function() logOut,
   }) {
-    assert(appStarted != null);
-    assert(authUpdated != null);
-    assert(logOut != null);
     return logOut();
   }
 
   @override
   @optionalTypeArgs
-  TResult maybeWhen<TResult extends Object>({
-    TResult appStarted(),
-    TResult authUpdated(User loggedUser),
-    TResult logOut(),
-    @required TResult orElse(),
+  TResult maybeWhen<TResult extends Object?>({
+    TResult Function()? appStarted,
+    TResult Function(User? loggedUser)? authUpdated,
+    TResult Function()? logOut,
+    required TResult orElse(),
   }) {
-    assert(orElse != null);
     if (logOut != null) {
       return logOut();
     }
@@ -394,26 +384,22 @@ class _$LogOut with DiagnosticableTreeMixin implements LogOut {
 
   @override
   @optionalTypeArgs
-  TResult map<TResult extends Object>({
-    @required TResult appStarted(AppStarted value),
-    @required TResult authUpdated(AuthUpdated value),
-    @required TResult logOut(LogOut value),
+  TResult map<TResult extends Object?>({
+    required TResult Function(AppStarted value) appStarted,
+    required TResult Function(AuthUpdated value) authUpdated,
+    required TResult Function(LogOut value) logOut,
   }) {
-    assert(appStarted != null);
-    assert(authUpdated != null);
-    assert(logOut != null);
     return logOut(this);
   }
 
   @override
   @optionalTypeArgs
-  TResult maybeMap<TResult extends Object>({
-    TResult appStarted(AppStarted value),
-    TResult authUpdated(AuthUpdated value),
-    TResult logOut(LogOut value),
-    @required TResult orElse(),
+  TResult maybeMap<TResult extends Object?>({
+    TResult Function(AppStarted value)? appStarted,
+    TResult Function(AuthUpdated value)? authUpdated,
+    TResult Function(LogOut value)? logOut,
+    required TResult orElse(),
   }) {
-    assert(orElse != null);
     if (logOut != null) {
       return logOut(this);
     }

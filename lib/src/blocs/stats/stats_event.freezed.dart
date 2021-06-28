@@ -1,5 +1,5 @@
 // GENERATED CODE - DO NOT MODIFY BY HAND
-// ignore_for_file: deprecated_member_use, deprecated_member_use_from_same_package, use_function_type_syntax_for_parameters, unnecessary_const, avoid_init_to_null, invalid_override_different_default_values_named, prefer_expression_function_bodies
+// ignore_for_file: unused_element, deprecated_member_use, deprecated_member_use_from_same_package, use_function_type_syntax_for_parameters, unnecessary_const, avoid_init_to_null, invalid_override_different_default_values_named, prefer_expression_function_bodies, annotate_overrides
 
 part of 'stats_event.dart';
 
@@ -9,12 +9,14 @@ part of 'stats_event.dart';
 
 T _$identity<T>(T value) => value;
 
+final _privateConstructorUsedError = UnsupportedError(
+    'It seems like you constructed your class using `MyClass._()`. This constructor is only meant to be used by freezed and you are not supposed to need it nor use it.\nPlease check the documentation here for more informations: https://github.com/rrousselGit/freezed#custom-getters-and-methods');
+
 /// @nodoc
 class _$StatsEventTearOff {
   const _$StatsEventTearOff();
 
-// ignore: unused_element
-  TimespanUpdate timespanUpdated({@required Timespan timespan}) {
+  TimespanUpdate timespanUpdated({required Timespan timespan}) {
     return TimespanUpdate(
       timespan: timespan,
     );
@@ -22,34 +24,38 @@ class _$StatsEventTearOff {
 }
 
 /// @nodoc
-// ignore: unused_element
 const $StatsEvent = _$StatsEventTearOff();
 
 /// @nodoc
 mixin _$StatsEvent {
-  Timespan get timespan;
+  Timespan get timespan => throw _privateConstructorUsedError;
 
   @optionalTypeArgs
-  TResult when<TResult extends Object>({
-    @required TResult timespanUpdated(Timespan timespan),
-  });
+  TResult when<TResult extends Object?>({
+    required TResult Function(Timespan timespan) timespanUpdated,
+  }) =>
+      throw _privateConstructorUsedError;
   @optionalTypeArgs
-  TResult maybeWhen<TResult extends Object>({
-    TResult timespanUpdated(Timespan timespan),
-    @required TResult orElse(),
-  });
+  TResult maybeWhen<TResult extends Object?>({
+    TResult Function(Timespan timespan)? timespanUpdated,
+    required TResult orElse(),
+  }) =>
+      throw _privateConstructorUsedError;
   @optionalTypeArgs
-  TResult map<TResult extends Object>({
-    @required TResult timespanUpdated(TimespanUpdate value),
-  });
+  TResult map<TResult extends Object?>({
+    required TResult Function(TimespanUpdate value) timespanUpdated,
+  }) =>
+      throw _privateConstructorUsedError;
   @optionalTypeArgs
-  TResult maybeMap<TResult extends Object>({
-    TResult timespanUpdated(TimespanUpdate value),
-    @required TResult orElse(),
-  });
+  TResult maybeMap<TResult extends Object?>({
+    TResult Function(TimespanUpdate value)? timespanUpdated,
+    required TResult orElse(),
+  }) =>
+      throw _privateConstructorUsedError;
 
   @JsonKey(ignore: true)
-  $StatsEventCopyWith<StatsEvent> get copyWith;
+  $StatsEventCopyWith<StatsEvent> get copyWith =>
+      throw _privateConstructorUsedError;
 }
 
 /// @nodoc
@@ -70,10 +76,13 @@ class _$StatsEventCopyWithImpl<$Res> implements $StatsEventCopyWith<$Res> {
 
   @override
   $Res call({
-    Object timespan = freezed,
+    Object? timespan = freezed,
   }) {
     return _then(_value.copyWith(
-      timespan: timespan == freezed ? _value.timespan : timespan as Timespan,
+      timespan: timespan == freezed
+          ? _value.timespan
+          : timespan // ignore: cast_nullable_to_non_nullable
+              as Timespan,
     ));
   }
 }
@@ -100,17 +109,21 @@ class _$TimespanUpdateCopyWithImpl<$Res> extends _$StatsEventCopyWithImpl<$Res>
 
   @override
   $Res call({
-    Object timespan = freezed,
+    Object? timespan = freezed,
   }) {
     return _then(TimespanUpdate(
-      timespan: timespan == freezed ? _value.timespan : timespan as Timespan,
+      timespan: timespan == freezed
+          ? _value.timespan
+          : timespan // ignore: cast_nullable_to_non_nullable
+              as Timespan,
     ));
   }
 }
 
 /// @nodoc
+
 class _$TimespanUpdate with DiagnosticableTreeMixin implements TimespanUpdate {
-  const _$TimespanUpdate({@required this.timespan}) : assert(timespan != null);
+  const _$TimespanUpdate({required this.timespan});
 
   @override
   final Timespan timespan;
@@ -148,20 +161,18 @@ class _$TimespanUpdate with DiagnosticableTreeMixin implements TimespanUpdate {
 
   @override
   @optionalTypeArgs
-  TResult when<TResult extends Object>({
-    @required TResult timespanUpdated(Timespan timespan),
+  TResult when<TResult extends Object?>({
+    required TResult Function(Timespan timespan) timespanUpdated,
   }) {
-    assert(timespanUpdated != null);
     return timespanUpdated(timespan);
   }
 
   @override
   @optionalTypeArgs
-  TResult maybeWhen<TResult extends Object>({
-    TResult timespanUpdated(Timespan timespan),
-    @required TResult orElse(),
+  TResult maybeWhen<TResult extends Object?>({
+    TResult Function(Timespan timespan)? timespanUpdated,
+    required TResult orElse(),
   }) {
-    assert(orElse != null);
     if (timespanUpdated != null) {
       return timespanUpdated(timespan);
     }
@@ -170,20 +181,18 @@ class _$TimespanUpdate with DiagnosticableTreeMixin implements TimespanUpdate {
 
   @override
   @optionalTypeArgs
-  TResult map<TResult extends Object>({
-    @required TResult timespanUpdated(TimespanUpdate value),
+  TResult map<TResult extends Object?>({
+    required TResult Function(TimespanUpdate value) timespanUpdated,
   }) {
-    assert(timespanUpdated != null);
     return timespanUpdated(this);
   }
 
   @override
   @optionalTypeArgs
-  TResult maybeMap<TResult extends Object>({
-    TResult timespanUpdated(TimespanUpdate value),
-    @required TResult orElse(),
+  TResult maybeMap<TResult extends Object?>({
+    TResult Function(TimespanUpdate value)? timespanUpdated,
+    required TResult orElse(),
   }) {
-    assert(orElse != null);
     if (timespanUpdated != null) {
       return timespanUpdated(this);
     }
@@ -192,12 +201,12 @@ class _$TimespanUpdate with DiagnosticableTreeMixin implements TimespanUpdate {
 }
 
 abstract class TimespanUpdate implements StatsEvent {
-  const factory TimespanUpdate({@required Timespan timespan}) =
-      _$TimespanUpdate;
+  const factory TimespanUpdate({required Timespan timespan}) = _$TimespanUpdate;
 
   @override
-  Timespan get timespan;
+  Timespan get timespan => throw _privateConstructorUsedError;
   @override
   @JsonKey(ignore: true)
-  $TimespanUpdateCopyWith<TimespanUpdate> get copyWith;
+  $TimespanUpdateCopyWith<TimespanUpdate> get copyWith =>
+      throw _privateConstructorUsedError;
 }

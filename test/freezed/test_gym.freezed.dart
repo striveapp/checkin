@@ -1,5 +1,5 @@
 // GENERATED CODE - DO NOT MODIFY BY HAND
-// ignore_for_file: deprecated_member_use, deprecated_member_use_from_same_package, use_function_type_syntax_for_parameters, unnecessary_const, avoid_init_to_null, invalid_override_different_default_values_named, prefer_expression_function_bodies
+// ignore_for_file: unused_element, deprecated_member_use, deprecated_member_use_from_same_package, use_function_type_syntax_for_parameters, unnecessary_const, avoid_init_to_null, invalid_override_different_default_values_named, prefer_expression_function_bodies, annotate_overrides
 
 part of 'test_gym.dart';
 
@@ -8,6 +8,10 @@ part of 'test_gym.dart';
 // **************************************************************************
 
 T _$identity<T>(T value) => value;
+
+final _privateConstructorUsedError = UnsupportedError(
+    'It seems like you constructed your class using `MyClass._()`. This constructor is only meant to be used by freezed and you are not supposed to need it nor use it.\nPlease check the documentation here for more informations: https://github.com/rrousselGit/freezed#custom-getters-and-methods');
+
 TestGym _$TestGymFromJson(Map<String, dynamic> json) {
   switch (json['runtimeType'] as String) {
     case 'default':
@@ -30,12 +34,11 @@ TestGym _$TestGymFromJson(Map<String, dynamic> json) {
 class _$TestGymTearOff {
   const _$TestGymTearOff();
 
-// ignore: unused_element
   _TestGym call(
-      {String domain,
-      String host,
-      String stripePublicKey,
-      @required String requiredField}) {
+      {String? domain,
+      String? host,
+      String? stripePublicKey,
+      required String requiredField}) {
     return _TestGym(
       domain: domain,
       host: host,
@@ -44,83 +47,83 @@ class _$TestGymTearOff {
     );
   }
 
-// ignore: unused_element
   _CaseOne caseOne([String caseOne = "caseOne"]) {
     return _CaseOne(
       caseOne,
     );
   }
 
-// ignore: unused_element
   _CaseTwo caseTwo(String caseTwo) {
     return _CaseTwo(
       caseTwo,
     );
   }
 
-// ignore: unused_element
-  CaseThree caseThree({@required String caseThree}) {
+  CaseThree caseThree({required String caseThree}) {
     return CaseThree(
       caseThree: caseThree,
     );
   }
 
-// ignore: unused_element
-  CaseFour caseFour({String caseFour}) {
+  CaseFour caseFour({String? caseFour}) {
     return CaseFour(
       caseFour: caseFour,
     );
   }
 
-// ignore: unused_element
   TestGym fromJson(Map<String, Object> json) {
     return TestGym.fromJson(json);
   }
 }
 
 /// @nodoc
-// ignore: unused_element
 const $TestGym = _$TestGymTearOff();
 
 /// @nodoc
 mixin _$TestGym {
   @optionalTypeArgs
-  TResult when<TResult extends Object>(
-    TResult $default(String domain, String host, String stripePublicKey,
-        String requiredField), {
-    @required TResult caseOne(String caseOne),
-    @required TResult caseTwo(String caseTwo),
-    @required TResult caseThree(String caseThree),
-    @required TResult caseFour(String caseFour),
-  });
+  TResult when<TResult extends Object?>(
+    TResult Function(String? domain, String? host, String? stripePublicKey,
+            String requiredField)
+        $default, {
+    required TResult Function(String caseOne) caseOne,
+    required TResult Function(String caseTwo) caseTwo,
+    required TResult Function(String caseThree) caseThree,
+    required TResult Function(String? caseFour) caseFour,
+  }) =>
+      throw _privateConstructorUsedError;
   @optionalTypeArgs
-  TResult maybeWhen<TResult extends Object>(
-    TResult $default(String domain, String host, String stripePublicKey,
-        String requiredField), {
-    TResult caseOne(String caseOne),
-    TResult caseTwo(String caseTwo),
-    TResult caseThree(String caseThree),
-    TResult caseFour(String caseFour),
-    @required TResult orElse(),
-  });
+  TResult maybeWhen<TResult extends Object?>(
+    TResult Function(String? domain, String? host, String? stripePublicKey,
+            String requiredField)?
+        $default, {
+    TResult Function(String caseOne)? caseOne,
+    TResult Function(String caseTwo)? caseTwo,
+    TResult Function(String caseThree)? caseThree,
+    TResult Function(String? caseFour)? caseFour,
+    required TResult orElse(),
+  }) =>
+      throw _privateConstructorUsedError;
   @optionalTypeArgs
-  TResult map<TResult extends Object>(
-    TResult $default(_TestGym value), {
-    @required TResult caseOne(_CaseOne value),
-    @required TResult caseTwo(_CaseTwo value),
-    @required TResult caseThree(CaseThree value),
-    @required TResult caseFour(CaseFour value),
-  });
+  TResult map<TResult extends Object?>(
+    TResult Function(_TestGym value) $default, {
+    required TResult Function(_CaseOne value) caseOne,
+    required TResult Function(_CaseTwo value) caseTwo,
+    required TResult Function(CaseThree value) caseThree,
+    required TResult Function(CaseFour value) caseFour,
+  }) =>
+      throw _privateConstructorUsedError;
   @optionalTypeArgs
-  TResult maybeMap<TResult extends Object>(
-    TResult $default(_TestGym value), {
-    TResult caseOne(_CaseOne value),
-    TResult caseTwo(_CaseTwo value),
-    TResult caseThree(CaseThree value),
-    TResult caseFour(CaseFour value),
-    @required TResult orElse(),
-  });
-  Map<String, dynamic> toJson();
+  TResult maybeMap<TResult extends Object?>(
+    TResult Function(_TestGym value)? $default, {
+    TResult Function(_CaseOne value)? caseOne,
+    TResult Function(_CaseTwo value)? caseTwo,
+    TResult Function(CaseThree value)? caseThree,
+    TResult Function(CaseFour value)? caseFour,
+    required TResult orElse(),
+  }) =>
+      throw _privateConstructorUsedError;
+  Map<String, dynamic> toJson() => throw _privateConstructorUsedError;
 }
 
 /// @nodoc
@@ -143,9 +146,9 @@ abstract class _$TestGymCopyWith<$Res> {
   factory _$TestGymCopyWith(_TestGym value, $Res Function(_TestGym) then) =
       __$TestGymCopyWithImpl<$Res>;
   $Res call(
-      {String domain,
-      String host,
-      String stripePublicKey,
+      {String? domain,
+      String? host,
+      String? stripePublicKey,
       String requiredField});
 }
 
@@ -160,44 +163,50 @@ class __$TestGymCopyWithImpl<$Res> extends _$TestGymCopyWithImpl<$Res>
 
   @override
   $Res call({
-    Object domain = freezed,
-    Object host = freezed,
-    Object stripePublicKey = freezed,
-    Object requiredField = freezed,
+    Object? domain = freezed,
+    Object? host = freezed,
+    Object? stripePublicKey = freezed,
+    Object? requiredField = freezed,
   }) {
     return _then(_TestGym(
-      domain: domain == freezed ? _value.domain : domain as String,
-      host: host == freezed ? _value.host : host as String,
+      domain: domain == freezed
+          ? _value.domain
+          : domain // ignore: cast_nullable_to_non_nullable
+              as String?,
+      host: host == freezed
+          ? _value.host
+          : host // ignore: cast_nullable_to_non_nullable
+              as String?,
       stripePublicKey: stripePublicKey == freezed
           ? _value.stripePublicKey
-          : stripePublicKey as String,
+          : stripePublicKey // ignore: cast_nullable_to_non_nullable
+              as String?,
       requiredField: requiredField == freezed
           ? _value.requiredField
-          : requiredField as String,
+          : requiredField // ignore: cast_nullable_to_non_nullable
+              as String,
     ));
   }
 }
 
-@JsonSerializable()
-
 /// @nodoc
+@JsonSerializable()
 class _$_TestGym with DiagnosticableTreeMixin implements _TestGym {
   _$_TestGym(
       {this.domain,
       this.host,
       this.stripePublicKey,
-      @required this.requiredField})
-      : assert(requiredField != null);
+      required this.requiredField});
 
   factory _$_TestGym.fromJson(Map<String, dynamic> json) =>
       _$_$_TestGymFromJson(json);
 
   @override
-  final String domain;
+  final String? domain;
   @override
-  final String host;
+  final String? host;
   @override
-  final String stripePublicKey;
+  final String? stripePublicKey;
   @override
   final String requiredField;
 
@@ -248,34 +257,30 @@ class _$_TestGym with DiagnosticableTreeMixin implements _TestGym {
 
   @override
   @optionalTypeArgs
-  TResult when<TResult extends Object>(
-    TResult $default(String domain, String host, String stripePublicKey,
-        String requiredField), {
-    @required TResult caseOne(String caseOne),
-    @required TResult caseTwo(String caseTwo),
-    @required TResult caseThree(String caseThree),
-    @required TResult caseFour(String caseFour),
+  TResult when<TResult extends Object?>(
+    TResult Function(String? domain, String? host, String? stripePublicKey,
+            String requiredField)
+        $default, {
+    required TResult Function(String caseOne) caseOne,
+    required TResult Function(String caseTwo) caseTwo,
+    required TResult Function(String caseThree) caseThree,
+    required TResult Function(String? caseFour) caseFour,
   }) {
-    assert($default != null);
-    assert(caseOne != null);
-    assert(caseTwo != null);
-    assert(caseThree != null);
-    assert(caseFour != null);
     return $default(domain, host, stripePublicKey, requiredField);
   }
 
   @override
   @optionalTypeArgs
-  TResult maybeWhen<TResult extends Object>(
-    TResult $default(String domain, String host, String stripePublicKey,
-        String requiredField), {
-    TResult caseOne(String caseOne),
-    TResult caseTwo(String caseTwo),
-    TResult caseThree(String caseThree),
-    TResult caseFour(String caseFour),
-    @required TResult orElse(),
+  TResult maybeWhen<TResult extends Object?>(
+    TResult Function(String? domain, String? host, String? stripePublicKey,
+            String requiredField)?
+        $default, {
+    TResult Function(String caseOne)? caseOne,
+    TResult Function(String caseTwo)? caseTwo,
+    TResult Function(String caseThree)? caseThree,
+    TResult Function(String? caseFour)? caseFour,
+    required TResult orElse(),
   }) {
-    assert(orElse != null);
     if ($default != null) {
       return $default(domain, host, stripePublicKey, requiredField);
     }
@@ -284,32 +289,26 @@ class _$_TestGym with DiagnosticableTreeMixin implements _TestGym {
 
   @override
   @optionalTypeArgs
-  TResult map<TResult extends Object>(
-    TResult $default(_TestGym value), {
-    @required TResult caseOne(_CaseOne value),
-    @required TResult caseTwo(_CaseTwo value),
-    @required TResult caseThree(CaseThree value),
-    @required TResult caseFour(CaseFour value),
+  TResult map<TResult extends Object?>(
+    TResult Function(_TestGym value) $default, {
+    required TResult Function(_CaseOne value) caseOne,
+    required TResult Function(_CaseTwo value) caseTwo,
+    required TResult Function(CaseThree value) caseThree,
+    required TResult Function(CaseFour value) caseFour,
   }) {
-    assert($default != null);
-    assert(caseOne != null);
-    assert(caseTwo != null);
-    assert(caseThree != null);
-    assert(caseFour != null);
     return $default(this);
   }
 
   @override
   @optionalTypeArgs
-  TResult maybeMap<TResult extends Object>(
-    TResult $default(_TestGym value), {
-    TResult caseOne(_CaseOne value),
-    TResult caseTwo(_CaseTwo value),
-    TResult caseThree(CaseThree value),
-    TResult caseFour(CaseFour value),
-    @required TResult orElse(),
+  TResult maybeMap<TResult extends Object?>(
+    TResult Function(_TestGym value)? $default, {
+    TResult Function(_CaseOne value)? caseOne,
+    TResult Function(_CaseTwo value)? caseTwo,
+    TResult Function(CaseThree value)? caseThree,
+    TResult Function(CaseFour value)? caseFour,
+    required TResult orElse(),
   }) {
-    assert(orElse != null);
     if ($default != null) {
       return $default(this);
     }
@@ -324,19 +323,20 @@ class _$_TestGym with DiagnosticableTreeMixin implements _TestGym {
 
 abstract class _TestGym implements TestGym {
   factory _TestGym(
-      {String domain,
-      String host,
-      String stripePublicKey,
-      @required String requiredField}) = _$_TestGym;
+      {String? domain,
+      String? host,
+      String? stripePublicKey,
+      required String requiredField}) = _$_TestGym;
 
   factory _TestGym.fromJson(Map<String, dynamic> json) = _$_TestGym.fromJson;
 
-  String get domain;
-  String get host;
-  String get stripePublicKey;
-  String get requiredField;
+  String? get domain => throw _privateConstructorUsedError;
+  String? get host => throw _privateConstructorUsedError;
+  String? get stripePublicKey => throw _privateConstructorUsedError;
+  String get requiredField => throw _privateConstructorUsedError;
   @JsonKey(ignore: true)
-  _$TestGymCopyWith<_TestGym> get copyWith;
+  _$TestGymCopyWith<_TestGym> get copyWith =>
+      throw _privateConstructorUsedError;
 }
 
 /// @nodoc
@@ -357,19 +357,21 @@ class __$CaseOneCopyWithImpl<$Res> extends _$TestGymCopyWithImpl<$Res>
 
   @override
   $Res call({
-    Object caseOne = freezed,
+    Object? caseOne = freezed,
   }) {
     return _then(_CaseOne(
-      caseOne == freezed ? _value.caseOne : caseOne as String,
+      caseOne == freezed
+          ? _value.caseOne
+          : caseOne // ignore: cast_nullable_to_non_nullable
+              as String,
     ));
   }
 }
 
-@JsonSerializable()
-
 /// @nodoc
+@JsonSerializable()
 class _$_CaseOne with DiagnosticableTreeMixin implements _CaseOne {
-  const _$_CaseOne([this.caseOne = "caseOne"]) : assert(caseOne != null);
+  const _$_CaseOne([this.caseOne = "caseOne"]);
 
   factory _$_CaseOne.fromJson(Map<String, dynamic> json) =>
       _$_$_CaseOneFromJson(json);
@@ -410,34 +412,30 @@ class _$_CaseOne with DiagnosticableTreeMixin implements _CaseOne {
 
   @override
   @optionalTypeArgs
-  TResult when<TResult extends Object>(
-    TResult $default(String domain, String host, String stripePublicKey,
-        String requiredField), {
-    @required TResult caseOne(String caseOne),
-    @required TResult caseTwo(String caseTwo),
-    @required TResult caseThree(String caseThree),
-    @required TResult caseFour(String caseFour),
+  TResult when<TResult extends Object?>(
+    TResult Function(String? domain, String? host, String? stripePublicKey,
+            String requiredField)
+        $default, {
+    required TResult Function(String caseOne) caseOne,
+    required TResult Function(String caseTwo) caseTwo,
+    required TResult Function(String caseThree) caseThree,
+    required TResult Function(String? caseFour) caseFour,
   }) {
-    assert($default != null);
-    assert(caseOne != null);
-    assert(caseTwo != null);
-    assert(caseThree != null);
-    assert(caseFour != null);
     return caseOne(this.caseOne);
   }
 
   @override
   @optionalTypeArgs
-  TResult maybeWhen<TResult extends Object>(
-    TResult $default(String domain, String host, String stripePublicKey,
-        String requiredField), {
-    TResult caseOne(String caseOne),
-    TResult caseTwo(String caseTwo),
-    TResult caseThree(String caseThree),
-    TResult caseFour(String caseFour),
-    @required TResult orElse(),
+  TResult maybeWhen<TResult extends Object?>(
+    TResult Function(String? domain, String? host, String? stripePublicKey,
+            String requiredField)?
+        $default, {
+    TResult Function(String caseOne)? caseOne,
+    TResult Function(String caseTwo)? caseTwo,
+    TResult Function(String caseThree)? caseThree,
+    TResult Function(String? caseFour)? caseFour,
+    required TResult orElse(),
   }) {
-    assert(orElse != null);
     if (caseOne != null) {
       return caseOne(this.caseOne);
     }
@@ -446,32 +444,26 @@ class _$_CaseOne with DiagnosticableTreeMixin implements _CaseOne {
 
   @override
   @optionalTypeArgs
-  TResult map<TResult extends Object>(
-    TResult $default(_TestGym value), {
-    @required TResult caseOne(_CaseOne value),
-    @required TResult caseTwo(_CaseTwo value),
-    @required TResult caseThree(CaseThree value),
-    @required TResult caseFour(CaseFour value),
+  TResult map<TResult extends Object?>(
+    TResult Function(_TestGym value) $default, {
+    required TResult Function(_CaseOne value) caseOne,
+    required TResult Function(_CaseTwo value) caseTwo,
+    required TResult Function(CaseThree value) caseThree,
+    required TResult Function(CaseFour value) caseFour,
   }) {
-    assert($default != null);
-    assert(caseOne != null);
-    assert(caseTwo != null);
-    assert(caseThree != null);
-    assert(caseFour != null);
     return caseOne(this);
   }
 
   @override
   @optionalTypeArgs
-  TResult maybeMap<TResult extends Object>(
-    TResult $default(_TestGym value), {
-    TResult caseOne(_CaseOne value),
-    TResult caseTwo(_CaseTwo value),
-    TResult caseThree(CaseThree value),
-    TResult caseFour(CaseFour value),
-    @required TResult orElse(),
+  TResult maybeMap<TResult extends Object?>(
+    TResult Function(_TestGym value)? $default, {
+    TResult Function(_CaseOne value)? caseOne,
+    TResult Function(_CaseTwo value)? caseTwo,
+    TResult Function(CaseThree value)? caseThree,
+    TResult Function(CaseFour value)? caseFour,
+    required TResult orElse(),
   }) {
-    assert(orElse != null);
     if (caseOne != null) {
       return caseOne(this);
     }
@@ -489,9 +481,10 @@ abstract class _CaseOne implements TestGym {
 
   factory _CaseOne.fromJson(Map<String, dynamic> json) = _$_CaseOne.fromJson;
 
-  String get caseOne;
+  String get caseOne => throw _privateConstructorUsedError;
   @JsonKey(ignore: true)
-  _$CaseOneCopyWith<_CaseOne> get copyWith;
+  _$CaseOneCopyWith<_CaseOne> get copyWith =>
+      throw _privateConstructorUsedError;
 }
 
 /// @nodoc
@@ -512,19 +505,21 @@ class __$CaseTwoCopyWithImpl<$Res> extends _$TestGymCopyWithImpl<$Res>
 
   @override
   $Res call({
-    Object caseTwo = freezed,
+    Object? caseTwo = freezed,
   }) {
     return _then(_CaseTwo(
-      caseTwo == freezed ? _value.caseTwo : caseTwo as String,
+      caseTwo == freezed
+          ? _value.caseTwo
+          : caseTwo // ignore: cast_nullable_to_non_nullable
+              as String,
     ));
   }
 }
 
-@JsonSerializable()
-
 /// @nodoc
+@JsonSerializable()
 class _$_CaseTwo with DiagnosticableTreeMixin implements _CaseTwo {
-  const _$_CaseTwo(this.caseTwo) : assert(caseTwo != null);
+  const _$_CaseTwo(this.caseTwo);
 
   factory _$_CaseTwo.fromJson(Map<String, dynamic> json) =>
       _$_$_CaseTwoFromJson(json);
@@ -564,34 +559,30 @@ class _$_CaseTwo with DiagnosticableTreeMixin implements _CaseTwo {
 
   @override
   @optionalTypeArgs
-  TResult when<TResult extends Object>(
-    TResult $default(String domain, String host, String stripePublicKey,
-        String requiredField), {
-    @required TResult caseOne(String caseOne),
-    @required TResult caseTwo(String caseTwo),
-    @required TResult caseThree(String caseThree),
-    @required TResult caseFour(String caseFour),
+  TResult when<TResult extends Object?>(
+    TResult Function(String? domain, String? host, String? stripePublicKey,
+            String requiredField)
+        $default, {
+    required TResult Function(String caseOne) caseOne,
+    required TResult Function(String caseTwo) caseTwo,
+    required TResult Function(String caseThree) caseThree,
+    required TResult Function(String? caseFour) caseFour,
   }) {
-    assert($default != null);
-    assert(caseOne != null);
-    assert(caseTwo != null);
-    assert(caseThree != null);
-    assert(caseFour != null);
     return caseTwo(this.caseTwo);
   }
 
   @override
   @optionalTypeArgs
-  TResult maybeWhen<TResult extends Object>(
-    TResult $default(String domain, String host, String stripePublicKey,
-        String requiredField), {
-    TResult caseOne(String caseOne),
-    TResult caseTwo(String caseTwo),
-    TResult caseThree(String caseThree),
-    TResult caseFour(String caseFour),
-    @required TResult orElse(),
+  TResult maybeWhen<TResult extends Object?>(
+    TResult Function(String? domain, String? host, String? stripePublicKey,
+            String requiredField)?
+        $default, {
+    TResult Function(String caseOne)? caseOne,
+    TResult Function(String caseTwo)? caseTwo,
+    TResult Function(String caseThree)? caseThree,
+    TResult Function(String? caseFour)? caseFour,
+    required TResult orElse(),
   }) {
-    assert(orElse != null);
     if (caseTwo != null) {
       return caseTwo(this.caseTwo);
     }
@@ -600,32 +591,26 @@ class _$_CaseTwo with DiagnosticableTreeMixin implements _CaseTwo {
 
   @override
   @optionalTypeArgs
-  TResult map<TResult extends Object>(
-    TResult $default(_TestGym value), {
-    @required TResult caseOne(_CaseOne value),
-    @required TResult caseTwo(_CaseTwo value),
-    @required TResult caseThree(CaseThree value),
-    @required TResult caseFour(CaseFour value),
+  TResult map<TResult extends Object?>(
+    TResult Function(_TestGym value) $default, {
+    required TResult Function(_CaseOne value) caseOne,
+    required TResult Function(_CaseTwo value) caseTwo,
+    required TResult Function(CaseThree value) caseThree,
+    required TResult Function(CaseFour value) caseFour,
   }) {
-    assert($default != null);
-    assert(caseOne != null);
-    assert(caseTwo != null);
-    assert(caseThree != null);
-    assert(caseFour != null);
     return caseTwo(this);
   }
 
   @override
   @optionalTypeArgs
-  TResult maybeMap<TResult extends Object>(
-    TResult $default(_TestGym value), {
-    TResult caseOne(_CaseOne value),
-    TResult caseTwo(_CaseTwo value),
-    TResult caseThree(CaseThree value),
-    TResult caseFour(CaseFour value),
-    @required TResult orElse(),
+  TResult maybeMap<TResult extends Object?>(
+    TResult Function(_TestGym value)? $default, {
+    TResult Function(_CaseOne value)? caseOne,
+    TResult Function(_CaseTwo value)? caseTwo,
+    TResult Function(CaseThree value)? caseThree,
+    TResult Function(CaseFour value)? caseFour,
+    required TResult orElse(),
   }) {
-    assert(orElse != null);
     if (caseTwo != null) {
       return caseTwo(this);
     }
@@ -643,9 +628,10 @@ abstract class _CaseTwo implements TestGym {
 
   factory _CaseTwo.fromJson(Map<String, dynamic> json) = _$_CaseTwo.fromJson;
 
-  String get caseTwo;
+  String get caseTwo => throw _privateConstructorUsedError;
   @JsonKey(ignore: true)
-  _$CaseTwoCopyWith<_CaseTwo> get copyWith;
+  _$CaseTwoCopyWith<_CaseTwo> get copyWith =>
+      throw _privateConstructorUsedError;
 }
 
 /// @nodoc
@@ -666,19 +652,21 @@ class _$CaseThreeCopyWithImpl<$Res> extends _$TestGymCopyWithImpl<$Res>
 
   @override
   $Res call({
-    Object caseThree = freezed,
+    Object? caseThree = freezed,
   }) {
     return _then(CaseThree(
-      caseThree: caseThree == freezed ? _value.caseThree : caseThree as String,
+      caseThree: caseThree == freezed
+          ? _value.caseThree
+          : caseThree // ignore: cast_nullable_to_non_nullable
+              as String,
     ));
   }
 }
 
-@JsonSerializable()
-
 /// @nodoc
+@JsonSerializable()
 class _$CaseThree with DiagnosticableTreeMixin implements CaseThree {
-  const _$CaseThree({@required this.caseThree}) : assert(caseThree != null);
+  const _$CaseThree({required this.caseThree});
 
   factory _$CaseThree.fromJson(Map<String, dynamic> json) =>
       _$_$CaseThreeFromJson(json);
@@ -719,34 +707,30 @@ class _$CaseThree with DiagnosticableTreeMixin implements CaseThree {
 
   @override
   @optionalTypeArgs
-  TResult when<TResult extends Object>(
-    TResult $default(String domain, String host, String stripePublicKey,
-        String requiredField), {
-    @required TResult caseOne(String caseOne),
-    @required TResult caseTwo(String caseTwo),
-    @required TResult caseThree(String caseThree),
-    @required TResult caseFour(String caseFour),
+  TResult when<TResult extends Object?>(
+    TResult Function(String? domain, String? host, String? stripePublicKey,
+            String requiredField)
+        $default, {
+    required TResult Function(String caseOne) caseOne,
+    required TResult Function(String caseTwo) caseTwo,
+    required TResult Function(String caseThree) caseThree,
+    required TResult Function(String? caseFour) caseFour,
   }) {
-    assert($default != null);
-    assert(caseOne != null);
-    assert(caseTwo != null);
-    assert(caseThree != null);
-    assert(caseFour != null);
     return caseThree(this.caseThree);
   }
 
   @override
   @optionalTypeArgs
-  TResult maybeWhen<TResult extends Object>(
-    TResult $default(String domain, String host, String stripePublicKey,
-        String requiredField), {
-    TResult caseOne(String caseOne),
-    TResult caseTwo(String caseTwo),
-    TResult caseThree(String caseThree),
-    TResult caseFour(String caseFour),
-    @required TResult orElse(),
+  TResult maybeWhen<TResult extends Object?>(
+    TResult Function(String? domain, String? host, String? stripePublicKey,
+            String requiredField)?
+        $default, {
+    TResult Function(String caseOne)? caseOne,
+    TResult Function(String caseTwo)? caseTwo,
+    TResult Function(String caseThree)? caseThree,
+    TResult Function(String? caseFour)? caseFour,
+    required TResult orElse(),
   }) {
-    assert(orElse != null);
     if (caseThree != null) {
       return caseThree(this.caseThree);
     }
@@ -755,32 +739,26 @@ class _$CaseThree with DiagnosticableTreeMixin implements CaseThree {
 
   @override
   @optionalTypeArgs
-  TResult map<TResult extends Object>(
-    TResult $default(_TestGym value), {
-    @required TResult caseOne(_CaseOne value),
-    @required TResult caseTwo(_CaseTwo value),
-    @required TResult caseThree(CaseThree value),
-    @required TResult caseFour(CaseFour value),
+  TResult map<TResult extends Object?>(
+    TResult Function(_TestGym value) $default, {
+    required TResult Function(_CaseOne value) caseOne,
+    required TResult Function(_CaseTwo value) caseTwo,
+    required TResult Function(CaseThree value) caseThree,
+    required TResult Function(CaseFour value) caseFour,
   }) {
-    assert($default != null);
-    assert(caseOne != null);
-    assert(caseTwo != null);
-    assert(caseThree != null);
-    assert(caseFour != null);
     return caseThree(this);
   }
 
   @override
   @optionalTypeArgs
-  TResult maybeMap<TResult extends Object>(
-    TResult $default(_TestGym value), {
-    TResult caseOne(_CaseOne value),
-    TResult caseTwo(_CaseTwo value),
-    TResult caseThree(CaseThree value),
-    TResult caseFour(CaseFour value),
-    @required TResult orElse(),
+  TResult maybeMap<TResult extends Object?>(
+    TResult Function(_TestGym value)? $default, {
+    TResult Function(_CaseOne value)? caseOne,
+    TResult Function(_CaseTwo value)? caseTwo,
+    TResult Function(CaseThree value)? caseThree,
+    TResult Function(CaseFour value)? caseFour,
+    required TResult orElse(),
   }) {
-    assert(orElse != null);
     if (caseThree != null) {
       return caseThree(this);
     }
@@ -794,20 +772,21 @@ class _$CaseThree with DiagnosticableTreeMixin implements CaseThree {
 }
 
 abstract class CaseThree implements TestGym {
-  const factory CaseThree({@required String caseThree}) = _$CaseThree;
+  const factory CaseThree({required String caseThree}) = _$CaseThree;
 
   factory CaseThree.fromJson(Map<String, dynamic> json) = _$CaseThree.fromJson;
 
-  String get caseThree;
+  String get caseThree => throw _privateConstructorUsedError;
   @JsonKey(ignore: true)
-  $CaseThreeCopyWith<CaseThree> get copyWith;
+  $CaseThreeCopyWith<CaseThree> get copyWith =>
+      throw _privateConstructorUsedError;
 }
 
 /// @nodoc
 abstract class $CaseFourCopyWith<$Res> {
   factory $CaseFourCopyWith(CaseFour value, $Res Function(CaseFour) then) =
       _$CaseFourCopyWithImpl<$Res>;
-  $Res call({String caseFour});
+  $Res call({String? caseFour});
 }
 
 /// @nodoc
@@ -821,17 +800,19 @@ class _$CaseFourCopyWithImpl<$Res> extends _$TestGymCopyWithImpl<$Res>
 
   @override
   $Res call({
-    Object caseFour = freezed,
+    Object? caseFour = freezed,
   }) {
     return _then(CaseFour(
-      caseFour: caseFour == freezed ? _value.caseFour : caseFour as String,
+      caseFour: caseFour == freezed
+          ? _value.caseFour
+          : caseFour // ignore: cast_nullable_to_non_nullable
+              as String?,
     ));
   }
 }
 
-@JsonSerializable()
-
 /// @nodoc
+@JsonSerializable()
 class _$CaseFour with DiagnosticableTreeMixin implements CaseFour {
   const _$CaseFour({this.caseFour});
 
@@ -839,7 +820,7 @@ class _$CaseFour with DiagnosticableTreeMixin implements CaseFour {
       _$_$CaseFourFromJson(json);
 
   @override
-  final String caseFour;
+  final String? caseFour;
 
   @override
   String toString({DiagnosticLevel minLevel = DiagnosticLevel.info}) {
@@ -874,34 +855,30 @@ class _$CaseFour with DiagnosticableTreeMixin implements CaseFour {
 
   @override
   @optionalTypeArgs
-  TResult when<TResult extends Object>(
-    TResult $default(String domain, String host, String stripePublicKey,
-        String requiredField), {
-    @required TResult caseOne(String caseOne),
-    @required TResult caseTwo(String caseTwo),
-    @required TResult caseThree(String caseThree),
-    @required TResult caseFour(String caseFour),
+  TResult when<TResult extends Object?>(
+    TResult Function(String? domain, String? host, String? stripePublicKey,
+            String requiredField)
+        $default, {
+    required TResult Function(String caseOne) caseOne,
+    required TResult Function(String caseTwo) caseTwo,
+    required TResult Function(String caseThree) caseThree,
+    required TResult Function(String? caseFour) caseFour,
   }) {
-    assert($default != null);
-    assert(caseOne != null);
-    assert(caseTwo != null);
-    assert(caseThree != null);
-    assert(caseFour != null);
     return caseFour(this.caseFour);
   }
 
   @override
   @optionalTypeArgs
-  TResult maybeWhen<TResult extends Object>(
-    TResult $default(String domain, String host, String stripePublicKey,
-        String requiredField), {
-    TResult caseOne(String caseOne),
-    TResult caseTwo(String caseTwo),
-    TResult caseThree(String caseThree),
-    TResult caseFour(String caseFour),
-    @required TResult orElse(),
+  TResult maybeWhen<TResult extends Object?>(
+    TResult Function(String? domain, String? host, String? stripePublicKey,
+            String requiredField)?
+        $default, {
+    TResult Function(String caseOne)? caseOne,
+    TResult Function(String caseTwo)? caseTwo,
+    TResult Function(String caseThree)? caseThree,
+    TResult Function(String? caseFour)? caseFour,
+    required TResult orElse(),
   }) {
-    assert(orElse != null);
     if (caseFour != null) {
       return caseFour(this.caseFour);
     }
@@ -910,32 +887,26 @@ class _$CaseFour with DiagnosticableTreeMixin implements CaseFour {
 
   @override
   @optionalTypeArgs
-  TResult map<TResult extends Object>(
-    TResult $default(_TestGym value), {
-    @required TResult caseOne(_CaseOne value),
-    @required TResult caseTwo(_CaseTwo value),
-    @required TResult caseThree(CaseThree value),
-    @required TResult caseFour(CaseFour value),
+  TResult map<TResult extends Object?>(
+    TResult Function(_TestGym value) $default, {
+    required TResult Function(_CaseOne value) caseOne,
+    required TResult Function(_CaseTwo value) caseTwo,
+    required TResult Function(CaseThree value) caseThree,
+    required TResult Function(CaseFour value) caseFour,
   }) {
-    assert($default != null);
-    assert(caseOne != null);
-    assert(caseTwo != null);
-    assert(caseThree != null);
-    assert(caseFour != null);
     return caseFour(this);
   }
 
   @override
   @optionalTypeArgs
-  TResult maybeMap<TResult extends Object>(
-    TResult $default(_TestGym value), {
-    TResult caseOne(_CaseOne value),
-    TResult caseTwo(_CaseTwo value),
-    TResult caseThree(CaseThree value),
-    TResult caseFour(CaseFour value),
-    @required TResult orElse(),
+  TResult maybeMap<TResult extends Object?>(
+    TResult Function(_TestGym value)? $default, {
+    TResult Function(_CaseOne value)? caseOne,
+    TResult Function(_CaseTwo value)? caseTwo,
+    TResult Function(CaseThree value)? caseThree,
+    TResult Function(CaseFour value)? caseFour,
+    required TResult orElse(),
   }) {
-    assert(orElse != null);
     if (caseFour != null) {
       return caseFour(this);
     }
@@ -949,11 +920,12 @@ class _$CaseFour with DiagnosticableTreeMixin implements CaseFour {
 }
 
 abstract class CaseFour implements TestGym {
-  const factory CaseFour({String caseFour}) = _$CaseFour;
+  const factory CaseFour({String? caseFour}) = _$CaseFour;
 
   factory CaseFour.fromJson(Map<String, dynamic> json) = _$CaseFour.fromJson;
 
-  String get caseFour;
+  String? get caseFour => throw _privateConstructorUsedError;
   @JsonKey(ignore: true)
-  $CaseFourCopyWith<CaseFour> get copyWith;
+  $CaseFourCopyWith<CaseFour> get copyWith =>
+      throw _privateConstructorUsedError;
 }

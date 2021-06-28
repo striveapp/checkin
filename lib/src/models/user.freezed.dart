@@ -1,5 +1,5 @@
 // GENERATED CODE - DO NOT MODIFY BY HAND
-// ignore_for_file: deprecated_member_use, deprecated_member_use_from_same_package, use_function_type_syntax_for_parameters, unnecessary_const, avoid_init_to_null, invalid_override_different_default_values_named, prefer_expression_function_bodies
+// ignore_for_file: unused_element, deprecated_member_use, deprecated_member_use_from_same_package, use_function_type_syntax_for_parameters, unnecessary_const, avoid_init_to_null, invalid_override_different_default_values_named, prefer_expression_function_bodies, annotate_overrides
 
 part of 'user.dart';
 
@@ -8,6 +8,10 @@ part of 'user.dart';
 // **************************************************************************
 
 T _$identity<T>(T value) => value;
+
+final _privateConstructorUsedError = UnsupportedError(
+    'It seems like you constructed your class using `MyClass._()`. This constructor is only meant to be used by freezed and you are not supposed to need it nor use it.\nPlease check the documentation here for more informations: https://github.com/rrousselGit/freezed#custom-getters-and-methods');
+
 User _$UserFromJson(Map<String, dynamic> json) {
   return _User.fromJson(json);
 }
@@ -16,16 +20,15 @@ User _$UserFromJson(Map<String, dynamic> json) {
 class _$UserTearOff {
   const _$UserTearOff();
 
-// ignore: unused_element
   _User call(
-      {@required String email,
-      @required String imageUrl,
-      String name,
-      String uid,
-      @GradeConverter() Grade grade,
-      String selectedGymId,
+      {required String email,
+      required String imageUrl,
+      String? name,
+      String? uid,
+      @GradeNullableConverter() Grade? grade,
+      String? selectedGymId,
       List<String> knownGymIds = const [],
-      bool hasActivePayments,
+      bool? hasActivePayments,
       bool isOwner = false}) {
     return _User(
       email: email,
@@ -40,32 +43,30 @@ class _$UserTearOff {
     );
   }
 
-// ignore: unused_element
   User fromJson(Map<String, Object> json) {
     return User.fromJson(json);
   }
 }
 
 /// @nodoc
-// ignore: unused_element
 const $User = _$UserTearOff();
 
 /// @nodoc
 mixin _$User {
-  String get email;
-  String get imageUrl;
-  String get name;
-  String get uid;
-  @GradeConverter()
-  Grade get grade;
-  String get selectedGymId;
-  List<String> get knownGymIds;
-  bool get hasActivePayments;
-  bool get isOwner;
+  String get email => throw _privateConstructorUsedError;
+  String get imageUrl => throw _privateConstructorUsedError;
+  String? get name => throw _privateConstructorUsedError;
+  String? get uid => throw _privateConstructorUsedError;
+  @GradeNullableConverter()
+  Grade? get grade => throw _privateConstructorUsedError;
+  String? get selectedGymId => throw _privateConstructorUsedError;
+  List<String> get knownGymIds => throw _privateConstructorUsedError;
+  bool? get hasActivePayments => throw _privateConstructorUsedError;
+  bool get isOwner => throw _privateConstructorUsedError;
 
-  Map<String, dynamic> toJson();
+  Map<String, dynamic> toJson() => throw _privateConstructorUsedError;
   @JsonKey(ignore: true)
-  $UserCopyWith<User> get copyWith;
+  $UserCopyWith<User> get copyWith => throw _privateConstructorUsedError;
 }
 
 /// @nodoc
@@ -75,12 +76,12 @@ abstract class $UserCopyWith<$Res> {
   $Res call(
       {String email,
       String imageUrl,
-      String name,
-      String uid,
-      @GradeConverter() Grade grade,
-      String selectedGymId,
+      String? name,
+      String? uid,
+      @GradeNullableConverter() Grade? grade,
+      String? selectedGymId,
       List<String> knownGymIds,
-      bool hasActivePayments,
+      bool? hasActivePayments,
       bool isOwner});
 }
 
@@ -94,32 +95,53 @@ class _$UserCopyWithImpl<$Res> implements $UserCopyWith<$Res> {
 
   @override
   $Res call({
-    Object email = freezed,
-    Object imageUrl = freezed,
-    Object name = freezed,
-    Object uid = freezed,
-    Object grade = freezed,
-    Object selectedGymId = freezed,
-    Object knownGymIds = freezed,
-    Object hasActivePayments = freezed,
-    Object isOwner = freezed,
+    Object? email = freezed,
+    Object? imageUrl = freezed,
+    Object? name = freezed,
+    Object? uid = freezed,
+    Object? grade = freezed,
+    Object? selectedGymId = freezed,
+    Object? knownGymIds = freezed,
+    Object? hasActivePayments = freezed,
+    Object? isOwner = freezed,
   }) {
     return _then(_value.copyWith(
-      email: email == freezed ? _value.email : email as String,
-      imageUrl: imageUrl == freezed ? _value.imageUrl : imageUrl as String,
-      name: name == freezed ? _value.name : name as String,
-      uid: uid == freezed ? _value.uid : uid as String,
-      grade: grade == freezed ? _value.grade : grade as Grade,
+      email: email == freezed
+          ? _value.email
+          : email // ignore: cast_nullable_to_non_nullable
+              as String,
+      imageUrl: imageUrl == freezed
+          ? _value.imageUrl
+          : imageUrl // ignore: cast_nullable_to_non_nullable
+              as String,
+      name: name == freezed
+          ? _value.name
+          : name // ignore: cast_nullable_to_non_nullable
+              as String?,
+      uid: uid == freezed
+          ? _value.uid
+          : uid // ignore: cast_nullable_to_non_nullable
+              as String?,
+      grade: grade == freezed
+          ? _value.grade
+          : grade // ignore: cast_nullable_to_non_nullable
+              as Grade?,
       selectedGymId: selectedGymId == freezed
           ? _value.selectedGymId
-          : selectedGymId as String,
+          : selectedGymId // ignore: cast_nullable_to_non_nullable
+              as String?,
       knownGymIds: knownGymIds == freezed
           ? _value.knownGymIds
-          : knownGymIds as List<String>,
+          : knownGymIds // ignore: cast_nullable_to_non_nullable
+              as List<String>,
       hasActivePayments: hasActivePayments == freezed
           ? _value.hasActivePayments
-          : hasActivePayments as bool,
-      isOwner: isOwner == freezed ? _value.isOwner : isOwner as bool,
+          : hasActivePayments // ignore: cast_nullable_to_non_nullable
+              as bool?,
+      isOwner: isOwner == freezed
+          ? _value.isOwner
+          : isOwner // ignore: cast_nullable_to_non_nullable
+              as bool,
     ));
   }
 }
@@ -132,12 +154,12 @@ abstract class _$UserCopyWith<$Res> implements $UserCopyWith<$Res> {
   $Res call(
       {String email,
       String imageUrl,
-      String name,
-      String uid,
-      @GradeConverter() Grade grade,
-      String selectedGymId,
+      String? name,
+      String? uid,
+      @GradeNullableConverter() Grade? grade,
+      String? selectedGymId,
       List<String> knownGymIds,
-      bool hasActivePayments,
+      bool? hasActivePayments,
       bool isOwner});
 }
 
@@ -152,54 +174,70 @@ class __$UserCopyWithImpl<$Res> extends _$UserCopyWithImpl<$Res>
 
   @override
   $Res call({
-    Object email = freezed,
-    Object imageUrl = freezed,
-    Object name = freezed,
-    Object uid = freezed,
-    Object grade = freezed,
-    Object selectedGymId = freezed,
-    Object knownGymIds = freezed,
-    Object hasActivePayments = freezed,
-    Object isOwner = freezed,
+    Object? email = freezed,
+    Object? imageUrl = freezed,
+    Object? name = freezed,
+    Object? uid = freezed,
+    Object? grade = freezed,
+    Object? selectedGymId = freezed,
+    Object? knownGymIds = freezed,
+    Object? hasActivePayments = freezed,
+    Object? isOwner = freezed,
   }) {
     return _then(_User(
-      email: email == freezed ? _value.email : email as String,
-      imageUrl: imageUrl == freezed ? _value.imageUrl : imageUrl as String,
-      name: name == freezed ? _value.name : name as String,
-      uid: uid == freezed ? _value.uid : uid as String,
-      grade: grade == freezed ? _value.grade : grade as Grade,
+      email: email == freezed
+          ? _value.email
+          : email // ignore: cast_nullable_to_non_nullable
+              as String,
+      imageUrl: imageUrl == freezed
+          ? _value.imageUrl
+          : imageUrl // ignore: cast_nullable_to_non_nullable
+              as String,
+      name: name == freezed
+          ? _value.name
+          : name // ignore: cast_nullable_to_non_nullable
+              as String?,
+      uid: uid == freezed
+          ? _value.uid
+          : uid // ignore: cast_nullable_to_non_nullable
+              as String?,
+      grade: grade == freezed
+          ? _value.grade
+          : grade // ignore: cast_nullable_to_non_nullable
+              as Grade?,
       selectedGymId: selectedGymId == freezed
           ? _value.selectedGymId
-          : selectedGymId as String,
+          : selectedGymId // ignore: cast_nullable_to_non_nullable
+              as String?,
       knownGymIds: knownGymIds == freezed
           ? _value.knownGymIds
-          : knownGymIds as List<String>,
+          : knownGymIds // ignore: cast_nullable_to_non_nullable
+              as List<String>,
       hasActivePayments: hasActivePayments == freezed
           ? _value.hasActivePayments
-          : hasActivePayments as bool,
-      isOwner: isOwner == freezed ? _value.isOwner : isOwner as bool,
+          : hasActivePayments // ignore: cast_nullable_to_non_nullable
+              as bool?,
+      isOwner: isOwner == freezed
+          ? _value.isOwner
+          : isOwner // ignore: cast_nullable_to_non_nullable
+              as bool,
     ));
   }
 }
 
-@JsonSerializable()
-
 /// @nodoc
+@JsonSerializable()
 class _$_User with DiagnosticableTreeMixin implements _User {
   _$_User(
-      {@required this.email,
-      @required this.imageUrl,
+      {required this.email,
+      required this.imageUrl,
       this.name,
       this.uid,
-      @GradeConverter() this.grade,
+      @GradeNullableConverter() this.grade,
       this.selectedGymId,
       this.knownGymIds = const [],
       this.hasActivePayments,
-      this.isOwner = false})
-      : assert(email != null),
-        assert(imageUrl != null),
-        assert(knownGymIds != null),
-        assert(isOwner != null);
+      this.isOwner = false});
 
   factory _$_User.fromJson(Map<String, dynamic> json) =>
       _$_$_UserFromJson(json);
@@ -209,19 +247,19 @@ class _$_User with DiagnosticableTreeMixin implements _User {
   @override
   final String imageUrl;
   @override
-  final String name;
+  final String? name;
   @override
-  final String uid;
+  final String? uid;
   @override
-  @GradeConverter()
-  final Grade grade;
+  @GradeNullableConverter()
+  final Grade? grade;
   @override
-  final String selectedGymId;
+  final String? selectedGymId;
   @JsonKey(defaultValue: const [])
   @override
   final List<String> knownGymIds;
   @override
-  final bool hasActivePayments;
+  final bool? hasActivePayments;
   @JsonKey(defaultValue: false)
   @override
   final bool isOwner;
@@ -301,38 +339,38 @@ class _$_User with DiagnosticableTreeMixin implements _User {
 
 abstract class _User implements User {
   factory _User(
-      {@required String email,
-      @required String imageUrl,
-      String name,
-      String uid,
-      @GradeConverter() Grade grade,
-      String selectedGymId,
+      {required String email,
+      required String imageUrl,
+      String? name,
+      String? uid,
+      @GradeNullableConverter() Grade? grade,
+      String? selectedGymId,
       List<String> knownGymIds,
-      bool hasActivePayments,
+      bool? hasActivePayments,
       bool isOwner}) = _$_User;
 
   factory _User.fromJson(Map<String, dynamic> json) = _$_User.fromJson;
 
   @override
-  String get email;
+  String get email => throw _privateConstructorUsedError;
   @override
-  String get imageUrl;
+  String get imageUrl => throw _privateConstructorUsedError;
   @override
-  String get name;
+  String? get name => throw _privateConstructorUsedError;
   @override
-  String get uid;
+  String? get uid => throw _privateConstructorUsedError;
   @override
-  @GradeConverter()
-  Grade get grade;
+  @GradeNullableConverter()
+  Grade? get grade => throw _privateConstructorUsedError;
   @override
-  String get selectedGymId;
+  String? get selectedGymId => throw _privateConstructorUsedError;
   @override
-  List<String> get knownGymIds;
+  List<String> get knownGymIds => throw _privateConstructorUsedError;
   @override
-  bool get hasActivePayments;
+  bool? get hasActivePayments => throw _privateConstructorUsedError;
   @override
-  bool get isOwner;
+  bool get isOwner => throw _privateConstructorUsedError;
   @override
   @JsonKey(ignore: true)
-  _$UserCopyWith<_User> get copyWith;
+  _$UserCopyWith<_User> get copyWith => throw _privateConstructorUsedError;
 }

@@ -1,5 +1,5 @@
 // GENERATED CODE - DO NOT MODIFY BY HAND
-// ignore_for_file: deprecated_member_use, deprecated_member_use_from_same_package, use_function_type_syntax_for_parameters, unnecessary_const, avoid_init_to_null, invalid_override_different_default_values_named, prefer_expression_function_bodies
+// ignore_for_file: unused_element, deprecated_member_use, deprecated_member_use_from_same_package, use_function_type_syntax_for_parameters, unnecessary_const, avoid_init_to_null, invalid_override_different_default_values_named, prefer_expression_function_bodies, annotate_overrides
 
 part of 'graduation_system.dart';
 
@@ -8,6 +8,10 @@ part of 'graduation_system.dart';
 // **************************************************************************
 
 T _$identity<T>(T value) => value;
+
+final _privateConstructorUsedError = UnsupportedError(
+    'It seems like you constructed your class using `MyClass._()`. This constructor is only meant to be used by freezed and you are not supposed to need it nor use it.\nPlease check the documentation here for more informations: https://github.com/rrousselGit/freezed#custom-getters-and-methods');
+
 GraduationSystem _$GraduationSystemFromJson(Map<String, dynamic> json) {
   return _GraduationSystem.fromJson(json);
 }
@@ -16,35 +20,33 @@ GraduationSystem _$GraduationSystemFromJson(Map<String, dynamic> json) {
 class _$GraduationSystemTearOff {
   const _$GraduationSystemTearOff();
 
-// ignore: unused_element
   _GraduationSystem call(
-      {@required @GradeConverter() Grade grade,
-      @required double forNextLevel}) {
+      {@GradeConverter() required Grade grade, required double forNextLevel}) {
     return _GraduationSystem(
       grade: grade,
       forNextLevel: forNextLevel,
     );
   }
 
-// ignore: unused_element
   GraduationSystem fromJson(Map<String, Object> json) {
     return GraduationSystem.fromJson(json);
   }
 }
 
 /// @nodoc
-// ignore: unused_element
 const $GraduationSystem = _$GraduationSystemTearOff();
 
 /// @nodoc
 mixin _$GraduationSystem {
   @GradeConverter()
-  Grade get grade; //NOTE: this is double because we need to support Infinity
-  double get forNextLevel;
+  Grade get grade =>
+      throw _privateConstructorUsedError; //NOTE: this is double because we need to support Infinity
+  double get forNextLevel => throw _privateConstructorUsedError;
 
-  Map<String, dynamic> toJson();
+  Map<String, dynamic> toJson() => throw _privateConstructorUsedError;
   @JsonKey(ignore: true)
-  $GraduationSystemCopyWith<GraduationSystem> get copyWith;
+  $GraduationSystemCopyWith<GraduationSystem> get copyWith =>
+      throw _privateConstructorUsedError;
 }
 
 /// @nodoc
@@ -66,14 +68,18 @@ class _$GraduationSystemCopyWithImpl<$Res>
 
   @override
   $Res call({
-    Object grade = freezed,
-    Object forNextLevel = freezed,
+    Object? grade = freezed,
+    Object? forNextLevel = freezed,
   }) {
     return _then(_value.copyWith(
-      grade: grade == freezed ? _value.grade : grade as Grade,
+      grade: grade == freezed
+          ? _value.grade
+          : grade // ignore: cast_nullable_to_non_nullable
+              as Grade,
       forNextLevel: forNextLevel == freezed
           ? _value.forNextLevel
-          : forNextLevel as double,
+          : forNextLevel // ignore: cast_nullable_to_non_nullable
+              as double,
     ));
   }
 }
@@ -101,28 +107,29 @@ class __$GraduationSystemCopyWithImpl<$Res>
 
   @override
   $Res call({
-    Object grade = freezed,
-    Object forNextLevel = freezed,
+    Object? grade = freezed,
+    Object? forNextLevel = freezed,
   }) {
     return _then(_GraduationSystem(
-      grade: grade == freezed ? _value.grade : grade as Grade,
+      grade: grade == freezed
+          ? _value.grade
+          : grade // ignore: cast_nullable_to_non_nullable
+              as Grade,
       forNextLevel: forNextLevel == freezed
           ? _value.forNextLevel
-          : forNextLevel as double,
+          : forNextLevel // ignore: cast_nullable_to_non_nullable
+              as double,
     ));
   }
 }
 
-@JsonSerializable()
-
 /// @nodoc
+@JsonSerializable()
 class _$_GraduationSystem
     with DiagnosticableTreeMixin
     implements _GraduationSystem {
   _$_GraduationSystem(
-      {@required @GradeConverter() this.grade, @required this.forNextLevel})
-      : assert(grade != null),
-        assert(forNextLevel != null);
+      {@GradeConverter() required this.grade, required this.forNextLevel});
 
   factory _$_GraduationSystem.fromJson(Map<String, dynamic> json) =>
       _$_$_GraduationSystemFromJson(json);
@@ -177,18 +184,19 @@ class _$_GraduationSystem
 
 abstract class _GraduationSystem implements GraduationSystem {
   factory _GraduationSystem(
-      {@required @GradeConverter() Grade grade,
-      @required double forNextLevel}) = _$_GraduationSystem;
+      {@GradeConverter() required Grade grade,
+      required double forNextLevel}) = _$_GraduationSystem;
 
   factory _GraduationSystem.fromJson(Map<String, dynamic> json) =
       _$_GraduationSystem.fromJson;
 
   @override
   @GradeConverter()
-  Grade get grade;
+  Grade get grade => throw _privateConstructorUsedError;
   @override //NOTE: this is double because we need to support Infinity
-  double get forNextLevel;
+  double get forNextLevel => throw _privateConstructorUsedError;
   @override
   @JsonKey(ignore: true)
-  _$GraduationSystemCopyWith<_GraduationSystem> get copyWith;
+  _$GraduationSystemCopyWith<_GraduationSystem> get copyWith =>
+      throw _privateConstructorUsedError;
 }

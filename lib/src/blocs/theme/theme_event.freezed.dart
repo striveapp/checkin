@@ -1,5 +1,5 @@
 // GENERATED CODE - DO NOT MODIFY BY HAND
-// ignore_for_file: deprecated_member_use, deprecated_member_use_from_same_package, use_function_type_syntax_for_parameters, unnecessary_const, avoid_init_to_null, invalid_override_different_default_values_named, prefer_expression_function_bodies
+// ignore_for_file: unused_element, deprecated_member_use, deprecated_member_use_from_same_package, use_function_type_syntax_for_parameters, unnecessary_const, avoid_init_to_null, invalid_override_different_default_values_named, prefer_expression_function_bodies, annotate_overrides
 
 part of 'theme_event.dart';
 
@@ -9,12 +9,14 @@ part of 'theme_event.dart';
 
 T _$identity<T>(T value) => value;
 
+final _privateConstructorUsedError = UnsupportedError(
+    'It seems like you constructed your class using `MyClass._()`. This constructor is only meant to be used by freezed and you are not supposed to need it nor use it.\nPlease check the documentation here for more informations: https://github.com/rrousselGit/freezed#custom-getters-and-methods');
+
 /// @nodoc
 class _$ThemeEventTearOff {
   const _$ThemeEventTearOff();
 
-// ignore: unused_element
-  UpdateTheme updateTheme({ThemeType themeType}) {
+  UpdateTheme updateTheme({ThemeType? themeType}) {
     return UpdateTheme(
       themeType: themeType,
     );
@@ -22,34 +24,38 @@ class _$ThemeEventTearOff {
 }
 
 /// @nodoc
-// ignore: unused_element
 const $ThemeEvent = _$ThemeEventTearOff();
 
 /// @nodoc
 mixin _$ThemeEvent {
-  ThemeType get themeType;
+  ThemeType? get themeType => throw _privateConstructorUsedError;
 
   @optionalTypeArgs
-  TResult when<TResult extends Object>({
-    @required TResult updateTheme(ThemeType themeType),
-  });
+  TResult when<TResult extends Object?>({
+    required TResult Function(ThemeType? themeType) updateTheme,
+  }) =>
+      throw _privateConstructorUsedError;
   @optionalTypeArgs
-  TResult maybeWhen<TResult extends Object>({
-    TResult updateTheme(ThemeType themeType),
-    @required TResult orElse(),
-  });
+  TResult maybeWhen<TResult extends Object?>({
+    TResult Function(ThemeType? themeType)? updateTheme,
+    required TResult orElse(),
+  }) =>
+      throw _privateConstructorUsedError;
   @optionalTypeArgs
-  TResult map<TResult extends Object>({
-    @required TResult updateTheme(UpdateTheme value),
-  });
+  TResult map<TResult extends Object?>({
+    required TResult Function(UpdateTheme value) updateTheme,
+  }) =>
+      throw _privateConstructorUsedError;
   @optionalTypeArgs
-  TResult maybeMap<TResult extends Object>({
-    TResult updateTheme(UpdateTheme value),
-    @required TResult orElse(),
-  });
+  TResult maybeMap<TResult extends Object?>({
+    TResult Function(UpdateTheme value)? updateTheme,
+    required TResult orElse(),
+  }) =>
+      throw _privateConstructorUsedError;
 
   @JsonKey(ignore: true)
-  $ThemeEventCopyWith<ThemeEvent> get copyWith;
+  $ThemeEventCopyWith<ThemeEvent> get copyWith =>
+      throw _privateConstructorUsedError;
 }
 
 /// @nodoc
@@ -57,7 +63,7 @@ abstract class $ThemeEventCopyWith<$Res> {
   factory $ThemeEventCopyWith(
           ThemeEvent value, $Res Function(ThemeEvent) then) =
       _$ThemeEventCopyWithImpl<$Res>;
-  $Res call({ThemeType themeType});
+  $Res call({ThemeType? themeType});
 }
 
 /// @nodoc
@@ -70,11 +76,13 @@ class _$ThemeEventCopyWithImpl<$Res> implements $ThemeEventCopyWith<$Res> {
 
   @override
   $Res call({
-    Object themeType = freezed,
+    Object? themeType = freezed,
   }) {
     return _then(_value.copyWith(
-      themeType:
-          themeType == freezed ? _value.themeType : themeType as ThemeType,
+      themeType: themeType == freezed
+          ? _value.themeType
+          : themeType // ignore: cast_nullable_to_non_nullable
+              as ThemeType?,
     ));
   }
 }
@@ -85,7 +93,7 @@ abstract class $UpdateThemeCopyWith<$Res> implements $ThemeEventCopyWith<$Res> {
           UpdateTheme value, $Res Function(UpdateTheme) then) =
       _$UpdateThemeCopyWithImpl<$Res>;
   @override
-  $Res call({ThemeType themeType});
+  $Res call({ThemeType? themeType});
 }
 
 /// @nodoc
@@ -100,21 +108,24 @@ class _$UpdateThemeCopyWithImpl<$Res> extends _$ThemeEventCopyWithImpl<$Res>
 
   @override
   $Res call({
-    Object themeType = freezed,
+    Object? themeType = freezed,
   }) {
     return _then(UpdateTheme(
-      themeType:
-          themeType == freezed ? _value.themeType : themeType as ThemeType,
+      themeType: themeType == freezed
+          ? _value.themeType
+          : themeType // ignore: cast_nullable_to_non_nullable
+              as ThemeType?,
     ));
   }
 }
 
 /// @nodoc
+
 class _$UpdateTheme with DiagnosticableTreeMixin implements UpdateTheme {
   const _$UpdateTheme({this.themeType});
 
   @override
-  final ThemeType themeType;
+  final ThemeType? themeType;
 
   @override
   String toString({DiagnosticLevel minLevel = DiagnosticLevel.info}) {
@@ -149,20 +160,18 @@ class _$UpdateTheme with DiagnosticableTreeMixin implements UpdateTheme {
 
   @override
   @optionalTypeArgs
-  TResult when<TResult extends Object>({
-    @required TResult updateTheme(ThemeType themeType),
+  TResult when<TResult extends Object?>({
+    required TResult Function(ThemeType? themeType) updateTheme,
   }) {
-    assert(updateTheme != null);
     return updateTheme(themeType);
   }
 
   @override
   @optionalTypeArgs
-  TResult maybeWhen<TResult extends Object>({
-    TResult updateTheme(ThemeType themeType),
-    @required TResult orElse(),
+  TResult maybeWhen<TResult extends Object?>({
+    TResult Function(ThemeType? themeType)? updateTheme,
+    required TResult orElse(),
   }) {
-    assert(orElse != null);
     if (updateTheme != null) {
       return updateTheme(themeType);
     }
@@ -171,20 +180,18 @@ class _$UpdateTheme with DiagnosticableTreeMixin implements UpdateTheme {
 
   @override
   @optionalTypeArgs
-  TResult map<TResult extends Object>({
-    @required TResult updateTheme(UpdateTheme value),
+  TResult map<TResult extends Object?>({
+    required TResult Function(UpdateTheme value) updateTheme,
   }) {
-    assert(updateTheme != null);
     return updateTheme(this);
   }
 
   @override
   @optionalTypeArgs
-  TResult maybeMap<TResult extends Object>({
-    TResult updateTheme(UpdateTheme value),
-    @required TResult orElse(),
+  TResult maybeMap<TResult extends Object?>({
+    TResult Function(UpdateTheme value)? updateTheme,
+    required TResult orElse(),
   }) {
-    assert(orElse != null);
     if (updateTheme != null) {
       return updateTheme(this);
     }
@@ -193,11 +200,12 @@ class _$UpdateTheme with DiagnosticableTreeMixin implements UpdateTheme {
 }
 
 abstract class UpdateTheme implements ThemeEvent {
-  const factory UpdateTheme({ThemeType themeType}) = _$UpdateTheme;
+  const factory UpdateTheme({ThemeType? themeType}) = _$UpdateTheme;
 
   @override
-  ThemeType get themeType;
+  ThemeType? get themeType => throw _privateConstructorUsedError;
   @override
   @JsonKey(ignore: true)
-  $UpdateThemeCopyWith<UpdateTheme> get copyWith;
+  $UpdateThemeCopyWith<UpdateTheme> get copyWith =>
+      throw _privateConstructorUsedError;
 }

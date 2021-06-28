@@ -13,7 +13,7 @@ _$_Gym _$_$_GymFromJson(Map<String, dynamic> json) {
     paymentAppDomain: json['paymentAppDomain'] as String,
     stripePublicKey: json['stripePublicKey'] as String,
     imageUrl: json['imageUrl'] as String,
-    hasActivePayments: json['hasActivePayments'] as bool ?? false,
+    hasActivePayments: json['hasActivePayments'] as bool? ?? false,
   );
 }
 

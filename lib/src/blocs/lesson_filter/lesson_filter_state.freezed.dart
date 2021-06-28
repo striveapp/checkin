@@ -1,5 +1,5 @@
 // GENERATED CODE - DO NOT MODIFY BY HAND
-// ignore_for_file: deprecated_member_use, deprecated_member_use_from_same_package, use_function_type_syntax_for_parameters, unnecessary_const, avoid_init_to_null, invalid_override_different_default_values_named, prefer_expression_function_bodies
+// ignore_for_file: unused_element, deprecated_member_use, deprecated_member_use_from_same_package, use_function_type_syntax_for_parameters, unnecessary_const, avoid_init_to_null, invalid_override_different_default_values_named, prefer_expression_function_bodies, annotate_overrides
 
 part of 'lesson_filter_state.dart';
 
@@ -9,18 +9,19 @@ part of 'lesson_filter_state.dart';
 
 T _$identity<T>(T value) => value;
 
+final _privateConstructorUsedError = UnsupportedError(
+    'It seems like you constructed your class using `MyClass._()`. This constructor is only meant to be used by freezed and you are not supposed to need it nor use it.\nPlease check the documentation here for more informations: https://github.com/rrousselGit/freezed#custom-getters-and-methods');
+
 /// @nodoc
 class _$LessonFilterStateTearOff {
   const _$LessonFilterStateTearOff();
 
-// ignore: unused_element
   InitialLessonFilterState initialLessonFilterState() {
     return const InitialLessonFilterState();
   }
 
-// ignore: unused_element
   LessonFilterLoaded lessonFilterLoaded(
-      {@required List<String> availableLessonTypes}) {
+      {required List<String?> availableLessonTypes}) {
     return LessonFilterLoaded(
       availableLessonTypes: availableLessonTypes,
     );
@@ -28,33 +29,38 @@ class _$LessonFilterStateTearOff {
 }
 
 /// @nodoc
-// ignore: unused_element
 const $LessonFilterState = _$LessonFilterStateTearOff();
 
 /// @nodoc
 mixin _$LessonFilterState {
   @optionalTypeArgs
-  TResult when<TResult extends Object>({
-    @required TResult initialLessonFilterState(),
-    @required TResult lessonFilterLoaded(List<String> availableLessonTypes),
-  });
+  TResult when<TResult extends Object?>({
+    required TResult Function() initialLessonFilterState,
+    required TResult Function(List<String?> availableLessonTypes)
+        lessonFilterLoaded,
+  }) =>
+      throw _privateConstructorUsedError;
   @optionalTypeArgs
-  TResult maybeWhen<TResult extends Object>({
-    TResult initialLessonFilterState(),
-    TResult lessonFilterLoaded(List<String> availableLessonTypes),
-    @required TResult orElse(),
-  });
+  TResult maybeWhen<TResult extends Object?>({
+    TResult Function()? initialLessonFilterState,
+    TResult Function(List<String?> availableLessonTypes)? lessonFilterLoaded,
+    required TResult orElse(),
+  }) =>
+      throw _privateConstructorUsedError;
   @optionalTypeArgs
-  TResult map<TResult extends Object>({
-    @required TResult initialLessonFilterState(InitialLessonFilterState value),
-    @required TResult lessonFilterLoaded(LessonFilterLoaded value),
-  });
+  TResult map<TResult extends Object?>({
+    required TResult Function(InitialLessonFilterState value)
+        initialLessonFilterState,
+    required TResult Function(LessonFilterLoaded value) lessonFilterLoaded,
+  }) =>
+      throw _privateConstructorUsedError;
   @optionalTypeArgs
-  TResult maybeMap<TResult extends Object>({
-    TResult initialLessonFilterState(InitialLessonFilterState value),
-    TResult lessonFilterLoaded(LessonFilterLoaded value),
-    @required TResult orElse(),
-  });
+  TResult maybeMap<TResult extends Object?>({
+    TResult Function(InitialLessonFilterState value)? initialLessonFilterState,
+    TResult Function(LessonFilterLoaded value)? lessonFilterLoaded,
+    required TResult orElse(),
+  }) =>
+      throw _privateConstructorUsedError;
 }
 
 /// @nodoc
@@ -95,6 +101,7 @@ class _$InitialLessonFilterStateCopyWithImpl<$Res>
 }
 
 /// @nodoc
+
 class _$InitialLessonFilterState
     with DiagnosticableTreeMixin
     implements InitialLessonFilterState {
@@ -123,23 +130,21 @@ class _$InitialLessonFilterState
 
   @override
   @optionalTypeArgs
-  TResult when<TResult extends Object>({
-    @required TResult initialLessonFilterState(),
-    @required TResult lessonFilterLoaded(List<String> availableLessonTypes),
+  TResult when<TResult extends Object?>({
+    required TResult Function() initialLessonFilterState,
+    required TResult Function(List<String?> availableLessonTypes)
+        lessonFilterLoaded,
   }) {
-    assert(initialLessonFilterState != null);
-    assert(lessonFilterLoaded != null);
     return initialLessonFilterState();
   }
 
   @override
   @optionalTypeArgs
-  TResult maybeWhen<TResult extends Object>({
-    TResult initialLessonFilterState(),
-    TResult lessonFilterLoaded(List<String> availableLessonTypes),
-    @required TResult orElse(),
+  TResult maybeWhen<TResult extends Object?>({
+    TResult Function()? initialLessonFilterState,
+    TResult Function(List<String?> availableLessonTypes)? lessonFilterLoaded,
+    required TResult orElse(),
   }) {
-    assert(orElse != null);
     if (initialLessonFilterState != null) {
       return initialLessonFilterState();
     }
@@ -148,23 +153,21 @@ class _$InitialLessonFilterState
 
   @override
   @optionalTypeArgs
-  TResult map<TResult extends Object>({
-    @required TResult initialLessonFilterState(InitialLessonFilterState value),
-    @required TResult lessonFilterLoaded(LessonFilterLoaded value),
+  TResult map<TResult extends Object?>({
+    required TResult Function(InitialLessonFilterState value)
+        initialLessonFilterState,
+    required TResult Function(LessonFilterLoaded value) lessonFilterLoaded,
   }) {
-    assert(initialLessonFilterState != null);
-    assert(lessonFilterLoaded != null);
     return initialLessonFilterState(this);
   }
 
   @override
   @optionalTypeArgs
-  TResult maybeMap<TResult extends Object>({
-    TResult initialLessonFilterState(InitialLessonFilterState value),
-    TResult lessonFilterLoaded(LessonFilterLoaded value),
-    @required TResult orElse(),
+  TResult maybeMap<TResult extends Object?>({
+    TResult Function(InitialLessonFilterState value)? initialLessonFilterState,
+    TResult Function(LessonFilterLoaded value)? lessonFilterLoaded,
+    required TResult orElse(),
   }) {
-    assert(orElse != null);
     if (initialLessonFilterState != null) {
       return initialLessonFilterState(this);
     }
@@ -181,7 +184,7 @@ abstract class $LessonFilterLoadedCopyWith<$Res> {
   factory $LessonFilterLoadedCopyWith(
           LessonFilterLoaded value, $Res Function(LessonFilterLoaded) then) =
       _$LessonFilterLoadedCopyWithImpl<$Res>;
-  $Res call({List<String> availableLessonTypes});
+  $Res call({List<String?> availableLessonTypes});
 }
 
 /// @nodoc
@@ -197,25 +200,26 @@ class _$LessonFilterLoadedCopyWithImpl<$Res>
 
   @override
   $Res call({
-    Object availableLessonTypes = freezed,
+    Object? availableLessonTypes = freezed,
   }) {
     return _then(LessonFilterLoaded(
       availableLessonTypes: availableLessonTypes == freezed
           ? _value.availableLessonTypes
-          : availableLessonTypes as List<String>,
+          : availableLessonTypes // ignore: cast_nullable_to_non_nullable
+              as List<String?>,
     ));
   }
 }
 
 /// @nodoc
+
 class _$LessonFilterLoaded
     with DiagnosticableTreeMixin
     implements LessonFilterLoaded {
-  const _$LessonFilterLoaded({@required this.availableLessonTypes})
-      : assert(availableLessonTypes != null);
+  const _$LessonFilterLoaded({required this.availableLessonTypes});
 
   @override
-  final List<String> availableLessonTypes;
+  final List<String?> availableLessonTypes;
 
   @override
   String toString({DiagnosticLevel minLevel = DiagnosticLevel.info}) {
@@ -251,23 +255,21 @@ class _$LessonFilterLoaded
 
   @override
   @optionalTypeArgs
-  TResult when<TResult extends Object>({
-    @required TResult initialLessonFilterState(),
-    @required TResult lessonFilterLoaded(List<String> availableLessonTypes),
+  TResult when<TResult extends Object?>({
+    required TResult Function() initialLessonFilterState,
+    required TResult Function(List<String?> availableLessonTypes)
+        lessonFilterLoaded,
   }) {
-    assert(initialLessonFilterState != null);
-    assert(lessonFilterLoaded != null);
     return lessonFilterLoaded(availableLessonTypes);
   }
 
   @override
   @optionalTypeArgs
-  TResult maybeWhen<TResult extends Object>({
-    TResult initialLessonFilterState(),
-    TResult lessonFilterLoaded(List<String> availableLessonTypes),
-    @required TResult orElse(),
+  TResult maybeWhen<TResult extends Object?>({
+    TResult Function()? initialLessonFilterState,
+    TResult Function(List<String?> availableLessonTypes)? lessonFilterLoaded,
+    required TResult orElse(),
   }) {
-    assert(orElse != null);
     if (lessonFilterLoaded != null) {
       return lessonFilterLoaded(availableLessonTypes);
     }
@@ -276,23 +278,21 @@ class _$LessonFilterLoaded
 
   @override
   @optionalTypeArgs
-  TResult map<TResult extends Object>({
-    @required TResult initialLessonFilterState(InitialLessonFilterState value),
-    @required TResult lessonFilterLoaded(LessonFilterLoaded value),
+  TResult map<TResult extends Object?>({
+    required TResult Function(InitialLessonFilterState value)
+        initialLessonFilterState,
+    required TResult Function(LessonFilterLoaded value) lessonFilterLoaded,
   }) {
-    assert(initialLessonFilterState != null);
-    assert(lessonFilterLoaded != null);
     return lessonFilterLoaded(this);
   }
 
   @override
   @optionalTypeArgs
-  TResult maybeMap<TResult extends Object>({
-    TResult initialLessonFilterState(InitialLessonFilterState value),
-    TResult lessonFilterLoaded(LessonFilterLoaded value),
-    @required TResult orElse(),
+  TResult maybeMap<TResult extends Object?>({
+    TResult Function(InitialLessonFilterState value)? initialLessonFilterState,
+    TResult Function(LessonFilterLoaded value)? lessonFilterLoaded,
+    required TResult orElse(),
   }) {
-    assert(orElse != null);
     if (lessonFilterLoaded != null) {
       return lessonFilterLoaded(this);
     }
@@ -302,9 +302,10 @@ class _$LessonFilterLoaded
 
 abstract class LessonFilterLoaded implements LessonFilterState {
   const factory LessonFilterLoaded(
-      {@required List<String> availableLessonTypes}) = _$LessonFilterLoaded;
+      {required List<String?> availableLessonTypes}) = _$LessonFilterLoaded;
 
-  List<String> get availableLessonTypes;
+  List<String?> get availableLessonTypes => throw _privateConstructorUsedError;
   @JsonKey(ignore: true)
-  $LessonFilterLoadedCopyWith<LessonFilterLoaded> get copyWith;
+  $LessonFilterLoadedCopyWith<LessonFilterLoaded> get copyWith =>
+      throw _privateConstructorUsedError;
 }

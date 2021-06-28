@@ -1,5 +1,5 @@
 // GENERATED CODE - DO NOT MODIFY BY HAND
-// ignore_for_file: deprecated_member_use, deprecated_member_use_from_same_package, use_function_type_syntax_for_parameters, unnecessary_const, avoid_init_to_null, invalid_override_different_default_values_named, prefer_expression_function_bodies
+// ignore_for_file: unused_element, deprecated_member_use, deprecated_member_use_from_same_package, use_function_type_syntax_for_parameters, unnecessary_const, avoid_init_to_null, invalid_override_different_default_values_named, prefer_expression_function_bodies, annotate_overrides
 
 part of 'attendee_with_counter.dart';
 
@@ -9,12 +9,14 @@ part of 'attendee_with_counter.dart';
 
 T _$identity<T>(T value) => value;
 
+final _privateConstructorUsedError = UnsupportedError(
+    'It seems like you constructed your class using `MyClass._()`. This constructor is only meant to be used by freezed and you are not supposed to need it nor use it.\nPlease check the documentation here for more informations: https://github.com/rrousselGit/freezed#custom-getters-and-methods');
+
 /// @nodoc
 class _$AttendeeWithCounterTearOff {
   const _$AttendeeWithCounterTearOff();
 
-// ignore: unused_element
-  _AttendeeWithCounter call({@required String email, @required int counter}) {
+  _AttendeeWithCounter call({required String email, required int counter}) {
     return _AttendeeWithCounter(
       email: email,
       counter: counter,
@@ -23,16 +25,16 @@ class _$AttendeeWithCounterTearOff {
 }
 
 /// @nodoc
-// ignore: unused_element
 const $AttendeeWithCounter = _$AttendeeWithCounterTearOff();
 
 /// @nodoc
 mixin _$AttendeeWithCounter {
-  String get email;
-  int get counter;
+  String get email => throw _privateConstructorUsedError;
+  int get counter => throw _privateConstructorUsedError;
 
   @JsonKey(ignore: true)
-  $AttendeeWithCounterCopyWith<AttendeeWithCounter> get copyWith;
+  $AttendeeWithCounterCopyWith<AttendeeWithCounter> get copyWith =>
+      throw _privateConstructorUsedError;
 }
 
 /// @nodoc
@@ -54,12 +56,18 @@ class _$AttendeeWithCounterCopyWithImpl<$Res>
 
   @override
   $Res call({
-    Object email = freezed,
-    Object counter = freezed,
+    Object? email = freezed,
+    Object? counter = freezed,
   }) {
     return _then(_value.copyWith(
-      email: email == freezed ? _value.email : email as String,
-      counter: counter == freezed ? _value.counter : counter as int,
+      email: email == freezed
+          ? _value.email
+          : email // ignore: cast_nullable_to_non_nullable
+              as String,
+      counter: counter == freezed
+          ? _value.counter
+          : counter // ignore: cast_nullable_to_non_nullable
+              as int,
     ));
   }
 }
@@ -87,22 +95,27 @@ class __$AttendeeWithCounterCopyWithImpl<$Res>
 
   @override
   $Res call({
-    Object email = freezed,
-    Object counter = freezed,
+    Object? email = freezed,
+    Object? counter = freezed,
   }) {
     return _then(_AttendeeWithCounter(
-      email: email == freezed ? _value.email : email as String,
-      counter: counter == freezed ? _value.counter : counter as int,
+      email: email == freezed
+          ? _value.email
+          : email // ignore: cast_nullable_to_non_nullable
+              as String,
+      counter: counter == freezed
+          ? _value.counter
+          : counter // ignore: cast_nullable_to_non_nullable
+              as int,
     ));
   }
 }
 
 /// @nodoc
+
 class _$_AttendeeWithCounter extends _AttendeeWithCounter {
-  _$_AttendeeWithCounter({@required this.email, @required this.counter})
-      : assert(email != null),
-        assert(counter != null),
-        super._();
+  _$_AttendeeWithCounter({required this.email, required this.counter})
+      : super._();
 
   @override
   final String email;
@@ -138,15 +151,16 @@ class _$_AttendeeWithCounter extends _AttendeeWithCounter {
 }
 
 abstract class _AttendeeWithCounter extends AttendeeWithCounter {
+  factory _AttendeeWithCounter({required String email, required int counter}) =
+      _$_AttendeeWithCounter;
   _AttendeeWithCounter._() : super._();
-  factory _AttendeeWithCounter(
-      {@required String email, @required int counter}) = _$_AttendeeWithCounter;
 
   @override
-  String get email;
+  String get email => throw _privateConstructorUsedError;
   @override
-  int get counter;
+  int get counter => throw _privateConstructorUsedError;
   @override
   @JsonKey(ignore: true)
-  _$AttendeeWithCounterCopyWith<_AttendeeWithCounter> get copyWith;
+  _$AttendeeWithCounterCopyWith<_AttendeeWithCounter> get copyWith =>
+      throw _privateConstructorUsedError;
 }

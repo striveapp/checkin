@@ -1,5 +1,5 @@
 // GENERATED CODE - DO NOT MODIFY BY HAND
-// ignore_for_file: deprecated_member_use, deprecated_member_use_from_same_package, use_function_type_syntax_for_parameters, unnecessary_const, avoid_init_to_null, invalid_override_different_default_values_named, prefer_expression_function_bodies
+// ignore_for_file: unused_element, deprecated_member_use, deprecated_member_use_from_same_package, use_function_type_syntax_for_parameters, unnecessary_const, avoid_init_to_null, invalid_override_different_default_values_named, prefer_expression_function_bodies, annotate_overrides
 
 part of 'subscription_event.dart';
 
@@ -9,12 +9,14 @@ part of 'subscription_event.dart';
 
 T _$identity<T>(T value) => value;
 
+final _privateConstructorUsedError = UnsupportedError(
+    'It seems like you constructed your class using `MyClass._()`. This constructor is only meant to be used by freezed and you are not supposed to need it nor use it.\nPlease check the documentation here for more informations: https://github.com/rrousselGit/freezed#custom-getters-and-methods');
+
 /// @nodoc
 class _$SubscriptionEventTearOff {
   const _$SubscriptionEventTearOff();
 
-// ignore: unused_element
-  Subscribe subscribe({@required String priceId, @required String customerId}) {
+  Subscribe subscribe({required String priceId, required String customerId}) {
     return Subscribe(
       priceId: priceId,
       customerId: customerId,
@@ -23,35 +25,39 @@ class _$SubscriptionEventTearOff {
 }
 
 /// @nodoc
-// ignore: unused_element
 const $SubscriptionEvent = _$SubscriptionEventTearOff();
 
 /// @nodoc
 mixin _$SubscriptionEvent {
-  String get priceId;
-  String get customerId;
+  String get priceId => throw _privateConstructorUsedError;
+  String get customerId => throw _privateConstructorUsedError;
 
   @optionalTypeArgs
-  TResult when<TResult extends Object>({
-    @required TResult subscribe(String priceId, String customerId),
-  });
+  TResult when<TResult extends Object?>({
+    required TResult Function(String priceId, String customerId) subscribe,
+  }) =>
+      throw _privateConstructorUsedError;
   @optionalTypeArgs
-  TResult maybeWhen<TResult extends Object>({
-    TResult subscribe(String priceId, String customerId),
-    @required TResult orElse(),
-  });
+  TResult maybeWhen<TResult extends Object?>({
+    TResult Function(String priceId, String customerId)? subscribe,
+    required TResult orElse(),
+  }) =>
+      throw _privateConstructorUsedError;
   @optionalTypeArgs
-  TResult map<TResult extends Object>({
-    @required TResult subscribe(Subscribe value),
-  });
+  TResult map<TResult extends Object?>({
+    required TResult Function(Subscribe value) subscribe,
+  }) =>
+      throw _privateConstructorUsedError;
   @optionalTypeArgs
-  TResult maybeMap<TResult extends Object>({
-    TResult subscribe(Subscribe value),
-    @required TResult orElse(),
-  });
+  TResult maybeMap<TResult extends Object?>({
+    TResult Function(Subscribe value)? subscribe,
+    required TResult orElse(),
+  }) =>
+      throw _privateConstructorUsedError;
 
   @JsonKey(ignore: true)
-  $SubscriptionEventCopyWith<SubscriptionEvent> get copyWith;
+  $SubscriptionEventCopyWith<SubscriptionEvent> get copyWith =>
+      throw _privateConstructorUsedError;
 }
 
 /// @nodoc
@@ -73,13 +79,18 @@ class _$SubscriptionEventCopyWithImpl<$Res>
 
   @override
   $Res call({
-    Object priceId = freezed,
-    Object customerId = freezed,
+    Object? priceId = freezed,
+    Object? customerId = freezed,
   }) {
     return _then(_value.copyWith(
-      priceId: priceId == freezed ? _value.priceId : priceId as String,
-      customerId:
-          customerId == freezed ? _value.customerId : customerId as String,
+      priceId: priceId == freezed
+          ? _value.priceId
+          : priceId // ignore: cast_nullable_to_non_nullable
+              as String,
+      customerId: customerId == freezed
+          ? _value.customerId
+          : customerId // ignore: cast_nullable_to_non_nullable
+              as String,
     ));
   }
 }
@@ -105,22 +116,26 @@ class _$SubscribeCopyWithImpl<$Res>
 
   @override
   $Res call({
-    Object priceId = freezed,
-    Object customerId = freezed,
+    Object? priceId = freezed,
+    Object? customerId = freezed,
   }) {
     return _then(Subscribe(
-      priceId: priceId == freezed ? _value.priceId : priceId as String,
-      customerId:
-          customerId == freezed ? _value.customerId : customerId as String,
+      priceId: priceId == freezed
+          ? _value.priceId
+          : priceId // ignore: cast_nullable_to_non_nullable
+              as String,
+      customerId: customerId == freezed
+          ? _value.customerId
+          : customerId // ignore: cast_nullable_to_non_nullable
+              as String,
     ));
   }
 }
 
 /// @nodoc
+
 class _$Subscribe with DiagnosticableTreeMixin implements Subscribe {
-  const _$Subscribe({@required this.priceId, @required this.customerId})
-      : assert(priceId != null),
-        assert(customerId != null);
+  const _$Subscribe({required this.priceId, required this.customerId});
 
   @override
   final String priceId;
@@ -166,20 +181,18 @@ class _$Subscribe with DiagnosticableTreeMixin implements Subscribe {
 
   @override
   @optionalTypeArgs
-  TResult when<TResult extends Object>({
-    @required TResult subscribe(String priceId, String customerId),
+  TResult when<TResult extends Object?>({
+    required TResult Function(String priceId, String customerId) subscribe,
   }) {
-    assert(subscribe != null);
     return subscribe(priceId, customerId);
   }
 
   @override
   @optionalTypeArgs
-  TResult maybeWhen<TResult extends Object>({
-    TResult subscribe(String priceId, String customerId),
-    @required TResult orElse(),
+  TResult maybeWhen<TResult extends Object?>({
+    TResult Function(String priceId, String customerId)? subscribe,
+    required TResult orElse(),
   }) {
-    assert(orElse != null);
     if (subscribe != null) {
       return subscribe(priceId, customerId);
     }
@@ -188,20 +201,18 @@ class _$Subscribe with DiagnosticableTreeMixin implements Subscribe {
 
   @override
   @optionalTypeArgs
-  TResult map<TResult extends Object>({
-    @required TResult subscribe(Subscribe value),
+  TResult map<TResult extends Object?>({
+    required TResult Function(Subscribe value) subscribe,
   }) {
-    assert(subscribe != null);
     return subscribe(this);
   }
 
   @override
   @optionalTypeArgs
-  TResult maybeMap<TResult extends Object>({
-    TResult subscribe(Subscribe value),
-    @required TResult orElse(),
+  TResult maybeMap<TResult extends Object?>({
+    TResult Function(Subscribe value)? subscribe,
+    required TResult orElse(),
   }) {
-    assert(orElse != null);
     if (subscribe != null) {
       return subscribe(this);
     }
@@ -211,13 +222,14 @@ class _$Subscribe with DiagnosticableTreeMixin implements Subscribe {
 
 abstract class Subscribe implements SubscriptionEvent {
   const factory Subscribe(
-      {@required String priceId, @required String customerId}) = _$Subscribe;
+      {required String priceId, required String customerId}) = _$Subscribe;
 
   @override
-  String get priceId;
+  String get priceId => throw _privateConstructorUsedError;
   @override
-  String get customerId;
+  String get customerId => throw _privateConstructorUsedError;
   @override
   @JsonKey(ignore: true)
-  $SubscribeCopyWith<Subscribe> get copyWith;
+  $SubscribeCopyWith<Subscribe> get copyWith =>
+      throw _privateConstructorUsedError;
 }

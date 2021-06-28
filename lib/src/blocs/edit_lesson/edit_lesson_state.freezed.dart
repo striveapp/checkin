@@ -1,5 +1,5 @@
 // GENERATED CODE - DO NOT MODIFY BY HAND
-// ignore_for_file: deprecated_member_use, deprecated_member_use_from_same_package, use_function_type_syntax_for_parameters, unnecessary_const, avoid_init_to_null, invalid_override_different_default_values_named, prefer_expression_function_bodies
+// ignore_for_file: unused_element, deprecated_member_use, deprecated_member_use_from_same_package, use_function_type_syntax_for_parameters, unnecessary_const, avoid_init_to_null, invalid_override_different_default_values_named, prefer_expression_function_bodies, annotate_overrides
 
 part of 'edit_lesson_state.dart';
 
@@ -9,17 +9,18 @@ part of 'edit_lesson_state.dart';
 
 T _$identity<T>(T value) => value;
 
+final _privateConstructorUsedError = UnsupportedError(
+    'It seems like you constructed your class using `MyClass._()`. This constructor is only meant to be used by freezed and you are not supposed to need it nor use it.\nPlease check the documentation here for more informations: https://github.com/rrousselGit/freezed#custom-getters-and-methods');
+
 /// @nodoc
 class _$EditLessonStateTearOff {
   const _$EditLessonStateTearOff();
 
-// ignore: unused_element
   EditLessonUninitialized editLessonUninitialized() {
     return const EditLessonUninitialized();
   }
 
-// ignore: unused_element
-  MastersLoaded mastersLoaded({@required List<Master> masters}) {
+  MastersLoaded mastersLoaded({required List<Master> masters}) {
     return MastersLoaded(
       masters: masters,
     );
@@ -27,33 +28,37 @@ class _$EditLessonStateTearOff {
 }
 
 /// @nodoc
-// ignore: unused_element
 const $EditLessonState = _$EditLessonStateTearOff();
 
 /// @nodoc
 mixin _$EditLessonState {
   @optionalTypeArgs
-  TResult when<TResult extends Object>({
-    @required TResult editLessonUninitialized(),
-    @required TResult mastersLoaded(List<Master> masters),
-  });
+  TResult when<TResult extends Object?>({
+    required TResult Function() editLessonUninitialized,
+    required TResult Function(List<Master> masters) mastersLoaded,
+  }) =>
+      throw _privateConstructorUsedError;
   @optionalTypeArgs
-  TResult maybeWhen<TResult extends Object>({
-    TResult editLessonUninitialized(),
-    TResult mastersLoaded(List<Master> masters),
-    @required TResult orElse(),
-  });
+  TResult maybeWhen<TResult extends Object?>({
+    TResult Function()? editLessonUninitialized,
+    TResult Function(List<Master> masters)? mastersLoaded,
+    required TResult orElse(),
+  }) =>
+      throw _privateConstructorUsedError;
   @optionalTypeArgs
-  TResult map<TResult extends Object>({
-    @required TResult editLessonUninitialized(EditLessonUninitialized value),
-    @required TResult mastersLoaded(MastersLoaded value),
-  });
+  TResult map<TResult extends Object?>({
+    required TResult Function(EditLessonUninitialized value)
+        editLessonUninitialized,
+    required TResult Function(MastersLoaded value) mastersLoaded,
+  }) =>
+      throw _privateConstructorUsedError;
   @optionalTypeArgs
-  TResult maybeMap<TResult extends Object>({
-    TResult editLessonUninitialized(EditLessonUninitialized value),
-    TResult mastersLoaded(MastersLoaded value),
-    @required TResult orElse(),
-  });
+  TResult maybeMap<TResult extends Object?>({
+    TResult Function(EditLessonUninitialized value)? editLessonUninitialized,
+    TResult Function(MastersLoaded value)? mastersLoaded,
+    required TResult orElse(),
+  }) =>
+      throw _privateConstructorUsedError;
 }
 
 /// @nodoc
@@ -93,6 +98,7 @@ class _$EditLessonUninitializedCopyWithImpl<$Res>
 }
 
 /// @nodoc
+
 class _$EditLessonUninitialized
     with DiagnosticableTreeMixin
     implements EditLessonUninitialized {
@@ -121,23 +127,20 @@ class _$EditLessonUninitialized
 
   @override
   @optionalTypeArgs
-  TResult when<TResult extends Object>({
-    @required TResult editLessonUninitialized(),
-    @required TResult mastersLoaded(List<Master> masters),
+  TResult when<TResult extends Object?>({
+    required TResult Function() editLessonUninitialized,
+    required TResult Function(List<Master> masters) mastersLoaded,
   }) {
-    assert(editLessonUninitialized != null);
-    assert(mastersLoaded != null);
     return editLessonUninitialized();
   }
 
   @override
   @optionalTypeArgs
-  TResult maybeWhen<TResult extends Object>({
-    TResult editLessonUninitialized(),
-    TResult mastersLoaded(List<Master> masters),
-    @required TResult orElse(),
+  TResult maybeWhen<TResult extends Object?>({
+    TResult Function()? editLessonUninitialized,
+    TResult Function(List<Master> masters)? mastersLoaded,
+    required TResult orElse(),
   }) {
-    assert(orElse != null);
     if (editLessonUninitialized != null) {
       return editLessonUninitialized();
     }
@@ -146,23 +149,21 @@ class _$EditLessonUninitialized
 
   @override
   @optionalTypeArgs
-  TResult map<TResult extends Object>({
-    @required TResult editLessonUninitialized(EditLessonUninitialized value),
-    @required TResult mastersLoaded(MastersLoaded value),
+  TResult map<TResult extends Object?>({
+    required TResult Function(EditLessonUninitialized value)
+        editLessonUninitialized,
+    required TResult Function(MastersLoaded value) mastersLoaded,
   }) {
-    assert(editLessonUninitialized != null);
-    assert(mastersLoaded != null);
     return editLessonUninitialized(this);
   }
 
   @override
   @optionalTypeArgs
-  TResult maybeMap<TResult extends Object>({
-    TResult editLessonUninitialized(EditLessonUninitialized value),
-    TResult mastersLoaded(MastersLoaded value),
-    @required TResult orElse(),
+  TResult maybeMap<TResult extends Object?>({
+    TResult Function(EditLessonUninitialized value)? editLessonUninitialized,
+    TResult Function(MastersLoaded value)? mastersLoaded,
+    required TResult orElse(),
   }) {
-    assert(orElse != null);
     if (editLessonUninitialized != null) {
       return editLessonUninitialized(this);
     }
@@ -195,17 +196,21 @@ class _$MastersLoadedCopyWithImpl<$Res>
 
   @override
   $Res call({
-    Object masters = freezed,
+    Object? masters = freezed,
   }) {
     return _then(MastersLoaded(
-      masters: masters == freezed ? _value.masters : masters as List<Master>,
+      masters: masters == freezed
+          ? _value.masters
+          : masters // ignore: cast_nullable_to_non_nullable
+              as List<Master>,
     ));
   }
 }
 
 /// @nodoc
+
 class _$MastersLoaded with DiagnosticableTreeMixin implements MastersLoaded {
-  const _$MastersLoaded({@required this.masters}) : assert(masters != null);
+  const _$MastersLoaded({required this.masters});
 
   @override
   final List<Master> masters;
@@ -242,23 +247,20 @@ class _$MastersLoaded with DiagnosticableTreeMixin implements MastersLoaded {
 
   @override
   @optionalTypeArgs
-  TResult when<TResult extends Object>({
-    @required TResult editLessonUninitialized(),
-    @required TResult mastersLoaded(List<Master> masters),
+  TResult when<TResult extends Object?>({
+    required TResult Function() editLessonUninitialized,
+    required TResult Function(List<Master> masters) mastersLoaded,
   }) {
-    assert(editLessonUninitialized != null);
-    assert(mastersLoaded != null);
     return mastersLoaded(masters);
   }
 
   @override
   @optionalTypeArgs
-  TResult maybeWhen<TResult extends Object>({
-    TResult editLessonUninitialized(),
-    TResult mastersLoaded(List<Master> masters),
-    @required TResult orElse(),
+  TResult maybeWhen<TResult extends Object?>({
+    TResult Function()? editLessonUninitialized,
+    TResult Function(List<Master> masters)? mastersLoaded,
+    required TResult orElse(),
   }) {
-    assert(orElse != null);
     if (mastersLoaded != null) {
       return mastersLoaded(masters);
     }
@@ -267,23 +269,21 @@ class _$MastersLoaded with DiagnosticableTreeMixin implements MastersLoaded {
 
   @override
   @optionalTypeArgs
-  TResult map<TResult extends Object>({
-    @required TResult editLessonUninitialized(EditLessonUninitialized value),
-    @required TResult mastersLoaded(MastersLoaded value),
+  TResult map<TResult extends Object?>({
+    required TResult Function(EditLessonUninitialized value)
+        editLessonUninitialized,
+    required TResult Function(MastersLoaded value) mastersLoaded,
   }) {
-    assert(editLessonUninitialized != null);
-    assert(mastersLoaded != null);
     return mastersLoaded(this);
   }
 
   @override
   @optionalTypeArgs
-  TResult maybeMap<TResult extends Object>({
-    TResult editLessonUninitialized(EditLessonUninitialized value),
-    TResult mastersLoaded(MastersLoaded value),
-    @required TResult orElse(),
+  TResult maybeMap<TResult extends Object?>({
+    TResult Function(EditLessonUninitialized value)? editLessonUninitialized,
+    TResult Function(MastersLoaded value)? mastersLoaded,
+    required TResult orElse(),
   }) {
-    assert(orElse != null);
     if (mastersLoaded != null) {
       return mastersLoaded(this);
     }
@@ -292,10 +292,11 @@ class _$MastersLoaded with DiagnosticableTreeMixin implements MastersLoaded {
 }
 
 abstract class MastersLoaded implements EditLessonState {
-  const factory MastersLoaded({@required List<Master> masters}) =
+  const factory MastersLoaded({required List<Master> masters}) =
       _$MastersLoaded;
 
-  List<Master> get masters;
+  List<Master> get masters => throw _privateConstructorUsedError;
   @JsonKey(ignore: true)
-  $MastersLoadedCopyWith<MastersLoaded> get copyWith;
+  $MastersLoadedCopyWith<MastersLoaded> get copyWith =>
+      throw _privateConstructorUsedError;
 }

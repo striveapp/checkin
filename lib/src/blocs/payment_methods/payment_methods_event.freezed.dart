@@ -1,5 +1,5 @@
 // GENERATED CODE - DO NOT MODIFY BY HAND
-// ignore_for_file: deprecated_member_use, deprecated_member_use_from_same_package, use_function_type_syntax_for_parameters, unnecessary_const, avoid_init_to_null, invalid_override_different_default_values_named, prefer_expression_function_bodies
+// ignore_for_file: unused_element, deprecated_member_use, deprecated_member_use_from_same_package, use_function_type_syntax_for_parameters, unnecessary_const, avoid_init_to_null, invalid_override_different_default_values_named, prefer_expression_function_bodies, annotate_overrides
 
 part of 'payment_methods_event.dart';
 
@@ -9,31 +9,31 @@ part of 'payment_methods_event.dart';
 
 T _$identity<T>(T value) => value;
 
+final _privateConstructorUsedError = UnsupportedError(
+    'It seems like you constructed your class using `MyClass._()`. This constructor is only meant to be used by freezed and you are not supposed to need it nor use it.\nPlease check the documentation here for more informations: https://github.com/rrousselGit/freezed#custom-getters-and-methods');
+
 /// @nodoc
 class _$PaymentMethodsEventTearOff {
   const _$PaymentMethodsEventTearOff();
 
-// ignore: unused_element
   PaymentMethodUpdated paymentMethodUpdated(
-      {@required String userEmail, PaymentMethod paymentMethod}) {
+      {required String userEmail, PaymentMethod? paymentMethod}) {
     return PaymentMethodUpdated(
       userEmail: userEmail,
       paymentMethod: paymentMethod,
     );
   }
 
-// ignore: unused_element
   RegisterBankAccount registerBankAccount(
-      {@required Gym gym, @required String billingEmail}) {
+      {required Gym gym, required String billingEmail}) {
     return RegisterBankAccount(
       gym: gym,
       billingEmail: billingEmail,
     );
   }
 
-// ignore: unused_element
   ChangeBankAccount changeBankAccount(
-      {@required Gym gym, @required String billingEmail}) {
+      {required Gym gym, required String billingEmail}) {
     return ChangeBankAccount(
       gym: gym,
       billingEmail: billingEmail,
@@ -42,39 +42,42 @@ class _$PaymentMethodsEventTearOff {
 }
 
 /// @nodoc
-// ignore: unused_element
 const $PaymentMethodsEvent = _$PaymentMethodsEventTearOff();
 
 /// @nodoc
 mixin _$PaymentMethodsEvent {
   @optionalTypeArgs
-  TResult when<TResult extends Object>({
-    @required
-        TResult paymentMethodUpdated(
-            String userEmail, PaymentMethod paymentMethod),
-    @required TResult registerBankAccount(Gym gym, String billingEmail),
-    @required TResult changeBankAccount(Gym gym, String billingEmail),
-  });
+  TResult when<TResult extends Object?>({
+    required TResult Function(String userEmail, PaymentMethod? paymentMethod)
+        paymentMethodUpdated,
+    required TResult Function(Gym gym, String billingEmail) registerBankAccount,
+    required TResult Function(Gym gym, String billingEmail) changeBankAccount,
+  }) =>
+      throw _privateConstructorUsedError;
   @optionalTypeArgs
-  TResult maybeWhen<TResult extends Object>({
-    TResult paymentMethodUpdated(String userEmail, PaymentMethod paymentMethod),
-    TResult registerBankAccount(Gym gym, String billingEmail),
-    TResult changeBankAccount(Gym gym, String billingEmail),
-    @required TResult orElse(),
-  });
+  TResult maybeWhen<TResult extends Object?>({
+    TResult Function(String userEmail, PaymentMethod? paymentMethod)?
+        paymentMethodUpdated,
+    TResult Function(Gym gym, String billingEmail)? registerBankAccount,
+    TResult Function(Gym gym, String billingEmail)? changeBankAccount,
+    required TResult orElse(),
+  }) =>
+      throw _privateConstructorUsedError;
   @optionalTypeArgs
-  TResult map<TResult extends Object>({
-    @required TResult paymentMethodUpdated(PaymentMethodUpdated value),
-    @required TResult registerBankAccount(RegisterBankAccount value),
-    @required TResult changeBankAccount(ChangeBankAccount value),
-  });
+  TResult map<TResult extends Object?>({
+    required TResult Function(PaymentMethodUpdated value) paymentMethodUpdated,
+    required TResult Function(RegisterBankAccount value) registerBankAccount,
+    required TResult Function(ChangeBankAccount value) changeBankAccount,
+  }) =>
+      throw _privateConstructorUsedError;
   @optionalTypeArgs
-  TResult maybeMap<TResult extends Object>({
-    TResult paymentMethodUpdated(PaymentMethodUpdated value),
-    TResult registerBankAccount(RegisterBankAccount value),
-    TResult changeBankAccount(ChangeBankAccount value),
-    @required TResult orElse(),
-  });
+  TResult maybeMap<TResult extends Object?>({
+    TResult Function(PaymentMethodUpdated value)? paymentMethodUpdated,
+    TResult Function(RegisterBankAccount value)? registerBankAccount,
+    TResult Function(ChangeBankAccount value)? changeBankAccount,
+    required TResult orElse(),
+  }) =>
+      throw _privateConstructorUsedError;
 }
 
 /// @nodoc
@@ -99,9 +102,9 @@ abstract class $PaymentMethodUpdatedCopyWith<$Res> {
   factory $PaymentMethodUpdatedCopyWith(PaymentMethodUpdated value,
           $Res Function(PaymentMethodUpdated) then) =
       _$PaymentMethodUpdatedCopyWithImpl<$Res>;
-  $Res call({String userEmail, PaymentMethod paymentMethod});
+  $Res call({String userEmail, PaymentMethod? paymentMethod});
 
-  $PaymentMethodCopyWith<$Res> get paymentMethod;
+  $PaymentMethodCopyWith<$Res>? get paymentMethod;
 }
 
 /// @nodoc
@@ -117,39 +120,44 @@ class _$PaymentMethodUpdatedCopyWithImpl<$Res>
 
   @override
   $Res call({
-    Object userEmail = freezed,
-    Object paymentMethod = freezed,
+    Object? userEmail = freezed,
+    Object? paymentMethod = freezed,
   }) {
     return _then(PaymentMethodUpdated(
-      userEmail: userEmail == freezed ? _value.userEmail : userEmail as String,
+      userEmail: userEmail == freezed
+          ? _value.userEmail
+          : userEmail // ignore: cast_nullable_to_non_nullable
+              as String,
       paymentMethod: paymentMethod == freezed
           ? _value.paymentMethod
-          : paymentMethod as PaymentMethod,
+          : paymentMethod // ignore: cast_nullable_to_non_nullable
+              as PaymentMethod?,
     ));
   }
 
   @override
-  $PaymentMethodCopyWith<$Res> get paymentMethod {
+  $PaymentMethodCopyWith<$Res>? get paymentMethod {
     if (_value.paymentMethod == null) {
       return null;
     }
-    return $PaymentMethodCopyWith<$Res>(_value.paymentMethod, (value) {
+
+    return $PaymentMethodCopyWith<$Res>(_value.paymentMethod!, (value) {
       return _then(_value.copyWith(paymentMethod: value));
     });
   }
 }
 
 /// @nodoc
+
 class _$PaymentMethodUpdated
     with DiagnosticableTreeMixin
     implements PaymentMethodUpdated {
-  const _$PaymentMethodUpdated({@required this.userEmail, this.paymentMethod})
-      : assert(userEmail != null);
+  const _$PaymentMethodUpdated({required this.userEmail, this.paymentMethod});
 
   @override
   final String userEmail;
   @override
-  final PaymentMethod paymentMethod;
+  final PaymentMethod? paymentMethod;
 
   @override
   String toString({DiagnosticLevel minLevel = DiagnosticLevel.info}) {
@@ -192,28 +200,24 @@ class _$PaymentMethodUpdated
 
   @override
   @optionalTypeArgs
-  TResult when<TResult extends Object>({
-    @required
-        TResult paymentMethodUpdated(
-            String userEmail, PaymentMethod paymentMethod),
-    @required TResult registerBankAccount(Gym gym, String billingEmail),
-    @required TResult changeBankAccount(Gym gym, String billingEmail),
+  TResult when<TResult extends Object?>({
+    required TResult Function(String userEmail, PaymentMethod? paymentMethod)
+        paymentMethodUpdated,
+    required TResult Function(Gym gym, String billingEmail) registerBankAccount,
+    required TResult Function(Gym gym, String billingEmail) changeBankAccount,
   }) {
-    assert(paymentMethodUpdated != null);
-    assert(registerBankAccount != null);
-    assert(changeBankAccount != null);
     return paymentMethodUpdated(userEmail, paymentMethod);
   }
 
   @override
   @optionalTypeArgs
-  TResult maybeWhen<TResult extends Object>({
-    TResult paymentMethodUpdated(String userEmail, PaymentMethod paymentMethod),
-    TResult registerBankAccount(Gym gym, String billingEmail),
-    TResult changeBankAccount(Gym gym, String billingEmail),
-    @required TResult orElse(),
+  TResult maybeWhen<TResult extends Object?>({
+    TResult Function(String userEmail, PaymentMethod? paymentMethod)?
+        paymentMethodUpdated,
+    TResult Function(Gym gym, String billingEmail)? registerBankAccount,
+    TResult Function(Gym gym, String billingEmail)? changeBankAccount,
+    required TResult orElse(),
   }) {
-    assert(orElse != null);
     if (paymentMethodUpdated != null) {
       return paymentMethodUpdated(userEmail, paymentMethod);
     }
@@ -222,26 +226,22 @@ class _$PaymentMethodUpdated
 
   @override
   @optionalTypeArgs
-  TResult map<TResult extends Object>({
-    @required TResult paymentMethodUpdated(PaymentMethodUpdated value),
-    @required TResult registerBankAccount(RegisterBankAccount value),
-    @required TResult changeBankAccount(ChangeBankAccount value),
+  TResult map<TResult extends Object?>({
+    required TResult Function(PaymentMethodUpdated value) paymentMethodUpdated,
+    required TResult Function(RegisterBankAccount value) registerBankAccount,
+    required TResult Function(ChangeBankAccount value) changeBankAccount,
   }) {
-    assert(paymentMethodUpdated != null);
-    assert(registerBankAccount != null);
-    assert(changeBankAccount != null);
     return paymentMethodUpdated(this);
   }
 
   @override
   @optionalTypeArgs
-  TResult maybeMap<TResult extends Object>({
-    TResult paymentMethodUpdated(PaymentMethodUpdated value),
-    TResult registerBankAccount(RegisterBankAccount value),
-    TResult changeBankAccount(ChangeBankAccount value),
-    @required TResult orElse(),
+  TResult maybeMap<TResult extends Object?>({
+    TResult Function(PaymentMethodUpdated value)? paymentMethodUpdated,
+    TResult Function(RegisterBankAccount value)? registerBankAccount,
+    TResult Function(ChangeBankAccount value)? changeBankAccount,
+    required TResult orElse(),
   }) {
-    assert(orElse != null);
     if (paymentMethodUpdated != null) {
       return paymentMethodUpdated(this);
     }
@@ -251,13 +251,14 @@ class _$PaymentMethodUpdated
 
 abstract class PaymentMethodUpdated implements PaymentMethodsEvent {
   const factory PaymentMethodUpdated(
-      {@required String userEmail,
-      PaymentMethod paymentMethod}) = _$PaymentMethodUpdated;
+      {required String userEmail,
+      PaymentMethod? paymentMethod}) = _$PaymentMethodUpdated;
 
-  String get userEmail;
-  PaymentMethod get paymentMethod;
+  String get userEmail => throw _privateConstructorUsedError;
+  PaymentMethod? get paymentMethod => throw _privateConstructorUsedError;
   @JsonKey(ignore: true)
-  $PaymentMethodUpdatedCopyWith<PaymentMethodUpdated> get copyWith;
+  $PaymentMethodUpdatedCopyWith<PaymentMethodUpdated> get copyWith =>
+      throw _privateConstructorUsedError;
 }
 
 /// @nodoc
@@ -283,22 +284,23 @@ class _$RegisterBankAccountCopyWithImpl<$Res>
 
   @override
   $Res call({
-    Object gym = freezed,
-    Object billingEmail = freezed,
+    Object? gym = freezed,
+    Object? billingEmail = freezed,
   }) {
     return _then(RegisterBankAccount(
-      gym: gym == freezed ? _value.gym : gym as Gym,
+      gym: gym == freezed
+          ? _value.gym
+          : gym // ignore: cast_nullable_to_non_nullable
+              as Gym,
       billingEmail: billingEmail == freezed
           ? _value.billingEmail
-          : billingEmail as String,
+          : billingEmail // ignore: cast_nullable_to_non_nullable
+              as String,
     ));
   }
 
   @override
   $GymCopyWith<$Res> get gym {
-    if (_value.gym == null) {
-      return null;
-    }
     return $GymCopyWith<$Res>(_value.gym, (value) {
       return _then(_value.copyWith(gym: value));
     });
@@ -306,12 +308,11 @@ class _$RegisterBankAccountCopyWithImpl<$Res>
 }
 
 /// @nodoc
+
 class _$RegisterBankAccount
     with DiagnosticableTreeMixin
     implements RegisterBankAccount {
-  const _$RegisterBankAccount({@required this.gym, @required this.billingEmail})
-      : assert(gym != null),
-        assert(billingEmail != null);
+  const _$RegisterBankAccount({required this.gym, required this.billingEmail});
 
   @override
   final Gym gym;
@@ -357,28 +358,24 @@ class _$RegisterBankAccount
 
   @override
   @optionalTypeArgs
-  TResult when<TResult extends Object>({
-    @required
-        TResult paymentMethodUpdated(
-            String userEmail, PaymentMethod paymentMethod),
-    @required TResult registerBankAccount(Gym gym, String billingEmail),
-    @required TResult changeBankAccount(Gym gym, String billingEmail),
+  TResult when<TResult extends Object?>({
+    required TResult Function(String userEmail, PaymentMethod? paymentMethod)
+        paymentMethodUpdated,
+    required TResult Function(Gym gym, String billingEmail) registerBankAccount,
+    required TResult Function(Gym gym, String billingEmail) changeBankAccount,
   }) {
-    assert(paymentMethodUpdated != null);
-    assert(registerBankAccount != null);
-    assert(changeBankAccount != null);
     return registerBankAccount(gym, billingEmail);
   }
 
   @override
   @optionalTypeArgs
-  TResult maybeWhen<TResult extends Object>({
-    TResult paymentMethodUpdated(String userEmail, PaymentMethod paymentMethod),
-    TResult registerBankAccount(Gym gym, String billingEmail),
-    TResult changeBankAccount(Gym gym, String billingEmail),
-    @required TResult orElse(),
+  TResult maybeWhen<TResult extends Object?>({
+    TResult Function(String userEmail, PaymentMethod? paymentMethod)?
+        paymentMethodUpdated,
+    TResult Function(Gym gym, String billingEmail)? registerBankAccount,
+    TResult Function(Gym gym, String billingEmail)? changeBankAccount,
+    required TResult orElse(),
   }) {
-    assert(orElse != null);
     if (registerBankAccount != null) {
       return registerBankAccount(gym, billingEmail);
     }
@@ -387,26 +384,22 @@ class _$RegisterBankAccount
 
   @override
   @optionalTypeArgs
-  TResult map<TResult extends Object>({
-    @required TResult paymentMethodUpdated(PaymentMethodUpdated value),
-    @required TResult registerBankAccount(RegisterBankAccount value),
-    @required TResult changeBankAccount(ChangeBankAccount value),
+  TResult map<TResult extends Object?>({
+    required TResult Function(PaymentMethodUpdated value) paymentMethodUpdated,
+    required TResult Function(RegisterBankAccount value) registerBankAccount,
+    required TResult Function(ChangeBankAccount value) changeBankAccount,
   }) {
-    assert(paymentMethodUpdated != null);
-    assert(registerBankAccount != null);
-    assert(changeBankAccount != null);
     return registerBankAccount(this);
   }
 
   @override
   @optionalTypeArgs
-  TResult maybeMap<TResult extends Object>({
-    TResult paymentMethodUpdated(PaymentMethodUpdated value),
-    TResult registerBankAccount(RegisterBankAccount value),
-    TResult changeBankAccount(ChangeBankAccount value),
-    @required TResult orElse(),
+  TResult maybeMap<TResult extends Object?>({
+    TResult Function(PaymentMethodUpdated value)? paymentMethodUpdated,
+    TResult Function(RegisterBankAccount value)? registerBankAccount,
+    TResult Function(ChangeBankAccount value)? changeBankAccount,
+    required TResult orElse(),
   }) {
-    assert(orElse != null);
     if (registerBankAccount != null) {
       return registerBankAccount(this);
     }
@@ -416,13 +409,13 @@ class _$RegisterBankAccount
 
 abstract class RegisterBankAccount implements PaymentMethodsEvent {
   const factory RegisterBankAccount(
-      {@required Gym gym,
-      @required String billingEmail}) = _$RegisterBankAccount;
+      {required Gym gym, required String billingEmail}) = _$RegisterBankAccount;
 
-  Gym get gym;
-  String get billingEmail;
+  Gym get gym => throw _privateConstructorUsedError;
+  String get billingEmail => throw _privateConstructorUsedError;
   @JsonKey(ignore: true)
-  $RegisterBankAccountCopyWith<RegisterBankAccount> get copyWith;
+  $RegisterBankAccountCopyWith<RegisterBankAccount> get copyWith =>
+      throw _privateConstructorUsedError;
 }
 
 /// @nodoc
@@ -448,22 +441,23 @@ class _$ChangeBankAccountCopyWithImpl<$Res>
 
   @override
   $Res call({
-    Object gym = freezed,
-    Object billingEmail = freezed,
+    Object? gym = freezed,
+    Object? billingEmail = freezed,
   }) {
     return _then(ChangeBankAccount(
-      gym: gym == freezed ? _value.gym : gym as Gym,
+      gym: gym == freezed
+          ? _value.gym
+          : gym // ignore: cast_nullable_to_non_nullable
+              as Gym,
       billingEmail: billingEmail == freezed
           ? _value.billingEmail
-          : billingEmail as String,
+          : billingEmail // ignore: cast_nullable_to_non_nullable
+              as String,
     ));
   }
 
   @override
   $GymCopyWith<$Res> get gym {
-    if (_value.gym == null) {
-      return null;
-    }
     return $GymCopyWith<$Res>(_value.gym, (value) {
       return _then(_value.copyWith(gym: value));
     });
@@ -471,12 +465,11 @@ class _$ChangeBankAccountCopyWithImpl<$Res>
 }
 
 /// @nodoc
+
 class _$ChangeBankAccount
     with DiagnosticableTreeMixin
     implements ChangeBankAccount {
-  const _$ChangeBankAccount({@required this.gym, @required this.billingEmail})
-      : assert(gym != null),
-        assert(billingEmail != null);
+  const _$ChangeBankAccount({required this.gym, required this.billingEmail});
 
   @override
   final Gym gym;
@@ -522,28 +515,24 @@ class _$ChangeBankAccount
 
   @override
   @optionalTypeArgs
-  TResult when<TResult extends Object>({
-    @required
-        TResult paymentMethodUpdated(
-            String userEmail, PaymentMethod paymentMethod),
-    @required TResult registerBankAccount(Gym gym, String billingEmail),
-    @required TResult changeBankAccount(Gym gym, String billingEmail),
+  TResult when<TResult extends Object?>({
+    required TResult Function(String userEmail, PaymentMethod? paymentMethod)
+        paymentMethodUpdated,
+    required TResult Function(Gym gym, String billingEmail) registerBankAccount,
+    required TResult Function(Gym gym, String billingEmail) changeBankAccount,
   }) {
-    assert(paymentMethodUpdated != null);
-    assert(registerBankAccount != null);
-    assert(changeBankAccount != null);
     return changeBankAccount(gym, billingEmail);
   }
 
   @override
   @optionalTypeArgs
-  TResult maybeWhen<TResult extends Object>({
-    TResult paymentMethodUpdated(String userEmail, PaymentMethod paymentMethod),
-    TResult registerBankAccount(Gym gym, String billingEmail),
-    TResult changeBankAccount(Gym gym, String billingEmail),
-    @required TResult orElse(),
+  TResult maybeWhen<TResult extends Object?>({
+    TResult Function(String userEmail, PaymentMethod? paymentMethod)?
+        paymentMethodUpdated,
+    TResult Function(Gym gym, String billingEmail)? registerBankAccount,
+    TResult Function(Gym gym, String billingEmail)? changeBankAccount,
+    required TResult orElse(),
   }) {
-    assert(orElse != null);
     if (changeBankAccount != null) {
       return changeBankAccount(gym, billingEmail);
     }
@@ -552,26 +541,22 @@ class _$ChangeBankAccount
 
   @override
   @optionalTypeArgs
-  TResult map<TResult extends Object>({
-    @required TResult paymentMethodUpdated(PaymentMethodUpdated value),
-    @required TResult registerBankAccount(RegisterBankAccount value),
-    @required TResult changeBankAccount(ChangeBankAccount value),
+  TResult map<TResult extends Object?>({
+    required TResult Function(PaymentMethodUpdated value) paymentMethodUpdated,
+    required TResult Function(RegisterBankAccount value) registerBankAccount,
+    required TResult Function(ChangeBankAccount value) changeBankAccount,
   }) {
-    assert(paymentMethodUpdated != null);
-    assert(registerBankAccount != null);
-    assert(changeBankAccount != null);
     return changeBankAccount(this);
   }
 
   @override
   @optionalTypeArgs
-  TResult maybeMap<TResult extends Object>({
-    TResult paymentMethodUpdated(PaymentMethodUpdated value),
-    TResult registerBankAccount(RegisterBankAccount value),
-    TResult changeBankAccount(ChangeBankAccount value),
-    @required TResult orElse(),
+  TResult maybeMap<TResult extends Object?>({
+    TResult Function(PaymentMethodUpdated value)? paymentMethodUpdated,
+    TResult Function(RegisterBankAccount value)? registerBankAccount,
+    TResult Function(ChangeBankAccount value)? changeBankAccount,
+    required TResult orElse(),
   }) {
-    assert(orElse != null);
     if (changeBankAccount != null) {
       return changeBankAccount(this);
     }
@@ -581,10 +566,11 @@ class _$ChangeBankAccount
 
 abstract class ChangeBankAccount implements PaymentMethodsEvent {
   const factory ChangeBankAccount(
-      {@required Gym gym, @required String billingEmail}) = _$ChangeBankAccount;
+      {required Gym gym, required String billingEmail}) = _$ChangeBankAccount;
 
-  Gym get gym;
-  String get billingEmail;
+  Gym get gym => throw _privateConstructorUsedError;
+  String get billingEmail => throw _privateConstructorUsedError;
   @JsonKey(ignore: true)
-  $ChangeBankAccountCopyWith<ChangeBankAccount> get copyWith;
+  $ChangeBankAccountCopyWith<ChangeBankAccount> get copyWith =>
+      throw _privateConstructorUsedError;
 }

@@ -1,5 +1,5 @@
 // GENERATED CODE - DO NOT MODIFY BY HAND
-// ignore_for_file: deprecated_member_use, deprecated_member_use_from_same_package, use_function_type_syntax_for_parameters, unnecessary_const, avoid_init_to_null, invalid_override_different_default_values_named, prefer_expression_function_bodies
+// ignore_for_file: unused_element, deprecated_member_use, deprecated_member_use_from_same_package, use_function_type_syntax_for_parameters, unnecessary_const, avoid_init_to_null, invalid_override_different_default_values_named, prefer_expression_function_bodies, annotate_overrides
 
 part of 'payment_method.dart';
 
@@ -9,16 +9,18 @@ part of 'payment_method.dart';
 
 T _$identity<T>(T value) => value;
 
+final _privateConstructorUsedError = UnsupportedError(
+    'It seems like you constructed your class using `MyClass._()`. This constructor is only meant to be used by freezed and you are not supposed to need it nor use it.\nPlease check the documentation here for more informations: https://github.com/rrousselGit/freezed#custom-getters-and-methods');
+
 /// @nodoc
 class _$PaymentMethodTearOff {
   const _$PaymentMethodTearOff();
 
-// ignore: unused_element
   _PaymentMethod call(
-      {@required String customerId,
-      @required String billingEmail,
-      @required String lastFourDigits,
-      @required String country}) {
+      {required String customerId,
+      required String billingEmail,
+      required String lastFourDigits,
+      required String country}) {
     return _PaymentMethod(
       customerId: customerId,
       billingEmail: billingEmail,
@@ -29,18 +31,18 @@ class _$PaymentMethodTearOff {
 }
 
 /// @nodoc
-// ignore: unused_element
 const $PaymentMethod = _$PaymentMethodTearOff();
 
 /// @nodoc
 mixin _$PaymentMethod {
-  String get customerId;
-  String get billingEmail;
-  String get lastFourDigits;
-  String get country;
+  String get customerId => throw _privateConstructorUsedError;
+  String get billingEmail => throw _privateConstructorUsedError;
+  String get lastFourDigits => throw _privateConstructorUsedError;
+  String get country => throw _privateConstructorUsedError;
 
   @JsonKey(ignore: true)
-  $PaymentMethodCopyWith<PaymentMethod> get copyWith;
+  $PaymentMethodCopyWith<PaymentMethod> get copyWith =>
+      throw _privateConstructorUsedError;
 }
 
 /// @nodoc
@@ -66,21 +68,28 @@ class _$PaymentMethodCopyWithImpl<$Res>
 
   @override
   $Res call({
-    Object customerId = freezed,
-    Object billingEmail = freezed,
-    Object lastFourDigits = freezed,
-    Object country = freezed,
+    Object? customerId = freezed,
+    Object? billingEmail = freezed,
+    Object? lastFourDigits = freezed,
+    Object? country = freezed,
   }) {
     return _then(_value.copyWith(
-      customerId:
-          customerId == freezed ? _value.customerId : customerId as String,
+      customerId: customerId == freezed
+          ? _value.customerId
+          : customerId // ignore: cast_nullable_to_non_nullable
+              as String,
       billingEmail: billingEmail == freezed
           ? _value.billingEmail
-          : billingEmail as String,
+          : billingEmail // ignore: cast_nullable_to_non_nullable
+              as String,
       lastFourDigits: lastFourDigits == freezed
           ? _value.lastFourDigits
-          : lastFourDigits as String,
-      country: country == freezed ? _value.country : country as String,
+          : lastFourDigits // ignore: cast_nullable_to_non_nullable
+              as String,
+      country: country == freezed
+          ? _value.country
+          : country // ignore: cast_nullable_to_non_nullable
+              as String,
     ));
   }
 }
@@ -112,36 +121,40 @@ class __$PaymentMethodCopyWithImpl<$Res>
 
   @override
   $Res call({
-    Object customerId = freezed,
-    Object billingEmail = freezed,
-    Object lastFourDigits = freezed,
-    Object country = freezed,
+    Object? customerId = freezed,
+    Object? billingEmail = freezed,
+    Object? lastFourDigits = freezed,
+    Object? country = freezed,
   }) {
     return _then(_PaymentMethod(
-      customerId:
-          customerId == freezed ? _value.customerId : customerId as String,
+      customerId: customerId == freezed
+          ? _value.customerId
+          : customerId // ignore: cast_nullable_to_non_nullable
+              as String,
       billingEmail: billingEmail == freezed
           ? _value.billingEmail
-          : billingEmail as String,
+          : billingEmail // ignore: cast_nullable_to_non_nullable
+              as String,
       lastFourDigits: lastFourDigits == freezed
           ? _value.lastFourDigits
-          : lastFourDigits as String,
-      country: country == freezed ? _value.country : country as String,
+          : lastFourDigits // ignore: cast_nullable_to_non_nullable
+              as String,
+      country: country == freezed
+          ? _value.country
+          : country // ignore: cast_nullable_to_non_nullable
+              as String,
     ));
   }
 }
 
 /// @nodoc
+
 class _$_PaymentMethod with DiagnosticableTreeMixin implements _PaymentMethod {
   _$_PaymentMethod(
-      {@required this.customerId,
-      @required this.billingEmail,
-      @required this.lastFourDigits,
-      @required this.country})
-      : assert(customerId != null),
-        assert(billingEmail != null),
-        assert(lastFourDigits != null),
-        assert(country != null);
+      {required this.customerId,
+      required this.billingEmail,
+      required this.lastFourDigits,
+      required this.country});
 
   @override
   final String customerId;
@@ -201,20 +214,21 @@ class _$_PaymentMethod with DiagnosticableTreeMixin implements _PaymentMethod {
 
 abstract class _PaymentMethod implements PaymentMethod {
   factory _PaymentMethod(
-      {@required String customerId,
-      @required String billingEmail,
-      @required String lastFourDigits,
-      @required String country}) = _$_PaymentMethod;
+      {required String customerId,
+      required String billingEmail,
+      required String lastFourDigits,
+      required String country}) = _$_PaymentMethod;
 
   @override
-  String get customerId;
+  String get customerId => throw _privateConstructorUsedError;
   @override
-  String get billingEmail;
+  String get billingEmail => throw _privateConstructorUsedError;
   @override
-  String get lastFourDigits;
+  String get lastFourDigits => throw _privateConstructorUsedError;
   @override
-  String get country;
+  String get country => throw _privateConstructorUsedError;
   @override
   @JsonKey(ignore: true)
-  _$PaymentMethodCopyWith<_PaymentMethod> get copyWith;
+  _$PaymentMethodCopyWith<_PaymentMethod> get copyWith =>
+      throw _privateConstructorUsedError;
 }

@@ -10,7 +10,7 @@ _$_Master _$_$_MasterFromJson(Map<String, dynamic> json) {
   return _$_Master(
     name: json['name'] as String,
     email: json['email'] as String,
-    imageUrl: json['imageUrl'] as String,
+    imageUrl: json['imageUrl'] as String?,
   );
 }
 

@@ -9,7 +9,7 @@ part of 'graduation_system.dart';
 _$_GraduationSystem _$_$_GraduationSystemFromJson(Map<String, dynamic> json) {
   return _$_GraduationSystem(
     grade: const GradeConverter().fromJson(json['grade'] as String),
-    forNextLevel: (json['forNextLevel'] as num)?.toDouble(),
+    forNextLevel: (json['forNextLevel'] as num).toDouble(),
   );
 }
 
