@@ -10,8 +10,8 @@ abstract class LeaderboardState with _$LeaderboardState {
   const factory LeaderboardState.leaderboardInitial() = LeaderboardInitial;
 
   const factory LeaderboardState.leaderboardLoaded({
-    @required List<UserHistory> podium,
-    @required List<UserHistory> restOfTheUsers,
+    required List<UserHistory> podium,
+    required List<UserHistory> restOfTheUsers,
     @Default(true) bool isAvailable,
   }) = LeaderboardLoaded;
 }

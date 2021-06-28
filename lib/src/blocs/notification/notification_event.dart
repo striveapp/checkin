@@ -9,9 +9,9 @@ part 'notification_event.freezed.dart';
 abstract class NotificationEvent with _$NotificationEvent {
   const factory NotificationEvent.initializeNotifications() = InitializeNotifications;
 
-  const factory NotificationEvent.updateToken({String loggedUserEmail}) = UpdateToken;
+  const factory NotificationEvent.updateToken({String? loggedUserEmail}) = UpdateToken;
 
-  const factory NotificationEvent.messageOpenedApp({Notification notification}) = MessageOpenedApp;
+  const factory NotificationEvent.messageOpenedApp({Notification? notification}) = MessageOpenedApp;
 
-  const factory NotificationEvent.message({Notification notification}) = Message;
+  const factory NotificationEvent.message({Notification? notification}) = Message;
 }

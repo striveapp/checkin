@@ -1,3 +1,5 @@
+// @dart=2.9
+
 import 'package:checkin/src/blocs/registry/bloc.dart';
 import 'package:checkin/src/blocs/sessions/bloc.dart';
 import 'package:checkin/src/constants.dart';

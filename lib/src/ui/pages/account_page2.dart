@@ -1,3 +1,5 @@
+// @dart=2.9
+
 import 'package:checkin/src/api/http_client.dart';
 import 'package:checkin/src/api/payment_api.dart';
 import 'package:checkin/src/blocs/gym/bloc.dart';

@@ -1,3 +1,5 @@
+// @dart=2.9
+
 import 'package:checkin/src/models/membership.dart';
 import 'package:flutter/material.dart';
 

@@ -1,3 +1,5 @@
+// @dart=2.9
+
 import 'package:checkin/src/blocs/lessons/bloc.dart';
 import 'package:checkin/src/blocs/lessons/lessons_bloc.dart';
 import 'package:checkin/src/models/user.dart';

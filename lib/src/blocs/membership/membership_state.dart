@@ -8,10 +8,10 @@ part 'membership_state.freezed.dart';
 @freezed
 abstract class MembershipState with _$MembershipState {
   const factory MembershipState.initialMembershipState() = InitialMembershipState;
-  const factory MembershipState.membershipActive({@required Membership membership}) =
+  const factory MembershipState.membershipActive({required Membership membership}) =
       MembershipActive;
   const factory MembershipState.membershipInactive(
-      {@required String customerEmail, String customerId}) = MembershipInactive;
+      {required String customerEmail, String? customerId}) = MembershipInactive;
   const factory MembershipState.membershipLoading() = MembershipLoading;
-  const factory MembershipState.membershipError({@required String errorMessage}) = MembershipError;
+  const factory MembershipState.membershipError({required String errorMessage}) = MembershipError;
 }

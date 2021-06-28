@@ -9,7 +9,7 @@ part 'user_stats_event.freezed.dart';
 abstract class UserStatsEvent with _$UserStatsEvent {
   const factory UserStatsEvent.initializeUserStats() = InitializeUserStats;
   const factory UserStatsEvent.userStatsUpdated({
-    @required List<Lesson> attendedLessons,
-    @required Timespan timespan,
+    required List<Lesson> attendedLessons,
+    required Timespan timespan,
   }) = UserStatsUpdated;
 }

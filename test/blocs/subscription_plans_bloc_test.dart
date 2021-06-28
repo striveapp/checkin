@@ -1,3 +1,5 @@
+// @dart=2.9
+
 import 'package:bloc_test/bloc_test.dart';
 import 'package:checkin/src/blocs/subscription_plans/bloc.dart';
 import 'package:checkin/src/models/gym.dart';

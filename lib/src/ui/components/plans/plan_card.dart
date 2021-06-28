@@ -1,3 +1,5 @@
+// @dart=2.9
+
 import 'package:checkin/src/blocs/subscription/bloc.dart';
 import 'package:checkin/src/models/subscription_plan.dart';
 import 'package:checkin/src/ui/components/plans/price.dart';

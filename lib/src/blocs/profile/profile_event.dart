@@ -11,26 +11,26 @@ abstract class ProfileEvent with _$ProfileEvent {
   const factory ProfileEvent.initializeProfile() = InitializeProfile;
 
   const factory ProfileEvent.profileUpdated({
-    @required User user,
-    @required bool isCurrentUser,
+    required User user,
+    required bool isCurrentUser,
   }) = ProfileUpdated;
 
   const factory ProfileEvent.updateImageUrl({
-    @required String userEmail,
+    required String userEmail,
   }) = UpdateImageUrl;
 
   const factory ProfileEvent.updateName({
-    @required String userEmail,
-    @required String newName,
+    required String userEmail,
+    required String newName,
   }) = UpdateName;
 
   const factory ProfileEvent.updateGrade({
-    @required String userEmail,
-    @required Grade newGrade,
+    required String userEmail,
+    required Grade newGrade,
   }) = UpdateGrade;
 
   const factory ProfileEvent.updateSelectedGym({
-    @required String userEmail,
-    @required String newGymId,
+    required String userEmail,
+    required String newGymId,
   }) = UpdateSelectedGym;
 }

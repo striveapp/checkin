@@ -1,3 +1,5 @@
+// @dart=2.9
+
 import 'package:checkin/app_config.dart';
 import 'package:checkin/src/repositories/dynamic_link_repository.dart';
 import 'package:firebase_dynamic_links/firebase_dynamic_links.dart';

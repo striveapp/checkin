@@ -8,6 +8,6 @@ part 'stats_state.freezed.dart';
 abstract class StatsState with _$StatsState {
   const factory StatsState.initialStatsState() = InitialStatsState;
   const factory StatsState.timespanUpdated({
-    @required Timespan timespan,
+    required Timespan timespan,
   }) = TimespanUpdated;
 }

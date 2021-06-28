@@ -10,3 +10,13 @@ class GradeConverter implements JsonConverter<Grade, String> {
   @override
   String toJson(Grade grade) => grade.name;
 }
+
+class GradeNullableConverter implements JsonConverter<Grade?, String?> {
+  const GradeNullableConverter();
+
+  @override
+  Grade? fromJson(String? json) => json?.toGrade();
+
+  @override
+  String? toJson(Grade? grade) => grade?.name;
+}

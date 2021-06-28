@@ -10,26 +10,26 @@ part 'registry_event.freezed.dart';
 abstract class RegistryEvent with _$RegistryEvent {
   const factory RegistryEvent.initializeRegistry() = InitializeRegistry;
 
-  const factory RegistryEvent.registryUpdated({@required User currentUser, Lesson currentLesson}) =
+  const factory RegistryEvent.registryUpdated({required User currentUser, Lesson? currentLesson}) =
       RegistryUpdated;
 
   const factory RegistryEvent.register({
-    @required String gymId,
-    @required Attendee attendee,
+    required String gymId,
+    required Attendee attendee,
   }) = Register;
 
   const factory RegistryEvent.unregister({
-    @required String gymId,
-    @required Attendee attendee,
+    required String gymId,
+    required Attendee attendee,
   }) = Unregister;
 
-  const factory RegistryEvent.acceptAttendees({@required String gymId}) = AcceptAttendees;
+  const factory RegistryEvent.acceptAttendees({required String gymId}) = AcceptAttendees;
 
   const factory RegistryEvent.closeLesson({
-    @required String gymId,
+    required String gymId,
   }) = CloseLesson;
 
   const factory RegistryEvent.deleteLesson({
-    @required String gymId,
+    required String gymId,
   }) = DeleteLesson;
 }

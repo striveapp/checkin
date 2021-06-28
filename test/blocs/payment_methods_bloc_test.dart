@@ -1,3 +1,5 @@
+// @dart=2.9
+
 import 'package:bloc_test/bloc_test.dart';
 import 'package:checkin/src/api/payment_api.dart';
 import 'package:checkin/src/blocs/payment_methods/bloc.dart';

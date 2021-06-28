@@ -1,3 +1,5 @@
+// @dart=2.9
+
 import 'package:checkin/src/blocs/auth/bloc.dart';
 import 'package:checkin/src/blocs/login/bloc.dart';
 import 'package:checkin/src/handlers/registerable_handler.dart';

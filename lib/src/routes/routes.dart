@@ -1,3 +1,5 @@
+// @dart=2.9
+
 import 'package:checkin/src/handlers/account_handler.dart';
 import 'package:checkin/src/handlers/handlers.dart';
 import 'package:checkin/src/handlers/payment_success_handler.dart';

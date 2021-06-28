@@ -1,3 +1,5 @@
+// @dart=2.9
+
 import 'package:checkin/src/models/user.dart';
 import 'package:equatable/equatable.dart';
 

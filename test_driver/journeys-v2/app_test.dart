@@ -1,3 +1,5 @@
+// @dart=2.9
+
 import 'package:checkin/app_config.dart';
 import 'package:checkin/src/api/lesson_api.dart';
 import 'package:checkin/src/app.dart';

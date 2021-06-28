@@ -8,5 +8,5 @@ part 'lesson_filter_state.freezed.dart';
 abstract class LessonFilterState with _$LessonFilterState {
   const factory LessonFilterState.initialLessonFilterState() = InitialLessonFilterState;
   const factory LessonFilterState.lessonFilterLoaded(
-      {@required List<String> availableLessonTypes}) = LessonFilterLoaded;
+      {required List<String?> availableLessonTypes}) = LessonFilterLoaded;
 }

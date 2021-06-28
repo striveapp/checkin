@@ -1,3 +1,5 @@
+// @dart=2.9
+
 import 'package:checkin/src/resources/holidays_provider.dart';
 
 class HolidaysRepository {

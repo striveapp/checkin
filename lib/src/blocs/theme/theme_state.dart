@@ -6,5 +6,5 @@ part 'theme_state.freezed.dart';
 
 @freezed
 abstract class ThemeState with _$ThemeState {
-  const factory ThemeState.appTheme({ThemeData themeData}) = AppTheme;
+  const factory ThemeState.appTheme({ThemeData? themeData}) = AppTheme;
 }

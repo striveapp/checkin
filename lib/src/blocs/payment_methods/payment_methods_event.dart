@@ -9,11 +9,11 @@ part 'payment_methods_event.freezed.dart';
 @freezed
 abstract class PaymentMethodsEvent with _$PaymentMethodsEvent {
   const factory PaymentMethodsEvent.paymentMethodUpdated(
-      {@required String userEmail, PaymentMethod paymentMethod}) = PaymentMethodUpdated;
+      {required String userEmail, PaymentMethod? paymentMethod}) = PaymentMethodUpdated;
 
   const factory PaymentMethodsEvent.registerBankAccount(
-      {@required Gym gym, @required String billingEmail}) = RegisterBankAccount;
+      {required Gym gym, required String billingEmail}) = RegisterBankAccount;
 
   const factory PaymentMethodsEvent.changeBankAccount(
-      {@required Gym gym, @required String billingEmail}) = ChangeBankAccount;
+      {required Gym gym, required String billingEmail}) = ChangeBankAccount;
 }

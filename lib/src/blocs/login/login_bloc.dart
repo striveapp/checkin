@@ -1,3 +1,5 @@
+// @dart=2.9
+
 import 'package:bloc/bloc.dart';
 import 'package:checkin/src/blocs/login/login_event.dart';
 import 'package:checkin/src/blocs/login/login_state.dart';

@@ -8,13 +8,13 @@ part 'master.g.dart';
 @freezed
 abstract class Master with _$Master {
   factory Master({
-    @required final String name,
-    @required final String email,
-    final String imageUrl,
+    required final String name,
+    required final String email,
+    final String? imageUrl,
   }) = _Master;
 
   factory Master.fromUser(User user) => Master(
-        name: user.name,
+        name: user.name!,
         imageUrl: user.imageUrl,
         email: user.email,
       );

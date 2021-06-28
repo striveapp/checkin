@@ -1,3 +1,5 @@
+// @dart=2.9
+
 import 'package:bloc_test/bloc_test.dart';
 import 'package:checkin/src/blocs/news/news_bloc.dart';
 import 'package:checkin/src/blocs/news/news_event.dart';
@@ -118,7 +120,10 @@ void main() {
             gymRepository: mockGymRepository,
           ),
           act: (bloc) {
-            return bloc.add(NewsUpdated(newsList: unsortedList, gymId: fakeGym.id,));
+            return bloc.add(NewsUpdated(
+              newsList: unsortedList,
+              gymId: fakeGym.id,
+            ));
           },
           expect: () => [
             NewsLoaded(
@@ -145,7 +150,10 @@ void main() {
             gymRepository: mockGymRepository,
           ),
           act: (bloc) {
-            return bloc.add(NewsUpdated(newsList: unsortedList, gymId: fakeGym.id,));
+            return bloc.add(NewsUpdated(
+              newsList: unsortedList,
+              gymId: fakeGym.id,
+            ));
           },
           expect: () => [
             NewsLoaded(

@@ -10,3 +10,13 @@ class WeekdayConverter implements JsonConverter<Weekday, String> {
   @override
   String toJson(Weekday weekday) => weekday.name;
 }
+
+class WeekdayNullableConverter implements JsonConverter<Weekday?, String?> {
+  const WeekdayNullableConverter();
+
+  @override
+  Weekday? fromJson(String? json) => json?.toWeekday();
+
+  @override
+  String? toJson(Weekday? weekday) => weekday?.name;
+}

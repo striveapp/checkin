@@ -9,7 +9,7 @@ part 'user_stats_state.freezed.dart';
 abstract class UserStatsState with _$UserStatsState {
   const factory UserStatsState.userStatsUninitialized() = UserStatsUninitialized;
   const factory UserStatsState.userStatsLoaded({
-    @required List<Lesson> attendedLessons,
-    @required Timespan timespan,
+    required List<Lesson> attendedLessons,
+    required Timespan timespan,
   }) = UserStatsLoaded;
 }

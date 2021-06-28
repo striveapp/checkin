@@ -1,3 +1,5 @@
+// @dart=2.9
+
 import 'package:bloc_test/bloc_test.dart';
 import 'package:checkin/src/blocs/news/news_bloc.dart';
 import 'package:checkin/src/blocs/news/news_event.dart';
@@ -15,12 +17,15 @@ import 'package:mocktail/mocktail.dart';
 import '../../pump_app.dart';
 
 class MockProfileBloc extends MockBloc<ProfileEvent, ProfileState> implements ProfileBloc {}
+
 class MockNewsBloc extends MockBloc<NewsEvent, NewsState> implements NewsBloc {}
 
 class FakeProfileEvent extends Fake implements ProfileEvent {}
+
 class FakeProfileState extends Fake implements ProfileState {}
 
 class FakeNewsEvent extends Fake implements NewsEvent {}
+
 class FakeNewsState extends Fake implements NewsState {}
 
 void main() {
@@ -39,7 +44,6 @@ void main() {
       profileBloc = MockProfileBloc();
       newsBloc = MockNewsBloc();
     });
-
 
     Widget generateNewsModal() {
       return MultiBlocProvider(providers: [
@@ -67,8 +71,7 @@ void main() {
           isCurrentUser: true,
         ));
 
-        await tester
-            .pumpAppWithScaffold(generateNewsModal());
+        await tester.pumpAppWithScaffold(generateNewsModal());
         var shortText = """
         It was a dog. It was a big dog.
         """;
@@ -82,7 +85,8 @@ void main() {
         await tester.tap(find.byType(ElevatedButton));
         await tester.pumpAndSettle();
 
-        verify(() => newsBloc.add(NewsEvent.addNews(content: shortText, author: Author.fromUser(fakeUser)))).called(1);
+        verify(() => newsBloc.add(
+            NewsEvent.addNews(content: shortText, author: Author.fromUser(fakeUser)))).called(1);
       });
     });
 
@@ -100,8 +104,7 @@ void main() {
           isCurrentUser: true,
         ));
 
-        await tester
-            .pumpAppWithScaffold(generateNewsModal());
+        await tester.pumpAppWithScaffold(generateNewsModal());
         var moreThan280Chars = """
         It was a dog. It was a big dog. 
         I will go back to Gotham and I will fight men Iike this but I will not become an executioner. 
@@ -135,8 +138,7 @@ void main() {
           isCurrentUser: true,
         ));
 
-        await tester
-            .pumpAppWithScaffold(generateNewsModal());
+        await tester.pumpAppWithScaffold(generateNewsModal());
         var exactly273Chars = """
         It was a dog. It was a big dog. 
         I will go back to Gotham and I will fight men Iike this but I will not become an executioner. 
@@ -150,7 +152,6 @@ void main() {
         expect(tester.widget<ElevatedButton>(find.byType(ElevatedButton)).enabled, isTrue);
         expect(tester.widget<Text>(find.byKey(Key("remainingChars"))).data, equals("7"));
       });
-
     });
   });
 }

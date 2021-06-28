@@ -1,3 +1,5 @@
+// @dart=2.9
+
 import 'package:checkin/src/blocs/graduation/bloc.dart';
 import 'package:checkin/src/blocs/graduation/graduation_bloc.dart';
 import 'package:checkin/src/blocs/profile/bloc.dart';

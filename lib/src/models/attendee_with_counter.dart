@@ -7,8 +7,8 @@ abstract class AttendeeWithCounter
     implements _$AttendeeWithCounter, Comparable<AttendeeWithCounter> {
   const AttendeeWithCounter._();
   factory AttendeeWithCounter({
-    @required final String email,
-    @required final int counter,
+    required final String email,
+    required final int counter,
   }) = _AttendeeWithCounter;
 
   @override

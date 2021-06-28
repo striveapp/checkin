@@ -10,12 +10,12 @@ part 'news.g.dart';
 abstract class News implements _$News, Comparable<News> {
   const News._();
   factory News({
-    @required final String id,
-    @required final String content,
-    @required final Author author,
-    @required final int timestamp,
-    @required final bool isPinned,
-    final String imageUrl,
+    required final String id,
+    required final String content,
+    required final Author author,
+    required final int timestamp,
+    required final bool isPinned,
+    final String? imageUrl,
   }) = _News;
 
   factory News.create(String content, Author author) {

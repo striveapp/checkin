@@ -1,3 +1,5 @@
+// @dart=2.9
+
 import 'package:checkin/src/ui/components/newslist/modal/content_editor.dart';
 import 'package:checkin/src/ui/components/newslist/modal/header.dart';
 import 'package:checkin/src/ui/components/newslist/modal/max_length_counter.dart';

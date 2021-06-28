@@ -1,3 +1,5 @@
+// @dart=2.9
+
 import 'package:open_mail_app/open_mail_app.dart';
 import 'package:platform/platform.dart';
 import 'package:url_launcher/url_launcher.dart';

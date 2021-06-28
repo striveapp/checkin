@@ -8,5 +8,5 @@ part 'gym_state.freezed.dart';
 @freezed
 abstract class GymState with _$GymState {
   const factory GymState.initialGymState() = InitialGymState;
-  const factory GymState.gymLoaded({@required Gym gym}) = GymLoaded;
+  const factory GymState.gymLoaded({required Gym gym}) = GymLoaded;
 }

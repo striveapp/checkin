@@ -7,6 +7,6 @@ part 'stats_event.freezed.dart';
 @freezed
 abstract class StatsEvent with _$StatsEvent {
   const factory StatsEvent.timespanUpdated({
-    @required Timespan timespan,
+    required Timespan timespan,
   }) = TimespanUpdate;
 }

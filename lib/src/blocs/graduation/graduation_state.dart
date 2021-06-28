@@ -10,10 +10,10 @@ abstract class GraduationState with _$GraduationState {
   const factory GraduationState.initialGraduationState() = InitialGraduationState;
 
   const factory GraduationState.graduationLoaded({
-    @required Grade currentGrade,
-    @required Grade nextGrade,
-    @required int attendedLessonsForGrade,
-    @required double forNextLevel,
-    @required bool isVisible,
+    required Grade currentGrade,
+    required Grade nextGrade,
+    required int attendedLessonsForGrade,
+    required double forNextLevel,
+    required bool isVisible,
   }) = GraduationLoaded;
 }

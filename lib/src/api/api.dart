@@ -1,3 +1,5 @@
+// @dart=2.9
+
 import 'dart:core';
 
 import 'package:checkin/src/logging/logger.dart';

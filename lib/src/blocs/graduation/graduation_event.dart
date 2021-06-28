@@ -8,14 +8,14 @@ part 'graduation_event.freezed.dart';
 @freezed
 abstract class GraduationEvent with _$GraduationEvent {
   const factory GraduationEvent.graduationSystemUpdated({
-    @required double forNextLevel,
-    @required int attendedLessonsForGrade,
-    @required Grade currentGrade,
-    @required Grade nextGrade,
-    @required bool isVisible,
+    required double forNextLevel,
+    required int attendedLessonsForGrade,
+    required Grade currentGrade,
+    required Grade nextGrade,
+    required bool isVisible,
   }) = GraduationSystemUpdated;
 
-  const factory GraduationEvent.graduate({@required Grade newGrade}) = Graduate;
+  const factory GraduationEvent.graduate({required Grade newGrade}) = Graduate;
 
   const factory GraduationEvent.initializeGraduation() = InitializeGraduation;
 }

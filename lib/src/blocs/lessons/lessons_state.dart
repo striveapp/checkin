@@ -10,8 +10,8 @@ part 'lessons_state.freezed.dart';
 abstract class LessonsState with _$LessonsState {
   const factory LessonsState.lessonsUninitialized() = LessonsUninitialized;
   const factory LessonsState.lessonsLoaded(
-      {List<Lesson> lessons,
-      DateTime selectedDay,
+      {List<Lesson>? lessons,
+      DateTime? selectedDay,
       @Default([]) List<String> selectedFilterList,
-      DateTime nocache}) = LessonsLoaded;
+      DateTime? nocache}) = LessonsLoaded;
 }

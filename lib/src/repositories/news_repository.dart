@@ -1,3 +1,5 @@
+// @dart=2.9
+
 import 'package:checkin/src/models/author.dart';
 import 'package:checkin/src/models/news.dart';
 

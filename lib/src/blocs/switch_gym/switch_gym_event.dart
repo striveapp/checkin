@@ -9,8 +9,8 @@ abstract class SwitchGymsEvent {
   const factory SwitchGymsEvent.initializeSwitchGym() = InitializeSwitchGym;
 
   const factory SwitchGymsEvent.switchGymUpdated({
-    @required Gym selectedGym,
-    @required User currentUser,
-    @required List<String> knowGymsIds,
+    required Gym selectedGym,
+    required User currentUser,
+    required List<String> knowGymsIds,
   }) = SwitchGymUpdated;
 }

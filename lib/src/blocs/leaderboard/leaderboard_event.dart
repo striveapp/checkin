@@ -10,8 +10,8 @@ part 'leaderboard_event.freezed.dart';
 abstract class LeaderboardEvent with _$LeaderboardEvent {
   const factory LeaderboardEvent.initializeLeaderboard() = InitializeLeaderboard;
 
-  const factory LeaderboardEvent.leaderboardUpdated({@required List<UserHistory> usersHistory}) =
+  const factory LeaderboardEvent.leaderboardUpdated({required List<UserHistory> usersHistory}) =
       LeaderboardUpdated;
 
-  const factory LeaderboardEvent.updateTimespan({@required Timespan timespan}) = UpdateTimespan;
+  const factory LeaderboardEvent.updateTimespan({required Timespan timespan}) = UpdateTimespan;
 }

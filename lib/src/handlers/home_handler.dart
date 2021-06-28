@@ -1,3 +1,5 @@
+// @dart=2.9
+
 import 'package:checkin/src/handlers/simple_handler.dart';
 import 'package:checkin/src/ui/pages/home_page.dart';
 import 'package:flutter/widgets.dart' hide Router;

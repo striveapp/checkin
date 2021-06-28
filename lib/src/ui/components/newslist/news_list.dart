@@ -1,3 +1,5 @@
+// @dart=2.9
+
 import 'package:checkin/src/blocs/news/news_bloc.dart';
 import 'package:checkin/src/blocs/news/news_state.dart';
 import 'package:checkin/src/models/news.dart';

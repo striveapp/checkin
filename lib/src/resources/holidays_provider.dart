@@ -1,3 +1,5 @@
+// @dart=2.9
+
 class HolidaysProvider {
   final Map<DateTime, List> _holidays = {
     DateTime(2020, 4, 10): ['Viernes Santo'],

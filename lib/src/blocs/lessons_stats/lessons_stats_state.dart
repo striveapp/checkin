@@ -8,7 +8,7 @@ part 'lessons_stats_state.freezed.dart';
 abstract class LessonsStatsState with _$LessonsStatsState {
   const factory LessonsStatsState.lessonsStatsInitial() = LessonsStatsInitial;
   const factory LessonsStatsState.lessonsStatsUpdated({
-    @required List<AttendeeWithCounter> attendeesWithCounter,
-    @required int totalAttendees,
+    required List<AttendeeWithCounter> attendeesWithCounter,
+    required int totalAttendees,
   }) = LessonsStatsUpdated;
 }

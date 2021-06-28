@@ -1,3 +1,5 @@
+// @dart=2.9
+
 import 'package:checkin/src/blocs/registry/bloc.dart';
 import 'package:checkin/src/ui/components/registry/registry_controls.dart';
 import 'package:checkin/src/ui/components/registry/registry_missing_dialog.dart';

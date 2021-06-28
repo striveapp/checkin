@@ -1,3 +1,5 @@
+// @dart=2.9
+
 import 'package:checkin/src/models/timespan.dart';
 import 'package:checkin/src/models/weekday.dart';
 import 'package:intl/intl.dart';

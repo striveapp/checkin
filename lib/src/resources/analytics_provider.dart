@@ -1,3 +1,5 @@
+// @dart=2.9
+
 import 'package:checkin/src/repositories/analytics_repository.dart';
 import 'package:checkin/src/util/crypto_util.dart';
 import 'package:firebase_analytics/firebase_analytics.dart';

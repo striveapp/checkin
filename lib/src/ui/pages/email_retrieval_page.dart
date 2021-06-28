@@ -1,3 +1,5 @@
+// @dart=2.9
+
 import 'package:checkin/src/blocs/login/bloc.dart';
 import 'package:checkin/src/ui/components/email_retrieval/check_email_view.dart';
 import 'package:checkin/src/ui/components/email_retrieval/insert_email_view.dart';

@@ -1,3 +1,5 @@
+// @dart=2.9
+
 import 'package:checkin/src/blocs/profile/bloc.dart';
 import 'package:checkin/src/blocs/switch_gym/bloc.dart';
 import 'package:checkin/src/blocs/switch_gym/switch_gym_bloc.dart';
