@@ -34,7 +34,7 @@ dependencies:
   i18n_extension: ^4.0.3
   image_cropper: ^1.4.0
   image_picker: ^0.7.4
-  json_annotation: ^3.1.1
+  json_annotation: ^4.0.1
   logger: ^1.0.0
   open_appstore: ^1.0.2
   open_mail_app: ^0.1.1
@@ -61,19 +61,17 @@ dev_dependencies:
     sdk: flutter
 
   bloc_test: ^8.0.0
-  build_runner: ^1.10.6
+  build_runner: ^2.0.5
   flutter_launcher_icons: ^0.9.0
   flutter_native_splash: ^1.1.8+4
-  freezed: ^0.12.7
-  json_serializable: ^3.5.0
+  freezed: ^0.14.2
+  json_serializable: ^4.1.3
   mockito: ^5.0.5
   mocktail: ^0.1.1
   stack_trace: ^1.10.0
 
 dependency_overrides:
-  analyzer: ^1.3.0
   args: 2.0.0
-  test_api: 0.3.0
 
 flutter_icons:
   image_path: "assets/launcher_icon/icon.png"
