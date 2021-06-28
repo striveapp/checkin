@@ -36,14 +36,14 @@ class LessonInfoCard extends StatelessWidget {
                               style: Theme.of(context)
                                   .textTheme
                                   .headline1
-                                  .apply(color: Theme.of(context).accentColor),
+                                  .apply(color: Theme.of(context).colorScheme.secondary),
                             ),
                             Text(
                               _getMonthThreeLetter(lesson.timestamp),
                               style: Theme.of(context)
                                   .textTheme
                                   .headline1
-                                  .apply(color: Theme.of(context).accentColor),
+                                  .apply(color: Theme.of(context).colorScheme.secondary),
                             ),
                           ],
                         ),

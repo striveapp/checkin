@@ -61,7 +61,7 @@ class ClassProgressIndicatorView extends StatelessWidget {
                 key: Key("matHours"),
                 style: Theme.of(context).textTheme.headline1.apply(
                       fontSizeFactor: size / 100,
-                      color: Theme.of(context).primaryColor,
+                      color: Theme.of(context).colorScheme.primary,
                     ),
               ),
               Text(
@@ -86,9 +86,10 @@ class ClassProgressIndicatorView extends StatelessWidget {
             builder: (context, value, _) {
               return CircularProgressIndicator(
                 strokeWidth: size / 10,
-                backgroundColor: Theme.of(context).accentColor.withAlpha(100),
+                backgroundColor: Theme.of(context).colorScheme.secondary.withAlpha(100),
                 value: value,
-                valueColor: new AlwaysStoppedAnimation<Color>(Theme.of(context).accentColor),
+                valueColor:
+                    new AlwaysStoppedAnimation<Color>(Theme.of(context).colorScheme.secondary),
               );
             },
           ),

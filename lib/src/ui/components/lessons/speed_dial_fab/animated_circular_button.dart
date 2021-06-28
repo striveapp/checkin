@@ -56,7 +56,7 @@ class _AnimatedCircularButtonState extends State<AnimatedCircularButton> {
       ),
       child: Container(
         decoration: BoxDecoration(
-          color: Theme.of(context).accentColor,
+          color: Theme.of(context).colorScheme.secondary,
           shape: BoxShape.circle,
         ),
         width: 40,

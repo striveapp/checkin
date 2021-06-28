@@ -42,7 +42,7 @@ class _EditLessonCapacityState extends State<EditLessonCapacity> {
             textAlign: TextAlign.end,
             controller: _getController(currentCapacity),
             keyboardType: TextInputType.numberWithOptions(signed: true, decimal: true),
-            cursorColor: Theme.of(context).accentColor,
+            cursorColor: Theme.of(context).colorScheme.secondary,
             style: Theme.of(context).textTheme.headline2.apply(fontSizeDelta: 3),
             decoration: InputDecoration(
               contentPadding: EdgeInsets.zero,
@@ -53,8 +53,10 @@ class _EditLessonCapacityState extends State<EditLessonCapacity> {
               errorBorder: InputBorder.none,
               disabledBorder: InputBorder.none,
               errorMaxLines: 1,
-              errorStyle:
-                  Theme.of(context).textTheme.bodyText1.apply(color: Theme.of(context).errorColor),
+              errorStyle: Theme.of(context)
+                  .textTheme
+                  .bodyText1
+                  .apply(color: Theme.of(context).colorScheme.error),
             ),
             onSubmitted: (String newCapacityString) {
               try {

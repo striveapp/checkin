@@ -16,12 +16,12 @@ class PasswordlessSignInButton extends StatelessWidget {
       style: ElevatedButton.styleFrom(
         side: BorderSide(
           width: 0.8,
-          color: Theme.of(context).primaryColor,
+          color: Theme.of(context).colorScheme.primary,
         ),
         shape: RoundedRectangleBorder(
           borderRadius: BorderRadius.circular(8.0),
         ),
-        onPrimary: Theme.of(context).primaryColor,
+        onPrimary: Theme.of(context).colorScheme.primary,
       ),
       child: Container(
         alignment: Alignment.center,
@@ -29,7 +29,7 @@ class PasswordlessSignInButton extends StatelessWidget {
         child: Text(
           emailMeMagicLink.i18n,
           style: Theme.of(context).textTheme.headline3.apply(
-                color: Theme.of(context).primaryColor,
+                color: Theme.of(context).colorScheme.primary,
                 fontWeightDelta: 1,
               ),
           textAlign: TextAlign.center,

@@ -36,7 +36,7 @@ class AttendeesPreview extends StatelessWidget {
                                 Container(
                                   decoration: BoxDecoration(
                                     border: Border.all(
-                                        width: 1.5, color: Theme.of(context).accentColor),
+                                        width: 1.5, color: Theme.of(context).colorScheme.secondary),
                                     borderRadius: BorderRadius.all(Radius.circular(50)),
                                   ),
                                   child: RoundedImage(

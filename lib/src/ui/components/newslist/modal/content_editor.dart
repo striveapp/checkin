@@ -38,7 +38,7 @@ class _ContentEditorState extends State<ContentEditor> {
                 autofocus: true,
                 controller: widget.parentController,
                 keyboardType: TextInputType.multiline,
-                cursorColor: Theme.of(context).accentColor,
+                cursorColor: Theme.of(context).colorScheme.secondary,
                 minLines: 1,
                 maxLines: 100,
                 maxLength: widget.maxLength + 99,
@@ -66,7 +66,7 @@ class _ContentEditorState extends State<ContentEditor> {
                   errorStyle: Theme.of(context)
                       .textTheme
                       .bodyText1
-                      .apply(color: Theme.of(context).errorColor),
+                      .apply(color: Theme.of(context).colorScheme.error),
                 ),
               ),
             ],

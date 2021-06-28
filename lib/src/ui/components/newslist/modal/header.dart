@@ -41,7 +41,7 @@ class Header extends StatelessWidget {
                           borderRadius: new BorderRadius.circular(50.0),
                         ),
                         minimumSize: Size(30, 30),
-                        primary: Theme.of(context).accentColor,
+                        primary: Theme.of(context).colorScheme.secondary,
                       ),
                       child: Text(
                         Header.publish.i18n,

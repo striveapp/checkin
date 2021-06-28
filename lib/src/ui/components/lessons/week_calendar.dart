@@ -51,8 +51,8 @@ class _WeekCalendarState extends State<WeekCalendar> {
         },
         holidays: widget.holidaysRepository.getHolidays(),
         calendarStyle: CalendarStyle(
-            selectedColor: Theme.of(context).accentColor,
-            todayColor: Theme.of(context).accentColor.withAlpha(100)),
+            selectedColor: Theme.of(context).colorScheme.secondary,
+            todayColor: Theme.of(context).colorScheme.secondary.withAlpha(100)),
       );
     }
 
@@ -69,8 +69,8 @@ class _WeekCalendarState extends State<WeekCalendar> {
       },
       holidays: widget.holidaysRepository.getHolidays(),
       calendarStyle: CalendarStyle(
-          selectedColor: Theme.of(context).accentColor,
-          todayColor: Theme.of(context).accentColor.withAlpha(100)),
+          selectedColor: Theme.of(context).colorScheme.secondary,
+          todayColor: Theme.of(context).colorScheme.secondary.withAlpha(100)),
     );
   }
 

@@ -13,8 +13,8 @@ class PriceHeader extends StatelessWidget {
       child: Container(
         padding: EdgeInsets.symmetric(vertical: 20, horizontal: 20),
         decoration: BoxDecoration(
-          color: Theme.of(context).accentColor.withAlpha(80),
-          border: Border.all(color: Theme.of(context).accentColor),
+          color: Theme.of(context).colorScheme.secondary.withAlpha(80),
+          border: Border.all(color: Theme.of(context).colorScheme.secondary),
           borderRadius: BorderRadius.circular(4),
         ),
         child: Column(

@@ -33,7 +33,7 @@ class SelectedGymTile extends StatelessWidget {
           padding: const EdgeInsets.symmetric(horizontal: 15),
           child: Icon(
             Icons.adjust,
-            color: Theme.of(context).accentColor,
+            color: Theme.of(context).colorScheme.secondary,
           ),
         ),
       ],

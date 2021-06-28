@@ -45,7 +45,7 @@ class ProfileCard extends StatelessWidget {
                             child: TextFormField(
                               key: Key("editProfileButton"),
                               keyboardType: TextInputType.name,
-                              cursorColor: Theme.of(context).accentColor,
+                              cursorColor: Theme.of(context).colorScheme.secondary,
                               style: Theme.of(context).textTheme.headline2,
                               decoration: new InputDecoration(
                                 hintText: enterYourName.i18n,
@@ -58,7 +58,7 @@ class ProfileCard extends StatelessWidget {
                                 errorStyle: Theme.of(context)
                                     .textTheme
                                     .bodyText1
-                                    .apply(color: Theme.of(context).errorColor),
+                                    .apply(color: Theme.of(context).colorScheme.error),
                                 disabledBorder: InputBorder.none,
                               ),
                               controller: TextEditingController.fromValue(TextEditingValue(

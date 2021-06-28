@@ -125,8 +125,10 @@ class ProfileTileView extends StatelessWidget {
           ),
           trailing: Text(
             attendedClasses.toString(),
-            style:
-                Theme.of(context).textTheme.headline2.apply(color: Theme.of(context).accentColor),
+            style: Theme.of(context)
+                .textTheme
+                .headline2
+                .apply(color: Theme.of(context).colorScheme.secondary),
           ),
         ),
         Divider(

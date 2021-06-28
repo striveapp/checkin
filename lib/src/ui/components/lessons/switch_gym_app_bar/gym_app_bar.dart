@@ -19,7 +19,7 @@ class GymAppBar extends StatelessWidget implements PreferredSizeWidget {
       )..add(InitializeSwitchGym()),
       child: AppBar(
         centerTitle: false,
-        backgroundColor: Theme.of(context).primaryColor,
+        backgroundColor: Theme.of(context).colorScheme.primary,
         title: GymAppBarTitle(),
         actions: <Widget>[
           Padding(

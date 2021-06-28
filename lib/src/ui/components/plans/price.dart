@@ -26,13 +26,13 @@ class Price extends StatelessWidget {
                 style: Theme.of(context)
                     .textTheme
                     .headline4
-                    .apply(fontSizeFactor: 1.7, color: Theme.of(context).accentColor)),
+                    .apply(fontSizeFactor: 1.7, color: Theme.of(context).colorScheme.secondary)),
             TextSpan(
                 text: _formatPrice(_price),
                 style: Theme.of(context)
                     .textTheme
                     .headline1
-                    .apply(fontSizeFactor: 1.7, color: Theme.of(context).accentColor)),
+                    .apply(fontSizeFactor: 1.7, color: Theme.of(context).colorScheme.secondary)),
           ]),
         ),
         Text("/${monthly.i18n}", style: Theme.of(context).textTheme.headline5),

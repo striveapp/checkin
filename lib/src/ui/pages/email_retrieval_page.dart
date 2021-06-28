@@ -18,7 +18,7 @@ class EmailRetrievePage extends StatelessWidget {
         backgroundColor: Colors.transparent,
         elevation: 0.0,
         iconTheme: IconThemeData(
-          color: Theme.of(context).accentColor,
+          color: Theme.of(context).colorScheme.secondary,
         ),
       ),
       body: BlocListener<LoginBloc, LoginState>(

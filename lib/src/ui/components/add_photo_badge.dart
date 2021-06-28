@@ -11,7 +11,7 @@ class AddPhotoBadge extends StatelessWidget {
         child: Center(
           child: Container(
               decoration: BoxDecoration(
-                color: Theme.of(context).accentColor,
+                color: Theme.of(context).colorScheme.secondary,
                 border: Border.all(width: 1, color: Colors.white),
                 borderRadius: BorderRadius.all(Radius.circular(50)),
               ),

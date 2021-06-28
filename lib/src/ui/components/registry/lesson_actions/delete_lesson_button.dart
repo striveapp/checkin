@@ -17,7 +17,7 @@ class DeleteLessonButton extends StatelessWidget {
         elevation: 2.0,
         padding: EdgeInsets.all(10.0),
         shape: CircleBorder(),
-        primary: Theme.of(context).errorColor,
+        primary: Theme.of(context).colorScheme.error,
         minimumSize: Size(40, 40),
       ),
       onPressed: () {

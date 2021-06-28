@@ -36,7 +36,7 @@ class NameSelectionPage extends StatelessWidget {
                     autovalidateMode: AutovalidateMode.onUserInteraction,
                     child: TextFormField(
                       keyboardType: TextInputType.name,
-                      cursorColor: Theme.of(context).accentColor,
+                      cursorColor: Theme.of(context).colorScheme.secondary,
                       style: Theme.of(context).textTheme.headline1,
                       autofocus: true,
                       decoration: new InputDecoration(
@@ -50,7 +50,7 @@ class NameSelectionPage extends StatelessWidget {
                         errorStyle: Theme.of(context)
                             .textTheme
                             .bodyText1
-                            .apply(color: Theme.of(context).errorColor),
+                            .apply(color: Theme.of(context).colorScheme.error),
                         disabledBorder: InputBorder.none,
                         labelText: whatsYourName.i18n,
                         labelStyle: Theme.of(context).textTheme.headline3,

@@ -19,7 +19,7 @@ class GraduationPreview extends StatelessWidget {
         currentGrade.icon,
         Icon(
           Icons.double_arrow_outlined,
-          color: Theme.of(context).accentColor,
+          color: Theme.of(context).colorScheme.secondary,
           size: 35,
         ),
         newGrade.icon,

@@ -43,7 +43,7 @@ class _TimespanTogglesState extends State<TimespanToggles> {
         widget.onPressed(index);
         _updateSelected(index);
       },
-      fillColor: Theme.of(context).accentColor.withAlpha(60),
+      fillColor: Theme.of(context).colorScheme.secondary.withAlpha(60),
       borderRadius: BorderRadius.circular(7),
     );
   }

@@ -29,7 +29,7 @@ class PlansList extends StatelessWidget {
                 textAlign: TextAlign.center,
                 style: Theme.of(context).textTheme.bodyText1,
               ),
-              backgroundColor: Theme.of(context).accentColor.withAlpha(150),
+              backgroundColor: Theme.of(context).colorScheme.secondary.withAlpha(150),
               duration: Duration(seconds: 5),
             ),
           );

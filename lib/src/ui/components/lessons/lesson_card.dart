@@ -116,9 +116,9 @@ class LessonCard extends StatelessWidget {
                         Expanded(
                           child: LinearProgressIndicator(
                             value: _getFullPercentage(allAttendees, lesson.classCapacity),
-                            valueColor:
-                                AlwaysStoppedAnimation<Color>(Theme.of(context).primaryColor),
-                            backgroundColor: Theme.of(context).primaryColor.withAlpha(70),
+                            valueColor: AlwaysStoppedAnimation<Color>(
+                                Theme.of(context).colorScheme.primary),
+                            backgroundColor: Theme.of(context).colorScheme.primary.withAlpha(70),
                           ),
                         ),
                         Padding(
