@@ -12,7 +12,7 @@ abstract class JsonModel with _$JsonModel {
     String? simpleField,
     required String requiredField,
     @Default(true) bool defaultField,
-    @GradeNullableConverter() Grade? grade,
+    @GradeConverter() Grade? grade,
   }) = _JsonModel;
 
   factory JsonModel.fromJson(Map<String, dynamic> json) => _$JsonModelFromJson(json);

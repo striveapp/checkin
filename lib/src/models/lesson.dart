@@ -20,7 +20,7 @@ abstract class Lesson with _$Lesson {
     final String? name,
     final String? timeStart,
     @Default("") String timeEnd,
-    @WeekdayNullableConverter() final Weekday? weekDay,
+    @WeekdayConverter() final Weekday? weekDay,
     final int? timestamp,
     final String? imageUrl,
     final String? gymId,

@@ -25,7 +25,7 @@ class _$UserTearOff {
       required String imageUrl,
       String? name,
       String? uid,
-      @GradeNullableConverter() Grade? grade,
+      @GradeConverter() Grade? grade,
       String? selectedGymId,
       List<String> knownGymIds = const [],
       bool? hasActivePayments,
@@ -57,7 +57,7 @@ mixin _$User {
   String get imageUrl => throw _privateConstructorUsedError;
   String? get name => throw _privateConstructorUsedError;
   String? get uid => throw _privateConstructorUsedError;
-  @GradeNullableConverter()
+  @GradeConverter()
   Grade? get grade => throw _privateConstructorUsedError;
   String? get selectedGymId => throw _privateConstructorUsedError;
   List<String> get knownGymIds => throw _privateConstructorUsedError;
@@ -71,14 +71,13 @@ mixin _$User {
 
 /// @nodoc
 abstract class $UserCopyWith<$Res> {
-  factory $UserCopyWith(User value, $Res Function(User) then) =
-      _$UserCopyWithImpl<$Res>;
+  factory $UserCopyWith(User value, $Res Function(User) then) = _$UserCopyWithImpl<$Res>;
   $Res call(
       {String email,
       String imageUrl,
       String? name,
       String? uid,
-      @GradeNullableConverter() Grade? grade,
+      @GradeConverter() Grade? grade,
       String? selectedGymId,
       List<String> knownGymIds,
       bool? hasActivePayments,
@@ -148,15 +147,14 @@ class _$UserCopyWithImpl<$Res> implements $UserCopyWith<$Res> {
 
 /// @nodoc
 abstract class _$UserCopyWith<$Res> implements $UserCopyWith<$Res> {
-  factory _$UserCopyWith(_User value, $Res Function(_User) then) =
-      __$UserCopyWithImpl<$Res>;
+  factory _$UserCopyWith(_User value, $Res Function(_User) then) = __$UserCopyWithImpl<$Res>;
   @override
   $Res call(
       {String email,
       String imageUrl,
       String? name,
       String? uid,
-      @GradeNullableConverter() Grade? grade,
+      @GradeConverter() Grade? grade,
       String? selectedGymId,
       List<String> knownGymIds,
       bool? hasActivePayments,
@@ -164,8 +162,7 @@ abstract class _$UserCopyWith<$Res> implements $UserCopyWith<$Res> {
 }
 
 /// @nodoc
-class __$UserCopyWithImpl<$Res> extends _$UserCopyWithImpl<$Res>
-    implements _$UserCopyWith<$Res> {
+class __$UserCopyWithImpl<$Res> extends _$UserCopyWithImpl<$Res> implements _$UserCopyWith<$Res> {
   __$UserCopyWithImpl(_User _value, $Res Function(_User) _then)
       : super(_value, (v) => _then(v as _User));
 
@@ -233,14 +230,13 @@ class _$_User with DiagnosticableTreeMixin implements _User {
       required this.imageUrl,
       this.name,
       this.uid,
-      @GradeNullableConverter() this.grade,
+      @GradeConverter() this.grade,
       this.selectedGymId,
       this.knownGymIds = const [],
       this.hasActivePayments,
       this.isOwner = false});
 
-  factory _$_User.fromJson(Map<String, dynamic> json) =>
-      _$_$_UserFromJson(json);
+  factory _$_User.fromJson(Map<String, dynamic> json) => _$_$_UserFromJson(json);
 
   @override
   final String email;
@@ -251,7 +247,7 @@ class _$_User with DiagnosticableTreeMixin implements _User {
   @override
   final String? uid;
   @override
-  @GradeNullableConverter()
+  @GradeConverter()
   final Grade? grade;
   @override
   final String? selectedGymId;
@@ -292,20 +288,16 @@ class _$_User with DiagnosticableTreeMixin implements _User {
             (identical(other.email, email) ||
                 const DeepCollectionEquality().equals(other.email, email)) &&
             (identical(other.imageUrl, imageUrl) ||
-                const DeepCollectionEquality()
-                    .equals(other.imageUrl, imageUrl)) &&
+                const DeepCollectionEquality().equals(other.imageUrl, imageUrl)) &&
             (identical(other.name, name) ||
                 const DeepCollectionEquality().equals(other.name, name)) &&
-            (identical(other.uid, uid) ||
-                const DeepCollectionEquality().equals(other.uid, uid)) &&
+            (identical(other.uid, uid) || const DeepCollectionEquality().equals(other.uid, uid)) &&
             (identical(other.grade, grade) ||
                 const DeepCollectionEquality().equals(other.grade, grade)) &&
             (identical(other.selectedGymId, selectedGymId) ||
-                const DeepCollectionEquality()
-                    .equals(other.selectedGymId, selectedGymId)) &&
+                const DeepCollectionEquality().equals(other.selectedGymId, selectedGymId)) &&
             (identical(other.knownGymIds, knownGymIds) ||
-                const DeepCollectionEquality()
-                    .equals(other.knownGymIds, knownGymIds)) &&
+                const DeepCollectionEquality().equals(other.knownGymIds, knownGymIds)) &&
             (identical(other.hasActivePayments, hasActivePayments) ||
                 const DeepCollectionEquality()
                     .equals(other.hasActivePayments, hasActivePayments)) &&
@@ -328,8 +320,7 @@ class _$_User with DiagnosticableTreeMixin implements _User {
 
   @JsonKey(ignore: true)
   @override
-  _$UserCopyWith<_User> get copyWith =>
-      __$UserCopyWithImpl<_User>(this, _$identity);
+  _$UserCopyWith<_User> get copyWith => __$UserCopyWithImpl<_User>(this, _$identity);
 
   @override
   Map<String, dynamic> toJson() {
@@ -343,7 +334,7 @@ abstract class _User implements User {
       required String imageUrl,
       String? name,
       String? uid,
-      @GradeNullableConverter() Grade? grade,
+      @GradeConverter() Grade? grade,
       String? selectedGymId,
       List<String> knownGymIds,
       bool? hasActivePayments,
@@ -360,7 +351,7 @@ abstract class _User implements User {
   @override
   String? get uid => throw _privateConstructorUsedError;
   @override
-  @GradeNullableConverter()
+  @GradeConverter()
   Grade? get grade => throw _privateConstructorUsedError;
   @override
   String? get selectedGymId => throw _privateConstructorUsedError;

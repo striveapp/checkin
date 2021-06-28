@@ -24,7 +24,7 @@ class _$JsonModelTearOff {
       {String? simpleField,
       required String requiredField,
       bool defaultField = true,
-      @GradeNullableConverter() Grade? grade}) {
+      @GradeConverter() Grade? grade}) {
     return _JsonModel(
       simpleField: simpleField,
       requiredField: requiredField,
@@ -46,13 +46,12 @@ mixin _$JsonModel {
   String? get simpleField => throw _privateConstructorUsedError;
   String get requiredField => throw _privateConstructorUsedError;
   bool get defaultField => throw _privateConstructorUsedError;
-  @GradeNullableConverter()
+  @GradeConverter()
   Grade? get grade => throw _privateConstructorUsedError;
 
   Map<String, dynamic> toJson() => throw _privateConstructorUsedError;
   @JsonKey(ignore: true)
-  $JsonModelCopyWith<JsonModel> get copyWith =>
-      throw _privateConstructorUsedError;
+  $JsonModelCopyWith<JsonModel> get copyWith => throw _privateConstructorUsedError;
 }
 
 /// @nodoc
@@ -63,7 +62,7 @@ abstract class $JsonModelCopyWith<$Res> {
       {String? simpleField,
       String requiredField,
       bool defaultField,
-      @GradeNullableConverter() Grade? grade});
+      @GradeConverter() Grade? grade});
 }
 
 /// @nodoc
@@ -104,15 +103,14 @@ class _$JsonModelCopyWithImpl<$Res> implements $JsonModelCopyWith<$Res> {
 
 /// @nodoc
 abstract class _$JsonModelCopyWith<$Res> implements $JsonModelCopyWith<$Res> {
-  factory _$JsonModelCopyWith(
-          _JsonModel value, $Res Function(_JsonModel) then) =
+  factory _$JsonModelCopyWith(_JsonModel value, $Res Function(_JsonModel) then) =
       __$JsonModelCopyWithImpl<$Res>;
   @override
   $Res call(
       {String? simpleField,
       String requiredField,
       bool defaultField,
-      @GradeNullableConverter() Grade? grade});
+      @GradeConverter() Grade? grade});
 }
 
 /// @nodoc
@@ -159,10 +157,9 @@ class _$_JsonModel with DiagnosticableTreeMixin implements _JsonModel {
       {this.simpleField,
       required this.requiredField,
       this.defaultField = true,
-      @GradeNullableConverter() this.grade});
+      @GradeConverter() this.grade});
 
-  factory _$_JsonModel.fromJson(Map<String, dynamic> json) =>
-      _$_$_JsonModelFromJson(json);
+  factory _$_JsonModel.fromJson(Map<String, dynamic> json) => _$_$_JsonModelFromJson(json);
 
   @override
   final String? simpleField;
@@ -172,7 +169,7 @@ class _$_JsonModel with DiagnosticableTreeMixin implements _JsonModel {
   @override
   final bool defaultField;
   @override
-  @GradeNullableConverter()
+  @GradeConverter()
   final Grade? grade;
 
   @override
@@ -196,14 +193,11 @@ class _$_JsonModel with DiagnosticableTreeMixin implements _JsonModel {
     return identical(this, other) ||
         (other is _JsonModel &&
             (identical(other.simpleField, simpleField) ||
-                const DeepCollectionEquality()
-                    .equals(other.simpleField, simpleField)) &&
+                const DeepCollectionEquality().equals(other.simpleField, simpleField)) &&
             (identical(other.requiredField, requiredField) ||
-                const DeepCollectionEquality()
-                    .equals(other.requiredField, requiredField)) &&
+                const DeepCollectionEquality().equals(other.requiredField, requiredField)) &&
             (identical(other.defaultField, defaultField) ||
-                const DeepCollectionEquality()
-                    .equals(other.defaultField, defaultField)) &&
+                const DeepCollectionEquality().equals(other.defaultField, defaultField)) &&
             (identical(other.grade, grade) ||
                 const DeepCollectionEquality().equals(other.grade, grade)));
   }
@@ -232,10 +226,9 @@ abstract class _JsonModel implements JsonModel {
       {String? simpleField,
       required String requiredField,
       bool defaultField,
-      @GradeNullableConverter() Grade? grade}) = _$_JsonModel;
+      @GradeConverter() Grade? grade}) = _$_JsonModel;
 
-  factory _JsonModel.fromJson(Map<String, dynamic> json) =
-      _$_JsonModel.fromJson;
+  factory _JsonModel.fromJson(Map<String, dynamic> json) = _$_JsonModel.fromJson;
 
   @override
   String? get simpleField => throw _privateConstructorUsedError;
@@ -244,10 +237,9 @@ abstract class _JsonModel implements JsonModel {
   @override
   bool get defaultField => throw _privateConstructorUsedError;
   @override
-  @GradeNullableConverter()
+  @GradeConverter()
   Grade? get grade => throw _privateConstructorUsedError;
   @override
   @JsonKey(ignore: true)
-  _$JsonModelCopyWith<_JsonModel> get copyWith =>
-      throw _privateConstructorUsedError;
+  _$JsonModelCopyWith<_JsonModel> get copyWith => throw _privateConstructorUsedError;
 }

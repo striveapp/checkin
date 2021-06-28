@@ -11,14 +11,13 @@ _$_JsonModel _$_$_JsonModelFromJson(Map<String, dynamic> json) {
     simpleField: json['simpleField'] as String?,
     requiredField: json['requiredField'] as String,
     defaultField: json['defaultField'] as bool? ?? true,
-    grade: const GradeNullableConverter().fromJson(json['grade'] as String?),
+    grade: const GradeConverter().fromJson(json['grade'] as String?),
   );
 }
 
-Map<String, dynamic> _$_$_JsonModelToJson(_$_JsonModel instance) =>
-    <String, dynamic>{
+Map<String, dynamic> _$_$_JsonModelToJson(_$_JsonModel instance) => <String, dynamic>{
       'simpleField': instance.simpleField,
       'requiredField': instance.requiredField,
       'defaultField': instance.defaultField,
-      'grade': const GradeNullableConverter().toJson(instance.grade),
+      'grade': const GradeConverter().toJson(instance.grade),
     };

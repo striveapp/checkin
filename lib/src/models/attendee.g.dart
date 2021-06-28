@@ -9,7 +9,7 @@ part of 'attendee.dart';
 Attendee _$AttendeeFromJson(Map<String, dynamic> json) {
   return Attendee(
     name: json['name'] as String?,
-    grade: const GradeNullableConverter().fromJson(json['grade'] as String?),
+    grade: const GradeConverter().fromJson(json['grade'] as String?),
     imageUrl: json['imageUrl'] as String,
     email: json['email'] as String,
   );
@@ -17,7 +17,7 @@ Attendee _$AttendeeFromJson(Map<String, dynamic> json) {
 
 Map<String, dynamic> _$AttendeeToJson(Attendee instance) => <String, dynamic>{
       'name': instance.name,
-      'grade': const GradeNullableConverter().toJson(instance.grade),
+      'grade': const GradeConverter().toJson(instance.grade),
       'imageUrl': instance.imageUrl,
       'email': instance.email,
     };

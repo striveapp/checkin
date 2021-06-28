@@ -1,5 +1,3 @@
-// @dart=2.9
-
 library app_config;
 
 const int DEFAULT_CLASS_CAPACITY = 10;

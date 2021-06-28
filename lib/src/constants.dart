@@ -1,8 +1,6 @@
-// @dart=2.9
-
 library app_constants;
 
-const DISABLED_BUTTON = null;
+const dynamic DISABLED_BUTTON = null;
 
 const WEEK = "week";
 const MONTH = "month";

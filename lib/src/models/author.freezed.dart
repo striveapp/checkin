@@ -20,10 +20,7 @@ Author _$AuthorFromJson(Map<String, dynamic> json) {
 class _$AuthorTearOff {
   const _$AuthorTearOff();
 
-  _Author call(
-      {required String imageUrl,
-      required String name,
-      @GradeNullableConverter() Grade? grade}) {
+  _Author call({required String imageUrl, required String name, @GradeConverter() Grade? grade}) {
     return _Author(
       imageUrl: imageUrl,
       name: name,
@@ -43,7 +40,7 @@ const $Author = _$AuthorTearOff();
 mixin _$Author {
   String get imageUrl => throw _privateConstructorUsedError;
   String get name => throw _privateConstructorUsedError;
-  @GradeNullableConverter()
+  @GradeConverter()
   Grade? get grade => throw _privateConstructorUsedError;
 
   Map<String, dynamic> toJson() => throw _privateConstructorUsedError;
@@ -53,10 +50,8 @@ mixin _$Author {
 
 /// @nodoc
 abstract class $AuthorCopyWith<$Res> {
-  factory $AuthorCopyWith(Author value, $Res Function(Author) then) =
-      _$AuthorCopyWithImpl<$Res>;
-  $Res call(
-      {String imageUrl, String name, @GradeNullableConverter() Grade? grade});
+  factory $AuthorCopyWith(Author value, $Res Function(Author) then) = _$AuthorCopyWithImpl<$Res>;
+  $Res call({String imageUrl, String name, @GradeConverter() Grade? grade});
 }
 
 /// @nodoc
@@ -95,8 +90,7 @@ abstract class _$AuthorCopyWith<$Res> implements $AuthorCopyWith<$Res> {
   factory _$AuthorCopyWith(_Author value, $Res Function(_Author) then) =
       __$AuthorCopyWithImpl<$Res>;
   @override
-  $Res call(
-      {String imageUrl, String name, @GradeNullableConverter() Grade? grade});
+  $Res call({String imageUrl, String name, @GradeConverter() Grade? grade});
 }
 
 /// @nodoc
@@ -134,20 +128,16 @@ class __$AuthorCopyWithImpl<$Res> extends _$AuthorCopyWithImpl<$Res>
 /// @nodoc
 @JsonSerializable()
 class _$_Author with DiagnosticableTreeMixin implements _Author {
-  _$_Author(
-      {required this.imageUrl,
-      required this.name,
-      @GradeNullableConverter() this.grade});
+  _$_Author({required this.imageUrl, required this.name, @GradeConverter() this.grade});
 
-  factory _$_Author.fromJson(Map<String, dynamic> json) =>
-      _$_$_AuthorFromJson(json);
+  factory _$_Author.fromJson(Map<String, dynamic> json) => _$_$_AuthorFromJson(json);
 
   @override
   final String imageUrl;
   @override
   final String name;
   @override
-  @GradeNullableConverter()
+  @GradeConverter()
   final Grade? grade;
 
   @override
@@ -170,8 +160,7 @@ class _$_Author with DiagnosticableTreeMixin implements _Author {
     return identical(this, other) ||
         (other is _Author &&
             (identical(other.imageUrl, imageUrl) ||
-                const DeepCollectionEquality()
-                    .equals(other.imageUrl, imageUrl)) &&
+                const DeepCollectionEquality().equals(other.imageUrl, imageUrl)) &&
             (identical(other.name, name) ||
                 const DeepCollectionEquality().equals(other.name, name)) &&
             (identical(other.grade, grade) ||
@@ -187,8 +176,7 @@ class _$_Author with DiagnosticableTreeMixin implements _Author {
 
   @JsonKey(ignore: true)
   @override
-  _$AuthorCopyWith<_Author> get copyWith =>
-      __$AuthorCopyWithImpl<_Author>(this, _$identity);
+  _$AuthorCopyWith<_Author> get copyWith => __$AuthorCopyWithImpl<_Author>(this, _$identity);
 
   @override
   Map<String, dynamic> toJson() {
@@ -198,9 +186,7 @@ class _$_Author with DiagnosticableTreeMixin implements _Author {
 
 abstract class _Author implements Author {
   factory _Author(
-      {required String imageUrl,
-      required String name,
-      @GradeNullableConverter() Grade? grade}) = _$_Author;
+      {required String imageUrl, required String name, @GradeConverter() Grade? grade}) = _$_Author;
 
   factory _Author.fromJson(Map<String, dynamic> json) = _$_Author.fromJson;
 
@@ -209,7 +195,7 @@ abstract class _Author implements Author {
   @override
   String get name => throw _privateConstructorUsedError;
   @override
-  @GradeNullableConverter()
+  @GradeConverter()
   Grade? get grade => throw _privateConstructorUsedError;
   @override
   @JsonKey(ignore: true)

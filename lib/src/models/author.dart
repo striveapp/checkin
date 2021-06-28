@@ -13,7 +13,7 @@ abstract class Author with _$Author {
   factory Author({
     required final String imageUrl,
     required final String name,
-    @GradeNullableConverter() final Grade? grade,
+    @GradeConverter() final Grade? grade,
   }) = _Author;
 
   factory Author.fromUser(User user) => Author(

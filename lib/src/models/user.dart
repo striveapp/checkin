@@ -16,7 +16,7 @@ abstract class User with _$User {
     required final String imageUrl,
     final String? name,
     final String? uid,
-    @GradeNullableConverter() final Grade? grade,
+    @GradeConverter() final Grade? grade,
     final String? selectedGymId,
     @Default([]) final List<String> knownGymIds,
     final bool? hasActivePayments,

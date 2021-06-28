@@ -13,8 +13,7 @@ _$_Lesson _$_$_LessonFromJson(Map<String, dynamic> json) {
     name: json['name'] as String?,
     timeStart: json['timeStart'] as String?,
     timeEnd: json['timeEnd'] as String? ?? '',
-    weekDay:
-        const WeekdayNullableConverter().fromJson(json['weekDay'] as String?),
+    weekDay: const WeekdayConverter().fromJson(json['weekDay'] as String?),
     timestamp: json['timestamp'] as int?,
     imageUrl: json['imageUrl'] as String?,
     gymId: json['gymId'] as String?,
@@ -45,7 +44,7 @@ Map<String, dynamic> _$_$_LessonToJson(_$_Lesson instance) => <String, dynamic>{
       'name': instance.name,
       'timeStart': instance.timeStart,
       'timeEnd': instance.timeEnd,
-      'weekDay': const WeekdayNullableConverter().toJson(instance.weekDay),
+      'weekDay': const WeekdayConverter().toJson(instance.weekDay),
       'timestamp': instance.timestamp,
       'imageUrl': instance.imageUrl,
       'gymId': instance.gymId,
@@ -54,8 +53,7 @@ Map<String, dynamic> _$_$_LessonToJson(_$_Lesson instance) => <String, dynamic>{
       'classCapacity': instance.classCapacity,
       'masters': instance.masters.map((e) => e.toJson()).toList(),
       'attendees': instance.attendees.map((e) => e.toJson()).toList(),
-      'acceptedAttendees':
-          instance.acceptedAttendees.map((e) => e.toJson()).toList(),
+      'acceptedAttendees': instance.acceptedAttendees.map((e) => e.toJson()).toList(),
       'isClosed': instance.isClosed,
     };
 
@@ -78,8 +76,7 @@ _$_LessonTemplate _$_$_LessonTemplateFromJson(Map<String, dynamic> json) {
   );
 }
 
-Map<String, dynamic> _$_$_LessonTemplateToJson(_$_LessonTemplate instance) =>
-    <String, dynamic>{
+Map<String, dynamic> _$_$_LessonTemplateToJson(_$_LessonTemplate instance) => <String, dynamic>{
       'id': instance.id,
       'name': instance.name,
       'timeStart': instance.timeStart,

@@ -12,12 +12,9 @@ _$_User _$_$_UserFromJson(Map<String, dynamic> json) {
     imageUrl: json['imageUrl'] as String,
     name: json['name'] as String?,
     uid: json['uid'] as String?,
-    grade: const GradeNullableConverter().fromJson(json['grade'] as String?),
+    grade: const GradeConverter().fromJson(json['grade'] as String?),
     selectedGymId: json['selectedGymId'] as String?,
-    knownGymIds: (json['knownGymIds'] as List<dynamic>?)
-            ?.map((e) => e as String)
-            .toList() ??
-        [],
+    knownGymIds: (json['knownGymIds'] as List<dynamic>?)?.map((e) => e as String).toList() ?? [],
     hasActivePayments: json['hasActivePayments'] as bool?,
     isOwner: json['isOwner'] as bool? ?? false,
   );
@@ -28,7 +25,7 @@ Map<String, dynamic> _$_$_UserToJson(_$_User instance) => <String, dynamic>{
       'imageUrl': instance.imageUrl,
       'name': instance.name,
       'uid': instance.uid,
-      'grade': const GradeNullableConverter().toJson(instance.grade),
+      'grade': const GradeConverter().toJson(instance.grade),
       'selectedGymId': instance.selectedGymId,
       'knownGymIds': instance.knownGymIds,
       'hasActivePayments': instance.hasActivePayments,

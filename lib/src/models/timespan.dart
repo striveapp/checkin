@@ -1,5 +1,3 @@
-// @dart=2.9
-
 enum Timespan {
   week,
   month,
@@ -15,5 +13,5 @@ extension TimespanExtension on Timespan {
     Timespan.all: 'all',
   };
 
-  String get name => names[this];
+  String? get name => names[this];
 }

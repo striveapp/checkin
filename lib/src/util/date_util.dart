@@ -1,5 +1,3 @@
-// @dart=2.9
-
 import 'package:checkin/src/models/timespan.dart';
 import 'package:checkin/src/models/weekday.dart';
 import 'package:intl/intl.dart';
@@ -9,7 +7,7 @@ import '../constants.dart';
 class DateUtil {
   DateTime getCurrentDateTime() => DateTime.now();
 
-  DateTime getInitialSelectedDayByGym(String selectedGymId) {
+  DateTime getInitialSelectedDayByGym(String? selectedGymId) {
     if (selectedGymId == 'test') {
       return testDate;
     }
@@ -59,7 +57,7 @@ class DateUtil {
     }
   }
 
-  static Weekday retrieveWeekDay(String date) {
+  static Weekday? retrieveWeekDay(String date) {
     DateTime parsedDate = DateTime.parse(date);
     return DateFormat('EEEE').format(parsedDate).toWeekday();
   }

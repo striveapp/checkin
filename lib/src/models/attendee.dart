@@ -6,7 +6,7 @@ import 'package:json_annotation/json_annotation.dart';
 
 part 'attendee.g.dart';
 
-@GradeNullableConverter()
+@GradeConverter()
 @JsonSerializable()
 class Attendee extends Equatable {
   final String? name;
