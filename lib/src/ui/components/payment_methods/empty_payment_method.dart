@@ -1,5 +1,6 @@
 import 'package:checkin/src/blocs/gym/bloc.dart';
 import 'package:checkin/src/blocs/payment_methods/bloc.dart';
+import 'package:checkin/src/constants.dart';
 import 'package:checkin/src/localization/localization.dart';
 import 'package:checkin/src/models/gym.dart';
 import 'package:checkin/src/ui/components/loading_indicator.dart';
@@ -39,7 +40,7 @@ class EmptyPaymentMethod extends StatelessWidget {
                                 BlocProvider.of<PaymentMethodsBloc>(context).add(
                                     RegisterBankAccount(gym: gym, billingEmail: customerEmail));
                               }
-                            : null,
+                            : DISABLED_BUTTON,
                       )))
         ],
       ),

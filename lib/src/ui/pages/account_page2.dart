@@ -11,10 +11,29 @@ import 'package:checkin/src/util/url_launcher_util.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 
-class AccountPage2 extends StatelessWidget {
+class AccountPage2 extends StatefulWidget {
   static const String account = 'Account';
 
   const AccountPage2({Key key}) : super(key: key);
+
+  @override
+  _AccountPage2State createState() => _AccountPage2State();
+}
+
+class _AccountPage2State extends State<AccountPage2> {
+  PageController _pageController;
+
+  @override
+  void initState() {
+    _pageController = PageController();
+    super.initState();
+  }
+
+  @override
+  void dispose() {
+    super.dispose();
+    _pageController.dispose();
+  }
 
   @override
   Widget build(BuildContext context) {
@@ -47,12 +66,13 @@ class AccountPage2 extends StatelessWidget {
       ],
       child: Scaffold(
         appBar: BaseAppBar(
-          title: account.i18n,
+          title: AccountPage2.account.i18n,
           showUserImage: false,
         ),
         body: PageView(
+          controller: _pageController,
           children: [
-            EditableProfilePage(),
+            EditableProfilePage(pageController: _pageController),
             MembershipPage(),
           ],
         ),
