@@ -14,7 +14,10 @@ _$_User _$_$_UserFromJson(Map<String, dynamic> json) {
     uid: json['uid'] as String?,
     grade: const GradeConverter().fromJson(json['grade'] as String?),
     selectedGymId: json['selectedGymId'] as String?,
-    knownGymIds: (json['knownGymIds'] as List<dynamic>?)?.map((e) => e as String).toList() ?? [],
+    knownGymIds: (json['knownGymIds'] as List<dynamic>?)
+            ?.map((e) => e as String)
+            .toList() ??
+        [],
     hasActivePayments: json['hasActivePayments'] as bool?,
     isOwner: json['isOwner'] as bool? ?? false,
   );

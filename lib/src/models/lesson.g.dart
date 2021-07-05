@@ -53,7 +53,8 @@ Map<String, dynamic> _$_$_LessonToJson(_$_Lesson instance) => <String, dynamic>{
       'classCapacity': instance.classCapacity,
       'masters': instance.masters.map((e) => e.toJson()).toList(),
       'attendees': instance.attendees.map((e) => e.toJson()).toList(),
-      'acceptedAttendees': instance.acceptedAttendees.map((e) => e.toJson()).toList(),
+      'acceptedAttendees':
+          instance.acceptedAttendees.map((e) => e.toJson()).toList(),
       'isClosed': instance.isClosed,
     };
 
@@ -76,7 +77,8 @@ _$_LessonTemplate _$_$_LessonTemplateFromJson(Map<String, dynamic> json) {
   );
 }
 
-Map<String, dynamic> _$_$_LessonTemplateToJson(_$_LessonTemplate instance) => <String, dynamic>{
+Map<String, dynamic> _$_$_LessonTemplateToJson(_$_LessonTemplate instance) =>
+    <String, dynamic>{
       'id': instance.id,
       'name': instance.name,
       'timeStart': instance.timeStart,

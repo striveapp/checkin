@@ -120,19 +120,12 @@ class _$DeepLinkSetupCopyWithImpl<$Res>
 
 /// @nodoc
 
-class _$DeepLinkSetup with DiagnosticableTreeMixin implements DeepLinkSetup {
+class _$DeepLinkSetup implements DeepLinkSetup {
   const _$DeepLinkSetup();
 
   @override
-  String toString({DiagnosticLevel minLevel = DiagnosticLevel.info}) {
+  String toString() {
     return 'DynamicLinkEvent.deepLinkSetup()';
-  }
-
-  @override
-  void debugFillProperties(DiagnosticPropertiesBuilder properties) {
-    super.debugFillProperties(properties);
-    properties
-      ..add(DiagnosticsProperty('type', 'DynamicLinkEvent.deepLinkSetup'));
   }
 
   @override
@@ -234,25 +227,15 @@ class _$DeepLinkErrorEventCopyWithImpl<$Res>
 
 /// @nodoc
 
-class _$DeepLinkErrorEvent
-    with DiagnosticableTreeMixin
-    implements DeepLinkErrorEvent {
+class _$DeepLinkErrorEvent implements DeepLinkErrorEvent {
   const _$DeepLinkErrorEvent({required this.error});
 
   @override
   final OnLinkErrorException error;
 
   @override
-  String toString({DiagnosticLevel minLevel = DiagnosticLevel.info}) {
+  String toString() {
     return 'DynamicLinkEvent.deepLinkErrorEvent(error: $error)';
-  }
-
-  @override
-  void debugFillProperties(DiagnosticPropertiesBuilder properties) {
-    super.debugFillProperties(properties);
-    properties
-      ..add(DiagnosticsProperty('type', 'DynamicLinkEvent.deepLinkErrorEvent'))
-      ..add(DiagnosticsProperty('error', error));
   }
 
   @override
@@ -369,25 +352,15 @@ class _$DeepLinkReceivedCopyWithImpl<$Res>
 
 /// @nodoc
 
-class _$DeepLinkReceived
-    with DiagnosticableTreeMixin
-    implements DeepLinkReceived {
+class _$DeepLinkReceived implements DeepLinkReceived {
   const _$DeepLinkReceived({required this.deepLink});
 
   @override
   final Uri deepLink;
 
   @override
-  String toString({DiagnosticLevel minLevel = DiagnosticLevel.info}) {
+  String toString() {
     return 'DynamicLinkEvent.deepLinkReceived(deepLink: $deepLink)';
-  }
-
-  @override
-  void debugFillProperties(DiagnosticPropertiesBuilder properties) {
-    super.debugFillProperties(properties);
-    properties
-      ..add(DiagnosticsProperty('type', 'DynamicLinkEvent.deepLinkReceived'))
-      ..add(DiagnosticsProperty('deepLink', deepLink));
   }
 
   @override
@@ -509,9 +482,7 @@ class _$ShareRegistryLinkCopyWithImpl<$Res>
 
 /// @nodoc
 
-class _$ShareRegistryLink
-    with DiagnosticableTreeMixin
-    implements ShareRegistryLink {
+class _$ShareRegistryLink implements ShareRegistryLink {
   const _$ShareRegistryLink({required this.date, required this.lessonId});
 
   @override
@@ -520,17 +491,8 @@ class _$ShareRegistryLink
   final String lessonId;
 
   @override
-  String toString({DiagnosticLevel minLevel = DiagnosticLevel.info}) {
+  String toString() {
     return 'DynamicLinkEvent.shareRegistryLink(date: $date, lessonId: $lessonId)';
-  }
-
-  @override
-  void debugFillProperties(DiagnosticPropertiesBuilder properties) {
-    super.debugFillProperties(properties);
-    properties
-      ..add(DiagnosticsProperty('type', 'DynamicLinkEvent.shareRegistryLink'))
-      ..add(DiagnosticsProperty('date', date))
-      ..add(DiagnosticsProperty('lessonId', lessonId));
   }
 
   @override

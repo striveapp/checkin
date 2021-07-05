@@ -20,7 +20,10 @@ Author _$AuthorFromJson(Map<String, dynamic> json) {
 class _$AuthorTearOff {
   const _$AuthorTearOff();
 
-  _Author call({required String imageUrl, required String name, @GradeConverter() Grade? grade}) {
+  _Author call(
+      {required String imageUrl,
+      required String name,
+      @GradeConverter() Grade? grade}) {
     return _Author(
       imageUrl: imageUrl,
       name: name,
@@ -50,7 +53,8 @@ mixin _$Author {
 
 /// @nodoc
 abstract class $AuthorCopyWith<$Res> {
-  factory $AuthorCopyWith(Author value, $Res Function(Author) then) = _$AuthorCopyWithImpl<$Res>;
+  factory $AuthorCopyWith(Author value, $Res Function(Author) then) =
+      _$AuthorCopyWithImpl<$Res>;
   $Res call({String imageUrl, String name, @GradeConverter() Grade? grade});
 }
 
@@ -128,9 +132,13 @@ class __$AuthorCopyWithImpl<$Res> extends _$AuthorCopyWithImpl<$Res>
 /// @nodoc
 @JsonSerializable()
 class _$_Author with DiagnosticableTreeMixin implements _Author {
-  _$_Author({required this.imageUrl, required this.name, @GradeConverter() this.grade});
+  _$_Author(
+      {required this.imageUrl,
+      required this.name,
+      @GradeConverter() this.grade});
 
-  factory _$_Author.fromJson(Map<String, dynamic> json) => _$_$_AuthorFromJson(json);
+  factory _$_Author.fromJson(Map<String, dynamic> json) =>
+      _$_$_AuthorFromJson(json);
 
   @override
   final String imageUrl;
@@ -160,7 +168,8 @@ class _$_Author with DiagnosticableTreeMixin implements _Author {
     return identical(this, other) ||
         (other is _Author &&
             (identical(other.imageUrl, imageUrl) ||
-                const DeepCollectionEquality().equals(other.imageUrl, imageUrl)) &&
+                const DeepCollectionEquality()
+                    .equals(other.imageUrl, imageUrl)) &&
             (identical(other.name, name) ||
                 const DeepCollectionEquality().equals(other.name, name)) &&
             (identical(other.grade, grade) ||
@@ -176,7 +185,8 @@ class _$_Author with DiagnosticableTreeMixin implements _Author {
 
   @JsonKey(ignore: true)
   @override
-  _$AuthorCopyWith<_Author> get copyWith => __$AuthorCopyWithImpl<_Author>(this, _$identity);
+  _$AuthorCopyWith<_Author> get copyWith =>
+      __$AuthorCopyWithImpl<_Author>(this, _$identity);
 
   @override
   Map<String, dynamic> toJson() {
@@ -186,7 +196,9 @@ class _$_Author with DiagnosticableTreeMixin implements _Author {
 
 abstract class _Author implements Author {
   factory _Author(
-      {required String imageUrl, required String name, @GradeConverter() Grade? grade}) = _$_Author;
+      {required String imageUrl,
+      required String name,
+      @GradeConverter() Grade? grade}) = _$_Author;
 
   factory _Author.fromJson(Map<String, dynamic> json) = _$_Author.fromJson;
 

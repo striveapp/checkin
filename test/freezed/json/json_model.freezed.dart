@@ -51,7 +51,8 @@ mixin _$JsonModel {
 
   Map<String, dynamic> toJson() => throw _privateConstructorUsedError;
   @JsonKey(ignore: true)
-  $JsonModelCopyWith<JsonModel> get copyWith => throw _privateConstructorUsedError;
+  $JsonModelCopyWith<JsonModel> get copyWith =>
+      throw _privateConstructorUsedError;
 }
 
 /// @nodoc
@@ -103,7 +104,8 @@ class _$JsonModelCopyWithImpl<$Res> implements $JsonModelCopyWith<$Res> {
 
 /// @nodoc
 abstract class _$JsonModelCopyWith<$Res> implements $JsonModelCopyWith<$Res> {
-  factory _$JsonModelCopyWith(_JsonModel value, $Res Function(_JsonModel) then) =
+  factory _$JsonModelCopyWith(
+          _JsonModel value, $Res Function(_JsonModel) then) =
       __$JsonModelCopyWithImpl<$Res>;
   @override
   $Res call(
@@ -159,7 +161,8 @@ class _$_JsonModel with DiagnosticableTreeMixin implements _JsonModel {
       this.defaultField = true,
       @GradeConverter() this.grade});
 
-  factory _$_JsonModel.fromJson(Map<String, dynamic> json) => _$_$_JsonModelFromJson(json);
+  factory _$_JsonModel.fromJson(Map<String, dynamic> json) =>
+      _$_$_JsonModelFromJson(json);
 
   @override
   final String? simpleField;
@@ -193,11 +196,14 @@ class _$_JsonModel with DiagnosticableTreeMixin implements _JsonModel {
     return identical(this, other) ||
         (other is _JsonModel &&
             (identical(other.simpleField, simpleField) ||
-                const DeepCollectionEquality().equals(other.simpleField, simpleField)) &&
+                const DeepCollectionEquality()
+                    .equals(other.simpleField, simpleField)) &&
             (identical(other.requiredField, requiredField) ||
-                const DeepCollectionEquality().equals(other.requiredField, requiredField)) &&
+                const DeepCollectionEquality()
+                    .equals(other.requiredField, requiredField)) &&
             (identical(other.defaultField, defaultField) ||
-                const DeepCollectionEquality().equals(other.defaultField, defaultField)) &&
+                const DeepCollectionEquality()
+                    .equals(other.defaultField, defaultField)) &&
             (identical(other.grade, grade) ||
                 const DeepCollectionEquality().equals(other.grade, grade)));
   }
@@ -228,7 +234,8 @@ abstract class _JsonModel implements JsonModel {
       bool defaultField,
       @GradeConverter() Grade? grade}) = _$_JsonModel;
 
-  factory _JsonModel.fromJson(Map<String, dynamic> json) = _$_JsonModel.fromJson;
+  factory _JsonModel.fromJson(Map<String, dynamic> json) =
+      _$_JsonModel.fromJson;
 
   @override
   String? get simpleField => throw _privateConstructorUsedError;
@@ -241,5 +248,6 @@ abstract class _JsonModel implements JsonModel {
   Grade? get grade => throw _privateConstructorUsedError;
   @override
   @JsonKey(ignore: true)
-  _$JsonModelCopyWith<_JsonModel> get copyWith => throw _privateConstructorUsedError;
+  _$JsonModelCopyWith<_JsonModel> get copyWith =>
+      throw _privateConstructorUsedError;
 }

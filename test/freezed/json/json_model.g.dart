@@ -15,7 +15,8 @@ _$_JsonModel _$_$_JsonModelFromJson(Map<String, dynamic> json) {
   );
 }
 
-Map<String, dynamic> _$_$_JsonModelToJson(_$_JsonModel instance) => <String, dynamic>{
+Map<String, dynamic> _$_$_JsonModelToJson(_$_JsonModel instance) =>
+    <String, dynamic>{
       'simpleField': instance.simpleField,
       'requiredField': instance.requiredField,
       'defaultField': instance.defaultField,
