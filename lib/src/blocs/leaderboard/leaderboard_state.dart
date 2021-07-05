@@ -6,7 +6,7 @@ import 'package:meta/meta.dart';
 part 'leaderboard_state.freezed.dart';
 
 @freezed
-abstract class LeaderboardState with _$LeaderboardState {
+class LeaderboardState with _$LeaderboardState {
   const factory LeaderboardState.leaderboardInitial() = LeaderboardInitial;
 
   const factory LeaderboardState.leaderboardLoaded({

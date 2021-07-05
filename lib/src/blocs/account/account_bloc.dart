@@ -1,5 +1,3 @@
-// @dart=2.9
-
 import 'dart:async';
 
 import 'package:bloc/bloc.dart';
@@ -8,19 +6,17 @@ import 'package:checkin/src/blocs/account/account_state.dart';
 import 'package:checkin/src/models/user.dart';
 import 'package:checkin/src/repositories/analytics_repository.dart';
 import 'package:checkin/src/repositories/user_repository.dart';
-import 'package:flutter/material.dart';
 
 class AccountBloc extends Bloc<AccountEvent, AccountState> {
   final AnalyticsRepository analyticsRepository;
   final UserRepository userRepository;
 
-  StreamSubscription<User> _userSub;
+  late StreamSubscription<User> _userSub;
 
   AccountBloc({
-    @required this.analyticsRepository,
-    @required this.userRepository,
+    required this.analyticsRepository,
+    required this.userRepository,
   }) : super(AccountInitial()) {
-    _userSub?.cancel();
     _userSub = userRepository.getUser().listen(_onUserStateChanged);
   }
 
@@ -42,7 +38,7 @@ class AccountBloc extends Bloc<AccountEvent, AccountState> {
 
   @override
   Future<void> close() {
-    _userSub?.cancel();
+    _userSub.cancel();
     return super.close();
   }
 }

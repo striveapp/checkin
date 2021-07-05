@@ -6,7 +6,7 @@ import 'package:meta/meta.dart';
 part 'graduation_event.freezed.dart';
 
 @freezed
-abstract class GraduationEvent with _$GraduationEvent {
+class GraduationEvent with _$GraduationEvent {
   const factory GraduationEvent.graduationSystemUpdated({
     required double forNextLevel,
     required int attendedLessonsForGrade,

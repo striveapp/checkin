@@ -6,7 +6,7 @@ import 'package:meta/meta.dart';
 part 'subscription_plans_state.freezed.dart';
 
 @freezed
-abstract class SubscriptionPlansState with _$SubscriptionPlansState {
+class SubscriptionPlansState with _$SubscriptionPlansState {
   const factory SubscriptionPlansState.subscriptionPlansInitial() = SubscriptionPlansInitial;
 
   const factory SubscriptionPlansState.subscriptionPlansLoading() = SubscriptionPlansLoading;

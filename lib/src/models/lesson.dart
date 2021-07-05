@@ -13,7 +13,7 @@ part 'lesson.freezed.dart';
 part 'lesson.g.dart';
 
 @freezed
-abstract class Lesson with _$Lesson {
+class Lesson with _$Lesson {
   factory Lesson({
     final String? id,
     final String? date,
@@ -51,7 +51,7 @@ abstract class Lesson with _$Lesson {
 }
 
 @freezed
-abstract class LessonTemplate with _$LessonTemplate {
+class LessonTemplate with _$LessonTemplate {
   factory LessonTemplate({
     final String? id,
     final String? name,

@@ -5,7 +5,7 @@ import 'package:freezed_annotation/freezed_annotation.dart';
 part 'edit_lesson_event.freezed.dart';
 
 @freezed
-abstract class EditLessonEvent with _$EditLessonEvent {
+class EditLessonEvent with _$EditLessonEvent {
   const factory EditLessonEvent.initializeEditLesson() = InitializeEditLesson;
 
   const factory EditLessonEvent.mastersUpdated({

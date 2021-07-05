@@ -7,7 +7,7 @@ import 'package:meta/meta.dart';
 part 'leaderboard_event.freezed.dart';
 
 @freezed
-abstract class LeaderboardEvent with _$LeaderboardEvent {
+class LeaderboardEvent with _$LeaderboardEvent {
   const factory LeaderboardEvent.initializeLeaderboard() = InitializeLeaderboard;
 
   const factory LeaderboardEvent.leaderboardUpdated({required List<UserHistory> usersHistory}) =

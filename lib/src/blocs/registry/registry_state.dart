@@ -6,7 +6,7 @@ import 'package:freezed_annotation/freezed_annotation.dart';
 part 'registry_state.freezed.dart';
 
 @freezed
-abstract class RegistryState with _$RegistryState {
+class RegistryState with _$RegistryState {
   const factory RegistryState.registryUninitialized() = RegistryUninitialized;
 
   const factory RegistryState.registryLoading() = RegistryLoading;

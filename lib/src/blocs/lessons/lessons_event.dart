@@ -6,7 +6,7 @@ import 'package:meta/meta.dart';
 part 'lessons_event.freezed.dart';
 
 @freezed
-abstract class LessonsEvent with _$LessonsEvent {
+class LessonsEvent with _$LessonsEvent {
   const factory LessonsEvent.initializeLessons() = InitializeLessons;
   const factory LessonsEvent.lessonsUpdated(
       {DateTime? selectedDay,

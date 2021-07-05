@@ -5,7 +5,7 @@ import 'package:freezed_annotation/freezed_annotation.dart';
 part 'switch_gym_event.freezed.dart';
 
 @freezed
-abstract class SwitchGymsEvent {
+class SwitchGymsEvent with _$SwitchGymsEvent {
   const factory SwitchGymsEvent.initializeSwitchGym() = InitializeSwitchGym;
 
   const factory SwitchGymsEvent.switchGymUpdated({

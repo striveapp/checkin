@@ -6,7 +6,7 @@ import 'package:meta/meta.dart';
 part 'graduation_state.freezed.dart';
 
 @freezed
-abstract class GraduationState with _$GraduationState {
+class GraduationState with _$GraduationState {
   const factory GraduationState.initialGraduationState() = InitialGraduationState;
 
   const factory GraduationState.graduationLoaded({

@@ -7,7 +7,7 @@ import 'package:meta/meta.dart';
 part 'payment_methods_event.freezed.dart';
 
 @freezed
-abstract class PaymentMethodsEvent with _$PaymentMethodsEvent {
+class PaymentMethodsEvent with _$PaymentMethodsEvent {
   const factory PaymentMethodsEvent.paymentMethodUpdated(
       {required String userEmail, PaymentMethod? paymentMethod}) = PaymentMethodUpdated;
 

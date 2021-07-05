@@ -4,7 +4,7 @@ part 'lesson_config.freezed.dart';
 part 'lesson_config.g.dart';
 
 @freezed
-abstract class LessonConfig with _$LessonConfig {
+class LessonConfig with _$LessonConfig {
   factory LessonConfig({
     final String? type,
     final String? color,

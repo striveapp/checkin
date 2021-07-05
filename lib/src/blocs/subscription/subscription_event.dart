@@ -5,7 +5,7 @@ import 'package:meta/meta.dart';
 part 'subscription_event.freezed.dart';
 
 @freezed
-abstract class SubscriptionEvent with _$SubscriptionEvent {
+class SubscriptionEvent with _$SubscriptionEvent {
   const factory SubscriptionEvent.subscribe({
     required String priceId,
     required String customerId,

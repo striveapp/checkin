@@ -6,7 +6,7 @@ import 'package:meta/meta.dart';
 part 'membership_state.freezed.dart';
 
 @freezed
-abstract class MembershipState with _$MembershipState {
+class MembershipState with _$MembershipState {
   const factory MembershipState.initialMembershipState() = InitialMembershipState;
   const factory MembershipState.membershipActive({required Membership membership}) =
       MembershipActive;

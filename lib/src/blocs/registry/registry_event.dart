@@ -7,7 +7,7 @@ import 'package:freezed_annotation/freezed_annotation.dart';
 part 'registry_event.freezed.dart';
 
 @freezed
-abstract class RegistryEvent with _$RegistryEvent {
+class RegistryEvent with _$RegistryEvent {
   const factory RegistryEvent.initializeRegistry() = InitializeRegistry;
 
   const factory RegistryEvent.registryUpdated({required User currentUser, Lesson? currentLesson}) =

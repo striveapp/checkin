@@ -6,7 +6,7 @@ import 'package:meta/meta.dart';
 part 'gym_state.freezed.dart';
 
 @freezed
-abstract class GymState with _$GymState {
+class GymState with _$GymState {
   const factory GymState.initialGymState() = InitialGymState;
   const factory GymState.gymLoaded({required Gym gym}) = GymLoaded;
 }

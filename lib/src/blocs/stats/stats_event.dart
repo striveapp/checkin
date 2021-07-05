@@ -5,7 +5,7 @@ import 'package:freezed_annotation/freezed_annotation.dart';
 part 'stats_event.freezed.dart';
 
 @freezed
-abstract class StatsEvent with _$StatsEvent {
+class StatsEvent with _$StatsEvent {
   const factory StatsEvent.timespanUpdated({
     required Timespan timespan,
   }) = TimespanUpdate;

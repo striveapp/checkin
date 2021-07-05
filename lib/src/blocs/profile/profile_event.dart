@@ -7,7 +7,7 @@ import 'package:meta/meta.dart';
 part 'profile_event.freezed.dart';
 
 @freezed
-abstract class ProfileEvent with _$ProfileEvent {
+class ProfileEvent with _$ProfileEvent {
   const factory ProfileEvent.initializeProfile() = InitializeProfile;
 
   const factory ProfileEvent.profileUpdated({

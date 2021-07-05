@@ -6,7 +6,7 @@ import 'package:meta/meta.dart';
 part 'gym_event.freezed.dart';
 
 @freezed
-abstract class GymEvent with _$GymEvent {
+class GymEvent with _$GymEvent {
   const factory GymEvent.gymUpdated({required Gym gym}) = GymUpdated;
   const factory GymEvent.initializeGym() = InitializeGym;
 }
