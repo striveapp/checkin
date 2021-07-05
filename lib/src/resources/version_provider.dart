@@ -1,5 +1,3 @@
-// @dart=2.9
-
 import 'package:cloud_firestore/cloud_firestore.dart';
 
 class VersionProvider {
@@ -10,6 +8,6 @@ class VersionProvider {
     return _firestore
         .doc(path)
         .snapshots()
-        .map((versionDocument) => versionDocument.data()["minimumVersionRequired"]);
+        .map((versionDocument) => versionDocument.data()?["minimumVersionRequired"]);
   }
 }

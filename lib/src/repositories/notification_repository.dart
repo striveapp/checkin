@@ -1,5 +1,3 @@
-// @dart=2.9
-
 import 'package:checkin/src/models/notification.dart';
 
 abstract class NotificationRepository {

@@ -1,5 +1,3 @@
-// @dart=2.9
-
 import 'package:checkin/src/resources/version_provider.dart';
 
 class VersionRepository {

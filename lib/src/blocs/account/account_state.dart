@@ -1,5 +1,3 @@
-// @dart=2.9
-
 import 'package:checkin/src/models/user.dart';
 import 'package:equatable/equatable.dart';
 
@@ -18,7 +16,7 @@ class AccountInitial extends AccountState {
 class AccountLoaded extends AccountState {
   final User user;
 
-  AccountLoaded({this.user});
+  AccountLoaded({required this.user});
 
   @override
   List<Object> get props => [user];
@@ -29,7 +27,7 @@ class AccountLoaded extends AccountState {
 class AccountError extends AccountState {
   final String errorMessage;
 
-  AccountError({this.errorMessage});
+  AccountError({required this.errorMessage});
 
   @override
   List<Object> get props => [errorMessage];
