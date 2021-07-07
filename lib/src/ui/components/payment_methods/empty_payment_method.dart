@@ -37,7 +37,7 @@ class EmptyPaymentMethod extends StatelessWidget {
                           connectBankAccount.i18n,
                           style: Theme.of(context).textTheme.button,
                         ),
-                        onPressed: gym.id != "demo"
+                        onPressed: gym.hasActivePayments
                             ? () {
                                 BlocProvider.of<PaymentMethodsBloc>(context).add(
                                     RegisterBankAccount(gym: gym, billingEmail: customerEmail));

@@ -144,7 +144,7 @@ class AccountPage extends StatelessWidget {
                         child: Column(
                           crossAxisAlignment: CrossAxisAlignment.start,
                           children: <Widget>[
-                            Payment(userHasActivePayments: state.user.hasActivePayments),
+                            Payment(),
                             SizedBox(
                               height: 40,
                             ),

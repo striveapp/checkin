@@ -36,29 +36,7 @@ class EditableProfilePage extends StatelessWidget {
               children: [
                 Align(
                   alignment: Alignment.centerRight,
-                  child: OutlinedButton(
-                    onPressed: () {
-                      pageController.animateToPage(1,
-                          curve: Curves.ease, duration: Duration(milliseconds: 500));
-                    },
-                    style: OutlinedButton.styleFrom(padding: EdgeInsets.only(left: 10)),
-                    child: Row(
-                      mainAxisSize: MainAxisSize.min,
-                      crossAxisAlignment: CrossAxisAlignment.center,
-                      mainAxisAlignment: MainAxisAlignment.center,
-                      children: [
-                        Text(
-                          "Membership".i18n,
-                          style: Theme.of(context).textTheme.button.apply(
-                              color: Theme.of(context).colorScheme.secondary, fontSizeFactor: 0.80),
-                        ),
-                        Icon(
-                          Icons.keyboard_arrow_right_outlined,
-                          color: Theme.of(context).colorScheme.secondary,
-                        ),
-                      ],
-                    ),
-                  ),
+                  child: GoToMembership(pageController: pageController),
                 ),
                 SizedBox(
                   height: 20,
@@ -170,5 +148,42 @@ class EditableProfilePage extends StatelessWidget {
       return thisDoesNotLookLikeAValidName.i18n;
     else
       return null;
+  }
+}
+
+class GoToMembership extends StatelessWidget {
+  const GoToMembership({
+    Key key,
+    @required this.pageController,
+  }) : super(key: key);
+
+  final PageController pageController;
+
+  @override
+  Widget build(BuildContext context) {
+    return OutlinedButton(
+      onPressed: () {
+        pageController.animateToPage(1, curve: Curves.ease, duration: Duration(milliseconds: 500));
+      },
+      style: OutlinedButton.styleFrom(padding: EdgeInsets.only(left: 10)),
+      child: Row(
+        mainAxisSize: MainAxisSize.min,
+        crossAxisAlignment: CrossAxisAlignment.center,
+        mainAxisAlignment: MainAxisAlignment.center,
+        children: [
+          Text(
+            "Membership".i18n,
+            style: Theme.of(context)
+                .textTheme
+                .button
+                .apply(color: Theme.of(context).colorScheme.secondary, fontSizeFactor: 0.80),
+          ),
+          Icon(
+            Icons.keyboard_arrow_right_outlined,
+            color: Theme.of(context).colorScheme.secondary,
+          ),
+        ],
+      ),
+    );
   }
 }

@@ -19,7 +19,6 @@ abstract class User with _$User {
     @GradeConverter() final Grade? grade,
     final String? selectedGymId,
     @Default([]) final List<String> knownGymIds,
-    final bool? hasActivePayments,
     @Default(false) final bool isOwner,
   }) = _User;
 

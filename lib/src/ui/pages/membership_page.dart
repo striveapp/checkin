@@ -44,7 +44,7 @@ class MembershipPage extends StatelessWidget {
             ],
             child: Padding(
               padding: const EdgeInsets.symmetric(horizontal: 10),
-              child: Payment(userHasActivePayments: state.profileUser.hasActivePayments),
+              child: Payment(),
             ),
           ),
         );
