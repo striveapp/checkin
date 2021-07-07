@@ -34,7 +34,7 @@ class PodiumProfile extends StatelessWidget {
         profileLoaded: (ProfileLoaded state) {
           return GestureDetector(
             onTap: () {
-              Navigator.of(context).pushNamed('user_info/${state.profileUser.email}');
+              Navigator.of(context).pushNamed('profile/${state.profileUser.email}');
             },
             child: Column(
               children: <Widget>[
