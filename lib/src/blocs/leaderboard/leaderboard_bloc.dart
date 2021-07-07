@@ -37,7 +37,7 @@ class LeaderboardBloc extends Bloc<LeaderboardEvent, LeaderboardState> {
     }
 
     if (event is LeaderboardUpdated) {
-      var sortedUsers = _getSortedUsers(event.usersHistory);
+      var sortedUsers = _getSortedUsers(_filterUsersWithoutLessons(event.usersHistory));
       if (sortedUsers.length < 3) {
         yield LeaderboardLoaded(
           podium: [],
@@ -56,6 +56,9 @@ class LeaderboardBloc extends Bloc<LeaderboardEvent, LeaderboardState> {
       _fetchUserStatsByTimespan(event.timespan);
     }
   }
+
+  List<UserHistory> _filterUsersWithoutLessons(List<UserHistory> userHistories) =>
+      userHistories.where((history) => history.attendedLessons.length > 0).toList();
 
   void _fetchUserStatsByTimespan(Timespan timespan) {
     _userSub?.cancel();
@@ -77,8 +80,8 @@ class LeaderboardBloc extends Bloc<LeaderboardEvent, LeaderboardState> {
     return super.close();
   }
 
-  List<UserHistory> _getSortedUsers(List<UserHistory> users) {
-    List<UserHistory> sortedUsers = [...users];
+  List<UserHistory> _getSortedUsers(List<UserHistory> userHistories) {
+    List<UserHistory> sortedUsers = [...userHistories];
 
     sortedUsers.sort((UserHistory userA, UserHistory userB) =>
         userB.attendedLessons.length - userA.attendedLessons.length);

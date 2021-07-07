@@ -173,6 +173,10 @@ void main() {
             email: "test-four@test.com",
             attendedLessons: attendedLessons,
           ),
+          UserHistory(
+            email: "new-test-user@test.com",
+            attendedLessons: [],
+          ),
         ];
 
         List<UserHistory> expectedPodium = [
@@ -198,7 +202,7 @@ void main() {
         ];
 
         blocTest(
-          "emits LeaderboardLoaded with users",
+          "emits LeaderboardLoaded with users without users with zero lessons",
           build: () => LeaderboardBloc(
             statsRepository: mockStatsRepository,
             userRepository: mockUserRepository,
