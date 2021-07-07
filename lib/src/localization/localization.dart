@@ -61,6 +61,7 @@ import 'package:checkin/src/ui/components/stats/user/attended_lessons_list.dart'
 import 'package:checkin/src/ui/components/stats/user/class_progression_indicator.dart';
 import 'package:checkin/src/ui/components/upgrader_dialog.dart';
 import 'package:checkin/src/ui/pages/account_page.dart';
+import 'package:checkin/src/ui/pages/editable_profile_page.dart';
 import 'package:checkin/src/ui/pages/leaderboard_page.dart';
 import 'package:checkin/src/ui/pages/lessons_stats_page.dart';
 import 'package:checkin/src/ui/pages/onboarding/grade_page.dart';
@@ -525,6 +526,41 @@ extension Localization on String {
         'en': ProfileInfo.beltColor,
         'es': 'Cinturón %s',
         'it': 'Cintura %s',
+      } +
+      {
+        'en': EditableProfilePage.beltColor,
+        'es': 'Cinturón %s',
+        'it': 'Cintura %s',
+      } +
+      {
+        'en': EditableProfilePage.name,
+        'es': 'Nombre',
+        'it': 'Nome',
+      } +
+      {
+        'en': EditableProfilePage.insertYourName,
+        'es': 'Pon tu nombre',
+        'it': 'Inserisci il tuo nome',
+      } +
+      {
+        'en': EditableProfilePage.weight,
+        'es': 'Peso',
+        'it': 'Peso',
+      } +
+      {
+        'en': EditableProfilePage.insertYourWeight,
+        'es': 'Pon tu peso',
+        'it': 'Inserisci il tuo peso',
+      } +
+      {
+        'en': EditableProfilePage.birthday,
+        'es': 'Fecha de nacimiento',
+        'it': 'Data di nascita',
+      } +
+      {
+        'en': EditableProfilePage.insertYourBirthday,
+        'es': 'Pon tu fecha de nacimiento',
+        'it': 'Inserisci data di nascita',
       } +
       {
         'en': UpgraderDialog.update,

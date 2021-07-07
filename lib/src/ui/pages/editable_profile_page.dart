@@ -6,7 +6,9 @@ import 'package:checkin/src/blocs/profile/bloc.dart';
 import 'package:checkin/src/localization/localization.dart';
 import 'package:checkin/src/models/grade.dart';
 import 'package:checkin/src/ui/components/cancel_button.dart';
+import 'package:checkin/src/ui/components/editable_date_time_field.dart';
 import 'package:checkin/src/ui/components/editable_image.dart';
+import 'package:checkin/src/ui/components/editable_text_field.dart';
 import 'package:checkin/src/ui/components/empty_widget.dart';
 import 'package:checkin/src/util/string_extension.dart';
 import 'package:flutter/material.dart';
@@ -14,9 +16,17 @@ import 'package:flutter_bloc/flutter_bloc.dart';
 
 class EditableProfilePage extends StatelessWidget {
   static const String profile = 'Profile';
-  static const String beltColor = '%s Belt';
-  static const String enterYourName = 'Enter your name';
-  static const String thisDoesNotLookLikeAValidName = "This does not look like a valid name";
+  static const String beltColor = '%s belt';
+
+  static const String insertYourName = 'Insert your name';
+  static const String name = 'Name';
+  static const String thisDoesNotLookLikeAValidName = 'This does not look like a valid name';
+
+  static const String weight = 'Weight';
+  static const String insertYourWeight = 'Insert your weight';
+
+  static const String birthday = 'Birthday';
+  static const String insertYourBirthday = 'Insert your birthday';
 
   final PageController pageController;
 
@@ -31,111 +41,143 @@ class EditableProfilePage extends StatelessWidget {
         return state.map(
           initialProfileState: (_) => EmptyWidget(),
           profileLoaded: (ProfileLoaded state) => Padding(
-            padding: const EdgeInsets.symmetric(vertical: 20, horizontal: 10),
-            child: Column(
-              children: [
-                Align(
-                  alignment: Alignment.centerRight,
-                  child: GoToMembership(pageController: pageController),
-                ),
-                SizedBox(
-                  height: 20,
-                ),
-                EditableImage(
-                  imageUrl: state.profileUser.imageUrl,
-                  onEdit: () {},
-                  size: 100,
-                ),
-                SizedBox(
-                  height: 20,
-                ),
-                Row(
-                  mainAxisSize: MainAxisSize.min,
-                  children: [
-                    Container(
-                      width: 25,
-                      height: 25,
-                      child: state.profileUser.grade.icon,
+            padding: const EdgeInsets.symmetric(vertical: 20, horizontal: 15),
+            child: SingleChildScrollView(
+              child: Column(
+                children: [
+                  Align(
+                    alignment: Alignment.centerRight,
+                    child: Padding(
+                      padding: const EdgeInsets.symmetric(horizontal: 10.0),
+                      child: GoToMembership(pageController: pageController),
                     ),
-                    SizedBox(
-                      width: 7.5,
-                    ),
-                    Text(
-                      beltColor.i18n.fill([state.profileUser.grade.name.i18n]),
-                      style: Theme.of(context).textTheme.headline4.apply(
-                            color: state.profileUser.grade.color,
-                            fontWeightDelta: 2,
-                          ),
-                    ),
-                  ],
-                ),
-                SizedBox(
-                  height: 20,
-                ),
-                Form(
-                  key: _formKey,
-                  autovalidateMode: AutovalidateMode.onUserInteraction,
-                  child: Column(
+                  ),
+                  SizedBox(
+                    height: 20,
+                  ),
+                  EditableImage(
+                    imageUrl: state.profileUser.imageUrl,
+                    onEdit: () {
+                      // todo
+                    },
+                    size: 100,
+                  ),
+                  SizedBox(
+                    height: 20,
+                  ),
+                  Row(
+                    mainAxisSize: MainAxisSize.min,
                     children: [
-                      TextFormField(
-                        key: Key("editName"),
-                        keyboardType: TextInputType.name,
-                        cursorColor: Theme.of(context).colorScheme.secondary,
-                        style: Theme.of(context).textTheme.headline3,
-                        decoration: new InputDecoration(
-                          errorBorder: InputBorder.none,
-                          errorMaxLines: 2,
-                          errorStyle: Theme.of(context)
-                              .textTheme
-                              .bodyText1
-                              .apply(color: Theme.of(context).colorScheme.error),
-                          disabledBorder: InputBorder.none,
-                          labelText: "Your name".i18n,
-                          labelStyle: Theme.of(context).textTheme.headline1,
-                        ),
-                        controller: TextEditingController.fromValue(
-                          TextEditingValue(
-                              text: state.profileUser.name,
-                              selection: new TextSelection.collapsed(
-                                  offset: state.profileUser.name.length)),
-                        ),
-                        validator: _validateName,
-                        onFieldSubmitted: (String value) {
-                          if (_formKey.currentState.validate()) {
-                            context.read<ProfileBloc>().add(UpdateName(
-                                  userEmail: state.profileUser.email,
-                                  newName: value.trim(),
-                                ));
-                          }
-                        },
+                      Container(
+                        width: 25,
+                        height: 25,
+                        child: state.profileUser.grade.icon,
+                      ),
+                      SizedBox(
+                        width: 7.5,
+                      ),
+                      Text(
+                        beltColor.i18n.fill([state.profileUser.grade.name.i18n]),
+                        style: Theme.of(context).textTheme.headline4.apply(
+                              color: state.profileUser.grade.color,
+                              fontWeightDelta: 2,
+                            ),
                       ),
                     ],
                   ),
-                ),
-                SizedBox(
-                  height: 30,
-                ),
-                if (state.profileUser.selectedGymId == "test")
-                  Row(
-                    mainAxisAlignment: MainAxisAlignment.center,
-                    children: <Widget>[
-                      Padding(
-                        padding: const EdgeInsets.only(bottom: 20.0),
-                        child: CancelButton(
-                          key: Key('logoutButton'),
-                          text: "Logout",
-                          onPressed: () {
-                            Navigator.popUntil(
-                              context,
-                              ModalRoute.withName(Navigator.defaultRouteName),
-                            );
-                            BlocProvider.of<AuthBloc>(context).add(LogOut());
+                  SizedBox(
+                    height: 20,
+                  ),
+                  Form(
+                    key: _formKey,
+                    autovalidateMode: AutovalidateMode.onUserInteraction,
+                    child: Column(
+                      children: [
+                        EditableTextField(
+                          key: Key("editName"),
+                          labelText: name.i18n,
+                          hintText: insertYourName.i18n,
+                          textValue: state.profileUser.name,
+                          validator: _validateName,
+                          keyboardType: TextInputType.name,
+                          onFieldSubmitted: (String value) {
+                            if (_formKey.currentState.validate()) {
+                              context.read<ProfileBloc>().add(UpdateName(
+                                    userEmail: state.profileUser.email,
+                                    newName: value.trim(),
+                                  ));
+                            }
                           },
                         ),
-                      ),
-                    ],
+                        SizedBox(
+                          height: 25,
+                        ),
+                        EditableTextField(
+                          key: Key("editWeight"),
+                          labelText: weight.i18n,
+                          hintText: insertYourWeight.i18n,
+                          textValue: null,
+                          // todo
+                          validator: (_) => null,
+                          keyboardType: TextInputType.number,
+                          onFieldSubmitted: (String value) {
+                            if (_formKey.currentState.validate()) {
+                              // todo
+                              // context.read<ProfileBloc>().add(UpdateName(
+                              //   userEmail: state.profileUser.email,
+                              //   newName: value.trim(),
+                              // ));
+                            }
+                          },
+                        ),
+                        SizedBox(
+                          height: 25,
+                        ),
+                        EditableDateTimeField(
+                          key: Key("editBirthday"),
+                          labelText: birthday.i18n,
+                          hintText: insertYourBirthday.i18n,
+                          firstDate: DateTime.now(),
+                          initialDate: null,
+                          lastDate: DateTime.now().add(new Duration(days: 30)),
+                          onFieldSubmitted: (DateTime value) {
+                            if (_formKey.currentState.validate()) {
+                              // todo
+                              // context.read<ProfileBloc>().add(UpdateName(
+                              //   userEmail: state.profileUser.email,
+                              //   newName: MaterialLocalizations.of(context).formatCompactDate(value),
+                              // ));
+                            }
+                          },
+                        ),
+                      ],
+                    ),
                   ),
-              ],
+                  SizedBox(
+                    height: 30,
+                  ),
+                  if (state.profileUser.selectedGymId == "test")
+                    Row(
+                      mainAxisAlignment: MainAxisAlignment.center,
+                      children: <Widget>[
+                        Padding(
+                          padding: const EdgeInsets.only(bottom: 20.0),
+                          child: CancelButton(
+                            key: Key('logoutButton'),
+                            text: "Logout",
+                            onPressed: () {
+                              Navigator.popUntil(
+                                context,
+                                ModalRoute.withName(Navigator.defaultRouteName),
+                              );
+                              BlocProvider.of<AuthBloc>(context).add(LogOut());
+                            },
+                          ),
+                        ),
+                      ],
+                    ),
+                ],
+              ),
             ),
           ),
         );
