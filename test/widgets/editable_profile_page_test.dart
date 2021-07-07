@@ -4,10 +4,9 @@ import 'package:bloc_test/bloc_test.dart';
 import 'package:checkin/src/blocs/profile/bloc.dart';
 import 'package:checkin/src/models/grade.dart';
 import 'package:checkin/src/models/user.dart';
-import 'package:checkin/src/ui/components/editable_date_time_field.dart';
+import 'package:checkin/src/ui/components/basic_text_field.dart';
+import 'package:checkin/src/ui/components/date_time_field.dart';
 import 'package:checkin/src/ui/components/editable_image.dart';
-import 'package:checkin/src/ui/components/editable_text_field.dart';
-import 'package:checkin/src/ui/components/empty_widget.dart';
 import 'package:checkin/src/ui/pages/editable_profile_page.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
@@ -42,20 +41,25 @@ void main() {
     });
 
     group("when profile is NOT loaded", () {
-      testWidgets("Renders EmptyWidget", (tester) async {
+      testWidgets("Renders PlaceholderProfile", (tester) async {
         when(() => profileBloc.state).thenReturn(InitialProfileState());
 
         await tester.pumpAppWithScaffold(
           BlocProvider.value(value: profileBloc, child: EditableProfilePage()),
         );
 
-        expect(find.byType(EmptyWidget), findsOneWidget);
+        expect(find.byType(PlaceholderProfile), findsOneWidget);
       });
     });
 
     group("when profile is loaded", () {
       User fakeUser = User(
-          email: "requiredEmail", imageUrl: "requiredImage", grade: Grade.blue, name: "tobuto");
+        email: "requiredEmail",
+        imageUrl: "requiredImage",
+        grade: Grade.blue,
+        name: "tobuto",
+      );
+
       testWidgets("Renders Editable Widgets", (tester) async {
         when(() => profileBloc.state).thenReturn(ProfileLoaded(
           profileUser: fakeUser,
@@ -68,29 +72,118 @@ void main() {
         );
 
         expect(find.byType(EditableImage), findsOneWidget);
-        expect(find.byType(EditableTextField), findsNWidgets(2));
-        expect(find.byType(EditableDateTimeField), findsOneWidget);
+        expect(find.byType(BasicTextField), findsNWidgets(2));
+        expect(find.byType(DateTimeField), findsOneWidget);
         expect(find.text('tobuto'), findsOneWidget);
         expect(find.text('Blue belt'), findsOneWidget);
       });
 
-      // testWidgets('when graduateButton is tapped dispatch Graduate event', (tester) async {
-      //   when(() => profileBloc.state).thenReturn(GraduationLoaded(
-      //     currentGrade: Grade.brown,
-      //     nextGrade: Grade.black,
-      //     attendedLessonsForGrade: 0,
-      //     forNextLevel: 3,
-      //     isVisible: true,
-      //   ));
-      //
-      //   await tester.pumpAppWithScaffold(
-      //       BlocProvider.value(value: profileBloc, child: GraduateDialog()));
-      //
-      //   await tester.tap(find.byKey(Key("graduateButton")));
-      //   await tester.pumpAndSettle();
-      //
-      //   verify(() => profileBloc.add(Graduate(newGrade: Grade.black))).called(1);
-      // });
+      testWidgets("saves a new name", (tester) async {
+        when(() => profileBloc.state).thenReturn(ProfileLoaded(
+          profileUser: fakeUser,
+          isCurrentUser: true,
+        ));
+
+        await tester.pumpAppWithScaffold(
+          BlocProvider.value(value: profileBloc, child: EditableProfilePage()),
+          locale: Locale("en", ""),
+        );
+
+        expect(find.text('tobuto'), findsOneWidget);
+
+        var nameTextField = find.byKey(Key("editName"));
+        await tester.enterText(nameTextField, 'nellano');
+        await tester.testTextInput.receiveAction(TextInputAction.done);
+        await tester.pump();
+
+        expect(find.text('nellano'), findsOneWidget);
+      });
+
+      group("when inserting a new name", () {
+        testWidgets("and the name is valid", (tester) async {
+          when(() => profileBloc.state).thenReturn(ProfileLoaded(
+            profileUser: fakeUser,
+            isCurrentUser: true,
+          ));
+
+          await tester.pumpAppWithScaffold(
+            BlocProvider.value(value: profileBloc, child: EditableProfilePage()),
+            locale: Locale("en", ""),
+          );
+
+          expect(find.text('tobuto'), findsOneWidget);
+
+          var nameTextField = find.byKey(Key("editName"));
+          await tester.enterText(nameTextField, 'nellano');
+          await tester.testTextInput.receiveAction(TextInputAction.done);
+          await tester.pump();
+
+          expect(find.text('nellano'), findsOneWidget);
+        });
+
+        testWidgets("and the name is NOT valid", (tester) async {
+          when(() => profileBloc.state).thenReturn(ProfileLoaded(
+            profileUser: fakeUser,
+            isCurrentUser: true,
+          ));
+
+          await tester.pumpAppWithScaffold(
+            BlocProvider.value(value: profileBloc, child: EditableProfilePage()),
+            locale: Locale("en", ""),
+          );
+
+          expect(find.text('tobuto'), findsOneWidget);
+
+          var nameTextField = find.byKey(Key("editName"));
+          await tester.enterText(nameTextField, "");
+          await tester.testTextInput.receiveAction(TextInputAction.done);
+          await tester.pump();
+
+          expect(find.text('This does not look like a valid name'), findsOneWidget);
+        });
+      });
+
+      group("when inserting a weight", () {
+        testWidgets("and the weight is NOT valid", (tester) async {
+          when(() => profileBloc.state).thenReturn(ProfileLoaded(
+            profileUser: fakeUser,
+            isCurrentUser: true,
+          ));
+
+          await tester.pumpAppWithScaffold(
+            BlocProvider.value(value: profileBloc, child: EditableProfilePage()),
+            locale: Locale("en", ""),
+          );
+
+          var nameTextField = find.byKey(Key("editWeight"));
+          await tester.enterText(nameTextField, '00');
+          await tester.testTextInput.receiveAction(TextInputAction.done);
+          await tester.pump();
+
+          expect(find.text('This does not look like a valid weight'), findsOneWidget);
+        });
+
+        // testWidgets("and the weight is valid", (tester) async {
+        //   when(() => profileBloc.state).thenReturn(ProfileLoaded(
+        //     profileUser: fakeUser,
+        //     isCurrentUser: true,
+        //   ));
+        //
+        //   await tester.pumpAppWithScaffold(
+        //     BlocProvider.value(value: profileBloc, child: EditableProfilePage()),
+        //     locale: Locale("en", ""),
+        //   );
+        //
+        //   expect(find.text('tobuto'), findsOneWidget);
+        //
+        //   var nameTextField = find.byKey(Key("editName"));
+        //   await tester.enterText(nameTextField, 'nellano');
+        //   await tester.testTextInput.receiveAction(TextInputAction.done);
+        //   await tester.pump();
+        //
+        //   expect(find.text('nellano'), findsOneWidget);
+        // });
+      });
     });
   });
 }

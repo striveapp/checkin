@@ -563,6 +563,16 @@ extension Localization on String {
         'it': 'Inserisci data di nascita',
       } +
       {
+        'en': EditableProfilePage.thisDoesNotLookLikeAValidName,
+        'es': 'Esto no parece un nombre valido',
+        'it': 'Questo non sembra un nome valido',
+      } +
+      {
+        'en': EditableProfilePage.thisDoesNotLookLikeAValidWeight,
+        'es': 'Esto no parece un peso valido',
+        'it': 'Questo non sembra un peso valido',
+      } +
+      {
         'en': UpgraderDialog.update,
         'es': 'Actualizar',
         'it': 'Update',

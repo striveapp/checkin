@@ -1,15 +1,15 @@
 // @dart=2.9
 
-import 'package:checkin/src/blocs/auth/auth_bloc.dart';
 import 'package:checkin/src/blocs/auth/bloc.dart';
 import 'package:checkin/src/blocs/profile/bloc.dart';
 import 'package:checkin/src/localization/localization.dart';
 import 'package:checkin/src/models/grade.dart';
+import 'package:checkin/src/ui/components/basic_text_field.dart';
 import 'package:checkin/src/ui/components/cancel_button.dart';
-import 'package:checkin/src/ui/components/editable_date_time_field.dart';
+import 'package:checkin/src/ui/components/date_time_field.dart';
 import 'package:checkin/src/ui/components/editable_image.dart';
-import 'package:checkin/src/ui/components/editable_text_field.dart';
-import 'package:checkin/src/ui/components/empty_widget.dart';
+import 'package:checkin/src/ui/components/placeholder_image.dart';
+import 'package:checkin/src/ui/components/placeholder_text.dart';
 import 'package:checkin/src/util/string_extension.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
@@ -21,6 +21,7 @@ class EditableProfilePage extends StatelessWidget {
   static const String insertYourName = 'Insert your name';
   static const String name = 'Name';
   static const String thisDoesNotLookLikeAValidName = 'This does not look like a valid name';
+  static const String thisDoesNotLookLikeAValidWeight = 'This does not look like a valid weight';
 
   static const String weight = 'Weight';
   static const String insertYourWeight = 'Insert your weight';
@@ -39,7 +40,7 @@ class EditableProfilePage extends StatelessWidget {
     return BlocBuilder<ProfileBloc, ProfileState>(
       builder: (context, state) {
         return state.map(
-          initialProfileState: (_) => EmptyWidget(),
+          initialProfileState: (_) => PlaceholderProfile(),
           profileLoaded: (ProfileLoaded state) => Padding(
             padding: const EdgeInsets.symmetric(vertical: 20, horizontal: 15),
             child: SingleChildScrollView(
@@ -93,7 +94,7 @@ class EditableProfilePage extends StatelessWidget {
                     autovalidateMode: AutovalidateMode.onUserInteraction,
                     child: Column(
                       children: [
-                        EditableTextField(
+                        BasicTextField(
                           key: Key("editName"),
                           labelText: name.i18n,
                           hintText: insertYourName.i18n,
@@ -112,13 +113,12 @@ class EditableProfilePage extends StatelessWidget {
                         SizedBox(
                           height: 25,
                         ),
-                        EditableTextField(
+                        BasicTextField(
                           key: Key("editWeight"),
                           labelText: weight.i18n,
                           hintText: insertYourWeight.i18n,
                           textValue: null,
-                          // todo
-                          validator: (_) => null,
+                          validator: _validateWeight,
                           keyboardType: TextInputType.number,
                           onFieldSubmitted: (String value) {
                             if (_formKey.currentState.validate()) {
@@ -133,7 +133,7 @@ class EditableProfilePage extends StatelessWidget {
                         SizedBox(
                           height: 25,
                         ),
-                        EditableDateTimeField(
+                        DateTimeField(
                           key: Key("editBirthday"),
                           labelText: birthday.i18n,
                           hintText: insertYourBirthday.i18n,
@@ -186,10 +186,59 @@ class EditableProfilePage extends StatelessWidget {
   }
 
   String _validateName(String value) {
-    if (value == null || value.isBlank)
+    if (value == null || value.isBlank) {
       return thisDoesNotLookLikeAValidName.i18n;
-    else
-      return null;
+    }
+    return null;
+  }
+
+  String _validateWeight(String value) {
+    var intValue = int.tryParse(value);
+    if (intValue == null || (intValue <= 0 || intValue >= 500)) {
+      return thisDoesNotLookLikeAValidWeight.i18n;
+    }
+    return null;
+  }
+}
+
+class PlaceholderProfile extends StatelessWidget {
+  const PlaceholderProfile({
+    Key key,
+  }) : super(key: key);
+
+  @override
+  Widget build(BuildContext context) {
+    return Padding(
+      padding: const EdgeInsets.symmetric(vertical: 20, horizontal: 15),
+      child: Column(
+        children: [
+          PlaceholderImage(width: 100, height: 100),
+          SizedBox(
+            height: 20,
+          ),
+          PlaceholderText(fontHeight: 16, width: 60),
+          SizedBox(
+            height: 50,
+          ),
+          Column(
+            children: [
+              PlaceholderText(fontHeight: 20, width: MediaQuery.of(context).size.width / 2),
+              SizedBox(
+                height: 25,
+              ),
+              PlaceholderText(fontHeight: 20, width: MediaQuery.of(context).size.width / 2),
+              SizedBox(
+                height: 25,
+              ),
+              PlaceholderText(fontHeight: 20, width: MediaQuery.of(context).size.width / 2),
+              SizedBox(
+                height: 25,
+              ),
+            ],
+          )
+        ],
+      ),
+    );
   }
 }
 
