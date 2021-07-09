@@ -188,6 +188,32 @@ void main() {
           expect: () => []);
     });
 
+    group("on UpdateWeight event", () {
+      var newWeight = 80.5;
+
+      setUp(() {
+        when(mockUserRepository.updateUserWeight(loggedUser.email, newWeight))
+            .thenAnswer((_) => Future.value(null));
+      });
+
+      tearDown(() async {
+        await untilCalled(mockUserRepository.updateUserWeight(loggedUser.email, newWeight));
+        verify(mockUserRepository.updateUserWeight(loggedUser.email, newWeight));
+      });
+
+      blocTest("should update the user name",
+          build: () => ProfileBloc(
+                userRepository: mockUserRepository,
+                storageRepository: mockStorageRepository,
+                imageRepository: mockImageRepository,
+              ),
+          act: (bloc) => bloc.add(ProfileEvent.updateWeight(
+                userEmail: loggedUser.email,
+                newWeight: newWeight,
+              )),
+          expect: () => []);
+    });
+
     group("on UpdateImageUrl event", () {
       var newImageUrl = "http://porc.o/a.png";
       File fakeImage = File("some_file");

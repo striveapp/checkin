@@ -24,6 +24,11 @@ class ProfileEvent with _$ProfileEvent {
     required String newName,
   }) = UpdateName;
 
+  const factory ProfileEvent.updateWeight({
+    required String userEmail,
+    required double newWeight,
+  }) = UpdateWeight;
+
   const factory ProfileEvent.updateGrade({
     required String userEmail,
     required Grade newGrade,

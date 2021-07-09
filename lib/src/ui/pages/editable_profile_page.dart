@@ -23,7 +23,7 @@ class EditableProfilePage extends StatelessWidget {
   static const String thisDoesNotLookLikeAValidName = 'This does not look like a valid name';
   static const String thisDoesNotLookLikeAValidWeight = 'This does not look like a valid weight';
 
-  static const String weight = 'Weight';
+  static const String weight = 'Weight (kg)';
   static const String insertYourWeight = 'Insert your weight';
 
   static const String birthday = 'Birthday';
@@ -59,7 +59,9 @@ class EditableProfilePage extends StatelessWidget {
                   EditableImage(
                     imageUrl: state.profileUser.imageUrl,
                     onEdit: () {
-                      // todo
+                      context.read<ProfileBloc>().add(ProfileEvent.updateImageUrl(
+                            userEmail: state.profileUser.email,
+                          ));
                     },
                     size: 100,
                   ),
@@ -117,16 +119,15 @@ class EditableProfilePage extends StatelessWidget {
                           key: Key("editWeight"),
                           labelText: weight.i18n,
                           hintText: insertYourWeight.i18n,
-                          textValue: null,
+                          textValue: state.profileUser.weight.toString(),
                           validator: _validateWeight,
                           keyboardType: TextInputType.number,
                           onFieldSubmitted: (String value) {
                             if (_formKey.currentState.validate()) {
-                              // todo
-                              // context.read<ProfileBloc>().add(UpdateName(
-                              //   userEmail: state.profileUser.email,
-                              //   newName: value.trim(),
-                              // ));
+                              context.read<ProfileBloc>().add(UpdateWeight(
+                                    userEmail: state.profileUser.email,
+                                    newWeight: double.parse(value),
+                                  ));
                             }
                           },
                         ),
@@ -193,7 +194,7 @@ class EditableProfilePage extends StatelessWidget {
   }
 
   String _validateWeight(String value) {
-    var intValue = int.tryParse(value);
+    var intValue = double.tryParse(value);
     if (intValue == null || (intValue <= 0 || intValue >= 500)) {
       return thisDoesNotLookLikeAValidWeight.i18n;
     }

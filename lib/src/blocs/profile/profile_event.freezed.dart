@@ -20,8 +20,7 @@ class _$ProfileEventTearOff {
     return const InitializeProfile();
   }
 
-  ProfileUpdated profileUpdated(
-      {required User user, required bool isCurrentUser}) {
+  ProfileUpdated profileUpdated({required User user, required bool isCurrentUser}) {
     return ProfileUpdated(
       user: user,
       isCurrentUser: isCurrentUser,
@@ -41,16 +40,21 @@ class _$ProfileEventTearOff {
     );
   }
 
-  UpdateGrade updateGrade(
-      {required String userEmail, required Grade newGrade}) {
+  UpdateWeight updateWeight({required String userEmail, required double newWeight}) {
+    return UpdateWeight(
+      userEmail: userEmail,
+      newWeight: newWeight,
+    );
+  }
+
+  UpdateGrade updateGrade({required String userEmail, required Grade newGrade}) {
     return UpdateGrade(
       userEmail: userEmail,
       newGrade: newGrade,
     );
   }
 
-  UpdateSelectedGym updateSelectedGym(
-      {required String userEmail, required String newGymId}) {
+  UpdateSelectedGym updateSelectedGym({required String userEmail, required String newGymId}) {
     return UpdateSelectedGym(
       userEmail: userEmail,
       newGymId: newGymId,
@@ -69,9 +73,9 @@ mixin _$ProfileEvent {
     required TResult Function(User user, bool isCurrentUser) profileUpdated,
     required TResult Function(String userEmail) updateImageUrl,
     required TResult Function(String userEmail, String newName) updateName,
+    required TResult Function(String userEmail, double newWeight) updateWeight,
     required TResult Function(String userEmail, Grade newGrade) updateGrade,
-    required TResult Function(String userEmail, String newGymId)
-        updateSelectedGym,
+    required TResult Function(String userEmail, String newGymId) updateSelectedGym,
   }) =>
       throw _privateConstructorUsedError;
   @optionalTypeArgs
@@ -80,6 +84,7 @@ mixin _$ProfileEvent {
     TResult Function(User user, bool isCurrentUser)? profileUpdated,
     TResult Function(String userEmail)? updateImageUrl,
     TResult Function(String userEmail, String newName)? updateName,
+    TResult Function(String userEmail, double newWeight)? updateWeight,
     TResult Function(String userEmail, Grade newGrade)? updateGrade,
     TResult Function(String userEmail, String newGymId)? updateSelectedGym,
     required TResult orElse(),
@@ -91,6 +96,7 @@ mixin _$ProfileEvent {
     required TResult Function(ProfileUpdated value) profileUpdated,
     required TResult Function(UpdateImageUrl value) updateImageUrl,
     required TResult Function(UpdateName value) updateName,
+    required TResult Function(UpdateWeight value) updateWeight,
     required TResult Function(UpdateGrade value) updateGrade,
     required TResult Function(UpdateSelectedGym value) updateSelectedGym,
   }) =>
@@ -101,6 +107,7 @@ mixin _$ProfileEvent {
     TResult Function(ProfileUpdated value)? profileUpdated,
     TResult Function(UpdateImageUrl value)? updateImageUrl,
     TResult Function(UpdateName value)? updateName,
+    TResult Function(UpdateWeight value)? updateWeight,
     TResult Function(UpdateGrade value)? updateGrade,
     TResult Function(UpdateSelectedGym value)? updateSelectedGym,
     required TResult orElse(),
@@ -110,8 +117,7 @@ mixin _$ProfileEvent {
 
 /// @nodoc
 abstract class $ProfileEventCopyWith<$Res> {
-  factory $ProfileEventCopyWith(
-          ProfileEvent value, $Res Function(ProfileEvent) then) =
+  factory $ProfileEventCopyWith(ProfileEvent value, $Res Function(ProfileEvent) then) =
       _$ProfileEventCopyWithImpl<$Res>;
 }
 
@@ -132,11 +138,9 @@ abstract class $InitializeProfileCopyWith<$Res> {
 }
 
 /// @nodoc
-class _$InitializeProfileCopyWithImpl<$Res>
-    extends _$ProfileEventCopyWithImpl<$Res>
+class _$InitializeProfileCopyWithImpl<$Res> extends _$ProfileEventCopyWithImpl<$Res>
     implements $InitializeProfileCopyWith<$Res> {
-  _$InitializeProfileCopyWithImpl(
-      InitializeProfile _value, $Res Function(InitializeProfile) _then)
+  _$InitializeProfileCopyWithImpl(InitializeProfile _value, $Res Function(InitializeProfile) _then)
       : super(_value, (v) => _then(v as InitializeProfile));
 
   @override
@@ -145,9 +149,7 @@ class _$InitializeProfileCopyWithImpl<$Res>
 
 /// @nodoc
 
-class _$InitializeProfile
-    with DiagnosticableTreeMixin
-    implements InitializeProfile {
+class _$InitializeProfile with DiagnosticableTreeMixin implements InitializeProfile {
   const _$InitializeProfile();
 
   @override
@@ -158,8 +160,7 @@ class _$InitializeProfile
   @override
   void debugFillProperties(DiagnosticPropertiesBuilder properties) {
     super.debugFillProperties(properties);
-    properties
-      ..add(DiagnosticsProperty('type', 'ProfileEvent.initializeProfile'));
+    properties..add(DiagnosticsProperty('type', 'ProfileEvent.initializeProfile'));
   }
 
   @override
@@ -177,9 +178,9 @@ class _$InitializeProfile
     required TResult Function(User user, bool isCurrentUser) profileUpdated,
     required TResult Function(String userEmail) updateImageUrl,
     required TResult Function(String userEmail, String newName) updateName,
+    required TResult Function(String userEmail, double newWeight) updateWeight,
     required TResult Function(String userEmail, Grade newGrade) updateGrade,
-    required TResult Function(String userEmail, String newGymId)
-        updateSelectedGym,
+    required TResult Function(String userEmail, String newGymId) updateSelectedGym,
   }) {
     return initializeProfile();
   }
@@ -191,6 +192,7 @@ class _$InitializeProfile
     TResult Function(User user, bool isCurrentUser)? profileUpdated,
     TResult Function(String userEmail)? updateImageUrl,
     TResult Function(String userEmail, String newName)? updateName,
+    TResult Function(String userEmail, double newWeight)? updateWeight,
     TResult Function(String userEmail, Grade newGrade)? updateGrade,
     TResult Function(String userEmail, String newGymId)? updateSelectedGym,
     required TResult orElse(),
@@ -208,6 +210,7 @@ class _$InitializeProfile
     required TResult Function(ProfileUpdated value) profileUpdated,
     required TResult Function(UpdateImageUrl value) updateImageUrl,
     required TResult Function(UpdateName value) updateName,
+    required TResult Function(UpdateWeight value) updateWeight,
     required TResult Function(UpdateGrade value) updateGrade,
     required TResult Function(UpdateSelectedGym value) updateSelectedGym,
   }) {
@@ -221,6 +224,7 @@ class _$InitializeProfile
     TResult Function(ProfileUpdated value)? profileUpdated,
     TResult Function(UpdateImageUrl value)? updateImageUrl,
     TResult Function(UpdateName value)? updateName,
+    TResult Function(UpdateWeight value)? updateWeight,
     TResult Function(UpdateGrade value)? updateGrade,
     TResult Function(UpdateSelectedGym value)? updateSelectedGym,
     required TResult orElse(),
@@ -238,8 +242,7 @@ abstract class InitializeProfile implements ProfileEvent {
 
 /// @nodoc
 abstract class $ProfileUpdatedCopyWith<$Res> {
-  factory $ProfileUpdatedCopyWith(
-          ProfileUpdated value, $Res Function(ProfileUpdated) then) =
+  factory $ProfileUpdatedCopyWith(ProfileUpdated value, $Res Function(ProfileUpdated) then) =
       _$ProfileUpdatedCopyWithImpl<$Res>;
   $Res call({User user, bool isCurrentUser});
 
@@ -247,11 +250,9 @@ abstract class $ProfileUpdatedCopyWith<$Res> {
 }
 
 /// @nodoc
-class _$ProfileUpdatedCopyWithImpl<$Res>
-    extends _$ProfileEventCopyWithImpl<$Res>
+class _$ProfileUpdatedCopyWithImpl<$Res> extends _$ProfileEventCopyWithImpl<$Res>
     implements $ProfileUpdatedCopyWith<$Res> {
-  _$ProfileUpdatedCopyWithImpl(
-      ProfileUpdated _value, $Res Function(ProfileUpdated) _then)
+  _$ProfileUpdatedCopyWithImpl(ProfileUpdated _value, $Res Function(ProfileUpdated) _then)
       : super(_value, (v) => _then(v as ProfileUpdated));
 
   @override
@@ -313,8 +314,7 @@ class _$ProfileUpdated with DiagnosticableTreeMixin implements ProfileUpdated {
             (identical(other.user, user) ||
                 const DeepCollectionEquality().equals(other.user, user)) &&
             (identical(other.isCurrentUser, isCurrentUser) ||
-                const DeepCollectionEquality()
-                    .equals(other.isCurrentUser, isCurrentUser)));
+                const DeepCollectionEquality().equals(other.isCurrentUser, isCurrentUser)));
   }
 
   @override
@@ -335,9 +335,9 @@ class _$ProfileUpdated with DiagnosticableTreeMixin implements ProfileUpdated {
     required TResult Function(User user, bool isCurrentUser) profileUpdated,
     required TResult Function(String userEmail) updateImageUrl,
     required TResult Function(String userEmail, String newName) updateName,
+    required TResult Function(String userEmail, double newWeight) updateWeight,
     required TResult Function(String userEmail, Grade newGrade) updateGrade,
-    required TResult Function(String userEmail, String newGymId)
-        updateSelectedGym,
+    required TResult Function(String userEmail, String newGymId) updateSelectedGym,
   }) {
     return profileUpdated(user, isCurrentUser);
   }
@@ -349,6 +349,7 @@ class _$ProfileUpdated with DiagnosticableTreeMixin implements ProfileUpdated {
     TResult Function(User user, bool isCurrentUser)? profileUpdated,
     TResult Function(String userEmail)? updateImageUrl,
     TResult Function(String userEmail, String newName)? updateName,
+    TResult Function(String userEmail, double newWeight)? updateWeight,
     TResult Function(String userEmail, Grade newGrade)? updateGrade,
     TResult Function(String userEmail, String newGymId)? updateSelectedGym,
     required TResult orElse(),
@@ -366,6 +367,7 @@ class _$ProfileUpdated with DiagnosticableTreeMixin implements ProfileUpdated {
     required TResult Function(ProfileUpdated value) profileUpdated,
     required TResult Function(UpdateImageUrl value) updateImageUrl,
     required TResult Function(UpdateName value) updateName,
+    required TResult Function(UpdateWeight value) updateWeight,
     required TResult Function(UpdateGrade value) updateGrade,
     required TResult Function(UpdateSelectedGym value) updateSelectedGym,
   }) {
@@ -379,6 +381,7 @@ class _$ProfileUpdated with DiagnosticableTreeMixin implements ProfileUpdated {
     TResult Function(ProfileUpdated value)? profileUpdated,
     TResult Function(UpdateImageUrl value)? updateImageUrl,
     TResult Function(UpdateName value)? updateName,
+    TResult Function(UpdateWeight value)? updateWeight,
     TResult Function(UpdateGrade value)? updateGrade,
     TResult Function(UpdateSelectedGym value)? updateSelectedGym,
     required TResult orElse(),
@@ -391,30 +394,26 @@ class _$ProfileUpdated with DiagnosticableTreeMixin implements ProfileUpdated {
 }
 
 abstract class ProfileUpdated implements ProfileEvent {
-  const factory ProfileUpdated(
-      {required User user, required bool isCurrentUser}) = _$ProfileUpdated;
+  const factory ProfileUpdated({required User user, required bool isCurrentUser}) =
+      _$ProfileUpdated;
 
   User get user => throw _privateConstructorUsedError;
   bool get isCurrentUser => throw _privateConstructorUsedError;
   @JsonKey(ignore: true)
-  $ProfileUpdatedCopyWith<ProfileUpdated> get copyWith =>
-      throw _privateConstructorUsedError;
+  $ProfileUpdatedCopyWith<ProfileUpdated> get copyWith => throw _privateConstructorUsedError;
 }
 
 /// @nodoc
 abstract class $UpdateImageUrlCopyWith<$Res> {
-  factory $UpdateImageUrlCopyWith(
-          UpdateImageUrl value, $Res Function(UpdateImageUrl) then) =
+  factory $UpdateImageUrlCopyWith(UpdateImageUrl value, $Res Function(UpdateImageUrl) then) =
       _$UpdateImageUrlCopyWithImpl<$Res>;
   $Res call({String userEmail});
 }
 
 /// @nodoc
-class _$UpdateImageUrlCopyWithImpl<$Res>
-    extends _$ProfileEventCopyWithImpl<$Res>
+class _$UpdateImageUrlCopyWithImpl<$Res> extends _$ProfileEventCopyWithImpl<$Res>
     implements $UpdateImageUrlCopyWith<$Res> {
-  _$UpdateImageUrlCopyWithImpl(
-      UpdateImageUrl _value, $Res Function(UpdateImageUrl) _then)
+  _$UpdateImageUrlCopyWithImpl(UpdateImageUrl _value, $Res Function(UpdateImageUrl) _then)
       : super(_value, (v) => _then(v as UpdateImageUrl));
 
   @override
@@ -459,13 +458,11 @@ class _$UpdateImageUrl with DiagnosticableTreeMixin implements UpdateImageUrl {
     return identical(this, other) ||
         (other is UpdateImageUrl &&
             (identical(other.userEmail, userEmail) ||
-                const DeepCollectionEquality()
-                    .equals(other.userEmail, userEmail)));
+                const DeepCollectionEquality().equals(other.userEmail, userEmail)));
   }
 
   @override
-  int get hashCode =>
-      runtimeType.hashCode ^ const DeepCollectionEquality().hash(userEmail);
+  int get hashCode => runtimeType.hashCode ^ const DeepCollectionEquality().hash(userEmail);
 
   @JsonKey(ignore: true)
   @override
@@ -479,9 +476,9 @@ class _$UpdateImageUrl with DiagnosticableTreeMixin implements UpdateImageUrl {
     required TResult Function(User user, bool isCurrentUser) profileUpdated,
     required TResult Function(String userEmail) updateImageUrl,
     required TResult Function(String userEmail, String newName) updateName,
+    required TResult Function(String userEmail, double newWeight) updateWeight,
     required TResult Function(String userEmail, Grade newGrade) updateGrade,
-    required TResult Function(String userEmail, String newGymId)
-        updateSelectedGym,
+    required TResult Function(String userEmail, String newGymId) updateSelectedGym,
   }) {
     return updateImageUrl(userEmail);
   }
@@ -493,6 +490,7 @@ class _$UpdateImageUrl with DiagnosticableTreeMixin implements UpdateImageUrl {
     TResult Function(User user, bool isCurrentUser)? profileUpdated,
     TResult Function(String userEmail)? updateImageUrl,
     TResult Function(String userEmail, String newName)? updateName,
+    TResult Function(String userEmail, double newWeight)? updateWeight,
     TResult Function(String userEmail, Grade newGrade)? updateGrade,
     TResult Function(String userEmail, String newGymId)? updateSelectedGym,
     required TResult orElse(),
@@ -510,6 +508,7 @@ class _$UpdateImageUrl with DiagnosticableTreeMixin implements UpdateImageUrl {
     required TResult Function(ProfileUpdated value) profileUpdated,
     required TResult Function(UpdateImageUrl value) updateImageUrl,
     required TResult Function(UpdateName value) updateName,
+    required TResult Function(UpdateWeight value) updateWeight,
     required TResult Function(UpdateGrade value) updateGrade,
     required TResult Function(UpdateSelectedGym value) updateSelectedGym,
   }) {
@@ -523,6 +522,7 @@ class _$UpdateImageUrl with DiagnosticableTreeMixin implements UpdateImageUrl {
     TResult Function(ProfileUpdated value)? profileUpdated,
     TResult Function(UpdateImageUrl value)? updateImageUrl,
     TResult Function(UpdateName value)? updateName,
+    TResult Function(UpdateWeight value)? updateWeight,
     TResult Function(UpdateGrade value)? updateGrade,
     TResult Function(UpdateSelectedGym value)? updateSelectedGym,
     required TResult orElse(),
@@ -539,14 +539,12 @@ abstract class UpdateImageUrl implements ProfileEvent {
 
   String get userEmail => throw _privateConstructorUsedError;
   @JsonKey(ignore: true)
-  $UpdateImageUrlCopyWith<UpdateImageUrl> get copyWith =>
-      throw _privateConstructorUsedError;
+  $UpdateImageUrlCopyWith<UpdateImageUrl> get copyWith => throw _privateConstructorUsedError;
 }
 
 /// @nodoc
 abstract class $UpdateNameCopyWith<$Res> {
-  factory $UpdateNameCopyWith(
-          UpdateName value, $Res Function(UpdateName) then) =
+  factory $UpdateNameCopyWith(UpdateName value, $Res Function(UpdateName) then) =
       _$UpdateNameCopyWithImpl<$Res>;
   $Res call({String userEmail, String newName});
 }
@@ -607,8 +605,7 @@ class _$UpdateName with DiagnosticableTreeMixin implements UpdateName {
     return identical(this, other) ||
         (other is UpdateName &&
             (identical(other.userEmail, userEmail) ||
-                const DeepCollectionEquality()
-                    .equals(other.userEmail, userEmail)) &&
+                const DeepCollectionEquality().equals(other.userEmail, userEmail)) &&
             (identical(other.newName, newName) ||
                 const DeepCollectionEquality().equals(other.newName, newName)));
   }
@@ -631,9 +628,9 @@ class _$UpdateName with DiagnosticableTreeMixin implements UpdateName {
     required TResult Function(User user, bool isCurrentUser) profileUpdated,
     required TResult Function(String userEmail) updateImageUrl,
     required TResult Function(String userEmail, String newName) updateName,
+    required TResult Function(String userEmail, double newWeight) updateWeight,
     required TResult Function(String userEmail, Grade newGrade) updateGrade,
-    required TResult Function(String userEmail, String newGymId)
-        updateSelectedGym,
+    required TResult Function(String userEmail, String newGymId) updateSelectedGym,
   }) {
     return updateName(userEmail, newName);
   }
@@ -645,6 +642,7 @@ class _$UpdateName with DiagnosticableTreeMixin implements UpdateName {
     TResult Function(User user, bool isCurrentUser)? profileUpdated,
     TResult Function(String userEmail)? updateImageUrl,
     TResult Function(String userEmail, String newName)? updateName,
+    TResult Function(String userEmail, double newWeight)? updateWeight,
     TResult Function(String userEmail, Grade newGrade)? updateGrade,
     TResult Function(String userEmail, String newGymId)? updateSelectedGym,
     required TResult orElse(),
@@ -662,6 +660,7 @@ class _$UpdateName with DiagnosticableTreeMixin implements UpdateName {
     required TResult Function(ProfileUpdated value) profileUpdated,
     required TResult Function(UpdateImageUrl value) updateImageUrl,
     required TResult Function(UpdateName value) updateName,
+    required TResult Function(UpdateWeight value) updateWeight,
     required TResult Function(UpdateGrade value) updateGrade,
     required TResult Function(UpdateSelectedGym value) updateSelectedGym,
   }) {
@@ -675,6 +674,7 @@ class _$UpdateName with DiagnosticableTreeMixin implements UpdateName {
     TResult Function(ProfileUpdated value)? profileUpdated,
     TResult Function(UpdateImageUrl value)? updateImageUrl,
     TResult Function(UpdateName value)? updateName,
+    TResult Function(UpdateWeight value)? updateWeight,
     TResult Function(UpdateGrade value)? updateGrade,
     TResult Function(UpdateSelectedGym value)? updateSelectedGym,
     required TResult orElse(),
@@ -687,20 +687,171 @@ class _$UpdateName with DiagnosticableTreeMixin implements UpdateName {
 }
 
 abstract class UpdateName implements ProfileEvent {
-  const factory UpdateName(
-      {required String userEmail, required String newName}) = _$UpdateName;
+  const factory UpdateName({required String userEmail, required String newName}) = _$UpdateName;
 
   String get userEmail => throw _privateConstructorUsedError;
   String get newName => throw _privateConstructorUsedError;
   @JsonKey(ignore: true)
-  $UpdateNameCopyWith<UpdateName> get copyWith =>
-      throw _privateConstructorUsedError;
+  $UpdateNameCopyWith<UpdateName> get copyWith => throw _privateConstructorUsedError;
+}
+
+/// @nodoc
+abstract class $UpdateWeightCopyWith<$Res> {
+  factory $UpdateWeightCopyWith(UpdateWeight value, $Res Function(UpdateWeight) then) =
+      _$UpdateWeightCopyWithImpl<$Res>;
+  $Res call({String userEmail, double newWeight});
+}
+
+/// @nodoc
+class _$UpdateWeightCopyWithImpl<$Res> extends _$ProfileEventCopyWithImpl<$Res>
+    implements $UpdateWeightCopyWith<$Res> {
+  _$UpdateWeightCopyWithImpl(UpdateWeight _value, $Res Function(UpdateWeight) _then)
+      : super(_value, (v) => _then(v as UpdateWeight));
+
+  @override
+  UpdateWeight get _value => super._value as UpdateWeight;
+
+  @override
+  $Res call({
+    Object? userEmail = freezed,
+    Object? newWeight = freezed,
+  }) {
+    return _then(UpdateWeight(
+      userEmail: userEmail == freezed
+          ? _value.userEmail
+          : userEmail // ignore: cast_nullable_to_non_nullable
+              as String,
+      newWeight: newWeight == freezed
+          ? _value.newWeight
+          : newWeight // ignore: cast_nullable_to_non_nullable
+              as double,
+    ));
+  }
+}
+
+/// @nodoc
+
+class _$UpdateWeight with DiagnosticableTreeMixin implements UpdateWeight {
+  const _$UpdateWeight({required this.userEmail, required this.newWeight});
+
+  @override
+  final String userEmail;
+  @override
+  final double newWeight;
+
+  @override
+  String toString({DiagnosticLevel minLevel = DiagnosticLevel.info}) {
+    return 'ProfileEvent.updateWeight(userEmail: $userEmail, newWeight: $newWeight)';
+  }
+
+  @override
+  void debugFillProperties(DiagnosticPropertiesBuilder properties) {
+    super.debugFillProperties(properties);
+    properties
+      ..add(DiagnosticsProperty('type', 'ProfileEvent.updateWeight'))
+      ..add(DiagnosticsProperty('userEmail', userEmail))
+      ..add(DiagnosticsProperty('newWeight', newWeight));
+  }
+
+  @override
+  bool operator ==(dynamic other) {
+    return identical(this, other) ||
+        (other is UpdateWeight &&
+            (identical(other.userEmail, userEmail) ||
+                const DeepCollectionEquality().equals(other.userEmail, userEmail)) &&
+            (identical(other.newWeight, newWeight) ||
+                const DeepCollectionEquality().equals(other.newWeight, newWeight)));
+  }
+
+  @override
+  int get hashCode =>
+      runtimeType.hashCode ^
+      const DeepCollectionEquality().hash(userEmail) ^
+      const DeepCollectionEquality().hash(newWeight);
+
+  @JsonKey(ignore: true)
+  @override
+  $UpdateWeightCopyWith<UpdateWeight> get copyWith =>
+      _$UpdateWeightCopyWithImpl<UpdateWeight>(this, _$identity);
+
+  @override
+  @optionalTypeArgs
+  TResult when<TResult extends Object?>({
+    required TResult Function() initializeProfile,
+    required TResult Function(User user, bool isCurrentUser) profileUpdated,
+    required TResult Function(String userEmail) updateImageUrl,
+    required TResult Function(String userEmail, String newName) updateName,
+    required TResult Function(String userEmail, double newWeight) updateWeight,
+    required TResult Function(String userEmail, Grade newGrade) updateGrade,
+    required TResult Function(String userEmail, String newGymId) updateSelectedGym,
+  }) {
+    return updateWeight(userEmail, newWeight);
+  }
+
+  @override
+  @optionalTypeArgs
+  TResult maybeWhen<TResult extends Object?>({
+    TResult Function()? initializeProfile,
+    TResult Function(User user, bool isCurrentUser)? profileUpdated,
+    TResult Function(String userEmail)? updateImageUrl,
+    TResult Function(String userEmail, String newName)? updateName,
+    TResult Function(String userEmail, double newWeight)? updateWeight,
+    TResult Function(String userEmail, Grade newGrade)? updateGrade,
+    TResult Function(String userEmail, String newGymId)? updateSelectedGym,
+    required TResult orElse(),
+  }) {
+    if (updateWeight != null) {
+      return updateWeight(userEmail, newWeight);
+    }
+    return orElse();
+  }
+
+  @override
+  @optionalTypeArgs
+  TResult map<TResult extends Object?>({
+    required TResult Function(InitializeProfile value) initializeProfile,
+    required TResult Function(ProfileUpdated value) profileUpdated,
+    required TResult Function(UpdateImageUrl value) updateImageUrl,
+    required TResult Function(UpdateName value) updateName,
+    required TResult Function(UpdateWeight value) updateWeight,
+    required TResult Function(UpdateGrade value) updateGrade,
+    required TResult Function(UpdateSelectedGym value) updateSelectedGym,
+  }) {
+    return updateWeight(this);
+  }
+
+  @override
+  @optionalTypeArgs
+  TResult maybeMap<TResult extends Object?>({
+    TResult Function(InitializeProfile value)? initializeProfile,
+    TResult Function(ProfileUpdated value)? profileUpdated,
+    TResult Function(UpdateImageUrl value)? updateImageUrl,
+    TResult Function(UpdateName value)? updateName,
+    TResult Function(UpdateWeight value)? updateWeight,
+    TResult Function(UpdateGrade value)? updateGrade,
+    TResult Function(UpdateSelectedGym value)? updateSelectedGym,
+    required TResult orElse(),
+  }) {
+    if (updateWeight != null) {
+      return updateWeight(this);
+    }
+    return orElse();
+  }
+}
+
+abstract class UpdateWeight implements ProfileEvent {
+  const factory UpdateWeight({required String userEmail, required double newWeight}) =
+      _$UpdateWeight;
+
+  String get userEmail => throw _privateConstructorUsedError;
+  double get newWeight => throw _privateConstructorUsedError;
+  @JsonKey(ignore: true)
+  $UpdateWeightCopyWith<UpdateWeight> get copyWith => throw _privateConstructorUsedError;
 }
 
 /// @nodoc
 abstract class $UpdateGradeCopyWith<$Res> {
-  factory $UpdateGradeCopyWith(
-          UpdateGrade value, $Res Function(UpdateGrade) then) =
+  factory $UpdateGradeCopyWith(UpdateGrade value, $Res Function(UpdateGrade) then) =
       _$UpdateGradeCopyWithImpl<$Res>;
   $Res call({String userEmail, Grade newGrade});
 }
@@ -708,8 +859,7 @@ abstract class $UpdateGradeCopyWith<$Res> {
 /// @nodoc
 class _$UpdateGradeCopyWithImpl<$Res> extends _$ProfileEventCopyWithImpl<$Res>
     implements $UpdateGradeCopyWith<$Res> {
-  _$UpdateGradeCopyWithImpl(
-      UpdateGrade _value, $Res Function(UpdateGrade) _then)
+  _$UpdateGradeCopyWithImpl(UpdateGrade _value, $Res Function(UpdateGrade) _then)
       : super(_value, (v) => _then(v as UpdateGrade));
 
   @override
@@ -762,11 +912,9 @@ class _$UpdateGrade with DiagnosticableTreeMixin implements UpdateGrade {
     return identical(this, other) ||
         (other is UpdateGrade &&
             (identical(other.userEmail, userEmail) ||
-                const DeepCollectionEquality()
-                    .equals(other.userEmail, userEmail)) &&
+                const DeepCollectionEquality().equals(other.userEmail, userEmail)) &&
             (identical(other.newGrade, newGrade) ||
-                const DeepCollectionEquality()
-                    .equals(other.newGrade, newGrade)));
+                const DeepCollectionEquality().equals(other.newGrade, newGrade)));
   }
 
   @override
@@ -787,9 +935,9 @@ class _$UpdateGrade with DiagnosticableTreeMixin implements UpdateGrade {
     required TResult Function(User user, bool isCurrentUser) profileUpdated,
     required TResult Function(String userEmail) updateImageUrl,
     required TResult Function(String userEmail, String newName) updateName,
+    required TResult Function(String userEmail, double newWeight) updateWeight,
     required TResult Function(String userEmail, Grade newGrade) updateGrade,
-    required TResult Function(String userEmail, String newGymId)
-        updateSelectedGym,
+    required TResult Function(String userEmail, String newGymId) updateSelectedGym,
   }) {
     return updateGrade(userEmail, newGrade);
   }
@@ -801,6 +949,7 @@ class _$UpdateGrade with DiagnosticableTreeMixin implements UpdateGrade {
     TResult Function(User user, bool isCurrentUser)? profileUpdated,
     TResult Function(String userEmail)? updateImageUrl,
     TResult Function(String userEmail, String newName)? updateName,
+    TResult Function(String userEmail, double newWeight)? updateWeight,
     TResult Function(String userEmail, Grade newGrade)? updateGrade,
     TResult Function(String userEmail, String newGymId)? updateSelectedGym,
     required TResult orElse(),
@@ -818,6 +967,7 @@ class _$UpdateGrade with DiagnosticableTreeMixin implements UpdateGrade {
     required TResult Function(ProfileUpdated value) profileUpdated,
     required TResult Function(UpdateImageUrl value) updateImageUrl,
     required TResult Function(UpdateName value) updateName,
+    required TResult Function(UpdateWeight value) updateWeight,
     required TResult Function(UpdateGrade value) updateGrade,
     required TResult Function(UpdateSelectedGym value) updateSelectedGym,
   }) {
@@ -831,6 +981,7 @@ class _$UpdateGrade with DiagnosticableTreeMixin implements UpdateGrade {
     TResult Function(ProfileUpdated value)? profileUpdated,
     TResult Function(UpdateImageUrl value)? updateImageUrl,
     TResult Function(UpdateName value)? updateName,
+    TResult Function(UpdateWeight value)? updateWeight,
     TResult Function(UpdateGrade value)? updateGrade,
     TResult Function(UpdateSelectedGym value)? updateSelectedGym,
     required TResult orElse(),
@@ -843,14 +994,12 @@ class _$UpdateGrade with DiagnosticableTreeMixin implements UpdateGrade {
 }
 
 abstract class UpdateGrade implements ProfileEvent {
-  const factory UpdateGrade(
-      {required String userEmail, required Grade newGrade}) = _$UpdateGrade;
+  const factory UpdateGrade({required String userEmail, required Grade newGrade}) = _$UpdateGrade;
 
   String get userEmail => throw _privateConstructorUsedError;
   Grade get newGrade => throw _privateConstructorUsedError;
   @JsonKey(ignore: true)
-  $UpdateGradeCopyWith<UpdateGrade> get copyWith =>
-      throw _privateConstructorUsedError;
+  $UpdateGradeCopyWith<UpdateGrade> get copyWith => throw _privateConstructorUsedError;
 }
 
 /// @nodoc
@@ -862,11 +1011,9 @@ abstract class $UpdateSelectedGymCopyWith<$Res> {
 }
 
 /// @nodoc
-class _$UpdateSelectedGymCopyWithImpl<$Res>
-    extends _$ProfileEventCopyWithImpl<$Res>
+class _$UpdateSelectedGymCopyWithImpl<$Res> extends _$ProfileEventCopyWithImpl<$Res>
     implements $UpdateSelectedGymCopyWith<$Res> {
-  _$UpdateSelectedGymCopyWithImpl(
-      UpdateSelectedGym _value, $Res Function(UpdateSelectedGym) _then)
+  _$UpdateSelectedGymCopyWithImpl(UpdateSelectedGym _value, $Res Function(UpdateSelectedGym) _then)
       : super(_value, (v) => _then(v as UpdateSelectedGym));
 
   @override
@@ -892,9 +1039,7 @@ class _$UpdateSelectedGymCopyWithImpl<$Res>
 
 /// @nodoc
 
-class _$UpdateSelectedGym
-    with DiagnosticableTreeMixin
-    implements UpdateSelectedGym {
+class _$UpdateSelectedGym with DiagnosticableTreeMixin implements UpdateSelectedGym {
   const _$UpdateSelectedGym({required this.userEmail, required this.newGymId});
 
   @override
@@ -921,11 +1066,9 @@ class _$UpdateSelectedGym
     return identical(this, other) ||
         (other is UpdateSelectedGym &&
             (identical(other.userEmail, userEmail) ||
-                const DeepCollectionEquality()
-                    .equals(other.userEmail, userEmail)) &&
+                const DeepCollectionEquality().equals(other.userEmail, userEmail)) &&
             (identical(other.newGymId, newGymId) ||
-                const DeepCollectionEquality()
-                    .equals(other.newGymId, newGymId)));
+                const DeepCollectionEquality().equals(other.newGymId, newGymId)));
   }
 
   @override
@@ -946,9 +1089,9 @@ class _$UpdateSelectedGym
     required TResult Function(User user, bool isCurrentUser) profileUpdated,
     required TResult Function(String userEmail) updateImageUrl,
     required TResult Function(String userEmail, String newName) updateName,
+    required TResult Function(String userEmail, double newWeight) updateWeight,
     required TResult Function(String userEmail, Grade newGrade) updateGrade,
-    required TResult Function(String userEmail, String newGymId)
-        updateSelectedGym,
+    required TResult Function(String userEmail, String newGymId) updateSelectedGym,
   }) {
     return updateSelectedGym(userEmail, newGymId);
   }
@@ -960,6 +1103,7 @@ class _$UpdateSelectedGym
     TResult Function(User user, bool isCurrentUser)? profileUpdated,
     TResult Function(String userEmail)? updateImageUrl,
     TResult Function(String userEmail, String newName)? updateName,
+    TResult Function(String userEmail, double newWeight)? updateWeight,
     TResult Function(String userEmail, Grade newGrade)? updateGrade,
     TResult Function(String userEmail, String newGymId)? updateSelectedGym,
     required TResult orElse(),
@@ -977,6 +1121,7 @@ class _$UpdateSelectedGym
     required TResult Function(ProfileUpdated value) profileUpdated,
     required TResult Function(UpdateImageUrl value) updateImageUrl,
     required TResult Function(UpdateName value) updateName,
+    required TResult Function(UpdateWeight value) updateWeight,
     required TResult Function(UpdateGrade value) updateGrade,
     required TResult Function(UpdateSelectedGym value) updateSelectedGym,
   }) {
@@ -990,6 +1135,7 @@ class _$UpdateSelectedGym
     TResult Function(ProfileUpdated value)? profileUpdated,
     TResult Function(UpdateImageUrl value)? updateImageUrl,
     TResult Function(UpdateName value)? updateName,
+    TResult Function(UpdateWeight value)? updateWeight,
     TResult Function(UpdateGrade value)? updateGrade,
     TResult Function(UpdateSelectedGym value)? updateSelectedGym,
     required TResult orElse(),
@@ -1002,13 +1148,11 @@ class _$UpdateSelectedGym
 }
 
 abstract class UpdateSelectedGym implements ProfileEvent {
-  const factory UpdateSelectedGym(
-      {required String userEmail,
-      required String newGymId}) = _$UpdateSelectedGym;
+  const factory UpdateSelectedGym({required String userEmail, required String newGymId}) =
+      _$UpdateSelectedGym;
 
   String get userEmail => throw _privateConstructorUsedError;
   String get newGymId => throw _privateConstructorUsedError;
   @JsonKey(ignore: true)
-  $UpdateSelectedGymCopyWith<UpdateSelectedGym> get copyWith =>
-      throw _privateConstructorUsedError;
+  $UpdateSelectedGymCopyWith<UpdateSelectedGym> get copyWith => throw _privateConstructorUsedError;
 }

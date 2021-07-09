@@ -25,6 +25,7 @@ class _$UserTearOff {
       required String imageUrl,
       String? name,
       String? uid,
+      double? weight,
       @GradeConverter() Grade? grade,
       String? selectedGymId,
       List<String> knownGymIds = const [],
@@ -34,6 +35,7 @@ class _$UserTearOff {
       imageUrl: imageUrl,
       name: name,
       uid: uid,
+      weight: weight,
       grade: grade,
       selectedGymId: selectedGymId,
       knownGymIds: knownGymIds,
@@ -55,6 +57,7 @@ mixin _$User {
   String get imageUrl => throw _privateConstructorUsedError;
   String? get name => throw _privateConstructorUsedError;
   String? get uid => throw _privateConstructorUsedError;
+  double? get weight => throw _privateConstructorUsedError;
   @GradeConverter()
   Grade? get grade => throw _privateConstructorUsedError;
   String? get selectedGymId => throw _privateConstructorUsedError;
@@ -74,6 +77,7 @@ abstract class $UserCopyWith<$Res> {
       String imageUrl,
       String? name,
       String? uid,
+      double? weight,
       @GradeConverter() Grade? grade,
       String? selectedGymId,
       List<String> knownGymIds,
@@ -94,6 +98,7 @@ class _$UserCopyWithImpl<$Res> implements $UserCopyWith<$Res> {
     Object? imageUrl = freezed,
     Object? name = freezed,
     Object? uid = freezed,
+    Object? weight = freezed,
     Object? grade = freezed,
     Object? selectedGymId = freezed,
     Object? knownGymIds = freezed,
@@ -116,6 +121,10 @@ class _$UserCopyWithImpl<$Res> implements $UserCopyWith<$Res> {
           ? _value.uid
           : uid // ignore: cast_nullable_to_non_nullable
               as String?,
+      weight: weight == freezed
+          ? _value.weight
+          : weight // ignore: cast_nullable_to_non_nullable
+              as double?,
       grade: grade == freezed
           ? _value.grade
           : grade // ignore: cast_nullable_to_non_nullable
@@ -145,6 +154,7 @@ abstract class _$UserCopyWith<$Res> implements $UserCopyWith<$Res> {
       String imageUrl,
       String? name,
       String? uid,
+      double? weight,
       @GradeConverter() Grade? grade,
       String? selectedGymId,
       List<String> knownGymIds,
@@ -165,6 +175,7 @@ class __$UserCopyWithImpl<$Res> extends _$UserCopyWithImpl<$Res> implements _$Us
     Object? imageUrl = freezed,
     Object? name = freezed,
     Object? uid = freezed,
+    Object? weight = freezed,
     Object? grade = freezed,
     Object? selectedGymId = freezed,
     Object? knownGymIds = freezed,
@@ -187,6 +198,10 @@ class __$UserCopyWithImpl<$Res> extends _$UserCopyWithImpl<$Res> implements _$Us
           ? _value.uid
           : uid // ignore: cast_nullable_to_non_nullable
               as String?,
+      weight: weight == freezed
+          ? _value.weight
+          : weight // ignore: cast_nullable_to_non_nullable
+              as double?,
       grade: grade == freezed
           ? _value.grade
           : grade // ignore: cast_nullable_to_non_nullable
@@ -215,6 +230,7 @@ class _$_User with DiagnosticableTreeMixin implements _User {
       required this.imageUrl,
       this.name,
       this.uid,
+      this.weight,
       @GradeConverter() this.grade,
       this.selectedGymId,
       this.knownGymIds = const [],
@@ -231,6 +247,8 @@ class _$_User with DiagnosticableTreeMixin implements _User {
   @override
   final String? uid;
   @override
+  final double? weight;
+  @override
   @GradeConverter()
   final Grade? grade;
   @override
@@ -244,7 +262,7 @@ class _$_User with DiagnosticableTreeMixin implements _User {
 
   @override
   String toString({DiagnosticLevel minLevel = DiagnosticLevel.info}) {
-    return 'User(email: $email, imageUrl: $imageUrl, name: $name, uid: $uid, grade: $grade, selectedGymId: $selectedGymId, knownGymIds: $knownGymIds, isOwner: $isOwner)';
+    return 'User(email: $email, imageUrl: $imageUrl, name: $name, uid: $uid, weight: $weight, grade: $grade, selectedGymId: $selectedGymId, knownGymIds: $knownGymIds, isOwner: $isOwner)';
   }
 
   @override
@@ -256,6 +274,7 @@ class _$_User with DiagnosticableTreeMixin implements _User {
       ..add(DiagnosticsProperty('imageUrl', imageUrl))
       ..add(DiagnosticsProperty('name', name))
       ..add(DiagnosticsProperty('uid', uid))
+      ..add(DiagnosticsProperty('weight', weight))
       ..add(DiagnosticsProperty('grade', grade))
       ..add(DiagnosticsProperty('selectedGymId', selectedGymId))
       ..add(DiagnosticsProperty('knownGymIds', knownGymIds))
@@ -273,6 +292,8 @@ class _$_User with DiagnosticableTreeMixin implements _User {
             (identical(other.name, name) ||
                 const DeepCollectionEquality().equals(other.name, name)) &&
             (identical(other.uid, uid) || const DeepCollectionEquality().equals(other.uid, uid)) &&
+            (identical(other.weight, weight) ||
+                const DeepCollectionEquality().equals(other.weight, weight)) &&
             (identical(other.grade, grade) ||
                 const DeepCollectionEquality().equals(other.grade, grade)) &&
             (identical(other.selectedGymId, selectedGymId) ||
@@ -290,6 +311,7 @@ class _$_User with DiagnosticableTreeMixin implements _User {
       const DeepCollectionEquality().hash(imageUrl) ^
       const DeepCollectionEquality().hash(name) ^
       const DeepCollectionEquality().hash(uid) ^
+      const DeepCollectionEquality().hash(weight) ^
       const DeepCollectionEquality().hash(grade) ^
       const DeepCollectionEquality().hash(selectedGymId) ^
       const DeepCollectionEquality().hash(knownGymIds) ^
@@ -311,6 +333,7 @@ abstract class _User implements User {
       required String imageUrl,
       String? name,
       String? uid,
+      double? weight,
       @GradeConverter() Grade? grade,
       String? selectedGymId,
       List<String> knownGymIds,
@@ -326,6 +349,8 @@ abstract class _User implements User {
   String? get name => throw _privateConstructorUsedError;
   @override
   String? get uid => throw _privateConstructorUsedError;
+  @override
+  double? get weight => throw _privateConstructorUsedError;
   @override
   @GradeConverter()
   Grade? get grade => throw _privateConstructorUsedError;

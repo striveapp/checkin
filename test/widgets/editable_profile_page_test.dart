@@ -78,27 +78,6 @@ void main() {
         expect(find.text('Blue belt'), findsOneWidget);
       });
 
-      testWidgets("saves a new name", (tester) async {
-        when(() => profileBloc.state).thenReturn(ProfileLoaded(
-          profileUser: fakeUser,
-          isCurrentUser: true,
-        ));
-
-        await tester.pumpAppWithScaffold(
-          BlocProvider.value(value: profileBloc, child: EditableProfilePage()),
-          locale: Locale("en", ""),
-        );
-
-        expect(find.text('tobuto'), findsOneWidget);
-
-        var nameTextField = find.byKey(Key("editName"));
-        await tester.enterText(nameTextField, 'nellano');
-        await tester.testTextInput.receiveAction(TextInputAction.done);
-        await tester.pump();
-
-        expect(find.text('nellano'), findsOneWidget);
-      });
-
       group("when inserting a new name", () {
         testWidgets("and the name is valid", (tester) async {
           when(() => profileBloc.state).thenReturn(ProfileLoaded(
@@ -119,6 +98,9 @@ void main() {
           await tester.pump();
 
           expect(find.text('nellano'), findsOneWidget);
+          //TODO
+          // verify(() => profileBloc.add(UpdateName(userEmail: fakeUser.email, newName: "nellano")))
+          //     .called(1);
         });
 
         testWidgets("and the name is NOT valid", (tester) async {
@@ -140,11 +122,71 @@ void main() {
           await tester.pump();
 
           expect(find.text('This does not look like a valid name'), findsOneWidget);
+          verifyNever(() => profileBloc.add(UpdateName(userEmail: fakeUser.email, newName: "")));
         });
       });
 
       group("when inserting a weight", () {
-        testWidgets("and the weight is NOT valid", (tester) async {
+        group("and the weight is NOT valid", () {
+          testWidgets("and when is NOT a number", (tester) async {
+            when(() => profileBloc.state).thenReturn(ProfileLoaded(
+              profileUser: fakeUser,
+              isCurrentUser: true,
+            ));
+
+            await tester.pumpAppWithScaffold(
+              BlocProvider.value(value: profileBloc, child: EditableProfilePage()),
+              locale: Locale("en", ""),
+            );
+
+            var nameTextField = find.byKey(Key("editWeight"));
+            await tester.enterText(nameTextField, 'not_a_number');
+            await tester.testTextInput.receiveAction(TextInputAction.done);
+            await tester.pump();
+
+            expect(find.text('This does not look like a valid weight'), findsOneWidget);
+          });
+
+          testWidgets("and when is lower then zero", (tester) async {
+            when(() => profileBloc.state).thenReturn(ProfileLoaded(
+              profileUser: fakeUser,
+              isCurrentUser: true,
+            ));
+
+            await tester.pumpAppWithScaffold(
+              BlocProvider.value(value: profileBloc, child: EditableProfilePage()),
+              locale: Locale("en", ""),
+            );
+
+            var nameTextField = find.byKey(Key("editWeight"));
+            await tester.enterText(nameTextField, '-1');
+            await tester.testTextInput.receiveAction(TextInputAction.done);
+            await tester.pump();
+
+            expect(find.text('This does not look like a valid weight'), findsOneWidget);
+          });
+
+          testWidgets("and when is more than 499", (tester) async {
+            when(() => profileBloc.state).thenReturn(ProfileLoaded(
+              profileUser: fakeUser,
+              isCurrentUser: true,
+            ));
+
+            await tester.pumpAppWithScaffold(
+              BlocProvider.value(value: profileBloc, child: EditableProfilePage()),
+              locale: Locale("en", ""),
+            );
+
+            var nameTextField = find.byKey(Key("editWeight"));
+            await tester.enterText(nameTextField, '500');
+            await tester.testTextInput.receiveAction(TextInputAction.done);
+            await tester.pump();
+
+            expect(find.text('This does not look like a valid weight'), findsOneWidget);
+          });
+        });
+
+        testWidgets("and the weight is valid", (tester) async {
           when(() => profileBloc.state).thenReturn(ProfileLoaded(
             profileUser: fakeUser,
             isCurrentUser: true,
@@ -156,33 +198,15 @@ void main() {
           );
 
           var nameTextField = find.byKey(Key("editWeight"));
-          await tester.enterText(nameTextField, '00');
+          await tester.enterText(nameTextField, '80.5');
           await tester.testTextInput.receiveAction(TextInputAction.done);
           await tester.pump();
 
-          expect(find.text('This does not look like a valid weight'), findsOneWidget);
+          expect(find.text('80.5'), findsOneWidget);
+          //TODO
+          // verify(() => profileBloc.add(UpdateWeight(userEmail: fakeUser.email, newWeight: 80.5)))
+          //     .called(1);
         });
-
-        // testWidgets("and the weight is valid", (tester) async {
-        //   when(() => profileBloc.state).thenReturn(ProfileLoaded(
-        //     profileUser: fakeUser,
-        //     isCurrentUser: true,
-        //   ));
-        //
-        //   await tester.pumpAppWithScaffold(
-        //     BlocProvider.value(value: profileBloc, child: EditableProfilePage()),
-        //     locale: Locale("en", ""),
-        //   );
-        //
-        //   expect(find.text('tobuto'), findsOneWidget);
-        //
-        //   var nameTextField = find.byKey(Key("editName"));
-        //   await tester.enterText(nameTextField, 'nellano');
-        //   await tester.testTextInput.receiveAction(TextInputAction.done);
-        //   await tester.pump();
-        //
-        //   expect(find.text('nellano'), findsOneWidget);
-        // });
       });
     });
   });

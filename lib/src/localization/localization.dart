@@ -544,8 +544,8 @@ extension Localization on String {
       } +
       {
         'en': EditableProfilePage.weight,
-        'es': 'Peso',
-        'it': 'Peso',
+        'es': 'Peso (kg)',
+        'it': 'Peso (kg)',
       } +
       {
         'en': EditableProfilePage.insertYourWeight,

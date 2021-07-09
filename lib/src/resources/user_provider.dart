@@ -100,4 +100,9 @@ class UserProvider implements UserRepository {
     var documentSnapshot = await _firestore.collection(path).doc(email).get();
     return !documentSnapshot.exists;
   }
+
+  @override
+  Future<void> updateUserWeight(String userEmail, double newWeight) async {
+    await _firestore.collection(path).doc(userEmail).update({"weight": newWeight});
+  }
 }

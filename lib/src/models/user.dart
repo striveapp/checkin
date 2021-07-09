@@ -10,12 +10,13 @@ part 'user.freezed.dart';
 part 'user.g.dart';
 
 @freezed
-abstract class User with _$User {
+class User with _$User {
   factory User({
     required final String email,
     required final String imageUrl,
     final String? name,
     final String? uid,
+    final double? weight,
     @GradeConverter() final Grade? grade,
     final String? selectedGymId,
     @Default([]) final List<String> knownGymIds,

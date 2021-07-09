@@ -69,6 +69,13 @@ class ProfileBloc extends Bloc<ProfileEvent, ProfileState> {
       );
     }
 
+    if (event is UpdateWeight) {
+      await userRepository.updateUserWeight(
+        event.userEmail,
+        event.newWeight,
+      );
+    }
+
     if (event is UpdateImageUrl) {
       try {
         File croppedFile = await imageRepository.getCroppedImage();
