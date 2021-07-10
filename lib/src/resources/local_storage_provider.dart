@@ -50,14 +50,20 @@ class LocalStorageProvider implements LocalStorageRepository {
   }
 
   @override
-  Stream<User> getUser() =>
-      rxPrefs.getStringStream(USER).map((userJson) => User.fromJson(json.decode(userJson)));
+  Stream<User> getUser() => rxPrefs.getStringStream(USER).map((userJson) {
+        var decodedUser = json.decode(userJson);
+        var userBirthday = decodedUser["birthday"];
+        return User.fromJson(decodedUser)
+            .copyWith(birthday: userBirthday != null ? DateTime.parse(userBirthday) : null);
+      });
 
   @override
   Future<void> setUser(User user) async {
+    var jsonUser = user.toJson();
+    jsonUser["birthday"] = user.birthday?.toIso8601String();
     await rxPrefs.setString(
       USER,
-      json.encode(user.toJson()),
+      json.encode(jsonUser),
     );
   }
 

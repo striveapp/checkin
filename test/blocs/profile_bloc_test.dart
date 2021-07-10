@@ -280,8 +280,7 @@ void main() {
       });
 
       tearDown(() async {
-        await untilCalled(
-            () => mockUserRepository.updateSelectedGymId(loggedUser.email, "testGym"));
+        await untilCalled(mockUserRepository.updateSelectedGymId(loggedUser.email, "testGym"));
         verify(mockUserRepository.updateSelectedGymId(loggedUser.email, "testGym"));
       });
 
@@ -296,6 +295,36 @@ void main() {
           userEmail: loggedUser.email,
           newGymId: "testGym",
         )),
+        expect: () => [],
+      );
+    });
+
+    group("on UpdateBirthday event", () {
+      var newBirthday = DateTime(1993, 10, 1);
+
+      setUp(() {
+        when(mockUserRepository.updateBirthday(loggedUser.email, newBirthday))
+            .thenAnswer((_) => Future.value(null));
+      });
+
+      tearDown(() async {
+        await untilCalled(mockUserRepository.updateBirthday(loggedUser.email, newBirthday));
+        verify(mockUserRepository.updateBirthday(loggedUser.email, newBirthday));
+      });
+
+      blocTest(
+        "should update the user birthday",
+        build: () => ProfileBloc(
+          userRepository: mockUserRepository,
+          storageRepository: mockStorageRepository,
+          imageRepository: mockImageRepository,
+        ),
+        act: (bloc) {
+          return bloc.add(UpdateBirthday(
+            userEmail: loggedUser.email,
+            newBirthday: newBirthday,
+          ));
+        },
         expect: () => [],
       );
     });

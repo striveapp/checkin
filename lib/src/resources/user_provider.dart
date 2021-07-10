@@ -28,7 +28,8 @@ class UserProvider implements UserRepository {
         .doc(email)
         .snapshots()
         .where((snapshot) => snapshot.exists)
-        .map((user) => User.fromJson(user.data()))
+        .map((user) => User.fromJson(user.data())
+            .copyWith(birthday: (user.data()["birthday"] as Timestamp)?.toDate()))
         .map((user) {
       _localStorageProvider.setUser(user);
       return user;
@@ -104,5 +105,10 @@ class UserProvider implements UserRepository {
   @override
   Future<void> updateUserWeight(String userEmail, double newWeight) async {
     await _firestore.collection(path).doc(userEmail).update({"weight": newWeight});
+  }
+
+  @override
+  Future<void> updateBirthday(String userEmail, DateTime newBirthday) async {
+    await _firestore.collection(path).doc(userEmail).update({"birthday": newBirthday});
   }
 }

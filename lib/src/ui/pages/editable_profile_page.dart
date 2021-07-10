@@ -14,6 +14,7 @@ import 'package:checkin/src/util/string_extension.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 
+/* this page doesnt react to changes on the db */
 class EditableProfilePage extends StatefulWidget {
   static const String profile = 'Profile';
   static const String beltColor = '%s belt';
@@ -142,19 +143,17 @@ class _EditableProfilePageState extends State<EditableProfilePage> {
                         ),
                         DateTimeField(
                           key: Key("editBirthday"),
+                          textFieldKey: _birthdayFieldKey,
                           labelText: EditableProfilePage.birthday.i18n,
                           hintText: EditableProfilePage.insertYourBirthday.i18n,
                           firstDate: DateTime.now(),
-                          initialDate: null,
+                          initialDate: state.profileUser.birthday,
                           lastDate: DateTime.now().add(new Duration(days: 30)),
                           onFieldSubmitted: (DateTime value) {
-                            if (_birthdayFieldKey.currentState.validate()) {
-                              // todo
-                              // context.read<ProfileBloc>().add(UpdateName(
-                              //   userEmail: state.profileUser.email,
-                              //   newName: MaterialLocalizations.of(context).formatCompactDate(value),
-                              // ));
-                            }
+                            context.read<ProfileBloc>().add(UpdateBirthday(
+                                  userEmail: state.profileUser.email,
+                                  newBirthday: value,
+                                ));
                           },
                         ),
                       ],

@@ -38,4 +38,9 @@ class ProfileEvent with _$ProfileEvent {
     required String userEmail,
     required String newGymId,
   }) = UpdateSelectedGym;
+
+  const factory ProfileEvent.updateBirthday({
+    required String userEmail,
+    required DateTime newBirthday,
+  }) = UpdateBirthday;
 }

@@ -27,7 +27,7 @@ class _$UserTearOff {
       String? uid,
       double? weight,
       String? selectedGymId,
-      DateTime? birthday,
+      @JsonKey(ignore: true) DateTime? birthday,
       @GradeConverter() Grade? grade,
       List<String> knownGymIds = const [],
       bool isOwner = false}) {
@@ -61,6 +61,7 @@ mixin _$User {
   String? get uid => throw _privateConstructorUsedError;
   double? get weight => throw _privateConstructorUsedError;
   String? get selectedGymId => throw _privateConstructorUsedError;
+  @JsonKey(ignore: true)
   DateTime? get birthday => throw _privateConstructorUsedError;
   @GradeConverter()
   Grade? get grade => throw _privateConstructorUsedError;
@@ -82,7 +83,7 @@ abstract class $UserCopyWith<$Res> {
       String? uid,
       double? weight,
       String? selectedGymId,
-      DateTime? birthday,
+      @JsonKey(ignore: true) DateTime? birthday,
       @GradeConverter() Grade? grade,
       List<String> knownGymIds,
       bool isOwner});
@@ -165,7 +166,7 @@ abstract class _$UserCopyWith<$Res> implements $UserCopyWith<$Res> {
       String? uid,
       double? weight,
       String? selectedGymId,
-      DateTime? birthday,
+      @JsonKey(ignore: true) DateTime? birthday,
       @GradeConverter() Grade? grade,
       List<String> knownGymIds,
       bool isOwner});
@@ -247,7 +248,7 @@ class _$_User implements _User {
       this.uid,
       this.weight,
       this.selectedGymId,
-      this.birthday,
+      @JsonKey(ignore: true) this.birthday,
       @GradeConverter() this.grade,
       this.knownGymIds = const [],
       this.isOwner = false});
@@ -267,6 +268,7 @@ class _$_User implements _User {
   @override
   final String? selectedGymId;
   @override
+  @JsonKey(ignore: true)
   final DateTime? birthday;
   @override
   @GradeConverter()
@@ -340,7 +342,7 @@ abstract class _User implements User {
       String? uid,
       double? weight,
       String? selectedGymId,
-      DateTime? birthday,
+      @JsonKey(ignore: true) DateTime? birthday,
       @GradeConverter() Grade? grade,
       List<String> knownGymIds,
       bool isOwner}) = _$_User;
@@ -360,6 +362,7 @@ abstract class _User implements User {
   @override
   String? get selectedGymId => throw _privateConstructorUsedError;
   @override
+  @JsonKey(ignore: true)
   DateTime? get birthday => throw _privateConstructorUsedError;
   @override
   @GradeConverter()

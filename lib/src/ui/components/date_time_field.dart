@@ -7,6 +7,7 @@ class DateTimeField extends StatelessWidget {
   final DateTime firstDate;
   final DateTime lastDate;
   final ValueChanged<DateTime> onFieldSubmitted;
+  final GlobalKey<FormFieldState> textFieldKey;
 
   const DateTimeField({
     required Key key,
@@ -16,6 +17,7 @@ class DateTimeField extends StatelessWidget {
     required this.onFieldSubmitted,
     required this.labelText,
     required this.hintText,
+    required this.textFieldKey,
   }) : super(key: key);
 
   @override
@@ -36,6 +38,7 @@ class DateTimeField extends StatelessWidget {
           alignment: Alignment.centerLeft,
         ),
         TextFormField(
+          key: textFieldKey,
           keyboardType: TextInputType.datetime,
           cursorColor: Theme.of(context).colorScheme.secondary,
           style: Theme.of(context).textTheme.headline3!.apply(fontWeightDelta: 2),

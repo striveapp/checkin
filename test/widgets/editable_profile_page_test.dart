@@ -208,49 +208,34 @@ void main() {
       });
 
       group("when inserting the birthday", () {
-        // group("and the birthday is NOT valid", () {
-        //   testWidgets("because is NOT a valid date", (tester) async {
-        //     when(() => profileBloc.state).thenReturn(ProfileLoaded(
-        //       profileUser: fakeUser,
-        //       isCurrentUser: true,
-        //     ));
-        //
-        //     await tester.pumpAppWithScaffold(
-        //       BlocProvider.value(value: profileBloc, child: EditableProfilePage()),
-        //       locale: Locale("en", ""),
-        //     );
-        //
-        //     var dateField = find.byKey(Key("editBirthday"));
-        //     await tester.tap(dateField);
-        //     await tester.enterText(nameTextField, 'not_a_number');
-        //     await tester.testTextInput.receiveAction(TextInputAction.done);
-        //     await tester.pump();
-        //
-        //     expect(find.text('This does not look like a valid weight'), findsOneWidget);
-        //   });
-        // });
-        //
-        // testWidgets("and the weight is valid", (tester) async {
-        //   when(() => profileBloc.state).thenReturn(ProfileLoaded(
-        //     profileUser: fakeUser,
-        //     isCurrentUser: true,
-        //   ));
-        //
-        //   await tester.pumpAppWithScaffold(
-        //     BlocProvider.value(value: profileBloc, child: EditableProfilePage()),
-        //     locale: Locale("en", ""),
-        //   );
-        //
-        //   var nameTextField = find.byKey(Key("editWeight"));
-        //   await tester.enterText(nameTextField, '80.5');
-        //   await tester.testTextInput.receiveAction(TextInputAction.done);
-        //   await tester.pump();
-        //
-        //   expect(find.text('80.5'), findsOneWidget);
-        //   //TODO
-        //   // verify(() => profileBloc.add(UpdateWeight(userEmail: fakeUser.email, newWeight: 80.5)))
-        //   //     .called(1);
-        // });
+        group("and the birthday is NOT valid", () {
+          testWidgets("because is NOT a valid date", (tester) async {});
+        });
+
+        testWidgets("and the date is valid", (tester) async {
+          when(() => profileBloc.state).thenReturn(ProfileLoaded(
+            profileUser: fakeUser,
+            isCurrentUser: true,
+          ));
+
+          await tester.pumpAppWithScaffold(
+            BlocProvider.value(value: profileBloc, child: EditableProfilePage()),
+            locale: Locale("en", ""),
+          );
+
+          var dateField = find.byKey(Key("editBirthday"));
+          await tester.tap(dateField);
+          await tester.pumpAndSettle();
+          await tester.tap(find.text("OK"));
+          await tester.pump();
+
+          DateTime now = new DateTime.now();
+          DateTime date = new DateTime(now.year, now.month, now.day);
+
+          verify(() =>
+                  profileBloc.add(UpdateBirthday(userEmail: fakeUser.email, newBirthday: date)))
+              .called(1);
+        });
       });
     });
   });

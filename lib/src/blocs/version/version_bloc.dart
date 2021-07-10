@@ -3,6 +3,7 @@
 import 'dart:async';
 
 import 'package:bloc/bloc.dart';
+import 'package:checkin/src/logging/logger.dart';
 import 'package:checkin/src/repositories/version_repository.dart';
 import 'package:checkin/src/util/version_util.dart';
 import 'package:flutter/foundation.dart';
@@ -37,6 +38,8 @@ class VersionBloc extends Bloc<VersionEvent, VersionState> {
       Version currentVersion = await versionUtil.getCurrentVersion();
 
       if (!minimumVersionRequired.allows(currentVersion)) {
+        Logger.log.i(
+            "Update required currentVersion [$currentVersion] is lower than minimum version [$minimumVersionRequired]");
         yield UpdateRequired();
       }
     }

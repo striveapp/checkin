@@ -33,4 +33,6 @@ abstract class UserRepository {
   Future<void> updateKnownGymIds(String userEmail, String newGymId);
 
   Future<void> updateUserAppVersion(String userEmail, Version newVersion);
+
+  Future<void> updateBirthday(String userEmail, DateTime newBirthday);
 }

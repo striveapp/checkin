@@ -60,6 +60,13 @@ class _$ProfileEventTearOff {
       newGymId: newGymId,
     );
   }
+
+  UpdateBirthday updateBirthday({required String userEmail, required DateTime newBirthday}) {
+    return UpdateBirthday(
+      userEmail: userEmail,
+      newBirthday: newBirthday,
+    );
+  }
 }
 
 /// @nodoc
@@ -76,6 +83,7 @@ mixin _$ProfileEvent {
     required TResult Function(String userEmail, double newWeight) updateWeight,
     required TResult Function(String userEmail, Grade newGrade) updateGrade,
     required TResult Function(String userEmail, String newGymId) updateSelectedGym,
+    required TResult Function(String userEmail, DateTime newBirthday) updateBirthday,
   }) =>
       throw _privateConstructorUsedError;
   @optionalTypeArgs
@@ -87,6 +95,7 @@ mixin _$ProfileEvent {
     TResult Function(String userEmail, double newWeight)? updateWeight,
     TResult Function(String userEmail, Grade newGrade)? updateGrade,
     TResult Function(String userEmail, String newGymId)? updateSelectedGym,
+    TResult Function(String userEmail, DateTime newBirthday)? updateBirthday,
     required TResult orElse(),
   }) =>
       throw _privateConstructorUsedError;
@@ -99,6 +108,7 @@ mixin _$ProfileEvent {
     required TResult Function(UpdateWeight value) updateWeight,
     required TResult Function(UpdateGrade value) updateGrade,
     required TResult Function(UpdateSelectedGym value) updateSelectedGym,
+    required TResult Function(UpdateBirthday value) updateBirthday,
   }) =>
       throw _privateConstructorUsedError;
   @optionalTypeArgs
@@ -110,6 +120,7 @@ mixin _$ProfileEvent {
     TResult Function(UpdateWeight value)? updateWeight,
     TResult Function(UpdateGrade value)? updateGrade,
     TResult Function(UpdateSelectedGym value)? updateSelectedGym,
+    TResult Function(UpdateBirthday value)? updateBirthday,
     required TResult orElse(),
   }) =>
       throw _privateConstructorUsedError;
@@ -181,6 +192,7 @@ class _$InitializeProfile with DiagnosticableTreeMixin implements InitializeProf
     required TResult Function(String userEmail, double newWeight) updateWeight,
     required TResult Function(String userEmail, Grade newGrade) updateGrade,
     required TResult Function(String userEmail, String newGymId) updateSelectedGym,
+    required TResult Function(String userEmail, DateTime newBirthday) updateBirthday,
   }) {
     return initializeProfile();
   }
@@ -195,6 +207,7 @@ class _$InitializeProfile with DiagnosticableTreeMixin implements InitializeProf
     TResult Function(String userEmail, double newWeight)? updateWeight,
     TResult Function(String userEmail, Grade newGrade)? updateGrade,
     TResult Function(String userEmail, String newGymId)? updateSelectedGym,
+    TResult Function(String userEmail, DateTime newBirthday)? updateBirthday,
     required TResult orElse(),
   }) {
     if (initializeProfile != null) {
@@ -213,6 +226,7 @@ class _$InitializeProfile with DiagnosticableTreeMixin implements InitializeProf
     required TResult Function(UpdateWeight value) updateWeight,
     required TResult Function(UpdateGrade value) updateGrade,
     required TResult Function(UpdateSelectedGym value) updateSelectedGym,
+    required TResult Function(UpdateBirthday value) updateBirthday,
   }) {
     return initializeProfile(this);
   }
@@ -227,6 +241,7 @@ class _$InitializeProfile with DiagnosticableTreeMixin implements InitializeProf
     TResult Function(UpdateWeight value)? updateWeight,
     TResult Function(UpdateGrade value)? updateGrade,
     TResult Function(UpdateSelectedGym value)? updateSelectedGym,
+    TResult Function(UpdateBirthday value)? updateBirthday,
     required TResult orElse(),
   }) {
     if (initializeProfile != null) {
@@ -338,6 +353,7 @@ class _$ProfileUpdated with DiagnosticableTreeMixin implements ProfileUpdated {
     required TResult Function(String userEmail, double newWeight) updateWeight,
     required TResult Function(String userEmail, Grade newGrade) updateGrade,
     required TResult Function(String userEmail, String newGymId) updateSelectedGym,
+    required TResult Function(String userEmail, DateTime newBirthday) updateBirthday,
   }) {
     return profileUpdated(user, isCurrentUser);
   }
@@ -352,6 +368,7 @@ class _$ProfileUpdated with DiagnosticableTreeMixin implements ProfileUpdated {
     TResult Function(String userEmail, double newWeight)? updateWeight,
     TResult Function(String userEmail, Grade newGrade)? updateGrade,
     TResult Function(String userEmail, String newGymId)? updateSelectedGym,
+    TResult Function(String userEmail, DateTime newBirthday)? updateBirthday,
     required TResult orElse(),
   }) {
     if (profileUpdated != null) {
@@ -370,6 +387,7 @@ class _$ProfileUpdated with DiagnosticableTreeMixin implements ProfileUpdated {
     required TResult Function(UpdateWeight value) updateWeight,
     required TResult Function(UpdateGrade value) updateGrade,
     required TResult Function(UpdateSelectedGym value) updateSelectedGym,
+    required TResult Function(UpdateBirthday value) updateBirthday,
   }) {
     return profileUpdated(this);
   }
@@ -384,6 +402,7 @@ class _$ProfileUpdated with DiagnosticableTreeMixin implements ProfileUpdated {
     TResult Function(UpdateWeight value)? updateWeight,
     TResult Function(UpdateGrade value)? updateGrade,
     TResult Function(UpdateSelectedGym value)? updateSelectedGym,
+    TResult Function(UpdateBirthday value)? updateBirthday,
     required TResult orElse(),
   }) {
     if (profileUpdated != null) {
@@ -479,6 +498,7 @@ class _$UpdateImageUrl with DiagnosticableTreeMixin implements UpdateImageUrl {
     required TResult Function(String userEmail, double newWeight) updateWeight,
     required TResult Function(String userEmail, Grade newGrade) updateGrade,
     required TResult Function(String userEmail, String newGymId) updateSelectedGym,
+    required TResult Function(String userEmail, DateTime newBirthday) updateBirthday,
   }) {
     return updateImageUrl(userEmail);
   }
@@ -493,6 +513,7 @@ class _$UpdateImageUrl with DiagnosticableTreeMixin implements UpdateImageUrl {
     TResult Function(String userEmail, double newWeight)? updateWeight,
     TResult Function(String userEmail, Grade newGrade)? updateGrade,
     TResult Function(String userEmail, String newGymId)? updateSelectedGym,
+    TResult Function(String userEmail, DateTime newBirthday)? updateBirthday,
     required TResult orElse(),
   }) {
     if (updateImageUrl != null) {
@@ -511,6 +532,7 @@ class _$UpdateImageUrl with DiagnosticableTreeMixin implements UpdateImageUrl {
     required TResult Function(UpdateWeight value) updateWeight,
     required TResult Function(UpdateGrade value) updateGrade,
     required TResult Function(UpdateSelectedGym value) updateSelectedGym,
+    required TResult Function(UpdateBirthday value) updateBirthday,
   }) {
     return updateImageUrl(this);
   }
@@ -525,6 +547,7 @@ class _$UpdateImageUrl with DiagnosticableTreeMixin implements UpdateImageUrl {
     TResult Function(UpdateWeight value)? updateWeight,
     TResult Function(UpdateGrade value)? updateGrade,
     TResult Function(UpdateSelectedGym value)? updateSelectedGym,
+    TResult Function(UpdateBirthday value)? updateBirthday,
     required TResult orElse(),
   }) {
     if (updateImageUrl != null) {
@@ -631,6 +654,7 @@ class _$UpdateName with DiagnosticableTreeMixin implements UpdateName {
     required TResult Function(String userEmail, double newWeight) updateWeight,
     required TResult Function(String userEmail, Grade newGrade) updateGrade,
     required TResult Function(String userEmail, String newGymId) updateSelectedGym,
+    required TResult Function(String userEmail, DateTime newBirthday) updateBirthday,
   }) {
     return updateName(userEmail, newName);
   }
@@ -645,6 +669,7 @@ class _$UpdateName with DiagnosticableTreeMixin implements UpdateName {
     TResult Function(String userEmail, double newWeight)? updateWeight,
     TResult Function(String userEmail, Grade newGrade)? updateGrade,
     TResult Function(String userEmail, String newGymId)? updateSelectedGym,
+    TResult Function(String userEmail, DateTime newBirthday)? updateBirthday,
     required TResult orElse(),
   }) {
     if (updateName != null) {
@@ -663,6 +688,7 @@ class _$UpdateName with DiagnosticableTreeMixin implements UpdateName {
     required TResult Function(UpdateWeight value) updateWeight,
     required TResult Function(UpdateGrade value) updateGrade,
     required TResult Function(UpdateSelectedGym value) updateSelectedGym,
+    required TResult Function(UpdateBirthday value) updateBirthday,
   }) {
     return updateName(this);
   }
@@ -677,6 +703,7 @@ class _$UpdateName with DiagnosticableTreeMixin implements UpdateName {
     TResult Function(UpdateWeight value)? updateWeight,
     TResult Function(UpdateGrade value)? updateGrade,
     TResult Function(UpdateSelectedGym value)? updateSelectedGym,
+    TResult Function(UpdateBirthday value)? updateBirthday,
     required TResult orElse(),
   }) {
     if (updateName != null) {
@@ -784,6 +811,7 @@ class _$UpdateWeight with DiagnosticableTreeMixin implements UpdateWeight {
     required TResult Function(String userEmail, double newWeight) updateWeight,
     required TResult Function(String userEmail, Grade newGrade) updateGrade,
     required TResult Function(String userEmail, String newGymId) updateSelectedGym,
+    required TResult Function(String userEmail, DateTime newBirthday) updateBirthday,
   }) {
     return updateWeight(userEmail, newWeight);
   }
@@ -798,6 +826,7 @@ class _$UpdateWeight with DiagnosticableTreeMixin implements UpdateWeight {
     TResult Function(String userEmail, double newWeight)? updateWeight,
     TResult Function(String userEmail, Grade newGrade)? updateGrade,
     TResult Function(String userEmail, String newGymId)? updateSelectedGym,
+    TResult Function(String userEmail, DateTime newBirthday)? updateBirthday,
     required TResult orElse(),
   }) {
     if (updateWeight != null) {
@@ -816,6 +845,7 @@ class _$UpdateWeight with DiagnosticableTreeMixin implements UpdateWeight {
     required TResult Function(UpdateWeight value) updateWeight,
     required TResult Function(UpdateGrade value) updateGrade,
     required TResult Function(UpdateSelectedGym value) updateSelectedGym,
+    required TResult Function(UpdateBirthday value) updateBirthday,
   }) {
     return updateWeight(this);
   }
@@ -830,6 +860,7 @@ class _$UpdateWeight with DiagnosticableTreeMixin implements UpdateWeight {
     TResult Function(UpdateWeight value)? updateWeight,
     TResult Function(UpdateGrade value)? updateGrade,
     TResult Function(UpdateSelectedGym value)? updateSelectedGym,
+    TResult Function(UpdateBirthday value)? updateBirthday,
     required TResult orElse(),
   }) {
     if (updateWeight != null) {
@@ -938,6 +969,7 @@ class _$UpdateGrade with DiagnosticableTreeMixin implements UpdateGrade {
     required TResult Function(String userEmail, double newWeight) updateWeight,
     required TResult Function(String userEmail, Grade newGrade) updateGrade,
     required TResult Function(String userEmail, String newGymId) updateSelectedGym,
+    required TResult Function(String userEmail, DateTime newBirthday) updateBirthday,
   }) {
     return updateGrade(userEmail, newGrade);
   }
@@ -952,6 +984,7 @@ class _$UpdateGrade with DiagnosticableTreeMixin implements UpdateGrade {
     TResult Function(String userEmail, double newWeight)? updateWeight,
     TResult Function(String userEmail, Grade newGrade)? updateGrade,
     TResult Function(String userEmail, String newGymId)? updateSelectedGym,
+    TResult Function(String userEmail, DateTime newBirthday)? updateBirthday,
     required TResult orElse(),
   }) {
     if (updateGrade != null) {
@@ -970,6 +1003,7 @@ class _$UpdateGrade with DiagnosticableTreeMixin implements UpdateGrade {
     required TResult Function(UpdateWeight value) updateWeight,
     required TResult Function(UpdateGrade value) updateGrade,
     required TResult Function(UpdateSelectedGym value) updateSelectedGym,
+    required TResult Function(UpdateBirthday value) updateBirthday,
   }) {
     return updateGrade(this);
   }
@@ -984,6 +1018,7 @@ class _$UpdateGrade with DiagnosticableTreeMixin implements UpdateGrade {
     TResult Function(UpdateWeight value)? updateWeight,
     TResult Function(UpdateGrade value)? updateGrade,
     TResult Function(UpdateSelectedGym value)? updateSelectedGym,
+    TResult Function(UpdateBirthday value)? updateBirthday,
     required TResult orElse(),
   }) {
     if (updateGrade != null) {
@@ -1092,6 +1127,7 @@ class _$UpdateSelectedGym with DiagnosticableTreeMixin implements UpdateSelected
     required TResult Function(String userEmail, double newWeight) updateWeight,
     required TResult Function(String userEmail, Grade newGrade) updateGrade,
     required TResult Function(String userEmail, String newGymId) updateSelectedGym,
+    required TResult Function(String userEmail, DateTime newBirthday) updateBirthday,
   }) {
     return updateSelectedGym(userEmail, newGymId);
   }
@@ -1106,6 +1142,7 @@ class _$UpdateSelectedGym with DiagnosticableTreeMixin implements UpdateSelected
     TResult Function(String userEmail, double newWeight)? updateWeight,
     TResult Function(String userEmail, Grade newGrade)? updateGrade,
     TResult Function(String userEmail, String newGymId)? updateSelectedGym,
+    TResult Function(String userEmail, DateTime newBirthday)? updateBirthday,
     required TResult orElse(),
   }) {
     if (updateSelectedGym != null) {
@@ -1124,6 +1161,7 @@ class _$UpdateSelectedGym with DiagnosticableTreeMixin implements UpdateSelected
     required TResult Function(UpdateWeight value) updateWeight,
     required TResult Function(UpdateGrade value) updateGrade,
     required TResult Function(UpdateSelectedGym value) updateSelectedGym,
+    required TResult Function(UpdateBirthday value) updateBirthday,
   }) {
     return updateSelectedGym(this);
   }
@@ -1138,6 +1176,7 @@ class _$UpdateSelectedGym with DiagnosticableTreeMixin implements UpdateSelected
     TResult Function(UpdateWeight value)? updateWeight,
     TResult Function(UpdateGrade value)? updateGrade,
     TResult Function(UpdateSelectedGym value)? updateSelectedGym,
+    TResult Function(UpdateBirthday value)? updateBirthday,
     required TResult orElse(),
   }) {
     if (updateSelectedGym != null) {
@@ -1155,4 +1194,162 @@ abstract class UpdateSelectedGym implements ProfileEvent {
   String get newGymId => throw _privateConstructorUsedError;
   @JsonKey(ignore: true)
   $UpdateSelectedGymCopyWith<UpdateSelectedGym> get copyWith => throw _privateConstructorUsedError;
+}
+
+/// @nodoc
+abstract class $UpdateBirthdayCopyWith<$Res> {
+  factory $UpdateBirthdayCopyWith(UpdateBirthday value, $Res Function(UpdateBirthday) then) =
+      _$UpdateBirthdayCopyWithImpl<$Res>;
+  $Res call({String userEmail, DateTime newBirthday});
+}
+
+/// @nodoc
+class _$UpdateBirthdayCopyWithImpl<$Res> extends _$ProfileEventCopyWithImpl<$Res>
+    implements $UpdateBirthdayCopyWith<$Res> {
+  _$UpdateBirthdayCopyWithImpl(UpdateBirthday _value, $Res Function(UpdateBirthday) _then)
+      : super(_value, (v) => _then(v as UpdateBirthday));
+
+  @override
+  UpdateBirthday get _value => super._value as UpdateBirthday;
+
+  @override
+  $Res call({
+    Object? userEmail = freezed,
+    Object? newBirthday = freezed,
+  }) {
+    return _then(UpdateBirthday(
+      userEmail: userEmail == freezed
+          ? _value.userEmail
+          : userEmail // ignore: cast_nullable_to_non_nullable
+              as String,
+      newBirthday: newBirthday == freezed
+          ? _value.newBirthday
+          : newBirthday // ignore: cast_nullable_to_non_nullable
+              as DateTime,
+    ));
+  }
+}
+
+/// @nodoc
+
+class _$UpdateBirthday with DiagnosticableTreeMixin implements UpdateBirthday {
+  const _$UpdateBirthday({required this.userEmail, required this.newBirthday});
+
+  @override
+  final String userEmail;
+  @override
+  final DateTime newBirthday;
+
+  @override
+  String toString({DiagnosticLevel minLevel = DiagnosticLevel.info}) {
+    return 'ProfileEvent.updateBirthday(userEmail: $userEmail, newBirthday: $newBirthday)';
+  }
+
+  @override
+  void debugFillProperties(DiagnosticPropertiesBuilder properties) {
+    super.debugFillProperties(properties);
+    properties
+      ..add(DiagnosticsProperty('type', 'ProfileEvent.updateBirthday'))
+      ..add(DiagnosticsProperty('userEmail', userEmail))
+      ..add(DiagnosticsProperty('newBirthday', newBirthday));
+  }
+
+  @override
+  bool operator ==(dynamic other) {
+    return identical(this, other) ||
+        (other is UpdateBirthday &&
+            (identical(other.userEmail, userEmail) ||
+                const DeepCollectionEquality().equals(other.userEmail, userEmail)) &&
+            (identical(other.newBirthday, newBirthday) ||
+                const DeepCollectionEquality().equals(other.newBirthday, newBirthday)));
+  }
+
+  @override
+  int get hashCode =>
+      runtimeType.hashCode ^
+      const DeepCollectionEquality().hash(userEmail) ^
+      const DeepCollectionEquality().hash(newBirthday);
+
+  @JsonKey(ignore: true)
+  @override
+  $UpdateBirthdayCopyWith<UpdateBirthday> get copyWith =>
+      _$UpdateBirthdayCopyWithImpl<UpdateBirthday>(this, _$identity);
+
+  @override
+  @optionalTypeArgs
+  TResult when<TResult extends Object?>({
+    required TResult Function() initializeProfile,
+    required TResult Function(User user, bool isCurrentUser) profileUpdated,
+    required TResult Function(String userEmail) updateImageUrl,
+    required TResult Function(String userEmail, String newName) updateName,
+    required TResult Function(String userEmail, double newWeight) updateWeight,
+    required TResult Function(String userEmail, Grade newGrade) updateGrade,
+    required TResult Function(String userEmail, String newGymId) updateSelectedGym,
+    required TResult Function(String userEmail, DateTime newBirthday) updateBirthday,
+  }) {
+    return updateBirthday(userEmail, newBirthday);
+  }
+
+  @override
+  @optionalTypeArgs
+  TResult maybeWhen<TResult extends Object?>({
+    TResult Function()? initializeProfile,
+    TResult Function(User user, bool isCurrentUser)? profileUpdated,
+    TResult Function(String userEmail)? updateImageUrl,
+    TResult Function(String userEmail, String newName)? updateName,
+    TResult Function(String userEmail, double newWeight)? updateWeight,
+    TResult Function(String userEmail, Grade newGrade)? updateGrade,
+    TResult Function(String userEmail, String newGymId)? updateSelectedGym,
+    TResult Function(String userEmail, DateTime newBirthday)? updateBirthday,
+    required TResult orElse(),
+  }) {
+    if (updateBirthday != null) {
+      return updateBirthday(userEmail, newBirthday);
+    }
+    return orElse();
+  }
+
+  @override
+  @optionalTypeArgs
+  TResult map<TResult extends Object?>({
+    required TResult Function(InitializeProfile value) initializeProfile,
+    required TResult Function(ProfileUpdated value) profileUpdated,
+    required TResult Function(UpdateImageUrl value) updateImageUrl,
+    required TResult Function(UpdateName value) updateName,
+    required TResult Function(UpdateWeight value) updateWeight,
+    required TResult Function(UpdateGrade value) updateGrade,
+    required TResult Function(UpdateSelectedGym value) updateSelectedGym,
+    required TResult Function(UpdateBirthday value) updateBirthday,
+  }) {
+    return updateBirthday(this);
+  }
+
+  @override
+  @optionalTypeArgs
+  TResult maybeMap<TResult extends Object?>({
+    TResult Function(InitializeProfile value)? initializeProfile,
+    TResult Function(ProfileUpdated value)? profileUpdated,
+    TResult Function(UpdateImageUrl value)? updateImageUrl,
+    TResult Function(UpdateName value)? updateName,
+    TResult Function(UpdateWeight value)? updateWeight,
+    TResult Function(UpdateGrade value)? updateGrade,
+    TResult Function(UpdateSelectedGym value)? updateSelectedGym,
+    TResult Function(UpdateBirthday value)? updateBirthday,
+    required TResult orElse(),
+  }) {
+    if (updateBirthday != null) {
+      return updateBirthday(this);
+    }
+    return orElse();
+  }
+}
+
+abstract class UpdateBirthday implements ProfileEvent {
+  const factory UpdateBirthday({required String userEmail, required DateTime newBirthday}) =
+      _$UpdateBirthday;
+
+  String get userEmail => throw _privateConstructorUsedError;
+  DateTime get newBirthday => throw _privateConstructorUsedError;
+  @JsonKey(ignore: true)
+  $UpdateBirthdayCopyWith<UpdateBirthday> get copyWith => throw _privateConstructorUsedError;
 }

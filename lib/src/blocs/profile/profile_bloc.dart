@@ -109,6 +109,13 @@ class ProfileBloc extends Bloc<ProfileEvent, ProfileState> {
         event.newGymId,
       );
     }
+
+    if (event is UpdateBirthday) {
+      await userRepository.updateBirthday(
+        event.userEmail,
+        event.newBirthday,
+      );
+    }
   }
 
   @override

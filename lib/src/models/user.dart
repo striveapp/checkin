@@ -17,7 +17,7 @@ class User with _$User {
     final String? uid,
     final double? weight,
     final String? selectedGymId,
-    final DateTime? birthday,
+    @JsonKey(ignore: true) final DateTime? birthday,
     @GradeConverter() final Grade? grade,
     @Default([]) final List<String> knownGymIds,
     @Default(false) final bool isOwner,
