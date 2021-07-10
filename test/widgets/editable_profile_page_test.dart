@@ -98,9 +98,8 @@ void main() {
           await tester.pump();
 
           expect(find.text('nellano'), findsOneWidget);
-          //TODO
-          // verify(() => profileBloc.add(UpdateName(userEmail: fakeUser.email, newName: "nellano")))
-          //     .called(1);
+          verify(() => profileBloc.add(UpdateName(userEmail: fakeUser.email, newName: "nellano")))
+              .called(1);
         });
 
         testWidgets("and the name is NOT valid", (tester) async {
@@ -203,10 +202,55 @@ void main() {
           await tester.pump();
 
           expect(find.text('80.5'), findsOneWidget);
-          //TODO
-          // verify(() => profileBloc.add(UpdateWeight(userEmail: fakeUser.email, newWeight: 80.5)))
-          //     .called(1);
+          verify(() => profileBloc.add(UpdateWeight(userEmail: fakeUser.email, newWeight: 80.5)))
+              .called(1);
         });
+      });
+
+      group("when inserting the birthday", () {
+        // group("and the birthday is NOT valid", () {
+        //   testWidgets("because is NOT a valid date", (tester) async {
+        //     when(() => profileBloc.state).thenReturn(ProfileLoaded(
+        //       profileUser: fakeUser,
+        //       isCurrentUser: true,
+        //     ));
+        //
+        //     await tester.pumpAppWithScaffold(
+        //       BlocProvider.value(value: profileBloc, child: EditableProfilePage()),
+        //       locale: Locale("en", ""),
+        //     );
+        //
+        //     var dateField = find.byKey(Key("editBirthday"));
+        //     await tester.tap(dateField);
+        //     await tester.enterText(nameTextField, 'not_a_number');
+        //     await tester.testTextInput.receiveAction(TextInputAction.done);
+        //     await tester.pump();
+        //
+        //     expect(find.text('This does not look like a valid weight'), findsOneWidget);
+        //   });
+        // });
+        //
+        // testWidgets("and the weight is valid", (tester) async {
+        //   when(() => profileBloc.state).thenReturn(ProfileLoaded(
+        //     profileUser: fakeUser,
+        //     isCurrentUser: true,
+        //   ));
+        //
+        //   await tester.pumpAppWithScaffold(
+        //     BlocProvider.value(value: profileBloc, child: EditableProfilePage()),
+        //     locale: Locale("en", ""),
+        //   );
+        //
+        //   var nameTextField = find.byKey(Key("editWeight"));
+        //   await tester.enterText(nameTextField, '80.5');
+        //   await tester.testTextInput.receiveAction(TextInputAction.done);
+        //   await tester.pump();
+        //
+        //   expect(find.text('80.5'), findsOneWidget);
+        //   //TODO
+        //   // verify(() => profileBloc.add(UpdateWeight(userEmail: fakeUser.email, newWeight: 80.5)))
+        //   //     .called(1);
+        // });
       });
     });
   });

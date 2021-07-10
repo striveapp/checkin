@@ -6,7 +6,7 @@ part 'master.freezed.dart';
 part 'master.g.dart';
 
 @freezed
-abstract class Master with _$Master {
+class Master with _$Master {
   factory Master({
     required final String name,
     required final String email,

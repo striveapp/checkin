@@ -14,7 +14,7 @@ import 'package:checkin/src/util/string_extension.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 
-class EditableProfilePage extends StatelessWidget {
+class EditableProfilePage extends StatefulWidget {
   static const String profile = 'Profile';
   static const String beltColor = '%s belt';
 
@@ -34,9 +34,16 @@ class EditableProfilePage extends StatelessWidget {
   const EditableProfilePage({Key key, PageController this.pageController}) : super(key: key);
 
   @override
-  Widget build(BuildContext context) {
-    final GlobalKey<FormState> _formKey = GlobalKey<FormState>();
+  State<EditableProfilePage> createState() => _EditableProfilePageState();
+}
 
+class _EditableProfilePageState extends State<EditableProfilePage> {
+  final _nameFieldKey = GlobalKey<FormFieldState>(debugLabel: "editName");
+  final _weightFieldKey = GlobalKey<FormFieldState>(debugLabel: "editWeight");
+  final _birthdayFieldKey = GlobalKey<FormFieldState>();
+
+  @override
+  Widget build(BuildContext context) {
     return BlocBuilder<ProfileBloc, ProfileState>(
       builder: (context, state) {
         return state.map(
@@ -50,7 +57,7 @@ class EditableProfilePage extends StatelessWidget {
                     alignment: Alignment.centerRight,
                     child: Padding(
                       padding: const EdgeInsets.symmetric(horizontal: 10.0),
-                      child: GoToMembership(pageController: pageController),
+                      child: GoToMembership(pageController: widget.pageController),
                     ),
                   ),
                   SizedBox(
@@ -80,7 +87,8 @@ class EditableProfilePage extends StatelessWidget {
                         width: 7.5,
                       ),
                       Text(
-                        beltColor.i18n.fill([state.profileUser.grade.name.i18n]),
+                        EditableProfilePage.beltColor.i18n
+                            .fill([state.profileUser.grade.name.i18n]),
                         style: Theme.of(context).textTheme.headline4.apply(
                               color: state.profileUser.grade.color,
                               fontWeightDelta: 2,
@@ -92,24 +100,21 @@ class EditableProfilePage extends StatelessWidget {
                     height: 20,
                   ),
                   Form(
-                    key: _formKey,
-                    autovalidateMode: AutovalidateMode.onUserInteraction,
                     child: Column(
                       children: [
                         BasicTextField(
                           key: Key("editName"),
-                          labelText: name.i18n,
-                          hintText: insertYourName.i18n,
+                          textFieldKey: _nameFieldKey,
+                          labelText: EditableProfilePage.name.i18n,
+                          hintText: EditableProfilePage.insertYourName.i18n,
                           textValue: state.profileUser.name,
                           validator: _validateName,
                           keyboardType: TextInputType.name,
                           onFieldSubmitted: (String value) {
-                            if (_formKey.currentState.validate()) {
-                              context.read<ProfileBloc>().add(UpdateName(
-                                    userEmail: state.profileUser.email,
-                                    newName: value.trim(),
-                                  ));
-                            }
+                            context.read<ProfileBloc>().add(UpdateName(
+                                  userEmail: state.profileUser.email,
+                                  newName: value.trim(),
+                                ));
                           },
                         ),
                         SizedBox(
@@ -117,18 +122,19 @@ class EditableProfilePage extends StatelessWidget {
                         ),
                         BasicTextField(
                           key: Key("editWeight"),
-                          labelText: weight.i18n,
-                          hintText: insertYourWeight.i18n,
-                          textValue: state.profileUser.weight.toString(),
+                          textFieldKey: _weightFieldKey,
+                          labelText: EditableProfilePage.weight.i18n,
+                          hintText: EditableProfilePage.insertYourWeight.i18n,
+                          textValue: state.profileUser.weight != null
+                              ? state.profileUser.weight.toString()
+                              : null,
                           validator: _validateWeight,
                           keyboardType: TextInputType.number,
                           onFieldSubmitted: (String value) {
-                            if (_formKey.currentState.validate()) {
-                              context.read<ProfileBloc>().add(UpdateWeight(
-                                    userEmail: state.profileUser.email,
-                                    newWeight: double.parse(value),
-                                  ));
-                            }
+                            context.read<ProfileBloc>().add(UpdateWeight(
+                                  userEmail: state.profileUser.email,
+                                  newWeight: double.parse(value),
+                                ));
                           },
                         ),
                         SizedBox(
@@ -136,13 +142,13 @@ class EditableProfilePage extends StatelessWidget {
                         ),
                         DateTimeField(
                           key: Key("editBirthday"),
-                          labelText: birthday.i18n,
-                          hintText: insertYourBirthday.i18n,
+                          labelText: EditableProfilePage.birthday.i18n,
+                          hintText: EditableProfilePage.insertYourBirthday.i18n,
                           firstDate: DateTime.now(),
                           initialDate: null,
                           lastDate: DateTime.now().add(new Duration(days: 30)),
                           onFieldSubmitted: (DateTime value) {
-                            if (_formKey.currentState.validate()) {
+                            if (_birthdayFieldKey.currentState.validate()) {
                               // todo
                               // context.read<ProfileBloc>().add(UpdateName(
                               //   userEmail: state.profileUser.email,
@@ -188,7 +194,7 @@ class EditableProfilePage extends StatelessWidget {
 
   String _validateName(String value) {
     if (value == null || value.isBlank) {
-      return thisDoesNotLookLikeAValidName.i18n;
+      return EditableProfilePage.thisDoesNotLookLikeAValidName.i18n;
     }
     return null;
   }
@@ -196,7 +202,7 @@ class EditableProfilePage extends StatelessWidget {
   String _validateWeight(String value) {
     var intValue = double.tryParse(value);
     if (intValue == null || (intValue <= 0 || intValue >= 500)) {
-      return thisDoesNotLookLikeAValidWeight.i18n;
+      return EditableProfilePage.thisDoesNotLookLikeAValidWeight.i18n;
     }
     return null;
   }

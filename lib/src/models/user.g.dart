@@ -13,8 +13,9 @@ _$_User _$_$_UserFromJson(Map<String, dynamic> json) {
     name: json['name'] as String?,
     uid: json['uid'] as String?,
     weight: (json['weight'] as num?)?.toDouble(),
-    grade: const GradeConverter().fromJson(json['grade'] as String?),
     selectedGymId: json['selectedGymId'] as String?,
+    birthday: json['birthday'] == null ? null : DateTime.parse(json['birthday'] as String),
+    grade: const GradeConverter().fromJson(json['grade'] as String?),
     knownGymIds: (json['knownGymIds'] as List<dynamic>?)?.map((e) => e as String).toList() ?? [],
     isOwner: json['isOwner'] as bool? ?? false,
   );
@@ -26,8 +27,9 @@ Map<String, dynamic> _$_$_UserToJson(_$_User instance) => <String, dynamic>{
       'name': instance.name,
       'uid': instance.uid,
       'weight': instance.weight,
-      'grade': const GradeConverter().toJson(instance.grade),
       'selectedGymId': instance.selectedGymId,
+      'birthday': instance.birthday?.toIso8601String(),
+      'grade': const GradeConverter().toJson(instance.grade),
       'knownGymIds': instance.knownGymIds,
       'isOwner': instance.isOwner,
     };

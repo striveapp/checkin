@@ -36,7 +36,6 @@ class DateTimeField extends StatelessWidget {
           alignment: Alignment.centerLeft,
         ),
         TextFormField(
-          key: key,
           keyboardType: TextInputType.datetime,
           cursorColor: Theme.of(context).colorScheme.secondary,
           style: Theme.of(context).textTheme.headline3!.apply(fontWeightDelta: 2),

@@ -26,8 +26,9 @@ class _$UserTearOff {
       String? name,
       String? uid,
       double? weight,
-      @GradeConverter() Grade? grade,
       String? selectedGymId,
+      DateTime? birthday,
+      @GradeConverter() Grade? grade,
       List<String> knownGymIds = const [],
       bool isOwner = false}) {
     return _User(
@@ -36,8 +37,9 @@ class _$UserTearOff {
       name: name,
       uid: uid,
       weight: weight,
-      grade: grade,
       selectedGymId: selectedGymId,
+      birthday: birthday,
+      grade: grade,
       knownGymIds: knownGymIds,
       isOwner: isOwner,
     );
@@ -58,9 +60,10 @@ mixin _$User {
   String? get name => throw _privateConstructorUsedError;
   String? get uid => throw _privateConstructorUsedError;
   double? get weight => throw _privateConstructorUsedError;
+  String? get selectedGymId => throw _privateConstructorUsedError;
+  DateTime? get birthday => throw _privateConstructorUsedError;
   @GradeConverter()
   Grade? get grade => throw _privateConstructorUsedError;
-  String? get selectedGymId => throw _privateConstructorUsedError;
   List<String> get knownGymIds => throw _privateConstructorUsedError;
   bool get isOwner => throw _privateConstructorUsedError;
 
@@ -78,8 +81,9 @@ abstract class $UserCopyWith<$Res> {
       String? name,
       String? uid,
       double? weight,
-      @GradeConverter() Grade? grade,
       String? selectedGymId,
+      DateTime? birthday,
+      @GradeConverter() Grade? grade,
       List<String> knownGymIds,
       bool isOwner});
 }
@@ -99,8 +103,9 @@ class _$UserCopyWithImpl<$Res> implements $UserCopyWith<$Res> {
     Object? name = freezed,
     Object? uid = freezed,
     Object? weight = freezed,
-    Object? grade = freezed,
     Object? selectedGymId = freezed,
+    Object? birthday = freezed,
+    Object? grade = freezed,
     Object? knownGymIds = freezed,
     Object? isOwner = freezed,
   }) {
@@ -125,14 +130,18 @@ class _$UserCopyWithImpl<$Res> implements $UserCopyWith<$Res> {
           ? _value.weight
           : weight // ignore: cast_nullable_to_non_nullable
               as double?,
-      grade: grade == freezed
-          ? _value.grade
-          : grade // ignore: cast_nullable_to_non_nullable
-              as Grade?,
       selectedGymId: selectedGymId == freezed
           ? _value.selectedGymId
           : selectedGymId // ignore: cast_nullable_to_non_nullable
               as String?,
+      birthday: birthday == freezed
+          ? _value.birthday
+          : birthday // ignore: cast_nullable_to_non_nullable
+              as DateTime?,
+      grade: grade == freezed
+          ? _value.grade
+          : grade // ignore: cast_nullable_to_non_nullable
+              as Grade?,
       knownGymIds: knownGymIds == freezed
           ? _value.knownGymIds
           : knownGymIds // ignore: cast_nullable_to_non_nullable
@@ -155,8 +164,9 @@ abstract class _$UserCopyWith<$Res> implements $UserCopyWith<$Res> {
       String? name,
       String? uid,
       double? weight,
-      @GradeConverter() Grade? grade,
       String? selectedGymId,
+      DateTime? birthday,
+      @GradeConverter() Grade? grade,
       List<String> knownGymIds,
       bool isOwner});
 }
@@ -176,8 +186,9 @@ class __$UserCopyWithImpl<$Res> extends _$UserCopyWithImpl<$Res> implements _$Us
     Object? name = freezed,
     Object? uid = freezed,
     Object? weight = freezed,
-    Object? grade = freezed,
     Object? selectedGymId = freezed,
+    Object? birthday = freezed,
+    Object? grade = freezed,
     Object? knownGymIds = freezed,
     Object? isOwner = freezed,
   }) {
@@ -202,14 +213,18 @@ class __$UserCopyWithImpl<$Res> extends _$UserCopyWithImpl<$Res> implements _$Us
           ? _value.weight
           : weight // ignore: cast_nullable_to_non_nullable
               as double?,
-      grade: grade == freezed
-          ? _value.grade
-          : grade // ignore: cast_nullable_to_non_nullable
-              as Grade?,
       selectedGymId: selectedGymId == freezed
           ? _value.selectedGymId
           : selectedGymId // ignore: cast_nullable_to_non_nullable
               as String?,
+      birthday: birthday == freezed
+          ? _value.birthday
+          : birthday // ignore: cast_nullable_to_non_nullable
+              as DateTime?,
+      grade: grade == freezed
+          ? _value.grade
+          : grade // ignore: cast_nullable_to_non_nullable
+              as Grade?,
       knownGymIds: knownGymIds == freezed
           ? _value.knownGymIds
           : knownGymIds // ignore: cast_nullable_to_non_nullable
@@ -224,15 +239,16 @@ class __$UserCopyWithImpl<$Res> extends _$UserCopyWithImpl<$Res> implements _$Us
 
 /// @nodoc
 @JsonSerializable()
-class _$_User with DiagnosticableTreeMixin implements _User {
+class _$_User implements _User {
   _$_User(
       {required this.email,
       required this.imageUrl,
       this.name,
       this.uid,
       this.weight,
-      @GradeConverter() this.grade,
       this.selectedGymId,
+      this.birthday,
+      @GradeConverter() this.grade,
       this.knownGymIds = const [],
       this.isOwner = false});
 
@@ -249,10 +265,12 @@ class _$_User with DiagnosticableTreeMixin implements _User {
   @override
   final double? weight;
   @override
+  final String? selectedGymId;
+  @override
+  final DateTime? birthday;
+  @override
   @GradeConverter()
   final Grade? grade;
-  @override
-  final String? selectedGymId;
   @JsonKey(defaultValue: const [])
   @override
   final List<String> knownGymIds;
@@ -261,24 +279,8 @@ class _$_User with DiagnosticableTreeMixin implements _User {
   final bool isOwner;
 
   @override
-  String toString({DiagnosticLevel minLevel = DiagnosticLevel.info}) {
-    return 'User(email: $email, imageUrl: $imageUrl, name: $name, uid: $uid, weight: $weight, grade: $grade, selectedGymId: $selectedGymId, knownGymIds: $knownGymIds, isOwner: $isOwner)';
-  }
-
-  @override
-  void debugFillProperties(DiagnosticPropertiesBuilder properties) {
-    super.debugFillProperties(properties);
-    properties
-      ..add(DiagnosticsProperty('type', 'User'))
-      ..add(DiagnosticsProperty('email', email))
-      ..add(DiagnosticsProperty('imageUrl', imageUrl))
-      ..add(DiagnosticsProperty('name', name))
-      ..add(DiagnosticsProperty('uid', uid))
-      ..add(DiagnosticsProperty('weight', weight))
-      ..add(DiagnosticsProperty('grade', grade))
-      ..add(DiagnosticsProperty('selectedGymId', selectedGymId))
-      ..add(DiagnosticsProperty('knownGymIds', knownGymIds))
-      ..add(DiagnosticsProperty('isOwner', isOwner));
+  String toString() {
+    return 'User(email: $email, imageUrl: $imageUrl, name: $name, uid: $uid, weight: $weight, selectedGymId: $selectedGymId, birthday: $birthday, grade: $grade, knownGymIds: $knownGymIds, isOwner: $isOwner)';
   }
 
   @override
@@ -294,10 +296,12 @@ class _$_User with DiagnosticableTreeMixin implements _User {
             (identical(other.uid, uid) || const DeepCollectionEquality().equals(other.uid, uid)) &&
             (identical(other.weight, weight) ||
                 const DeepCollectionEquality().equals(other.weight, weight)) &&
-            (identical(other.grade, grade) ||
-                const DeepCollectionEquality().equals(other.grade, grade)) &&
             (identical(other.selectedGymId, selectedGymId) ||
                 const DeepCollectionEquality().equals(other.selectedGymId, selectedGymId)) &&
+            (identical(other.birthday, birthday) ||
+                const DeepCollectionEquality().equals(other.birthday, birthday)) &&
+            (identical(other.grade, grade) ||
+                const DeepCollectionEquality().equals(other.grade, grade)) &&
             (identical(other.knownGymIds, knownGymIds) ||
                 const DeepCollectionEquality().equals(other.knownGymIds, knownGymIds)) &&
             (identical(other.isOwner, isOwner) ||
@@ -312,8 +316,9 @@ class _$_User with DiagnosticableTreeMixin implements _User {
       const DeepCollectionEquality().hash(name) ^
       const DeepCollectionEquality().hash(uid) ^
       const DeepCollectionEquality().hash(weight) ^
-      const DeepCollectionEquality().hash(grade) ^
       const DeepCollectionEquality().hash(selectedGymId) ^
+      const DeepCollectionEquality().hash(birthday) ^
+      const DeepCollectionEquality().hash(grade) ^
       const DeepCollectionEquality().hash(knownGymIds) ^
       const DeepCollectionEquality().hash(isOwner);
 
@@ -334,8 +339,9 @@ abstract class _User implements User {
       String? name,
       String? uid,
       double? weight,
-      @GradeConverter() Grade? grade,
       String? selectedGymId,
+      DateTime? birthday,
+      @GradeConverter() Grade? grade,
       List<String> knownGymIds,
       bool isOwner}) = _$_User;
 
@@ -352,10 +358,12 @@ abstract class _User implements User {
   @override
   double? get weight => throw _privateConstructorUsedError;
   @override
+  String? get selectedGymId => throw _privateConstructorUsedError;
+  @override
+  DateTime? get birthday => throw _privateConstructorUsedError;
+  @override
   @GradeConverter()
   Grade? get grade => throw _privateConstructorUsedError;
-  @override
-  String? get selectedGymId => throw _privateConstructorUsedError;
   @override
   List<String> get knownGymIds => throw _privateConstructorUsedError;
   @override

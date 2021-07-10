@@ -7,15 +7,17 @@ class BasicTextField extends StatelessWidget {
   final FormFieldValidator<String> validator;
   final ValueChanged<String> onFieldSubmitted;
   final TextInputType keyboardType;
+  final GlobalKey<FormFieldState> textFieldKey;
 
   const BasicTextField({
-    required Key key,
+    Key? key,
     required this.labelText,
     this.textValue,
     required this.validator,
     required this.onFieldSubmitted,
     required this.keyboardType,
     required this.hintText,
+    required this.textFieldKey,
   }) : super(key: key);
 
   @override
@@ -33,7 +35,7 @@ class BasicTextField extends StatelessWidget {
           alignment: Alignment.centerLeft,
         ),
         TextFormField(
-          key: key,
+          key: textFieldKey,
           keyboardType: keyboardType,
           cursorColor: Theme.of(context).colorScheme.secondary,
           style: Theme.of(context).textTheme.headline3!.apply(fontWeightDelta: 2),
@@ -56,7 +58,12 @@ class BasicTextField extends StatelessWidget {
                       selection: new TextSelection.collapsed(offset: textValue!.length)),
                 ),
           validator: validator,
-          onFieldSubmitted: onFieldSubmitted,
+          onFieldSubmitted: (String value) {
+            var currentState = textFieldKey.currentState;
+            if (currentState != null && currentState.validate()) {
+              onFieldSubmitted(value);
+            }
+          },
         ),
       ],
     );

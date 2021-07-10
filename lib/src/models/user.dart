@@ -1,6 +1,5 @@
 import 'package:checkin/src/models/grade.dart';
 import 'package:firebase_auth/firebase_auth.dart' as FirebaseAuth;
-import 'package:flutter/foundation.dart';
 import 'package:freezed_annotation/freezed_annotation.dart';
 
 import '../config.dart' as config;
@@ -17,8 +16,9 @@ class User with _$User {
     final String? name,
     final String? uid,
     final double? weight,
-    @GradeConverter() final Grade? grade,
     final String? selectedGymId,
+    final DateTime? birthday,
+    @GradeConverter() final Grade? grade,
     @Default([]) final List<String> knownGymIds,
     @Default(false) final bool isOwner,
   }) = _User;
