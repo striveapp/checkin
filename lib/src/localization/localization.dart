@@ -433,11 +433,6 @@ extension Localization on String {
         'it': 'Metodi di pagamento',
       } +
       {
-        'en': AccountPage.profile,
-        'es': 'Perfil',
-        'it': 'Profilo',
-      } +
-      {
         'en': PaymentSuccessPage.paymentSuccessful,
         'es': 'Pagado con éxito',
         'it': 'Pagato con successo',

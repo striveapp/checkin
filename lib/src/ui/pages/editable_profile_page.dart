@@ -8,6 +8,7 @@ import 'package:checkin/src/ui/components/basic_text_field.dart';
 import 'package:checkin/src/ui/components/cancel_button.dart';
 import 'package:checkin/src/ui/components/date_time_field.dart';
 import 'package:checkin/src/ui/components/editable_image.dart';
+import 'package:checkin/src/ui/components/navigation_button.dart';
 import 'package:checkin/src/ui/components/placeholder_image.dart';
 import 'package:checkin/src/ui/components/placeholder_text.dart';
 import 'package:checkin/src/util/string_extension.dart';
@@ -18,6 +19,7 @@ import 'package:flutter_bloc/flutter_bloc.dart';
 class EditableProfilePage extends StatefulWidget {
   static const String profile = 'Profile';
   static const String beltColor = '%s belt';
+  static const String membership = 'Membership';
 
   static const String insertYourName = 'Insert your name';
   static const String name = 'Name';
@@ -58,7 +60,13 @@ class _EditableProfilePageState extends State<EditableProfilePage> {
                     alignment: Alignment.centerRight,
                     child: Padding(
                       padding: const EdgeInsets.symmetric(horizontal: 10.0),
-                      child: GoToMembership(pageController: widget.pageController),
+                      child: NavigationButton(
+                        text: EditableProfilePage.membership.i18n,
+                        onPressed: () {
+                          widget.pageController.animateToPage(1,
+                              curve: Curves.ease, duration: Duration(milliseconds: 500));
+                        },
+                      ),
                     ),
                   ),
                   SizedBox(
@@ -242,43 +250,6 @@ class PlaceholderProfile extends StatelessWidget {
               ),
             ],
           )
-        ],
-      ),
-    );
-  }
-}
-
-class GoToMembership extends StatelessWidget {
-  const GoToMembership({
-    Key key,
-    @required this.pageController,
-  }) : super(key: key);
-
-  final PageController pageController;
-
-  @override
-  Widget build(BuildContext context) {
-    return OutlinedButton(
-      onPressed: () {
-        pageController.animateToPage(1, curve: Curves.ease, duration: Duration(milliseconds: 500));
-      },
-      style: OutlinedButton.styleFrom(padding: EdgeInsets.only(left: 10)),
-      child: Row(
-        mainAxisSize: MainAxisSize.min,
-        crossAxisAlignment: CrossAxisAlignment.center,
-        mainAxisAlignment: MainAxisAlignment.center,
-        children: [
-          Text(
-            "Membership".i18n,
-            style: Theme.of(context)
-                .textTheme
-                .button
-                .apply(color: Theme.of(context).colorScheme.secondary, fontSizeFactor: 0.80),
-          ),
-          Icon(
-            Icons.keyboard_arrow_right_outlined,
-            color: Theme.of(context).colorScheme.secondary,
-          ),
         ],
       ),
     );
