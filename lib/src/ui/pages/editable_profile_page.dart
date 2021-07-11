@@ -41,8 +41,8 @@ class EditableProfilePage extends StatefulWidget {
 }
 
 class _EditableProfilePageState extends State<EditableProfilePage> {
-  final _nameFieldKey = GlobalKey<FormFieldState>(debugLabel: "editName");
-  final _weightFieldKey = GlobalKey<FormFieldState>(debugLabel: "editWeight");
+  final _nameFieldKey = GlobalKey<FormFieldState>();
+  final _weightFieldKey = GlobalKey<FormFieldState>();
   final _birthdayFieldKey = GlobalKey<FormFieldState>();
 
   @override

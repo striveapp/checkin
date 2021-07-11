@@ -3,7 +3,7 @@
 import 'package:checkin/src/blocs/payment_methods/bloc.dart';
 import 'package:checkin/src/models/payment_method.dart';
 import 'package:checkin/src/ui/components/loading_indicator.dart';
-import 'package:checkin/src/ui/components/payment_methods/active_payment_method.dart';
+import 'package:checkin/src/ui/components/membership/payment_methods/active_payment_method.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 

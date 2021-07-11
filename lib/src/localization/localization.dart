@@ -4,7 +4,6 @@ import 'package:checkin/src/blocs/dynamic_link/bloc.dart';
 import 'package:checkin/src/blocs/login/bloc.dart';
 import 'package:checkin/src/models/grade.dart';
 import 'package:checkin/src/models/timespan.dart';
-import 'package:checkin/src/ui/components/account/payment.dart';
 import 'package:checkin/src/ui/components/email_retrieval/check_email_view.dart';
 import 'package:checkin/src/ui/components/email_retrieval/insert_email_view.dart';
 import 'package:checkin/src/ui/components/email_retrieval/wrong_email_dialog.dart';
@@ -21,14 +20,14 @@ import 'package:checkin/src/ui/components/login/login_buttons.dart';
 import 'package:checkin/src/ui/components/login/passwordless_sign_in_button.dart';
 import 'package:checkin/src/ui/components/membership/active_membership.dart';
 import 'package:checkin/src/ui/components/membership/inactive_membership.dart';
+import 'package:checkin/src/ui/components/membership/payment_methods/active_payment_method.dart';
+import 'package:checkin/src/ui/components/membership/payment_methods/empty_payment_method.dart';
 import 'package:checkin/src/ui/components/membership/unsubscribe_dialog.dart';
 import 'package:checkin/src/ui/components/newslist/action_modal/news_action_modal.dart';
 import 'package:checkin/src/ui/components/newslist/empty_news_list.dart';
 import 'package:checkin/src/ui/components/newslist/modal/content_editor.dart';
 import 'package:checkin/src/ui/components/newslist/modal/header.dart';
 import 'package:checkin/src/ui/components/newslist/news_view.dart';
-import 'package:checkin/src/ui/components/payment_methods/active_payment_method.dart';
-import 'package:checkin/src/ui/components/payment_methods/empty_payment_method.dart';
 import 'package:checkin/src/ui/components/plans/plans_callout.dart';
 import 'package:checkin/src/ui/components/plans/plans_footer.dart';
 import 'package:checkin/src/ui/components/plans/plans_list.dart';
@@ -64,6 +63,7 @@ import 'package:checkin/src/ui/pages/account_page.dart';
 import 'package:checkin/src/ui/pages/editable_profile_page.dart';
 import 'package:checkin/src/ui/pages/leaderboard_page.dart';
 import 'package:checkin/src/ui/pages/lessons_stats_page.dart';
+import 'package:checkin/src/ui/pages/membership_page.dart';
 import 'package:checkin/src/ui/pages/onboarding/grade_page.dart';
 import 'package:checkin/src/ui/pages/onboarding/name_selection_page.dart';
 import 'package:checkin/src/ui/pages/onboarding/unselected_gym_page.dart';
@@ -423,12 +423,12 @@ extension Localization on String {
         'it': 'Account',
       } +
       {
-        'en': Payment.membership,
+        'en': MembershipPage.membership,
         'es': 'Afiliación',
         'it': 'Membership',
       } +
       {
-        'en': Payment.paymentMethods,
+        'en': MembershipPage.paymentMethods,
         'es': 'Metodos de pago',
         'it': 'Metodi di pagamento',
       } +
