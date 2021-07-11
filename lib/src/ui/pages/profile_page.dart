@@ -16,7 +16,7 @@ import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 
 /* this page doesnt react to changes on the db */
-class EditableProfilePage extends StatefulWidget {
+class ProfilePage extends StatefulWidget {
   static const String profile = 'Profile';
   static const String beltColor = '%s belt';
   static const String membership = 'Membership';
@@ -34,13 +34,13 @@ class EditableProfilePage extends StatefulWidget {
 
   final PageController pageController;
 
-  const EditableProfilePage({Key key, PageController this.pageController}) : super(key: key);
+  const ProfilePage({Key key, PageController this.pageController}) : super(key: key);
 
   @override
-  State<EditableProfilePage> createState() => _EditableProfilePageState();
+  State<ProfilePage> createState() => _ProfilePageState();
 }
 
-class _EditableProfilePageState extends State<EditableProfilePage> {
+class _ProfilePageState extends State<ProfilePage> {
   final _nameFieldKey = GlobalKey<FormFieldState>();
   final _weightFieldKey = GlobalKey<FormFieldState>();
   final _birthdayFieldKey = GlobalKey<FormFieldState>();
@@ -61,7 +61,7 @@ class _EditableProfilePageState extends State<EditableProfilePage> {
                     child: Padding(
                       padding: const EdgeInsets.symmetric(horizontal: 10.0),
                       child: NavigationButton(
-                        text: EditableProfilePage.membership.i18n,
+                        text: ProfilePage.membership.i18n,
                         onPressed: () {
                           widget.pageController.animateToPage(1,
                               curve: Curves.ease, duration: Duration(milliseconds: 500));
@@ -96,8 +96,7 @@ class _EditableProfilePageState extends State<EditableProfilePage> {
                         width: 7.5,
                       ),
                       Text(
-                        EditableProfilePage.beltColor.i18n
-                            .fill([state.profileUser.grade.name.i18n]),
+                        ProfilePage.beltColor.i18n.fill([state.profileUser.grade.name.i18n]),
                         style: Theme.of(context).textTheme.headline4.apply(
                               color: state.profileUser.grade.color,
                               fontWeightDelta: 2,
@@ -114,8 +113,8 @@ class _EditableProfilePageState extends State<EditableProfilePage> {
                         BasicTextField(
                           key: Key("editName"),
                           textFieldKey: _nameFieldKey,
-                          labelText: EditableProfilePage.name.i18n,
-                          hintText: EditableProfilePage.insertYourName.i18n,
+                          labelText: ProfilePage.name.i18n,
+                          hintText: ProfilePage.insertYourName.i18n,
                           textValue: state.profileUser.name,
                           validator: _validateName,
                           keyboardType: TextInputType.name,
@@ -132,8 +131,8 @@ class _EditableProfilePageState extends State<EditableProfilePage> {
                         BasicTextField(
                           key: Key("editWeight"),
                           textFieldKey: _weightFieldKey,
-                          labelText: EditableProfilePage.weight.i18n,
-                          hintText: EditableProfilePage.insertYourWeight.i18n,
+                          labelText: ProfilePage.weight.i18n,
+                          hintText: ProfilePage.insertYourWeight.i18n,
                           textValue: state.profileUser.weight != null
                               ? state.profileUser.weight.toString()
                               : null,
@@ -152,8 +151,8 @@ class _EditableProfilePageState extends State<EditableProfilePage> {
                         DateTimeField(
                           key: Key("editBirthday"),
                           textFieldKey: _birthdayFieldKey,
-                          labelText: EditableProfilePage.birthday.i18n,
-                          hintText: EditableProfilePage.insertYourBirthday.i18n,
+                          labelText: ProfilePage.birthday.i18n,
+                          hintText: ProfilePage.insertYourBirthday.i18n,
                           firstDate: DateTime.now(),
                           initialDate: state.profileUser.birthday,
                           lastDate: DateTime.now().add(new Duration(days: 30)),
@@ -201,7 +200,7 @@ class _EditableProfilePageState extends State<EditableProfilePage> {
 
   String _validateName(String value) {
     if (value == null || value.isBlank) {
-      return EditableProfilePage.thisDoesNotLookLikeAValidName.i18n;
+      return ProfilePage.thisDoesNotLookLikeAValidName.i18n;
     }
     return null;
   }
@@ -209,7 +208,7 @@ class _EditableProfilePageState extends State<EditableProfilePage> {
   String _validateWeight(String value) {
     var intValue = double.tryParse(value);
     if (intValue == null || (intValue <= 0 || intValue >= 500)) {
-      return EditableProfilePage.thisDoesNotLookLikeAValidWeight.i18n;
+      return ProfilePage.thisDoesNotLookLikeAValidWeight.i18n;
     }
     return null;
   }

@@ -32,9 +32,8 @@ import 'package:checkin/src/ui/components/plans/plans_callout.dart';
 import 'package:checkin/src/ui/components/plans/plans_footer.dart';
 import 'package:checkin/src/ui/components/plans/plans_list.dart';
 import 'package:checkin/src/ui/components/plans/price/price_footer.dart';
-import 'package:checkin/src/ui/components/profile/profile_info.dart';
-import 'package:checkin/src/ui/components/profile/user_stats.dart';
-import 'package:checkin/src/ui/components/profile_card.dart';
+import 'package:checkin/src/ui/components/public_profile/profile_info.dart';
+import 'package:checkin/src/ui/components/public_profile/user_stats.dart';
 import 'package:checkin/src/ui/components/registry/accept_all_dialog.dart';
 import 'package:checkin/src/ui/components/registry/attendee_tile.dart';
 import 'package:checkin/src/ui/components/registry/attendees_list.dart';
@@ -60,7 +59,6 @@ import 'package:checkin/src/ui/components/stats/user/attended_lessons_list.dart'
 import 'package:checkin/src/ui/components/stats/user/class_progression_indicator.dart';
 import 'package:checkin/src/ui/components/upgrader_dialog.dart';
 import 'package:checkin/src/ui/pages/account_page.dart';
-import 'package:checkin/src/ui/pages/editable_profile_page.dart';
 import 'package:checkin/src/ui/pages/leaderboard_page.dart';
 import 'package:checkin/src/ui/pages/lessons_stats_page.dart';
 import 'package:checkin/src/ui/pages/membership_page.dart';
@@ -69,6 +67,7 @@ import 'package:checkin/src/ui/pages/onboarding/name_selection_page.dart';
 import 'package:checkin/src/ui/pages/onboarding/unselected_gym_page.dart';
 import 'package:checkin/src/ui/pages/payment_success_page.dart';
 import 'package:checkin/src/ui/pages/plans_page.dart';
+import 'package:checkin/src/ui/pages/profile_page.dart';
 import 'package:checkin/src/ui/pages/public_profile_page.dart';
 import 'package:checkin/src/ui/pages/registry_page.dart';
 import 'package:checkin/src/ui/pages/stats_page.dart';
@@ -468,16 +467,6 @@ extension Localization on String {
         'it': 'Sessioni rimanenti',
       } +
       {
-        'en': ProfileCard.enterYourName,
-        'es': 'Escribe tu nombre',
-        'it': 'Digita il tuo nome',
-      } +
-      {
-        'en': ProfileCard.thisDoesNotLookLikeAValidName,
-        'es': 'Esto no parece un nombre valido',
-        'it': 'Questo non sembra un nome valido',
-      } +
-      {
         'en': InactiveMembershipView.chooseYourSubscription,
         'es': 'Escoge tu subscripción',
         'it': 'Scegli il tuo abbonamento',
@@ -523,47 +512,47 @@ extension Localization on String {
         'it': 'Cintura %s',
       } +
       {
-        'en': EditableProfilePage.beltColor,
+        'en': ProfilePage.beltColor,
         'es': 'Cinturón %s',
         'it': 'Cintura %s',
       } +
       {
-        'en': EditableProfilePage.name,
+        'en': ProfilePage.name,
         'es': 'Nombre',
         'it': 'Nome',
       } +
       {
-        'en': EditableProfilePage.insertYourName,
+        'en': ProfilePage.insertYourName,
         'es': 'Pon tu nombre',
         'it': 'Inserisci il tuo nome',
       } +
       {
-        'en': EditableProfilePage.weight,
+        'en': ProfilePage.weight,
         'es': 'Peso (kg)',
         'it': 'Peso (kg)',
       } +
       {
-        'en': EditableProfilePage.insertYourWeight,
+        'en': ProfilePage.insertYourWeight,
         'es': 'Pon tu peso',
         'it': 'Inserisci il tuo peso',
       } +
       {
-        'en': EditableProfilePage.birthday,
+        'en': ProfilePage.birthday,
         'es': 'Fecha de nacimiento',
         'it': 'Data di nascita',
       } +
       {
-        'en': EditableProfilePage.insertYourBirthday,
+        'en': ProfilePage.insertYourBirthday,
         'es': 'Pon tu fecha de nacimiento',
         'it': 'Inserisci data di nascita',
       } +
       {
-        'en': EditableProfilePage.thisDoesNotLookLikeAValidName,
+        'en': ProfilePage.thisDoesNotLookLikeAValidName,
         'es': 'Esto no parece un nombre valido',
         'it': 'Questo non sembra un nome valido',
       } +
       {
-        'en': EditableProfilePage.thisDoesNotLookLikeAValidWeight,
+        'en': ProfilePage.thisDoesNotLookLikeAValidWeight,
         'es': 'Esto no parece un peso valido',
         'it': 'Questo non sembra un peso valido',
       } +

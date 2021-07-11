@@ -7,8 +7,8 @@ import 'package:checkin/src/blocs/payment_methods/bloc.dart';
 import 'package:checkin/src/blocs/profile/bloc.dart';
 import 'package:checkin/src/localization/localization.dart';
 import 'package:checkin/src/ui/components/base_app_bar.dart';
-import 'package:checkin/src/ui/pages/editable_profile_page.dart';
 import 'package:checkin/src/ui/pages/membership_page.dart';
+import 'package:checkin/src/ui/pages/profile_page.dart';
 import 'package:checkin/src/util/url_launcher_util.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
@@ -74,7 +74,7 @@ class _AccountPageState extends State<AccountPage> {
         body: PageView(
           controller: _pageController,
           children: [
-            EditableProfilePage(pageController: _pageController),
+            ProfilePage(pageController: _pageController),
             MembershipPage(),
           ],
         ),

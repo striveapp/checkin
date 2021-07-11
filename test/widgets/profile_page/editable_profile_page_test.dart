@@ -7,14 +7,14 @@ import 'package:checkin/src/models/user.dart';
 import 'package:checkin/src/ui/components/basic_text_field.dart';
 import 'package:checkin/src/ui/components/date_time_field.dart';
 import 'package:checkin/src/ui/components/editable_image.dart';
-import 'package:checkin/src/ui/pages/editable_profile_page.dart';
+import 'package:checkin/src/ui/pages/profile_page.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:flutter_test/flutter_test.dart';
 import 'package:i18n_extension/i18n_extension.dart';
 import 'package:mocktail/mocktail.dart';
 
-import '../pump_app.dart';
+import '../../pump_app.dart';
 
 class MockProfileBloc extends MockBloc<ProfileEvent, ProfileState> implements ProfileBloc {}
 
@@ -45,7 +45,7 @@ void main() {
         when(() => profileBloc.state).thenReturn(InitialProfileState());
 
         await tester.pumpAppWithScaffold(
-          BlocProvider.value(value: profileBloc, child: EditableProfilePage()),
+          BlocProvider.value(value: profileBloc, child: ProfilePage()),
         );
 
         expect(find.byType(PlaceholderProfile), findsOneWidget);
@@ -67,7 +67,7 @@ void main() {
         ));
 
         await tester.pumpAppWithScaffold(
-          BlocProvider.value(value: profileBloc, child: EditableProfilePage()),
+          BlocProvider.value(value: profileBloc, child: ProfilePage()),
           locale: Locale("en", ""),
         );
 
@@ -86,7 +86,7 @@ void main() {
           ));
 
           await tester.pumpAppWithScaffold(
-            BlocProvider.value(value: profileBloc, child: EditableProfilePage()),
+            BlocProvider.value(value: profileBloc, child: ProfilePage()),
             locale: Locale("en", ""),
           );
 
@@ -109,7 +109,7 @@ void main() {
           ));
 
           await tester.pumpAppWithScaffold(
-            BlocProvider.value(value: profileBloc, child: EditableProfilePage()),
+            BlocProvider.value(value: profileBloc, child: ProfilePage()),
             locale: Locale("en", ""),
           );
 
@@ -134,7 +134,7 @@ void main() {
             ));
 
             await tester.pumpAppWithScaffold(
-              BlocProvider.value(value: profileBloc, child: EditableProfilePage()),
+              BlocProvider.value(value: profileBloc, child: ProfilePage()),
               locale: Locale("en", ""),
             );
 
@@ -153,7 +153,7 @@ void main() {
             ));
 
             await tester.pumpAppWithScaffold(
-              BlocProvider.value(value: profileBloc, child: EditableProfilePage()),
+              BlocProvider.value(value: profileBloc, child: ProfilePage()),
               locale: Locale("en", ""),
             );
 
@@ -172,7 +172,7 @@ void main() {
             ));
 
             await tester.pumpAppWithScaffold(
-              BlocProvider.value(value: profileBloc, child: EditableProfilePage()),
+              BlocProvider.value(value: profileBloc, child: ProfilePage()),
               locale: Locale("en", ""),
             );
 
@@ -192,7 +192,7 @@ void main() {
           ));
 
           await tester.pumpAppWithScaffold(
-            BlocProvider.value(value: profileBloc, child: EditableProfilePage()),
+            BlocProvider.value(value: profileBloc, child: ProfilePage()),
             locale: Locale("en", ""),
           );
 
@@ -219,7 +219,7 @@ void main() {
           ));
 
           await tester.pumpAppWithScaffold(
-            BlocProvider.value(value: profileBloc, child: EditableProfilePage()),
+            BlocProvider.value(value: profileBloc, child: ProfilePage()),
             locale: Locale("en", ""),
           );
 
