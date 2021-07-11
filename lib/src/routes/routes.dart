@@ -15,7 +15,7 @@ class Routes {
     PlansHandler(),
     SubPlanHandler(),
     PaymentSuccessHandler(),
-    ProfileHandler(),
+    PublicProfileHandler(),
     EmailRetrieveHandler(),
     NewsHandler()
   ];

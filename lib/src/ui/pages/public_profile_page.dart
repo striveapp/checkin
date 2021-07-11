@@ -7,18 +7,18 @@ import 'package:checkin/src/blocs/stats/bloc.dart';
 import 'package:checkin/src/localization/localization.dart';
 import 'package:checkin/src/models/timespan.dart';
 import 'package:checkin/src/ui/components/base_app_bar.dart';
-import 'package:checkin/src/ui/components/profile_page/profile_info.dart';
-import 'package:checkin/src/ui/components/profile_page/user_stats.dart';
+import 'package:checkin/src/ui/components/profile/profile_info.dart';
+import 'package:checkin/src/ui/components/profile/user_stats.dart';
 import 'package:checkin/src/ui/components/stats/graduate_fab.dart';
 import 'package:checkin/src/util/graduation_util.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 
-class ProfilePage extends StatelessWidget {
+class PublicProfilePage extends StatelessWidget {
   static const String profile = "Profile";
   final String userEmail;
 
-  const ProfilePage({
+  const PublicProfilePage({
     Key key,
     @required this.userEmail,
   }) : super(key: key);

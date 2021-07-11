@@ -5,7 +5,7 @@ import 'package:checkin/src/localization/localization.dart';
 import 'package:checkin/src/models/grade.dart';
 import 'package:checkin/src/ui/components/placeholder_image.dart';
 import 'package:checkin/src/ui/components/placeholder_text.dart';
-import 'package:checkin/src/ui/components/profile_page/image_with_grade.dart';
+import 'package:checkin/src/ui/components/profile/image_with_grade.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 
