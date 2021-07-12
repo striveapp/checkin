@@ -48,6 +48,7 @@ class StatsProvider implements StatsRepository {
           .map((doc) => UserHistory(
               email: doc.id,
               attendedLessons: (doc.data()['attendedLessons'] as List)
+                  .where((lesson) => lesson['timestamp'] != null)
                   .where((lesson) =>
                       lesson['timestamp'] >
                       dateUtil.getFirstDayOfTimespan(timespan).millisecondsSinceEpoch)
