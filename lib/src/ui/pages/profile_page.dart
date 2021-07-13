@@ -4,6 +4,7 @@ import 'package:checkin/src/blocs/auth/bloc.dart';
 import 'package:checkin/src/blocs/profile/bloc.dart';
 import 'package:checkin/src/localization/localization.dart';
 import 'package:checkin/src/models/grade.dart';
+import 'package:checkin/src/repositories/lesson_repository.dart';
 import 'package:checkin/src/ui/components/basic_text_field.dart';
 import 'package:checkin/src/ui/components/cancel_button.dart';
 import 'package:checkin/src/ui/components/date_time_field.dart';
@@ -11,6 +12,7 @@ import 'package:checkin/src/ui/components/editable_image.dart';
 import 'package:checkin/src/ui/components/navigation_button.dart';
 import 'package:checkin/src/ui/components/placeholder_image.dart';
 import 'package:checkin/src/ui/components/placeholder_text.dart';
+import 'package:checkin/src/util/debug_util.dart';
 import 'package:checkin/src/util/string_extension.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
@@ -184,6 +186,22 @@ class _ProfilePageState extends State<ProfilePage> {
                                 ModalRoute.withName(Navigator.defaultRouteName),
                               );
                               BlocProvider.of<AuthBloc>(context).add(LogOut());
+                            },
+                          ),
+                        ),
+                      ],
+                    ),
+                  if (isInDebugMode)
+                    Row(
+                      mainAxisAlignment: MainAxisAlignment.center,
+                      children: <Widget>[
+                        Padding(
+                          padding: const EdgeInsets.only(bottom: 20.0),
+                          child: ElevatedButton(
+                            key: Key('covidButton'),
+                            child: Text("Covid"),
+                            onPressed: () async {
+                              await context.read<LessonRepository>().getCovidLessons();
                             },
                           ),
                         ),

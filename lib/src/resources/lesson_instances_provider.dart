@@ -53,6 +53,37 @@ class LessonInstancesProvider implements LessonRepository {
       .map((doc) => Lesson.fromJson(doc.data()));
 
   @override
+  Future<void> getCovidLessons() async {
+    Logger.log.i("start covid lessons");
+    try {
+      await _firestore
+          .collectionGroup(sub_collection_path)
+          .where("gymId", isEqualTo: "aranha")
+          .where("date", isGreaterThanOrEqualTo: "2021-07-01")
+          .get()
+          .then((snapshot) {
+        Logger.log.i("lessons: ${snapshot.docs.length}");
+        var covidLessons = snapshot.docs
+            .map((doc) => Lesson.fromJson(doc.data()))
+            .toList()
+            .where((lesson) =>
+                lesson.acceptedAttendees.any((attendee) => attendee.email == "any@email.com"))
+            .toList();
+
+        Logger.log.i("covid lessons: ${covidLessons.length}");
+        covidLessons.forEach((lesson) {
+          Logger.log.i("covid lesson: ${lesson.date}");
+          lesson.acceptedAttendees.forEach((element) {
+            Logger.log.i("  student: ${element.name} - ${element.email}");
+          });
+        });
+      });
+    } catch (err) {
+      Logger.log.e("$err");
+    }
+  }
+
+  @override
   Stream<List<Lesson>> getLessonsByMasterAndTimespan(
           Master master, Timespan timespan, String gymId) =>
       _firestore

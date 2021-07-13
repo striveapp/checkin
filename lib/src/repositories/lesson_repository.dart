@@ -13,6 +13,8 @@ abstract class LessonRepository {
 
   Stream<Lesson> getLesson(String? gymId, String? date, String? lessonId);
 
+  Future<void> getCovidLessons();
+
   Future<void> register(String? gymId, String? date, String? lessonId, Attendee attendee);
 
   Future<void> unregister(String? gymId, String? date, String? lessonId, Attendee attendee);
