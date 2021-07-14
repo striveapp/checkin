@@ -61,7 +61,9 @@ class StatsProvider implements StatsRepository {
         (doc) => UserHistory(
             email: doc.id,
             attendedLessons: (doc.data() != null ? doc.data()['attendedLessons'] as List : [])
-                ?.where((lesson) => lesson['attendedAsGrade'] == grade.name.toLowerCase())
+                ?.where((lesson) =>
+                    (lesson['attendedAsGrade'] as String)?.toLowerCase() ==
+                    grade.name.toLowerCase())
                 ?.map(getLesson)
                 ?.toList()));
   }
