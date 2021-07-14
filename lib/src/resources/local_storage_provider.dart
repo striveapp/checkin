@@ -24,7 +24,7 @@ class LocalStorageProvider implements LocalStorageRepository {
   }
 
   Stream<String> getReferredGymId() {
-    return rxPrefs.getStringStream(REFERRED_GYM_ID).skipWhile((element) => element == null);
+    return _getStringStreamWithoutNulls(REFERRED_GYM_ID);
   }
 
   Future<void> removeReferredGym() async {
@@ -50,7 +50,7 @@ class LocalStorageProvider implements LocalStorageRepository {
   }
 
   @override
-  Stream<User> getUser() => rxPrefs.getStringStream(USER).map((userJson) {
+  Stream<User> getUser() => _getStringStreamWithoutNulls(USER).map((userJson) {
         var decodedUser = json.decode(userJson);
         var userBirthday = decodedUser["birthday"];
         return User.fromJson(decodedUser)
@@ -69,7 +69,9 @@ class LocalStorageProvider implements LocalStorageRepository {
 
   @override
   Stream<Gym> getGym() {
-    return rxPrefs.getStringStream(GYM).map((gymJson) => Gym.fromJson(json.decode(gymJson)));
+    return _getStringStreamWithoutNulls(GYM)
+        .skipWhile((gymJson) => gymJson == null)
+        .map((gymJson) => Gym.fromJson(json.decode(gymJson)));
   }
 
   @override
@@ -78,5 +80,19 @@ class LocalStorageProvider implements LocalStorageRepository {
       GYM,
       json.encode(gym.toJson()),
     );
+  }
+
+  @override
+  Future<void> removeGym() async {
+    await rxPrefs.remove(GYM);
+  }
+
+  @override
+  Future<void> removeUser() async {
+    await rxPrefs.remove(USER);
+  }
+
+  Stream<String> _getStringStreamWithoutNulls(String key) {
+    return rxPrefs.getStringStream(key).skipWhile((str) => str == null);
   }
 }

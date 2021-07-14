@@ -18,7 +18,11 @@ abstract class LocalStorageRepository {
 
   Stream<User> getUser();
 
+  Future<void> removeUser();
+
   Future<void> setGym(Gym gym);
 
   Stream<Gym> getGym();
+
+  Future<void> removeGym();
 }

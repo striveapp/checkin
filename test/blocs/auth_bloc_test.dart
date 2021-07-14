@@ -303,10 +303,14 @@ void main() {
     group('on LogOut event', () {
       setUp(() {
         when(mockAuthRepository.signOut()).thenAnswer((realInvocation) => null);
+        when(mockLocalStorageRepository.removeGym()).thenAnswer((realInvocation) => null);
+        when(mockLocalStorageRepository.removeUser()).thenAnswer((realInvocation) => null);
       });
 
       tearDown(() {
         verify(mockAuthRepository.signOut());
+        verify(mockLocalStorageRepository.removeGym());
+        verify(mockLocalStorageRepository.removeUser());
       });
 
       blocTest(

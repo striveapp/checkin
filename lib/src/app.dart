@@ -5,6 +5,8 @@ import 'package:checkin/src/blocs/dynamic_link/bloc.dart';
 import 'package:checkin/src/blocs/notification/notification_bloc.dart';
 import 'package:checkin/src/blocs/notification/notification_event.dart';
 import 'package:checkin/src/blocs/notification/notification_state.dart';
+import 'package:checkin/src/blocs/onboarding/onboarding_bloc.dart';
+import 'package:checkin/src/blocs/onboarding/onboarding_state.dart';
 import 'package:checkin/src/blocs/profile/bloc.dart';
 import 'package:checkin/src/blocs/theme/bloc.dart';
 import 'package:checkin/src/localization/localization.dart';
@@ -164,6 +166,13 @@ class _AppState extends State<App> with WidgetsBindingObserver {
                     backgroundColor: Theme.of(context).colorScheme.background.withAlpha(200),
                     duration: Duration(milliseconds: 2500),
                   ));
+              }
+            }),
+            BlocListener<OnboardingBloc, OnboardingState>(
+                listener: (BuildContext context, OnboardingState state) {
+              if (state is ShowDialog) {
+                Logger.log.i("Show demo dialog...");
+                // ...showTheDialog..
               }
             }),
           ],

@@ -11,6 +11,8 @@ import 'package:checkin/src/blocs/gym/bloc.dart';
 import 'package:checkin/src/blocs/gym/gym_bloc.dart';
 import 'package:checkin/src/blocs/notification/notification_bloc.dart';
 import 'package:checkin/src/blocs/notification/notification_event.dart';
+import 'package:checkin/src/blocs/onboarding/onboarding_bloc.dart';
+import 'package:checkin/src/blocs/onboarding/onboarding_event.dart';
 import 'package:checkin/src/blocs/theme/bloc.dart';
 import 'package:checkin/src/blocs/version/bloc.dart';
 import 'package:checkin/src/logging/logger.dart';
@@ -145,6 +147,11 @@ Future<void> mainCommon(AppConfig appConfig) async {
               create: (BuildContext context) => GymBloc(
                 gymRepository: context.read(),
               )..add(InitializeGym()),
+            ),
+            BlocProvider<OnboardingBloc>(
+              create: (BuildContext context) => OnboardingBloc(
+                userRepository: context.read(),
+              )..add(InitializeOnboarding()),
             ),
           ],
           child: BlocBuilder<ThemeBloc, ThemeState>(

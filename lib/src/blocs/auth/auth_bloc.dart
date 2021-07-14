@@ -94,6 +94,8 @@ class AuthBloc extends Bloc<AuthEvent, AuthState> {
     if (event is LogOut) {
       try {
         Logger.log.i('Attempting to logout...');
+        await localStorageRepository.removeUser();
+        await localStorageRepository.removeGym();
         await authRepository.signOut();
       } catch (e, st) {
         Logger.log.e('Error occurred trying to signOut', e, st);
