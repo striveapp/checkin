@@ -15,6 +15,7 @@ import 'package:checkin/src/repositories/analytics_repository.dart';
 import 'package:checkin/src/routes/application.dart';
 import 'package:checkin/src/themes/theme.dart';
 import 'package:checkin/src/ui/components/notification_snack_bar_content.dart';
+import 'package:checkin/src/ui/components/onboarding/welcome_dialog.dart';
 import 'package:checkin/src/ui/components/upgrader_dialog.dart';
 import 'package:checkin/src/ui/pages/home_page.dart';
 import 'package:checkin/src/ui/pages/login_page.dart';
@@ -173,6 +174,10 @@ class _AppState extends State<App> with WidgetsBindingObserver {
               if (state is ShowDialog) {
                 Logger.log.i("Show demo dialog...");
                 // ...showTheDialog..
+                showDialog(
+                  context: context,
+                  builder: (_) => WelcomeDialog(),
+                );
               }
             }),
           ],
