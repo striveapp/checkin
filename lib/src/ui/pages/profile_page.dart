@@ -139,7 +139,8 @@ class _ProfilePageState extends State<ProfilePage> {
                               ? state.profileUser.weight.toString()
                               : null,
                           validator: _validateWeight,
-                          keyboardType: TextInputType.number,
+                          keyboardType:
+                              TextInputType.numberWithOptions(signed: true, decimal: true),
                           onFieldSubmitted: (String value) {
                             context.read<ProfileBloc>().add(UpdateWeight(
                                   userEmail: state.profileUser.email,
